@@ -1,10 +1,10 @@
 {
     "base_stats": {
         "hp": 75,
-        "attack": 70,
+        "attack": 80,
         "defense": 90,
         "speed": 80,
-        "special_attack": 70,
+        "special_attack": 80,
         "special_defense": 105
     },
     "types": [ "TYPE_DRAGON", "TYPE_FLYING" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_DRAGON" ],
-    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SERENE_GRACE", "ABILITY_SERENE_GRACE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,

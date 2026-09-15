@@ -1,10 +1,10 @@
 {
     "base_stats": {
-        "hp": 30,
-        "attack": 42,
+        "hp": 60,
+        "attack": 82,
         "defense": 118,
         "speed": 30,
-        "special_attack": 42,
+        "special_attack": 2,
         "special_defense": 88
     },
     "types": [ "TYPE_ROCK", "TYPE_STEEL" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
-    "hatch_cycles": 30,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
-    "abilities": [ "ABILITY_STURDY", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SOLID_ROCK", "ABILITY_BATTLE_ARMOR" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

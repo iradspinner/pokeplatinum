@@ -4,7 +4,7 @@
         "attack": 93,
         "defense": 67,
         "speed": 84,
-        "special_attack": 71,
+        "special_attack": 91,
         "special_defense": 61
     },
     "types": [ "TYPE_POISON", "TYPE_DARK" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_STENCH", "ABILITY_AFTERMATH" ],
+    "abilities": [ "ABILITY_AFTERMATH", "ABILITY_AFTERMATH" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

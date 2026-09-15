@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
-    "hatch_cycles": 30,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
-    "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_BATTLE_ARMOR" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

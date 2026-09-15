@@ -4,7 +4,7 @@
         "attack": 70,
         "defense": 50,
         "speed": 65,
-        "special_attack": 90,
+        "special_attack": 100,
         "special_defense": 50
     },
     "types": [ "TYPE_BUG", "TYPE_FLYING" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
-    "abilities": [ "ABILITY_SWARM", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_TINTED_LENS", "ABILITY_SHIELD_DUST" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,

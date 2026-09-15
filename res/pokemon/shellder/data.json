@@ -5,7 +5,7 @@
         "defense": 100,
         "speed": 40,
         "special_attack": 45,
-        "special_defense": 25
+        "special_defense": 45
     },
     "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
@@ -23,7 +23,7 @@
         "rare": "ITEM_BIG_PEARL"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],

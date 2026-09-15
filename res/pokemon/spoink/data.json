@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 60,
-        "attack": 25,
+        "attack": 55,
         "defense": 35,
         "speed": 60,
         "special_attack": 70,
@@ -23,7 +23,7 @@
         "rare": "ITEM_TANGA_BERRY"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],

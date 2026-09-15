@@ -4,7 +4,7 @@
         "attack": 73,
         "defense": 55,
         "speed": 85,
-        "special_attack": 47,
+        "special_attack": 77,
         "special_defense": 75
     },
     "types": [ "TYPE_BUG", "TYPE_BUG" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_MALE_ONLY",
-    "hatch_cycles": 15,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_HUMAN_LIKE" ],
-    "abilities": [ "ABILITY_ILLUMINATE", "ABILITY_SWARM" ],
+    "abilities": [ "ABILITY_TINTED_LENS", "ABILITY_TINTED_LENS" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

@@ -1,10 +1,10 @@
 {
     "base_stats": {
         "hp": 76,
-        "attack": 65,
+        "attack": 91,
         "defense": 45,
-        "speed": 91,
-        "special_attack": 92,
+        "speed": 110,
+        "special_attack": 102,
         "special_defense": 42
     },
     "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_METRONOME"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
-    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_TANGLED_FEET" ],
+    "abilities": [ "ABILITY_SCRAPPY", "ABILITY_SCRAPPY" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,

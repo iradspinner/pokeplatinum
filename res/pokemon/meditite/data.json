@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 30,
-        "attack": 40,
+        "attack": 45,
         "defense": 55,
         "speed": 60,
         "special_attack": 40,
@@ -23,7 +23,7 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],

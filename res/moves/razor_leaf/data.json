@@ -10,7 +10,7 @@
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
     "power": 55,
-    "accuracy": 95,
+    "accuracy": 100,
     "pp": 25,
     "effect": {
         "type": "BATTLE_EFFECT_HIGH_CRITICAL",

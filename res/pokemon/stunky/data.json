@@ -4,7 +4,7 @@
         "attack": 63,
         "defense": 47,
         "speed": 74,
-        "special_attack": 41,
+        "special_attack": 61,
         "special_defense": 41
     },
     "types": [ "TYPE_POISON", "TYPE_DARK" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_PECHA_BERRY"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_STENCH", "ABILITY_AFTERMATH" ],
+    "abilities": [ "ABILITY_AFTERMATH", "ABILITY_AFTERMATH" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

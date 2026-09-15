@@ -3,9 +3,9 @@
         "hp": 100,
         "attack": 100,
         "defense": 125,
-        "speed": 50,
+        "speed": 10,
         "special_attack": 110,
-        "special_defense": 50
+        "special_defense": 90
     },
     "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 30,
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
-    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_LEAF_GUARD" ],
+    "abilities": [ "ABILITY_MAGIC_GUARD", "ABILITY_UNAWARE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,

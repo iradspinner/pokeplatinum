@@ -5,7 +5,7 @@
         "defense": 80,
         "speed": 90,
         "special_attack": 55,
-        "special_defense": 55
+        "special_defense": 65
     },
     "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 120,

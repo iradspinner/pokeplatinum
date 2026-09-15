@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 70,
-        "attack": 20,
+        "attack": 40,
         "defense": 50,
         "speed": 40,
         "special_attack": 20,
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 10,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
-    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HUGE_POWER" ],
+    "abilities": [ "ABILITY_HUGE_POWER", "ABILITY_HUGE_POWER" ],
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,

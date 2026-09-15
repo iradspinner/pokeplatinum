@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 64,
-        "attack": 115,
+        "attack": 125,
         "defense": 65,
         "speed": 65,
         "special_attack": 83,
@@ -27,7 +27,7 @@
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FRISK" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_INSOMNIA" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,

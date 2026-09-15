@@ -1,9 +1,9 @@
 {
     "base_stats": {
-        "hp": 60,
-        "attack": 110,
+        "hp": 70,
+        "attack": 120,
         "defense": 70,
-        "speed": 100,
+        "speed": 110,
         "special_attack": 60,
         "special_defense": 60
     },
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
-    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_EARLY_BIRD" ],
+    "abilities": [ "ABILITY_QUICK_FEET", "ABILITY_TANGLED_FEET" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,

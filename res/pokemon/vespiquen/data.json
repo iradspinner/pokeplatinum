@@ -1,10 +1,10 @@
 {
     "base_stats": {
-        "hp": 70,
-        "attack": 80,
+        "hp": 80,
+        "attack": 102,
         "defense": 102,
-        "speed": 40,
-        "special_attack": 80,
+        "speed": 70,
+        "special_attack": 102,
         "special_defense": 102
     },
     "types": [ "TYPE_BUG", "TYPE_FLYING" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
-    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_TINTED_LENS", "ABILITY_SWARM" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,

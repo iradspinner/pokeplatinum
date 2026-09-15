@@ -1,11 +1,11 @@
 {
     "base_stats": {
         "hp": 80,
-        "attack": 80,
-        "defense": 80,
+        "attack": 90,
+        "defense": 90,
         "speed": 80,
-        "special_attack": 80,
-        "special_defense": 80
+        "special_attack": 90,
+        "special_defense": 90
     },
     "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 30,
@@ -23,7 +23,7 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_NO_GENDER",
-    "hatch_cycles": 40,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],

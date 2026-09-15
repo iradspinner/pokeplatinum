@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 95,
-        "attack": 80,
+        "attack": 90,
         "defense": 105,
         "speed": 100,
         "special_attack": 40,
@@ -23,7 +23,7 @@
         "rare": "ITEM_MOOMOO_MILK"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],

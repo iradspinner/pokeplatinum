@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
-    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_SWIFT_SWIM" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
@@ -85,6 +85,11 @@
         [
             "EVO_LEVEL_BEAUTY",
             170,
+            "SPECIES_MILOTIC"
+        ],
+        [
+            "EVO_LEVEL",
+            30,
             "SPECIES_MILOTIC"
         ]
     ],

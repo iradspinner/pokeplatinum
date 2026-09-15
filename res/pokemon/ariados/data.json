@@ -1,11 +1,11 @@
 {
     "base_stats": {
         "hp": 70,
-        "attack": 90,
-        "defense": 70,
-        "speed": 40,
+        "attack": 95,
+        "defense": 80,
+        "speed": 70,
         "special_attack": 60,
-        "special_defense": 60
+        "special_defense": 80
     },
     "types": [ "TYPE_BUG", "TYPE_POISON" ],
     "catch_rate": 90,
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
-    "abilities": [ "ABILITY_SWARM", "ABILITY_INSOMNIA" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_INSOMNIA" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,

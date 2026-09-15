@@ -1,10 +1,10 @@
 {
     "base_stats": {
-        "hp": 60,
-        "attack": 52,
+        "hp": 80,
+        "attack": 95,
         "defense": 168,
         "speed": 30,
-        "special_attack": 47,
+        "special_attack": 4,
         "special_defense": 138
     },
     "types": [ "TYPE_ROCK", "TYPE_STEEL" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
-    "abilities": [ "ABILITY_STURDY", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SOLID_ROCK", "ABILITY_BATTLE_ARMOR" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

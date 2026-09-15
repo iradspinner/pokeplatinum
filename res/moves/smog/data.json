@@ -9,14 +9,14 @@
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_POISON",
-    "power": 20,
-    "accuracy": 70,
+    "power": 55,
+    "accuracy": 100,
     "pp": 20,
     "effect": {
         "type": "BATTLE_EFFECT_POISON_HIT",
-        "chance": 40
+        "chance": 30
     },
-    "range": "RANGE_SINGLE_TARGET",
+    "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

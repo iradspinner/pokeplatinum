@@ -1,10 +1,10 @@
 {
     "base_stats": {
         "hp": 53,
-        "attack": 51,
+        "attack": 61,
         "defense": 53,
         "speed": 40,
-        "special_attack": 61,
+        "special_attack": 51,
         "special_defense": 56
     },
     "types": [ "TYPE_WATER", "TYPE_WATER" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_TORRENT" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,

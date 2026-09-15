@@ -23,11 +23,11 @@
         "rare": "ITEM_BIG_ROOT"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
-    "hatch_cycles": 30,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
-    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SOLID_ROCK", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

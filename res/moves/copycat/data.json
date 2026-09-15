@@ -17,7 +17,7 @@
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",
-    "priority": 0,
+    "priority": 1,
     "flags": [],
     "contest": {
         "effect": "CONTEST_EFFECT_STEAL_VOLTAGE",

@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 15,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
-    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "abilities": [ "ABILITY_ADAPTABILITY", "ABILITY_HYPER_CUTTER" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,

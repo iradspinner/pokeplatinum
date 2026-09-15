@@ -23,7 +23,7 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
@@ -123,6 +123,11 @@
         [
             "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_RAZOR_FANG",
+            "SPECIES_GLISCOR"
+        ],
+        [
+            "EVO_LEVEL",
+            38,
             "SPECIES_GLISCOR"
         ]
     ],

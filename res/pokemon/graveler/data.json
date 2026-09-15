@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 55,
-        "attack": 95,
-        "defense": 115,
+        "hp": 65,
+        "attack": 100,
+        "defense": 120,
         "speed": 35,
         "special_attack": 45,
-        "special_defense": 45
+        "special_defense": 65
     },
     "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 120,
@@ -100,7 +100,12 @@
         ]
     },
     "evolutions": [
-        [ "EVO_TRADE", "SPECIES_GOLEM" ]
+        [ "EVO_TRADE", "SPECIES_GOLEM" ],
+        [
+            "EVO_LEVEL",
+            40,
+            "SPECIES_GOLEM"
+        ]
     ],
     "offspring": "SPECIES_GEODUDE",
     "footprint": {

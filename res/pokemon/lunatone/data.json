@@ -1,8 +1,8 @@
 {
     "base_stats": {
-        "hp": 70,
+        "hp": 90,
         "attack": 55,
-        "defense": 65,
+        "defense": 75,
         "speed": 70,
         "special_attack": 95,
         "special_defense": 85
@@ -23,7 +23,7 @@
         "rare": "ITEM_MOON_STONE"
     },
     "gender_ratio": "GENDER_RATIO_NO_GENDER",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],

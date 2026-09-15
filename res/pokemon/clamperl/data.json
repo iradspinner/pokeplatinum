@@ -23,7 +23,7 @@
         "rare": "ITEM_BIG_PEARL"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
@@ -89,6 +89,26 @@
         ],
         [
             "EVO_TRADE_WITH_HELD_ITEM",
+            "ITEM_DEEPSEASCALE",
+            "SPECIES_GOREBYSS"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_DEEPSEATOOTH",
+            "SPECIES_HUNTAIL"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
+            "ITEM_DEEPSEATOOTH",
+            "SPECIES_HUNTAIL"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_DEEPSEASCALE",
+            "SPECIES_GOREBYSS"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_DEEPSEASCALE",
             "SPECIES_GOREBYSS"
         ]

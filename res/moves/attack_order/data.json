@@ -9,12 +9,12 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
-    "power": 90,
+    "power": 120,
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIGH_CRITICAL",
-        "chance": 0
+        "type": "BATTLE_EFFECT_POISON_HIT",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

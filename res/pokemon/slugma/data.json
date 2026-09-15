@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 40,
-        "attack": 40,
-        "defense": 40,
+        "hp": 70,
+        "attack": 50,
+        "defense": 80,
         "speed": 20,
-        "special_attack": 70,
-        "special_defense": 40
+        "special_attack": 90,
+        "special_defense": 80
     },
     "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 190,
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_MAGMA_ARMOR", "ABILITY_FLAME_BODY" ],
+    "abilities": [ "ABILITY_SOLID_ROCK", "ABILITY_SOLID_ROCK" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,

@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 65,
-        "attack": 95,
-        "defense": 75,
+        "hp": 75,
+        "attack": 115,
+        "defense": 95,
         "speed": 85,
-        "special_attack": 55,
-        "special_defense": 55
+        "special_attack": 65,
+        "special_defense": 65
     },
     "types": [ "TYPE_WATER", "TYPE_POISON" ],
     "catch_rate": 45,
@@ -23,7 +23,7 @@
         "rare": "ITEM_POISON_BARB"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],

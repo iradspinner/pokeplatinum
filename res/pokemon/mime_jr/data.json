@@ -23,11 +23,11 @@
         "rare": "ITEM_LEPPA_BERRY"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
-    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_FILTER" ],
+    "abilities": [ "ABILITY_FILTER", "ABILITY_FILTER" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,

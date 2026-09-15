@@ -1,11 +1,11 @@
 {
     "base_stats": {
         "hp": 70,
-        "attack": 65,
-        "defense": 65,
-        "speed": 70,
-        "special_attack": 55,
-        "special_defense": 55
+        "attack": 80,
+        "defense": 75,
+        "speed": 112,
+        "special_attack": 80,
+        "special_defense": 75
     },
     "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 60,
@@ -37,7 +37,8 @@
             [ 1, "MOVE_FAKE_OUT" ],
             [ 1, "MOVE_ATTRACT" ],
             [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ]
+            [ 1, "MOVE_DOUBLE_SLAP" ],
+            [ 35, "MOVE_HYPER_VOICE" ]
         ],
         "by_tm": [
             "TM03",

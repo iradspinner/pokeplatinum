@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 80,
-        "attack": 82,
-        "defense": 100,
+        "hp": 91,
+        "attack": 89,
+        "defense": 90,
         "speed": 80,
-        "special_attack": 83,
-        "special_defense": 100
+        "special_attack": 100,
+        "special_defense": 90
     },
     "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
-    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,

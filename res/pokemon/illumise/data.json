@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 65,
-        "attack": 47,
+        "attack": 77,
         "defense": 55,
         "speed": 85,
         "special_attack": 73,
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
-    "hatch_cycles": 15,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_HUMAN_LIKE" ],
-    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_TINTED_LENS" ],
+    "abilities": [ "ABILITY_TINTED_LENS", "ABILITY_TINTED_LENS" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

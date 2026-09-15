@@ -23,11 +23,11 @@
         "rare": "ITEM_POISON_BARB"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
-    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_POISON_POINT" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_NATURAL_CURE" ],
     "safari_flee_rate": 120,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": true,

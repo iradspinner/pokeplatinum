@@ -3,7 +3,7 @@
         "hp": 75,
         "attack": 123,
         "defense": 67,
-        "speed": 95,
+        "speed": 105,
         "special_attack": 95,
         "special_defense": 85
     },
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
-    "abilities": [ "ABILITY_MOTOR_DRIVE", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_ADAPTABILITY", "ABILITY_NONE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,

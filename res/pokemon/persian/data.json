@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 65,
-        "attack": 70,
+        "attack": 92,
         "defense": 60,
         "speed": 115,
         "special_attack": 65,
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_LIMBER", "ABILITY_TECHNICIAN" ],
+    "abilities": [ "ABILITY_SUPER_LUCK", "ABILITY_TECHNICIAN" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,

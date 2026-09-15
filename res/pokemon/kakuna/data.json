@@ -4,7 +4,7 @@
         "attack": 25,
         "defense": 50,
         "speed": 35,
-        "special_attack": 25,
+        "special_attack": 55,
         "special_defense": 25
     },
     "types": [ "TYPE_BUG", "TYPE_POISON" ],

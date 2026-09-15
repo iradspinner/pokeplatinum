@@ -23,7 +23,7 @@
         "rare": "ITEM_ELECTIRIZER"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_25",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
@@ -101,6 +101,16 @@
     "evolutions": [
         [
             "EVO_TRADE_WITH_HELD_ITEM",
+            "ITEM_ELECTIRIZER",
+            "SPECIES_ELECTIVIRE"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_ELECTIRIZER",
+            "SPECIES_ELECTIVIRE"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_ELECTIRIZER",
             "SPECIES_ELECTIVIRE"
         ]

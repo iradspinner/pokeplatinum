@@ -3,8 +3,8 @@
         "hp": 80,
         "attack": 120,
         "defense": 79,
-        "speed": 70,
-        "special_attack": 95,
+        "speed": 95,
+        "special_attack": 70,
         "special_defense": 79
     },
     "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_RIVALRY", "ABILITY_INTIMIDATE" ],
+    "abilities": [ "ABILITY_TINTED_LENS", "ABILITY_RECKLESS" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
@@ -35,7 +35,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAKE_DOWN" ],
             [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_SUBMISSION" ],
             [ 1, "MOVE_CHARGE" ],
             [ 5, "MOVE_LEER" ],
             [ 9, "MOVE_CHARGE" ],
@@ -46,7 +48,9 @@
             [ 35, "MOVE_THUNDER_FANG" ],
             [ 42, "MOVE_CRUNCH" ],
             [ 49, "MOVE_SCARY_FACE" ],
-            [ 56, "MOVE_DISCHARGE" ]
+            [ 56, "MOVE_DISCHARGE" ],
+            [ 60, "MOVE_DOUBLE_EDGE" ],
+            [ 64, "MOVE_VOLT_TACKLE" ]
         ],
         "by_tm": [
             "TM05",

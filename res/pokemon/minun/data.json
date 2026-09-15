@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 60,
+        "hp": 65,
         "attack": 40,
-        "defense": 50,
-        "speed": 95,
-        "special_attack": 75,
-        "special_defense": 85
+        "defense": 55,
+        "speed": 105,
+        "special_attack": 95,
+        "special_defense": 55
     },
     "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 200,
@@ -23,7 +23,7 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],

@@ -1,8 +1,8 @@
 {
     "base_stats": {
-        "hp": 75,
-        "attack": 100,
-        "defense": 95,
+        "hp": 85,
+        "attack": 110,
+        "defense": 105,
         "speed": 110,
         "special_attack": 40,
         "special_defense": 70
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_MALE_ONLY",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_ANGER_POINT" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_INTIMIDATE" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,

@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 35,
-        "attack": 45,
+        "hp": 55,
+        "attack": 80,
         "defense": 160,
         "speed": 70,
-        "special_attack": 30,
-        "special_defense": 45
+        "special_attack": 10,
+        "special_defense": 55
     },
     "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 45,
@@ -23,7 +23,7 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
@@ -114,6 +114,16 @@
     "evolutions": [
         [
             "EVO_TRADE_WITH_HELD_ITEM",
+            "ITEM_METAL_COAT",
+            "SPECIES_STEELIX"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_METAL_COAT",
+            "SPECIES_STEELIX"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
             "ITEM_METAL_COAT",
             "SPECIES_STEELIX"
         ]

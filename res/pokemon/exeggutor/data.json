@@ -5,7 +5,7 @@
         "defense": 85,
         "speed": 55,
         "special_attack": 125,
-        "special_defense": 65
+        "special_defense": 85
     },
     "types": [ "TYPE_GRASS", "TYPE_PSYCHIC" ],
     "catch_rate": 45,

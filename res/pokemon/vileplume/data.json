@@ -4,7 +4,7 @@
         "attack": 80,
         "defense": 85,
         "speed": 50,
-        "special_attack": 100,
+        "special_attack": 110,
         "special_defense": 90
     },
     "types": [ "TYPE_GRASS", "TYPE_POISON" ],

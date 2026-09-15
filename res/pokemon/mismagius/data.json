@@ -4,7 +4,7 @@
         "attack": 60,
         "defense": 60,
         "speed": 105,
-        "special_attack": 105,
+        "special_attack": 115,
         "special_defense": 105
     },
     "types": [ "TYPE_GHOST", "TYPE_GHOST" ],

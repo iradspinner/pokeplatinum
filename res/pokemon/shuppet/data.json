@@ -1,10 +1,10 @@
 {
     "base_stats": {
         "hp": 44,
-        "attack": 75,
+        "attack": 85,
         "defense": 35,
         "speed": 45,
-        "special_attack": 63,
+        "special_attack": 83,
         "special_defense": 33
     },
     "types": [ "TYPE_GHOST", "TYPE_GHOST" ],
@@ -23,11 +23,11 @@
         "rare": "ITEM_SPELL_TAG"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FRISK" ],
+    "abilities": [ "ABILITY_CLEAR_BODY", "ABILITY_INSOMNIA" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,

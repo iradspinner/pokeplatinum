@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 99,
-        "attack": 68,
-        "defense": 83,
+        "hp": 105,
+        "attack": 92,
+        "defense": 105,
         "speed": 51,
-        "special_attack": 72,
-        "special_defense": 87
+        "special_attack": 92,
+        "special_defense": 105
     },
     "types": [ "TYPE_GRASS", "TYPE_FLYING" ],
     "catch_rate": 200,
@@ -23,11 +23,11 @@
         "rare": "ITEM_NONE"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_50",
-    "hatch_cycles": 25,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
-    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_SOLAR_POWER" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_OVERGROW" ],
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,

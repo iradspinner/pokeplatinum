@@ -4,7 +4,7 @@
         "attack": 41,
         "defense": 40,
         "speed": 65,
-        "special_attack": 50,
+        "special_attack": 65,
         "special_defense": 65
     },
     "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
@@ -23,7 +23,7 @@
         "rare": "ITEM_RAWST_BERRY"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_75",
-    "hatch_cycles": 20,
+    "hatch_cycles": 1,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],

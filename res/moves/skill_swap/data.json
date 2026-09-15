@@ -10,7 +10,7 @@
     "type": "TYPE_PSYCHIC",
     "power": 0,
     "accuracy": 0,
-    "pp": 10,
+    "pp": 2,
     "effect": {
         "type": "BATTLE_EFFECT_SWITCH_ABILITIES",
         "chance": 0

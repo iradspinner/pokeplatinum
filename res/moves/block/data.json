@@ -16,7 +16,7 @@
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
-    "priority": 0,
+    "priority": 1,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_CAN_MAGIC_COAT",

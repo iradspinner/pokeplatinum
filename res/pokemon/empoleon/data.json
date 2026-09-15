@@ -1,10 +1,10 @@
 {
     "base_stats": {
         "hp": 84,
-        "attack": 86,
-        "defense": 88,
+        "attack": 111,
+        "defense": 93,
         "speed": 60,
-        "special_attack": 111,
+        "special_attack": 86,
         "special_defense": 101
     },
     "types": [ "TYPE_WATER", "TYPE_STEEL" ],
@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_TORRENT" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,

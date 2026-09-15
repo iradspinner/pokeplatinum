@@ -9,8 +9,8 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
-    "power": 65,
-    "accuracy": 95,
+    "power": 90,
+    "accuracy": 100,
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_FLINCH_BURN_HIT",
@@ -21,6 +21,7 @@
     "flags": [
         "MOVE_FLAG_MAKES_CONTACT",
         "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_SNATCH",
         "MOVE_FLAG_CAN_MIRROR_MOVE",
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
