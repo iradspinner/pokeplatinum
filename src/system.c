@@ -395,16 +395,11 @@ static void ApplyButtonModeToInput(void)
     case BUTTON_MODE_NORMAL:
         break;
 
+    // BUTTON_MODE_START_IS_X and BUTTON_MODE_SWAP_XY are repurposed as the
+    // uncapped-frame-rate selector (Platinum Oxide, see
+    // ShouldWaitForVBlank in main.c); they no longer remap input.
     case BUTTON_MODE_START_IS_X:
-        CONVERT_KEY(gSystem.pressedKeys, PAD_BUTTON_START, PAD_BUTTON_X);
-        CONVERT_KEY(gSystem.heldKeys, PAD_BUTTON_START, PAD_BUTTON_X);
-        CONVERT_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_START, PAD_BUTTON_X);
-        break;
-
     case BUTTON_MODE_SWAP_XY:
-        SWAP_KEY(gSystem.pressedKeys, PAD_BUTTON_X, PAD_BUTTON_Y);
-        SWAP_KEY(gSystem.heldKeys, PAD_BUTTON_X, PAD_BUTTON_Y);
-        SWAP_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_X, PAD_BUTTON_Y);
         break;
 
     case BUTTON_MODE_L_IS_A:

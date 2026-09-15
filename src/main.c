@@ -12,6 +12,7 @@
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
+#include "game_options.h"
 #include "game_overlay.h"
 #include "game_start.h"
 #include "main.h"
@@ -37,6 +38,7 @@
 
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(game_opening);
+FS_EXTERN_OVERLAY(battle);
 
 typedef struct Application {
     FSOverlayID currOverlayID;
@@ -53,6 +55,7 @@ static void TrySystemReset(enum OSResetParameter resetParam);
 static void SoftReset(enum OSResetParameter resetParam);
 static void HeapCanaryFailed(int resetParam, int param1);
 static void CheckHeapCanary(void);
+static BOOL ShouldWaitForVBlank(void);
 
 static Application sApplication;
 // This variable doesn't really makes sense. If it's set to off, the game will
@@ -60,6 +63,32 @@ static Application sApplication;
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
 extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
+
+/**
+ * @brief Whether the main loop should block on OS_WaitIrq for the next
+ * VBlank, or skip the wait to uncap the frame rate.
+ *
+ * Platinum Oxide: hg-engine's BATTLES_UNCAPPED_FRAME_RATE, ported from a
+ * frame-timing patch found in the base ROM's own synthetic-overlay
+ * expansion (docs/oxide/phase3-base-rom-inventory.md section 2A), which
+ * repurposes BUTTON_MODE_START_IS_X and BUTTON_MODE_SWAP_XY as an uncap
+ * selector instead of their normal input-remapping meaning. Ian's choice
+ * (2026-09-15): keep that repurposing rather than add new option values
+ * (the field is a 2-bit save value, no room for new ones anyway) or a
+ * separate menu entry; the options-menu text still needs updating to match
+ * (tracked in the tracker's backlog).
+ */
+static BOOL ShouldWaitForVBlank(void)
+{
+    switch (Options_ButtonMode(SaveData_GetOptions(sApplication.args.saveData))) {
+    case BUTTON_MODE_START_IS_X: // uncapped only during battle
+        return sApplication.currOverlayID != FS_OVERLAY_ID(battle);
+    case BUTTON_MODE_SWAP_XY: // uncapped everywhere
+        return FALSE;
+    default:
+        return TRUE;
+    }
+}
 
 void NitroMain(void)
 {
@@ -144,7 +173,7 @@ void NitroMain(void)
         sub_020241CC();
         SysTaskManager_ExecuteTasks(gSystem.printTaskMgr);
 
-        OS_WaitIrq(TRUE, OS_IE_V_BLANK);
+        OS_WaitIrq(ShouldWaitForVBlank(), OS_IE_V_BLANK);
 
         gSystem.vblankCounter++;
         gSystem.frameCounter = 0;
