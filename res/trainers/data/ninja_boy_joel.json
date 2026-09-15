@@ -10,40 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_BUTTERFREE",
             "form": 0,
-            "level": 29,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SILVER_WIND",
+                "MOVE_TAILWIND",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 29,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_STUNKY",
-            "form": 0,
-            "level": 29,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GOLBAT",
-            "form": 0,
-            "level": 29,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_POISON_FANG"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

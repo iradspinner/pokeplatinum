@@ -13,13 +13,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_NIDOQUEEN",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 69,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_POISON_JAB",
+                "MOVE_ICE_PUNCH",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_UMBREON",
+            "form": 0,
+            "level": 69,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_PAYBACK",
+                "MOVE_CURSE",
+                "MOVE_WISH",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TANGROWTH",
+            "form": 0,
+            "level": 69,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_POWER_WHIP",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SLEEP_POWDER"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 70,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_POWER_WHIP",
+                "MOVE_ICE_PUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 70,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_LAVA_PLUME",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 71,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_BLIZZARD",
+                "MOVE_ROAR",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": []

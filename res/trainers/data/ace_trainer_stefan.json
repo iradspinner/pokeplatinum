@@ -10,22 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PUPITAR",
+            "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SYNTHESIS",
+                "MOVE_CRUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_WOOD_HAMMER"
+            ],
+            "iv_scale": 238,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_XATU",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_ROOST",
+                "MOVE_AIR_CUTTER",
+                "MOVE_HEAT_WAVE",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

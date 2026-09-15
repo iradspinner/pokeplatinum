@@ -11,22 +11,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WOOPER",
+            "species": "SPECIES_BELLOSSOM",
             "form": 0,
-            "level": 26,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_QUAGSIRE",
-            "form": 0,
-            "level": 28,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_STUN_SPORE",
+                "MOVE_SUNNY_DAY",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_PINSIR",
             "form": 0,
-            "level": 55,
+            "level": 73,
             "item": null,
             "moves": [
                 "MOVE_SUPERPOWER",
@@ -20,13 +20,15 @@
                 "MOVE_SWORDS_DANCE",
                 "MOVE_ROCK_TOMB"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 56,
+            "level": 73,
             "item": null,
             "moves": [
                 "MOVE_DISCHARGE",
@@ -34,8 +36,26 @@
                 "MOVE_SURF",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 221,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MEGANIUM",
+            "form": 0,
+            "level": 73,
+            "item": null,
+            "moves": [
+                "MOVE_PETAL_DANCE",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_POISON_POWDER",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

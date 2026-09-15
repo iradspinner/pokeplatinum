@@ -12,72 +12,98 @@
         {
             "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 84,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
-                "MOVE_TRIPLE_KICK",
-                "MOVE_AERIAL_ACE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_FAKE_OUT"
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 84,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_FIRE_PUNCH",
                 "MOVE_ICE_PUNCH",
+                "MOVE_PSYCHO_CUT",
                 "MOVE_THUNDER_PUNCH",
                 "MOVE_HI_JUMP_KICK"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 227,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 84,
+            "item": "ITEM_CHOICE_SCARF",
             "moves": [
                 "MOVE_STONE_EDGE",
-                "MOVE_SPORE",
+                "MOVE_THUNDER_PUNCH",
                 "MOVE_MACH_PUNCH",
                 "MOVE_SEED_BOMB"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 64,
-            "item": "ITEM_NONE",
+            "level": 84,
+            "item": "ITEM_FLAME_ORB",
             "moves": [
                 "MOVE_CROSS_CHOP",
-                "MOVE_ROCK_CLIMB",
+                "MOVE_ICE_PUNCH",
                 "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PRIMEAPE",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 66,
-            "item": "ITEM_NONE",
+            "level": 85,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_DRAIN_PUNCH",
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_EXTREME_SPEED",
-                "MOVE_BONE_RUSH"
+                "MOVE_AURA_SPHERE",
+                "MOVE_FLASH_CANNON",
+                "MOVE_DARK_PULSE",
+                "MOVE_VACUUM_WAVE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 243,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

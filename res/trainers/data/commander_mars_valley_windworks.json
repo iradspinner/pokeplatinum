@@ -10,30 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_MEOWTH",
             "form": 0,
-            "level": 15,
+            "level": 18,
             "item": "ITEM_NONE",
             "moves": [
                 "MOVE_BITE",
-                "MOVE_LEECH_LIFE",
-                "MOVE_TOXIC"
+                "MOVE_SCREECH",
+                "MOVE_FAKE_OUT",
+                "MOVE_FURY_SWIPES"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 235,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ZUBAT",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_SUPERSONIC",
+                "MOVE_POISON_STING",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 202,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_CONFUSION",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 17,
+            "level": 19,
             "item": "ITEM_ORAN_BERRY",
             "moves": [
                 "MOVE_FAINT_ATTACK",
                 "MOVE_SCRATCH",
-                "MOVE_FAKE_OUT"
+                "MOVE_FAKE_OUT",
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

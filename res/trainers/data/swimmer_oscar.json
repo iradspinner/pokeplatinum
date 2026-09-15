@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MANTYKE",
-            "form": 0,
-            "level": 41,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_REMORAID",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_MANTINE",
             "form": 0,
-            "level": 43,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_CONFUSE_RAY",
+                "MOVE_RAIN_DANCE",
+                "MOVE_AQUA_RING",
+                "MOVE_HYDRO_PUMP"
+            ],
+            "iv_scale": 236,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_WAILORD",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_SPOUT",
+                "MOVE_AMNESIA",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HIDDEN_POWER"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

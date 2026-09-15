@@ -12,16 +12,50 @@
         {
             "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 41,
+            "level": 52,
             "item": null,
             "moves": [
-                "MOVE_METAL_CLAW",
-                "MOVE_FORCE_PALM",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BONE_RUSH"
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ABSOL",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_SUPERPOWER",
+                "MOVE_MEGAHORN"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_URSARING",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_SEED_BOMB"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": []

@@ -10,22 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_NINJASK",
             "form": 0,
-            "level": 37,
+            "level": 51,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GOLBAT",
-            "form": 0,
-            "level": 37,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_SLASH",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_X_SCISSOR"
+            ],
+            "iv_scale": 199,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

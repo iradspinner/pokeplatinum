@@ -10,40 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_WEEZING",
             "form": 0,
-            "level": 33,
+            "level": 50,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GLAMEOW",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_STUNKY",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_HOUNDOUR",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_THUNDER",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 229,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

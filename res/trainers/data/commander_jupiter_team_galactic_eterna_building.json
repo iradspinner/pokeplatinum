@@ -11,31 +11,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_DELCATTY",
             "form": 0,
-            "level": 21,
+            "level": 26,
             "item": "ITEM_NONE",
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_WING_ATTACK",
-                "MOVE_BITE"
+                "MOVE_FAKE_OUT",
+                "MOVE_SING",
+                "MOVE_ATTRACT",
+                "MOVE_HEADBUTT"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SABLEYE",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_FAKE_OUT",
+                "MOVE_ASTONISH",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_PECHA_BERRY",
+            "moves": [
+                "MOVE_LEECH_SEED",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_BIND",
+                "MOVE_SLEEP_POWDER"
+            ],
+            "iv_scale": 218,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 23,
+            "level": 27,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_NIGHT_SLASH",
-                "MOVE_POISON_GAS",
+                "MOVE_TOXIC",
                 "MOVE_SCREECH",
                 "MOVE_SMOKE_SCREEN"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

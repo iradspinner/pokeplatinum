@@ -11,31 +11,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 37,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SKY_UPPERCUT",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_SEED_BOMB",
+                "MOVE_DYNAMIC_PUNCH"
+            ],
+            "iv_scale": 214,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_EXEGGUTOR",
             "form": 0,
-            "level": 38,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_CROAGUNK",
-            "form": 0,
-            "level": 39,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_SYNTHESIS",
+                "MOVE_SUNNY_DAY",
+                "MOVE_SOLAR_BEAM"
+            ],
+            "iv_scale": 198,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

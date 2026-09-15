@@ -13,21 +13,23 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_SEED_BOMB",
                 "MOVE_MACH_PUNCH",
-                "MOVE_SKY_UPPERCUT",
+                "MOVE_THUNDER_PUNCH",
                 "MOVE_SPORE"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -35,8 +37,26 @@
                 "MOVE_FOCUS_BLAST",
                 "MOVE_DARK_PULSE"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 213,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLASH_CANNON",
+                "MOVE_VACUUM_WAVE",
+                "MOVE_PSYCHIC",
+                "MOVE_AURA_SPHERE"
+            ],
+            "iv_scale": 219,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

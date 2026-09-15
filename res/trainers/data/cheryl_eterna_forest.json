@@ -17,10 +17,29 @@
             "moves": [
                 "MOVE_EGG_BOMB",
                 "MOVE_SOFTBOILED",
-                "MOVE_REFRESH"
+                "MOVE_REFRESH",
+                "MOVE_SWEET_KISS"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 180,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MUNCHLAX",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_METRONOME",
+                "MOVE_AMNESIA",
+                "MOVE_LICK"
+            ],
+            "iv_scale": 152,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": []

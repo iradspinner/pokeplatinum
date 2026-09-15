@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KRABBY",
-            "form": 0,
-            "level": 51,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_CORPHISH",
-            "form": 0,
-            "level": 51,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_KINGLER",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_GUILLOTINE",
+                "MOVE_SUPERPOWER",
+                "MOVE_CRABHAMMER",
+                "MOVE_X_SCISSOR"
+            ],
+            "iv_scale": 232,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CRAWDAUNT",
+            "form": 0,
+            "level": 73,
+            "item": null,
+            "moves": [
+                "MOVE_CRABHAMMER",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_CRUNCH",
+                "MOVE_GUILLOTINE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

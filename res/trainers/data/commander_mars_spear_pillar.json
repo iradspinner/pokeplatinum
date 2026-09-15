@@ -11,46 +11,84 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_SOLROCK",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
+            "level": 58,
+            "item": "ITEM_KINGS_ROCK",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ROCK_SLIDE",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_DELCATTY",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
+            "level": 58,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_AIR_CUTTER",
-                "MOVE_BITE",
-                "MOVE_POISON_FANG",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_FAKE_OUT",
+                "MOVE_COPYCAT",
+                "MOVE_LAST_RESORT",
+                "MOVE_NONE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 0,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PERSIAN",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_FURY_SWIPES",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_U_TURN",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_CURSE",
+                "MOVE_GYRO_BALL",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_RECYCLE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 59,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_SLASH",
-                "MOVE_SHADOW_CLAW",
-                "MOVE_AERIAL_ACE",
+                "MOVE_FAKE_OUT",
+                "MOVE_SUCKER_PUNCH",
                 "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 224,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

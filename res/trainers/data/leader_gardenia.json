@@ -11,46 +11,84 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TURTWIG",
-            "form": 0,
-            "level": 20,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_GRASS_KNOT",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_SUNNY_DAY",
-                "MOVE_REFLECT"
-            ],
-            "iv_scale": 50,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_CHERRIM",
             "form": 0,
-            "level": 20,
-            "item": "ITEM_NONE",
+            "level": 25,
+            "item": "ITEM_HEAT_ROCK",
             "moves": [
-                "MOVE_GRASS_KNOT",
+                "MOVE_SOLAR_BEAM",
                 "MOVE_LEECH_SEED",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_SAFEGUARD"
+                "MOVE_SUNNY_DAY",
+                "MOVE_WEATHER_BALL"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 235,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_LUMINEON",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_WATMEL_BERRY",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_SILVER_WIND",
+                "MOVE_SWAGGER"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SHIFTRY",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_OCCA_BERRY",
+            "moves": [
+                "MOVE_SOLAR_BEAM",
+                "MOVE_ROCK_TOMB",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_FAINT_ATTACK"
+            ],
+            "iv_scale": 243,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_SEED",
+                "MOVE_STUN_SPORE",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         },
         {
             "species": "SPECIES_ROSERADE",
             "form": 0,
-            "level": 22,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 26,
+            "item": "ITEM_POISON_BARB",
             "moves": [
-                "MOVE_GRASS_KNOT",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_POISON_STING",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_WEATHER_BALL",
                 "MOVE_STUN_SPORE"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

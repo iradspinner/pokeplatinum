@@ -12,20 +12,50 @@
         {
             "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 45,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_OUTRAGE",
+                "MOVE_SKY_ATTACK",
+                "MOVE_PERISH_SONG"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 47,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_DRACO_METEOR",
+                "MOVE_HIDDEN_POWER",
+                "MOVE_HEAT_WAVE",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KINGDRA",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_AGILITY",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "iv_scale": 234,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

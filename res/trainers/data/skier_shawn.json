@@ -10,31 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNOVER",
+            "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 35,
+            "level": 51,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_SNOVER",
-            "form": 0,
-            "level": 36,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_SNOVER",
-            "form": 0,
-            "level": 37,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_SUPER_FANG",
+                "MOVE_ICE_SHARD",
+                "MOVE_HEADBUTT"
+            ],
+            "iv_scale": 233,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -11,32 +11,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STEELIX",
+            "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 35,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_IRON_TAIL",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_SANDSTORM",
-                "MOVE_SCREECH"
+                "MOVE_FLASH_CANNON",
+                "MOVE_AURA_SPHERE",
+                "MOVE_DARK_PULSE",
+                "MOVE_PSYCHIC"
             ],
-            "iv_scale": 40,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_STEELIX",
-            "form": 0,
-            "level": 37,
-            "item": null,
-            "moves": [
-                "MOVE_IRON_TAIL",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_SANDSTORM",
-                "MOVE_SCREECH"
-            ],
-            "iv_scale": 40,
-            "ball_seal": 0
+            "iv_scale": 208,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

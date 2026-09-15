@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_CLAYDOL",
             "form": 0,
-            "level": 63,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_PSYCHIC",
@@ -20,8 +20,42 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_REFLECT"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TORKOAL",
+            "form": 0,
+            "level": 77,
+            "item": null,
+            "moves": [
+                "MOVE_EARTH_POWER",
+                "MOVE_ERUPTION",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 245,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_UMBREON",
+            "form": 0,
+            "level": 77,
+            "item": null,
+            "moves": [
+                "MOVE_DARK_PULSE",
+                "MOVE_PSYCHIC",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": []

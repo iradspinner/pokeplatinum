@@ -11,74 +11,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOUNDOOM",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 45,
-            "item": "ITEM_NONE",
+            "level": 59,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_DARK_PULSE",
-                "MOVE_WILL_O_WISP",
-                "MOVE_THUNDER_FANG"
+                "MOVE_OVERHEAT",
+                "MOVE_REST",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HYPER_VOICE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 243,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_HONCHKROW",
             "form": 0,
-            "level": 47,
-            "item": "ITEM_NONE",
+            "level": 59,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_DRILL_PECK",
+                "MOVE_BRAVE_BIRD",
                 "MOVE_NIGHT_SLASH",
-                "MOVE_HEAT_WAVE",
-                "MOVE_PSYCHIC"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_CROBAT",
+            "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "level": 59,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_CROSS_POISON",
-                "MOVE_AIR_SLASH",
-                "MOVE_TOXIC",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_LOCK_ON",
+                "MOVE_FLASH_CANNON",
+                "MOVE_ZAP_CANNON",
+                "MOVE_EXPLOSION"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "level": 59,
+            "item": "ITEM_WACAN_BERRY",
             "moves": [
                 "MOVE_GIGA_IMPACT",
-                "MOVE_WATERFALL",
-                "MOVE_ICE_FANG",
+                "MOVE_AVALANCHE",
+                "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_WEAVILE",
             "form": 0,
-            "level": 48,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 59,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
                 "MOVE_NIGHT_SLASH",
                 "MOVE_ICE_PUNCH",
-                "MOVE_FAKE_OUT",
-                "MOVE_X_SCISSOR"
+                "MOVE_BRICK_BREAK",
+                "MOVE_ICE_SHARD"
             ],
             "iv_scale": 250,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 60,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SWAGGER",
+                "MOVE_ROOST",
+                "MOVE_FIRE_BLAST"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

@@ -351,9 +351,8 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     the flatten()-based apply_diff can't reach into (it treats any list as
     one opaque value), so per-mon fields are patched individually here, and
     `ability`/`gender` are inserted as new keys the first time either is
-    needed. Trainers whose party size changed are logged, not applied - that
-    needs inserting whole new party-member objects, which this tool doesn't
-    support yet."""
+    needed. When the party size itself changed, the whole array is rewritten
+    at once instead (see below)."""
     text = open(json_path, encoding="utf-8").read()
     changed = []
     rel = os.path.relpath(json_path, ROOT)
@@ -369,8 +368,17 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
         changed.append(f"{key}: {fo.get(key)!r} -> {val!r}")
 
     if len(new_party) != len(old_party):
-        log.append((rel, [f"party size changed ({len(old_party)} -> {len(new_party)} mons); "
-                           "needs a human to add/remove party-member objects, not applied"]))
+        # Party size changed, so this isn't a per-field patch anymore - rewrite
+        # the whole array. jsonstyle.dumps() round-trips this repo's party
+        # arrays byte-for-byte in the overwhelming majority of cases (checked
+        # against all 928 trainer files); the one known miss is a 2-element
+        # "moves" list, which this repo always hand-formats one-per-line but
+        # dumps() inlines (its general "<=2 scalars" rule). Still valid JSON,
+        # just occasionally not matching this file's existing hand style.
+        current = jsonstyle.get_value(text, ["party"])
+        if current != new_party:
+            text = jsonstyle.replace_value(text, ["party"], new_party)
+            changed.append(f"party: {len(old_party)} -> {len(new_party)} mons (full rewrite, size changed)")
     else:
         for i, (nm, om) in enumerate(zip(new_party, old_party)):
             for key in ("species", "form", "level", "item", "moves", "iv_scale", "ball_seal"):
@@ -457,7 +465,7 @@ def main():
     bh, vh = base.narc("poketool/trainer/trdata.narc"), van.narc("poketool/trainer/trdata.narc")
     bpk, vpk = base.narc("poketool/trainer/trpoke.narc"), van.narc("poketool/trainer/trpoke.narc")
     n = 0
-    skipped_size = 0
+    resized = 0
     for i in range(len(bh)):
         if bh[i] == vh[i] and bpk[i] == vpk[i]:
             continue
@@ -470,11 +478,11 @@ def main():
         new_party = decode_trainer_party(bpk[i], new_ps, new_mdt)
         old_party = decode_trainer_party(vpk[i], old_ps, old_mdt)
         if len(new_party) != len(old_party):
-            skipped_size += 1
+            resized += 1
         if apply_trainer_diff(d, new_header, new_party, old_header, old_party, a.dry_run, log):
             n += 1
     counts["trainers"] = n
-    counts["trainers_party_size_changed_skipped"] = skipped_size
+    counts["trainers_party_resized"] = resized
 
     with open(a.report, "w", encoding="utf-8") as f:
         f.write("# Base ROM import report\n\n")

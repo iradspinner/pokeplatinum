@@ -10,22 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GOLDEEN",
+            "species": "SPECIES_VILEPLUME",
             "form": 0,
-            "level": 27,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_BIBAREL",
-            "form": 0,
-            "level": 27,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_SUNNY_DAY"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

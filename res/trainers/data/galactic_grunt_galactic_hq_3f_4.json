@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_HYPNO",
             "form": 0,
-            "level": 38,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_HEADBUTT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_STUNKY",
+            "species": "SPECIES_GRUMPIG",
             "form": 0,
-            "level": 38,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GLAMEOW",
-            "form": 0,
-            "level": 38,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SHADOW_BALL",
+                "MOVE_POWER_GEM",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

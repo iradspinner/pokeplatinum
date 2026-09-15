@@ -11,60 +11,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
-            "form": 0,
-            "level": 40,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SLASH",
-                "MOVE_AERIAL_ACE",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_ICE_SHARD"
-            ],
-            "iv_scale": 250,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_PILOSWINE",
-            "form": 0,
-            "level": 40,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_AVALANCHE",
-                "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_HAIL"
-            ],
-            "iv_scale": 250,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 42,
-            "item": "ITEM_NONE",
+            "level": 55,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_AVALANCHE",
-                "MOVE_WOOD_HAMMER",
-                "MOVE_WATER_PULSE",
+                "MOVE_BLIZZARD",
+                "MOVE_ENERGY_BALL",
+                "MOVE_INGRAIN",
                 "MOVE_FOCUS_BLAST"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAMOSWINE",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_IRON_HEAD"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_LOW_KICK",
+                "MOVE_ICE_SHARD"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GLACEON",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_YAWN",
+                "MOVE_SHADOW_BALL",
+                "MOVE_HAIL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_WALREIN",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_SURF",
+                "MOVE_REST",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_FROSLASS",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 56,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_BLIZZARD",
                 "MOVE_DOUBLE_TEAM",
                 "MOVE_SHADOW_BALL",
                 "MOVE_PSYCHIC"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,13 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 5,
+            "level": 29,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_JUMP_KICK",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_POUND"
+            ],
+            "iv_scale": 159,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VAPOREON",
+            "form": 0,
+            "level": 29,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_ROAR",
+                "MOVE_FAKE_TEARS",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 175,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GROTLE",
+            "form": 0,
+            "level": 30,
+            "item": null,
+            "moves": [
+                "MOVE_BULLET_SEED",
+                "MOVE_BITE",
+                "MOVE_CURSE",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 170,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": []

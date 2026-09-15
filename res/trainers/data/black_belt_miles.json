@@ -11,13 +11,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHAMP",
+            "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CLOSE_COMBAT"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HITMONLEE",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_BLAZE_KICK",
+                "MOVE_MEGA_KICK",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HITMONTOP",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_MACH_PUNCH"
+            ],
+            "iv_scale": 236,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

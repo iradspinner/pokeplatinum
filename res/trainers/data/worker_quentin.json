@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNEMITE",
+            "species": "SPECIES_URSARING",
             "form": 0,
-            "level": 34,
+            "level": 48,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_SLASH",
+                "MOVE_SHADOW_CLAW",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 34,
+            "level": 48,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GRAVELER",
-            "form": 0,
-            "level": 34,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_HAMMER_ARM",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

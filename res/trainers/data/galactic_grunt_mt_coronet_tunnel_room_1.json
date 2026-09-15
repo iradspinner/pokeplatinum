@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_ZANGOOSE",
             "form": 0,
-            "level": 38,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_CLOSE_COMBAT"
+            ],
+            "iv_scale": 227,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_STUNKY",
+            "species": "SPECIES_CHIMECHO",
             "form": 0,
-            "level": 40,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_CROAGUNK",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_HEAL_BELL",
+                "MOVE_PSYCHIC",
+                "MOVE_ENERGY_BALL",
+                "MOVE_ICY_WIND"
+            ],
+            "iv_scale": 207,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

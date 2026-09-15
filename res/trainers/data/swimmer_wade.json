@@ -10,31 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CARVANHA",
-            "form": 0,
-            "level": 53,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_CARVANHA",
-            "form": 0,
-            "level": 53,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_SHARPEDO",
             "form": 0,
-            "level": 56,
+            "level": 74,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_AGILITY",
+                "MOVE_SKULL_BASH",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_WHISCASH",
+            "form": 0,
+            "level": 74,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_FISSURE"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

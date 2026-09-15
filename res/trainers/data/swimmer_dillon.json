@@ -10,22 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_REMORAID",
+            "species": "SPECIES_VAPOREON",
             "form": 0,
-            "level": 33,
+            "level": 46,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_FLOATZEL",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_TOXIC",
+                "MOVE_AQUA_RING"
+            ],
+            "iv_scale": 245,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,22 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_ARBOK",
             "form": 0,
-            "level": 35,
+            "level": 50,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MURKROW",
-            "form": 0,
-            "level": 35,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_GUNK_SHOT",
+                "MOVE_SEED_BOMB",
+                "MOVE_ICE_FANG",
+                "MOVE_GLARE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

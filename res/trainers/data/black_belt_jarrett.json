@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_CROSS_CHOP",
@@ -21,8 +21,42 @@
                 "MOVE_ICE_PUNCH",
                 "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 243,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_DYNAMIC_PUNCH",
+                "MOVE_WATERFALL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_HEADBUTT"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BLAZIKEN",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_SKY_UPPERCUT",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 228,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

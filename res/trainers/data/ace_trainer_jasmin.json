@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_CROSS_POISON",
@@ -20,8 +20,42 @@
                 "MOVE_X_SCISSOR",
                 "MOVE_AERIAL_ACE"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAGCARGO",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_EARTH_POWER",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 214,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_LEAF_BLADE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_DRAGON_CLAW",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 217,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,23 +10,25 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FLAAFFY",
+            "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 55,
+            "level": 73,
             "item": null,
             "moves": [
-                "MOVE_DISCHARGE",
+                "MOVE_THUNDERBOLT",
                 "MOVE_POWER_GEM",
                 "MOVE_SIGNAL_BEAM",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_TROPIUS",
             "form": 0,
-            "level": 56,
+            "level": 73,
             "item": null,
             "moves": [
                 "MOVE_SOLAR_BEAM",
@@ -34,8 +36,26 @@
                 "MOVE_SYNTHESIS",
                 "MOVE_SUNNY_DAY"
             ],
-            "iv_scale": 50,
-            "ball_seal": 19
+            "iv_scale": 230,
+            "ball_seal": 19,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LAPRAS",
+            "form": 0,
+            "level": 73,
+            "item": null,
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

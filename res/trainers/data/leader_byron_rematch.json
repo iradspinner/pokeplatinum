@@ -12,72 +12,98 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 86,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_DRILL_PECK",
-                "MOVE_ROCK_TOMB",
+                "MOVE_STEEL_WING",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_WHIRLWIND",
                 "MOVE_STEALTH_ROCK"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 86,
+            "item": "ITEM_PASSHO_BERRY",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_ICE_FANG",
-                "MOVE_DRAGON_BREATH",
+                "MOVE_IRON_HEAD",
+                "MOVE_THUNDER_FANG",
+                "MOVE_EARTHQUAKE",
                 "MOVE_SANDSTORM"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 238,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 86,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_FLASH_CANNON",
                 "MOVE_THUNDERBOLT",
-                "MOVE_SUPERSONIC",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_TRI_ATTACK",
+                "MOVE_MAGNET_RISE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_BASTIODON",
+            "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 86,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_METAL_BURST",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_REST"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FLASH_CANNON",
+                "MOVE_ICE_BEAM",
+                "MOVE_YAWN"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 245,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_AGGRON",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 86,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 206,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BASTIODON",
+            "form": 0,
+            "level": 87,
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
                 "MOVE_METAL_BURST",
                 "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_AVALANCHE"
+                "MOVE_ROAR",
+                "MOVE_STEALTH_ROCK"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

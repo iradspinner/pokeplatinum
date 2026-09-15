@@ -10,31 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGIKARP",
+            "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 43,
+            "level": 59,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_FINNEON",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_FEEBAS",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_AQUA_RING",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_CHARGE"
+            ],
+            "iv_scale": 238,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

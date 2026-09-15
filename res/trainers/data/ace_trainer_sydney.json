@@ -12,30 +12,50 @@
         {
             "species": "SPECIES_CLEFABLE",
             "form": 0,
-            "level": 47,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_METEOR_MASH",
-                "MOVE_REFLECT",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_GRAVITY"
+                "MOVE_METRONOME",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_EARTHQUAKE",
                 "MOVE_CRUNCH",
                 "MOVE_LEECH_SEED",
-                "MOVE_SYNTHESIS"
+                "MOVE_WOOD_HAMMER"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TORKOAL",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_HEAT_WAVE",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_EARTH_POWER",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 232,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

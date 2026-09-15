@@ -10,22 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOUNDOUR",
+            "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 34,
+            "level": 50,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GLAMEOW",
-            "form": 0,
-            "level": 36,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AQUA_TAIL",
+                "MOVE_X_SCISSOR",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

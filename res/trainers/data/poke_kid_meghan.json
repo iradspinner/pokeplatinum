@@ -10,40 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PIKACHU",
+            "species": "SPECIES_PLUSLE",
             "form": 0,
-            "level": 42,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 10,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_SWEET_KISS"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_PIKACHU",
+            "species": "SPECIES_MINUN",
             "form": 0,
-            "level": 42,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 10,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_PIKACHU",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 10,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_PIKACHU",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 10,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_FAKE_TEARS",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_SWEET_KISS"
+            ],
+            "iv_scale": 241,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

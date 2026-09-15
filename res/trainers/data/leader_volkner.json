@@ -13,58 +13,98 @@
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "level": 61,
+            "item": "ITEM_DAMP_ROCK",
             "moves": [
+                "MOVE_THUNDER",
+                "MOVE_SHADOW_BALL",
                 "MOVE_THUNDER_WAVE",
-                "MOVE_CHARGE_BEAM",
-                "MOVE_IRON_TAIL",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_RAIN_DANCE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 211,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_RAICHU",
-            "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "species": "SPECIES_ROTOM",
+            "form": 5,
+            "level": 61,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_CHARGE_BEAM",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_THUNDER",
+                "MOVE_SHADOW_BALL",
+                "MOVE_LEAF_STORM",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 241,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LANTURN",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_THUNDER",
+                "MOVE_ICE_BEAM",
+                "MOVE_AQUA_RING"
+            ],
+            "iv_scale": 227,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_CHOICE_SPECS",
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_TRI_ATTACK",
+                "MOVE_FLASH_CANNON",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 232,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 48,
-            "item": "ITEM_NONE",
+            "level": 61,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
                 "MOVE_ICE_FANG",
                 "MOVE_THUNDER_FANG",
                 "MOVE_CRUNCH",
-                "MOVE_FIRE_FANG"
+                "MOVE_SUPERPOWER"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_ELECTIVIRE",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 62,
+            "item": "ITEM_CHOICE_SCARF",
             "moves": [
                 "MOVE_THUNDER_PUNCH",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_QUICK_ATTACK",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CROSS_CHOP",
                 "MOVE_GIGA_IMPACT"
             ],
-            "iv_scale": 2500,
-            "ball_seal": 14
+            "iv_scale": 229,
+            "ball_seal": 14,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

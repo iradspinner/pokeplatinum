@@ -10,13 +10,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 100,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_WHIRLWIND",
+                "MOVE_ROOST",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLAYDOL",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_TRICK_ROOM",
+                "MOVE_EARTH_POWER"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CRADILY",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_CHESTO_BERRY",
+            "moves": [
+                "MOVE_CURSE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SEED_BOMB",
+                "MOVE_REST"
+            ],
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ARMALDO",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_X_SCISSOR",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

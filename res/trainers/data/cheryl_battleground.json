@@ -12,72 +12,98 @@
         {
             "species": "SPECIES_WOBBUFFET",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_CUSTAP_BERRY",
             "moves": [
                 "MOVE_COUNTER",
                 "MOVE_MIRROR_COAT",
                 "MOVE_SAFEGUARD",
                 "MOVE_ENCORE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 238,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_DRIFBLIM",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_TOXIC",
-                "MOVE_OMINOUS_WIND",
-                "MOVE_FLY",
-                "MOVE_PROTECT"
+                "MOVE_SHADOW_BALL",
+                "MOVE_AIR_CUTTER",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DESTINY_BOND"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 224,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_CLOSE_COMBAT",
                 "MOVE_EARTHQUAKE",
                 "MOVE_BULLET_PUNCH",
                 "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 214,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_WATER_SPOUT",
-                "MOVE_BRINE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_AVALANCHE"
+                "MOVE_ICE_BEAM",
+                "MOVE_SURF",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 232,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SNORLAX",
+            "form": 0,
+            "level": 80,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_EARTHQUAKE",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_CURSE"
+            ],
+            "iv_scale": 234,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_BLISSEY",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 82,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SOFTBOILED",
-                "MOVE_COUNTER",
-                "MOVE_PSYCHIC",
+                "MOVE_SEISMIC_TOSS",
+                "MOVE_STEALTH_ROCK",
                 "MOVE_TOXIC"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

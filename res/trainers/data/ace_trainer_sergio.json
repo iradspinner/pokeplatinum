@@ -10,32 +10,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNOVER",
+            "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 41,
+            "level": 54,
             "item": null,
             "moves": [
-                "MOVE_ICE_SHARD",
-                "MOVE_SWAGGER",
-                "MOVE_ICY_WIND",
-                "MOVE_WOOD_HAMMER"
+                "MOVE_ICE_PUNCH",
+                "MOVE_WOOD_HAMMER",
+                "MOVE_HEADBUTT",
+                "MOVE_LEECH_SEED"
             ],
-            "iv_scale": 60,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_SNEASEL",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": [
-                "MOVE_ICY_WIND",
-                "MOVE_SLASH",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "iv_scale": 60,
-            "ball_seal": 0
+            "iv_scale": 238,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

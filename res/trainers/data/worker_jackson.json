@@ -10,43 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNEMITE",
-            "form": 0,
-            "level": 34,
+            "species": "SPECIES_WORMADAM",
+            "form": 2,
+            "level": 49,
             "item": null,
             "moves": [
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SPARK",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_GYRO_BALL",
+                "MOVE_BUG_BITE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_STEALTH_ROCK"
             ],
-            "iv_scale": 10,
-            "ball_seal": 0
+            "iv_scale": 225,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_MAGNEMITE",
+            "species": "SPECIES_MAGNETON",
             "form": 0,
-            "level": 34,
+            "level": 49,
             "item": null,
             "moves": [
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SPARK",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDERBOLT",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TRI_ATTACK"
             ],
-            "iv_scale": 10,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MAGNEMITE",
-            "form": 0,
-            "level": 34,
-            "item": null,
-            "moves": [
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SPARK",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "iv_scale": 10,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

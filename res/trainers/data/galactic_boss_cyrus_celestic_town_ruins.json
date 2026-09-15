@@ -10,46 +10,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_VIBRAVA",
             "form": 0,
-            "level": 34,
-            "item": "ITEM_NONE",
+            "level": 45,
+            "item": "ITEM_SHELL_BELL",
             "moves": [
-                "MOVE_SLASH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SCREECH"
+                "MOVE_DRAGON_BREATH",
+                "MOVE_EARTH_POWER",
+                "MOVE_TAILWIND",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 250,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 34,
-            "item": "ITEM_NONE",
+            "level": 45,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_POISON_FANG",
-                "MOVE_AIR_CUTTER",
-                "MOVE_BITE",
-                "MOVE_SUPERSONIC"
+                "MOVE_BRICK_BREAK",
+                "MOVE_ICE_BEAM",
+                "MOVE_EARTHQUAKE",
+                "MOVE_UPROAR"
             ],
             "iv_scale": 250,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 36,
+            "level": 45,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_COUNTER",
+                "MOVE_REVENGE",
+                "MOVE_WHIRLWIND",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SHELGON",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_DRAGON_CLAW",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BODY_SLAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HONCHKROW",
+            "form": 0,
+            "level": 45,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_DRILL_PECK",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_ASTONISH",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_WHIRLWIND"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_FANG",
+                "MOVE_EARTHQUAKE",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

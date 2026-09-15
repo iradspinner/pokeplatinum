@@ -10,13 +10,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_TYPHLOSION",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 100,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_ERUPTION",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_EXTRASENSORY",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_AURA_SPHERE",
+                "MOVE_AIR_SLASH",
+                "MOVE_FIRE_BLAST",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 243,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CELEBI",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_OCCA_BERRY",
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_PSYCHIC",
+                "MOVE_RECOVER",
+                "MOVE_LEECH_SEED"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SUICUNE",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_CALM_MIND",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_BLIZZARD",
+                "MOVE_REST"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LUGIA",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_AEROBLAST",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_THUNDERBOLT",
+                "MOVE_BLIZZARD"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HO_OH",
+            "form": 0,
+            "level": 100,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_SACRED_FIRE",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 235,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

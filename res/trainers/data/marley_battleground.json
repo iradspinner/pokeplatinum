@@ -12,63 +12,87 @@
         {
             "species": "SPECIES_NINJASK",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_X_SCISSOR",
                 "MOVE_AERIAL_ACE",
                 "MOVE_SWORDS_DANCE",
                 "MOVE_SLASH"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 249,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_ELECTRODE",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_DAMP_ROCK",
             "moves": [
-                "MOVE_HYPER_BEAM",
+                "MOVE_RAIN_DANCE",
                 "MOVE_THUNDER",
                 "MOVE_THUNDER_WAVE",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_EXPLOSION"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_AIR_SLASH",
-                "MOVE_POISON_FANG",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CROSS_POISON",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 222,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_WEAVILE",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 80,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_ICE_SHARD",
                 "MOVE_NIGHT_SLASH",
                 "MOVE_ICE_PUNCH",
                 "MOVE_AERIAL_ACE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 80,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_ARCANINE",
             "form": 0,
-            "level": 65,
+            "level": 82,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_EXTREME_SPEED",
@@ -76,8 +100,10 @@
                 "MOVE_CRUNCH",
                 "MOVE_THUNDER_FANG"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 241,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

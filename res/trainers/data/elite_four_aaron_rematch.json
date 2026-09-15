@@ -11,74 +11,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_YANMEGA",
+            "species": "SPECIES_NINJASK",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_NONE",
+            "level": 83,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_AIR_SLASH",
-                "MOVE_BUG_BUZZ",
-                "MOVE_U_TURN",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_X_SCISSOR",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_PROTECT",
+                "MOVE_BATON_PASS"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_SCIZOR",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_NONE",
+            "level": 83,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_IRON_HEAD",
                 "MOVE_X_SCISSOR",
                 "MOVE_NIGHT_SLASH",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 219,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_VESPIQUEN",
+            "species": "SPECIES_ARMALDO",
             "form": 0,
-            "level": 66,
-            "item": "ITEM_NONE",
+            "level": 83,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
-                "MOVE_ATTACK_ORDER",
-                "MOVE_DEFEND_ORDER",
-                "MOVE_HEAL_ORDER",
-                "MOVE_POWER_GEM"
+                "MOVE_STONE_EDGE",
+                "MOVE_SUPERPOWER",
+                "MOVE_X_SCISSOR",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 223,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_HERACROSS",
             "form": 0,
-            "level": 67,
-            "item": "ITEM_NONE",
+            "level": 83,
+            "item": "ITEM_CHOICE_SCARF",
             "moves": [
                 "MOVE_MEGAHORN",
                 "MOVE_CLOSE_COMBAT",
                 "MOVE_NIGHT_SLASH",
                 "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 217,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_YACHE_BERRY",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_BUG_BUZZ",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_DETECT"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 69,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 84,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_X_SCISSOR",
                 "MOVE_CROSS_POISON",
                 "MOVE_ICE_FANG",
-                "MOVE_AERIAL_ACE"
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

@@ -16,7 +16,31 @@
             "item": null,
             "moves": null,
             "iv_scale": 50,
-            "ball_seal": 17
+            "ball_seal": 17,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SHELGON",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": null,
+            "iv_scale": 50,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DRAGONAIR",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

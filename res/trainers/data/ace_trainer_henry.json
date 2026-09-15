@@ -10,32 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RHYDON",
+            "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 47,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE",
                 "MOVE_HAMMER_ARM",
-                "MOVE_TAKE_DOWN"
+                "MOVE_POISON_JAB"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 236,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_CARNIVINE",
+            "species": "SPECIES_CRAWDAUNT",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_WRING_OUT",
-                "MOVE_CRUNCH",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_INGRAIN"
+                "MOVE_CRABHAMMER",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_BRICK_BREAK",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_PSYCHIC",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

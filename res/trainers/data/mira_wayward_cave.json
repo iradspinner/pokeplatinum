@@ -12,16 +12,34 @@
         {
             "species": "SPECIES_KADABRA",
             "form": 0,
-            "level": 26,
+            "level": 28,
             "item": null,
             "moves": [
-                "MOVE_CONFUSION",
+                "MOVE_PSYBEAM",
                 "MOVE_SHOCK_WAVE",
-                "MOVE_FLASH",
+                "MOVE_REFLECT",
                 "MOVE_KINESIS"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
+            "iv_scale": 150,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TOGETIC",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_METRONOME",
+                "MOVE_YAWN",
+                "MOVE_UPROAR",
+                "MOVE_ENCORE"
+            ],
+            "iv_scale": 150,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": []

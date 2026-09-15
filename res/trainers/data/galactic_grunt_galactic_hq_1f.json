@@ -10,13 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_QWILFISH",
             "form": 0,
-            "level": 41,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
+            "moves": [
+                "MOVE_TAKE_DOWN",
+                "MOVE_AQUA_TAIL",
+                "MOVE_POISON_JAB",
+                "MOVE_DESTINY_BOND"
+            ],
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VENOMOTH",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_ENERGY_BALL"
+            ],
+            "iv_scale": 235,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [
