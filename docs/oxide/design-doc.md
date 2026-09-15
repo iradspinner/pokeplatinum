@@ -111,7 +111,9 @@ These are standing instructions. Follow them every session.
 7. When something is unknown, say it is unknown. Do not fill the gap with an assumption about what the ROM contains; open the file.
 8. Match Ian's stated preferences: prose over bullets except for actual lists, no em-dashes, succinct, do not open by grading his message, do not assume he is the expert on a question he asked.
 9. Ask up front when a task branches on something only Ian can answer. He would rather be asked than watch a wrong guess get built.
-10. Update the tracker at the end of every session. Update this document when a fact in section 2 changes or a decision in section 3 or 4 is made. Note the version and date at the top.
+10. Update the tracker at the end of every session. Update this document when a fact in section 2 changes or a decision in section 3 or 4 is made. Note the version and date at the top. If any `docs/oxide/*.md` file changed this session, run `tools/oxide/sync-docs.sh` to mirror it to the project folder, which a separate chat surface works from.
+11. Never delete, move, or overwrite the base ROM (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`) in the working folder. It is the only source left for the carry-overs not yet done: encounters, text, items, trades, trainers, map headers, and the 91 scripts with their 158 event files. Keep it until that carry-over is finished.
+12. `import_base_rom.py --vanilla` and `verify_narcs.py --ref` (for vanilla comparisons) should point at the pinned `~/roms/vanilla.nds`, a byte-exact Rev 1 build made once from `main`, rather than a freshly built ROM. Don't rebuild it per session.
 
 ## 6. Session protocol
 
