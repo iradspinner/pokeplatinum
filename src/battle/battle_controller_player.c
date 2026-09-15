@@ -460,7 +460,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     break;
 
                 case PLAYER_INPUT_ITEM:
-                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER_LINK) {
+                    if (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_FRONTIER_LINK | BATTLE_TYPE_TRAINER)) {
                         msg.id = 593; // "Items can’t be used here."
                         msg.tags = TAG_NONE;
                         BattleController_EmitSetAlertMessage(battleSys, i, msg);
@@ -4787,31 +4787,22 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 }
 
 /**
- * @brief Initialize the battle AI with appropriate items from loaded trainer
- * data.
+ * @brief Initialize the battle AI context. Items are disabled in trainer
+ * battles (Platinum Oxide), so trainer items are never loaded here.
  *
  * @param battleSys
  * @param battleCtx
  */
 static void BattleControllerPlayer_InitAI(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 battleType = BattleSystem_GetBattleType(battleSys);
     MI_CpuClear32(&battleCtx->aiContext, sizeof(AIContext));
 
-    if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_NO_AI_ITEMS) == FALSE) {
-        for (int battler = 0; battler < MAX_BATTLERS; battler++) {
-            if (battler & BATTLER_THEM) {
-                // Only enemy AI can use items
-                for (int i = 0; i < MAX_TRAINER_ITEMS; i++) {
-                    u16 item = BattleSystem_GetTrainerItem(battleSys, battler, i);
-                    if (item != ITEM_NONE) {
-                        battleCtx->aiContext.trainerItems[battler >> 1][battleCtx->aiContext.trainerItemCounts[battler >> 1]] = item;
-                        battleCtx->aiContext.trainerItemCounts[battler >> 1]++;
-                    }
-                }
-            }
-        }
-    }
+    // Items are disabled in trainer battles for both sides (Platinum Oxide;
+    // hg-engine's DISABLE_ITEMS_IN_TRAINER_BATTLE, which is also documented
+    // to affect the AI). Leaving trainerItemCounts at zero (from the clear
+    // above) means the AI never has any items to consider using; the
+    // player-side block is in BattleControllerPlayer_CommandSelectionInput's
+    // PLAYER_INPUT_ITEM case.
 
     battleCtx->aiScriptTemp = gTrainerAITable;
 }
