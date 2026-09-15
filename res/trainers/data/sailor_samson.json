@@ -3,47 +3,52 @@
     "class": "TRAINER_CLASS_SAILOR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WINGULL",
+            "species": "SPECIES_TENTACRUEL",
             "form": 0,
-            "level": 29,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_WING_ATTACK",
-                "MOVE_SUPERSONIC"
+                "MOVE_ICE_BEAM",
+                "MOVE_SURF",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_TOXIC_SPIKES"
             ],
-            "iv_scale": 10,
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SHELLOS",
+            "species": "SPECIES_KINGLER",
             "form": 0,
-            "level": 30,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_MUD_BOMB",
-                "MOVE_RAIN_DANCE"
+                "MOVE_METAL_CLAW",
+                "MOVE_STOMP",
+                "MOVE_KNOCK_OFF",
+                "MOVE_GUILLOTINE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 238,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_CONFUSION",
-                "MOVE_WATER_PULSE"
+                "MOVE_AQUA_JET",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_CROSS_CHOP",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 10,
+            "iv_scale": 217,
             "ball_seal": 0
         }
     ],

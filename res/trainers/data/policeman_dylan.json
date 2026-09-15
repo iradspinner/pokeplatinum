@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_POLICEMAN",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOOTHOOT",
+            "species": "SPECIES_DODRIO",
             "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "level": 36,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ACUPRESSURE",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 229,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_MAROWAK",
             "form": 0,
-            "level": 24,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "level": 36,
+            "item": "ITEM_THICK_CLUB",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_IRON_HEAD",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_LOW_KICK"
+            ],
+            "iv_scale": 236,
             "ball_seal": 0
         }
     ],

@@ -10,29 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARAPTOR",
+            "species": "SPECIES_BANETTE",
             "form": 0,
-            "level": 35,
+            "level": 46,
             "item": null,
             "moves": [
-                "MOVE_TAKE_DOWN",
-                "MOVE_AERIAL_ACE",
-                "MOVE_ENDEAVOR",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_EMBARGO"
             ],
-            "iv_scale": 50,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GIRAFARIG",
+            "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 36,
+            "level": 46,
             "item": null,
             "moves": [
-                "MOVE_DOUBLE_HIT",
-                "MOVE_PSYCHIC"
+                "MOVE_PSYCHO_CUT",
+                "MOVE_LEAF_BLADE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 249,
             "ball_seal": 0
         }
     ],

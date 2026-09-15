@@ -9,14 +9,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ABRA",
+            "species": "SPECIES_EXEGGCUTE",
             "form": 0,
             "level": 17,
             "item": null,
             "moves": [
-                "MOVE_HIDDEN_POWER"
+                "MOVE_HYPNOSIS",
+                "MOVE_REFLECT",
+                "MOVE_LEECH_SEED",
+                "MOVE_BULLET_SEED"
             ],
-            "iv_scale": 20,
+            "iv_scale": 113,
             "ball_seal": 0
         }
     ],

@@ -10,88 +10,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MUNCHLAX",
+            "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
                 "MOVE_BODY_SLAM",
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SCREECH"
+                "MOVE_EARTHQUAKE",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_REST"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 169,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 42,
+            "level": 58,
             "item": null,
             "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_BRAVE_BIRD",
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_AERIAL_ACE",
-                "MOVE_TAKE_DOWN",
                 "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 97,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_FLOATZEL",
+            "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_PURSUIT",
-                "MOVE_BRICK_BREAK",
-                "MOVE_IRON_TAIL"
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_RECOVER"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 234,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_HERACROSS",
+            "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 42,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_BRICK_BREAK",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_DRAGON_RUSH",
+                "MOVE_WATERFALL",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_RAPIDASH",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_FIRE_BLAST",
-                "MOVE_WILL_O_WISP",
-                "MOVE_STOMP",
-                "MOVE_TAKE_DOWN"
+                "MOVE_FLAMETHROWER",
+                "MOVE_ENERGY_BALL",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 44,
+            "level": 59,
             "item": null,
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_BITE",
-                "MOVE_LEECH_SEED",
-                "MOVE_SYNTHESIS"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_LEECH_SEED"
             ],
-            "iv_scale": 200,
-            "ball_seal": 10
+            "iv_scale": 198,
+            "ball_seal": 10,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": []

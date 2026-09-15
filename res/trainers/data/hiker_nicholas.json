@@ -4,17 +4,23 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ONIX",
+            "species": "SPECIES_CUBONE",
             "form": 0,
-            "level": 14,
+            "level": 16,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TAIL_WHIP",
+                "MOVE_BONE_CLUB",
+                "MOVE_HEADBUTT",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 113,
             "ball_seal": 0
         }
     ],

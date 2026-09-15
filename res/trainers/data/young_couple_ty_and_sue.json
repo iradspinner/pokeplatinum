@@ -3,36 +3,38 @@
     "class": "TRAINER_CLASS_YOUNG_COUPLE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_BUNEARY",
+            "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 23,
+            "level": 31,
             "item": null,
             "moves": [
-                "MOVE_FORESIGHT",
+                "MOVE_RETURN",
                 "MOVE_JUMP_KICK",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_DEFENSE_CURL"
+                "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUIZEL",
+            "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 23,
+            "level": 31,
             "item": null,
             "moves": [
                 "MOVE_AQUA_JET",
-                "MOVE_SWIFT",
+                "MOVE_ICE_PUNCH",
                 "MOVE_PURSUIT",
-                "MOVE_SONIC_BOOM"
+                "MOVE_WATERFALL"
             ],
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

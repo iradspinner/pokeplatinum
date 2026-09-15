@@ -10,21 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MARILL",
+            "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 29,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_CRUNCH",
+                "MOVE_ENDURE",
+                "MOVE_OUTRAGE"
+            ],
+            "iv_scale": 206,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 29,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_SYNTHESIS",
+                "MOVE_MAGICAL_LEAF"
+            ],
+            "iv_scale": 249,
             "ball_seal": 0
         }
     ],

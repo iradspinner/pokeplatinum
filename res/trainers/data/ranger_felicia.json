@@ -10,21 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKIPLOOM",
+            "species": "SPECIES_JUMPLUFF",
             "form": 0,
-            "level": 59,
+            "level": 76,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_SLEEP_POWDER",
+                "MOVE_U_TURN",
+                "MOVE_BOUNCE",
+                "MOVE_SEED_BOMB"
+            ],
+            "iv_scale": 244,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 59,
+            "level": 76,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_JUMP_KICK",
+                "MOVE_BOUNCE",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 204,
             "ball_seal": 0
         }
     ],

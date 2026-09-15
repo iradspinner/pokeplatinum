@@ -4,17 +4,23 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_MACHOKE",
             "form": 0,
-            "level": 23,
+            "level": 29,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_FORESIGHT",
+                "MOVE_SEISMIC_TOSS",
+                "MOVE_REVENGE",
+                "MOVE_VITAL_THROW"
+            ],
+            "iv_scale": 193,
             "ball_seal": 0
         }
     ],

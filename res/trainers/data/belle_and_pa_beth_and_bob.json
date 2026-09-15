@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_BELLE_AND_PA",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_GROWLITHE",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ROAR",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_FANG",
+                "MOVE_MORNING_SUN"
+            ],
+            "iv_scale": 208,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PONYTA",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_HEADBUTT",
+                "MOVE_FLAME_WHEEL",
+                "MOVE_BOUNCE",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 189,
             "ball_seal": 0
         }
     ],

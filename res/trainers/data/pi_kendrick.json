@@ -9,13 +9,15 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RHYHORN",
+            "species": "SPECIES_KANGASKHAN",
             "form": 0,
             "level": 31,
             "item": null,
             "moves": [
-                "MOVE_HORN_DRILL",
-                "MOVE_REVERSAL"
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_BRICK_BREAK",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
             "iv_scale": 50,
             "ball_seal": 0

@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_SAILOR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WINGULL",
+            "species": "SPECIES_PELIPPER",
             "form": 0,
-            "level": 41,
+            "level": 56,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP",
+                "MOVE_STOCKPILE",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 42,
+            "level": 56,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BULK_UP",
+                "MOVE_CLOSE_COMBAT"
+            ],
+            "iv_scale": 252,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GASTRODON",
+            "species": "SPECIES_HUNTAIL",
             "form": 0,
-            "level": 43,
+            "level": 56,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_DIVE",
+                "MOVE_CRUNCH",
+                "MOVE_AQUA_TAIL",
+                "MOVE_HYDRO_PUMP"
+            ],
+            "iv_scale": 229,
             "ball_seal": 0
         }
     ],

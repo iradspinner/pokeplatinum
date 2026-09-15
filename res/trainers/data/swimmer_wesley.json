@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_SWIMMER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 43,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_AGILITY",
+                "MOVE_WATERFALL",
+                "MOVE_RAZOR_WIND"
+            ],
+            "iv_scale": 217,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_TENTACRUEL",
+            "species": "SPECIES_CLOYSTER",
             "form": 0,
-            "level": 43,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_PROTECT",
+                "MOVE_SURF",
+                "MOVE_SPIKE_CANNON"
+            ],
+            "iv_scale": 231,
             "ball_seal": 0
         }
     ],

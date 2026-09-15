@@ -2,50 +2,49 @@
     "name": "Jack",
     "class": "TRAINER_CLASS_BUG_CATCHER",
     "items": [],
-    "ai_flags": [
-        "AI_FLAG_BASIC"
-    ],
+    "ai_flags": [ "AI_FLAG_BASIC", "AI_FLAG_EXPERT" ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WURMPLE",
+            "species": "SPECIES_KAKUNA",
             "form": 0,
-            "level": 11,
+            "level": 16,
             "item": null,
             "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_POISON_STING"
+                "MOVE_BUG_BITE",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_POISON_STING",
+                "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 220,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SILCOON",
+            "species": "SPECIES_CASCOON",
             "form": 0,
-            "level": 13,
+            "level": 16,
             "item": null,
             "moves": [
                 "MOVE_TACKLE",
                 "MOVE_STRING_SHOT",
                 "MOVE_POISON_STING",
-                "MOVE_HARDEN"
+                "MOVE_BUG_BITE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 130,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BEAUTIFLY",
+            "species": "SPECIES_METAPOD",
             "form": 0,
-            "level": 15,
+            "level": 16,
             "item": null,
             "moves": [
-                "MOVE_TACKLE",
+                "MOVE_BUG_BITE",
                 "MOVE_POISON_STING",
-                "MOVE_ABSORB",
-                "MOVE_GUST"
+                "MOVE_IRON_DEFENSE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 20,
+            "iv_scale": 164,
             "ball_seal": 0
         }
     ],

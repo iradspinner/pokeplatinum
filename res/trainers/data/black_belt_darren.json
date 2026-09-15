@@ -4,44 +4,52 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 25,
+            "level": 35,
             "item": null,
             "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_FORESIGHT"
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_SEED_BOMB",
+                "MOVE_U_TURN"
             ],
-            "iv_scale": 40,
+            "iv_scale": 186,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 25,
+            "level": 35,
             "item": null,
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_FORCE_PALM"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_NONE"
             ],
-            "iv_scale": 40,
+            "iv_scale": 192,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_HITMONLEE",
             "form": 0,
-            "level": 25,
+            "level": 35,
             "item": null,
             "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_FORESIGHT"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_MACH_PUNCH",
+                "MOVE_POISON_JAB"
             ],
-            "iv_scale": 40,
+            "iv_scale": 241,
             "ball_seal": 0
         }
     ],

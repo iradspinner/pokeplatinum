@@ -10,23 +10,23 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GASTLY",
+            "species": "SPECIES_ROTOM",
             "form": 0,
-            "level": 21,
+            "level": 29,
             "item": null,
             "moves": [
-                "MOVE_NIGHT_SHADE",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_CURSE",
+                "MOVE_SHADOW_BALL",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_THUNDER_WAVE",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 60,
+            "iv_scale": 204,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GASTLY",
+            "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 22,
+            "level": 29,
             "item": null,
             "moves": [
                 "MOVE_NIGHT_SHADE",
@@ -34,13 +34,13 @@
                 "MOVE_HYPNOSIS",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 60,
+            "iv_scale": 213,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_HAUNTER",
             "form": 0,
-            "level": 24,
+            "level": 29,
             "item": null,
             "moves": [
                 "MOVE_SHADOW_BALL",
@@ -48,7 +48,7 @@
                 "MOVE_CURSE",
                 "MOVE_MEAN_LOOK"
             ],
-            "iv_scale": 60,
+            "iv_scale": 173,
             "ball_seal": 0
         }
     ],

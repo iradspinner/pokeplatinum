@@ -4,17 +4,24 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MEDICHAM",
+            "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 38,
+            "level": 48,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SKY_UPPERCUT",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_SEED_BOMB",
+                "MOVE_SPORE"
+            ],
+            "iv_scale": 251,
             "ball_seal": 0
         }
     ],

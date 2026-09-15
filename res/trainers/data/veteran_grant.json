@@ -10,9 +10,9 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RIOLU",
+            "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 34,
+            "level": 45,
             "item": null,
             "moves": [
                 "MOVE_FORCE_PALM",
@@ -20,27 +20,27 @@
                 "MOVE_COUNTER",
                 "MOVE_SCREECH"
             ],
-            "iv_scale": 100,
+            "iv_scale": 194,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_STARAPTOR",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 34,
+            "level": 45,
             "item": null,
             "moves": [
-                "MOVE_AERIAL_ACE",
-                "MOVE_TAKE_DOWN",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_GROWL"
+                "MOVE_BITE",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_FANG"
             ],
-            "iv_scale": 100,
+            "iv_scale": 206,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GRAVELER",
+            "species": "SPECIES_GOLEM",
             "form": 0,
-            "level": 34,
+            "level": 45,
             "item": null,
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -48,7 +48,7 @@
                 "MOVE_ROCK_POLISH",
                 "MOVE_DEFENSE_CURL"
             ],
-            "iv_scale": 100,
+            "iv_scale": 162,
             "ball_seal": 0
         }
     ],

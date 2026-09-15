@@ -4,26 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_MAKUHITA",
             "form": 0,
-            "level": 21,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 20,
+            "moves": [
+                "MOVE_WHIRLWIND",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SMELLING_SALT",
+                "MOVE_BELLY_DRUM"
+            ],
+            "iv_scale": 144,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MEDITITE",
+            "species": "SPECIES_RIOLU",
             "form": 0,
-            "level": 21,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 20,
+            "moves": [
+                "MOVE_FORCE_PALM",
+                "MOVE_FEINT",
+                "MOVE_REVERSAL",
+                "MOVE_SCREECH"
+            ],
+            "iv_scale": 168,
             "ball_seal": 0
         }
     ],

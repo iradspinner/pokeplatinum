@@ -4,6 +4,8 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -11,28 +13,43 @@
         {
             "species": "SPECIES_CROAGUNK",
             "form": 0,
-            "level": 21,
+            "level": 34,
             "item": null,
-            "moves": null,
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_LOW_KICK",
+                "MOVE_SUCKER_PUNCH"
+            ],
             "iv_scale": 30,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 24,
+            "level": 34,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_HI_JUMP_KICK"
+            ],
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_HITMONLEE",
             "form": 0,
-            "level": 24,
+            "level": 34,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 198,
             "ball_seal": 0
         }
     ],

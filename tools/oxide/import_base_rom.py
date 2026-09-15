@@ -60,6 +60,9 @@ def load_enum(name):
 
 
 SPECIES = load_enum("species")
+TRAINERS = load_enum("trainers")
+TRAINER_CLASSES = load_enum("trainer_classes")
+AI_FLAGS = load_enum("ai_flags")
 ITEMS = load_enum("items")
 MOVES = load_enum("moves")
 TYPES = load_enum("pokemon_types")
@@ -119,6 +122,14 @@ def move_dir(index):
         return None
     path = os.path.join(ROOT, "res", "moves", name[len("MOVE_"):].lower())
     return path if os.path.isdir(path) else None
+
+
+def trainer_json(index):
+    name = TRAINERS.get(index)
+    if name is None:
+        return None
+    path = os.path.join(ROOT, "res", "trainers", "data", name[len("TRAINER_"):].lower() + ".json")
+    return path if os.path.isfile(path) else None
 
 
 # ---------------------------------------------------------------- ROM access
@@ -229,6 +240,76 @@ def decode_move(b):
     }
 
 
+BATTLE_TYPE_DOUBLES = 1 << 1  # include/constants/battle.h
+
+# monDataType -> (struct format for one TrainerMon record, has_item, has_moves)
+# matches include/struct_defs/trainer_data.h's four TrainerMon* variants
+TRAINER_MON_FORMATS = {
+    0: ("<4H", False, False),  # TrainerMonBase: ivScale, level, species, cbSeal
+    1: ("<8H", False, True),   # TrainerMonWithMoves: + moves[4]
+    2: ("<5H", True, False),   # TrainerMonWithItem: + item
+    3: ("<9H", True, True),    # TrainerMonWithMovesAndItem: + item, moves[4]
+}
+
+
+def decode_trainer_header(b):
+    monDataType, trainerType, _sprite, partySize = struct.unpack_from("<4B", b, 0)
+    items = struct.unpack_from("<4H", b, 4)
+    aiMask, battleType = struct.unpack_from("<2I", b, 12)
+    header = {
+        "class": TRAINER_CLASSES[trainerType],
+        "items": [ITEMS[i] for i in items if i != 0],
+        "ai_flags": [AI_FLAGS[1 << bit] for bit in range(32) if aiMask & (1 << bit)],
+        "double_battle": bool(battleType & BATTLE_TYPE_DOUBLES),
+    }
+    return header, monDataType, partySize
+
+
+def decode_trainer_party(buf, partySize, monDataType):
+    """Decode a trainer's party. ivScale's low byte is iv_scale as vanilla
+    uses it; the base ROM's DSPRE-compiled patch repurposed the high byte's
+    two nibbles as {high nibble: force ability slot 1/2, low nibble: force
+    gender}, per docs/oxide/phase3-answers-and-trainer-format.md section 2.
+    Which raw nibble value (1 or 2) means male vs female could not be
+    recovered from the ROM bytes (the compiled patch's bug made both behave
+    identically in-game); 1=male, 2=female is Ian's own best guess (2026-09-15),
+    to revisit if anything reads wrong in-game."""
+    fmt, has_item, has_moves = TRAINER_MON_FORMATS[monDataType]
+    mon_size = struct.calcsize(fmt)
+    mons = []
+    for i in range(partySize):
+        vals = struct.unpack_from(fmt, buf, i * mon_size)
+        pos = 0
+        ivScale = vals[pos]; pos += 1
+        level = vals[pos]; pos += 1
+        speciesRaw = vals[pos]; pos += 1
+        item = None
+        if has_item:
+            item = vals[pos]; pos += 1
+        moves = None
+        if has_moves:
+            moves = vals[pos:pos + 4]; pos += 4
+        cbSeal = vals[pos]
+
+        low = ivScale & 0xFF
+        high = (ivScale >> 8) & 0xFF
+        ability_nibble = (high >> 4) & 0xF
+        gender_nibble = high & 0xF
+
+        mons.append({
+            "species": SPECIES[speciesRaw & 0x3FF],
+            "form": (speciesRaw >> 10) & 0x3F,
+            "level": level,
+            "item": ITEMS[item] if has_item else None,
+            "moves": [MOVES[m] for m in moves] if has_moves else None,
+            "iv_scale": low,
+            "ball_seal": cbSeal,
+            "ability": ability_nibble if ability_nibble in (1, 2) else 0,
+            "gender": {1: "male", 2: "female"}.get(gender_nibble),
+        })
+    return mons
+
+
 # ---------------------------------------------------------------- apply
 def flatten(d, prefix=""):
     """{'a': {'b': 1}} -> {'a.b': 1}, but lists stay whole."""
@@ -258,6 +339,64 @@ def apply_diff(json_path, new, old, dry_run, log):
         changed.append(f"{key}: {fo.get(key)!r} -> {val!r}")
     if changed:
         rel = os.path.relpath(json_path, ROOT)
+        log.append((rel, changed))
+        if not dry_run:
+            with open(json_path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+    return bool(changed)
+
+
+def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, dry_run, log):
+    """Like apply_diff, but for trainers: `party` is a list of objects, which
+    the flatten()-based apply_diff can't reach into (it treats any list as
+    one opaque value), so per-mon fields are patched individually here, and
+    `ability`/`gender` are inserted as new keys the first time either is
+    needed. Trainers whose party size changed are logged, not applied - that
+    needs inserting whole new party-member objects, which this tool doesn't
+    support yet."""
+    text = open(json_path, encoding="utf-8").read()
+    changed = []
+    rel = os.path.relpath(json_path, ROOT)
+
+    fn, fo = flatten(new_header), flatten(old_header)
+    for key, val in fn.items():
+        if fo.get(key) == val:
+            continue
+        path = key.split(".")
+        if jsonstyle.get_value(text, path) == val:
+            continue
+        text = jsonstyle.replace_value(text, path, val)
+        changed.append(f"{key}: {fo.get(key)!r} -> {val!r}")
+
+    if len(new_party) != len(old_party):
+        log.append((rel, [f"party size changed ({len(old_party)} -> {len(new_party)} mons); "
+                           "needs a human to add/remove party-member objects, not applied"]))
+    else:
+        for i, (nm, om) in enumerate(zip(new_party, old_party)):
+            for key in ("species", "form", "level", "item", "moves", "iv_scale", "ball_seal"):
+                val = nm[key]
+                if om.get(key) == val:
+                    continue
+                path = ["party", i, key]
+                if jsonstyle.get_value(text, path) == val:
+                    continue
+                text = jsonstyle.replace_value(text, path, val)
+                changed.append(f"party[{i}].{key}: {om.get(key)!r} -> {val!r}")
+
+            if nm["ability"] != om.get("ability", 0) or nm["gender"] != om.get("gender"):
+                try:
+                    jsonstyle.get_value(text, ["party", i, "ability"])
+                except KeyError:
+                    text = jsonstyle.insert_key(text, ["party", i], "ball_seal", "ability", 0)
+                    text = jsonstyle.insert_key(text, ["party", i], "ability", "gender", None)
+                if jsonstyle.get_value(text, ["party", i, "ability"]) != nm["ability"]:
+                    text = jsonstyle.replace_value(text, ["party", i, "ability"], nm["ability"])
+                if jsonstyle.get_value(text, ["party", i, "gender"]) != nm["gender"]:
+                    text = jsonstyle.replace_value(text, ["party", i, "gender"], nm["gender"])
+                changed.append(f"party[{i}].ability/gender: {om.get('ability')!r}/{om.get('gender')!r} "
+                                f"-> {nm['ability']!r}/{nm['gender']!r}")
+
+    if changed:
         log.append((rel, changed))
         if not dry_run:
             with open(json_path, "w", encoding="utf-8", newline="\n") as f:
@@ -313,6 +452,29 @@ def main():
         if apply_diff(os.path.join(d, "data.json"), decode_move(bm[i]), decode_move(vm[i]), a.dry_run, log):
             n += 1
     counts["moves"] = n
+
+    # trainers
+    bh, vh = base.narc("poketool/trainer/trdata.narc"), van.narc("poketool/trainer/trdata.narc")
+    bpk, vpk = base.narc("poketool/trainer/trpoke.narc"), van.narc("poketool/trainer/trpoke.narc")
+    n = 0
+    skipped_size = 0
+    for i in range(len(bh)):
+        if bh[i] == vh[i] and bpk[i] == vpk[i]:
+            continue
+        d = trainer_json(i)
+        if d is None:
+            log.append((f"trainer index {i}", ["record differs but has no data.json; skipped"]))
+            continue
+        new_header, new_mdt, new_ps = decode_trainer_header(bh[i])
+        old_header, old_mdt, old_ps = decode_trainer_header(vh[i])
+        new_party = decode_trainer_party(bpk[i], new_ps, new_mdt)
+        old_party = decode_trainer_party(vpk[i], old_ps, old_mdt)
+        if len(new_party) != len(old_party):
+            skipped_size += 1
+        if apply_trainer_diff(d, new_header, new_party, old_header, old_party, a.dry_run, log):
+            n += 1
+    counts["trainers"] = n
+    counts["trainers_party_size_changed_skipped"] = skipped_size
 
     with open(a.report, "w", encoding="utf-8") as f:
         f.write("# Base ROM import report\n\n")

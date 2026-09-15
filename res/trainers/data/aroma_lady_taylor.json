@@ -4,26 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_TURTWIG",
             "form": 0,
-            "level": 9,
+            "level": 13,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_WITHDRAW",
+                "MOVE_TACKLE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 134,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CHERUBI",
             "form": 0,
-            "level": 11,
+            "level": 13,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BULLET_SEED",
+                "MOVE_GROWTH",
+                "MOVE_LEECH_SEED",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 101,
             "ball_seal": 0
         }
     ],

@@ -3,50 +3,53 @@
     "class": "TRAINER_CLASS_SWIMMER_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_WEATHER"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUIZEL",
+            "species": "SPECIES_POLITOED",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_SONIC_BOOM",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_ATTRACT"
+                "MOVE_RAIN_DANCE",
+                "MOVE_PERISH_SONG",
+                "MOVE_SURF",
+                "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 244,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_BRICK_BREAK",
-                "MOVE_MEDITATE",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_PSYCHO_CUT"
             ],
-            "iv_scale": 0,
+            "iv_scale": 223,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SEAKING",
+            "species": "SPECIES_LUDICOLO",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_HORN_ATTACK",
-                "MOVE_AQUA_RING",
-                "MOVE_CAPTIVATE"
+                "MOVE_SEED_BOMB",
+                "MOVE_WATERFALL",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ZEN_HEADBUTT"
             ],
-            "iv_scale": 0,
+            "iv_scale": 253,
             "ball_seal": 15
         }
     ],

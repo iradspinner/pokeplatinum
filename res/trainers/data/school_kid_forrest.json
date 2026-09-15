@@ -6,6 +6,7 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -13,14 +14,15 @@
         {
             "species": "SPECIES_MAGNETON",
             "form": 0,
-            "level": 47,
+            "level": 59,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
                 "MOVE_TRI_ATTACK",
-                "MOVE_MIRROR_SHOT"
+                "MOVE_FLASH_CANNON",
+                "MOVE_NONE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 252,
             "ball_seal": 0
         }
     ],

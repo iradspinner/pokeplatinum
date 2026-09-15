@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_POKE_KID",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PICHU",
+            "species": "SPECIES_CLEFABLE",
             "form": 0,
-            "level": 22,
+            "level": 30,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SING",
+                "MOVE_DOUBLE_SLAP",
+                "MOVE_MINIMIZE",
+                "MOVE_METRONOME"
+            ],
+            "iv_scale": 203,
             "ball_seal": 0
         }
     ],

@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_SKIER_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PILOSWINE",
+            "species": "SPECIES_DEWGONG",
             "form": 0,
-            "level": 37,
+            "level": 51,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_DIVE",
+                "MOVE_WATERFALL",
+                "MOVE_SHEER_COLD",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 232,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GLACEON",
             "form": 0,
-            "level": 37,
+            "level": 51,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_SHADOW_BALL",
+                "MOVE_ROAR",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 252,
             "ball_seal": 0
         }
     ],

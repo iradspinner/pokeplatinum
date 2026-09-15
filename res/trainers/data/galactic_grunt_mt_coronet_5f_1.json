@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_MIGHTYENA",
             "form": 0,
-            "level": 41,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_THUNDER_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_SUPER_FANG"
+            ],
+            "iv_scale": 228,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_ELECTRODE",
             "form": 0,
-            "level": 41,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_MAGNET_RISE",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 229,
             "ball_seal": 0
         }
     ],

@@ -1,6 +1,6 @@
 {
     "name": "Angelica",
-    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "class": "TRAINER_CLASS_MAID",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC"

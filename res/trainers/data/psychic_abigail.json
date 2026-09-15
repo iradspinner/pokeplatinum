@@ -4,35 +4,51 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHINGLING",
+            "species": "SPECIES_WOBBUFFET",
             "form": 0,
-            "level": 23,
+            "level": 34,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_SAFEGUARD",
+                "MOVE_DESTINY_BOND"
+            ],
+            "iv_scale": 249,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DRIFLOON",
+            "species": "SPECIES_BELDUM",
             "form": 0,
-            "level": 25,
+            "level": 34,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 251,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_KIRLIA",
+            "species": "SPECIES_EXEGGUTOR",
             "form": 0,
-            "level": 27,
+            "level": 34,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         }
     ],

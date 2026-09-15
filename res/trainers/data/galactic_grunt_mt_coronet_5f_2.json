@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOUNDOUR",
+            "species": "SPECIES_KECLEON",
             "form": 0,
-            "level": 40,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SCREECH",
+                "MOVE_SUBSTITUTE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SHADOW_CLAW"
+            ],
+            "iv_scale": 237,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 42,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_ROAR"
+            ],
+            "iv_scale": 247,
             "ball_seal": 0
         }
     ],

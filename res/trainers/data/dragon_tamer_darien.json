@@ -12,10 +12,15 @@
         {
             "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DRAGON_RUSH",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_DRAGON_DANCE",
+                "MOVE_WING_ATTACK"
+            ],
+            "iv_scale": 219,
             "ball_seal": 0
         }
     ],

@@ -10,19 +10,29 @@
         {
             "species": "SPECIES_GEODUDE",
             "form": 0,
-            "level": 6,
+            "level": 12,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_MUD_SPORT",
+                "MOVE_ROCK_THROW"
+            ],
+            "iv_scale": 145,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_WHISMUR",
             "form": 0,
-            "level": 8,
+            "level": 12,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_UPROAR",
+                "MOVE_ASTONISH",
+                "MOVE_POUND",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 157,
             "ball_seal": 0
         }
     ],

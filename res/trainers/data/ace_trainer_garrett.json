@@ -12,21 +12,21 @@
         {
             "species": "SPECIES_MR_MIME",
             "form": 0,
-            "level": 37,
+            "level": 47,
             "item": null,
             "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_MIMIC",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 50,
+            "iv_scale": 236,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DUSCLOPS",
+            "species": "SPECIES_DUSKNOIR",
             "form": 0,
-            "level": 39,
+            "level": 47,
             "item": null,
             "moves": [
                 "MOVE_WILL_O_WISP",
@@ -34,21 +34,21 @@
                 "MOVE_PURSUIT",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 50,
+            "iv_scale": 234,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SCYTHER",
+            "species": "SPECIES_SCIZOR",
             "form": 0,
-            "level": 39,
+            "level": 47,
             "item": null,
             "moves": [
                 "MOVE_SLASH",
                 "MOVE_X_SCISSOR",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_FURY_CUTTER"
+                "MOVE_BULLET_PUNCH",
+                "MOVE_NIGHT_SLASH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

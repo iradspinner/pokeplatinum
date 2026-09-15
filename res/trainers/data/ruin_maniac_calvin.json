@@ -10,21 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_EXTRASENSORY",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_SAFEGUARD",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 197,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SHIELDON",
+            "species": "SPECIES_BASTIODON",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_OUTRAGE",
+                "MOVE_SWAGGER",
+                "MOVE_IRON_HEAD",
+                "MOVE_HEADBUTT"
+            ],
+            "iv_scale": 216,
             "ball_seal": 0
         }
     ],

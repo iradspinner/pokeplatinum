@@ -4,26 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DROWZEE",
+            "species": "SPECIES_HYPNO",
             "form": 0,
-            "level": 55,
+            "level": 80,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 244,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ALAKAZAM",
             "form": 0,
-            "level": 57,
+            "level": 80,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_CALM_MIND",
+                "MOVE_PSYCHIC",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         }
     ],

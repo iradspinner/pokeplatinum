@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_WAITRESS",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFAIRY",
+            "species": "SPECIES_ABSOL",
             "form": 0,
-            "level": 25,
+            "level": 33,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_SUPERPOWER"
+            ],
+            "iv_scale": 203,
             "ball_seal": 0
         }
     ],

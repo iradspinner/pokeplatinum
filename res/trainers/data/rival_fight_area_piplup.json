@@ -5,92 +5,93 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 53,
+            "level": 74,
             "item": null,
             "moves": [
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_AERIAL_ACE",
-                "MOVE_STEEL_WING",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_DOUBLE_EDGE",
                 "MOVE_U_TURN"
             ],
-            "iv_scale": 200,
+            "iv_scale": 245,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_FLOATZEL",
+            "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 52,
+            "level": 74,
             "item": null,
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_CRUNCH",
-                "MOVE_ICE_FANG",
-                "MOVE_BRICK_BREAK"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_RECOVER"
             ],
-            "iv_scale": 200,
+            "iv_scale": 254,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_HERACROSS",
+            "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 53,
+            "level": 74,
             "item": null,
             "moves": [
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_OUTRAGE",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_RAPIDASH",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 52,
+            "level": 74,
             "item": null,
             "moves": [
                 "MOVE_FIRE_BLAST",
-                "MOVE_SUNNY_DAY",
-                "MOVE_BOUNCE",
+                "MOVE_ENERGY_BALL",
+                "MOVE_HYPNOSIS",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 200,
+            "iv_scale": 234,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 54,
+            "level": 74,
             "item": null,
             "moves": [
                 "MOVE_BODY_SLAM",
-                "MOVE_CRUNCH",
+                "MOVE_FIRE_PUNCH",
                 "MOVE_EARTHQUAKE",
                 "MOVE_REST"
             ],
-            "iv_scale": 200,
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 56,
+            "level": 75,
             "item": null,
             "moves": [
-                "MOVE_LEAF_STORM",
+                "MOVE_WOOD_HAMMER",
                 "MOVE_EARTHQUAKE",
                 "MOVE_CRUNCH",
-                "MOVE_SYNTHESIS"
+                "MOVE_LEECH_SEED"
             ],
-            "iv_scale": 200,
+            "iv_scale": 252,
             "ball_seal": 24
         }
     ],

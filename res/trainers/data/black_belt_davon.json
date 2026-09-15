@@ -4,35 +4,52 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TYROGUE",
+            "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 54,
+            "level": 75,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_SEED_BOMB",
+                "MOVE_U_TURN",
+                "MOVE_CLOSE_COMBAT"
+            ],
+            "iv_scale": 245,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAKUHITA",
+            "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 54,
+            "level": 75,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_WHIRLWIND",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_REVERSAL"
+            ],
+            "iv_scale": 243,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 57,
+            "level": 75,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_POISON_JAB",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

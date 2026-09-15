@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 39,
+            "level": 48,
             "item": null,
             "moves": [
                 "MOVE_DOUBLE_HIT",
@@ -20,13 +20,13 @@
                 "MOVE_SAND_ATTACK",
                 "MOVE_SCREECH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 251,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PORYGON2",
             "form": 0,
-            "level": 40,
+            "level": 48,
             "item": null,
             "moves": [
                 "MOVE_PSYBEAM",
@@ -34,7 +34,7 @@
                 "MOVE_CONVERSION_2",
                 "MOVE_RECOVER"
             ],
-            "iv_scale": 50,
+            "iv_scale": 235,
             "ball_seal": 0
         }
     ],

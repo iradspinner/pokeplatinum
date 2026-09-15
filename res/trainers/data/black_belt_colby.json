@@ -4,46 +4,52 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_TYROGUE",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
             "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_LEER",
-                "MOVE_FORESIGHT"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 40,
+            "iv_scale": 183,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MACHOKE",
             "form": 0,
-            "level": 25,
+            "level": 33,
             "item": null,
             "moves": [
-                "MOVE_LOW_KICK",
-                "MOVE_FORESIGHT"
+                "MOVE_SUPERPOWER",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_NONE"
             ],
-            "iv_scale": 40,
+            "iv_scale": 229,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 27,
+            "level": 33,
             "item": null,
             "moves": [
-                "MOVE_SUBMISSION",
-                "MOVE_LEER",
-                "MOVE_FORESIGHT"
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 40,
+            "iv_scale": 189,
             "ball_seal": 0
         }
     ],

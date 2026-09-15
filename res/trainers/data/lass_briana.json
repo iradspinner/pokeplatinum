@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_LASS",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PACHIRISU",
+            "species": "SPECIES_SLAKOTH",
             "form": 0,
-            "level": 16,
+            "level": 17,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SCRATCH",
+                "MOVE_YAWN",
+                "MOVE_ENCORE",
+                "MOVE_SLACK_OFF"
+            ],
+            "iv_scale": 157,
             "ball_seal": 0
         }
     ],

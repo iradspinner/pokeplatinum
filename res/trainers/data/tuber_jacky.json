@@ -3,22 +3,24 @@
     "class": "TRAINER_CLASS_TUBER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_BIBAREL",
             "form": 0,
-            "level": 32,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_GUN",
-                "MOVE_ROLLOUT",
                 "MOVE_HYPER_FANG",
-                "MOVE_YAWN"
+                "MOVE_YAWN",
+                "MOVE_AMNESIA",
+                "MOVE_AQUA_TAIL"
             ],
-            "iv_scale": 10,
+            "iv_scale": 243,
             "ball_seal": 0
         }
     ],

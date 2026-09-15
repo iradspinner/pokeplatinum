@@ -6,19 +6,23 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_KADABRA",
             "form": 0,
-            "level": 20,
+            "level": 24,
             "item": null,
             "moves": [
-                "MOVE_CONFUSION"
+                "MOVE_PSYBEAM",
+                "MOVE_DISABLE",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_NONE"
             ],
-            "iv_scale": 20,
+            "iv_scale": 218,
             "ball_seal": 0
         }
     ],

@@ -10,31 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HAUNTER",
+            "species": "SPECIES_SPIRITOMB",
             "form": 0,
-            "level": 23,
+            "level": 29,
             "item": null,
             "moves": [
-                "MOVE_NIGHT_SHADE",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_CURSE"
+                "MOVE_FAINT_ATTACK",
+                "MOVE_HYPNOSIS",
+                "MOVE_DREAM_EATER",
+                "MOVE_OMINOUS_WIND"
             ],
-            "iv_scale": 60,
+            "iv_scale": 196,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MISDREAVUS",
             "form": 0,
-            "level": 24,
+            "level": 29,
             "item": null,
             "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_PAIN_SPLIT",
                 "MOVE_CONFUSE_RAY",
-                "MOVE_SPITE"
+                "MOVE_MEAN_LOOK",
+                "MOVE_PSYBEAM",
+                "MOVE_PAIN_SPLIT"
             ],
-            "iv_scale": 60,
+            "iv_scale": 178,
             "ball_seal": 0
         }
     ],

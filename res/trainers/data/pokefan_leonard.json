@@ -6,35 +6,52 @@
         "ITEM_SUPER_POTION"
     ],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PICHU",
+            "species": "SPECIES_PLUSLE",
             "form": 0,
-            "level": 19,
+            "level": 31,
             "item": "ITEM_SITRUS_BERRY",
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_FAKE_TEARS",
+                "MOVE_COPYCAT",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FAKE_TEARS"
+            ],
+            "iv_scale": 199,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PICHU",
+            "species": "SPECIES_MINUN",
             "form": 0,
-            "level": 19,
+            "level": 31,
             "item": "ITEM_SITRUS_BERRY",
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_CHARM",
+                "MOVE_COPYCAT",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FAKE_TEARS"
+            ],
+            "iv_scale": 198,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PIKACHU",
             "form": 0,
-            "level": 22,
+            "level": 31,
             "item": "ITEM_SITRUS_BERRY",
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_SLAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FEINT"
+            ],
+            "iv_scale": 208,
             "ball_seal": 7
         }
     ],

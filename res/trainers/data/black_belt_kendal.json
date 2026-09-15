@@ -4,6 +4,8 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -11,10 +13,15 @@
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 38,
+            "level": 48,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DARK_PULSE",
+                "MOVE_MUD_BOMB",
+                "MOVE_VACUUM_WAVE"
+            ],
+            "iv_scale": 251,
             "ball_seal": 0
         }
     ],

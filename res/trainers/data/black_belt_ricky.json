@@ -4,6 +4,8 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -11,15 +13,15 @@
         {
             "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 38,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_IRON_TAIL",
-                "MOVE_TAUNT",
-                "MOVE_TORMENT",
-                "MOVE_SCREECH"
+                "MOVE_IRON_HEAD",
+                "MOVE_STONE_EDGE",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG"
             ],
-            "iv_scale": 40,
+            "iv_scale": 253,
             "ball_seal": 0
         }
     ],

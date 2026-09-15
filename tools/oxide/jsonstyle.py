@@ -80,16 +80,42 @@ def _find_value_span(text, start):
     while i < len(text) and text[i] not in ",\n\r": i += 1
     return i
 
+def _nth_array_element(text, arr_start, arr_end, n):
+    """Given the span of an array value (arr_start points at '[', arr_end is
+    one past ']'), return (elem_start, elem_end) for its n-th element."""
+    i = arr_start + 1
+    for idx in range(n + 1):
+        while text[i] in " \t\n\r": i += 1
+        if text[i] == "]":
+            raise IndexError(f"array index {n} out of range")
+        vs = i
+        ve = _find_value_span(text, vs)
+        if idx == n:
+            return vs, ve
+        i = ve
+        while text[i] in " \t\n\r": i += 1
+        if text[i] == ",": i += 1
+    raise IndexError(n)
+
 def _find_key(text, path, base=0, end=None):
-    """Locate the value of a nested key path (list of keys) and return
-    (value_start, value_end, indent)."""
+    """Locate the value of a nested key path and return (value_start,
+    value_end, indent). A path element may be a string (object member) or an
+    int (array index into the array value found by the previous element)."""
     end = len(text) if end is None else end
     key = path[0]
+
+    if isinstance(key, int):
+        vs, ve = _nth_array_element(text, base, end, key)
+        ls = text.rfind("\n", 0, vs) + 1
+        indent = (vs - ls) if text[ls:vs].strip() == "" else 0
+        if len(path) == 1: return vs, ve, indent
+        return _find_key(text, path[1:], vs, ve)
+
     needle = json.dumps(key) + ":"
     i = base
     while True:
         i = text.find(needle, i, end)
-        if i < 0: raise KeyError(".".join(path))
+        if i < 0: raise KeyError(".".join(str(p) for p in path))
         # must be at the start of a line (after whitespace)
         ls = text.rfind("\n", 0, i) + 1
         if text[ls:i].strip() == "": break
@@ -110,3 +136,19 @@ def replace_value(text, path, value):
 def get_value(text, path):
     vs, ve, _ = _find_key(text, path)
     return json.loads(text[vs:ve])
+
+def insert_key(text, obj_path, after_key, new_key, value):
+    """Insert `new_key: value` as a new key immediately following `after_key`,
+    within the object located at obj_path (obj_path may be [] for the
+    top-level object; its elements may include array indices). For adding a
+    key that doesn't exist anywhere yet, which replace_value can't do since it
+    only edits an existing key's value."""
+    if obj_path:
+        vs, ve, _ = _find_key(text, obj_path)
+    else:
+        vs, ve = 0, len(text)
+    _, ave, indent = _find_key(text, [after_key], vs, ve)
+    entry = f'\n{" " * indent}{json.dumps(new_key)}: {dumps(value, indent)}'
+    if text[ave] == ",":
+        return text[:ave + 1] + entry + "," + text[ave + 1:]
+    return text[:ave] + "," + entry + text[ave:]

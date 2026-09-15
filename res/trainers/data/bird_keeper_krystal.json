@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_BIRD_KEEPER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARAVIA",
+            "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 55,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_U_TURN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BRAVE_BIRD"
+            ],
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_FEAROW",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_AGILITY",
+                "MOVE_U_TURN",
+                "MOVE_ROOST",
+                "MOVE_DRILL_PECK"
+            ],
+            "iv_scale": 203,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_NOCTOWL",
             "form": 0,
-            "level": 59,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_EXTRASENSORY",
+                "MOVE_HYPNOSIS",
+                "MOVE_ROOST",
+                "MOVE_DREAM_EATER"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         }
     ],

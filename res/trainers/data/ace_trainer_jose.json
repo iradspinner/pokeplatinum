@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_HYDRO_PUMP",
@@ -20,13 +20,13 @@
                 "MOVE_ZEN_HEADBUTT",
                 "MOVE_SCREECH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SANDSLASH",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -34,13 +34,13 @@
                 "MOVE_POISON_JAB",
                 "MOVE_SAND_TOMB"
             ],
-            "iv_scale": 50,
+            "iv_scale": 247,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MANECTRIC",
             "form": 0,
-            "level": 57,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_THUNDER_FANG",
@@ -48,7 +48,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_GIGA_IMPACT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 242,
             "ball_seal": 0
         }
     ],

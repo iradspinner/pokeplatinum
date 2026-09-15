@@ -12,43 +12,43 @@
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 38,
+            "level": 47,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_CONFUSION",
-                "MOVE_DISABLE",
-                "MOVE_SCREECH"
+                "MOVE_CROSS_CHOP",
+                "MOVE_ICE_PUNCH",
+                "MOVE_AQUA_JET",
+                "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 50,
+            "iv_scale": 214,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_RAPIDASH",
             "form": 0,
-            "level": 39,
+            "level": 47,
             "item": null,
             "moves": [
                 "MOVE_FIRE_BLAST",
-                "MOVE_TAKE_DOWN",
-                "MOVE_FURY_ATTACK",
+                "MOVE_BOUNCE",
+                "MOVE_POISON_JAB",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 50,
+            "iv_scale": 237,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SUDOWOODO",
             "form": 0,
-            "level": 38,
+            "level": 47,
             "item": null,
             "moves": [
-                "MOVE_ROCK_SLIDE",
+                "MOVE_STONE_EDGE",
                 "MOVE_LOW_KICK",
-                "MOVE_FLAIL",
-                "MOVE_ENDURE"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 217,
             "ball_seal": 0
         }
     ],

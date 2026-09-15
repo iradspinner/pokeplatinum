@@ -9,42 +9,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_CACNEA",
             "form": 0,
-            "level": 15,
+            "level": 23,
             "item": null,
             "moves": [
-                "MOVE_ABSORB",
-                "MOVE_STUN_SPORE",
-                "MOVE_WATER_SPORT"
+                "MOVE_GROWTH",
+                "MOVE_LEECH_SEED",
+                "MOVE_GRASS_KNOT",
+                "MOVE_PIN_MISSILE"
             ],
-            "iv_scale": 20,
+            "iv_scale": 180,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_ODDISH",
             "form": 0,
-            "level": 16,
+            "level": 23,
             "item": null,
             "moves": [
-                "MOVE_ABSORB",
+                "MOVE_POISON_POWDER",
                 "MOVE_STUN_SPORE",
-                "MOVE_WATER_SPORT"
+                "MOVE_SLEEP_POWDER",
+                "MOVE_MEGA_DRAIN"
             ],
-            "iv_scale": 20,
+            "iv_scale": 165,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_LOTAD",
             "form": 0,
-            "level": 17,
+            "level": 23,
             "item": null,
             "moves": [
-                "MOVE_ABSORB",
-                "MOVE_STUN_SPORE",
-                "MOVE_WATER_SPORT"
+                "MOVE_NATURE_POWER",
+                "MOVE_WATER_GUN",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_MEGA_DRAIN"
             ],
-            "iv_scale": 20,
+            "iv_scale": 183,
             "ball_seal": 0
         }
     ],

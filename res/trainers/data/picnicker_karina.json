@@ -12,13 +12,15 @@
         {
             "species": "SPECIES_PIPLUP",
             "form": 0,
-            "level": 14,
+            "level": 16,
             "item": null,
             "moves": [
                 "MOVE_BUBBLE",
-                "MOVE_PECK"
+                "MOVE_PECK",
+                "MOVE_YAWN",
+                "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 118,
             "ball_seal": 0
         }
     ],

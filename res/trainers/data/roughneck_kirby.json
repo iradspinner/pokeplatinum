@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_ROUGHNECK",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFFA",
+            "species": "SPECIES_WIGGLYTUFF",
             "form": 0,
-            "level": 23,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "level": 33,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SING",
+                "MOVE_PSYCHIC",
+                "MOVE_REST",
+                "MOVE_SNORE"
+            ],
+            "iv_scale": 209,
             "ball_seal": 0
         }
     ],

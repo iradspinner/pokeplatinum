@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_SWIMMER_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MARILL",
+            "species": "SPECIES_LAPRAS",
             "form": 0,
-            "level": 41,
+            "level": 59,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BRINE",
+                "MOVE_SAFEGUARD",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_SHEER_COLD"
+            ],
+            "iv_scale": 212,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_WINGULL",
+            "species": "SPECIES_DEWGONG",
             "form": 0,
-            "level": 42,
+            "level": 59,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_DIVE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_BEAM",
+                "MOVE_SAFEGUARD"
+            ],
+            "iv_scale": 236,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLDUCK",
+            "species": "SPECIES_SLOWKING",
             "form": 0,
-            "level": 43,
+            "level": 59,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_PSYCHIC",
+                "MOVE_POWER_GEM",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 229,
             "ball_seal": 0
         }
     ],

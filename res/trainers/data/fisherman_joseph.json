@@ -10,10 +10,15 @@
         {
             "species": "SPECIES_GOLDEEN",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_WATER_SPORT",
+                "MOVE_SUPERSONIC",
+                "MOVE_HORN_ATTACK",
+                "MOVE_WATER_PULSE"
+            ],
+            "iv_scale": 110,
             "ball_seal": 0
         }
     ],

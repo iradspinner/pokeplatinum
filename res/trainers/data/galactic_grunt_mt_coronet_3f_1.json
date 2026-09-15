@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_MISMAGIUS",
             "form": 0,
-            "level": 43,
+            "level": 55,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ENERGY_BALL",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 203,
             "ball_seal": 0
         }
     ],

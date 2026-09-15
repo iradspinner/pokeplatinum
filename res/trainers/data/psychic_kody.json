@@ -9,16 +9,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MEDITITE",
+            "species": "SPECIES_SLOWPOKE",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": null,
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_BIDE",
-                "MOVE_MEDITATE"
+                "MOVE_YAWN",
+                "MOVE_GROWL",
+                "MOVE_WATER_GUN",
+                "MOVE_CONFUSION"
             ],
-            "iv_scale": 20,
+            "iv_scale": 159,
             "ball_seal": 0
         }
     ],

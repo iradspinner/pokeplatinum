@@ -12,21 +12,21 @@
         {
             "species": "SPECIES_BLISSEY",
             "form": 0,
-            "level": 45,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_DOUBLE_EDGE",
+                "MOVE_HYPER_BEAM",
                 "MOVE_SING",
                 "MOVE_SOFTBOILED",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 50,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_ICE_BEAM",
@@ -34,21 +34,21 @@
                 "MOVE_HEADBUTT",
                 "MOVE_SHADOW_BALL"
             ],
-            "iv_scale": 50,
+            "iv_scale": 214,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNEZONE",
+            "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_DISCHARGE",
-                "MOVE_FLASH_CANNON",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_BARRIER"
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_THUNDER_FANG",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 253,
             "ball_seal": 0
         }
     ],

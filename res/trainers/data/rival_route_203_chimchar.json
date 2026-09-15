@@ -5,6 +5,7 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -12,25 +13,29 @@
         {
             "species": "SPECIES_STARLY",
             "form": 0,
-            "level": 7,
+            "level": 10,
             "item": null,
             "moves": [
                 "MOVE_QUICK_ATTACK",
-                "MOVE_GROWL"
+                "MOVE_GROWL",
+                "MOVE_WING_ATTACK",
+                "MOVE_NONE"
             ],
-            "iv_scale": 30,
+            "iv_scale": 134,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PIPLUP",
             "form": 0,
-            "level": 9,
+            "level": 11,
             "item": null,
             "moves": [
                 "MOVE_POUND",
-                "MOVE_GROWL"
+                "MOVE_GROWL",
+                "MOVE_BUBBLE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 30,
+            "iv_scale": 139,
             "ball_seal": 0
         }
     ],

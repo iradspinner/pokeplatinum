@@ -12,21 +12,21 @@
         {
             "species": "SPECIES_MIGHTYENA",
             "form": 0,
-            "level": 55,
+            "level": 75,
             "item": null,
             "moves": [
                 "MOVE_CRUNCH",
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_IRON_TAIL",
-                "MOVE_SCARY_FACE"
+                "MOVE_THUNDER_FANG"
             ],
-            "iv_scale": 50,
+            "iv_scale": 217,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_KIRLIA",
+            "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 56,
+            "level": 75,
             "item": null,
             "moves": [
                 "MOVE_PSYCHIC",
@@ -34,7 +34,7 @@
                 "MOVE_SHOCK_WAVE",
                 "MOVE_SHADOW_BALL"
             ],
-            "iv_scale": 50,
+            "iv_scale": 254,
             "ball_seal": 21
         }
     ],

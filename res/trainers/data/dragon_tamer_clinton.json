@@ -10,30 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GIBLE",
+            "species": "SPECIES_GARCHOMP",
             "form": 0,
-            "level": 43,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_SURF",
+                "MOVE_EARTH_POWER"
+            ],
+            "iv_scale": 243,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SWABLU",
+            "species": "SPECIES_FLYGON",
             "form": 0,
-            "level": 45,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_EARTH_POWER",
+                "MOVE_DRACO_METEOR",
+                "MOVE_SILVER_WIND",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 238,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 47,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_IRON_HEAD",
+                "MOVE_DRAGON_CLAW"
+            ],
+            "iv_scale": 208,
             "ball_seal": 0
         }
     ],

@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_BIRD_KEEPER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_HONCHKROW",
             "form": 0,
-            "level": 54,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SWAGGER",
+                "MOVE_SUPERPOWER",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_BRAVE_BIRD"
+            ],
+            "iv_scale": 251,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_XATU",
             "form": 0,
-            "level": 54,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_OMINOUS_WIND",
+                "MOVE_HEAT_WAVE",
+                "MOVE_HIDDEN_POWER",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 239,
             "ball_seal": 0
         }
     ],

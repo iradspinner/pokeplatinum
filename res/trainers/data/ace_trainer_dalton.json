@@ -10,31 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ELECTABUZZ",
+            "species": "SPECIES_ELECTIVIRE",
             "form": 0,
-            "level": 40,
+            "level": 52,
             "item": null,
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_SWIFT",
-                "MOVE_QUICK_ATTACK",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_PUNCH",
                 "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 242,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGMAR",
+            "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 40,
+            "level": 52,
             "item": null,
             "moves": [
                 "MOVE_FLAMETHROWER",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_SMOG",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 50,
+            "iv_scale": 252,
             "ball_seal": 0
         }
     ],

@@ -10,30 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ELECTABUZZ",
+            "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 47,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_IRON_TAIL"
+                "MOVE_FLASH_CANNON",
+                "MOVE_TRI_ATTACK",
+                "MOVE_RAIN_DANCE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 254,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_ROTOM",
             "form": 0,
-            "level": 48,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_MIRROR_SHOT"
+                "MOVE_SHADOW_BALL",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 60,
+            "iv_scale": 253,
             "ball_seal": 0
         }
     ],

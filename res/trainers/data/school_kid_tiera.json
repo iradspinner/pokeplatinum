@@ -6,6 +6,7 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -13,15 +14,15 @@
         {
             "species": "SPECIES_PACHIRISU",
             "form": 0,
-            "level": 47,
+            "level": 59,
             "item": null,
             "moves": [
-                "MOVE_LAST_RESORT",
+                "MOVE_THUNDER_PUNCH",
                 "MOVE_SUPER_FANG",
-                "MOVE_DISCHARGE",
+                "MOVE_SEED_BOMB",
                 "MOVE_SWEET_KISS"
             ],
-            "iv_scale": 10,
+            "iv_scale": 248,
             "ball_seal": 0
         }
     ],

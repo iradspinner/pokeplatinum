@@ -1,9 +1,13 @@
 {
     "name": "Mickey",
-    "class": "TRAINER_CLASS_CAMPER",
+    "class": "TRAINER_CLASS_GALACTIC_BOSS",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [

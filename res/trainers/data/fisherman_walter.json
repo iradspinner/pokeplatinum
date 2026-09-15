@@ -3,20 +3,24 @@
     "class": "TRAINER_CLASS_FISHERMAN",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_WHISCASH",
             "form": 0,
-            "level": 33,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_MAGNITUDE"
+                "MOVE_AQUA_TAIL",
+                "MOVE_MAGNITUDE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_NONE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 239,
             "ball_seal": 0
         }
     ],

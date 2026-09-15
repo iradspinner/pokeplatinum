@@ -1,11 +1,11 @@
 {
     "name": "Angelica",
-    "class": "TRAINER_CLASS_SCHOOL_KID_FEMALE",
+    "class": "TRAINER_CLASS_MAID",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC"
     ],
-    "double_battle": false,
+    "double_battle": true,
     "party": [
         {
             "species": "SPECIES_RATTATA",

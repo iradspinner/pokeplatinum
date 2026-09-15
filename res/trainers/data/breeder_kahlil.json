@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_BREEDER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_ELEKID",
             "form": 0,
-            "level": 23,
+            "level": 31,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_CROSS_CHOP",
+                "MOVE_ICE_PUNCH",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 235,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_HAPPINY",
+            "species": "SPECIES_MAGBY",
             "form": 0,
-            "level": 23,
+            "level": 31,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CROSS_CHOP",
+                "MOVE_MACH_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 234,
             "ball_seal": 0
         }
     ],

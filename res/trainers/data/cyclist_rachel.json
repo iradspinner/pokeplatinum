@@ -3,7 +3,9 @@
     "class": "TRAINER_CLASS_CYCLIST_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
@@ -12,17 +14,27 @@
             "form": 0,
             "level": 20,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TAIL_WHIP",
+                "MOVE_EMBER",
+                "MOVE_FLAME_WHEEL",
+                "MOVE_STOMP"
+            ],
+            "iv_scale": 192,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SHINX",
+            "species": "SPECIES_VOLTORB",
             "form": 0,
-            "level": 18,
+            "level": 21,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SONIC_BOOM",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SCREECH"
+            ],
+            "iv_scale": 142,
             "ball_seal": 0
         }
     ],

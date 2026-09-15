@@ -1,11 +1,11 @@
 {
     "name": "Mickey",
-    "class": "TRAINER_CLASS_DRAGON_TAMER",
+    "class": "TRAINER_CLASS_MAID",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC"
     ],
-    "double_battle": false,
+    "double_battle": true,
     "party": [
         {
             "species": "SPECIES_RATTATA",

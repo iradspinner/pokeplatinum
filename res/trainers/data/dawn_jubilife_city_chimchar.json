@@ -1,9 +1,7 @@
 {
     "name": "Dawn",
-    "class": "TRAINER_CLASS_DP_PLAYER_FEMALE",
-    "items": [
-        "ITEM_POTION"
-    ],
+    "class": "TRAINER_CLASS_PLAYER_FEMALE",
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",

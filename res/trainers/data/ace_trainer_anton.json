@@ -12,13 +12,15 @@
         {
             "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 44,
+            "level": 54,
             "item": null,
             "moves": [
-                "MOVE_ICE_BEAM",
-                "MOVE_CRUNCH"
+                "MOVE_ICE_SHARD",
+                "MOVE_CRUNCH",
+                "MOVE_IRON_HEAD",
+                "MOVE_NONE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 252,
             "ball_seal": 0
         }
     ],

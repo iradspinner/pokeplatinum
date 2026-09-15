@@ -1,10 +1,7 @@
 {
     "name": "Marley",
     "class": "TRAINER_CLASS_TRAINER_MARLEY",
-    "items": [
-        "ITEM_FULL_RESTORE",
-        "ITEM_FULL_RESTORE"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",

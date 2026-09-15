@@ -12,15 +12,15 @@
         {
             "species": "SPECIES_METAGROSS",
             "form": 0,
-            "level": 60,
+            "level": 84,
             "item": null,
             "moves": [
                 "MOVE_METEOR_MASH",
                 "MOVE_HAMMER_ARM",
-                "MOVE_PSYCHIC",
-                "MOVE_MAGNET_RISE"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 247,
             "ball_seal": 11
         }
     ],

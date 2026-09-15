@@ -4,6 +4,8 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -11,29 +13,29 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 58,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_SPORE",
                 "MOVE_MACH_PUNCH",
                 "MOVE_SEED_BOMB",
-                "MOVE_SKY_UPPERCUT"
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 30,
+            "iv_scale": 254,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 58,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_DETECT",
-                "MOVE_PSYCHIC",
+                "MOVE_PSYCHO_CUT",
                 "MOVE_HI_JUMP_KICK",
                 "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 30,
+            "iv_scale": 248,
             "ball_seal": 0
         }
     ],

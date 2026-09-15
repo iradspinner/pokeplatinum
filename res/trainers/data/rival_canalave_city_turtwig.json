@@ -12,72 +12,82 @@
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 36,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_WHITE_HERB",
             "moves": [
                 "MOVE_AERIAL_ACE",
-                "MOVE_TAKE_DOWN",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_FLOATZEL",
+            "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_SEA_INCENSE",
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_PURSUIT",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SWIFT"
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_BRINE",
+                "MOVE_RECOVER"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 97,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_HERACROSS",
+            "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 37,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_BODY_SLAM",
                 "MOVE_BRICK_BREAK",
-                "MOVE_AERIAL_ACE",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_HORN_ATTACK"
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_ROSERADE",
+            "species": "SPECIES_SHIFTRY",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_LEECH_SEED",
-                "MOVE_GRASS_WHISTLE"
+                "MOVE_LEAF_STORM",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 64,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 38,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_BRICK_BREAK",
-                "MOVE_FLAME_WHEEL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH",
                 "MOVE_MACH_PUNCH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 100,
-            "ball_seal": 10
+            "iv_scale": 242,
+            "ball_seal": 10,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

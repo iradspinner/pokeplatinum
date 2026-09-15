@@ -4,26 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_XATU",
+            "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 243,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_LEAF_BLADE",
+                "MOVE_X_SCISSOR",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_CLOSE_COMBAT"
+            ],
+            "iv_scale": 241,
             "ball_seal": 0
         }
     ],

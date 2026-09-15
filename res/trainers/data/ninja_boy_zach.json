@@ -2,36 +2,49 @@
     "name": "Zach",
     "class": "TRAINER_CLASS_NINJA_BOY",
     "items": [],
-    "ai_flags": [
-        "AI_FLAG_BASIC"
-    ],
+    "ai_flags": [ "AI_FLAG_BASIC", "AI_FLAG_EXPERT" ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_SHROOMISH",
             "form": 0,
-            "level": 14,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_STUN_SPORE",
+                "MOVE_LEECH_SEED",
+                "MOVE_MEGA_DRAIN"
+            ],
+            "iv_scale": 138,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_PARAS",
             "form": 0,
-            "level": 14,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER",
+                "MOVE_BUG_BITE",
+                "MOVE_SPORE"
+            ],
+            "iv_scale": 153,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_SEEDOT",
             "form": 0,
-            "level": 14,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_LEECH_SEED",
+                "MOVE_HARDEN",
+                "MOVE_BULLET_SEED",
+                "MOVE_NATURE_POWER"
+            ],
+            "iv_scale": 142,
             "ball_seal": 0
         }
     ],

@@ -10,10 +10,10 @@
         {
             "species": "SPECIES_MAGIKARP",
             "form": 0,
-            "level": 8,
+            "level": 11,
             "item": null,
             "moves": null,
-            "iv_scale": 10,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

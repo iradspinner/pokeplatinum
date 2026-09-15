@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_CROAGUNK",
             "form": 0,
-            "level": 19,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_PURSUIT",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_WAKE_UP_SLAP",
+                "MOVE_SWAGGER"
+            ],
+            "iv_scale": 161,
             "ball_seal": 0
         }
     ],

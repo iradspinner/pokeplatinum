@@ -12,14 +12,15 @@
         {
             "species": "SPECIES_PACHIRISU",
             "form": 0,
-            "level": 22,
+            "level": 24,
             "item": null,
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CHARM"
+                "MOVE_CHARM",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ENDURE",
+                "MOVE_HEADBUTT"
             ],
-            "iv_scale": 0,
+            "iv_scale": 145,
             "ball_seal": 0
         }
     ],

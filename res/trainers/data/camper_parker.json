@@ -12,26 +12,26 @@
         {
             "species": "SPECIES_BUIZEL",
             "form": 0,
-            "level": 20,
+            "level": 24,
             "item": null,
             "moves": [
                 "MOVE_WATER_GUN",
                 "MOVE_SWIFT",
                 "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 0,
+            "iv_scale": 182,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SHINX",
+            "species": "SPECIES_LUXIO",
             "form": 0,
-            "level": 20,
+            "level": 24,
             "item": null,
             "moves": [
                 "MOVE_SPARK",
                 "MOVE_BITE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 157,
             "ball_seal": 0
         }
     ],

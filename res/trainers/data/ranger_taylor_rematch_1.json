@@ -12,19 +12,29 @@
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 34,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 251,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 36,
+            "level": 39,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_ROAR",
+                "MOVE_SWAGGER",
+                "MOVE_THUNDER_FANG"
+            ],
+            "iv_scale": 222,
             "ball_seal": 0
         }
     ],

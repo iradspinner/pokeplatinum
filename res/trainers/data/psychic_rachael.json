@@ -9,16 +9,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PSYDUCK",
+            "species": "SPECIES_CHINGLING",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": null,
             "moves": [
+                "MOVE_GROWL",
+                "MOVE_RECOVER",
                 "MOVE_CONFUSION",
-                "MOVE_WATER_GUN",
-                "MOVE_SCRATCH"
+                "MOVE_UPROAR"
             ],
-            "iv_scale": 20,
+            "iv_scale": 149,
             "ball_seal": 0
         }
     ],

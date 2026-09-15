@@ -4,6 +4,8 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
@@ -11,10 +13,15 @@
         {
             "species": "SPECIES_ONIX",
             "form": 0,
-            "level": 22,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_RAGE",
+                "MOVE_ROCK_TOMB",
+                "MOVE_SANDSTORM",
+                "MOVE_SLAM"
+            ],
+            "iv_scale": 116,
             "ball_seal": 0
         }
     ],

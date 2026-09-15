@@ -12,19 +12,29 @@
         {
             "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 56,
+            "level": 85,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_PERISH_SONG",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 227,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SEADRA",
+            "species": "SPECIES_KINGDRA",
             "form": 0,
-            "level": 56,
+            "level": 85,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_DRAGON_DANCE",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "iv_scale": 211,
             "ball_seal": 0
         }
     ],

@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_COWGIRL",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_MILTANK",
             "form": 0,
-            "level": 23,
+            "level": 30,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BIDE",
+                "MOVE_MILK_DRINK",
+                "MOVE_BODY_SLAM",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 232,
             "ball_seal": 0
         }
     ],

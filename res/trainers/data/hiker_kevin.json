@@ -4,44 +4,65 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_PHANPY",
             "form": 0,
-            "level": 17,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TAKE_DOWN",
+                "MOVE_ROLLOUT",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_SLAM"
+            ],
+            "iv_scale": 45,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_CUBONE",
             "form": 0,
-            "level": 17,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_LEER",
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_BONEMERANG",
+                "MOVE_RAGE"
+            ],
+            "iv_scale": 154,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ONIX",
             "form": 0,
-            "level": 19,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_RAGE",
+                "MOVE_ROCK_TOMB",
+                "MOVE_SANDSTORM"
+            ],
+            "iv_scale": 163,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GEODUDE",
             "form": 0,
-            "level": 19,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_MAGNITUDE",
+                "MOVE_SELFDESTRUCT",
+                "MOVE_ROLLOUT"
+            ],
+            "iv_scale": 184,
             "ball_seal": 0
         }
     ],

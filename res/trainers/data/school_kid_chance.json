@@ -6,22 +6,23 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GASTLY",
+            "species": "SPECIES_SHEDINJA",
             "form": 0,
-            "level": 23,
+            "level": 29,
             "item": null,
             "moves": [
-                "MOVE_NIGHT_SHADE",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_HYPNOSIS"
+                "MOVE_FAINT_ATTACK",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_BUG_BITE",
+                "MOVE_SPITE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 116,
             "ball_seal": 0
         }
     ],

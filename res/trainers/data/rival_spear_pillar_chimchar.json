@@ -10,88 +10,100 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MUNCHLAX",
+            "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
                 "MOVE_BODY_SLAM",
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SCREECH"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_REST"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 156,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 42,
+            "level": 58,
             "item": null,
             "moves": [
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_AERIAL_ACE",
-                "MOVE_TAKE_DOWN",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_DOUBLE_EDGE",
                 "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 84,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_ROSERADE",
+            "species": "SPECIES_SHIFTRY",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_TOXIC",
-                "MOVE_INGRAIN",
-                "MOVE_GRASS_WHISTLE"
+                "MOVE_SEED_BOMB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_LEECH_SEED",
+                "MOVE_LOW_KICK"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 187,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_HERACROSS",
+            "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 42,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_BRICK_BREAK",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_DRAGON_RUSH",
+                "MOVE_WATERFALL",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_RAPIDASH",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 40,
+            "level": 58,
             "item": null,
             "moves": [
-                "MOVE_FIRE_BLAST",
-                "MOVE_WILL_O_WISP",
-                "MOVE_STOMP",
-                "MOVE_TAKE_DOWN"
+                "MOVE_FLAMETHROWER",
+                "MOVE_ENERGY_BALL",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 44,
+            "level": 59,
             "item": null,
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_AERIAL_ACE",
-                "MOVE_METAL_CLAW",
-                "MOVE_SWAGGER"
+                "MOVE_WATERFALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STEEL_WING",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 200,
-            "ball_seal": 10
+            "iv_scale": 164,
+            "ball_seal": 10,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": []

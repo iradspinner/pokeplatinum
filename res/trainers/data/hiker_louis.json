@@ -4,26 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 14,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_ASTONISH",
+                "MOVE_FURY_SWIPES",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 159,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_ONIX",
+            "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 18,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ASTONISH",
+                "MOVE_FAKE_TEARS",
+                "MOVE_BITE",
+                "MOVE_SWEET_SCENT"
+            ],
+            "iv_scale": 160,
             "ball_seal": 0
         }
     ],

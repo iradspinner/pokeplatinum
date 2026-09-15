@@ -12,28 +12,43 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_STEEL_WING",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 232,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_AMNESIA",
+                "MOVE_WATERFALL"
+            ],
+            "iv_scale": 248,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_DONPHAN",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_SHARD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_GIGA_IMPACT"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         }
     ],

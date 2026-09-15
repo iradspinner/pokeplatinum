@@ -3,44 +3,67 @@
     "class": "TRAINER_CLASS_BREEDER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_BUDEW",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_WATER_SPORT",
+                "MOVE_STUN_SPORE",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_SWIFT"
+            ],
+            "iv_scale": 204,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_BONSLY",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_MIMIC",
+                "MOVE_BLOCK",
+                "MOVE_FAINT_ATTACK"
+            ],
+            "iv_scale": 192,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PICHU",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_TAIL_WHIP",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SWEET_KISS",
+                "MOVE_VOLT_TACKLE"
+            ],
+            "iv_scale": 203,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_EEVEE",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_HEADBUTT",
+                "MOVE_DIG",
+                "MOVE_YAWN",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 207,
             "ball_seal": 0
         }
     ],

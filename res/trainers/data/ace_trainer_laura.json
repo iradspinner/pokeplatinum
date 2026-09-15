@@ -12,15 +12,15 @@
         {
             "species": "SPECIES_TROPIUS",
             "form": 0,
-            "level": 42,
+            "level": 50,
             "item": null,
             "moves": [
                 "MOVE_AIR_SLASH",
-                "MOVE_BODY_SLAM",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_SWEET_SCENT"
+                "MOVE_LEAF_STORM",
+                "MOVE_OMINOUS_WIND",
+                "MOVE_TAILWIND"
             ],
-            "iv_scale": 50,
+            "iv_scale": 236,
             "ball_seal": 0
         }
     ],

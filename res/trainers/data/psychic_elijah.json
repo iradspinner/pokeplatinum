@@ -9,14 +9,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ABRA",
+            "species": "SPECIES_WYNAUT",
             "form": 0,
             "level": 17,
             "item": null,
             "moves": [
-                "MOVE_HIDDEN_POWER"
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_SAFEGUARD",
+                "MOVE_DESTINY_BOND"
             ],
-            "iv_scale": 20,
+            "iv_scale": 184,
             "ball_seal": 0
         }
     ],

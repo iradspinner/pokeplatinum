@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SEVIPER",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_NIGHT_SLASH",
@@ -20,27 +20,27 @@
                 "MOVE_WRING_OUT",
                 "MOVE_GLARE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 242,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PERSIAN",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_NIGHT_SLASH",
-                "MOVE_POWER_GEM",
+                "MOVE_SLASH",
                 "MOVE_FAINT_ATTACK",
                 "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 241,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ABSOL",
             "form": 0,
-            "level": 56,
+            "level": 76,
             "item": null,
             "moves": [
                 "MOVE_NIGHT_SLASH",
@@ -48,7 +48,7 @@
                 "MOVE_SLASH",
                 "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 50,
+            "iv_scale": 239,
             "ball_seal": 0
         }
     ],

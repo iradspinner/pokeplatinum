@@ -6,35 +6,37 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DRIFLOON",
+            "species": "SPECIES_SHUPPET",
             "form": 0,
-            "level": 21,
+            "level": 26,
             "item": null,
             "moves": [
-                "MOVE_PAYBACK",
-                "MOVE_GUST",
-                "MOVE_ASTONISH",
-                "MOVE_MINIMIZE"
+                "MOVE_CURSE",
+                "MOVE_SPITE",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 10,
+            "iv_scale": 185,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DRIFLOON",
+            "species": "SPECIES_DUSKULL",
             "form": 0,
-            "level": 21,
+            "level": 26,
             "item": null,
             "moves": [
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW",
-                "MOVE_STOCKPILE"
+                "MOVE_ASTONISH",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_PURSUIT"
             ],
-            "iv_scale": 10,
+            "iv_scale": 186,
             "ball_seal": 0
         }
     ],

@@ -10,21 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_BRONZOR",
             "form": 0,
-            "level": 19,
+            "level": 25,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_IMPRISON",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_EXTRASENSORY"
+            ],
+            "iv_scale": 147,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_GRAVELER",
             "form": 0,
-            "level": 21,
+            "level": 25,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_MAGNITUDE",
+                "MOVE_SELFDESTRUCT",
+                "MOVE_ROLLOUT"
+            ],
+            "iv_scale": 139,
             "ball_seal": 0
         }
     ],

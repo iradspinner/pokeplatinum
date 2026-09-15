@@ -3,20 +3,24 @@
     "class": "TRAINER_CLASS_WORKER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNEMITE",
+            "species": "SPECIES_MAGNETON",
             "form": 0,
-            "level": 37,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_MAGNET_BOMB"
+                "MOVE_THUNDERBOLT",
+                "MOVE_TRI_ATTACK",
+                "MOVE_FLASH_CANNON",
+                "MOVE_NONE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 244,
             "ball_seal": 0
         }
     ],

@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_PORYGON_Z",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_HYPER_BEAM",
@@ -20,13 +20,13 @@
                 "MOVE_PSYCHIC",
                 "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 100,
+            "iv_scale": 172,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TANGROWTH",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_POWER_WHIP",
@@ -34,21 +34,21 @@
                 "MOVE_TOXIC",
                 "MOVE_SLAM"
             ],
-            "iv_scale": 100,
+            "iv_scale": 223,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
             "moves": [
                 "MOVE_BRINE",
                 "MOVE_DRILL_PECK",
-                "MOVE_METAL_CLAW",
+                "MOVE_FLASH_CANNON",
                 "MOVE_GROWL"
             ],
-            "iv_scale": 100,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -3,48 +3,52 @@
     "class": "TRAINER_CLASS_FISHERMAN",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GOLDEEN",
+            "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 28,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_PECK",
-                "MOVE_FLAIL",
-                "MOVE_SUPERSONIC"
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_SURF",
+                "MOVE_SIGNAL_BEAM"
             ],
-            "iv_scale": 10,
+            "iv_scale": 238,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SEAKING",
+            "species": "SPECIES_CRAWDAUNT",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_FURY_ATTACK",
-                "MOVE_FLAIL",
-                "MOVE_SUPERSONIC"
+                "MOVE_KNOCK_OFF",
+                "MOVE_WATERFALL",
+                "MOVE_SUPERPOWER",
+                "MOVE_NIGHT_SLASH"
             ],
-            "iv_scale": 10,
+            "iv_scale": 236,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": [
-                "MOVE_THRASH",
-                "MOVE_BITE"
+                "MOVE_DRAGON_DANCE",
+                "MOVE_ICE_FANG",
+                "MOVE_AQUA_TAIL",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 237,
             "ball_seal": 0
         }
     ],

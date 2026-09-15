@@ -1,14 +1,12 @@
 {
     "name": "Volkner",
     "class": "TRAINER_CLASS_LEADER_VOLKNER",
-    "items": [
-        "ITEM_HYPER_POTION",
-        "ITEM_FULL_RESTORE"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_WEATHER"
     ],
     "double_battle": false,
     "party": [

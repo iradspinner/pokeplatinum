@@ -12,10 +12,15 @@
         {
             "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 57,
+            "level": 84,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_STONE_EDGE",
+                "MOVE_THUNDER_FANG",
+                "MOVE_GIGA_IMPACT"
+            ],
+            "iv_scale": 231,
             "ball_seal": 0
         }
     ],

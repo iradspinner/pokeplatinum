@@ -10,44 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TANGELA",
+            "species": "SPECIES_TANGROWTH",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_INGRAIN",
-                "MOVE_GIGA_DRAIN",
                 "MOVE_ANCIENT_POWER",
-                "MOVE_TOXIC"
+                "MOVE_ENERGY_BALL",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_SLEEP_POWDER"
             ],
-            "iv_scale": 100,
+            "iv_scale": 218,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_MAGCARGO",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_FIRE_SPIN",
-                "MOVE_STOMP",
-                "MOVE_TAKE_DOWN"
+                "MOVE_LAVA_PLUME",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_EARTH_POWER",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 100,
+            "iv_scale": 210,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUIZEL",
+            "species": "SPECIES_MILOTIC",
             "form": 0,
-            "level": 32,
+            "level": 43,
             "item": null,
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_WHIRLPOOL",
-                "MOVE_PURSUIT",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_DRAGON_PULSE",
+                "MOVE_REST",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 100,
+            "iv_scale": 249,
             "ball_seal": 0
         }
     ],

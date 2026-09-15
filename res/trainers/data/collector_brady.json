@@ -3,62 +3,94 @@
     "class": "TRAINER_CLASS_COLLECTOR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_MEGA_PUNCH",
+                "MOVE_HAMMER_ARM",
+                "MOVE_DIZZY_PUNCH"
+            ],
+            "iv_scale": 213,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TANGELA",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_POISON_POWDER",
+                "MOVE_LEAF_STORM",
+                "MOVE_LEECH_SEED",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_YANMA",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SONIC_BOOM",
+                "MOVE_DETECT",
+                "MOVE_AIR_CUTTER",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_SYNTHESIS",
+                "MOVE_INGRAIN",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_PARASECT",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_SEED_BOMB",
+                "MOVE_SPORE",
+                "MOVE_CROSS_POISON"
+            ],
+            "iv_scale": 244,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TROPIUS",
             "form": 0,
-            "level": 21,
+            "level": 28,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_AIR_CUTTER",
+                "MOVE_OMINOUS_WIND",
+                "MOVE_WHIRLWIND"
+            ],
+            "iv_scale": 204,
             "ball_seal": 0
         }
     ],

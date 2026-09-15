@@ -1,14 +1,12 @@
 {
     "name": "Aaron",
     "class": "TRAINER_CLASS_ELITE_FOUR_AARON",
-    "items": [
-        "ITEM_FULL_RESTORE",
-        "ITEM_FULL_RESTORE"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_BATON_PASS"
     ],
     "double_battle": false,
     "party": [

@@ -3,17 +3,24 @@
     "class": "TRAINER_CLASS_SKIER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 39,
+            "level": 50,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_SHADOW_BALL"
+            ],
+            "iv_scale": 239,
             "ball_seal": 0
         }
     ],

@@ -9,16 +9,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ROSELIA",
+            "species": "SPECIES_SUNFLORA",
             "form": 0,
-            "level": 19,
+            "level": 23,
             "item": null,
             "moves": [
                 "MOVE_MEGA_DRAIN",
-                "MOVE_POISON_STING",
-                "MOVE_STUN_SPORE"
+                "MOVE_LEECH_SEED",
+                "MOVE_INGRAIN",
+                "MOVE_SYNTHESIS"
             ],
-            "iv_scale": 20,
+            "iv_scale": 155,
             "ball_seal": 0
         }
     ],

@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STUNKY",
+            "species": "SPECIES_SKORUPI",
             "form": 0,
-            "level": 16,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_KNOCK_OFF",
+                "MOVE_PIN_MISSILE",
+                "MOVE_ACUPRESSURE",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 197,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_SEVIPER",
             "form": 0,
-            "level": 16,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_LICK",
+                "MOVE_BITE",
+                "MOVE_POISON_TAIL",
+                "MOVE_SCREECH"
+            ],
+            "iv_scale": 205,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_BEEDRILL",
             "form": 0,
-            "level": 16,
+            "level": 24,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_TWINEEDLE",
+                "MOVE_RAGE",
+                "MOVE_PURSUIT"
+            ],
+            "iv_scale": 169,
             "ball_seal": 0
         }
     ],

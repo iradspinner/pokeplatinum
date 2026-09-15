@@ -4,26 +4,38 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MISDREAVUS",
+            "species": "SPECIES_MISMAGIUS",
             "form": 0,
-            "level": 58,
+            "level": 80,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_ENERGY_BALL",
+                "MOVE_CALM_MIND",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 240,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GENGAR",
             "form": 0,
-            "level": 62,
+            "level": 80,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_DREAM_EATER",
+                "MOVE_HYPNOSIS",
+                "MOVE_DESTINY_BOND",
+                "MOVE_NIGHTMARE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

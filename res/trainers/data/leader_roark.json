@@ -1,10 +1,7 @@
 {
     "name": "Roark",
     "class": "TRAINER_CLASS_LEADER_ROARK",
-    "items": [
-        "ITEM_POTION",
-        "ITEM_POTION"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",

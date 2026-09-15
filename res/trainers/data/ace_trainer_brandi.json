@@ -12,21 +12,21 @@
         {
             "species": "SPECIES_MAROWAK",
             "form": 0,
-            "level": 54,
+            "level": 78,
             "item": null,
             "moves": [
-                "MOVE_BONE_RUSH",
+                "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE",
                 "MOVE_SWORDS_DANCE",
-                "MOVE_ENDEAVOR"
+                "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 248,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_DIZZY_PUNCH",
@@ -34,7 +34,7 @@
                 "MOVE_OUTRAGE",
                 "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 251,
             "ball_seal": 0
         }
     ],

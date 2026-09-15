@@ -1,10 +1,7 @@
 {
     "name": "Bertha",
     "class": "TRAINER_CLASS_ELITE_FOUR_BERTHA",
-    "items": [
-        "ITEM_FULL_RESTORE",
-        "ITEM_FULL_RESTORE"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",

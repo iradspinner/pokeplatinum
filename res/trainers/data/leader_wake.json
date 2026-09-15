@@ -1,14 +1,12 @@
 {
     "name": "Wake",
     "class": "TRAINER_CLASS_LEADER_WAKE",
-    "items": [
-        "ITEM_HYPER_POTION",
-        "ITEM_HYPER_POTION"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_WEATHER"
     ],
     "double_battle": false,
     "party": [

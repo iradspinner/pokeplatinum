@@ -3,35 +3,38 @@
     "class": "TRAINER_CLASS_YOUNGSTER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_GASTLY",
             "form": 0,
-            "level": 20,
+            "level": 27,
             "item": null,
             "moves": [
-                "MOVE_SUCKER_PUNCH",
                 "MOVE_NIGHT_SHADE",
                 "MOVE_CONFUSE_RAY",
-                "MOVE_CURSE"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 10,
+            "iv_scale": 195,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_DRIFLOON",
             "form": 0,
-            "level": 22,
+            "level": 27,
             "item": null,
             "moves": [
-                "MOVE_SPIT_UP",
+                "MOVE_PAYBACK",
+                "MOVE_STOCKPILE",
                 "MOVE_SWALLOW",
-                "MOVE_STOCKPILE"
+                "MOVE_SPIT_UP"
             ],
-            "iv_scale": 10,
+            "iv_scale": 152,
             "ball_seal": 0
         }
     ],

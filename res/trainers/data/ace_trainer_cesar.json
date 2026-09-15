@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SCIZOR",
             "form": 0,
-            "level": 40,
+            "level": 51,
             "item": null,
             "moves": [
                 "MOVE_METAL_CLAW",
@@ -20,7 +20,7 @@
                 "MOVE_SLASH",
                 "MOVE_PURSUIT"
             ],
-            "iv_scale": 60,
+            "iv_scale": 235,
             "ball_seal": 0
         }
     ],

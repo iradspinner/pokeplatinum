@@ -1,14 +1,12 @@
 {
     "name": "Fantina",
     "class": "TRAINER_CLASS_LEADER_FANTINA",
-    "items": [
-        "ITEM_SUPER_POTION",
-        "ITEM_SUPER_POTION"
-    ],
+    "items": [  ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN"
     ],
     "double_battle": false,
     "party": [

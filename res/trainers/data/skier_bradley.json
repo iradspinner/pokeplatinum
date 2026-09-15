@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_SKIER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNORUNT",
+            "species": "SPECIES_FURRET",
             "form": 0,
-            "level": 36,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_AMNESIA",
+                "MOVE_BATON_PASS",
+                "MOVE_ME_FIRST"
+            ],
+            "iv_scale": 233,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SWINUB",
+            "species": "SPECIES_STANTLER",
             "form": 0,
-            "level": 36,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_IMPRISON",
+                "MOVE_CAPTIVATE",
+                "MOVE_ME_FIRST"
+            ],
+            "iv_scale": 245,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SNOVER",
+            "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 36,
+            "level": 54,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_COVET",
+                "MOVE_SLASH",
+                "MOVE_REST",
+                "MOVE_BELLY_DRUM"
+            ],
+            "iv_scale": 245,
             "ball_seal": 0
         }
     ],

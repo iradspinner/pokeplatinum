@@ -10,42 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 35,
+            "level": 50,
             "item": null,
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_STEEL_WING",
+                "MOVE_DRILL_PECK",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 60,
+            "iv_scale": 231,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_PROBOPASS",
             "form": 0,
-            "level": 36,
+            "level": 50,
             "item": null,
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_THUNDERBOLT",
+                "MOVE_HIDDEN_POWER",
+                "MOVE_POWER_GEM",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 234,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 38,
+            "level": 50,
             "item": null,
             "moves": [
                 "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_IRON_DEFENSE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 209,
             "ball_seal": 0
         }
     ],

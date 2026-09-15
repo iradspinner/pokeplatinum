@@ -10,30 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GIBLE",
+            "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_ROOST",
+                "MOVE_OUTRAGE",
+                "MOVE_EXTREME_SPEED"
+            ],
+            "iv_scale": 216,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_KINGDRA",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_DRAGON_DANCE",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "iv_scale": 233,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DRAGONAIR",
+            "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_ROOST",
+                "MOVE_HIDDEN_POWER"
+            ],
+            "iv_scale": 247,
             "ball_seal": 0
         }
     ],

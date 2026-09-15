@@ -3,35 +3,52 @@
     "class": "TRAINER_CLASS_FISHERMAN",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGIKARP",
+            "species": "SPECIES_FINNEON",
             "form": 0,
-            "level": 14,
+            "level": 18,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_ATTRACT",
+                "MOVE_RAIN_DANCE",
+                "MOVE_GUST"
+            ],
+            "iv_scale": 149,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLDEEN",
+            "species": "SPECIES_CORPHISH",
             "form": 0,
-            "level": 16,
+            "level": 18,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_BUBBLE",
+                "MOVE_HARDEN",
+                "MOVE_VICE_GRIP",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 126,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGIKARP",
+            "species": "SPECIES_CHINCHOU",
             "form": 0,
-            "level": 14,
+            "level": 19,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_WATER_GUN",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 136,
             "ball_seal": 0
         }
     ],
