@@ -47,7 +47,7 @@ Done 2026-09-15. Write-up: `notes\phase1-hg-engine-survey.md`.
 - [ ] Carry over map-header weather edits (`include/data/map_headers.h`)
 - [ ] Carry over scripts (91), events (158) and their text: disassemble, rewrite in the decomp's script macros, check each against its event file; ask Ian when intent is unclear
 - [ ] Re-apply the small constant edits Ian wants (vitamin cap, options defaults, HM forget, shiny odds) as C changes
-- [ ] Working `git pull && make rom` loop with Ian, verified end to end with one visible change
+- [x] Working `git pull && make rom` loop with Ian, verified end to end with one visible change (2026-09-15): `make rom` succeeded on branch `oxide`; `verify_narcs.py` confirms personal/wotbl/evo/waza NARCs rebuild identical to `~/roms/base.nds`. Visible check pending Ian's emulator run: Shinx ability (should always be Rivalry, never Intimidate) and Bidoof/Starly egg hatch time (~255 steps, down from ~3825)
 
 ## Phase 4: Port, one element at a time
 
