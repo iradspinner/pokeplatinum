@@ -2,6 +2,7 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
+#include "generated/genders.h"
 #include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer.h"
@@ -167,6 +168,56 @@ u8 TrainerClass_Gender(int trclass)
 }
 
 /**
+ * @brief Work out the low byte of a trainer mon's personality value.
+ *
+ * Ability slot is personality bit 0; a mon's own gender is the low byte
+ * compared against its species' gender ratio (see SpeciesData_GetGenderOf).
+ * Both live in the same byte, so honoring an explicit gender request and an
+ * explicit ability request at once means picking a byte that satisfies both,
+ * not applying them independently.
+ *
+ * @param species        The mon's species (used to resolve its gender ratio).
+ * @param genderOverride enum TrainerMonGender; DONT_CARE leaves gender alone.
+ * @param abilityOverride enum TrainerMonAbility; DONT_CARE leaves ability alone.
+ * @param defaultLowByte The byte that would be used with no overrides (the
+ *                        trainer-class-based genderMod already in use here).
+ */
+static u8 TrainerMon_PersonalityLowByte(u16 species, u8 genderOverride, u8 abilityOverride, u8 defaultLowByte)
+{
+    u8 wantBit, candidate, nudged;
+
+    if (genderOverride == TRAINER_MON_GENDER_DONT_CARE) {
+        if (abilityOverride == TRAINER_MON_ABILITY_DONT_CARE) {
+            return defaultLowByte;
+        }
+
+        wantBit = (abilityOverride == TRAINER_MON_ABILITY_SLOT_2) ? 1 : 0;
+        return (u8)((defaultLowByte & ~1) | wantBit);
+    }
+
+    u8 wantGender = (genderOverride == TRAINER_MON_GENDER_MALE) ? GENDER_MALE : GENDER_FEMALE;
+    candidate     = (u8)sub_02074128(species, wantGender, 0);
+
+    if (abilityOverride == TRAINER_MON_ABILITY_DONT_CARE) {
+        return candidate;
+    }
+
+    wantBit = (abilityOverride == TRAINER_MON_ABILITY_SLOT_2) ? 1 : 0;
+    if ((candidate & 1) == wantBit) {
+        return candidate;
+    }
+
+    // Adding 1 always flips the low bit; re-verify against the species'
+    // gender ratio rather than assume it stays on the same side of the
+    // threshold, and fall back to the gender-correct byte if it doesn't.
+    nudged = (u8)sub_02074128(species, wantGender, 1);
+    if (Pokemon_GetGenderOf(species, nudged) == wantGender) {
+        return nudged;
+    }
+    return candidate;
+}
+
+/**
  * @brief Build the party for a trainer as loaded in the FieldBattleDTO struct.
  *
  * @param dto  The parent FieldBattleDTO struct containing trainer data.
@@ -210,7 +261,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
                 rnd = LCRNG_Next();
             }
 
-            rnd = (rnd << 8) + genderMod;
+            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
             ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
@@ -235,7 +286,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
                 rnd = LCRNG_Next();
             }
 
-            rnd = (rnd << 8) + genderMod;
+            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
             ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
@@ -265,7 +316,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
                 rnd = LCRNG_Next();
             }
 
-            rnd = (rnd << 8) + genderMod;
+            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
             ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
@@ -291,7 +342,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
                 rnd = LCRNG_Next();
             }
 
-            rnd = (rnd << 8) + genderMod;
+            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
             ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);

@@ -21,6 +21,19 @@ enum TrainerDataType {
     TRDATATYPE_WITH_MOVES_AND_ITEM,
 };
 
+// Per-mon ability/gender overrides. 0 means "don't care" (existing behavior) in both cases.
+enum TrainerMonAbility {
+    TRAINER_MON_ABILITY_DONT_CARE = 0,
+    TRAINER_MON_ABILITY_SLOT_1,
+    TRAINER_MON_ABILITY_SLOT_2,
+};
+
+enum TrainerMonGender {
+    TRAINER_MON_GENDER_DONT_CARE = 0,
+    TRAINER_MON_GENDER_MALE,
+    TRAINER_MON_GENDER_FEMALE,
+};
+
 typedef struct TrainerHeader {
     u8 monDataType;
     u8 trainerType;
@@ -35,6 +48,8 @@ typedef struct TrainerMonBase {
     u16 ivScale;
     u16 level;
     u16 species;
+    u8 ability; // enum TrainerMonAbility
+    u8 gender;  // enum TrainerMonGender
     u16 cbSeal;
 } TrainerMonBase;
 
@@ -42,6 +57,8 @@ typedef struct TrainerMonWithMoves {
     u16 ivScale;
     u16 level;
     u16 species;
+    u8 ability; // enum TrainerMonAbility
+    u8 gender;  // enum TrainerMonGender
     u16 moves[LEARNED_MOVES_MAX];
     u16 cbSeal;
 } TrainerMonWithMoves;
@@ -50,6 +67,8 @@ typedef struct TrainerMonWithItem {
     u16 ivScale;
     u16 level;
     u16 species;
+    u8 ability; // enum TrainerMonAbility
+    u8 gender;  // enum TrainerMonGender
     u16 item;
     u16 cbSeal;
 } TrainerMonWithItem;
@@ -58,6 +77,8 @@ typedef struct TrainerMonWithMovesAndItem {
     u16 ivScale;
     u16 level;
     u16 species;
+    u8 ability; // enum TrainerMonAbility
+    u8 gender;  // enum TrainerMonGender
     u16 item;
     u16 moves[LEARNED_MOVES_MAX];
     u16 cbSeal;

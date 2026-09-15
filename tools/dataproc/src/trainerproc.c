@@ -191,10 +191,31 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
         // We always store the maximum possible data, then trim it when packing
         u16 species = dp_u16(dp_lookup(dp_objmemb(party_member, "species"), "enum Species"));
         u16 form    = dp_u8(dp_objmemb(party_member, "form"));
+
+        // ability/gender are optional overrides; absent (or null, for gender) means "don't care"
+        u8 ability = 0;
+        if (dp_hasmemb(party_member, "ability")) {
+            ability = dp_u8range(dp_objmemb(party_member, "ability"), 0, 2);
+        }
+
+        u8 gender = 0;
+        if (dp_hasmemb(party_member, "gender")) {
+            datanode_t gender_node = dp_objmemb(party_member, "gender");
+            if (gender_node.type == DATAPROC_T_STRING) {
+                const char *g = dp_string(gender_node);
+                if (strcmp(g, "male") == 0) gender = TRAINER_MON_GENDER_MALE;
+                else if (strcmp(g, "female") == 0) gender = TRAINER_MON_GENDER_FEMALE;
+                else dp_error(&gender_node, "expected gender to be \"male\" or \"female\"");
+            }
+            // else: explicit null, meaning "don't care" - already 0
+        }
+
         trparty.party[i] = (TrainerMonWithMovesAndItem){
             .ivScale = dp_u16(dp_objmemb(party_member, "iv_scale")),
             .level   = dp_u16(dp_objmemb(party_member, "level")),
             .species = (u16)(species | (form << TRAINER_MON_FORM_SHIFT)),
+            .ability = ability,
+            .gender  = gender,
             .cbSeal  = dp_u16(dp_objmemb(party_member, "ball_seal")),
         };
 
