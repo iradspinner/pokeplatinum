@@ -1116,6 +1116,30 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
         StartMenu_SetCallback(menu, StartMenu_ExitBag);
         break;
+    case PARTY_MENU_EXIT_CODE_USE_ITEM_AGAIN:
+        // Rare Candy chaining (Platinum Oxide): reopen the party menu
+        // straight into item-use, same item and mon preselected, instead of
+        // returning to the bag's item list (PARTY_MENU_EXIT_CODE_RETURN_TO_BAG
+        // above) between each use.
+        PartyMenu *useItemAgain = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+        memset(useItemAgain, 0, sizeof(PartyMenu));
+
+        useItemAgain->party = SaveData_GetParty(fieldSystem->saveData);
+        useItemAgain->bag = SaveData_GetBag(fieldSystem->saveData);
+        useItemAgain->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+        useItemAgain->options = SaveData_GetOptions(fieldSystem->saveData);
+        useItemAgain->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+        useItemAgain->fieldMoveContext = &menu->fieldMoveContext;
+        useItemAgain->type = PARTY_MENU_TYPE_BASIC;
+        useItemAgain->mode = PARTY_MENU_MODE_USE_ITEM;
+        useItemAgain->fieldSystem = fieldSystem;
+        useItemAgain->usedItemID = partyMenu->usedItemID;
+        useItemAgain->selectedMonSlot = partyMenu->selectedMonSlot;
+
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, useItemAgain);
+        menu->taskData = useItemAgain;
+        StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
+        break;
     default:
         if (partyMenu->mode == PARTY_MENU_MODE_USE_ITEM || partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE || partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE || partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM || partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE) {
             menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);

@@ -823,9 +823,18 @@ static enum PartyMenuState PartyMenuCB_LevelUp(PartyMenuApplication *application
             mapEvoMethod,
             &application->partyMenu->evoType);
 
-        application->partyMenu->menuSelectionResult = application->partyMenu->evoTargetSpecies != SPECIES_NONE
-            ? PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL
-            : PARTY_MENU_EXIT_CODE_DONE;
+        if (application->partyMenu->evoTargetSpecies != SPECIES_NONE) {
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL;
+        } else if (Bag_GetItemQuantity(application->partyMenu->bag, application->partyMenu->usedItemID, HEAP_ID_PARTY_MENU) > 0) {
+            // Rare Candy chaining (Platinum Oxide, hg-engine reference):
+            // reopen party menu straight into "use item on which mon" for
+            // the same item, defaulting to the mon just leveled up, instead
+            // of returning all the way to the bag's item list.
+            application->partyMenu->selectedMonSlot = application->currPartySlot;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_USE_ITEM_AGAIN;
+        } else {
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
+        }
         return PARTY_MENU_STATE_FADE_OUT;
     }
 
