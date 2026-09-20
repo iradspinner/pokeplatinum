@@ -56,6 +56,8 @@ The base's `arm9` differs from vanilla at 38 places and eleven overlays differ. 
 - `TeachMove+0x5B`: a conditional branch made unconditional (probably "HMs can be forgotten").
 - `UseVsSeekerFromMenu+0xC` (two places): a constant changed.
 - ov73, ov9: one small edit each. ov14 (trainer AI): ten single-byte edits, consistent with the AI bug fixes in the ds-pokemon-hacking battle_edits guide (items 35 to 43). ov16 `+0x1309C..+0x130BE`: a 4-entry table (10, 30, 50, 70) set to 255, and `+0xEA3C`, `+0x10D58`, `+0x2D046` small edits.
+**Resolved 2026-09-20.** All four unexplained ov16 edits are identified: `+0x1309C..+0x130BE` is `BattleControllerPlayer_CheckObedience`, its badge-scaled disobedience thresholds set to 255 so traded Pokemon always obey; `+0xEA3C` is a literal, `MAX_EVS_ALL_STATS` changed from 510 to 0, which makes the EV routine early-out every time so battling grants no EVs; `+0x2D046` is `UpdateGauge`, doubling the HP bar drain; and `+0x10D58` is the no-items-in-trainer-battles change. Only the HP bar is ported so far.
+
 **Q:** For the ov14 AI fixes, which ones did you apply? Under C they are one-line C fixes in `src/battle/trainer_ai/`, and the ones you did not apply can be applied too.
 
 ## 3. What this means for Phase 3
