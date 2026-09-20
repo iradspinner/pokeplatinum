@@ -2106,6 +2106,11 @@ enum ObedienceCheckResult {
  * @param[out] nextSeq  A subroutine sequence to override the chosen move
  * @return A value from enum ObedienceCheckResult describing the check result
  */
+// Platinum Oxide: the level below which a traded Pokemon always obeys. 255 is
+// above anything the game can produce, so the check never fails. See the
+// comment on the badge ladder inside the function.
+#define OBEY_ALWAYS_MAX_LEVEL 255
+
 static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
 {
     int rand1, rand2; // must be defined up here to match
@@ -2147,6 +2152,14 @@ static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, Battle
     if (TrainerInfo_BadgeCount(trInfo) >= 6) {
         maxLevel = 70;
     }
+
+    // Platinum Oxide: the base ROM overwrites all four of those numbers with
+    // 255, which is above any reachable level, so the test below always passes
+    // and the two disobedience rolls that follow are unreachable. A traded
+    // Pokemon obeys whatever its level and however many badges you hold. The
+    // vanilla ladder is left above so the rule it replaces stays readable, and
+    // so dropping this one line restores it.
+    maxLevel = OBEY_ALWAYS_MAX_LEVEL;
 
     if (ATTACKING_MON.level <= maxLevel) {
         return OBEY_CHECK_SUCCESS;

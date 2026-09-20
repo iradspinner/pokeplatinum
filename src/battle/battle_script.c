@@ -10201,6 +10201,15 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     }
 }
 
+// Platinum Oxide: the cap on EVs a Pokemon may hold that battling is allowed to
+// fill. Vanilla lets battling take a mon all the way to MAX_EVS_ALL_STATS (510);
+// the base ROM zeroes that literal in the battle overlay's copy, which makes the
+// loop below break before it writes anything, so defeating a Pokemon awards no
+// EVs at all. Vitamins are then the only EV source in the game, and they get
+// their own caps in item_use_pokemon.c. The constant is separate from
+// MAX_EVS_ALL_STATS because the vitamin path needs that one to stay at 510.
+#define MAX_EVS_FROM_BATTLE 0
+
 /**
  * @brief Compute the effort-value payout for a given party member, considering
  * that they participating in the defeat of an opponent with the given species
@@ -10234,7 +10243,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     }
 
     for (stat = 0; stat < STAT_MAX; stat++) {
-        if (sumEVs >= MAX_EVS_ALL_STATS) {
+        if (sumEVs >= MAX_EVS_FROM_BATTLE) {
             break;
         }
 
