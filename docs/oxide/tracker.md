@@ -35,7 +35,7 @@ Done 2026-09-15. Write-up: `notes\phase1-hg-engine-survey.md`.
 ## Phase 3: Tooling and setup (approach C)
 
 - [x] Ian forks pret/pokeplatinum: https://github.com/iradspinner/pokeplatinum (2026-09-15)
-- [ ] GitHub access for Claude: the token-file route does not work in this environment (the app's proxy refuses credentials for repos not added as session sources). Ian adds the repo as a source in the app; fallback is patch files
+- [x] GitHub access for Claude. Closed 2026-09-20: `git push origin oxide` from the WSL2 checkout works with Ian's own credentials and has done so reliably. The 2026-09-15 note about the app's proxy stripping credentials was about a different environment; it does not apply here. Commits no longer need to be treated as session-local
 - [ ] Ian sets up WSL2 and builds the unmodified fork once (`notes\setup-fork-and-wsl2.md` Part 2)
 - [x] Claude clones the fork and confirms a matching build from it (SHA-1 0862ec35..., 2026-09-15)
 - [x] Diff the base ROM against vanilla (`notes\phase3-base-rom-inventory.md`)
