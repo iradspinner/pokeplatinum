@@ -2,7 +2,36 @@
 
 Top-level task list. Tick items as they finish; add detail only where it changes what happens next. Companion to `Platinum Oxide - Design Doc.md`.
 
-**In progress:** Phase 3, nearly done on the data side. Species/move/evo/learnset import done, verified (2026-09-15). Five Qs answered and the trainer format corrected to vanilla (`docs/oxide/phase3-answers-and-trainer-format.md`). Trainer carry-over is fully done (2026-09-15): ability/gender fields, game logic, and the base-ROM importer for all 928 trainers, verified field-by-field with 0 mismatches. All four synthetic-overlay routines are done (no items in trainer battles, Rare Candy chaining, uncapped battle frame rate, EV/IV viewer). Encounters, trades and the 18 fixed-size text banks are imported and verified (2026-09-20); heights and the six vitamin item records are demonstrably DSPRE noise and were not carried over, pending Ian. Map headers and the small constant edits landed 2026-09-20 too, the latter including a correction: the patch the inventory read as "HM forget" is really reusable TMs. That leaves the scripts and events as the last Phase 3 item, now surveyed and planned in `docs/oxide/phase3-scripts-and-events-plan.md`: 184 maps touched, the `zone_event.narc` decoder built and validated, and a script disassembler as the next real piece of work. A roadmap for the rest of Phase 3 and all of Phase 4, with file-level detail for the next several items, was written in the session that did this work; ask if it needs to be written down again. Waiting on Ian: WSL2 setup confirmation, the evolution triggers for the two alt-evolution megas (the 21-species stat conflict is tabled for a later balance pass), confirmation on the ability/gender nibble-direction guess (1=male/2=female, no Route 202 trainer exercises it so still unconfirmed), and an emulator check of Rare Candy chaining, the frame-rate uncap (button mode "Start is X" or "Swap X/Y") and the EV/IV viewer (R on the Skills page) once he has a save handy
+**In progress:** Phase 3. Everything except the field scripts and events is done and verified. Last session ended 2026-09-20 with a clean tree, all work pushed to `origin/oxide` at `52f24fb97`.
+
+**Done, all verified against the base ROM:** species/move/evolution/learnset import; the trainer carry-over (all 928, ability/gender fields, 0 field mismatches, emulator-confirmed); all four synthetic-overlay routines (no items in trainer battles, Rare Candy chaining, uncapped battle frame rate, EV/IV viewer); encounters (125 tables); both in-game trades; the 18 fixed-size text banks; map headers (58); and the small constant edits. Three sets of base-ROM changes were deliberately *not* carried over as DSPRE noise rather than edits, each with its evidence recorded: sprite heights, the six vitamin item records, and the encounter `unown_table`/`rate_form` fields.
+
+**To resume, read `docs/oxide/phase3-scripts-and-events-plan.md`.** It has the counts, the formats, and what is built. Short version: 184 maps are touched (65 script+events, 26 script-only, 93 events-only), and the unit of work is a map done across events, script and text together, because a new object event is an NPC needing a script to run and text to say.
+
+**Next steps, in order:**
+
+1. **Movement-block decoder** in `tools/oxide/scriptdis.py`. `ApplyMovement` points at a separate encoding the disassembler does not read yet; 2,222 references in vanilla, 2,217 in the base ROM. Validate it the way the rest was: every referenced block accounted for, nothing colliding with decoded code.
+2. **Emit `.s` text** - labels for entries and jump targets, symbolic operands (text-bank entries, `LOCALID_*`, flags, vars, items, species), matching the house style of `res/field/scripts/*.s`.
+3. **The true round trip.** Reassemble through the real build and require byte-identical output over all 1,124 vanilla files. A clean walk proves the operand widths; it does not prove the emitted text reassembles.
+4. **One small map end to end** (events + script + text), built and checked in the emulator. Best candidates: `oreburgh_city_middle_house`, `floaroma_meadow_house`, `sandgem_town_house`, `solaceon_town_northeast_house`.
+5. **The 93 events-only maps**, then the rest largest-last. Before relying on the "73 of them are safe alone" figure, resolve each map's script file through its header's `scriptsArchiveID` rather than by name; at least two Mt Coronet maps do not line up by name.
+
+**To confirm the state after a restart**, from the repo root:
+
+```
+make rom
+python3 tools/oxide/import_base_rom.py --base ~/roms/base.nds --vanilla ~/roms/vanilla.nds --dry-run   # every count should be 0
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --encounters
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --text
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
+python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
+python3 tools/oxide/scriptdis.py --rom ~/roms/base.nds --verify --base-rom
+```
+
+The importer is idempotent, so a non-zero count means something moved. Both `scriptdis` runs should report 574 files walked, 0 failed, 550 init scripts read and 0 movement-target collisions.
+
+**Waiting on Ian:** WSL2 setup confirmation; what the custom `Dummy088` script command was added for (it writes one byte and is called three times in `scripts_common`, and naming it properly is the last thing blocking a faithful port of those call sites); evolution triggers for the two alt-evolution megas; confirmation on the ability/gender nibble-direction guess (1=male/2=female, unconfirmed because no Route 202 trainer exercises it); and emulator checks of Rare Candy chaining, the frame-rate uncap (options menu now reads UNLOCK FPS, with OFF / BATTLE / ALWAYS) and the EV/IV viewer (R on the Skills page). The 21-species stat conflict is tabled for a later whole-dex balance pass.
 
 ## Phase 0: Setup
 
