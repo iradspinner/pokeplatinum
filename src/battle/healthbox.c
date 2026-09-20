@@ -59,6 +59,8 @@
 #define HEALTHBOX_NAME_TEXT_COLOR       TEXT_COLOR(14, 2, HEALTHBOX_NAME_BACKGROUND_COLOR)
 
 #define HEALTHBOX_HP_CELL_COUNT  6
+// Platinum Oxide: 1 in vanilla. See the call in DrawGauge.
+#define HEALTHBOX_HP_DRAIN_PER_FRAME 2
 #define HEALTHBOX_EXP_CELL_COUNT 12
 
 #define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) ( \
@@ -1376,7 +1378,13 @@ static s32 HealthBox_DrawGauge(HealthBox *healthbox, enum HealthBoxGaugeType gau
     s32 fillOffset;
 
     if (gaugeType == HEALTHBOX_GAUGE_HP) {
-        result = UpdateGauge(healthbox->maxHP, healthbox->curHP, healthbox->damage, &healthbox->hpTemp, HEALTHBOX_HP_CELL_COUNT, 1);
+        // Platinum Oxide: vanilla's HP bar drains one unit a frame, which is
+        // the reason for its reputation. The base ROM doubles it by patching
+        // UpdateGauge's `*temp -= fillOffset` into `*temp -= 2`. That works but
+        // catches the EXP gauge in the same instruction, where the step is a
+        // computed value and forcing 2 would make a large reward crawl. Doing
+        // it here instead gives the identical HP behaviour and leaves EXP alone.
+        result = UpdateGauge(healthbox->maxHP, healthbox->curHP, healthbox->damage, &healthbox->hpTemp, HEALTHBOX_HP_CELL_COUNT, HEALTHBOX_HP_DRAIN_PER_FRAME);
     } else {
         fillOffset = CalcGaugeFill(healthbox->curExp, healthbox->expReward, healthbox->maxExp, HEALTHBOX_EXP_CELL_COUNT);
 
