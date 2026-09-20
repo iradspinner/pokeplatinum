@@ -12,9 +12,9 @@ context. Running next to the repo removes all of that, and every edit lands
 through model.py, so the style-preservation guarantee is the same one the CLI
 has.
 
-Every number the UI shows comes from analysis.py or lint.py through these
-endpoints. There is no second implementation of the maths in JavaScript, so
-the page and the CLI cannot disagree.
+Every number the page shows comes from analysis.py, lint.py or dex.py through
+these endpoints. There is no second implementation of the maths in
+JavaScript, so the page and the CLI cannot disagree.
 """
 import http.server
 import json
@@ -23,6 +23,7 @@ import socketserver
 import urllib.parse
 
 from . import analysis as A
+from . import dex
 from . import lint
 from . import model
 
@@ -30,30 +31,16 @@ HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
 
 # Per-playthrough state, not design intent, so it is gitignored rather than
-# living in the sidecar. What Ian has caught changes which tables are worth
+# living in the sidecar. What has been caught changes which tables are worth
 # walking; it is not a statement about how the tables should be built.
 CAUGHT_FILE = os.path.join("docs", "oxide", "encounters", "caught.json")
 
-# SPECIES_MR_MIME is not "Mr Mime" and SPECIES_NIDORAN_F is not "Nidoran F".
-# Only these six plus farfetchd need help; everything else title-cases.
-SPECIAL_NAMES = {
-    "SPECIES_HO_OH": "Ho-Oh",
-    "SPECIES_MIME_JR": "Mime Jr.",
-    "SPECIES_MR_MIME": "Mr. Mime",
-    "SPECIES_NIDORAN_F": "Nidoran♀",
-    "SPECIES_NIDORAN_M": "Nidoran♂",
-    "SPECIES_PORYGON_Z": "Porygon-Z",
-    "SPECIES_FARFETCHD": "Farfetch'd",
-    "SPECIES_PORYGON2": "Porygon2",
-}
+KIND_LABELS = {"land": "Grass", "surf": "Surf", "old_rod": "Old rod",
+               "good_rod": "Good rod", "super_rod": "Super rod"}
 
 
-def display_name(species):
-    """SPECIES_GLALIE -> Glalie. The page never shows a raw constant."""
-    if species in SPECIAL_NAMES:
-        return SPECIAL_NAMES[species]
-    stem = species.replace("SPECIES_", "")
-    return " ".join(w.capitalize() for w in stem.split("_"))
+def species_universe():
+    return dex.species_universe(model.repo_root())
 
 
 def load_caught():
@@ -73,27 +60,20 @@ def save_caught(caught):
         f.write("\n")
 
 
-def species_universe():
-    """SPECIES_* constants, derived from res/pokemon/. include/generated is a
-    build artefact and is not present in a clean tree, and the directory names
-    round-trip exactly: all 329 species used across the encounter files are
-    covered by the 502 derived here."""
-    root = os.path.join(model.repo_root(), "res", "pokemon")
-    return sorted("SPECIES_" + d.upper() for d in os.listdir(root)
-                  if not d.startswith(".")          # res/pokemon/.shared
-                  and os.path.isdir(os.path.join(root, d)))
-
-
 class State:
-    """Loaded once per request batch; the files are the state, so nothing is
-    cached across writes."""
+    """Loaded per request; the files are the state, so nothing is cached
+    across writes."""
 
     def __init__(self, ref=None):
         self.ref = ref
+        self.root = model.repo_root()
         self.sidecar = model.load_sidecar()
         self.entries = (self.sidecar or {}).get("areas") or {}
         self.thresholds = lint.thresholds_from(self.sidecar)
         self.caught = load_caught()
+        # The dupes clause works on families: a Starly caught on Route 201
+        # also dupes out Staravia and Staraptor wherever they appear.
+        self.owned = dex.expand_caught(self.root, self.caught)
 
     def areas(self):
         return [a for a in model.load_all(self.ref) if a.land_active]
@@ -102,19 +82,37 @@ class State:
         return self.entries.get(name) or {}
 
     def payload(self, areas):
-        return [(a.name, a.slots,
-                 self.entry(a.name) or {"band": a.band}, a.data)
-                for a in areas]
+        return [(a.name, a.slots, self.entry(a.name) or {"band": a.band},
+                 a.data) for a in areas]
+
+
+def _species_view(species, st):
+    return {"species": species, "label": dex.display_name(species),
+            "caught": species in st.caught,
+            "duped": species in st.owned and species not in st.caught}
 
 
 def area_row(a, st, findings_by_area):
     m = A.table_metrics(a.slots)
-    c = A.caught_metrics(a.slots, st.caught)
+    c = A.caught_metrics(a.slots, st.owned)
     e = st.entry(a.name)
     f = findings_by_area.get(a.name, [])
     levels = a.levels
+    kinds = a.kinds_present()
+
+    # "Does this area still owe me anything" has to count every table kind,
+    # not just the grass, or a route whose only remaining species is in its
+    # surf table reads as finished.
+    all_species, live_all = set(), set()
+    for k in kinds:
+        for sp, _, _ in a.kind_slots(k):
+            all_species.add(sp)
+            if sp not in st.owned:
+                live_all.add(sp)
+
     return {
         "area": a.name,
+        "label": a.name.replace("encounters_", "").replace("_", " "),
         "band": e.get("band") or a.band,
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
@@ -122,66 +120,83 @@ def area_row(a, st, findings_by_area):
         "hhi": m["hhi"],
         "top": m["top_share"],
         "uplift": m["uplift_on_rarest"],
-        "best_uplift": m["best_uplift"],
         "rungs": m["rung_count"],
         "land_rate": a.data.get("land_rate"),
-        # play order, approximated by encounter level until a real
-        # progression order exists in the sidecar
-        "level_min": min(levels),
-        "level_max": max(levels),
+        "level_min": min(levels), "level_max": max(levels),
         "level_med": A.median(levels),
-        # what is still worth catching here, given what is already caught
+        "kinds": kinds,
+        "species_total": len(all_species),
+        "live_total": len(live_all),
         "live_species": c["live_species"],
-        "target": c["target"],
-        "target_label": display_name(c["target"]) if c["target"] else None,
+        "target_label": dex.display_name(c["target"]) if c["target"] else None,
         "best_share": c["best_share"],
         "best_level": c["best_level"],
-        # powers the "/gible" filter: "which routes hold Gible?" is the
-        # question the dupe-out cascade is asked in
-        "holds": sorted({display_name(s) for s, _ in a.slots}),
+        "holds": sorted({dex.display_name(s) for s in all_species}),
         "errors": sum(1 for x in f if x.severity == "error"),
         "warns": sum(1 for x in f if x.severity == "warn"),
     }
 
 
-def area_detail(a, st):
-    m = A.table_metrics(a.slots)
+def area_detail(a, st, kind="land"):
+    if kind not in A.TABLE_KINDS:
+        kind = "land"
+    slots = a.kind_slots(kind)
+    _, _, rates = A.TABLE_KINDS[kind]
     e = st.entry(a.name)
-    findings = lint.lint_table(a.name, a.slots, e or {"band": a.band},
-                               st.thresholds, data=a.data)
-    rungs = []
-    for level, pool in A.distinct_rungs(a.slots):
-        cond = A.conditional(pool, st.caught)
-        rungs.append({
+
+    if not slots:
+        return {"area": a.name, "kind": kind, "empty": True,
+                "kinds": a.kinds_present(),
+                "label": a.name.replace("encounters_", "").replace("_", " ")}
+
+    odds = A.slot_odds(slots, st.owned, rates)
+    m = A.table_metrics(slots, rates)
+    c = A.caught_metrics(slots, st.owned, rates)
+    merged = A.merged(slots, rates)
+    cond_merged = A.conditional(merged, st.owned)
+
+    rung_rows = []
+    for level, p in A.distinct_rungs(slots, rates):
+        cond = A.conditional(p, st.owned)
+        rung_rows.append({
             "level": level,
-            "throughput": A.throughput(pool, st.caught),
-            "pool": [{"species": s, "label": display_name(s), "share": v,
-                      "caught": s in st.caught, "cond": cond.get(s)}
-                     for s, v in sorted(pool.items(), key=lambda kv: -kv[1])],
+            "throughput": A.throughput(p, st.owned),
+            "pool": [dict(_species_view(s, st), share=v, cond=cond.get(s))
+                     for s, v in sorted(p.items(), key=lambda kv: -kv[1])],
         })
-    merged = A.merged(a.slots)
+
+    # lint is calibrated on land tables, so it only runs on them
+    findings = (lint.lint_table(a.name, a.slots, e or {"band": a.band},
+                                st.thresholds, data=a.data)
+                if kind == "land" else [])
+
     return {
         "area": a.name,
+        "label": a.name.replace("encounters_", "").replace("_", " "),
+        "kind": kind,
+        "kinds": a.kinds_present(),
+        "kind_labels": KIND_LABELS,
         "band": e.get("band") or a.band,
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
-        "land_rate": a.data.get("land_rate"),
-        "slots": [{"slot": i, "rate": A.LAND_RATES[i], "species": s,
-                   "label": display_name(s), "level": lv,
-                   "caught": s in st.caught}
-                  for i, (s, lv) in enumerate(a.slots)],
+        "rate": a.kind_rate(kind),
+        "ranged": kind != "land",
+        "slots": [dict(_species_view(sp, st), slot=i, rate=rates[i],
+                       level_min=lo, level_max=hi, odds=odds[i])
+                  for i, ((sp, lo, hi)) in enumerate(slots)],
         "day": a.data.get("day"), "night": a.data.get("night"),
-        "day_labels": [display_name(s) for s in (a.data.get("day") or [])],
-        "night_labels": [display_name(s) for s in (a.data.get("night") or [])],
-        "merged": [{"species": s, "label": display_name(s), "share": v,
-                    "caught": s in st.caught}
+        "day_labels": [dex.display_name(s) for s in (a.data.get("day") or [])],
+        "night_labels": [dex.display_name(s)
+                         for s in (a.data.get("night") or [])],
+        "merged": [dict(_species_view(s, st), share=v,
+                        cond=cond_merged.get(s, 0.0))
                    for s, v in sorted(merged.items(), key=lambda kv: -kv[1])],
-        "rungs": rungs,
+        "rungs": rung_rows,
         "metrics": m,
-        "caught_metrics": A.caught_metrics(a.slots, st.caught),
-        "rarest_label": display_name(m["rarest_species"])
+        "caught_metrics": c,
+        "rarest_label": dex.display_name(m["rarest_species"])
                         if m["rarest_species"] else None,
-        "best_uplift_label": display_name(m["best_uplift_species"])
+        "best_uplift_label": dex.display_name(m["best_uplift_species"])
                              if m["best_uplift_species"] else None,
         "findings": [f._asdict() for f in findings],
     }
@@ -192,9 +207,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*a, directory=UI, **kw)
 
     def log_message(self, fmt, *args):
-        pass  # the page polls; the default logger is pure noise
-
-    # -- helpers ---------------------------------------------------------
+        pass
 
     def _send(self, obj, code=200):
         body = json.dumps(obj).encode()
@@ -209,17 +222,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n) or b"{}")
 
-    # -- routes ----------------------------------------------------------
-
     def do_GET(self):
         url = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(url.query)
         ref = (q.get("ref") or [None])[0] or None
+        kind = (q.get("kind") or ["land"])[0]
         parts = [p for p in url.path.split("/") if p]
 
         if not parts or parts[0] != "api":
             return super().do_GET()
-
         try:
             st = State(ref)
             if parts[1] == "areas":
@@ -228,35 +239,35 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 by_area = {}
                 for f in findings:
                     by_area.setdefault(f.target, []).append(f)
-                game = [f._asdict() for f in findings if f.scope == "game"]
-                g = A.game_metrics([a.slots for a in areas],
-                                   [st.entry(a.name).get("band") or a.band
-                                    for a in areas])
+                g = A.game_metrics(
+                    [a.slots for a in areas],
+                    [st.entry(a.name).get("band") or a.band for a in areas])
                 return self._send({
                     "ref": ref or "working tree",
                     "rows": [area_row(a, st, by_area) for a in areas],
                     "game": g,
-                    "game_findings": game,
+                    "game_findings": [f._asdict() for f in findings
+                                      if f.scope == "game"],
                     "thresholds": st.thresholds,
+                    "kind_labels": KIND_LABELS,
                 })
-
             if parts[1] == "area":
-                a = model.load_area(parts[2], ref)
-                return self._send(area_detail(a, st))
-
+                return self._send(
+                    area_detail(model.load_area(parts[2], ref), st, kind))
             if parts[1] == "species":
-                # the whole pokedex, sorted by display name, for the combobox
-                rows = [{"value": s, "label": display_name(s)}
+                rows = [{"value": s, "label": dex.display_name(s)}
                         for s in species_universe()]
                 rows.sort(key=lambda r: r["label"])
                 return self._send({"species": rows})
-
             if parts[1] == "caught":
-                return self._send({"caught": sorted(st.caught)})
-
+                return self._send({
+                    "caught": sorted(st.caught),
+                    "owned": sorted(st.owned),
+                    "labels": {s: dex.display_name(s) for s in st.owned},
+                })
         except FileNotFoundError:
             return self._send({"error": "no such area"}, 404)
-        except Exception as exc:  # surface it in the page, not just the log
+        except Exception as exc:
             return self._send({"error": f"{type(exc).__name__}: {exc}"}, 500)
         return self._send({"error": "unknown endpoint"}, 404)
 
@@ -267,8 +278,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = self._body()
 
             # Caught state is global: ticking a species here changes the odds
-            # on every other table too, which is the whole point of the dupes
-            # clause. It is stored once, server side, rather than per page.
+            # on every other table too, which is the point of the dupes
+            # clause. Stored once, server side, rather than per page.
             if len(parts) >= 2 and parts[0] == "api" and parts[1] == "caught":
                 caught = load_caught()
                 if "clear" in body:
@@ -280,28 +291,37 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                           400)
                     caught.add(sp) if body.get("caught") else caught.discard(sp)
                 save_caught(caught)
-                return self._send({"caught": sorted(caught)})
+                st = State(None)
+                return self._send({"caught": sorted(st.caught),
+                                   "owned": sorted(st.owned)})
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]
                 what = parts[3] if len(parts) > 3 else "slot"
+                kind = body.get("kind", "land")
                 a = model.load_area(name)
                 before = a.text
 
-                # The datalist in the page is a suggestion, not a constraint,
-                # so a typo would otherwise write a species that does not
-                # exist and break the next build. Refuse it here instead.
+                # The page's combobox is a suggestion, not a constraint, so a
+                # typo would otherwise write a species that does not exist and
+                # break the next build. Refuse it here.
                 sp = body.get("species")
                 if sp is not None and sp not in set(species_universe()):
-                    return self._send(
-                        {"error": f"no such species: {sp}"}, 400)
+                    return self._send({"error": f"no such species: {sp}"}, 400)
+                for key in ("level", "level_min", "level_max"):
+                    v = body.get(key)
+                    if v is not None and not 1 <= int(v) <= 100:
+                        return self._send(
+                            {"error": f"{key} {v} out of range 1-100"}, 400)
 
                 if what == "slot":
-                    lvl = body.get("level")
-                    if lvl is not None and not 1 <= int(lvl) <= 100:
-                        return self._send(
-                            {"error": f"level {lvl} out of range 1-100"}, 400)
-                    a.set_slot(int(body["slot"]), species=sp, level=lvl)
+                    if kind == "land":
+                        a.set_slot(int(body["slot"]), species=sp,
+                                   level=body.get("level"))
+                    else:
+                        a.set_water_slot(kind, int(body["slot"]), species=sp,
+                                         level_min=body.get("level_min"),
+                                         level_max=body.get("level_max"))
                 elif what == "time":
                     a.set_time_slot(body["layer"], int(body["index"]), sp)
                 elif what == "rate":
@@ -313,7 +333,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 if changed:
                     a.save()
                 st = State(None)
-                out = area_detail(model.load_area(name), st)
+                out = area_detail(model.load_area(name), st, kind)
                 out["changed"] = changed
                 return self._send(out)
         except (KeyError, ValueError, IndexError) as exc:

@@ -107,6 +107,56 @@ class Area:
     def levels(self):
         return [e["level"] for e in self.data["land_encounters"]]
 
+    # -- water -----------------------------------------------------------
+
+    def kind_slots(self, kind):
+        """[(species, lo, hi)] for any table kind, or [] when absent.
+
+        Water slots carry a level range where land carries one level, so they
+        are returned in the three-element form the analysis layer normalises
+        to. Land is returned the same way for uniformity.
+        """
+        from . import analysis
+        key, _, _ = analysis.TABLE_KINDS[kind]
+        rows = self.data.get(key)
+        if not isinstance(rows, list) or not rows:
+            return []
+        out = []
+        for e in rows:
+            if "level" in e:
+                out.append((e["species"], e["level"], e["level"]))
+            else:
+                lo, hi = e["level_min"], e["level_max"]
+                out.append((e["species"], min(lo, hi), max(lo, hi)))
+        return out
+
+    def kind_rate(self, kind):
+        from . import analysis
+        _, rate_key, _ = analysis.TABLE_KINDS[kind]
+        return self.data.get(rate_key, 0)
+
+    def kinds_present(self):
+        """The table kinds this area actually has, in menu order."""
+        from . import analysis
+        return [k for k in analysis.TABLE_KINDS
+                if self.kind_slots(k) and self.kind_rate(k)]
+
+    def set_water_slot(self, kind, index, species=None,
+                       level_min=None, level_max=None):
+        """Rewrite one water slot. Land goes through set_slot instead."""
+        from . import analysis
+        if kind == "land":
+            raise ValueError("use set_slot for land tables")
+        key, _, rates = analysis.TABLE_KINDS[kind]
+        if not 0 <= index < len(rates):
+            raise IndexError(f"{kind} slot {index} out of range")
+        if species is not None:
+            self._replace([key, index, "species"], species)
+        if level_min is not None:
+            self._replace([key, index, "level_min"], int(level_min))
+        if level_max is not None:
+            self._replace([key, index, "level_max"], int(level_max))
+
     @property
     def band(self):
         """early / mid / late from the table's median level. Design doc 2.5."""

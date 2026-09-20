@@ -27,6 +27,23 @@ So P(slot i | encounter) = w_i / sum{w_j : level_j >= L} for level_i >= L, and
 
 LAND_RATES = (20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1)
 
+# Water tables are five slots, read from GetWaterEncounterSlot and
+# GetRodEncounterSlot in the same file. Surf and the old rod share one
+# distribution; the good and super rods share a flatter one.
+SURF_RATES = (60, 30, 5, 4, 1)
+OLD_ROD_RATES = (60, 30, 5, 4, 1)
+GOOD_ROD_RATES = (40, 40, 15, 4, 1)
+SUPER_ROD_RATES = (40, 40, 15, 4, 1)
+
+# kind -> (json key for the table, json key for the rate, slot rates)
+TABLE_KINDS = {
+    "land": ("land_encounters", "land_rate", LAND_RATES),
+    "surf": ("surf_encounters", "surf_rate", SURF_RATES),
+    "old_rod": ("old_rod_encounters", "old_rod_rate", OLD_ROD_RATES),
+    "good_rod": ("good_rod_encounters", "good_rod_rate", GOOD_ROD_RATES),
+    "super_rod": ("super_rod_encounters", "super_rod_rate", SUPER_ROD_RATES),
+}
+
 
 # -- shares ---------------------------------------------------------------
 #
@@ -36,11 +53,40 @@ LAND_RATES = (20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1)
 # a player experiences and what every published hack document prints.
 
 
+def _norm(slot):
+    """Slots are (species, level) on land and (species, lo, hi) in water.
+
+    Land carries one level per slot, which is what makes repel filtering
+    exactly computable. Water slots carry a range and the game rolls
+    uniformly inside it (GetWildMonLevel), so a repel admits a *fraction* of
+    the slot. Normalising to (species, lo, hi) lets one code path serve both:
+    land is the degenerate case lo == hi.
+    """
+    if len(slot) == 3:
+        return slot
+    species, level = slot
+    return species, level, level
+
+
+def _survival(lo, hi, lead):
+    """P(the rolled level survives a repel at `lead`), for a uniform range.
+
+    Survival is `>=`, per RepelPreventsEncounter. On land lo == hi, so this
+    is exactly 1.0 or 0.0 and the model stays the exact one.
+    """
+    if lead <= lo:
+        return 1.0
+    if lead > hi:
+        return 0.0
+    return (hi - lead + 1) / (hi - lo + 1)
+
+
 def merged(slots, rates=LAND_RATES):
     """{species: share}, shares summing to 1."""
     total = sum(rates)
     out = {}
-    for (species, _), rate in zip(slots, rates):
+    for slot, rate in zip(slots, rates):
+        species = _norm(slot)[0]
         out[species] = out.get(species, 0.0) + rate / total
     return out
 
@@ -63,26 +109,52 @@ def signature(shares, places=0):
 
 
 def rungs(slots):
-    """The lead levels worth considering: the table's distinct slot levels.
-    Not yet collapsed — see distinct_rungs."""
-    return sorted({level for _, level in slots})
+    """The lead levels worth considering. On land, the distinct slot levels.
+    In water, every range boundary, since a lead inside a range still shifts
+    the odds. Not yet collapsed — see distinct_rungs."""
+    out = set()
+    for slot in slots:
+        _, lo, hi = _norm(slot)
+        out.add(lo)
+        out.add(hi)
+    return sorted(out)
 
 
 def pool(slots, lead_level, rates=LAND_RATES):
-    """{species: share} among slots surviving a repel at `lead_level`.
+    """{species: share} among what survives a repel at `lead_level`.
 
-    Survival is `>=`. Renormalisation is exact because a blocked roll cancels
-    the step rather than rerolling. Returns {} when nothing survives.
+    Renormalisation is exact because a blocked roll cancels the step rather
+    than rerolling, so nothing is smeared onto the survivors. Returns {} when
+    nothing survives.
     """
-    surviving = [(sp, rate) for (sp, lv), rate in zip(slots, rates)
-                 if lv >= lead_level]
-    total = sum(rate for _, rate in surviving)
+    weighted = []
+    for slot, rate in zip(slots, rates):
+        species, lo, hi = _norm(slot)
+        w = rate * _survival(lo, hi, lead_level)
+        if w > 0:
+            weighted.append((species, w))
+    total = sum(w for _, w in weighted)
     if not total:
         return {}
     out = {}
-    for species, rate in surviving:
-        out[species] = out.get(species, 0.0) + rate / total
+    for species, w in weighted:
+        out[species] = out.get(species, 0.0) + w / total
     return out
+
+
+def slot_odds(slots, owned=(), rates=LAND_RATES):
+    """Per-slot share of what actually counts, in slot order.
+
+    A slot holding an owned species contributes 0 and the rest renormalise,
+    which is what the editor shows next to each row: the true odds of meeting
+    that slot given the dex, not its hardcoded rate.
+    """
+    live = []
+    for slot, rate in zip(slots, rates):
+        species = _norm(slot)[0]
+        live.append(0.0 if species in owned else float(rate))
+    total = sum(live)
+    return [0.0 if not total else w / total for w in live]
 
 
 def distinct_rungs(slots, rates=LAND_RATES):
@@ -173,8 +245,8 @@ def has_real_tail(slots, rates=LAND_RATES):
     tables qualify, which is why the ladder is a re-weighting device rather
     than a rare-exclusive delivery system."""
     floor = min(rates)
-    tail = {sp for (sp, _), rate in zip(slots, rates) if rate == floor}
-    head = {sp for (sp, _), rate in zip(slots, rates) if rate != floor}
+    tail = {_norm(s)[0] for s, rate in zip(slots, rates) if rate == floor}
+    head = {_norm(s)[0] for s, rate in zip(slots, rates) if rate != floor}
     return bool(tail - head)
 
 
@@ -238,7 +310,9 @@ def caught_metrics(slots, owned, rates=LAND_RATES):
 
 def table_metrics(slots, rates=LAND_RATES):
     shares = merged(slots, rates)
-    levels = [lv for _, lv in slots]
+    los = [_norm(s)[1] for s in slots]
+    his = [_norm(s)[2] for s in slots]
+    levels = his
     rung_list = distinct_rungs(slots, rates)
     uplift, best_level = uplift_on_rarest(slots, rates)
     top_uplift, top_species, top_level = best_uplift(slots, rates)
@@ -258,8 +332,8 @@ def table_metrics(slots, rates=LAND_RATES):
         "uplift_at_level": best_level,
         "rarest_species": rarest(shares),
         "has_real_tail": has_real_tail(slots, rates),
-        "level_min": min(levels),
-        "level_max": max(levels),
+        "level_min": min(los),
+        "level_max": max(his),
         "level_span": max(levels) - min(levels),
         "distinct_levels": len(set(levels)),
         "singleton_rungs": sum(1 for _, p in rung_list if len(p) == 1),
@@ -296,9 +370,9 @@ def ladder_profile(tables, rates=LAND_RATES):
     """
     per_slot = [[] for _ in rates]
     for slots in tables:
-        floor = min(lv for _, lv in slots)
-        for i, (_, lv) in enumerate(slots):
-            per_slot[i].append(lv - floor)
+        floor = min(_norm(s)[1] for s in slots)
+        for i, s in enumerate(slots):
+            per_slot[i].append(_norm(s)[2] - floor)
     return [median(xs) for xs in per_slot]
 
 

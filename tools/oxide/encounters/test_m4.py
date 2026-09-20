@@ -13,6 +13,7 @@ import threading
 import urllib.error
 import urllib.request
 
+from . import analysis as A
 from . import model
 from . import server as srv
 
@@ -173,7 +174,7 @@ def check_edit_is_local(results):
     before = get(f"/api/area/{AREA}")
     try:
         code, out = post(f"/api/area/{AREA}/slot",
-                         {"slot": 4, "level": before["slots"][4]["level"] + 1})
+                         {"slot": 4, "level": before["slots"][4]["level_min"] + 1})
         results.append(("slot write accepted", code == 200 and out.get("changed"),
                         f"HTTP {code}"))
         add, rem = changed_lines(path)
@@ -196,11 +197,85 @@ def check_edit_is_local(results):
         results.append(("a land_rate write adds exactly one more line",
                         len(add) == 3, f"+{len(add)}"))
         results.append(("the response carries fresh metrics",
-                        out["land_rate"] == 25 and "metrics" in out, ""))
+                        out["rate"] == 25 and "metrics" in out, ""))
     finally:
         subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
     add, rem = changed_lines(path)
     results.append(("test restored the file", not add and not rem, ""))
+
+
+def check_lines_dupe_out(results):
+    """The dupes clause works on families, not species. Catching Starly on
+    Route 201 has to zero every Starly-line entry everywhere."""
+    post("/api/caught", {"clear": True})
+    _, payload = post("/api/caught",
+                      {"species": "SPECIES_STARLY", "caught": True})
+    results.append(("catching one species owns its whole line",
+                    set(payload["owned"]) == {"SPECIES_STARLY",
+                                              "SPECIES_STARAVIA",
+                                              "SPECIES_STARAPTOR"},
+                    ", ".join(payload["owned"])))
+
+    d = get("/api/area/encounters_route_202?kind=land")
+    starly = [m for m in d["merged"] if m["species"] == "SPECIES_STARLY"][0]
+    others = [m for m in d["merged"] if m["species"] != "SPECIES_STARLY"]
+    results.append(("a caught species drops to zero",
+                    starly["cond"] == 0, f"{starly['cond']}"))
+    results.append(("everything else renormalises to 100%",
+                    abs(sum(m["cond"] for m in others) - 1.0) < 1e-9,
+                    f"{sum(m['cond'] for m in others) * 100:.4f}%"))
+    results.append(("the rest actually rise",
+                    all(m["cond"] > m["share"] for m in others), ""))
+    results.append(("slot odds match the merged view",
+                    abs(sum(s["odds"] for s in d["slots"]) - 1.0) < 1e-9, ""))
+
+    n = get("/api/area/encounters_route_205_north?kind=land")
+    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_STARAVIA"]
+    results.append(("an uncaught line member reads as duped",
+                    bool(staravia) and staravia[0]["duped"]
+                    and not staravia[0]["caught"]
+                    and staravia[0]["cond"] == 0, ""))
+    post("/api/caught", {"clear": True})
+
+
+def check_water_tables(results):
+    """Surf and the three rods, with the fractional repel their level ranges
+    require."""
+    d = get("/api/area/encounters_route_205_south?kind=surf")
+    results.append(("surf table loads with five slots",
+                    len(d["slots"]) == 5 and d["ranged"],
+                    f"rate {d['rate']}"))
+    results.append(("all four water kinds are offered",
+                    set(d["kinds"]) == {"land", "surf", "old_rod",
+                                        "good_rod", "super_rod"},
+                    ", ".join(d["kinds"])))
+    results.append(("water slots carry a level range",
+                    all("level_min" in s and "level_max" in s
+                        for s in d["slots"]), ""))
+    results.append(("lint does not run on water tables",
+                    d["findings"] == [], "rules are calibrated on land"))
+
+    rates = A.SURF_RATES
+    slots = [(s["species"], s["level_min"], s["level_max"]) for s in d["slots"]]
+    base = A.merged(slots, rates)
+    top = A.pool(slots, slots[0][2], rates)
+    first = slots[0][0]
+    results.append(("a mid-range lead shrinks a slot rather than cutting it",
+                    0 < top.get(first, 0) < base[first],
+                    f"{base[first]:.3f} -> {top.get(first, 0):.3f}"))
+
+    path = f"{model.ENC_DIR}/encounters_route_205_south.json"
+    try:
+        code, out = post("/api/area/encounters_route_205_south/slot",
+                         {"kind": "surf", "slot": 0,
+                          "level_max": d["slots"][0]["level_max"] + 1})
+        add, rem = changed_lines(path)
+        results.append(("a surf edit is one line at the right key",
+                        code == 200 and len(add) == 1 and len(rem) == 1
+                        and "level_max" in add[0],
+                        add[0].strip() if add else f"HTTP {code}"))
+    finally:
+        subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
 
 
 def main():
@@ -210,7 +285,8 @@ def main():
     results = []
     try:
         for check in (check_endpoints, check_display_names,
-                      check_caught_is_global, check_rejections,
+                      check_caught_is_global, check_lines_dupe_out,
+                      check_water_tables, check_rejections,
                       check_edit_is_local):
             check(results)
     finally:

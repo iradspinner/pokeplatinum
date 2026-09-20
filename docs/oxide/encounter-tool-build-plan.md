@@ -49,7 +49,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 29/29
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 41/41
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
 
@@ -434,7 +434,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.server
 # then open http://localhost:8765
 ```
 
-`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 29/29. The gate holds:
+`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 41/41. The gate holds:
 a slot edit made over the same HTTP the page uses lands in `git diff` as one line
 at the right key, a day-layer write adds exactly one more, and a `land_rate` write
 one more again. The test restores every file it touches, so it can be run against a
@@ -503,6 +503,57 @@ Caught state is per-playthrough, not design intent, so it lives in
 `docs/oxide/encounters/caught.json` and is gitignored. It is held server-side
 rather than in the browser so that it is genuinely one list: every table's numbers
 are computed against it, and reopening the page does not lose it.
+
+**Second round, same day.** Four more changes, two of which reach into the model.
+
+- **The dupes clause now works on evolution lines, not species.** Catching Starly
+  on Route 201 zeroes Staravia on Route 205 North too, because that is how the
+  clause is actually played. Families are the connected components of the
+  evolution graph read from each species' `data.json`, in a new `dex.py` that also
+  owns the display names. One bug caught on the way: evolution entries vary in
+  arity (`["EVO_LEVEL_MOSS_ROCK", "SPECIES_LEAFEON"]` puts the target at index 1,
+  `["EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_JOLTEON"]` at index 2), and an
+  index-2 assumption silently dropped four of Eevee's seven. The target is now
+  found by scanning for the `SPECIES_` element. A species duped out by a relative
+  shows a *line caught* tag and a disabled checkbox rather than a tick.
+- **The centre column shows real odds.** Both the slot table and the merged view
+  carry a "real odds" column beside the on-paper rate: a caught or duped species
+  reads 0% and is struck through, and everything else renormalises so the column
+  still sums to 100%. Route 202 after catching Starly: the two 20% slots read
+  21.1%, the 10% slots 10.5%, and Starly 0%.
+- **The area list fades with progress** rather than flipping at "all caught":
+  four steps of opacity from untouched to done, with the name struck through only
+  when nothing is left. The "left to catch" count spans every table kind an area
+  has, so a route whose only outstanding species is in its surf table does not
+  read as finished.
+- **Surf and the three rods are in.** They were out of the first pass by the
+  design doc's own scope, but the data was always in the same files and the
+  analysis layer was built rate-array-agnostic for exactly this. Fifty-three
+  areas have water tables. The slot rates come from `GetWaterEncounterSlot` and
+  `GetRodEncounterSlot`: surf and old rod `60/30/5/4/1`, good and super rod
+  `40/40/15/4/1`. Water slots carry a level *range*, and `GetWildMonLevel` rolls
+  uniformly inside it, so a repel there admits a **fraction** of a slot rather than
+  all or nothing. The repel model was generalised to (species, lo, hi) with land
+  as the degenerate lo == hi case — M2's 23 checks still pass byte-identically,
+  which is the proof the generalisation cost land nothing. On Route 205 South's
+  surf table, a level-30 lead drops Grimer from 60% to 40.6% because only one of
+  its eleven levels survives, while Tentacool's wider range keeps most of its
+  mass. That is a real manip surface the land-only model could not see. Lint
+  stays land-only, since every rule was calibrated on land.
+
+**The design pass.** Reviewed against the frontend-design skill's list of
+generated-page tells, the first version hit three of them: a near-black ground
+with one acid accent (it was, in fact, the Tokyo Night palette), tracked-out
+all-caps eyebrow labels, and meta strings joined with middle dots — which was also
+the thing hardest to scan. The rewrite is a cold pale instrument rather than a
+dark dashboard: one mineral teal reserved for probability mass, one warm ochre
+reserved for the single number worth acting on (the uplift), deep red only for
+lint errors, and anything already caught drawn as *absence* — hatched, hollow,
+struck — rather than in another colour. Prose is in the system sans in sentence
+case; monospace with tabular figures is used only where numbers must align down a
+column. The one bold element is the repel ladder, now drawn as proportional bars
+per rung with caught species hatched, so the mass visibly moves to the survivors
+when a box is ticked.
 
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,
