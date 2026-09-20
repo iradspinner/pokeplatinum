@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tools/oxide/integrate.sh *)",
+      "Bash(bash tools/oxide/integrate.sh *)",
+      "Bash(bash tools/oxide/sync-docs.sh)",
+      "Bash(git merge *)",
+      "Bash(git commit *)",
+      "Bash(git push origin oxide)",
+      "Bash(git fetch *)"
+    ]
+  }
+}
