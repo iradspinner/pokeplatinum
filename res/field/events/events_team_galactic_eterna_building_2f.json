@@ -76,7 +76,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_2F_X_SPEED",
-            "script": 7262,
+            "script": 7059,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

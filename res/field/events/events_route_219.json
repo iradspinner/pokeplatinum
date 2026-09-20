@@ -67,7 +67,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_219_ANTIDOTE",
-            "script": 7124,
+            "script": 7018,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

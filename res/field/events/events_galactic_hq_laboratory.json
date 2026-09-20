@@ -118,7 +118,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE",
-            "script": 7296,
+            "script": 7023,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

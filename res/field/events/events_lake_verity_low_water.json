@@ -97,7 +97,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_LAKE_VERITY_TM38",
-            "script": 7239,
+            "script": 7365,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

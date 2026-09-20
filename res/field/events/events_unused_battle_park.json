@@ -157,7 +157,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_PAL_PARK_RAZOR_CLAW",
-            "script": 7245,
+            "script": 7327,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

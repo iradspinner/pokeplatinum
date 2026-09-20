@@ -24,7 +24,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_GREAT_MARSH_3_GREAT_BALL",
-            "script": 7070,
+            "script": 7003,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

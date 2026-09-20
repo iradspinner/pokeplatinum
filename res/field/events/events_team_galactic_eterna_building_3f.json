@@ -65,7 +65,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_3F_X_SPECIAL",
-            "script": 7263,
+            "script": 7061,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

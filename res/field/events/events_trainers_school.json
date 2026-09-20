@@ -144,7 +144,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_TRAINERS_SCHOOL_X_ATTACK",
-            "script": 7258,
+            "script": 7057,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
