@@ -96,9 +96,28 @@ Message 72                       @ "{PLAYER} used the {ITEM}. Wild Pokemon will 
 WaitButton / CloseMessage / ReleaseAll / Return
 ```
 
-Common-strings entry 75 is "Repel's effect wore off... Would you like to use
-another one?", which is the prompt that opens that menu. 100, 150 and 250 are
+The whole flow, traced end to end in the base ROM's `scripts_common`:
+
+```
+0x0dc0  Message 75              @ "Repel's effect wore off... use another one?"
+        ShowYesNoMenu           @ vanilla only has the wear-off line, 79, no prompt
+        GoToIf yes -> 0x15bb
+0x15bb  InitGlobalTextMenu
+        CheckItem REPEL       -> if held, add menu entry 30 "Repel"
+        CheckItem SUPER_REPEL -> if held, add menu entry 31 "Super Repel"
+        CheckItem MAX_REPEL   -> if held, add menu entry 32 "Max Repel"
+        ShowMenu
+0x1ee8  ...the three branches above, one per Repel
+```
+
+So it only offers the Repels you are actually carrying. 100, 150 and 250 are
 step counts.
+
+**It is not "reusable Repels".** Each use still takes one from the bag, exactly
+as vanilla: `RemoveItem <item>, 1` is right there in every branch. What the hack
+saves is the trip back to the bag, not the item. Worth stating because the base
+ROM *does* separately make TMs reusable, by skipping `Bag_TryRemoveItem` in the
+party menu, and the two are easy to conflate.
 
 **What the two commands do.** `ScrCmd_Unused_007` is a raw byte write,
 `*(u8 *)addr = value`. Vanilla implements it and never uses it. The base ROM
