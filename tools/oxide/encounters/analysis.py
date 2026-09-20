@@ -207,6 +207,35 @@ def throughput(shares, owned):
 # -- per-table metrics ----------------------------------------------------
 
 
+def caught_metrics(slots, owned, rates=LAND_RATES):
+    """What this table is still worth to a player who already owns `owned`.
+
+    The dupes clause makes a table's value depend on the dex, not just on the
+    table, so these are the numbers that answer "is it worth walking here
+    right now". `best_share` is the best reachable probability of the rarest
+    species still missing, over every rung, after the owned mass is removed.
+    """
+    base = merged(slots, rates)
+    live = [s for s in base if s not in owned]
+    if not live:
+        return {"live_species": 0, "base_throughput": float("inf"),
+                "target": None, "best_share": 0.0, "best_level": None}
+    target = min(sorted(live), key=lambda s: base[s])
+    cond = conditional(base, owned)
+    best_share, best_level = cond.get(target, 0.0), None
+    for level, p in distinct_rungs(slots, rates):
+        c = conditional(p, owned)
+        if c.get(target, 0.0) > best_share:
+            best_share, best_level = c[target], level
+    return {
+        "live_species": len(live),
+        "base_throughput": throughput(base, owned),
+        "target": target,
+        "best_share": best_share,
+        "best_level": best_level,
+    }
+
+
 def table_metrics(slots, rates=LAND_RATES):
     shares = merged(slots, rates)
     levels = [lv for _, lv in slots]

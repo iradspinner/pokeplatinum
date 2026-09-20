@@ -49,7 +49,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 17/17
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 29/29
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
 
@@ -68,8 +68,14 @@ for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
 `docs/oxide/encounters/design.json`, which holds every threshold.
 
 **Next milestone: M5**, the dupe-out planner — the feature the whole tool exists
-for. M1-M4 are done and their sections below record what each found. M4 is awaiting
-Ian's usability pass, so expect changes there before M5 settles.
+for. M1-M4 are done and their sections below record what each found; M4 has had one
+round of Ian's usability feedback applied.
+
+M5 inherits two things from that round. Caught state is already global and already
+server-side, so the planner does not need its own notion of what is owned. And the
+area list's play order is currently *approximated* by encounter level; M5 needs a
+real progression order, and wiring it in is a one-line change to the sort key once
+the sidecar carries one.
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
@@ -428,7 +434,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.server
 # then open http://localhost:8765
 ```
 
-`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 17/17. The gate holds:
+`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 29/29. The gate holds:
 a slot edit made over the same HTTP the page uses lands in `git diff` as one line
 at the right key, a day-layer write adds exactly one more, and a `land_rate` write
 one more again. The test restores every file it touches, so it can be run against a
@@ -465,6 +471,38 @@ directory listing — all 329 species used across the encounter files are covere
 Edits write on blur and save immediately; there is no save button to forget. If a
 write is refused the field is reloaded from disk rather than left showing something
 that was never stored.
+
+**Revised after Ian's first usability pass, same day.** Five changes:
+
+- **Names are names.** `SPECIES_GLALIE` is shown as *Glalie* everywhere — list,
+  editor, merged view, ladder. Six constants plus `farfetchd` need special casing
+  (`Nidoran♀`, `Nidoran♂`, `Mr. Mime`, `Mime Jr.`, `Ho-Oh`, `Porygon-Z`,
+  `Farfetch'd`); the rest title-case. The mapping lives server-side so the page
+  never has to know about constants, and every payload carries a `label`.
+- **Play order is the default sort**, approximated by encounter level until a real
+  progression order exists in the sidecar. It reads Route 201 → 202 → Lake Verity
+  → 204 South → 203 → Ravaged Path → Oreburgh Gate and ends at Stark Mountain,
+  which is close enough to Sinnoh's actual route that the approximation is
+  carrying its weight. Replacing it with the explicit order M5 needs is a one-line
+  change to the sort key.
+- **Every species cell is a combobox** over the whole 496-entry dex: type to
+  filter, or click the caret to browse. Arrow keys move, Enter picks, Escape
+  reverts. It replaces the `datalist`, which browsers render inconsistently and
+  which gave no way to *browse* rather than recall.
+- **The area filter is frozen** at the top of the left column, so it stays usable
+  however far the list is scrolled.
+- **A caught column**, and it is global. Ticking a species in one table removes it
+  from the counting mass in *every* table, because that is exactly what the dupes
+  clause does — the reason a distant table is worth walking to is what it lets you
+  delete from a later one. Ticking Bidoof moves six tables and lifts Route 201's
+  odds on its rarest from 2.0% to 2.7%. The left list then shows how many species
+  a table still owes you and the best reachable odds on the rarest of them, and a
+  fully-caught table greys out.
+
+Caught state is per-playthrough, not design intent, so it lives in
+`docs/oxide/encounters/caught.json` and is gitignored. It is held server-side
+rather than in the browser so that it is genuinely one list: every table's numbers
+are computed against it, and reopening the page does not lose it.
 
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,

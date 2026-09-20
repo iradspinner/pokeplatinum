@@ -17,18 +17,25 @@ body {
 header {
   padding: 8px 14px; border-bottom: 1px solid var(--line);
   display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap;
-  position: sticky; top: 0; background: var(--bg); z-index: 5;
+  position: sticky; top: 0; background: var(--bg); z-index: 20;
 }
 header h1 { font-size: 13px; margin: 0 12px 0 0; font-weight: 700; }
 .stat { color: var(--dim); white-space: nowrap; }
 .stat b { color: var(--ink); font-weight: 600; }
 .stat.bad b { color: var(--bad); }
 .stat.good b { color: var(--good); }
-main { display: grid; grid-template-columns: 300px minmax(420px,1fr) 400px;
+main { display: grid; grid-template-columns: 320px minmax(460px,1fr) 400px;
        gap: 0; height: calc(100vh - 42px); }
-section { overflow-y: auto; padding: 10px 12px; }
+section { overflow-y: auto; padding: 0 12px 10px; }
 #list { border-right: 1px solid var(--line); }
 #right { border-left: 1px solid var(--line); }
+/* the filter stays put however far the area list is scrolled */
+#listhead {
+  position: sticky; top: 0; z-index: 10; background: var(--bg);
+  padding: 10px 0 6px; border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+#mid, #right { padding-top: 10px; }
 h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
      color: var(--dim); margin: 16px 0 6px; font-weight: 600; }
 h2:first-child { margin-top: 0; }
@@ -39,13 +46,14 @@ input, select, button {
 input:focus, select:focus { outline: 1px solid var(--accent); }
 button { cursor: pointer; }
 button:hover { border-color: var(--accent); }
-#filter { width: 100%; margin-bottom: 6px; }
+#filter { width: 100%; }
 .row {
   display: grid; grid-template-columns: 1fr auto; gap: 6px; padding: 4px 6px;
   border-radius: 3px; cursor: pointer; align-items: center;
 }
 .row:hover { background: var(--panel); }
 .row.sel { background: var(--chip); outline: 1px solid var(--accent); }
+.row.done .nm { color: var(--dim); }
 .row .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .row .meta { color: var(--dim); font-size: 11px; white-space: nowrap; }
 .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
@@ -58,7 +66,7 @@ th { text-align: left; color: var(--dim); font-weight: 600; font-size: 11px;
      padding: 2px 6px; text-transform: uppercase; letter-spacing: .05em; }
 td { padding: 1px 6px; border-top: 1px solid var(--line); }
 td.num { text-align: right; color: var(--dim); }
-input.sp { width: 100%; }
+tr.caught td { color: var(--dim); }
 input.lv { width: 52px; text-align: right; }
 .bar { height: 7px; background: var(--chip); border-radius: 2px;
        overflow: hidden; display: flex; }
@@ -74,16 +82,27 @@ input.lv { width: 52px; text-align: right; }
 .rung .hd { color: var(--dim); margin-bottom: 2px; }
 .pill { display: inline-block; padding: 0 5px; border-radius: 9px;
         background: var(--chip); color: var(--dim); font-size: 11px; }
-.dupes label { display: inline-block; margin: 0 8px 2px 0; color: var(--dim);
-               cursor: pointer; white-space: nowrap; }
-.dupes input { vertical-align: middle; }
 #toast { position: fixed; right: 14px; bottom: 12px; background: var(--panel);
          border: 1px solid var(--line); border-radius: 4px; padding: 6px 10px;
-         opacity: 0; transition: opacity .15s; pointer-events: none; }
+         opacity: 0; transition: opacity .15s; pointer-events: none; z-index: 60; }
 #toast.on { opacity: 1; }
 #toast.err { border-color: var(--bad); color: var(--bad); }
 .big { font-size: 20px; font-weight: 700; }
 .big.good { color: var(--good); } .big.bad { color: var(--bad); }
+/* combobox: type to filter, or click the caret to browse the whole dex */
+.cb { position: relative; }
+.cb input { width: 100%; padding-right: 18px; }
+.cb .caret { position: absolute; right: 4px; top: 2px; color: var(--dim);
+             cursor: pointer; font-size: 10px; user-select: none; }
+.cb .menu {
+  display: none; position: fixed; z-index: 50; background: var(--panel);
+  border: 1px solid var(--accent); border-radius: 3px; max-height: 260px;
+  overflow-y: auto; min-width: 190px; box-shadow: 0 6px 18px #0009;
+}
+.cb.open .menu { display: block; }
+.cb .menu div { padding: 2px 8px; cursor: pointer; white-space: nowrap; }
+.cb .menu div.on, .cb .menu div:hover { background: var(--chip); color: var(--accent); }
+.ck { cursor: pointer; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -97,17 +116,22 @@ input.lv { width: 52px; text-align: right; }
   <span class="stat" id="h-arc-w">arc <b id="h-arc">-</b></span>
   <span class="stat">repel <b id="h-up">-</b></span>
   <span class="stat" id="h-lint-w">lint <b id="h-lint">-</b></span>
+  <span class="stat">caught <b id="h-caught">0</b>
+    <a href="#" id="clear-caught" style="color:var(--dim)">clear</a></span>
 </header>
 <main>
   <section id="list">
-    <input id="filter" placeholder="filter areas — or /gible to find every table holding it">
-    <div id="sort" class="note" style="margin-bottom:6px">
-      sort:
-      <a href="#" data-k="area">name</a> ·
-      <a href="#" data-k="hhi">hhi</a> ·
-      <a href="#" data-k="species">species</a> ·
-      <a href="#" data-k="uplift">uplift</a> ·
-      <a href="#" data-k="warns">lint</a>
+    <div id="listhead">
+      <input id="filter" placeholder="filter areas — or /gible for tables holding it">
+      <div id="sort" class="note" style="margin-top:5px">
+        sort:
+        <a href="#" data-k="level">play order</a> ·
+        <a href="#" data-k="area">name</a> ·
+        <a href="#" data-k="hhi">hhi</a> ·
+        <a href="#" data-k="species">species</a> ·
+        <a href="#" data-k="uplift">uplift</a> ·
+        <a href="#" data-k="warns">lint</a>
+      </div>
     </div>
     <div id="rows"></div>
   </section>
@@ -127,11 +151,11 @@ input.lv { width: 52px; text-align: right; }
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c =>
   ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
-const shortSp = s => String(s).replace(/^SPECIES_/, "");
 const pct = v => (v * 100).toFixed(v * 100 < 10 ? 1 : 0) + "%";
 
-let ALL = [], GAME = null, SPECIES = [], SEL = null, DETAIL = null;
-let SORT = "area", OWNED = new Set(), LAYER = "base";
+let ALL = [], GAME = null, DEX = [], BY_LABEL = new Map();
+let SEL = null, DETAIL = null, CAUGHT = new Set();
+let SORT = "level", LAYER = "base";
 
 function toast(msg, bad) {
   const t = $("#toast");
@@ -170,6 +194,7 @@ function drawHeader() {
   const wrns = GAME.game_findings.filter(f => f.severity === "warn").length;
   $("#h-lint").textContent = errs + "e " + wrns + "w";
   $("#h-lint-w").className = "stat " + (errs ? "bad" : "good");
+  $("#h-caught").textContent = CAUGHT.size;
 }
 
 // ---- left ---------------------------------------------------------------
@@ -183,17 +208,94 @@ function drawList() {
   } else if (q) {
     rows = rows.filter(r => r.area.toLowerCase().includes(q));
   }
-  const num = SORT !== "area";
-  rows.sort((a, b) => num ? (b[SORT] - a[SORT]) : a.area.localeCompare(b.area));
+  if (SORT === "level") rows.sort((a, b) => a.level_med - b.level_med || a.level_min - b.level_min);
+  else if (SORT === "area") rows.sort((a, b) => a.area.localeCompare(b.area));
+  else rows.sort((a, b) => b[SORT] - a[SORT]);
+
   $("#rows").innerHTML = rows.map(r => {
     const cls = r.errors ? "err" : (r.warns ? "wrn" : "ok");
-    return `<div class="row ${r.area === SEL ? "sel" : ""}" data-a="${esc(r.area)}">
+    const done = r.live_species === 0;
+    const right = done
+      ? "all caught"
+      : `lv${r.level_min}${r.level_max !== r.level_min ? "-" + r.level_max : ""}`
+        + ` · ${r.live_species} left · ${pct(r.best_share)}`;
+    return `<div class="row ${r.area === SEL ? "sel" : ""} ${done ? "done" : ""}"
+      data-a="${esc(r.area)}" title="${esc(r.target_label
+        ? "rarest still missing: " + r.target_label + (r.best_level ? " — best at lead level " + r.best_level : "")
+        : "nothing left to catch here")}">
       <div class="nm"><span class="dot ${cls}"></span>${esc(r.area.replace(/^encounters_/, ""))}</div>
-      <div class="meta">${r.species}sp ${r.hhi.toFixed(2)} ${r.uplift.toFixed(1)}x</div>
+      <div class="meta">${right}</div>
     </div>`;
   }).join("") || `<div class="note">nothing matches</div>`;
   document.querySelectorAll("#rows .row").forEach(el =>
     el.onclick = () => select(el.dataset.a));
+}
+
+// ---- combobox -----------------------------------------------------------
+
+function combobox(value, onPick) {
+  const wrap = document.createElement("span");
+  wrap.className = "cb";
+  wrap.innerHTML = `<input value="${esc(value)}"><span class="caret">▼</span>
+                    <div class="menu"></div>`;
+  const input = wrap.querySelector("input");
+  const menu = wrap.querySelector(".menu");
+  let idx = -1, items = [];
+
+  function render(filter) {
+    const f = (filter || "").toLowerCase();
+    items = f ? DEX.filter(d => d.label.toLowerCase().includes(f)) : DEX.slice();
+    menu.innerHTML = items.slice(0, 400).map((d, i) =>
+      `<div data-i="${i}" class="${i === idx ? "on" : ""}">${esc(d.label)}</div>`).join("")
+      || `<div class="note" style="padding:2px 8px">no match</div>`;
+    menu.querySelectorAll("div[data-i]").forEach(el => {
+      el.onmousedown = ev => { ev.preventDefault(); pick(items[+el.dataset.i]); };
+    });
+  }
+  function open(filter) {
+    idx = -1; render(filter);
+    const r = input.getBoundingClientRect();
+    menu.style.left = r.left + "px";
+    menu.style.top = (r.bottom + 2) + "px";
+    menu.style.minWidth = r.width + "px";
+    wrap.classList.add("open");
+  }
+  function close() { wrap.classList.remove("open"); }
+  function pick(d) {
+    if (!d) return;
+    input.value = d.label;
+    close();
+    onPick(d.value);
+  }
+
+  wrap.querySelector(".caret").onmousedown = ev => {
+    ev.preventDefault();
+    wrap.classList.contains("open") ? close() : (input.focus(), open(""));
+  };
+  input.onfocus = () => open(input.value === value ? "" : input.value);
+  input.oninput = () => open(input.value);
+  input.onkeydown = ev => {
+    if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+      ev.preventDefault();
+      if (!wrap.classList.contains("open")) return open(input.value);
+      idx = Math.max(0, Math.min(items.length - 1, idx + (ev.key === "ArrowDown" ? 1 : -1)));
+      render(input.value);
+      const on = menu.querySelector(".on");
+      if (on) on.scrollIntoView({ block: "nearest" });
+    } else if (ev.key === "Enter") {
+      ev.preventDefault();
+      pick(idx >= 0 ? items[idx] : items.find(d => d.label.toLowerCase() === input.value.toLowerCase()));
+    } else if (ev.key === "Escape") { close(); input.value = value; }
+  };
+  input.onblur = () => {
+    setTimeout(() => {
+      close();
+      const hit = BY_LABEL.get(input.value.trim().toLowerCase());
+      if (!hit) { input.value = value; return; }   // never leave an unsaved name on screen
+      if (hit !== BY_LABEL.get(value.toLowerCase())) onPick(hit);
+    }, 120);
+  };
+  return wrap;
 }
 
 // ---- centre -------------------------------------------------------------
@@ -201,28 +303,15 @@ function drawList() {
 function drawMid() {
   const d = DETAIL;
   if (!d) return;
-  const day = d.day || [], night = d.night || [];
-  const layerVals = LAYER === "day" ? day : LAYER === "night" ? night : null;
-
-  const rows = d.slots.map(s => {
-    const substituted = layerVals && (s.slot === 2 || s.slot === 3);
-    const shown = substituted ? layerVals[s.slot - 2] : s.species;
-    const locked = LAYER !== "base" && !substituted;
-    return `<tr>
-      <td class="num">${s.slot}</td>
-      <td class="num">${s.rate}%</td>
-      <td><input class="sp" list="splist" value="${esc(shown)}"
-            data-slot="${s.slot}" ${locked ? "disabled" : ""}></td>
-      <td><input class="lv" type="number" min="1" max="100" value="${s.level}"
-            data-slot="${s.slot}" ${LAYER !== "base" ? "disabled" : ""}></td>
-    </tr>`;
-  }).join("");
+  const dayL = d.day_labels || [], nightL = d.night_labels || [];
+  const layerVals = LAYER === "day" ? dayL : LAYER === "night" ? nightL : null;
 
   const merged = d.merged.map(m => {
     const w = Math.max(2, m.share * 100);
-    return `<tr><td>${esc(shortSp(m.species))}</td>
+    return `<tr class="${m.caught ? "caught" : ""}"><td>${esc(m.label)}</td>
       <td class="num">${pct(m.share)}</td>
-      <td style="width:45%"><div class="bar"><i style="width:${w}%;background:var(--accent)"></i></div></td></tr>`;
+      <td style="width:45%"><div class="bar"><i style="width:${w}%;background:${
+        m.caught ? "#3a4450" : "var(--accent)"}"></i></div></td></tr>`;
   }).join("");
 
   $("#mid-body").innerHTML = `
@@ -238,33 +327,51 @@ function drawMid() {
     <div class="tabs" style="margin-top:10px">
       ${["base", "day", "night"].map(l =>
         `<button data-layer="${l}" class="${LAYER === l ? "on" : ""}"
-          ${l !== "base" && !(l === "day" ? day.length : night.length) ? "disabled" : ""}
+          ${l !== "base" && !(l === "day" ? dayL.length : nightL.length) ? "disabled" : ""}
           >${l === "base" ? "morning / base" : l}</button>`).join("")}
     </div>
     ${LAYER !== "base" ? `<div class="note" style="margin-bottom:6px">
-      ${LAYER} replaces slots 2 and 3 only — at most 20% of the table.
-      Everything else is the base layer and is shown greyed.</div>` : ""}
+      ${LAYER} replaces slots 2 and 3 only — at most 20% of the table.</div>` : ""}
 
-    <table><thead><tr><th>slot</th><th>rate</th><th>species</th><th>level</th></tr></thead>
-    <tbody>${rows}</tbody></table>
+    <table><thead><tr><th>slot</th><th>rate</th><th>species</th><th>level</th>
+      <th title="tick what you have caught; every table's odds update">caught</th>
+    </tr></thead><tbody id="slotrows"></tbody></table>
 
     <h2>merged view</h2>
-    <div class="note" style="margin:-4px 0 4px">what a player meets. Editing happens above, by slot — the merged view hides the ladder, and the ladder is the point.</div>
+    <div class="note" style="margin:-4px 0 4px">what a player meets. Edit by slot above —
+      the merged view hides the ladder, and the ladder is the point.</div>
     <table>${merged}</table>`;
+
+  const tb = $("#slotrows");
+  d.slots.forEach(s => {
+    const substituted = layerVals && (s.slot === 2 || s.slot === 3);
+    const shownLabel = substituted ? layerVals[s.slot - 2] : s.label;
+    const locked = LAYER !== "base" && !substituted;
+    const tr = document.createElement("tr");
+    if (s.caught) tr.className = "caught";
+    tr.innerHTML = `<td class="num">${s.slot}</td><td class="num">${s.rate}%</td>
+      <td class="spcell"></td>
+      <td><input class="lv" type="number" min="1" max="100" value="${s.level}"
+           ${LAYER !== "base" ? "disabled" : ""}></td>
+      <td><input type="checkbox" class="ck" ${s.caught ? "checked" : ""}></td>`;
+    const cell = tr.querySelector(".spcell");
+    if (locked) {
+      cell.innerHTML = `<span class="note">${esc(shownLabel)}</span>`;
+    } else {
+      cell.appendChild(combobox(shownLabel, val => {
+        if (LAYER === "base") write("slot", { slot: s.slot, species: val });
+        else write("time", { layer: LAYER, index: s.slot - 2, species: val });
+      }));
+    }
+    tr.querySelector("input.lv").onchange = ev =>
+      write("slot", { slot: s.slot, level: +ev.target.value });
+    tr.querySelector("input.ck").onchange = ev =>
+      setCaught(s.species, ev.target.checked);
+    tb.appendChild(tr);
+  });
 
   document.querySelectorAll("#mid-body .tabs button").forEach(b =>
     b.onclick = () => { LAYER = b.dataset.layer; drawMid(); });
-
-  document.querySelectorAll("#mid-body input.sp").forEach(el => {
-    el.onchange = () => {
-      const slot = +el.dataset.slot;
-      if (LAYER === "base") write("slot", { slot, species: el.value.trim().toUpperCase() });
-      else write("time", { layer: LAYER, index: slot - 2, species: el.value.trim().toUpperCase() });
-    };
-  });
-  document.querySelectorAll("#mid-body input.lv[data-slot]").forEach(el => {
-    el.onchange = () => write("slot", { slot: +el.dataset.slot, level: +el.value });
-  });
   $("#rate").onchange = e => write("rate", { land_rate: +e.target.value });
 }
 
@@ -273,30 +380,23 @@ function drawMid() {
 function drawRight() {
   const d = DETAIL;
   if (!d) { $("#right-body").innerHTML = "&nbsp;"; return; }
-  const m = d.metrics, t = GAME.thresholds;
+  const m = d.metrics, c = d.caught_metrics, t = GAME.thresholds;
   const upOk = m.uplift_on_rarest >= t.r3_uplift_min;
 
   const rungs = d.rungs.map(r => {
-    const live = r.pool.filter(p => !OWNED.has(p.species));
-    const liveMass = live.reduce((s, p) => s + p.share, 0);
-    const body = r.pool.map(p => {
-      const owned = OWNED.has(p.species);
-      const cond = owned || !liveMass ? null : p.share / liveMass;
-      return `<span class="${owned ? "note" : ""}" style="margin-right:9px">
-        ${owned ? "<s>" : ""}${esc(shortSp(p.species))}${owned ? "</s>" : ""}
-        ${owned ? "" : pct(p.share) + (cond !== null && OWNED.size ? ` <span class="note">(${pct(cond)})</span>` : "")}
-      </span>`;
-    }).join("");
-    const tput = liveMass > 0 ? (1 / liveMass).toFixed(2) : "∞";
+    const body = r.pool.map(p => `<span style="margin-right:9px" class="${p.caught ? "note" : ""}">
+        ${p.caught ? `<s>${esc(p.label)}</s>`
+                   : `${esc(p.label)} ${pct(p.share)}${
+                       CAUGHT.size && p.cond != null && p.cond !== p.share
+                         ? ` <span class="note">(${pct(p.cond)})</span>` : ""}`}
+      </span>`).join("");
+    const live = r.pool.filter(p => !p.caught).length;
     return `<div class="rung"><div class="hd">lead ${r.level}
-      <span class="pill">${r.pool.length} species</span>
-      ${OWNED.size ? `<span class="pill">${tput} enc / counting</span>` : ""}</div>
-      <div>${body}</div></div>`;
+      <span class="pill">${r.pool.length} species${live !== r.pool.length ? `, ${live} left` : ""}</span>
+      ${CAUGHT.size ? `<span class="pill">${
+        isFinite(r.throughput) ? r.throughput.toFixed(2) + " enc / counting" : "nothing left"}</span>` : ""}
+      </div><div>${body}</div></div>`;
   }).join("");
-
-  const dupes = d.merged.map(mm => `<label><input type="checkbox"
-      data-sp="${esc(mm.species)}" ${OWNED.has(mm.species) ? "checked" : ""}>
-      ${esc(shortSp(mm.species))}</label>`).join("");
 
   const findings = d.findings.length ? d.findings.map(f =>
     `<div class="finding ${f.severity}"><span class="rule">${f.rule}</span>
@@ -307,20 +407,22 @@ function drawRight() {
   $("#right-body").innerHTML = `
     <h2>repel</h2>
     <div class="big ${upOk ? "good" : "bad"}">${m.uplift_on_rarest.toFixed(2)}x</div>
-    <div class="note">on ${esc(shortSp(m.rarest_species || "-"))}, the rarest
+    <div class="note">on ${esc(d.rarest_label || "-")}, the rarest
       ${m.uplift_at_level ? `— lead level ${m.uplift_at_level}` : "— no repel helps it"}
       (target ${t.r3_uplift_min}x)</div>
     <div class="note" style="margin-top:3px">best manip
-      <b>${m.best_uplift.toFixed(2)}x</b> on ${esc(shortSp(m.best_uplift_species || "-"))}</div>
+      <b>${m.best_uplift.toFixed(2)}x</b> on ${esc(d.best_uplift_label || "-")}</div>
+
+    <h2>still missing here</h2>
+    ${c.live_species === 0
+      ? `<div class="note">everything on this table is caught</div>`
+      : `<div class="note"><b>${c.live_species}</b> of ${m.n_species} species left.
+         Rarest still missing is <b>${esc(c.target ? (d.merged.find(x => x.species === c.target) || {}).label || "-" : "-")}</b>
+         at <b>${pct(c.best_share)}</b>${c.best_level ? ` with a level-${c.best_level} lead` : " at base odds"}.
+         ${isFinite(c.base_throughput) ? `About ${c.base_throughput.toFixed(1)} encounters per one that counts.` : ""}</div>`}
 
     <h2>ladder</h2>
     ${rungs || '<div class="note">one rung</div>'}
-
-    <h2>owned (dupes clause)</h2>
-    <div class="note" style="margin-bottom:4px">tick to simulate having caught it;
-      odds above reweight over what still counts</div>
-    <div class="dupes">${dupes}</div>
-    ${OWNED.size ? `<button id="clear-owned" style="margin-top:5px">clear</button>` : ""}
 
     <h2>shape</h2>
     <div class="note">${m.n_species} species · top ${pct(m.top_share)} ·
@@ -330,18 +432,31 @@ function drawRight() {
 
     <h2>lint</h2>
     ${findings}`;
-
-  document.querySelectorAll("#right-body .dupes input").forEach(el => {
-    el.onchange = () => {
-      el.checked ? OWNED.add(el.dataset.sp) : OWNED.delete(el.dataset.sp);
-      drawRight();
-    };
-  });
-  const c = $("#clear-owned");
-  if (c) c.onclick = () => { OWNED.clear(); drawRight(); };
 }
 
 // ---- actions ------------------------------------------------------------
+
+async function setCaught(species, caught) {
+  try {
+    const r = await api("/api/caught", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ species, caught }) });
+    CAUGHT = new Set(r.caught);
+    toast(caught ? "caught" : "released");
+    await Promise.all([reloadDetail(), refreshList()]);
+  } catch (e) { toast(e.message, true); }
+}
+
+async function clearCaught() {
+  try {
+    const r = await api("/api/caught", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ clear: true }) });
+    CAUGHT = new Set(r.caught);
+    toast("caught list cleared");
+    await Promise.all([reloadDetail(), refreshList()]);
+  } catch (e) { toast(e.message, true); }
+}
 
 async function write(kind, body) {
   try {
@@ -353,12 +468,18 @@ async function write(kind, body) {
     await refreshList();
   } catch (e) {
     toast(e.message, true);
-    select(SEL);  // put the field back to what is actually on disk
+    select(SEL);
   }
 }
 
+async function reloadDetail() {
+  if (!SEL) return;
+  DETAIL = await api(`/api/area/${SEL}`);
+  drawMid(); drawRight();
+}
+
 async function select(name) {
-  SEL = name; OWNED.clear(); LAYER = "base";
+  SEL = name; LAYER = "base";
   try {
     DETAIL = await api(`/api/area/${name}`);
     drawMid(); drawRight(); drawList();
@@ -373,13 +494,12 @@ async function refreshList() {
 
 async function boot() {
   try {
-    GAME = await api("/api/areas");
-    ALL = GAME.rows;
-    SPECIES = (await api("/api/species")).species;
-    const dl = document.createElement("datalist");
-    dl.id = "splist";
-    dl.innerHTML = SPECIES.map(s => `<option value="${s}">`).join("");
-    document.body.appendChild(dl);
+    const [areas, dex, caught] = await Promise.all([
+      api("/api/areas"), api("/api/species"), api("/api/caught")]);
+    GAME = areas; ALL = areas.rows;
+    DEX = dex.species;
+    BY_LABEL = new Map(DEX.map(d => [d.label.toLowerCase(), d.value]));
+    CAUGHT = new Set(caught.caught);
     drawHeader(); drawList();
   } catch (e) {
     $("#rows").innerHTML = `<div class="note">${esc(e.message)}</div>`;
@@ -390,6 +510,7 @@ $("#filter").oninput = drawList;
 document.querySelectorAll("#sort a").forEach(a => a.onclick = ev => {
   ev.preventDefault(); SORT = a.dataset.k; drawList();
 });
+$("#clear-caught").onclick = ev => { ev.preventDefault(); clearCaught(); };
 boot();
 </script>
 </body>

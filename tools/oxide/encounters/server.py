@@ -29,6 +29,49 @@ from . import model
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
 
+# Per-playthrough state, not design intent, so it is gitignored rather than
+# living in the sidecar. What Ian has caught changes which tables are worth
+# walking; it is not a statement about how the tables should be built.
+CAUGHT_FILE = os.path.join("docs", "oxide", "encounters", "caught.json")
+
+# SPECIES_MR_MIME is not "Mr Mime" and SPECIES_NIDORAN_F is not "Nidoran F".
+# Only these six plus farfetchd need help; everything else title-cases.
+SPECIAL_NAMES = {
+    "SPECIES_HO_OH": "Ho-Oh",
+    "SPECIES_MIME_JR": "Mime Jr.",
+    "SPECIES_MR_MIME": "Mr. Mime",
+    "SPECIES_NIDORAN_F": "Nidoran♀",
+    "SPECIES_NIDORAN_M": "Nidoran♂",
+    "SPECIES_PORYGON_Z": "Porygon-Z",
+    "SPECIES_FARFETCHD": "Farfetch'd",
+    "SPECIES_PORYGON2": "Porygon2",
+}
+
+
+def display_name(species):
+    """SPECIES_GLALIE -> Glalie. The page never shows a raw constant."""
+    if species in SPECIAL_NAMES:
+        return SPECIAL_NAMES[species]
+    stem = species.replace("SPECIES_", "")
+    return " ".join(w.capitalize() for w in stem.split("_"))
+
+
+def load_caught():
+    path = os.path.join(model.repo_root(), CAUGHT_FILE)
+    try:
+        with open(path, encoding="utf-8") as f:
+            return set(json.load(f).get("caught") or [])
+    except (FileNotFoundError, ValueError):
+        return set()
+
+
+def save_caught(caught):
+    path = os.path.join(model.repo_root(), CAUGHT_FILE)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump({"caught": sorted(caught)}, f, indent=2)
+        f.write("\n")
+
 
 def species_universe():
     """SPECIES_* constants, derived from res/pokemon/. include/generated is a
@@ -50,6 +93,7 @@ class State:
         self.sidecar = model.load_sidecar()
         self.entries = (self.sidecar or {}).get("areas") or {}
         self.thresholds = lint.thresholds_from(self.sidecar)
+        self.caught = load_caught()
 
     def areas(self):
         return [a for a in model.load_all(self.ref) if a.land_active]
@@ -65,8 +109,10 @@ class State:
 
 def area_row(a, st, findings_by_area):
     m = A.table_metrics(a.slots)
+    c = A.caught_metrics(a.slots, st.caught)
     e = st.entry(a.name)
     f = findings_by_area.get(a.name, [])
+    levels = a.levels
     return {
         "area": a.name,
         "band": e.get("band") or a.band,
@@ -79,9 +125,20 @@ def area_row(a, st, findings_by_area):
         "best_uplift": m["best_uplift"],
         "rungs": m["rung_count"],
         "land_rate": a.data.get("land_rate"),
-        # powers the "/species name" filter: "which routes hold Gible?" is
-        # the question the dupe-out cascade is asked in
-        "holds": sorted({s.replace("SPECIES_", "") for s, _ in a.slots}),
+        # play order, approximated by encounter level until a real
+        # progression order exists in the sidecar
+        "level_min": min(levels),
+        "level_max": max(levels),
+        "level_med": A.median(levels),
+        # what is still worth catching here, given what is already caught
+        "live_species": c["live_species"],
+        "target": c["target"],
+        "target_label": display_name(c["target"]) if c["target"] else None,
+        "best_share": c["best_share"],
+        "best_level": c["best_level"],
+        # powers the "/gible" filter: "which routes hold Gible?" is the
+        # question the dupe-out cascade is asked in
+        "holds": sorted({display_name(s) for s, _ in a.slots}),
         "errors": sum(1 for x in f if x.severity == "error"),
         "warns": sum(1 for x in f if x.severity == "warn"),
     }
@@ -94,9 +151,12 @@ def area_detail(a, st):
                                st.thresholds, data=a.data)
     rungs = []
     for level, pool in A.distinct_rungs(a.slots):
+        cond = A.conditional(pool, st.caught)
         rungs.append({
             "level": level,
-            "pool": [{"species": s, "share": v}
+            "throughput": A.throughput(pool, st.caught),
+            "pool": [{"species": s, "label": display_name(s), "share": v,
+                      "caught": s in st.caught, "cond": cond.get(s)}
                      for s, v in sorted(pool.items(), key=lambda kv: -kv[1])],
         })
     merged = A.merged(a.slots)
@@ -107,13 +167,22 @@ def area_detail(a, st):
         "intent": e.get("intent", ""),
         "land_rate": a.data.get("land_rate"),
         "slots": [{"slot": i, "rate": A.LAND_RATES[i], "species": s,
-                   "level": lv}
+                   "label": display_name(s), "level": lv,
+                   "caught": s in st.caught}
                   for i, (s, lv) in enumerate(a.slots)],
         "day": a.data.get("day"), "night": a.data.get("night"),
-        "merged": [{"species": s, "share": v}
+        "day_labels": [display_name(s) for s in (a.data.get("day") or [])],
+        "night_labels": [display_name(s) for s in (a.data.get("night") or [])],
+        "merged": [{"species": s, "label": display_name(s), "share": v,
+                    "caught": s in st.caught}
                    for s, v in sorted(merged.items(), key=lambda kv: -kv[1])],
         "rungs": rungs,
         "metrics": m,
+        "caught_metrics": A.caught_metrics(a.slots, st.caught),
+        "rarest_label": display_name(m["rarest_species"])
+                        if m["rarest_species"] else None,
+        "best_uplift_label": display_name(m["best_uplift_species"])
+                             if m["best_uplift_species"] else None,
         "findings": [f._asdict() for f in findings],
     }
 
@@ -176,7 +245,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send(area_detail(a, st))
 
             if parts[1] == "species":
-                return self._send({"species": species_universe()})
+                # the whole pokedex, sorted by display name, for the combobox
+                rows = [{"value": s, "label": display_name(s)}
+                        for s in species_universe()]
+                rows.sort(key=lambda r: r["label"])
+                return self._send({"species": rows})
+
+            if parts[1] == "caught":
+                return self._send({"caught": sorted(st.caught)})
 
         except FileNotFoundError:
             return self._send({"error": "no such area"}, 404)
@@ -189,6 +265,23 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         parts = [p for p in url.path.split("/") if p]
         try:
             body = self._body()
+
+            # Caught state is global: ticking a species here changes the odds
+            # on every other table too, which is the whole point of the dupes
+            # clause. It is stored once, server side, rather than per page.
+            if len(parts) >= 2 and parts[0] == "api" and parts[1] == "caught":
+                caught = load_caught()
+                if "clear" in body:
+                    caught = set()
+                else:
+                    sp = body.get("species")
+                    if sp not in set(species_universe()):
+                        return self._send({"error": f"no such species: {sp}"},
+                                          400)
+                    caught.add(sp) if body.get("caught") else caught.discard(sp)
+                save_caught(caught)
+                return self._send({"caught": sorted(caught)})
+
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]
                 what = parts[3] if len(parts) > 3 else "slot"

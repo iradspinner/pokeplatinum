@@ -124,3 +124,6 @@ compile_commands.json
 # Cheat files
 *.dct
 *.mch
+
+# Encounter tool: per-playthrough caught state, not design intent
+docs/oxide/encounters/caught.json

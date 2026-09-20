@@ -58,14 +58,89 @@ def check_endpoints(results):
                     "game" in areas and "game_findings" in areas
                     and "thresholds" in areas, ""))
     sp = get("/api/species")["species"]
-    results.append(("GET /api/species is clean",
-                    len(sp) > 400 and not any("." in s for s in sp),
+    results.append(("GET /api/species is the whole dex, labelled",
+                    len(sp) > 400
+                    and all("value" in r and "label" in r for r in sp)
+                    and not any("." in r["value"] for r in sp),
                     f"{len(sp)} species"))
     d = get(f"/api/area/{AREA}")
     results.append(("GET /api/area has slots, rungs, merged, lint",
                     len(d["slots"]) == 12 and d["rungs"] and d["merged"]
                     and "findings" in d,
                     f"{len(d['rungs'])} rungs, {len(d['merged'])} species"))
+    results.append(("rows carry play order and caught state",
+                    all(k in areas["rows"][0] for k in
+                        ("level_min", "level_med", "live_species",
+                         "best_share", "holds")), ""))
+
+
+def check_display_names(results):
+    """The page never shows a raw constant. Six names plus farfetchd need
+    special handling; everything else title-cases."""
+    labels = {r["value"]: r["label"] for r in get("/api/species")["species"]}
+    want = {
+        "SPECIES_GLALIE": "Glalie",
+        "SPECIES_NIDORAN_F": "Nidoran♀",
+        "SPECIES_NIDORAN_M": "Nidoran♂",
+        "SPECIES_MR_MIME": "Mr. Mime",
+        "SPECIES_MIME_JR": "Mime Jr.",
+        "SPECIES_HO_OH": "Ho-Oh",
+        "SPECIES_PORYGON_Z": "Porygon-Z",
+        "SPECIES_FARFETCHD": "Farfetch'd",
+        "SPECIES_PORYGON2": "Porygon2",
+    }
+    bad = {k: labels.get(k) for k, v in want.items() if labels.get(k) != v}
+    results.append(("special-cased names are right", not bad, str(bad)))
+    results.append(("no label leaks SPECIES_ or shouts",
+                    not any("SPECIES_" in v or v.isupper()
+                            for v in labels.values()), ""))
+    d = get(f"/api/area/{AREA}")
+    results.append(("area payload labels every species",
+                    all("label" in s for s in d["slots"])
+                    and all("label" in m for m in d["merged"])
+                    and all("label" in p for r in d["rungs"] for p in r["pool"]),
+                    ""))
+
+
+def check_caught_is_global(results):
+    """Ticking one species has to move every table that holds it, because the
+    dupes clause is what makes a distant table worth walking to."""
+    post("/api/caught", {"clear": True})
+    before = {r["area"]: r for r in get("/api/areas")["rows"]}
+    code, payload = post("/api/caught",
+                         {"species": "SPECIES_BIDOOF", "caught": True})
+    results.append(("caught write accepted",
+                    code == 200 and payload["caught"] == ["SPECIES_BIDOOF"],
+                    f"HTTP {code}"))
+    after = {r["area"]: r for r in get("/api/areas")["rows"]}
+    moved = [a for a in before
+             if before[a]["live_species"] != after[a]["live_species"]]
+    results.append(("one tick moves every table holding it",
+                    len(moved) > 1, f"{len(moved)} tables"))
+    improved = [a for a in moved
+                if after[a]["best_share"] > before[a]["best_share"]]
+    results.append(("removing owned mass lifts the odds elsewhere",
+                    bool(improved),
+                    f"{len(improved)} tables, e.g. "
+                    f"{improved[0] if improved else '-'}"))
+
+    d = get(f"/api/area/encounters_route_201")
+    bidoof = [s for s in d["slots"] if s["species"] == "SPECIES_BIDOOF"]
+    results.append(("slots report caught state",
+                    bidoof and all(s["caught"] for s in bidoof), ""))
+    pool = d["rungs"][0]["pool"]
+    live = [p for p in pool if not p["caught"]]
+    total = sum(p["cond"] for p in live if p["cond"] is not None)
+    results.append(("conditional odds renormalise over the uncaught",
+                    abs(total - 1.0) < 1e-9, f"sum {total:.6f}"))
+    results.append(("caught species carry no conditional share",
+                    all(p["cond"] is None for p in pool if p["caught"]), ""))
+
+    code, _ = post("/api/caught", {"species": "SPECIES_NOPE", "caught": True})
+    results.append(("unknown species refused", code == 400, f"HTTP {code}"))
+    post("/api/caught", {"clear": True})
+    results.append(("clear empties the caught set",
+                    get("/api/caught")["caught"] == [], ""))
 
 
 def check_rejections(results):
@@ -134,7 +209,9 @@ def main():
     t.start()
     results = []
     try:
-        for check in (check_endpoints, check_rejections, check_edit_is_local):
+        for check in (check_endpoints, check_display_names,
+                      check_caught_is_global, check_rejections,
+                      check_edit_is_local):
             check(results)
     finally:
         httpd.shutdown()
