@@ -8,6 +8,49 @@ The design doc says *what* the tool is and *why* each number in it is the number
 it is. It does not say in what order to build it, what the repo already provides,
 or which of its claims survive contact with the files on disk. This does.
 
+## Resuming cold
+
+For a session that has none of the conversation this came out of.
+
+**Where the work is.** Branch `worktree-encounter-tool-plan`, pushed to
+`origin`, forked off `oxide`. It is **not merged into `oxide`** — if `git log`
+does not show "Encounter tool M1", you are on the wrong branch and none of the
+files below exist. Merge it or check it out before doing anything else.
+
+**Read in this order.** This file for what to do next. Then
+`docs/oxide/encounter-tool-design.md` sections 1, 2 and 6 for the model — section 1
+is the game's actual repel behaviour and is the part that must not be paraphrased
+from memory. `docs/oxide/encounter-design-survey.md` only when a number in the
+design doc needs its provenance.
+
+**Run the existing work first, to confirm the ground is solid:**
+
+```
+cd ~/pokeplatinum
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
+python3 -m tools.oxide.encounters.cli areas | tail -3      # expect 171 areas
+python3 -m tools.oxide.encounters.cli show encounters_route_201
+python3 -m tools.oxide.encounters.cli --ref main show encounters_route_201
+```
+
+The last two print different species and the same levels. That is correct and it is
+the single most important fact about this repo's state: **the working tree holds the
+base ROM's tables, `main` holds vanilla.** Every "does this match vanilla" check
+reads `--ref main`.
+
+**What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
+writing, done), `cli.py` (`areas`, `show`, `set`, `roundtrip`, `sidecar-init` built;
+`report`, `lint`, `plan`, `generate` are stubs that print a pointer here) and
+`test_m1.py`. The sidecar is `docs/oxide/encounters/design.json`.
+
+**Next milestone: M2**, the analysis engine. Its section below carries the function
+list, the three semantics that must be exact, and the numbers the gate requires.
+
+**Two decisions already taken**, so they do not need rediscovering: writes go
+through `jsonstyle.replace_value` on file text and never re-serialise a whole file;
+and the design doc's R1 needs the amendment described under "One finding" below,
+which Ian has accepted.
+
 ## The short version
 
 Seven milestones, each ending at a check that can fail. M1-M3 are the engine and
@@ -54,6 +97,9 @@ and it means an early pass could rewrite species against an inherited ladder rat
 than building both at once.
 
 ## One finding that changes the design doc
+
+**Accepted by Ian 2026-09-20.** The three bullets at the end of this section are
+now house rules; M3 implements them rather than the design doc's R1 as written.
 
 R1 as written does not survive the files.
 
@@ -128,23 +174,78 @@ calibration corpus cannot be edited by accident. And `set_time_slot` refuses
 anything outside `day`/`night` slots 2-3, which is R7 made structurally impossible
 rather than merely reported.
 
-### M2 — Analysis engine
+### M2 — Analysis engine — **next**
 
-`analysis.py`, pure functions, rate-array-agnostic from the first line so water and
-fishing tables are later a config change: `base`, `rungs`, `pool`, `conditional`,
-`throughput`, per-table metrics, per-game metrics. `cli report --json`.
+`analysis.py`, pure functions, no I/O and no globals. Write it rate-array-agnostic
+from the first line — take the rate tuple as an argument, defaulting to
+`model.LAND_RATES` — so water and fishing tables are later a config change rather
+than a rewrite. Then `cli report`, which is just a printer over it.
 
-Two rules worth fixing in code now rather than discovering later: `>=` on the repel
-comparison, and rung collapsing (four distinct levels that produce three distinct
-pools are three rungs, and the UI must say three).
+**The functions, and the exact semantics each has to honour.**
 
-*Gate:* two checks, both from section 11.
-1. `pool()` against a brute-force simulation of `RepelPreventsEncounter` over 10⁶
-   trials on 20 random tables.
-2. `report --ref main` reproduces the survey: median HHI 0.275, p10-p90
-   0.170-0.420, 71 distinct signatures, median uplift 5.0x, the slot-offset ladder.
-   A disagreement here is a bug in one of the two documents and blocks everything
-   downstream.
+```
+merged(table)            -> {species: share}   share = Σ rates of slots holding it
+hhi(shares)              -> float              Σ share², shares summing to 1
+rungs(table)             -> [level]            sorted distinct slot levels
+pool(table, lead_level)  -> {species: share}   renormalised over surviving slots
+conditional(pool, owned) -> {species: share}   drop owned, renormalise
+throughput(pool, owned)  -> float              expected encounters per counting one
+```
+
+Three semantics to get right, all of them cheap to get wrong:
+
+1. **A slot survives when `slot_level >= lead_level`.** Greater-or-*equal*. The game
+   is `return repelActive && firstBattlerLevel > wildLevel`, so a level-14 lead
+   still meets level-14 wilds. An off-by-one here silently changes every number the
+   tool prints.
+2. **A blocked roll cancels the step; it does not reroll.** So conditional on an
+   encounter happening, the distribution is exactly the surviving slot weights
+   renormalised. Nothing is smeared onto the survivors. This is why the model is
+   exact rather than approximate, and it must never be "improved" into a reroll.
+3. **Collapse rungs that yield the same pool.** Four distinct levels that produce
+   three distinct pools are three rungs. Report three. The UI later shows rungs as
+   *choices the player has*, and a rung that changes nothing is not a choice.
+
+Shares are over merged species, not slots — a species in two slots is one entry at
+the summed weight. HHI, signatures and "rarest species" all read from the merged
+view.
+
+**Then the metrics.** Per table: `n_species`, `top_share`, `min_share`, `hhi`,
+`rung_count`, pool size per rung, `uplift_on_rarest`, `has_real_tail`, `band`.
+Per game: HHI p10/median/p90 over tables with 3+ species and the p90/p10 ratio,
+distinct weight signatures and signatures-per-table, early/mid/late medians, and
+per-species area count and share range.
+
+`uplift_on_rarest` is the headline number and the one the design turns on: take the
+species with the smallest merged share, find the rung that maximises its share, and
+divide by its base share. A table "has a working repel" when that ratio beats 1.
+
+*Gate:* two checks, both from design doc section 11.
+
+1. **`pool()` against a simulation.** Brute-force `RepelPreventsEncounter` over 10⁶
+   trials on 20 random tables and compare to the closed form within Monte-Carlo
+   error. The repel model is the tool's core claim, so it gets verified against the
+   actual comparison rather than against a restatement of it. Seed the RNG so a
+   failure is reproducible.
+2. **`report --ref main` reproduces the survey.** On vanilla: median HHI **0.275**,
+   p10-p90 **0.170-0.420**, **71** distinct signatures over 171 tables, median
+   uplift **5.0x** with a working repel on **88%** of tables, median **5** species
+   per table, top slot **40%**, and the slot-level ladder
+   `+0/+1/+1/+1/+2/+2/+2/+2/+2/+2/+3/+3`. Early-to-late HHI should read
+   **0.37 → 0.28**.
+
+**A warning about that second gate.** The survey's own scripts (`unify.py`,
+`repel.py`, `layout.py`) were written on the chat surface and are *not* in the repo,
+so M2 re-derives these numbers rather than re-running them. The definitions above —
+particularly "signature" and "uplift on rarest" — are read off the survey's prose
+and are the least certain part of this milestone. If a number comes out close but
+wrong, suspect the definition before suspecting the arithmetic. Write down whichever
+definition reproduces the survey, because that is the one the linter's thresholds
+were calibrated against.
+
+A *signature* is the table's merged shares as a sorted descending tuple, e.g.
+`(40,25,20,10,5)`. Vanilla having 71 distinct ones across 171 tables is the 0.42
+figure in R9.
 
 ### M3 — Linter
 
@@ -220,9 +321,10 @@ tool, and `--levels-only` recovers most of its value cheaply.
 
 ## Open questions for Ian
 
-1. **R1's demotion.** The finding above is a real conflict between the design doc
-   and the files. Proposed: R1 error for authored tables, R1b warn at Spearman ≥ 0.5
-   for calibration, and criterion 6 amended. Confirm before M3 hardens it.
+1. ~~**R1's demotion.**~~ **Answered 2026-09-20: accepted as proposed.** R1 stays an
+   error for Oxide-authored tables, R1b (warn, Spearman ≥ 0.5) is the calibration
+   form, and acceptance criterion 6 drops R1 from the list of rules vanilla must
+   pass. M3 implements this; no further confirmation needed.
 2. **Progression order.** M5 needs an explicit area order and the sidecar does not
    have one. Is there an existing ordering to reuse, or does it get hand-written
    once into `design.json`?
