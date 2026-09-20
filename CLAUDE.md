@@ -30,9 +30,19 @@ Then say in one or two sentences what this session will do, and do it.
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
   drive, which a separate chat surface works from.
 - Never delete, move, or overwrite the base ROM in the project folder
-  (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It's the only source
-  left for edits not yet carried over (encounters, text, items, trades,
-  trainers, map headers, the 91 scripts and 158 event files).
+  (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It is what every
+  verify tool compares the build against, and the only source for the Phase 3
+  hard stops (the Battleground init script, the trainer battle messages, and
+  the Repel prompt command).
+- Two sessions may run in parallel. Each edits only its own status home: the
+  tracker for Phases 0 to 5, `docs/oxide/encounter-tool-build-plan.md` for the
+  encounter tool (plus its one paragraph at the top of the tracker). A second
+  track works on its own branch or worktree and merges into `oxide` when its
+  tests are green.
+- Do not "improve" a carried-over map, script or table while a faithful
+  carry-over is being verified; `checkmap.py` compares against the base ROM.
+  Cleanups (re-humanising generated scripts, unifying the clown gifts) are
+  backlog items done afterwards, as their own commits.
 
 ## Build
 
@@ -44,9 +54,16 @@ unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 
 `tools/oxide/import_base_rom.py` carries edits from Ian's earlier DSPRE-edited
 ROM ("the base ROM") into `res/`. `tools/oxide/verify_narcs.py` proves a
-rebuild reproduces a reference ROM's tables. The base ROM itself lives outside
+rebuild reproduces a reference ROM's tables. `scriptdis.py` disassembles and
+round-trips field scripts; `bulk_scripts.py`, `bulk_events.py` and
+`bulk_text.py` regenerate whatever the build still gets wrong against the base
+ROM (their `--dry-run` doubles as the check); `mapdiff.py` and `checkmap.py`
+work one map at a time. `tools/oxide/encounters/` is the encounter tool, with
+its own tests and CLI (see its build plan). The base ROM itself lives outside
 the repo (see the design doc for its path on Ian's machine); a copy is pinned
 at `~/roms/base.nds`. A byte-exact vanilla Rev 1 build (built once from
 `main`) is pinned at `~/roms/vanilla.nds` for `import_base_rom.py --vanilla`
 and `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
-`tools/oxide/sync-docs.sh` mirrors `docs/oxide/*.md` to the project folder.
+`tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
+complains about any file it has no mapping for. The full restart check-list
+is at the top of the tracker.

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# Mirror docs/oxide/*.md into the project folder on the G: drive, so the
-# separate chat surface that works from there (see
-# docs/oxide/START-HERE-current-state.md) always sees the current docs.
-# Run whenever a docs/oxide/*.md file changes this session.
+# Mirror docs/oxide/ into the project folder on the G: drive, so the separate
+# chat surface that works from there (see docs/oxide/START-HERE-current-state.md)
+# always sees the current docs. Run whenever a docs/oxide file changes this session.
+#
+# The mapping is explicit because the destination names differ from the repo
+# names. Any docs/oxide file that is not mapped is reported at the end, so a new
+# doc cannot be silently left out of the mirror.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -14,8 +17,11 @@ if [ ! -d "$DEST" ]; then
     exit 0
 fi
 
+declare -A MAPPED=()
+
 copy() {
     local src="$SRC/$1" dest="$DEST/$2"
+    MAPPED["$1"]=1
     mkdir -p "$(dirname "$dest")"
     cp "$src" "$dest"
     echo "synced: $1 -> $2"
@@ -29,7 +35,6 @@ copy "phase2-approach-breakdown.md" "notes/phase2-approach-breakdown.md"
 copy "phase3-base-rom-inventory.md" "notes/phase3-base-rom-inventory.md"
 copy "phase3-answers-and-trainer-format.md" "notes/phase3-answers-and-trainer-format.md"
 copy "setup-fork-and-wsl2.md" "notes/setup-fork-and-wsl2.md"
-copy "import-report-species-moves.md" "notes/import-report-species-moves.md"
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "phase3-scripts-and-events-plan.md" "notes/phase3-scripts-and-events-plan.md"
@@ -38,3 +43,17 @@ copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "encounter-design-survey.md" "Claude outputs/encounter-design-survey.md"
 copy "encounter-tool-design.md" "Claude outputs/encounter-tool-design.md"
 copy "encounter-tool-build-plan.md" "Claude outputs/encounter-tool-build-plan.md"
+copy "encounters/design.json" "Claude outputs/encounters/design.json"
+
+# Anything under docs/oxide that the list above does not name. caught.json is
+# per-playthrough state and gitignored, so it is not a doc and is not mirrored.
+unmapped=0
+while IFS= read -r -d '' f; do
+    rel="${f#$SRC/}"
+    case "$rel" in encounters/caught.json) continue ;; esac
+    if [ -z "${MAPPED[$rel]:-}" ]; then
+        echo "sync-docs: NOT MIRRORED (add it to the list): $rel" >&2
+        unmapped=1
+    fi
+done < <(find "$SRC" -type f -print0)
+exit $unmapped

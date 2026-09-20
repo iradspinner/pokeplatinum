@@ -1,16 +1,13 @@
 # Platinum Oxide: start here
 
 One page, for a fresh chat that needs to be useful without reading everything.
-Written 2026-09-15, refreshed 2026-09-20. **Check the date against the repo before trusting the status
-section**: the live docs are `docs/oxide/design-doc.md` and
-`docs/oxide/tracker.md` on branch `oxide` of `iradspinner/pokeplatinum`, and they
-move faster than this file.
-
-> **Two tracks run in parallel**, both on `oxide`: the Phase 3 carry-over, whose
-> remaining item is the field scripts and events, and the encounter tool, which is
-> at M2. They share no files. `git log --oneline | grep "Encounter tool"` should
-> find commits; if it comes back empty, the encounter branch was never merged and
-> `tools/oxide/encounters/` will not exist.
+Written 2026-09-15, rewritten 2026-09-20. This file deliberately carries **no
+status**: status moves faster than any snapshot, and a stale snapshot is worse
+than none. For where things stand, read the top block of `docs/oxide/tracker.md`
+on branch `oxide` of `iradspinner/pokeplatinum`; for the encounter tool, the
+"Resuming cold" section of `docs/oxide/encounter-tool-build-plan.md`. The G:
+folder holds mirrors of both, refreshed by `tools/oxide/sync-docs.sh`, and the
+mirror can lag the repo by a session.
 
 ## What the project is
 
@@ -20,81 +17,29 @@ hand-picked subset of the new species, plus battle-AI updates. The chosen method
 is to edit the `pret/pokeplatinum` decompilation directly and build the ROM from
 source, not to patch a ROM. Hobby project, no QA gate.
 
+The work runs in phases. Phases 0 to 2 (setup, survey, approach) are done. Phase 3
+carried Ian's earlier hand edits from an old DSPRE-edited ROM ("the base ROM") into
+the source tree, so nothing of his was lost by switching to a source build. Phase 4
+is the actual engine port and is where the project is heading. Alongside, a
+separate **encounter tool** is being built for designing the wild encounter tables.
+
 ## The three surfaces and who owns what
 
 | Surface | Owns |
 |---|---|
-| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | All source edits, builds, commits, pushes. The repo's `docs/oxide/` is the live design doc and tracker. |
-| A chat in this project (this file's audience) | Design questions, Hardlove donor analysis, base-ROM archaeology, anything that needs a second opinion before it becomes code. Produces notes, not commits. |
-| The project folder `G:\...\Hardlove Gold-Platinum Oxide Integration Project` | Both ROMs, both DSPRE extractions, and snapshot copies of the docs and notes. |
+| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | All source edits, builds, commits, pushes. `docs/oxide/` in the repo is the live design doc, tracker and notes. |
+| A chat in this project (this file's audience) | Design questions, Hardlove donor analysis, base-ROM archaeology, anything that needs a second opinion before it becomes code. Produces notes, not commits. Notes it writes land in the G: folder and are brought into `docs/oxide/` when they matter. |
+| The project folder `G:\...\Hardlove Gold-Platinum Oxide Integration Project` | Both ROMs, both DSPRE extractions, and mirror copies of the docs. |
 
 The `claude/platinum-oxide-*.md` docs in this project's knowledge are a snapshot
 frozen 2026-09-15. Treat them as background, not current status.
 
-## State as of 2026-09-20
+## Reading order in the repo
 
-Phase 3 is done except for the field scripts and events. Everything below was
-verified against the base ROM, not just built:
-
-- The approach, validated by building a byte-exact retail Platinum ROM from the
-  decomp, and the fork building in WSL2.
-- Species, moves, evolutions and learnsets imported.
-- All 928 trainers carried over, including two new per-mon fields for ability
-  and gender, with zero field mismatches and an emulator check on Route 202.
-- All four of the base ROM's synthetic-overlay routines ported as ordinary C:
-  no items in trainer battles, Rare Candy chaining, uncapped battle frame rate,
-  EV/IV viewer.
-- 125 wild-encounter tables, both edited in-game trades, 18 text banks, 58 map
-  headers, and the small constant edits (shiny odds, vitamin EV cap, new-game
-  option defaults, HMs forgettable, reusable TMs).
-
-Three sets of base-ROM changes were deliberately **not** carried over, because
-the evidence says DSPRE rewrote them rather than Ian editing them: sprite
-heights, the six vitamin item records, and the encounter `unown_table` and
-`rate_form` fields. Each one's reasoning is in the tracker; any of them can be
-overruled.
-
-What is left is the scripts and events, which touch 184 maps. Read
-`notes/phase3-scripts-and-events-plan.md` before starting on it. A script
-disassembler, an event decoder and a movement-block decoder are built and
-verified against both ROMs, accounting for 98% of both ROMs' script bytes; `.s`
-emission and a byte-identical round trip are not.
-
-The species pick-list is settled and lives in `notes/species-pick-list.md`. Its
-21-row stat conflict with the base ROM is tabled for a later whole-dex balance
-pass, so it is not blocking anything.
-
-## The encounter tool, running alongside
-
-A separate track from the Phase 3/4 sequence above, and currently the active one.
-It is a local tool for designing Oxide's wild encounter tables, built because the
-Hardlove encounter rewrite produced tables that were flat, had no early-game feel,
-and made repel manipulation pointless. A survey of seven datasets established that
-those are the genre norm rather than execution errors, and that vanilla Platinum is
-the outlier worth copying.
-
-Three docs, in reading order:
-
-| Doc | What it is |
-|---|---|
-| `encounter-tool-build-plan.md` | **Start here.** Seven milestones, current status, and a "Resuming cold" section written for exactly this situation |
-| `encounter-tool-design.md` | The v1.0 spec: the engine's repel behaviour, the design model, the linter's 14 rules, the generator |
-| `encounter-design-survey.md` | The measurements every number in the spec comes from |
-
-**Status: M1 and M2 done** (round-trip I/O 13/13; the analysis engine 23/23,
-with vanilla reproducing the survey exactly). **M3, the linter, is next.**
-
-Measured against the design's own targets, the tables the project currently has
-fail three of its rules — HHI spread 2.14x against a 2.2 floor, 0.26 distinct
-signatures per table against 0.35, and an early-to-late concentration arc that
-runs backwards — which is Ian's "every route felt the same" and "early game
-didn't feel early", now as numbers.
-
-The one fact that governs all of it: **the working tree holds the base ROM's
-encounter tables and `main` holds vanilla**, so every calibration check reads
-`--ref main`. The two differ in species on 114 of 171 tables but in levels on only
-27, which means vanilla's level ladder — the thing that makes repel manips pay — is
-still largely standing in the current tables.
+1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
+2. `docs/oxide/tracker.md`: status, next steps, what is waiting on Ian, decisions.
+3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `species-pick-list.md`, `pokemon-gifts.md`.
+4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance.
 
 ## Decided, do not relitigate without reason
 
@@ -102,52 +47,48 @@ still largely standing in the current tables.
   both ruled out, for reasons in `phase2-approach-breakdown.md`.
 - Hardlove's content comes over; Hardlove's battle AI does not. Platinum's own AI
   is the baseline, updated for the new moves and abilities.
-- Ian's earlier base-ROM edits are preserved where practical: overworld events,
-  trainers, species stats, move data.
+- Ian's earlier base-ROM edits are preserved: overworld events, scripts, text,
+  trainers, species stats, move data, encounters, map headers. Where the evidence
+  said DSPRE rewrote something rather than Ian editing it, it was not carried over
+  and the evidence is in the tracker.
 - The base ROM's "Unlocked / Challenge-Adjusted" naming is meaningless history.
-
-## Open, and who owns it
-
-- ~~**What the custom `Dummy088` script command is for**~~ Answered 2026-09-20:
-  it is a "Repel's effect wore off, use another one?" prompt — a Repel / Super
-  Repel / Max Repel menu that sets the step counter to 100/150/250 and consumes
-  the item. It ports as a proper `SetRepelSteps` command; detail in the tracker
-  and `phase3-scripts-and-events-plan.md`.
-- **Evolution triggers for Gyarados M and Lopunny M** (Ian). Slots and stat
-  blocks are settled; the trigger is not.
-- **Encounter tool, three open items** (Ian), none of which block M2: a
-  progression order for areas, a `tier` field per line on the species pick-list
-  (`starter-adjacent` / `preferred` / `filler` / `gate`, which the availability
-  rule needs), and whether the first authored pass covers all 171 tables or a
-  corridor. Detail at the foot of `encounter-tool-build-plan.md`.
-- **Engine-change menu** (Ian). Which of hg-engine's optional features beyond the
-  four scoped expansions are wanted; the full list is in
-  `phase1-hg-engine-survey.md` section 3.
-- **The IV/nature hue-shift patch** (deferred). Present in the base ROM, not
-  understood, explicitly droppable. Revisit after Phase 4 if at all.
-- ~~**Battle Arcade script commands**~~ Answered 2026-09-20: exactly one custom
-  command is called, `Dummy088`, three times, all in `scripts_common`. The rest
-  of the code written over that region can be dropped.
+- The species pick-list is an availability list, not a deletion list. All 493
+  Platinum natives stay in the tree; National Dex numbers stay as internal IDs.
+- The remaining field scripts were generated in bulk from the base ROM's bytecode
+  rather than rewritten by hand (Ian, 2026-09-20). They are byte-exact and
+  unreadable; re-humanising them is backlog.
+- Encounter tool: linter rule R1 is an error for authored tables only and is not
+  checked against vanilla; R1b (Spearman >= 0.5) is the vanilla-calibrated form.
+  Thresholds are sorted into descriptive (vanilla must pass) and aspirational
+  (vanilla is expected to fail). Both accepted by Ian, 2026-09-20.
 
 ## Gotchas worth knowing before touching anything
 
 1. **The base ROM is irreplaceable input.** `Platinum Unlocked - Challenge -
-   Adjusted v1.1.nds` in the project folder is the only source for the edits not
-   yet carried over. Do not delete or overwrite it until the carry-over is
-   finished.
-2. **The importers need a vanilla reference too.** `verify_narcs.py` and
-   `import_base_rom.py --vanilla` both want a byte-exact vanilla Rev 1 ROM. Keep
-   one built from `main` at a stable path rather than rebuilding per session.
+   Adjusted v1.1.nds` in the project folder (pinned copy `~/roms/base.nds`) is what
+   every verify tool compares against and the only source for the three Phase 3
+   hard stops. Do not delete or overwrite it.
+2. **The importers need a vanilla reference too.** `~/roms/vanilla.nds` is a
+   byte-exact Rev 1 build from `main`. Don't rebuild it per session.
 3. **Two carried-over edits nobody has sanity-checked**: the base ROM set hatch
    cycles to 1 on 228 species, and filled the empty second ability slot on 228
-   species, often by duplicating the first ability. Both are now in the source
-   tree exactly as the old ROM had them. If either was a mass-edit accident rather
-   than a design choice, now is the cheap moment to undo it.
+   species, often by duplicating the first ability. Both are in the source tree
+   exactly as the old ROM had them. If either was a mass-edit accident rather than
+   a design choice, now is the cheap moment to undo it.
 4. **Do not reformat `res/` JSON files wholesale.** The repo's formatting is not
    uniform; `tools/oxide/jsonstyle.py` edits single keys in place so diffs stay
    readable and upstream merges stay possible.
-5. **`res/` is not vanilla any more.** After the carry-overs, the working tree holds
-   the base ROM's data. Anything that means to compare against retail Platinum must
-   read `main` — `git show main:<path>`, or `--ref main` in the encounter tool.
-   Calibrating a tool against the checked-out files measures the tables the project
-   is trying to replace.
+5. **`res/` is not vanilla any more.** The working tree holds the base ROM's data.
+   Anything that means to compare against retail Platinum must read `main`:
+   `git show main:<path>`, or `--ref main` in the encounter tool. Calibrating a
+   tool against the checked-out files measures the tables the project is trying
+   to replace.
+6. **86 of the field scripts are machine-generated.** Each says so in its first
+   line. They are correct against the base ROM and not the repo's idiom; do not
+   take them as examples of how to write a script.
+7. **The Repel prompt is broken in the current build** until Phase 3 hard stop 3
+   is closed. Answering yes to "use another Repel?" runs the interpreter off the
+   rails. Detail in the tracker.
+8. **Two sessions in parallel means one status home each.** The tracker is for
+   Phases 0 to 5, the build plan for the encounter tool. Editing the other
+   track's file is how the merge conflicts happened.

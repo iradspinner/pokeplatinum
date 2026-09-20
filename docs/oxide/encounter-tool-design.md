@@ -1,16 +1,30 @@
 # Encounter Tool — Design Doc
 
-**Project:** Platinum Oxide · **Written:** 2026-09-20 · **Status:** v1.0, ready for implementation
+**Project:** Platinum Oxide · **Written:** 2026-09-20 · **Status:** v1.1 (2026-09-20), amended after M1 to M4 were built against it
 
 Two audiences. Claude Code implements sections 3-8 and 11. Ian operates sections 5 and 9,
 and owns every number in section 2 and section 7 — they are house rules, not physics, and
 they are meant to be edited.
 
-Companion documents:
-- `claude/encounter-design-survey.md` — the measurements every number here comes from
-- `claude/hardlove-encounter-rewrite.md` — the previous attempt, and what it got wrong
-- `claude/hardlove-encounter-slot-rates.md` — the lesson: measurement beats internal consistency
-- `claude/platinum-oxide-species-pick-list.md` — the species universe
+**v1.1 amendments.** Building the tool measured several of this document's claims against
+the files and four did not hold. Each is corrected in place below and marked *(v1.1)*:
+R1 is not a description of vanilla (2.2, 7, 11); the "8% of repel tiers" figure is 24%
+(2.6, 7); R11's absolute bounds are beyond vanilla (2.1, 7); R13 asks for about double
+vanilla's span (7). The thresholds are now sorted into *descriptive* (vanilla passes them,
+and if it does not the threshold is wrong) and *aspirational* (deliberately beyond vanilla,
+so vanilla is expected to fail). The measurements behind every amendment are in
+`docs/oxide/encounter-tool-build-plan.md` under M2 and M3. Water and rod tables came into
+the analysis and the editor with M4 (1.4, 10). Ian accepted the R1 change and the
+descriptive/aspirational split on 2026-09-20.
+
+Companion documents, in the repo:
+- `docs/oxide/encounter-design-survey.md` — the measurements every number here comes from
+- `docs/oxide/encounter-tool-build-plan.md` — build order, what each milestone found, how to resume
+- `docs/oxide/species-pick-list.md` — the species universe
+
+Two earlier chat-surface notes are background only and are not in the repo:
+`claude/hardlove-encounter-rewrite.md` (the previous attempt, and what it got wrong) and
+`claude/hardlove-encounter-slot-rates.md` (the lesson: measurement beats internal consistency).
 
 ---
 
@@ -116,11 +130,17 @@ a route cannot change character between morning and night, only accent.
 
 **In:** land tables for every area, morning/day/night variants, levels, `land_rate`.
 
-**Out of the first pass, tracked for later:** water/fishing tables, honey trees, in-game
-trades, gift and static Pokémon, swarms, radar, dual-slot, Trophy Garden. Availability
-accounting (section 2.4) must eventually include trades and gifts, because a line given
-by a trade should not also need a wild slot. Until then the tool treats them as absent and
-Ian hand-adjusts.
+**Out of the first pass, tracked for later:** honey trees, in-game trades, gift and static
+Pokémon, swarms, radar, dual-slot, Trophy Garden. Availability accounting (section 2.4)
+must eventually include trades and gifts, because a line given by a trade should not also
+need a wild slot. Until then the tool treats them as absent and Ian hand-adjusts. The gift
+Pokémon are already catalogued in `docs/oxide/pokemon-gifts.md`, ready for that accounting.
+
+*(v1.1)* Water and the three rods were also out of the first pass as written, but came in
+with M4 for 53 areas: surf and old rod roll 60/30/5/4/1, good and super rod 40/40/15/4/1,
+and a water slot carries a level range rolled uniformly, so a repel admits a fraction of a
+slot. They are read, analysed and editable. The linter stays land-only because every rule
+was calibrated on land tables.
 
 ---
 
@@ -139,6 +159,13 @@ This section is the actual content. Everything after it is plumbing.
 
 HHI is the Herfindahl index: Σ(share²). One species at 100% gives 1.0; twelve equal slots
 give 0.083. It is the single number that says "how concentrated is this table".
+
+*(v1.1)* Two of the targets sit beyond vanilla and are meant to. Row 1's "5.0x" is the best
+uplift available to *any* species on the table (vanilla measures exactly 5.00x on 88%); the
+rarest-species uplift is 3.33x on 83%, and R3's 3.0 threshold is calibrated on that, so it
+is passed by 52% of vanilla tables rather than most of them. Row 2's late target of ≤0.25 is
+below vanilla's 0.275; the *shape* (early above late) is what vanilla does, the bounds are
+aspirational (R11 versus R11b in section 7).
 
 That last row is the sharpest indictment of the old approach. Hardlove used **three**
 templates. The genre standard uses about 25 distinct shapes. Vanilla Platinum uses 71,
@@ -297,8 +324,12 @@ This is why "guaranteed" manips are boring and 2-4 species pools are the target.
 down to 2 pokemon or 4 pokemon, but because you have some of them duped out your odds at
 the 'good' one are now much higher than normal, there is now a decision tree."*
 
-Vanilla Platinum sits in the right place naturally: only 8% of repel tiers collapse to a
-single species. The tool should hold that line (R6).
+*(v1.1, corrected)* Vanilla Platinum sits in the right place naturally, but not as narrowly
+as v1.0 said. The original "only 8% of repel tiers collapse to a single species" does not
+reproduce: measured on vanilla it is **24%** of rungs, with 43% of tables having at least
+one singleton. The base ROM's tables measure 7%, which suggests the 8% was computed against
+a working tree that already held them. The rule survives with the corrected justification:
+at most one singleton rung per table (R6) passes 84% of vanilla.
 
 ---
 
@@ -352,7 +383,7 @@ when he wants to know *why* a route looks the way it does.
 
 ### 3.3 Species universe
 
-Read `claude/platinum-oxide-species-pick-list.md` (or its repo copy) into a species table
+Read `docs/oxide/species-pick-list.csv` into a species table
 with: national dex number, evolution line id, type(s), stage, and a `tier` field Ian can
 set (`starter-adjacent`, `preferred`, `filler`, `gate`). Tier drives availability
 thresholds and archetype eligibility. A `preferred` line is allowed to sit in a manip tier
@@ -513,38 +544,73 @@ per-line acquisition cost; count of lines above threshold.
 Every threshold lives in `design.json` and is Ian's to move. Severity: **error** blocks a
 commit, **warn** shows in the UI and in `report`.
 
+*(v1.1)* Every rule is also tagged **descriptive** or **aspirational**, and the tag lives
+in `lint.py` beside the rule. A descriptive threshold states something vanilla already
+does, so criterion 6 applies to it: if vanilla fails it, the threshold is wrong. An
+aspirational threshold is set beyond vanilla on purpose, so vanilla is expected to fail it,
+and a vanilla failure is not a bug. Do not "fix" a rule vanilla fails until checking which
+kind it is. The vanilla pass rates below are from M3.
+
 **Per-table**
 
-- **R1 (error) — Ladder monotonicity.** Slot levels are non-decreasing with slot index.
-  Mechanical, cheap, and the single highest-leverage rule in this document.
-- **R2 (warn) — Rung count.** 3-4 distinct rungs, unless the archetype declares fewer
-  (A2, A4).
-- **R3 (warn) — Repel pays.** `uplift_on_rarest ≥ 3.0`. Vanilla Platinum medians 5.0x.
+- **R1 (error, authored tables only) — Ladder monotonicity.** Slot levels are
+  non-decreasing with slot index. A house rule for tables Oxide writes: the generator
+  assigns levels this way and a hand edit that breaks it is almost always a mistake.
+  *(v1.1)* **Not a description of vanilla and never checked against it**: only 20 of 171
+  vanilla tables are monotonic by slot index (Route 201 puts its 1% slots at the table's
+  minimum level). The v1.0 text calling this "the single highest-leverage rule" was
+  describing the ladder as a correlation, which is R1b.
+- **R1b (warn, descriptive) — Ladder correlation.** Rarity-vs-level Spearman ≥ 0.5.
+  Vanilla medians 0.68 and 71% of tables pass. This is the form that can be pointed at
+  both corpora.
+- **R2 (warn, descriptive) — Rung count.** 3-4 distinct rungs, unless the archetype declares
+  fewer (A2, A4). Vanilla 81%.
+- **R3 (warn, aspirational) — Repel pays.** `uplift_on_rarest ≥ 3.0`. Vanilla medians 3.33x
+  on the rarest species and passes on 52% of tables; the 5.0x in v1.0 was `best_uplift`,
+  the best manip available to any species, which vanilla hits on 88%. Both statistics are
+  reported. The threshold is kept at 3.0 as a target above vanilla.
 - **R4 (warn) — Archetype fit.** Realised signature within tolerance of the declared one.
-- **R5 (warn) — Band fit.** Species count, top share and HHI inside the 2.5 band targets.
-- **R6 (warn) — Not too binary.** At most one rung collapses to a single species, and the
-  top rung holds 2-4. Vanilla: 8% of rungs are singletons; keep it near there.
+  Only runs on tables with a declared archetype.
+- **R5 (warn, aspirational) — Band fit.** Species count, top share and HHI inside the 2.5
+  band targets. Vanilla passes 11-32% depending on band; the bands describe what Oxide
+  wants, not what vanilla does.
+- **R6 (warn, descriptive) — Not too binary.** At most one rung collapses to a single
+  species, and the top rung holds 2-4. *(v1.1)* Vanilla: 24% of rungs are singletons (not
+  8%), and 84% of tables pass the rule as written.
 - **R7 (error) — Day/night legality.** Day and night differ from base only at slots 2-3.
+  Enforced structurally in `model.py` as well: a write outside those slots is refused.
 
 **Per-game**
 
-- **R8 (error) — Spread.** HHI p90/p10 over 3+ species tables ≥ 2.2. Vanilla 2.5x,
-  challenge hacks 1.3-1.6x. *This is the rule that prevents complaint 3, and it cannot be
-  satisfied by editing one table — it forces the archetype mix.*
-- **R9 (warn) — Signature diversity.** Distinct weight signatures per table ≥ 0.35.
-  Vanilla 0.42; the genre 0.12-0.19; Hardlove had three templates for the whole game.
-- **R10 (warn) — Archetype budget.** Realised mix within 5 points of 2.3's budget.
-- **R11 (warn) — Arc.** Median HHI: early ≥0.35, late ≤0.25, and strictly decreasing
-  across the three bands.
+- **R8 (error, descriptive) — Spread.** HHI p90/p10 over 3+ species tables ≥ 2.2. Vanilla
+  2.48x, challenge hacks 1.3-1.6x, the project's current tables 2.14x. *This is the rule
+  that prevents complaint 3, and it cannot be satisfied by editing one table — it forces
+  the archetype mix.*
+- **R9 (warn, descriptive) — Signature diversity.** Distinct weight signatures per table
+  ≥ 0.35. Vanilla 0.42; the genre 0.12-0.19; Hardlove had three templates for the whole
+  game; the current tables 0.26.
+- **R10 (warn) — Archetype budget.** Realised mix within 5 points of 2.3's budget. Only
+  runs once archetypes are assigned.
+- **R11 (warn, descriptive) — Arc shape.** Median HHI strictly decreasing across the three
+  bands. Vanilla 0.373 > 0.325 > 0.275; the current tables run backwards.
+- **R11b (warn, aspirational) — Arc bounds.** Early ≥ 0.35, late ≤ 0.25. *(v1.1)* Split
+  out of R11 because vanilla's late band is 0.275 and cannot pass ≤ 0.25.
 - **R12 (error) — Availability.** Every line on the pick-list has an acquisition cost
-  below its tier's threshold. This is Ian's guarantee, in its enforceable form.
-- **R13 (warn) — Repetition varies.** Any species on 4+ tables spans ≥4x between its
-  largest and smallest share. *This is the rule that makes Drayano-style availability
-  generate variety instead of consuming it.*
-- **R14 (warn) — Encounter rate variety.** `land_rate` is not the same value on more than
-  half of the tables. Free texture, and the old rewrite never touched it.
+  below its tier's threshold. This is Ian's guarantee, in its enforceable form. Reports
+  itself as *skipped*, not passed, until the pick-list has a `tier` column.
+- **R13 (warn, aspirational) — Repetition varies.** Any species on 4+ tables spans ≥ 4x
+  between its largest and smallest share. *This is the rule that makes Drayano-style
+  availability generate variety instead of consuming it.* *(v1.1)* Vanilla's median span
+  is 2.5x and only 37% of repeated species reach 4x, so this asks for about double what
+  vanilla does. Kept at 4x as a deliberate choice; lower it if authored tables cannot
+  reach it.
+- **R14 (warn, descriptive) — Encounter rate variety.** `land_rate` is not the same value
+  on more than half of the tables. Free texture, and the old rewrite never touched it.
+  Vanilla's commonest value covers 37%.
 
-R8, R12 and R13 are the three that carry the design. The rest are hygiene.
+R8, R12 and R13 are the three that carry the design. The rest are hygiene. A rule that
+cannot run (no tiers, no archetypes, bands missing) must emit a *skip* finding rather than
+pass silently; a quiet skip is indistinguishable from a pass in the output.
 
 ---
 
@@ -651,9 +717,9 @@ holds.
 - **Honey trees, in-game trades, gift and static Pokémon.** Must eventually feed R12's
   availability accounting: a line handed over by a trade should not also consume a wild
   slot. Until then R12 over-reports and Ian hand-waives.
-- Water, fishing, rock smash tables. Same engine, same math, different rate arrays. The
-  analysis layer should be written rate-array-agnostic from the start so adding them is a
-  config change.
+- Rock Smash tables. Same engine, same math, different rate array; the analysis layer is
+  rate-array-agnostic so adding them is a config change. *(v1.1)* Surf and the three rods
+  are already in (section 1.4); lint for water tables is not, pending calibration.
 - Swarms, Poké Radar, dual-slot, Trophy Garden. Read and displayed, never written.
 - Shiny/hue-shift interactions from the base ROM. Orthogonal.
 
@@ -670,16 +736,20 @@ The tool is done when:
    10⁶ trials on 20 randomly chosen tables, within Monte-Carlo error. The repel model is
    the tool's core claim; it gets verified against the actual comparison, not against a
    restatement of it.
-3. Running `report` against **unmodified vanilla Platinum** reproduces the survey's
-   numbers: median HHI 0.275, spread 0.170-0.420, 71 distinct signatures, median uplift
-   5.0x, ladder `+0/+1/+1/+1/+2/+2/+2/+2/+2/+2/+3/+3`. If the tool disagrees with the
-   survey, one of them is wrong and it must be found before any table is designed.
+3. Running `report` against **unmodified vanilla Platinum** (`--ref main`; the working
+   tree holds the base ROM's tables) reproduces the survey's numbers: median HHI 0.275,
+   spread 0.170-0.420, 71 distinct signatures, best uplift 5.0x working on 88% (rarest
+   species 3.33x on 83%), ladder `+0/+1/+1/+1/+2/+2/+2/+2/+2/+2/+3/+3`. If the tool
+   disagrees with the survey, one of them is wrong and it must be found before any table
+   is designed. *(v1.1)* Met by M2, which is how the 8% and 5.0x definitions were corrected.
 4. The UI renders a table, accepts an edit, and the change appears in `git diff` at the
-   right key with no other key touched.
+   right key with no other key touched. *(v1.1)* Met by M4.
 5. The Dupe-Out Planner produces a correct multi-step plan for at least one hand-verified
    case.
-6. `lint` on vanilla Platinum passes R1, R8, R9 and R11 — because vanilla *is* the target
-   for those four. If vanilla fails a rule, the rule's threshold is wrong.
+6. `lint --ref main` on vanilla Platinum passes every **descriptive** rule: R1b, R2, R6,
+   R8, R9, R11 and R14 — because vanilla *is* the target for those. If vanilla fails one,
+   the rule's threshold is wrong. *(v1.1)* R1 is not on this list (see section 7) and the
+   aspirational rules R3, R5, R11b and R13 are expected to fail on vanilla. Met by M3.
 
 Criterion 6 is the sanity check on this entire document. The design model claims vanilla
 Platinum got something right that the genre lost. If the linter that encodes the model

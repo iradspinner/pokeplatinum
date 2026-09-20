@@ -5,6 +5,20 @@ This is the last Phase 3 item and much the largest. It exists because the
 tracker's one-line "carry over scripts (91), events (158) and their text" hides
 a job with three interlocking halves.
 
+> **Status (2026-09-20, end of day): done, with three hard stops.** Everything
+> under "Still to build" and "Suggested order" below was built the same day.
+> Six maps were carried over by hand in the repo's idiom, 70 events-only maps
+> were patched, and then, at Ian's direction, the remaining 86 scripts, 84
+> event files and 62 text banks were generated in bulk from the base ROM's
+> bytecode by `tools/oxide/bulk_scripts.py`, `bulk_events.py` and
+> `bulk_text.py`. Against the base ROM: events 158 of 158, scripts 90 of 91,
+> text banks 72 of 78. The hard stops (`scripts_init_battleground`, the trainer
+> battle messages, and the Repel prompt command below, which desyncs the
+> interpreter in the built ROM until it is ported) and the cost of bulk
+> generation (byte-exact but unreadable source, to be re-humanised a map at a
+> time) are recorded in the tracker under Phase 3. This file stays as the record
+> of the method and the formats.
+
 ## The shape of it
 
 Counted from the base ROM against the pinned vanilla build:
@@ -62,16 +76,21 @@ operand width was wrong.
 
 On the base ROM, 573 of 574 walk cleanly. See the finding below.
 
-### Still to build on top of it
+### Built on top of it, same day
 
-- **A movement-block decoder.** `ApplyMovement` points at a separate encoding
-  that this does not read yet. 2,222 references in vanilla.
-- **Emitting `.s` text.** Labels for entries and jump targets, symbolic operands
-  (text-bank entries, `LOCALID_*`, flags, vars, items, species), and matching the
-  house style of `res/field/scripts/*.s`.
-- **The true round trip.** Reassembling through the real build and requiring
-  byte-identical output is the end-state check. Walking cleanly proves the
-  widths; it does not yet prove the text that comes out reassembles.
+- ~~**A movement-block decoder.**~~ Done, plus a recovery pass for unreachable
+  commands and unreferenced movement blocks; 98% of both ROMs' script bytes are
+  accounted for, 6 regions in vanilla (90 bytes) and 4 in the base ROM (59
+  bytes) are emitted as raw `.byte`.
+- ~~**Emitting `.s` text.**~~ Done. Labels for entries and jump targets; symbolic
+  operands for everything resolvable globally (vars, flags, sounds, items,
+  species, moves, trainers, the engine-wide `LOCALID_*`), 32% of operands.
+  `messageID` and map-local `localID` stay numeric unless a map is done by hand.
+- ~~**The true round trip.**~~ Done: `scriptdis.py --roundtrip` reassembles every
+  file through the repo's `make_script_bin.sh`; 574 of 574 byte-identical in
+  both ROMs, with symbols on. Two gotchas it found: files that end with
+  `.balign 4, 0` in vanilla where the base ROM has no padding, and gift houses
+  that order their blocks differently from each other.
 
 ### Answered: the custom script command is a Repel prompt
 
@@ -179,25 +198,29 @@ carry-over job.
 
 ## Suggested order
 
-1. ~~**Generate the opcode table**~~ Done, with the caveat above that a clean
-   walk is not yet a byte-identical round trip.
-2. **Do one small map end to end** as the template: events, script and text
-   together, built and checked in the emulator. `oreburgh_city_middle_house`,
-   `floaroma_meadow_house`, `sandgem_town_house` and
-   `solaceon_town_northeast_house` are the best candidates, each one added
-   object and a script that grows from about 48 bytes to about 300.
-3. **The 93 events-only maps.** A first pass suggests 73 of them add objects
-   that only reference scripts their map already has, which would make them
-   importable without touching the script files at all. That check currently
-   matches script files to maps by name; before relying on it, resolve each
-   map's script file through its header's `scriptsArchiveID` instead, because at
-   least two Mt Coronet maps do not line up by name.
-4. **The remaining maps**, largest last.
+1. ~~**Generate the opcode table**~~ Done, and the round trip after it (see
+   "Built on top of it").
+2. ~~**Do one small map end to end** as the template~~ Done: all four candidates
+   (`oreburgh_city_middle_house` first, commit e5c39188b) plus two Regi rooms,
+   six maps by hand. Per-map workflow: `python3 tools/oxide/mapdiff.py <map>`
+   shows all three sides of the diff (events, disassembled script, text with
+   unreferenced ids flagged); write the three files in the repo's idiom; `make
+   rom`; `python3 tools/oxide/checkmap.py <map>` checks against the base ROM,
+   allowing message ids to renumber when orphaned pick-event names are removed.
+3. ~~**The 93 events-only maps.**~~ Done as a bulk pass of 70 whose event edits
+   stand alone (196 changes, every one a ball's item), then the rest with the
+   scripts.
+4. ~~**The remaining maps**, largest last.~~ Superseded: generated in bulk
+   instead (status banner at the top). For the counts: 65 maps changed both
+   script and events, 26 script only, 93 events only; the "86 remaining scripts"
+   the bulk pass generated is 65 plus 26 minus the 5 script-bearing maps done by
+   hand.
 
-## Open questions for Ian, to be answered as the work reaches them
+## Open questions for Ian
 
 - What specific scripts were *meant* to do, wherever the bytecode is ambiguous.
-  This is the one place the carry-over cannot be mechanical.
-- Whether any of the 91 scripts call the custom commands written over the Battle
-  Arcade region (arm9 `0x05003C`-`0x0505BC`). This is the evidence that settles
-  the long-standing question: if none of them do, that item closes with no work.
+  Moot for the faithful carry-over now that it is byte-exact; returns when a
+  generated map is re-humanised or a gift script is unified.
+- ~~Whether any of the 91 scripts call the custom commands written over the
+  Battle Arcade region.~~ Answered above: exactly one command, `Dummy088`, three
+  times, all in `scripts_common`, and it still needs porting as `SetRepelSteps`.

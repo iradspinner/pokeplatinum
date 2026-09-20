@@ -4,6 +4,13 @@ Written 2026-09-15 by diffing `Platinum Unlocked - Challenge - Adjusted v1.1.nds
 
 Ian's guidance: keep overworld events, trainer edits, and Pokemon stat and move edits where possible; flag anything else. The "keep" set turns out to be larger than "about 80 fights", and there is also code in the base that Ian may or may not remember adding. Questions for Ian are marked **Q**.
 
+> **Corrections since this was written.** Read these before trusting the sections they name; the original text is kept below as the record of what the diff looked like on the day.
+> - **Section 1, Trainers row, and section 2B:** there is **no expanded trainer format**. The party data is vanilla layout; the only non-vanilla piece is the high byte of `ivScale` (ability slot and gender nibbles). Determined 2026-09-15 from the ROM, detail in `phase3-answers-and-trainer-format.md` section 2.
+> - **Section 2A:** `HandleInput_SelectMove+0x8E` is not a viewer hook; it makes HMs forgettable from the summary screen. Ported with the constant edits (2026-09-19).
+> - **Section 2D:** answered 2026-09-20. The scripts call exactly one custom command, `Dummy088`, three times in `scripts_common`, as part of a "use another Repel?" prompt. Only that command is ported; the rest of the region is dropped. See `phase3-scripts-and-events-plan.md`.
+> - **Section 2E:** `TeachMove+0x5B` is reusable TMs (it skips `Bag_TryRemoveItem`), not HM-forgetting. Ported 2026-09-20.
+> - **All five Qs** are answered in `phase3-answers-and-trainer-format.md`. Items marked as tool side effects (sprite re-saves, heights, the vitamin records) were confirmed as DSPRE noise and not carried over; evidence in the tracker.
+
 ## 1. Data edits (these carry over to the decomp as data-file changes)
 
 | Table | Changed | What changed | Carry-over route |
@@ -36,7 +43,7 @@ The base's `arm9` differs from vanilla at 38 places and eleven overlays differ. 
 
 **Q:** These look like the ds-pokemon-hacking "code injection" patches applied through DSPRE. Which of the four do you want in the port? Under approach C each is a small C edit (hg-engine has all four as config toggles too, so the design is known). The synthetic-overlay mechanism itself is dropped; the decomp has no need for it.
 
-**B. Expanded trainer party format.** `TrainerData_BuildParty` (1,026 bytes) is fully rewritten and `Trainer_Encounter+0x6E` is edited. This is the community "expanded trainer data" patch that lets trainer Pokemon carry custom IVs, EVs, natures, abilities and so on; it is why `trpoke.narc` entries are 16/32/48/108 bytes. **Q:** Confirm which patch this is (the DSPRE option name or the guide you followed), so the same fields can be read back correctly. Under C, pokeplatinum's trainer format is the vanilla one; the port will need the decomp's trainer struct extended to hold those fields (hg-engine's `trainer_data.h` is the model), and the 561 party records converted. This is a real chunk of Phase 3.
+**B. Expanded trainer party format. (Superseded, see the corrections at the top: the format is vanilla.)** `TrainerData_BuildParty` (1,026 bytes) is fully rewritten and `Trainer_Encounter+0x6E` is edited. This is the community "expanded trainer data" patch that lets trainer Pokemon carry custom IVs, EVs, natures, abilities and so on; it is why `trpoke.narc` entries are 16/32/48/108 bytes. **Q:** Confirm which patch this is (the DSPRE option name or the guide you followed), so the same fields can be read back correctly. Under C, pokeplatinum's trainer format is the vanilla one; the port will need the decomp's trainer struct extended to hold those fields (hg-engine's `trainer_data.h` is the model), and the 561 party records converted. This is a real chunk of Phase 3.
 
 **C. Palette-loading hooks.** `PaletteData_LoadBufferFromFile+0x48`, `LoadPaletteWithSrcOffset+0x1E`, `BufferPokemonSpritePlttData+0x50`, `SpriteSystem_LoadPlttResObj+0x3C`, `CharacterSprite_LoadPalette+0x30`, `Pokedex_GetDisplayForm+0x2`, `Pokemon_GetValue+0x2`, `BoxPokemon_GetValue+0x2` all branch into the expansion. Together with `Pokemon_IsPersonalityShiny+0x18` changing `8` to `0xFF`, this reads as a shiny-related patch (raised shiny odds plus custom shiny palettes or per-form palettes). **Q:** What is it?
 

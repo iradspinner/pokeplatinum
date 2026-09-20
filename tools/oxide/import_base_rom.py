@@ -1262,10 +1262,12 @@ def main():
         old_header, old_mdt, old_ps = decode_trainer_header(vh[i])
         new_party = decode_trainer_party(bpk[i], new_ps, new_mdt)
         old_party = decode_trainer_party(vpk[i], old_ps, old_mdt)
-        if len(new_party) != len(old_party):
-            resized += 1
+        # Count a resize only when the file actually needs rewriting, so a dry run
+        # on an already-imported tree reports 0 here like every other counter.
         if apply_trainer_diff(d, new_header, new_party, old_header, old_party, a.dry_run, log):
             n += 1
+            if len(new_party) != len(old_party):
+                resized += 1
     counts["trainers"] = n
     counts["trainers_party_resized"] = resized
 
