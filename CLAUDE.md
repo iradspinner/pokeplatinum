@@ -31,8 +31,8 @@ Then say in one or two sentences what this session will do, and do it.
   drive, which a separate chat surface works from.
 - Never delete, move, or overwrite the base ROM in the project folder
   (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It is what every
-  verify tool compares the build against, and the only source for the one
-  remaining Phase 3 hard stop, the trainer battle messages.
+  verify tool compares the build against, and and the only source for anything
+  Phase 3 might need re-checking.
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
   them; do not "fix" a mismatch the tracker says is intended.
