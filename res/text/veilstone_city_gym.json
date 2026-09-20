@@ -130,6 +130,64 @@
     {
       "id": "VeilstoneGym_Text_OneDayAtATime",
       "en_US": "One day at a time."
+    },
+    {
+      "id": "VeilstoneCityGym_Text_13",
+      "en_US": [
+        "Maylene: I think it’s OK if I were to\n",
+        "keep losing to the same Trainer.\r",
+        "Battling that person tells me how much\n",
+        "my Pokémon and I have changed.\r",
+        "That’s why I would like to challenge\n",
+        "you for a rematch now."
+      ]
+    },
+    {
+      "id": "VeilstoneCityGym_Text_14",
+      "en_US": [
+        "Maylene: Sigh...\r",
+        "I braced myself for a battle.\n",
+        "This is a little deflating..."
+      ]
+    },
+    {
+      "id": "VeilstoneCityGym_Text_15",
+      "en_US": [
+        "Maylene: OK! Got it!\r",
+        "We’ll train much harder so we can\n",
+        "battle with you!"
+      ]
+    },
+    {
+      "id": "VeilstoneCityGym_Text_16",
+      "en_US": "{COLOR 2}The level cap is now set to 44.{COLOR 0}\r"
+    },
+    {
+      "id": "VeilstoneCityGym_Text_17",
+      "en_US": "Talk to the other Abra !"
+    },
+    {
+      "id": "VeilstoneCityGym_Text_18",
+      "en_US": "Go to the gym leader?"
+    },
+    {
+      "id": "VeilstoneCityGym_Text_19",
+      "en_US": "You can now teleport to the gym leader!"
+    },
+    {
+      "id": "VeilstoneCityGym_Text_20",
+      "en_US": "Go back at the entrance?"
+    },
+    {
+      "id": "VeilstoneCityGym_Text_21",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "VeilstoneCityGym_Text_22",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

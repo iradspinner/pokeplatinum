@@ -28,6 +28,30 @@
     {
       "id": "JubilifeCitySouthHouse1F_PachirisuCry",
       "en_US": "PACHIRISU: Kukkuuh!"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_3",
+      "en_US": "Would you like a gift pokemon?"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_4",
+      "en_US": "Glameow"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_5",
+      "en_US": "Skitty"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_6",
+      "en_US": "Meowth"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_7",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "JubilifeCitySouthHouse1f_Text_8",
+      "en_US": "Your party is full..."
     }
   ]
 }

@@ -24,14 +24,26 @@
     },
     {
       "id": "FloaromaMeadowHouse_Text_WouldYouLikeOneOfThesePokemon",
-      "en_US": "Would you like one of these Pok\u00e9mon?"
+      "en_US": "Would you like one of these Pokémon?"
     },
     {
       "id": "FloaromaMeadowHouse_Text_SeeYa",
-      "en_US": "See ya!\r"
+      "en_US": "Combee"
     },
     {
       "id": "FloaromaMeadowHouse_Text_YourPartyIsFull",
+      "en_US": "Cherubi"
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_5",
+      "en_US": "Pachirisu"
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_6",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_7",
       "en_US": "Your party is full..."
     }
   ]

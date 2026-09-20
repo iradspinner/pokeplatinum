@@ -264,7 +264,10 @@
     },
     {
       "id": "CommonStrings_Text_Dummy38",
-      "garbage": 21
+      "en_US": [
+        "This Pokémon’s Hidden Power is the\n",
+        "{STRVAR_1 15, 0, 0} type.\r"
+      ]
     },
     {
       "id": "CommonStrings_Text_PokecenterAllHappyAndHealthy",
@@ -402,23 +405,26 @@
     },
     {
       "id": "CommonStrings_Text_Dummy59",
-      "garbage": 18
+      "en_US": "Do you want a happy Pokémon?"
     },
     {
       "id": "CommonStrings_Text_Dummy60",
-      "garbage": 17
+      "en_US": "Which one needs a little love?\r"
     },
     {
       "id": "CommonStrings_Text_Dummy61",
-      "garbage": 11
+      "en_US": "Let’s relax!\r"
     },
     {
       "id": "CommonStrings_Text_Dummy62",
-      "garbage": 76
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} looks dreamily\n",
+        "content...\r"
+      ]
     },
     {
       "id": "CommonStrings_Text_Dummy63",
-      "garbage": 76
+      "en_US": "Wait until it hatches!"
     },
     {
       "id": "CommonStrings_Text_Dummy64",
@@ -463,7 +469,11 @@
     },
     {
       "id": "CommonStrings_Text_Dummy72",
-      "garbage": 34
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "{STRVAR_1 8, 1, 0}.\r",
+        "Wild Pokémon will be repelled."
+      ]
     },
     {
       "id": "CommonStrings_Text_RideYourBike",
@@ -475,7 +485,10 @@
     },
     {
       "id": "CommonStrings_Text_Dummy75",
-      "garbage": 20
+      "en_US": [
+        "Repel’s effect wore off...\n",
+        "Would you like to use another one?"
+      ]
     },
     {
       "id": "CommonStrings_Text_Oh",
@@ -873,6 +886,756 @@
         "It will be fixed if you enter the\n",
         "Hall of Fame again.\r"
       ]
+    },
+    {
+      "id": "CommonStrings_Text_132",
+      "en_US": "Which Pokemon needs a reminder?\r"
+    },
+    {
+      "id": "CommonStrings_Text_133",
+      "en_US": "Choose which move.\r"
+    },
+    {
+      "id": "CommonStrings_Text_134",
+      "en_US": "Eggs can’t be taught moves.\r"
+    },
+    {
+      "id": "CommonStrings_Text_135",
+      "en_US": "This Pokémon can’t remember any moves."
+    },
+    {
+      "id": "CommonStrings_Text_136",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "CommonStrings_Text_137",
+      "en_US": "Twinleaf Town"
+    },
+    {
+      "id": "CommonStrings_Text_138",
+      "en_US": "Sandgem Town"
+    },
+    {
+      "id": "CommonStrings_Text_139",
+      "en_US": "Jubilife City"
+    },
+    {
+      "id": "CommonStrings_Text_140",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "CommonStrings_Text_141",
+      "en_US": "Floaroma Town"
+    },
+    {
+      "id": "CommonStrings_Text_142",
+      "en_US": "Eterna City"
+    },
+    {
+      "id": "CommonStrings_Text_143",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "CommonStrings_Text_144",
+      "en_US": "Solaceon Town"
+    },
+    {
+      "id": "CommonStrings_Text_145",
+      "en_US": "Veilstone City"
+    },
+    {
+      "id": "CommonStrings_Text_146",
+      "en_US": "Pastoria City"
+    },
+    {
+      "id": "CommonStrings_Text_147",
+      "en_US": "Celestic Town"
+    },
+    {
+      "id": "CommonStrings_Text_148",
+      "en_US": "Canalave City"
+    },
+    {
+      "id": "CommonStrings_Text_149",
+      "en_US": "Snowpoint City"
+    },
+    {
+      "id": "CommonStrings_Text_150",
+      "en_US": "Sunyshore City"
+    },
+    {
+      "id": "CommonStrings_Text_151",
+      "en_US": "Pokemon League"
+    },
+    {
+      "id": "CommonStrings_Text_152",
+      "en_US": "Pal Park"
+    },
+    {
+      "id": "CommonStrings_Text_153",
+      "en_US": "Fight Area"
+    },
+    {
+      "id": "CommonStrings_Text_154",
+      "en_US": "Survival Area"
+    },
+    {
+      "id": "CommonStrings_Text_155",
+      "en_US": "Resort Area"
+    },
+    {
+      "id": "CommonStrings_Text_156",
+      "en_US": "Return"
+    },
+    {
+      "id": "CommonStrings_Text_157",
+      "en_US": [
+        "Hello, hello!\n",
+        "I’m the official Name Rater APP!\r",
+        "Want me to rate the nicknames of\n",
+        "your Pokémon?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_158",
+      "en_US": [
+        "Which Pokémon’s nickname should\n",
+        "I critique?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_159",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}, is it?\n",
+        "That’s a decent nickname!\r",
+        "But would you like to give it\n",
+        "an even better name?\r",
+        "How about it?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_160",
+      "en_US": [
+        "Ah, good. Then, what shall the new\n",
+        "nickname be?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_161",
+      "en_US": [
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 1, 0, 0}!\r",
+        "It is a better name than before!\n",
+        "How fortunate for you!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_162",
+      "en_US": [
+        "I see.\n",
+        "Please come visit again."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_163",
+      "en_US": [
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 1, 0, 0}!\r",
+        "It looks no different from before,\n",
+        "and yet, this is vastly superior!\r",
+        "How fortunate for you!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_164",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}, is it?\n",
+        "That is a truly impeccable name!\r",
+        "Take good care of {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_165",
+      "en_US": [
+        "Now, now. That is merely an Egg!\n",
+        "An Egg can go by no other name!\n"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_166",
+      "en_US": "Move Reminder"
+    },
+    {
+      "id": "CommonStrings_Text_167",
+      "en_US": "Move Tutor 1"
+    },
+    {
+      "id": "CommonStrings_Text_168",
+      "en_US": "Move Tutor 2"
+    },
+    {
+      "id": "CommonStrings_Text_169",
+      "en_US": "Move Tutor 3"
+    },
+    {
+      "id": "CommonStrings_Text_170",
+      "en_US": "Starter Tutor"
+    },
+    {
+      "id": "CommonStrings_Text_171",
+      "en_US": "Dragon Tutor"
+    },
+    {
+      "id": "CommonStrings_Text_172",
+      "en_US": "What are you looking for?"
+    },
+    {
+      "id": "CommonStrings_Text_173",
+      "en_US": "Would you like me to teach a move?"
+    },
+    {
+      "id": "CommonStrings_Text_174",
+      "en_US": "See you!"
+    },
+    {
+      "id": "CommonStrings_Text_175",
+      "en_US": "Which Pokémon should I teach?\r"
+    },
+    {
+      "id": "CommonStrings_Text_176",
+      "en_US": [
+        "There are no moves that can be taught\n",
+        "to this Pokémon."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_177",
+      "en_US": [
+        "Which move should be taught to\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_178",
+      "en_US": "{STRVAR_1 1, 0, 0} learned {STRVAR_1 6, 1, 0}."
+    },
+    {
+      "id": "CommonStrings_Text_179",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_180",
+      "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
+    },
+    {
+      "id": "CommonStrings_Text_181",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_182",
+      "en_US": [
+        "Is it OK to forget the\n",
+        "move {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_183",
+      "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
+    },
+    {
+      "id": "CommonStrings_Text_184",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_185",
+      "en_US": [
+        "It’s beyond my ability to teach moves\n",
+        "to an Egg!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_186",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_187",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_188",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_189",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} is the move that\n",
+        "you want forgotten?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_190",
+      "en_US": "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!"
+    },
+    {
+      "id": "CommonStrings_Text_191",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_192",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_193",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_194",
+      "en_US": [
+        "Stop trying to teach\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_195",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn the\n",
+        "move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_196",
+      "en_US": "You don’t have enough Shards."
+    },
+    {
+      "id": "CommonStrings_Text_197",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_198",
+      "en_US": [
+        "Is it OK to forget the\n",
+        "move {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_199",
+      "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
+    },
+    {
+      "id": "CommonStrings_Text_200",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_201",
+      "en_US": "{STRVAR_1 1, 0, 0} learned {STRVAR_1 6, 1, 0}."
+    },
+    {
+      "id": "CommonStrings_Text_202",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_203",
+      "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
+    },
+    {
+      "id": "CommonStrings_Text_204",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_205",
+      "en_US": [
+        "The ultimate moves!\n",
+        "Shall I teach them to your Pokémon?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_206",
+      "en_US": [
+        "To which Pokémon should I teach\n",
+        "a move?\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_207",
+      "en_US": [
+        "Hmm... Well, that is fine, as well.\n",
+        "Visit if you have a change of heart."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_208",
+      "en_US": [
+        "That Pokémon can’t learn a move!\n",
+        "To the Pokémon listed here,\n",
+        "the ultimate moves may be taught!\r",
+        "The blazing fire Pokémon\n",
+        "{CURSOR_X 7}CHARIZARD TYPHLOSION\f",
+        "{CURSOR_X 7}BLAZIKEN INFERNAPE\r",
+        "The restless water Pokémon\n",
+        "{CURSOR_X 7}BLASTOISE FERALIGATR\f",
+        "{CURSOR_X 7}SWAMPERT EMPOLEON\r",
+        "The quiet grass Pokémon\n",
+        "{CURSOR_X 7}VENUSAUR MEGANIUM\f",
+        "{CURSOR_X 7}SCEPTILE TORTERRA"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_209",
+      "en_US": [
+        "Teach a move to an Egg?\n",
+        "Impossible even for me! Keh!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_210",
+      "en_US": [
+        "You’ve not bonded strongly enough\n",
+        "with your Pokémon! Keh!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_211",
+      "en_US": [
+        "That Pokémon already knows the move\n",
+        "I’ve offered to teach! Keh!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_212",
+      "en_US": [
+        "I should teach Blast Burn to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_213",
+      "en_US": [
+        "I should teach Hydro Cannon to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_214",
+      "en_US": [
+        "I should teach Frenzy Plant to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_215",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_216",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 0, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_217",
+      "en_US": [
+        "Is it OK to forget the\n",
+        "move {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_218",
+      "en_US": [
+        "1, 2, and... ... ... Poof!\r",
+        "{STRVAR_1 0, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And...\n",
+        "{STRVAR_1 0, 0, 0} learned {STRVAR_1 6, 2, 0}."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_219",
+      "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
+    },
+    {
+      "id": "CommonStrings_Text_220",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_221",
+      "en_US": [
+        "I can teach the strongest of all\n",
+        "Dragon-type moves to the tough\f",
+        "Pokémon of Sinnoh.\r",
+        "Would you like me to teach that\n",
+        "move to one of your Pokémon?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_222",
+      "en_US": [
+        "Well, perhaps if you change your\n",
+        "mind, do come back."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_223",
+      "en_US": [
+        "I like your sense of adventure.\r",
+        "However, none of the Pokémon with\n",
+        "you now can learn the move."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_224",
+      "en_US": [
+        "Fine, fine, now pick the Pokémon\n",
+        "I should teach the move to.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_225",
+      "en_US": [
+        "That Pokémon you have can learn this\n",
+        "move, but it hasn’t come to trust\f",
+        "you fully yet..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_226",
+      "en_US": [
+        "Sorry to disappoint you...\n",
+        "That Pokémon can’t learn this move."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_227",
+      "en_US": [
+        "Hmmmm...\r",
+        "Teaching a move to an Egg is\n",
+        "a challenge that’s beyond me."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_228",
+      "en_US": [
+        "Oh? That Pokémon already knows\n",
+        "{STRVAR_1 6, 0, 0}."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_229",
+      "en_US": [
+        "Draco Meteor’s destructive power\n",
+        "is awe inspiring.\r",
+        "However, using it will also lower\n",
+        "the Pokémon’s Special Attack."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_230",
+      "en_US": [
+        "I’ll tell you what type your Pokémon’s\n",
+        "Hidden Power will be."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_231",
+      "en_US": "An egg can’t learn Hidden Power!"
+    },
+    {
+      "id": "CommonStrings_Text_232",
+      "en_US": [
+        "This Pokémon can’t learn the move\n",
+        "Hidden Power in the first place."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_233",
+      "en_US": [
+        "This Pokémon’s Hidden Power is the\n",
+        "{STRVAR_1 15, 0, 0} type."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_234",
+      "en_US": [
+        "I will judge the intriguing potential\n",
+        "of your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_235",
+      "en_US": [
+        "Judge an Egg?!\n",
+        "That’s a tall order even for me.\r"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_236",
+      "en_US": [
+        "I see, I see...\r",
+        "This Pokémon’s potential is decent all\n",
+        "around.\r",
+        "That’s my judgment, and it’s final."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_237",
+      "en_US": [
+        "I see, I see...\r",
+        "This Pokémon’s potential is above\n",
+        "average overall.\r",
+        "That’s my judgment, and it’s final."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_238",
+      "en_US": [
+        "I see, I see...\r",
+        "This Pokémon has relatively superior\n",
+        "potential overall.\r",
+        "That’s my judgment, and it’s final."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_239",
+      "en_US": [
+        "I see, I see...\r",
+        "This Pokémon has outstanding potential\n",
+        "overall.\r",
+        "That’s my judgment, and it’s final."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_240",
+      "en_US": "Reset legendary encounters?"
+    },
+    {
+      "id": "CommonStrings_Text_241",
+      "en_US": "Encounters reseted."
+    },
+    {
+      "id": "CommonStrings_Text_242",
+      "en_US": "Your Pokémon are now back to health!"
+    },
+    {
+      "id": "CommonStrings_Text_243",
+      "en_US": [
+        "Every gym battles and superbosses have\n",
+        "been reseted!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_244",
+      "en_US": [
+        "All the gifts Pokémon and trades\n",
+        "been reseted!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_245",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_246",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_247",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_248",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_249",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_250",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_251",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_252",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_253",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_254",
+      "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_255",
+      "garbage": 0
     }
   ]
 }

@@ -54,7 +54,7 @@
     },
     {
       "id": "VictoryRoad1FRoom2_Text_Dummy6",
-      "garbage": 15
+      "garbage": 0
     },
     {
       "id": "VictoryRoad1FRoom2_Text_Dummy7",
@@ -75,6 +75,10 @@
     {
       "id": "VictoryRoad1FRoom2_Text_Dummy11",
       "garbage": 11
+    },
+    {
+      "id": "VictoryRoad1fRoom2_Text_12",
+      "en_US": "... Battle...."
     }
   ]
 }

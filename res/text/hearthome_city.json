@@ -548,6 +548,70 @@
         "The Poffin House\n",
         "Delicious Poffins--Smiles for All"
       ]
+    },
+    {
+      "id": "HearthomeCity_Text_61",
+      "en_US": [
+        "It’s good to see you again!\n",
+        "Would you like to train?"
+      ]
+    },
+    {
+      "id": "HearthomeCity_Text_62",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "HearthomeCity_Text_63",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 33!\r"
+      ]
+    },
+    {
+      "id": "HearthomeCity_Text_64",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "HearthomeCity_Text_65",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 33!"
+      ]
+    },
+    {
+      "id": "HearthomeCity_Text_66",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Hearthome City!\r"
+      ]
+    },
+    {
+      "id": "HearthomeCity_Text_67",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "HearthomeCity_Text_68",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "HearthomeCity_Text_69",
+      "en_US": "Eterna City"
+    },
+    {
+      "id": "HearthomeCity_Text_70",
+      "en_US": "Solaceon City"
+    },
+    {
+      "id": "HearthomeCity_Text_71",
+      "en_US": "Pastoria City"
+    },
+    {
+      "id": "HearthomeCity_Text_72",
+      "en_US": "Celestic Town"
     }
   ]
 }

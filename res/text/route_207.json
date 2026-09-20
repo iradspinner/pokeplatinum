@@ -9,16 +9,14 @@
         "Me? I’m somewhere between fantastic\n",
         "and, uh, hopeless...\r",
         "But this isn’t about me!\n",
-        "I’ve got something nice for you.\r",
-        "{STRVAR_1 3, 0, 0}, choose which hand\n",
-        "you want."
+        "Let’s battle!\r"
       ]
     },
     {
       "id": "Route207_Text_DawnYouWantTheVsSeeker",
       "en_US": [
         "Dawn: I see...\n",
-        "You want the Vs. Seeker.\r",
+        "You want the lucky egg.\r",
         "I’m impressed, {STRVAR_1 3, 0, 0}.\n",
         "You know what’s important.\r"
       ]
@@ -26,9 +24,7 @@
     {
       "id": "Route207_Text_DawnHaveThisTooThen",
       "en_US": [
-        "Dawn: Using that Vs. Seeker, you can\n",
-        "find Trainers who want a rematch\f",
-        "with you.\r",
+        "Dawn: Use it to train.\r",
         "Oh, {STRVAR_1 3, 0, 0}, do you also have\n",
         "a Pokétch?\r",
         "Yup, you do.\n",
@@ -59,17 +55,14 @@
         "Me? I’m always doing great!\n",
         "...I wish...\r",
         "But that’s not important.\r",
-        "Lately, I’ve been experimenting with\n",
-        "a couple of neat tools.\r",
-        "{STRVAR_1 3, 0, 0}, I’ll share with you.\n",
-        "Choose a hand!"
+        "Let’s have a battle!\r"
       ]
     },
     {
       "id": "Route207_Text_LucasYouWantTheVsSeeker",
       "en_US": [
         "Lucas: Oh yeah.\n",
-        "You want the Vs. Seeker.\r",
+        "You want the lucky egg.\r",
         "Yup, {STRVAR_1 3, 0, 0}, you know what’s\n",
         "important.\r"
       ]
@@ -77,9 +70,7 @@
     {
       "id": "Route207_Text_LucasHaveThisTooThen",
       "en_US": [
-        "Lucas: Using that Vs. Seeker, you can\n",
-        "find Trainers who want to battle with\f",
-        "you again.\r",
+        "Lucas: Use it to train\r",
         "{STRVAR_1 3, 0, 0}, what about a Pokétch?\n",
         "Do you have one?\r",
         "Yup, you do.\n",
@@ -146,6 +137,65 @@
         "If your opponent’s Pokémon can’t\n",
         "move, it’s a big opportunity!"
       ]
+    },
+    {
+      "id": "Route207_Text_14",
+      "en_US": [
+        "I have seen a young girl going\n",
+        "into Wayward Cave, north of here\r",
+        "below the cycling road.She hasn’t\n",
+        "came back yet! Would you please\r",
+        "go look for her? I will give you\n",
+        "my collection of evolution stones!"
+      ]
+    },
+    {
+      "id": "Route207_Text_15",
+      "en_US": [
+        "Oh you found her! As promised\n",
+        "you can have these!"
+      ]
+    },
+    {
+      "id": "Route207_Text_16",
+      "en_US": "I’m glad you helped her!"
+    },
+    {
+      "id": "Route207_Text_17",
+      "en_US": [
+        "Dawn: I’ve got something nice for you.\n",
+        "{STRVAR_1 3, 0, 0}, choose which hand\r",
+        "you want."
+      ]
+    },
+    {
+      "id": "Route207_Text_18",
+      "en_US": [
+        "Lucas: Lately, I’ve been experimenting\n",
+        "with a couple of neat tools.\r",
+        "{STRVAR_1 3, 0, 0}, I’ll share with you.\n",
+        "Choose a hand!"
+      ]
+    },
+    {
+      "id": "Route207_Text_19",
+      "en_US": "You can’t teleport from here for now...\r"
+    },
+    {
+      "id": "Route207_Text_20",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "Route207_Text_21",
+      "en_US": "Mt. Coronet exterior 1"
+    },
+    {
+      "id": "Route207_Text_22",
+      "en_US": "Mt. Coronet exterior 2"
+    },
+    {
+      "id": "Route207_Text_23",
+      "en_US": "Spear Pillar entrance"
     }
   ]
 }

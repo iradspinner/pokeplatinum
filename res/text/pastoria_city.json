@@ -401,6 +401,59 @@
         "Try the Safari Game in\n",
         "Pastoria’s Great Marsh!"
       ]
+    },
+    {
+      "id": "PastoriaCity_Text_45",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Pastoria City!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_46",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "PastoriaCity_Text_47",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "PastoriaCity_Text_48",
+      "en_US": "Veilstone City"
+    },
+    {
+      "id": "PastoriaCity_Text_49",
+      "en_US": "Sunyshore City"
+    },
+    {
+      "id": "PastoriaCity_Text_50",
+      "en_US": "Do you want to train?"
+    },
+    {
+      "id": "PastoriaCity_Text_51",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 44!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_52",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "PastoriaCity_Text_53",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_54",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 44!"
+      ]
     }
   ]
 }

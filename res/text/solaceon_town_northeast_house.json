@@ -30,6 +30,18 @@
     {
       "id": "SolaceonTownNortheastHouse_Text_YourPartyIsFull",
       "en_US": "Your party is full..."
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_5",
+      "en_US": "Natu"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_6",
+      "en_US": "Trapinch"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_7",
+      "en_US": "Clamperl"
     }
   ]
 }

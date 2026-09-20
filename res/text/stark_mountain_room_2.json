@@ -53,27 +53,18 @@
     },
     {
       "id": "StarkMountainRoom2_Text_Dummy6",
-      "garbage": 49
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Heatran’s Chamber!\r"
+      ]
     },
     {
       "id": "StarkMountainRoom2_Text_Dummy7",
-      "garbage": 49
+      "en_US": "You can’t teleport right now!\r"
     },
     {
       "id": "StarkMountainRoom2_Text_Dummy8",
-      "garbage": 56
-    },
-    {
-      "id": "StarkMountainRoom2_Text_Dummy9",
-      "garbage": 98
-    },
-    {
-      "id": "StarkMountainRoom2_Text_Dummy10",
-      "garbage": 118
-    },
-    {
-      "id": "StarkMountainRoom2_Text_Dummy11",
-      "garbage": 50
+      "en_US": "Do you want to be teleported outside?"
     }
   ]
 }

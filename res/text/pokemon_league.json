@@ -15,6 +15,70 @@
     {
       "id": "PokemonLeague_Text_VictoryRoadAhead",
       "en_US": "Victory Road Ahead"
+    },
+    {
+      "id": "PokemonLeague_Text_3",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Victory Road!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_4",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "PokemonLeague_Text_5",
+      "en_US": "Sunyshore City"
+    },
+    {
+      "id": "PokemonLeague_Text_6",
+      "en_US": "Pokémon League"
+    },
+    {
+      "id": "PokemonLeague_Text_7",
+      "en_US": "Route 224"
+    },
+    {
+      "id": "PokemonLeague_Text_8",
+      "en_US": "Victory Road"
+    },
+    {
+      "id": "PokemonLeague_Text_9",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from the Pokémon League!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_10",
+      "en_US": "Do you want to train?"
+    },
+    {
+      "id": "PokemonLeague_Text_11",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 78!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_12",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "PokemonLeague_Text_13",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_14",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 78!"
+      ]
     }
   ]
 }

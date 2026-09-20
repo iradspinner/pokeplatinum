@@ -363,6 +363,50 @@
         "The door is tightly shut.\n",
         "It appears impossible to open."
       ]
+    },
+    {
+      "id": "CanalaveCity_Text_44",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Canalave City!\r"
+      ]
+    },
+    {
+      "id": "CanalaveCity_Text_45",
+      "en_US": [
+        "Do you want to be teleported to\n",
+        "Jubilife City?"
+      ]
+    },
+    {
+      "id": "CanalaveCity_Text_46",
+      "en_US": "Do you want to train?"
+    },
+    {
+      "id": "CanalaveCity_Text_47",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 53!\r"
+      ]
+    },
+    {
+      "id": "CanalaveCity_Text_48",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "CanalaveCity_Text_49",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "CanalaveCity_Text_50",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 53!"
+      ]
     }
   ]
 }

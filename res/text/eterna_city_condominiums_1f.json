@@ -131,6 +131,30 @@
         "I’m...building...superintendent...\n",
         "...maintain...24-hour watch... Zzz..."
       ]
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_16",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_17",
+      "en_US": "Slugma"
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_18",
+      "en_US": "Numel"
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_19",
+      "en_US": "Torkoal"
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_20",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "EternaCityCondominiums1f_Text_21",
+      "en_US": "Your party is full..."
     }
   ]
 }

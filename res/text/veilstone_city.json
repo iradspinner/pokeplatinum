@@ -647,6 +647,63 @@
         "Visit Beautiful Lake Valor!\n",
         "Right off Rt. 214!"
       ]
+    },
+    {
+      "id": "VeilstoneCity_Text_69",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Veilstone City!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_70",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "VeilstoneCity_Text_71",
+      "en_US": "Solaceon Town"
+    },
+    {
+      "id": "VeilstoneCity_Text_72",
+      "en_US": "Pastoria City"
+    },
+    {
+      "id": "VeilstoneCity_Text_73",
+      "en_US": "Celestic Town"
+    },
+    {
+      "id": "VeilstoneCity_Text_74",
+      "en_US": "Sunyshore City"
+    },
+    {
+      "id": "VeilstoneCity_Text_75",
+      "en_US": "Would you like to train?"
+    },
+    {
+      "id": "VeilstoneCity_Text_76",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 39!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_77",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "VeilstoneCity_Text_78",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_79",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 39!"
+      ]
     }
   ]
 }

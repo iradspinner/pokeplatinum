@@ -33,6 +33,88 @@
         "Be always bonded in friendship.\n",
         "Pokémon Day Care"
       ]
+    },
+    {
+      "id": "PokemonDayCare_Text_3",
+      "en_US": [
+        "Experiencia : Hi, what would you like to\n",
+        "do today?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_4",
+      "en_US": "HP training"
+    },
+    {
+      "id": "PokemonDayCare_Text_5",
+      "en_US": "Attack training"
+    },
+    {
+      "id": "PokemonDayCare_Text_6",
+      "en_US": "Defense training"
+    },
+    {
+      "id": "PokemonDayCare_Text_7",
+      "en_US": "Special Attack training"
+    },
+    {
+      "id": "PokemonDayCare_Text_8",
+      "en_US": "Special Defense training"
+    },
+    {
+      "id": "PokemonDayCare_Text_9",
+      "en_US": "Speed training"
+    },
+    {
+      "id": "PokemonDayCare_Text_10",
+      "en_US": "Power Items"
+    },
+    {
+      "id": "PokemonDayCare_Text_11",
+      "en_US": "EV reducing berries"
+    },
+    {
+      "id": "PokemonDayCare_Text_12",
+      "en_US": "See ya!"
+    },
+    {
+      "id": "PokemonDayCare_Text_13",
+      "en_US": [
+        "Would you like to keep training\n",
+        "this stat?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_14",
+      "en_US": "I will give you two of each!"
+    },
+    {
+      "id": "PokemonDayCare_Text_15",
+      "en_US": "I will give you fifty of each!"
+    },
+    {
+      "id": "PokemonDayCare_Text_16",
+      "en_US": "Details"
+    },
+    {
+      "id": "PokemonDayCare_Text_17",
+      "en_US": [
+        "Choose an EV stat you’d like to train,\n",
+        "we will do a double battle to\r",
+        "train two of your Pokémons at once.\r",
+        "A battle will give you 18 EVs without a\n",
+        "power item, 42 with one equiped.\r",
+        "With 14 battles without items or 6\n",
+        "with one you can fully EV train a stat!"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_18",
+      "en_US": "Do you want a Ditto?"
+    },
+    {
+      "id": "PokemonDayCare_Text_19",
+      "en_US": "Please make room in your party!"
     }
   ]
 }

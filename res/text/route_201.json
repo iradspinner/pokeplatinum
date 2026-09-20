@@ -552,6 +552,58 @@
         "By talking to people, you will get\n",
         "invaluable information and advice."
       ]
+    },
+    {
+      "id": "Route201_Text_63",
+      "en_US": [
+        "Ohohoh....\n",
+        "You seem like a promising trainer...\r",
+        "Come back once you have become a\n",
+        "champion..."
+      ]
+    },
+    {
+      "id": "Route201_Text_64",
+      "en_US": [
+        "You need to have a free space in your\n",
+        "party to receive this gift."
+      ]
+    },
+    {
+      "id": "Route201_Text_65",
+      "en_US": [
+        "I hope you like it!\r",
+        "Come and see me again if you manage to\n",
+        "defeat the Pokemon league again."
+      ]
+    },
+    {
+      "id": "Route201_Text_66",
+      "en_US": "Choose a Pokemon !\r"
+    },
+    {
+      "id": "Route201_Text_67",
+      "en_US": [
+        "It looks similar to professor Rowan’s\n",
+        "briefcase."
+      ]
+    },
+    {
+      "id": "Route201_Text_68",
+      "en_US": [
+        "Ohohoh!!!\n",
+        "You have done it! Are you ready for\r",
+        "a nice gift?\r",
+        "Check my briefcase!"
+      ]
+    },
+    {
+      "id": "Route201_Text_69",
+      "en_US": "Take good care of it!\r"
+    },
+    {
+      "id": "Route201_Text_70",
+      "en_US": "{COLOR 2}The level cap is now set to 16.{COLOR 0}\r"
     }
   ]
 }

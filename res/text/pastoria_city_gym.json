@@ -109,6 +109,70 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "PastoriaCityGym_Text_10",
+      "en_US": [
+        "Wake: What’s there to do for Trainers\n",
+        "here?\r",
+        "Seems to me there’s nothing to do but\n",
+        "battle!"
+      ]
+    },
+    {
+      "id": "PastoriaCityGym_Text_11",
+      "en_US": [
+        "Wake: Battles that end with both sides\n",
+        "enjoying the experience without caring\f",
+        "about the winner or loser...\r",
+        "That’s what I strive for.\r",
+        "One of these days, I hope to battle\n",
+        "everyone in the world..."
+      ]
+    },
+    {
+      "id": "PastoriaCityGym_Text_12",
+      "en_US": [
+        "Wake: For all the training I do, there\n",
+        "are still plenty tougher than me.\r",
+        "The stronger I get, the farther away\n",
+        "the goal seems to be.\r",
+        "The road is harsh and long.\n",
+        "There’s no end to it.\r",
+        "But beside me always are my Pokémon.\n",
+        "Every inch of the way!"
+      ]
+    },
+    {
+      "id": "PastoriaCityGym_Text_13",
+      "en_US": "{COLOR 2}The level cap is now set to 53.{COLOR 0}\r"
+    },
+    {
+      "id": "PastoriaCityGym_Text_14",
+      "en_US": "Talk to the other Abra !"
+    },
+    {
+      "id": "PastoriaCityGym_Text_15",
+      "en_US": "Go to the gym leader?"
+    },
+    {
+      "id": "PastoriaCityGym_Text_16",
+      "en_US": "You can now teleport to the gym leader!"
+    },
+    {
+      "id": "PastoriaCityGym_Text_17",
+      "en_US": "Go back at the entrance?"
+    },
+    {
+      "id": "PastoriaCityGym_Text_18",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "PastoriaCityGym_Text_19",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

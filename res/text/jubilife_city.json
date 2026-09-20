@@ -948,6 +948,83 @@
         "The Global Terminal\n",
         "Your Gateway to the Whole World!"
       ]
+    },
+    {
+      "id": "JubilifeCity_Text_101",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Jubilife City!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_102",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "JubilifeCity_Text_103",
+      "en_US": "Sandgem Town"
+    },
+    {
+      "id": "JubilifeCity_Text_104",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "JubilifeCity_Text_105",
+      "en_US": "Floaroma Town"
+    },
+    {
+      "id": "JubilifeCity_Text_106",
+      "en_US": "Canalave City"
+    },
+    {
+      "id": "JubilifeCity_Text_107",
+      "en_US": "You can now teleport here!\r"
+    },
+    {
+      "id": "JubilifeCity_Text_108",
+      "en_US": "Route 207"
+    },
+    {
+      "id": "JubilifeCity_Text_109",
+      "en_US": "Mt. Coronet exterior 2"
+    },
+    {
+      "id": "JubilifeCity_Text_110",
+      "en_US": "Spear Pillar entrance"
+    },
+    {
+      "id": "JubilifeCity_Text_111",
+      "en_US": "... ..."
+    },
+    {
+      "id": "JubilifeCity_Text_112",
+      "en_US": "Mt. Coronet exterior 1"
+    },
+    {
+      "id": "JubilifeCity_Text_113",
+      "en_US": [
+        "I’m looking for a guy named\n",
+        "Red. Have you seen him?\r",
+        "He loves cold mountains!"
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_114",
+      "en_US": [
+        "... ...\r",
+        "That’s what Red sounds like!"
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_115",
+      "en_US": [
+        "I can’t find Red but you’ll\n",
+        "make a great warmup!"
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_116",
+      "en_US": "I guess I ended up being a warmpup..."
     }
   ]
 }

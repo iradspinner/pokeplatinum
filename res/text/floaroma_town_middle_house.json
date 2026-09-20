@@ -48,6 +48,34 @@
     {
       "id": "FloaromaTownMiddleHouse_Text_ClefairyCry",
       "en_US": "CLEFAIRY: Rii?"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_6",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_7",
+      "en_US": "Murkrow"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_8",
+      "en_US": "Poochyena"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_9",
+      "en_US": "Seedot"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_10",
+      "en_US": "Stunky"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_11",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_12",
+      "en_US": "Your party is full..."
     }
   ]
 }

@@ -223,6 +223,58 @@
     {
       "id": "ResortArea_Text_SignVilla",
       "en_US": "A Somewhat Impressive Villa"
+    },
+    {
+      "id": "ResortArea_Text_28",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from the Resort Area!\r"
+      ]
+    },
+    {
+      "id": "ResortArea_Text_29",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "ResortArea_Text_30",
+      "en_US": "Fight Area"
+    },
+    {
+      "id": "ResortArea_Text_31",
+      "en_US": "Survival Area"
+    },
+    {
+      "id": "ResortArea_Text_32",
+      "en_US": "Stark Mountain"
+    },
+    {
+      "id": "ResortArea_Text_33",
+      "en_US": [
+        "I come from the Hoenn region, I came\n",
+        "here to relax!"
+      ]
+    },
+    {
+      "id": "ResortArea_Text_34",
+      "en_US": [
+        "You were really strong!\r",
+        "It’s a shame I didn’t bring my\n",
+        "mega stones..."
+      ]
+    },
+    {
+      "id": "ResortArea_Text_35",
+      "en_US": [
+        "Hi, I’m May! I heard you are\n",
+        "pretty strong, show me!"
+      ]
+    },
+    {
+      "id": "ResortArea_Text_36",
+      "en_US": [
+        "You should come visit Hoenn with\n",
+        "me one of those days!"
+      ]
     }
   ]
 }

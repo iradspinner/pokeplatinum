@@ -20,6 +20,580 @@
         "So, it hasn’t been proven that\n",
         "Pokémon actually lay Eggs."
       ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_2",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_3",
+      "en_US": [
+        "Hello, welcome to the Utility Stop.\n",
+        "My name is Strudel.\r",
+        "Talk to my friends to see what’s\n",
+        "for sale!"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_4",
+      "en_US": [
+        "Hello, my name is Imarti!\n",
+        "I sell all sorts of berries.\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_5",
+      "en_US": [
+        "Hello, my name is Noghl!\n",
+        "I sell evolution items.\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_6",
+      "en_US": [
+        "Hello, my name is Alaska!\n",
+        "I sell a mish-mash of useful items.\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_7",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_8",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_9",
+      "en_US": [
+        "Use LEFT and RIGHT to move 8 slots,\n",
+        "or UP and DOWN to scroll."
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_10",
+      "en_US": [
+        "Oh no, I can’t sell you anything.\r",
+        "You need one of EACH of the\n",
+        "following berries:\r",
+        "Spelon, Pamtre, Watmel, and Durin.\n",
+        "Oh, and bring me a Nomel.\r",
+        "You should be able to find them\n",
+        "on wild Pokémon."
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_11",
+      "en_US": [
+        "Awesome, you got all four berries!\n",
+        "And a Nomel too!\r",
+        "Great, now I can make a drink.\n",
+        "I’m parched...time for Nomelade!\r",
+        "Anyways, you’re all clear for the shop.\n",
+        "Come by any time!"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_12",
+      "en_US": [
+        "Oh no, I can’t sell you anything.\r",
+        "You need one of EACH of the\n",
+        "following berries:\r",
+        "Liechi, Ganlon, Salac, Petaya, Apicot,\n",
+        "Jaboca aaaaand Rowap.\r",
+        "You should be able to find them\n",
+        "on wild Pokémon."
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_13",
+      "en_US": [
+        "Ah! The Petaya’s fleshy skin...\n",
+        "The Rowap’s syzygial shapes...\r",
+        "This will be a perfect topic for my\n",
+        "Master’s thesis!\r",
+        "Unovan Botanical Society, here I come!\r",
+        "Oh, and you can buy from me.\n",
+        "Enjoy!"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_14",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? We’ve got plenty.\n",
+        "$400 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_15",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Always handy!\n",
+        "$1,200 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_16",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Ooh, that’s a good one.\n",
+        "$5,000 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_17",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Good eye!\n",
+        "$8,000 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_18",
+      "en_US": "Come again!"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_19",
+      "en_US": [
+        "You don’t have enough.\n",
+        "Come again!"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_20",
+      "en_US": "Cheri Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_21",
+      "en_US": "Chesto Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_22",
+      "en_US": "Pecha Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_23",
+      "en_US": "Rawst Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_24",
+      "en_US": "Aspear Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_25",
+      "en_US": "Leppa Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_26",
+      "en_US": "Oran Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_27",
+      "en_US": "Persim Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_28",
+      "en_US": "Lum Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_29",
+      "en_US": "Sitrus Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_30",
+      "en_US": "Figy Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_31",
+      "en_US": "Wiki Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_32",
+      "en_US": "Mago Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_33",
+      "en_US": "Aguav Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_34",
+      "en_US": "Iapapa Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_35",
+      "en_US": "Razz Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_36",
+      "en_US": "Bluk Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_37",
+      "en_US": "Nanab Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_38",
+      "en_US": "Wepear Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_39",
+      "en_US": "Pinap Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_40",
+      "en_US": "Pomeg Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_41",
+      "en_US": "Kelpst Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_42",
+      "en_US": "Qualot Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_43",
+      "en_US": "Hondew Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_44",
+      "en_US": "Grepa Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_45",
+      "en_US": "Tamato Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_46",
+      "en_US": "Cornn Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_47",
+      "en_US": "Magost Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_48",
+      "en_US": "Rabuta Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_49",
+      "en_US": "Nomel Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_50",
+      "en_US": "Spelon Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_51",
+      "en_US": "Pamtre Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_52",
+      "en_US": "Watmel Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_53",
+      "en_US": "Durin Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_54",
+      "en_US": "Belue Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_55",
+      "en_US": "Occa Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_56",
+      "en_US": "Passho Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_57",
+      "en_US": "Wacan Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_58",
+      "en_US": "Rindo Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_59",
+      "en_US": "Yache Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_60",
+      "en_US": "Chople Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_61",
+      "en_US": "Kebia Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_62",
+      "en_US": "Shuca Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_63",
+      "en_US": "Coba Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_64",
+      "en_US": "Payapa Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_65",
+      "en_US": "Tanga Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_66",
+      "en_US": "Charti Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_67",
+      "en_US": "Kasib Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_68",
+      "en_US": "Haban Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_69",
+      "en_US": "Colbur Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_70",
+      "en_US": "Babiri Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_71",
+      "en_US": "Chilan Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_72",
+      "en_US": "Liechi Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_73",
+      "en_US": "Ganlon Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_74",
+      "en_US": "Salac Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_75",
+      "en_US": "Petaya Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_76",
+      "en_US": "Apicot Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_77",
+      "en_US": "Lansat Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_78",
+      "en_US": "Starf Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_79",
+      "en_US": "Enigma Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_80",
+      "en_US": "Micle Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_81",
+      "en_US": "Custap Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_82",
+      "en_US": "Jaboca Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_83",
+      "en_US": "Rowap Berry"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_84",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_85",
+      "en_US": "Sun Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_86",
+      "en_US": "Moon Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_87",
+      "en_US": "Fire Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_88",
+      "en_US": "Thunderstone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_89",
+      "en_US": "Water Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_90",
+      "en_US": "Leaf Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_91",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_92",
+      "en_US": "King’s Rock"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_93",
+      "en_US": "Metal Coat"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_94",
+      "en_US": "Dragon Scale"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_95",
+      "en_US": "Up-Grade"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_96",
+      "en_US": "DeepSeaTooth"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_97",
+      "en_US": "DeepSeaScale"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_98",
+      "en_US": "Shiny Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_99",
+      "en_US": "Dusk Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_100",
+      "en_US": "Dawn Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_101",
+      "en_US": "Protector"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_102",
+      "en_US": "Electirizer"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_103",
+      "en_US": "Magmarizer"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_104",
+      "en_US": "Dubious Disc"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_105",
+      "en_US": "Reaper Cloth"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_106",
+      "en_US": "Razor Claw"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_107",
+      "en_US": "Razor Fang"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_108",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_109",
+      "en_US": "Heart Scale"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_110",
+      "en_US": "Everstone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_111",
+      "en_US": "Oval Stone"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_112",
+      "en_US": "White Herb"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_113",
+      "en_US": "Mental Herb"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_114",
+      "en_US": "Power Herb"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_115",
+      "en_US": "Red Shard"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_116",
+      "en_US": "Blue Shard"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_117",
+      "en_US": "Yellow Shard"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_118",
+      "en_US": "Green Shard"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_119",
+      "garbage": 0
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_120",
+      "en_US": "PREVIOUS"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_121",
+      "en_US": "NEXT"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_122",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_123",
+      "en_US": [
+        "Here you go.\n",
+        "Need anything else?"
+      ]
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_124",
+      "en_US": "1"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_125",
+      "en_US": "5"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_126",
+      "en_US": "10"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_127",
+      "en_US": "25"
+    },
+    {
+      "id": "SolaceonTownNorthHouse_Text_128",
+      "garbage": 0
     }
   ]
 }

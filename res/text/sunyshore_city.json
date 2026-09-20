@@ -283,6 +283,63 @@
         "Pokémon Rock\n",
         "Sunyshore’s Heritage Site"
       ]
+    },
+    {
+      "id": "SunyshoreCity_Text_28",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Sunyshore City!\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_29",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "SunyshoreCity_Text_30",
+      "en_US": "Veilstone City"
+    },
+    {
+      "id": "SunyshoreCity_Text_31",
+      "en_US": "Pastoria City"
+    },
+    {
+      "id": "SunyshoreCity_Text_32",
+      "en_US": "Victory Road"
+    },
+    {
+      "id": "SunyshoreCity_Text_33",
+      "en_US": "Pokémon League"
+    },
+    {
+      "id": "SunyshoreCity_Text_34",
+      "en_US": "Do you want to train?"
+    },
+    {
+      "id": "SunyshoreCity_Text_35",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 62!\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_36",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "SunyshoreCity_Text_37",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_38",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 62!"
+      ]
     }
   ]
 }

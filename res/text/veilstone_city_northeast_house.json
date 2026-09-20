@@ -80,6 +80,30 @@
         "Still, Team Galactic does seem to have\n",
         "a huge supply of energy."
       ]
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_9",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_10",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_11",
+      "en_US": "Your party is full..."
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_12",
+      "en_US": "Shuckle"
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_13",
+      "en_US": "Pinsir"
+    },
+    {
+      "id": "VeilstoneCityNortheastHouse_Text_14",
+      "en_US": "Masquerain"
     }
   ]
 }

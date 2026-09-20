@@ -112,6 +112,68 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "CanalaveCityGym_Text_10",
+      "en_US": [
+        "Byron: I’ve faced many a challenger at\n",
+        "my Gym.\r",
+        "I trained on Iron Island while\n",
+        "contemplating my worth for days...\r",
+        "I have the confidence now to batter\n",
+        "down your defenses!"
+      ]
+    },
+    {
+      "id": "CanalaveCityGym_Text_11",
+      "en_US": [
+        "Byron: Gwahahaha!\n",
+        "That’s disappointing, but all right!\r",
+        "There’s a lot to be learned by battling\n",
+        "you. We had our hopes up."
+      ]
+    },
+    {
+      "id": "CanalaveCityGym_Text_12",
+      "en_US": [
+        "Byron: Argh...\n",
+        "Came up short again...\r",
+        "Do I talk to my son Roark to train\n",
+        "together...?\r",
+        "No, that’s too embarrassing...\n",
+        "Hmm... This is a dilemma..."
+      ]
+    },
+    {
+      "id": "CanalaveCityGym_Text_13",
+      "en_US": "{COLOR 2}The level cap is now set to 56.{COLOR 0}\r"
+    },
+    {
+      "id": "CanalaveCityGym_Text_14",
+      "en_US": "Talk to the other Abra !"
+    },
+    {
+      "id": "CanalaveCityGym_Text_15",
+      "en_US": "Go to the gym leader?"
+    },
+    {
+      "id": "CanalaveCityGym_Text_16",
+      "en_US": "You can now teleport to the gym leader!"
+    },
+    {
+      "id": "CanalaveCityGym_Text_17",
+      "en_US": "Go back at the entrance?"
+    },
+    {
+      "id": "CanalaveCityGym_Text_18",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "CanalaveCityGym_Text_19",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

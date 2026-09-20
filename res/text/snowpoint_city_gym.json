@@ -109,6 +109,60 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "SnowpointCityGym_Text_10",
+      "en_US": [
+        "Candice: Hiya!\n",
+        "What’s up?\r",
+        "I bet you can’t tell what I’m thinking!\r",
+        "I’ll give the answer away.\n",
+        "I want to battle with you!"
+      ]
+    },
+    {
+      "id": "SnowpointCityGym_Text_11",
+      "en_US": "Candice: Awww!"
+    },
+    {
+      "id": "SnowpointCityGym_Text_12",
+      "en_US": [
+        "Candice: Awww!\n",
+        "That’s it!\r",
+        "I’m going to train so I can throw a\n",
+        "Focus Punch myself!"
+      ]
+    },
+    {
+      "id": "SnowpointCityGym_Text_13",
+      "en_US": "{COLOR 2}The level cap is now set to 62.{COLOR 0}\r"
+    },
+    {
+      "id": "SnowpointCityGym_Text_14",
+      "en_US": "Talk to the other Abra !"
+    },
+    {
+      "id": "SnowpointCityGym_Text_15",
+      "en_US": "Go to the gym leader?"
+    },
+    {
+      "id": "SnowpointCityGym_Text_16",
+      "en_US": "You can now teleport to the gym leader!"
+    },
+    {
+      "id": "SnowpointCityGym_Text_17",
+      "en_US": "Go back at the entrance?"
+    },
+    {
+      "id": "SnowpointCityGym_Text_18",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "SnowpointCityGym_Text_19",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

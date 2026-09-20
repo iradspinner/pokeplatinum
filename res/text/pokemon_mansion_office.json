@@ -209,6 +209,32 @@
     {
       "id": "PokemonMansionOffice_Text_PlayerPutBookBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "PokemonMansionOffice_Text_23",
+      "en_US": [
+        "I found this weird looking egg\n",
+        "while at the beach.\r",
+        "Do you want it?"
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_24",
+      "en_US": "Let me know if you want it!"
+    },
+    {
+      "id": "PokemonMansionOffice_Text_25",
+      "en_US": [
+        "I hope you will take good\n",
+        "care of it."
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_26",
+      "en_US": [
+        "Come back with room in your\n",
+        "party."
+      ]
     }
   ]
 }

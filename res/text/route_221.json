@@ -21,6 +21,17 @@
         "Pal Park\n",
         "A Place for New Beginnings"
       ]
+    },
+    {
+      "id": "Route221_Text_3",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Pal Park!\r"
+      ]
+    },
+    {
+      "id": "Route221_Text_4",
+      "en_US": "Teleport to Sandgem Town?"
     }
   ]
 }

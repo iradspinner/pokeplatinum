@@ -105,6 +105,25 @@
         "Rt. 210\n",
         "Solaceon Town"
       ]
+    },
+    {
+      "id": "Route210South_Text_12",
+      "en_US": [
+        "There’s a move that doubles in power\n",
+        "if the Pokémon using it is poisoned,\f",
+        "paralyzed, or burned.\r",
+        "I’ve got the Technical Machine for\n",
+        "it right here. You want it?\r"
+      ]
+    },
+    {
+      "id": "Route210South_Text_13",
+      "en_US": [
+        "Facade’s a good move for your Pokémon\n",
+        "to have.\r",
+        "Your opponent will think twice about\n",
+        "poisoning or paralyzing your Pokémon."
+      ]
     }
   ]
 }

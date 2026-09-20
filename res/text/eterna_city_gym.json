@@ -173,6 +173,51 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "EternaCityGym_Text_17",
+      "en_US": [
+        "Gardenia: Hi, have you been keeping\n",
+        "well?\r",
+        "Let’s cut to the good stuff!\n",
+        "Let’s get down to battle!"
+      ]
+    },
+    {
+      "id": "EternaCityGym_Text_18",
+      "en_US": [
+        "Gardenia: Aww, really?\r",
+        "My grass Pokémon are growing good\n",
+        "and strong, too..."
+      ]
+    },
+    {
+      "id": "EternaCityGym_Text_19",
+      "en_US": [
+        "Gardenia: By the way...\n",
+        "Have you been to the Old Chateau?\r",
+        "Me? Uh, well, you know, I have my Gym\n",
+        "Leader job and all, so...\r",
+        "Well, actually, I’m here training...\n",
+        "...I’m here just for fun...\r",
+        "Ahahaha!\n",
+        "Don’t mind me!"
+      ]
+    },
+    {
+      "id": "EternaCityGym_Text_20",
+      "en_US": "{COLOR 2}The level cap is now set to 33.{COLOR 0}\r"
+    },
+    {
+      "id": "EternaCityGym_Text_21",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "EternaCityGym_Text_22",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

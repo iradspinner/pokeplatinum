@@ -187,6 +187,112 @@
         "Leader: Candice\f",
         "The Diamond Dust Girl!"
       ]
+    },
+    {
+      "id": "SnowpointCity_Text_20",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Snowpoint City!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_21",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "SnowpointCity_Text_22",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "SnowpointCity_Text_23",
+      "en_US": "Eterna City"
+    },
+    {
+      "id": "SnowpointCity_Text_24",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "SnowpointCity_Text_25",
+      "en_US": "Celestic Town"
+    },
+    {
+      "id": "SnowpointCity_Text_26",
+      "en_US": "Fight Area"
+    },
+    {
+      "id": "SnowpointCity_Text_27",
+      "en_US": "Survival Area"
+    },
+    {
+      "id": "SnowpointCity_Text_28",
+      "en_US": "Resort Area"
+    },
+    {
+      "id": "SnowpointCity_Text_29",
+      "en_US": "Do you want to train?"
+    },
+    {
+      "id": "SnowpointCity_Text_30",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 56!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_31",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "SnowpointCity_Text_32",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_33",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 56!"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_34",
+      "en_US": [
+        "Hmm!\n",
+        "A Super Rod is really good!\r",
+        "Wouldn’t you agree?"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_35",
+      "en_US": [
+        "Hmm!\n",
+        "We’re of identical minds!\r",
+        "Hmm!\n",
+        "Take this {STRVAR_1 8, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_36",
+      "en_US": [
+        "Wherever there’s water, try your\n",
+        "luck at fishing."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_37",
+      "en_US": "Don’t you like to fish?"
+    },
+    {
+      "id": "SnowpointCity_Text_38",
+      "en_US": [
+        "What’s that?\n",
+        "Any advice for fishing?\r",
+        "Well, I’ll tell you.\n",
+        "It’s all about the rod and technique!"
+      ]
     }
   ]
 }

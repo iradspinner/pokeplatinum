@@ -79,6 +79,54 @@
     {
       "id": "pl_msg_00000109_00008",
       "garbage": 15
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_9",
+      "en_US": [
+        "Fantina: Finally, you have arrived!\r",
+        "So, you shall challenge me.\n",
+        "And I shall win.\r",
+        "You will be startled by how much\n",
+        "stronger I have become!"
+      ]
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_10",
+      "en_US": [
+        "Fantina: You are an amazing person!\n",
+        "Très fantastique!\r",
+        "I am delighted--for now I have a\n",
+        "purpose!\r",
+        "My purpose, it is to defeat you!"
+      ]
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_11",
+      "en_US": [
+        "Fantina: Oh? It is you?\n",
+        "Are you not taking part in Contests?\r",
+        "Since you are involving yourself in\n",
+        "Contests, you should challenge me."
+      ]
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_12",
+      "en_US": [
+        "{COLOR 2}The level cap is now set to 39.{COLOR 0}\r",
+        "You now have access to more\n",
+        "move tutors, check your Pocket PC!\r"
+      ]
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_13",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "HearthomeCityGymLeaderRoom_Text_14",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

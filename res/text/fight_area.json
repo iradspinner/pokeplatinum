@@ -483,6 +483,33 @@
         "There’s no end to Pokémon.\n",
         "That’s what I’m saying, {STRVAR_1 3, 1, 0}."
       ]
+    },
+    {
+      "id": "FightArea_Text_52",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from the Fight Area!\r"
+      ]
+    },
+    {
+      "id": "FightArea_Text_53",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "FightArea_Text_54",
+      "en_US": "Snowpoint City"
+    },
+    {
+      "id": "FightArea_Text_55",
+      "en_US": "Survival Area"
+    },
+    {
+      "id": "FightArea_Text_56",
+      "en_US": "Resort Area"
+    },
+    {
+      "id": "FightArea_Text_57",
+      "en_US": "Stark Mountain"
     }
   ]
 }

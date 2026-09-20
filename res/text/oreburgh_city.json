@@ -249,6 +249,63 @@
         "Oreburgh Mine\n",
         "Beware of Busy Pokémon!"
       ]
+    },
+    {
+      "id": "OreburghCity_Text_31",
+      "en_US": [
+        "Hi, my name is Experiencia. I can help\n",
+        "you get stronger before your gym\r",
+        "battle. Are you interested?"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_32",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "OreburghCity_Text_33",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 16!\r"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_34",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_35",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 16!"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_36",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Oreburgh City!\r"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_37",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "OreburghCity_Text_38",
+      "en_US": "Eterna City"
+    },
+    {
+      "id": "OreburghCity_Text_39",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "OreburghCity_Text_40",
+      "en_US": "Jubilife City"
     }
   ]
 }

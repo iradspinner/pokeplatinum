@@ -19,6 +19,580 @@
         "Your opponent will think twice about\n",
         "poisoning or paralyzing your Pokémon."
       ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_2",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_3",
+      "en_US": [
+        "Hello, welcome to the Utility Stop.\n",
+        "My name is Strudel.\r",
+        "Talk to my friends to see what’s\n",
+        "for sale!"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_4",
+      "en_US": [
+        "Hello, my name is Imarti!\n",
+        "I sell all sorts of berries.\r"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_5",
+      "en_US": [
+        "Hello, my name is Noghl!\n",
+        "I sell evolution items.\r"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_6",
+      "en_US": [
+        "Hello, my name is Alaska!\n",
+        "I sell a mish-mash of useful items.\r"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_7",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_8",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_9",
+      "en_US": [
+        "Use LEFT and RIGHT to move 8 slots,\n",
+        "or UP and DOWN to scroll."
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_10",
+      "en_US": [
+        "Oh no, I can’t sell you anything.\r",
+        "You need one of EACH of the\n",
+        "following berries:\r",
+        "Spelon, Pamtre, Watmel, and Durin.\n",
+        "Oh, and bring me a Nomel.\r",
+        "You should be able to find them\n",
+        "on wild Pokémon."
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_11",
+      "en_US": [
+        "Awesome, you got all four berries!\n",
+        "And a Nomel too!\r",
+        "Great, now I can make a drink.\n",
+        "I’m parched...time for Nomelade!\r",
+        "Anyways, you’re all clear for the shop.\n",
+        "Come by any time!"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_12",
+      "en_US": [
+        "Oh no, I can’t sell you anything.\r",
+        "You need one of EACH of the\n",
+        "following berries:\r",
+        "Liechi, Ganlon, Salac, Petaya, Apicot,\n",
+        "Jaboca aaaaand Rowap.\r",
+        "You should be able to find them\n",
+        "on wild Pokémon."
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_13",
+      "en_US": [
+        "Ah! The Petaya’s fleshy skin...\n",
+        "The Rowap’s syzygial shapes...\r",
+        "This will be a perfect topic for my\n",
+        "Master’s thesis!\r",
+        "Unovan Botanical Society, here I come!\r",
+        "Oh, and you can buy from me.\n",
+        "Enjoy!"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_14",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? We’ve got plenty.\n",
+        "$400 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_15",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Always handy!\n",
+        "$1,200 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_16",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Ooh, that’s a good one.\n",
+        "$5,000 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_17",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Good eye!\n",
+        "$8,000 apiece, how many do you want?"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_18",
+      "en_US": "Come again!"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_19",
+      "en_US": [
+        "You don’t have enough.\n",
+        "Come again!"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_20",
+      "en_US": "Cheri Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_21",
+      "en_US": "Chesto Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_22",
+      "en_US": "Pecha Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_23",
+      "en_US": "Rawst Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_24",
+      "en_US": "Aspear Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_25",
+      "en_US": "Leppa Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_26",
+      "en_US": "Oran Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_27",
+      "en_US": "Persim Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_28",
+      "en_US": "Lum Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_29",
+      "en_US": "Sitrus Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_30",
+      "en_US": "Figy Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_31",
+      "en_US": "Wiki Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_32",
+      "en_US": "Mago Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_33",
+      "en_US": "Aguav Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_34",
+      "en_US": "Iapapa Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_35",
+      "en_US": "Razz Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_36",
+      "en_US": "Bluk Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_37",
+      "en_US": "Nanab Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_38",
+      "en_US": "Wepear Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_39",
+      "en_US": "Pinap Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_40",
+      "en_US": "Pomeg Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_41",
+      "en_US": "Kelpst Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_42",
+      "en_US": "Qualot Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_43",
+      "en_US": "Hondew Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_44",
+      "en_US": "Grepa Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_45",
+      "en_US": "Tamato Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_46",
+      "en_US": "Cornn Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_47",
+      "en_US": "Magost Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_48",
+      "en_US": "Rabuta Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_49",
+      "en_US": "Nomel Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_50",
+      "en_US": "Spelon Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_51",
+      "en_US": "Pamtre Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_52",
+      "en_US": "Watmel Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_53",
+      "en_US": "Durin Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_54",
+      "en_US": "Belue Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_55",
+      "en_US": "Occa Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_56",
+      "en_US": "Passho Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_57",
+      "en_US": "Wacan Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_58",
+      "en_US": "Rindo Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_59",
+      "en_US": "Yache Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_60",
+      "en_US": "Chople Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_61",
+      "en_US": "Kebia Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_62",
+      "en_US": "Shuca Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_63",
+      "en_US": "Coba Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_64",
+      "en_US": "Payapa Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_65",
+      "en_US": "Tanga Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_66",
+      "en_US": "Charti Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_67",
+      "en_US": "Kasib Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_68",
+      "en_US": "Haban Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_69",
+      "en_US": "Colbur Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_70",
+      "en_US": "Babiri Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_71",
+      "en_US": "Chilan Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_72",
+      "en_US": "Liechi Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_73",
+      "en_US": "Ganlon Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_74",
+      "en_US": "Salac Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_75",
+      "en_US": "Petaya Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_76",
+      "en_US": "Apicot Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_77",
+      "en_US": "Lansat Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_78",
+      "en_US": "Starf Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_79",
+      "en_US": "Enigma Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_80",
+      "en_US": "Micle Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_81",
+      "en_US": "Custap Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_82",
+      "en_US": "Jaboca Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_83",
+      "en_US": "Rowap Berry"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_84",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_85",
+      "en_US": "Sun Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_86",
+      "en_US": "Moon Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_87",
+      "en_US": "Fire Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_88",
+      "en_US": "Thunderstone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_89",
+      "en_US": "Water Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_90",
+      "en_US": "Leaf Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_91",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_92",
+      "en_US": "King’s Rock"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_93",
+      "en_US": "Metal Coat"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_94",
+      "en_US": "Dragon Scale"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_95",
+      "en_US": "Up-Grade"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_96",
+      "en_US": "DeepSeaTooth"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_97",
+      "en_US": "DeepSeaScale"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_98",
+      "en_US": "Shiny Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_99",
+      "en_US": "Dusk Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_100",
+      "en_US": "Dawn Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_101",
+      "en_US": "Protector"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_102",
+      "en_US": "Electirizer"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_103",
+      "en_US": "Magmarizer"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_104",
+      "en_US": "Dubious Disc"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_105",
+      "en_US": "Reaper Cloth"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_106",
+      "en_US": "Razor Claw"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_107",
+      "en_US": "Razor Fang"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_108",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_109",
+      "en_US": "Heart Scale"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_110",
+      "en_US": "Everstone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_111",
+      "en_US": "Oval Stone"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_112",
+      "en_US": "White Herb"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_113",
+      "en_US": "Mental Herb"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_114",
+      "en_US": "Power Herb"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_115",
+      "en_US": "Red Shard"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_116",
+      "en_US": "Blue Shard"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_117",
+      "en_US": "Yellow Shard"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_118",
+      "en_US": "Green Shard"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_119",
+      "garbage": 0
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_120",
+      "en_US": "PREVIOUS"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_121",
+      "en_US": "NEXT"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_122",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_123",
+      "en_US": [
+        "Here you go.\n",
+        "Need anything else?"
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_124",
+      "en_US": "1"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_125",
+      "en_US": "5"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_126",
+      "en_US": "10"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_127",
+      "en_US": "25"
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_128",
+      "garbage": 0
     }
   ]
 }

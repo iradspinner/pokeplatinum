@@ -175,6 +175,46 @@
         "{STRVAR_1 3, 0, 0} returned the book to its\n",
         "place."
       ]
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_14",
+      "en_US": "Would you like your gift pokemon for Canalave Library now?"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_15",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_16",
+      "en_US": "Your party is full..."
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_17",
+      "en_US": "Primeape"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_18",
+      "en_US": "Dugtrio"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_19",
+      "en_US": "Banette"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_20",
+      "en_US": "Hariyama"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_21",
+      "en_US": "Drapion"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_22",
+      "en_US": "Aggron"
+    },
+    {
+      "id": "CanalaveLibrary2f_Text_23",
+      "en_US": "Dusclops"
     }
   ]
 }

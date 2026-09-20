@@ -114,6 +114,37 @@
         "Stark Mountain\n",
         "Eruption Zone!"
       ]
+    },
+    {
+      "id": "StarkMountainOutside_Text_10",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Stark Mountain!\r"
+      ]
+    },
+    {
+      "id": "StarkMountainOutside_Text_11",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "StarkMountainOutside_Text_12",
+      "en_US": "Fight Area"
+    },
+    {
+      "id": "StarkMountainOutside_Text_13",
+      "en_US": "Survival Area"
+    },
+    {
+      "id": "StarkMountainOutside_Text_14",
+      "en_US": "Resort Area"
+    },
+    {
+      "id": "StarkMountainOutside_Text_15",
+      "en_US": "Heatran’s Chamber"
+    },
+    {
+      "id": "StarkMountainOutside_Text_16",
+      "en_US": "{COLOR 2}The level cap is now set to 90.{COLOR 0}\r"
     }
   ]
 }

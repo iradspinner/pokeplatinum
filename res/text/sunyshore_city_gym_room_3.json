@@ -76,6 +76,56 @@
         "Against you, even the Elite Four will\n",
         "be pushed to fend off your challenge!"
       ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_6",
+      "en_US": [
+        "Volkner: Your Pokémon...\n",
+        "I can feel their power!\r",
+        "Of course, you can sense the power of\n",
+        "my Pokémon, can’t you?\r",
+        "Let us battle with you!"
+      ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_7",
+      "en_US": [
+        "Volkner: Winning makes me happy, and\n",
+        "losing leaves me angry...\r",
+        "That’s no great revelation, but it’s\n",
+        "what makes me stronger."
+      ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_8",
+      "en_US": [
+        "Volkner: Some Trainers have Pokémon\n",
+        "they just have to have in their party.\r",
+        "For me, ELECTIVIRE is that Pokémon..."
+      ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_9",
+      "en_US": "{COLOR 2}The level cap is now set to 78.{COLOR 0}\r"
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_10",
+      "en_US": "You can now teleport to the gym leader!"
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_11",
+      "en_US": "Go back at the entrance?"
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_12",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom3_Text_13",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

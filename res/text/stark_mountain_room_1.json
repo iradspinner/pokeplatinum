@@ -109,6 +109,37 @@
         "We’ll be off to collect the Magma Stone.\n",
         "It’s all for the money!\r"
       ]
+    },
+    {
+      "id": "StarkMountainRoom1_Text_10",
+      "en_US": [
+        "I’m digging to find rare rocks,\n",
+        "could you leave me alone?"
+      ]
+    },
+    {
+      "id": "StarkMountainRoom1_Text_11",
+      "en_US": [
+        "You…\n",
+        "I had no idea you’d be so strong…"
+      ]
+    },
+    {
+      "id": "StarkMountainRoom1_Text_12",
+      "en_US": [
+        "... I’m Steven Stone. I can see it\n",
+        "in your eyes, you are here for\r",
+        "the challenge of a lifetime.\n",
+        "Prepare for battle!"
+      ]
+    },
+    {
+      "id": "StarkMountainRoom1_Text_13",
+      "en_US": [
+        "It is what it is.\r",
+        "We lost the battle, but I was still\n",
+        "able to learn something. Thank you."
+      ]
     }
   ]
 }

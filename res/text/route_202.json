@@ -221,6 +221,20 @@
         "same kind of Pokémon, you should\f",
         "consider using Repels.\r"
       ]
+    },
+    {
+      "id": "Route202_Text_20",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "I was waiting to battle with you!\r"
+      ]
+    },
+    {
+      "id": "Route202_Text_21",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "I was waiting to battle with you!\r"
+      ]
     }
   ]
 }

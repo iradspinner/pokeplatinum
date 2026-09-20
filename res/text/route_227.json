@@ -4,8 +4,6 @@
     {
       "id": "Route227_Text_PatrolStarkMountain",
       "en_US": [
-        "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\n",
-        "Out training right away, are you?\r",
         "So, uh, since you’re training anyway,\n",
         "can you do me a favor?\r",
         "I’d like you to patrol Stark Mountain\n",
@@ -133,6 +131,14 @@
       "en_US": [
         "Rt. 227\n",
         "Stark Mountain"
+      ]
+    },
+    {
+      "id": "Route227_Text_13",
+      "en_US": [
+        "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\n",
+        "Out training right away, are you?\r",
+        "Let me help you with that!\r"
       ]
     }
   ]

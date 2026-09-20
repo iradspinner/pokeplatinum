@@ -54,10 +54,7 @@
         "It’s a move that inflicts damage on\n",
         "foes that switch into battle.\r",
         "Incidentally, a TM will teach its move\n",
-        "to a Pokémon instantly.\r",
-        "But a TM will break when you use it,\n",
-        "so make certain you want a Pokémon\f",
-        "to learn that move."
+        "to a Pokémon instantly."
       ]
     },
     {
@@ -122,6 +119,49 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "OreburghCityGym_Text_10",
+      "en_US": [
+        "Roark: I went down to the Underground\n",
+        "every day.\r",
+        "I toughened up my Pokémon by digging\n",
+        "up Fossils nonstop.\r",
+        "Could I show you how tough I made them\n",
+        "in a battle?"
+      ]
+    },
+    {
+      "id": "OreburghCityGym_Text_11",
+      "en_US": [
+        "Roark: ...We lost control there.\r",
+        "Next time, I’d like to challenge you to\n",
+        "a Fossil-digging race underground."
+      ]
+    },
+    {
+      "id": "OreburghCityGym_Text_12",
+      "en_US": [
+        "Roark: When I became a Gym Leader,\n",
+        "I finally realized how great my dad is.\r",
+        "Not that I’d ever admit that to him,\n",
+        "of course."
+      ]
+    },
+    {
+      "id": "OreburghCityGym_Text_13",
+      "en_US": "{COLOR 2}The level cap is now set to 26.{COLOR 0}\r"
+    },
+    {
+      "id": "OreburghCityGym_Text_14",
+      "en_US": [
+        "Happiny would like to heal your\n",
+        "Pokémons, let her do it?"
+      ]
+    },
+    {
+      "id": "OreburghCityGym_Text_15",
+      "en_US": "HAPPINY: HAP-HAP-HAPPIII!"
     }
   ]
 }

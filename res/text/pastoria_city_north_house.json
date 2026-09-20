@@ -22,6 +22,42 @@
         "They’re the Quick Trams that traverse\n",
         "the Great Marsh."
       ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_3",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_4",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_5",
+      "en_US": "Your party is full..."
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_6",
+      "en_US": "Kingler"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_7",
+      "en_US": "Remoraid"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_8",
+      "en_US": "Relicanth"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_9",
+      "en_US": "Politoed"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_10",
+      "en_US": "Dewgong"
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_11",
+      "en_US": "Seadra"
     }
   ]
 }

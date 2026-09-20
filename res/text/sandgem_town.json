@@ -83,16 +83,12 @@
       "id": "SandgemTown_Text_ContainsTheMoveReturn",
       "en_US": [
         "Rowan: That is a Technical Machine.\n",
-        "That one contains the move Return.\r",
+        "That one contains the move Hidden Power.\r",
         "Using a Technical Machine, or TM for\n",
         "short, teaches a move instantly to\f",
         "a Pokémon.\r",
-        "Bear in mind, however, that a TM is\n",
-        "single-use only.\r",
-        "The move Return gains power the more\n",
-        "friendly your Pokémon is with you.\r",
-        "It’s up to you, of course, if you want\n",
-        "to use that TM or not.\r",
+        "I’m also giving you a Pocket PC,\n",
+        "I’ll let you figure it out.\r",
         "I’ll send you off with the wish that\n",
         "your journey will be fun.\r"
       ]
@@ -281,6 +277,29 @@
         "Heal Your Pokémon!\n",
         "Pokémon Center"
       ]
+    },
+    {
+      "id": "SandgemTown_Text_30",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Sandgem Town!\r"
+      ]
+    },
+    {
+      "id": "SandgemTown_Text_31",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "SandgemTown_Text_32",
+      "en_US": "Twinleaf Town"
+    },
+    {
+      "id": "SandgemTown_Text_33",
+      "en_US": "Jubilife City"
+    },
+    {
+      "id": "SandgemTown_Text_34",
+      "en_US": "Pal Park"
     }
   ]
 }

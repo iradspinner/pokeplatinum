@@ -30,6 +30,48 @@
         "That where life has faded...\r",
         "A place where two worlds overlap..."
       ]
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_5",
+      "en_US": [
+        "So we meet again...\r",
+        "It would seem like our fates\n",
+        "have become intertwined?"
+      ]
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_6",
+      "en_US": [
+        "Here and now, I will\n",
+        "finally break that bond!\r"
+      ]
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_7",
+      "en_US": "Farewell."
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_8",
+      "en_US": [
+        "Had I met you sooner...\r",
+        "Would things have been\n",
+        "different for me...?"
+      ]
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_9",
+      "en_US": "..."
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_10",
+      "en_US": "You can now teleport here!"
+    },
+    {
+      "id": "TurnbackCaveGiratinaRoom_Text_11",
+      "en_US": [
+        "Do you want to go back at the\n",
+        "beginning?"
+      ]
     }
   ]
 }

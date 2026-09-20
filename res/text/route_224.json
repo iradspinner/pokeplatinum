@@ -140,6 +140,20 @@
         "Marley: To you, too...\r",
         "Thank you..."
       ]
+    },
+    {
+      "id": "Route224_Text_13",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from route 224!\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_14",
+      "en_US": [
+        "Do you want to be teleported to\n",
+        "the Pokémon League?"
+      ]
     }
   ]
 }

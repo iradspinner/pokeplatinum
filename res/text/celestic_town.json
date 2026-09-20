@@ -193,6 +193,41 @@
         "Space is ever-expanding dimensions...\n",
         "Our spirits, too, are as space..."
       ]
+    },
+    {
+      "id": "CelesticTown_Text_18",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Celestic Town!\r"
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_19",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "CelesticTown_Text_20",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "CelesticTown_Text_21",
+      "en_US": "Eterna City"
+    },
+    {
+      "id": "CelesticTown_Text_22",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "CelesticTown_Text_23",
+      "en_US": "Solaceon Town"
+    },
+    {
+      "id": "CelesticTown_Text_24",
+      "en_US": "Veilstone City"
+    },
+    {
+      "id": "CelesticTown_Text_25",
+      "en_US": "Snowpoint City"
     }
   ]
 }

@@ -116,6 +116,124 @@
     {
       "id": "TwinleafTown_Text_RivalsHouse",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
+    },
+    {
+      "id": "TwinleafTown_Text_15",
+      "en_US": "Do you want to go to Sandgem Town?"
+    },
+    {
+      "id": "TwinleafTown_Text_16",
+      "en_US": [
+        "This Pokemon is part of the teleport\n",
+        "system, please talk to the other\r",
+        "Abra in Sandgem Town to activate\n",
+        "the teleport function."
+      ]
+    },
+    {
+      "id": "TwinleafTown_Text_17",
+      "en_US": [
+        "You activated the teleport system from\n",
+        "Twinleaf Town!\r"
+      ]
+    },
+    {
+      "id": "TwinleafTown_Text_18",
+      "en_US": [
+        "I’m the most talented esper in the\n",
+        "world! With my powers I could summon\r",
+        "legendary Pokémons from accross the\n",
+        "world! Don’t believe me?\r",
+        "Come back after defeating the league!"
+      ]
+    },
+    {
+      "id": "TwinleafTown_Text_19",
+      "en_US": [
+        "You did it... Let me show you the\n",
+        "extent of my powers!\r",
+        "Who do you want to battle?"
+      ]
+    },
+    {
+      "id": "TwinleafTown_Text_20",
+      "en_US": "Come back anytime!"
+    },
+    {
+      "id": "TwinleafTown_Text_21",
+      "en_US": "Mewtwo"
+    },
+    {
+      "id": "TwinleafTown_Text_22",
+      "en_US": "Mew"
+    },
+    {
+      "id": "TwinleafTown_Text_23",
+      "en_US": "Raikou"
+    },
+    {
+      "id": "TwinleafTown_Text_24",
+      "en_US": "Entei"
+    },
+    {
+      "id": "TwinleafTown_Text_25",
+      "en_US": "Suicine"
+    },
+    {
+      "id": "TwinleafTown_Text_26",
+      "en_US": "Lugia"
+    },
+    {
+      "id": "TwinleafTown_Text_27",
+      "en_US": "Ho-oh"
+    },
+    {
+      "id": "TwinleafTown_Text_28",
+      "en_US": "Celebi"
+    },
+    {
+      "id": "TwinleafTown_Text_29",
+      "en_US": "Latias"
+    },
+    {
+      "id": "TwinleafTown_Text_30",
+      "en_US": "Latios"
+    },
+    {
+      "id": "TwinleafTown_Text_31",
+      "en_US": "Kyogre"
+    },
+    {
+      "id": "TwinleafTown_Text_32",
+      "en_US": "Groudon"
+    },
+    {
+      "id": "TwinleafTown_Text_33",
+      "en_US": "Rayquaza"
+    },
+    {
+      "id": "TwinleafTown_Text_34",
+      "en_US": "Jirachi"
+    },
+    {
+      "id": "TwinleafTown_Text_35",
+      "en_US": "Deoxys"
+    },
+    {
+      "id": "TwinleafTown_Text_36",
+      "en_US": "Get ready!"
+    },
+    {
+      "id": "TwinleafTown_Text_37",
+      "en_US": "Do you want rare candies ?"
+    },
+    {
+      "id": "TwinleafTown_Text_38",
+      "en_US": "Come back if you change your mind."
+    },
+    {
+      "id": "TwinleafTown_Text_39",
+      "en_US": "Come see me if you run out !"
     }
   ]
 }

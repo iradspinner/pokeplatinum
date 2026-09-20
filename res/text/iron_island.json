@@ -54,6 +54,17 @@
         "You just go on and tell me whenever\n",
         "you want to set sail again!"
       ]
+    },
+    {
+      "id": "IronIsland_Text_6",
+      "en_US": [
+        "You seem like a strong trainer.\n",
+        "Let’s battle.\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_7",
+      "en_US": "That was fun.\r"
     }
   ]
 }

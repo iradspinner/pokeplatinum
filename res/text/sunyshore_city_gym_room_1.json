@@ -64,6 +64,14 @@
         "{STRVAR_1 3, 0, 0}\f",
         "{STRVAR_1 3, 1, 0}"
       ]
+    },
+    {
+      "id": "SunyshoreCityGymRoom1_Text_5",
+      "en_US": "Talk to the other Abra !"
+    },
+    {
+      "id": "SunyshoreCityGymRoom1_Text_6",
+      "en_US": "Go to the gym leader?"
     }
   ]
 }

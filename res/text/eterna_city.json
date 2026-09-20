@@ -396,6 +396,67 @@
         "There seems to have been a descriptive\n",
         "plate, but it appears it was torn off."
       ]
+    },
+    {
+      "id": "EternaCity_Text_43",
+      "en_US": "Would you like to train?"
+    },
+    {
+      "id": "EternaCity_Text_44",
+      "en_US": [
+        "Don’t forget, I will only train you\n",
+        "up to level 26!\r"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_45",
+      "en_US": "See you around!"
+    },
+    {
+      "id": "EternaCity_Text_46",
+      "en_US": [
+        "Come see me again if you want\n",
+        "to get stronger!"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_47",
+      "en_US": [
+        "Your Pokemon are strong enough.\n",
+        "I will train you again if you bring a\r",
+        "party of Pokemon under level 26!"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_48",
+      "en_US": [
+        "You activated the teleport system\n",
+        "from Sandgem Town!\r"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_49",
+      "en_US": "Where do you want to be teleported to?"
+    },
+    {
+      "id": "EternaCity_Text_50",
+      "en_US": "Oreburgh City"
+    },
+    {
+      "id": "EternaCity_Text_51",
+      "en_US": "Floaroma Town"
+    },
+    {
+      "id": "EternaCity_Text_52",
+      "en_US": "Hearthome City"
+    },
+    {
+      "id": "EternaCity_Text_53",
+      "en_US": "Celestic Town"
+    },
+    {
+      "id": "EternaCity_Text_54",
+      "en_US": "Snowpoint City"
     }
   ]
 }

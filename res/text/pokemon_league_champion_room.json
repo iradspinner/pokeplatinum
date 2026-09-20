@@ -66,6 +66,15 @@
         "the Pokémon League Champion!\r",
         "There won’t be any letup from me!\r"
       ]
+    },
+    {
+      "id": "PokemonLeagueChampionRoom_Text_4",
+      "en_US": [
+        "{COLOR 2}The level cap is now set to 100.{COLOR 0}\r",
+        "You can now fight superbosses, reset\n",
+        "legendary Pokémons, trades and\r",
+        "gifts Pokémons!\r"
+      ]
     }
   ]
 }

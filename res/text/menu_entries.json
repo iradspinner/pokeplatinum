@@ -99,7 +99,7 @@
     },
     {
       "id": "pl_msg_00000361_00024",
-      "garbage": 8
+      "garbage": 0
     },
     {
       "id": "pl_msg_00000361_00025",
@@ -123,15 +123,15 @@
     },
     {
       "id": "pl_msg_00000361_00030",
-      "garbage": 8
+      "en_US": "Repel"
     },
     {
       "id": "pl_msg_00000361_00031",
-      "garbage": 8
+      "en_US": "Super Repel"
     },
     {
       "id": "pl_msg_00000361_00032",
-      "garbage": 8
+      "en_US": "Max Repel"
     },
     {
       "id": "pl_msg_00000361_00033",
@@ -231,7 +231,7 @@
     },
     {
       "id": "pl_msg_00000361_00057",
-      "garbage": 1
+      "en_US": "Teleport System"
     },
     {
       "id": "MenuEntries_Text_PC_SomeonesPC",
@@ -239,7 +239,7 @@
     },
     {
       "id": "MenuEntries_Text_PC_BebesPC",
-      "en_US": "Pok\u00e9mon Storage"
+      "en_US": "Pokémon Storage"
     },
     {
       "id": "MenuEntries_Text_PC_PlayersPC",
@@ -251,7 +251,7 @@
     },
     {
       "id": "MenuEntries_Text_PC_OaksPC",
-      "en_US": "Oak\u2019s PC"
+      "en_US": "Oak’s PC"
     },
     {
       "id": "MenuEntries_Text_PC_RowansPC",
@@ -263,15 +263,15 @@
     },
     {
       "id": "MenuEntries_Text_PC_DepositPokemon",
-      "en_US": "Deposit Pok\u00e9mon"
+      "en_US": "Deposit Pokémon"
     },
     {
       "id": "MenuEntries_Text_PC_WithdrawPokemon",
-      "en_US": "Withdraw Pok\u00e9mon"
+      "en_US": "Withdraw Pokémon"
     },
     {
       "id": "MenuEntries_Text_PC_MovePokemon",
-      "en_US": "Move Pok\u00e9mon"
+      "en_US": "Move Pokémon"
     },
     {
       "id": "MenuEntries_Text_PC_MoveItems",
@@ -279,7 +279,7 @@
     },
     {
       "id": "MenuEntries_Text_PC_ComparePokemon",
-      "en_US": "Compare Pok\u00e9mon"
+      "en_US": "Compare Pokémon"
     },
     {
       "id": "MenuEntries_Text_PC_SeeYa",
@@ -363,31 +363,31 @@
     },
     {
       "id": "pl_msg_00000361_00084",
-      "garbage": 8
+      "en_US": "Potential Rater"
     },
     {
       "id": "pl_msg_00000361_00085",
-      "garbage": 8
+      "en_US": "Name Rater APP"
     },
     {
       "id": "pl_msg_00000361_00086",
-      "garbage": 10
+      "en_US": "Hidden Power APP"
     },
     {
       "id": "pl_msg_00000361_00087",
-      "garbage": 4
+      "en_US": "Happiness Up"
     },
     {
       "id": "pl_msg_00000361_00088",
-      "garbage": 4
+      "en_US": "Legendary Reset"
     },
     {
       "id": "pl_msg_00000361_00089",
-      "garbage": 4
+      "en_US": "Superbosses/Gyms Reset"
     },
     {
       "id": "pl_msg_00000361_00090",
-      "garbage": 4
+      "en_US": "Trades/Gifts Reset"
     },
     {
       "id": "pl_msg_00000361_00091",
@@ -399,7 +399,7 @@
     },
     {
       "id": "pl_msg_00000361_00093",
-      "garbage": 7
+      "en_US": "Online Shop"
     },
     {
       "id": "MenuEntries_Text_BattleTower_Cancel",

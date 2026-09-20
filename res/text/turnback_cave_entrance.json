@@ -16,6 +16,17 @@
         "offer up...to the...\f",
         "...before 30 is surpassed..."
       ]
+    },
+    {
+      "id": "TurnbackCaveEntrance_Text_2",
+      "en_US": "Find the other Abra first."
+    },
+    {
+      "id": "TurnbackCaveEntrance_Text_3",
+      "en_US": [
+        "Do you want to be teleported to\n",
+        "Distorsion World’s entrance?"
+      ]
     }
   ]
 }
