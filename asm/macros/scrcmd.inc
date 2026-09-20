@@ -5188,6 +5188,14 @@
     GoToIfEq \destVarID, FALSE, \offset
     .endm
 
+    /* Platinum Oxide: set the remaining Repel steps. Replaces the base ROM's
+       scratch-address poke plus repurposed Dummy088; see the tracker's Phase 3
+       hard stop 3. */
+    .macro SetRepelSteps steps
+    .short SCRCMD_SETREPELSTEPS
+    .short \steps
+    .endm
+
     .macro NPCMessage messageID
     PlaySE SE_CONFIRM_sseq_3
     LockAll

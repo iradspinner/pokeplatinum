@@ -846,6 +846,9 @@ ScriptCommand(SCRCMD_BUFFERBALLSEALNAMEPLURAL,                             ScrCm
 ScriptCommand(SCRCMD_CAPITALIZEFIRSTLETTER,                                ScrCmd_CapitalizeFirstLetter)
 ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCmd_BufferFloorNumber)
 
+// Platinum Oxide additions go at the end so no existing opcode moves.
+ScriptCommand(SCRCMD_SETREPELSTEPS,                                        ScrCmd_SetRepelSteps)
+
 // clang-format on
 
 #endif // POKEPLATINUM_DATA_SCRIPTS_SCRCMD_H

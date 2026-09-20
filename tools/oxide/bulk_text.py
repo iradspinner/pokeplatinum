@@ -49,10 +49,11 @@ def main():
     base, van = imp.Rom(a.base), imp.Rom(a.vanilla)
     bm, vm = base.narc(MSG_NARC), van.narc(MSG_NARC)
     already = set()
+    built_banks = None
     if os.path.isfile(a.built):
-        built = imp.Rom(a.built).narc(MSG_NARC)
-        already = {i for i in range(min(len(built), len(bm)))
-                   if bytes(built[i]) == bytes(bm[i])}
+        built_banks = imp.Rom(a.built).narc(MSG_NARC)
+        already = {i for i in range(min(len(built_banks), len(bm)))
+                   if bytes(built_banks[i]) == bytes(bm[i])}
     names = imp.text_bank_names()
 
     written, skipped = 0, []
@@ -66,6 +67,15 @@ def main():
             continue
         current = json.load(open(path, encoding="utf-8"))
         decoded = imp.decode_text_bank(a.msgenc, a.charmap, bm[i], a.tmp, f"bt{i}")
+        if built_banks is not None and i < len(built_banks):
+            # A bank whose text already matches is done, whatever its bytes say.
+            # DSPRE re-encrypted a couple of banks with its own key, and the key
+            # is stored in the bank, so any value decodes the same. Rewriting
+            # them would change nothing and would make the restart check-list
+            # look like something had moved.
+            mine = imp.decode_text_bank(a.msgenc, a.charmap, built_banks[i], a.tmp, f"bc{i}")
+            if [imp.message_body(x) for x in mine] == [imp.message_body(x) for x in decoded]:
+                continue
         prefix = bank_prefix(names[i])
         out = {"key": current["key"], "messages": []}
         for n, msg in enumerate(decoded):

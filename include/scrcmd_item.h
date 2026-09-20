@@ -3,6 +3,7 @@
 
 #include "field_script_context.h"
 
+BOOL ScrCmd_SetRepelSteps(ScriptContext *ctx);
 BOOL ScrCmd_AddItem(ScriptContext *ctx);
 BOOL ScrCmd_RemoveItem(ScriptContext *ctx);
 BOOL ScrCmd_CanFitItem(ScriptContext *ctx);

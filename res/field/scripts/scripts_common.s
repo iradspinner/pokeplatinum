@@ -1994,8 +1994,7 @@ Common_1EDB:
     AddMenuEntryImm 32, 2
     Return
 Common_1EE1:
-    ScrCmd_Unused_007 37617448, 100
-    Dummy088
+    SetRepelSteps 100
     RemoveItem ITEM_REPEL, 1, SCRIPT_LOCAL_VARS_START
     BufferPlayerName 0
     BufferItemName 1, ITEM_REPEL
@@ -2005,8 +2004,7 @@ Common_1EE1:
     ReleaseAll
     Return
 Common_1F05:
-    ScrCmd_Unused_007 37617448, 150
-    Dummy088
+    SetRepelSteps 150
     RemoveItem ITEM_SUPER_REPEL, 1, SCRIPT_LOCAL_VARS_START
     BufferPlayerName 0
     BufferItemName 1, ITEM_SUPER_REPEL
@@ -2016,8 +2014,7 @@ Common_1F05:
     ReleaseAll
     Return
 Common_1F29:
-    ScrCmd_Unused_007 37617448, 250
-    Dummy088
+    SetRepelSteps 250
     RemoveItem ITEM_MAX_REPEL, 1, SCRIPT_LOCAL_VARS_START
     BufferPlayerName 0
     BufferItemName 1, ITEM_MAX_REPEL
