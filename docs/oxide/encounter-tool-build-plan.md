@@ -555,6 +555,24 @@ column. The one bold element is the repel ladder, now drawn as proportional bars
 per rung with caught species hatched, so the mass visibly moves to the survivors
 when a box is ticked.
 
+**Third round, same day: caught state is per area.** Ian asked for a column
+saying *what was caught there* and an "Encounter:" heading on the centre table.
+Both imply the nuzlocke model the dupes clause comes from — one encounter per
+area — so the caught record changed shape from a bare species list to
+`{area: species}`. Ticking a species records it against the area being edited;
+ticking a second species on the same area replaces the first; unticking clears
+that area. A species duped out by a relative now says where and by what
+("Starly, route 201") instead of a bare *line caught* tag, and the whole-dex
+owned set is still derived by expanding every recorded encounter's line. The
+area list gained the encounter column, the centre header carries the encounter in
+large type at top right, the species cell was cut to 11.5em from filling the
+column, and the centre's type went up to 15.5px. 46/46.
+
+This is also where the tool's footprint in `tracker.md` was formally cut to one
+paragraph by the other track's docs pass ("one home per fact"); per-milestone
+records live here from now on, which is what has been causing the merge
+conflicts to stop.
+
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,
 twelve-slot editor with merged and ladder views, live analysis panel with the

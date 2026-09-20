@@ -109,10 +109,26 @@ def check_caught_is_global(results):
     post("/api/caught", {"clear": True})
     before = {r["area"]: r for r in get("/api/areas")["rows"]}
     code, payload = post("/api/caught",
-                         {"species": "SPECIES_BIDOOF", "caught": True})
-    results.append(("caught write accepted",
-                    code == 200 and payload["caught"] == ["SPECIES_BIDOOF"],
+                         {"area": "encounters_route_201",
+                          "species": "SPECIES_BIDOOF"})
+    results.append(("caught write is recorded against its area",
+                    code == 200
+                    and payload["encounters"] == {"encounters_route_201":
+                                                  "SPECIES_BIDOOF"},
                     f"HTTP {code}"))
+    rows = {r["area"]: r for r in get("/api/areas")["rows"]}
+    results.append(("the area list shows what was caught there",
+                    rows["encounters_route_201"]["encounter_label"] == "Bidoof"
+                    and rows["encounters_route_202"]["encounter_label"] is None,
+                    ""))
+    code, payload = post("/api/caught",
+                         {"area": "encounters_route_201",
+                          "species": "SPECIES_STARLY"})
+    results.append(("a second tick on the same area replaces the first",
+                    payload["encounters"] == {"encounters_route_201":
+                                              "SPECIES_STARLY"}, ""))
+    post("/api/caught", {"area": "encounters_route_201",
+                         "species": "SPECIES_BIDOOF"})
     after = {r["area"]: r for r in get("/api/areas")["rows"]}
     moved = [a for a in before
              if before[a]["live_species"] != after[a]["live_species"]]
@@ -137,11 +153,15 @@ def check_caught_is_global(results):
     results.append(("caught species carry no conditional share",
                     all(p["cond"] is None for p in pool if p["caught"]), ""))
 
-    code, _ = post("/api/caught", {"species": "SPECIES_NOPE", "caught": True})
+    code, _ = post("/api/caught", {"area": "encounters_route_201",
+                                   "species": "SPECIES_NOPE"})
     results.append(("unknown species refused", code == 400, f"HTTP {code}"))
+    code, _ = post("/api/caught", {"species": "SPECIES_BIDOOF"})
+    results.append(("a tick without an area is refused", code == 400,
+                    f"HTTP {code}"))
     post("/api/caught", {"clear": True})
-    results.append(("clear empties the caught set",
-                    get("/api/caught")["caught"] == [], ""))
+    results.append(("clear empties every encounter",
+                    get("/api/caught")["encounters"] == {}, ""))
 
 
 def check_rejections(results):
@@ -209,7 +229,8 @@ def check_lines_dupe_out(results):
     Route 201 has to zero every Starly-line entry everywhere."""
     post("/api/caught", {"clear": True})
     _, payload = post("/api/caught",
-                      {"species": "SPECIES_STARLY", "caught": True})
+                      {"area": "encounters_route_201",
+                       "species": "SPECIES_STARLY"})
     results.append(("catching one species owns its whole line",
                     set(payload["owned"]) == {"SPECIES_STARLY",
                                               "SPECIES_STARAVIA",
@@ -235,6 +256,14 @@ def check_lines_dupe_out(results):
                     bool(staravia) and staravia[0]["duped"]
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
+    results.append(("a duped row says where and by what",
+                    bool(staravia) and staravia[0]["caught_at"] == "route 201"
+                    and staravia[0]["via"] == "Starly",
+                    f"{staravia[0]['via'] if staravia else '-'}, "
+                    f"{staravia[0]['caught_at'] if staravia else '-'}"))
+    d201 = get("/api/area/encounters_route_201?kind=land")
+    results.append(("the centre carries the area's encounter",
+                    d201["encounter_label"] == "Starly", ""))
     post("/api/caught", {"clear": True})
 
 

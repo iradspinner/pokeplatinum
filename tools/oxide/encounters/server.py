@@ -43,20 +43,23 @@ def species_universe():
     return dex.species_universe(model.repo_root())
 
 
-def load_caught():
+def load_encounters():
+    """{area: species}: one encounter per area, the nuzlocke model the dupes
+    clause comes from. Ticking a second species on the same area replaces the
+    first. The older bare list format is ignored, since it carried no area."""
     path = os.path.join(model.repo_root(), CAUGHT_FILE)
     try:
         with open(path, encoding="utf-8") as f:
-            return set(json.load(f).get("caught") or [])
+            return dict(json.load(f).get("encounters") or {})
     except (FileNotFoundError, ValueError):
-        return set()
+        return {}
 
 
-def save_caught(caught):
+def save_encounters(encounters):
     path = os.path.join(model.repo_root(), CAUGHT_FILE)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
-        json.dump({"caught": sorted(caught)}, f, indent=2)
+        json.dump({"encounters": dict(sorted(encounters.items()))}, f, indent=2)
         f.write("\n")
 
 
@@ -70,10 +73,16 @@ class State:
         self.sidecar = model.load_sidecar()
         self.entries = (self.sidecar or {}).get("areas") or {}
         self.thresholds = lint.thresholds_from(self.sidecar)
-        self.caught = load_caught()
+        self.encounters = load_encounters()          # {area: species}
+        self.caught = set(self.encounters.values())
         # The dupes clause works on families: a Starly caught on Route 201
-        # also dupes out Staravia and Staraptor wherever they appear.
+        # also dupes out Staravia and Staraptor wherever they appear. owner_of
+        # remembers where, so a duped-out row can say "Starly, Route 201".
         self.owned = dex.expand_caught(self.root, self.caught)
+        self.owner_of = {}
+        for area, sp in self.encounters.items():
+            for member in dex.members_of_line(self.root, dex.line_of(self.root, sp)):
+                self.owner_of[member] = (area, sp)
 
     def areas(self):
         return [a for a in model.load_all(self.ref) if a.land_active]
@@ -86,10 +95,20 @@ class State:
                  a.data) for a in areas]
 
 
-def _species_view(species, st):
-    return {"species": species, "label": dex.display_name(species),
-            "caught": species in st.caught,
-            "duped": species in st.owned and species not in st.caught}
+def _area_label(name):
+    return name.replace("encounters_", "").replace("_", " ")
+
+
+def _species_view(species, st, area=None):
+    owner = st.owner_of.get(species)
+    here = owner is not None and owner[0] == area
+    return {
+        "species": species, "label": dex.display_name(species),
+        "caught": here,                       # the encounter for this area
+        "duped": owner is not None and not here,
+        "caught_at": _area_label(owner[0]) if owner else None,
+        "via": dex.display_name(owner[1]) if owner and owner[1] != species else None,
+    }
 
 
 def area_row(a, st, findings_by_area):
@@ -112,7 +131,10 @@ def area_row(a, st, findings_by_area):
 
     return {
         "area": a.name,
-        "label": a.name.replace("encounters_", "").replace("_", " "),
+        "label": _area_label(a.name),
+        "encounter": st.encounters.get(a.name),
+        "encounter_label": dex.display_name(st.encounters[a.name])
+                           if a.name in st.encounters else None,
         "band": e.get("band") or a.band,
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
@@ -146,8 +168,7 @@ def area_detail(a, st, kind="land"):
 
     if not slots:
         return {"area": a.name, "kind": kind, "empty": True,
-                "kinds": a.kinds_present(),
-                "label": a.name.replace("encounters_", "").replace("_", " ")}
+                "kinds": a.kinds_present(), "label": _area_label(a.name)}
 
     odds = A.slot_odds(slots, st.owned, rates)
     m = A.table_metrics(slots, rates)
@@ -161,7 +182,7 @@ def area_detail(a, st, kind="land"):
         rung_rows.append({
             "level": level,
             "throughput": A.throughput(p, st.owned),
-            "pool": [dict(_species_view(s, st), share=v, cond=cond.get(s))
+            "pool": [dict(_species_view(s, st, a.name), share=v, cond=cond.get(s))
                      for s, v in sorted(p.items(), key=lambda kv: -kv[1])],
         })
 
@@ -172,7 +193,10 @@ def area_detail(a, st, kind="land"):
 
     return {
         "area": a.name,
-        "label": a.name.replace("encounters_", "").replace("_", " "),
+        "label": _area_label(a.name),
+        "encounter": st.encounters.get(a.name),
+        "encounter_label": dex.display_name(st.encounters[a.name])
+                           if a.name in st.encounters else None,
         "kind": kind,
         "kinds": a.kinds_present(),
         "kind_labels": KIND_LABELS,
@@ -181,14 +205,14 @@ def area_detail(a, st, kind="land"):
         "intent": e.get("intent", ""),
         "rate": a.kind_rate(kind),
         "ranged": kind != "land",
-        "slots": [dict(_species_view(sp, st), slot=i, rate=rates[i],
+        "slots": [dict(_species_view(sp, st, a.name), slot=i, rate=rates[i],
                        level_min=lo, level_max=hi, odds=odds[i])
                   for i, ((sp, lo, hi)) in enumerate(slots)],
         "day": a.data.get("day"), "night": a.data.get("night"),
         "day_labels": [dex.display_name(s) for s in (a.data.get("day") or [])],
         "night_labels": [dex.display_name(s)
                          for s in (a.data.get("night") or [])],
-        "merged": [dict(_species_view(s, st), share=v,
+        "merged": [dict(_species_view(s, st, a.name), share=v,
                         cond=cond_merged.get(s, 0.0))
                    for s, v in sorted(merged.items(), key=lambda kv: -kv[1])],
         "rungs": rung_rows,
@@ -261,9 +285,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send({"species": rows})
             if parts[1] == "caught":
                 return self._send({
+                    "encounters": st.encounters,
                     "caught": sorted(st.caught),
                     "owned": sorted(st.owned),
-                    "labels": {s: dex.display_name(s) for s in st.owned},
                 })
         except FileNotFoundError:
             return self._send({"error": "no such area"}, 404)
@@ -281,18 +305,27 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # on every other table too, which is the point of the dupes
             # clause. Stored once, server side, rather than per page.
             if len(parts) >= 2 and parts[0] == "api" and parts[1] == "caught":
-                caught = load_caught()
-                if "clear" in body:
-                    caught = set()
+                enc = load_encounters()
+                if body.get("clear") and "area" not in body:
+                    enc = {}
                 else:
-                    sp = body.get("species")
-                    if sp not in set(species_universe()):
-                        return self._send({"error": f"no such species: {sp}"},
-                                          400)
-                    caught.add(sp) if body.get("caught") else caught.discard(sp)
-                save_caught(caught)
+                    area = body.get("area")
+                    if not area:
+                        return self._send({"error": "which area?"}, 400)
+                    model.load_area(area)          # 404s if it does not exist
+                    if body.get("clear") or body.get("caught") is False:
+                        if body.get("species") in (None, enc.get(area)):
+                            enc.pop(area, None)
+                    else:
+                        sp = body.get("species")
+                        if sp not in set(species_universe()):
+                            return self._send(
+                                {"error": f"no such species: {sp}"}, 400)
+                        enc[area] = sp             # one encounter per area
+                save_encounters(enc)
                 st = State(None)
-                return self._send({"caught": sorted(st.caught),
+                return self._send({"encounters": st.encounters,
+                                   "caught": sorted(st.caught),
                                    "owned": sorted(st.owned)})
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
