@@ -54,8 +54,13 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
+
+The `--source` line is the one that closes the loop: it needs a built ROM and no
+reference ROM, and it must read "all 183 tables match their source JSON". It is the
+only check here that looks at what the game actually runs.
 
 The `plan` line is the whole design in one command: it should take Growlithe from
 3% to 100% by naming five earlier routes to catch on first.
@@ -77,17 +82,19 @@ pure apart from its one loader), `generate.py` (the levels-only generator, pure)
 which holds every threshold; the per-playthrough caught record is
 `docs/oxide/encounters/caught.json`, gitignored.
 
-**Next: the authoring pass.** M1-M6 are done and their sections below record what
-each found; M6 shipped in its levels-only form, and full species placement is
-deferred, possibly for good. Ian called M4 done for now on 2026-09-20 and asked
-for the tables themselves to be written from the pick-list. The plan for that is
+**The tool is complete: all seven milestones are done.** Their sections below
+record what each found; M6 shipped in its levels-only form, and full species
+placement is deferred, possibly for good. **Next is the authoring pass**, which a
+separate agent picks up: Ian called M4 done for now on 2026-09-20 and asked for the
+tables themselves to be written from the pick-list. The plan for that is
 `docs/oxide/encounter-authoring-plan.md`: read it next, it says what to do in what
 order and which decisions are already taken. Its Step 0 adds the small pieces of
 tooling the pass needs (`cli apply`, `cli audit`, `cli coverage`, writers for the
-remaining encounter keys, and **M7**, the source-versus-ROM check, which lives
-there rather than as a separate milestone), and its Step 1 supplies the
-progression order and tiers. Status for the pass goes in an "Authoring pass"
-section below, gate by gate.
+remaining encounter keys); the source-versus-ROM check it also lists is M7, which
+is now built and is the gate every authored batch must clear before it is called
+done. Step 1 supplies the progression order and tiers. Status for the pass goes in
+an "Authoring pass" section below, gate by gate. This chat keeps the tool's design
+and any additions to it; the pass is someone else's.
 
 **Two things the authoring plan does not know, because they landed after it was
 written.** M5, the dupe-out planner, and M6, the levels-only generator, are both
@@ -125,7 +132,7 @@ generator, and they are the part most likely to be cut or deferred.
 | M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
 | M5 | Dupe-out planner ✔ | `planner.py`, `cli plan`, `/api/plan` | One hand-verified multi-step plan — **passed** |
 | M6 | Generator, levels-only ✔ | `generate.py`, `cli generate` | A generated band clears R1/R2/R6 and reaches the R3 aim — **passed** |
-| M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
+| M7 | ROM verification ✔ | `verify_narcs.py --source` | Built ROM's NARC matches the source JSON — **passed, 183/183, 21,045 fields** |
 
 ## What the repo already gives you
 
@@ -711,14 +718,52 @@ scan of every ladder on every early table scores cleanly.
 repair. Read against levels-only: every proposal clears R1, R2 and R6 and reaches
 the R3 aim, with nothing written.
 
-### M7 — ROM verification
+### M7 — ROM verification — **done, 2026-09-20**
 
-Extend `verify_narcs.py --encounters` to compare a built ROM's `pl_enc_data.narc`
-against the source JSON field by field, the way the trainer and species carry-overs
-were verified. Per design section 8.4: the generator reports success from lint,
-and lint reports from disk, and this reports from the thing the game actually runs.
+```
+make rom
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source
+```
 
-*Gate:* `make rom` after a generated pass, then a clean field-by-field compare.
+**Outcome.** `verify_narcs.py --source` compares `pl_enc_data.narc` in a built ROM
+against `res/field/encounters/*.json` field by field, with no reference ROM
+involved. Run against the current build: **all 183 tables match, 21,045 fields
+checked, nothing skipped.** That build came from the main checkout, whose 188
+encounter files are byte for byte identical to this branch's, so it was a valid
+build of the current data and the first run needed no rebuild.
+
+**Why it is its own mode rather than a flag on `--encounters`.** The existing
+check proves a build matches the *base ROM*, and deliberately skips the six fields
+the importer left at vanilla (`unown_table`, `rate_form0..4`). That reference stops
+being the truth the moment a table is authored, and the skips would then hide real
+drift. `--source` proves the build matches the *JSON*, the only thing that stays
+authoritative, and skips nothing: the JSON is what the build wrote from, so every
+packed field must round-trip, those six included. Per design doc 8.4, the
+generator reports success from lint, lint reports from disk, and this reports from
+the thing the game actually runs.
+
+**Three things the run settled.** The decoder is the converter run backwards and
+yields species by *name*, so a decoded record compares directly against the JSON
+on the keys the packed record carries. It resolves those names through
+`generated/species.txt` when there is no build directory, so the check runs from
+a clean tree. And the three JSON keys it reports as not compared —
+`map_category`, `elusive_rod_encounter`, `daily_encounters` — are keys the
+converter never packs, confirmed by reading `tools/jsoncnv/encounter.py`, so
+"nothing skipped" is a claim about the whole 424-byte record. The NARC holds
+exactly the 183 land tables in `encounters.order`; the two non-land files are
+built separately through `encdata_ex.order` and are not members.
+
+`--ref` is no longer required by the argument parser — every check except
+`--source` asks for it explicitly — and the old `--encounters` mode still passes
+on the same build.
+
+**For the authoring pass:** this is the gate each authored batch clears. Build,
+then `--source`; it must read "all 183 tables match their source JSON". A table
+that lints clean but fails here has been written to the JSON in a way the
+converter does not carry, and that is a bug in the writer, not the table.
+
+*Gate was:* `make rom` after a generated pass, then a clean field-by-field
+compare.
 
 ## Suggested order, and what to cut
 
