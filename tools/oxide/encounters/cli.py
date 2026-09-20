@@ -16,6 +16,7 @@ import argparse
 import json
 import sys
 
+from . import analysis
 from . import model
 
 
@@ -139,6 +140,75 @@ def cmd_sidecar_init(args):
     return 0
 
 
+def cmd_report(args):
+    """Section 6.5 and 6.6 metrics, for one area or the whole game."""
+    if args.area:
+        a = model.load_area(args.area, args.ref)
+        if not a.has_land:
+            print(f"{a.name} is not a land table", file=sys.stderr)
+            return 1
+        m = analysis.table_metrics(a.slots)
+        m["area"], m["band"] = a.name, a.band
+        if args.json:
+            json.dump(m, sys.stdout, indent=2)
+            print()
+            return 0
+        print(f"{a.name}   band={a.band}   archetype fit: "
+              f"{'/'.join(str(int(x)) for x in m['signature'])}")
+        print(f"  {m['n_species']} species, top {m['top_share']:.0%}, "
+              f"rarest {m['min_share']:.0%}, HHI {m['hhi']:.3f}")
+        print(f"  levels {m['level_min']}-{m['level_max']}, "
+              f"{m['rung_count']} rungs at {m['rung_levels']}, "
+              f"pools {m['pool_sizes']}")
+        print(f"  rarest {m['rarest_species']}: "
+              f"{m['uplift_on_rarest']:.2f}x"
+              + (f" with a level-{m['uplift_at_level']} lead"
+                 if m["uplift_at_level"] else " (no repel helps it)"))
+        print(f"  best manip {m['best_uplift']:.2f}x on "
+              f"{m['best_uplift_species']}"
+              + (f" at level {m['best_uplift_at_level']}"
+                 if m["best_uplift_at_level"] else ""))
+        print("\n  rungs:")
+        for level, p in analysis.distinct_rungs(a.slots):
+            ranked = sorted(p.items(), key=lambda kv: -kv[1])
+            body = ", ".join(f"{sp.replace('SPECIES_', '')} {s:.0%}"
+                             for sp, s in ranked)
+            print(f"    lead {level:>3}: {body}")
+        return 0
+
+    areas = [a for a in model.load_all(args.ref) if a.land_active]
+    g = analysis.game_metrics([a.slots for a in areas], [a.band for a in areas])
+    if args.json:
+        json.dump(g, sys.stdout, indent=2)
+        print()
+        return 0
+    ref = args.ref or "working tree"
+    print(f"{g['n_tables']} live land tables   [{ref}]\n")
+    print(f"  HHI            median {g['hhi_median']:.3f}   "
+          f"p10 {g['hhi_p10']:.3f}   p90 {g['hhi_p90']:.3f}   "
+          f"spread {g['hhi_spread']:.2f}x")
+    print(f"  signatures     {g['distinct_signatures']} distinct   "
+          f"{g['signatures_per_table']:.2f} per table")
+    print(f"  table shape    {g['median_species']:.0f} species   "
+          f"top {g['median_top_share']:.0%}   "
+          f"rarest {g['median_min_share']:.0%}")
+    print(f"  repel          best manip median "
+          f"{g['best_uplift_median']:.2f}x, works on "
+          f"{g['best_uplift_working_frac']:.0%}")
+    print(f"                 rarest-species median "
+          f"{g['uplift_median']:.2f}x, survives on "
+          f"{g['uplift_working_frac']:.0%}")
+    print(f"  arc            early {g['hhi_early']:.3f} ({g['n_early']})   "
+          f"mid {g['hhi_mid']:.3f} ({g['n_mid']})   "
+          f"late {g['hhi_late']:.3f} ({g['n_late']})")
+    print(f"  ladder         "
+          f"{[round(x) for x in g['ladder']]}")
+    print(f"  real tails     {g['real_tail_frac']:.0%} of tables")
+    print(f"  binary manips  {g['singleton_rung_frac']:.0%} of rungs "
+          f"collapse to one species")
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -178,7 +248,12 @@ def main(argv=None):
     c.add_argument("--force", action="store_true")
     c.set_defaults(func=cmd_sidecar_init)
 
-    for name in ("report", "lint", "plan", "generate"):
+    rep = sub.add_parser("report", help="section 6 metrics")
+    rep.add_argument("area", nargs="?")
+    rep.add_argument("--json", action="store_true")
+    rep.set_defaults(func=cmd_report)
+
+    for name in ("lint", "plan", "generate"):
         later = sub.add_parser(name, help="not yet built")
         later.set_defaults(func=cmd_later)
 

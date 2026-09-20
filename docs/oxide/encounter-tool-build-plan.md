@@ -32,23 +32,27 @@ design doc needs its provenance.
 ```
 cd ~/pokeplatinum
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
-python3 -m tools.oxide.encounters.cli areas | tail -3      # expect 171 areas
-python3 -m tools.oxide.encounters.cli show encounters_route_201
-python3 -m tools.oxide.encounters.cli --ref main show encounters_route_201
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2     # expect 23/23, ~1 min
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 ```
 
-The last two print different species and the same levels. That is correct and it is
-the single most important fact about this repo's state: **the working tree holds the
-base ROM's tables, `main` holds vanilla.** Every "does this match vanilla" check
-reads `--ref main`.
+The two reports are the heart of it. The first is vanilla and should read median
+HHI 0.275, spread 2.48x, 71 signatures. The second is the tables the project
+currently has and should read 0.185, 2.14x, 44 — flatter, less varied, and with the
+early/late arc running backwards. **The working tree holds the base ROM's tables and
+`main` holds vanilla**; every "does this match vanilla" check reads `--ref main`.
 
 **What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
-writing, done), `cli.py` (`areas`, `show`, `set`, `roundtrip`, `sidecar-init` built;
-`report`, `lint`, `plan`, `generate` are stubs that print a pointer here) and
-`test_m1.py`. The sidecar is `docs/oxide/encounters/design.json`.
+writing), `analysis.py` (all of section 6's maths, pure functions), `cli.py`
+(`areas`, `show`, `set`, `roundtrip`, `sidecar-init`, `report` built; `lint`, `plan`
+and `generate` are stubs that print a pointer here), and `test_m1.py` /
+`test_m2.py`. The sidecar is `docs/oxide/encounters/design.json`.
 
-**Next milestone: M2**, the analysis engine. Its section below carries the function
-list, the three semantics that must be exact, and the numbers the gate requires.
+**Next milestone: M3**, the linter. M1 and M2 are done and their sections below
+record what was found. M3 implements section 7's rules over M2's metrics, with two
+thresholds needing re-derivation first — R1 (see "One finding") and R6 (see M2's
+outcome).
 
 **Two decisions already taken**, so they do not need rediscovering: writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file;
@@ -65,7 +69,7 @@ generator, and they are the part most likely to be cut or deferred.
 | | Milestone | Ships | Gate |
 |---|---|---|---|
 | M1 | Round-trip I/O ✔ | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff — **passed** |
-| M2 | Analysis engine | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced from vanilla |
+| M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
 | M3 | Linter | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla |
 | M4 | UI | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff |
 | M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
@@ -178,7 +182,78 @@ calibration corpus cannot be edited by accident. And `set_time_slot` refuses
 anything outside `day`/`night` slots 2-3, which is R7 made structurally impossible
 rather than merely reported.
 
-### M2 — Analysis engine — **next**
+### M2 — Analysis engine — **done, 2026-09-20**
+
+**Outcome first.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2` — 23/23.
+The closed-form repel model agrees with a simulation of the game's own comparison
+to within **2.62 sigma** across 292 comparisons, and vanilla reproduces the survey
+on every headline number: 171 tables, median HHI **0.275**, p10-p90
+**0.173-0.428**, spread **2.48x**, **71** distinct signatures, 5 species per table,
+top slot 40%, rarest 5%, early **0.373** → late **0.275**, the ladder
+`+0/+1/+1/+1/+2/+2/+2/+2/+2/+2/+3/+3`, and real tails on **6%** of tables.
+
+**Two definitions the survey's prose left ambiguous, now pinned by measurement.**
+The plan predicted this would be the risky part and it was.
+
+- *Rarest-species uplift* has to break ties toward the best available uplift, not
+  alphabetically. 29% of vanilla tables have several species at the minimum share.
+  Tie-by-name gives 2.86x on 80% of tables; tie-toward-best gives **3.33x on 83%**,
+  and that 83% is the survey's "rarest species survives the filter" column to the
+  digit. R3's threshold of 3.0 is calibrated against this, so vanilla passes its
+  own rule with room.
+- *The survey's 5.0x* is not the rarest-species number at all. It is the best manip
+  available to **any** species on the table, which measures **5.00x working on
+  88%** — both exact. The column is headed "median uplift on rarest", so the
+  heading is loose. Both statistics now ship: `uplift_on_rarest` and `best_uplift`.
+
+**One survey number does not reproduce, and it matters.** Design doc 2.6 says only
+**8%** of vanilla repel tiers collapse to a single species, and R6 is calibrated on
+that. Measured on vanilla it is **24%** of rungs, with 43% of tables having at
+least one singleton. No plausible variant of the definition gets near 8%.
+
+What makes this more than a rounding dispute: the *base ROM's* tables measure
+**7%**. That is suspiciously close to the doc's 8%, and the most likely explanation
+is that this one figure was computed against `res/field/encounters/` in a working
+tree that already held the base ROM's tables, rather than against vanilla. It is a
+hypothesis, not a finding — but R6's threshold should be re-derived from vanilla's
+24% before it is enforced, exactly as R1's was. Two rules calibrated against the
+wrong thing is a pattern worth watching for in the rest of section 7.
+
+"2x or better 69%" also fails to reproduce under any variant tried (the two
+candidate readings give 66% and 81%). Both unreproduced numbers back *warn* rules,
+and every rule that carries the design — R8 spread, R9 signatures, R11 arc — checks
+out exactly.
+
+**What the engine says about the tables the project currently has.** Running
+`report` against the working tree instead of `main` is the first real payoff, and
+it confirms two of Ian's three complaints as measured facts:
+
+| | vanilla | current tables | target |
+|---|---|---|---|
+| HHI median | 0.275 | **0.185** | — |
+| HHI spread (R8) | 2.48x | **2.14x** | ≥2.2 — **fails** |
+| signatures/table (R9) | 0.42 | **0.26** | ≥0.35 — **fails** |
+| species per table | 5 | **8** | 3-5 early |
+| arc, early → late (R11) | 0.373 → 0.275 | **0.143 → 0.230** | decreasing — **fails, runs backwards** |
+| real tails | 6% | **67%** | per archetype |
+| binary manips | 24% of rungs | 7% | — |
+
+Complaint 3 ("every route looked the same") is R8 and R9 failing. Complaint 2
+("early didn't feel like early") is the arc running backwards — early tables are
+*flatter* than late ones, the same inversion the survey found in Elite Redux and
+Inclement Emerald.
+
+Complaint 1 is the interesting one, because the numbers refute the obvious
+explanation. The current tables' repel uplift is **6.67x working on 99%**, better
+than vanilla's 5.00x on 88%. Manips are not weak here. What they are is *binary*:
+67% of tables carry a genuinely exclusive 1-2% tail, so a repel resolves to one
+guaranteed thing rather than to a smaller, richer pool. That is precisely what Ian
+described as the failure — "a manip for something that is 'guaranteed' has very
+binary logic" — and it means the fix for complaint 1 is not more uplift but fewer
+exclusive tails and more re-weighting, which is what vanilla does and what the
+archetype table's `duplicates` tail policy encodes.
+
+### M2 — how it was built
 
 `analysis.py`, pure functions, no I/O and no globals. Write it rate-array-agnostic
 from the first line — take the rate tuple as an argument, defaulting to
