@@ -16,9 +16,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_ICEBERG_RUINS_NEVERMELTICE",
-            "script": 7323,
+            "script": 7246,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -34,5 +34,5 @@
             "dest_warp_id": 2
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

@@ -82,7 +82,7 @@
             "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 848,
@@ -97,13 +97,56 @@
             "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 849,
             "z": 580,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_2",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 4,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 840,
+            "z": 598,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_3",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 5,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 843,
+            "z": 561,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_4",
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 6,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 851,
+            "z": 561,
             "y": 0
         }
     ],
@@ -157,5 +200,5 @@
             "dest_warp_id": 8
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

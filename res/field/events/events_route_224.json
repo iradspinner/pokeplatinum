@@ -72,9 +72,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RAZOR_CLAW",
-            "script": 7194,
+            "script": 7326,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 884,
@@ -87,9 +87,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RARE_CANDY",
-            "script": 7195,
+            "script": 7050,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 869,
@@ -102,9 +102,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_DESTINY_KNOT",
-            "script": 7196,
+            "script": 7280,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 907,
@@ -119,7 +119,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_224_PROF_OAK",
             "script": 4,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 909,
@@ -134,9 +134,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                86
-            ],
+            "data": [ 86 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 906,
@@ -151,9 +149,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                87
-            ],
+            "data": [ 87 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 907,
@@ -168,9 +164,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                88
-            ],
+            "data": [ 88 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 908,
@@ -185,9 +179,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                89
-            ],
+            "data": [ 89 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 909,
@@ -202,9 +194,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_RUBEN",
             "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 883,
@@ -219,9 +209,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_MAXWELL",
             "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 875,
@@ -236,9 +224,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_CARL",
             "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 10,
             "movement_range_z": 2,
             "x": 901,
@@ -253,9 +239,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_VETERAN_ARMANDO",
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 885,
@@ -270,9 +254,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_BRITTNEY",
             "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 869,
@@ -287,9 +269,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_JAMIE",
             "initial_dir": 2,
-            "data": [
-                6
-            ],
+            "data": [ 6 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 915,
@@ -304,9 +284,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_LARRY",
             "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 913,
@@ -321,9 +299,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_DRAGON_TAMER_HAYDEN",
             "initial_dir": 3,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 904,
@@ -338,7 +314,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_224_SHAYMIN",
             "script": 0,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 911,
@@ -351,9 +327,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_REPEAT_BALL",
-            "script": 7303,
+            "script": 7009,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 923,
@@ -366,9 +342,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_PP_MAX",
-            "script": 7304,
+            "script": 7053,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 904,
@@ -381,9 +357,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_ULTRA_BALL",
-            "script": 7305,
+            "script": 7002,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 914,
@@ -396,9 +372,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_224_UPGRADE",
-            "script": 7302,
+            "script": 7252,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 877,
@@ -413,11 +389,26 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_224_MARLEY",
             "script": 6,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 907,
             "z": 493,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_22",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 7,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 878,
+            "z": 562,
             "y": 0
         }
     ],
@@ -434,11 +425,11 @@
             "script": 5,
             "x": 903,
             "z": 496,
-            "y": 0,
             "width": 1,
             "length": 3,
-            "var": "VAR_ROUTE_224_STATE",
-            "value": 1
+            "y": 0,
+            "value": 1,
+            "var": "VAR_ROUTE_224_STATE"
         }
     ]
 }

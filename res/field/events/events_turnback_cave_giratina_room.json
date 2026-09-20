@@ -42,7 +42,7 @@
             "hidden_flag": "FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA",
             "script": 2,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 11,
@@ -57,11 +57,41 @@
             "hidden_flag": "FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM",
             "script": 3,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 11,
             "z": 13,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_2",
+            "graphics_id": "OBJ_EVENT_GFX_CYRUS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 7,
+            "initial_dir": 0,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 13,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_3",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 8,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 17,
+            "z": 17,
             "y": 0
         }
     ],
@@ -91,5 +121,5 @@
             "dest_warp_id": 1
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

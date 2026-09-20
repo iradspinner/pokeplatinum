@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_POKEMON_BREEDER_M",
@@ -9,7 +9,7 @@
             "hidden_flag": "0",
             "script": 9,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 1,
             "movement_range_z": 1,
             "x": 123,
@@ -24,7 +24,7 @@
             "hidden_flag": "0",
             "script": 10,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 140,
@@ -39,7 +39,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_201_RIVAL",
             "script": 9700,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 112,
@@ -54,9 +54,7 @@
             "hidden_flag": "0",
             "script": 6,
             "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 109,
@@ -71,9 +69,7 @@
             "hidden_flag": "0",
             "script": 7,
             "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 151,
@@ -88,7 +84,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_201_PROF_ROWAN",
             "script": 15,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 105,
@@ -103,7 +99,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_201_COUNTERPART",
             "script": 0,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 105,
@@ -112,35 +108,35 @@
         },
         {
             "id": "LOCALID_SIGNBOARD",
-            "clone_id": 5,
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_SANDGEM_TOWN",
             "script": 65535,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 165,
             "z": 843,
-            "y": 0
+            "y": 0,
+            "clone_id": 5
         },
         {
             "id": "LOCALID_GUITARIST",
-            "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_TWINLEAF_TOWN",
             "script": 65535,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 108,
             "z": 869,
-            "y": 0
+            "y": 0,
+            "clone_id": 3
         },
         {
             "id": "LOCALID_SCHOOL_KID_M",
@@ -150,7 +146,7 @@
             "hidden_flag": "0",
             "script": 11,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 153,
@@ -165,7 +161,7 @@
             "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 136,
@@ -180,7 +176,7 @@
             "hidden_flag": "0",
             "script": 12,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 2,
             "movement_range_z": 0,
             "x": 142,
@@ -195,76 +191,123 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_201_BRIEFCASE",
             "script": 13,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 112,
             "z": 854,
             "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_13",
+            "graphics_id": "OBJ_EVENT_GFX_BRIEFCASE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 18,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 119,
+            "z": 848,
+            "y": 0,
+            "clone_id": 7
+        },
+        {
+            "id": "LOCALID_OBJECT_14",
+            "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_DELIVERYMAN",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 17,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 118,
+            "z": 848,
+            "y": 0,
+            "clone_id": 8
+        },
+        {
+            "id": "LOCALID_OBJECT_15",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 0,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 108,
+            "z": 815,
+            "y": 0,
+            "clone_id": 13
         }
     ],
-    "warp_events": [],
+    "warp_events": [  ],
     "coord_events": [
         {
             "script": 2,
             "x": 110,
             "z": 857,
-            "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         },
         {
             "script": 4,
             "x": 113,
             "z": 855,
-            "y": 0,
             "width": 2,
             "length": 1,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 1
+            "y": 0,
+            "value": 1,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         },
         {
             "script": 3,
             "x": 110,
             "z": 858,
-            "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 3
+            "y": 0,
+            "value": 3,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         },
         {
             "script": 4,
             "x": 115,
             "z": 854,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 1
+            "y": 0,
+            "value": 1,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         },
         {
             "script": 14,
             "x": 115,
             "z": 852,
-            "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 3
+            "y": 0,
+            "value": 3,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         },
         {
             "script": 16,
             "x": 109,
             "z": 857,
-            "y": 0,
             "width": 5,
             "length": 1,
-            "var": "VAR_FOLLOWER_RIVAL_STATE",
-            "value": 2
+            "y": 0,
+            "value": 2,
+            "var": "VAR_FOLLOWER_RIVAL_STATE"
         }
     ]
 }
-

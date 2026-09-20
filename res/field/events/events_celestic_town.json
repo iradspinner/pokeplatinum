@@ -66,7 +66,7 @@
             "hidden_flag": "0",
             "script": 7,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 3,
             "movement_range_z": 0,
             "x": 469,
@@ -81,7 +81,7 @@
             "hidden_flag": "0",
             "script": 9,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 454,
@@ -96,7 +96,7 @@
             "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_GRUNT_M",
             "script": 4,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 2,
             "movement_range_z": 0,
             "x": 463,
@@ -111,7 +111,7 @@
             "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_ELDER",
             "script": 2,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 2,
             "movement_range_z": 0,
             "x": 462,
@@ -126,7 +126,7 @@
             "hidden_flag": "FLAG_HIDE_CELESTIC_TOWN_CYNTHIA",
             "script": 6,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 2,
             "movement_range_z": 0,
             "x": 466,
@@ -141,9 +141,7 @@
             "hidden_flag": "0",
             "script": 10,
             "initial_dir": 0,
-            "data": [
-                5
-            ],
+            "data": [ 5 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 466,
@@ -152,39 +150,35 @@
         },
         {
             "id": "LOCALID_ARROW_SIGNPOST_ROUTE_210_NORTH",
-            "clone_id": 11,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_ROUTE_210_NORTH",
             "script": 65535,
             "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 488,
             "z": 529,
-            "y": 0
+            "y": 0,
+            "clone_id": 11
         },
         {
             "id": "LOCALID_ARROW_SIGNPOST_ROUTE_211_EAST",
-            "clone_id": 20,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_ROUTE_211_EAST",
             "script": 65535,
             "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 440,
             "z": 526,
-            "y": 0
+            "y": 0,
+            "clone_id": 20
         },
         {
             "id": "LOCALID_ACE_TRAINER_F",
@@ -194,7 +188,7 @@
             "hidden_flag": "0",
             "script": 8,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 2,
             "x": 454,
@@ -209,7 +203,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 476,
@@ -224,7 +218,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 470,
@@ -237,14 +231,30 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_CELESTIC_TOWN_DRAGON_FANG",
-            "script": 7319,
+            "script": 7250,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 469,
             "z": 533,
             "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_12",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 13,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 470,
+            "z": 538,
+            "y": 0,
+            "clone_id": 6
         }
     ],
     "warp_events": [
@@ -290,12 +300,11 @@
             "script": 3,
             "x": 463,
             "z": 538,
-            "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_CELESTIC_TOWN_ELDER_STATE",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_CELESTIC_TOWN_ELDER_STATE"
         }
     ]
 }
-

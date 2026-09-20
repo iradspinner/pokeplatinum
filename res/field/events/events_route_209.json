@@ -74,9 +74,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BREEDER_ALBERT",
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 522,
@@ -91,9 +89,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BREEDER_JENNIFER",
             "initial_dir": 3,
-            "data": [
-                5
-            ],
+            "data": [ 5 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 554,
@@ -108,9 +104,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_COWGIRL_SHELLEY",
             "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 560,
@@ -125,9 +119,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_209_JOGGER_RICHARD",
             "script": "TRAINER_JOGGER_RICHARD",
             "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 8,
             "movement_range_z": 7,
             "x": 540,
@@ -142,9 +134,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_209_JOGGER_RAUL",
             "script": "TRAINER_JOGGER_RAUL",
             "initial_dir": 2,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 5,
             "movement_range_z": 0,
             "x": 561,
@@ -159,7 +149,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_POKE_KID_DANIELLE",
             "initial_dir": 3,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 552,
@@ -173,11 +163,8 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_TWINS_EMMA_AND_LIL",
-            "double_battle_id": 1,
             "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 544,
@@ -191,16 +178,14 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNG_COUPLE_TY_AND_SUE",
-            "double_battle_id": 2,
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 3,
             "movement_range_z": 3,
             "x": 561,
             "z": 685,
-            "y": 0
+            "y": 0,
+            "double_battle_id": 2
         },
         {
             "id": "LOCALID_YOUNG_COUPLE_TRAINER_TY",
@@ -209,11 +194,8 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNG_COUPLE_TY_AND_SUE",
-            "double_battle_id": 1,
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 561,
@@ -228,9 +210,7 @@
             "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 519,
@@ -245,9 +225,7 @@
             "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 563,
@@ -262,7 +240,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 573,
@@ -275,9 +253,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_GREAT_BALL",
-            "script": 7086,
+            "script": 7003,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 527,
@@ -290,9 +268,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_HYPER_POTION",
-            "script": 7087,
+            "script": 7025,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 557,
@@ -305,9 +283,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_TM47",
-            "script": 7089,
+            "script": 7374,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 572,
@@ -320,9 +298,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_CALCIUM",
-            "script": 7088,
+            "script": 7049,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 548,
@@ -335,9 +313,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_TM19",
-            "script": 7090,
+            "script": 7346,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 568,
@@ -352,9 +330,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                30
-            ],
+            "data": [ 30 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 530,
@@ -369,9 +345,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                31
-            ],
+            "data": [ 31 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 531,
@@ -386,9 +360,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                32
-            ],
+            "data": [ 32 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 566,
@@ -403,9 +375,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                33
-            ],
+            "data": [ 33 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 567,
@@ -420,7 +390,7 @@
             "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 1,
             "movement_range_z": 0,
             "x": 570,
@@ -434,34 +404,30 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_TWINS_EMMA_AND_LIL",
-            "double_battle_id": 2,
             "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 545,
             "z": 720,
-            "y": 0
+            "y": 0,
+            "double_battle_id": 2
         },
         {
             "id": "LOCALID_MAP_SIGNPOST",
-            "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_SOLACEON_TOWN",
             "script": 65535,
             "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 564,
             "z": 667,
-            "y": 0
+            "y": 0,
+            "clone_id": 4
         },
         {
             "id": "LOCALID_VENT_1",
@@ -471,7 +437,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 540,
@@ -486,7 +452,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 541,
@@ -501,7 +467,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 565,
@@ -516,7 +482,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 565,
@@ -531,7 +497,7 @@
             "hidden_flag": "0",
             "script": 5,
             "initial_dir": 3,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 532,
@@ -546,9 +512,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_209_JOGGER_RICHARD_NO_BATTLE",
             "script": 6,
             "initial_dir": 1,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 8,
             "movement_range_z": 7,
             "x": 540,
@@ -563,9 +527,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_209_JOGGER_RAUL_NO_BATTLE",
             "script": 7,
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 5,
             "movement_range_z": 0,
             "x": 561,
@@ -580,7 +542,7 @@
             "hidden_flag": "0",
             "script": 9,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 564,
@@ -593,9 +555,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_ETHER",
-            "script": 7268,
+            "script": 7038,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 556,
@@ -623,5 +585,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_BLACK_BELT",
@@ -9,12 +9,75 @@
             "hidden_flag": "0",
             "script": 1,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 1,
             "movement_range_z": 1,
-            "x": 4,
+            "x": 8,
             "z": 5,
             "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_1",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 5,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 2,
+            "z": 4,
+            "y": 0,
+            "clone_id": 2
+        },
+        {
+            "id": "LOCALID_OBJECT_2",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 2,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_3",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 3,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 4,
+            "y": 0,
+            "clone_id": 2
+        },
+        {
+            "id": "LOCALID_OBJECT_4",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 4,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 6,
+            "z": 4,
+            "y": 0,
+            "clone_id": 2
         }
     ],
     "warp_events": [
@@ -25,5 +88,5 @@
             "dest_warp_id": 1
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

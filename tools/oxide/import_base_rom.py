@@ -47,7 +47,10 @@ def load_enum(name):
         body = open(header).read()
         m = re.search(r"enum \w+ \{(.*?)\};", body, re.S)
         for line in m.group(1).splitlines():
-            mm = re.match(r"\s*([A-Z0-9_]+)\s*=\s*(.+?),?\s*$", line)
+            # lowercase matters: plenty of generated names carry a hex suffix,
+            # FLAG_UNK_0x0A8D and VAR_MAP_LOCAL_0x01 among them, and an
+            # uppercase-only pattern drops them from the value-to-name map
+            mm = re.match(r"\s*([A-Za-z0-9_]+)\s*=\s*(.+?),?\s*$", line)
             if mm:
                 # evaluated against the members already seen, never this
                 # module's namespace, so an alias resolves and a surprise raises
