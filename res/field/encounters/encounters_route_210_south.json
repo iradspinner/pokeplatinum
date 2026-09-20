@@ -3,27 +3,39 @@
     "land_encounters": [
         {
             "level": 19,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_MOTHIM"
         },
         {
             "level": 18,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_VENOMOTH"
         },
         {
-            "level": 21,
-            "species": "SPECIES_SCYTHER"
+            "level": 20,
+            "species": "SPECIES_FURRET"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_CACNEA"
         },
         {
             "level": 20,
             "species": "SPECIES_PONYTA"
         },
         {
-            "level": 20,
-            "species": "SPECIES_ROSELIA"
+            "level": 19,
+            "species": "SPECIES_SEVIPER"
         },
         {
             "level": 19,
-            "species": "SPECIES_PONYTA"
+            "species": "SPECIES_MAGBY"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_ELEKID"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_PINSIR"
         },
         {
             "level": 19,
@@ -31,23 +43,11 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_MILTANK"
         },
         {
             "level": 21,
-            "species": "SPECIES_PONYTA"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_CHANSEY"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_PONYTA"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_CHANSEY"
+            "species": "SPECIES_MILTANK"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_PONYTA",
-        "SPECIES_PONYTA"
+        "SPECIES_FURRET",
+        "SPECIES_CACNEA"
     ],
     "night": [
-        "SPECIES_NOCTOWL",
-        "SPECIES_HOOTHOOT"
+        "SPECIES_ILLUMISE",
+        "SPECIES_VOLBEAT"
     ],
     "radar": [
         "SPECIES_MILTANK",

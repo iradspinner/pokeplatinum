@@ -99,27 +99,27 @@
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 30,
             "level_min": 20,
+            "species": "SPECIES_MOTHIM"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_BUTTERFREE"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_BEAUTIFLY"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
             "species": "SPECIES_PSYDUCK"
-        },
-        {
-            "level_max": 40,
-            "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
-        },
-        {
-            "level_max": 40,
-            "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
-        },
-        {
-            "level_max": 40,
-            "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
         }
     ],
     "old_rod_rate": 25,
@@ -127,55 +127,55 @@
         {
             "level_max": 6,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CARVANHA"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_POLIWHIRL"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_AZUMARILL"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_MARILL"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORPHISH"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
-            "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_GOLDEEN"
-        },
-        {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
             "level_max": 35,
-            "level_min": 25,
+            "level_min": 30,
+            "species": "SPECIES_CORPHISH"
+        },
+        {
+            "level_max": 20,
+            "level_min": 15,
             "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 35,
+            "level_min": 30,
+            "species": "SPECIES_WARTORTLE"
+        },
+        {
+            "level_max": 35,
             "level_min": 25,
-            "species": "SPECIES_GOLDEEN"
+            "species": "SPECIES_SQUIRTLE"
+        },
+        {
+            "level_max": 35,
+            "level_min": 25,
+            "species": "SPECIES_SQUIRTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -183,27 +183,27 @@
         {
             "level_max": 55,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_BLASTOISE"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_CORPHISH"
+            "species": "SPECIES_WHISCASH"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_CRAWDAUNT"
+            "species": "SPECIES_POLITOED"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_SEAKING"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_SEAKING"
+            "species": "SPECIES_QUAGSIRE"
         }
     ],
     "map_category": {

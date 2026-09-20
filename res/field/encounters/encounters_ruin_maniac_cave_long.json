@@ -2,52 +2,52 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
             "level": 23,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_SANDSLASH"
         },
         {
             "level": 22,
             "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_HIPPOPOTAS"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_GEODUDE"
+            "level": 21,
+            "species": "SPECIES_MACHOKE"
         },
         {
             "level": 23,
-            "species": "SPECIES_HIPPOPOTAS"
+            "species": "SPECIES_GRAVELER"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_HARIYAMA"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_MAROWAK"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_NIDORINA"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_NIDORINO"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_SHUCKLE"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_URSARING"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_MEDICHAM"
         },
         {
             "level": 24,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 25,
-            "species": "SPECIES_HIPPOPOTAS"
+            "species": "SPECIES_DUNSPARCE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_MACHOKE",
+        "SPECIES_GRAVELER"
     ],
     "night": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_MACHOKE",
+        "SPECIES_GRAVELER"
     ],
     "radar": [
         "SPECIES_GEODUDE",

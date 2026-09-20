@@ -99,17 +99,17 @@
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_PELIPPER"
         },
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_SHELLOS"
+            "species": "SPECIES_SHARPEDO"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 30,
@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_DEWGONG"
         }
     ],
     "old_rod_rate": 25,
@@ -127,27 +127,27 @@
         {
             "level_max": 6,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_REMORAID"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         }
     ],
     "good_rod_rate": 50,
@@ -155,22 +155,22 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HUNTAIL"
         },
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_GOREBYSS"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 25,
@@ -183,7 +183,7 @@
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 40,
@@ -193,17 +193,17 @@
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_GOREBYSS"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_OCTILLERY"
+            "species": "SPECIES_HUNTAIL"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_OCTILLERY"
+            "species": "SPECIES_CLOYSTER"
         }
     ],
     "map_category": {

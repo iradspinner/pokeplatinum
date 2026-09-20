@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 50,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_NATU"
         },
         {
             "level": 50,
@@ -35,11 +35,11 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_BEAUTIFLY"
+            "species": "SPECIES_SHUCKLE"
         },
         {
             "level": 52,
-            "species": "SPECIES_DUSTOX"
+            "species": "SPECIES_SHUCKLE"
         },
         {
             "level": 52,

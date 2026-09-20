@@ -2,52 +2,52 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 6,
+            "species": "SPECIES_MAGBY"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_SANDSHREW"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ARON"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_MAGBY"
+        },
+        {
             "level": 5,
             "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 6,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_GEODUDE"
+            "level": 8,
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 7,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "level": 9,
+            "species": "SPECIES_RHYHORN"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_ARON"
         },
         {
             "level": 8,
             "species": "SPECIES_ONIX"
         },
         {
-            "level": 8,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
+            "level": 9,
+            "species": "SPECIES_MACHOP"
         },
         {
             "level": 8,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MACHOP"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_ARON",
+        "SPECIES_MAGBY"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE",
         "SPECIES_ZUBAT"
     ],
     "radar": [

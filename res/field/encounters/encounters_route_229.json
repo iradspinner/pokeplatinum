@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 48,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_VENONAT"
         },
         {
             "level": 49,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_VENOMOTH"
         },
         {
             "level": 50,
@@ -43,11 +43,11 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_BEAUTIFLY"
+            "species": "SPECIES_PINSIR"
         },
         {
             "level": 48,
-            "species": "SPECIES_DUSTOX"
+            "species": "SPECIES_PINSIR"
         }
     ],
     "swarms": [

@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 29,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_MILTANK"
         },
         {
             "level": 28,
-            "species": "SPECIES_GIRAFARIG"
+            "species": "SPECIES_ROSERADE"
         },
         {
             "level": 28,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_SHROOMISH"
         },
         {
             "level": 29,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_TEDDIURSA"
         },
         {
             "level": 31,
-            "species": "SPECIES_SUDOWOODO"
+            "species": "SPECIES_SWELLOW"
         },
         {
             "level": 30,
-            "species": "SPECIES_SUDOWOODO"
+            "species": "SPECIES_SCIZOR"
         },
         {
             "level": 30,
-            "species": "SPECIES_GIRAFARIG"
+            "species": "SPECIES_TANGELA"
         },
         {
             "level": 29,
-            "species": "SPECIES_SUDOWOODO"
+            "species": "SPECIES_TOGETIC"
         },
         {
             "level": 31,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_HERACROSS"
         },
         {
             "level": 30,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_HOUNDOOM"
         },
         {
             "level": 31,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_SLAKING"
         },
         {
             "level": 30,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_TAUROS"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_FARFETCHD"
     ],
     "day": [
-        "SPECIES_ROSELIA",
-        "SPECIES_ROSELIA"
+        "SPECIES_SHROOMISH",
+        "SPECIES_TEDDIURSA"
     ],
     "night": [
-        "SPECIES_FLOATZEL",
-        "SPECIES_ROSELIA"
+        "SPECIES_GLIGAR",
+        "SPECIES_VULPIX"
     ],
     "radar": [
         "SPECIES_NIDORINO",
@@ -99,30 +99,30 @@
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_BUIZEL"
         },
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_WINGULL"
+            "species": "SPECIES_REMORAID"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_SEEL"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_PELIPPER"
+            "species": "SPECIES_SLOWBRO"
         }
     ],
-    "old_rod_rate": 25,
+    "old_rod_rate": 100,
     "old_rod_encounters": [
         {
             "level_max": 6,
@@ -132,22 +132,22 @@
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SHELLDER"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SHELLDER"
         }
     ],
     "good_rod_rate": 50,
@@ -155,27 +155,27 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_SLOWKING"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level_max": 35,
             "level_min": 25,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level_max": 35,
             "level_min": 25,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_TENTACOOL"
         }
     ],
     "super_rod_rate": 75,
@@ -183,27 +183,27 @@
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_KINGLER"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_WAILORD"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_WAILORD"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_KRABBY"
         }
     ],
     "map_category": {

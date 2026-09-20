@@ -11,11 +11,19 @@
         },
         {
             "level": 3,
-            "species": "SPECIES_STARLY"
+            "species": "SPECIES_NIDORAN_F"
         },
         {
             "level": 3,
-            "species": "SPECIES_KRICKETOT"
+            "species": "SPECIES_NIDORAN_M"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_NIDORAN_F"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_NIDORAN_M"
         },
         {
             "level": 3,
@@ -26,28 +34,20 @@
             "species": "SPECIES_BIDOOF"
         },
         {
-            "level": 3,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_BIDOOF"
+            "level": 2,
+            "species": "SPECIES_DODUO"
         },
         {
             "level": 2,
-            "species": "SPECIES_STARLY"
+            "species": "SPECIES_DODUO"
         },
         {
             "level": 2,
-            "species": "SPECIES_BIDOOF"
+            "species": "SPECIES_GROWLITHE"
         },
         {
             "level": 2,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_BIDOOF"
+            "species": "SPECIES_GROWLITHE"
         }
     ],
     "swarms": [

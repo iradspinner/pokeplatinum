@@ -3,39 +3,39 @@
     "land_encounters": [
         {
             "level": 18,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_RHYHORN"
         },
         {
             "level": 18,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_ARON"
         },
         {
             "level": 17,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_MAWILE"
         },
         {
             "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MEDITITE"
         },
         {
             "level": 20,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_NOSEPASS"
         },
         {
             "level": 20,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_SLAKOTH"
         },
         {
             "level": 19,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 20,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_SPINDA"
         },
         {
             "level": 20,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_MAGNEMITE"
         },
         {
             "level": 18,
@@ -43,11 +43,11 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_LARVITAR"
         },
         {
             "level": 18,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_GIBLE"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_GIBLE",
-        "SPECIES_ZUBAT"
+        "SPECIES_MAWILE",
+        "SPECIES_MEDITITE"
     ],
     "night": [
-        "SPECIES_GIBLE",
+        "SPECIES_DUNSPARCE",
         "SPECIES_ZUBAT"
     ],
     "radar": [

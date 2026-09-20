@@ -7,47 +7,47 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_ELECTRODE"
         },
         {
             "level": 37,
-            "species": "SPECIES_MEDICHAM"
+            "species": "SPECIES_LUXRAY"
         },
         {
             "level": 36,
-            "species": "SPECIES_CLEFAIRY"
+            "species": "SPECIES_SOLROCK"
         },
         {
             "level": 39,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_GOLEM"
         },
         {
             "level": 39,
-            "species": "SPECIES_MEDICHAM"
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 36,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 37,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 38,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 38,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_CLAYDOL"
         },
         {
             "level": 38,
-            "species": "SPECIES_MEDICHAM"
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 38,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_GARDEVOIR"
         }
     ],
     "swarms": [
@@ -55,17 +55,17 @@
         "SPECIES_GRAVELER"
     ],
     "day": [
-        "SPECIES_MEDICHAM",
-        "SPECIES_GRAVELER"
+        "SPECIES_LUXRAY",
+        "SPECIES_SOLROCK"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CLEFAIRY"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_LUNATONE"
     ],
     "radar": [
         "SPECIES_MACHOKE",
         "SPECIES_MEDICHAM",
-        "SPECIES_MEDICHAM",
+        "SPECIES_GOLBAT",
         "SPECIES_CHINGLING"
     ],
     "rate_form0": 0,

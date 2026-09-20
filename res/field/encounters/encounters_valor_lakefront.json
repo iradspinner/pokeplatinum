@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 26,
-            "species": "SPECIES_GIRAFARIG"
+            "species": "SPECIES_STARAVIA"
         },
         {
             "level": 25,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_PONYTA"
         },
         {
             "level": 26,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_KRICKETUNE"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_HOUNDOUR"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 26,
-            "species": "SPECIES_BIBAREL"
-        },
-        {
-            "level": 28,
             "species": "SPECIES_GIRAFARIG"
         },
         {
             "level": 27,
-            "species": "SPECIES_BIBAREL"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_GIRAFARIG"
+            "species": "SPECIES_PINSIR"
         },
         {
             "level": 27,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_GROWLITHE"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_VULPIX"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_STARAVIA"
+        },
+        {
+            "level": 26,
+            "species": "SPECIES_PONYTA"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_GROWLITHE"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_VULPIX"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_TORKOAL"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_TORKOAL"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIBAREL"
     ],
     "day": [
-        "SPECIES_STARAVIA",
-        "SPECIES_STARAVIA"
+        "SPECIES_GIRAFARIG",
+        "SPECIES_PINSIR"
     ],
     "night": [
-        "SPECIES_KRICKETUNE",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_STANTLER",
+        "SPECIES_NOCTOWL"
     ],
     "radar": [
         "SPECIES_NIDORINO",

@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 28,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_WURMPLE"
         },
         {
             "level": 29,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_SEALEO"
         },
         {
             "level": 28,
@@ -27,19 +27,11 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_PELIPPER"
         },
         {
             "level": 31,
-            "species": "SPECIES_MR_MIME"
-        },
-        {
-            "level": 31,
-            "species": "SPECIES_FLOATZEL"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_PELIPPER"
         },
         {
             "level": 31,
@@ -48,6 +40,14 @@
         {
             "level": 30,
             "species": "SPECIES_GASTRODON"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_SCYTHER"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_PIDGEOT"
         }
     ],
     "swarms": [
@@ -59,7 +59,7 @@
         "SPECIES_CHATOT"
     ],
     "night": [
-        "SPECIES_GASTRODON",
+        "SPECIES_MURKROW",
         "SPECIES_FLOATZEL"
     ],
     "radar": [
@@ -99,7 +99,7 @@
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 30,
@@ -122,32 +122,32 @@
             "species": "SPECIES_GASTRODON"
         }
     ],
-    "old_rod_rate": 25,
+    "old_rod_rate": 100,
     "old_rod_encounters": [
         {
             "level_max": 6,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_LUVDISC"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SQUIRTLE"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_BARBOACH"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 20,
@@ -165,17 +165,17 @@
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_BARBOACH"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_STARYU"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_CROCONAW"
         }
     ],
     "super_rod_rate": 75,
@@ -183,7 +183,7 @@
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_STARYU"
         },
         {
             "level_max": 40,
@@ -193,17 +193,17 @@
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_STARMIE"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_WHISCASH"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_BLASTOISE"
         }
     ],
     "map_category": {

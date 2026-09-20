@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 48,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 49,
@@ -11,7 +11,7 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_FEAROW"
+            "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 50,
@@ -19,7 +19,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_FEAROW"
+            "species": "SPECIES_PRIMEAPE"
         },
         {
             "level": 50,
@@ -31,7 +31,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_RATICATE"
+            "species": "SPECIES_PRIMEAPE"
         },
         {
             "level": 47,
@@ -43,11 +43,11 @@
         },
         {
             "level": 47,
-            "species": "SPECIES_SPEAROW"
+            "species": "SPECIES_MANKEY"
         },
         {
             "level": 47,
-            "species": "SPECIES_RATTATA"
+            "species": "SPECIES_MANKEY"
         }
     ],
     "swarms": [

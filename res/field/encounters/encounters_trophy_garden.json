@@ -2,28 +2,28 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 21,
-            "species": "SPECIES_PICHU"
+            "level": 22,
+            "species": "SPECIES_EEVEE"
         },
         {
             "level": 22,
-            "species": "SPECIES_ROSELIA"
+            "species": "SPECIES_SKARMORY"
         },
         {
             "level": 22,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_CLEFFA"
         },
         {
-            "level": 23,
-            "species": "SPECIES_KRICKETUNE"
+            "level": 22,
+            "species": "SPECIES_HAPPINY"
         },
         {
-            "level": 23,
-            "species": "SPECIES_ROSELIA"
+            "level": 22,
+            "species": "SPECIES_WYNAUT"
         },
         {
-            "level": 24,
-            "species": "SPECIES_STARAVIA"
+            "level": 22,
+            "species": "SPECIES_ABRA"
         },
         {
             "level": 22,
@@ -34,33 +34,33 @@
             "species": "SPECIES_PICHU"
         },
         {
-            "level": 24,
-            "species": "SPECIES_PIKACHU"
+            "level": 22,
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 22,
-            "species": "SPECIES_PICHU"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_PIKACHU"
+            "species": "SPECIES_IGGLYBUFF"
         },
         {
             "level": 22,
-            "species": "SPECIES_PICHU"
+            "species": "SPECIES_BAGON"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_DRATINI"
         }
     ],
     "swarms": [
         "SPECIES_PICHU",
-        "SPECIES_ROSELIA"
+        "SPECIES_EEVEE"
     ],
     "day": [
-        "SPECIES_STARAVIA",
-        "SPECIES_STARAVIA"
+        "SPECIES_CLEFFA",
+        "SPECIES_HAPPINY"
     ],
     "night": [
-        "SPECIES_KRICKETUNE",
-        "SPECIES_KRICKETUNE"
+        "SPECIES_CLEFFA",
+        "SPECIES_HAPPINY"
     ],
     "radar": [
         "SPECIES_ROSELIA",

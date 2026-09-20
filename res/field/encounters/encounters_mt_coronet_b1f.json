@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 33,
+            "species": "SPECIES_CHIMECHO"
+        },
+        {
+            "level": 34,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_SOLROCK"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_STANTLER"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_MEDICHAM"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_SWINUB"
+        },
+        {
+            "level": 33,
             "species": "SPECIES_BRONZOR"
         },
         {
             "level": 34,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_CLEFAIRY"
-        },
-        {
-            "level": 35,
-            "species": "SPECIES_MACHOKE"
-        },
-        {
-            "level": 35,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_CHINGLING"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_DUNSPARCE"
         },
         {
             "level": 34,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_ELECTRODE"
         },
         {
             "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_TEDDIURSA"
         },
         {
             "level": 34,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_TEDDIURSA"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_GRAVELER"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_GRAVELER"
+        "SPECIES_SOLROCK",
+        "SPECIES_CROBAT"
     ],
     "night": [
-        "SPECIES_GOLBAT",
+        "SPECIES_LUNATONE",
         "SPECIES_CLEFAIRY"
     ],
     "radar": [
@@ -94,7 +94,7 @@
         "SPECIES_GOLBAT",
         "SPECIES_CHINGLING"
     ],
-    "surf_rate": 10,
+    "surf_rate": 100,
     "surf_encounters": [
         {
             "level_max": 30,
@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_CROBAT"
         }
     ],
     "old_rod_rate": 25,
@@ -127,35 +127,35 @@
         {
             "level_max": 6,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 7,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
             "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "level_min": 10,
+            "species": "SPECIES_FEEBAS"
         },
         {
             "level_max": 20,
@@ -183,27 +183,27 @@
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_STARYU"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_WHISCASH"
+            "species": "SPECIES_OMASTAR"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_KABUTOPS"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_WHISCASH"
+            "species": "SPECIES_ARMALDO"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_WHISCASH"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "elusive_rod_encounter": {

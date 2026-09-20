@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 41,
-            "species": "SPECIES_MAGNETON"
+            "species": "SPECIES_AGGRON"
         },
         {
             "level": 42,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_URSARING"
         },
         {
             "level": 41,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_ESPEON"
         },
         {
             "level": 42,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_MR_MIME"
         },
         {
             "level": 44,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_FLAREON"
         },
         {
             "level": 43,
-            "species": "SPECIES_MAGNETON"
+            "species": "SPECIES_GALLADE"
         },
         {
             "level": 44,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 43,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_MEDICHAM"
         },
         {
             "level": 42,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_HARIYAMA"
         },
         {
             "level": 43,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_LICKILICKY"
         },
         {
             "level": 42,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_EXPLOUD"
         },
         {
             "level": 43,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_EXPLOUD"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_STEELIX"
     ],
     "day": [
-        "SPECIES_GRAVELER",
-        "SPECIES_STEELIX"
+        "SPECIES_ESPEON",
+        "SPECIES_MR_MIME"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_STEELIX"
+        "SPECIES_UMBREON",
+        "SPECIES_JYNX"
     ],
     "radar": [
         "SPECIES_STEELIX",

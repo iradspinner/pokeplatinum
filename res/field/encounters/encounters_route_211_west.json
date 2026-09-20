@@ -3,19 +3,7 @@
     "land_encounters": [
         {
             "level": 13,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_MEDITITE"
+            "species": "SPECIES_RALTS"
         },
         {
             "level": 14,
@@ -23,31 +11,43 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_MACHOP"
+            "species": "SPECIES_GROWLITHE"
         },
         {
-            "level": 16,
-            "species": "SPECIES_CHINGLING"
+            "level": 15,
+            "species": "SPECIES_VULPIX"
         },
         {
             "level": 14,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_SPOINK"
         },
         {
-            "level": 15,
+            "level": 14,
             "species": "SPECIES_MACHOP"
         },
         {
             "level": 16,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_KIRLIA"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_CHIMECHO"
         },
         {
             "level": 15,
-            "species": "SPECIES_MACHOP"
+            "species": "SPECIES_CHARMELEON"
         },
         {
             "level": 16,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_QUILAVA"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_VOLTORB"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_TORCHIC"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_MEDITITE"
+        "SPECIES_GROWLITHE",
+        "SPECIES_VULPIX"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_HOOTHOOT"
+        "SPECIES_GROWLITHE",
+        "SPECIES_VULPIX"
     ],
     "radar": [
         "SPECIES_TYROGUE",

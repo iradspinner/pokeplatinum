@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 36,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_GLISCOR"
         },
         {
             "level": 38,
-            "species": "SPECIES_ABOMASNOW"
+            "species": "SPECIES_DRAPION"
         },
         {
             "level": 38,
-            "species": "SPECIES_MEDICHAM"
+            "species": "SPECIES_NINETALES"
         },
         {
             "level": 39,
-            "species": "SPECIES_ABOMASNOW"
+            "species": "SPECIES_ARCANINE"
         },
         {
             "level": 40,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_GLACEON"
         },
         {
             "level": 40,
-            "species": "SPECIES_MEDICHAM"
+            "species": "SPECIES_FROSLASS"
         },
         {
             "level": 37,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 38,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_GABITE"
         },
         {
             "level": 38,
-            "species": "SPECIES_ABSOL"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 39,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_GABITE"
         },
         {
             "level": 40,
-            "species": "SPECIES_ABSOL"
+            "species": "SPECIES_BELDUM"
         },
         {
             "level": 39,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_METANG"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_ABOMASNOW"
     ],
     "day": [
-        "SPECIES_MEDICHAM",
-        "SPECIES_ABOMASNOW"
+        "SPECIES_NINETALES",
+        "SPECIES_ARCANINE"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_NOCTOWL"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_BRONZONG"
     ],
     "radar": [
         "SPECIES_LOUDRED",

@@ -3,19 +3,19 @@
     "land_encounters": [
         {
             "level": 27,
-            "species": "SPECIES_MEDITITE"
+            "species": "SPECIES_TORKOAL"
         },
         {
             "level": 28,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_CHIMECHO"
         },
         {
             "level": 28,
-            "species": "SPECIES_MEDITITE"
+            "species": "SPECIES_WEEZING"
         },
         {
             "level": 29,
-            "species": "SPECIES_MEDITITE"
+            "species": "SPECIES_LOUDRED"
         },
         {
             "level": 28,
@@ -27,27 +27,27 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_XATU"
         },
         {
             "level": 29,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_GALLADE"
         },
         {
             "level": 30,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_GARDEVOIR"
         },
         {
             "level": 29,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_MR_MIME"
         },
         {
             "level": 30,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_EXEGGCUTE"
         },
         {
             "level": 29,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_VIGOROTH"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GRAVELER"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_MEDITITE"
+        "SPECIES_SWALOT",
+        "SPECIES_MIGHTYENA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NOCTOWL"
+        "SPECIES_MOTHIM",
+        "SPECIES_KECLEON"
     ],
     "radar": [
         "SPECIES_CHINGLING",

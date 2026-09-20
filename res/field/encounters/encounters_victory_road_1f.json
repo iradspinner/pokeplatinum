@@ -3,47 +3,47 @@
     "land_encounters": [
         {
             "level": 40,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_NIDOKING"
         },
         {
             "level": 41,
-            "species": "SPECIES_RHYHORN"
+            "species": "SPECIES_NIDOQUEEN"
         },
         {
             "level": 42,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_GIRAFARIG"
         },
         {
             "level": 41,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_MAGNETON"
         },
         {
             "level": 42,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_DUGTRIO"
         },
         {
             "level": 41,
-            "species": "SPECIES_RHYDON"
+            "species": "SPECIES_MANECTRIC"
         },
         {
             "level": 43,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_JOLTEON"
         },
         {
             "level": 43,
-            "species": "SPECIES_RHYDON"
+            "species": "SPECIES_DODRIO"
         },
         {
             "level": 42,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_KANGASKHAN"
         },
         {
             "level": 41,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_WOBBUFFET"
         },
         {
             "level": 42,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_MACHAMP"
         },
         {
             "level": 41,
@@ -55,12 +55,12 @@
         "SPECIES_RHYHORN"
     ],
     "day": [
-        "SPECIES_GRAVELER",
-        "SPECIES_ONIX"
+        "SPECIES_GIRAFARIG",
+        "SPECIES_MAGNETON"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_ONIX"
+        "SPECIES_DUNSPARCE",
+        "SPECIES_WEEZING"
     ],
     "radar": [
         "SPECIES_ONIX",

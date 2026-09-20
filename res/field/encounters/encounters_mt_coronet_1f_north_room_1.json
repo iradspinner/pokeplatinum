@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 14,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_CHIMECHO"
         },
         {
             "level": 15,
@@ -11,23 +11,23 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_MEDITITE"
+            "species": "SPECIES_ANORITH"
         },
         {
             "level": 13,
-            "species": "SPECIES_CLEFFA"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 16,
             "species": "SPECIES_MEDITITE"
         },
         {
+            "level": 16,
+            "species": "SPECIES_SPOINK"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_VOLTORB"
+        },
+        {
             "level": 13,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_LILEEP"
         },
         {
             "level": 14,
@@ -35,19 +35,19 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MAWILE"
         },
         {
             "level": 15,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_ABRA"
         },
         {
             "level": 15,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CLEFAIRY"
         },
         {
             "level": 15,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_CLEFFA"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ANORITH",
+        "SPECIES_MEDITITE"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CLEFFA"
+        "SPECIES_KABUTO",
+        "SPECIES_MEDITITE"
     ],
     "radar": [
         "SPECIES_MACHOP",

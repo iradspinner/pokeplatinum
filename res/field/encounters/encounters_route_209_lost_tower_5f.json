@@ -2,52 +2,52 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 18,
+            "species": "SPECIES_WHISMUR"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_DROWZEE"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_CUBONE"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_KECLEON"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_STUNKY"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_EKANS"
+        },
+        {
             "level": 20,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_ARBOK"
         },
         {
             "level": 20,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GRIMER"
         },
         {
-            "level": 19,
-            "species": "SPECIES_GASTLY"
+            "level": 20,
+            "species": "SPECIES_MUK"
         },
         {
-            "level": 21,
-            "species": "SPECIES_ZUBAT"
+            "level": 20,
+            "species": "SPECIES_NATU"
         },
         {
-            "level": 22,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_GOLBAT"
+            "level": 20,
+            "species": "SPECIES_NATU"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_ZUBAT"
     ],
     "day": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_CUBONE",
+        "SPECIES_KECLEON"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_DUSKULL"
+        "SPECIES_VILEPLUME",
+        "SPECIES_GLOOM"
     ],
     "radar": [
         "SPECIES_ZUBAT",

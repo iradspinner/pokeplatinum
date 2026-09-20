@@ -99,83 +99,83 @@
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_PELIPPER"
+            "species": "SPECIES_ALTARIA"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_MANTINE"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_FLOATZEL"
         }
     ],
-    "old_rod_rate": 25,
+    "old_rod_rate": 100,
     "old_rod_encounters": [
         {
             "level_max": 6,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_FINNEON"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_TENTACOOL"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 35,
+            "level_min": 30,
+            "species": "SPECIES_TENTACRUEL"
         },
         {
             "level_max": 25,
             "level_min": 15,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_LUMINEON"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 35,
             "level_min": 25,
-            "species": "SPECIES_OCTILLERY"
+            "species": "SPECIES_REMORAID"
         },
         {
             "level_max": 35,
             "level_min": 25,
-            "species": "SPECIES_OCTILLERY"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "super_rod_rate": 75,
@@ -183,12 +183,12 @@
         {
             "level_max": 55,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_OCTILLERY"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_WAILMER"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level_max": 50,
@@ -198,7 +198,7 @@
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_WAILORD"
+            "species": "SPECIES_KINGDRA"
         },
         {
             "level_max": 55,

@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 32,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_URSARING"
         },
         {
             "level": 33,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_PILOSWINE"
         },
         {
             "level": 33,
@@ -27,11 +27,11 @@
         },
         {
             "level": 34,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_SWINUB"
         },
         {
             "level": 32,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_DODRIO"
         },
         {
             "level": 35,
@@ -39,15 +39,15 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 35,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_JYNX"
         },
         {
             "level": 35,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_JYNX"
         }
     ],
     "swarms": [

@@ -3,19 +3,19 @@
     "land_encounters": [
         {
             "level": 38,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_STANTLER"
         },
         {
             "level": 39,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_STARAPTOR"
         },
         {
             "level": 40,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 41,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_MACHOKE"
         },
         {
             "level": 40,
@@ -23,31 +23,31 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 41,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_TAUROS"
         },
         {
             "level": 39,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_DODRIO"
         },
         {
             "level": 40,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_BAGON"
         },
         {
             "level": 41,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_SHELGON"
         },
         {
             "level": 40,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_SALAMENCE"
         },
         {
             "level": 41,
-            "species": "SPECIES_BIBAREL"
+            "species": "SPECIES_BAGON"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIBAREL"
     ],
     "day": [
-        "SPECIES_STARAVIA",
-        "SPECIES_BIBAREL"
+        "SPECIES_GRAVELER",
+        "SPECIES_MACHOKE"
     ],
     "night": [
-        "SPECIES_STARAVIA",
-        "SPECIES_BIBAREL"
+        "SPECIES_WOBBUFFET",
+        "SPECIES_WOBBUFFET"
     ],
     "radar": [
         "SPECIES_WOBBUFFET",
@@ -99,27 +99,27 @@
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_STANTLER"
         },
         {
             "level_max": 30,
             "level_min": 20,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_LAPRAS"
         },
         {
             "level_max": 40,
             "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_LAPRAS"
         }
     ],
     "old_rod_rate": 25,
@@ -160,7 +160,7 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_GOLDEEN"
+            "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 25,
@@ -183,27 +183,27 @@
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 40,
             "level_min": 30,
-            "species": "SPECIES_SEAKING"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_SEAKING"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 55,
             "level_min": 40,
-            "species": "SPECIES_SEAKING"
+            "species": "SPECIES_QWILFISH"
         }
     ],
     "map_category": {

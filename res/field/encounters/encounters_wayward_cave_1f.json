@@ -3,23 +3,23 @@
     "land_encounters": [
         {
             "level": 18,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_SPINDA"
         },
         {
             "level": 18,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_SANDSLASH"
         },
         {
             "level": 17,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_WHISMUR"
         },
         {
             "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_NIDORINO"
         },
         {
             "level": 20,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_ARON"
         },
         {
             "level": 20,
@@ -27,27 +27,27 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_SPINDA"
         },
         {
             "level": 20,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_MAWILE"
         },
         {
             "level": 17,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GIBLE"
         },
         {
             "level": 18,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_SLAKOTH"
         },
         {
             "level": 17,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GIBLE"
         },
         {
             "level": 18,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_GIBLE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT"
+        "SPECIES_WHISMUR",
+        "SPECIES_NIDORINO"
     ],
     "night": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT"
+        "SPECIES_DUNSPARCE",
+        "SPECIES_NIDORINA"
     ],
     "radar": [
         "SPECIES_BRONZOR",

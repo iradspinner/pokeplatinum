@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 19,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_AZUMARILL"
         },
         {
             "level": 20,
-            "species": "SPECIES_MARILL"
+            "species": "SPECIES_PSYDUCK"
         },
         {
             "level": 22,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_STARAVIA"
         },
         {
             "level": 21,
@@ -23,31 +23,31 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_ABRA"
+            "species": "SPECIES_NUZLEAF"
         },
         {
             "level": 20,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_MARILL"
         },
         {
             "level": 21,
-            "species": "SPECIES_KADABRA"
+            "species": "SPECIES_PSYDUCK"
         },
         {
             "level": 22,
-            "species": "SPECIES_MARILL"
+            "species": "SPECIES_CROAGUNK"
         },
         {
             "level": 22,
-            "species": "SPECIES_KADABRA"
+            "species": "SPECIES_SWABLU"
         },
         {
             "level": 22,
-            "species": "SPECIES_MARILL"
+            "species": "SPECIES_GIRAFARIG"
         },
         {
             "level": 22,
-            "species": "SPECIES_KADABRA"
+            "species": "SPECIES_SCYTHER"
         }
     ],
     "swarms": [

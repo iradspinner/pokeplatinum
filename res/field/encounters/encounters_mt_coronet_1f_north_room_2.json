@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 33,
+            "species": "SPECIES_CHIMECHO"
+        },
+        {
+            "level": 34,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_SOLROCK"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_STANTLER"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_MEDICHAM"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_SWINUB"
+        },
+        {
+            "level": 33,
             "species": "SPECIES_BRONZOR"
         },
         {
             "level": 34,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_CLEFAIRY"
-        },
-        {
-            "level": 35,
-            "species": "SPECIES_MACHOKE"
-        },
-        {
-            "level": 35,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_CHINGLING"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_DUNSPARCE"
         },
         {
             "level": 34,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_ELECTRODE"
         },
         {
             "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_TEDDIURSA"
         },
         {
             "level": 34,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_TEDDIURSA"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_GRAVELER"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_GRAVELER"
+        "SPECIES_SOLROCK",
+        "SPECIES_CROBAT"
     ],
     "night": [
-        "SPECIES_GOLBAT",
+        "SPECIES_LUNATONE",
         "SPECIES_CLEFAIRY"
     ],
     "radar": [

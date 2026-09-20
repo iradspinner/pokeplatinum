@@ -15,11 +15,11 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_FEAROW"
+            "species": "SPECIES_PRIMEAPE"
         },
         {
             "level": 49,
-            "species": "SPECIES_WINGULL"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level": 50,
@@ -31,7 +31,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_RATICATE"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level": 47,
@@ -43,11 +43,11 @@
         },
         {
             "level": 47,
-            "species": "SPECIES_WINGULL"
+            "species": "SPECIES_MANKEY"
         },
         {
             "level": 47,
-            "species": "SPECIES_RATTATA"
+            "species": "SPECIES_MANKEY"
         }
     ],
     "swarms": [

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Carry species, move, evolution and learnset edits from a modified Platinum
-ROM into this source tree.
+"""Carry species, move, trainer, encounter and npc-trade edits from a modified
+Platinum ROM into this source tree.
 
 Platinum Oxide project. The "base" ROM is Ian's earlier DSPRE-edited
 Platinum; the "vanilla" ROM is the one this tree builds unmodified. For every
@@ -78,6 +78,14 @@ MOVE_RANGES = load_enum("move_ranges")
 MOVE_FLAGS = load_enum("move_flags")
 CONTEST_EFFECTS = load_enum("move_contest_effects")
 CONTEST_TYPES = load_enum("pokemon_contest_types")
+GENDERS = load_enum("genders")
+
+# include/constants/versions.h; not a generated enum, so it is spelled out here
+LANGUAGES = {
+    0: "LANGUAGE_NONE", 1: "LANGUAGE_JAPANESE", 2: "LANGUAGE_ENGLISH",
+    3: "LANGUAGE_FRENCH", 4: "LANGUAGE_ITALIAN", 5: "LANGUAGE_GERMAN",
+    6: "LANGUAGE_UNUSED_6", 7: "LANGUAGE_SPANISH", 8: "LANGUAGE_KOREAN",
+}
 
 NUM_TMS = 92  # include/constants/items.h: TM01..TM92, HM01..HM08
 
@@ -122,6 +130,33 @@ def move_dir(index):
         return None
     path = os.path.join(ROOT, "res", "moves", name[len("MOVE_"):].lower())
     return path if os.path.isdir(path) else None
+
+
+def encounter_json(index):
+    """Path under res/field/encounters for a pl_enc_data.narc member index.
+    encounters.order is the authority on that mapping: line N names member N."""
+    global _ENC_ORDER
+    if _ENC_ORDER is None:
+        path = os.path.join(ROOT, "res", "field", "encounters", "encounters.order")
+        _ENC_ORDER = [l.strip() for l in open(path) if l.strip()]
+    if index >= len(_ENC_ORDER):
+        return None
+    path = os.path.join(ROOT, "res", "field", "encounters", _ENC_ORDER[index] + ".json")
+    return path if os.path.isfile(path) else None
+
+
+_ENC_ORDER = None
+
+# enum NPCTradeID in include/constants/npc_trades.h, which is also the order
+# npctradeproc packs npc_trades.narc in
+NPC_TRADES = ["kazza_abra", "charap_chatot", "gaspar_haunter", "foppa_magikarp"]
+
+
+def trade_json(index):
+    if index >= len(NPC_TRADES):
+        return None
+    path = os.path.join(ROOT, "res", "npc_trades", NPC_TRADES[index] + ".json")
+    return path if os.path.isfile(path) else None
 
 
 def trainer_json(index):
@@ -310,6 +345,89 @@ def decode_trainer_party(buf, partySize, monDataType):
     return mons
 
 
+def decode_encounter(b):
+    """tools/jsoncnv/encounter.py run backwards. The JSON's map_category block
+    is not part of the 424-byte packed record, so nothing here touches it."""
+    o = 0
+
+    def u32():
+        nonlocal o
+        v = struct.unpack_from("<I", b, o)[0]
+        o += 4
+        return v
+
+    def species():
+        return SPECIES[u32()]
+
+    def water():
+        nonlocal o
+        out = []
+        for _ in range(5):
+            level_max, level_min = struct.unpack_from("<2B", b, o)
+            o += 4  # the two levels are followed by two bytes of padding
+            out.append({"level_max": level_max, "level_min": level_min, "species": species()})
+        return out
+
+    d = {"land_rate": u32()}
+    d["land_encounters"] = [{"level": u32(), "species": species()} for _ in range(12)]
+    for key in ("swarms", "day", "night"):
+        d[key] = [species() for _ in range(2)]
+    d["radar"] = [species() for _ in range(4)]
+    for key in ("rate_form0", "rate_form1", "rate_form2", "rate_form3", "rate_form4", "unown_table"):
+        d[key] = u32()
+    for key in ("ruby", "sapphire", "emerald", "firered", "leafgreen"):
+        d[key] = [species() for _ in range(2)]
+    d["surf_rate"] = u32()
+    d["surf_encounters"] = water()
+    o += 44  # unused block between the surf and rod tables
+    for rod in ("old", "good", "super"):
+        d[f"{rod}_rod_rate"] = u32()
+        d[f"{rod}_rod_encounters"] = water()
+
+    assert o == len(b), f"encounter record is {len(b)} bytes, decoder read {o}"
+    return d
+
+
+# Fields decoded from the encounter record but deliberately not carried over.
+# DSPRE rewrites both of them on every table it saves, whether or not the map
+# has anything that reads them, and the rewrite is not value-preserving:
+#
+#   unown_table: 98 tables go 0 -> 1, which the game reads identically
+#     (WildEncounters_TrySetForm subtracts one from any non-zero value), so those
+#     are pure noise. The 17 that change for real are every room in Solaceon
+#     Ruins, all set to 8. Table 8 is UnownOnlyExcQue, the two-form secret-room
+#     set, so importing this would leave the whole ruins spawning only Unown !
+#     and ? and make the F-R-I-E-N-D letters and the 20-form dead-end group
+#     unobtainable. That is a tool default, not a design choice.
+#
+#   rate_form0/rate_form1: pick the Shellos and Gastrodon form (west/east), read
+#     as a boolean. Vanilla stores 100 on most tables; the base ROM has 34 going
+#     to 1 (same meaning) and 29 to 0 (opposite meaning). Of those 29, exactly
+#     two are maps that contain Shellos or Gastrodon at all (Route 212 north and
+#     south), which reads as a checkbox being normalised rather than two maps
+#     being deliberately flipped to the west form.
+#
+# rate_form2..4 are unused by the game and move with the other two.
+ENCOUNTER_SKIP_KEYS = ("unown_table", "rate_form0", "rate_form1", "rate_form2", "rate_form3", "rate_form4")
+
+
+TRADE_FIELDS = [
+    ("species", SPECIES), ("hpIV", None), ("atkIV", None), ("defIV", None),
+    ("speedIV", None), ("spAtkIV", None), ("spDefIV", None), ("unused1", None),
+    ("otID", None), ("cool", None), ("beauty", None), ("cute", None),
+    ("smart", None), ("tough", None), ("personality", None), ("heldItem", ITEMS),
+    ("otGender", GENDERS), ("unused2", None), ("language", LANGUAGES),
+    ("requestedSpecies", SPECIES),
+]
+
+
+def decode_trade(b):
+    """NPCTradeMon (include/overlay006/npc_trade.h): 20 u32 fields, in the same
+    order the res/npc_trades/*.json files list them."""
+    vals = struct.unpack_from("<20I", b, 0)
+    return {name: (table[v] if table else v) for (name, table), v in zip(TRADE_FIELDS, vals)}
+
+
 # ---------------------------------------------------------------- apply
 def flatten(d, prefix=""):
     """{'a': {'b': 1}} -> {'a.b': 1}, but lists stay whole."""
@@ -337,6 +455,44 @@ def apply_diff(json_path, new, old, dry_run, log):
             continue
         text = jsonstyle.replace_value(text, path, val)
         changed.append(f"{key}: {fo.get(key)!r} -> {val!r}")
+    if changed:
+        rel = os.path.relpath(json_path, ROOT)
+        log.append((rel, changed))
+        if not dry_run:
+            with open(json_path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+    return bool(changed)
+
+
+def scalar_paths(obj, prefix=()):
+    """Yield (path, value) for every scalar leaf, descending into lists as well
+    as dicts so a list element is reached by index. flatten() deliberately stops
+    at a list and treats it as one value; records that are mostly arrays
+    (encounters, npc trades) need the finer grain to keep diffs small."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield from scalar_paths(v, prefix + (k,))
+    elif isinstance(obj, list):
+        for i, v in enumerate(obj):
+            yield from scalar_paths(v, prefix + (i,))
+    else:
+        yield list(prefix), obj
+
+
+def apply_scalar_diff(json_path, new, old, dry_run, log):
+    """apply_diff's array-aware sibling: patches one number or name at a time,
+    wherever it sits in the record, and never rewrites a whole list."""
+    text = open(json_path, encoding="utf-8").read()
+    olds = {tuple(p): v for p, v in scalar_paths(old)}
+    changed = []
+    for path, val in scalar_paths(new):
+        if olds.get(tuple(path)) == val:
+            continue
+        if jsonstyle.get_value(text, path) == val:
+            continue
+        text = jsonstyle.replace_value(text, path, val)
+        pretty = ".".join(str(p) for p in path)
+        changed.append(f"{pretty}: {olds.get(tuple(path))!r} -> {val!r}")
     if changed:
         rel = os.path.relpath(json_path, ROOT)
         log.append((rel, changed))
@@ -397,12 +553,20 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
                 except KeyError:
                     text = jsonstyle.insert_key(text, ["party", i], "ball_seal", "ability", 0)
                     text = jsonstyle.insert_key(text, ["party", i], "ability", "gender", None)
+                # the outer test compares the base ROM against vanilla, which never
+                # carries either field, so it fires on every mon that has one even
+                # when this file already holds the right value. Only report what
+                # actually gets written.
+                wrote = False
                 if jsonstyle.get_value(text, ["party", i, "ability"]) != nm["ability"]:
                     text = jsonstyle.replace_value(text, ["party", i, "ability"], nm["ability"])
+                    wrote = True
                 if jsonstyle.get_value(text, ["party", i, "gender"]) != nm["gender"]:
                     text = jsonstyle.replace_value(text, ["party", i, "gender"], nm["gender"])
-                changed.append(f"party[{i}].ability/gender: {om.get('ability')!r}/{om.get('gender')!r} "
-                                f"-> {nm['ability']!r}/{nm['gender']!r}")
+                    wrote = True
+                if wrote:
+                    changed.append(f"party[{i}].ability/gender: {om.get('ability')!r}/{om.get('gender')!r} "
+                                    f"-> {nm['ability']!r}/{nm['gender']!r}")
 
     if changed:
         log.append((rel, changed))
@@ -410,6 +574,61 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
             with open(json_path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(text)
     return bool(changed)
+
+
+def report_skipped_heights(base, van, log):
+    """Sprite Y-offsets are deliberately not carried over; this only writes the
+    evidence into the report so a later run re-confirms it rather than
+    re-deciding it.
+
+    height.narc holds four members per species (back female, back male, front
+    female, front male, empty where that gender has no sprite). 298 of them
+    differ, but the pattern says DSPRE re-saved the table rather than Ian
+    editing it: 164 of the differences are a zero byte written where vanilla has
+    an empty member, and of the 116 species where vanilla had male and female
+    offsets equal, every single one has only the male offset changed. A hand
+    edit to a shared sprite's offset would move both. See the inventory's note
+    that 2,788 of 2,964 pl_pokegra files also differ by a few header bytes
+    each."""
+    b, v = base.narc("poketool/pokegra/height.narc"), van.narc("poketool/pokegra/height.narc")
+    differ = [i for i in range(len(b)) if b[i] != v[i]]
+    wrote_into_empty = sum(1 for i in differ if not v[i] and b[i])
+    broke_symmetry = 0
+    for sp in sorted({i // 4 for i in differ}):
+        vals_v = [v[4 * sp + k] for k in range(4)]
+        vals_b = [b[4 * sp + k] for k in range(4)]
+        if all(x for x in vals_v) and vals_v[0] == vals_v[1] and vals_v[2] == vals_v[3]:
+            if vals_b[0] != vals_b[1] or vals_b[2] != vals_b[3]:
+                broke_symmetry += 1
+    log.append(("height.narc (not imported)", [
+        f"{len(differ)} of {len(b)} members differ",
+        f"{wrote_into_empty} of them write a byte where vanilla has an empty member "
+        f"(a gender the species does not have; the decomp derives this from the gender ratio "
+        f"and cannot express it as an edit)",
+        f"{broke_symmetry} species had male == female in vanilla and have only the male "
+        f"offset changed in the base ROM, which a hand edit would not do",
+        "reading this as a DSPRE re-save, not an edit; skipped pending Ian",
+    ]))
+    return 0
+
+
+def report_skipped_items(base, van, log):
+    """The six vitamin records are malformed in the base ROM, so there is
+    nothing to carry over; this records why."""
+    b, v = base.narc("itemtool/itemdata/pl_item_data.narc"), van.narc("itemtool/itemdata/pl_item_data.narc")
+    differ = [i for i in range(len(b)) if b[i] != v[i]]
+    changes = [f"{len(differ)} of {len(b)} records differ: "
+               + ", ".join(ITEMS.get(i, str(i)) for i in differ)]
+    for i in differ:
+        changes.append(f"{ITEMS.get(i, i)}: {len(v[i])} bytes -> {len(b[i])} bytes")
+    changes.append("every differing record grew from ItemData's 34 bytes to 36, with the "
+                   "vitamin's EV amount zeroed and everything after it shifted one byte right, "
+                   "so the friendship values no longer line up with the struct")
+    changes.append("reading this as DSPRE writing a malformed record, not an edit; skipped "
+                   "pending Ian. The vitamin change he described is the EV cap (100 -> 252), "
+                   "which is a code edit and is already its own tracker item")
+    log.append(("pl_item_data.narc (not imported)", changes))
+    return 0
 
 
 def main():
@@ -483,6 +702,47 @@ def main():
             n += 1
     counts["trainers"] = n
     counts["trainers_party_resized"] = resized
+
+    # wild encounters
+    bencs, vencs = base.narc("fielddata/encountdata/pl_enc_data.narc"), van.narc("fielddata/encountdata/pl_enc_data.narc")
+    n = 0
+    skipped_fields = 0
+    for i in range(len(bencs)):
+        if bencs[i] == vencs[i]:
+            continue
+        d = encounter_json(i)
+        if d is None:
+            log.append((f"encounter index {i}", ["record differs but has no json; skipped"]))
+            continue
+        new_enc, old_enc = decode_encounter(bencs[i]), decode_encounter(vencs[i])
+        for key in ENCOUNTER_SKIP_KEYS:
+            if new_enc[key] != old_enc[key]:
+                skipped_fields += 1
+            del new_enc[key], old_enc[key]
+        if apply_scalar_diff(d, new_enc, old_enc, a.dry_run, log):
+            n += 1
+    counts["encounters"] = n
+    log.append(("pl_enc_data.narc (partially imported)", [
+        f"{skipped_fields} differing values in {', '.join(ENCOUNTER_SKIP_KEYS)} were not carried "
+        f"over; see ENCOUNTER_SKIP_KEYS in this importer for why",
+    ]))
+
+    # in-game trades
+    btr, vtr = base.narc("fielddata/pokemon_trade/fld_trade.narc"), van.narc("fielddata/pokemon_trade/fld_trade.narc")
+    n = 0
+    for i in range(len(btr)):
+        if btr[i] == vtr[i]:
+            continue
+        d = trade_json(i)
+        if d is None:
+            log.append((f"npc trade index {i}", ["record differs but has no json; skipped"]))
+            continue
+        if apply_scalar_diff(d, decode_trade(btr[i]), decode_trade(vtr[i]), a.dry_run, log):
+            n += 1
+    counts["npc_trades"] = n
+
+    counts["heights"] = report_skipped_heights(base, van, log)
+    counts["items"] = report_skipped_items(base, van, log)
 
     with open(a.report, "w", encoding="utf-8") as f:
         f.write("# Base ROM import report\n\n")

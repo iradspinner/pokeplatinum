@@ -11,23 +11,27 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_HAUNTER"
         },
         {
             "level": 15,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_HAUNTER"
         },
         {
             "level": 16,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 16,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 17,
@@ -39,15 +43,11 @@
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_GENGAR"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_FROSLASS"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GASTLY"
     ],
     "day": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_HAUNTER",
+        "SPECIES_HAUNTER"
     ],
     "night": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_HAUNTER",
+        "SPECIES_HAUNTER"
     ],
     "radar": [
         "SPECIES_GASTLY",
@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GENGAR",
+        "SPECIES_GASTLY",
         "SPECIES_GASTLY"
     ],
     "sapphire": [
-        "SPECIES_GENGAR",
+        "SPECIES_GASTLY",
         "SPECIES_GASTLY"
     ],
     "emerald": [
-        "SPECIES_GENGAR",
+        "SPECIES_GASTLY",
         "SPECIES_GASTLY"
     ],
     "firered": [
-        "SPECIES_GENGAR",
+        "SPECIES_GASTLY",
         "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_GENGAR",
+        "SPECIES_GASTLY",
         "SPECIES_GASTLY"
     ],
     "surf_rate": 0,

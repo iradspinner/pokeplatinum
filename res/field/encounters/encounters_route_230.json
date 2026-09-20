@@ -7,7 +7,7 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level": 47,
@@ -23,7 +23,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_PELIPPER"
+            "species": "SPECIES_TOGEPI"
         },
         {
             "level": 49,
@@ -43,11 +43,11 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_WINGULL"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level": 50,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_TOGEPI"
         }
     ],
     "swarms": [

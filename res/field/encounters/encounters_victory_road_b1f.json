@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 42,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_AGGRON"
         },
         {
             "level": 41,
-            "species": "SPECIES_AZUMARILL"
+            "species": "SPECIES_PERSIAN"
         },
         {
             "level": 41,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_SCIZOR"
         },
         {
             "level": 43,
-            "species": "SPECIES_AZUMARILL"
+            "species": "SPECIES_KANGASKHAN"
         },
         {
             "level": 42,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_HITMONLEE"
         },
         {
             "level": 44,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_HITMONCHAN"
         },
         {
             "level": 44,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_HITMONTOP"
         },
         {
             "level": 43,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_HITMONTOP"
         },
         {
             "level": 44,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_SABLEYE"
         },
         {
             "level": 43,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_BANETTE"
         },
         {
             "level": 44,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_WOBBUFFET"
         },
         {
             "level": 43,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_WOBBUFFET"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_AZUMARILL"
     ],
     "day": [
-        "SPECIES_GRAVELER",
-        "SPECIES_AZUMARILL"
+        "SPECIES_SCIZOR",
+        "SPECIES_KANGASKHAN"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_AZUMARILL"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DRAPION"
     ],
     "radar": [
         "SPECIES_ONIX",
@@ -99,27 +99,27 @@
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_TENTACRUEL"
         },
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_FLOATZEL"
+            "species": "SPECIES_VAPOREON"
         },
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_WEEZING"
         },
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_WEEZING"
         },
         {
             "level_max": 50,
             "level_min": 30,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_WEEZING"
         }
     ],
     "old_rod_rate": 25,
@@ -127,27 +127,27 @@
         {
             "level_max": 6,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_MUK"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_TENTACRUEL"
         },
         {
             "level_max": 10,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_TENTACRUEL"
         },
         {
             "level_max": 15,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_TENTACOOL"
         }
     ],
     "good_rod_rate": 55,
@@ -155,27 +155,27 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SEADRA"
         },
         {
             "level_max": 25,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SEADRA"
         }
     ],
     "super_rod_rate": 75,

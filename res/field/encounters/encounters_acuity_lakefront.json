@@ -3,31 +3,31 @@
     "land_encounters": [
         {
             "level": 33,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_GLALIE"
         },
         {
             "level": 32,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_URSARING"
         },
         {
             "level": 33,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_WORMADAM"
         },
         {
             "level": 32,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_ABRA"
         },
         {
             "level": 35,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_KADABRA"
         },
         {
             "level": 34,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_PILOSWINE"
         },
         {
             "level": 34,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_JYNX"
         },
         {
             "level": 32,
@@ -39,15 +39,15 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_SNOVER"
-        },
-        {
-            "level": 35,
             "species": "SPECIES_SNEASEL"
         },
         {
             "level": 35,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_MAMOSWINE"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_WEAVILE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SWINUB"
     ],
     "day": [
-        "SPECIES_SNEASEL",
-        "SPECIES_SNOVER"
+        "SPECIES_WORMADAM",
+        "SPECIES_ABRA"
     ],
     "night": [
-        "SPECIES_SNORUNT",
-        "SPECIES_SNORUNT"
+        "SPECIES_ABSOL",
+        "SPECIES_SNEASEL"
     ],
     "radar": [
         "SPECIES_SNEASEL",
