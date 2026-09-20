@@ -99,103 +99,103 @@
     },
     {
       "id": "pl_msg_00000455_00024",
-      "en_US": "{COLOR 2}Hardy{COLOR 0} nature."
+      "en_US": "Hardy ({COLOR 3}Neutral{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00025",
-      "en_US": "{COLOR 2}Lonely{COLOR 0} nature."
+      "en_US": "Lonely ({COLOR 2}\u2191Atk{COLOR 0},{COLOR 1}\u2193Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00026",
-      "en_US": "{COLOR 2}Brave{COLOR 0} nature."
+      "en_US": "Brave ({COLOR 2}\u2191Atk{COLOR 0},{COLOR 1}\u2193Spd{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00027",
-      "en_US": "{COLOR 2}Adamant{COLOR 0} nature."
+      "en_US": "Adamant ({COLOR 2}\u2191Atk{COLOR 0},{COLOR 1}\u2193Sp.Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00028",
-      "en_US": "{COLOR 2}Naughty{COLOR 0} nature."
+      "en_US": "Naughty ({COLOR 2}\u2191Atk{COLOR 0},{COLOR 1}\u2193Sp.Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00029",
-      "en_US": "{COLOR 2}Bold{COLOR 0} nature."
+      "en_US": "Bold ({COLOR 2}\u2191Def{COLOR 0},{COLOR 1}\u2193Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00030",
-      "en_US": "{COLOR 2}Docile{COLOR 0} nature."
+      "en_US": "Docile ({COLOR 3}Neutral{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00031",
-      "en_US": "{COLOR 2}Relaxed{COLOR 0} nature."
+      "en_US": "Relaxed ({COLOR 2}\u2191Def{COLOR 0},{COLOR 1}\u2193Spd{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00032",
-      "en_US": "{COLOR 2}Impish{COLOR 0} nature."
+      "en_US": "Impish ({COLOR 2}\u2191Def{COLOR 0},{COLOR 1}\u2193Sp.Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00033",
-      "en_US": "{COLOR 2}Lax{COLOR 0} nature."
+      "en_US": "Lax ({COLOR 2}\u2191Def{COLOR 0},{COLOR 1}\u2193Sp.Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00034",
-      "en_US": "{COLOR 2}Timid{COLOR 0} nature."
+      "en_US": "Timid ({COLOR 2}\u2191Spd{COLOR 0},{COLOR 1}\u2193Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00035",
-      "en_US": "{COLOR 2}Hasty{COLOR 0} nature."
+      "en_US": "Hasty ({COLOR 2}\u2191Spd{COLOR 0},{COLOR 1}\u2193Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00036",
-      "en_US": "{COLOR 2}Serious{COLOR 0} nature."
+      "en_US": "Serious ({COLOR 3}Neutral{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00037",
-      "en_US": "{COLOR 2}Jolly{COLOR 0} nature."
+      "en_US": "Jolly ({COLOR 2}\u2191Spd{COLOR 0},{COLOR 1}\u2193Sp.Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00038",
-      "en_US": "{COLOR 2}Naive{COLOR 0} nature."
+      "en_US": "Naive ({COLOR 2}\u2191Spd{COLOR 0},{COLOR 1}\u2193Sp.Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00039",
-      "en_US": "{COLOR 2}Modest{COLOR 0} nature."
+      "en_US": "Modest ({COLOR 2}\u2191Sp.Atk{COLOR 0},{COLOR 1}\u2193Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00040",
-      "en_US": "{COLOR 2}Mild{COLOR 0} nature."
+      "en_US": "Mild ({COLOR 2}\u2191Sp.Atk{COLOR 0},{COLOR 1}\u2193Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00041",
-      "en_US": "{COLOR 2}Quiet{COLOR 0} nature."
+      "en_US": "Quiet ({COLOR 2}\u2191Sp.Atk{COLOR 0},{COLOR 1}\u2193Spd{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00042",
-      "en_US": "{COLOR 2}Bashful{COLOR 0} nature."
+      "en_US": "Bashful ({COLOR 3}Neutral{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00043",
-      "en_US": "{COLOR 2}Rash{COLOR 0} nature."
+      "en_US": "Rash ({COLOR 2}\u2191Sp.Atk{COLOR 0},{COLOR 1}\u2193Sp.Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00044",
-      "en_US": "{COLOR 2}Calm{COLOR 0} nature."
+      "en_US": "Calm ({COLOR 2}\u2191Sp.Def{COLOR 0},{COLOR 1}\u2193Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00045",
-      "en_US": "{COLOR 2}Gentle{COLOR 0} nature."
+      "en_US": "Gentle ({COLOR 2}\u2191Sp.Def{COLOR 0},{COLOR 1}\u2193Def{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00046",
-      "en_US": "{COLOR 2}Sassy{COLOR 0} nature."
+      "en_US": "Sassy ({COLOR 2}\u2191Sp.Def{COLOR 0},{COLOR 1}\u2193Spd{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00047",
-      "en_US": "{COLOR 2}Careful{COLOR 0} nature."
+      "en_US": "Careful ({COLOR 2}\u2191Sp.Def{COLOR 0},{COLOR 1}\u2193Sp.Atk{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00048",
-      "en_US": "{COLOR 2}Quirky{COLOR 0} nature."
+      "en_US": "Quirky ({COLOR 3}Neutral{COLOR 0})"
     },
     {
       "id": "pl_msg_00000455_00049",

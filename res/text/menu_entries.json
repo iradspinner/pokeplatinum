@@ -235,11 +235,11 @@
     },
     {
       "id": "MenuEntries_Text_PC_SomeonesPC",
-      "en_US": "SOMEONE’S PC"
+      "en_US": "Move Tutors"
     },
     {
       "id": "MenuEntries_Text_PC_BebesPC",
-      "en_US": "BEBE’S PC"
+      "en_US": "Pok\u00e9mon Storage"
     },
     {
       "id": "MenuEntries_Text_PC_PlayersPC",
@@ -247,55 +247,55 @@
     },
     {
       "id": "MenuEntries_Text_PC_HallOfFame",
-      "en_US": "HALL OF FAME"
+      "en_US": "Hall of Fame"
     },
     {
       "id": "MenuEntries_Text_PC_OaksPC",
-      "en_US": "OAK’S PC"
+      "en_US": "Oak\u2019s PC"
     },
     {
       "id": "MenuEntries_Text_PC_RowansPC",
-      "en_US": "ROWAN’S PC"
+      "en_US": "Healing Waves"
     },
     {
       "id": "MenuEntries_Text_PC_SwitchOff",
-      "en_US": "SWITCH OFF"
+      "en_US": "Misc."
     },
     {
       "id": "MenuEntries_Text_PC_DepositPokemon",
-      "en_US": "DEPOSIT POKéMON"
+      "en_US": "Deposit Pok\u00e9mon"
     },
     {
       "id": "MenuEntries_Text_PC_WithdrawPokemon",
-      "en_US": "WITHDRAW POKéMON"
+      "en_US": "Withdraw Pok\u00e9mon"
     },
     {
       "id": "MenuEntries_Text_PC_MovePokemon",
-      "en_US": "MOVE POKéMON"
+      "en_US": "Move Pok\u00e9mon"
     },
     {
       "id": "MenuEntries_Text_PC_MoveItems",
-      "en_US": "MOVE ITEMS"
+      "en_US": "Move Items"
     },
     {
       "id": "MenuEntries_Text_PC_ComparePokemon",
-      "en_US": "COMPARE POKéMON"
+      "en_US": "Compare Pok\u00e9mon"
     },
     {
       "id": "MenuEntries_Text_PC_SeeYa",
-      "en_US": "SEE YA!"
+      "en_US": "See Ya!"
     },
     {
       "id": "MenuEntries_Text_PC_Mailbox",
-      "en_US": "MAILBOX"
+      "en_US": "Mailbox"
     },
     {
       "id": "MenuEntries_Text_PC_BallCapsules",
-      "en_US": "BALL CAPSULES"
+      "en_US": "Ball Capsules"
     },
     {
       "id": "MenuEntries_Text_PC_LogOut",
-      "en_US": "LOG OUT"
+      "en_US": "Log Out"
     },
     {
       "id": "MenuEntries_Text_PC_DescriptionDepositPokemon",
@@ -403,7 +403,7 @@
     },
     {
       "id": "MenuEntries_Text_BattleTower_Cancel",
-      "en_US": "CANCEL"
+      "en_US": "Cancel"
     },
     {
       "id": "pl_msg_00000361_00095",

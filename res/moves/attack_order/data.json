@@ -4,8 +4,8 @@
         "The user calls out\n",
         "its underlings to\n",
         "pummel the foe.\n",
-        "It has a high\n",
-        "critical-hit ratio."
+        "It has a chance\n",
+        "to poison."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",

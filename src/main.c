@@ -71,21 +71,30 @@ extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
  * Platinum Oxide: hg-engine's BATTLES_UNCAPPED_FRAME_RATE, ported from a
  * frame-timing patch found in the base ROM's own synthetic-overlay
  * expansion (docs/oxide/phase3-base-rom-inventory.md section 2A), which
- * repurposes BUTTON_MODE_START_IS_X and BUTTON_MODE_SWAP_XY as an uncap
- * selector instead of their normal input-remapping meaning. Ian's choice
- * (2026-09-15): keep that repurposing rather than add new option values
- * (the field is a 2-bit save value, no room for new ones anyway) or a
- * separate menu entry; the options-menu text still needs updating to match
- * (tracked in the tracker's backlog).
+ * repurposes the whole three-value BUTTON MODE option as an uncap selector
+ * instead of its normal input-remapping meaning. Ian's choice (2026-09-15):
+ * keep that repurposing rather than add new option values (the field is a
+ * 2-bit save value, no room for new ones anyway) or a separate menu entry.
+ * The base ROM relabels the menu to UNLOCK FPS / OFF / BATTLE / ALWAYS and
+ * turns the remapping off wholesale in ApplyButtonModeToInput; both are
+ * carried over here.
+ *
+ * Note this reads the saved option, so the values to compare against are
+ * OPTIONS_BUTTON_MODE_*, not the enum ButtonMode values the option is
+ * translated into. The two enums happen to agree on 0 and 1 but not on 2:
+ * the third menu entry is OPTIONS_BUTTON_MODE_L_IS_A, which
+ * Options_ApplyButtonMode turns into BUTTON_MODE_L_IS_A (3), not
+ * BUTTON_MODE_SWAP_XY (2). BUTTON_MODE_SWAP_XY is not reachable from the
+ * menu at all.
  */
 static BOOL ShouldWaitForVBlank(void)
 {
     switch (Options_ButtonMode(SaveData_GetOptions(sApplication.args.saveData))) {
-    case BUTTON_MODE_START_IS_X: // uncapped only during battle
+    case OPTIONS_BUTTON_MODE_START_IS_X: // "BATTLE": uncapped only during battle
         return sApplication.currOverlayID != FS_OVERLAY_ID(battle);
-    case BUTTON_MODE_SWAP_XY: // uncapped everywhere
+    case OPTIONS_BUTTON_MODE_L_IS_A: // "ALWAYS": uncapped everywhere
         return FALSE;
-    default:
+    default: // "OFF"
         return TRUE;
     }
 }

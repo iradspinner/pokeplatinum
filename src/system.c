@@ -365,6 +365,9 @@ void ReadKeypadAndTouchpad(void)
     gSystem.touchHeld = tp.touch;
 }
 
+// SWAP_KEY was already unused in vanilla; CONVERT_KEY and CLEAR_KEY joined it
+// when ApplyButtonModeToInput below was emptied out. Kept as the record of what
+// each button mode used to do.
 #define CONVERT_KEY(member, convertFrom, convertTo) \
     {                                               \
         if (member & convertFrom) {                 \
@@ -388,29 +391,18 @@ void ReadKeypadAndTouchpad(void)
         member &= (key ^ 0xFFFF); \
     }
 
+// Platinum Oxide: the BUTTON MODE option is repurposed wholesale as the
+// uncapped-frame-rate selector (see ShouldWaitForVBlank in main.c, and the
+// relabelled res/text/options_menu.json), so no mode remaps input any more.
+// The base ROM does the same thing by branching straight to this function's
+// exit; keeping the switch here would be worse than useless, because the
+// "ALWAYS" entry saves OPTIONS_BUTTON_MODE_L_IS_A, which Options_ApplyButtonMode
+// turns into BUTTON_MODE_L_IS_A. That would make L act as A and clear both L
+// and R for as long as the frame rate was uncapped, which among other things
+// would take the summary screen's EV/IV viewer with it.
 static void ApplyButtonModeToInput(void)
 {
-    switch (gSystem.buttonMode) {
-    default:
-    case BUTTON_MODE_NORMAL:
-        break;
-
-    // BUTTON_MODE_START_IS_X and BUTTON_MODE_SWAP_XY are repurposed as the
-    // uncapped-frame-rate selector (Platinum Oxide, see
-    // ShouldWaitForVBlank in main.c); they no longer remap input.
-    case BUTTON_MODE_START_IS_X:
-    case BUTTON_MODE_SWAP_XY:
-        break;
-
-    case BUTTON_MODE_L_IS_A:
-        CONVERT_KEY(gSystem.pressedKeys, PAD_BUTTON_L, PAD_BUTTON_A);
-        CONVERT_KEY(gSystem.heldKeys, PAD_BUTTON_L, PAD_BUTTON_A);
-        CONVERT_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_L, PAD_BUTTON_A);
-        CLEAR_KEY(gSystem.pressedKeys, (PAD_BUTTON_L | PAD_BUTTON_R));
-        CLEAR_KEY(gSystem.heldKeys, (PAD_BUTTON_L | PAD_BUTTON_R));
-        CLEAR_KEY(gSystem.pressedKeysRepeatable, (PAD_BUTTON_L | PAD_BUTTON_R));
-        break;
-    }
+    return;
 }
 
 void SetAutorepeat(int rate, int delay)

@@ -27,12 +27,12 @@
     {
       "id": "SnowpointCityWestHouse_Text_IMadeItPreventEvolving",
       "en_US": [
-        "Haha! Did my HAUNTER turn into\n",
-        "something else? Just kidding!\r",
-        "I made it hold something that\n",
-        "prevents it from evolving.\r",
-        "Please treat my HAUNTER nicely!\n",
-        "I’ll be good to your MEDICHAM, too!"
+          "Haha! Did my HAUNTER turn into\n",
+          "something else? Just kidding!\r",
+          "I made it hold something that\n",
+          "prevents it from evolv...\r",
+          "OH NONONONO!I sent you my precious\n",
+          "Gengar by mistake!"
       ]
     },
     {
@@ -49,10 +49,7 @@
     },
     {
       "id": "SnowpointCityWestHouse_Text_WeGotToBeFriends",
-      "en_US": [
-        "Thanks to Pokémon, we got to be\n",
-        "friends, didn’t we?"
-      ]
+      "en_US": "Please... Give it back..."
     }
   ]
 }

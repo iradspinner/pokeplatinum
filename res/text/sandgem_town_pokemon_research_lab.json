@@ -341,50 +341,38 @@
     },
     {
       "id": "SandgemTownLab_Text_IntroduceYouToMyAssistant",
-      "en_US": [
-        "Professor Oak, let me introduce you\n",
-        "to my young assistant.\r",
-        "This youngster has filled every page\n",
-        "of the Sinnoh Pokédex for me.\r"
-      ]
+      "en_US": [ "Professor Oak, let me introduce you\n", "to my young assistant.\r" ]
     },
     {
       "id": "SandgemTownLab_Text_LetMeUpgradeYourPokedex",
       "en_US": [
-        "Oak: Ah, well, very glad to meet you!\n",
-        "As you’ve heard, my name is Oak.\r",
-        "I’ve been hearing a great deal about\n",
-        "you from Professor Rowan lately.\r",
-        "He’s been exuberant in praise about\n",
-        "a fantastic young Trainer.\r",
-        "I see that you live up to--no--that\n",
-        "you’ve surpassed his praise.\r",
-        "You’ve also got an impeccable sense\n",
-        "of timing.\r",
-        "You see, I had an errand to run for\n",
-        "Professor Rowan on my visit here.\r",
-        "He’d asked me to bring the data\n",
-        "for the National Pokédex, you see.\r",
-        "So, since you’re here, let me upgrade\n",
-        "your Pokédex with the National Mode.\r",
-        "After all, there are many kinds of\n",
-        "Pokémon in this world of ours!\r"
+          "Oak: Ah, well, very glad to meet you!\n",
+          "As you\u2019ve heard, my name is Oak.\r",
+          "I\u2019ve been hearing a great deal about\n",
+          "you from Professor Rowan lately.\r",
+          "He\u2019s been exuberant in praise about\n",
+          "a fantastic young Trainer.\r",
+          "I see that you live up to--no--that\n",
+          "you\u2019ve surpassed his praise.\r",
+          "You\u2019ve also got an impeccable sense\n",
+          "of timing.\r",
+          "You see, I had an errand to run for\n",
+          "Professor Rowan on my visit here.\r",
+          "He\u2019d asked me to bring gifts\n",
+          "for his most trusted assistant.\r"
       ]
     },
     {
       "id": "SandgemTownLab_Text_PokedexUpgradedWithNationalMode",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\n",
-        "with the National Mode!\r"
-      ]
+      "en_US": [ "{STRVAR_1 3, 0, 0} received\n", "Legendary Gifts!\r" ]
     },
     {
       "id": "SandgemTownLab_Text_WontBeEasyToComplete",
       "en_US": [
-        "Oak: I’m afraid it won’t be easy to\n",
-        "complete the National Pokédex.\r",
-        "However, I’m sure you will make an\n",
-        "honest attempt on our behalf!\r"
+          "Oak: I\u2019m afraid it won\u2019t be easy to\n",
+          "catch these rare Pokemon.\r",
+          "However, I\u2019m sure you will make an\n",
+          "honest attempt on our behalf!\r"
       ]
     },
     {
@@ -442,23 +430,20 @@
     {
       "id": "SandgemTownLab_Text_GiftForCompletingSinnohPokedex",
       "en_US": [
-        "Now, {STRVAR_1 3, 0, 0}...\r",
-        "I have a gift here as your reward\n",
-        "for completing the Sinnoh Pokédex.\r"
+          "Now, {STRVAR_1 3, 0, 0}...\r",
+          "I have a gift here as your reward\n",
+          "for becoming the champion.\r"
       ]
     },
     {
       "id": "SandgemTownLab_Text_ThatsThePokemonRadar",
       "en_US": [
-        "Rowan: That’s the Pokémon Radar,\n",
-        "or just Poké Radar for short.\r",
-        "Use it, and it will indicate grass\n",
-        "patches where Pokémon are lurking.\r",
-        "I’d prepared that to help my field\n",
-        "assistants put together the Sinnoh\f",
-        "Pokédex, but you took care of that!\r",
-        "I’m sure it will be useful for your\n",
-        "goal of filling the National Pokédex."
+          "Rowan: That\u2019s the Pok\u00e9mon Radar,\n",
+          "or just Pok\u00e9 Radar for short.\r",
+          "Use it, and it will indicate grass\n",
+          "patches where Pok\u00e9mon are lurking.\r",
+          "I\u2019m sure it will be useful for your\n",
+          "goal of filling the Pok\u00e9dex."
       ]
     },
     {

@@ -82,10 +82,66 @@ def check_encounters(built, ref, nb, nr):
     return mismatches == 0
 
 
+def check_text(built, ref, nb, nr, msgenc, charmap):
+    """Field-level check for pl_msg.narc. Only the banks whose message count is
+    unchanged were imported, so the expected result is: those banks match the
+    reference message for message, except the handful of slots the importer
+    logged as skipped."""
+    import tempfile
+    imp = load_importer()
+    path = "msgdata/pl_msg.narc"
+    b = ndspy.narc.NARC(built.files[nb[path]]).files
+    r = ndspy.narc.NARC(ref.files[nr[path]]).files
+    names = imp.text_bank_names()
+    checked = mismatches = skipped_slots = deferred = 0
+    with tempfile.TemporaryDirectory() as tmp:
+        for i in range(min(len(b), len(r))):
+            if b[i] == r[i]:
+                continue
+            new = imp.decode_text_bank(msgenc, charmap, r[i], tmp, f"{i}_ref")
+            got = imp.decode_text_bank(msgenc, charmap, b[i], tmp, f"{i}_built")
+            if len(new) != len(got) or i in imp.TEXT_BANKS_SKIPPED:
+                deferred += 1
+                continue
+            if imp.text_targets(i, len(new)) is None:
+                deferred += 1
+                continue
+            checked += 1
+            bad = []
+            for slot, (want, have) in enumerate(zip(new, got)):
+                wv, hv = imp.message_body(want), imp.message_body(have)
+                if i == imp.TEXT_BANK_TRAINER_NAMES:
+                    # The base ROM carries a {TRNAME} compression tag on every
+                    # trainer name; vanilla leaves it off for rivals, the
+                    # Frontier brains and the five Battleground trainers, and so
+                    # does trainerproc (emit_name's uncompressed_classes and
+                    # uncompressed_trainers). DSPRE re-tagged the whole bank on
+                    # save, so the tag is not part of any edit and the built ROM
+                    # is right to follow vanilla's rule. Compare the names only.
+                    wv = wv.replace("{TRNAME}", "") if isinstance(wv, str) else wv
+                    hv = hv.replace("{TRNAME}", "") if isinstance(hv, str) else hv
+                if wv == hv:
+                    continue
+                if isinstance(wv, tuple) or isinstance(hv, tuple):
+                    skipped_slots += 1  # unused slot that gained or lost text
+                    continue
+                bad.append(f"[{slot}] built {hv!r} != ref {wv!r}")
+            if bad:
+                mismatches += 1
+                print(f"{names[i]}: {len(bad)} messages differ: {bad[:3]}")
+    print(f"{path}: {checked} imported banks checked, {mismatches} with unexpected differences; "
+          f"{skipped_slots} unused slots left empty and {deferred} banks deferred, both as intended")
+    return mismatches == 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--built", required=True)
     ap.add_argument("--ref", required=True)
+    ap.add_argument("--text", action="store_true",
+                    help="message-level check of pl_msg.narc instead of a byte comparison")
+    ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc")
+    ap.add_argument("--charmap", default="tools/msgenc/charmap.txt")
     ap.add_argument("--encounters", action="store_true",
                     help="field-level check of pl_enc_data.narc instead of a byte comparison")
     ap.add_argument("paths", nargs="*", default=DEFAULT)
@@ -95,6 +151,8 @@ def main():
     ok = True
     if a.encounters:
         sys.exit(0 if check_encounters(built, ref, nb, nr) else 1)
+    if a.text:
+        sys.exit(0 if check_text(built, ref, nb, nr, a.msgenc, a.charmap) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if len(b) != len(r):

@@ -1,12 +1,8 @@
 {
-  "name": "Vs. Seeker",
+  "name": "Pocket PC",
   "plural": "Vs. Seekers",
   "article": "a",
-  "description": [
-    "A device that indicates Trainers who\n",
-    "want to battle. Its battery charges\n",
-    "while you walk."
-  ],
+  "description": "A device to access the regular PC.",
   "icon": {
     "sprite": "vs_seeker_NCGR",
     "palette": "vs_seeker_NCLR"

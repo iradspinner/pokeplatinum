@@ -2,2915 +2,478 @@
 
 base: `base.nds`  vanilla: `vanilla.nds`  dry run: False
 
-Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 153, 'encounters': 125, 'npc_trades': 2, 'heights': 0, 'items': 0}
-
-## res/field/encounters/encounters_canalave_city.json
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_PELIPPER'
-- surf_encounters.1.species: 'SPECIES_SHELLOS' -> 'SPECIES_WINGULL'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_TENTACOOL'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_DEWGONG'
-- surf_encounters.4.species: 'SPECIES_GASTRODON' -> 'SPECIES_KRABBY'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUMINEON'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_DEWGONG'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_OCTILLERY'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SPHEAL'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUMINEON'
-- good_rod_encounters.1.level_max: 20 -> 25
-- good_rod_encounters.1.level_min: 15 -> 20
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_QWILFISH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-- good_rod_encounters.3.species: 'SPECIES_FINNEON' -> 'SPECIES_LANTURN'
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_HORSEA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARYU'
-- super_rod_encounters.1.species: 'SPECIES_LUMINEON' -> 'SPECIES_CLAMPERL'
-- super_rod_encounters.2.species: 'SPECIES_STARYU' -> 'SPECIES_STARMIE'
-- super_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_MANTINE'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_WAILMER'
-
-## res/field/encounters/encounters_eterna_city.json
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_HOPPIP'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_SKIPLOOM'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_JUMPLUFF'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SWABLU'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SURSKIT'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LOTAD'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LOTAD'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MARILL'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_LOMBRE'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LOTAD'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_LUDICOLO'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_LUDICOLO'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_LUDICOLO'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_MISDREAVUS'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_MISDREAVUS'
-
-## res/field/encounters/encounters_pastoria_city.json
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_PELIPPER'
-- surf_encounters.1.species: 'SPECIES_SHELLOS' -> 'SPECIES_SHARPEDO'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_MANTYKE'
-- surf_encounters.4.species: 'SPECIES_GASTRODON' -> 'SPECIES_DEWGONG'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_REMORAID'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HUNTAIL'
-- good_rod_encounters.1.species: 'SPECIES_REMORAID' -> 'SPECIES_GOREBYSS'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_SEADRA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_SEADRA'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_GOREBYSS'
-- super_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_HUNTAIL'
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_CLOYSTER'
-
-## res/field/encounters/encounters_sunyshore_city.json
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_TENTACRUEL'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_RAICHU'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_PIKACHU'
-- surf_encounters.4.species: 'SPECIES_PELIPPER' -> 'SPECIES_LANTURN'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.1.species: 'SPECIES_REMORAID' -> 'SPECIES_QWILFISH'
-- good_rod_encounters.2.level_min: 10 -> 20
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHARPEDO'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_SHARPEDO'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_SHELLDER'
-- super_rod_encounters.1.species: 'SPECIES_OCTILLERY' -> 'SPECIES_SEADRA'
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_CLOYSTER'
-
-## res/field/encounters/encounters_pokemon_league.json
-- surf_encounters.0.species: 'SPECIES_WINGULL' -> 'SPECIES_BLASTOISE'
-- old_rod_encounters.0.level_max: 6 -> 40
-- old_rod_encounters.0.level_min: 4 -> 35
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TORTERRA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GLOOM'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_ROSERADE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_ROSERADE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_ROSERADE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BLAZIKEN'
-- good_rod_encounters.1.species: 'SPECIES_REMORAID' -> 'SPECIES_MAGCARGO'
-- good_rod_encounters.2.level_max: 25 -> 30
-- good_rod_encounters.2.level_min: 10 -> 20
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CAMERUPT'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_CAMERUPT'
-- good_rod_encounters.4.species: 'SPECIES_REMORAID' -> 'SPECIES_CAMERUPT'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_DRATINI'
-- super_rod_encounters.1.species: 'SPECIES_OCTILLERY' -> 'SPECIES_LEDYBA'
-- super_rod_encounters.2.species: 'SPECIES_LUVDISC' -> 'SPECIES_WURMPLE'
-- super_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_PICHU'
-- super_rod_encounters.4.level_max: 55 -> 71
-- super_rod_encounters.4.level_min: 40 -> 71
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_LUGIA'
-
-## res/field/encounters/encounters_oreburgh_mine_b1f.json
-- land_encounters.0.level: 5 -> 6
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAGBY'
-- land_encounters.1.level: 6 -> 7
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSHREW'
-- land_encounters.2.level: 5 -> 6
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- land_encounters.3.level: 6 -> 7
-- land_encounters.3.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAGBY'
-- land_encounters.4.level: 4 -> 5
-- land_encounters.5.level: 7 -> 8
-- land_encounters.5.species: 'SPECIES_GEODUDE' -> 'SPECIES_PHANPY'
-- land_encounters.6.level: 6 -> 7
-- land_encounters.6.species: 'SPECIES_ONIX' -> 'SPECIES_ZUBAT'
-- land_encounters.7.level: 8 -> 9
-- land_encounters.7.species: 'SPECIES_ONIX' -> 'SPECIES_RHYHORN'
-- land_encounters.8.level: 8 -> 9
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_ARON'
-- land_encounters.9.level: 7 -> 8
-- land_encounters.9.species: 'SPECIES_ZUBAT' -> 'SPECIES_ONIX'
-- land_encounters.10.level: 8 -> 9
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOP'
-- land_encounters.11.level: 7 -> 8
-- land_encounters.11.species: 'SPECIES_ZUBAT' -> 'SPECIES_MACHOP'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- day.1: 'SPECIES_ZUBAT' -> 'SPECIES_MAGBY'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_oreburgh_mine_b2f.json
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAGBY'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSHREW'
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- land_encounters.3.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAGBY'
-- land_encounters.5.species: 'SPECIES_GEODUDE' -> 'SPECIES_PHANPY'
-- land_encounters.6.species: 'SPECIES_ONIX' -> 'SPECIES_ZUBAT'
-- land_encounters.7.species: 'SPECIES_ONIX' -> 'SPECIES_RHYHORN'
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_ARON'
-- land_encounters.9.species: 'SPECIES_ZUBAT' -> 'SPECIES_ONIX'
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOP'
-- land_encounters.11.species: 'SPECIES_ZUBAT' -> 'SPECIES_MACHOP'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- day.1: 'SPECIES_ZUBAT' -> 'SPECIES_MAGBY'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_valley_windworks_outside.json
-- land_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_SPEAROW'
-- land_encounters.1.species: 'SPECIES_SHINX' -> 'SPECIES_HOPPIP'
-- land_encounters.2.species: 'SPECIES_BUIZEL' -> 'SPECIES_STARLY'
-- land_encounters.3.species: 'SPECIES_SHELLOS' -> 'SPECIES_PIDGEY'
-- land_encounters.4.species: 'SPECIES_BUIZEL' -> 'SPECIES_NATU'
-- land_encounters.5.species: 'SPECIES_SHELLOS' -> 'SPECIES_WINGULL'
-- land_encounters.7.species: 'SPECIES_PACHIRISU' -> 'SPECIES_PICHU'
-- land_encounters.8.species: 'SPECIES_BUIZEL' -> 'SPECIES_FARFETCHD'
-- land_encounters.9.species: 'SPECIES_SHELLOS' -> 'SPECIES_SWABLU'
-- land_encounters.10.species: 'SPECIES_BUIZEL' -> 'SPECIES_DODUO'
-- land_encounters.11.species: 'SPECIES_SHELLOS' -> 'SPECIES_ELECTRIKE'
-- day.0: 'SPECIES_BUIZEL' -> 'SPECIES_STARLY'
-- day.1: 'SPECIES_SHELLOS' -> 'SPECIES_PIDGEY'
-- night.0: 'SPECIES_BUIZEL' -> 'SPECIES_ZUBAT'
-- night.1: 'SPECIES_SHELLOS' -> 'SPECIES_HOOTHOOT'
-- surf_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_DRIFLOON'
-- surf_encounters.1.species: 'SPECIES_TENTACOOL' -> 'SPECIES_CASTFORM'
-- surf_encounters.2.species: 'SPECIES_GASTRODON' -> 'SPECIES_DRIFLOON'
-- surf_encounters.3.species: 'SPECIES_GASTRODON' -> 'SPECIES_DRIFBLIM'
-- surf_encounters.4.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_DRIFBLIM'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LANTURN'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_CARVANHA'
-- good_rod_encounters.2.level_min: 10 -> 20
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_SHARPEDO'
-
-## res/field/encounters/encounters_eterna_forest.json
-- land_encounters.1.species: 'SPECIES_BUDEW' -> 'SPECIES_ROSELIA'
-- land_encounters.2.species: 'SPECIES_WURMPLE' -> 'SPECIES_BEAUTIFLY'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_PARAS'
-- land_encounters.4.species: 'SPECIES_BUDEW' -> 'SPECIES_WORMADAM'
-- land_encounters.5.species: 'SPECIES_BIDOOF' -> 'SPECIES_SHROOMISH'
-- land_encounters.6.species: 'SPECIES_SILCOON' -> 'SPECIES_PINECO'
-- land_encounters.7.level: 12 -> 13
-- land_encounters.7.species: 'SPECIES_CASCOON' -> 'SPECIES_KRICKETUNE'
-- land_encounters.8.species: 'SPECIES_BUNEARY' -> 'SPECIES_MOTHIM'
-- land_encounters.9.species: 'SPECIES_GASTLY' -> 'SPECIES_VENOMOTH'
-- land_encounters.10.level: 14 -> 12
-- land_encounters.10.species: 'SPECIES_BEAUTIFLY' -> 'SPECIES_COMBEE'
-- land_encounters.11.level: 14 -> 13
-- land_encounters.11.species: 'SPECIES_DUSTOX' -> 'SPECIES_BEEDRILL'
-- day.0: 'SPECIES_WURMPLE' -> 'SPECIES_BEAUTIFLY'
-- day.1: 'SPECIES_BUDEW' -> 'SPECIES_PARAS'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_ARIADOS'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_DUSTOX'
-
-## res/field/encounters/encounters_fuego_ironworks_outside.json
-- land_encounters.0.species: 'SPECIES_MAGMAR' -> 'SPECIES_MANECTRIC'
-- land_encounters.1.species: 'SPECIES_MAGNEMITE' -> 'SPECIES_TORKOAL'
-- land_encounters.3.species: 'SPECIES_FLOATZEL' -> 'SPECIES_ARCANINE'
-- land_encounters.4.species: 'SPECIES_FLOATZEL' -> 'SPECIES_ELECTRODE'
-- land_encounters.5.species: 'SPECIES_GASTRODON' -> 'SPECIES_CASTFORM'
-- land_encounters.6.species: 'SPECIES_MAGNEMITE' -> 'SPECIES_ELECTRIKE'
-- land_encounters.7.species: 'SPECIES_MAGNEMITE' -> 'SPECIES_MAGBY'
-- land_encounters.8.species: 'SPECIES_FLOATZEL' -> 'SPECIES_VOLTORB'
-- land_encounters.9.species: 'SPECIES_GASTRODON' -> 'SPECIES_GROWLITHE'
-- land_encounters.10.species: 'SPECIES_FLOATZEL' -> 'SPECIES_MAGNEMITE'
-- land_encounters.11.species: 'SPECIES_GASTRODON' -> 'SPECIES_LAIRON'
-- day.1: 'SPECIES_FLOATZEL' -> 'SPECIES_ARCANINE'
-- night.0: 'SPECIES_GASTRODON' -> 'SPECIES_AMPHAROS'
-- night.1: 'SPECIES_FLOATZEL' -> 'SPECIES_ELECTABUZZ'
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_WEEZING'
-- surf_encounters.1.species: 'SPECIES_SHELLOS' -> 'SPECIES_MUK'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_KOFFING'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_GRIMER'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GULPIN'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GRIMER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GULPIN'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MUK'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SWALOT'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_MUK'
-- good_rod_encounters.2.level_min: 10 -> 20
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GRIMER'
-- good_rod_encounters.3.species: 'SPECIES_FINNEON' -> 'SPECIES_CLAMPERL'
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_CRAWDAUNT'
-
-## res/field/encounters/encounters_mt_coronet_1f_south.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_CHIMECHO'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_SPOINK'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_VOLTORB'
-- land_encounters.4.species: 'SPECIES_MACHOP' -> 'SPECIES_LILEEP'
-- land_encounters.5.species: 'SPECIES_MEDITITE' -> 'SPECIES_NOSEPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_LILEEP'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAWILE'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_ABRA'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_CLEFAIRY'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLEFFA'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_ANORITH'
-- day.1: 'SPECIES_GEODUDE' -> 'SPECIES_MEDITITE'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_KABUTO'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_MEDITITE'
-- surf_encounters.0.species: 'SPECIES_ZUBAT' -> 'SPECIES_GOLBAT'
-- surf_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- surf_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- surf_encounters.4.species: 'SPECIES_GOLBAT' -> 'SPECIES_MAGNEMITE'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACOOL'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_CHINCHOU'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_SHELLDER'
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_SHELLDER'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_CLOYSTER'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_STARYU'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_RELICANTH'
-
-## res/field/encounters/encounters_mt_coronet_2f.json
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-
-## res/field/encounters/encounters_mt_coronet_3f.json
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_MEDICHAM' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-- radar.2: 'SPECIES_MEDICHAM' -> 'SPECIES_GOLBAT'
-
-## res/field/encounters/encounters_mt_coronet_outside_north.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_GLISCOR'
-- land_encounters.1.species: 'SPECIES_ABOMASNOW' -> 'SPECIES_DRAPION'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_NINETALES'
-- land_encounters.3.species: 'SPECIES_ABOMASNOW' -> 'SPECIES_ARCANINE'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GLACEON'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_FROSLASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_PUPITAR'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_GABITE'
-- land_encounters.8.species: 'SPECIES_ABSOL' -> 'SPECIES_PUPITAR'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_GABITE'
-- land_encounters.10.species: 'SPECIES_ABSOL' -> 'SPECIES_BELDUM'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_METANG'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_NINETALES'
-- day.1: 'SPECIES_ABOMASNOW' -> 'SPECIES_ARCANINE'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_NOCTOWL' -> 'SPECIES_BRONZONG'
-
-## res/field/encounters/encounters_mt_coronet_outside_south.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_GLISCOR'
-- land_encounters.1.species: 'SPECIES_ABOMASNOW' -> 'SPECIES_DRAPION'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_NINETALES'
-- land_encounters.3.species: 'SPECIES_ABOMASNOW' -> 'SPECIES_ARCANINE'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GLACEON'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_FROSLASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_PUPITAR'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_GABITE'
-- land_encounters.8.species: 'SPECIES_ABSOL' -> 'SPECIES_PUPITAR'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_GABITE'
-- land_encounters.10.species: 'SPECIES_ABSOL' -> 'SPECIES_BELDUM'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_METANG'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_NINETALES'
-- day.1: 'SPECIES_ABOMASNOW' -> 'SPECIES_ARCANINE'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_NOCTOWL' -> 'SPECIES_BRONZONG'
-
-## res/field/encounters/encounters_mt_coronet_4f_rooms_1_and_2.json
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-- surf_rate: 10 -> 0
-- surf_encounters.0.level_max: 30 -> 0
-- surf_encounters.0.level_min: 20 -> 0
-- surf_encounters.0.species: 'SPECIES_ZUBAT' -> 'SPECIES_NONE'
-- surf_encounters.1.level_max: 30 -> 0
-- surf_encounters.1.level_min: 20 -> 0
-- surf_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_NONE'
-- surf_encounters.2.level_max: 40 -> 0
-- surf_encounters.2.level_min: 20 -> 0
-- surf_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_NONE'
-- surf_encounters.3.level_max: 40 -> 0
-- surf_encounters.3.level_min: 20 -> 0
-- surf_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_NONE'
-- surf_encounters.4.level_max: 40 -> 0
-- surf_encounters.4.level_min: 20 -> 0
-- surf_encounters.4.species: 'SPECIES_GOLBAT' -> 'SPECIES_NONE'
-- old_rod_rate: 25 -> 0
-- old_rod_encounters.0.level_max: 6 -> 0
-- old_rod_encounters.0.level_min: 4 -> 0
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- old_rod_encounters.1.level_max: 7 -> 0
-- old_rod_encounters.1.level_min: 3 -> 0
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- old_rod_encounters.2.level_max: 10 -> 0
-- old_rod_encounters.2.level_min: 5 -> 0
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- old_rod_encounters.3.level_max: 10 -> 0
-- old_rod_encounters.3.level_min: 5 -> 0
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- old_rod_encounters.4.level_max: 15 -> 0
-- old_rod_encounters.4.level_min: 5 -> 0
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- good_rod_rate: 50 -> 0
-- good_rod_encounters.0.level_max: 20 -> 0
-- good_rod_encounters.0.level_min: 15 -> 0
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- good_rod_encounters.1.level_max: 20 -> 0
-- good_rod_encounters.1.level_min: 15 -> 0
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_NONE'
-- good_rod_encounters.2.level_max: 25 -> 0
-- good_rod_encounters.2.level_min: 10 -> 0
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_NONE'
-- good_rod_encounters.3.level_max: 25 -> 0
-- good_rod_encounters.3.level_min: 10 -> 0
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_NONE'
-- good_rod_encounters.4.level_max: 25 -> 0
-- good_rod_encounters.4.level_min: 10 -> 0
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_NONE'
-- super_rod_rate: 75 -> 0
-- super_rod_encounters.0.level_max: 55 -> 0
-- super_rod_encounters.0.level_min: 30 -> 0
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_NONE'
-- super_rod_encounters.1.level_max: 25 -> 0
-- super_rod_encounters.1.level_min: 15 -> 0
-- super_rod_encounters.1.species: 'SPECIES_DRATINI' -> 'SPECIES_NONE'
-- super_rod_encounters.2.level_max: 50 -> 0
-- super_rod_encounters.2.level_min: 20 -> 0
-- super_rod_encounters.2.species: 'SPECIES_WHISCASH' -> 'SPECIES_NONE'
-- super_rod_encounters.3.level_max: 40 -> 0
-- super_rod_encounters.3.level_min: 20 -> 0
-- super_rod_encounters.3.species: 'SPECIES_DRAGONAIR' -> 'SPECIES_NONE'
-- super_rod_encounters.4.level_max: 55 -> 0
-- super_rod_encounters.4.level_min: 35 -> 0
-- super_rod_encounters.4.species: 'SPECIES_DRAGONAIR' -> 'SPECIES_NONE'
-
-## res/field/encounters/encounters_mt_coronet_4f_room_3.json
-- land_rate: 15 -> 10
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.level: 39 -> 38
-- land_encounters.11.species: 'SPECIES_CHIMECHO' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-- radar.3: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-
-## res/field/encounters/encounters_mt_coronet_5f.json
-- land_rate: 15 -> 10
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.level: 39 -> 38
-- land_encounters.9.species: 'SPECIES_CHIMECHO' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.level: 40 -> 38
-- land_encounters.11.species: 'SPECIES_CHIMECHO' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-- radar.3: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- emerald.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- firered.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- leafgreen.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-
-## res/field/encounters/encounters_mt_coronet_6f.json
-- land_rate: 15 -> 10
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.level: 39 -> 36
-- land_encounters.6.species: 'SPECIES_CHIMECHO' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.level: 40 -> 38
-- land_encounters.9.species: 'SPECIES_CHIMECHO' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.level: 41 -> 38
-- land_encounters.11.species: 'SPECIES_CHIMECHO' -> 'SPECIES_GARDEVOIR'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-- radar.3: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- emerald.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- firered.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-- leafgreen.1: 'SPECIES_CHIMECHO' -> 'SPECIES_CHINGLING'
-
-## res/field/encounters/encounters_mt_coronet_1f_tunnel_room.json
-- land_encounters.0.species: 'SPECIES_GRAVELER' -> 'SPECIES_BRONZONG'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_ELECTRODE'
-- land_encounters.2.species: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_SOLROCK'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_GOLEM'
-- land_encounters.5.species: 'SPECIES_MEDICHAM' -> 'SPECIES_PROBOPASS'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_DONPHAN'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_STEELIX'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLAYDOL'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_RHYPERIOR'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_GARDEVOIR'
-- swarms.0: 'SPECIES_GRAVELER' -> 'SPECIES_BRONZONG'
-- day.0: 'SPECIES_MEDICHAM' -> 'SPECIES_LUXRAY'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_SOLROCK'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_CLEFAIRY'
-- night.1: 'SPECIES_CLEFAIRY' -> 'SPECIES_LUNATONE'
-
-## res/field/encounters/encounters_mt_coronet_1f_north_room_2.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_CHIMECHO'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_SOLROCK'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_CROBAT'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_STANTLER'
-- land_encounters.5.species: 'SPECIES_MEDITITE' -> 'SPECIES_MEDICHAM'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_SWINUB'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_BRONZOR'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_DUNSPARCE'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_ELECTRODE'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_TEDDIURSA'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_TEDDIURSA'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_CROBAT'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-
-## res/field/encounters/encounters_mt_coronet_1f_north_room_1.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_CHIMECHO'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_ANORITH'
-- land_encounters.3.species: 'SPECIES_CLEFFA' -> 'SPECIES_MEDITITE'
-- land_encounters.4.species: 'SPECIES_MACHOP' -> 'SPECIES_SPOINK'
-- land_encounters.5.species: 'SPECIES_MEDITITE' -> 'SPECIES_VOLTORB'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_LILEEP'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAWILE'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_ABRA'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_CLEFAIRY'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_CLEFFA'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_ANORITH'
-- day.1: 'SPECIES_GEODUDE' -> 'SPECIES_MEDITITE'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_KABUTO'
-- night.1: 'SPECIES_CLEFFA' -> 'SPECIES_MEDITITE'
-
-## res/field/encounters/encounters_mt_coronet_b1f.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_CHIMECHO'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_SOLROCK'
-- land_encounters.3.species: 'SPECIES_CLEFAIRY' -> 'SPECIES_CROBAT'
-- land_encounters.4.species: 'SPECIES_MACHOKE' -> 'SPECIES_STANTLER'
-- land_encounters.5.species: 'SPECIES_MEDITITE' -> 'SPECIES_MEDICHAM'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_SWINUB'
-- land_encounters.7.species: 'SPECIES_NOSEPASS' -> 'SPECIES_BRONZOR'
-- land_encounters.8.species: 'SPECIES_GOLBAT' -> 'SPECIES_DUNSPARCE'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_ELECTRODE'
-- land_encounters.10.species: 'SPECIES_GOLBAT' -> 'SPECIES_TEDDIURSA'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_TEDDIURSA'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GRAVELER' -> 'SPECIES_CROBAT'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- surf_rate: 10 -> 100
-- surf_encounters.4.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- good_rod_encounters.0.level_min: 15 -> 10
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FEEBAS'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARYU'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_OMASTAR'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_KABUTOPS'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_ARMALDO'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_RELICANTH'
-
-## res/field/encounters/encounters_great_marsh_1.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_KECLEON'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_SCYTHER'
-- land_encounters.3.species: 'SPECIES_TROPIUS' -> 'SPECIES_LEDIAN'
-- land_encounters.4.species: 'SPECIES_WOOPER' -> 'SPECIES_SHUCKLE'
-- land_encounters.5.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_MUK'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_PINSIR'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_ABSOL'
-- land_encounters.10.level: 31 -> 30
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_TREECKO'
-- land_encounters.11.level: 31 -> 30
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_GROVYLE'
-- day.1: 'SPECIES_TROPIUS' -> 'SPECIES_LEDIAN'
-- night.0: 'SPECIES_NOCTOWL' -> 'SPECIES_DUGTRIO'
-- night.1: 'SPECIES_NOCTOWL' -> 'SPECIES_VENOMOTH'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_GOLDUCK'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_PORYGON'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_WEEZING'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SLAKOTH'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROAGUNK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MUK'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_WARTORTLE'
-- good_rod_encounters.4.level_max: 25 -> 33
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_BLASTOISE'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_CROAGUNK'
-- super_rod_encounters.3.species: 'SPECIES_CARVANHA' -> 'SPECIES_CRAWDAUNT'
-
-## res/field/encounters/encounters_great_marsh_2.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_SEVIPER'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_ABSOL'
-- land_encounters.2.species: 'SPECIES_TROPIUS' -> 'SPECIES_CHATOT'
-- land_encounters.3.species: 'SPECIES_TROPIUS' -> 'SPECIES_AMBIPOM'
-- land_encounters.4.species: 'SPECIES_WOOPER' -> 'SPECIES_SHUCKLE'
-- land_encounters.5.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_PORYGON'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_LUDICOLO'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_ZANGOOSE'
-- land_encounters.10.level: 31 -> 30
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_AIPOM'
-- land_encounters.11.level: 31 -> 30
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_VIGOROTH'
-- day.0: 'SPECIES_TROPIUS' -> 'SPECIES_CHATOT'
-- day.1: 'SPECIES_TROPIUS' -> 'SPECIES_AMBIPOM'
-- night.0: 'SPECIES_NOCTOWL' -> 'SPECIES_QUAGSIRE'
-- night.1: 'SPECIES_NOCTOWL' -> 'SPECIES_KRICKETUNE'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_GOLDUCK'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_PORYGON'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_WEEZING'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SLAKOTH'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROAGUNK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MUK'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_WARTORTLE'
-- good_rod_encounters.4.level_max: 25 -> 33
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_BLASTOISE'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_CROAGUNK'
-- super_rod_encounters.3.species: 'SPECIES_CARVANHA' -> 'SPECIES_CRAWDAUNT'
-
-## res/field/encounters/encounters_great_marsh_3.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_DROWZEE'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_STANTLER'
-- land_encounters.2.species: 'SPECIES_BIBAREL' -> 'SPECIES_FARFETCHD'
-- land_encounters.3.species: 'SPECIES_TANGELA' -> 'SPECIES_SUNFLORA'
-- land_encounters.4.species: 'SPECIES_TANGELA' -> 'SPECIES_ABSOL'
-- land_encounters.5.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_URSARING'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_SWALOT'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_MILTANK'
-- land_encounters.10.level: 30 -> 29
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_LICKITUNG'
-- land_encounters.11.level: 30 -> 29
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_SHROOMISH'
-- day.0: 'SPECIES_BIBAREL' -> 'SPECIES_FARFETCHD'
-- day.1: 'SPECIES_TANGELA' -> 'SPECIES_SUNFLORA'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_PARASECT'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_MASQUERAIN'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_PORYGON'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_FERALIGATR'
-- surf_encounters.3.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_KOFFING'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SURSKIT'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QUAGSIRE'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROCONAW'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SQUIRTLE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CRAWDAUNT'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_MUK'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BLASTOISE'
-- good_rod_encounters.4.level_max: 25 -> 35
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_CORPHISH'
-- super_rod_encounters.1.species: 'SPECIES_CARVANHA' -> 'SPECIES_TOXICROAK'
-- super_rod_encounters.3.species: 'SPECIES_CARVANHA' -> 'SPECIES_SWAMPERT'
-- super_rod_encounters.4.species: 'SPECIES_CARVANHA' -> 'SPECIES_SWAMPERT'
-
-## res/field/encounters/encounters_great_marsh_4.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_LOPUNNY'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_CARNIVINE'
-- land_encounters.2.species: 'SPECIES_BIBAREL' -> 'SPECIES_GRUMPIG'
-- land_encounters.3.species: 'SPECIES_TANGELA' -> 'SPECIES_ROSERADE'
-- land_encounters.4.species: 'SPECIES_TANGELA' -> 'SPECIES_ABSOL'
-- land_encounters.5.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_VICTREEBEL'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_BAYLEEF'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_LUXRAY'
-- land_encounters.10.level: 30 -> 29
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_MARSHTOMP'
-- land_encounters.11.level: 30 -> 29
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_BULBASAUR'
-- day.0: 'SPECIES_BIBAREL' -> 'SPECIES_GRUMPIG'
-- day.1: 'SPECIES_TANGELA' -> 'SPECIES_ROSERADE'
-- night.0: 'SPECIES_NOCTOWL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_NOCTOWL'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_MASQUERAIN'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_PORYGON'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_FERALIGATR'
-- surf_encounters.3.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_KOFFING'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SURSKIT'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QUAGSIRE'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROCONAW'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SQUIRTLE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CRAWDAUNT'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_MUK'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BLASTOISE'
-- good_rod_encounters.4.level_max: 25 -> 35
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_CORPHISH'
-- super_rod_encounters.1.species: 'SPECIES_CARVANHA' -> 'SPECIES_TOXICROAK'
-- super_rod_encounters.3.species: 'SPECIES_CARVANHA' -> 'SPECIES_SWAMPERT'
-- super_rod_encounters.4.species: 'SPECIES_CARVANHA' -> 'SPECIES_SWAMPERT'
-
-## res/field/encounters/encounters_great_marsh_5.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_LINOONE'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_PINSIR'
-- land_encounters.2.species: 'SPECIES_BIBAREL' -> 'SPECIES_EXEGGCUTE'
-- land_encounters.3.species: 'SPECIES_YANMA' -> 'SPECIES_STARAPTOR'
-- land_encounters.4.species: 'SPECIES_YANMA' -> 'SPECIES_TOXICROAK'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_SCYTHER'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_SEADRA'
-- land_encounters.10.level: 29 -> 28
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_GLIGAR'
-- land_encounters.11.level: 29 -> 28
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_SKORUPI'
-- day.0: 'SPECIES_BIBAREL' -> 'SPECIES_EXEGGCUTE'
-- day.1: 'SPECIES_YANMA' -> 'SPECIES_STARAPTOR'
-- night.0: 'SPECIES_HOOTHOOT' -> 'SPECIES_DRAPION'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_ARIADOS'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_POLIWRATH'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_STANTLER'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_CROAGUNK'
-- surf_encounters.3.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SEVIPER'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_MUDKIP'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLITOED'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GULPIN'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROAGUNK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZUMARILL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SQUIRTLE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLITOED'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.4.level_max: 25 -> 35
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_SQUIRTLE'
-- super_rod_encounters.4.species: 'SPECIES_CARVANHA' -> 'SPECIES_MUDKIP'
-
-## res/field/encounters/encounters_great_marsh_6.json
-- land_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_ZANGOOSE'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_IVYSAUR'
-- land_encounters.2.species: 'SPECIES_BIBAREL' -> 'SPECIES_BELLOSSOM'
-- land_encounters.3.species: 'SPECIES_YANMA' -> 'SPECIES_FEAROW'
-- land_encounters.4.species: 'SPECIES_YANMA' -> 'SPECIES_SHIFTRY'
-- land_encounters.5.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_BAYLEEF'
-- land_encounters.6.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.7.species: 'SPECIES_WOOPER' -> 'SPECIES_RATTATA'
-- land_encounters.8.species: 'SPECIES_YANMA' -> 'SPECIES_NIDOKING'
-- land_encounters.9.species: 'SPECIES_TANGELA' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.level: 29 -> 28
-- land_encounters.10.species: 'SPECIES_YANMA' -> 'SPECIES_KANGASKHAN'
-- land_encounters.11.level: 29 -> 28
-- land_encounters.11.species: 'SPECIES_TANGELA' -> 'SPECIES_CHIKORITA'
-- day.0: 'SPECIES_BIBAREL' -> 'SPECIES_BELLOSSOM'
-- day.1: 'SPECIES_YANMA' -> 'SPECIES_FEAROW'
-- night.0: 'SPECIES_HOOTHOOT' -> 'SPECIES_VOLBEAT'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_ILLUMISE'
-- surf_encounters.0.species: 'SPECIES_WOOPER' -> 'SPECIES_POLIWRATH'
-- surf_encounters.1.species: 'SPECIES_WOOPER' -> 'SPECIES_STANTLER'
-- surf_encounters.2.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_CROAGUNK'
-- surf_encounters.3.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_SEVIPER'
-- surf_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_MUDKIP'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLITOED'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GULPIN'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROAGUNK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZUMARILL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SQUIRTLE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLITOED'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.4.level_max: 25 -> 35
-- good_rod_encounters.4.level_min: 10 -> 30
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_SQUIRTLE'
-- super_rod_encounters.4.species: 'SPECIES_CARVANHA' -> 'SPECIES_MUDKIP'
-
-## res/field/encounters/encounters_solaceon_ruins_maniac_tunnel_room.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_2_northeast_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_1_northwest_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_2.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_1_southeast_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_3.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_2_southeast_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_6_southeast_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_5_southwest_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_3_northwest_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_3_southwest_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_4.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_6.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_5.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_7.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_4_southeast_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_6_northwest_dead_end.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_solaceon_ruins_room_5_southeast_deadend.json
-- land_encounters.0.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.1.species: 'SPECIES_UNOWN' -> 'SPECIES_XATU'
-- land_encounters.2.species: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- land_encounters.3.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.4.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.5.species: 'SPECIES_UNOWN' -> 'SPECIES_LILEEP'
-- land_encounters.6.species: 'SPECIES_UNOWN' -> 'SPECIES_ANORITH'
-- land_encounters.7.species: 'SPECIES_UNOWN' -> 'SPECIES_OMANYTE'
-- land_encounters.8.species: 'SPECIES_UNOWN' -> 'SPECIES_TORKOAL'
-- land_encounters.9.species: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- land_encounters.10.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_UNOWN' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- day.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-- night.0: 'SPECIES_UNOWN' -> 'SPECIES_BALTOY'
-- night.1: 'SPECIES_UNOWN' -> 'SPECIES_MAWILE'
-
-## res/field/encounters/encounters_victory_road_1f.json
-- land_encounters.0.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.1.species: 'SPECIES_RHYHORN' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.2.species: 'SPECIES_GRAVELER' -> 'SPECIES_GIRAFARIG'
-- land_encounters.3.species: 'SPECIES_ONIX' -> 'SPECIES_MAGNETON'
-- land_encounters.4.species: 'SPECIES_ONIX' -> 'SPECIES_DUGTRIO'
-- land_encounters.5.species: 'SPECIES_RHYDON' -> 'SPECIES_MANECTRIC'
-- land_encounters.6.species: 'SPECIES_GOLBAT' -> 'SPECIES_JOLTEON'
-- land_encounters.7.species: 'SPECIES_RHYDON' -> 'SPECIES_DODRIO'
-- land_encounters.8.species: 'SPECIES_STEELIX' -> 'SPECIES_KANGASKHAN'
-- land_encounters.9.species: 'SPECIES_GABITE' -> 'SPECIES_WOBBUFFET'
-- land_encounters.10.species: 'SPECIES_STEELIX' -> 'SPECIES_MACHAMP'
-- day.0: 'SPECIES_GRAVELER' -> 'SPECIES_GIRAFARIG'
-- day.1: 'SPECIES_ONIX' -> 'SPECIES_MAGNETON'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_DUNSPARCE'
-- night.1: 'SPECIES_ONIX' -> 'SPECIES_WEEZING'
-
-## res/field/encounters/encounters_victory_road_2f.json
-- land_encounters.0.species: 'SPECIES_MAGNETON' -> 'SPECIES_AGGRON'
-- land_encounters.1.species: 'SPECIES_STEELIX' -> 'SPECIES_URSARING'
-- land_encounters.2.species: 'SPECIES_GRAVELER' -> 'SPECIES_ESPEON'
-- land_encounters.3.species: 'SPECIES_STEELIX' -> 'SPECIES_MR_MIME'
-- land_encounters.4.species: 'SPECIES_STEELIX' -> 'SPECIES_FLAREON'
-- land_encounters.5.species: 'SPECIES_MAGNETON' -> 'SPECIES_GALLADE'
-- land_encounters.6.species: 'SPECIES_GOLBAT' -> 'SPECIES_CROBAT'
-- land_encounters.7.species: 'SPECIES_GRAVELER' -> 'SPECIES_MEDICHAM'
-- land_encounters.8.species: 'SPECIES_ONIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.9.species: 'SPECIES_GABITE' -> 'SPECIES_LICKILICKY'
-- land_encounters.10.species: 'SPECIES_ONIX' -> 'SPECIES_EXPLOUD'
-- land_encounters.11.species: 'SPECIES_GABITE' -> 'SPECIES_EXPLOUD'
-- day.0: 'SPECIES_GRAVELER' -> 'SPECIES_ESPEON'
-- day.1: 'SPECIES_STEELIX' -> 'SPECIES_MR_MIME'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_UMBREON'
-- night.1: 'SPECIES_STEELIX' -> 'SPECIES_JYNX'
-
-## res/field/encounters/encounters_victory_road_b1f.json
-- land_encounters.0.species: 'SPECIES_FLOATZEL' -> 'SPECIES_AGGRON'
-- land_encounters.1.species: 'SPECIES_AZUMARILL' -> 'SPECIES_PERSIAN'
-- land_encounters.2.species: 'SPECIES_GRAVELER' -> 'SPECIES_SCIZOR'
-- land_encounters.3.species: 'SPECIES_AZUMARILL' -> 'SPECIES_KANGASKHAN'
-- land_encounters.4.species: 'SPECIES_ONIX' -> 'SPECIES_HITMONLEE'
-- land_encounters.5.species: 'SPECIES_FLOATZEL' -> 'SPECIES_HITMONCHAN'
-- land_encounters.6.species: 'SPECIES_GOLBAT' -> 'SPECIES_HITMONTOP'
-- land_encounters.7.species: 'SPECIES_GRAVELER' -> 'SPECIES_HITMONTOP'
-- land_encounters.8.species: 'SPECIES_STEELIX' -> 'SPECIES_SABLEYE'
-- land_encounters.9.species: 'SPECIES_GABITE' -> 'SPECIES_BANETTE'
-- land_encounters.10.species: 'SPECIES_STEELIX' -> 'SPECIES_WOBBUFFET'
-- land_encounters.11.species: 'SPECIES_GABITE' -> 'SPECIES_WOBBUFFET'
-- day.0: 'SPECIES_GRAVELER' -> 'SPECIES_SCIZOR'
-- day.1: 'SPECIES_AZUMARILL' -> 'SPECIES_KANGASKHAN'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_HARIYAMA'
-- night.1: 'SPECIES_AZUMARILL' -> 'SPECIES_DRAPION'
-- surf_encounters.0.species: 'SPECIES_FLOATZEL' -> 'SPECIES_TENTACRUEL'
-- surf_encounters.1.species: 'SPECIES_FLOATZEL' -> 'SPECIES_VAPOREON'
-- surf_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_WEEZING'
-- surf_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_WEEZING'
-- surf_encounters.4.species: 'SPECIES_GOLBAT' -> 'SPECIES_WEEZING'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MUK'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACRUEL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACRUEL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACOOL'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- good_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-- good_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-- good_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-
-## res/field/encounters/encounters_ravaged_path.json
-- land_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_SANDSHREW'
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_PHANPY'
-- land_encounters.4.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAKUHITA'
-- land_encounters.5.species: 'SPECIES_ZUBAT' -> 'SPECIES_PSYDUCK'
-- land_encounters.6.species: 'SPECIES_PSYDUCK' -> 'SPECIES_RHYHORN'
-- land_encounters.7.species: 'SPECIES_ZUBAT' -> 'SPECIES_RHYHORN'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- land_encounters.9.species: 'SPECIES_ZUBAT' -> 'SPECIES_ARON'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_MAWILE'
-- land_encounters.11.species: 'SPECIES_ZUBAT' -> 'SPECIES_MANKEY'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_PHANPY'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_PHANPY'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_GOLBAT'
-- surf_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_CHINGLING'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CHINGLING'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BIDOOF'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_SLOWPOKE'
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_BIBAREL'
-
-## res/field/encounters/encounters_oreburgh_gate_1f.json
-- land_encounters.0.species: 'SPECIES_ZUBAT' -> 'SPECIES_TEDDIURSA'
-- land_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_CHINGLING'
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_BONSLY'
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_ZUBAT'
-- land_encounters.5.species: 'SPECIES_ZUBAT' -> 'SPECIES_NOSEPASS'
-- land_encounters.6.species: 'SPECIES_PSYDUCK' -> 'SPECIES_DUNSPARCE'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_CUBONE'
-- land_encounters.9.species: 'SPECIES_ZUBAT' -> 'SPECIES_SANDSHREW'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_PHANPY'
-- land_encounters.11.species: 'SPECIES_ZUBAT' -> 'SPECIES_MACHOP'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_BONSLY'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_TEDDIURSA'
-
-## res/field/encounters/encounters_oreburgh_gate_b1f.json
-- land_encounters.0.species: 'SPECIES_ZUBAT' -> 'SPECIES_MACHOP'
-- land_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_GEODUDE'
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_MANKEY'
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_ZUBAT'
-- land_encounters.5.species: 'SPECIES_ZUBAT' -> 'SPECIES_NOSEPASS'
-- land_encounters.6.species: 'SPECIES_PSYDUCK' -> 'SPECIES_DUNSPARCE'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_CUBONE'
-- land_encounters.9.species: 'SPECIES_GOLBAT' -> 'SPECIES_SANDSHREW'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_PHANPY'
-- land_encounters.11.species: 'SPECIES_GOLBAT' -> 'SPECIES_MAWILE'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_MANKEY'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_TEDDIURSA'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_KABUTO'
-- surf_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_PSYDUCK'
-- surf_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_GOLDUCK'
-- surf_encounters.4.species: 'SPECIES_GOLBAT' -> 'SPECIES_RELICANTH'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_OMANYTE'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KABUTO'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KABUTO'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KABUTO'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KABUTO'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_OMANYTE'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_ANORITH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LILEEP'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_LILEEP'
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_LILEEP'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_OMASTAR'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_KABUTOPS'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_RELICANTH'
-
-## res/field/encounters/encounters_stark_mountain_outside.json
-- land_encounters.2.species: 'SPECIES_FEAROW' -> 'SPECIES_TORKOAL'
-- land_encounters.3.species: 'SPECIES_GRAVELER' -> 'SPECIES_TORKOAL'
-
-## res/field/encounters/encounters_sendoff_spring.json
-- land_encounters.0.species: 'SPECIES_GRAVELER' -> 'SPECIES_GENGAR'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_ALTARIA'
-- land_encounters.2.species: 'SPECIES_GRAVELER' -> 'SPECIES_XATU'
-- land_encounters.4.species: 'SPECIES_BIBAREL' -> 'SPECIES_GROVYLE'
-- land_encounters.5.species: 'SPECIES_STARAVIA' -> 'SPECIES_DUSKNOIR'
-- land_encounters.6.species: 'SPECIES_GRAVELER' -> 'SPECIES_COMBUSKEN'
-- land_encounters.7.species: 'SPECIES_CHINGLING' -> 'SPECIES_HAUNTER'
-- land_encounters.8.species: 'SPECIES_DUSCLOPS' -> 'SPECIES_CLEFABLE'
-- land_encounters.9.species: 'SPECIES_CHINGLING' -> 'SPECIES_NINETALES'
-- land_encounters.10.species: 'SPECIES_DUSCLOPS' -> 'SPECIES_BELDUM'
-- land_encounters.11.species: 'SPECIES_CHINGLING' -> 'SPECIES_ALAKAZAM'
-- day.0: 'SPECIES_GRAVELER' -> 'SPECIES_XATU'
-- night.1: 'SPECIES_GOLBAT' -> 'SPECIES_NOCTOWL'
-- surf_encounters.0.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CHIMECHO'
-- surf_encounters.1.species: 'SPECIES_GOLDUCK' -> 'SPECIES_FEEBAS'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_DUSKULL'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_MILOTIC'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_MILOTIC'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GASTLY'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_VAPOREON'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MILOTIC'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_RELICANTH'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SLOWBRO'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_PHIONE'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_KABUTOPS'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_OMASTAR'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_STARMIE'
-
-## res/field/encounters/encounters_wayward_cave_1f.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_SPINDA'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSLASH'
-- land_encounters.2.species: 'SPECIES_GEODUDE' -> 'SPECIES_WHISMUR'
-- land_encounters.3.species: 'SPECIES_ZUBAT' -> 'SPECIES_NIDORINO'
-- land_encounters.4.species: 'SPECIES_BRONZOR' -> 'SPECIES_ARON'
-- land_encounters.6.species: 'SPECIES_GEODUDE' -> 'SPECIES_SPINDA'
-- land_encounters.7.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAWILE'
-- land_encounters.8.species: 'SPECIES_ZUBAT' -> 'SPECIES_GIBLE'
-- land_encounters.9.species: 'SPECIES_ONIX' -> 'SPECIES_SLAKOTH'
-- land_encounters.10.species: 'SPECIES_ZUBAT' -> 'SPECIES_GIBLE'
-- land_encounters.11.species: 'SPECIES_ONIX' -> 'SPECIES_GIBLE'
-- day.0: 'SPECIES_GEODUDE' -> 'SPECIES_WHISMUR'
-- day.1: 'SPECIES_ZUBAT' -> 'SPECIES_NIDORINO'
-- night.0: 'SPECIES_GEODUDE' -> 'SPECIES_DUNSPARCE'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_NIDORINA'
-
-## res/field/encounters/encounters_wayward_cave_b1f.json
-- land_encounters.0.species: 'SPECIES_BRONZOR' -> 'SPECIES_RHYHORN'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_ARON'
-- land_encounters.2.species: 'SPECIES_GIBLE' -> 'SPECIES_MAWILE'
-- land_encounters.3.species: 'SPECIES_ZUBAT' -> 'SPECIES_MEDITITE'
-- land_encounters.4.species: 'SPECIES_BRONZOR' -> 'SPECIES_NOSEPASS'
-- land_encounters.5.species: 'SPECIES_ONIX' -> 'SPECIES_SLAKOTH'
-- land_encounters.6.species: 'SPECIES_GIBLE' -> 'SPECIES_GLIGAR'
-- land_encounters.7.species: 'SPECIES_GEODUDE' -> 'SPECIES_SPINDA'
-- land_encounters.8.species: 'SPECIES_GIBLE' -> 'SPECIES_MAGNEMITE'
-- land_encounters.10.species: 'SPECIES_GIBLE' -> 'SPECIES_LARVITAR'
-- land_encounters.11.species: 'SPECIES_ONIX' -> 'SPECIES_GIBLE'
-- day.0: 'SPECIES_GIBLE' -> 'SPECIES_MAWILE'
-- day.1: 'SPECIES_ZUBAT' -> 'SPECIES_MEDITITE'
-- night.0: 'SPECIES_GIBLE' -> 'SPECIES_DUNSPARCE'
-
-## res/field/encounters/encounters_ruin_maniac_cave_short.json
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSLASH'
-- land_encounters.2.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- land_encounters.3.species: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_HARIYAMA'
-- land_encounters.5.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAROWAK'
-- land_encounters.6.species: 'SPECIES_GEODUDE' -> 'SPECIES_NIDORINA'
-- land_encounters.7.species: 'SPECIES_GEODUDE' -> 'SPECIES_NIDORINO'
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_SHUCKLE'
-- land_encounters.9.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_URSARING'
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MEDICHAM'
-- land_encounters.11.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_DUNSPARCE'
-- day.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- day.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- night.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- night.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-
-## res/field/encounters/encounters_ruin_maniac_cave_long.json
-- land_encounters.0.level: 24 -> 23
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSLASH'
-- land_encounters.1.level: 23 -> 22
-- land_encounters.2.level: 22 -> 21
-- land_encounters.2.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- land_encounters.3.level: 24 -> 23
-- land_encounters.3.species: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- land_encounters.4.level: 24 -> 23
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_HARIYAMA'
-- land_encounters.5.level: 24 -> 23
-- land_encounters.5.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAROWAK'
-- land_encounters.6.level: 24 -> 23
-- land_encounters.6.species: 'SPECIES_GEODUDE' -> 'SPECIES_NIDORINA'
-- land_encounters.7.level: 24 -> 23
-- land_encounters.7.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_NIDORINO'
-- land_encounters.8.level: 24 -> 23
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_SHUCKLE'
-- land_encounters.9.level: 23 -> 22
-- land_encounters.9.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_URSARING'
-- land_encounters.10.level: 24 -> 23
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MEDICHAM'
-- land_encounters.11.level: 25 -> 24
-- land_encounters.11.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_DUNSPARCE'
-- day.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- day.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- night.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- night.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-
-## res/field/encounters/encounters_maniac_tunnel.json
-- land_encounters.0.level: 25 -> 23
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_SANDSLASH'
-- land_encounters.1.level: 24 -> 22
-- land_encounters.2.level: 23 -> 21
-- land_encounters.2.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- land_encounters.3.level: 25 -> 23
-- land_encounters.3.species: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- land_encounters.4.level: 25 -> 23
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_HARIYAMA'
-- land_encounters.5.level: 25 -> 23
-- land_encounters.5.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_MAROWAK'
-- land_encounters.6.level: 25 -> 23
-- land_encounters.6.species: 'SPECIES_GEODUDE' -> 'SPECIES_NIDORINA'
-- land_encounters.7.level: 25 -> 23
-- land_encounters.7.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_NIDORINO'
-- land_encounters.8.level: 25 -> 23
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_SHUCKLE'
-- land_encounters.9.level: 24 -> 22
-- land_encounters.9.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_URSARING'
-- land_encounters.10.level: 25 -> 23
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MEDICHAM'
-- land_encounters.11.level: 26 -> 24
-- land_encounters.11.species: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_DUNSPARCE'
-- day.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- day.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- night.0: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- night.1: 'SPECIES_GEODUDE' -> 'SPECIES_GRAVELER'
-- radar.1: 'SPECIES_HIPPOPOTAS' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_trophy_garden.json
-- land_encounters.0.level: 21 -> 22
-- land_encounters.0.species: 'SPECIES_PICHU' -> 'SPECIES_EEVEE'
-- land_encounters.1.species: 'SPECIES_ROSELIA' -> 'SPECIES_SKARMORY'
-- land_encounters.2.species: 'SPECIES_STARAVIA' -> 'SPECIES_CLEFFA'
-- land_encounters.3.level: 23 -> 22
-- land_encounters.3.species: 'SPECIES_KRICKETUNE' -> 'SPECIES_HAPPINY'
-- land_encounters.4.level: 23 -> 22
-- land_encounters.4.species: 'SPECIES_ROSELIA' -> 'SPECIES_WYNAUT'
-- land_encounters.5.level: 24 -> 22
-- land_encounters.5.species: 'SPECIES_STARAVIA' -> 'SPECIES_ABRA'
-- land_encounters.8.level: 24 -> 22
-- land_encounters.8.species: 'SPECIES_PIKACHU' -> 'SPECIES_AZURILL'
-- land_encounters.9.species: 'SPECIES_PICHU' -> 'SPECIES_IGGLYBUFF'
-- land_encounters.10.level: 24 -> 22
-- land_encounters.10.species: 'SPECIES_PIKACHU' -> 'SPECIES_BAGON'
-- land_encounters.11.species: 'SPECIES_PICHU' -> 'SPECIES_DRATINI'
-- swarms.1: 'SPECIES_ROSELIA' -> 'SPECIES_EEVEE'
-- day.0: 'SPECIES_STARAVIA' -> 'SPECIES_CLEFFA'
-- day.1: 'SPECIES_STARAVIA' -> 'SPECIES_HAPPINY'
-- night.0: 'SPECIES_KRICKETUNE' -> 'SPECIES_CLEFFA'
-- night.1: 'SPECIES_KRICKETUNE' -> 'SPECIES_HAPPINY'
-
-## res/field/encounters/encounters_iron_island.json
-- surf_encounters.0.species: 'SPECIES_WINGULL' -> 'SPECIES_OMANYTE'
-- surf_encounters.1.species: 'SPECIES_TENTACOOL' -> 'SPECIES_KABUTO'
-- surf_encounters.2.species: 'SPECIES_PELIPPER' -> 'SPECIES_STARYU'
-- surf_encounters.3.species: 'SPECIES_PELIPPER' -> 'SPECIES_ANORITH'
-- surf_encounters.4.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_SURSKIT'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KABUTO'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KRABBY'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_RELICANTH'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_BLASTOISE'
-- good_rod_encounters.2.level_max: 25 -> 28
-- good_rod_encounters.2.level_min: 10 -> 20
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- good_rod_encounters.3.species: 'SPECIES_FINNEON' -> 'SPECIES_STARMIE'
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.1.species: 'SPECIES_LUMINEON' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.2.species: 'SPECIES_QWILFISH' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_RELICANTH'
-
-## res/field/encounters/encounters_iron_island_1f.json
-- land_encounters.0.species: 'SPECIES_GEODUDE' -> 'SPECIES_BRONZOR'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.species: 'SPECIES_ZUBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.species: 'SPECIES_GEODUDE' -> 'SPECIES_LAIRON'
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.species: 'SPECIES_ONIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.species: 'SPECIES_ONIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.species: 'SPECIES_GEODUDE' -> 'SPECIES_NIDOKING'
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.species: 'SPECIES_GEODUDE' -> 'SPECIES_MAGNETON'
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- day.0: 'SPECIES_ZUBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_LUNATONE'
-
-## res/field/encounters/encounters_iron_island_b1f_left_room.json
-- land_encounters.0.species: 'SPECIES_GRAVELER' -> 'SPECIES_BRONZOR'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.species: 'SPECIES_GRAVELER' -> 'SPECIES_LAIRON'
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.species: 'SPECIES_ONIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.species: 'SPECIES_ONIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- swarms.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- day.0: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- radar.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- radar.2: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- ruby.0: 'SPECIES_MAWILE' -> 'SPECIES_GEODUDE'
-- ruby.1: 'SPECIES_MAWILE' -> 'SPECIES_GRAVELER'
-- sapphire.0: 'SPECIES_SABLEYE' -> 'SPECIES_GEODUDE'
-- sapphire.1: 'SPECIES_SABLEYE' -> 'SPECIES_GRAVELER'
-- emerald.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- firered.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- leafgreen.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_iron_island_b1f_right_room.json
-- land_encounters.0.species: 'SPECIES_GRAVELER' -> 'SPECIES_BRONZOR'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.species: 'SPECIES_GRAVELER' -> 'SPECIES_LAIRON'
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.species: 'SPECIES_ONIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.species: 'SPECIES_ONIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- swarms.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- day.0: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- radar.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- radar.2: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- ruby.0: 'SPECIES_MAWILE' -> 'SPECIES_GEODUDE'
-- ruby.1: 'SPECIES_MAWILE' -> 'SPECIES_GRAVELER'
-- sapphire.0: 'SPECIES_SABLEYE' -> 'SPECIES_GEODUDE'
-- sapphire.1: 'SPECIES_SABLEYE' -> 'SPECIES_GRAVELER'
-- emerald.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- firered.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- leafgreen.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_iron_island_b2f_right_room.json
-- land_encounters.0.level: 32 -> 31
-- land_encounters.0.species: 'SPECIES_ONIX' -> 'SPECIES_BRONZOR'
-- land_encounters.1.level: 33 -> 32
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.level: 31 -> 30
-- land_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.level: 33 -> 32
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.level: 33 -> 32
-- land_encounters.4.species: 'SPECIES_GRAVELER' -> 'SPECIES_LAIRON'
-- land_encounters.5.level: 34 -> 33
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.level: 33 -> 31
-- land_encounters.6.species: 'SPECIES_STEELIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.level: 35 -> 33
-- land_encounters.7.species: 'SPECIES_STEELIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.level: 31 -> 30
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.9.level: 32 -> 31
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.level: 31 -> 30
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.level: 32 -> 31
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- swarms.0: 'SPECIES_ONIX' -> 'SPECIES_GEODUDE'
-- day.0: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- radar.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- radar.2: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- ruby.0: 'SPECIES_MAWILE' -> 'SPECIES_GEODUDE'
-- ruby.1: 'SPECIES_MAWILE' -> 'SPECIES_GRAVELER'
-- sapphire.0: 'SPECIES_SABLEYE' -> 'SPECIES_GEODUDE'
-- sapphire.1: 'SPECIES_SABLEYE' -> 'SPECIES_GRAVELER'
-- emerald.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- firered.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- leafgreen.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_iron_island_b2f_left_room.json
-- land_encounters.0.level: 32 -> 31
-- land_encounters.0.species: 'SPECIES_ONIX' -> 'SPECIES_BRONZOR'
-- land_encounters.1.level: 33 -> 32
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.level: 31 -> 30
-- land_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.level: 33 -> 32
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.level: 33 -> 32
-- land_encounters.4.species: 'SPECIES_GRAVELER' -> 'SPECIES_LAIRON'
-- land_encounters.5.level: 34 -> 33
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.level: 33 -> 31
-- land_encounters.6.species: 'SPECIES_STEELIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.level: 35 -> 33
-- land_encounters.7.species: 'SPECIES_STEELIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.level: 31 -> 30
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.9.level: 32 -> 31
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.level: 31 -> 30
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.level: 32 -> 31
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- swarms.0: 'SPECIES_ONIX' -> 'SPECIES_GEODUDE'
-- day.0: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- radar.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- radar.2: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- ruby.0: 'SPECIES_MAWILE' -> 'SPECIES_GEODUDE'
-- ruby.1: 'SPECIES_MAWILE' -> 'SPECIES_GRAVELER'
-- sapphire.0: 'SPECIES_SABLEYE' -> 'SPECIES_GEODUDE'
-- sapphire.1: 'SPECIES_SABLEYE' -> 'SPECIES_GRAVELER'
-- emerald.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- firered.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- leafgreen.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_iron_island_b3f.json
-- land_encounters.0.level: 32 -> 31
-- land_encounters.0.species: 'SPECIES_STEELIX' -> 'SPECIES_BRONZOR'
-- land_encounters.1.level: 33 -> 32
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_NOSEPASS'
-- land_encounters.2.level: 31 -> 30
-- land_encounters.2.species: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- land_encounters.3.level: 33 -> 32
-- land_encounters.3.species: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- land_encounters.4.level: 33 -> 32
-- land_encounters.4.species: 'SPECIES_GRAVELER' -> 'SPECIES_LAIRON'
-- land_encounters.5.level: 34 -> 33
-- land_encounters.5.species: 'SPECIES_GRAVELER' -> 'SPECIES_ONIX'
-- land_encounters.6.level: 33 -> 31
-- land_encounters.6.species: 'SPECIES_STEELIX' -> 'SPECIES_HARIYAMA'
-- land_encounters.7.level: 35 -> 33
-- land_encounters.7.species: 'SPECIES_STEELIX' -> 'SPECIES_SNORUNT'
-- land_encounters.8.level: 31 -> 30
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOKING'
-- land_encounters.9.level: 32 -> 31
-- land_encounters.9.species: 'SPECIES_GRAVELER' -> 'SPECIES_NIDOQUEEN'
-- land_encounters.10.level: 31 -> 30
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.level: 32 -> 31
-- land_encounters.11.species: 'SPECIES_GRAVELER' -> 'SPECIES_BELDUM'
-- swarms.0: 'SPECIES_ONIX' -> 'SPECIES_GEODUDE'
-- day.0: 'SPECIES_GOLBAT' -> 'SPECIES_SOLROCK'
-- day.1: 'SPECIES_GOLBAT' -> 'SPECIES_QUILAVA'
-- night.0: 'SPECIES_GOLBAT' -> 'SPECIES_LUNATONE'
-- radar.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- radar.2: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- ruby.0: 'SPECIES_MAWILE' -> 'SPECIES_GEODUDE'
-- ruby.1: 'SPECIES_MAWILE' -> 'SPECIES_GRAVELER'
-- sapphire.0: 'SPECIES_SABLEYE' -> 'SPECIES_GEODUDE'
-- sapphire.1: 'SPECIES_SABLEYE' -> 'SPECIES_GRAVELER'
-- emerald.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- firered.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-- leafgreen.0: 'SPECIES_GRAVELER' -> 'SPECIES_GEODUDE'
-
-## res/field/encounters/encounters_old_chateau.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_dining_area.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_side_rooms.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_corridor.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_back_west_room.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_back_middle_west_room.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_back_middle_room.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_old_chateau_back_middle_east_room.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- ruby.0: 'SPECIES_GENGAR' -> 'SPECIES_GASTLY'
-- sapphire.0: 'SPECIES_GENGAR' -> 'SPECIES_GASTLY'
-- emerald.0: 'SPECIES_GENGAR' -> 'SPECIES_GASTLY'
-- firered.0: 'SPECIES_GENGAR' -> 'SPECIES_GASTLY'
-- leafgreen.0: 'SPECIES_GENGAR' -> 'SPECIES_GASTLY'
-
-## res/field/encounters/encounters_old_chateau_back_east_room.json
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- land_encounters.4.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_MISDREAVUS'
-- land_encounters.6.species: 'SPECIES_GASTLY' -> 'SPECIES_DUSKULL'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_DRIFLOON'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_GENGAR'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_FROSLASS'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.0: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-- night.1: 'SPECIES_GASTLY' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_lake_verity_low_water.json
-- land_encounters.0.species: 'SPECIES_STARLY' -> 'SPECIES_SPHEAL'
-- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_CHINGLING'
-- land_encounters.3.species: 'SPECIES_BIDOOF' -> 'SPECIES_GLAMEOW'
-- land_encounters.4.species: 'SPECIES_STARLY' -> 'SPECIES_SHINX'
-- land_encounters.5.species: 'SPECIES_BIDOOF' -> 'SPECIES_MAREEP'
-- land_encounters.6.species: 'SPECIES_STARLY' -> 'SPECIES_SPOINK'
-- land_encounters.7.species: 'SPECIES_BIDOOF' -> 'SPECIES_RALTS'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_TEDDIURSA'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_STARLY'
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_SWINUB'
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_SEEL'
-- day.0: 'SPECIES_STARLY' -> 'SPECIES_CHINGLING'
-- day.1: 'SPECIES_BIDOOF' -> 'SPECIES_GLAMEOW'
-- night.0: 'SPECIES_BIDOOF' -> 'SPECIES_HOOTHOOT'
-- night.1: 'SPECIES_BIDOOF' -> 'SPECIES_SMOOCHUM'
-
-## res/field/encounters/encounters_lake_verity.json
-- land_encounters.0.species: 'SPECIES_STARLY' -> 'SPECIES_SPHEAL'
-- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_CHINGLING'
-- land_encounters.3.species: 'SPECIES_BIDOOF' -> 'SPECIES_GLAMEOW'
-- land_encounters.4.species: 'SPECIES_STARLY' -> 'SPECIES_SHINX'
-- land_encounters.5.species: 'SPECIES_BIDOOF' -> 'SPECIES_MAREEP'
-- land_encounters.6.species: 'SPECIES_STARLY' -> 'SPECIES_SPOINK'
-- land_encounters.7.species: 'SPECIES_BIDOOF' -> 'SPECIES_RALTS'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_TEDDIURSA'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_STARLY'
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_SWINUB'
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_SEEL'
-- day.0: 'SPECIES_STARLY' -> 'SPECIES_CHINGLING'
-- day.1: 'SPECIES_BIDOOF' -> 'SPECIES_GLAMEOW'
-- night.0: 'SPECIES_STARLY' -> 'SPECIES_HOOTHOOT'
-- night.1: 'SPECIES_BIDOOF' -> 'SPECIES_SMOOCHUM'
-
-## res/field/encounters/encounters_lake_valor.json
-- land_encounters.0.species: 'SPECIES_STARAVIA' -> 'SPECIES_STANTLER'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_STARAPTOR'
-- land_encounters.2.species: 'SPECIES_STARAVIA' -> 'SPECIES_GRAVELER'
-- land_encounters.3.species: 'SPECIES_BIBAREL' -> 'SPECIES_MACHOKE'
-- land_encounters.5.species: 'SPECIES_PSYDUCK' -> 'SPECIES_ONIX'
-- land_encounters.6.species: 'SPECIES_GOLDUCK' -> 'SPECIES_TAUROS'
-- land_encounters.7.species: 'SPECIES_PSYDUCK' -> 'SPECIES_DODRIO'
-- land_encounters.8.species: 'SPECIES_STARAVIA' -> 'SPECIES_BAGON'
-- land_encounters.9.species: 'SPECIES_BIBAREL' -> 'SPECIES_SHELGON'
-- land_encounters.10.species: 'SPECIES_STARAVIA' -> 'SPECIES_SALAMENCE'
-- land_encounters.11.species: 'SPECIES_BIBAREL' -> 'SPECIES_BAGON'
-- day.0: 'SPECIES_STARAVIA' -> 'SPECIES_GRAVELER'
-- day.1: 'SPECIES_BIBAREL' -> 'SPECIES_MACHOKE'
-- night.0: 'SPECIES_STARAVIA' -> 'SPECIES_WOBBUFFET'
-- night.1: 'SPECIES_BIBAREL' -> 'SPECIES_WOBBUFFET'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_STANTLER'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_GYARADOS'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_GYARADOS'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_LAPRAS'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_LAPRAS'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_MAGIKARP'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_QWILFISH'
-
-## res/field/encounters/encounters_lake_acuity.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_ABSOL'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_URSARING'
-- land_encounters.2.species: 'SPECIES_SNOVER' -> 'SPECIES_LUNATONE'
-- land_encounters.3.species: 'SPECIES_SNOVER' -> 'SPECIES_LUNATONE'
-- land_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_STANTLER'
-- land_encounters.5.species: 'SPECIES_SNEASEL' -> 'SPECIES_STANTLER'
-- land_encounters.6.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SLOWBRO'
-- land_encounters.7.species: 'SPECIES_PSYDUCK' -> 'SPECIES_SLOWKING'
-- land_encounters.8.species: 'SPECIES_SNOVER' -> 'SPECIES_SNEASEL'
-- land_encounters.9.species: 'SPECIES_BIBAREL' -> 'SPECIES_SNEASEL'
-- land_encounters.10.species: 'SPECIES_SNOVER' -> 'SPECIES_FROSLASS'
-- land_encounters.11.species: 'SPECIES_BIBAREL' -> 'SPECIES_WEAVILE'
-- day.0: 'SPECIES_SNOVER' -> 'SPECIES_LUNATONE'
-- day.1: 'SPECIES_SNOVER' -> 'SPECIES_LUNATONE'
-- night.0: 'SPECIES_SNORUNT' -> 'SPECIES_SOLROCK'
-- night.1: 'SPECIES_SNORUNT' -> 'SPECIES_SOLROCK'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_STANTLER'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_DEWGONG'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SEALEO'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SLOWPOKE'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_LAPRAS'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEEL'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_DEWGONG'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SPHEAL'
-- good_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_SEALEO'
-- good_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_WALREIN'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_KINGLER'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_KINGLER'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_KINGLER'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_KINGLER'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_KINGLER'
-
-## res/field/encounters/encounters_valor_lakefront.json
-- land_encounters.0.species: 'SPECIES_GIRAFARIG' -> 'SPECIES_STARAVIA'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_PONYTA'
-- land_encounters.2.species: 'SPECIES_STARAVIA' -> 'SPECIES_GIRAFARIG'
-- land_encounters.3.species: 'SPECIES_KRICKETUNE' -> 'SPECIES_PINSIR'
-- land_encounters.4.species: 'SPECIES_STARAVIA' -> 'SPECIES_GROWLITHE'
-- land_encounters.5.species: 'SPECIES_HOUNDOUR' -> 'SPECIES_VULPIX'
-- land_encounters.7.species: 'SPECIES_BIBAREL' -> 'SPECIES_PONYTA'
-- land_encounters.8.species: 'SPECIES_GIRAFARIG' -> 'SPECIES_GROWLITHE'
-- land_encounters.9.species: 'SPECIES_BIBAREL' -> 'SPECIES_VULPIX'
-- land_encounters.10.species: 'SPECIES_GIRAFARIG' -> 'SPECIES_TORKOAL'
-- land_encounters.11.species: 'SPECIES_BIBAREL' -> 'SPECIES_TORKOAL'
-- day.0: 'SPECIES_STARAVIA' -> 'SPECIES_GIRAFARIG'
-- day.1: 'SPECIES_STARAVIA' -> 'SPECIES_PINSIR'
-- night.0: 'SPECIES_KRICKETUNE' -> 'SPECIES_STANTLER'
-- night.1: 'SPECIES_HOUNDOUR' -> 'SPECIES_NOCTOWL'
-
-## res/field/encounters/encounters_acuity_lakefront.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_GLALIE'
-- land_encounters.1.species: 'SPECIES_SWINUB' -> 'SPECIES_URSARING'
-- land_encounters.2.species: 'SPECIES_SNEASEL' -> 'SPECIES_WORMADAM'
-- land_encounters.3.species: 'SPECIES_SNOVER' -> 'SPECIES_ABRA'
-- land_encounters.4.species: 'SPECIES_SNEASEL' -> 'SPECIES_KADABRA'
-- land_encounters.5.species: 'SPECIES_SWINUB' -> 'SPECIES_PILOSWINE'
-- land_encounters.6.species: 'SPECIES_SNOVER' -> 'SPECIES_JYNX'
-- land_encounters.9.species: 'SPECIES_SNOVER' -> 'SPECIES_SNEASEL'
-- land_encounters.10.species: 'SPECIES_SNEASEL' -> 'SPECIES_MAMOSWINE'
-- land_encounters.11.species: 'SPECIES_SNOVER' -> 'SPECIES_WEAVILE'
-- day.0: 'SPECIES_SNEASEL' -> 'SPECIES_WORMADAM'
-- day.1: 'SPECIES_SNOVER' -> 'SPECIES_ABRA'
-- night.0: 'SPECIES_SNORUNT' -> 'SPECIES_ABSOL'
-- night.1: 'SPECIES_SNORUNT' -> 'SPECIES_SNEASEL'
-
-## res/field/encounters/encounters_route_201.json
-- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_NIDORAN_F'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_NIDORAN_M'
-- land_encounters.4.species: 'SPECIES_STARLY' -> 'SPECIES_NIDORAN_F'
-- land_encounters.5.species: 'SPECIES_BIDOOF' -> 'SPECIES_NIDORAN_M'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_DODUO'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_DODUO'
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_GROWLITHE'
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_GROWLITHE'
-
-## res/field/encounters/encounters_route_202.json
-- land_encounters.0.species: 'SPECIES_SHINX' -> 'SPECIES_SENTRET'
-- land_encounters.1.species: 'SPECIES_BIDOOF' -> 'SPECIES_BURMY'
-- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_WEEDLE'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_SUNKERN'
-- land_encounters.4.species: 'SPECIES_SHINX' -> 'SPECIES_PIDGEY'
-- land_encounters.7.species: 'SPECIES_BIDOOF' -> 'SPECIES_SNUBBULL'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_SHINX'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_SANDSHREW'
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_AZURILL'
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_SPEAROW'
-- day.0: 'SPECIES_STARLY' -> 'SPECIES_WEEDLE'
-- day.1: 'SPECIES_BIDOOF' -> 'SPECIES_SUNKERN'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_LEDYBA'
-- night.1: 'SPECIES_BIDOOF' -> 'SPECIES_SPINARAK'
-
-## res/field/encounters/encounters_route_203.json
-- land_encounters.0.species: 'SPECIES_STARLY' -> 'SPECIES_BIDOOF'
-- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_EKANS'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_MIME_JR'
-- land_encounters.4.species: 'SPECIES_BIDOOF' -> 'SPECIES_NATU'
-- land_encounters.5.species: 'SPECIES_ABRA' -> 'SPECIES_GULPIN'
-- land_encounters.6.species: 'SPECIES_ABRA' -> 'SPECIES_GULPIN'
-- land_encounters.8.level: 6 -> 5
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_SLAKOTH'
-- land_encounters.9.level: 6 -> 5
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_STARLY'
-- land_encounters.10.level: 7 -> 5
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_MANKEY'
-- land_encounters.11.level: 7 -> 4
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_AIPOM'
-- day.0: 'SPECIES_STARLY' -> 'SPECIES_EKANS'
-- day.1: 'SPECIES_BIDOOF' -> 'SPECIES_MIME_JR'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_SPINARAK'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_MIME_JR'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_POLIWAG'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_POLIWAG'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_LOMBRE'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CROAGUNK'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_POLITOED'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWAG'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWAG'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_RATTATA'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_POLIWRATH'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_POLIWRATH'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_POLIWRATH'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_POLITOED'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_RATICATE'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_TOXICROAK'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_CRAWDAUNT'
-
-## res/field/encounters/encounters_route_204_south.json
-- land_encounters.0.species: 'SPECIES_STARLY' -> 'SPECIES_BURMY'
-- land_encounters.1.species: 'SPECIES_BIDOOF' -> 'SPECIES_SEEDOT'
-- land_encounters.2.species: 'SPECIES_WURMPLE' -> 'SPECIES_SUNKERN'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_CHERUBI'
-- land_encounters.4.species: 'SPECIES_BUDEW' -> 'SPECIES_SHROOMISH'
-- land_encounters.5.species: 'SPECIES_SHINX' -> 'SPECIES_BUDEW'
-- land_encounters.7.species: 'SPECIES_SHINX' -> 'SPECIES_BELLSPROUT'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_HOPPIP'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_CHIKORITA'
-- land_encounters.10.level: 6 -> 5
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_LOTAD'
-- land_encounters.11.level: 6 -> 4
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_BULBASAUR'
-- day.0: 'SPECIES_WURMPLE' -> 'SPECIES_SUNKERN'
-- day.1: 'SPECIES_BUDEW' -> 'SPECIES_CHERUBI'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_ODDISH'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_CACNEA'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_HOPPIP'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_SKIPLOOM'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SKIPLOOM'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_MASQUERAIN'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_PSYDUCK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_PSYDUCK'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LOTAD'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SEAKING'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDUCK'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_GOLDUCK'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_PSYDUCK'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_LOMBRE'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_LUDICOLO'
-
-## res/field/encounters/encounters_route_204_north.json
-- land_encounters.0.species: 'SPECIES_STARLY' -> 'SPECIES_BULBASAUR'
-- land_encounters.1.species: 'SPECIES_BIDOOF' -> 'SPECIES_CHIKORITA'
-- land_encounters.2.species: 'SPECIES_WURMPLE' -> 'SPECIES_SUNKERN'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_TREECKO'
-- land_encounters.4.species: 'SPECIES_BUDEW' -> 'SPECIES_SHROOMISH'
-- land_encounters.5.species: 'SPECIES_SHINX' -> 'SPECIES_BUDEW'
-- land_encounters.7.species: 'SPECIES_SHINX' -> 'SPECIES_BELLSPROUT'
-- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_HOPPIP'
-- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_CHIKORITA'
-- land_encounters.10.level: 11 -> 10
-- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_LOTAD'
-- land_encounters.11.level: 11 -> 10
-- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_LOMBRE'
-- day.0: 'SPECIES_WURMPLE' -> 'SPECIES_SUNKERN'
-- day.1: 'SPECIES_BUDEW' -> 'SPECIES_TREECKO'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_ODDISH'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_TREECKO'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_PSYDUCK'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_PSYDUCK'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LOTAD'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SEAKING'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDUCK'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_GOLDUCK'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_PSYDUCK'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_LOMBRE'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_LUDICOLO'
-
-## res/field/encounters/encounters_route_205_south.json
-- land_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_STARLY'
-- land_encounters.1.species: 'SPECIES_SHELLOS' -> 'SPECIES_BIDOOF'
-- land_encounters.2.species: 'SPECIES_BUIZEL' -> 'SPECIES_NIDORINO'
-- land_encounters.3.species: 'SPECIES_SHELLOS' -> 'SPECIES_NIDORINA'
-- land_encounters.4.species: 'SPECIES_BIDOOF' -> 'SPECIES_EKANS'
-- land_encounters.5.species: 'SPECIES_SHELLOS' -> 'SPECIES_NIDORAN_F'
-- land_encounters.6.species: 'SPECIES_PACHIRISU' -> 'SPECIES_STARAVIA'
-- land_encounters.8.species: 'SPECIES_BUIZEL' -> 'SPECIES_ARBOK'
-- land_encounters.9.species: 'SPECIES_SHELLOS' -> 'SPECIES_LEDIAN'
-- land_encounters.10.species: 'SPECIES_BUIZEL' -> 'SPECIES_POOCHYENA'
-- land_encounters.11.species: 'SPECIES_SHELLOS' -> 'SPECIES_POOCHYENA'
-- day.0: 'SPECIES_BUIZEL' -> 'SPECIES_NIDORINO'
-- day.1: 'SPECIES_SHELLOS' -> 'SPECIES_NIDORINA'
-- night.0: 'SPECIES_BUIZEL' -> 'SPECIES_ZIGZAGOON'
-- night.1: 'SPECIES_SHELLOS' -> 'SPECIES_ZIGZAGOON'
-- surf_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_GRIMER'
-- surf_encounters.1.species: 'SPECIES_TENTACOOL' -> 'SPECIES_MUK'
-- surf_encounters.2.species: 'SPECIES_GASTRODON' -> 'SPECIES_TENTACOOL'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GRIMER'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_CARVANHA'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- good_rod_encounters.3.species: 'SPECIES_FINNEON' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.4.level_min: 10 -> 20
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_SEVIPER'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_SHARPEDO'
-- super_rod_encounters.1.species: 'SPECIES_LUMINEON' -> 'SPECIES_LANTURN'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_CHINCHOU'
-
-## res/field/encounters/encounters_route_205_north.json
-- land_encounters.0.species: 'SPECIES_BIDOOF' -> 'SPECIES_BUIZEL'
-- land_encounters.1.species: 'SPECIES_BUDEW' -> 'SPECIES_PACHIRISU'
-- land_encounters.2.species: 'SPECIES_WURMPLE' -> 'SPECIES_NIDORINO'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_NIDORINA'
-- land_encounters.6.species: 'SPECIES_BIDOOF' -> 'SPECIES_STARAVIA'
-- land_encounters.7.species: 'SPECIES_BIDOOF' -> 'SPECIES_PACHIRISU'
-- land_encounters.8.species: 'SPECIES_BUDEW' -> 'SPECIES_ARBOK'
-- land_encounters.9.species: 'SPECIES_BUDEW' -> 'SPECIES_LEDIAN'
-- land_encounters.10.species: 'SPECIES_BEAUTIFLY' -> 'SPECIES_POOCHYENA'
-- land_encounters.11.species: 'SPECIES_DUSTOX' -> 'SPECIES_POOCHYENA'
-- day.0: 'SPECIES_WURMPLE' -> 'SPECIES_NIDORINO'
-- day.1: 'SPECIES_BUDEW' -> 'SPECIES_NIDORINA'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_ZIGZAGOON'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_ZIGZAGOON'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_BIDOOF'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_BIDOOF'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_BIDOOF'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_BIDOOF'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BIDOOF'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FINNEON'
-- good_rod_encounters.1.species: 'SPECIES_BARBOACH' -> 'SPECIES_FINNEON'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FINNEON'
-- good_rod_encounters.3.species: 'SPECIES_BARBOACH' -> 'SPECIES_FINNEON'
-- good_rod_encounters.4.species: 'SPECIES_BARBOACH' -> 'SPECIES_FINNEON'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_BIBAREL'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_FLOATZEL'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_SHELLDER'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_LUMINEON'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_LUMINEON'
-
-## res/field/encounters/encounters_route_206.json
-- land_encounters.0.species: 'SPECIES_PONYTA' -> 'SPECIES_NUZLEAF'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_PHANPY'
-- land_encounters.2.species: 'SPECIES_GLIGAR' -> 'SPECIES_FLAAFFY'
-- land_encounters.3.species: 'SPECIES_KRICKETUNE' -> 'SPECIES_SPEAROW'
-- land_encounters.4.species: 'SPECIES_GLIGAR' -> 'SPECIES_STUNKY'
-- land_encounters.5.species: 'SPECIES_MACHOP' -> 'SPECIES_STARAVIA'
-- land_encounters.6.species: 'SPECIES_MACHOP' -> 'SPECIES_SLAKOTH'
-- land_encounters.7.species: 'SPECIES_GEODUDE' -> 'SPECIES_GLIGAR'
-- land_encounters.8.species: 'SPECIES_MACHOP' -> 'SPECIES_PONYTA'
-- land_encounters.9.species: 'SPECIES_GEODUDE' -> 'SPECIES_DODUO'
-- land_encounters.10.species: 'SPECIES_MACHOP' -> 'SPECIES_GIRAFARIG'
-- land_encounters.11.species: 'SPECIES_GEODUDE' -> 'SPECIES_FURRET'
-- day.0: 'SPECIES_GLIGAR' -> 'SPECIES_FLAAFFY'
-- day.1: 'SPECIES_PONYTA' -> 'SPECIES_SPEAROW'
-- night.0: 'SPECIES_KRICKETUNE' -> 'SPECIES_LUXIO'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_SPEAROW'
-
-## res/field/encounters/encounters_route_207.json
-- land_encounters.0.species: 'SPECIES_MACHOP' -> 'SPECIES_MAGBY'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_VULPIX'
-- land_encounters.2.species: 'SPECIES_PONYTA' -> 'SPECIES_MAGBY'
-- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_MAGBY'
-- land_encounters.4.species: 'SPECIES_PONYTA' -> 'SPECIES_GROWLITHE'
-- land_encounters.5.species: 'SPECIES_MACHOP' -> 'SPECIES_RATTATA'
-- land_encounters.6.level: 8 -> 7
-- land_encounters.6.species: 'SPECIES_MACHOP' -> 'SPECIES_GROWLITHE'
-- land_encounters.7.species: 'SPECIES_GEODUDE' -> 'SPECIES_VULPIX'
-- land_encounters.8.species: 'SPECIES_PONYTA' -> 'SPECIES_CHARMANDER'
-- land_encounters.9.species: 'SPECIES_GEODUDE' -> 'SPECIES_CYNDAQUIL'
-- land_encounters.11.species: 'SPECIES_GEODUDE' -> 'SPECIES_PONYTA'
-- day.0: 'SPECIES_PONYTA' -> 'SPECIES_MAGBY'
-- day.1: 'SPECIES_MACHOP' -> 'SPECIES_MAGBY'
-- night.0: 'SPECIES_KRICKETOT' -> 'SPECIES_VULPIX'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_VULPIX'
-
-## res/field/encounters/encounters_route_208.json
-- land_encounters.0.species: 'SPECIES_BUDEW' -> 'SPECIES_TYROGUE'
-- land_encounters.1.species: 'SPECIES_BIDOOF' -> 'SPECIES_LINOONE'
-- land_encounters.2.species: 'SPECIES_BUDEW' -> 'SPECIES_ROSELIA'
-- land_encounters.3.species: 'SPECIES_RALTS' -> 'SPECIES_KIRLIA'
-- land_encounters.4.species: 'SPECIES_ROSELIA' -> 'SPECIES_SPOINK'
-- land_encounters.6.species: 'SPECIES_RALTS' -> 'SPECIES_MEOWTH'
-- land_encounters.7.species: 'SPECIES_BIBAREL' -> 'SPECIES_MEOWTH'
-- land_encounters.8.species: 'SPECIES_ROSELIA' -> 'SPECIES_RATICATE'
-- land_encounters.10.species: 'SPECIES_ROSELIA' -> 'SPECIES_SPINDA'
-- land_encounters.11.species: 'SPECIES_BIBAREL' -> 'SPECIES_SPINDA'
-- day.0: 'SPECIES_BUDEW' -> 'SPECIES_ROSELIA'
-- day.1: 'SPECIES_RALTS' -> 'SPECIES_KIRLIA'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_ROSELIA'
-- night.1: 'SPECIES_RALTS' -> 'SPECIES_KIRLIA'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_WARTORTLE'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_BLASTOISE'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SQUIRTLE'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CROCONAW'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_TOTODILE'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_OMANYTE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_BUIZEL'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BUIZEL'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_KABUTO'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_KABUTO'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_BLASTOISE'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_FERALIGATR'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_FERALIGATR'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_GYARADOS'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_TOTODILE'
-
-## res/field/encounters/encounters_route_209.json
-- land_encounters.0.species: 'SPECIES_ROSELIA' -> 'SPECIES_KRICKETUNE'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_MAREEP'
-- land_encounters.2.species: 'SPECIES_STARAVIA' -> 'SPECIES_VENONAT'
-- land_encounters.3.species: 'SPECIES_RALTS' -> 'SPECIES_GRUMPIG'
-- land_encounters.4.species: 'SPECIES_STARAVIA' -> 'SPECIES_MANKEY'
-- land_encounters.5.species: 'SPECIES_BIBAREL' -> 'SPECIES_DIGLETT'
-- land_encounters.6.species: 'SPECIES_RALTS' -> 'SPECIES_LOMBRE'
-- land_encounters.7.species: 'SPECIES_ROSELIA' -> 'SPECIES_LOMBRE'
-- land_encounters.8.species: 'SPECIES_RALTS' -> 'SPECIES_KIRLIA'
-- land_encounters.9.species: 'SPECIES_CHANSEY' -> 'SPECIES_CHIMECHO'
-- land_encounters.10.species: 'SPECIES_RALTS' -> 'SPECIES_STANTLER'
-- land_encounters.11.species: 'SPECIES_CHANSEY' -> 'SPECIES_STANTLER'
-- day.0: 'SPECIES_STARAVIA' -> 'SPECIES_VENONAT'
-- day.1: 'SPECIES_RALTS' -> 'SPECIES_GRUMPIG'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_VOLBEAT'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_BUIZEL'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_FEAROW'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CHIMECHO'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_CHATOT'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SHELLDER'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEAKING'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FINNEON'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CROCONAW'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEAKING'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_FINNEON'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_CROCONAW'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_CORPHISH'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_POLIWHIRL'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_BARBOACH'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_BIDOOF'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_BUIZEL'
-
-## res/field/encounters/encounters_route_209_lost_tower_1f.json
-- land_encounters.0.species: 'SPECIES_GASTLY' -> 'SPECIES_WHISMUR'
-- land_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_DROWZEE'
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_STUNKY'
-- land_encounters.6.species: 'SPECIES_ZUBAT' -> 'SPECIES_EKANS'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_ARBOK'
-- land_encounters.8.species: 'SPECIES_GASTLY' -> 'SPECIES_GRIMER'
-- land_encounters.9.species: 'SPECIES_GASTLY' -> 'SPECIES_MUK'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- night.0: 'SPECIES_DUSKULL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_GLOOM'
-
-## res/field/encounters/encounters_route_209_lost_tower_2f.json
-- land_encounters.0.species: 'SPECIES_GASTLY' -> 'SPECIES_WHISMUR'
-- land_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_DROWZEE'
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_STUNKY'
-- land_encounters.6.species: 'SPECIES_ZUBAT' -> 'SPECIES_EKANS'
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_ARBOK'
-- land_encounters.8.species: 'SPECIES_GASTLY' -> 'SPECIES_GRIMER'
-- land_encounters.9.species: 'SPECIES_GASTLY' -> 'SPECIES_MUK'
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- land_encounters.11.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- night.0: 'SPECIES_DUSKULL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_GLOOM'
-
-## res/field/encounters/encounters_route_209_lost_tower_3f.json
-- land_encounters.0.level: 19 -> 18
-- land_encounters.0.species: 'SPECIES_GASTLY' -> 'SPECIES_WHISMUR'
-- land_encounters.1.level: 18 -> 17
-- land_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_DROWZEE'
-- land_encounters.2.level: 20 -> 19
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- land_encounters.3.level: 18 -> 17
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- land_encounters.4.level: 19 -> 18
-- land_encounters.5.level: 18 -> 17
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_STUNKY'
-- land_encounters.6.level: 20 -> 19
-- land_encounters.6.species: 'SPECIES_ZUBAT' -> 'SPECIES_EKANS'
-- land_encounters.7.level: 21 -> 20
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_ARBOK'
-- land_encounters.8.level: 21 -> 20
-- land_encounters.8.species: 'SPECIES_GASTLY' -> 'SPECIES_GRIMER'
-- land_encounters.9.level: 21 -> 20
-- land_encounters.9.species: 'SPECIES_GASTLY' -> 'SPECIES_MUK'
-- land_encounters.10.level: 21 -> 20
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- land_encounters.11.level: 21 -> 20
-- land_encounters.11.species: 'SPECIES_GOLBAT' -> 'SPECIES_NATU'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- night.0: 'SPECIES_DUSKULL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_GLOOM'
-
-## res/field/encounters/encounters_route_209_lost_tower_4f.json
-- land_encounters.0.level: 19 -> 18
-- land_encounters.0.species: 'SPECIES_GASTLY' -> 'SPECIES_WHISMUR'
-- land_encounters.1.level: 18 -> 17
-- land_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_DROWZEE'
-- land_encounters.2.level: 20 -> 19
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- land_encounters.3.level: 18 -> 17
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- land_encounters.4.level: 19 -> 18
-- land_encounters.5.level: 18 -> 17
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_STUNKY'
-- land_encounters.6.level: 20 -> 19
-- land_encounters.6.species: 'SPECIES_ZUBAT' -> 'SPECIES_EKANS'
-- land_encounters.7.level: 21 -> 20
-- land_encounters.7.species: 'SPECIES_GASTLY' -> 'SPECIES_ARBOK'
-- land_encounters.8.level: 21 -> 20
-- land_encounters.8.species: 'SPECIES_GASTLY' -> 'SPECIES_GRIMER'
-- land_encounters.9.level: 21 -> 20
-- land_encounters.9.species: 'SPECIES_GOLBAT' -> 'SPECIES_MUK'
-- land_encounters.10.level: 21 -> 20
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- land_encounters.11.level: 21 -> 20
-- land_encounters.11.species: 'SPECIES_GOLBAT' -> 'SPECIES_NATU'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- night.0: 'SPECIES_DUSKULL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_GLOOM'
-
-## res/field/encounters/encounters_route_209_lost_tower_5f.json
-- land_encounters.0.level: 20 -> 18
-- land_encounters.0.species: 'SPECIES_GASTLY' -> 'SPECIES_WHISMUR'
-- land_encounters.1.level: 19 -> 17
-- land_encounters.1.species: 'SPECIES_ZUBAT' -> 'SPECIES_DROWZEE'
-- land_encounters.2.level: 21 -> 19
-- land_encounters.2.species: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- land_encounters.3.level: 19 -> 17
-- land_encounters.3.species: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- land_encounters.4.level: 20 -> 18
-- land_encounters.5.level: 19 -> 17
-- land_encounters.5.species: 'SPECIES_GASTLY' -> 'SPECIES_STUNKY'
-- land_encounters.6.level: 21 -> 19
-- land_encounters.6.species: 'SPECIES_ZUBAT' -> 'SPECIES_EKANS'
-- land_encounters.7.level: 22 -> 20
-- land_encounters.7.species: 'SPECIES_GOLBAT' -> 'SPECIES_ARBOK'
-- land_encounters.8.level: 22 -> 20
-- land_encounters.8.species: 'SPECIES_GASTLY' -> 'SPECIES_GRIMER'
-- land_encounters.9.level: 22 -> 20
-- land_encounters.9.species: 'SPECIES_GOLBAT' -> 'SPECIES_MUK'
-- land_encounters.10.level: 22 -> 20
-- land_encounters.10.species: 'SPECIES_GASTLY' -> 'SPECIES_NATU'
-- land_encounters.11.level: 22 -> 20
-- land_encounters.11.species: 'SPECIES_GOLBAT' -> 'SPECIES_NATU'
-- day.0: 'SPECIES_GASTLY' -> 'SPECIES_CUBONE'
-- day.1: 'SPECIES_GASTLY' -> 'SPECIES_KECLEON'
-- night.0: 'SPECIES_DUSKULL' -> 'SPECIES_VILEPLUME'
-- night.1: 'SPECIES_DUSKULL' -> 'SPECIES_GLOOM'
-
-## res/field/encounters/encounters_route_210_south.json
-- land_encounters.0.species: 'SPECIES_STARAVIA' -> 'SPECIES_MOTHIM'
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_VENOMOTH'
-- land_encounters.2.level: 21 -> 20
-- land_encounters.2.species: 'SPECIES_SCYTHER' -> 'SPECIES_FURRET'
-- land_encounters.3.species: 'SPECIES_PONYTA' -> 'SPECIES_CACNEA'
-- land_encounters.4.species: 'SPECIES_ROSELIA' -> 'SPECIES_PONYTA'
-- land_encounters.5.species: 'SPECIES_PONYTA' -> 'SPECIES_SEVIPER'
-- land_encounters.6.species: 'SPECIES_SCYTHER' -> 'SPECIES_MAGBY'
-- land_encounters.7.species: 'SPECIES_ROSELIA' -> 'SPECIES_ELEKID'
-- land_encounters.8.species: 'SPECIES_PONYTA' -> 'SPECIES_PINSIR'
-- land_encounters.9.species: 'SPECIES_CHANSEY' -> 'SPECIES_SCYTHER'
-- land_encounters.10.species: 'SPECIES_PONYTA' -> 'SPECIES_MILTANK'
-- land_encounters.11.species: 'SPECIES_CHANSEY' -> 'SPECIES_MILTANK'
-- day.0: 'SPECIES_PONYTA' -> 'SPECIES_FURRET'
-- day.1: 'SPECIES_PONYTA' -> 'SPECIES_CACNEA'
-- night.0: 'SPECIES_NOCTOWL' -> 'SPECIES_ILLUMISE'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_VOLBEAT'
-
-## res/field/encounters/encounters_route_210_north.json
-- land_encounters.0.species: 'SPECIES_SWABLU' -> 'SPECIES_KECLEON'
-- land_encounters.1.species: 'SPECIES_BIBAREL' -> 'SPECIES_MOTHIM'
-- land_encounters.2.species: 'SPECIES_SCYTHER' -> 'SPECIES_WEEZING'
-- land_encounters.3.species: 'SPECIES_MEDITITE' -> 'SPECIES_MUK'
-- land_encounters.4.species: 'SPECIES_MEDITITE' -> 'SPECIES_TORKOAL'
-- land_encounters.5.species: 'SPECIES_MACHOP' -> 'SPECIES_ABSOL'
-- land_encounters.6.species: 'SPECIES_SCYTHER' -> 'SPECIES_TORKOAL'
-- land_encounters.7.species: 'SPECIES_MACHOKE' -> 'SPECIES_ABSOL'
-- land_encounters.8.species: 'SPECIES_MACHOP' -> 'SPECIES_LUXRAY'
-- land_encounters.9.species: 'SPECIES_MACHOKE' -> 'SPECIES_STANTLER'
-- land_encounters.10.species: 'SPECIES_MACHOP' -> 'SPECIES_ALTARIA'
-- land_encounters.11.species: 'SPECIES_MACHOKE' -> 'SPECIES_ZANGOOSE'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_WEEZING'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_KOFFING'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SWABLU'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_GASTLY'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_DRIFBLIM'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_EKANS'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEVIPER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZUMARILL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MAREEP'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_STARYU'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARYU'
-- super_rod_encounters.1.species: 'SPECIES_WHISCASH' -> 'SPECIES_CORSOLA'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARMIE'
-- super_rod_encounters.3.species: 'SPECIES_WHISCASH' -> 'SPECIES_VAPOREON'
-- super_rod_encounters.4.species: 'SPECIES_WHISCASH' -> 'SPECIES_HAUNTER'
-
-## res/field/encounters/encounters_route_211_west.json
-- land_encounters.0.species: 'SPECIES_MEDITITE' -> 'SPECIES_RALTS'
-- land_encounters.1.species: 'SPECIES_BIDOOF' -> 'SPECIES_CHINGLING'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_GROWLITHE'
-- land_encounters.3.species: 'SPECIES_MEDITITE' -> 'SPECIES_VULPIX'
-- land_encounters.4.species: 'SPECIES_CHINGLING' -> 'SPECIES_SPOINK'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_KIRLIA'
-- land_encounters.7.species: 'SPECIES_BRONZOR' -> 'SPECIES_CHIMECHO'
-- land_encounters.8.species: 'SPECIES_MACHOP' -> 'SPECIES_CHARMELEON'
-- land_encounters.9.species: 'SPECIES_BRONZOR' -> 'SPECIES_QUILAVA'
-- land_encounters.10.species: 'SPECIES_MACHOP' -> 'SPECIES_VOLTORB'
-- land_encounters.11.species: 'SPECIES_BRONZOR' -> 'SPECIES_TORCHIC'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_GROWLITHE'
-- day.1: 'SPECIES_MEDITITE' -> 'SPECIES_VULPIX'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_GROWLITHE'
-- night.1: 'SPECIES_HOOTHOOT' -> 'SPECIES_VULPIX'
-
-## res/field/encounters/encounters_route_211_east.json
-- land_encounters.0.species: 'SPECIES_MEDITITE' -> 'SPECIES_TORKOAL'
-- land_encounters.1.species: 'SPECIES_GRAVELER' -> 'SPECIES_CHIMECHO'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_WEEZING'
-- land_encounters.3.species: 'SPECIES_MEDITITE' -> 'SPECIES_LOUDRED'
-- land_encounters.6.species: 'SPECIES_CHINGLING' -> 'SPECIES_XATU'
-- land_encounters.7.species: 'SPECIES_BRONZOR' -> 'SPECIES_GALLADE'
-- land_encounters.8.species: 'SPECIES_MACHOKE' -> 'SPECIES_GARDEVOIR'
-- land_encounters.9.species: 'SPECIES_BRONZOR' -> 'SPECIES_MR_MIME'
-- land_encounters.10.species: 'SPECIES_MACHOKE' -> 'SPECIES_EXEGGCUTE'
-- land_encounters.11.species: 'SPECIES_BRONZOR' -> 'SPECIES_VIGOROTH'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_SWALOT'
-- day.1: 'SPECIES_MEDITITE' -> 'SPECIES_MIGHTYENA'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_MOTHIM'
-- night.1: 'SPECIES_NOCTOWL' -> 'SPECIES_KECLEON'
-
-## res/field/encounters/encounters_route_212_north.json
-- land_encounters.0.species: 'SPECIES_ROSELIA' -> 'SPECIES_STANTLER'
-- land_encounters.1.species: 'SPECIES_MARILL' -> 'SPECIES_LICKITUNG'
-- land_encounters.2.species: 'SPECIES_STARAVIA' -> 'SPECIES_GASTRODON'
-- land_encounters.3.species: 'SPECIES_KIRLIA' -> 'SPECIES_TROPIUS'
-- land_encounters.4.species: 'SPECIES_ROSELIA' -> 'SPECIES_GROVYLE'
-- land_encounters.5.species: 'SPECIES_STARAVIA' -> 'SPECIES_MARSHTOMP'
-- land_encounters.6.species: 'SPECIES_KIRLIA' -> 'SPECIES_MUK'
-- land_encounters.7.species: 'SPECIES_KIRLIA' -> 'SPECIES_KANGASKHAN'
-- land_encounters.8.species: 'SPECIES_ROSELIA' -> 'SPECIES_TANGELA'
-- land_encounters.9.species: 'SPECIES_MARILL' -> 'SPECIES_TANGELA'
-- land_encounters.10.species: 'SPECIES_ROSELIA' -> 'SPECIES_TANGELA'
-- land_encounters.11.species: 'SPECIES_MARILL' -> 'SPECIES_TANGROWTH'
-- day.0: 'SPECIES_STARAVIA' -> 'SPECIES_GASTRODON'
-- day.1: 'SPECIES_RALTS' -> 'SPECIES_TROPIUS'
-- night.0: 'SPECIES_MARILL' -> 'SPECIES_LUDICOLO'
-- night.1: 'SPECIES_MARILL' -> 'SPECIES_TOXICROAK'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_GASTRODON'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_SURSKIT'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SLOWBRO'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_MUK'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_LAPRAS'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_STARYU'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SEADRA'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SEADRA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_PHIONE'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_PHIONE'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_MUDKIP'
-
-## res/field/encounters/encounters_route_212_south.json
-- land_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_STANTLER'
-- land_encounters.1.level: 24 -> 21
-- land_encounters.1.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_LICKITUNG'
-- land_encounters.2.level: 25 -> 23
-- land_encounters.2.species: 'SPECIES_BUIZEL' -> 'SPECIES_GASTRODON'
-- land_encounters.3.level: 24 -> 22
-- land_encounters.3.species: 'SPECIES_SHELLOS' -> 'SPECIES_TROPIUS'
-- land_encounters.4.level: 26 -> 22
-- land_encounters.4.species: 'SPECIES_QUAGSIRE' -> 'SPECIES_GROVYLE'
-- land_encounters.5.level: 25 -> 21
-- land_encounters.5.species: 'SPECIES_SHELLOS' -> 'SPECIES_MARSHTOMP'
-- land_encounters.6.species: 'SPECIES_CROAGUNK' -> 'SPECIES_MUK'
-- land_encounters.7.level: 25 -> 24
-- land_encounters.7.species: 'SPECIES_CROAGUNK' -> 'SPECIES_KANGASKHAN'
-- land_encounters.8.level: 23 -> 24
-- land_encounters.8.species: 'SPECIES_BUIZEL' -> 'SPECIES_TANGELA'
-- land_encounters.9.level: 26 -> 23
-- land_encounters.9.species: 'SPECIES_SHELLOS' -> 'SPECIES_TANGELA'
-- land_encounters.10.level: 23 -> 24
-- land_encounters.10.species: 'SPECIES_BUIZEL' -> 'SPECIES_TANGELA'
-- land_encounters.11.level: 26 -> 23
-- land_encounters.11.species: 'SPECIES_SHELLOS' -> 'SPECIES_TANGROWTH'
-- swarms.0: 'SPECIES_SHELLOS' -> 'SPECIES_ROSELIA'
-- swarms.1: 'SPECIES_QUAGSIRE' -> 'SPECIES_MARILL'
-- day.0: 'SPECIES_BUIZEL' -> 'SPECIES_GASTRODON'
-- day.1: 'SPECIES_SHELLOS' -> 'SPECIES_TROPIUS'
-- night.0: 'SPECIES_BUIZEL' -> 'SPECIES_LUDICOLO'
-- night.1: 'SPECIES_SHELLOS' -> 'SPECIES_TOXICROAK'
-- radar.0: 'SPECIES_GRIMER' -> 'SPECIES_SMEARGLE'
-- radar.1: 'SPECIES_GRIMER' -> 'SPECIES_SMEARGLE'
-- radar.2: 'SPECIES_GRIMER' -> 'SPECIES_SMEARGLE'
-- radar.3: 'SPECIES_GRIMER' -> 'SPECIES_SMEARGLE'
-- ruby.0: 'SPECIES_BUIZEL' -> 'SPECIES_ROSELIA'
-- ruby.1: 'SPECIES_SHELLOS' -> 'SPECIES_MARILL'
-- sapphire.0: 'SPECIES_LOMBRE' -> 'SPECIES_ROSELIA'
-- sapphire.1: 'SPECIES_LOTAD' -> 'SPECIES_MARILL'
-- emerald.0: 'SPECIES_BUIZEL' -> 'SPECIES_ROSELIA'
-- emerald.1: 'SPECIES_SHELLOS' -> 'SPECIES_MARILL'
-- firered.0: 'SPECIES_EKANS' -> 'SPECIES_ROSELIA'
-- firered.1: 'SPECIES_EKANS' -> 'SPECIES_MARILL'
-- leafgreen.0: 'SPECIES_BUIZEL' -> 'SPECIES_ROSELIA'
-- leafgreen.1: 'SPECIES_SHELLOS' -> 'SPECIES_MARILL'
-- surf_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_GASTRODON'
-- surf_encounters.1.species: 'SPECIES_TENTACOOL' -> 'SPECIES_SURSKIT'
-- surf_encounters.2.species: 'SPECIES_GASTRODON' -> 'SPECIES_SLOWBRO'
-- surf_encounters.3.species: 'SPECIES_GASTRODON' -> 'SPECIES_MUK'
-- surf_encounters.4.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_LAPRAS'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLOYSTER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_STARYU'
-- good_rod_encounters.1.species: 'SPECIES_REMORAID' -> 'SPECIES_STARYU'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_SEADRA'
-- good_rod_encounters.4.species: 'SPECIES_REMORAID' -> 'SPECIES_SEADRA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.1.species: 'SPECIES_OCTILLERY' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_PHIONE'
-- super_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_PHIONE'
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_MUDKIP'
-
-## res/field/encounters/encounters_route_213.json
-- land_encounters.0.species: 'SPECIES_SHELLOS' -> 'SPECIES_SWELLOW'
-- land_encounters.1.species: 'SPECIES_BUIZEL' -> 'SPECIES_TROPIUS'
-- land_encounters.2.species: 'SPECIES_CHATOT' -> 'SPECIES_TAUROS'
-- land_encounters.3.species: 'SPECIES_CHATOT' -> 'SPECIES_MUNCHLAX'
-- land_encounters.4.species: 'SPECIES_WINGULL' -> 'SPECIES_WYNAUT'
-- land_encounters.5.species: 'SPECIES_SHELLOS' -> 'SPECIES_LOMBRE'
-- land_encounters.6.species: 'SPECIES_WINGULL' -> 'SPECIES_RHYHORN'
-- land_encounters.7.species: 'SPECIES_WINGULL' -> 'SPECIES_TANGELA'
-- land_encounters.8.species: 'SPECIES_BUIZEL' -> 'SPECIES_GALLADE'
-- land_encounters.9.species: 'SPECIES_SHELLOS' -> 'SPECIES_MUNCHLAX'
-- land_encounters.10.species: 'SPECIES_BUIZEL' -> 'SPECIES_MUNCHLAX'
-- land_encounters.11.species: 'SPECIES_SHELLOS' -> 'SPECIES_TOGETIC'
-- day.0: 'SPECIES_CHATOT' -> 'SPECIES_TAUROS'
-- day.1: 'SPECIES_CHATOT' -> 'SPECIES_MUNCHLAX'
-- night.0: 'SPECIES_SHELLOS' -> 'SPECIES_DUSCLOPS'
-- night.1: 'SPECIES_BUIZEL' -> 'SPECIES_HAUNTER'
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_PELIPPER'
-- surf_encounters.1.species: 'SPECIES_WINGULL' -> 'SPECIES_CHATOT'
-- surf_encounters.3.species: 'SPECIES_SHELLOS' -> 'SPECIES_MANTINE'
-- surf_encounters.4.species: 'SPECIES_GASTRODON' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUMINEON'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACOOL'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_KRABBY'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORSOLA'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_SHARPEDO'
-- good_rod_encounters.4.species: 'SPECIES_REMORAID' -> 'SPECIES_HORSEA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_SHELLDER'
-- super_rod_encounters.1.species: 'SPECIES_OCTILLERY' -> 'SPECIES_GASTRODON'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_WALREIN'
-- super_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_WAILMER'
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_MANTINE'
-
-## res/field/encounters/encounters_route_214.json
-- land_encounters.0.level: 23 -> 28
-- land_encounters.1.level: 21 -> 28
-- land_encounters.1.species: 'SPECIES_GEODUDE' -> 'SPECIES_MACHOKE'
-- land_encounters.2.level: 22 -> 30
-- land_encounters.2.species: 'SPECIES_GRAVELER' -> 'SPECIES_GIRAFARIG'
-- land_encounters.3.level: 22 -> 30
-- land_encounters.3.species: 'SPECIES_RHYHORN' -> 'SPECIES_SWALOT'
-- land_encounters.4.level: 23 -> 28
-- land_encounters.4.species: 'SPECIES_HOUNDOUR' -> 'SPECIES_MIGHTYENA'
-- land_encounters.5.level: 23 -> 28
-- land_encounters.6.level: 24 -> 29
-- land_encounters.6.species: 'SPECIES_GRAVELER' -> 'SPECIES_DODUO'
-- land_encounters.7.level: 21 -> 26
-- land_encounters.8.level: 24 -> 29
-- land_encounters.8.species: 'SPECIES_HOUNDOUR' -> 'SPECIES_DODRIO'
-- land_encounters.9.level: 24 -> 29
-- land_encounters.10.level: 24 -> 29
-- land_encounters.10.species: 'SPECIES_HOUNDOUR' -> 'SPECIES_MEDICHAM'
-- land_encounters.11.level: 24 -> 29
-- land_encounters.11.species: 'SPECIES_RHYHORN' -> 'SPECIES_GROWLITHE'
-- day.0: 'SPECIES_GRAVELER' -> 'SPECIES_GIRAFARIG'
-- day.1: 'SPECIES_RHYHORN' -> 'SPECIES_SWALOT'
-- night.0: 'SPECIES_HOUNDOUR' -> 'SPECIES_SWALOT'
-- night.1: 'SPECIES_ZUBAT' -> 'SPECIES_URSARING'
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_MASQUERAIN'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_PIDGEOTTO'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_NOCTOWL'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SWELLOW'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GRIMER'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MUK'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDUCK'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_CROCONAW'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_FLOATZEL'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_MUK'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_CARVANHA'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_FERALIGATR'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_FLOATZEL'
-
-## res/field/encounters/encounters_route_215.json
-- land_encounters.0.species: 'SPECIES_STARAVIA' -> 'SPECIES_AZUMARILL'
-- land_encounters.1.species: 'SPECIES_MARILL' -> 'SPECIES_PSYDUCK'
-- land_encounters.2.species: 'SPECIES_SCYTHER' -> 'SPECIES_STARAVIA'
-- land_encounters.5.species: 'SPECIES_ABRA' -> 'SPECIES_NUZLEAF'
-- land_encounters.6.species: 'SPECIES_SCYTHER' -> 'SPECIES_MARILL'
-- land_encounters.7.species: 'SPECIES_KADABRA' -> 'SPECIES_PSYDUCK'
-- land_encounters.8.species: 'SPECIES_MARILL' -> 'SPECIES_CROAGUNK'
-- land_encounters.9.species: 'SPECIES_KADABRA' -> 'SPECIES_SWABLU'
-- land_encounters.10.species: 'SPECIES_MARILL' -> 'SPECIES_GIRAFARIG'
-- land_encounters.11.species: 'SPECIES_KADABRA' -> 'SPECIES_SCYTHER'
-
-## res/field/encounters/encounters_route_216.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_MIGHTYENA'
-- land_encounters.1.species: 'SPECIES_SNEASEL' -> 'SPECIES_MACHOKE'
-- land_encounters.2.species: 'SPECIES_MEDITITE' -> 'SPECIES_ELECTRIKE'
-- land_encounters.3.species: 'SPECIES_SNOVER' -> 'SPECIES_HARIYAMA'
-- land_encounters.4.species: 'SPECIES_MEDITITE' -> 'SPECIES_MEDICHAM'
-- land_encounters.5.species: 'SPECIES_SNEASEL' -> 'SPECIES_STANTLER'
-- land_encounters.6.species: 'SPECIES_SNOVER' -> 'SPECIES_STANTLER'
-- land_encounters.8.species: 'SPECIES_GRAVELER' -> 'SPECIES_MAKUHITA'
-- land_encounters.9.species: 'SPECIES_SNOVER' -> 'SPECIES_MEDITITE'
-- land_encounters.10.species: 'SPECIES_GRAVELER' -> 'SPECIES_TYPHLOSION'
-- land_encounters.11.species: 'SPECIES_SNOVER' -> 'SPECIES_TYPHLOSION'
-- day.0: 'SPECIES_MEDITITE' -> 'SPECIES_ELECTRIKE'
-- day.1: 'SPECIES_SNOVER' -> 'SPECIES_HARIYAMA'
-- night.0: 'SPECIES_ZUBAT' -> 'SPECIES_GOLBAT'
-- night.1: 'SPECIES_SNORUNT' -> 'SPECIES_PURUGLY'
-
-## res/field/encounters/encounters_route_217.json
-- land_encounters.0.species: 'SPECIES_SNOVER' -> 'SPECIES_URSARING'
-- land_encounters.1.species: 'SPECIES_SWINUB' -> 'SPECIES_PILOSWINE'
-- land_encounters.6.species: 'SPECIES_SNOVER' -> 'SPECIES_SWINUB'
-- land_encounters.7.species: 'SPECIES_SWINUB' -> 'SPECIES_DODRIO'
-- land_encounters.9.species: 'SPECIES_SNOVER' -> 'SPECIES_MISDREAVUS'
-- land_encounters.10.species: 'SPECIES_SNEASEL' -> 'SPECIES_JYNX'
-- land_encounters.11.species: 'SPECIES_SNOVER' -> 'SPECIES_JYNX'
-
-## res/field/encounters/encounters_route_218.json
-- land_encounters.0.species: 'SPECIES_GASTRODON' -> 'SPECIES_WURMPLE'
-- land_encounters.1.species: 'SPECIES_FLOATZEL' -> 'SPECIES_SEALEO'
-- land_encounters.6.species: 'SPECIES_FLOATZEL' -> 'SPECIES_PELIPPER'
-- land_encounters.7.species: 'SPECIES_MR_MIME' -> 'SPECIES_PELIPPER'
-- land_encounters.10.species: 'SPECIES_FLOATZEL' -> 'SPECIES_SCYTHER'
-- land_encounters.11.species: 'SPECIES_GASTRODON' -> 'SPECIES_PIDGEOT'
-- night.0: 'SPECIES_GASTRODON' -> 'SPECIES_MURKROW'
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_MANTYKE'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_GOLDEEN'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUVDISC'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SQUIRTLE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_BARBOACH'
-- good_rod_encounters.3.species: 'SPECIES_FINNEON' -> 'SPECIES_STARYU'
-- good_rod_encounters.4.species: 'SPECIES_FINNEON' -> 'SPECIES_CROCONAW'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARYU'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARMIE'
-- super_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_WHISCASH'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_BLASTOISE'
-
-## res/field/encounters/encounters_route_219.json
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUVDISC'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FINNEON'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SPHEAL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TOTODILE'
-
-## res/field/encounters/encounters_route_221.json
-- land_encounters.0.species: 'SPECIES_FLOATZEL' -> 'SPECIES_MILTANK'
-- land_encounters.1.species: 'SPECIES_GIRAFARIG' -> 'SPECIES_ROSERADE'
-- land_encounters.2.species: 'SPECIES_ROSELIA' -> 'SPECIES_SHROOMISH'
-- land_encounters.3.species: 'SPECIES_ROSELIA' -> 'SPECIES_TEDDIURSA'
-- land_encounters.4.species: 'SPECIES_SUDOWOODO' -> 'SPECIES_SWELLOW'
-- land_encounters.5.species: 'SPECIES_SUDOWOODO' -> 'SPECIES_SCIZOR'
-- land_encounters.6.species: 'SPECIES_GIRAFARIG' -> 'SPECIES_TANGELA'
-- land_encounters.7.species: 'SPECIES_SUDOWOODO' -> 'SPECIES_TOGETIC'
-- land_encounters.8.species: 'SPECIES_FLOATZEL' -> 'SPECIES_HERACROSS'
-- land_encounters.9.species: 'SPECIES_ROSELIA' -> 'SPECIES_HOUNDOOM'
-- land_encounters.10.species: 'SPECIES_FLOATZEL' -> 'SPECIES_SLAKING'
-- land_encounters.11.species: 'SPECIES_ROSELIA' -> 'SPECIES_TAUROS'
-- day.0: 'SPECIES_ROSELIA' -> 'SPECIES_SHROOMISH'
-- day.1: 'SPECIES_ROSELIA' -> 'SPECIES_TEDDIURSA'
-- night.0: 'SPECIES_FLOATZEL' -> 'SPECIES_GLIGAR'
-- night.1: 'SPECIES_ROSELIA' -> 'SPECIES_VULPIX'
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_BUIZEL'
-- surf_encounters.1.species: 'SPECIES_WINGULL' -> 'SPECIES_REMORAID'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_SEEL'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_SEADRA'
-- surf_encounters.4.species: 'SPECIES_PELIPPER' -> 'SPECIES_SLOWBRO'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SHELLDER'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SLOWPOKE'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_SLOWKING'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MISDREAVUS'
-- good_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_MISDREAVUS'
-- good_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_TENTACOOL'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_GASTLY'
-- super_rod_encounters.1.species: 'SPECIES_LUMINEON' -> 'SPECIES_KINGLER'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_WAILORD'
-- super_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_WAILORD'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_KRABBY'
-
-## res/field/encounters/encounters_route_222.json
-- land_encounters.0.species: 'SPECIES_ELECTABUZZ' -> 'SPECIES_CHATOT'
-- land_encounters.1.species: 'SPECIES_FLOATZEL' -> 'SPECIES_PACHIRISU'
-- land_encounters.3.species: 'SPECIES_CHATOT' -> 'SPECIES_PIDGEOT'
-- land_encounters.4.species: 'SPECIES_WINGULL' -> 'SPECIES_PELIPPER'
-- land_encounters.5.species: 'SPECIES_MAGNEMITE' -> 'SPECIES_WINGULL'
-- land_encounters.6.species: 'SPECIES_LUXIO' -> 'SPECIES_PIDGEOTTO'
-- land_encounters.8.species: 'SPECIES_PELIPPER' -> 'SPECIES_DODUO'
-- land_encounters.9.species: 'SPECIES_MAGNETON' -> 'SPECIES_PIKACHU'
-- land_encounters.10.species: 'SPECIES_PELIPPER' -> 'SPECIES_MAGNETON'
-- land_encounters.11.species: 'SPECIES_MAGNETON' -> 'SPECIES_EXEGGUTOR'
-- day.1: 'SPECIES_CHATOT' -> 'SPECIES_PIDGEOT'
-- night.1: 'SPECIES_FLOATZEL' -> 'SPECIES_FLAAFFY'
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_SHARPEDO'
-- surf_encounters.1.species: 'SPECIES_WINGULL' -> 'SPECIES_MANTINE'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_PIDGEOTTO'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_PELIPPER'
-- surf_encounters.4.species: 'SPECIES_PELIPPER' -> 'SPECIES_PIKACHU'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CLAMPERL'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEAKING'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LANTURN'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_QWILFISH'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_OCTILLERY'
-- good_rod_encounters.3.species: 'SPECIES_REMORAID' -> 'SPECIES_SLOWPOKE'
-- good_rod_encounters.4.species: 'SPECIES_REMORAID' -> 'SPECIES_SLOWKING'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_AZUMARILL'
-- super_rod_encounters.1.species: 'SPECIES_OCTILLERY' -> 'SPECIES_SHARPEDO'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_STARMIE'
-- super_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_LANTURN'
-- super_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_CHINCHOU'
-
-## res/field/encounters/encounters_route_224.json
-- land_encounters.0.species: 'SPECIES_FLOATZEL' -> 'SPECIES_NATU'
-- land_encounters.8.species: 'SPECIES_BEAUTIFLY' -> 'SPECIES_SHUCKLE'
-- land_encounters.9.species: 'SPECIES_DUSTOX' -> 'SPECIES_SHUCKLE'
-
-## res/field/encounters/encounters_route_225.json
-- land_encounters.0.species: 'SPECIES_MACHOKE' -> 'SPECIES_MAKUHITA'
-- land_encounters.2.species: 'SPECIES_FEAROW' -> 'SPECIES_MAKUHITA'
-- land_encounters.4.species: 'SPECIES_FEAROW' -> 'SPECIES_PRIMEAPE'
-- land_encounters.7.species: 'SPECIES_RATICATE' -> 'SPECIES_PRIMEAPE'
-- land_encounters.10.species: 'SPECIES_SPEAROW' -> 'SPECIES_MANKEY'
-- land_encounters.11.species: 'SPECIES_RATTATA' -> 'SPECIES_MANKEY'
-
-## res/field/encounters/encounters_route_227.json
-- land_encounters.3.species: 'SPECIES_GRAVELER' -> 'SPECIES_TORKOAL'
-- land_encounters.7.species: 'SPECIES_GRAVELER' -> 'SPECIES_SPINDA'
-
-## res/field/encounters/encounters_route_228.json
-- land_encounters.4.species: 'SPECIES_RHYDON' -> 'SPECIES_BELDUM'
-- land_encounters.5.species: 'SPECIES_HIPPOWDON' -> 'SPECIES_BELDUM'
-- land_encounters.7.species: 'SPECIES_DUGTRIO' -> 'SPECIES_SANDSLASH'
-
-## res/field/encounters/encounters_route_229.json
-- land_encounters.0.species: 'SPECIES_ROSELIA' -> 'SPECIES_VENONAT'
-- land_encounters.1.species: 'SPECIES_ROSELIA' -> 'SPECIES_VENOMOTH'
-- land_encounters.10.species: 'SPECIES_BEAUTIFLY' -> 'SPECIES_PINSIR'
-- land_encounters.11.species: 'SPECIES_DUSTOX' -> 'SPECIES_PINSIR'
-
-## res/field/encounters/encounters_twinleaf_town.json
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_NOCTOWL'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_BUIZEL'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SEAKING'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_SWELLOW'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZURILL'
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- good_rod_encounters.1.species: 'SPECIES_GOLDEEN' -> 'SPECIES_POLIWHIRL'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WOOPER'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_MARILL'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_MARILL'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_LOTAD'
-- super_rod_encounters.1.species: 'SPECIES_SEAKING' -> 'SPECIES_LOTAD'
-- super_rod_encounters.2.species: 'SPECIES_GYARADOS' -> 'SPECIES_LOMBRE'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_LOMBRE'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_LUDICOLO'
-
-## res/field/encounters/encounters_celestic_town.json
-- surf_encounters.0.species: 'SPECIES_PSYDUCK' -> 'SPECIES_MASQUERAIN'
-- surf_encounters.1.species: 'SPECIES_PSYDUCK' -> 'SPECIES_MOTHIM'
-- surf_encounters.2.species: 'SPECIES_GOLDUCK' -> 'SPECIES_BUTTERFREE'
-- surf_encounters.3.species: 'SPECIES_GOLDUCK' -> 'SPECIES_BEAUTIFLY'
-- surf_encounters.4.species: 'SPECIES_GOLDUCK' -> 'SPECIES_PSYDUCK'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CARVANHA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_POLIWHIRL'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_AZUMARILL'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MARILL'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.0.level_max: 20 -> 35
-- good_rod_encounters.0.level_min: 15 -> 30
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CORPHISH'
-- good_rod_encounters.2.level_max: 25 -> 35
-- good_rod_encounters.2.level_min: 10 -> 30
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_WARTORTLE'
-- good_rod_encounters.3.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SQUIRTLE'
-- good_rod_encounters.4.species: 'SPECIES_GOLDEEN' -> 'SPECIES_SQUIRTLE'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_BLASTOISE'
-- super_rod_encounters.1.species: 'SPECIES_CORPHISH' -> 'SPECIES_WHISCASH'
-- super_rod_encounters.2.species: 'SPECIES_CRAWDAUNT' -> 'SPECIES_POLITOED'
-- super_rod_encounters.3.species: 'SPECIES_SEAKING' -> 'SPECIES_QUAGSIRE'
-- super_rod_encounters.4.species: 'SPECIES_SEAKING' -> 'SPECIES_QUAGSIRE'
-
-## res/field/encounters/encounters_route_220.json
-- surf_encounters.0.species: 'SPECIES_TENTACOOL' -> 'SPECIES_FEAROW'
-- surf_encounters.1.species: 'SPECIES_WINGULL' -> 'SPECIES_PIDGEOT'
-- surf_encounters.2.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_PELIPPER'
-- surf_encounters.3.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_MANTINE'
-- surf_encounters.4.species: 'SPECIES_PELIPPER' -> 'SPECIES_SWELLOW'
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTINE'
-- good_rod_encounters.0.level_max: 20 -> 30
-- good_rod_encounters.0.level_min: 15 -> 20
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_LUMINEON'
-- good_rod_encounters.1.species: 'SPECIES_FINNEON' -> 'SPECIES_LANTURN'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_CHINCHOU'
-- good_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_SEADRA'
-- good_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_SEADRA'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.1.species: 'SPECIES_LUMINEON' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.2.species: 'SPECIES_CHINCHOU' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.3.species: 'SPECIES_LUMINEON' -> 'SPECIES_QWILFISH'
-- super_rod_encounters.4.species: 'SPECIES_LUMINEON' -> 'SPECIES_QWILFISH'
-
-## res/field/encounters/encounters_route_223.json
-- surf_encounters.0.species: 'SPECIES_TENTACRUEL' -> 'SPECIES_MANTYKE'
-- surf_encounters.1.species: 'SPECIES_PELIPPER' -> 'SPECIES_ALTARIA'
-- surf_encounters.2.species: 'SPECIES_MANTYKE' -> 'SPECIES_MANTINE'
-- surf_encounters.3.species: 'SPECIES_MANTYKE' -> 'SPECIES_SEADRA'
-- surf_encounters.4.species: 'SPECIES_MANTYKE' -> 'SPECIES_FLOATZEL'
-- old_rod_rate: 25 -> 100
-- old_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_HORSEA'
-- old_rod_encounters.1.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_MANTYKE'
-- old_rod_encounters.3.species: 'SPECIES_MAGIKARP' -> 'SPECIES_FINNEON'
-- old_rod_encounters.4.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACOOL'
-- good_rod_encounters.0.level_max: 20 -> 35
-- good_rod_encounters.0.level_min: 15 -> 30
-- good_rod_encounters.0.species: 'SPECIES_MAGIKARP' -> 'SPECIES_TENTACRUEL'
-- good_rod_encounters.1.species: 'SPECIES_REMORAID' -> 'SPECIES_LUMINEON'
-- good_rod_encounters.2.species: 'SPECIES_MAGIKARP' -> 'SPECIES_SEADRA'
-- good_rod_encounters.3.species: 'SPECIES_OCTILLERY' -> 'SPECIES_REMORAID'
-- good_rod_encounters.4.species: 'SPECIES_OCTILLERY' -> 'SPECIES_RELICANTH'
-- super_rod_encounters.0.species: 'SPECIES_GYARADOS' -> 'SPECIES_OCTILLERY'
-- super_rod_encounters.1.species: 'SPECIES_WAILMER' -> 'SPECIES_MISDREAVUS'
-- super_rod_encounters.3.species: 'SPECIES_WAILORD' -> 'SPECIES_KINGDRA'
-
-## res/field/encounters/encounters_route_226.json
-- land_encounters.3.species: 'SPECIES_FEAROW' -> 'SPECIES_PRIMEAPE'
-- land_encounters.4.species: 'SPECIES_WINGULL' -> 'SPECIES_KRABBY'
-- land_encounters.7.species: 'SPECIES_RATICATE' -> 'SPECIES_KRABBY'
-- land_encounters.10.species: 'SPECIES_WINGULL' -> 'SPECIES_MANKEY'
-- land_encounters.11.species: 'SPECIES_RATTATA' -> 'SPECIES_MANKEY'
-
-## res/field/encounters/encounters_route_230.json
-- land_encounters.1.species: 'SPECIES_FLOATZEL' -> 'SPECIES_CORSOLA'
-- land_encounters.5.species: 'SPECIES_PELIPPER' -> 'SPECIES_TOGEPI'
-- land_encounters.10.species: 'SPECIES_WINGULL' -> 'SPECIES_CORSOLA'
-- land_encounters.11.species: 'SPECIES_FLOATZEL' -> 'SPECIES_TOGEPI'
+Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 153, 'encounters': 0, 'npc_trades': 0, 'text': 82, 'heights': 0, 'items': 0}
 
 ## pl_enc_data.narc (partially imported)
 - 241 differing values in unown_table, rate_form0, rate_form1, rate_form2, rate_form3, rate_form4 were not carried over; see ENCOUNTER_SKIP_KEYS in this importer for why
 
-## res/npc_trades/kazza_abra.json
-- species: 'SPECIES_ABRA' -> 'SPECIES_DITTO'
-- hpIV: 15 -> 31
-- atkIV: 15 -> 31
-- defIV: 15 -> 31
-- speedIV: 20 -> 31
-- spAtkIV: 25 -> 31
-- spDefIV: 25 -> 31
-- heldItem: 'ITEM_ORAN_BERRY' -> 'ITEM_DESTINY_KNOT'
+## res/text/pokemon_storage_system.json
+- TEXT_BANK_POKEMON_STORAGE_SYSTEM[46]: 'POKé CENTER' -> 'SPACE'
 
-## res/npc_trades/gaspar_haunter.json
-- species: 'SPECIES_HAUNTER' -> 'SPECIES_GENGAR'
+## res/text/pokemon_storage_system.json
+- TEXT_BANK_POKEMON_STORAGE_SYSTEM[47]: 'MACHINE' -> 'BACKYARD'
+
+## res/text/pokemon_storage_system.json
+- TEXT_BANK_POKEMON_STORAGE_SYSTEM[48]: 'CHECKS' -> 'NOSTALGIC 1'
+
+## res/text/pokemon_storage_system.json
+- TEXT_BANK_POKEMON_STORAGE_SYSTEM[49]: 'SIMPLE' -> 'LEGEND D/P'
+
+## res/text/pokemon_storage_system.json
+- TEXT_BANK_POKEMON_STORAGE_SYSTEM[52]: 'NOSTALGIC' -> 'NOSTALGIC 2'
+
+## res/text/oreburgh_city_north_house_1f.json
+- TEXT_BANK_OREBURGH_CITY_NORTH_HOUSE_1F[0]: ['Listen, listen. Do you have a Pokémon\n', 'called MACHOP?\r', 'Would you be willing to trade your\n', 'MACHOP for my ABRA?'] -> ['Listen, listen. Do you have a Pokémon\n', 'called MACHOP?\r', 'Would you be willing to trade your\n', 'MACHOP for my DITTO?']
+
+## res/text/oreburgh_city_north_house_1f.json
+- TEXT_BANK_OREBURGH_CITY_NORTH_HOUSE_1F[1]: ['Be nice to my ABRA!\r', 'I’ll be sure to look after your MACHOP\n', 'in return!'] -> ['Be nice to my DITTO!\r', 'I’ll be sure to look after your MACHOP\n', 'in return!']
+
+## res/text/snowpoint_city_west_house.json
+- TEXT_BANK_SNOWPOINT_CITY_WEST_HOUSE[3]: ['Haha! Did my HAUNTER turn into\n', 'something else? Just kidding!\r', 'I made it hold something that\n', 'prevents it from evolving.\r', 'Please treat my HAUNTER nicely!\n', 'I’ll be good to your MEDICHAM, too!'] -> ['Haha! Did my HAUNTER turn into\n', 'something else? Just kidding!\r', 'I made it hold something that\n', 'prevents it from evolv...\r', 'OH NONONONO!I sent you my precious\n', 'Gengar by mistake!']
+
+## res/text/snowpoint_city_west_house.json
+- TEXT_BANK_SNOWPOINT_CITY_WEST_HOUSE[6]: ['Thanks to Pokémon, we got to be\n', 'friends, didn’t we?'] -> 'Please... Give it back...'
+
+## res/text/options_menu.json
+- TEXT_BANK_OPTIONS_MENU[7]: 'BUTTON MODE' -> 'UNLOCK FPS'
+
+## res/text/options_menu.json
+- TEXT_BANK_OPTIONS_MENU[19]: 'NORMAL' -> 'OFF'
+
+## res/text/options_menu.json
+- TEXT_BANK_OPTIONS_MENU[20]: 'START = X' -> 'BATTLE'
+
+## res/text/options_menu.json
+- TEXT_BANK_OPTIONS_MENU[21]: 'L = A' -> 'ALWAYS'
+
+## res/text/valley_windworks_building.json
+- TEXT_BANK_VALLEY_WINDWORKS_BUILDING[11]: ['Papa: Oh, yes, a balloon Pokémon\n', 'appears in front of the windworks.\r', 'It’s always a certain day of the week,\n', 'but I’m not sure which day.\r', 'Could its appearance have something\n', 'to do with this windworks using\x0c', 'wind-generated energy?'] -> ['Papa: Oh, yes, a balloon Pokémon\n', 'appears in front of the windworks.\r', 'Could its appearance have something\n', 'to do with this windworks using\x0c', 'wind-generated energy?']
+
+## TEXT_BANK_WAYWARD_CAVE_1F[6]
+- unused slot gained or lost text; skipped: ('garbage', 29) -> 'Please leave me alone!!\r'
+
+## TEXT_BANK_WAYWARD_CAVE_1F[7]
+- unused slot gained or lost text; skipped: ('garbage', 29) -> 'Sorry I got terrified...\r'
+
+## TEXT_BANK_MENU_ENTRIES[24]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> ('garbage', 0)
+
+## TEXT_BANK_MENU_ENTRIES[30]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> 'Repel'
+
+## TEXT_BANK_MENU_ENTRIES[31]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> 'Super Repel'
+
+## TEXT_BANK_MENU_ENTRIES[32]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> 'Max Repel'
+
+## TEXT_BANK_MENU_ENTRIES[57]
+- unused slot gained or lost text; skipped: ('garbage', 1) -> 'Teleport System'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[58]: 'SOMEONE’S PC' -> 'Move Tutors'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[59]: 'BEBE’S PC' -> 'Pokémon Storage'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[61]: 'HALL OF FAME' -> 'Hall of Fame'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[62]: 'OAK’S PC' -> 'Oak’s PC'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[63]: 'ROWAN’S PC' -> 'Healing Waves'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[64]: 'SWITCH OFF' -> 'Misc.'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[65]: 'DEPOSIT POKéMON' -> 'Deposit Pokémon'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[66]: 'WITHDRAW POKéMON' -> 'Withdraw Pokémon'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[67]: 'MOVE POKéMON' -> 'Move Pokémon'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[68]: 'MOVE ITEMS' -> 'Move Items'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[69]: 'COMPARE POKéMON' -> 'Compare Pokémon'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[70]: 'SEE YA!' -> 'See Ya!'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[71]: 'MAILBOX' -> 'Mailbox'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[72]: 'BALL CAPSULES' -> 'Ball Capsules'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[73]: 'LOG OUT' -> 'Log Out'
+
+## TEXT_BANK_MENU_ENTRIES[84]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> 'Potential Rater'
+
+## TEXT_BANK_MENU_ENTRIES[85]
+- unused slot gained or lost text; skipped: ('garbage', 8) -> 'Name Rater APP'
+
+## TEXT_BANK_MENU_ENTRIES[86]
+- unused slot gained or lost text; skipped: ('garbage', 10) -> 'Hidden Power APP'
+
+## TEXT_BANK_MENU_ENTRIES[87]
+- unused slot gained or lost text; skipped: ('garbage', 4) -> 'Happiness Up'
+
+## TEXT_BANK_MENU_ENTRIES[88]
+- unused slot gained or lost text; skipped: ('garbage', 4) -> 'Legendary Reset'
+
+## TEXT_BANK_MENU_ENTRIES[89]
+- unused slot gained or lost text; skipped: ('garbage', 4) -> 'Superbosses/Gyms Reset'
+
+## TEXT_BANK_MENU_ENTRIES[90]
+- unused slot gained or lost text; skipped: ('garbage', 4) -> 'Trades/Gifts Reset'
+
+## TEXT_BANK_MENU_ENTRIES[93]
+- unused slot gained or lost text; skipped: ('garbage', 7) -> 'Online Shop'
+
+## res/text/menu_entries.json
+- TEXT_BANK_MENU_ENTRIES[94]: 'CANCEL' -> 'Cancel'
+
+## TEXT_BANK_FIELD_MOVES[7]
+- unused slot gained or lost text; skipped: ('garbage', 54) -> 'The water is a deep blue color...\n'
+
+## res/items/data/vs_seeker.json
+- TEXT_BANK_ITEM_DESCRIPTIONS[443]: ['A device that indicates Trainers who\n', 'want to battle. Its battery charges\n', 'while you walk.'] -> 'A device to access the regular PC.'
+
+## res/items/data/vs_seeker.json
+- TEXT_BANK_ITEM_NAMES[443]: 'Vs. Seeker' -> 'Pocket PC'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[24]: '{COLOR 2}Hardy{COLOR 0} nature.' -> 'Hardy ({COLOR 3}Neutral{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[25]: '{COLOR 2}Lonely{COLOR 0} nature.' -> 'Lonely ({COLOR 2}↑Atk{COLOR 0},{COLOR 1}↓Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[26]: '{COLOR 2}Brave{COLOR 0} nature.' -> 'Brave ({COLOR 2}↑Atk{COLOR 0},{COLOR 1}↓Spd{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[27]: '{COLOR 2}Adamant{COLOR 0} nature.' -> 'Adamant ({COLOR 2}↑Atk{COLOR 0},{COLOR 1}↓Sp.Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[28]: '{COLOR 2}Naughty{COLOR 0} nature.' -> 'Naughty ({COLOR 2}↑Atk{COLOR 0},{COLOR 1}↓Sp.Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[29]: '{COLOR 2}Bold{COLOR 0} nature.' -> 'Bold ({COLOR 2}↑Def{COLOR 0},{COLOR 1}↓Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[30]: '{COLOR 2}Docile{COLOR 0} nature.' -> 'Docile ({COLOR 3}Neutral{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[31]: '{COLOR 2}Relaxed{COLOR 0} nature.' -> 'Relaxed ({COLOR 2}↑Def{COLOR 0},{COLOR 1}↓Spd{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[32]: '{COLOR 2}Impish{COLOR 0} nature.' -> 'Impish ({COLOR 2}↑Def{COLOR 0},{COLOR 1}↓Sp.Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[33]: '{COLOR 2}Lax{COLOR 0} nature.' -> 'Lax ({COLOR 2}↑Def{COLOR 0},{COLOR 1}↓Sp.Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[34]: '{COLOR 2}Timid{COLOR 0} nature.' -> 'Timid ({COLOR 2}↑Spd{COLOR 0},{COLOR 1}↓Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[35]: '{COLOR 2}Hasty{COLOR 0} nature.' -> 'Hasty ({COLOR 2}↑Spd{COLOR 0},{COLOR 1}↓Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[36]: '{COLOR 2}Serious{COLOR 0} nature.' -> 'Serious ({COLOR 3}Neutral{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[37]: '{COLOR 2}Jolly{COLOR 0} nature.' -> 'Jolly ({COLOR 2}↑Spd{COLOR 0},{COLOR 1}↓Sp.Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[38]: '{COLOR 2}Naive{COLOR 0} nature.' -> 'Naive ({COLOR 2}↑Spd{COLOR 0},{COLOR 1}↓Sp.Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[39]: '{COLOR 2}Modest{COLOR 0} nature.' -> 'Modest ({COLOR 2}↑Sp.Atk{COLOR 0},{COLOR 1}↓Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[40]: '{COLOR 2}Mild{COLOR 0} nature.' -> 'Mild ({COLOR 2}↑Sp.Atk{COLOR 0},{COLOR 1}↓Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[41]: '{COLOR 2}Quiet{COLOR 0} nature.' -> 'Quiet ({COLOR 2}↑Sp.Atk{COLOR 0},{COLOR 1}↓Spd{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[42]: '{COLOR 2}Bashful{COLOR 0} nature.' -> 'Bashful ({COLOR 3}Neutral{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[43]: '{COLOR 2}Rash{COLOR 0} nature.' -> 'Rash ({COLOR 2}↑Sp.Atk{COLOR 0},{COLOR 1}↓Sp.Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[44]: '{COLOR 2}Calm{COLOR 0} nature.' -> 'Calm ({COLOR 2}↑Sp.Def{COLOR 0},{COLOR 1}↓Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[45]: '{COLOR 2}Gentle{COLOR 0} nature.' -> 'Gentle ({COLOR 2}↑Sp.Def{COLOR 0},{COLOR 1}↓Def{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[46]: '{COLOR 2}Sassy{COLOR 0} nature.' -> 'Sassy ({COLOR 2}↑Sp.Def{COLOR 0},{COLOR 1}↓Spd{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[47]: '{COLOR 2}Careful{COLOR 0} nature.' -> 'Careful ({COLOR 2}↑Sp.Def{COLOR 0},{COLOR 1}↓Sp.Atk{COLOR 0})'
+
+## res/text/pokemon_summary_screen.json
+- TEXT_BANK_POKEMON_SUMMARY_SCREEN[48]: '{COLOR 2}Quirky{COLOR 0} nature.' -> 'Quirky ({COLOR 3}Neutral{COLOR 0})'
+
+## res/text/unk_0543.json
+- TEXT_BANK_UNK_0543[15]: 'BUY' -> 'Buy'
+
+## res/text/unk_0543.json
+- TEXT_BANK_UNK_0543[16]: 'SELL' -> 'Sell'
+
+## res/text/unk_0543.json
+- TEXT_BANK_UNK_0543[17]: 'SEE YA!' -> 'See ya!'
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[34]: ['Professor Oak, let me introduce you\n', 'to my young assistant.\r', 'This youngster has filled every page\n', 'of the Sinnoh Pokédex for me.\r'] -> ['Professor Oak, let me introduce you\n', 'to my young assistant.\r']
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[35]: ['Oak: Ah, well, very glad to meet you!\n', 'As you’ve heard, my name is Oak.\r', 'I’ve been hearing a great deal about\n', 'you from Professor Rowan lately.\r', 'He’s been exuberant in praise about\n', 'a fantastic young Trainer.\r', 'I see that you live up to--no--that\n', 'you’ve surpassed his praise.\r', 'You’ve also got an impeccable sense\n', 'of timing.\r', 'You see, I had an errand to run for\n', 'Professor Rowan on my visit here.\r', 'He’d asked me to bring the data\n', 'for the National Pokédex, you see.\r', 'So, since you’re here, let me upgrade\n', 'your Pokédex with the National Mode.\r', 'After all, there are many kinds of\n', 'Pokémon in this world of ours!\r'] -> ['Oak: Ah, well, very glad to meet you!\n', 'As you’ve heard, my name is Oak.\r', 'I’ve been hearing a great deal about\n', 'you from Professor Rowan lately.\r', 'He’s been exuberant in praise about\n', 'a fantastic young Trainer.\r', 'I see that you live up to--no--that\n', 'you’ve surpassed his praise.\r', 'You’ve also got an impeccable sense\n', 'of timing.\r', 'You see, I had an errand to run for\n', 'Professor Rowan on my visit here.\r', 'He’d asked me to bring gifts\n', 'for his most trusted assistant.\r']
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[36]: ['{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\n', 'with the National Mode!\r'] -> ['{STRVAR_1 3, 0, 0} received\n', 'Legendary Gifts!\r']
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[37]: ['Oak: I’m afraid it won’t be easy to\n', 'complete the National Pokédex.\r', 'However, I’m sure you will make an\n', 'honest attempt on our behalf!\r'] -> ['Oak: I’m afraid it won’t be easy to\n', 'catch these rare Pokemon.\r', 'However, I’m sure you will make an\n', 'honest attempt on our behalf!\r']
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[43]: ['Now, {STRVAR_1 3, 0, 0}...\r', 'I have a gift here as your reward\n', 'for completing the Sinnoh Pokédex.\r'] -> ['Now, {STRVAR_1 3, 0, 0}...\r', 'I have a gift here as your reward\n', 'for becoming the champion.\r']
+
+## res/text/sandgem_town_pokemon_research_lab.json
+- TEXT_BANK_SANDGEM_TOWN_POKEMON_RESEARCH_LAB[44]: ['Rowan: That’s the Pokémon Radar,\n', 'or just Poké Radar for short.\r', 'Use it, and it will indicate grass\n', 'patches where Pokémon are lurking.\r', 'I’d prepared that to help my field\n', 'assistants put together the Sinnoh\x0c', 'Pokédex, but you took care of that!\r', 'I’m sure it will be useful for your\n', 'goal of filling the National Pokédex.'] -> ['Rowan: That’s the Pokémon Radar,\n', 'or just Poké Radar for short.\r', 'Use it, and it will indicate grass\n', 'patches where Pokémon are lurking.\r', 'I’m sure it will be useful for your\n', 'goal of filling the Pokédex.']
+
+## res/trainers/data/dummy_005.json
+- TEXT_BANK_NPC_TRAINER_NAMES[5]: '{TRNAME}Mickey' -> 'Cyrus'
+
+## res/trainers/data/dummy_058.json
+- TEXT_BANK_NPC_TRAINER_NAMES[58]: '{TRNAME}Angelica' -> 'Red'
+
+## res/trainers/data/dummy_059.json
+- TEXT_BANK_NPC_TRAINER_NAMES[59]: '{TRNAME}Mickey' -> 'Gold'
+
+## res/trainers/data/dummy_060.json
+- TEXT_BANK_NPC_TRAINER_NAMES[60]: '{TRNAME}Mickey' -> 'May'
+
+## res/trainers/data/dummy_061.json
+- TEXT_BANK_NPC_TRAINER_NAMES[61]: '{TRNAME}Angelica' -> 'Steven'
+
+## res/trainers/data/dummy_208.json
+- TEXT_BANK_NPC_TRAINER_NAMES[208]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_209.json
+- TEXT_BANK_NPC_TRAINER_NAMES[209]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_210.json
+- TEXT_BANK_NPC_TRAINER_NAMES[210]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_211.json
+- TEXT_BANK_NPC_TRAINER_NAMES[211]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_212.json
+- TEXT_BANK_NPC_TRAINER_NAMES[212]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_213.json
+- TEXT_BANK_NPC_TRAINER_NAMES[213]: '{TRNAME}Angelica' -> 'Experiencia'
+
+## res/trainers/data/dummy_214.json
+- TEXT_BANK_NPC_TRAINER_NAMES[214]: '{TRNAME}Angelica' -> 'Experiencia'
+
+## res/trainers/data/dummy_215.json
+- TEXT_BANK_NPC_TRAINER_NAMES[215]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_216.json
+- TEXT_BANK_NPC_TRAINER_NAMES[216]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_217.json
+- TEXT_BANK_NPC_TRAINER_NAMES[217]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_218.json
+- TEXT_BANK_NPC_TRAINER_NAMES[218]: '{TRNAME}Angelica' -> 'Experiencia'
+
+## res/trainers/data/dummy_219.json
+- TEXT_BANK_NPC_TRAINER_NAMES[219]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_220.json
+- TEXT_BANK_NPC_TRAINER_NAMES[220]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_221.json
+- TEXT_BANK_NPC_TRAINER_NAMES[221]: '{TRNAME}Mickey' -> 'Experiencia'
+
+## res/trainers/data/dummy_222.json
+- TEXT_BANK_NPC_TRAINER_NAMES[222]: '{TRNAME}Angelica' -> 'Experiencia'
+
+## res/trainers/data/rival_route_203_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[247]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_203_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[248]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_203_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[249]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_209_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[470]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_209_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[471]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_209_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[472]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pastoria_city_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[473]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pastoria_city_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[474]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pastoria_city_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[475]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_canalave_city_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[476]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_canalave_city_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[477]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_canalave_city_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[478]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pokemon_league_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[479]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pokemon_league_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[480]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_pokemon_league_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[481]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_spear_pillar_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[607]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_spear_pillar_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[619]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_spear_pillar_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[620]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/dummy_779.json
+- TEXT_BANK_NPC_TRAINER_NAMES[779]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_780.json
+- TEXT_BANK_NPC_TRAINER_NAMES[780]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_781.json
+- TEXT_BANK_NPC_TRAINER_NAMES[781]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_782.json
+- TEXT_BANK_NPC_TRAINER_NAMES[782]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/dummy_783.json
+- TEXT_BANK_NPC_TRAINER_NAMES[783]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/dummy_784.json
+- TEXT_BANK_NPC_TRAINER_NAMES[784]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/dummy_787.json
+- TEXT_BANK_NPC_TRAINER_NAMES[787]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_788.json
+- TEXT_BANK_NPC_TRAINER_NAMES[788]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_789.json
+- TEXT_BANK_NPC_TRAINER_NAMES[789]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_790.json
+- TEXT_BANK_NPC_TRAINER_NAMES[790]: '{TRNAME}Angelica' -> 'Lucas'
+
+## res/trainers/data/dummy_791.json
+- TEXT_BANK_NPC_TRAINER_NAMES[791]: '{TRNAME}Angelica' -> 'Lucas'
+
+## res/trainers/data/dummy_792.json
+- TEXT_BANK_NPC_TRAINER_NAMES[792]: '{TRNAME}Angelica' -> 'Lucas'
+
+## res/trainers/data/dummy_793.json
+- TEXT_BANK_NPC_TRAINER_NAMES[793]: '{TRNAME}Angelica' -> 'Dawn'
+
+## res/trainers/data/dummy_794.json
+- TEXT_BANK_NPC_TRAINER_NAMES[794]: '{TRNAME}Angelica' -> 'Dawn'
+
+## res/trainers/data/dummy_799.json
+- TEXT_BANK_NPC_TRAINER_NAMES[799]: '{TRNAME}Mickey' -> 'Dawn'
+
+## res/trainers/data/dummy_800.json
+- TEXT_BANK_NPC_TRAINER_NAMES[800]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/dummy_801.json
+- TEXT_BANK_NPC_TRAINER_NAMES[801]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/dummy_802.json
+- TEXT_BANK_NPC_TRAINER_NAMES[802]: '{TRNAME}Mickey' -> 'Lucas'
+
+## res/trainers/data/rival_survival_area_1_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[837]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_1_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[838]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_1_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[839]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_unused_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[840]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_unused_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[841]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_unused_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[842]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_201_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[850]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_201_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[851]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_route_201_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[852]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_2_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[871]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_2_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[872]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_survival_area_2_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[873]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_fight_area_piplup.json
+- TEXT_BANK_NPC_TRAINER_NAMES[923]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_fight_area_turtwig.json
+- TEXT_BANK_NPC_TRAINER_NAMES[924]: 'Cedric' -> 'Barry'
+
+## res/trainers/data/rival_fight_area_chimchar.json
+- TEXT_BANK_NPC_TRAINER_NAMES[925]: 'Cedric' -> 'Barry'
+
+## res/moves/attack_order/data.json
+- TEXT_BANK_MOVE_DESCRIPTIONS[454]: ['The user calls out\n', 'its underlings to\n', 'pummel the foe.\n', 'It has a high\n', 'critical-hit ratio.'] -> ['The user calls out\n', 'its underlings to\n', 'pummel the foe.\n', 'It has a chance\n', 'to poison.']
+
+## pl_msg.narc (partially imported)
+- 60 banks changed message count and are left for the script carry-over: TEXT_BANK_JUBILIFE_CITY (101->117), TEXT_BANK_JUBILIFE_CITY_SOUTH_HOUSE_1F (3->9), TEXT_BANK_CANALAVE_CITY (44->51), TEXT_BANK_CANALAVE_CITY_GYM (10->20), TEXT_BANK_CANALAVE_LIBRARY_2F (14->24), TEXT_BANK_OREBURGH_CITY (31->41), TEXT_BANK_OREBURGH_CITY_GYM (10->16), TEXT_BANK_OREBURGH_CITY_MIDDLE_HOUSE (2->8), TEXT_BANK_ETERNA_CITY (43->55), TEXT_BANK_ETERNA_CITY_GYM (17->23), TEXT_BANK_ETERNA_CITY_CONDOMINIUMS_1F (16->22), TEXT_BANK_HEARTHOME_CITY (61->73), TEXT_BANK_HEARTHOME_CITY_GYM_LEADER_ROOM (9->15), TEXT_BANK_HEARTHOME_CITY_POKEMON_FAN_CLUB (14->26), TEXT_BANK_PASTORIA_CITY (45->55), TEXT_BANK_PASTORIA_CITY_GYM (10->20), TEXT_BANK_PASTORIA_CITY_NORTH_HOUSE (3->12), TEXT_BANK_VEILSTONE_CITY (69->80), TEXT_BANK_VEILSTONE_CITY_GYM (13->23), TEXT_BANK_VEILSTONE_CITY_NORTHEAST_HOUSE (9->15), TEXT_BANK_SUNYSHORE_CITY (28->39), TEXT_BANK_SUNYSHORE_CITY_GYM_ROOM_1 (5->7), TEXT_BANK_SUNYSHORE_CITY_GYM_ROOM_3 (6->14), TEXT_BANK_SNOWPOINT_CITY (20->39), TEXT_BANK_SNOWPOINT_CITY_GYM (10->20), TEXT_BANK_POKEMON_LEAGUE (3->15), TEXT_BANK_POKEMON_LEAGUE_CHAMPION_ROOM (4->5), TEXT_BANK_FIGHT_AREA (52->58), TEXT_BANK_COMMON_STRINGS (132->256), TEXT_BANK_ETERNA_FOREST (16->17), TEXT_BANK_VICTORY_ROAD_1F_ROOM_2 (12->13), TEXT_BANK_FLOAROMA_MEADOW_HOUSE (2->8), TEXT_BANK_STARK_MOUNTAIN_OUTSIDE (10->17), TEXT_BANK_STARK_MOUNTAIN_ROOM_1 (10->14), TEXT_BANK_STARK_MOUNTAIN_ROOM_2 (12->9), TEXT_BANK_TURNBACK_CAVE_ENTRANCE (2->4), TEXT_BANK_TURNBACK_CAVE_GIRATINA_ROOM (5->12), TEXT_BANK_IRON_ISLAND (6->8), TEXT_BANK_ROUTE_201 (63->71), TEXT_BANK_ROUTE_202 (20->22), TEXT_BANK_ROUTE_207 (14->24), TEXT_BANK_ROUTE_210_SOUTH (12->14), TEXT_BANK_POKEMON_MANSION_OFFICE (23->27), TEXT_BANK_ROUTE_221 (3->5), TEXT_BANK_ROUTE_224 (13->15), TEXT_BANK_ROUTE_227 (13->14), TEXT_BANK_TWINLEAF_TOWN (15->40), TEXT_BANK_SANDGEM_TOWN (30->35), TEXT_BANK_SANDGEM_TOWN_HOUSE (2->8), TEXT_BANK_FLOAROMA_TOWN (15->19), TEXT_BANK_FLOAROMA_TOWN_MIDDLE_HOUSE (6->13), TEXT_BANK_SOLACEON_TOWN (15->20), TEXT_BANK_POKEMON_DAY_CARE (3->20), TEXT_BANK_SOLACEON_TOWN_NORTHEAST_HOUSE (2->8), TEXT_BANK_SOLACEON_TOWN_NORTH_HOUSE (2->129), TEXT_BANK_CELESTIC_TOWN (18->26), TEXT_BANK_SURVIVAL_AREA (14->19), TEXT_BANK_BATTLEGROUND (144->66), TEXT_BANK_SURVIVAL_AREA_SOUTH_HOUSE (2->129), TEXT_BANK_RESORT_AREA (28->37)
+- TEXT_BANK_SPECIES_NAME: skipped, species names decode identically; the bank differs only in bytes the decoder does not read
+- TEXT_BANK_SPECIES_POKEDEX_ENTRY_EN: skipped, Pokedex entries decode identically, same as species names
+- TEXT_BANK_NPC_TRAINER_MESSAGES: skipped, trainer battle messages are keyed by TRMSG_* type per trainer, not by a flat bank index; mapping the 2,497 entries back needs trainerproc's packing order, which is its own job
 
 ## height.narc (not imported)
 - 298 of 1976 members differ

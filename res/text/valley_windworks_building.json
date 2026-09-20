@@ -127,13 +127,11 @@
     {
       "id": "ValleyWindworksBuilding_Text_BalloonPokemonOnDayOfWeek",
       "en_US": [
-        "Papa: Oh, yes, a balloon Pokémon\n",
-        "appears in front of the windworks.\r",
-        "It’s always a certain day of the week,\n",
-        "but I’m not sure which day.\r",
-        "Could its appearance have something\n",
-        "to do with this windworks using\f",
-        "wind-generated energy?"
+          "Papa: Oh, yes, a balloon Pok\u00e9mon\n",
+          "appears in front of the windworks.\r",
+          "Could its appearance have something\n",
+          "to do with this windworks using\f",
+          "wind-generated energy?"
       ]
     },
     {

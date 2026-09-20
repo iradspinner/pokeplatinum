@@ -159,6 +159,14 @@ def trade_json(index):
     return path if os.path.isfile(path) else None
 
 
+def item_json(index):
+    name = ITEMS.get(index)
+    if name is None:
+        return None
+    path = os.path.join(ROOT, "res", "items", "data", name[len("ITEM_"):].lower() + ".json")
+    return path if os.path.isfile(path) else None
+
+
 def trainer_json(index):
     name = TRAINERS.get(index)
     if name is None:
@@ -576,6 +584,141 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     return bool(changed)
 
 
+# ---------------------------------------------------------------- text banks
+#
+# pl_msg.narc is 724 message banks. 78 differ. They split cleanly in two:
+#
+#   60 have more (or fewer) messages than vanilla and, with a handful of
+#   exceptions, nothing changed in the messages they share. Those are the NPC
+#   dialogue for Ian's 91 edited field scripts: he appended lines rather than
+#   rewriting them. Importing that text without the scripts that call it would
+#   land half a change, and new messages need new symbolic ids, so they are left
+#   for the script carry-over, which is already its own tracker item.
+#
+#   18 have exactly as many messages as vanilla, so every change is one message
+#   swapped for another and the import is a straight per-index text replacement.
+#   Those are handled here.
+#
+# Where a bank's text lives in res/ depends on the bank. Ten are free-standing
+# res/text/<name>.json files. The rest are generated from other res/ data: item
+# names and descriptions from res/items/data, move descriptions from res/moves,
+# trainer names from res/trainers/data, species names and Pokedex entries from
+# res/pokemon. TEXT_BANKS_BY_INDEX routes each one.
+TEXT_BANK_TRAINER_NAMES = 618
+TEXT_BANK_ITEM_DESCRIPTIONS = 391
+TEXT_BANK_ITEM_NAMES = 392
+TEXT_BANK_MOVE_DESCRIPTIONS = 646
+
+# Banks with an unchanged message count that this importer deliberately leaves
+# alone, with why.
+TEXT_BANKS_SKIPPED = {
+    412: "species names decode identically; the bank differs only in bytes the decoder does not read",
+    706: "Pokedex entries decode identically, same as species names",
+    617: "trainer battle messages are keyed by TRMSG_* type per trainer, not by a flat bank index; "
+         "mapping the 2,497 entries back needs trainerproc's packing order, which is its own job",
+}
+
+
+def text_bank_names():
+    return [l.strip() for l in open(os.path.join(ROOT, "generated", "text_banks.txt")) if l.strip()]
+
+
+def decode_text_bank(msgenc, charmap, data, tmpdir, tag):
+    """Run the repo's own msgenc in decode mode over one bank's bytes."""
+    import subprocess
+    binpath = os.path.join(tmpdir, tag + ".bin")
+    jsonpath = os.path.join(tmpdir, tag + ".json")
+    with open(binpath, "wb") as f:
+        f.write(data)
+    subprocess.run([msgenc, "-d", "--json", "-c", charmap, jsonpath, binpath],
+                   check=True, capture_output=True)
+    with open(jsonpath, encoding="utf-8") as f:
+        return json.load(f)["messages"]
+
+
+def message_body(msg):
+    """A decoded message is either text or an unused slot msgenc calls garbage."""
+    return msg["en_US"] if "en_US" in msg else ("garbage", msg.get("garbage"))
+
+
+def text_targets(index, count):
+    """[(json path, key path)] for each message in bank `index`, or None if this
+    importer does not know where that bank's text lives. Index into the bank is
+    the item / move / trainer id for the generated banks."""
+    if index == TEXT_BANK_TRAINER_NAMES:
+        return [(trainer_json(i), ["name"]) for i in range(count)]
+    if index == TEXT_BANK_ITEM_NAMES:
+        return [(item_json(i), ["name"]) for i in range(count)]
+    if index == TEXT_BANK_ITEM_DESCRIPTIONS:
+        return [(item_json(i), ["description"]) for i in range(count)]
+    if index == TEXT_BANK_MOVE_DESCRIPTIONS:
+        d = [move_dir(i) for i in range(count)]
+        return [(os.path.join(x, "data.json") if x else None, ["description"]) for x in d]
+    name = text_bank_names()[index][len("TEXT_BANK_"):].lower()
+    path = os.path.join(ROOT, "res", "text", name + ".json")
+    if os.path.isfile(path):
+        return [(path, ["messages", i, "en_US"]) for i in range(count)]
+    return None
+
+
+def import_text(base, van, msgenc, charmap, tmpdir, dry_run, log):
+    """Carry over the banks whose message count is unchanged. Returns the number
+    of res/ files changed."""
+    bb, vb = base.narc("msgdata/pl_msg.narc"), van.narc("msgdata/pl_msg.narc")
+    names = text_bank_names()
+    touched, resized, unknown = set(), [], []
+    for i in range(len(bb)):
+        if bb[i] == vb[i]:
+            continue
+        new = decode_text_bank(msgenc, charmap, bb[i], tmpdir, f"{i}_base")
+        old = decode_text_bank(msgenc, charmap, vb[i], tmpdir, f"{i}_van")
+        if len(new) != len(old):
+            resized.append((i, names[i], len(old), len(new)))
+            continue
+        if i in TEXT_BANKS_SKIPPED:
+            continue
+        targets = text_targets(i, len(new))
+        if targets is None:
+            unknown.append((i, names[i]))
+            continue
+        for slot, (nm, om) in enumerate(zip(new, old)):
+            nv, ov = message_body(nm), message_body(om)
+            if nv == ov:
+                continue
+            path, keys = targets[slot]
+            if path is None:
+                log.append((f"{names[i]}[{slot}]", [f"text changed but no res/ file for it; skipped: {ov!r} -> {nv!r}"]))
+                continue
+            if isinstance(nv, tuple) or isinstance(ov, tuple):
+                log.append((f"{names[i]}[{slot}]", [f"unused slot gained or lost text; skipped: {ov!r} -> {nv!r}"]))
+                continue
+            # {TRNAME} is a text-compression tag, not part of the name.
+            # trainerproc decides per trainer whether to emit it (emit_name's
+            # uncompressed_classes and uncompressed_trainers leave it off for
+            # rivals, the Frontier brains and the five Battleground trainers),
+            # and the base ROM has it on every entry because DSPRE re-tagged the
+            # whole bank when it saved. Strip it and let trainerproc's rule
+            # stand, which also means 38 entries where the base ROM tags a name
+            # vanilla leaves untagged are correctly not treated as edits.
+            if i == TEXT_BANK_TRAINER_NAMES:
+                nv = nv.replace("{TRNAME}", "")
+            text = open(path, encoding="utf-8").read()
+            if jsonstyle.get_value(text, keys) == nv:
+                continue
+            text = jsonstyle.replace_value(text, keys, nv)
+            if not dry_run:
+                with open(path, "w", encoding="utf-8", newline="\n") as f:
+                    f.write(text)
+            touched.add(path)
+            log.append((os.path.relpath(path, ROOT), [f"{names[i]}[{slot}]: {ov!r} -> {nv!r}"]))
+    log.append(("pl_msg.narc (partially imported)", [
+        f"{len(resized)} banks changed message count and are left for the script carry-over: "
+        + ", ".join(f"{n} ({a}->{b})" for _, n, a, b in resized),
+    ] + [f"{names[i]}: skipped, {why}" for i, why in TEXT_BANKS_SKIPPED.items()]
+      + [f"{n}: same message count but no known res/ home; skipped" for _, n in unknown]))
+    return len(touched)
+
+
 def report_skipped_heights(base, van, log):
     """Sprite Y-offsets are deliberately not carried over; this only writes the
     evidence into the report so a later run re-confirms it rather than
@@ -636,6 +779,11 @@ def main():
     ap.add_argument("--base", required=True)
     ap.add_argument("--vanilla", required=True)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc",
+                    help="the repo's own message tool, used to decode text banks")
+    ap.add_argument("--charmap", default="tools/msgenc/charmap.txt")
+    ap.add_argument("--skip-text", action="store_true",
+                    help="skip the text banks (they need a built msgenc)")
     ap.add_argument("--report", default="tools/oxide/import_report.md")
     a = ap.parse_args()
 
@@ -740,6 +888,13 @@ def main():
         if apply_scalar_diff(d, decode_trade(btr[i]), decode_trade(vtr[i]), a.dry_run, log):
             n += 1
     counts["npc_trades"] = n
+
+    if a.skip_text:
+        counts["text"] = "skipped"
+    else:
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmpdir:
+            counts["text"] = import_text(base, van, a.msgenc, a.charmap, tmpdir, a.dry_run, log)
 
     counts["heights"] = report_skipped_heights(base, van, log)
     counts["items"] = report_skipped_items(base, van, log)
