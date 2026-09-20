@@ -847,6 +847,8 @@ def set_map_header_field(text, map_name, field, value):
     if mm is None:
         raise KeyError(f"{map_name} has no .{field}")
     was = mm.group(2)
+    if was == str(value):
+        return text, was  # already carried over by an earlier run
     block = block[:mm.start()] + mm.group(1) + str(value) + mm.group(3) + block[mm.end():]
     return text[:start] + block + text[end:], was
 
@@ -880,7 +882,8 @@ def import_map_headers(base_arm9, van_arm9, dry_run, log):
                     skipped.append(f"{name}: weather {old[field]} -> {value}, which has no constant; skipped")
                     continue
                 text, was = set_map_header_field(text, name, "weather", weather[value])
-                changed.append(f"{name}: weather {was} -> {weather[value]}")
+                if was != weather[value]:
+                    changed.append(f"{name}: weather {was} -> {weather[value]}")
             elif field == "flags":
                 # mapType:7, battleBG:5, then one bit each for bike, running,
                 # escape rope and fly
@@ -898,7 +901,8 @@ def import_map_headers(base_arm9, van_arm9, dry_run, log):
                     elif table is not None:
                         nv = table[nv]
                     text, was = set_map_header_field(text, name, sub, nv)
-                    changed.append(f"{name}: {sub} {was} -> {nv}")
+                    if was != str(nv):
+                        changed.append(f"{name}: {sub} {was} -> {nv}")
             else:
                 skipped.append(f"{name}: {field} {old[field]} -> {value}; not carried over, "
                                f"this importer only handles weather and the flags word")
