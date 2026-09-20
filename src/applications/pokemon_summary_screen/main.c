@@ -838,14 +838,13 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
-            if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
-                Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
-                DrawEmptyHearts(summaryScreen);
-                PokemonSummaryScreen_PrintHMMovesCantBeForgotten(summaryScreen);
-                return SUMMARY_STATE_WAIT_HM_MSG_INPUT;
-            }
-        }
+        // Platinum Oxide: vanilla refuses to let an HM move be replaced here and
+        // prints "HM moves can't be forgotten!". The base ROM stubs the
+        // Item_IsHMMove call out so the check never fires, which is what makes
+        // HMs forgettable; SUMMARY_STATE_WAIT_HM_MSG_INPUT and
+        // PokemonSummaryScreen_PrintHMMovesCantBeForgotten are now unreachable
+        // from here, and are left in place rather than unpicked from the state
+        // machine.
 
         summaryScreen->data->selectedMoveSlot = summaryScreen->cursor;
         summaryScreen->data->returnMode = SUMMARY_RETURN_SELECT;

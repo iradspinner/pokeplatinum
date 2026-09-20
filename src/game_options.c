@@ -26,9 +26,12 @@ void Options_Init(Options *options)
 {
     MI_CpuFill8(options, 0, sizeof(Options));
 
-    options->textSpeed = OPTIONS_TEXT_SPEED_NORMAL;
+    // Platinum Oxide: the base ROM starts a new game on fast text and SET
+    // battle style instead of vanilla's normal and SHIFT. Both are still
+    // changeable in the options menu; this only moves the starting point.
+    options->textSpeed = OPTIONS_TEXT_SPEED_FAST;
     options->soundMode = OPTIONS_SOUND_MODE_STEREO;
-    options->battleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
+    options->battleStyle = OPTIONS_BATTLE_STYLE_SET;
     options->battleScene = OPTIONS_BATTLE_SCENE_ON;
     options->buttonMode = OPTIONS_BUTTON_MODE_NORMAL;
     options->frame = OPTIONS_FRAME_1;

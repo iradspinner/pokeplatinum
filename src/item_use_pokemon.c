@@ -19,7 +19,13 @@
 
 #define PP_UP_REQUIREMENT 5 // Moves with fewer max PP can't benefit from PP Ups (e.g. Sketch)
 
-#define MAX_EV_VITAMIN 100
+// Platinum Oxide: 100 in vanilla, so a vitamin stops being useful at 100 EVs
+// in a stat and the rest have to come from battling. The base ROM raises it
+// to the per-stat maximum a stat can actually use (252, since EVs count in
+// fours), which is hg-engine's UPDATE_VITAMIN_EV_CAPS. MAX_EVS_ALL_STATS
+// still caps the total, so this does not make a mon stronger than the game
+// already allows, it only removes the detour through wild battles.
+#define MAX_EV_VITAMIN 252
 #define EV_UNCHANGED   -1
 
 #define HEAL_FULL_HP    255

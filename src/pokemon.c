@@ -2749,9 +2749,14 @@ static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon)
     return Pokemon_IsPersonalityShiny(monOTID, monPersonality);
 }
 
+// Platinum Oxide: 8 in vanilla, giving 8/65536 or about 1 in 8192. The base
+// ROM raises it to 255, or about 1 in 257. Ian confirmed porting this
+// (2026-09-15); it is the same one-constant change hg-engine makes.
+#define SHINY_ODDS_THRESHOLD 255
+
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality)
 {
-    return (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF) ^ ((monPersonality & 0xFFFF0000) >> 16) ^ (monPersonality & 0xFFFF)) < 8;
+    return (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF) ^ ((monPersonality & 0xFFFF0000) >> 16) ^ (monPersonality & 0xFFFF)) < SHINY_ODDS_THRESHOLD;
 }
 
 u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality)

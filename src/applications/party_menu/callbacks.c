@@ -1123,10 +1123,12 @@ static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveS
     Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &tempVar);
 
     if (application->partyMenu->usedItemID != ITEM_NONE) {
-        if (Item_IsHMMove(application->partyMenu->learnedMove) == FALSE) {
-            Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
-        }
-
+        // Platinum Oxide: vanilla takes the TM out of the bag here, HMs already
+        // being exempt. The base ROM skips the removal for both, so every TM is
+        // reusable; hg-engine offers the same thing as a config option. The
+        // inventory guessed this patch was "HMs can be forgotten" from the
+        // branch it changes, but the call it skips is Bag_TryRemoveItem, not
+        // anything to do with forgetting a move.
         Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM, (u16)GetCurrentMapLabel(application));
     }
 }
