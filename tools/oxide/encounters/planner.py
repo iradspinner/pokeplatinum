@@ -140,6 +140,18 @@ def plan(target_name, target_species, kind, areas, owned, line_of,
                 at_t = A.throughput(pool, gone)
                 if at_t == INF:
                     continue
+                acqs = [
+                    {"line": l, "area": o[1], "kind": o[2], "lead": o[3],
+                     "species": o[4], "p": o[5], "one_shot": o[6],
+                     "cost": o[0],
+                     "order": next(a["order"] for a in areas
+                                   if a["name"] == o[1])}
+                    for l, o in (assignments or [])]
+                # The latest source is the earliest point in the game the
+                # plan can be finished, so it is how long the target has to
+                # wait. A proxy for progression until the sidecar has a real
+                # order.
+                latest = max(acqs, key=lambda x: x["order"], default=None)
                 candidates.append({
                     "lines": list(subset),
                     "lead": lead,
@@ -147,11 +159,9 @@ def plan(target_name, target_species, kind, areas, owned, line_of,
                     "cost_at_target": at_t,
                     "cost_acquire": acq_cost,
                     "cost": at_t + acq_cost,
-                    "acquisitions": [
-                        {"line": l, "area": o[1], "kind": o[2], "lead": o[3],
-                         "species": o[4], "p": o[5], "one_shot": o[6],
-                         "cost": o[0]}
-                        for l, o in (assignments or [])],
+                    "acquisitions": acqs,
+                    "latest_source": latest["area"] if latest else None,
+                    "latest_order": latest["order"] if latest else None,
                     "pool_size": sum(1 for s in pool if s not in gone),
                 })
 
@@ -204,6 +214,9 @@ def describe(result, name, area_label, kind_label):
                 f"About {c['cost']:.0f} encounters in all")
         if base and c is not base and base["p"] > 0:
             line += f", versus {base['p']*100:.0f}% unplanned"
+        if c["latest_source"]:
+            line += (f". Needs {area_label(c['latest_source'])} first, "
+                     f"so the catch waits until then")
         out.append(line + ".")
     return out
 

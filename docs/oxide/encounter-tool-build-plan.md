@@ -52,6 +52,8 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, 
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
 
@@ -68,23 +70,25 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
 (section 7's rules, every threshold read from the sidecar), `dex.py` (species
 names and evolution lines from `res/pokemon/`), `planner.py` (the dupe-out planner,
-pure apart from its one loader), `cli.py` (`areas`, `show`, `set`, `roundtrip`,
-`sidecar-init`, `report`, `lint`, `plan` built; `generate` is a stub that prints a
-pointer here), `server.py` plus `ui/index.html` for the browser editor, and
-`test_m1.py` through `test_m5.py`. The sidecar is `docs/oxide/encounters/design.json`,
+pure apart from its one loader), `generate.py` (the levels-only generator, pure),
+`cli.py` (`areas`, `show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint`,
+`plan`, `generate`), `server.py` plus `ui/index.html` for the browser editor, and
+`test_m1.py` through `test_m6.py`. The sidecar is `docs/oxide/encounters/design.json`,
 which holds every threshold; the per-playthrough caught record is
 `docs/oxide/encounters/caught.json`, gitignored.
 
-**Next milestone: M6**, the generator. M1-M5 are done and their sections below
-record what each found. The plan's own advice, under "Suggested order", is that
-M6's `--levels-only` form — build the repel ladder under species Ian places by
-hand — is about a tenth of the full pipeline's work for most of its value, and
-should come first; full species placement is optional.
+**Next milestone: M7**, ROM verification — extend `verify_narcs.py --encounters`
+so a built ROM's `pl_enc_data.narc` is compared field by field against the source
+JSON. M1-M6 are done and their sections below record what each found; M6 shipped
+in its levels-only form, and full species placement is deferred, possibly for good.
 
-Two inputs M6 will want that do not exist yet, both listed under "Open questions":
-a real progression order (the planner and the page both approximate it by
-encounter level, from one place each, so it drops in cleanly) and a `tier` per
-pick-list line (gates R12, which the generator's placement step would enforce).
+**Before running the generator for real, read M6's "one consequence"**: it enforces
+R1, most current tables break R1, so it will change almost every table it is
+pointed at and a few will pay less than they did. Use `--dry-run` first.
+
+Two inputs still missing, both under "Open questions": a real progression order
+(the planner and the page approximate it by encounter level, from one place each)
+and a `tier` per pick-list line (gates R12).
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
@@ -108,7 +112,7 @@ generator, and they are the part most likely to be cut or deferred.
 | M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
 | M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
 | M5 | Dupe-out planner ✔ | `planner.py`, `cli plan`, `/api/plan` | One hand-verified multi-step plan — **passed** |
-| M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
+| M6 | Generator, levels-only ✔ | `generate.py`, `cli generate` | A generated band clears R1/R2/R6 and reaches the R3 aim — **passed** |
 | M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
 
 ## What the repo already gives you
@@ -639,19 +643,61 @@ Gulpin above comes from a rod.
 
 *Gate was:* one hand-verified case, worked out on paper first and then matched.
 
-### M6 — Generator
+### M6 — Generator, levels-only — **done, 2026-09-20**
 
-Steps 1-4 of design section 8: assign archetypes and bands to satisfy the budget,
-place species under the hard constraints, assign levels and rungs by hill-climb,
-then lint and apply scripted repairs with a log.
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --area encounters_route_201 --aim 10
+```
 
-Step 3 is, as the doc says, the highest value per line of code here, and it is also
-the one that can ship alone: a `generate --levels-only` that leaves species
-placement to Ian but builds the ladder under them would be useful on day one and is
-perhaps a tenth of the work of the full pipeline. Consider doing that first and
-treating full placement as optional.
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6` — 19/19. This
+is step 3 of design section 8.2 shipped alone, as the plan advised: species stay
+where Ian put them and the generator chooses each slot's level so the repel ladder
+under them pays. Full species placement (steps 1, 2 and 4) is deferred and may
+never be needed.
 
-*Gate:* `generate --band early` produces tables that clear lint without hand repair.
+**Not a hill-climb.** The house rule R1 — levels non-decreasing with slot index —
+makes the search tiny: a twelve-slot ladder over four rungs is a choice of where
+three steps fall, **455 ladders**. So the generator enumerates every one and picks
+the best exactly. The paper case is a four-species route shape whose optimum can
+be worked out by hand (the rarest species isolated on the top rung with its
+lightest companion: 60%, a 10x uplift); the search finds it.
+
+**The objective, and why it changed.** The first version maximised uplift on the
+rarest species outright, and it turned every early table into the same thing —
+the 1% species isolated with its lightest companion at 50%, a **50x uplift on all
+sixteen** — which is exactly the homogenisation the design exists to prevent. So
+the objective *satisfices*: every hard rule first (R1 by construction, R2 rung
+count, R6 singleton and top-rung width), then the smallest shortfall below an
+**aim** (R3's threshold, 3.0x, by default), then the fewest slots changed, then
+the widest top rung, and only then the highest uplift. At the default aim the
+early band lands at 5x to 50x across five distinct values with top rungs of two
+to four species; `--aim 100` still reaches the 50x band, deliberately available,
+deliberately not default.
+
+**One consequence Ian should know before running it for real.** The search only
+ever yields ladders that obey R1, and **88% of the tables on this branch do not**
+(M1's finding). So the generator changes something on almost every table, and a
+table whose illegal ladder happened to pay well can come out paying less: Valley
+Windworks Outside and Oreburgh Gate 1F both go from 20x to 16.7x. That is the
+house rule doing its job, not a defect, and the CLI says so in its summary line
+when it happens. If Ian would rather keep a non-monotonic ladder that pays, R1 is
+his to relax.
+
+Locked slots (`locked` in the sidecar) keep their level. Writes go one key per
+changed slot through `model.set_slot`, so a run is a readable git diff; there is no
+separate repairs log because the diff is the record. Nothing is written without
+dropping `--dry-run`.
+
+One unreproduced oddity, recorded so nobody chases a ghost: a single run of the
+gate, immediately after two files were patched, died with a `TypeError` inside
+`analysis.best_uplift` on the `--aim 100` path. Four full reruns since, including
+the exact same sequence with the function instrumented, all pass 19/19, and a
+scan of every ladder on every early table scores cleanly.
+
+*Gate was:* `generate --band early` produces tables that clear lint without hand
+repair. Read against levels-only: every proposal clears R1, R2 and R6 and reaches
+the R3 aim, with nothing written.
 
 ### M7 — ROM verification
 

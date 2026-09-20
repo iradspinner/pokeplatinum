@@ -143,6 +143,24 @@ def check_real_tables(results):
     results.append(("planning beats the unplanned odds",
                     front[-1]["p"] > out["baseline"]["p"],
                     f"{out['baseline']['p']:.3f} -> {front[-1]['p']:.3f}"))
+    # the latest source is the plan's delay proxy: it must be the max-order
+    # acquisition, absent when there are none, and always before the target
+    ok_latest = all(
+        (c["latest_source"] is None and not c["acquisitions"])
+        or (c["latest_source"] == max(c["acquisitions"],
+                                      key=lambda a: a["order"])["area"]
+            and c["latest_order"] < t_order)
+        for c in front)
+    results.append(("each plan names its latest source as the delay proxy",
+                    ok_latest, ""))
+    lines = planner.describe(out, dex.display_name,
+                             lambda n: n.replace("encounters_", ""), {})
+    planned = [(s, c) for s, c in zip(lines, front) if c["acquisitions"]]
+    results.append(("the prose says which route to reach first",
+                    bool(planned)
+                    and all(c["latest_source"].replace("encounters_", "") in s
+                            and "Needs" in s for s, c in planned),
+                    planned[-1][0][-90:] if planned else "no planned point"))
 
 
 def main():

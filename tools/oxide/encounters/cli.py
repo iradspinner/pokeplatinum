@@ -6,8 +6,8 @@
     python3 -m tools.oxide.encounters.cli set     <area> <slot> [--species X] [--level N]
     python3 -m tools.oxide.encounters.cli sidecar-init [--force]
 
-M1 ships these. `report`, `lint`, `plan` and `generate` arrive with M2, M3,
-M5 and M6; they are declared here so the surface is visible from the start.
+M1 shipped these; `report`, `lint`, `plan` and `generate` arrived with M2,
+M3, M5 and M6.
 
 --ref reads a git ref instead of the working tree. The vanilla corpus is on
 `main`; this branch holds the base ROM's rewritten tables.
@@ -287,6 +287,64 @@ def cmd_plan(args):
     return 0
 
 
+def cmd_generate(args):
+    """Levels-only: choose each slot's level so the repel ladder under the
+    species already placed pays. Species stay where Ian put them. Writes one
+    key per changed slot, or with --dry-run just shows the proposal."""
+    from . import generate
+    sidecar = model.load_sidecar()
+    entries = (sidecar or {}).get("areas") or {}
+    t = lint.thresholds_from(sidecar)
+    live = [a for a in model.load_all() if a.land_active]
+    if args.area:
+        areas = [a for a in live if a.name == args.area]
+        if not areas:
+            print(f"no live table called {args.area}", file=sys.stderr)
+            return 1
+    elif args.band:
+        areas = [a for a in live
+                 if (entries.get(a.name) or {}).get("band", a.band) == args.band]
+    else:
+        print("say which: --area NAME or --band early|mid|late", file=sys.stderr)
+        return 2
+
+    proposals = [generate.propose(a, entries.get(a.name), t, span=args.span,
+                                  base=args.base, aim=args.aim) for a in areas]
+    if args.json:
+        json.dump(proposals, sys.stdout, indent=2)
+        print()
+        return 0
+
+    touched = 0
+    for a, p in zip(areas, proposals):
+        label = a.name.replace("encounters_", "")
+        if not p["deltas"]:
+            print(f"{label:34} already best: {p['uplift']:.2f}x, "
+                  f"{p['rungs']} rungs")
+            continue
+        print(f"{label:34} {p['uplift_before']:.2f}x -> {p['uplift']:.2f}x, "
+              f"{p['rungs_before']} -> {p['rungs']} rungs, "
+              f"{len(p['deltas'])} slot(s)"
+              + (f", violations {p['violations']}" if p["violations"] else "")
+              + (f", locked {p['locked']}" if p["locked"] else ""))
+        for i, was, now in p["deltas"]:
+            sp = a.slots[i][0].replace("SPECIES_", "").title()
+            print(f"    slot {i:>2} {sp:<12} lv {was:>2} -> {now}")
+        if not args.dry_run:
+            for i, _, now in p["deltas"]:
+                a.set_slot(i, level=now)
+            a.save()
+            touched += 1
+    changed = sum(1 for p in proposals if p["deltas"])
+    dropped = sum(1 for p in proposals
+                  if p["uplift"] < p["uplift_before"] - 1e-9)
+    print(f"\n{len(areas)} table(s), {changed} changed"
+          + (f" ({dropped} pay less than before because the old ladder broke "
+             f"R1, levels must not fall with slot index)" if dropped else "")
+          + (f", {touched} written" if not args.dry_run else ", nothing written"))
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -347,9 +405,23 @@ def main(argv=None):
     pl.add_argument("--json", action="store_true")
     pl.set_defaults(func=cmd_plan)
 
-    for name in ("generate",):
-        later = sub.add_parser(name, help="not yet built")
-        later.set_defaults(func=cmd_later)
+    ge = sub.add_parser("generate",
+                        help="levels-only: build the repel ladder under the "
+                             "species already placed")
+    ge.add_argument("--area")
+    ge.add_argument("--band", choices=("early", "mid", "late"))
+    ge.add_argument("--dry-run", action="store_true",
+                    help="show the proposal, write nothing")
+    ge.add_argument("--aim", type=float, default=None,
+                    help="uplift to reach on the rarest species (default: "
+                         "the R3 threshold); higher isolates harder")
+    ge.add_argument("--span", type=int, default=3,
+                    help="levels above base to use (default 3, four rungs)")
+    ge.add_argument("--base", type=int, default=None,
+                    help="bottom level (default: the sidecar's base_level, "
+                         "else the table's current minimum)")
+    ge.add_argument("--json", action="store_true")
+    ge.set_defaults(func=cmd_generate)
 
     args = p.parse_args(argv)
     return args.func(args)
