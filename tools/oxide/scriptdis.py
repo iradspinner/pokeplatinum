@@ -109,11 +109,17 @@ BASE_ROM_OVERRIDES = {
 
 
 class Command:
-    def __init__(self, opcode, const, macro, operands):
+    def __init__(self, opcode, const, macro, operands, params=()):
         self.opcode = opcode
         self.const = const
         self.macro = macro
         self.operands = operands  # [(kind, arg name)]
+        # the macro's declared parameters, in order. Emitting has to go by this
+        # rather than by the order fields come out, because a macro can emit a
+        # constant that is not a parameter at all (ChooseTwoCustomMessageWords
+        # starts with an unused zero) or emit the same parameter twice
+        # (ShowCurrentFloor writes destVarID and then writes it again).
+        self.params = list(params)
 
     @property
     def conditional(self):
@@ -148,25 +154,33 @@ def build_command_table(base_rom=False):
             if part is None:
                 continue
             kind = part.group(1)
-            expr = part.group(2).strip()
+            # several macros annotate a field in place, and the comment would
+            # otherwise end up glued to the parameter name and stop it matching
+            # the macro's declared parameter list
+            expr = re.sub(r"(/\*.*?\*/|//.*|@.*)", "", part.group(2)).strip()
             if expr.endswith("-.-4"):
                 kind = "rel"
                 expr = expr[: -len("-.-4")]
             operands.append((kind, expr.lstrip("\\")))
-        by_const.setdefault(const, (macro, operands))
+        params = []
+        for arg in _args.split(","):
+            arg = arg.strip().split("=")[0].strip()
+            if arg:
+                params.append(arg)
+        by_const.setdefault(const, (macro, operands, params))
 
     table = {}
     for opcode, const in enumerate(order):
         if const not in by_const:
             continue
-        macro, operands = by_const[const]
+        macro, operands, params = by_const[const]
         if const in CONDITIONAL:
             # the .if body is reconstructed at decode time, so keep only what
             # comes before it
             operands = operands[:1]
         if base_rom and const in BASE_ROM_OVERRIDES:
             operands = list(BASE_ROM_OVERRIDES[const])
-        table[opcode] = Command(opcode, const, macro, operands)
+        table[opcode] = Command(opcode, const, macro, operands, params)
     return table
 
 
@@ -275,8 +289,8 @@ class DecodedCommand:
 
 
 def script_entries(buf):
-    """The offsets of each ScriptEntry in a script file's header table, and
-    where the table ends.
+    """The offsets of each ScriptEntry in a script file's header table, where
+    the table ends, and whether it closed with an explicit ScriptEntryEnd.
 
     ScriptEntryEnd is optional: plenty of files just run the first script
     straight after the last entry, so the table also ends as soon as the
@@ -286,9 +300,9 @@ def script_entries(buf):
     limit = len(buf)
     while pos + 2 <= len(buf):
         if struct.unpack_from("<H", buf, pos)[0] == SCRIPT_ENTRY_END:
-            return entries, pos + 2
+            return entries, pos + 2, True
         if pos >= limit:
-            return entries, pos
+            return entries, pos, False
         if pos + 4 > len(buf):
             break
         (rel,) = struct.unpack_from("<i", buf, pos)
@@ -361,7 +375,7 @@ def walk(buf, with_movement=True):
     Returns {offset: DecodedCommand}, the set of offsets that need a label when
     this is written back out, the end of the header table, and the movement
     blocks ApplyMovement points at as {offset: (actions, size)}."""
-    entries, header_end = script_entries(buf)
+    entries, header_end, _terminated = script_entries(buf)
     decoded = {}
     movements = {}
     labels = set(entries)
@@ -426,31 +440,40 @@ def sweep_leftovers(buf, decoded, movements, header_end):
         while j < len(buf) and not covered[j]:
             j += 1
         region = (i, j)
-        if not any(buf[i:j]):
-            i = j  # alignment padding
+        # a region often opens with the `.balign 4, 0` that precedes whatever
+        # follows, and closes with more of the same before the next block
+        # a region often opens with the `.balign 4, 0` that precedes whatever
+        # follows, and can close with more padding before the next block. Only
+        # leading zeros are skipped outright; trailing ones are allowed for by
+        # letting the decode stop early as long as nothing but zeros is left.
+        # Stripping trailing zeros instead would eat the second byte of End.
+        start = i
+        while start < j and buf[start] == 0:
+            start += 1
+        if start == j:
+            i = j  # all padding
             continue
-        claimed = False
-        try:
-            actions, size = decode_movement(buf, i)
-            if size == j - i:
-                extra_movements[i] = (actions, size)
-                claimed = True
-        except Exception:
-            pass
-        if not claimed:
-            try:
-                pos, found = i, {}
-                while pos < j:
-                    dc = decode_command(buf, pos)
-                    found[pos] = dc
-                    pos += dc.size
-                if pos == j:
-                    extra_commands.update(found)
-                    claimed = True
-            except Exception:
-                pass
-        if not claimed:
-            unclaimed.append(region)
+
+        def fills(decoder, into):
+            pos, found = start, {}
+            while pos < j:
+                try:
+                    item = decoder(buf, pos)
+                except Exception:
+                    break
+                size = item.size if hasattr(item, "size") else item[1]
+                found[pos] = item
+                pos += size
+            if pos <= j and not any(buf[pos:j]):
+                into.update(found)
+                return True
+            return False
+
+        # several movement blocks can sit back to back with nothing referring to
+        # the later ones
+        if not fills(decode_movement, extra_movements):
+            if not fills(decode_command, extra_commands):
+                unclaimed.append((i, j))
         i = j
     return extra_commands, extra_movements, unclaimed
 
@@ -480,11 +503,114 @@ def coverage(buf):
     return decoded, labels, movements, sum(covered), len(buf), unclaimed
 
 
+# ---------------------------------------------------------------- emitting
+def emit_source(buf, prefix, includes=("macros/scrcmd.inc",)):
+    """Write a script file back out as macro assembly.
+
+    Operands are emitted as plain numbers and labels rather than symbolic
+    constants. That is deliberate for now: it keeps the round trip a test of
+    structure - label placement, ordering, padding, the entry table - and not of
+    a naming table that could paper over a structural mistake. Symbolic operands
+    go on top once this reassembles byte for byte.
+    """
+    decoded, labels, header_end, movements = walk(buf)
+    extra_cmds, extra_moves, unclaimed = sweep_leftovers(buf, decoded, movements, header_end)
+    # A region the recovery pass could not read is emitted as raw bytes rather
+    # than refused or guessed at. That keeps the output exact and says plainly
+    # which bytes are not understood yet, instead of inventing a reading that
+    # happens to assemble.
+    raw = {a: bytes(buf[a:b]) for a, b in unclaimed}
+    emit_source.last_raw = raw
+    decoded = {**decoded, **extra_cmds}
+    movements = {**movements, **extra_moves}
+    entries, _header_end, terminated = script_entries(buf)
+
+    # Name only what is actually pointed at. Naming every command would mean
+    # emitting a label for each one; naming too few leaves a jump referring to a
+    # label that was never written, which the linker catches but only after a
+    # confusing detour. Targets are recollected here over the merged set,
+    # because the recovery pass finds commands the walk never saw and those can
+    # jump too.
+    referenced = set(entries)
+    for dc in decoded.values():
+        at = dc.offset + 2
+        for kind, name, value in dc.values:
+            if kind == "rel" and is_code_target(dc.cmd, name):
+                referenced.add(at + 4 + value)
+            at += WIDTHS[kind]
+    names = {}
+    for i, offset in enumerate(entries):
+        names.setdefault(offset, f"{prefix}_Entry{i}")
+    for offset in sorted(movements):
+        names[offset] = f"{prefix}_Movement_{offset:04X}"
+    for offset in sorted(referenced):
+        names.setdefault(offset, f"{prefix}_{offset:04X}")
+
+    out = [f'#include "{inc}"' for inc in includes] + ["", ""]
+    for i, offset in enumerate(entries):
+        out.append(f"    ScriptEntry {names[offset]}")
+    if terminated:
+        out.append("    ScriptEntryEnd")
+    out.append("")
+
+    pos = header_end
+    while pos < len(buf):
+        if pos in movements:
+            actions, size = movements[pos]
+            out.append(f"{names[pos]}:")
+            for action, length in actions:
+                # EndMovement takes no argument; its macro emits the zero itself
+                out.append(f"    {action}" if action == "EndMovement" else f"    {action} {length}")
+            out.append("")
+            pos += size
+        elif pos in decoded:
+            dc = decoded[pos]
+            if pos in names:
+                out.append(f"{names[pos]}:")
+            # render each decoded field, then hand the macro its declared
+            # parameters in its own order
+            rendered, at = {}, dc.offset + 2
+            for kind, name, value in dc.values:
+                if kind == "rel":
+                    target = at + 4 + value
+                    rendered.setdefault(name, names.get(target, f"{target:#x}"))
+                else:
+                    rendered.setdefault(name, str(value))
+                at += WIDTHS[kind]
+            params = dc.cmd.params
+            if dc.cmd.conditional:
+                params = [p for p in params if p in rendered]
+            args = [rendered[p] for p in params if p in rendered]
+            out.append(f"    {dc.cmd.macro}" + (" " + ", ".join(args) if args else ""))
+            pos += dc.size
+        elif pos in raw:
+            out.append(f"    @ not decoded: {len(raw[pos])} bytes")
+            out.append("    .byte " + ", ".join(str(b) for b in raw[pos]))
+            out.append("")
+            pos += len(raw[pos])
+        else:
+            run = pos
+            while run < len(buf) and run not in decoded and run not in movements and run not in raw:
+                run += 1
+            pad = run - pos
+            if buf[pos:run] == b"\x00" * pad and pad < 4:
+                out.append(f"    .balign 4, 0")
+            else:
+                out.append("    .byte " + ", ".join(str(b) for b in buf[pos:run]))
+            out.append("")
+            pos = run
+    return "\n".join(out) + "\n"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rom", required=True)
     ap.add_argument("--index", type=int, help="disassemble one script file and print it")
     ap.add_argument("--verify", action="store_true", help="walk every script file and report coverage")
+    ap.add_argument("--emit", type=int, help="write one script file back out as macro assembly")
+    ap.add_argument("--roundtrip", action="store_true",
+                    help="emit every script file, reassemble it, and require byte-identical output")
+    ap.add_argument("--enumproc", default="build/tools/enumproc/enumproc")
     ap.add_argument("--base-rom", action="store_true",
                     help="use the base ROM's command meanings (see BASE_ROM_OVERRIDES)")
     a = ap.parse_args()
@@ -498,6 +624,63 @@ def main():
 
     rom = Rom(a.rom)
     files = rom.narc(SCRIPTS_NARC)
+
+    if a.roundtrip:
+        import subprocess, tempfile
+        order = [l.strip() for l in open(os.path.join(ROOT, "res", "field", "scripts", "scripts.order")) if l.strip()]
+        ok = emit_failed = asm_failed = differs = skipped = 0
+        raw_files = raw_bytes = 0
+        problems = []
+        with tempfile.TemporaryDirectory() as tmp:
+            for i, buf in enumerate(files):
+                if not buf or (i < len(order) and is_init_script(order[i])):
+                    skipped += 1
+                    continue
+                try:
+                    text = emit_source(buf, f"S{i}")
+                except Exception as exc:
+                    emit_failed += 1
+                    if len(problems) < 8:
+                        problems.append(f"  {order[i] if i < len(order) else i}: could not emit: {exc}")
+                    continue
+                if getattr(emit_source, "last_raw", None):
+                    raw_files += 1
+                    raw_bytes += sum(len(v) for v in emit_source.last_raw.values())
+                src = os.path.join(tmp, f"s{i}.s")
+                with open(src, "w") as f:
+                    f.write(text)
+                proc = subprocess.run(
+                    ["bash", "tools/scripts/make_script_bin.sh",
+                     "-i", "include", "-i", "asm", "-i", "build", "-i", ".",
+                     "--enumproc", a.enumproc, "--assembler", "arm-none-eabi-gcc",
+                     "--objcopy", "arm-none-eabi-objcopy", "--out-dir", tmp, src],
+                    capture_output=True, text=True)
+                out = os.path.join(tmp, f"s{i}")
+                if proc.returncode != 0 or not os.path.exists(out):
+                    asm_failed += 1
+                    if len(problems) < 8:
+                        problems.append(f"  {order[i] if i < len(order) else i}: assembler: "
+                                        + (proc.stderr.strip().splitlines() or ["?"])[-1])
+                    continue
+                if open(out, "rb").read() == bytes(buf):
+                    ok += 1
+                else:
+                    differs += 1
+                    if len(problems) < 8:
+                        problems.append(f"  {order[i] if i < len(order) else i}: reassembled bytes differ")
+                os.remove(out)
+        print(f"round trip: {ok} byte-identical, {differs} differ, {emit_failed} could not be emitted, "
+              f"{asm_failed} failed to assemble ({skipped} init scripts and empty members skipped)")
+        if raw_files:
+            print(f"  {raw_files} of them carry a region emitted as raw bytes rather than decoded "
+                  f"({raw_bytes} bytes total); they round-trip but are not understood yet")
+        for p_ in problems:
+            print(p_)
+        return
+
+    if a.emit is not None:
+        print(emit_source(files[a.emit], f"S{a.emit}"))
+        return
 
     if a.index is not None:
         buf = files[a.index]
