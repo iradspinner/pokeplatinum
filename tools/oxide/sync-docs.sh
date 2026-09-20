@@ -38,11 +38,13 @@ copy "setup-fork-and-wsl2.md" "notes/setup-fork-and-wsl2.md"
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "phase3-scripts-and-events-plan.md" "notes/phase3-scripts-and-events-plan.md"
+copy "phase4-engine-change-questions.md" "notes/phase4-engine-change-questions.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "encounter-design-survey.md" "Claude outputs/encounter-design-survey.md"
 copy "encounter-tool-design.md" "Claude outputs/encounter-tool-design.md"
 copy "encounter-tool-build-plan.md" "Claude outputs/encounter-tool-build-plan.md"
+copy "encounter-authoring-plan.md" "Claude outputs/encounter-authoring-plan.md"
 copy "encounters/design.json" "Claude outputs/encounters/design.json"
 
 # Anything under docs/oxide that the list above does not name. caught.json is

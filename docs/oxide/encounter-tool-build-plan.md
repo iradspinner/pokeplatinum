@@ -77,18 +77,30 @@ pure apart from its one loader), `generate.py` (the levels-only generator, pure)
 which holds every threshold; the per-playthrough caught record is
 `docs/oxide/encounters/caught.json`, gitignored.
 
-**Next milestone: M7**, ROM verification — extend `verify_narcs.py --encounters`
-so a built ROM's `pl_enc_data.narc` is compared field by field against the source
-JSON. M1-M6 are done and their sections below record what each found; M6 shipped
-in its levels-only form, and full species placement is deferred, possibly for good.
+**Next: the authoring pass.** M1-M6 are done and their sections below record what
+each found; M6 shipped in its levels-only form, and full species placement is
+deferred, possibly for good. Ian called M4 done for now on 2026-09-20 and asked
+for the tables themselves to be written from the pick-list. The plan for that is
+`docs/oxide/encounter-authoring-plan.md`: read it next, it says what to do in what
+order and which decisions are already taken. Its Step 0 adds the small pieces of
+tooling the pass needs (`cli apply`, `cli audit`, `cli coverage`, writers for the
+remaining encounter keys, and **M7**, the source-versus-ROM check, which lives
+there rather than as a separate milestone), and its Step 1 supplies the
+progression order and tiers. Status for the pass goes in an "Authoring pass"
+section below, gate by gate.
+
+**Two things the authoring plan does not know, because they landed after it was
+written.** M5, the dupe-out planner, and M6, the levels-only generator, are both
+done and available to the pass. Ian asked this session for M5 and M6 while the
+planning session was writing the authoring plan, so the plan says "M5 follows the
+pass"; it does not. The pass should use them: `cli plan` answers whether a table's
+acquisition path actually works, and `cli generate` builds the level ladder under
+species the pass places. Both approximate progression by encounter level from one
+place each, so Step 1's real `order` drops in cleanly.
 
 **Before running the generator for real, read M6's "one consequence"**: it enforces
 R1, most current tables break R1, so it will change almost every table it is
 pointed at and a few will pay less than they did. Use `--dry-run` first.
-
-Two inputs still missing, both under "Open questions": a real progression order
-(the planner and the page approximate it by encounter level, from one place each)
-and a `tier` per pick-list line (gates R12).
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
