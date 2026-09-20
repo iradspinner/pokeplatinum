@@ -87,6 +87,27 @@ CONDITIONAL = {
 }
 
 
+# Commands whose operands the base ROM changed, keyed by the constant name.
+# Applied with --base-rom, because the same opcode means different things in the
+# two ROMs and decoding one with the other's table desynchronises the file.
+#
+# SCRCMD_DUMMY088: vanilla's ScrCmd_Dummy088 reads three halfwords and does
+# nothing with them. The base ROM overwrites its body (arm9 0x0204EAE8) with a
+# 60-byte routine that reads no operands at all: it writes one byte, taken from
+# the synthetic overlay at 0x023D28FF, to *(u32 *)0x02101D40 + 0x8087. So in the
+# base ROM the command is two bytes and nothing follows it.
+#
+# This is the answer to the long-open Battle Arcade question. It is called three
+# times, all in scripts_common, and it is the only custom command any script in
+# the base ROM calls. Two independent things agree on the operand count: the
+# routine never touches the script context, and reading it as two bytes makes
+# the surrounding code decode as RemoveItem / BufferPlayerName / BufferItemName
+# / Message, where reading it as eight swallows the RemoveItem whole.
+BASE_ROM_OVERRIDES = {
+    "SCRCMD_DUMMY088": [],
+}
+
+
 class Command:
     def __init__(self, opcode, const, macro, operands):
         self.opcode = opcode
@@ -102,7 +123,7 @@ class Command:
         return f"<{self.opcode:#05x} {self.macro}>"
 
 
-def build_command_table():
+def build_command_table(base_rom=False):
     """opcode -> Command, from the repo's own two sources."""
     header = open(os.path.join(ROOT, "include", "data", "scripts", "scrcmd.h")).read()
     order = [m.group(1) for m in re.finditer(r"^ScriptCommand\((\w+)\s*,", header, re.M)]
@@ -143,17 +164,28 @@ def build_command_table():
             # the .if body is reconstructed at decode time, so keep only what
             # comes before it
             operands = operands[:1]
+        if base_rom and const in BASE_ROM_OVERRIDES:
+            operands = list(BASE_ROM_OVERRIDES[const])
         table[opcode] = Command(opcode, const, macro, operands)
     return table
 
 
 TABLE = None
+TABLE_IS_BASE_ROM = False
+
+
+def use_base_rom_table(enabled=True):
+    """Switch to the base ROM's command meanings; see BASE_ROM_OVERRIDES."""
+    global TABLE, TABLE_IS_BASE_ROM
+    if enabled != TABLE_IS_BASE_ROM:
+        TABLE = None
+        TABLE_IS_BASE_ROM = enabled
 
 
 def table():
     global TABLE
     if TABLE is None:
-        TABLE = build_command_table()
+        TABLE = build_command_table(TABLE_IS_BASE_ROM)
     return TABLE
 
 
@@ -309,7 +341,10 @@ def main():
     ap.add_argument("--rom", required=True)
     ap.add_argument("--index", type=int, help="disassemble one script file and print it")
     ap.add_argument("--verify", action="store_true", help="walk every script file and report coverage")
+    ap.add_argument("--base-rom", action="store_true",
+                    help="use the base ROM's command meanings (see BASE_ROM_OVERRIDES)")
     a = ap.parse_args()
+    use_base_rom_table(a.base_rom)
 
     import ndspy.narc
     import ndspy.rom

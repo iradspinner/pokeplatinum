@@ -73,20 +73,36 @@ On the base ROM, 573 of 574 walk cleanly. See the finding below.
   byte-identical output is the end-state check. Walking cleanly proves the
   widths; it does not yet prove the text that comes out reassembles.
 
-### Finding: an unknown opcode in the base ROM's scripts_common
+### Answered: the Battle Arcade custom script command
 
-`scripts_common` (script 211) is the shared common-script file and the one Ian
-grew most, from 5,912 bytes to 12,350. The walk hits **opcode 0x8000 at
-0x1f38**. Everything else in the base ROM decodes.
+The base ROM's `scripts_common` (script 211), which Ian grew from 5,912 bytes to
+12,350, was the only file in either ROM that would not decode. It hits opcode
+**0x88, `Dummy088`**, and that is the custom command.
 
-That is either a custom script command or a desync caused by one, and it is the
-first hard evidence on the long-open question of whether any carried-over script
-calls the commands written over the Battle Arcade region (arm9
-`0x05003C`-`0x0505BC`). Worth noting before assuming: 0x8000 also looks like a
-variable reference rather than a command, vars starting at 0x4000, so the read
-position may simply be wrong by then. Settle it by diffing the decode of
-vanilla's `scripts_common` against the base ROM's and finding the first command
-where they diverge, rather than by reading 0x1f38 in isolation.
+What it is. Vanilla's `ScrCmd_Dummy088` reads three halfwords and does nothing
+with them. The base ROM overwrites its body at arm9 `0x0204EAE8` with a 60-byte
+routine that reads no operands at all and writes a single byte: the byte at
+`0x023D28FF`, which is inside the synthetic overlay, goes to
+`*(u32 *)0x02101D40 + 0x8087`. What that destination is has not been identified;
+the write itself is all that is established.
+
+So in the base ROM the command is two bytes with nothing following it. Two
+independent things agree on that: the routine never touches the script context,
+and reading it as two bytes makes the surrounding code decode as `RemoveItem` /
+`BufferPlayerName` / `BufferItemName` / `Message`, where reading it as eight
+swallows the `RemoveItem` whole. The `0x8000` that first looked like an unknown
+opcode is `RemoveItem`'s result variable, exactly the caution flagged when this
+was first spotted.
+
+**This closes the question the inventory left open.** Of the ~1.4 KB of custom
+code written over the Battle Arcade region, the scripts call exactly one
+command, three times, all in `scripts_common`. Nothing else in either ROM calls
+a custom command. The rest of that region can be dropped, and the port needs one
+new script command rather than a reimplementation of the whole region.
+
+`scriptdis.py --base-rom` applies this, via `BASE_ROM_OVERRIDES`, because the
+same opcode means different things in the two ROMs. With it, all 574 base-ROM
+script files walk, matching vanilla.
 
 ## What the disassembler replaced: the original sketch
 
