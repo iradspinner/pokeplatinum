@@ -19,7 +19,18 @@ that predates the merge and none of the files below exist.
 The encounter tool and the Phase 3 script/event carry-over run in parallel on the
 same branch and share no files: this track owns `tools/oxide/encounters/`,
 `res/field/encounters/` and the three `encounter-*.md` docs, and touches nothing
-else.
+else. Edits to `tracker.md` and `START-HERE-current-state.md` are the exception,
+and they have caused three merge conflicts; keep this track's footprint in those
+two files to the single status line each already carries.
+
+**One thing from the other track that lands here.** The base ROM's custom script
+command, long unidentified, turned out to be a *Repel prompt*: "Repel's effect
+wore off, use another one?", offering Repel / Super Repel / Max Repel and setting
+the step counter to 100/150/250. Ian added a feature specifically to make repelling
+less tedious, which is direct evidence for how central repel manipulation is to the
+game he wants — and it makes the manip loop this tool is built around materially
+cheaper to actually play. Worth remembering when weighing R3's uplift threshold:
+the cost side of a manip is lower in this ROM than in vanilla.
 
 **Read in this order.** This file for what to do next. Then
 `docs/oxide/encounter-tool-design.md` sections 1, 2 and 6 for the model — section 1

@@ -73,36 +73,93 @@ On the base ROM, 573 of 574 walk cleanly. See the finding below.
   byte-identical output is the end-state check. Walking cleanly proves the
   widths; it does not yet prove the text that comes out reassembles.
 
-### Answered: the Battle Arcade custom script command
+### Answered: the custom script command is a Repel prompt
 
-The base ROM's `scripts_common` (script 211), which Ian grew from 5,912 bytes to
-12,350, was the only file in either ROM that would not decode. It hits opcode
-**0x88, `Dummy088`**, and that is the custom command.
+The base ROM's `scripts_common` was the only file in either ROM that would not
+decode. The command is opcode **0x88, `Dummy088`**, and it exists to serve a
+"use another Repel?" feature.
 
-What it is. Vanilla's `ScrCmd_Dummy088` reads three halfwords and does nothing
-with them. The base ROM overwrites its body at arm9 `0x0204EAE8` with a 60-byte
-routine that reads no operands at all and writes a single byte: the byte at
-`0x023D28FF`, which is inside the synthetic overlay, goes to
-`*(u32 *)0x02101D40 + 0x8087`. What that destination is has not been identified;
-the write itself is all that is established.
+**What the script does.** Three call sites, identical in shape, at `0x1ee8`,
+`0x1f0c` and `0x1f30`:
 
-So in the base ROM the command is two bytes with nothing following it. Two
-independent things agree on that: the routine never touches the script context,
-and reading it as two bytes makes the surrounding code decode as `RemoveItem` /
-`BufferPlayerName` / `BufferItemName` / `Message`, where reading it as eight
-swallows the `RemoveItem` whole. The `0x8000` that first looked like an unknown
-opcode is `RemoveItem`'s result variable, exactly the caution flagged when this
-was first spotted.
+```
+AddMenuEntryImm 30, 0            @ "Repel"        (menu entries 30-32 are new text)
+AddMenuEntryImm 31, 1            @ "Super Repel"
+AddMenuEntryImm 32, 2            @ "Max Repel"
+...
+ScrCmd_Unused_007 0x023DFF28, 100/150/250
+Dummy088
+RemoveItem ITEM_REPEL/SUPER_REPEL/MAX_REPEL, 1, 0x8000
+BufferPlayerName 0
+BufferItemName 1, <the same item>
+Message 72                       @ "{PLAYER} used the {ITEM}. Wild Pokemon will be repelled."
+WaitButton / CloseMessage / ReleaseAll / Return
+```
 
-**This closes the question the inventory left open.** Of the ~1.4 KB of custom
-code written over the Battle Arcade region, the scripts call exactly one
-command, three times, all in `scripts_common`. Nothing else in either ROM calls
-a custom command. The rest of that region can be dropped, and the port needs one
-new script command rather than a reimplementation of the whole region.
+The whole flow, traced end to end in the base ROM's `scripts_common`:
 
-`scriptdis.py --base-rom` applies this, via `BASE_ROM_OVERRIDES`, because the
-same opcode means different things in the two ROMs. With it, all 574 base-ROM
-script files walk, matching vanilla.
+```
+0x0dc0  Message 75              @ "Repel's effect wore off... use another one?"
+        ShowYesNoMenu           @ vanilla only has the wear-off line, 79, no prompt
+        GoToIf yes -> 0x15bb
+0x15bb  InitGlobalTextMenu
+        CheckItem REPEL       -> if held, add menu entry 30 "Repel"
+        CheckItem SUPER_REPEL -> if held, add menu entry 31 "Super Repel"
+        CheckItem MAX_REPEL   -> if held, add menu entry 32 "Max Repel"
+        ShowMenu
+0x1ee8  ...the three branches above, one per Repel
+```
+
+So it only offers the Repels you are actually carrying. 100, 150 and 250 are
+step counts.
+
+**It is not "reusable Repels".** Each use still takes one from the bag, exactly
+as vanilla: `RemoveItem <item>, 1` is right there in every branch. What the hack
+saves is the trip back to the bag, not the item. Worth stating because the base
+ROM *does* separately make TMs reusable, by skipping `Bag_TryRemoveItem` in the
+party menu, and the two are easy to conflate.
+
+**What the two commands do.** `ScrCmd_Unused_007` is a raw byte write,
+`*(u8 *)addr = value`. Vanilla implements it and never uses it. The base ROM
+uses it to stash the step count at `0x023DFF28`, a scratch address above the
+heap. `Dummy088`'s vanilla body reads three halfwords and ignores them; the base
+ROM replaces it at arm9 `0x0204EAE8` with a 60-byte routine that reads no
+operands and does exactly one thing:
+
+```
+*(u8 *)(*(u32 *)0x02101D40 + 0x8087) = *(u8 *)0x023DFF28;
+```
+
+The two-step dance exists because a script command can only poke a *fixed*
+address, and the destination sits behind a pointer that is not known when the
+script is assembled. So the script writes the value somewhere fixed and native
+code moves it through the pointer.
+
+**What the destination is.** Established: a byte behind the pointer at
+`0x02101D40`, offset `0x8087`. Inferred but not proven: the save's repel-steps
+counter. `SpecialEncounter` reaches it as a `u8` at `+0x14F`, via
+`SaveData_GetSpecialEncounters` (save table entry 25), and
+`SaveData_SaveTable` returns `saveData + 20 + blockOffset[id]`, so this would
+need `blockOffset[25] == 0x7F24`. That was not checked; nothing in the vanilla
+arm9 references `0x02101D40` by literal, so the address was found by inspection
+rather than taken from a symbol. The script context leaves little doubt about
+the intent either way.
+
+**How to port it.** Not by reimplementing `Dummy088`. Add a proper script
+command, say `SetRepelSteps <count>`, that writes through
+`SpecialEncounter_GetRepelSteps`, and rewrite the three call sites to use it.
+That drops the `Unused_007` scratch poke as well, since it only exists to work
+around the pointer problem. The text this feature needs is part of the 16 unused
+slots that gained text and were deferred earlier: `MENU_ENTRIES` 30-32 and
+`COMMON_STRINGS` 75 and 79.
+
+**This closes the Battle Arcade question.** Of the roughly 1.4 KB of custom code
+written over that region, the scripts call exactly one command, three times, all
+in `scripts_common`, and nothing else in either ROM calls a custom command. The
+rest of the region can be dropped.
+
+`scriptdis.py --base-rom` applies the two-byte reading via `BASE_ROM_OVERRIDES`.
+With it, all 574 base-ROM script files walk, matching vanilla.
 
 ## What the disassembler replaced: the original sketch
 

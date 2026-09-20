@@ -56,8 +56,9 @@ overruled.
 
 What is left is the scripts and events, which touch 184 maps. Read
 `notes/phase3-scripts-and-events-plan.md` before starting on it. A script
-disassembler and an event decoder are built and verified against both ROMs; a
-movement-block decoder, `.s` emission and a byte-identical round trip are not.
+disassembler, an event decoder and a movement-block decoder are built and
+verified against both ROMs, accounting for 98% of both ROMs' script bytes; `.s`
+emission and a byte-identical round trip are not.
 
 The species pick-list is settled and lives in `notes/species-pick-list.md`. Its
 21-row stat conflict with the base ROM is tabled for a later whole-dex balance
@@ -80,9 +81,14 @@ Three docs, in reading order:
 | `encounter-tool-design.md` | The v1.0 spec: the engine's repel behaviour, the design model, the linter's 14 rules, the generator |
 | `encounter-design-survey.md` | The measurements every number in the spec comes from |
 
-**Status: M1 done** (round-trip I/O, 13/13 on both corpora). **M2 is next** — the
-analysis engine, whose gate is a Monte-Carlo check of the repel model plus
-reproducing the survey's numbers from vanilla.
+**Status: M1 and M2 done** (round-trip I/O 13/13; the analysis engine 23/23,
+with vanilla reproducing the survey exactly). **M3, the linter, is next.**
+
+Measured against the design's own targets, the tables the project currently has
+fail three of its rules — HHI spread 2.14x against a 2.2 floor, 0.26 distinct
+signatures per table against 0.35, and an early-to-late concentration arc that
+runs backwards — which is Ian's "every route felt the same" and "early game
+didn't feel early", now as numbers.
 
 The one fact that governs all of it: **the working tree holds the base ROM's
 encounter tables and `main` holds vanilla**, so every calibration check reads
@@ -102,10 +108,11 @@ still largely standing in the current tables.
 
 ## Open, and who owns it
 
-- **What the custom `Dummy088` script command is for** (Ian). The base ROM adds
-  one custom script command, called three times in `scripts_common`. It writes a
-  single byte. Naming it properly is the last thing blocking a faithful port of
-  those three call sites.
+- ~~**What the custom `Dummy088` script command is for**~~ Answered 2026-09-20:
+  it is a "Repel's effect wore off, use another one?" prompt — a Repel / Super
+  Repel / Max Repel menu that sets the step counter to 100/150/250 and consumes
+  the item. It ports as a proper `SetRepelSteps` command; detail in the tracker
+  and `phase3-scripts-and-events-plan.md`.
 - **Evolution triggers for Gyarados M and Lopunny M** (Ian). Slots and stat
   blocks are settled; the trigger is not.
 - **Encounter tool, three open items** (Ian), none of which block M2: a

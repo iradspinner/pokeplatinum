@@ -202,6 +202,66 @@ def is_code_target(cmd, arg_name):
     return cmd.macro.startswith(("GoTo", "Call", "JumpTo")) or cmd.const in ("SCRCMD_GOTO", "SCRCMD_CALL")
 
 
+# ---------------------------------------------------------------- movement
+#
+# ApplyMovement points at a movement block, which is a different and far simpler
+# encoding: pairs of (u16 action, u16 length) ending with MOVEMENT_ACTION_END
+# and a zero length. asm/macros/movement.inc has one macro per action, and the
+# ids come from generated/movement_actions.h.
+MOVEMENT_TABLE = None
+
+
+def build_movement_table():
+    """action id -> macro name, from asm/macros/movement.inc."""
+    inc = open(os.path.join(ROOT, "asm", "macros", "movement.inc")).read()
+    blocks = re.findall(r"^    \.macro\s+(\S+)([^\n]*)\n(.*?)^    \.endm", inc, re.S | re.M)
+    names = {}
+    for macro, _args, body in blocks:
+        head = re.search(r"\.short\s+(MOVEMENT_ACTION_\w+)", body)
+        if head:
+            names.setdefault(head.group(1), macro)
+
+    header = open(os.path.join(ROOT, "build", "generated", "movement_actions.h")).read()
+    found = re.search(r"enum \w+ \{(.*?)\};", header, re.S)
+    table = {}
+    values = {}
+    for line in found.group(1).splitlines():
+        entry = re.match(r"\s*([A-Za-z0-9_]+)\s*=\s*(.+?),?\s*$", line)
+        if entry:
+            value = eval(entry.group(2), {"__builtins__": {}}, dict(values))
+            values[entry.group(1)] = value
+            if entry.group(1) in names:
+                table[value] = names[entry.group(1)]
+    return table, values.get("MOVEMENT_ACTION_END")
+
+
+MOVEMENT_END = None
+
+
+def movement_table():
+    global MOVEMENT_TABLE, MOVEMENT_END
+    if MOVEMENT_TABLE is None:
+        MOVEMENT_TABLE, MOVEMENT_END = build_movement_table()
+    return MOVEMENT_TABLE
+
+
+def decode_movement(buf, offset):
+    """[(macro name, length)] and the block's size in bytes."""
+    actions = []
+    pos = offset
+    while True:
+        if pos + 4 > len(buf):
+            raise ValueError(f"movement block at {offset:#06x} runs past the end of the file")
+        action, length = struct.unpack_from("<2H", buf, pos)
+        pos += 4
+        name = movement_table().get(action)
+        if name is None:
+            raise KeyError(f"unknown movement action {action:#06x} at {pos - 4:#06x}")
+        actions.append((name, length))
+        if action == MOVEMENT_END:
+            return actions, pos - offset
+
+
 class DecodedCommand:
     def __init__(self, offset, size, cmd, values, targets):
         self.offset = offset
@@ -296,12 +356,14 @@ def decode_command(buf, offset):
     return DecodedCommand(offset, pos - offset, cmd, values, targets)
 
 
-def walk(buf):
+def walk(buf, with_movement=True):
     """Follow every script entry and every code target reachable from one.
-    Returns {offset: DecodedCommand} and the set of offsets that are entries or
-    jump targets, which is what needs a label when this is written back out."""
+    Returns {offset: DecodedCommand}, the set of offsets that need a label when
+    this is written back out, the end of the header table, and the movement
+    blocks ApplyMovement points at as {offset: (actions, size)}."""
     entries, header_end = script_entries(buf)
     decoded = {}
+    movements = {}
     labels = set(entries)
     work = list(entries)
     while work:
@@ -317,23 +379,105 @@ def walk(buf):
                 labels.add(target)
                 if target not in decoded:
                     work.append(target)
+            if with_movement:
+                pos = dc.offset + 2
+                for kind, name, value in dc.values:
+                    if kind == "rel" and not is_code_target(dc.cmd, name):
+                        target = pos + 4 + value
+                        labels.add(target)
+                        if target not in movements:
+                            movements[target] = decode_movement(buf, target)
+                    pos += WIDTHS[kind]
             if dc.cmd.const in TERMINATORS:
                 break
             offset += dc.size
-    return decoded, labels, header_end
+    return decoded, labels, header_end, movements
+
+
+def sweep_leftovers(buf, decoded, movements, header_end):
+    """Account for what the reachable walk does not reach.
+
+    Two things end up here, both real source that has to be emitted again if
+    these files are ever to reassemble. Unreachable commands: an `End` written
+    after an unconditional `GoTo` is never reached, but it is in the source.
+    And movement blocks nothing reachable points at.
+
+    This is a recovery pass, not a walk, so it is deliberately strict: a region
+    is only claimed if it decodes *exactly*, filling the gap with nothing left
+    over. Anything that does not is reported rather than guessed at.
+    """
+    covered = bytearray(len(buf))
+    for i in range(header_end):
+        covered[i] = 1
+    for dc in decoded.values():
+        for i in range(dc.offset, dc.offset + dc.size):
+            covered[i] = 1
+    for offset, (_actions, size) in movements.items():
+        for i in range(offset, offset + size):
+            covered[i] = 1
+
+    extra_commands, extra_movements, unclaimed = {}, {}, []
+    i = 0
+    while i < len(buf):
+        if covered[i]:
+            i += 1
+            continue
+        j = i
+        while j < len(buf) and not covered[j]:
+            j += 1
+        region = (i, j)
+        if not any(buf[i:j]):
+            i = j  # alignment padding
+            continue
+        claimed = False
+        try:
+            actions, size = decode_movement(buf, i)
+            if size == j - i:
+                extra_movements[i] = (actions, size)
+                claimed = True
+        except Exception:
+            pass
+        if not claimed:
+            try:
+                pos, found = i, {}
+                while pos < j:
+                    dc = decode_command(buf, pos)
+                    found[pos] = dc
+                    pos += dc.size
+                if pos == j:
+                    extra_commands.update(found)
+                    claimed = True
+            except Exception:
+                pass
+        if not claimed:
+            unclaimed.append(region)
+        i = j
+    return extra_commands, extra_movements, unclaimed
 
 
 def coverage(buf):
-    """How much of a script file the walk accounts for. Anything left over is
-    movement data or another non-code table."""
-    decoded, labels, header_end = walk(buf)
+    """How much of a script file the walk accounts for: the header table, every
+    command reached from an entry, and every movement block pointed at. What is
+    left should only be the `.balign 4, 0` padding between movement blocks and
+    the odd run of unreferenced Noop."""
+    decoded, labels, header_end, movements = walk(buf)
+    extra_cmds, extra_moves, unclaimed = sweep_leftovers(buf, decoded, movements, header_end)
+    decoded = {**decoded, **extra_cmds}
+    movements = {**movements, **extra_moves}
     covered = bytearray(len(buf))
     for dc in decoded.values():
         for i in range(dc.offset, dc.offset + dc.size):
             covered[i] = 1
+    for offset, (_actions, size) in movements.items():
+        for i in range(offset, offset + size):
+            covered[i] = 1
     for i in range(header_end):
         covered[i] = 1
-    return decoded, labels, sum(covered), len(buf)
+    # zero bytes between blocks are the assembler's `.balign 4, 0`
+    for i in range(len(buf)):
+        if not covered[i] and buf[i] == 0:
+            covered[i] = 1
+    return decoded, labels, movements, sum(covered), len(buf), unclaimed
 
 
 def main():
@@ -357,10 +501,16 @@ def main():
 
     if a.index is not None:
         buf = files[a.index]
-        decoded, labels, header_end = walk(buf)
-        for offset in sorted(decoded):
+        decoded, labels, header_end, movements = walk(buf)
+        for offset in sorted(set(decoded) | set(movements)):
             mark = "  <-- label" if offset in labels else ""
-            print(f"{decoded[offset]}{mark}")
+            if offset in movements:
+                actions, size = movements[offset]
+                print(f"{offset:#06x} movement block, {len(actions)} actions, {size} bytes{mark}")
+                for name, length in actions:
+                    print(f"         {name} {length}")
+            else:
+                print(f"{decoded[offset]}{mark}")
         return
 
     if a.verify:
@@ -368,7 +518,7 @@ def main():
         total = full = failed = 0
         leftover = 0
         init_ok = init_bad = 0
-        movement_targets = overlaps = 0
+        movement_targets = overlaps = unclaimed_regions = 0
         problems = []
         for i, buf in enumerate(files):
             if len(buf) == 0:
@@ -384,7 +534,8 @@ def main():
                 continue
             total += 1
             try:
-                decoded, labels, covered, size = coverage(buf)
+                decoded, labels, movements, covered, size, unclaimed = coverage(buf)
+                unclaimed_regions += len(unclaimed)
             except Exception as exc:
                 failed += 1
                 if len(problems) < 10:
@@ -394,21 +545,15 @@ def main():
                 full += 1
             else:
                 leftover += size - covered
-            for dc in decoded.values():
-                pos = dc.offset + 2
-                for kind, name, value in dc.values:
-                    if kind == "rel" and not is_code_target(dc.cmd, name):
-                        movement_targets += 1
-                        if (pos + 4 + value) in decoded:
-                            overlaps += 1
-                    pos += WIDTHS[kind]
+            movement_targets += len(movements)
+            overlaps += sum(1 for off in movements if off in decoded)
         print(f"{total} non-empty script files: {full} fully accounted for, "
               f"{total - full - failed} with bytes left over ({leftover} bytes), {failed} failed")
         print(f"{init_ok + init_bad} init scripts: {init_ok} read, {init_bad} failed")
         print(f"{movement_targets} movement blocks referenced; {overlaps} of them collide with "
               f"decoded code (any collision would mean the command table is wrong)")
-        print(f"the {leftover} leftover bytes are those movement blocks, which are a separate "
-              f"encoding, plus short runs of unreferenced Noop between scripts")
+        print(f"{leftover} bytes and {unclaimed_regions} regions still unaccounted for after "
+              f"the recovery pass (unreachable commands and unreferenced movement blocks)")
         for p in problems:
             print(p)
 
