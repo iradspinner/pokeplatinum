@@ -19,6 +19,30 @@
         "not to let their Pokémon faint from\f",
         "losing HP."
       ]
+    },
+    {
+      "id": "SandgemTownHouse_Text_WouldYouLikeOneOfThesePokemon",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "SandgemTownHouse_Text_Venonat",
+      "en_US": "Venonat"
+    },
+    {
+      "id": "SandgemTownHouse_Text_Ekans",
+      "en_US": "Ekans"
+    },
+    {
+      "id": "SandgemTownHouse_Text_Gulpin",
+      "en_US": "Gulpin"
+    },
+    {
+      "id": "SandgemTownHouse_Text_YourPartyIsFull",
+      "en_US": "Your party is full..."
+    },
+    {
+      "id": "SandgemTownHouse_Text_SeeYa",
+      "en_US": "See ya!\r"
     }
   ]
 }
