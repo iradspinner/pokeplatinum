@@ -134,10 +134,33 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
     return mismatches == 0
 
 
+def check_map_headers(built, ref):
+    """sMapHeaders lives in arm9, not a NARC, and sits at a different address in
+    every build, so both copies are located by content before being compared."""
+    imp = load_importer()
+    a, b = built.arm9, ref.arm9
+    count = sum(1 for line in open(os.path.join("include", "data", "map_headers.h"))
+                if line.startswith("    [MAP_HEADER_"))
+    size = count * imp.MAP_HEADER_SIZE
+    oa, ob = imp.find_map_header_table(a, count), imp.find_map_header_table(b, count)
+    bad = [i for i in range(count)
+           if a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
+           != b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]]
+    if bad:
+        maps = imp.load_enum("map_headers")
+        print(f"sMapHeaders: {len(bad)} of {count} headers differ: "
+              f"{[maps.get(i, i) for i in bad[:6]]}")
+    else:
+        print(f"sMapHeaders: all {count} headers identical to the reference")
+    return not bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--built", required=True)
     ap.add_argument("--ref", required=True)
+    ap.add_argument("--map-headers", action="store_true",
+                    help="compare arm9's sMapHeaders against the reference ROM's")
     ap.add_argument("--text", action="store_true",
                     help="message-level check of pl_msg.narc instead of a byte comparison")
     ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc")
@@ -153,6 +176,8 @@ def main():
         sys.exit(0 if check_encounters(built, ref, nb, nr) else 1)
     if a.text:
         sys.exit(0 if check_text(built, ref, nb, nr, a.msgenc, a.charmap) else 1)
+    if a.map_headers:
+        sys.exit(0 if check_map_headers(built, ref) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if len(b) != len(r):

@@ -189,6 +189,7 @@ class Rom:
     def __init__(self, path):
         self.rom = ndspy.rom.NintendoDSRom.fromFile(path)
         self.names = walk(self.rom.filenames)
+        self.arm9 = self.rom.arm9
 
     def narc(self, path):
         return ndspy.narc.NARC(self.rom.files[self.names[path]]).files
@@ -584,6 +585,137 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     return bool(changed)
 
 
+# ---------------------------------------------------------------- map headers
+#
+# sMapHeaders is a 593-entry array of 24-byte MapHeader records in arm9. It has
+# no symbol in the ROM, and anchoring on the address from a local build does not
+# work, because any source change ahead of it in the link order moves it. So the
+# table is found by scanning for the offset at which several known headers'
+# msgArchiveID fields all land on the text bank this repo assigns them; the
+# match is unique and self-checking.
+MAP_HEADER_SIZE = 24
+MAP_HEADER_FMT = "<BBHHHHHHHHHBBH"
+MAP_HEADER_FIELDS = [
+    "areaDataArchiveID", "preloadedMapObjectsArchiveID", "mapMatrixID", "scriptsArchiveID",
+    "initScriptsArchiveID", "msgArchiveID", "dayMusicID", "nightMusicID",
+    "wildEncountersArchiveID", "eventsArchiveID", "label", "weather", "cameraType", "flags",
+]
+MAP_HEADERS_H = os.path.join("include", "data", "map_headers.h")
+
+# Anchors for the scan: (map header name, the text bank its header points at).
+MAP_HEADER_ANCHORS = [
+    ("MAP_HEADER_ROUTE_202", "TEXT_BANK_ROUTE_202"),
+    ("MAP_HEADER_POKEMON_LEAGUE", "TEXT_BANK_POKEMON_LEAGUE"),
+    ("MAP_HEADER_TWINLEAF_TOWN", "TEXT_BANK_TWINLEAF_TOWN"),
+]
+
+
+def load_weather_names():
+    import re
+    table = {}
+    path = os.path.join(ROOT, "include", "constants", "overworld_weather.h")
+    for line in open(path):
+        mm = re.match(r"\s*#define\s+(OVERWORLD_WEATHER_\w+)\s+(\d+)\s*$", line)
+        if mm:
+            table.setdefault(int(mm.group(2)), mm.group(1))
+    return table
+
+
+def find_map_header_table(arm9, count):
+    maps = load_enum("map_headers")
+    banks = load_enum("text_banks")
+    by_map = {v: k for k, v in maps.items()}
+    by_bank = {v: k for k, v in banks.items()}
+    anchors = [(by_map[m] * MAP_HEADER_SIZE + 8, by_bank[b]) for m, b in MAP_HEADER_ANCHORS]
+    hits = []
+    for off in range(0, len(arm9) - count * MAP_HEADER_SIZE):
+        if all(struct.unpack_from("<H", arm9, off + o)[0] == want for o, want in anchors):
+            hits.append(off)
+    if len(hits) != 1:
+        raise LookupError(f"expected exactly one sMapHeaders offset, found {hits}")
+    return hits[0]
+
+
+def decode_map_header(b):
+    return dict(zip(MAP_HEADER_FIELDS, struct.unpack(MAP_HEADER_FMT, b)))
+
+
+def set_map_header_field(text, map_name, field, value):
+    """Replace one `.field = ...,` line inside one `[MAP_HEADER_X] = { ... },`
+    block. Returns (new text, what was there before)."""
+    import re
+    marker = f"[{map_name}] = {{"
+    start = text.index(marker)
+    end = text.index("\n    },", start)
+    block = text[start:end]
+    pat = re.compile(rf"(\.{field} = )([^,\n]+)(,)")
+    mm = pat.search(block)
+    if mm is None:
+        raise KeyError(f"{map_name} has no .{field}")
+    was = mm.group(2)
+    block = block[:mm.start()] + mm.group(1) + str(value) + mm.group(3) + block[mm.end():]
+    return text[:start] + block + text[end:], was
+
+
+def import_map_headers(base_arm9, van_arm9, dry_run, log):
+    """Carry over the base ROM's map-header edits. Only the fields that actually
+    differ are touched, and each is written as the named constant the repo uses
+    rather than a bare number."""
+    maps = load_enum("map_headers")
+    weather = load_weather_names()
+    backgrounds = load_enum("battle_backgrounds")
+    count = sum(1 for _ in open(os.path.join(ROOT, MAP_HEADERS_H)) if _.startswith("    [MAP_HEADER_"))
+    off = find_map_header_table(van_arm9, count)
+    if base_arm9[off:off + count * MAP_HEADER_SIZE] == van_arm9[off:off + count * MAP_HEADER_SIZE]:
+        return 0
+
+    text = open(os.path.join(ROOT, MAP_HEADERS_H), encoding="utf-8").read()
+    changed, skipped = [], []
+    for i in range(count):
+        o = off + i * MAP_HEADER_SIZE
+        nb, vb = base_arm9[o:o + MAP_HEADER_SIZE], van_arm9[o:o + MAP_HEADER_SIZE]
+        if nb == vb:
+            continue
+        new, old = decode_map_header(nb), decode_map_header(vb)
+        name = maps[i]
+        for field, value in new.items():
+            if old[field] == value:
+                continue
+            if field == "weather":
+                if value not in weather:
+                    skipped.append(f"{name}: weather {old[field]} -> {value}, which has no constant; skipped")
+                    continue
+                text, was = set_map_header_field(text, name, "weather", weather[value])
+                changed.append(f"{name}: weather {was} -> {weather[value]}")
+            elif field == "flags":
+                # mapType:7, battleBG:5, then one bit each for bike, running,
+                # escape rope and fly
+                for sub, shift, mask, table in (("mapType", 0, 0x7F, None),
+                                                ("battleBG", 7, 0x1F, backgrounds),
+                                                ("isBikeAllowed", 12, 1, None),
+                                                ("isRunningAllowed", 13, 1, None),
+                                                ("isEscapeRopeAllowed", 14, 1, None),
+                                                ("isFlyAllowed", 15, 1, None)):
+                    nv, ov = (value >> shift) & mask, (old[field] >> shift) & mask
+                    if nv == ov:
+                        continue
+                    if mask == 1:
+                        nv = "TRUE" if nv else "FALSE"
+                    elif table is not None:
+                        nv = table[nv]
+                    text, was = set_map_header_field(text, name, sub, nv)
+                    changed.append(f"{name}: {sub} {was} -> {nv}")
+            else:
+                skipped.append(f"{name}: {field} {old[field]} -> {value}; not carried over, "
+                               f"this importer only handles weather and the flags word")
+    if changed and not dry_run:
+        with open(os.path.join(ROOT, MAP_HEADERS_H), "w", encoding="utf-8", newline="\n") as f:
+            f.write(text)
+    if changed or skipped:
+        log.append((MAP_HEADERS_H, changed + skipped))
+    return len(changed)
+
+
 # ---------------------------------------------------------------- text banks
 #
 # pl_msg.narc is 724 message banks. 78 differ. They split cleanly in two:
@@ -895,6 +1027,8 @@ def main():
         import tempfile
         with tempfile.TemporaryDirectory() as tmpdir:
             counts["text"] = import_text(base, van, a.msgenc, a.charmap, tmpdir, a.dry_run, log)
+
+    counts["map_headers"] = import_map_headers(base.arm9, van.arm9, a.dry_run, log)
 
     counts["heights"] = report_skipped_heights(base, van, log)
     counts["items"] = report_skipped_items(base, van, log)
