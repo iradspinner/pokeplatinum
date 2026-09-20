@@ -593,8 +593,15 @@ def emit_source(buf, prefix, includes=("macros/scrcmd.inc",)):
             while run < len(buf) and run not in decoded and run not in movements and run not in raw:
                 run += 1
             pad = run - pos
-            if buf[pos:run] == b"\x00" * pad and pad < 4:
-                out.append(f"    .balign 4, 0")
+            # `.balign 4, 0` is only written when it provably emits this exact
+            # number of bytes from this exact offset; otherwise the bytes go out
+            # literally. Vanilla's padding always happens to be what balign
+            # would produce, so this never came up there, but the base ROM's
+            # does not and a balign that pads two bytes too many silently shifts
+            # every jump after it.
+            aligned = (4 - pos % 4) % 4
+            if buf[pos:run] == b"\x00" * pad and pad == aligned and pad:
+                out.append("    .balign 4, 0")
             else:
                 out.append("    .byte " + ", ".join(str(b) for b in buf[pos:run]))
             out.append("")
