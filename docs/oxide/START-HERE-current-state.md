@@ -1,7 +1,7 @@
 # Platinum Oxide: start here
 
 One page, for a fresh chat that needs to be useful without reading everything.
-Written 2026-09-15. **Check the date against the repo before trusting the status
+Written 2026-09-15, refreshed 2026-09-19. **Check the date against the repo before trusting the status
 section**: the live docs are `docs/oxide/design-doc.md` and
 `docs/oxide/tracker.md` on branch `oxide` of `iradspinner/pokeplatinum`, and they
 move faster than this file.
@@ -25,19 +25,22 @@ source, not to patch a ROM. Hobby project, no QA gate.
 The `claude/platinum-oxide-*.md` docs in this project's knowledge are a snapshot
 frozen 2026-09-15. Treat them as background, not current status.
 
-## State as of 2026-09-15
+## State as of 2026-09-19
 
 Done: approach chosen and validated by building a byte-exact retail Platinum ROM
 from the decomp; the fork set up and building in WSL2; the base ROM fully diffed
-against vanilla; and the first carry-over landed, 415 species files and 108 move
-files imported from the base ROM into `res/`, verified by rebuilding and comparing
-the resulting NARCs byte-for-byte.
+against vanilla; 415 species files and 108 move files imported into `res/` and
+verified byte-for-byte; all 928 trainers carried over, including the two new
+per-mon `ability` and `gender` fields, verified field-by-field with no
+mismatches; and all four of the base ROM's synthetic-overlay routines ported as
+ordinary C (no items in trainer battles, Rare Candy chaining, uncapped battle
+frame rate, EV/IV viewer).
 
 Next, all in Claude Code: importers for encounters, heights, text, items and
-trades; the trainer importer plus two new JSON fields for ability and gender; the
-map-header weather edits; then the field scripts and events, which are the slow
-part. After that Phase 4 begins, in order: Fairy type, ability widening, move
-expansion, species slots, battle AI.
+trades; the map-header weather edits; the small constant edits (vitamin EV cap,
+shiny threshold, options defaults, HM forget); then the field scripts and events,
+which are the slow part. After that Phase 4 begins, in order: Fairy type, ability
+widening, move expansion, species slots, battle AI.
 
 ## Decided, do not relitigate without reason
 
