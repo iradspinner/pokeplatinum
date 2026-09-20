@@ -44,8 +44,13 @@ design doc needs its provenance.
 cd ~/pokeplatinum
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2     # expect 23/23, ~1 min
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 18/18
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 41/41
+PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
 
 The two reports are the heart of it. The first is vanilla and should read median
@@ -55,20 +60,30 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 `main` holds vanilla**; every "does this match vanilla" check reads `--ref main`.
 
 **What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
-writing), `analysis.py` (all of section 6's maths, pure functions), `cli.py`
-(`areas`, `show`, `set`, `roundtrip`, `sidecar-init`, `report` built; `lint`, `plan`
-and `generate` are stubs that print a pointer here), and `test_m1.py` /
-`test_m2.py`. The sidecar is `docs/oxide/encounters/design.json`.
+writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
+(section 7's rules, every threshold read from the sidecar), `cli.py` (`areas`,
+`show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint` built; `plan` and
+`generate` are stubs that print a pointer here), `server.py` plus `ui/index.html`
+for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
+`docs/oxide/encounters/design.json`, which holds every threshold.
 
-**Next milestone: M3**, the linter. M1 and M2 are done and their sections below
-record what was found. M3 implements section 7's rules over M2's metrics, with two
-thresholds needing re-derivation first — R1 (see "One finding") and R6 (see M2's
-outcome).
+**Next milestone: M5**, the dupe-out planner — the feature the whole tool exists
+for. M1-M4 are done and their sections below record what each found; M4 has had one
+round of Ian's usability feedback applied.
 
-**Two decisions already taken**, so they do not need rediscovering: writes go
-through `jsonstyle.replace_value` on file text and never re-serialise a whole file;
-and the design doc's R1 needs the amendment described under "One finding" below,
-which Ian has accepted.
+M5 inherits two things from that round. Caught state is already global and already
+server-side, so the planner does not need its own notion of what is owned. And the
+area list's play order is currently *approximated* by encounter level; M5 needs a
+real progression order, and wiring it in is a one-line change to the sort key once
+the sidecar carries one.
+
+**Three decisions already taken**, so they do not need rediscovering. Writes go
+through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
+The design doc's R1 is amended as described under "One finding" below, accepted by
+Ian and implemented in M3. And the doc's thresholds are sorted into *descriptive*
+(vanilla must pass; if it fails, the threshold is wrong) and *aspirational*
+(deliberately beyond vanilla) — the tags live in `lint.py` and the reasoning is in
+M3's outcome. Do not "fix" a rule vanilla fails until checking which kind it is.
 
 ## The short version
 
@@ -81,8 +96,8 @@ generator, and they are the part most likely to be cut or deferred.
 |---|---|---|---|
 | M1 | Round-trip I/O ✔ | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff — **passed** |
 | M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
-| M3 | Linter | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla |
-| M4 | UI | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff |
+| M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
+| M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
 | M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
 | M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
 | M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
@@ -337,7 +352,72 @@ A *signature* is the table's merged shares as a sorted descending tuple, e.g.
 `(40,25,20,10,5)`. Vanilla having 71 distinct ones across 171 tables is the 0.42
 figure in R9.
 
-### M3 — Linter
+### M3 — Linter — **done, 2026-09-20**
+
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3` — 18/18.
+Vanilla trips no errors and is silent on R8, R9, R11 and R14. The project's
+current tables trip **R8 as an error** (spread 2.14x against the 2.2 floor) and
+warn on R9 and R11. `lint --fail-on error` exits 0 on vanilla and 1 on the working
+tree, so it is ready to wire as a pre-commit hook once the tables stabilise.
+
+**The finding that shaped the milestone: the design doc mixes two kinds of
+threshold and never says which is which.** R1 was the first case and Ian accepted
+the fix; calibrating the rest surfaced three more. The distinction is now explicit
+in `lint.py`:
+
+- A **descriptive** threshold states something vanilla already does, so acceptance
+  criterion 6 applies: if vanilla fails it, the threshold is wrong. R1b, R2, R6,
+  R8, R9, R11, R14.
+- An **aspirational** threshold is set beyond vanilla on purpose, because the
+  design wants something the base game did not do. Vanilla is *expected* to fail
+  these. R3, R5, R11b, R13.
+
+Measured on vanilla, which is what sorted them:
+
+| Rule | Vanilla | Verdict |
+|---|---|---|
+| R1b Spearman ≥ 0.5 | 71% of tables, corpus median 0.68 | descriptive, passes |
+| R2 3-4 rungs | 81% | descriptive, passes |
+| R6 ≤1 singleton rung | 84% | descriptive, passes |
+| R8 spread ≥ 2.2 | 2.48 | descriptive, passes |
+| R9 signatures/table ≥ 0.35 | 0.42 | descriptive, passes |
+| R11 arc decreasing | 0.373 > 0.325 > 0.275 | descriptive, passes |
+| R14 land_rate variety | 37% on the commonest value | descriptive, passes |
+| R3 uplift ≥ 3.0 | **52%**, median 3.33 | aspirational |
+| R5 band fit | **11-32%** | aspirational |
+| R11b early ≥.35, late ≤.25 | early passes, **late is 0.275** | aspirational |
+| R13 share span ≥ 4x | **37%**, median 2.5x | aspirational |
+
+Two of these are worth Ian's attention because the design doc asserts them *as
+descriptions of vanilla* and they are not:
+
+- **R11's "late ≤ 0.25".** Doc table 2.1 records vanilla as 0.37 → 0.28 and then
+  sets the target at ≤0.25, while criterion 6 says vanilla passes R11. It cannot.
+  R11 is now split: the *shape* requirement (strictly decreasing) is descriptive
+  and vanilla passes it; the absolute bounds became R11b, aspirational.
+- **R13's 4x share span**, which the doc calls one of the three rules that carry
+  the design, citing Starly at 20% on one route and 4% on another. Vanilla's median
+  span is **2.5x** and only 37% of repeated species reach 4x. The rule is still a
+  good idea — it is the one that makes Drayano-style availability generate variety
+  — but it asks for roughly double what vanilla does, and that should be a choice
+  rather than a surprise.
+
+R6's threshold also needed re-deriving, as M2 flagged: the doc's "8% of repel tiers
+collapse to a single species" is really 24% on vanilla. The *rule* as written (at
+most one singleton rung per table) is fine and passes 84% of vanilla, so the rule
+survived and only its stated justification was wrong.
+
+**R12 reports itself as skipped** rather than silently passing, because the species
+pick-list has no `tier` field yet. A rule that cannot run must say so — which is
+also the lesson from a bug caught here: R11 was silently skipped on the first run
+because bands arrived as `None`, and a quiet skip is indistinguishable from a pass
+in the output. `lint_game` now emits a `skip` finding in that case and `test_m3`
+asserts R11 actually evaluated.
+
+Thresholds all live in `docs/oxide/encounters/design.json` and a test asserts that
+editing one changes the verdict, so none can quietly drift back into code.
+
+### M3 — how it was built
 
 `lint.py` over M2's output, thresholds read from the sidecar, never hardcoded.
 R1-R14 plus R1b. Severity as the design doc has it, with R1 scoped to authored
@@ -347,7 +427,133 @@ tables and R12 (availability) stubbed to a warning until the pick-list tiers exi
 was derived from fails vanilla, the threshold is wrong — that is the whole point of
 the check, and it has already caught R1 once.
 
-### M4 — The UI
+### M4 — The UI — **done, 2026-09-20, pending Ian's usability pass**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.server
+# then open http://localhost:8765
+```
+
+`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 41/41. The gate holds:
+a slot edit made over the same HTTP the page uses lands in `git diff` as one line
+at the right key, a day-layer write adds exactly one more, and a `land_rate` write
+one more again. The test restores every file it touches, so it can be run against a
+dirty tree without fear.
+
+`server.py` is stdlib-only on `127.0.0.1:8765` and `ui/index.html` is one page of
+vanilla JS with no build step and no CDN. Every number on screen comes from
+`analysis.py` or `lint.py` through the API — there is no second implementation of
+the maths in JavaScript, so the page and the CLI cannot drift apart.
+
+**Layout.** Left is the area list with a lint dot, species count, HHI and uplift,
+sortable by any of them; typing `/gible` filters to every table holding that
+species, which is the question the dupe-out cascade is always asked in. Centre is
+the twelve-slot editor with the merged view beneath it, and morning/day/night tabs
+where day and night expose only slots 2 and 3 and grey the rest. Right is the live
+analysis: the uplift number in green or red against R3, the ladder rung by rung,
+a dupes checkbox per species that reweights every rung as you tick it, and this
+table's lint findings with the aspirational ones marked. The header carries the
+game-wide numbers — spread, signatures per table, the arc, lint totals — coloured
+against their thresholds, so a local fix that drifts the global shape is visible
+without leaving the table.
+
+**Two things worth knowing.**
+
+The species field is a `datalist`, which browsers treat as a suggestion rather than
+a constraint, so a typo would otherwise write a species that does not exist and
+break the next build. The server validates every write against the 496 constants
+derived from `res/pokemon/` and refuses anything else with a message the page
+shows; levels outside 1-100 and slots outside 0-11 are refused the same way, and a
+refused write changes nothing on disk. `include/generated/species.h` is a build
+artefact and absent from a clean tree, which is why the universe comes from the
+directory listing — all 329 species used across the encounter files are covered.
+
+Edits write on blur and save immediately; there is no save button to forget. If a
+write is refused the field is reloaded from disk rather than left showing something
+that was never stored.
+
+**Revised after Ian's first usability pass, same day.** Five changes:
+
+- **Names are names.** `SPECIES_GLALIE` is shown as *Glalie* everywhere — list,
+  editor, merged view, ladder. Six constants plus `farfetchd` need special casing
+  (`Nidoran♀`, `Nidoran♂`, `Mr. Mime`, `Mime Jr.`, `Ho-Oh`, `Porygon-Z`,
+  `Farfetch'd`); the rest title-case. The mapping lives server-side so the page
+  never has to know about constants, and every payload carries a `label`.
+- **Play order is the default sort**, approximated by encounter level until a real
+  progression order exists in the sidecar. It reads Route 201 → 202 → Lake Verity
+  → 204 South → 203 → Ravaged Path → Oreburgh Gate and ends at Stark Mountain,
+  which is close enough to Sinnoh's actual route that the approximation is
+  carrying its weight. Replacing it with the explicit order M5 needs is a one-line
+  change to the sort key.
+- **Every species cell is a combobox** over the whole 496-entry dex: type to
+  filter, or click the caret to browse. Arrow keys move, Enter picks, Escape
+  reverts. It replaces the `datalist`, which browsers render inconsistently and
+  which gave no way to *browse* rather than recall.
+- **The area filter is frozen** at the top of the left column, so it stays usable
+  however far the list is scrolled.
+- **A caught column**, and it is global. Ticking a species in one table removes it
+  from the counting mass in *every* table, because that is exactly what the dupes
+  clause does — the reason a distant table is worth walking to is what it lets you
+  delete from a later one. Ticking Bidoof moves six tables and lifts Route 201's
+  odds on its rarest from 2.0% to 2.7%. The left list then shows how many species
+  a table still owes you and the best reachable odds on the rarest of them, and a
+  fully-caught table greys out.
+
+Caught state is per-playthrough, not design intent, so it lives in
+`docs/oxide/encounters/caught.json` and is gitignored. It is held server-side
+rather than in the browser so that it is genuinely one list: every table's numbers
+are computed against it, and reopening the page does not lose it.
+
+**Second round, same day.** Four more changes, two of which reach into the model.
+
+- **The dupes clause now works on evolution lines, not species.** Catching Starly
+  on Route 201 zeroes Staravia on Route 205 North too, because that is how the
+  clause is actually played. Families are the connected components of the
+  evolution graph read from each species' `data.json`, in a new `dex.py` that also
+  owns the display names. One bug caught on the way: evolution entries vary in
+  arity (`["EVO_LEVEL_MOSS_ROCK", "SPECIES_LEAFEON"]` puts the target at index 1,
+  `["EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_JOLTEON"]` at index 2), and an
+  index-2 assumption silently dropped four of Eevee's seven. The target is now
+  found by scanning for the `SPECIES_` element. A species duped out by a relative
+  shows a *line caught* tag and a disabled checkbox rather than a tick.
+- **The centre column shows real odds.** Both the slot table and the merged view
+  carry a "real odds" column beside the on-paper rate: a caught or duped species
+  reads 0% and is struck through, and everything else renormalises so the column
+  still sums to 100%. Route 202 after catching Starly: the two 20% slots read
+  21.1%, the 10% slots 10.5%, and Starly 0%.
+- **The area list fades with progress** rather than flipping at "all caught":
+  four steps of opacity from untouched to done, with the name struck through only
+  when nothing is left. The "left to catch" count spans every table kind an area
+  has, so a route whose only outstanding species is in its surf table does not
+  read as finished.
+- **Surf and the three rods are in.** They were out of the first pass by the
+  design doc's own scope, but the data was always in the same files and the
+  analysis layer was built rate-array-agnostic for exactly this. Fifty-three
+  areas have water tables. The slot rates come from `GetWaterEncounterSlot` and
+  `GetRodEncounterSlot`: surf and old rod `60/30/5/4/1`, good and super rod
+  `40/40/15/4/1`. Water slots carry a level *range*, and `GetWildMonLevel` rolls
+  uniformly inside it, so a repel there admits a **fraction** of a slot rather than
+  all or nothing. The repel model was generalised to (species, lo, hi) with land
+  as the degenerate lo == hi case — M2's 23 checks still pass byte-identically,
+  which is the proof the generalisation cost land nothing. On Route 205 South's
+  surf table, a level-30 lead drops Grimer from 60% to 40.6% because only one of
+  its eleven levels survives, while Tentacool's wider range keeps most of its
+  mass. That is a real manip surface the land-only model could not see. Lint
+  stays land-only, since every rule was calibrated on land.
+
+**The design pass.** Reviewed against the frontend-design skill's list of
+generated-page tells, the first version hit three of them: a near-black ground
+with one acid accent (it was, in fact, the Tokyo Night palette), tracked-out
+all-caps eyebrow labels, and meta strings joined with middle dots — which was also
+the thing hardest to scan. The rewrite is a cold pale instrument rather than a
+dark dashboard: one mineral teal reserved for probability mass, one warm ochre
+reserved for the single number worth acting on (the uplift), deep red only for
+lint errors, and anything already caught drawn as *absence* — hatched, hollow,
+struck — rather than in another colour. Prose is in the system sans in sentence
+case; monospace with tabular figures is used only where numbers must align down a
+column. The one bold element is the repel ladder, now drawn as proportional bars
+per rung with caught species hatched, so the mass visibly moves to the survivors
+when a box is ticked.
 
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,

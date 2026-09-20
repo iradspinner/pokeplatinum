@@ -17,6 +17,7 @@ import json
 import sys
 
 from . import analysis
+from . import lint
 from . import model
 
 
@@ -209,6 +210,53 @@ def cmd_report(args):
     return 0
 
 
+def cmd_lint(args):
+    """Section 7's rules. `--fail-on error` is what runs before a commit."""
+    areas = [a for a in model.load_all(args.ref) if a.land_active]
+    sidecar = model.load_sidecar()
+    entries = (sidecar or {}).get("areas") or {}
+    # The band must come from the sidecar where it is declared, falling back
+    # to the table's own median level. Passing None here silently disables
+    # every band-aware rule, R11 included, without reporting anything.
+    payload = [(a.name, a.slots,
+                entries.get(a.name) or {"band": a.band},
+                a.data)
+               for a in areas]
+    findings = lint.lint_all(payload, sidecar)
+    if args.rule:
+        wanted = {r.upper() for r in args.rule.split(",")}
+        findings = [f for f in findings if f.rule.upper() in wanted]
+    if args.area:
+        findings = [f for f in findings if f.target == args.area]
+
+    if args.json:
+        json.dump([f._asdict() for f in findings], sys.stdout, indent=2)
+        print()
+    else:
+        ref = args.ref or "working tree"
+        counts = lint.summarise(findings)
+        print(f"{len(areas)} live land tables   [{ref}]")
+        print(f"{counts['errors']} error(s), {counts['warns']} warning(s), "
+              f"{counts['skipped']} skipped\n")
+        order = {"error": 0, "warn": 1, "skip": 2}
+        shown = sorted(findings, key=lambda f: (order[f.severity], f.rule))
+        limit = None if args.all else 40
+        for f in shown[:limit]:
+            tag = "aspirational" if f.rule in lint.ASPIRATIONAL else ""
+            print(f"  {f.severity:5} {f.rule:4} {f.target:38} {f.message}"
+                  + (f"  [{tag}]" if tag else ""))
+        if limit and len(shown) > limit:
+            print(f"  ... {len(shown) - limit} more (pass --all)")
+        print("\n  by rule: " + ", ".join(
+            f"{k} {v}" for k, v in sorted(counts["by_rule"].items())))
+
+    if args.fail_on == "error":
+        return 1 if any(f.severity == "error" for f in findings) else 0
+    if args.fail_on == "warn":
+        return 1 if any(f.severity in ("error", "warn") for f in findings) else 0
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -253,7 +301,15 @@ def main(argv=None):
     rep.add_argument("--json", action="store_true")
     rep.set_defaults(func=cmd_report)
 
-    for name in ("lint", "plan", "generate"):
+    ln = sub.add_parser("lint", help="section 7's rules")
+    ln.add_argument("area", nargs="?")
+    ln.add_argument("--rule", help="comma-separated rule ids, e.g. R8,R9")
+    ln.add_argument("--fail-on", choices=("error", "warn"), default=None)
+    ln.add_argument("--all", action="store_true", help="do not truncate")
+    ln.add_argument("--json", action="store_true")
+    ln.set_defaults(func=cmd_lint)
+
+    for name in ("plan", "generate"):
         later = sub.add_parser(name, help="not yet built")
         later.set_defaults(func=cmd_later)
 
