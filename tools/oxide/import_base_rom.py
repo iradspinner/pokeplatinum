@@ -31,11 +31,16 @@ ROOT = os.getcwd()
 
 
 # ---------------------------------------------------------------- name tables
+_ENUM_CACHE = {}
+
+
 def load_enum(name):
     """Value -> NAME for a generated enum. Reads build/generated/<name>.h
     (which carries the exact values, including bit-mask enums such as move
     ranges) and falls back to generated/<name>.txt (sequential values)."""
     import re
+    if name in _ENUM_CACHE:
+        return _ENUM_CACHE[name]
     header = os.path.join(ROOT, "build", "generated", name + ".h")
     table = {}
     if os.path.exists(header):
@@ -44,8 +49,11 @@ def load_enum(name):
         for line in m.group(1).splitlines():
             mm = re.match(r"\s*([A-Z0-9_]+)\s*=\s*(.+?),?\s*$", line)
             if mm:
-                table[eval(mm.group(2))] = mm.group(1)  # values are simple int expressions
+                # evaluated against the members already seen, never this
+                # module's namespace, so an alias resolves and a surprise raises
+                table[eval(mm.group(2), {"__builtins__": {}}, {v: k for k, v in table.items()})] = mm.group(1)
         if table:
+            _ENUM_CACHE[name] = table
             return table
     with open(os.path.join(ROOT, "generated", name + ".txt")) as f:
         for i, line in enumerate(l.strip() for l in f):
@@ -56,6 +64,32 @@ def load_enum(name):
                 table[int(v, 0)] = k
             else:
                 table[i] = line
+    _ENUM_CACHE[name] = table
+    return table
+
+
+_ENUM_VALUE_CACHE = {}
+
+
+def load_enum_values(name):
+    """NAME -> value for a generated enum. load_enum() maps the other way and
+    so loses aliases, which vars_flags has plenty of: VAR_MAP_LOCAL_0x00 and
+    MAP_LOCAL_VARS_START are the same number. Values are evaluated against the
+    members already parsed and nothing else, so an entry defined in terms of an
+    earlier one resolves and anything stranger raises instead of reaching into
+    this module's namespace."""
+    import re
+    if name in _ENUM_VALUE_CACHE:
+        return _ENUM_VALUE_CACHE[name]
+    header = os.path.join(ROOT, "build", "generated", name + ".h")
+    body = open(header).read()
+    found = re.search(r"enum \w+ \{(.*?)\};", body, re.S)
+    table = {}
+    for line in found.group(1).splitlines():
+        entry = re.match(r"\s*([A-Za-z0-9_]+)\s*=\s*(.+?),?\s*$", line)
+        if entry:
+            table[entry.group(1)] = eval(entry.group(2), {"__builtins__": {}}, dict(table))
+    _ENUM_VALUE_CACHE[name] = table
     return table
 
 
@@ -583,6 +617,166 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
             with open(json_path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(text)
     return bool(changed)
+
+
+# ---------------------------------------------------------------- map events
+#
+# zone_event.narc holds one record per map: four length-prefixed arrays of
+# background events (20 bytes each), object events (32), warps (12) and coord
+# events (16). tools/jsoncnv/event.py packs them; this decodes them back.
+#
+# An object event's first field is its local id, which event.py writes as the
+# array index unless the JSON overrides it with clone_id. The `id` string beside
+# it is not packed: it names the LOCALID_* constant that
+# res/field/events/events_<map>.h generates for the scripts to use. New objects
+# imported here therefore need a name, and the name has to mean something to
+# whoever writes the script that talks to them, so they are given a descriptive
+# placeholder and listed in the report.
+EVENTS_NARC = "fielddata/eventdata/zone_event.narc"
+EVENTS_DIR = os.path.join("res", "field", "events")
+
+BG_EVENT_DIRS = {}
+MOVEMENT_TYPES = None
+OBJECT_EVENT_GFX = None
+TRAINER_TYPES = None
+VARS_FLAGS = None
+
+
+def _event_enums():
+    global BG_EVENT_DIRS, MOVEMENT_TYPES, OBJECT_EVENT_GFX, TRAINER_TYPES, VARS_FLAGS
+    if MOVEMENT_TYPES is None:
+        BG_EVENT_DIRS = load_enum("bg_event_dirs")
+        MOVEMENT_TYPES = load_enum("movement_types")
+        OBJECT_EVENT_GFX = load_enum("object_events_gfx")
+        TRAINER_TYPES = load_enum("trainer_types")
+        VARS_FLAGS = load_enum("vars_flags")
+
+
+def trim_trailing_zeros(values):
+    """event.py pads an object event's data up to three on the way out, so the
+    repo's files only spell out the entries that carry something."""
+    out = list(values)
+    while out and out[-1] == 0:
+        out.pop()
+    return out
+
+
+def decode_script_ref(value):
+    """event.py's from_script() in reverse: a trainer object stores its trainer
+    id offset by 3000, or 5000 for the second trainer in a double battle.
+    Anything else is a plain script number."""
+    for base_, double in ((5000, 2), (3000, 1)):
+        if base_ <= value < base_ + 1000:
+            name = TRAINERS.get(value - base_ + 1)
+            if name is not None:
+                return name, double
+    return value, None
+
+
+def decode_events(buf):
+    _event_enums()
+    o = 0
+
+    def take(fmt):
+        nonlocal o
+        vals = struct.unpack_from(fmt, buf, o)
+        o += struct.calcsize(fmt)
+        return vals
+
+    d = {}
+    (count,) = take("<I")
+    d["bg_events"] = []
+    for _ in range(count):
+        script, type_, x, z, y, facing = take("<HHIIIH")
+        o += 2  # padding
+        d["bg_events"].append({"script": script, "type": type_, "x": x, "z": z, "y": y,
+                               "player_facing_dir": BG_EVENT_DIRS[facing]})
+
+    (count,) = take("<I")
+    d["object_events"] = []
+    for i in range(count):
+        (clone_id, gfx, movement, trainer_type, hidden, script, initial_dir,
+         d0, d1, d2, range_x, range_z, x, z, y) = take("<14HI")
+        script_val, double = decode_script_ref(script)
+        obj = {
+            "graphics_id": OBJECT_EVENT_GFX[gfx],
+            "movement_type": MOVEMENT_TYPES[movement],
+            "trainer_type": TRAINER_TYPES[trainer_type],
+            # left numeric on purpose: event.py's from_var_flag_or_map_header
+            # accepts either a VarFlag or a MapHeaderID name here, and the two
+            # enums overlap, so a number cannot be turned back into the right
+            # name without looking at what the file already says. Comparison and
+            # rendering both happen in apply_events_diff.
+            "hidden_flag": hidden,
+            "script": script_val,
+            "initial_dir": initial_dir,
+            "data": trim_trailing_zeros([d0, d1, d2]),
+            "movement_range_x": range_x,
+            "movement_range_z": range_z,
+            "x": x, "z": z, "y": y // 0x10000,
+        }
+        if double == 2:
+            obj["double_battle_id"] = 2
+        if clone_id != i:
+            obj["clone_id"] = clone_id
+        d["object_events"].append(obj)
+
+    (count,) = take("<I")
+    d["warp_events"] = []
+    for _ in range(count):
+        x, z, dest_header, dest_warp = take("<4H")
+        o += 4  # padding
+        d["warp_events"].append({"x": x, "z": z,
+                                 "dest_header_id": load_enum("map_headers")[dest_header],
+                                 "dest_warp_id": dest_warp})
+
+    (count,) = take("<I")
+    d["coord_events"] = []
+    for _ in range(count):
+        script, x, z, width, length, y, value, var = take("<8H")
+        d["coord_events"].append({"script": script, "x": x, "z": z, "width": width,
+                                  "length": length, "y": y, "value": value,
+                                  "var": var})  # numeric, as hidden_flag above
+
+    assert o == len(buf), f"event record is {len(buf)} bytes, decoder read {o}"
+    return d
+
+
+def render_var_or_header(value, current):
+    """Spell a hidden_flag or coord var the way this file already spells that
+    kind of field: as a var/flag name, or a map header name, or a bare 0."""
+    _event_enums()
+    if value == 0:
+        return "0"
+    if isinstance(current, str) and current.startswith("MAP_HEADER_"):
+        return load_enum("map_headers").get(value, value)
+    return VARS_FLAGS.get(value, value)
+
+
+def var_or_header_value(current):
+    """The number `current` stands for, whichever enum it came from."""
+    _event_enums()
+    if current == "0" or current == 0:
+        return 0
+    if isinstance(current, int):
+        return current
+    if current.startswith("MAP_HEADER_"):
+        return load_enum_values("map_headers")[current]
+    return load_enum_values("vars_flags")[current]
+
+
+def events_json(index):
+    global _EVENT_ORDER
+    if _EVENT_ORDER is None:
+        path = os.path.join(ROOT, EVENTS_DIR, "zone_event.order")
+        _EVENT_ORDER = [l.strip() for l in open(path) if l.strip()]
+    if index >= len(_EVENT_ORDER):
+        return None
+    path = os.path.join(ROOT, EVENTS_DIR, _EVENT_ORDER[index] + ".json")
+    return path if os.path.isfile(path) else None
+
+
+_EVENT_ORDER = None
 
 
 # ---------------------------------------------------------------- map headers
