@@ -12,10 +12,14 @@ or which of its claims survive contact with the files on disk. This does.
 
 For a session that has none of the conversation this came out of.
 
-**Where the work is.** Branch `worktree-encounter-tool-plan`, pushed to
-`origin`, forked off `oxide`. It is **not merged into `oxide`** — if `git log`
-does not show "Encounter tool M1", you are on the wrong branch and none of the
-files below exist. Merge it or check it out before doing anything else.
+**Where the work is.** On `oxide`, merged there 2026-09-20. If
+`git log --oneline | grep "Encounter tool M1"` finds nothing, you are on a branch
+that predates the merge and none of the files below exist.
+
+The encounter tool and the Phase 3 script/event carry-over run in parallel on the
+same branch and share no files: this track owns `tools/oxide/encounters/`,
+`res/field/encounters/` and the three `encounter-*.md` docs, and touches nothing
+else.
 
 **Read in this order.** This file for what to do next. Then
 `docs/oxide/encounter-tool-design.md` sections 1, 2 and 6 for the model — section 1

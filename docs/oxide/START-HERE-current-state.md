@@ -6,11 +6,11 @@ section**: the live docs are `docs/oxide/design-doc.md` and
 `docs/oxide/tracker.md` on branch `oxide` of `iradspinner/pokeplatinum`, and they
 move faster than this file.
 
-> **Branch check, first thing.** Encounter-tool work lives on
-> `worktree-encounter-tool-plan`, pushed to `origin` but **not merged into
-> `oxide`**. If `git log --oneline | grep "Encounter tool"` comes back empty you
-> are on `oxide` and `tools/oxide/encounters/` does not exist. Merge or check out
-> that branch before starting. Everything else described here is on `oxide`.
+> **Two tracks run in parallel**, both on `oxide`: the Phase 3 carry-over, whose
+> remaining item is the field scripts and events, and the encounter tool, which is
+> at M2. They share no files. `git log --oneline | grep "Encounter tool"` should
+> find commits; if it comes back empty, the encounter branch was never merged and
+> `tools/oxide/encounters/` will not exist.
 
 ## What the project is
 
@@ -33,21 +33,35 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 ## State as of 2026-09-20
 
-Done: approach chosen and validated by building a byte-exact retail Platinum ROM
-from the decomp; the fork set up and building in WSL2; the base ROM fully diffed
-against vanilla; 415 species files and 108 move files imported into `res/` and
-verified byte-for-byte; all 928 trainers carried over, including the two new
-per-mon `ability` and `gender` fields, verified field-by-field with no
-mismatches; all four of the base ROM's synthetic-overlay routines ported as
-ordinary C (no items in trainer battles, Rare Candy chaining, uncapped battle
-frame rate, EV/IV viewer); and the encounter, trade, map-header, text and
-small-constant carry-overs, with heights and the six vitamin item records
-deliberately left behind as DSPRE noise.
+Phase 3 is done except for the field scripts and events. Everything below was
+verified against the base ROM, not just built:
 
-That leaves **the field scripts and events** as the last Phase 3 item — 184 maps,
-surveyed and planned in `phase3-scripts-and-events-plan.md`, with a script
-disassembler as the next real piece of work. After that Phase 4 begins, in order:
-Fairy type, ability widening, move expansion, species slots, battle AI.
+- The approach, validated by building a byte-exact retail Platinum ROM from the
+  decomp, and the fork building in WSL2.
+- Species, moves, evolutions and learnsets imported.
+- All 928 trainers carried over, including two new per-mon fields for ability
+  and gender, with zero field mismatches and an emulator check on Route 202.
+- All four of the base ROM's synthetic-overlay routines ported as ordinary C:
+  no items in trainer battles, Rare Candy chaining, uncapped battle frame rate,
+  EV/IV viewer.
+- 125 wild-encounter tables, both edited in-game trades, 18 text banks, 58 map
+  headers, and the small constant edits (shiny odds, vitamin EV cap, new-game
+  option defaults, HMs forgettable, reusable TMs).
+
+Three sets of base-ROM changes were deliberately **not** carried over, because
+the evidence says DSPRE rewrote them rather than Ian editing them: sprite
+heights, the six vitamin item records, and the encounter `unown_table` and
+`rate_form` fields. Each one's reasoning is in the tracker; any of them can be
+overruled.
+
+What is left is the scripts and events, which touch 184 maps. Read
+`notes/phase3-scripts-and-events-plan.md` before starting on it. A script
+disassembler and an event decoder are built and verified against both ROMs; a
+movement-block decoder, `.s` emission and a byte-identical round trip are not.
+
+The species pick-list is settled and lives in `notes/species-pick-list.md`. Its
+21-row stat conflict with the base ROM is tabled for a later whole-dex balance
+pass, so it is not blocking anything.
 
 ## The encounter tool, running alongside
 
@@ -88,20 +102,25 @@ still largely standing in the current tables.
 
 ## Open, and who owns it
 
-- ~~**Species pick-list**~~ — landed in the repo as `species-pick-list.md` / `.csv`.
-  Still needs a `tier` field per line (`starter-adjacent` / `preferred` / `filler` /
-  `gate`) before the encounter tool's availability rule can be enforced.
-- **Encounter tool, three open items** (Ian), none of which block M2: the
-  progression order for areas, those species tiers, and whether the first authored
-  pass covers all 171 tables or a corridor. Detail at the foot of
-  `encounter-tool-build-plan.md`.
+- **What the custom `Dummy088` script command is for** (Ian). The base ROM adds
+  one custom script command, called three times in `scripts_common`. It writes a
+  single byte. Naming it properly is the last thing blocking a faithful port of
+  those three call sites.
+- **Evolution triggers for Gyarados M and Lopunny M** (Ian). Slots and stat
+  blocks are settled; the trigger is not.
+- **Encounter tool, three open items** (Ian), none of which block M2: a
+  progression order for areas, a `tier` field per line on the species pick-list
+  (`starter-adjacent` / `preferred` / `filler` / `gate`, which the availability
+  rule needs), and whether the first authored pass covers all 171 tables or a
+  corridor. Detail at the foot of `encounter-tool-build-plan.md`.
 - **Engine-change menu** (Ian). Which of hg-engine's optional features beyond the
   four scoped expansions are wanted; the full list is in
   `phase1-hg-engine-survey.md` section 3.
 - **The IV/nature hue-shift patch** (deferred). Present in the base ROM, not
   understood, explicitly droppable. Revisit after Phase 4 if at all.
-- **Battle Arcade script commands** (evidence pending). Whether any of Ian's 91
-  edited field scripts actually call them; decided during the script carry-over.
+- ~~**Battle Arcade script commands**~~ Answered 2026-09-20: exactly one custom
+  command is called, `Dummy088`, three times, all in `scripts_common`. The rest
+  of the code written over that region can be dropped.
 
 ## Gotchas worth knowing before touching anything
 
