@@ -1,0 +1,1226 @@
+{
+  "_comment": "Design intent for the encounter tables. Hand-editable. See docs/oxide/encounter-tool-design.md section 3.2.",
+  "budget": {
+    "concentrated": 0.18,
+    "dominant": 0.14,
+    "mid": 0.5,
+    "broad": 0.18
+  },
+  "areas": {
+    "encounters_acuity_lakefront": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32
+    },
+    "encounters_eterna_forest": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 10
+    },
+    "encounters_fuego_ironworks_outside": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 28
+    },
+    "encounters_great_marsh_1": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 28
+    },
+    "encounters_great_marsh_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 28
+    },
+    "encounters_great_marsh_3": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 27
+    },
+    "encounters_great_marsh_4": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 27
+    },
+    "encounters_great_marsh_5": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 26
+    },
+    "encounters_great_marsh_6": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 26
+    },
+    "encounters_iron_island_1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_iron_island_b1f_left_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_iron_island_b1f_right_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_iron_island_b2f_left_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_iron_island_b2f_right_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_iron_island_b3f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 30
+    },
+    "encounters_lake_acuity": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 38
+    },
+    "encounters_lake_valor": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 38
+    },
+    "encounters_lake_verity": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 2
+    },
+    "encounters_lake_verity_low_water": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 2
+    },
+    "encounters_maniac_tunnel": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21
+    },
+    "encounters_mt_coronet_1f_north_room_1": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 13
+    },
+    "encounters_mt_coronet_1f_north_room_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32
+    },
+    "encounters_mt_coronet_1f_south": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_mt_coronet_1f_tunnel_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_2f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_3f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_4f_room_3": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_4f_rooms_1_and_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_5f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_6f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_b1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32
+    },
+    "encounters_mt_coronet_outside_north": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_mt_coronet_outside_south": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36
+    },
+    "encounters_old_chateau": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_back_east_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_back_middle_east_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_back_middle_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_back_middle_west_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_back_west_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_corridor": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_dining_area": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_old_chateau_side_rooms": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14
+    },
+    "encounters_oreburgh_gate_1f": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 5
+    },
+    "encounters_oreburgh_gate_b1f": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 6
+    },
+    "encounters_oreburgh_mine_b1f": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 5
+    },
+    "encounters_oreburgh_mine_b2f": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 5
+    },
+    "encounters_ravaged_path": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 3
+    },
+    "encounters_route_201": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 2
+    },
+    "encounters_route_202": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 2
+    },
+    "encounters_route_203": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 4
+    },
+    "encounters_route_204_north": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 8
+    },
+    "encounters_route_204_south": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 3
+    },
+    "encounters_route_205_north": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 12
+    },
+    "encounters_route_205_south": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 9
+    },
+    "encounters_route_206": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 16
+    },
+    "encounters_route_207": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 5
+    },
+    "encounters_route_208": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209_lost_tower_1f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209_lost_tower_2f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209_lost_tower_3f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209_lost_tower_4f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_209_lost_tower_5f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_route_210_north": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 27
+    },
+    "encounters_route_210_south": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 18
+    },
+    "encounters_route_211_east": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 27
+    },
+    "encounters_route_211_west": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 13
+    },
+    "encounters_route_212_north": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21
+    },
+    "encounters_route_212_south": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21
+    },
+    "encounters_route_213": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 23
+    },
+    "encounters_route_214": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 26
+    },
+    "encounters_route_215": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 19
+    },
+    "encounters_route_216": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32
+    },
+    "encounters_route_217": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32
+    },
+    "encounters_route_218": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 28
+    },
+    "encounters_route_221": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 28
+    },
+    "encounters_route_222": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 38
+    },
+    "encounters_route_224": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 49
+    },
+    "encounters_route_225": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_route_226": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_route_227": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 51
+    },
+    "encounters_route_228": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 49
+    },
+    "encounters_route_229": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_route_230": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_ruin_maniac_cave_long": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21
+    },
+    "encounters_ruin_maniac_cave_short": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21
+    },
+    "encounters_sendoff_spring": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 37
+    },
+    "encounters_snowpoint_temple_1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_snowpoint_temple_b1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_snowpoint_temple_b2f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_snowpoint_temple_b3f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_snowpoint_temple_b4f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_snowpoint_temple_b5f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_solaceon_ruins_maniac_tunnel_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_1_northwest_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_1_southeast_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_2": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_2_northeast_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_2_southeast_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_3": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_3_northwest_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_3_southwest_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_4": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_4_southeast_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_5": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_5_southeast_deadend": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_5_southwest_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_6": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_6_northwest_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_6_southeast_dead_end": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_solaceon_ruins_room_7": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 20
+    },
+    "encounters_stark_mountain_outside": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 51
+    },
+    "encounters_stark_mountain_room_1": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 51
+    },
+    "encounters_stark_mountain_room_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 52
+    },
+    "encounters_trophy_garden": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 22
+    },
+    "encounters_turnback_cave_entrance": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_giratina_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_1_room_1": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_1_room_2": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_1_room_3": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_1_room_4": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_1_room_5": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_1_room_6": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 15
+    },
+    "encounters_turnback_cave_pillar_2_room_1": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_2_room_2": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_2_room_3": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_2_room_4": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_2_room_5": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_2_room_6": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_turnback_cave_pillar_3_room_1": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_3_room_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_3_room_3": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_3_room_4": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_3_room_5": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_3_room_6": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_turnback_cave_pillar_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 35
+    },
+    "encounters_unknown_533": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_534": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_535": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_536": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_537": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_538": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_539": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_540": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_541": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_542": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_543": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_544": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_545": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_546": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_547": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_548": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_549": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_550": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_551": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_552": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_553": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_554": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_555": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_556": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_unknown_557": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 45
+    },
+    "encounters_valley_windworks_outside": {
+      "archetype": null,
+      "band": "early",
+      "intent": "",
+      "locked": [],
+      "base_level": 9
+    },
+    "encounters_valor_lakefront": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 25
+    },
+    "encounters_victory_road_1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 40
+    },
+    "encounters_victory_road_1f_room_1": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_victory_road_1f_room_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_victory_road_1f_room_3": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 47
+    },
+    "encounters_victory_road_2f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 41
+    },
+    "encounters_victory_road_b1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 41
+    },
+    "encounters_wayward_cave_1f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    },
+    "encounters_wayward_cave_b1f": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17
+    }
+  },
+  "inactive_areas": [
+    "encounters_canalave_city",
+    "encounters_celestic_town",
+    "encounters_eterna_city",
+    "encounters_iron_island",
+    "encounters_pastoria_city",
+    "encounters_pokemon_league",
+    "encounters_resort_area",
+    "encounters_route_219",
+    "encounters_route_220",
+    "encounters_route_223",
+    "encounters_sunyshore_city",
+    "encounters_twinleaf_town"
+  ],
+  "non_land_files": [
+    "encounters_great_marsh_lookout",
+    "encounters_honey_tree"
+  ]
+}

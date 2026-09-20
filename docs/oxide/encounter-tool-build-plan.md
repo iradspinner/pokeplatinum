@@ -17,7 +17,7 @@ generator, and they are the part most likely to be cut or deferred.
 
 | | Milestone | Ships | Gate |
 |---|---|---|---|
-| M1 | Round-trip I/O | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff |
+| M1 | Round-trip I/O ✔ | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff — **passed** |
 | M2 | Analysis engine | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced from vanilla |
 | M3 | Linter | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla |
 | M4 | UI | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff |
@@ -32,7 +32,7 @@ rewritten.
 
 | Asset | Where | What it does for this |
 |---|---|---|
-| Encounter JSON | `res/field/encounters/*.json` | 185 files, 171 with land data. This *is* the tool's state; there is no database to build |
+| Encounter JSON | `res/field/encounters/*.json` | 185 files: 183 land tables, of which 171 are live. This *is* the tool's state; there is no database to build |
 | `jsonstyle.py` | `tools/oxide/` | `replace_value` / `get_value` by key path, on text, preserving the decomp's unreproducible formatting. M1 is mostly wiring this up |
 | `verify_narcs.py --encounters` | `tools/oxide/` | Already reads `pl_enc_data.narc` and compares against source. M7 is an extension of it, not a new thing |
 | Pinned vanilla | `~/roms/vanilla.nds`, and `git show main:res/field/encounters/…` | The calibration corpus. See the warning below — this matters more than it sounds |
@@ -44,6 +44,14 @@ numbers, the linter sanity pass — has to read `main`'s copies, not the checked
 ones. Build that in from the start: `--ref main` on the CLI, resolved through
 `git show`, defaulting to the working tree. Getting this wrong means calibrating
 the tool against the tables it was built to replace.
+
+Measured once the loader could read both (M1): the two corpora differ in **species
+on 114 of 171** tables but in **levels on only 27**. The base ROM's encounter
+rewrite swapped what you meet and left vanilla's level ladder largely standing, so
+the repel structure the design model is built around is still mostly present in the
+checked-out tables. That is a better starting position than the design doc assumes,
+and it means an early pass could rewrite species against an inherited ladder rather
+than building both at once.
 
 ## One finding that changes the design doc
 
@@ -84,7 +92,7 @@ exactly, which is a good sign for the survey's other numbers.
 
 ## The milestones
 
-### M1 — Round-trip I/O
+### M1 — Round-trip I/O — **done, 2026-09-20**
 
 `model.py`: load an area (decomp JSON text + parsed view + sidecar entry), write a
 slot back through `jsonstyle.replace_value` at
@@ -96,9 +104,29 @@ entry per area carrying only `band` (derived from median level) and an empty
 `intent`. Archetype assignment waits for M2, which is what can measure fit.
 
 *Gate:* load all 185, write every one back unchanged, `git diff --exit-code` clean.
-Then the same with one slot changed, and confirm exactly one key moved. The design
-doc calls this the test most likely to fail and it is right — the 14 files with no
-land data, and the `[  ]` empty-array style, are where it will break.
+Then the same with one slot changed, and confirm exactly one key moved.
+
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1` — 13/13, on
+both corpora. The round-trip is checked in its strong form: writing raw text back
+is trivially clean, so instead every land key is replaced by *the value it already
+holds* and the text must come back byte-identical. That exercises the edit path on
+all 2,208 slots rather than the parser alone. One slot write moves exactly one line
+on all 171 live tables.
+
+The file accounting in the design doc needed sharpening, and it is the thing that
+would have bitten a loader. It is not "14 files with no land data": it is **2**
+files in a different format entirely (`encounters_great_marsh_lookout`, which holds
+binocular data, and `encounters_honey_tree`, which holds three pools) plus **12**
+that carry a full twelve slots the game never rolls because `land_rate` is 0. The
+two categories fail differently and `model.py` keeps them apart — `has_land` versus
+`land_active`. The `[  ]` empty-array style never came up, since no write touches an
+empty array.
+
+Two guards worth knowing about, both enforced in the model rather than left to the
+linter. An area loaded through `--ref` refuses writes and refuses to save, so the
+calibration corpus cannot be edited by accident. And `set_time_slot` refuses
+anything outside `day`/`night` slots 2-3, which is R7 made structurally impossible
+rather than merely reported.
 
 ### M2 — Analysis engine
 
