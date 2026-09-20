@@ -7,7 +7,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_LAKE_VALOR_TM25",
-            "script": 7240,
+            "script": 7352,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

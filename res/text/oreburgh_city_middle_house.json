@@ -16,6 +16,18 @@
         "He may be young, but he keeps the\n",
         "mine running safely and efficiently."
       ]
+    },
+    {
+      "id": "OreburghCityMiddleHouse_Text_WouldYouLikeAGiftPokemon",
+      "en_US": "Would you like a gift Pokémon?"
+    },
+    {
+      "id": "OreburghCityMiddleHouse_Text_SeeYa",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "OreburghCityMiddleHouse_Text_YourPartyIsFull",
+      "en_US": "Your party is full..."
     }
   ]
 }

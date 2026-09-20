@@ -47,7 +47,10 @@ def load_enum(name):
         body = open(header).read()
         m = re.search(r"enum \w+ \{(.*?)\};", body, re.S)
         for line in m.group(1).splitlines():
-            mm = re.match(r"\s*([A-Z0-9_]+)\s*=\s*(.+?),?\s*$", line)
+            # lowercase matters: plenty of generated names carry a hex suffix,
+            # FLAG_UNK_0x0A8D and VAR_MAP_LOCAL_0x01 among them, and an
+            # uppercase-only pattern drops them from the value-to-name map
+            mm = re.match(r"\s*([A-Za-z0-9_]+)\s*=\s*(.+?),?\s*$", line)
             if mm:
                 # evaluated against the members already seen, never this
                 # module's namespace, so an alias resolves and a surprise raises
@@ -779,6 +782,91 @@ def events_json(index):
 _EVENT_ORDER = None
 
 
+def events_to_scripts(van_arm9):
+    """events archive id -> the script archive ids of every map header that uses
+    it. Matching events to scripts by filename looks right and is not: a handful
+    of maps, Mt Coronet's among them, do not line up by name."""
+    count = sum(1 for line in open(os.path.join(ROOT, MAP_HEADERS_H))
+                if line.startswith("    [MAP_HEADER_"))
+    off = find_map_header_table(van_arm9, count)
+    pairs = {}
+    for i in range(count):
+        h = decode_map_header(van_arm9[off + i * MAP_HEADER_SIZE: off + (i + 1) * MAP_HEADER_SIZE])
+        pairs.setdefault(h["eventsArchiveID"], set()).add(h["scriptsArchiveID"])
+    return pairs
+
+
+def import_events(base, van, dry_run, log):
+    """Carry over the event edits that stand on their own.
+
+    A map is only touched when its script file is unchanged, its arrays are the
+    same length, and every script id its events point at already exists. That
+    leaves in-place edits to existing objects, which is what most of these are:
+    the base ROM mostly re-itemises the balls lying around the overworld, and a
+    ball's script id is SCRIPT_ID_OFFSET_VISIBLE_ITEMS plus an index.
+
+    Anything else is left for the per-map carry-over, because a new object event
+    is an NPC that needs a LOCALID name and a script to run."""
+    import scriptdis
+    be, ve = base.narc(EVENTS_NARC), van.narc(EVENTS_NARC)
+    bs, vs = base.narc(scriptdis.SCRIPTS_NARC), van.narc(scriptdis.SCRIPTS_NARC)
+    changed_scripts = {i for i in range(len(bs)) if bytes(bs[i]) != bytes(vs[i])}
+    ev2scr = events_to_scripts(van.arm9)
+
+    def entries(buf):
+        try:
+            return len(scriptdis.script_entries(buf)[0])
+        except Exception:
+            return 0
+
+    touched, deferred = 0, []
+    for i in range(len(be)):
+        if bytes(be[i]) == bytes(ve[i]):
+            continue
+        path = events_json(i)
+        name = os.path.basename(path) if path else f"events member {i}"
+        scripts = ev2scr.get(i, set())
+        if not scripts:
+            deferred.append(f"{name}: no map header points at it"); continue
+        if scripts & changed_scripts:
+            deferred.append(f"{name}: its script file changed too"); continue
+        new, old_ = decode_events(be[i]), decode_events(ve[i])
+        if any(len(new[k]) != len(old_[k]) for k in old_):
+            deferred.append(f"{name}: gained or lost events, so new LOCALID names are needed"); continue
+        limit = max((entries(vs[s]) for s in scripts), default=0)
+        refs = {o["script"] for o in new["object_events"] if isinstance(o["script"], int)}
+        refs |= {b["script"] for b in new["bg_events"]} | {c["script"] for c in new["coord_events"]}
+        unknown = sorted(r for r in refs if 0 < r <= 2000 and r > limit)
+        if unknown:
+            deferred.append(f"{name}: points at script {unknown} but the file has {limit} entries"); continue
+        if path is None:
+            deferred.append(f"{name}: no json in res/"); continue
+
+        text = open(path, encoding="utf-8").read()
+        changes = []
+        for key in old_:
+            for idx, (nrec, orec) in enumerate(zip(new[key], old_[key])):
+                for field, value in nrec.items():
+                    if orec[field] == value:
+                        continue
+                    keypath = [key, idx, field]
+                    if field in ("hidden_flag", "var"):
+                        value = render_var_or_header(value, jsonstyle.get_value(text, keypath))
+                    if jsonstyle.get_value(text, keypath) == value:
+                        continue
+                    text = jsonstyle.replace_value(text, keypath, value)
+                    changes.append(f"{key}[{idx}].{field}: {orec[field]!r} -> {value!r}")
+        if changes:
+            if not dry_run:
+                with open(path, "w", encoding="utf-8", newline="\n") as f:
+                    f.write(text)
+            log.append((os.path.relpath(path, ROOT), changes))
+            touched += 1
+    log.append((EVENTS_NARC + " (partially imported)",
+                [f"{len(deferred)} maps left for the per-map carry-over:"] + deferred))
+    return touched
+
+
 # ---------------------------------------------------------------- map headers
 #
 # sMapHeaders is a 593-entry array of 24-byte MapHeader records in arm9. It has
@@ -1227,6 +1315,7 @@ def main():
             counts["text"] = import_text(base, van, a.msgenc, a.charmap, tmpdir, a.dry_run, log)
 
     counts["map_headers"] = import_map_headers(base.arm9, van.arm9, a.dry_run, log)
+    counts["events"] = import_events(base, van, a.dry_run, log)
 
     counts["heights"] = report_skipped_heights(base, van, log)
     counts["items"] = report_skipped_items(base, van, log)

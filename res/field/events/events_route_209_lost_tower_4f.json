@@ -16,9 +16,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27",
-            "script": 7094,
+            "script": 7354,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 6,
@@ -33,9 +33,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_POKEFAN_REBEKAH",
             "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 9,
@@ -49,11 +47,8 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
-            "double_battle_id": 1,
             "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 4,
@@ -67,16 +62,14 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNG_COUPLE_MIKE_AND_NAT",
-            "double_battle_id": 2,
             "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 5,
             "z": 9,
-            "y": 0
+            "y": 0,
+            "double_battle_id": 2
         },
         {
             "id": "LOCALID_PA_BOB",
@@ -85,11 +78,8 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
-            "double_battle_id": 1,
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 13,
@@ -103,16 +93,14 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
-            "double_battle_id": 2,
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 13,
             "z": 14,
-            "y": 0
+            "y": 0,
+            "double_battle_id": 2
         }
     ],
     "warp_events": [
@@ -129,5 +117,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

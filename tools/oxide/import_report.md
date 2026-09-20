@@ -1,8 +1,8 @@
 # Base ROM import report
 
-base: `base.nds`  vanilla: `vanilla.nds`  dry run: False
+base: `base.nds`  vanilla: `vanilla.nds`  dry run: True
 
-Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 153, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 58, 'heights': 0, 'items': 0}
+Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 153, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
 
 ## pl_enc_data.narc (partially imported)
 - 241 differing values in unown_table, rate_form0, rate_form1, rate_form2, rate_form3, rate_form4 were not carried over; see ENCOUNTER_SKIP_KEYS in this importer for why
@@ -61,65 +61,96 @@ Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized
 - TEXT_BANK_SPECIES_POKEDEX_ENTRY_EN: skipped, Pokedex entries decode identically, same as species names
 - TEXT_BANK_NPC_TRAINER_MESSAGES: skipped, trainer battle messages are keyed by TRMSG_* type per trainer, not by a flat bank index; mapping the 2,497 entries back needs trainerproc's packing order, which is its own job
 
-## include/data/map_headers.h
-- MAP_HEADER_OREBURGH_CITY_GYM: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_SANDSTORM
-- MAP_HEADER_PASTORIA_CITY_GYM: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_HEAVY_RAIN
-- MAP_HEADER_SNOWPOINT_CITY_GYM: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_BLIZZARD
-- MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_SANDSTORM
-- MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_SLOW_ASHFALL
-- MAP_HEADER_MT_CORONET_B1F: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_29
-- MAP_HEADER_VICTORY_ROAD_1F_ROOM_2: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_CLEAR
-- MAP_HEADER_TURNBACK_CAVE_ENTRANCE: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM: battleBG BACKGROUND_CAVE_3 -> BACKGROUND_DISTORTION_WORLD
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_WAYWARD_CAVE_1F: weather OVERWORLD_WEATHER_DARK_FLASH -> OVERWORLD_WEATHER_30
-- MAP_HEADER_ROUTE_209_LOST_TOWER_3F: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_ROUTE_209_LOST_TOWER_4F: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_ROUTE_210_NORTH: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_CLEAR
-- MAP_HEADER_TWINLEAF_TOWN: weather OVERWORLD_WEATHER_CLEAR -> OVERWORLD_WEATHER_SNOWING
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_533: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_534: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_535: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_536: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_537: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_538: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_539: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_540: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_541: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_542: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_543: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_544: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_545: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_546: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_547: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_548: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_549: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_550: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_551: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_552: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_553: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_554: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_555: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_556: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
-- MAP_HEADER_UNKNOWN_557: weather OVERWORLD_WEATHER_FOG -> OVERWORLD_WEATHER_27
+## fielddata/eventdata/zone_event.narc (partially imported)
+- 88 maps left for the per-map carry-over:
+- events_jubilife_city.json: its script file changed too
+- events_jubilife_city_south_house_1f.json: its script file changed too
+- events_unused_jubilife_city_south_house_3f.json: its script file changed too
+- events_canalave_city.json: its script file changed too
+- events_canalave_city_gym.json: its script file changed too
+- events_canalave_library_2f.json: its script file changed too
+- events_oreburgh_city.json: its script file changed too
+- events_oreburgh_city_gym.json: its script file changed too
+- events_oreburgh_city_middle_house.json: its script file changed too
+- events_eterna_city.json: its script file changed too
+- events_eterna_city_gym.json: its script file changed too
+- events_eterna_city_condominiums_1f.json: its script file changed too
+- events_hearthome_city.json: its script file changed too
+- events_hearthome_city_gym_leader_room.json: its script file changed too
+- events_hearthome_city_pokemon_fan_club.json: its script file changed too
+- events_pastoria_city.json: its script file changed too
+- events_pastoria_city_gym.json: its script file changed too
+- events_pastoria_city_north_house.json: its script file changed too
+- events_veilstone_city.json: its script file changed too
+- events_veilstone_city_gym.json: its script file changed too
+- events_veilstone_city_northeast_house.json: its script file changed too
+- events_sunyshore_city.json: its script file changed too
+- events_sunyshore_city_gym_room_1.json: its script file changed too
+- events_sunyshore_city_gym_room_3.json: its script file changed too
+- events_snowpoint_city.json: its script file changed too
+- events_snowpoint_city_gym.json: its script file changed too
+- events_pokemon_league.json: its script file changed too
+- events_fight_area.json: its script file changed too
+- events_oreburgh_mine_b2f.json: gained or lost events, so new LOCALID names are needed
+- events_valley_windworks_outside.json: its script file changed too
+- events_eterna_forest.json: its script file changed too
+- events_mt_coronet_outside_north.json: its script file changed too
+- events_mt_coronet_outside_south.json: its script file changed too
+- events_mt_coronet_4f_rooms_1_and_2.json: its script file changed too
+- events_mt_coronet_6f.json: its script file changed too
+- events_mt_coronet_b1f.json: its script file changed too
+- events_victory_road_2f.json: its script file changed too
+- events_victory_road_b1f.json: its script file changed too
+- events_victory_road_1f_room_2.json: its script file changed too
+- events_floaroma_meadow_house.json: its script file changed too
+- events_stark_mountain_outside.json: its script file changed too
+- events_stark_mountain_room_1.json: its script file changed too
+- events_stark_mountain_room_2.json: its script file changed too
+- events_turnback_cave_entrance.json: its script file changed too
+- events_turnback_cave_giratina_room.json: its script file changed too
+- events_snowpoint_temple_b1f.json: its script file changed too
+- events_snowpoint_temple_b4f.json: its script file changed too
+- events_wayward_cave_1f.json: its script file changed too
+- events_wayward_cave_b1f.json: its script file changed too
+- events_iron_island_b1f_left_room.json: its script file changed too
+- events_iron_island_b2f_right_room.json: its script file changed too
+- events_iron_island_b3f.json: its script file changed too
+- events_old_chateau_back_west_room.json: its script file changed too
+- events_old_chateau_back_middle_west_room.json: its script file changed too
+- events_old_chateau_back_east_room.json: its script file changed too
+- events_galactic_hq_b2f.json: gained or lost events, so new LOCALID names are needed
+- events_route_201.json: its script file changed too
+- events_route_202.json: its script file changed too
+- events_route_207.json: its script file changed too
+- events_route_209.json: its script file changed too
+- events_route_209_lost_tower_2f.json: its script file changed too
+- events_route_209_lost_tower_3f.json: its script file changed too
+- events_route_209_lost_tower_4f.json: its script file changed too
+- events_route_210_south.json: its script file changed too
+- events_pokemon_mansion_office.json: its script file changed too
+- events_route_221.json: its script file changed too
+- events_route_224.json: its script file changed too
+- events_route_227.json: its script file changed too
+- events_route_228.json: its script file changed too
+- events_twinleaf_town.json: its script file changed too
+- events_sandgem_town.json: its script file changed too
+- events_sandgem_town_house.json: its script file changed too
+- events_floaroma_town.json: its script file changed too
+- events_floaroma_town_middle_house.json: its script file changed too
+- events_solaceon_town.json: its script file changed too
+- events_pokemon_day_care.json: its script file changed too
+- events_solaceon_town_northeast_house.json: its script file changed too
+- events_solaceon_town_north_house.json: its script file changed too
+- events_celestic_town.json: its script file changed too
+- events_survival_area.json: its script file changed too
+- events_battleground.json: its script file changed too
+- events_survival_area_south_house.json: its script file changed too
+- events_resort_area.json: its script file changed too
+- events_route_220.json: its script file changed too
+- events_route_223.json: its script file changed too
+- events_iron_island_iron_ruins.json: its script file changed too
+- events_mt_coronet_iceberg_ruins.json: its script file changed too
+- events_route_228_rock_peak_ruins.json: its script file changed too
 
 ## height.narc (not imported)
 - 298 of 1976 members differ

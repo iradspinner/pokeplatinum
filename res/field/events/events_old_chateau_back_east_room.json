@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_ITEM_TM90",
@@ -7,9 +7,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90",
-            "script": 7248,
+            "script": 7417,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -25,5 +25,5 @@
             "dest_warp_id": 5
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

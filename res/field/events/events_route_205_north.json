@@ -110,7 +110,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC",
-            "script": 7023,
+            "script": 7055,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

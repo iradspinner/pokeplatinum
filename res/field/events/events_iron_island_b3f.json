@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_ITEM_SHINY_STONE",
@@ -7,9 +7,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B3F_SHINY_STONE",
-            "script": 7144,
+            "script": 7107,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 14,
@@ -48,11 +48,11 @@
             "script": 2,
             "x": 9,
             "z": 11,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x00",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x00"
         }
     ]
 }

@@ -18,6 +18,18 @@
         "They say there were big Pokémon\n",
         "ranches ’round these parts."
       ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_WouldYouLikeOneOfThesePokemon",
+      "en_US": "Would you like one of these Pokémon?"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SeeYa",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_YourPartyIsFull",
+      "en_US": "Your party is full..."
     }
   ]
 }

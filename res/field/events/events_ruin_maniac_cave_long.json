@@ -22,7 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28",
-            "script": 7116,
+            "script": 7355,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

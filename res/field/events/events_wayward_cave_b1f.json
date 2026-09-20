@@ -24,9 +24,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_GRIP_CLAW",
-            "script": 7042,
+            "script": 7286,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 22,
@@ -39,9 +39,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_MAX_ETHER",
-            "script": 7040,
+            "script": 7039,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 31,
@@ -54,9 +54,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_B1F_RARE_CANDY",
-            "script": 7041,
+            "script": 7050,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 33,
@@ -78,5 +78,5 @@
             "dest_warp_id": 2
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

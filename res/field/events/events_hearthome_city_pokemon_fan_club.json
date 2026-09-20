@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_GENTLEMAN",
@@ -9,7 +9,7 @@
             "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 6,
@@ -24,7 +24,7 @@
             "hidden_flag": "0",
             "script": 2,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 2,
@@ -39,7 +39,7 @@
             "hidden_flag": "0",
             "script": 3,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 1,
             "x": 9,
@@ -54,7 +54,7 @@
             "hidden_flag": "0",
             "script": 4,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 1,
             "movement_range_z": 1,
             "x": 7,
@@ -69,7 +69,7 @@
             "hidden_flag": "0",
             "script": 5,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 1,
             "movement_range_z": 1,
             "x": 3,
@@ -84,11 +84,26 @@
             "hidden_flag": "FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER",
             "script": 10153,
             "initial_dir": 3,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 4,
             "z": 17,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_6",
+            "graphics_id": "OBJ_EVENT_GFX_CLOWN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 7,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 4,
             "y": 0
         }
     ],
@@ -100,5 +115,5 @@
             "dest_warp_id": 12
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

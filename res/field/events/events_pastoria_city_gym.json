@@ -26,7 +26,7 @@
             "hidden_flag": "FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE",
             "script": 5,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 13,
@@ -41,7 +41,7 @@
             "hidden_flag": "0",
             "script": 6,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 15,
@@ -56,9 +56,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_TUBER_JACKY",
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 11,
@@ -73,9 +71,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_SAILOR_DAMIAN",
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -90,9 +86,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_TUBER_CAITLYN",
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 21,
@@ -107,9 +101,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_SAILOR_SAMSON",
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 5,
@@ -124,7 +116,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_ERICK",
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 19,
@@ -139,11 +131,56 @@
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_WALTER",
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 9,
             "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_8",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 8,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 11,
+            "z": 40,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_9",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 9,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 12,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_10",
+            "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 14,
+            "z": 4,
             "y": 0
         }
     ],
@@ -160,101 +197,101 @@
             "script": 2,
             "x": 3,
             "z": 6,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x01",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x01"
         },
         {
             "script": 3,
             "x": 19,
             "z": 24,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x02",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x02"
         },
         {
             "script": 2,
             "x": 9,
             "z": 24,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x01",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x01"
         },
         {
             "script": 3,
             "x": 17,
             "z": 9,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x02",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x02"
         },
         {
             "script": 3,
             "x": 10,
             "z": 30,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x02",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x02"
         },
         {
             "script": 3,
             "x": 19,
             "z": 13,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x02",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x02"
         },
         {
             "script": 4,
             "x": 9,
             "z": 14,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x03",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x03"
         },
         {
             "script": 4,
             "x": 23,
             "z": 31,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x03",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x03"
         },
         {
             "script": 4,
             "x": 19,
             "z": 22,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x03",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x03"
         },
         {
             "script": 4,
             "x": 3,
             "z": 34,
-            "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x03",
-            "value": 0
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x03"
         }
     ]
 }

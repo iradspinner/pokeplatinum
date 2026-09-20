@@ -26,9 +26,7 @@
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_GRUNT_M",
             "script": 3,
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 243,
@@ -43,7 +41,7 @@
             "hidden_flag": "0",
             "script": 5,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 240,
@@ -52,21 +50,19 @@
         },
         {
             "id": "LOCALID_ARROW_SIGNPOST",
-            "clone_id": 6,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "MAP_HEADER_ROUTE_205_SOUTH",
             "script": 65535,
             "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 215,
             "z": 659,
-            "y": 0
+            "y": 0,
+            "clone_id": 6
         },
         {
             "id": "LOCALID_ITEM_TM24",
@@ -74,9 +70,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24",
-            "script": 7015,
+            "script": 7351,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 242,
@@ -91,9 +87,7 @@
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON",
             "script": 6,
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 241,
@@ -106,9 +100,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_POTION",
-            "script": 7252,
+            "script": 7017,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 246,
@@ -123,9 +117,7 @@
             "hidden_flag": "FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_LOOKER",
             "script": 0,
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 242,
@@ -138,9 +130,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_ELECTIRIZER",
-            "script": 7318,
+            "script": 7322,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 232,
@@ -156,5 +148,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

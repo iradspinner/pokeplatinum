@@ -50,9 +50,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_DILLON",
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 235,
@@ -67,9 +65,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_VANESSA",
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 237,
@@ -84,7 +80,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_CORY",
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 250,
@@ -99,9 +95,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_COLLECTOR_IVAN",
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 288,
@@ -116,9 +110,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_JAKE",
             "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 305,
@@ -133,9 +125,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_SHANNON",
             "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 277,
@@ -150,7 +140,7 @@
             "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 308,
@@ -163,9 +153,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_221_PROTEIN",
-            "script": 7130,
+            "script": 7046,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 239,
@@ -178,9 +168,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_221_TM81",
-            "script": 7131,
+            "script": 7408,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 295,
@@ -193,9 +183,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL",
-            "script": 7129,
+            "script": 7002,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 256,
@@ -210,9 +200,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                78
-            ],
+            "data": [ 78 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 278,
@@ -227,9 +215,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                79
-            ],
+            "data": [ 79 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 279,
@@ -244,9 +230,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                80
-            ],
+            "data": [ 80 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 280,
@@ -261,9 +245,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                81
-            ],
+            "data": [ 81 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 281,
@@ -276,9 +258,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE",
-            "script": 7101,
+            "script": 7320,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 250,
@@ -293,7 +275,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_221_WORKER_WEST",
             "script": 1,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 306,
@@ -308,10 +290,25 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_221_WORKER_EAST",
             "script": 2,
             "initial_dir": 1,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 307,
+            "z": 912,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_17",
+            "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 5,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 304,
             "z": 912,
             "y": 0
         }
@@ -336,5 +333,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

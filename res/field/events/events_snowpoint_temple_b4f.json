@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_ITEM_FULL_HEAL",
@@ -7,9 +7,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_SNOWPOINT_TEMPLE_B4F_FULL_HEAL",
-            "script": 7243,
+            "script": 7027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 11,
@@ -24,7 +24,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
             "script": 10002,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 5,
@@ -46,5 +46,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

@@ -22,7 +22,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING",
-            "script": 7092,
+            "script": 7453,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

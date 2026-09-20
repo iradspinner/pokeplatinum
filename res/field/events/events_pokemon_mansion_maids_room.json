@@ -64,7 +64,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_MAIDS_ROOM_LUXURY_BALL",
-            "script": 7058,
+            "script": 7011,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

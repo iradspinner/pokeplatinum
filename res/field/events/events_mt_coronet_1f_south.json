@@ -107,7 +107,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_SOUTH_DAWN_STONE",
-            "script": 7047,
+            "script": 7109,
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,

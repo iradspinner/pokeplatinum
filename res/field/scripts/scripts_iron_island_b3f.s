@@ -7,19 +7,29 @@
     ScriptEntry IronIslandB3F_OnLoad
     ScriptEntryEnd
 
-IronIslandB3F_OnLoad:
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x04
-    GoToIfEq VAR_MAP_LOCAL_0x04, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
-    GoToIfEq VAR_MAP_LOCAL_0x04, TRUE, IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel
-    End
-
 IronIslandB3F_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
     CallIfNe VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronIslandB3F_ResetIronRuinsState
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x04
-    GoToIfEq VAR_MAP_LOCAL_0x04, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
-    GoToIfEq VAR_MAP_LOCAL_0x04, TRUE, IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel
     End
+
+IronIslandB3F_CoordEvent_PlatformLift:
+    TriggerPlatformLift
+    End
+
+IronIslandB3F_Dummy3:
+    End
+
+IronIslandB3F_OnLoad:
+    CheckPartyHasSpecies VAR_MAP_LOCAL_0x01, SPECIES_RELICANTH
+    CheckPartyHasSpecies VAR_MAP_LOCAL_0x02, SPECIES_WAILORD
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
+    GoToIfEq VAR_MAP_LOCAL_0x02, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
+    GoTo IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel
+
+IronIslandB3F_ResetIronRuinsState:
+    SetVar VAR_IRON_RUINS_STATE, 0
+    Return
 
 IronIslandB3F_RemoveWarpIronRuinsWithRegisteel:
     SetWarpEventPos 3, 17, 1
@@ -28,16 +38,3 @@ IronIslandB3F_RemoveWarpIronRuinsWithRegisteel:
 IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel:
     SetWarpEventPos 2, 17, 1
     End
-
-IronIslandB3F_CoordEvent_PlatformLift:
-    TriggerPlatformLift
-    End
-
-IronIslandB3F_ResetIronRuinsState:
-    SetVar VAR_IRON_RUINS_STATE, 0
-    Return
-
-IronIslandB3F_Dummy3:
-    End
-
-    .balign 4, 0

@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_ITEM_PROTECTOR",
@@ -7,9 +7,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B1F_LEFT_ROOM_PROTECTOR",
-            "script": 7135,
+            "script": 7321,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 5,
@@ -24,9 +24,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_CAMPER_LAWRENCE",
             "initial_dir": 3,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 11,
@@ -39,9 +37,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B1F_LEFT_ROOM_YELLOW_SHARD",
-            "script": 7287,
+            "script": 7074,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 7,
@@ -57,5 +55,5 @@
             "dest_warp_id": 1
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

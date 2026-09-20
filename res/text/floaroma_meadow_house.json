@@ -21,6 +21,18 @@
         "It gets my hopes up if I see that\n",
         "happening."
       ]
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_WouldYouLikeOneOfThesePokemon",
+      "en_US": "Would you like one of these Pok\u00e9mon?"
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_SeeYa",
+      "en_US": "See ya!\r"
+    },
+    {
+      "id": "FloaromaMeadowHouse_Text_YourPartyIsFull",
+      "en_US": "Your party is full..."
     }
   ]
 }

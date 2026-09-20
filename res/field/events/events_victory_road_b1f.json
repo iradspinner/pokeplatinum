@@ -24,9 +24,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59",
-            "script": 7190,
+            "script": 7386,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 13,
@@ -40,11 +40,8 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DOUBLE_TEAM_JO_AND_PAT",
-            "double_battle_id": 1,
             "initial_dir": 1,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 33,
@@ -58,16 +55,14 @@
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DOUBLE_TEAM_JO_AND_PAT",
-            "double_battle_id": 2,
             "initial_dir": 2,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 6,
             "movement_range_z": 1,
             "x": 33,
             "z": 44,
-            "y": 0
+            "y": 0,
+            "double_battle_id": 2
         },
         {
             "id": "LOCALID_DRAGON_TAMER_ONDREJ",
@@ -77,9 +72,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_DRAGON_TAMER_ONDREJ",
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 10,
@@ -94,9 +87,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_VALENCIA",
             "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 22,
@@ -111,9 +102,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_HENRY",
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 6,
             "x": 32,
@@ -126,9 +115,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_ULTRA_BALL",
-            "script": 7312,
+            "script": 7002,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 33,
@@ -141,9 +130,9 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_CALCIUM",
-            "script": 7313,
+            "script": 7049,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 35,
@@ -171,5 +160,5 @@
             "dest_warp_id": 4
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }
