@@ -267,6 +267,22 @@ def check_lines_dupe_out(results):
     post("/api/caught", {"clear": True})
 
 
+def check_plan_endpoint(results):
+    """The planner over HTTP, the way the page calls it."""
+    post("/api/caught", {"clear": True})
+    d = get("/api/plan?area=encounters_route_214&species=SPECIES_GROWLITHE"
+            "&kind=land")
+    results.append(("GET /api/plan returns a front with prose",
+                    d.get("front") and len(d["lines"]) == len(d["front"]),
+                    f"{len(d.get('front', []))} points"))
+    results.append(("plan prose names species, not constants",
+                    all("SPECIES_" not in s for s in d.get("lines", [])), ""))
+    code, err = post("/api/caught", {"clear": True})
+    d2 = get("/api/plan?area=encounters_route_214&species=SPECIES_NOPE")
+    results.append(("plan for an absent species has no front",
+                    not d2.get("front"), ""))
+
+
 def check_water_tables(results):
     """Surf and the three rods, with the fractional repel their level ranges
     require."""

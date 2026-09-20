@@ -160,6 +160,11 @@ input.lv { width: 48px; }
 .finding.error .rule { color: var(--alert); }
 .finding .asp { color: var(--faint); }
 
+.plan ol { margin: 6px 0 0; padding-left: 20px; }
+.plan li { margin: 0 0 8px; font-size: 12.5px; }
+.plan li b { color: var(--gold); }
+.plan .pick { display: flex; gap: 6px; align-items: center; }
+.plan select { flex: 1; }
 #toast { position: fixed; right: 16px; bottom: 14px; background: var(--ink);
          color: #fff; border-radius: 4px; padding: 7px 12px; font-size: 12.5px;
          opacity: 0; transition: opacity .12s; pointer-events: none; z-index: 60; }
@@ -225,6 +230,7 @@ const pct = v => !v ? "0%" : (v * 100).toFixed(v * 100 < 9.95 ? 1 : 0) + "%";
 let ALL = [], GAME = null, DEX = [], BY_LABEL = new Map();
 let SEL = null, DETAIL = null, CAUGHT = new Set();
 let SORT = "level", KIND = "land", LAYER = "base";
+let PLAN = null, PLAN_SP = null;
 
 function toast(msg, bad) {
   const t = $("#toast");
@@ -521,6 +527,19 @@ function drawRight() {
       goes to the rest.</p>
     ${rungs || `<p class="sub">This table has a single rung.</p>`}
 
+    <h2>How to make my catch here a particular species</h2>
+    <div class="plan">
+      <div class="pick">
+        <select id="plan-sp" aria-label="Species to plan for">
+          ${d.merged.filter(x => !x.caught && !x.duped).map(x =>
+            `<option value="${esc(x.species)}" ${x.species === PLAN_SP ? "selected" : ""}>${esc(x.label)} (${pct(x.cond)})</option>`).join("")}
+        </select>
+        <button id="plan-go">Plan</button>
+      </div>
+      <div id="plan-out">${PLAN && PLAN.target === d.area && PLAN.kind === d.kind
+        ? renderPlan(PLAN) : `<p class="sub" style="margin:6px 0 0">Picks what to catch on earlier routes so that, when you get here, your one counting encounter is the species you want.</p>`}</div>
+    </div>
+
     <h2>Shape</h2>
     <p class="sub">${m.n_species} species, the commonest at ${pct(m.top_share)},
       concentration ${m.hhi.toFixed(3)}, ${m.rung_count} rungs of
@@ -530,6 +549,29 @@ function drawRight() {
 
     <h2>Problems</h2>
     ${findings}`;
+
+  const go = $("#plan-go"), sel = $("#plan-sp");
+  if (go && sel) {
+    sel.onchange = () => { PLAN_SP = sel.value; };
+    go.onclick = async () => {
+      PLAN_SP = sel.value;
+      go.disabled = true; go.textContent = "Planning…";
+      try {
+        PLAN = await api(`/api/plan?area=${SEL}&species=${PLAN_SP}&kind=${KIND}`);
+        $("#plan-out").innerHTML = renderPlan(PLAN);
+      } catch (e) { toast(e.message, true); }
+      go.disabled = false; go.textContent = "Plan";
+    };
+  }
+}
+
+function renderPlan(pl) {
+  if (!pl.front.length) return `<p class="sub">No way to reach it from here.</p>`;
+  const items = pl.lines.map((s, i) => {
+    const c = pl.front[i];
+    return `<li>${esc(s).replace(/(\d+)%/g, "<b>$1%</b>")}</li>`;
+  }).join("");
+  return `<p class="sub" style="margin:6px 0 0">${pl.n_candidates} plans considered; the ones below each raise the odds for their cost.</p><ol>${items}</ol>`;
 }
 
 // ---- actions ------------------------------------------------------------
@@ -574,6 +616,7 @@ async function reloadDetail() {
 }
 
 async function select(name) {
+  if (name !== SEL) { PLAN = null; PLAN_SP = null; }
   SEL = name;
   try {
     DETAIL = await api(`/api/area/${name}?kind=${KIND}`);

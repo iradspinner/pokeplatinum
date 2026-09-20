@@ -257,6 +257,36 @@ def cmd_lint(args):
     return 0
 
 
+def cmd_plan(args):
+    """The dupe-out planner: what to catch first, and where, so that the one
+    counting encounter on the target table is the species wanted."""
+    from . import dex, planner
+    from .server import KIND_LABELS, State, _area_label
+    st = State(args.ref)
+    areas, line_of, members_of = planner.plan_inputs(args.ref)
+    species = args.species if args.species.startswith("SPECIES_") \
+        else "SPECIES_" + args.species.upper()
+    if not any(a["name"] == args.area for a in areas):
+        print(f"no live table called {args.area}", file=sys.stderr)
+        return 1
+    out = planner.plan(args.area, species, args.kind, areas, st.owned,
+                       line_of, members_of)
+    out["lines"] = planner.describe(out, dex.display_name, _area_label,
+                                    KIND_LABELS)
+    if args.json:
+        json.dump(out, sys.stdout, indent=2)
+        print()
+        return 0
+    print(f"{_area_label(args.area)}, {KIND_LABELS[args.kind].lower()}: "
+          f"how to make the counting encounter {dex.display_name(species)}")
+    print(f"  {len(out['removable_lines'])} lines could be duped out first; "
+          f"{out['n_candidates']} plans considered, "
+          f"{len(out['front'])} worth showing\n")
+    for i, line in enumerate(out["lines"], 1):
+        print(f"  {i}. {line}\n")
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -309,7 +339,15 @@ def main(argv=None):
     ln.add_argument("--json", action="store_true")
     ln.set_defaults(func=cmd_lint)
 
-    for name in ("plan", "generate"):
+    pl = sub.add_parser("plan", help="the dupe-out planner")
+    pl.add_argument("area")
+    pl.add_argument("species", help="SPECIES_GIBLE or just gible")
+    pl.add_argument("--kind", default="land",
+                    choices=("land", "surf", "old_rod", "good_rod", "super_rod"))
+    pl.add_argument("--json", action="store_true")
+    pl.set_defaults(func=cmd_plan)
+
+    for name in ("generate",):
         later = sub.add_parser(name, help="not yet built")
         later.set_defaults(func=cmd_later)
 

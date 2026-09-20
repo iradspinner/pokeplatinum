@@ -30,10 +30,8 @@ from . import model
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
 
-# Per-playthrough state, not design intent, so it is gitignored rather than
-# living in the sidecar. What has been caught changes which tables are worth
-# walking; it is not a statement about how the tables should be built.
-CAUGHT_FILE = os.path.join("docs", "oxide", "encounters", "caught.json")
+from .model import load_encounters, save_encounters  # noqa: E402
+from . import planner  # noqa: E402
 
 KIND_LABELS = {"land": "Grass", "surf": "Surf", "old_rod": "Old rod",
                "good_rod": "Good rod", "super_rod": "Super rod"}
@@ -41,26 +39,6 @@ KIND_LABELS = {"land": "Grass", "surf": "Surf", "old_rod": "Old rod",
 
 def species_universe():
     return dex.species_universe(model.repo_root())
-
-
-def load_encounters():
-    """{area: species}: one encounter per area, the nuzlocke model the dupes
-    clause comes from. Ticking a second species on the same area replaces the
-    first. The older bare list format is ignored, since it carried no area."""
-    path = os.path.join(model.repo_root(), CAUGHT_FILE)
-    try:
-        with open(path, encoding="utf-8") as f:
-            return dict(json.load(f).get("encounters") or {})
-    except (FileNotFoundError, ValueError):
-        return {}
-
-
-def save_encounters(encounters):
-    path = os.path.join(model.repo_root(), CAUGHT_FILE)
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8", newline="\n") as f:
-        json.dump({"encounters": dict(sorted(encounters.items()))}, f, indent=2)
-        f.write("\n")
 
 
 class State:
@@ -283,6 +261,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                         for s in species_universe()]
                 rows.sort(key=lambda r: r["label"])
                 return self._send({"species": rows})
+            if parts[1] == "plan":
+                area = (q.get("area") or [None])[0]
+                species = (q.get("species") or [None])[0]
+                if not area or not species:
+                    return self._send({"error": "plan needs area and species"},
+                                      400)
+                areas, line_of, members_of = planner.plan_inputs()
+                if not any(a["name"] == area for a in areas):
+                    return self._send({"error": "no such area"}, 404)
+                out = planner.plan(area, species, kind, areas, st.owned,
+                                   line_of, members_of)
+                out["lines"] = planner.describe(out, dex.display_name,
+                                                _area_label, KIND_LABELS)
+                return self._send(out)
+
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,

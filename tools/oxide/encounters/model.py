@@ -260,6 +260,33 @@ def load_all(ref=None, land_only=False, active_only=False):
 # fit; M1 writes only what can be derived without the analysis engine.
 
 
+# -- the caught record ------------------------------------------------------
+#
+# Per-playthrough state, not design intent, so it is gitignored rather than
+# living in the sidecar. {area: species}: one encounter per area, the
+# nuzlocke model the dupes clause comes from.
+
+CAUGHT_FILE = os.path.join("docs", "oxide", "encounters", "caught.json")
+
+
+def load_encounters():
+    path = os.path.join(repo_root(), CAUGHT_FILE)
+    try:
+        with open(path, encoding="utf-8") as f:
+            return dict(json.load(f).get("encounters") or {})
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def save_encounters(encounters):
+    path = os.path.join(repo_root(), CAUGHT_FILE)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump({"encounters": dict(sorted(encounters.items()))}, f,
+                  indent=2)
+        f.write("\n")
+
+
 def sidecar_path():
     return os.path.join(repo_root(), SIDECAR)
 

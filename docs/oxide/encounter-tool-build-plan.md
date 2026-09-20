@@ -49,9 +49,14 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 41/41
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
+
+The `plan` line is the whole design in one command: it should take Growlithe from
+3% to 100% by naming five earlier routes to catch on first.
 
 The two reports are the heart of it. The first is vanilla and should read median
 HHI 0.275, spread 2.48x, 71 signatures. The second is the tables the project
@@ -61,21 +66,25 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 
 **What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
 writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
-(section 7's rules, every threshold read from the sidecar), `cli.py` (`areas`,
-`show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint` built; `plan` and
-`generate` are stubs that print a pointer here), `server.py` plus `ui/index.html`
-for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
-`docs/oxide/encounters/design.json`, which holds every threshold.
+(section 7's rules, every threshold read from the sidecar), `dex.py` (species
+names and evolution lines from `res/pokemon/`), `planner.py` (the dupe-out planner,
+pure apart from its one loader), `cli.py` (`areas`, `show`, `set`, `roundtrip`,
+`sidecar-init`, `report`, `lint`, `plan` built; `generate` is a stub that prints a
+pointer here), `server.py` plus `ui/index.html` for the browser editor, and
+`test_m1.py` through `test_m5.py`. The sidecar is `docs/oxide/encounters/design.json`,
+which holds every threshold; the per-playthrough caught record is
+`docs/oxide/encounters/caught.json`, gitignored.
 
-**Next milestone: M5**, the dupe-out planner — the feature the whole tool exists
-for. M1-M4 are done and their sections below record what each found; M4 has had one
-round of Ian's usability feedback applied.
+**Next milestone: M6**, the generator. M1-M5 are done and their sections below
+record what each found. The plan's own advice, under "Suggested order", is that
+M6's `--levels-only` form — build the repel ladder under species Ian places by
+hand — is about a tenth of the full pipeline's work for most of its value, and
+should come first; full species placement is optional.
 
-M5 inherits two things from that round. Caught state is already global and already
-server-side, so the planner does not need its own notion of what is owned. And the
-area list's play order is currently *approximated* by encounter level; M5 needs a
-real progression order, and wiring it in is a one-line change to the sort key once
-the sidecar carries one.
+Two inputs M6 will want that do not exist yet, both listed under "Open questions":
+a real progression order (the planner and the page both approximate it by
+encounter level, from one place each, so it drops in cleanly) and a `tier` per
+pick-list line (gates R12, which the generator's placement step would enforce).
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
@@ -98,7 +107,7 @@ generator, and they are the part most likely to be cut or deferred.
 | M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
 | M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
 | M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
-| M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
+| M5 | Dupe-out planner ✔ | `planner.py`, `cli plan`, `/api/plan` | One hand-verified multi-step plan — **passed** |
 | M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
 | M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
 
@@ -584,14 +593,51 @@ Build it against M2's JSON and nothing else — every number on screen is an
 *Gate:* edit a slot in the browser, see it in `git diff` at the right key with no
 other key touched.
 
-### M5 — Dupe-out planner
+### M5 — Dupe-out planner — **done, 2026-09-20**
 
-The feature the tool exists for. Exhaustive over subsets of a table's ≤12 species
-and the rungs where the target survives; needs a progression order for areas,
-which is new data — the sidecar's `band` is too coarse, so add an explicit
-`order` integer per area. Output the Pareto front and render the best few as prose.
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5` — 13/13,
+first run. The gate is the design doc's own thought experiment built as two
+synthetic tables small enough to do by hand: 98% Rattata in front of 2% Mewtwo,
+with Rattata catchable one route earlier. Unplanned, Mewtwo is 2% and the first
+counting encounter costs one battle. Catch Rattata first (1/0.98 = 1.0204
+encounters at its best rung), and Mewtwo becomes the only thing that counts: 100%,
+for 1/0.02 = 50 battles at the target, 51.0204 in all. The planner returns exactly
+those two Pareto points, to nine decimals.
 
-*Gate:* one hand-verified case, worked out on paper first and then matched.
+On a real table it does what the doc promised. Route 214's Growlithe sits at 1% on
+paper and 3% behind a level-29 repel. The planner finds the cascade: catch Gulpin
+first (Great Marsh, **old rod**, 52%), then Rhyhorn (Ravaged Path, 50%), Meditite
+(Wayward Cave, 22%), Girafarig (Route 206, 20%) and Doduo (Route 201, 8%) — five
+earlier routes, one catch each — and Growlithe is the *only* thing that counts on
+214: **3% → 100%**, about 61 encounters in all. The front has eleven points between
+those two, each buying more odds for more cost, and the page shows them as
+sentences. `cli plan encounters_route_214 growlithe` prints the same.
+
+**Two things the per-area caught model changed about the doc's description**, both
+enforced and both tested:
+
+- **A source consumes its area's one encounter.** Sources must be earlier in
+  progression than the target, must have no encounter recorded yet, and each
+  supplies exactly one line. The doc's own example — "pre-catch Hippopotas on Route
+  214 itself" — is not legal under this rule and the planner will not propose it.
+- **Removal is by line**, so any member of a family caught anywhere earlier
+  removes the whole family from the target, and the search enumerates subsets of
+  *lines* on the target table, not species.
+
+**One modelling choice to know about.** Acquisition cost is the doc's "expected
+encounters until it appears", 1/P at the best rung of the best source, which
+assumes the player can flee a non-target and keep going. The one-shot odds — the
+chance the very first counting encounter at the source is the target — are
+carried in every acquisition beside it, so if Ian plays strict one-encounter, the
+number he needs is already there; switching the optimisation to it is a one-line
+change.
+
+Progression order is still approximated by encounter level, the same key the page
+sorts by. The planner reads it from one place (`plan_inputs`), so the sidecar's
+real order drops in there when it exists. Water tables are already sources: the
+Gulpin above comes from a rod.
+
+*Gate was:* one hand-verified case, worked out on paper first and then matched.
 
 ### M6 — Generator
 
