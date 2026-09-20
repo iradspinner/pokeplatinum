@@ -49,6 +49,8 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 17/17
+PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
 
 The two reports are the heart of it. The first is vanilla and should read median
@@ -61,14 +63,13 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
 (section 7's rules, every threshold read from the sidecar), `cli.py` (`areas`,
 `show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint` built; `plan` and
-`generate` are stubs that print a pointer here), and `test_m1.py` through
-`test_m3.py`. The sidecar is `docs/oxide/encounters/design.json`, which holds
-every threshold.
+`generate` are stubs that print a pointer here), `server.py` plus `ui/index.html`
+for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
+`docs/oxide/encounters/design.json`, which holds every threshold.
 
-**Next milestone: M4 or M5** — the engine (M1-M3) is complete and their sections
-below record what each found. The plan's own advice on which to take first is under
-"Suggested order": M4 if the goal is to start designing routes by hand, M5 if the
-goal is to find out whether the design model actually works.
+**Next milestone: M5**, the dupe-out planner — the feature the whole tool exists
+for. M1-M4 are done and their sections below record what each found. M4 is awaiting
+Ian's usability pass, so expect changes there before M5 settles.
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
@@ -90,7 +91,7 @@ generator, and they are the part most likely to be cut or deferred.
 | M1 | Round-trip I/O ✔ | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff — **passed** |
 | M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
 | M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
-| M4 | UI | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff |
+| M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
 | M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
 | M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
 | M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
@@ -420,7 +421,50 @@ tables and R12 (availability) stubbed to a warning until the pick-list tiers exi
 was derived from fails vanilla, the threshold is wrong — that is the whole point of
 the check, and it has already caught R1 once.
 
-### M4 — The UI
+### M4 — The UI — **done, 2026-09-20, pending Ian's usability pass**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.server
+# then open http://localhost:8765
+```
+
+`PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4` — 17/17. The gate holds:
+a slot edit made over the same HTTP the page uses lands in `git diff` as one line
+at the right key, a day-layer write adds exactly one more, and a `land_rate` write
+one more again. The test restores every file it touches, so it can be run against a
+dirty tree without fear.
+
+`server.py` is stdlib-only on `127.0.0.1:8765` and `ui/index.html` is one page of
+vanilla JS with no build step and no CDN. Every number on screen comes from
+`analysis.py` or `lint.py` through the API — there is no second implementation of
+the maths in JavaScript, so the page and the CLI cannot drift apart.
+
+**Layout.** Left is the area list with a lint dot, species count, HHI and uplift,
+sortable by any of them; typing `/gible` filters to every table holding that
+species, which is the question the dupe-out cascade is always asked in. Centre is
+the twelve-slot editor with the merged view beneath it, and morning/day/night tabs
+where day and night expose only slots 2 and 3 and grey the rest. Right is the live
+analysis: the uplift number in green or red against R3, the ladder rung by rung,
+a dupes checkbox per species that reweights every rung as you tick it, and this
+table's lint findings with the aspirational ones marked. The header carries the
+game-wide numbers — spread, signatures per table, the arc, lint totals — coloured
+against their thresholds, so a local fix that drifts the global shape is visible
+without leaving the table.
+
+**Two things worth knowing.**
+
+The species field is a `datalist`, which browsers treat as a suggestion rather than
+a constraint, so a typo would otherwise write a species that does not exist and
+break the next build. The server validates every write against the 496 constants
+derived from `res/pokemon/` and refuses anything else with a message the page
+shows; levels outside 1-100 and slots outside 0-11 are refused the same way, and a
+refused write changes nothing on disk. `include/generated/species.h` is a build
+artefact and absent from a clean tree, which is why the universe comes from the
+directory listing — all 329 species used across the encounter files are covered.
+
+Edits write on blur and save immediately; there is no save button to forget. If a
+write is refused the field is reloaded from disk rather than left showing something
+that was never stored.
 
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,

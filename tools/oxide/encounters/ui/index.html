@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Encounter Tool</title>
+<style>
+:root {
+  --bg: #14161a; --panel: #1b1e24; --line: #2b303a; --ink: #e6e8ec;
+  --dim: #8b93a1; --accent: #7aa2f7; --good: #7fd88f; --warn: #e0af68;
+  --bad: #f7768e; --chip: #232833;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+header {
+  padding: 8px 14px; border-bottom: 1px solid var(--line);
+  display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap;
+  position: sticky; top: 0; background: var(--bg); z-index: 5;
+}
+header h1 { font-size: 13px; margin: 0 12px 0 0; font-weight: 700; }
+.stat { color: var(--dim); white-space: nowrap; }
+.stat b { color: var(--ink); font-weight: 600; }
+.stat.bad b { color: var(--bad); }
+.stat.good b { color: var(--good); }
+main { display: grid; grid-template-columns: 300px minmax(420px,1fr) 400px;
+       gap: 0; height: calc(100vh - 42px); }
+section { overflow-y: auto; padding: 10px 12px; }
+#list { border-right: 1px solid var(--line); }
+#right { border-left: 1px solid var(--line); }
+h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+     color: var(--dim); margin: 16px 0 6px; font-weight: 600; }
+h2:first-child { margin-top: 0; }
+input, select, button {
+  font: inherit; background: var(--chip); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px; padding: 2px 5px;
+}
+input:focus, select:focus { outline: 1px solid var(--accent); }
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+#filter { width: 100%; margin-bottom: 6px; }
+.row {
+  display: grid; grid-template-columns: 1fr auto; gap: 6px; padding: 4px 6px;
+  border-radius: 3px; cursor: pointer; align-items: center;
+}
+.row:hover { background: var(--panel); }
+.row.sel { background: var(--chip); outline: 1px solid var(--accent); }
+.row .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row .meta { color: var(--dim); font-size: 11px; white-space: nowrap; }
+.dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+       margin-right: 5px; vertical-align: middle; }
+.dot.err { background: var(--bad); }
+.dot.wrn { background: var(--warn); }
+.dot.ok  { background: #34404f; }
+table { border-collapse: collapse; width: 100%; }
+th { text-align: left; color: var(--dim); font-weight: 600; font-size: 11px;
+     padding: 2px 6px; text-transform: uppercase; letter-spacing: .05em; }
+td { padding: 1px 6px; border-top: 1px solid var(--line); }
+td.num { text-align: right; color: var(--dim); }
+input.sp { width: 100%; }
+input.lv { width: 52px; text-align: right; }
+.bar { height: 7px; background: var(--chip); border-radius: 2px;
+       overflow: hidden; display: flex; }
+.bar i { display: block; height: 100%; }
+.tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+.tabs button.on { background: var(--accent); color: #0d1017; border-color: var(--accent); }
+.note { color: var(--dim); }
+.finding { padding: 3px 0; border-top: 1px solid var(--line); }
+.finding .rule { color: var(--accent); }
+.finding.error .rule { color: var(--bad); }
+.finding .asp { color: var(--dim); }
+.rung { margin: 7px 0; }
+.rung .hd { color: var(--dim); margin-bottom: 2px; }
+.pill { display: inline-block; padding: 0 5px; border-radius: 9px;
+        background: var(--chip); color: var(--dim); font-size: 11px; }
+.dupes label { display: inline-block; margin: 0 8px 2px 0; color: var(--dim);
+               cursor: pointer; white-space: nowrap; }
+.dupes input { vertical-align: middle; }
+#toast { position: fixed; right: 14px; bottom: 12px; background: var(--panel);
+         border: 1px solid var(--line); border-radius: 4px; padding: 6px 10px;
+         opacity: 0; transition: opacity .15s; pointer-events: none; }
+#toast.on { opacity: 1; }
+#toast.err { border-color: var(--bad); color: var(--bad); }
+.big { font-size: 20px; font-weight: 700; }
+.big.good { color: var(--good); } .big.bad { color: var(--bad); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Encounter Tool</h1>
+  <span class="stat">ref <b id="h-ref">-</b></span>
+  <span class="stat">tables <b id="h-n">-</b></span>
+  <span class="stat" id="h-spread-w">spread <b id="h-spread">-</b></span>
+  <span class="stat" id="h-sig-w">sig/table <b id="h-sig">-</b></span>
+  <span class="stat">HHI <b id="h-hhi">-</b></span>
+  <span class="stat" id="h-arc-w">arc <b id="h-arc">-</b></span>
+  <span class="stat">repel <b id="h-up">-</b></span>
+  <span class="stat" id="h-lint-w">lint <b id="h-lint">-</b></span>
+</header>
+<main>
+  <section id="list">
+    <input id="filter" placeholder="filter areas — or /gible to find every table holding it">
+    <div id="sort" class="note" style="margin-bottom:6px">
+      sort:
+      <a href="#" data-k="area">name</a> ·
+      <a href="#" data-k="hhi">hhi</a> ·
+      <a href="#" data-k="species">species</a> ·
+      <a href="#" data-k="uplift">uplift</a> ·
+      <a href="#" data-k="warns">lint</a>
+    </div>
+    <div id="rows"></div>
+  </section>
+
+  <section id="mid">
+    <div id="mid-body" class="note">pick an area on the left</div>
+  </section>
+
+  <section id="right">
+    <div id="right-body" class="note">&nbsp;</div>
+  </section>
+</main>
+<div id="toast"></div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c =>
+  ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+const shortSp = s => String(s).replace(/^SPECIES_/, "");
+const pct = v => (v * 100).toFixed(v * 100 < 10 ? 1 : 0) + "%";
+
+let ALL = [], GAME = null, SPECIES = [], SEL = null, DETAIL = null;
+let SORT = "area", OWNED = new Set(), LAYER = "base";
+
+function toast(msg, bad) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.className = "on" + (bad ? " err" : "");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => (t.className = ""), bad ? 5000 : 1600);
+}
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const j = await r.json().catch(() => ({ error: "bad response" }));
+  if (!r.ok || j.error) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+// ---- header -------------------------------------------------------------
+
+function drawHeader() {
+  const g = GAME.game, t = GAME.thresholds;
+  $("#h-ref").textContent = GAME.ref;
+  $("#h-n").textContent = g.n_tables;
+  const spread = g.hhi_spread, sig = g.signatures_per_table;
+  $("#h-spread").textContent = spread.toFixed(2) + "x";
+  $("#h-spread-w").className = "stat " + (spread >= t.r8_spread_min ? "good" : "bad");
+  $("#h-sig").textContent = sig.toFixed(2);
+  $("#h-sig-w").className = "stat " + (sig >= t.r9_signatures_per_table_min ? "good" : "bad");
+  $("#h-hhi").textContent = g.hhi_median.toFixed(3);
+  const arcOk = g.hhi_early > g.hhi_mid && g.hhi_mid > g.hhi_late;
+  $("#h-arc").textContent =
+    [g.hhi_early, g.hhi_mid, g.hhi_late].map(x => x == null ? "-" : x.toFixed(2)).join(" > ");
+  $("#h-arc-w").className = "stat " + (arcOk ? "good" : "bad");
+  $("#h-up").textContent = g.best_uplift_median.toFixed(1) + "x / " +
+    pct(g.best_uplift_working_frac);
+  const errs = GAME.game_findings.filter(f => f.severity === "error").length;
+  const wrns = GAME.game_findings.filter(f => f.severity === "warn").length;
+  $("#h-lint").textContent = errs + "e " + wrns + "w";
+  $("#h-lint-w").className = "stat " + (errs ? "bad" : "good");
+}
+
+// ---- left ---------------------------------------------------------------
+
+function drawList() {
+  const q = $("#filter").value.trim().toLowerCase();
+  let rows = ALL.slice();
+  if (q.startsWith("/")) {
+    const sp = q.slice(1);
+    rows = rows.filter(r => (r.holds || []).some(s => s.toLowerCase().includes(sp)));
+  } else if (q) {
+    rows = rows.filter(r => r.area.toLowerCase().includes(q));
+  }
+  const num = SORT !== "area";
+  rows.sort((a, b) => num ? (b[SORT] - a[SORT]) : a.area.localeCompare(b.area));
+  $("#rows").innerHTML = rows.map(r => {
+    const cls = r.errors ? "err" : (r.warns ? "wrn" : "ok");
+    return `<div class="row ${r.area === SEL ? "sel" : ""}" data-a="${esc(r.area)}">
+      <div class="nm"><span class="dot ${cls}"></span>${esc(r.area.replace(/^encounters_/, ""))}</div>
+      <div class="meta">${r.species}sp ${r.hhi.toFixed(2)} ${r.uplift.toFixed(1)}x</div>
+    </div>`;
+  }).join("") || `<div class="note">nothing matches</div>`;
+  document.querySelectorAll("#rows .row").forEach(el =>
+    el.onclick = () => select(el.dataset.a));
+}
+
+// ---- centre -------------------------------------------------------------
+
+function drawMid() {
+  const d = DETAIL;
+  if (!d) return;
+  const day = d.day || [], night = d.night || [];
+  const layerVals = LAYER === "day" ? day : LAYER === "night" ? night : null;
+
+  const rows = d.slots.map(s => {
+    const substituted = layerVals && (s.slot === 2 || s.slot === 3);
+    const shown = substituted ? layerVals[s.slot - 2] : s.species;
+    const locked = LAYER !== "base" && !substituted;
+    return `<tr>
+      <td class="num">${s.slot}</td>
+      <td class="num">${s.rate}%</td>
+      <td><input class="sp" list="splist" value="${esc(shown)}"
+            data-slot="${s.slot}" ${locked ? "disabled" : ""}></td>
+      <td><input class="lv" type="number" min="1" max="100" value="${s.level}"
+            data-slot="${s.slot}" ${LAYER !== "base" ? "disabled" : ""}></td>
+    </tr>`;
+  }).join("");
+
+  const merged = d.merged.map(m => {
+    const w = Math.max(2, m.share * 100);
+    return `<tr><td>${esc(shortSp(m.species))}</td>
+      <td class="num">${pct(m.share)}</td>
+      <td style="width:45%"><div class="bar"><i style="width:${w}%;background:var(--accent)"></i></div></td></tr>`;
+  }).join("");
+
+  $("#mid-body").innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+      <div><b>${esc(d.area.replace(/^encounters_/, ""))}</b>
+        <span class="pill">${esc(d.band || "-")}</span>
+        <span class="pill">${esc(d.archetype || "no archetype")}</span></div>
+      <div class="note">land_rate <input class="lv" id="rate" type="number"
+        min="0" max="100" value="${d.land_rate}"></div>
+    </div>
+    ${d.intent ? `<div class="note" style="margin-top:4px">${esc(d.intent)}</div>` : ""}
+
+    <div class="tabs" style="margin-top:10px">
+      ${["base", "day", "night"].map(l =>
+        `<button data-layer="${l}" class="${LAYER === l ? "on" : ""}"
+          ${l !== "base" && !(l === "day" ? day.length : night.length) ? "disabled" : ""}
+          >${l === "base" ? "morning / base" : l}</button>`).join("")}
+    </div>
+    ${LAYER !== "base" ? `<div class="note" style="margin-bottom:6px">
+      ${LAYER} replaces slots 2 and 3 only — at most 20% of the table.
+      Everything else is the base layer and is shown greyed.</div>` : ""}
+
+    <table><thead><tr><th>slot</th><th>rate</th><th>species</th><th>level</th></tr></thead>
+    <tbody>${rows}</tbody></table>
+
+    <h2>merged view</h2>
+    <div class="note" style="margin:-4px 0 4px">what a player meets. Editing happens above, by slot — the merged view hides the ladder, and the ladder is the point.</div>
+    <table>${merged}</table>`;
+
+  document.querySelectorAll("#mid-body .tabs button").forEach(b =>
+    b.onclick = () => { LAYER = b.dataset.layer; drawMid(); });
+
+  document.querySelectorAll("#mid-body input.sp").forEach(el => {
+    el.onchange = () => {
+      const slot = +el.dataset.slot;
+      if (LAYER === "base") write("slot", { slot, species: el.value.trim().toUpperCase() });
+      else write("time", { layer: LAYER, index: slot - 2, species: el.value.trim().toUpperCase() });
+    };
+  });
+  document.querySelectorAll("#mid-body input.lv[data-slot]").forEach(el => {
+    el.onchange = () => write("slot", { slot: +el.dataset.slot, level: +el.value });
+  });
+  $("#rate").onchange = e => write("rate", { land_rate: +e.target.value });
+}
+
+// ---- right --------------------------------------------------------------
+
+function drawRight() {
+  const d = DETAIL;
+  if (!d) { $("#right-body").innerHTML = "&nbsp;"; return; }
+  const m = d.metrics, t = GAME.thresholds;
+  const upOk = m.uplift_on_rarest >= t.r3_uplift_min;
+
+  const rungs = d.rungs.map(r => {
+    const live = r.pool.filter(p => !OWNED.has(p.species));
+    const liveMass = live.reduce((s, p) => s + p.share, 0);
+    const body = r.pool.map(p => {
+      const owned = OWNED.has(p.species);
+      const cond = owned || !liveMass ? null : p.share / liveMass;
+      return `<span class="${owned ? "note" : ""}" style="margin-right:9px">
+        ${owned ? "<s>" : ""}${esc(shortSp(p.species))}${owned ? "</s>" : ""}
+        ${owned ? "" : pct(p.share) + (cond !== null && OWNED.size ? ` <span class="note">(${pct(cond)})</span>` : "")}
+      </span>`;
+    }).join("");
+    const tput = liveMass > 0 ? (1 / liveMass).toFixed(2) : "∞";
+    return `<div class="rung"><div class="hd">lead ${r.level}
+      <span class="pill">${r.pool.length} species</span>
+      ${OWNED.size ? `<span class="pill">${tput} enc / counting</span>` : ""}</div>
+      <div>${body}</div></div>`;
+  }).join("");
+
+  const dupes = d.merged.map(mm => `<label><input type="checkbox"
+      data-sp="${esc(mm.species)}" ${OWNED.has(mm.species) ? "checked" : ""}>
+      ${esc(shortSp(mm.species))}</label>`).join("");
+
+  const findings = d.findings.length ? d.findings.map(f =>
+    `<div class="finding ${f.severity}"><span class="rule">${f.rule}</span>
+      ${esc(f.message)}
+      ${["R3","R5","R11b","R13"].includes(f.rule) ? '<span class="asp">[aspirational]</span>' : ""}
+     </div>`).join("") : `<div class="note">clean</div>`;
+
+  $("#right-body").innerHTML = `
+    <h2>repel</h2>
+    <div class="big ${upOk ? "good" : "bad"}">${m.uplift_on_rarest.toFixed(2)}x</div>
+    <div class="note">on ${esc(shortSp(m.rarest_species || "-"))}, the rarest
+      ${m.uplift_at_level ? `— lead level ${m.uplift_at_level}` : "— no repel helps it"}
+      (target ${t.r3_uplift_min}x)</div>
+    <div class="note" style="margin-top:3px">best manip
+      <b>${m.best_uplift.toFixed(2)}x</b> on ${esc(shortSp(m.best_uplift_species || "-"))}</div>
+
+    <h2>ladder</h2>
+    ${rungs || '<div class="note">one rung</div>'}
+
+    <h2>owned (dupes clause)</h2>
+    <div class="note" style="margin-bottom:4px">tick to simulate having caught it;
+      odds above reweight over what still counts</div>
+    <div class="dupes">${dupes}</div>
+    ${OWNED.size ? `<button id="clear-owned" style="margin-top:5px">clear</button>` : ""}
+
+    <h2>shape</h2>
+    <div class="note">${m.n_species} species · top ${pct(m.top_share)} ·
+      HHI ${m.hhi.toFixed(3)} · ${m.rung_count} rungs · pools ${m.pool_sizes.join("/")}
+      ${m.has_real_tail ? "· real tail" : "· duplicate tail"}</div>
+    <div class="note">signature ${m.signature.join("/")}</div>
+
+    <h2>lint</h2>
+    ${findings}`;
+
+  document.querySelectorAll("#right-body .dupes input").forEach(el => {
+    el.onchange = () => {
+      el.checked ? OWNED.add(el.dataset.sp) : OWNED.delete(el.dataset.sp);
+      drawRight();
+    };
+  });
+  const c = $("#clear-owned");
+  if (c) c.onclick = () => { OWNED.clear(); drawRight(); };
+}
+
+// ---- actions ------------------------------------------------------------
+
+async function write(kind, body) {
+  try {
+    DETAIL = await api(`/api/area/${SEL}/${kind}`,
+      { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body) });
+    toast(DETAIL.changed ? "saved" : "no change");
+    drawMid(); drawRight();
+    await refreshList();
+  } catch (e) {
+    toast(e.message, true);
+    select(SEL);  // put the field back to what is actually on disk
+  }
+}
+
+async function select(name) {
+  SEL = name; OWNED.clear(); LAYER = "base";
+  try {
+    DETAIL = await api(`/api/area/${name}`);
+    drawMid(); drawRight(); drawList();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function refreshList() {
+  GAME = await api("/api/areas");
+  ALL = GAME.rows;
+  drawHeader(); drawList();
+}
+
+async function boot() {
+  try {
+    GAME = await api("/api/areas");
+    ALL = GAME.rows;
+    SPECIES = (await api("/api/species")).species;
+    const dl = document.createElement("datalist");
+    dl.id = "splist";
+    dl.innerHTML = SPECIES.map(s => `<option value="${s}">`).join("");
+    document.body.appendChild(dl);
+    drawHeader(); drawList();
+  } catch (e) {
+    $("#rows").innerHTML = `<div class="note">${esc(e.message)}</div>`;
+  }
+}
+
+$("#filter").oninput = drawList;
+document.querySelectorAll("#sort a").forEach(a => a.onclick = ev => {
+  ev.preventDefault(); SORT = a.dataset.k; drawList();
+});
+boot();
+</script>
+</body>
+</html>
