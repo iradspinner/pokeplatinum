@@ -31,9 +31,12 @@ Then say in one or two sentences what this session will do, and do it.
   drive, which a separate chat surface works from.
 - Never delete, move, or overwrite the base ROM in the project folder
   (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It is what every
-  verify tool compares the build against, and the only source for the Phase 3
-  hard stops (the Battleground init script, the trainer battle messages, and
-  the Repel prompt command).
+  verify tool compares the build against, and the only source for the two
+  remaining Phase 3 hard stops: the Battleground init script and the trainer
+  battle messages.
+- A few files deliberately no longer match the base ROM, `scripts_common`
+  first among them. The `bulk_*` tools keep their own list of these and skip
+  them; do not "fix" a mismatch the tracker says is intended.
 - Two sessions may run in parallel. Each edits only its own status home: the
   tracker for Phases 0 to 5, `docs/oxide/encounter-tool-build-plan.md` for the
   encounter tool (plus its one paragraph at the top of the tracker). A second

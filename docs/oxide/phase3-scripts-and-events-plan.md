@@ -164,6 +164,8 @@ arm9 references `0x02101D40` by literal, so the address was found by inspection
 rather than taken from a symbol. The script context leaves little doubt about
 the intent either way.
 
+**Ported 2026-09-20** exactly as described below, closing Phase 3 hard stop 3.
+
 **How to port it.** Not by reimplementing `Dummy088`. Add a proper script
 command, say `SetRepelSteps <count>`, that writes through
 `SpecialEncounter_GetRepelSteps`, and rewrite the three call sites to use it.
