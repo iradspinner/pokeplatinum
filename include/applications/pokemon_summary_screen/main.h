@@ -5,6 +5,8 @@
 
 #include "constants/moves.h"
 
+#include "generated/pokemon_stats.h"
+
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -54,6 +56,16 @@ enum SummaryDataType {
     SUMMARY_DATA_MON = 0,
     SUMMARY_DATA_PARTY_MON,
     SUMMARY_DATA_BOX_MON,
+};
+
+// Which set of numbers the Skills page shows. The R button cycles through
+// these; see HandleInput_Main. Ported from the base ROM's EV+IV_Viewer routine.
+enum SummaryStatView {
+    SUMMARY_STAT_VIEW_STATS = 0,
+    SUMMARY_STAT_VIEW_IVS,
+    SUMMARY_STAT_VIEW_EVS,
+
+    SUMMARY_STAT_VIEW_MAX,
 };
 
 enum SummaryReturnMode {
@@ -375,6 +387,13 @@ typedef struct PokemonSummaryMonData {
     u8 ability;
     u8 nature;
 
+    // The stat viewer's alternate readings, in enum PokemonStat order. They sit
+    // beside the real stats rather than replacing them, so the HP bar and
+    // anything else reading curHP/maxHP still sees real HP while the Skills
+    // page is showing IVs or EVs.
+    u8 ivs[STAT_MAX];
+    u8 evs[STAT_MAX];
+
     u16 moves[LEARNED_MOVES_MAX];
     u8 curPP[LEARNED_MOVES_MAX];
     u8 maxPP[LEARNED_MOVES_MAX];
@@ -463,6 +482,7 @@ u8 PokemonSummaryScreen_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 pa
 u8 PokemonSummaryScreen_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen);
 u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col);
+u8 PokemonSummaryScreen_StatView(void);
 void PokemonSummaryScreen_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummaryScreen_StatusIconChar(void);
 u32 PokemonSummaryScreen_StatusIconPltt(void);

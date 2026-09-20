@@ -1164,16 +1164,51 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
 
     u32 hpWindowWidth = Window_GetWidth(&summaryScreen->extraWindows[SUMMARY_WINDOW_HP]) * 8;
 
-    PrintCurrentAndMaxInfo(summaryScreen, 0, PokemonSummary_Text_Slash, PokemonSummary_Text_TemplateCurrentHp, PokemonSummary_Text_TemplateMaxHp, summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 3, hpWindowWidth / 2, 0);
-    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateAttack, summaryScreen->monData.attack, 3, PADDING_MODE_NONE);
+    // The seven numbers on this page are the mon's stats, its IVs or its EVs,
+    // depending on which view the R button has cycled to. The labels are not
+    // relabelled for the other two views, so the page reads as plain numbers.
+    // HP has no "current out of maximum" reading in those views, so both halves
+    // of the pair get the same number and the line reads as "31/31".
+    u16 curHP = summaryScreen->monData.curHP;
+    u16 maxHP = summaryScreen->monData.maxHP;
+    u16 attack = summaryScreen->monData.attack;
+    u16 defense = summaryScreen->monData.defense;
+    u16 spAttack = summaryScreen->monData.spAttack;
+    u16 spDefense = summaryScreen->monData.spDefense;
+    u16 speed = summaryScreen->monData.speed;
+
+    switch (PokemonSummaryScreen_StatView()) {
+    case SUMMARY_STAT_VIEW_IVS:
+        curHP = summaryScreen->monData.ivs[STAT_HP];
+        maxHP = summaryScreen->monData.ivs[STAT_HP];
+        attack = summaryScreen->monData.ivs[STAT_ATTACK];
+        defense = summaryScreen->monData.ivs[STAT_DEFENSE];
+        spAttack = summaryScreen->monData.ivs[STAT_SPECIAL_ATTACK];
+        spDefense = summaryScreen->monData.ivs[STAT_SPECIAL_DEFENSE];
+        speed = summaryScreen->monData.ivs[STAT_SPEED];
+        break;
+
+    case SUMMARY_STAT_VIEW_EVS:
+        curHP = summaryScreen->monData.evs[STAT_HP];
+        maxHP = summaryScreen->monData.evs[STAT_HP];
+        attack = summaryScreen->monData.evs[STAT_ATTACK];
+        defense = summaryScreen->monData.evs[STAT_DEFENSE];
+        spAttack = summaryScreen->monData.evs[STAT_SPECIAL_ATTACK];
+        spDefense = summaryScreen->monData.evs[STAT_SPECIAL_DEFENSE];
+        speed = summaryScreen->monData.evs[STAT_SPEED];
+        break;
+    }
+
+    PrintCurrentAndMaxInfo(summaryScreen, 0, PokemonSummary_Text_Slash, PokemonSummary_Text_TemplateCurrentHp, PokemonSummary_Text_TemplateMaxHp, curHP, maxHP, 3, hpWindowWidth / 2, 0);
+    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateAttack, attack, 3, PADDING_MODE_NONE);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_ATTACK], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
-    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateDefense, summaryScreen->monData.defense, 3, PADDING_MODE_NONE);
+    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateDefense, defense, 3, PADDING_MODE_NONE);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_DEFENSE], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
-    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpAttack, summaryScreen->monData.spAttack, 3, PADDING_MODE_NONE);
+    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpAttack, spAttack, 3, PADDING_MODE_NONE);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_ATTACK], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
-    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpDefense, summaryScreen->monData.spDefense, 3, PADDING_MODE_NONE);
+    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpDefense, spDefense, 3, PADDING_MODE_NONE);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SP_DEFENSE], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
-    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpeed, summaryScreen->monData.speed, 3, PADDING_MODE_NONE);
+    SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateSpeed, speed, 3, PADDING_MODE_NONE);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_SPEED], SUMMARY_TEXT_BLACK, ALIGN_RIGHT);
 
     StringTemplate_SetAbilityName(summaryScreen->strFormatter, 0, summaryScreen->monData.ability);

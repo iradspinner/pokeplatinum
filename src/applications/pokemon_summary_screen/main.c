@@ -197,6 +197,17 @@ const ApplicationManagerTemplate gPokemonSummaryScreenApp = {
     FS_OVERLAY_ID_NONE
 };
 
+// Which numbers the Skills page is showing. Deliberately not part of
+// PokemonSummaryScreen: the base ROM's viewer kept this in a byte that outlived
+// the screen, so the chosen view sticks until it is changed or the game is
+// reset, and checking a whole party's IVs does not mean pressing R six times.
+static u8 sStatView = SUMMARY_STAT_VIEW_STATS;
+
+u8 PokemonSummaryScreen_StatView(void)
+{
+    return sStatView;
+}
+
 BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData)
 {
     return SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(saveData));
@@ -601,6 +612,22 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_REPEAT(PAD_KEY_DOWN)) {
         ChangeSummaryMon(summaryScreen, 1);
+        return SUMMARY_STATE_HANDLE_INPUT;
+    }
+
+    // Stats, then IVs, then EVs, then back to stats. Only the Skills page shows
+    // any of these, so R does nothing anywhere else. Note that the "L=A" button
+    // mode clears both L and R before any of this runs (ApplyButtonModeToInput),
+    // so the viewer is unreachable while that mode is selected.
+    if (JOY_NEW(PAD_BUTTON_R) && summaryScreen->page == SUMMARY_PAGE_SKILLS) {
+        Sound_PlayEffect(SEQ_SE_DP_SELECT5_sseq);
+
+        sStatView++;
+        if (sStatView == SUMMARY_STAT_VIEW_MAX) {
+            sStatView = SUMMARY_STAT_VIEW_STATS;
+        }
+
+        PokemonSummaryScreen_DrawExtraWindows(summaryScreen);
         return SUMMARY_STATE_HANDLE_INPUT;
     }
 
@@ -1106,6 +1133,13 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
     monData->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
     monData->nature = Pokemon_GetNature(mon);
+
+    // MON_DATA_HP_IV..MON_DATA_SPDEF_IV and MON_DATA_HP_EV..MON_DATA_SPDEF_EV
+    // are both laid out in enum PokemonStat order, so one index serves all three.
+    for (u8 stat = 0; stat < STAT_MAX; stat++) {
+        monData->ivs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_IV + stat, NULL);
+        monData->evs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_EV + stat, NULL);
+    }
 
     u16 i;
     u8 maxPP;
