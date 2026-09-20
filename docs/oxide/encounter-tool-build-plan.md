@@ -67,15 +67,22 @@ writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
 for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
 `docs/oxide/encounters/design.json`, which holds every threshold.
 
-**Next milestone: M5**, the dupe-out planner — the feature the whole tool exists
-for. M1-M4 are done and their sections below record what each found; M4 has had one
-round of Ian's usability feedback applied.
+**Next: the authoring pass, not M5.** M1-M4 are done (M4 after two rounds of
+Ian's usability feedback) and their sections below record what each found. Ian
+called M4 done for now on 2026-09-20 and asked for the tables themselves to be
+written from the pick-list. The plan for that is
+`docs/oxide/encounter-authoring-plan.md`: read it next, it says what to do in what
+order and which decisions are already taken. Its Step 0 adds the small pieces of
+tooling the pass needs (`cli apply`, `cli audit`, `cli coverage`, writers for the
+remaining encounter keys, and the M7 source-vs-ROM check), and it supplies the
+progression order and tiers M5 was waiting on. Status for the pass goes in an
+"Authoring pass" section below, gate by gate.
 
-M5 inherits two things from that round. Caught state is already global and already
-server-side, so the planner does not need its own notion of what is owned. And the
-area list's play order is currently *approximated* by encounter level; M5 needs a
-real progression order, and wiring it in is a one-line change to the sort key once
-the sidecar carries one.
+M5, the dupe-out planner, follows the pass. It inherits two things from M4's
+usability rounds: caught state is already global and server-side, so the planner
+needs no notion of ownership of its own; and the area list's play order is
+currently *approximated* by encounter level, which the pass replaces with the
+sidecar's explicit `order`, a one-line change to the sort key.
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
