@@ -44,8 +44,11 @@ design doc needs its provenance.
 cd ~/pokeplatinum
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2     # expect 23/23, ~1 min
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 18/18
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
 ```
 
 The two reports are the heart of it. The first is vanilla and should read median
@@ -55,20 +58,25 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 `main` holds vanilla**; every "does this match vanilla" check reads `--ref main`.
 
 **What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
-writing), `analysis.py` (all of section 6's maths, pure functions), `cli.py`
-(`areas`, `show`, `set`, `roundtrip`, `sidecar-init`, `report` built; `lint`, `plan`
-and `generate` are stubs that print a pointer here), and `test_m1.py` /
-`test_m2.py`. The sidecar is `docs/oxide/encounters/design.json`.
+writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
+(section 7's rules, every threshold read from the sidecar), `cli.py` (`areas`,
+`show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint` built; `plan` and
+`generate` are stubs that print a pointer here), and `test_m1.py` through
+`test_m3.py`. The sidecar is `docs/oxide/encounters/design.json`, which holds
+every threshold.
 
-**Next milestone: M3**, the linter. M1 and M2 are done and their sections below
-record what was found. M3 implements section 7's rules over M2's metrics, with two
-thresholds needing re-derivation first — R1 (see "One finding") and R6 (see M2's
-outcome).
+**Next milestone: M4 or M5** — the engine (M1-M3) is complete and their sections
+below record what each found. The plan's own advice on which to take first is under
+"Suggested order": M4 if the goal is to start designing routes by hand, M5 if the
+goal is to find out whether the design model actually works.
 
-**Two decisions already taken**, so they do not need rediscovering: writes go
-through `jsonstyle.replace_value` on file text and never re-serialise a whole file;
-and the design doc's R1 needs the amendment described under "One finding" below,
-which Ian has accepted.
+**Three decisions already taken**, so they do not need rediscovering. Writes go
+through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
+The design doc's R1 is amended as described under "One finding" below, accepted by
+Ian and implemented in M3. And the doc's thresholds are sorted into *descriptive*
+(vanilla must pass; if it fails, the threshold is wrong) and *aspirational*
+(deliberately beyond vanilla) — the tags live in `lint.py` and the reasoning is in
+M3's outcome. Do not "fix" a rule vanilla fails until checking which kind it is.
 
 ## The short version
 
@@ -81,7 +89,7 @@ generator, and they are the part most likely to be cut or deferred.
 |---|---|---|---|
 | M1 | Round-trip I/O ✔ | `model.py`, `cli.py` skeleton | 185 files load and save with a zero-byte diff — **passed** |
 | M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
-| M3 | Linter | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla |
+| M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
 | M4 | UI | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff |
 | M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
 | M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
@@ -337,7 +345,72 @@ A *signature* is the table's merged shares as a sorted descending tuple, e.g.
 `(40,25,20,10,5)`. Vanilla having 71 distinct ones across 171 tables is the 0.42
 figure in R9.
 
-### M3 — Linter
+### M3 — Linter — **done, 2026-09-20**
+
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3` — 18/18.
+Vanilla trips no errors and is silent on R8, R9, R11 and R14. The project's
+current tables trip **R8 as an error** (spread 2.14x against the 2.2 floor) and
+warn on R9 and R11. `lint --fail-on error` exits 0 on vanilla and 1 on the working
+tree, so it is ready to wire as a pre-commit hook once the tables stabilise.
+
+**The finding that shaped the milestone: the design doc mixes two kinds of
+threshold and never says which is which.** R1 was the first case and Ian accepted
+the fix; calibrating the rest surfaced three more. The distinction is now explicit
+in `lint.py`:
+
+- A **descriptive** threshold states something vanilla already does, so acceptance
+  criterion 6 applies: if vanilla fails it, the threshold is wrong. R1b, R2, R6,
+  R8, R9, R11, R14.
+- An **aspirational** threshold is set beyond vanilla on purpose, because the
+  design wants something the base game did not do. Vanilla is *expected* to fail
+  these. R3, R5, R11b, R13.
+
+Measured on vanilla, which is what sorted them:
+
+| Rule | Vanilla | Verdict |
+|---|---|---|
+| R1b Spearman ≥ 0.5 | 71% of tables, corpus median 0.68 | descriptive, passes |
+| R2 3-4 rungs | 81% | descriptive, passes |
+| R6 ≤1 singleton rung | 84% | descriptive, passes |
+| R8 spread ≥ 2.2 | 2.48 | descriptive, passes |
+| R9 signatures/table ≥ 0.35 | 0.42 | descriptive, passes |
+| R11 arc decreasing | 0.373 > 0.325 > 0.275 | descriptive, passes |
+| R14 land_rate variety | 37% on the commonest value | descriptive, passes |
+| R3 uplift ≥ 3.0 | **52%**, median 3.33 | aspirational |
+| R5 band fit | **11-32%** | aspirational |
+| R11b early ≥.35, late ≤.25 | early passes, **late is 0.275** | aspirational |
+| R13 share span ≥ 4x | **37%**, median 2.5x | aspirational |
+
+Two of these are worth Ian's attention because the design doc asserts them *as
+descriptions of vanilla* and they are not:
+
+- **R11's "late ≤ 0.25".** Doc table 2.1 records vanilla as 0.37 → 0.28 and then
+  sets the target at ≤0.25, while criterion 6 says vanilla passes R11. It cannot.
+  R11 is now split: the *shape* requirement (strictly decreasing) is descriptive
+  and vanilla passes it; the absolute bounds became R11b, aspirational.
+- **R13's 4x share span**, which the doc calls one of the three rules that carry
+  the design, citing Starly at 20% on one route and 4% on another. Vanilla's median
+  span is **2.5x** and only 37% of repeated species reach 4x. The rule is still a
+  good idea — it is the one that makes Drayano-style availability generate variety
+  — but it asks for roughly double what vanilla does, and that should be a choice
+  rather than a surprise.
+
+R6's threshold also needed re-deriving, as M2 flagged: the doc's "8% of repel tiers
+collapse to a single species" is really 24% on vanilla. The *rule* as written (at
+most one singleton rung per table) is fine and passes 84% of vanilla, so the rule
+survived and only its stated justification was wrong.
+
+**R12 reports itself as skipped** rather than silently passing, because the species
+pick-list has no `tier` field yet. A rule that cannot run must say so — which is
+also the lesson from a bug caught here: R11 was silently skipped on the first run
+because bands arrived as `None`, and a quiet skip is indistinguishable from a pass
+in the output. `lint_game` now emits a `skip` finding in that case and `test_m3`
+asserts R11 actually evaluated.
+
+Thresholds all live in `docs/oxide/encounters/design.json` and a test asserts that
+editing one changes the verdict, so none can quietly drift back into code.
+
+### M3 — how it was built
 
 `lint.py` over M2's output, thresholds read from the sidecar, never hardcoded.
 R1-R14 plus R1b. Severity as the design doc has it, with R1 scoped to authored

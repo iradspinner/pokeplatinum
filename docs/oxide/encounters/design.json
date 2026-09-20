@@ -1,5 +1,67 @@
 {
-  "_comment": "Design intent for the encounter tables. Hand-editable. See docs/oxide/encounter-tool-design.md section 3.2.",
+  "_comment": "Design intent for the encounter tables. Hand-editable. See docs/oxide/encounter-tool-design.md section 3.2. Thresholds are Ian's house rules; edit them here, never in lint.py. Rules tagged aspirational in lint.py sit beyond what vanilla Platinum does, on purpose.",
+  "thresholds": {
+    "r1b_spearman_min": 0.5,
+    "r2_rungs_min": 3,
+    "r2_rungs_max": 4,
+    "r3_uplift_min": 3.0,
+    "r4_signature_tolerance": 8.0,
+    "r6_max_singleton_rungs": 1,
+    "r6_top_rung_min": 2,
+    "r6_top_rung_max": 4,
+    "r8_spread_min": 2.2,
+    "r9_signatures_per_table_min": 0.35,
+    "r10_budget_tolerance": 0.05,
+    "r11b_early_hhi_min": 0.35,
+    "r11b_late_hhi_max": 0.25,
+    "r13_share_span_min": 4.0,
+    "r13_min_tables": 4,
+    "r14_max_shared_land_rate": 0.5,
+    "bands": {
+      "early": {
+        "species": [
+          3,
+          5
+        ],
+        "top": [
+          0.4,
+          0.5
+        ],
+        "hhi": [
+          0.35,
+          0.5
+        ]
+      },
+      "mid": {
+        "species": [
+          4,
+          7
+        ],
+        "top": [
+          0.3,
+          0.4
+        ],
+        "hhi": [
+          0.25,
+          0.35
+        ]
+      },
+      "late": {
+        "species": [
+          5,
+          8
+        ],
+        "top": [
+          0.25,
+          0.35
+        ],
+        "hhi": [
+          0.18,
+          0.28
+        ]
+      }
+    }
+  },
   "budget": {
     "concentrated": 0.18,
     "dominant": 0.14,

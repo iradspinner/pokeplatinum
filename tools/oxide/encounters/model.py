@@ -250,10 +250,15 @@ def build_sidecar(ref=None):
             "locked": [],
             "base_level": min(a.levels),
         }
+    from . import lint  # deferred: lint reads analysis, model reads neither
     return {
         "_comment": (
             "Design intent for the encounter tables. Hand-editable. "
-            "See docs/oxide/encounter-tool-design.md section 3.2."),
+            "See docs/oxide/encounter-tool-design.md section 3.2. "
+            "Thresholds are Ian's house rules; edit them here, never in "
+            "lint.py. Rules tagged aspirational in lint.py sit beyond what "
+            "vanilla Platinum does, on purpose."),
+        "thresholds": lint.DEFAULT_THRESHOLDS,
         "budget": {
             "concentrated": 0.18,
             "dominant": 0.14,
