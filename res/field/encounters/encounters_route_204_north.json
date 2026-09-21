@@ -2,27 +2,35 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 9,
-            "species": "SPECIES_BULBASAUR"
-        },
-        {
-            "level": 9,
-            "species": "SPECIES_CHIKORITA"
-        },
-        {
-            "level": 9,
-            "species": "SPECIES_SUNKERN"
-        },
-        {
             "level": 8,
-            "species": "SPECIES_TREECKO"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 9,
-            "species": "SPECIES_SHROOMISH"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 9,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_FLETCHLING"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_FLETCHLING"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 10,
             "species": "SPECIES_BUDEW"
         },
         {
@@ -31,23 +39,15 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_BELLSPROUT"
+            "species": "SPECIES_POOCHYENA"
         },
         {
-            "level": 10,
-            "species": "SPECIES_HOPPIP"
+            "level": 11,
+            "species": "SPECIES_BUDEW"
         },
         {
-            "level": 10,
-            "species": "SPECIES_CHIKORITA"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_LOTAD"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_LOMBRE"
+            "level": 11,
+            "species": "SPECIES_POOCHYENA"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_SUNKERN",
-        "SPECIES_TREECKO"
+        "SPECIES_BOUNSWEET",
+        "SPECIES_BOUNSWEET"
     ],
     "night": [
-        "SPECIES_ODDISH",
-        "SPECIES_TREECKO"
+        "SPECIES_POOCHYENA",
+        "SPECIES_BOUNSWEET"
     ],
     "radar": [
         "SPECIES_SUNKERN",

@@ -3,19 +3,7 @@
     "land_encounters": [
         {
             "level": 5,
-            "species": "SPECIES_TEDDIURSA"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_CHINGLING"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_BONSLY"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 5,
@@ -23,31 +11,43 @@
         },
         {
             "level": 5,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
-            "species": "SPECIES_DUNSPARCE"
+            "level": 5,
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
-            "species": "SPECIES_GEODUDE"
+            "level": 5,
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
-            "species": "SPECIES_CUBONE"
+            "level": 5,
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 8,
-            "species": "SPECIES_SANDSHREW"
+            "level": 6,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 7,
-            "species": "SPECIES_PHANPY"
+            "level": 6,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 8,
-            "species": "SPECIES_MACHOP"
+            "level": 6,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ONIX"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PSYDUCK"
     ],
     "day": [
-        "SPECIES_BONSLY",
-        "SPECIES_PSYDUCK"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "night": [
-        "SPECIES_TEDDIURSA",
-        "SPECIES_PSYDUCK"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "radar": [
         "SPECIES_GEODUDE",

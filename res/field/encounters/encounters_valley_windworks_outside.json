@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 9,
-            "species": "SPECIES_SPEAROW"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_HOPPIP"
+            "species": "SPECIES_PAWMI"
         },
         {
             "level": 9,
-            "species": "SPECIES_STARLY"
+            "species": "SPECIES_PAWMI"
         },
         {
             "level": 10,
-            "species": "SPECIES_PIDGEY"
+            "species": "SPECIES_PAWMI"
         },
         {
             "level": 10,
-            "species": "SPECIES_NATU"
+            "species": "SPECIES_SHINX"
         },
         {
-            "level": 11,
-            "species": "SPECIES_WINGULL"
+            "level": 10,
+            "species": "SPECIES_SHINX"
         },
         {
-            "level": 9,
+            "level": 10,
             "species": "SPECIES_PACHIRISU"
         },
         {
             "level": 11,
-            "species": "SPECIES_PICHU"
+            "species": "SPECIES_PACHIRISU"
         },
         {
             "level": 11,
-            "species": "SPECIES_FARFETCHD"
-        },
-        {
-            "level": 12,
-            "species": "SPECIES_SWABLU"
+            "species": "SPECIES_PACHIRISU"
         },
         {
             "level": 11,
-            "species": "SPECIES_DODUO"
+            "species": "SPECIES_MINCCINO"
         },
         {
-            "level": 12,
-            "species": "SPECIES_ELECTRIKE"
+            "level": 11,
+            "species": "SPECIES_MINCCINO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_MINCCINO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_MINCCINO"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_ELECTRIKE"
     ],
     "day": [
-        "SPECIES_STARLY",
-        "SPECIES_PIDGEY"
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_HOOTHOOT"
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX"
     ],
     "radar": [
         "SPECIES_MAREEP",

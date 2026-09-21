@@ -165,9 +165,19 @@ def check_model(results):
 def check_audit(results):
     out = audit.audit()
     s = out["summary"]
-    results.append(("audit reproduces the plan's live land figures: 2052 slots, 1250 off-list",
-                    s["live_land_slots"] == 2052 and s["live_land_slots_off_list"] == 1250,
-                    f"{s['live_land_slots']} / {s['live_land_slots_off_list']}"))
+    # The plan measured 2052 live land slots, 1250 off-list, before any table
+    # was authored. The slot count is fixed by the format; the off-list count
+    # only falls as tables are authored, and an authored table leaks nothing.
+    sidecar = model.load_sidecar() or {}
+    authored = {n for n, e in (sidecar.get("areas") or {}).items() if e.get("cast")}
+    live = [r for r in out["rows"] if r["key"] == "land_encounters" and r["live"]]
+    authored_off = sum(1 for r in live if r["file"] in authored and not r["on_list"])
+    results.append(("audit reproduces the plan's live land figures: 2052 slots, at most 1250 "
+                    "off-list, none of them in an authored table",
+                    s["live_land_slots"] == 2052 and s["live_land_slots_off_list"] <= 1250
+                    and authored_off == 0,
+                    f"{s['live_land_slots']} / {s['live_land_slots_off_list']} off-list, "
+                    f"{authored_off} in {len(authored)} authored table(s)"))
     # "natives" in the audit means pick-list species present in the tree: all
     # 358 obtainable rows since element 3, 199 before it.
     results.append(("audit sees all 358 pick-list species and every encounter file",
@@ -355,9 +365,13 @@ def check_importer(results):
         results.append(("importer loads", False, f"{type(e).__name__}: {e}"))
         return
     base = imp.authored_encounters()
-    results.append(("AUTHORED is a stem -> reason table, empty until a table is authored",
-                    isinstance(imp.AUTHORED, dict) and not [n for n in base if n not in imp.AUTHORED],
-                    f"{len(base)} authored now"))
+    sidecar = model.load_sidecar() or {}
+    with_cast = {n for n, e in (sidecar.get("areas") or {}).items() if e.get("cast")}
+    results.append(("AUTHORED is a stem -> reason table; authored_encounters() is it plus "
+                    "every sidecar area with a cast",
+                    isinstance(imp.AUTHORED, dict)
+                    and set(base) == set(imp.AUTHORED) | with_cast,
+                    f"{len(base)} authored now, {len(with_cast)} from the sidecar"))
     with sidecar_with(AREA, archetype="A1", base_level=22,
                       cast=["SPECIES_RHYHORN"] * 5):
         authored = imp.authored_encounters()

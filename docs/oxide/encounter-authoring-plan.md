@@ -55,6 +55,12 @@ so they are not re-decided.
 > caverns and the roamer slot draw from rather than statics of their own, and only
 > Xerneas and Yveltal are new statics, post-League. Decision 8 stands: that scripting
 > is outside this track and R12 reports the pool lines until it exists.
+>
+> **Step 3 tables written, 2026-09-21.** The seventeen corridor tables are in the
+> sidecar and applied to `res/`, per-table lint clean, so Ian can see the plan in
+> the tool; the archetypes, the one deviation (Mine B1F as a duo) and what the
+> gate still waits on are in the build plan's Step 3 entry. Two suites cannot run
+> at once: `test_step0` rewrites shared files under a restore.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

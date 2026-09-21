@@ -1039,6 +1039,55 @@ unchanged tables still 81 errors.
 *Gate was:* no line without a source; the early band's cast fits 3-5
 species per table with the lines whose tier says early.
 
+### Step 3 — the first corridor — **tables written, 2026-09-21; gate open**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run   # 17 areas, 0 failed, nothing to change
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint encounters_route_201   # 0 errors, R5 warnings only
+PYTHONPATH=. python3 -m tools.oxide.encounters.server                        # Ian's view of the corridor
+```
+
+**What was written.** The seventeen live land tables from Route 201 to
+Eterna Forest, in `docs/oxide/encounters/design.json` as sidecar entries
+(archetype, intent, cast in signature order, day and night for slots 2-3,
+an explicit two-rung ladder on the three A3 caves) and in `res/` through
+`cli apply --all`, so the JSON is what the layout produces and nothing was
+hand-placed. Casts are the plan's "Tables" rows: the starred lines take the
+shares that make them homes, the rest are cameos. Archetypes are the early
+band's set: A1 on the seven routes with five lines, A9 on Route 201, both
+lake shores, Route 207 and the windworks, A3 on Oreburgh Gate's two floors
+and Mine B2F, A4 on the Ravaged Path and Mine B1F. Day equals the morning
+slots everywhere, so the time of day only matters after dark: Blipbug
+takes Pikipek's slot on Route 201, Purrloin steps up on Routes 202 and 203,
+the Nidoran pair swap on 203, Vulpix takes half of Route 207's head,
+Surskit comes out on the lake and Route 205 north, Poochyena on 204 north,
+Skitty on 205 south, Seedot in the forest; the caves do not change.
+
+**One deviation from the plan.** Mine B1F has only Nacli and Zubat: three
+lines fit no early archetype but A3, and three A3 caves in a row was too
+many, so it is a duo and Onix waits for B2F. The plan file and
+`availability.md` say so now; the gate still passes.
+
+**Tool changes.** `cli lint --ref` drops the sidecar's `archetype` before
+judging a reference tree, since vanilla was never laid out from it and R1
+would otherwise fail the integrate check on the seventeen. Two Step 0
+checks that pinned the pre-authoring figures now read the sidecar: the
+off-list count may only fall (1250 to 1119 with the corridor in), an
+authored table leaks nothing, and the importer's authored set is `AUTHORED`
+plus every entry with a cast.
+
+**Numbers.** Per-table lint on the seventeen: 0 errors; the warnings are
+R5 band fit (A1's HHI of 0.275 sits under the early band's 0.35 by
+construction, the A3 caves above 0.50) and R3 on the two duos. Game-wide
+R12 fell from 81 to 68 errors. Suites 35/35, 21/21, 18/18, run one at a
+time: `test_step0` rewrites shared files under a restore and cannot share
+the tree with another suite.
+
+*Gate:* per-table lint clean, done. Still open: `report` on the corridor,
+the merge into `oxide`, and Ian playing Route 201 to Eterna Forest and
+saying the routes feel like routes. These tables exist first so he can see
+the plan in the tool; the casts are his to change there.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

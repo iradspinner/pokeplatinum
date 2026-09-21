@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 3,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_BURMY"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_WEEDLE"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_SUNKERN"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIDGEY"
-        },
-        {
-            "level": 3,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_SNUBBULL"
-        },
-        {
             "level": 2,
             "species": "SPECIES_SHINX"
         },
         {
-            "level": 2,
-            "species": "SPECIES_SANDSHREW"
+            "level": 3,
+            "species": "SPECIES_SHINX"
         },
         {
-            "level": 2,
-            "species": "SPECIES_AZURILL"
+            "level": 3,
+            "species": "SPECIES_BLIPBUG"
         },
         {
-            "level": 2,
-            "species": "SPECIES_SPEAROW"
+            "level": 3,
+            "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PIKIPEK"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PIKIPEK"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_PIKIPEK"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_PURRLOIN"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_ZIGZAGOON"
     ],
     "day": [
-        "SPECIES_WEEDLE",
-        "SPECIES_SUNKERN"
+        "SPECIES_BLIPBUG",
+        "SPECIES_BLIPBUG"
     ],
     "night": [
-        "SPECIES_LEDYBA",
-        "SPECIES_SPINARAK"
+        "SPECIES_PURRLOIN",
+        "SPECIES_BLIPBUG"
     ],
     "radar": [
         "SPECIES_SENTRET",

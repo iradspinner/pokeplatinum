@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 2,
-            "species": "SPECIES_SPHEAL"
+            "species": "SPECIES_SENTRET"
         },
         {
             "level": 2,
-            "species": "SPECIES_BIDOOF"
+            "species": "SPECIES_SENTRET"
         },
         {
             "level": 3,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_SENTRET"
         },
         {
             "level": 3,
-            "species": "SPECIES_GLAMEOW"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 3,
-            "species": "SPECIES_SHINX"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 3,
-            "species": "SPECIES_MAREEP"
+            "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 4,
-            "species": "SPECIES_SPOINK"
+            "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 4,
-            "species": "SPECIES_RALTS"
+            "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 4,
-            "species": "SPECIES_TEDDIURSA"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 4,
-            "species": "SPECIES_STARLY"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 4,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 4,
-            "species": "SPECIES_SEEL"
+            "species": "SPECIES_SURSKIT"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_CHINGLING",
-        "SPECIES_GLAMEOW"
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO"
     ],
     "night": [
-        "SPECIES_HOOTHOOT",
-        "SPECIES_SMOOCHUM"
+        "SPECIES_SURSKIT",
+        "SPECIES_WOOLOO"
     ],
     "radar": [
         "SPECIES_WOBBUFFET",

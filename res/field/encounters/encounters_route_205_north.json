@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 12,
-            "species": "SPECIES_BUIZEL"
-        },
-        {
-            "level": 12,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 13,
-            "species": "SPECIES_NIDORINO"
-        },
-        {
-            "level": 12,
-            "species": "SPECIES_NIDORINA"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_SILCOON"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_CASCOON"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 13,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 13,
-            "species": "SPECIES_ARBOK"
+            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 14,
-            "species": "SPECIES_LEDIAN"
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_SURSKIT"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_SURSKIT"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_SHROOMISH"
         },
         {
             "level": 15,
-            "species": "SPECIES_POOCHYENA"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 15,
-            "species": "SPECIES_POOCHYENA"
+            "species": "SPECIES_SHROOMISH"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BUDEW"
     ],
     "day": [
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA"
+        "SPECIES_BOUNSWEET",
+        "SPECIES_BOUNSWEET"
     ],
     "night": [
-        "SPECIES_ZIGZAGOON",
-        "SPECIES_ZIGZAGOON"
+        "SPECIES_SURSKIT",
+        "SPECIES_BOUNSWEET"
     ],
     "radar": [
         "SPECIES_SLOWPOKE",

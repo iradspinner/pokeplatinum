@@ -83,12 +83,27 @@
       "order": 97
     },
     "encounters_eterna_forest": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "The forest: Shroomish under the trees, Buneary as vanilla, Sewaddle and Blipbug in the tail, Seedot out at night.",
       "locked": [],
       "base_level": 10,
-      "order": 18
+      "order": 18,
+      "cast": [
+        "SPECIES_SHROOMISH",
+        "SPECIES_BUNEARY",
+        "SPECIES_SEWADDLE",
+        "SPECIES_SEEDOT",
+        "SPECIES_BLIPBUG"
+      ],
+      "day": [
+        "SPECIES_BUNEARY",
+        "SPECIES_BUNEARY"
+      ],
+      "night": [
+        "SPECIES_SEEDOT",
+        "SPECIES_BUNEARY"
+      ]
     },
     "encounters_fuego_ironworks_outside": {
       "archetype": null,
@@ -211,20 +226,48 @@
       "order": 94
     },
     "encounters_lake_verity": {
-      "archetype": null,
+      "archetype": "A9",
       "band": "early",
-      "intent": "",
+      "intent": "The lake shore is Sentret's home; the Route 201 pair repeat, and Surskit skates out at night.",
       "locked": [],
       "base_level": 2,
-      "order": 3
+      "order": 3,
+      "cast": [
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
+        "SPECIES_SURSKIT"
+      ],
+      "day": [
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO"
+      ],
+      "night": [
+        "SPECIES_SURSKIT",
+        "SPECIES_WOOLOO"
+      ]
     },
     "encounters_lake_verity_low_water": {
-      "archetype": null,
+      "archetype": "A9",
       "band": "early",
-      "intent": "",
+      "intent": "The same shore after the lake drains, same cast, so nothing new appears just because the water left.",
       "locked": [],
       "base_level": 2,
-      "order": 4
+      "order": 4,
+      "cast": [
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
+        "SPECIES_SURSKIT"
+      ],
+      "day": [
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO"
+      ],
+      "night": [
+        "SPECIES_SURSKIT",
+        "SPECIES_WOOLOO"
+      ]
     },
     "encounters_maniac_tunnel": {
       "archetype": null,
@@ -411,100 +454,309 @@
       "order": 21
     },
     "encounters_oreburgh_gate_1f": {
-      "archetype": null,
+      "archetype": "A3",
       "band": "early",
-      "intent": "",
+      "intent": "The first cave is Zubat's; the higher rung is Nacli and Onix at even odds, the first place a repel pays.",
       "locked": [],
       "base_level": 5,
-      "order": 7
+      "order": 7,
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "ladder": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     "encounters_oreburgh_gate_b1f": {
-      "archetype": null,
+      "archetype": "A3",
       "band": "early",
-      "intent": "",
+      "intent": "The Rock Smash floor below is Onix's, wall to wall, with Zubat and Nacli only on the higher rung.",
       "locked": [],
       "base_level": 6,
-      "order": 8
+      "order": 8,
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI"
+      ],
+      "day": [
+        "SPECIES_ONIX",
+        "SPECIES_ONIX"
+      ],
+      "night": [
+        "SPECIES_ONIX",
+        "SPECIES_ONIX"
+      ],
+      "ladder": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     "encounters_oreburgh_mine_b1f": {
-      "archetype": null,
+      "archetype": "A4",
       "band": "early",
-      "intent": "",
+      "intent": "The mine's first floor is a Nacli against Zubat coin flip, the lead level deciding the higher rung.",
       "locked": [],
       "base_level": 5,
-      "order": 10
+      "order": 10,
+      "cast": [
+        "SPECIES_NACLI",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "night": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ]
     },
     "encounters_oreburgh_mine_b2f": {
-      "archetype": null,
+      "archetype": "A3",
       "band": "early",
-      "intent": "",
+      "intent": "Deeper, still Nacli's, but the higher rung now holds Onix beside Zubat.",
       "locked": [],
       "base_level": 5,
-      "order": 11
+      "order": 11,
+      "cast": [
+        "SPECIES_NACLI",
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "night": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "ladder": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     "encounters_ravaged_path": {
-      "archetype": null,
+      "archetype": "A4",
       "band": "early",
-      "intent": "",
+      "intent": "A duo as in vanilla: Zubat against Nacli, the higher rung Nacli's, so a repel on the lead level picks the salt.",
       "locked": [],
       "base_level": 3,
-      "order": 13
+      "order": 13,
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ]
     },
     "encounters_route_201": {
-      "archetype": null,
+      "archetype": "A9",
       "band": "early",
-      "intent": "",
+      "intent": "The first route: Wooloo is the face, Pikipek the bird, and Blipbug takes the bird's slot after dark.",
       "locked": [],
       "base_level": 2,
-      "order": 2
+      "order": 2,
+      "cast": [
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
+        "SPECIES_SENTRET",
+        "SPECIES_BLIPBUG"
+      ],
+      "day": [
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK"
+      ],
+      "night": [
+        "SPECIES_WOOLOO",
+        "SPECIES_BLIPBUG"
+      ]
     },
     "encounters_route_202": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "Shinx's route as in vanilla, Blipbug as the early bug, and Purrloin turning from a 5% extra into a night regular.",
       "locked": [],
       "base_level": 2,
-      "order": 5
+      "order": 5,
+      "cast": [
+        "SPECIES_SHINX",
+        "SPECIES_BLIPBUG",
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_BLIPBUG",
+        "SPECIES_BLIPBUG"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_BLIPBUG"
+      ]
     },
     "encounters_route_203": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin prowls at night.",
       "locked": [],
       "base_level": 4,
-      "order": 6
+      "order": 6,
+      "cast": [
+        "SPECIES_ROOKIDEE",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_F",
+        "SPECIES_PURRLOIN",
+        "SPECIES_SHINX"
+      ],
+      "day": [
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_M"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_NIDORAN_F"
+      ]
     },
     "encounters_route_204_north": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "North of the cave the grass gets greener: Sewaddle and Bounsweet at home, Poochyena stepping up at night.",
       "locked": [],
       "base_level": 8,
-      "order": 14
+      "order": 14,
+      "cast": [
+        "SPECIES_SEWADDLE",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_FLETCHLING",
+        "SPECIES_BUDEW",
+        "SPECIES_POOCHYENA"
+      ],
+      "day": [
+        "SPECIES_BOUNSWEET",
+        "SPECIES_BOUNSWEET"
+      ],
+      "night": [
+        "SPECIES_POOCHYENA",
+        "SPECIES_BOUNSWEET"
+      ]
     },
     "encounters_route_204_south": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "Budew's route with Grubbin as the first real bug and Fletchling the third bird; Sentret doubles after dark.",
       "locked": [],
       "base_level": 3,
-      "order": 12
+      "order": 12,
+      "cast": [
+        "SPECIES_BUDEW",
+        "SPECIES_GRUBBIN",
+        "SPECIES_FLETCHLING",
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO"
+      ],
+      "day": [
+        "SPECIES_GRUBBIN",
+        "SPECIES_GRUBBIN"
+      ],
+      "night": [
+        "SPECIES_SENTRET",
+        "SPECIES_GRUBBIN"
+      ]
     },
     "encounters_route_205_north": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "mid",
-      "intent": "",
+      "intent": "The damp side before the forest: Lotad's home, Surskit by the water at night, Shroomish a preview of the forest.",
       "locked": [],
       "base_level": 12,
-      "order": 17
+      "order": 17,
+      "cast": [
+        "SPECIES_LOTAD",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SEWADDLE",
+        "SPECIES_SURSKIT",
+        "SPECIES_SHROOMISH"
+      ],
+      "day": [
+        "SPECIES_BOUNSWEET",
+        "SPECIES_BOUNSWEET"
+      ],
+      "night": [
+        "SPECIES_SURSKIT",
+        "SPECIES_BOUNSWEET"
+      ]
     },
     "encounters_route_205_south": {
-      "archetype": null,
+      "archetype": "A1",
       "band": "early",
-      "intent": "",
+      "intent": "Floaroma's meadow: Pachirisu at its vanilla spot with Smoliv and Minccino, Skitty a 5% extra that triples at night.",
       "locked": [],
       "base_level": 9,
-      "order": 15
+      "order": 15,
+      "cast": [
+        "SPECIES_PACHIRISU",
+        "SPECIES_SMOLIV",
+        "SPECIES_MINCCINO",
+        "SPECIES_WOOLOO",
+        "SPECIES_SKITTY"
+      ],
+      "day": [
+        "SPECIES_SMOLIV",
+        "SPECIES_SMOLIV"
+      ],
+      "night": [
+        "SPECIES_SMOLIV",
+        "SPECIES_SKITTY"
+      ]
     },
     "encounters_route_206": {
       "archetype": null,
@@ -515,12 +767,26 @@
       "order": 31
     },
     "encounters_route_207": {
-      "archetype": null,
+      "archetype": "A9",
       "band": "early",
-      "intent": "",
+      "intent": "The rocky road above Oreburgh: Ponyta by day, Vulpix taking half the head at night, Nacli and Rookidee behind.",
       "locked": [],
       "base_level": 5,
-      "order": 9
+      "order": 9,
+      "cast": [
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX",
+        "SPECIES_NACLI",
+        "SPECIES_ROOKIDEE"
+      ],
+      "day": [
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX"
+      ],
+      "night": [
+        "SPECIES_VULPIX",
+        "SPECIES_VULPIX"
+      ]
     },
     "encounters_route_208": {
       "archetype": null,
@@ -1363,12 +1629,26 @@
       "order": 185
     },
     "encounters_valley_windworks_outside": {
-      "archetype": null,
+      "archetype": "A9",
       "band": "early",
-      "intent": "",
+      "intent": "Electric at the windworks: Pawmi's home, with Shinx and Pachirisu around it and Minccino in the grass.",
       "locked": [],
       "base_level": 9,
-      "order": 16
+      "order": 16,
+      "cast": [
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX",
+        "SPECIES_PACHIRISU",
+        "SPECIES_MINCCINO"
+      ],
+      "day": [
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX"
+      ],
+      "night": [
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX"
+      ]
     },
     "encounters_valor_lakefront": {
       "archetype": null,

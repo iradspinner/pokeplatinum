@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 7,
-            "species": "SPECIES_MAGBY"
+            "level": 5,
+            "species": "SPECIES_PONYTA"
         },
         {
             "level": 5,
-            "species": "SPECIES_VULPIX"
+            "species": "SPECIES_PONYTA"
         },
         {
             "level": 6,
-            "species": "SPECIES_MAGBY"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_MAGBY"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_GROWLITHE"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_RATTATA"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_GROWLITHE"
+            "species": "SPECIES_PONYTA"
         },
         {
             "level": 6,
             "species": "SPECIES_VULPIX"
         },
         {
-            "level": 7,
-            "species": "SPECIES_CHARMANDER"
+            "level": 6,
+            "species": "SPECIES_VULPIX"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
-            "species": "SPECIES_PONYTA"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
-            "species": "SPECIES_PONYTA"
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_ROOKIDEE"
         }
     ],
     "swarms": [
@@ -55,8 +55,8 @@
         "SPECIES_PHANPY"
     ],
     "day": [
-        "SPECIES_MAGBY",
-        "SPECIES_MAGBY"
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX"
     ],
     "night": [
         "SPECIES_VULPIX",

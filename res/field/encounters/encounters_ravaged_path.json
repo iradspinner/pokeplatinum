@@ -2,52 +2,52 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_NACLI"
+        },
+        {
             "level": 4,
             "species": "SPECIES_ZUBAT"
         },
         {
             "level": 4,
-            "species": "SPECIES_SANDSHREW"
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 5,
-            "species": "SPECIES_PHANPY"
+            "level": 4,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 5,
-            "species": "SPECIES_PSYDUCK"
+            "level": 4,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 3,
-            "species": "SPECIES_MAKUHITA"
+            "level": 4,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 3,
-            "species": "SPECIES_PSYDUCK"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_RHYHORN"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_RHYHORN"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ARON"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ARON"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_MAWILE"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_MANKEY"
+            "level": 4,
+            "species": "SPECIES_NACLI"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PSYDUCK"
     ],
     "day": [
-        "SPECIES_PHANPY",
-        "SPECIES_PSYDUCK"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "night": [
-        "SPECIES_PHANPY",
-        "SPECIES_PSYDUCK"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "radar": [
         "SPECIES_ZUBAT",

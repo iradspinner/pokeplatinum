@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
+            "level": 10,
+            "species": "SPECIES_SHROOMISH"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SHROOMISH"
+        },
+        {
             "level": 11,
             "species": "SPECIES_BUNEARY"
         },
         {
-            "level": 10,
-            "species": "SPECIES_ROSELIA"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_BEAUTIFLY"
-        },
-        {
-            "level": 12,
-            "species": "SPECIES_PARAS"
-        },
-        {
             "level": 11,
-            "species": "SPECIES_WORMADAM"
+            "species": "SPECIES_BUNEARY"
         },
         {
             "level": 12,
-            "species": "SPECIES_SHROOMISH"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 12,
-            "species": "SPECIES_PINECO"
-        },
-        {
-            "level": 13,
-            "species": "SPECIES_KRICKETUNE"
-        },
-        {
-            "level": 13,
-            "species": "SPECIES_MOTHIM"
-        },
-        {
-            "level": 13,
-            "species": "SPECIES_VENOMOTH"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 12,
-            "species": "SPECIES_COMBEE"
+            "species": "SPECIES_BUNEARY"
+        },
+        {
+            "level": 12,
+            "species": "SPECIES_SEEDOT"
+        },
+        {
+            "level": 12,
+            "species": "SPECIES_SEEDOT"
+        },
+        {
+            "level": 12,
+            "species": "SPECIES_BLIPBUG"
         },
         {
             "level": 13,
-            "species": "SPECIES_BEEDRILL"
+            "species": "SPECIES_SEEDOT"
+        },
+        {
+            "level": 13,
+            "species": "SPECIES_BLIPBUG"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SLAKOTH"
     ],
     "day": [
-        "SPECIES_BEAUTIFLY",
-        "SPECIES_PARAS"
+        "SPECIES_BUNEARY",
+        "SPECIES_BUNEARY"
     ],
     "night": [
-        "SPECIES_ARIADOS",
-        "SPECIES_DUSTOX"
+        "SPECIES_SEEDOT",
+        "SPECIES_BUNEARY"
     ],
     "radar": [
         "SPECIES_NINCADA",

@@ -69,8 +69,8 @@
     },
     "encounters_oreburgh_mine_b1f": {
       "home": [],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_ONIX"],
-      "note": "The mine repeats the gate's cast with Nacli as the face."
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT"],
+      "note": "The mine's first floor is a Nacli against Zubat duo; Onix waits for B2F."
     },
     "encounters_oreburgh_mine_b2f": {
       "home": [],

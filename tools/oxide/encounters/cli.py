@@ -232,10 +232,17 @@ def cmd_lint(args):
     # The band must come from the sidecar where it is declared, falling back
     # to the table's own median level. Passing None here silently disables
     # every band-aware rule, R11 included, without reporting anything.
-    payload = [(a.name, a.slots,
-                entries.get(a.name) or {"band": a.band},
-                a.data)
-               for a in areas]
+    # A reference tree (`--ref main` is vanilla) was never laid out from the
+    # sidecar, so its archetype must not mark those tables as authored: R1
+    # and R4 would then judge vanilla's slots against Oxide's design.
+    def entry_for(a):
+        e = entries.get(a.name)
+        if not e:
+            return {"band": a.band}
+        if args.ref:
+            e = {k: v for k, v in e.items() if k != "archetype"}
+        return e
+    payload = [(a.name, a.slots, entry_for(a), a.data) for a in areas]
     # R12 reads the pick-list's tiers and each line's cheapest wild source;
     # None until `tier-init` has written the column, and the rule says so.
     from . import audit

@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 10,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_NIDORINO"
-        },
-        {
             "level": 9,
-            "species": "SPECIES_NIDORINA"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_EKANS"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_NIDORAN_F"
-        },
-        {
-            "level": 9,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 11,
             "species": "SPECIES_PACHIRISU"
         },
         {
+            "level": 10,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_SMOLIV"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_SMOLIV"
+        },
+        {
             "level": 11,
-            "species": "SPECIES_ARBOK"
+            "species": "SPECIES_MINCCINO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_MINCCINO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SMOLIV"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SKITTY"
         },
         {
             "level": 12,
-            "species": "SPECIES_LEDIAN"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_POOCHYENA"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 12,
-            "species": "SPECIES_POOCHYENA"
+            "species": "SPECIES_SKITTY"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SHELLOS"
     ],
     "day": [
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA"
+        "SPECIES_SMOLIV",
+        "SPECIES_SMOLIV"
     ],
     "night": [
-        "SPECIES_ZIGZAGOON",
-        "SPECIES_ZIGZAGOON"
+        "SPECIES_SMOLIV",
+        "SPECIES_SKITTY"
     ],
     "radar": [
         "SPECIES_HOPPIP",
