@@ -38,6 +38,7 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 
 - Emulator checks not yet done: Rare Candy chaining; the frame-rate uncap (options menu reads UNLOCK FPS, with OFF / BATTLE / ALWAYS); the EV/IV viewer (R on the Skills page); Shinx's ability (always Rivalry, never Intimidate) and Bidoof/Starly hatch time (~255 steps, down from ~3825); and a walk through a few bulk-generated maps, the gift houses being the obvious ones. The "use another Repel?" prompt is now safe to answer yes; it is worth testing, since it is the one thing in this build that was broken and is now fixed rather than carried over.
 - The ability/gender nibble direction (1=male, 2=female) is a guess; no Route 202 trainer exercises it. Swap if anything reads wrong in-game.
+- **Start a new game first**: the old save reads every ability as NONE by design (element 2 moved the field) and is no longer a valid test bed.
 - Fairy in the emulator (Phase 5 has the exact checks): a Dragon move doing nothing to Clefairy or Ralts, the summary screen reading FAIRY, and the Pokedex info page showing the NORMAL plate rather than garbage.
 - Two data questions from the carry-over, low priority because the default is to leave vanilla: whether the encounter `unown_table`/`rate_form` changes or the sprite-height changes were ever intended (evidence under Phase 3 says they were DSPRE re-saves).
 - Encounter tool: review of the progression `order` and the pick-list `tier` column once the authoring agent commits its defaults (the pass no longer waits on either; see `docs/oxide/encounter-authoring-plan.md`), whether Unown returns to the pick-list, and whether surf tables get designed in the first pass or only de-leaked.
@@ -183,7 +184,8 @@ shape the finished game.
 
 ## Phase 5: Verify
 
-- [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build)
+- [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
+- [x] The save-format break behaves as documented (2026-09-20): Ian's pre-element-2 save loads and every Pokemon in it shows no ability, exactly what `docs/oxide/save-layout.md` predicts. That save is retired as a test bed; everything below is from a new game
 - [ ] New game to first battle without crash, re-checked after each Phase 4 element
 - [ ] A ported element visibly works in-game. Fairy is now testable: Clefairy and Ralts are both early and both Fairy, so a Dragon move against one should do nothing at all, a Poison or Steel move should do double, and the summary screen should read FAIRY. Charm, Sweet Kiss and Moonlight are Fairy now too, though all three are status moves, so the damage chart can only be checked from the defending side until a damaging Fairy move exists
 - [ ] Check the Poketch move tester agrees with the battle engine on Fairy, and that the Pokedex info page on a Fairy Pokemon shows the NORMAL plate rather than garbage (the known gap, not a crash)
