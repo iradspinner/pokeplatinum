@@ -786,7 +786,12 @@ void ConvertPathToSdat(int argc, char **argv)
     fwrite(fatHeader, 1, 0x0C, outFile);
 
     fileOffset += 0x0C;
-    offset = fileOffset;
+    // The first file's data is padded up to a 0x20 boundary further down, after
+    // this table has already been written, so the offsets in it have to account
+    // for that padding or every file in the archive is read short. When the
+    // padding works out to zero, which is the case for the unmodified game, this
+    // is exactly what it was before.
+    offset = fileOffset + PADDINGSIZE(fileOffset, 0x20);
     uint8_t *fileEntry = calloc(1, 0x10);
     if (fileEntry == NULL) FATAL_ERROR("Failed to allocate memory for fileEntry\n");
     for (struct FileStream *fileStream = filePackage->head; fileStream != NULL; fileStream = fileStream->next)
