@@ -188,7 +188,7 @@ shape the finished game.
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
 - [x] The save-format break behaves as documented (2026-09-20): Ian's pre-element-2 save loads and every Pokemon in it shows no ability, exactly what `docs/oxide/save-layout.md` predicts. That save is retired as a test bed; everything below is from a new game
-- [ ] New game to first battle without crash, re-checked after each Phase 4 element
+- [x] New game to first battle without crash (Ian, 2026-09-20, melonDS, with elements 1 and 2 in: the starter battle ran and Piplup shows an ability on the new save, which is the in-play confirmation that the moved ability field reads and writes correctly). Re-check after each further Phase 4 element
 - [ ] A ported element visibly works in-game. Fairy is now testable: Clefairy and Ralts are both early and both Fairy, so a Dragon move against one should do nothing at all, a Poison or Steel move should do double, and the summary screen should read FAIRY. Charm, Sweet Kiss and Moonlight are Fairy now too, though all three are status moves, so the damage chart can only be checked from the defending side until a damaging Fairy move exists
 - [ ] Check the Poketch move tester agrees with the battle engine on Fairy, and that the Pokedex info page on a Fairy Pokemon shows the NORMAL plate rather than garbage (the known gap, not a crash)
 
