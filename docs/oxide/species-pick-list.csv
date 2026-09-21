@@ -212,9 +212,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 215,Darkrai,native,491,platinum,,yes,Dark,Dark,,gate
 216,Shaymin,native,151,platinum,,yes,Grass,Grass,,gate
 217,Arceus,native,493,platinum,,yes,Normal,Normal,,gate
-218,Snivy,new,495,species,545,yes,Grass,Grass,,gate
-219,Servine,new,496,species,546,yes,Grass,Grass,,gate
-220,Serperior,new,497,species,547,yes,Grass,Grass,,gate
+218,Snivy,new,495,species,545,yes,Grass,Grass,,preferred
+219,Servine,new,496,species,546,yes,Grass,Grass,,preferred
+220,Serperior,new,497,species,547,yes,Grass,Grass,,preferred
 221,Purrloin,new,509,species,559,yes,Dark,Dark,,starter-adjacent
 222,Liepard,new,510,species,560,"MISMATCH (64, 88, 50, 88, 50, 106)",Dark,Dark,,starter-adjacent
 223,Sewaddle,new,540,species,590,yes,Bug,Grass,,starter-adjacent
@@ -247,12 +247,12 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 250,Mandibuzz,new,630,species,680,yes,Dark,Flying,,filler
 251,Larvesta,new,636,species,686,yes,Bug,Fire,,filler
 252,Volcarona,new,637,species,687,yes,Bug,Fire,,filler
-253,Fennekin,new,653,species,703,yes,Fire,Fire,,gate
-254,Braixen,new,654,species,704,yes,Fire,Fire,,gate
-255,Delphox,new,655,species,705,yes,Fire,Psychic,,gate
-256,Froakie,new,656,species,706,yes,Water,Water,,gate
-257,Frogadier,new,657,species,707,yes,Water,Water,,gate
-258,Greninja,new,658,species,708,yes,Water,Dark,,gate
+253,Fennekin,new,653,species,703,yes,Fire,Fire,,preferred
+254,Braixen,new,654,species,704,yes,Fire,Fire,,preferred
+255,Delphox,new,655,species,705,yes,Fire,Psychic,,preferred
+256,Froakie,new,656,species,706,yes,Water,Water,,preferred
+257,Frogadier,new,657,species,707,yes,Water,Water,,preferred
+258,Greninja,new,658,species,708,yes,Water,Dark,,preferred
 259,Fletchling,new,661,species,711,yes,Normal,Flying,,starter-adjacent
 260,Fletchinder,new,662,species,712,yes,Fire,Flying,,starter-adjacent
 261,Talonflame,new,663,species,713,yes,Fire,Flying,,starter-adjacent
@@ -272,15 +272,15 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 275,Zygarde 10%,new,718,form,1269,yes,Dragon,Ground,,gate
 276,Zygarde 50%,new,718,species,768,yes,Dragon,Ground,"Zygarde 10%, level up (method 4) - cells assembling",gate
 277,Diancie,new,719,species,769,yes,Rock,Fairy,,gate
-278,Rowlet,new,722,species,772,yes,Grass,Flying,,gate
-279,Dartrix,new,723,species,773,yes,Grass,Flying,,gate
-280,Decidueye,new,724,species,774,yes,Grass,Ghost,,gate
-281,Litten,new,725,species,775,yes,Fire,Fire,,gate
-282,Torracat,new,726,species,776,yes,Fire,Fire,,gate
-283,Incineroar,new,727,species,777,yes,Fire,Dark,,gate
-284,Popplio,new,728,species,778,yes,Water,Water,,gate
-285,Brionne,new,729,species,779,yes,Water,Water,,gate
-286,Primarina,new,730,species,780,yes,Water,Fairy,,gate
+278,Rowlet,new,722,species,772,yes,Grass,Flying,,preferred
+279,Dartrix,new,723,species,773,yes,Grass,Flying,,preferred
+280,Decidueye,new,724,species,774,yes,Grass,Ghost,,preferred
+281,Litten,new,725,species,775,yes,Fire,Fire,,preferred
+282,Torracat,new,726,species,776,yes,Fire,Fire,,preferred
+283,Incineroar,new,727,species,777,yes,Fire,Dark,,preferred
+284,Popplio,new,728,species,778,yes,Water,Water,,preferred
+285,Brionne,new,729,species,779,yes,Water,Water,,preferred
+286,Primarina,new,730,species,780,yes,Water,Fairy,,preferred
 287,Pikipek,new,731,species,781,yes,Normal,Flying,,starter-adjacent
 288,Trumbeak,new,732,species,782,yes,Normal,Flying,,starter-adjacent
 289,Toucannon,new,733,species,783,yes,Normal,Flying,,starter-adjacent
@@ -322,9 +322,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 325,Naganadel,new,804,species,854,yes,Poison,Dragon,"Poipole, level up knowing Dragon Pulse (method 20) - direct port",gate
 326,Stakataka,new,805,species,855,yes,Rock,Steel,,gate
 327,Blacephalon,new,806,species,856,yes,Fire,Ghost,,gate
-328,Scorbunny,new,813,species,863,yes,Fire,Fire,,gate
-329,Raboot,new,814,species,864,yes,Fire,Fire,,gate
-330,Cinderace,new,815,species,865,yes,Fire,Fire,,gate
+328,Scorbunny,new,813,species,863,yes,Fire,Fire,,preferred
+329,Raboot,new,814,species,864,yes,Fire,Fire,,preferred
+330,Cinderace,new,815,species,865,yes,Fire,Fire,,preferred
 331,Rookidee,new,821,species,871,yes,Flying,Flying,,starter-adjacent
 332,Corvisquire,new,822,species,872,yes,Flying,Flying,,starter-adjacent
 333,Corviknight,new,823,species,873,yes,Flying,Steel,,starter-adjacent
@@ -342,9 +342,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 345,Sinistcha,new,1013,species,1063,yes,Grass,Ghost,Polteageist + Dusk Stone (method 7),filler
 346,Snom,new,872,species,922,yes,Ice,Bug,,filler
 347,Frosmoth,new,873,species,923,yes,Ice,Bug,"Snom, high friendship at night (method 3) - direct port",filler
-348,Sprigatito,new,906,species,956,yes,Grass,Grass,,gate
-349,Floragato,new,907,species,957,yes,Grass,Grass,,gate
-350,Meowscarada,new,908,species,958,yes,Grass,Dark,,gate
+348,Sprigatito,new,906,species,956,yes,Grass,Grass,,preferred
+349,Floragato,new,907,species,957,yes,Grass,Grass,,preferred
+350,Meowscarada,new,908,species,958,yes,Grass,Dark,,preferred
 351,Pawmi,new,921,species,971,yes,Electric,Electric,,starter-adjacent
 352,Pawmo,new,922,species,972,yes,Electric,Fighting,,starter-adjacent
 353,Pawmot,new,923,species,973,yes,Electric,Fighting,Pawmo + Thunder Stone (method 7),starter-adjacent

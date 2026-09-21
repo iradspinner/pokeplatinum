@@ -27,10 +27,12 @@ from . import progression
 PLAN = os.path.join("docs", "oxide", "encounters", "availability-plan.json")
 DOC = os.path.join("docs", "oxide", "encounters", "availability.md")
 
-# A line's status, best first. `proposed` is a gate line with no script yet
-# and a proposal in the plan for where its script should go; it counts as
-# sourced on paper and is listed for Ian. `none` fails the gate.
-STATUSES = ("home", "non-wild", "water", "cameo-only", "proposed", "none")
+# A line's status, best first. `honey` is a line whose home is a honey-tree
+# tier; `pool` is a legendary in the random pool the two lake caverns and
+# the roamer slot draw from; `proposed` is a gate line with a proposal for
+# where its script should go. All three count as sourced on paper and are
+# listed for Ian. `none` fails the gate.
+STATUSES = ("home", "non-wild", "water", "honey", "cameo-only", "pool", "proposed", "none")
 
 
 def load_plan():
@@ -111,6 +113,22 @@ def build(ref=None):
         lid = resolve(sp, "proposals")
         if lid:
             proposals[lid] = text
+    # the random legendary pool: candidates for the two lake caverns and the
+    # roamer slot, sourced on paper as "one of three draws"
+    pool = set()
+    for sp in (plan.get("pool") or {}).get("candidates") or []:
+        lid = resolve(sp, "pool")
+        if lid:
+            pool.add(lid)
+    # the honey trees, by rarity tier
+    honey = collections.defaultdict(list)
+    for tier_name, sps in (plan.get("honey") or {}).items():
+        if tier_name.startswith("_"):
+            continue
+        for sp in sps:
+            lid = resolve(sp, f"honey {tier_name}")
+            if lid:
+                honey[lid].append(tier_name)
 
     rows = []
     for l in cov["lines"]:
@@ -131,8 +149,12 @@ def build(ref=None):
             status = "non-wild"
         elif water.get(lid):
             status = "water"
+        elif honey.get(lid):
+            status = "honey"
         elif cameos.get(lid):
             status = "cameo-only"
+        elif lid in pool:
+            status = "pool"
         elif lid in proposals:
             status = "proposed"
         else:
@@ -147,6 +169,7 @@ def build(ref=None):
             "home": h, "cameo": sorted(cameos.get(lid, []), key=lambda n: order_of.get(n) or 0),
             "water": water.get(lid, []), "non_wild": non_wild,
             "proposal": proposals.get(lid, ""),
+            "honey": honey.get(lid, []), "pool": lid in pool,
             "home_order": order_of.get(h[0]) if h else None,
         })
 
@@ -221,14 +244,33 @@ def render(out):
     lines.append("")
     lines.append("## For Ian")
     lines.append("")
-    proposed = [r for r in rows if r["status"] == "proposed"]
-    lines.append("Gate-tier lines with no script naming them yet. A gate line is never "
-                 "placed in the wild, so each needs a static battle, a gift or an egg, "
-                 "which is script work outside this track (decision 8), or a different "
-                 "tier. The plan proposes where; accept one by writing the script.")
+    plan = out["plan"]
+    pool_rows = [r for r in rows if r["pool"]]
+    lines.append("**The legendary pool** (Ian, 2026-09-21). Vanilla's three pre-League "
+                 "legendaries already felt like a lot, so the new ones are not statics of "
+                 "their own. The two lake caverns and the roamer slot each draw at random "
+                 "from one pool: " + "; ".join((plan.get("pool") or {}).get("statics") or [])
+                 + " as two static battles drawn without replacement, and "
+                 + ((plan.get("pool") or {}).get("roamer") or "the roamer")
+                 + " as a random roamer. A playthrough meets three of them before the "
+                 "League. The scripting is outside this track; the linter's R12 reads the "
+                 "tree and reports these lines until it exists. The pool, "
+                 f"{len(pool_rows)} candidates: " + ", ".join(r["name"] for r in pool_rows) + ".")
     lines.append("")
-    for r in proposed:
-        lines.append(f"- **{r['name']}**: {r['proposal']}")
+    proposed = [r for r in rows if r["status"] == "proposed"]
+    if proposed:
+        lines.append("**Statics of their own**, the only new ones, post-League by rule:")
+        lines.append("")
+        for r in proposed:
+            lines.append(f"- **{r['name']}**: {r['proposal']}")
+        lines.append("")
+    lines.append("**The starters** are wild, not gifted, and out of the gate tier. Fennekin "
+                 "(Route 214), Scorbunny (Route 206) and Popplio (the surf on Routes 219 "
+                 "and 220) sit at a real share, a good chance with or without a manip; "
+                 "Litten (Fuego Ironworks) and Froakie (Route 212 south) are tails a "
+                 "dupe-out plan pays off; Rowlet, Snivy and Sprigatito are the honey "
+                 "trees' rare tier, which makes the honey trees designed space from "
+                 "Step 5 on rather than only de-leaked.")
     lines.append("")
     lines.append("Also for Ian: the corridor's cast rests on the widened starter-adjacent "
                  "tier (`EARLY_LINES` in `tiers.py`, the other regions' first-route "
@@ -240,7 +282,7 @@ def render(out):
     lines.append("")
     lines.append("## Lines")
     lines.append("")
-    lines.append("| Line | Tier | Status | Home (order) | Cameos | Water | Non-wild |")
+    lines.append("| Line | Tier | Status | Home (order) | Cameos | Water / honey / pool | Non-wild |")
     lines.append("|---|---|---|---|---|---|---|")
 
     def short(n):
@@ -252,6 +294,10 @@ def render(out):
         home = f"{short(r['home'][0])} ({r['home_order']})" if r["home"] else ""
         cam = ", ".join(short(n) for n in r["cameo"])
         wat = ", ".join(short(n) for n in r["water"])
+        if r["honey"]:
+            wat = (wat + "; " if wat else "") + "honey " + "/".join(r["honey"])
+        if r["pool"]:
+            wat = (wat + "; " if wat else "") + "pool"
         nw = "; ".join(r["non_wild"])
         lines.append(f"| {r['name']} | {r['tier']} | {r['status']} | {home} | {cam} | {wat} | {nw} |")
     lines.append("")

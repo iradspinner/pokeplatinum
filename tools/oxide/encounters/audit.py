@@ -228,10 +228,17 @@ def availability(ref=None):
     for line in cov["lines"]:
         cheapest = min((costs[sp] for sp in line["base"] if sp in costs),
                        default=None)
+        # A honey-tree placement is a source the cost model cannot price (a
+        # tree is slathered, waited on, and rolled by rarity tier), so it is
+        # carried as its own flag; the plan uses the rare tier for the grass
+        # starters and R12 accepts it.
+        honey = sorted({key for _, key, _ in line["other"]
+                        if key in model.HONEY_TREE_KEYS})
         out.append({
             "name": line["name"], "line": line["line"], "tier": line["tier"],
             "non_wild": bool(line["gifts"] or line["trades"] or line["static"]
                              or line["scripted"]),
+            "honey": honey,
             "cost": cheapest[0] if cheapest else None,
             "where": cheapest[1:] if cheapest else None,
         })

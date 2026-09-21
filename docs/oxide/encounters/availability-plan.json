@@ -168,9 +168,9 @@
       "note": "First taste of Coronet: Bronzor's home, a jewel in the tail."
     },
     "encounters_route_206": {
-      "home": ["SPECIES_GLIGAR"],
+      "home": ["SPECIES_GLIGAR", "SPECIES_SCORBUNNY"],
       "cameo": ["SPECIES_PONYTA", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_STUNKY"],
-      "note": "The cycling road: Gligar as vanilla, Dwebble on the rocks below."
+      "note": "The cycling road: Gligar as vanilla, Scorbunny running it at a real share, Dwebble on the rocks below."
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
@@ -255,9 +255,9 @@
       "note": "The rain route: Castform in the weather, Vullaby circling."
     },
     "encounters_route_214": {
-      "home": ["SPECIES_RHYHORN", "SPECIES_HOUNDOUR", "SPECIES_SALANDIT"],
+      "home": ["SPECIES_RHYHORN", "SPECIES_HOUNDOUR", "SPECIES_FENNEKIN", "SPECIES_SALANDIT"],
       "cameo": ["SPECIES_NACLI", "SPECIES_DWEBBLE"],
-      "note": "The dry road to the lakefront: Rhyhorn and Houndour as vanilla, Salandit in the rocks."
+      "note": "The dry road to the lakefront: Rhyhorn and Houndour as vanilla, Fennekin at a real share (Ian: a good chance, not a tail), Salandit in the rocks."
     },
     "encounters_maniac_tunnel": {
       "home": ["SPECIES_HIPPOPOTAS"],
@@ -301,8 +301,8 @@
     },
     "encounters_route_212_south": {
       "home": ["SPECIES_KOFFING"],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SURSKIT"],
-      "note": "The rainy bog road: Koffing's home."
+      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_FROAKIE"],
+      "note": "The rainy bog road: Koffing's home, Froakie the tail in the rain."
     },
     "encounters_trophy_garden": {
       "home": ["SPECIES_PICHU"],
@@ -321,8 +321,8 @@
     },
     "encounters_fuego_ironworks_outside": {
       "home": ["SPECIES_MAGBY", "SPECIES_JOLTIK"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA"],
-      "note": "The ironworks: Magby as vanilla's Magmar, Joltik in the wiring."
+      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_LITTEN"],
+      "note": "The ironworks: Magby as vanilla's Magmar, Joltik in the wiring, Litten the tail a manip pays off."
     },
     "encounters_route_218": {
       "home": ["SPECIES_GALARIAN_MR_MIME"],
@@ -503,48 +503,54 @@
     "encounters_unknown_556": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
     "encounters_unknown_557": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""}
   },
+  "pool": {
+    "_comment": [
+      "Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the",
+      "roaming Mesprit) already felt like a lot, and twenty new ones as statics is",
+      "not feasible. So the two lake caverns and the roamer slot each draw at random",
+      "from one pool: Uxie's cavern and Azelf's cavern become two static battles",
+      "drawn without replacement from `candidates`, and Mesprit's roamer becomes a",
+      "random roamer from the same list. A playthrough meets three of them before",
+      "the League, as vanilla did; which three is the draw. The scripting is",
+      "outside this track (decision 8). A candidate counts as sourced on paper;",
+      "R12 in the linter reads the tree and will report these until the scripts",
+      "exist. One list on purpose; split it into a static list and a roamer list",
+      "in this file if some should never roam."
+    ],
+    "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
+    "roamer": "Mesprit's roamer, released at Lake Verity",
+    "candidates": [
+      "SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT",
+      "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES",
+      "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE",
+      "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI",
+      "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE",
+      "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA",
+      "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"
+    ]
+  },
+  "honey": {
+    "_comment": [
+      "The honey trees, designed from Step 5 on rather than only de-leaked: 21",
+      "trees from Route 205 onward, three rarity tiers of six slots, today all",
+      "off-list bar Combee and Heracross. The rare tier (Munchlax's six slots in",
+      "vanilla) carries the three grass starters, reachable early and rare."
+    ],
+    "rare": ["SPECIES_ROWLET", "SPECIES_SNIVY", "SPECIES_SPRIGATITO"],
+    "uncommon": ["SPECIES_COMBEE", "SPECIES_HERACROSS"],
+    "common": ["SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN"]
+  },
   "proposals": {
     "_comment": [
-      "Gate-tier lines no script names yet: the new starters and legendaries. A",
-      "gate line is never placed in the wild, so each needs a static battle, a",
-      "gift or an egg, which is script work outside this track (decision 8).",
-      "These are the agent's proposals for where; Ian accepts one by writing the",
-      "script, or changes the tier. The plan counts a proposed line as sourced",
-      "on paper and the document lists them under For Ian."
+      "The two box legendaries, the only new statics, both post-League by Ian's",
+      "rule. Script work outside this track; counted as sourced on paper."
     ],
-    "SPECIES_SNIVY": "gift, a second starter house like the base ROM's Hearthome fan club (Charmander, Squirtle): Eterna Condominiums",
-    "SPECIES_FENNEKIN": "gift, with Snivy and Froakie: Eterna Condominiums, pick one of three",
-    "SPECIES_FROAKIE": "gift, with Snivy and Fennekin: Eterna Condominiums, pick one of three",
-    "SPECIES_ROWLET": "gift, pick one of three with Litten and Popplio: Pastoria",
-    "SPECIES_LITTEN": "gift, pick one of three with Rowlet and Popplio: Pastoria",
-    "SPECIES_POPPLIO": "gift, pick one of three with Rowlet and Litten: Pastoria",
-    "SPECIES_SCORBUNNY": "gift, pick one of two with Sprigatito: Snowpoint",
-    "SPECIES_SPRIGATITO": "gift, pick one of two with Scorbunny: Snowpoint",
-    "SPECIES_GALARIAN_ARTICUNO": "roamer, released with the Kanto birds by Oak, or static in Snowpoint Temple B5F after Regigigas",
-    "SPECIES_GALARIAN_ZAPDOS": "roamer, released with the Kanto birds by Oak, or static on Route 225's peak",
-    "SPECIES_GALARIAN_MOLTRES": "roamer, released with the Kanto birds by Oak, or static on Stark Mountain's outside",
     "SPECIES_XERNEAS": "static, post-League, Sendoff Spring's shrine (the life tree by the spring)",
-    "SPECIES_YVELTAL": "static, post-League, Route 224's shrine stone, the mirror of Xerneas",
-    "SPECIES_ZYGARDE_10": "static, the deepest of Turnback Cave's post-game rooms (unknown_557), as the 10% form",
-    "SPECIES_DIANCIE": "static, Wayward Cave 1F, Carbink's home: a 1-in-the-cave event after the League",
-    "SPECIES_TAPU_KOKO": "static, post-League, Valley Windworks (the electric shrine)",
-    "SPECIES_TAPU_LELE": "static, post-League, Solaceon Ruins room 7",
-    "SPECIES_TAPU_BULU": "static, post-League, Floaroma Meadow",
-    "SPECIES_TAPU_FINI": "static, post-League, Lake Verity's island",
-    "SPECIES_NIHILEGO": "static, Turnback Cave post-game rooms (unknown_533), the Ultra Beasts as the cave's invaders",
-    "SPECIES_BUZZWOLE": "static, Turnback Cave post-game rooms (unknown_536)",
-    "SPECIES_PHEROMOSA": "static, Turnback Cave post-game rooms (unknown_539)",
-    "SPECIES_XURKITREE": "static, Turnback Cave post-game rooms (unknown_542)",
-    "SPECIES_CELESTEELA": "static, Turnback Cave post-game rooms (unknown_545)",
-    "SPECIES_KARTANA": "static, Turnback Cave post-game rooms (unknown_548)",
-    "SPECIES_GUZZLORD": "static, Turnback Cave post-game rooms (unknown_551)",
-    "SPECIES_STAKATAKA": "static, Turnback Cave post-game rooms (unknown_554)",
-    "SPECIES_BLACEPHALON": "static, Stark Mountain room 2 after Heatran",
-    "SPECIES_POIPOLE": "gift egg, Canalave library 2F beside the base ROM's seven level-50 gifts",
-    "SPECIES_MAGEARNA": "gift, Sunyshore lighthouse after the League"
+    "SPECIES_YVELTAL": "static, post-League, Route 224's shrine stone, the mirror of Xerneas"
   },
   "water": {
     "SPECIES_TENTACOOL": ["encounters_route_213", "encounters_route_218", "encounters_route_230"],
+    "SPECIES_POPPLIO": ["encounters_route_219", "encounters_route_220"],
     "SPECIES_MAGIKARP": ["encounters_route_203", "encounters_lake_verity", "encounters_route_212_south"],
     "SPECIES_BARBOACH": ["encounters_route_212_south", "encounters_great_marsh_1"],
     "SPECIES_FEEBAS": ["encounters_mt_coronet_b1f"],

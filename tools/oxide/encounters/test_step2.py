@@ -40,12 +40,16 @@ def main():
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
-    results.append(("every non-gate line has exactly one planned home or a non-wild source",
-                    all(len(r["home"]) == 1 or r["non_wild"] or r["status"] == "water"
+    tails = {"Litten", "Froakie"}   # Ian's call: tails a dupe-out plan pays off, no home
+    results.append(("every non-gate line has exactly one planned home or a non-wild, water or "
+                    "honey source, bar the two deliberate tails",
+                    all(len(r["home"]) == 1 or r["non_wild"] or r["status"] in ("water", "honey")
+                        or r["name"] in tails
                         for r in rows if r["tier"] != "gate"),
                     ", ".join(r["name"] for r in rows
                               if r["tier"] != "gate" and not (len(r["home"]) == 1 or r["non_wild"]
-                                                              or r["status"] == "water"))[:120]))
+                                                              or r["status"] in ("water", "honey")
+                                                              or r["name"] in tails))[:120]))
     results.append(("no gate line is planned in the wild",
                     not any(r["home"] or r["cameo"] for r in rows if r["tier"] == "gate"), ""))
     results.append(("the corridor carries only starter-adjacent and scripted lines",
@@ -71,11 +75,22 @@ def main():
                     all(by[n]["status"] == "non-wild" for n in
                         ("Articuno", "Mesprit", "Cresselia", "Phione")), ""))
     proposed = [r["name"] for r in rows if r["status"] == "proposed"]
-    results.append(("every new gate line has a proposal, none has a home",
-                    all(r["status"] == "proposed" for r in rows
+    pool = [r["name"] for r in rows if r["status"] == "pool"]
+    results.append(("every new legendary is in the pool or, for the two box legendaries, proposed",
+                    all(r["status"] in ("pool", "proposed") for r in rows
                         if r["tier"] == "gate" and not r["non_wild"])
-                    and "Snivy" in proposed and "Nihilego" in proposed,
-                    f"{len(proposed)} proposed"))
+                    and sorted(proposed) == ["Xerneas", "Yveltal"]
+                    and "Nihilego" in pool and "Tapu Koko" in pool,
+                    f"{len(pool)} in the pool, {len(proposed)} proposed"))
+    results.append(("the starters are wild: Fennekin and Scorbunny at home, Popplio on water, "
+                    "the grass three in the honey trees, none gate",
+                    by["Fennekin"]["home"] == ["encounters_route_214"]
+                    and by["Scorbunny"]["home"] == ["encounters_route_206"]
+                    and by["Popplio"]["status"] == "water"
+                    and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))
+                    and all(by[n]["tier"] == "preferred" for n in
+                            ("Fennekin", "Scorbunny", "Popplio", "Rowlet", "Litten", "Froakie")),
+                    ""))
     results.append(("water lines are homed on water tables",
                     all(r["water"] for r in rows if r["status"] == "water")
                     and by["Tentacool"]["status"] == "water", ""))

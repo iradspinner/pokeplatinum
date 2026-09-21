@@ -63,6 +63,15 @@ FOSSIL = set(n for lo, hi in ((138, 142), (345, 348), (408, 411), (564, 567),
                               (696, 699), (880, 883))
              for n in range(lo, hi + 1))
 
+# Ian, 2026-09-21: the eight new starter lines are wild, not gifted, so they
+# leave the gate tier. Preferred, so R12 holds them to a cost ceiling:
+# Fennekin, Scorbunny and Popplio at a real share on their home tables, the
+# rest as tails or honey-tree rarities (see the availability plan).
+WILD_STARTERS = {
+    "SPECIES_SNIVY", "SPECIES_FENNEKIN", "SPECIES_FROAKIE", "SPECIES_ROWLET",
+    "SPECIES_LITTEN", "SPECIES_POPPLIO", "SPECIES_SCORBUNNY", "SPECIES_SPRIGATITO",
+}
+
 
 def sinnoh_dex(rom_path):
     """The species with a Sinnoh dex number in a Platinum ROM."""
@@ -142,8 +151,11 @@ def defaults(rom_path="~/roms/vanilla.nds", ref="main"):
     rank = {t: i for i, t in enumerate(TIERS)}
     for line_id, members in by_line.items():
         best = min((tier[m["name"]] for m in members), key=rank.get)
+        bases = dex.line_base(root, line_id)
+        if any(b in WILD_STARTERS for b in bases):
+            best = "preferred"
         if best != "gate" and any(m["constant"] in early for m in members
-                                  if m["constant"] in dex.line_base(root, line_id)):
+                                  if m["constant"] in bases):
             best = "starter-adjacent"
         for m in members:
             tier[m["name"]] = best

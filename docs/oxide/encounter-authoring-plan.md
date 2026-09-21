@@ -49,6 +49,12 @@ so they are not re-decided.
 > with the other regions' first-route lines (`EARLY_LINES` in `tiers.py`), since the
 > corridor cannot be filled from seven, and the roamers and Phione are recorded as
 > sourced by their vanilla mechanism. Step 3 starts from the plan's "Tables" section.
+> Revised the same day on Ian's review: the new starters are wild (Fennekin, Scorbunny
+> and Popplio at a real share, Litten and Froakie as tails, the grass three in the
+> honey trees' rare tier), the twenty new legendaries are a random pool the two lake
+> caverns and the roamer slot draw from rather than statics of their own, and only
+> Xerneas and Yveltal are new statics, post-League. Decision 8 stands: that scripting
+> is outside this track and R12 reports the pool lines until it exists.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

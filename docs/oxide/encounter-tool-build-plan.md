@@ -1006,6 +1006,36 @@ and one data gap, Fomantis and Lurantis being two lines in the tree because
 Fomantis's data lacks the evolution, so each has a home of its own until
 that is fixed.
 
+**Revised the same day, on Ian's review of the proposals.** Three rules
+from him, all now in the plan file and the document. Everything except the
+two box legendaries must be possible before the first League clear, which
+rules out the Battle Zone, Stark Mountain, Snowpoint Temple, Route 224,
+Sendoff Spring and Turnback Cave (all National Dex in Platinum). Fewer
+gifts, so the eight new starter lines are **wild and out of the gate tier**
+(`WILD_STARTERS` in `tiers.py`): Fennekin on Route 214, Scorbunny on Route
+206 and Popplio in the surf on Routes 219 and 220 at a real share, since he
+wants those three to be a good chance with or without a manip; Litten
+(Fuego Ironworks) and Froakie (Route 212 south) as tails a dupe-out plan
+pays off; Rowlet, Snivy and Sprigatito in the honey trees' rare tier, which
+makes the honey trees designed space from Step 5 on. And vanilla's three
+pre-League legendaries already felt like a lot, so the twenty new ones are
+**not statics of their own**: the two lake caverns become two static
+battles drawn without replacement from one pool, and Mesprit's roamer a
+random roamer from the same pool (Uxie, Azelf, Mesprit, the Galarian
+birds, Zygarde, Diancie, the Tapus, the eleven Ultra Beasts, Magearna: 23
+candidates, one list he can split). That scripting is outside this track;
+R12 in the linter reads the tree and reports those lines until it exists.
+Xerneas (Sendoff Spring) and Yveltal (Route 224) stay as the only new
+statics, post-League by rule.
+
+The tool learned two things for this: a honey-tree placement counts as a
+source for R12 (the cost model cannot price a slathered tree), and the
+document carries `honey` and `pool` statuses. The plan now reads **89 with
+a wild home, 53 scripted, 8 on water, 3 in the honey trees, 20 in the pool,
+2 proposed, 2 deliberate tails** (Litten, Froakie); tiers gate 78,
+starter-adjacent 68, preferred 111, filler 103; Step 2 18/18; R12 on the
+unchanged tables still 81 errors.
+
 *Gate was:* no line without a source; the early band's cast fits 3-5
 species per table with the lines whose tier says early.
 
