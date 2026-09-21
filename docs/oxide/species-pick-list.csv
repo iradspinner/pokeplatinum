@@ -8,14 +8,14 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 8,Pikachu,native,25,platinum,,yes,Electric,Electric,,preferred
 9,Raichu,native,26,platinum,,yes,Electric,Electric,,preferred
 10,Pichu,native,172,platinum,,yes,Electric,Electric,,preferred
-11,Nidoran F,native,29,platinum,,yes,Poison,Poison,,filler
-12,Nidorina,native,30,platinum,,yes,Poison,Poison,,filler
-13,Nidoqueen,native,31,platinum,,yes,Poison,Ground,,filler
-14,Nidoran M,native,32,platinum,,yes,Poison,Poison,,filler
-15,Nidorino,native,33,platinum,,yes,Poison,Poison,,filler
-16,Nidoking,native,34,platinum,,yes,Poison,Ground,,filler
-17,Vulpix,native,37,platinum,,yes,Fire,Fire,,filler
-18,Ninetales,native,38,platinum,,yes,Fire,Fairy,,filler
+11,Nidoran F,native,29,platinum,,yes,Poison,Poison,,starter-adjacent
+12,Nidorina,native,30,platinum,,yes,Poison,Poison,,starter-adjacent
+13,Nidoqueen,native,31,platinum,,yes,Poison,Ground,,starter-adjacent
+14,Nidoran M,native,32,platinum,,yes,Poison,Poison,,starter-adjacent
+15,Nidorino,native,33,platinum,,yes,Poison,Poison,,starter-adjacent
+16,Nidoking,native,34,platinum,,yes,Poison,Ground,,starter-adjacent
+17,Vulpix,native,37,platinum,,yes,Fire,Fire,,starter-adjacent
+18,Ninetales,native,38,platinum,,yes,Fire,Fairy,,starter-adjacent
 19,Alolan Ninetales,new,38,form,1132,"MISMATCH (73, 67, 75, 81, 100, 109)",Ice,Fairy,,filler
 20,Zubat,native,41,platinum,,yes,Poison,Flying,,starter-adjacent
 21,Golbat,native,42,platinum,,yes,Poison,Flying,,starter-adjacent
@@ -65,8 +65,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 65,Galarian Zapdos,new,145,form,1165,yes,Fighting,Flying,,gate
 66,Moltres,native,,platinum,,UNMATCHED,Fire,Flying,,gate
 67,Galarian Moltres,new,146,form,1166,yes,Dark,Flying,,gate
-68,Sentret,native,161,platinum,,yes,Normal,Normal,,filler
-69,Furret,native,162,platinum,,yes,Normal,Normal,,filler
+68,Sentret,native,161,platinum,,yes,Normal,Normal,,starter-adjacent
+69,Furret,native,162,platinum,,yes,Normal,Normal,,starter-adjacent
 70,Togepi,native,175,platinum,,yes,Fairy,Fairy,,preferred
 71,Togetic,native,176,platinum,,yes,Fairy,Flying,,preferred
 72,Togekiss,native,468,platinum,,yes,Fairy,Flying,,preferred
@@ -103,9 +103,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 103,Swampert,native,260,platinum,,yes,Water,Ground,,gate
 104,Poochyena,native,261,platinum,,yes,Dark,Dark,,filler
 105,Mightyena,native,262,platinum,,yes,Dark,Dark,,filler
-106,Lotad,native,270,platinum,,yes,Grass,Water,,filler
-107,Lombre,native,271,platinum,,yes,Grass,Water,,filler
-108,Ludicolo,native,272,platinum,,yes,Grass,Water,,filler
+106,Lotad,native,270,platinum,,yes,Grass,Water,,starter-adjacent
+107,Lombre,native,271,platinum,,yes,Grass,Water,,starter-adjacent
+108,Ludicolo,native,272,platinum,,yes,Grass,Water,,starter-adjacent
 109,Seedot,native,273,platinum,,yes,Grass,Grass,,filler
 110,Nuzleaf,native,274,platinum,,yes,Grass,Dark,,filler
 111,Shiftry,native,275,platinum,,yes,Grass,Dark,,filler
@@ -115,8 +115,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 115,Gallade,native,475,platinum,,yes,Psychic,Fighting,,preferred
 116,Surskit,native,283,platinum,,yes,Bug,Water,,filler
 117,Masquerain,native,284,platinum,,yes,Bug,Water,,filler
-118,Shroomish,native,285,platinum,,yes,Grass,Grass,,filler
-119,Breloom,native,286,platinum,,yes,Grass,Fighting,,filler
+118,Shroomish,native,285,platinum,,yes,Grass,Grass,,starter-adjacent
+119,Breloom,native,286,platinum,,yes,Grass,Fighting,,starter-adjacent
 120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,,filler
 121,Hariyama,native,297,platinum,,yes,Fighting,Fighting,,filler
 122,Skitty,native,300,platinum,,yes,Normal,Normal,,filler
@@ -215,18 +215,18 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 218,Snivy,new,495,species,545,yes,Grass,Grass,,gate
 219,Servine,new,496,species,546,yes,Grass,Grass,,gate
 220,Serperior,new,497,species,547,yes,Grass,Grass,,gate
-221,Purrloin,new,509,species,559,yes,Dark,Dark,,filler
-222,Liepard,new,510,species,560,"MISMATCH (64, 88, 50, 88, 50, 106)",Dark,Dark,,filler
-223,Sewaddle,new,540,species,590,yes,Bug,Grass,,filler
-224,Swadloon,new,541,species,591,yes,Bug,Grass,,filler
-225,Leavanny,new,542,species,592,yes,Bug,Grass,,filler
+221,Purrloin,new,509,species,559,yes,Dark,Dark,,starter-adjacent
+222,Liepard,new,510,species,560,"MISMATCH (64, 88, 50, 88, 50, 106)",Dark,Dark,,starter-adjacent
+223,Sewaddle,new,540,species,590,yes,Bug,Grass,,starter-adjacent
+224,Swadloon,new,541,species,591,yes,Bug,Grass,,starter-adjacent
+225,Leavanny,new,542,species,592,yes,Bug,Grass,,starter-adjacent
 226,Dwebble,new,557,species,607,yes,Bug,Rock,,filler
 227,Crustle,new,558,species,608,yes,Bug,Rock,,filler
 228,Yamask,new,562,species,612,yes,Ghost,Ghost,,filler
 229,Cofagrigus,new,563,species,613,yes,Ghost,Ghost,"Yamask, level 34 (method 4) - the non-branch half",filler
 230,Runerigus,new,867,species,917,yes,Ground,Ghost,"Yamask, level up holding Reaper Cloth (methods 18/19)",filler
-231,Minccino,new,572,species,622,yes,Normal,Normal,,filler
-232,Cinccino,new,573,species,623,yes,Normal,Normal,,filler
+231,Minccino,new,572,species,622,yes,Normal,Normal,,starter-adjacent
+232,Cinccino,new,573,species,623,yes,Normal,Normal,,starter-adjacent
 233,Gothita,new,574,species,624,yes,Psychic,Psychic,,filler
 234,Gothorita,new,575,species,625,yes,Psychic,Psychic,,filler
 235,Gothitelle,new,576,species,626,"MISMATCH (70, 55, 95, 95, 110, 65)",Psychic,Dark,,filler
@@ -253,9 +253,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 256,Froakie,new,656,species,706,yes,Water,Water,,gate
 257,Frogadier,new,657,species,707,yes,Water,Water,,gate
 258,Greninja,new,658,species,708,yes,Water,Dark,,gate
-259,Fletchling,new,661,species,711,yes,Normal,Flying,,filler
-260,Fletchinder,new,662,species,712,yes,Fire,Flying,,filler
-261,Talonflame,new,663,species,713,yes,Fire,Flying,,filler
+259,Fletchling,new,661,species,711,yes,Normal,Flying,,starter-adjacent
+260,Fletchinder,new,662,species,712,yes,Fire,Flying,,starter-adjacent
+261,Talonflame,new,663,species,713,yes,Fire,Flying,,starter-adjacent
 262,Flabebe,new,669,species,719,yes,Fairy,Fairy,,filler
 263,Floette,new,670,species,720,yes,Fairy,Fairy,,filler
 264,Florges,new,671,species,721,yes,Fairy,Fairy,,filler
@@ -281,12 +281,12 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 284,Popplio,new,728,species,778,yes,Water,Water,,gate
 285,Brionne,new,729,species,779,yes,Water,Water,,gate
 286,Primarina,new,730,species,780,yes,Water,Fairy,,gate
-287,Pikipek,new,731,species,781,yes,Normal,Flying,,filler
-288,Trumbeak,new,732,species,782,yes,Normal,Flying,,filler
-289,Toucannon,new,733,species,783,yes,Normal,Flying,,filler
-290,Grubbin,new,736,species,786,yes,Bug,Bug,,filler
-291,Charjabug,new,737,species,787,yes,Bug,Electric,,filler
-292,Vikavolt,new,738,species,788,yes,Bug,Electric,"Charjabug, magnetic field (method 24) - direct port",filler
+287,Pikipek,new,731,species,781,yes,Normal,Flying,,starter-adjacent
+288,Trumbeak,new,732,species,782,yes,Normal,Flying,,starter-adjacent
+289,Toucannon,new,733,species,783,yes,Normal,Flying,,starter-adjacent
+290,Grubbin,new,736,species,786,yes,Bug,Bug,,starter-adjacent
+291,Charjabug,new,737,species,787,yes,Bug,Electric,,starter-adjacent
+292,Vikavolt,new,738,species,788,yes,Bug,Electric,"Charjabug, magnetic field (method 24) - direct port",starter-adjacent
 293,Mareanie,new,747,species,797,yes,Poison,Water,,filler
 294,Toxapex,new,748,species,798,yes,Poison,Water,,filler
 295,Dewpider,new,751,species,801,yes,Water,Bug,,filler
@@ -295,9 +295,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 298,Lurantis,new,754,species,804,yes,Grass,Grass,,filler
 299,Salandit,new,757,species,807,yes,Poison,Fire,,filler
 300,Salazzle,new,758,species,808,yes,Poison,Fire,"Salandit, level 33 female (method 23) - direct port",filler
-301,Bounsweet,new,761,species,811,yes,Grass,Grass,,filler
-302,Steenee,new,762,species,812,yes,Grass,Grass,,filler
-303,Tsareena,new,763,species,813,"MISMATCH (72, 120, 98, 50, 98, 72)",Grass,Fighting,"Steenee, level up knowing Stomp (method 20) - direct port",filler
+301,Bounsweet,new,761,species,811,yes,Grass,Grass,,starter-adjacent
+302,Steenee,new,762,species,812,yes,Grass,Grass,,starter-adjacent
+303,Tsareena,new,763,species,813,"MISMATCH (72, 120, 98, 50, 98, 72)",Grass,Fighting,"Steenee, level up knowing Stomp (method 20) - direct port",starter-adjacent
 304,Sandygast,new,769,species,819,yes,Ghost,Ground,,filler
 305,Palossand,new,770,species,820,yes,Ghost,Ground,,filler
 306,Turtonator,new,776,species,826,yes,Fire,Dragon,,filler
@@ -325,14 +325,14 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 328,Scorbunny,new,813,species,863,yes,Fire,Fire,,gate
 329,Raboot,new,814,species,864,yes,Fire,Fire,,gate
 330,Cinderace,new,815,species,865,yes,Fire,Fire,,gate
-331,Rookidee,new,821,species,871,yes,Flying,Flying,,filler
-332,Corvisquire,new,822,species,872,yes,Flying,Flying,,filler
-333,Corviknight,new,823,species,873,yes,Flying,Steel,,filler
-334,Blipbug,new,824,species,874,yes,Bug,Bug,,filler
-335,Dottler,new,825,species,875,yes,Bug,Psychic,,filler
-336,Orbeetle,new,826,species,876,yes,Bug,Psychic,,filler
-337,Wooloo,new,831,species,881,yes,Normal,Normal,,filler
-338,Dubwool,new,832,species,882,yes,Normal,Normal,,filler
+331,Rookidee,new,821,species,871,yes,Flying,Flying,,starter-adjacent
+332,Corvisquire,new,822,species,872,yes,Flying,Flying,,starter-adjacent
+333,Corviknight,new,823,species,873,yes,Flying,Steel,,starter-adjacent
+334,Blipbug,new,824,species,874,yes,Bug,Bug,,starter-adjacent
+335,Dottler,new,825,species,875,yes,Bug,Psychic,,starter-adjacent
+336,Orbeetle,new,826,species,876,yes,Bug,Psychic,,starter-adjacent
+337,Wooloo,new,831,species,881,yes,Normal,Normal,,starter-adjacent
+338,Dubwool,new,832,species,882,yes,Normal,Normal,,starter-adjacent
 339,Toxel,cut,,,,,Electric,Poison,dropped: nature-split evolution,filler
 340,Toxtricity,cut,,,,,Electric,Poison,dropped: nature-split evolution,filler
 341,Clobbopus,new,852,species,902,yes,Fighting,Fighting,,filler
@@ -345,15 +345,15 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 348,Sprigatito,new,906,species,956,yes,Grass,Grass,,gate
 349,Floragato,new,907,species,957,yes,Grass,Grass,,gate
 350,Meowscarada,new,908,species,958,yes,Grass,Dark,,gate
-351,Pawmi,new,921,species,971,yes,Electric,Electric,,filler
-352,Pawmo,new,922,species,972,yes,Electric,Fighting,,filler
-353,Pawmot,new,923,species,973,yes,Electric,Fighting,Pawmo + Thunder Stone (method 7),filler
-354,Smoliv,new,928,species,978,yes,Grass,Normal,,filler
-355,Dolliv,new,929,species,979,yes,Grass,Normal,,filler
-356,Arboliva,new,930,species,980,yes,Grass,Normal,,filler
-357,Nacli,new,932,species,982,yes,Rock,Rock,,filler
-358,Naclstack,new,933,species,983,yes,Rock,Rock,,filler
-359,Garganacl,new,934,species,984,yes,Rock,Rock,,filler
+351,Pawmi,new,921,species,971,yes,Electric,Electric,,starter-adjacent
+352,Pawmo,new,922,species,972,yes,Electric,Fighting,,starter-adjacent
+353,Pawmot,new,923,species,973,yes,Electric,Fighting,Pawmo + Thunder Stone (method 7),starter-adjacent
+354,Smoliv,new,928,species,978,yes,Grass,Normal,,starter-adjacent
+355,Dolliv,new,929,species,979,yes,Grass,Normal,,starter-adjacent
+356,Arboliva,new,930,species,980,yes,Grass,Normal,,starter-adjacent
+357,Nacli,new,932,species,982,yes,Rock,Rock,,starter-adjacent
+358,Naclstack,new,933,species,983,yes,Rock,Rock,,starter-adjacent
+359,Garganacl,new,934,species,984,yes,Rock,Rock,,starter-adjacent
 360,Charcadet,new,935,species,985,yes,Fire,Fire,,filler
 361,Armarouge,new,936,species,986,yes,Fire,Psychic,Charcadet + Sun Stone (method 7),filler
 362,Ceruledge,new,937,species,987,yes,Fire,Ghost,Charcadet + Dusk Stone (method 7),filler

@@ -54,6 +54,16 @@ SCRIPTED = {
     "SPECIES_ANORITH": "fossil, mining_museum",
     "SPECIES_CRANIDOS": "fossil, mining_museum",
     "SPECIES_SHIELDON": "fossil, mining_museum",
+    # Platinum's roamers are released by an event and then walk the routes;
+    # no script names them. Mesprit after Valor Cavern, Cresselia from
+    # Fullmoon Island, the three birds from Oak in Eterna after the League.
+    "SPECIES_MESPRIT": "roamer, valor_cavern",
+    "SPECIES_CRESSELIA": "roamer, fullmoon_island",
+    "SPECIES_ARTICUNO": "roamer, eterna_city (Oak, post-League)",
+    "SPECIES_ZAPDOS": "roamer, eterna_city (Oak, post-League)",
+    "SPECIES_MOLTRES": "roamer, eterna_city (Oak, post-League)",
+    # and Phione is bred from the Manaphy egg the mansion's office gives
+    "SPECIES_PHIONE": "bred from Manaphy, pokemon_day_care",
 }
 
 HOME_SHARE = 0.10

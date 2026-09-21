@@ -938,6 +938,77 @@ plus those 78. That is the size of Step 2.
 
 *Gate was:* R12 runs; `order` covers all 185 areas with no duplicates.
 
+### Step 2 — the availability plan — **done, 2026-09-21**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2          # expect 17/17
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli availability     # the gate
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli availability --write   # regenerate the doc
+```
+
+**What was written.** `docs/oxide/encounters/availability-plan.json` is the
+design: for every live land table, the lines at home on it and the lines
+that merely appear, by first-stage constant, with a one-line note per table;
+plus the water tables that are the water lines' homes and a proposal per
+gate line no script names. It is keyed by area on purpose, so Step 3 reads
+a table's intended cast straight off it. `availability.py` turns it around
+into the per-line view the plan asked for, joins it with the sources the
+tree already has (gifts, trades, static battles, the starter, the fossils),
+checks the gate and renders `docs/oxide/encounters/availability.md`, which
+is generated and never edited; `test_step2` fails if the committed document
+is not what the plan renders. `cli availability` is the gate, exit 1 on a
+failure.
+
+**The plan's shape.** 177 lines: **87 with a wild home, 53 scripted, 7 on a
+water table, 30 proposed**, none without a source. Every line has exactly
+one home; cameos number one to six per line and are where R13's variety and
+the dupe-out structure will come from. Themes follow vanilla where the
+pick-list allows (Shinx on 202, Gible under Wayward Cave, Wooper in the
+marsh, Snover on 216, the Old Chateau as an A2 monoculture of Sinistea) and
+the new species fill what the list dropped (Wooloo and Pikipek as the first
+route's pair, Nacli for Geodude, Mienfoo for Meditite, Yamask in the Lost
+Tower, Galarian Mr. Mime on 218 where Mr. Mime was). Multi-room areas share
+a cast and vary it room by room. The twenty-five `unknown_533` to
+`unknown_557` files turned out to carry Turnback Cave's deep cast at level
+45, so they are its post-game rooms, planned as such, and the plan proposes
+the Ultra Beasts as their static occupants.
+
+**Two decisions taken to make the corridor possible.** Vanilla's early band
+gives the pick-list only seven starter-adjacent lines, which cannot fill
+seventeen corridor tables at three to five species. `tiers.py` gained
+`EARLY_LINES`, the other regions' first-route lines, native and new
+(Sentret, the Nidorans, Vulpix, Shroomish, Lotad; Purrloin, Sewaddle,
+Minccino, Fletchling, Pikipek, Grubbin, Bounsweet, Rookidee, Blipbug,
+Wooloo, Pawmi, Smoliv, Nacli), and `tier-init --force` was re-run before
+Ian had edited the CSV: tiers are now **gate 102, starter-adjacent 68,
+preferred 87, filler 103**. And the roamers (Articuno, Zapdos, Moltres,
+Mesprit, Cresselia) and Phione, which no script names, are recorded in
+`audit.SCRIPTED` as sourced by their vanilla mechanism, so they pass R12
+instead of failing it as the Step 1 entry above reported.
+
+**The gate, as the tool checks it.** No line without a home, a scripted
+source or a proposal; the corridor (through Eterna Forest, 17 live tables)
+carries only starter-adjacent lines and lines with a scripted source; every
+starter-adjacent line's home is in the corridor; every early-band table has
+two to five lines planned (two only for an A4 duo, Ravaged Path); every live
+table has something planned. All pass. `lint` on the unchanged tables now
+reads 81 R12 errors, the 30 new gate lines plus 51 wild lines the current
+tables do not deliver under the ceilings; that is Steps 3 and 4's work.
+
+**For Ian**, all in the document's own section and none blocking: the 30
+proposals (the new starters as pick-one gifts in Eterna, Pastoria and
+Snowpoint; the Galarian birds as roamers or statics; Xerneas and Yveltal at
+Sendoff Spring and Route 224; the Tapus at the four shrines; the Ultra
+Beasts in Turnback's post-game rooms; Diancie in Wayward Cave; Blacephalon
+after Heatran; Poipole and Magearna as gifts); the widened starter-adjacent
+tier; the water homes, which Step 5 only de-leaks unless surf is designed;
+and one data gap, Fomantis and Lurantis being two lines in the tree because
+Fomantis's data lacks the evolution, so each has a home of its own until
+that is fixed.
+
+*Gate was:* no line without a source; the early band's cast fits 3-5
+species per table with the lines whose tier says early.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

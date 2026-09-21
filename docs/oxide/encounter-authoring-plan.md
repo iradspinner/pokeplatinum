@@ -40,6 +40,15 @@ so they are not re-decided.
 > 2: R12's cost counts land and water tables only, so a line meant to come from
 > swarms, radar, dual-slot or honey trees needs a wild home or a scripted source
 > as well, or the ceiling raised.
+>
+> **Step 2 done, 2026-09-21.** The plan is `docs/oxide/encounters/availability-plan.json`,
+> keyed by area so Step 3 reads casts off it; `availability.md` is generated from it
+> by `cli availability --write`, and `cli availability` is the gate. 177 lines: 87
+> with a wild home, 53 scripted, 7 on water, 30 new gate lines with a proposal each
+> for Ian. Two things changed under this step: the starter-adjacent tier was widened
+> with the other regions' first-route lines (`EARLY_LINES` in `tiers.py`), since the
+> corridor cannot be filled from seven, and the roamers and Phione are recorded as
+> sourced by their vanilla mechanism. Step 3 starts from the plan's "Tables" section.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

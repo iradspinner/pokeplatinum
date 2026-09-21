@@ -85,9 +85,10 @@ def check_tiers(results):
     results.append(("starter-adjacent comes from vanilla's early routes",
                     by["Zubat"] == "starter-adjacent" and by["Shinx"] == "starter-adjacent"
                     and by["Budew"] == "starter-adjacent", ""))
-    results.append(("the Sinnoh dex is preferred, the rest filler",
-                    by["Pikachu"] == "preferred" and by["Nidoran F"] == "filler"
-                    and by["Toxel"] == "filler", ""))
+    results.append(("the Sinnoh dex is preferred, the rest filler, first-route lines starter-adjacent",
+                    by["Pikachu"] == "preferred" and by["Koffing"] == "filler"
+                    and by["Toxel"] == "filler" and by["Nidoran F"] == "starter-adjacent"
+                    and by["Wooloo"] == "starter-adjacent", ""))
     rc, _ = run_cli("tier-init")
     results.append(("`tier-init` refuses to overwrite existing tiers without --force",
                     rc == 1, f"exit {rc}"))
@@ -111,9 +112,11 @@ def check_r12(results):
     results.append(("R12 evaluates on the working tree: no skip finding, errors named by line",
                     r12 and not any(f.severity == "skip" for f in r12)
                     and all(f.target != "*" for f in r12), f"{len(r12)} findings"))
-    results.append(("the roamers fail R12 as gate lines with no scripted source",
-                    {"Articuno", "Mesprit", "Cresselia"} <= {f.target for f in r12
-                                                              if f.severity == "error"}, ""))
+    errors = {f.target for f in r12 if f.severity == "error"}
+    results.append(("the roamers pass R12 through their vanilla mechanism; new gate lines "
+                    "with no script fail it",
+                    not {"Articuno", "Mesprit", "Cresselia"} & errors
+                    and {"Snivy", "Nihilego"} <= errors, ""))
     skipped = lint.lint_all(payload, sidecar, None)
     results.append(("without availability rows R12 still reports itself skipped",
                     any(f.rule == "R12" and f.severity == "skip" for f in skipped), ""))

@@ -44,6 +44,21 @@ LEGENDARY = set(
     + [1001, 1002, 1003, 1004, 1007, 1008, 1014, 1015, 1016, 1017, 1024, 1025])
 STARTER = set(n for start in (1, 152, 252, 387, 495, 650, 722, 810, 906)
               for n in range(start, start + 9))
+
+# Lines whose first stage sits on the first routes of its own game, so it
+# can sit on Routes 201-205 here. Vanilla's early band supplies only seven
+# pick-list lines (the list dropped Starly, Bidoof, Kricketot and the rest),
+# which cannot fill seventeen corridor tables at three to five species each;
+# these are the other regions' Route 1 and Route 2 regulars, natives and new
+# alike. Step 2's availability plan is built on this set. Ian's to edit.
+EARLY_LINES = {
+    "SPECIES_SENTRET", "SPECIES_NIDORAN_F", "SPECIES_NIDORAN_M", "SPECIES_VULPIX",
+    "SPECIES_SHROOMISH", "SPECIES_LOTAD",
+    "SPECIES_PURRLOIN", "SPECIES_SEWADDLE", "SPECIES_MINCCINO", "SPECIES_FLETCHLING",
+    "SPECIES_PIKIPEK", "SPECIES_GRUBBIN", "SPECIES_BOUNSWEET", "SPECIES_ROOKIDEE",
+    "SPECIES_BLIPBUG", "SPECIES_WOOLOO", "SPECIES_PAWMI", "SPECIES_SMOLIV",
+    "SPECIES_NACLI",
+}
 FOSSIL = set(n for lo, hi in ((138, 142), (345, 348), (408, 411), (564, 567),
                               (696, 699), (880, 883))
              for n in range(lo, hi + 1))
@@ -114,7 +129,7 @@ def defaults(rom_path="~/roms/vanilla.nds", ref="main"):
     sinnoh = sinnoh_dex(rom_path)
     statics = {r["species"] for r in audit.script_references(root)
                if r["command"] in audit.BATTLE_COMMANDS}
-    early = early_bases(ref)
+    early = early_bases(ref) | EARLY_LINES
     line_of = dex.lines(root)
     natdex_of = national_numbers()
     tier = {r["name"]: species_tier(r, statics, sinnoh, natdex_of) for r in rows}

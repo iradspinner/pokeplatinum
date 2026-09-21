@@ -19,6 +19,10 @@ and Step 1 added the two one-off writers, each refusing to run twice:
     python3 -m tools.oxide.encounters.cli order-init [--force]
     python3 -m tools.oxide.encounters.cli tier-init  [--rom ~/roms/vanilla.nds] [--force]
 
+and Step 2 the availability plan, read from availability-plan.json:
+
+    python3 -m tools.oxide.encounters.cli availability [--write] [--json]
+
 --ref reads a git ref instead of the working tree. The vanilla corpus is on
 `main`; this branch holds the base ROM's rewritten tables.
 """
@@ -602,6 +606,37 @@ def cmd_tier_init(args):
     return 0
 
 
+def cmd_availability(args):
+    """Step 2: the availability plan, per line, from availability-plan.json
+    and the tree; --write renders docs/oxide/encounters/availability.md.
+    Exit 1 when the step's gate fails."""
+    from . import availability
+    out = availability.build(args.ref)
+    g, s = out["gate"], out["summary"]
+    if args.json:
+        json.dump({"summary": dict(s), "gate": g, "problems": out["problems"],
+                   "rows": out["rows"]}, sys.stdout, indent=2)
+        print()
+    else:
+        print(f"availability plan   [{args.ref or 'working tree'}]")
+        print("  " + ", ".join(f"{k} {s[k]}" for k in availability.STATUSES if s.get(k)))
+        for key, label in (("no_source", "no source"),
+                           ("corridor_intruders", "corridor intruders"),
+                           ("early_home_outside", "starter-adjacent home outside corridor"),
+                           ("early_fit", "early tables outside 3-5"),
+                           ("unplanned_tables", "tables with nothing planned (warning)")):
+            print(f"  {label:42} {len(g[key])}"
+                  + (f": {', '.join(g[key][:6])}" + (" ..." if len(g[key]) > 6 else "")
+                     if g[key] else ""))
+        for p in out["problems"]:
+            print(f"  problem: {p}")
+        if args.write:
+            print(f"  wrote {availability.write(out)}")
+    failed = out["problems"] or any(g[k] for k in ("no_source", "corridor_intruders",
+                                                    "early_home_outside", "early_fit"))
+    return 1 if failed else 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -714,6 +749,13 @@ def main(argv=None):
                     help="a Platinum ROM, for the Sinnoh dex table")
     ti.add_argument("--force", action="store_true")
     ti.set_defaults(func=cmd_tier_init)
+
+    av = sub.add_parser("availability", help="Step 2: the per-line availability plan "
+                                              "and its gate")
+    av.add_argument("--write", action="store_true",
+                    help="render docs/oxide/encounters/availability.md")
+    av.add_argument("--json", action="store_true")
+    av.set_defaults(func=cmd_availability)
 
     args = p.parse_args(argv)
     return args.func(args)
