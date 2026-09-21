@@ -2,10 +2,11 @@
 
 base: `base.nds`  vanilla: `vanilla.nds`  dry run: True
 
-Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 153, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
+Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 0, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
 
 ## pl_enc_data.narc (partially imported)
 - 241 differing values in unown_table, rate_form0, rate_form1, rate_form2, rate_form3, rate_form4 were not carried over; see ENCOUNTER_SKIP_KEYS in this importer for why
+- 0 authored table(s) left alone; see AUTHORED and the sidecar
 
 ## TEXT_BANK_WAYWARD_CAVE_1F[6]
 - unused slot gained or lost text; skipped: ('garbage', 29) -> 'Please leave me alone!!\r'

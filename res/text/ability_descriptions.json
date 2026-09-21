@@ -865,6 +865,1359 @@
         "Reduces a sleeping foe’s\n",
         "HP."
       ]
+    },
+    {
+      "id": "pl_msg_00000612_00124",
+      "en_US": [
+        "Steals an item when\n",
+        "hit by another Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00125",
+      "en_US": [
+        "Removes added effects to\n",
+        "increase move damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00126",
+      "en_US": [
+        "Makes stat changes\n",
+        "have an opposite effect."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00127",
+      "en_US": [
+        "Makes the opponents\n",
+        "unable to eat Berries."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00128",
+      "en_US": [
+        "When its stats are lowered\n",
+        "its Attack increases."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00129",
+      "en_US": [
+        "Lowers stats when\n",
+        "HP becomes half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00130",
+      "en_US": [
+        "May disable a move\n",
+        "used on the Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00131",
+      "en_US": [
+        "May heal an ally’s\n",
+        "status conditions."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00132",
+      "en_US": [
+        "Reduces damage\n",
+        "done to allies."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00133",
+      "en_US": [
+        "Physical attacks lower\n",
+        "Defense and raise Speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00134",
+      "en_US": [
+        "Doubles the\n",
+        "Pokémon’s weight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00135",
+      "en_US": [
+        "Halves the\n",
+        "Pokémon’s weight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00136",
+      "en_US": [
+        "Reduces damage\n",
+        "when HP is full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00137",
+      "en_US": [
+        "Powers up physical\n",
+        "attacks when poisoned."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00138",
+      "en_US": [
+        "Powers up special\n",
+        "attacks when burned."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00139",
+      "en_US": [
+        "May create another Berry\n",
+        "after one is used."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00140",
+      "en_US": [
+        "Anticipates an ally’s\n",
+        "attack and dodges it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00141",
+      "en_US": [
+        "Sharply raises one stat\n",
+        "and lowers another."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00142",
+      "en_US": [
+        "Protects the Pokémon from\n",
+        "damage from weather."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00143",
+      "en_US": [
+        "May poison targets when\n",
+        "a Pokémon makes contact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00144",
+      "en_US": [
+        "Restores a little HP when\n",
+        "withdrawn from battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00145",
+      "en_US": [
+        "Protects from\n",
+        "Defense-lowering attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00146",
+      "en_US": [
+        "Boosts the Pokémon’s\n",
+        "Speed in a sandstorm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00147",
+      "en_US": [
+        "Makes status moves more\n",
+        "likely to miss."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00148",
+      "en_US": [
+        "Boosts move power when\n",
+        "the Pokémon moves last."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00149",
+      "en_US": [
+        "Comes out disguised as\n",
+        "the Pokémon in back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00150",
+      "en_US": [
+        "It transforms itself into\n",
+        "the Pokémon it is facing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00151",
+      "en_US": [
+        "Passes through the foe’s\n",
+        "barrier and strikes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00152",
+      "en_US": [
+        "Contact with this Pokémon\n",
+        "spreads this Ability."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00153",
+      "en_US": [
+        "Boosts Attack after\n",
+        "knocking out any Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00154",
+      "en_US": [
+        "Raises Attack when\n",
+        "hit by a Dark-type move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00155",
+      "en_US": [
+        "Some move types scare\n",
+        "it and boost its Speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00156",
+      "en_US": [
+        "Reflects\n",
+        "status-changing moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00157",
+      "en_US": [
+        "Boosts Attack when\n",
+        "hit by a Grass-type move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00158",
+      "en_US": [
+        "Gives priority to\n",
+        "a status move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00159",
+      "en_US": [
+        "Boosts certain moves’\n",
+        "power in a sandstorm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00160",
+      "en_US": [
+        "Inflicts damage to\n",
+        "the Pokémon on contact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00161",
+      "en_US": [
+        "Changes the Pokémon’s\n",
+        "shape when HP is halved."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00162",
+      "en_US": [
+        "Boosts the accuracy of\n",
+        "its allies and itself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00163",
+      "en_US": [
+        "Moves can be used\n",
+        "regardless of Abilities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00164",
+      "en_US": [
+        "Moves can be used\n",
+        "regardless of Abilities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00165",
+      "en_US": [
+        "Protects against attacks\n",
+        "that limit move choices."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00166",
+      "en_US": [
+        "Protects Grass-type allies\n",
+        "from stat/status effects."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00167",
+      "en_US": [
+        "Restores HP as well when\n",
+        "the Pokémon eats a Berry."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00168",
+      "en_US": [
+        "It changes type to that\n",
+        "of the move it’s about to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00169",
+      "en_US": [
+        "Halves the damage from\n",
+        "physical moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00170",
+      "en_US": [
+        "Steals the held item of\n",
+        "a Pokémon it hits."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00171",
+      "en_US": [
+        "Protects the Pokémon from\n",
+        "some ball and bomb moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00172",
+      "en_US": [
+        "Sharply boosts Sp. Atk\n",
+        "when a stat is lowered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00173",
+      "en_US": [
+        "Boosts the power of\n",
+        "biting moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00174",
+      "en_US": [
+        "Normal-type moves become\n",
+        "Ice-type and powered up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00175",
+      "en_US": [
+        "Prevents itself and\n",
+        "allies from falling asleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00176",
+      "en_US": [
+        "Changes between Blade and\n",
+        "Shield Forme with attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00177",
+      "en_US": [
+        "Flying-type moves gain\n",
+        "priority when its HP is full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00178",
+      "en_US": [
+        "Powers up aura and\n",
+        "pulse moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00179",
+      "en_US": [
+        "Boosts the Defense stat\n",
+        "on Grassy Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00180",
+      "en_US": [
+        "Passes its held item to\n",
+        "an ally that has used theirs."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00181",
+      "en_US": [
+        "Powers up moves that\n",
+        "make direct contact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00182",
+      "en_US": [
+        "Normal-type moves become\n",
+        "Fairy-type and powered up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00183",
+      "en_US": [
+        "Contact with it lowers the\n",
+        "attacker’s Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00184",
+      "en_US": [
+        "Normal-type moves become\n",
+        "Flying-type and power up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00185",
+      "en_US": [
+        "Parent and child\n",
+        "each attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00186",
+      "en_US": [
+        "Powers up each Pokémon’s\n",
+        "Dark-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00187",
+      "en_US": [
+        "Powers up each Pokémon’s\n",
+        "Fairy-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00188",
+      "en_US": [
+        "The effects of “Aura”\n",
+        "Abilities are reversed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00189",
+      "en_US": [
+        "Changes the weather\n",
+        "to nullify Fire-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00190",
+      "en_US": [
+        "Changes the weather\n",
+        "to nullify Water-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00191",
+      "en_US": [
+        "Alters weather to\n",
+        "remove Flying-type’s weaknesses."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00192",
+      "en_US": [
+        "Boosts Defense when\n",
+        "hit by an attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00193",
+      "en_US": [
+        "Wimpily switches out if its\n",
+        "HP becomes half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00194",
+      "en_US": [
+        "Switches out if its HP\n",
+        "becomes half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00195",
+      "en_US": [
+        "Sharply ups Defense when\n",
+        "hit by a Water-type move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00196",
+      "en_US": [
+        "Its attacks are critical\n",
+        "hits if target is poisoned."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00197",
+      "en_US": [
+        "Its shell breaks if its\n",
+        "HP becomes half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00198",
+      "en_US": [
+        "Deals doubles damage to\n",
+        "a target’s replacement."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00199",
+      "en_US": [
+        "Weakens incoming Fire-type\n",
+        "moves and prevents burns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00200",
+      "en_US": [
+        "Powers up\n",
+        "Steel-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00201",
+      "en_US": [
+        "Ups Sp. Atk if a hit\n",
+        "makes its HP half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00202",
+      "en_US": [
+        "Boosts the Pokémon’s\n",
+        "Speed stat in a hailstorm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00203",
+      "en_US": [
+        "Uses moves without\n",
+        "making contact with the target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00204",
+      "en_US": [
+        "Its sound-based moves\n",
+        "become Water-type."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00205",
+      "en_US": [
+        "Gives priority to\n",
+        "a healing move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00206",
+      "en_US": [
+        "Normal-type moves become\n",
+        "Electric-type and powered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00207",
+      "en_US": [
+        "Doubles Speed on\n",
+        "Electric Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00208",
+      "en_US": [
+        "Forms a powerful school\n",
+        "while it has a lot of HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00209",
+      "en_US": [
+        "Its shroud protects it\n",
+        "from an attack just once."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00210",
+      "en_US": [
+        "Defeating a foe boosts\n",
+        "its stats once."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00211",
+      "en_US": [
+        "Changes with other Cells\n",
+        "if HP becomes half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00212",
+      "en_US": [
+        "It can poison Steel- and\n",
+        "Poison-type targets."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00213",
+      "en_US": [
+        "It’s always drowsing, and\n",
+        "attacks without waking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00214",
+      "en_US": [
+        "Makes foes unable to\n",
+        "use priority attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00215",
+      "en_US": [
+        "Damages an attacker that\n",
+        "lands the finishing hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00216",
+      "en_US": [
+        "Repeats another Pokémon’s\n",
+        "dance move immediately."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00217",
+      "en_US": [
+        "Powers up ally\n",
+        "Pokémon’s special moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00218",
+      "en_US": [
+        "Resists contact damage\n",
+        "but weaker to Fire-type."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00219",
+      "en_US": [
+        "Makes foes unable to\n",
+        "use priority attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00220",
+      "en_US": [
+        "Boosts Sp. Atk each\n",
+        "time a Pokémon faints."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00221",
+      "en_US": [
+        "Contact with it lowers\n",
+        "the attacker’s Speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00222",
+      "en_US": [
+        "Copies the Ability of\n",
+        "a defeated ally."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00223",
+      "en_US": [
+        "Copies the Ability of\n",
+        "a defeated ally."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00224",
+      "en_US": [
+        "Boosts its best stat\n",
+        "each time it deals a KO."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00225",
+      "en_US": [
+        "Its type matches\n",
+        "the memory disc it holds."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00226",
+      "en_US": [
+        "Turns the ground\n",
+        "into Electric Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00227",
+      "en_US": [
+        "Turns the ground\n",
+        "into Psychic Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00228",
+      "en_US": [
+        "Turns the ground\n",
+        "into Misty Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00229",
+      "en_US": [
+        "Turns the ground\n",
+        "into Grassy Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00230",
+      "en_US": [
+        "Prevents other Pokémon\n",
+        "from lowering its stats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00231",
+      "en_US": [
+        "Resists damage while\n",
+        "its HP is full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00232",
+      "en_US": [
+        "Reduces damage from\n",
+        "super-effective attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00233",
+      "en_US": [
+        "Powers up moves that\n",
+        "are super-effective."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00234",
+      "en_US": [
+        "Boosts Attack when\n",
+        "entering a battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00235",
+      "en_US": [
+        "Boosts Defense when\n",
+        "entering a battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00236",
+      "en_US": [
+        "It changes type to that\n",
+        "of the move it’s about to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00237",
+      "en_US": [
+        "Retrieves the first thrown\n",
+        "Poké Ball if it failed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00238",
+      "en_US": [
+        "Scatters Speed-lowering\n",
+        "cotton fluff when hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00239",
+      "en_US": [
+        "This Pokémon’s\n",
+        "moves cannot be redirected."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00240",
+      "en_US": [
+        "Bounces back\n",
+        "stat-lowering effects."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00241",
+      "en_US": [
+        "Catches prey via Surf or Dive\n",
+        "and spits it out when hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00242",
+      "en_US": [
+        "This Pokémon’s moves\n",
+        "cannot be redirected."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00243",
+      "en_US": [
+        "Boosts Speed drastically\n",
+        "if hit by Fire or Water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00244",
+      "en_US": [
+        "Powers up own sound moves.\n",
+        "Resists other sound moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00245",
+      "en_US": [
+        "Creates a sandstorm\n",
+        "when hit by an attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00246",
+      "en_US": [
+        "Halves the damage\n",
+        "taken from special moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00247",
+      "en_US": [
+        "Ripens Berries and\n",
+        "doubles their effect."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00248",
+      "en_US": [
+        "Blocks a physical hit, but\n",
+        "the ice head breaks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00249",
+      "en_US": [
+        "Just being next to the\n",
+        "Pokémon powers up moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00250",
+      "en_US": [
+        "Changes type depending\n",
+        "on the terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00251",
+      "en_US": [
+        "On entering battle, clears\n",
+        "effects of Reflect, etc."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00252",
+      "en_US": [
+        "Powers up ally Pokémon’s\n",
+        "Steel-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00253",
+      "en_US": [
+        "Both Pokémon faint 3 turns\n",
+        "after taking a contact hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00254",
+      "en_US": [
+        "Swaps Abilities with\n",
+        "contact-making Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00255",
+      "en_US": [
+        "Boosts Attack, but allows\n",
+        "only one move to be used."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00256",
+      "en_US": [
+        "Nullifies the effects of\n",
+        "all other Abilities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00257",
+      "en_US": [
+        "Protects the Pokémon and\n",
+        "its allies from poisoning."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00258",
+      "en_US": [
+        "Changes between Full Belly\n",
+        "and Hangry Mode each turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00259",
+      "en_US": [
+        "Enables the Pokémon to\n",
+        "move first occasionally."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00260",
+      "en_US": [
+        "The Pokémon’s contact\n",
+        "moves ignore protections."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00261",
+      "en_US": [
+        "Removes all allies’ stat\n",
+        "changes on joining battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00262",
+      "en_US": [
+        "Powers up\n",
+        "Electric-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00263",
+      "en_US": [
+        "Powers up\n",
+        "Dragon-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00264",
+      "en_US": [
+        "When knocking out a\n",
+        "target, raises Attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00265",
+      "en_US": [
+        "When knocking out a\n",
+        "target, raises Sp. Atk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00266",
+      "en_US": [
+        "Combines Unnerve\n",
+        "and Chilling Neigh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00267",
+      "en_US": [
+        "Combines Unnerve\n",
+        "and Grim Neigh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00268",
+      "en_US": [
+        "Contact with this Pokémon\n",
+        "spreads this Ability."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00269",
+      "en_US": [
+        "Turns the ground into\n",
+        "Grassy Terrain if attacked."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00270",
+      "en_US": [
+        "Ups Attack if hit\n",
+        "by Fire moves. Prevents burns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00271",
+      "en_US": [
+        "Ups stats if a hit\n",
+        "makes its HP half or less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00272",
+      "en_US": [
+        "Prevents status problems.\n",
+        "Weakens Ghost moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00273",
+      "en_US": [
+        "Raises Defense if hit\n",
+        "by a Fire-type move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00274",
+      "en_US": [
+        "Raises Attack if hit\n",
+        "by a wind-based move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00275",
+      "en_US": [
+        "Ups Attack if intimidated.\n",
+        "Stops forced switching."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00276",
+      "en_US": [
+        "Powers up\n",
+        "Rock-type moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00277",
+      "en_US": [
+        "Becomes charged if hit\n",
+        "by a wind-based move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00278",
+      "en_US": [
+        "Becomes Hero Form upon\n",
+        "switching out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00279",
+      "en_US": [
+        "Enters the mouth of\n",
+        "an ally Dondozo."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00280",
+      "en_US": [
+        "Becomes charged when\n",
+        "hit by an attack."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00281",
+      "en_US": [
+        "Boosts its best stat\n",
+        "in harsh sunlight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00282",
+      "en_US": [
+        "Boosts its best stat\n",
+        "in Electric Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00283",
+      "en_US": [
+        "This Pokémon is immune\n",
+        "to all status moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00284",
+      "en_US": [
+        "Lowers the Sp. Atk\n",
+        "stat of other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00285",
+      "en_US": [
+        "Lowers the Defense\n",
+        "stat of other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00286",
+      "en_US": [
+        "Lowers the Attack\n",
+        "stat of other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00287",
+      "en_US": [
+        "Lowers the Sp. Def\n",
+        "stat of other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00288",
+      "en_US": [
+        "Makes the weather sunny.\n",
+        "Ups Attack in sun."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00289",
+      "en_US": [
+        "Makes Electric Terrain.\n",
+        "Ups Sp. Atk on Electric Terrain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00290",
+      "en_US": [
+        "If foe raises a stat,\n",
+        "boosts the stat itself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00291",
+      "en_US": [
+        "After eating a Berry,\n",
+        "it’s eaten again next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00292",
+      "en_US": [
+        "Powers up\n",
+        "slicing moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00293",
+      "en_US": [
+        "Ups Attack and Sp. Atk\n",
+        "if allies were defeated."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00294",
+      "en_US": [
+        "Copies an ally’s stat\n",
+        "changes when sent out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00295",
+      "en_US": [
+        "Scatters poison spikes\n",
+        "if hit by physical moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00296",
+      "en_US": [
+        "Makes foes unable to\n",
+        "use priority attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00297",
+      "en_US": [
+        "Restores HP if hit by a\n",
+        "Ground-type move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00298",
+      "en_US": [
+        "Status moves go last\n",
+        "but ignore abilities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00299",
+      "en_US": [
+        "Upon entry, restores\n",
+        "an allies HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00300",
+      "en_US": [
+        "Ignores accuracy changes\n",
+        "and Ghost type immunities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00301",
+      "en_US": [
+        "The Teal Mask shines,\n",
+        "boosting the Speed stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00302",
+      "en_US": [
+        "The Wellspring Mask shines,\n",
+        "boosting the Sp. Def stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00303",
+      "en_US": [
+        "The Hearthflame Mask shines,\n",
+        "boosting the Attack stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00304",
+      "en_US": [
+        "The Cornerstone Mask shines,\n",
+        "boosting the Defense stat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00305",
+      "en_US": [
+        "May badly poison targets when\n",
+        "a Pokémon makes contact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00306",
+      "en_US": [
+        "Lowers evasiveness of\n",
+        "Pokémon upon first entry."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00307",
+      "en_US": [
+        "Transforms into Terastal Form\n",
+        "upon entering battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00308",
+      "en_US": [
+        "Resists all damage when\n",
+        "HP is full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00309",
+      "en_US": [
+        "Reduces effects of weather\n",
+        "and terrain to zero."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00310",
+      "en_US": [
+        "Poison-inflicting moves\n",
+        "will also cause confusion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00311",
+      "en_US": [
+        "The Pokémon’s contact\n",
+        "moves ignore protections."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00312",
+      "en_US": [
+        "Normal-type moves become\n",
+        "Dragon-type and powered up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00313",
+      "en_US": "Placeholder"
+    },
+    {
+      "id": "pl_msg_00000612_00314",
+      "en_US": "Placeholder"
+    },
+    {
+      "id": "pl_msg_00000612_00315",
+      "en_US": [
+        "All moves act as if\n",
+        "Harsh Sunlight is active."
+      ]
+    },
+    {
+      "id": "pl_msg_00000612_00316",
+      "en_US": "Placeholder"
+    },
+    {
+      "id": "pl_msg_00000612_00317",
+      "en_US": "Placeholder"
+    },
+    {
+      "id": "pl_msg_00000612_00318",
+      "en_US": [
+        "Burns the attacker upon\n",
+        "taking damage."
+      ]
     }
   ]
 }

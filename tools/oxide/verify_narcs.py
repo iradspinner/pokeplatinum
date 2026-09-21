@@ -15,6 +15,7 @@ import argparse
 import importlib.util
 import os
 import sys
+import struct
 
 import ndspy.narc
 import ndspy.rom
@@ -244,6 +245,56 @@ DIVERGED = {
 }
 
 
+# The species record grew from 44 bytes to 48 in Phase 4 element 2, so
+# pl_personal can no longer be compared byte for byte against a reference ROM
+# that still has the old one. This lays the two layouts side by side instead.
+# Both are the same fields in the same order; only the abilities moved.
+PERSONAL_OLD_SIZE = 44
+PERSONAL_NEW_SIZE = 48
+PERSONAL_ABILITIES_AT = 0x16
+
+
+def personal_fields(member):
+    """(head, abilities, tail) for a species record of either size. head is
+    everything up to the abilities, tail everything after them."""
+    head = member[:PERSONAL_ABILITIES_AT]
+    if len(member) == PERSONAL_OLD_SIZE:
+        abilities = (member[0x16], member[0x17], 0)
+        tail = member[0x18:]
+    else:
+        abilities = struct.unpack("<3H", member[0x16:0x1C])
+        tail = member[0x1C:]
+    return head, abilities, tail
+
+
+def check_personal(b, r, path):
+    """Compare pl_personal field by field. The built archive may hold more
+    species than the reference; the shared ones have to agree, allowing the
+    Fairy retypes and a hidden-ability slot the reference has no room for."""
+    rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
+    bad, intended, extra = [], [], max(0, len(b) - len(r))
+    for i in range(min(len(b), len(r))):
+        bh, ba, bt = personal_fields(b[i])
+        rh, ra, rt = personal_fields(r[i])
+        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2]:
+            bad.append(i)
+            continue
+        if bh == rh:
+            continue
+        if i in rule["members"] and all(bh[o] == rh[o] or o in rule["offsets"]
+                                        for o in range(len(bh))):
+            intended.append(i)
+        else:
+            bad.append(i)
+    print(f"{path}: {len(b)} members against the reference's {len(r)}; "
+          f"{len(bad)} disagree, {len(intended)} differ only at the intended bytes"
+          + (f", {extra} are new species" if extra else ""))
+    if bad:
+        i = bad[0]
+        print(f"   first: built {b[i].hex()}\n          ref   {r[i].hex()}")
+    return not bad
+
+
 def intended_divergence(path, i, built_member, ref_member):
     """True when member i of `path` differs from the reference only at bytes a
     DIVERGED entry allows for it."""
@@ -288,6 +339,9 @@ def main():
         sys.exit(0 if check_map_headers(built, ref) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
+        if p == "poketool/personal/pl_personal.narc":
+            ok = check_personal(b, r, p) and ok
+            continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False
         bad = [i for i in range(min(len(b), len(r))) if b[i] != r[i]]
