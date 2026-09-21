@@ -15,7 +15,7 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 1. **Ian: the rest of the emulator pass** under "Waiting on Ian". The nurse hang is confirmed gone; the box deposit hang is confirmed still there and belongs to the bug track.
 2. **Bug track:** the box deposit hang first, then the UNLOCK FPS ALWAYS crash entering Sandgem. Each bug entry under Phase 5 says what is known and which breakpoints to start from.
 3. **Phase 4 element 4**, the move expansion. Element 3 is structurally finished: the caps are audited, the 30-box PC moved to element 8 where it already was, and the Pokedex text, body shapes and footprints are done, which leaves only the TM and tutor and egg-move lists waiting on the Phase 5 TM pass. Element 4's learnset format widening has landed and the donor's move tables are surveyed; the import itself is next, then the 114 new battle effects, then refilling the 159 species' learnsets unfiltered.
-4. **The encounter authoring pass**, Step 2 (the availability plan on paper) onward, on its own worktree branch; Ian's review of the default order and tiers is open and blocks nothing.
+4. **The encounter authoring pass** is through Step 8 and merged into `oxide`; every wild and scripted source is designed and the tables build. What it has left is listed in its own build plan, and nothing there blocks Phase 4.
 5. **Backlog items that are now cheap:** the six overworld sprites the carry-over missed (Phase 3 regression item), and the re-examination of the inventory's other "tool side effect" archives.
 
 **To confirm the state after a restart**, from the repo root:
@@ -39,12 +39,12 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 **What "clean" looks like now that Phase 4 has changed these tables.** `verify_narcs.py` carries a `DIVERGED` list for Phase 4 changes, the same idea as the bulk tools' skip lists, and any Phase 4 element that changes a base-ROM table must add its members there or the gate fails. Since element 3 the three per-species archives no longer line up with the reference member for member, so the tool maps the reference's indices onto the built ones and reports each archive as a sentence rather than a diff. Expect exactly this:
 
 - `pl_personal.narc`: 667 members against the reference's 508; **0 disagree**, 20 differ only at the intended bytes (the Fairy retypes), 159 are new species
-- `wotbl.narc`: 667 against 508; 0 disagree, 159 new; 3 members differ only in trailing zero padding
+- `wotbl.narc`: 667 against 508; 0 disagree, 159 new. Since element 4 widened the entry this is compared as decoded `(level, move)` lists rather than bytes, so there is no padding line any more
 - `evo.narc`: 667 against 508; 0 disagree, 159 new; 7 members differ on purpose (the natives that gain an evolution) and 501 differ only in trailing zero padding, which is the record going from 44 bytes to 56
 - `pl_waza_tbl.narc`: identical apart from the intended bytes, the three Fairy moves
 - the base ROM importer reports every count 0 and lists those same seven species' evolutions as not carried over
 
-Anything else is a regression. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-20 after Phase 4 element 3 landed.
+Anything else is a regression. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-21, through `integrate.sh`, 24 of 24 checks green.
 
 **Files outside the repo that the tools need**, all of them copies, none of them rebuildable from here: `~/roms/base.nds` (the base ROM), `~/roms/vanilla.nds` (a byte-exact Rev 1 build, made once from `main`) and `~/roms/hardlove.nds` (the donor). If any goes missing, copy it again from the project folder on the G: drive; the paths are in the design doc and `docs/oxide/donor-tables.md`.
 
