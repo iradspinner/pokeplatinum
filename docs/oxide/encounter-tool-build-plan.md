@@ -1144,9 +1144,27 @@ Cave, which is the whole of the Post split bar Sendoff Spring, is not reachable
 before the champion without script work, so its tables stand as they are and are
 not worth more design time.
 
+**Then a second round of notes the same evening.** The gifts are all flag-guarded
+now, one flag each, checked on the way in and set after the Pokemon is handed
+over so a full party does not burn the chance; thirteen spare flags at 0x03BF in
+`generated/vars_flags.txt` were named for them, which is safe because that list
+is positional and nothing referred to any of them. The four spare fossil items
+are to be deleted rather than repointed, which is item and script work in the
+backlog. And Chimchar is answered rather than flagged: Rowan's briefcase offers
+**Scorbunny**, so all three options are on the list. That is one define in
+`src/choose_starter/choose_starter_app.c` and the rival and counterpart mapping
+in `src/system_vars.c`; the rival's trainer files are named for the player's
+choice rather than the rival's species, so none of them needed touching. Scorbunny
+left the wild in the same move, being gate tier now: Litten took its home on
+Route 204 north, Route 207's 1% Litten tail became Torchic so the delay prize is
+not already catchable in Roark's split, and Route 206's 1% Scorbunny tail became
+Froakie.
+
 Gate after all of it: plan gate green with 0 cap candidates, `lint --ignore R12`
 0 errors, `audit --fail-on-leak` exit 0, and the suites at 35/35, 21/21, 18/18,
-28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15 and 19/19.
+28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15 and 19/19. The catalogue's
+off-list species are down to seven: the Unown rooms, the four spare fossils and
+the two Dittos and the Chatot of the flagged trades.
 
 ## Suggested order, and what to cut
 

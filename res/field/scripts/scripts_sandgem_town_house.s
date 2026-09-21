@@ -19,6 +19,7 @@ SandgemTownHouse_Clown:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT, SandgemTownHouse_Declined
     Message SandgemTownHouse_Text_WouldYouLikeOneOfThesePokemon
     InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
     AddListMenuEntry SandgemTownHouse_Text_Pichu, 0
@@ -38,6 +39,7 @@ SandgemTownHouse_GivePichu:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_PICHU, 5, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
@@ -50,6 +52,7 @@ SandgemTownHouse_GiveGrubbin:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_GRUBBIN, 5, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
@@ -62,6 +65,7 @@ SandgemTownHouse_GiveFletchling:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_FLETCHLING, 5, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll

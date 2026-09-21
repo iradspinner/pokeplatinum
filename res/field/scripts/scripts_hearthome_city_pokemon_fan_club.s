@@ -99,6 +99,7 @@ HearthomeCityPokemonFanClub_Entry6:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT, HearthomeCityPokemonFanClub_041E
     Message 14
     InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
     AddListMenuEntry 15, 0, 255
@@ -195,6 +196,7 @@ HearthomeCityPokemonFanClub_0292:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_FROAKIE, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -207,6 +209,7 @@ HearthomeCityPokemonFanClub_02BE:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_CHARMANDER, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -219,6 +222,7 @@ HearthomeCityPokemonFanClub_02EA:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SQUIRTLE, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -231,6 +235,7 @@ HearthomeCityPokemonFanClub_0316:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_LITTEN, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -243,6 +248,7 @@ HearthomeCityPokemonFanClub_0342:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TURTWIG, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -255,6 +261,7 @@ HearthomeCityPokemonFanClub_036E:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_PIPLUP, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -267,6 +274,7 @@ HearthomeCityPokemonFanClub_039A:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TREECKO, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -279,6 +287,7 @@ HearthomeCityPokemonFanClub_03C6:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TORCHIC, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -291,6 +300,7 @@ HearthomeCityPokemonFanClub_03F2:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_MUDKIP, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll

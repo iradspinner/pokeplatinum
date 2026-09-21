@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 8,
-            "species": "SPECIES_SCORBUNNY"
+            "species": "SPECIES_LITTEN"
         },
         {
             "level": 9,
@@ -27,7 +27,7 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_SCORBUNNY"
+            "species": "SPECIES_LITTEN"
         },
         {
             "level": 10,

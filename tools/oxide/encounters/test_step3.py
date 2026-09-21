@@ -159,9 +159,9 @@ def main():
                                 if r["tier"] == "gate" and r["home"]), ""))
     r204 = entries["encounters_route_204_north"]
     shares = A.merged(model.load_area("encounters_route_204_north").slots)
-    results.append(("Route 204 north is the delay: Scorbunny at home at 25, Treecko 20, Snivy 10, "
+    results.append(("Route 204 north is the delay: Litten at home at 25, Treecko 20, Snivy 10, "
                     "Torchic by day; no Riolu or Eevee",
-                    abs(shares["SPECIES_SCORBUNNY"] - 0.25) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
+                    abs(shares["SPECIES_LITTEN"] - 0.25) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
                     and abs(shares["SPECIES_SNIVY"] - 0.10) < 1e-9 and "SPECIES_TORCHIC" in r204["day"]
                     and not {"SPECIES_RIOLU", "SPECIES_EEVEE"} & set(r204["cast"] + r204["day"] + r204["night"]),
                     ""))
@@ -205,10 +205,10 @@ def main():
                     "; ".join((out["problems"] + g["corridor_intruders"] + g["early_fit"])[:3])))
     rows = {r["name"]: r for r in out["rows"]}
     results.append(("captures are per location and split: Wooloo first in Roark's split, "
-                    "Scorbunny first in Gardenia's on Route 204, Squirtle by Old Rod in Roark's",
+                    "Litten first in Gardenia's on Route 204, Squirtle by Old Rod in Roark's",
                     rows["Wooloo"]["first_split"] == "Roark"
-                    and rows["Scorbunny"]["first_split"] == "Gardenia"
-                    and ("Gardenia", "Route 204") in rows["Scorbunny"]["captures"]
+                    and rows["Litten"]["first_split"] == "Gardenia"
+                    and ("Gardenia", "Route 204") in rows["Litten"]["captures"]
                     and rows["Squirtle"]["first_split"] == "Roark", ""))
     results.append(("a gate-tier starter appears as a tail or cameo and keeps its scripted source",
                     "encounters_route_207" in rows["Charmander"]["tail"]

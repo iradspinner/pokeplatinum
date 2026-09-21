@@ -45,12 +45,14 @@ DIVERGED = {
 # The scripted gifts. Each of these hands out a pool of species, and the
 # encounter authoring pass re-pooled every one of them onto the species
 # pick-list (Ian, 2026-09-21): a gift is a capture area in a town that has no
-# grass, so its pool is designed the way a table is. Regenerating any of them
-# from the base ROM would put the off-list species back.
+# grass, so its pool is designed the way a table is. Every one of them is also
+# flag-guarded now, where the base ROM let them repeat. Regenerating any of them
+# from the base ROM would put the off-list species back and drop the guard.
 DIVERGED.update({
-    stem: "gift pool re-pooled onto pick-list species by the encounter pass "
-          "(docs/oxide/encounters/scripted-sources.md)"
+    stem: "gift pool re-pooled onto pick-list species and flag-guarded by the "
+          "encounter pass (docs/oxide/encounters/scripted-sources.md)"
     for stem in (
+        "scripts_pokemon_day_care",
         "scripts_sandgem_town_house",
         "scripts_jubilife_city_south_house_1f",
         "scripts_unused_jubilife_city_south_house_3f",

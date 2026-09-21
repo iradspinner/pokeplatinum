@@ -23,6 +23,12 @@ choice rather than a duplicate of the route outside.
 Every pool below is on the pick-list. The species that changed are the ones that
 were not.
 
+Every one of them is once only, guarded by a flag of its own (Ian, 2026-09-21).
+The conversation checks the flag on the way in and the gift sets it after the
+Pokemon is actually handed over, so a full party does not burn the chance. Before
+this they all repeated, which meant a player could ask again until the pool gave
+them what they wanted and the even odds meant nothing.
+
 | Source | How it picks | Level | Split | Pool |
 |---|---|---|---|---|
 | Sandgem Town, the house | list menu, 3 | 5 | Roark | Pichu, Grubbin, Fletchling |
@@ -58,13 +64,11 @@ on-list water lines now and the roll was widened to match, which is the only
 change of behaviour in the batch. Canalave gives Byron's own Bastiodon, plus
 Flygon and Cofagrigus in place of Dugtrio and Banette.
 
-**Two things worth knowing about them.** None of these gifts is flag-guarded
-except Eevee's, so they repeat: a player who wants a particular member can ask
-again until they get it, and it is only the nuzlocke rule of taking the first one
-that makes the pool's odds mean anything. And two of them, Sandgem and the Fan
-Club, are list menus rather than rolls, so the player picks rather than the game.
-Converting those two to a roll is a small edit, and worth doing if the even-odds
-rule is meant to bind everywhere.
+**One thing still worth knowing.** Two of them, Sandgem and the Fan Club, are
+list menus rather than rolls, so the player picks rather than the game. Now that
+each is once only the choice is permanent, which is closer to a starter than to
+an encounter. Converting those two to a roll is a small edit and worth doing if
+the even-odds rule is meant to bind everywhere.
 
 ## Flagged, not changed
 
@@ -79,20 +83,34 @@ the same kind of case: the species is doing a job beyond being an encounter.
 - **The Oreburgh museum's four spare fossils.** The pick-list has three fossil
   lines (Cranidos, Shieldon, Lileep) and the museum revives seven. The Old Amber,
   Helix, Dome and Claw fossils still revive Aerodactyl, Omanyte, Kabuto and
-  Anorith. The good fix is four more fossil lines on the list, and Tyrunt,
-  Amaura, Archen and Tirtouga would be four of them, but none is in the tree, so
-  that is a Phase 4 port before it is a table decision.
-- **Chimchar**, which Rowan's briefcase still offers although it is not on the
-  pick-list, while Turtwig and Piplup are. Changing it reaches into
-  `src/choose_starter/choose_starter_app.c` and its art, so it is not a script
-  edit like the rest.
+  Anorith. Ian's call of 2026-09-21 is to **delete those four items** rather than
+  repoint them, which takes them out of the Underground's dig pools and the route
+  drops that hand them out, and leaves the museum's four branches unreachable.
+  That is item and script work outside this track, and it is in the tracker's
+  backlog. The alternative, four more fossil lines on the list, would need
+  Tyrunt, Amaura, Archen or Tirtouga ported first, since none is in the tree.
+
+**Chimchar is settled rather than flagged.** Ian's call of 2026-09-21: Rowan's
+briefcase offers Scorbunny in its place, so the third option is on the list like
+the other two. That is `STARTER_OPTION_1` in
+`src/choose_starter/choose_starter_app.c` and the rival and counterpart mapping
+in `src/system_vars.c`. The rival's own teams needed nothing: those trainer files
+are named for the player's choice, not the rival's species, so the fire slot is
+still picked by the same index. Scorbunny left the wild in the same move, since a
+starter is gate tier by rule. Route 204 north was built around it as the delay
+prize and Litten takes that place, which gives Litten the wild home it never had,
+and Route 207's 1% Litten tail became Torchic so the prize is not already
+catchable in Roark's split. Route 206's 1% Scorbunny tail became Froakie.
 
 The eighteen Unown rooms stay off-list by Ian's decision of 2026-09-21.
 
 ## Where the edits live
 
 Each gift's species is an operand of `GivePokemon` in the map's script, so the
-change is twelve files under `res/field/scripts/`. Two of them show the species
+change is twelve files under `res/field/scripts/`. The guards live in the same
+files and use thirteen flags named out of the spare run at 0x03BF in
+`generated/vars_flags.txt`, which nothing else refers to; renaming an entry there
+keeps its value, because the list is positional. Two of them show the species
 name on screen, which is two more files under `res/text/`. All fourteen now
 deliberately disagree with the base ROM, which means three tools had to be told:
 `bulk_scripts.py`'s `DIVERGED` list, `import_base_rom.py`'s `TEXT_BANKS_SKIPPED`

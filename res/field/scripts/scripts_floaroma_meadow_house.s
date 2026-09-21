@@ -31,6 +31,7 @@ FloaromaMeadowHouse_Entry2:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT, FloaromaMeadowHouse_00E7
     Message 2
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -46,6 +47,7 @@ FloaromaMeadowHouse_0063:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_COMBEE, 18, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll
@@ -58,6 +60,7 @@ FloaromaMeadowHouse_008F:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_FLABEBE, 18, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll
@@ -70,6 +73,7 @@ FloaromaMeadowHouse_00BB:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_PACHIRISU, 18, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll

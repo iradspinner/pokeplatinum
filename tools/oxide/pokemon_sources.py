@@ -545,42 +545,49 @@ def build():
 
 GIFT_NOTES = {
     "canalave_library_2f": "clown gift, one of seven rolled at random "
-        "(GetRandom 7); repeatable, no flag guard",
+        "(GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT)",
     "eterna_city_condominiums_1f": "clown gift, one of three rolled at random; "
-        "repeatable, no flag guard",
+        "once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT)",
     "eterna_city": "Egg from the Pokemon Day Care worker outside the city; "
         "once only",
     "floaroma_meadow_house": "clown gift, one of three rolled at random; "
-        "repeatable, no flag guard",
+        "once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT)",
     "floaroma_town_middle_house": "clown gift, one of four rolled at random; "
-        "repeatable, no flag guard",
+        "once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT)",
     "hearthome_city_northwest_house": "gift from the woman in the house; once "
         "only (FLAG_RECEIVED_...EEVEE), cleared again by the post-game "
         "Trades/Gifts Reset",
-    "hearthome_city_pokemon_fan_club": "pick one of the nine Kanto/Johto/Hoenn "
-        "starters from a list menu; repeatable, no flag guard",
+    "hearthome_city_pokemon_fan_club": "pick one of nine first partners from a "
+        "list menu; once only "
+        "(FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT)",
     "iron_island_b2f_left_room": "Egg from Riley after the Iron Island "
         "partner section; once only",
     "jubilife_city_south_house_1f": "clown gift, one of three rolled at "
-        "random; repeatable, no flag guard",
+        "random; once only (FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT)",
     "oreburgh_city_middle_house": "clown gift, one of three rolled at random; "
-        "repeatable, no flag guard",
-    "pastoria_city_north_house": "clown gift; the roll is GetRandom 3 but six "
-        "branches exist, so only the first three (Kingler, Remoraid, "
-        "Relicanth) can come out; repeatable, no flag guard",
-    "pokemon_day_care": "the Day Care man hands it over on a yes/no prompt "
-        "with no flag guard, so it is repeatable without limit",
+        "once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT)",
+    "pastoria_city_north_house": "clown gift, one of six rolled at random; the "
+        "roll was GetRandom 3 with six branches, so three could never come "
+        "out, and was widened to six; once only "
+        "(FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT)",
+    "pokemon_day_care": "the Day Care man hands it over on a yes/no prompt; "
+        "once only (FLAG_RECEIVED_POKEMON_DAY_CARE_DITTO)",
     "pokemon_mansion_office": "Egg from the Mansion's owner; once only "
         "(FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts "
         "Reset; vanilla only ever gave this through Mystery Gift",
-    "sandgem_town_house": "pick one of three from a list menu; repeatable, "
-        "no flag guard",
+    "sandgem_town_house": "pick one of three from a list menu; once only "
+        "(FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT)",
     "solaceon_town_northeast_house": "clown gift, one of three rolled at "
-        "random; repeatable, no flag guard",
+        "random; once only "
+        "(FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT)",
     "unused_jubilife_city_south_house_3f": "a third-floor copy of the "
-        "Jubilife clown; check the map is reachable before counting it",
+        "Jubilife clown; once only "
+        "(FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT); check the "
+        "map is reachable before counting it",
     "veilstone_city_northeast_house": "clown gift, one of three rolled at "
-        "random; repeatable, no flag guard",
+        "random; once only "
+        "(FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot "
+        "beside it is a separate gift with its own vanilla flag",
 }
 
 BATTLE_NOTES = {

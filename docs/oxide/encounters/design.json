@@ -3287,12 +3287,12 @@
     "encounters_route_204_north": {
       "archetype": "A14",
       "band": "early",
-      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
+      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
       "locked": [],
       "base_level": 8,
       "order": 15,
       "cast": [
-        "SPECIES_SCORBUNNY",
+        "SPECIES_LITTEN",
         "SPECIES_TREECKO",
         "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET",
@@ -3829,7 +3829,7 @@
     "encounters_route_206": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Scorbunny the 1%s.",
+      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s.",
       "locked": [],
       "base_level": 16,
       "order": 32,
@@ -3846,7 +3846,7 @@
         "SPECIES_NACLI",
         "SPECIES_ROOKIDEE",
         "SPECIES_CHARMANDER",
-        "SPECIES_SCORBUNNY"
+        "SPECIES_FROAKIE"
       ],
       "day": [
         "SPECIES_FLETCHLING",
@@ -3860,7 +3860,7 @@
     "encounters_route_207": {
       "archetype": "A19",
       "band": "early",
-      "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night.",
+      "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Torchic the 1% fire tails, Vulpix and Houndour by night.",
       "locked": [],
       "base_level": 5,
       "order": 10,
@@ -3876,7 +3876,7 @@
         "SPECIES_MAKUHITA",
         "SPECIES_PHANPY",
         "SPECIES_CHARMANDER",
-        "SPECIES_LITTEN"
+        "SPECIES_TORCHIC"
       ],
       "day": [
         "SPECIES_SMOLIV",

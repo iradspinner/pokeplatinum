@@ -67,6 +67,7 @@ CanalaveLibrary2f_Entry6:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT, CanalaveLibrary2f_02D0
     Message 14
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -137,6 +138,7 @@ CanalaveLibrary2f_01C8:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_FLYGON, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -149,6 +151,7 @@ CanalaveLibrary2f_01F4:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_COFAGRIGUS, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -161,6 +164,7 @@ CanalaveLibrary2f_0220:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_HARIYAMA, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -173,6 +177,7 @@ CanalaveLibrary2f_024C:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_BASTIODON, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -185,6 +190,7 @@ CanalaveLibrary2f_0278:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_DRAPION, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -197,6 +203,7 @@ CanalaveLibrary2f_02A4:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_DUSCLOPS, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll
@@ -247,6 +254,7 @@ CanalaveLibrary2f_034C:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_PRIMEAPE, 50, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage
     ReleaseAll

@@ -33,6 +33,7 @@ VeilstoneCityNortheastHouse_Entry2:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT, VeilstoneCityNortheastHouse_0128
     Message 9
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -59,6 +60,7 @@ VeilstoneCityNortheastHouse_00A4:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_BELDUM, 40, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
     Message 10
     CloseMessage
     ReleaseAll
@@ -71,6 +73,7 @@ VeilstoneCityNortheastHouse_00D0:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SNEASEL, 40, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
     Message 10
     CloseMessage
     ReleaseAll
@@ -83,6 +86,7 @@ VeilstoneCityNortheastHouse_00FC:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_MASQUERAIN, 40, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
     Message 10
     CloseMessage
     ReleaseAll

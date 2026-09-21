@@ -49,8 +49,8 @@
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX"],
       "cameo": ["SPECIES_ROOKIDEE", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_FLETCHLING"],
-      "tail": ["SPECIES_HOUNDOUR", "SPECIES_SMOLIV", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_LITTEN"],
-      "note": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night."
+      "tail": ["SPECIES_HOUNDOUR", "SPECIES_SMOLIV", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_TORCHIC"],
+      "note": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Torchic the 1% fire tails, Vulpix and Houndour by night."
     },
     "encounters_oreburgh_mine_b1f": {
       "home": ["SPECIES_MAKUHITA"],
@@ -76,9 +76,9 @@
       "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Wooper in the wet, Nacli and Phanpy by day."
     },
     "encounters_route_204_north": {
-      "home": ["SPECIES_SCORBUNNY", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
+      "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
       "cameo": ["SPECIES_TREECKO", "SPECIES_SNIVY", "SPECIES_FLETCHLING", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO"],
@@ -162,8 +162,8 @@
     "encounters_route_206": {
       "home": ["SPECIES_GLIGAR"],
       "cameo": ["SPECIES_PONYTA", "SPECIES_STUNKY", "SPECIES_DWEBBLE", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_FLETCHLING", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_NACLI", "SPECIES_ROOKIDEE", "SPECIES_CHARMANDER", "SPECIES_SCORBUNNY"],
-      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Scorbunny the 1%s."
+      "tail": ["SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_NACLI", "SPECIES_ROOKIDEE", "SPECIES_CHARMANDER", "SPECIES_FROAKIE"],
+      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s."
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],

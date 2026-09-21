@@ -77,6 +77,7 @@ PokemonDayCare_Entry4:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_POKEMON_DAY_CARE_DITTO, PokemonDayCare_0321
     Message 18
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -259,6 +260,7 @@ PokemonDayCare_0404:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_DITTO, 30, 229, VAR_0x800C
+    SetFlag FLAG_RECEIVED_POKEMON_DAY_CARE_DITTO
     Message 12
     CloseMessage
     ReleaseAll

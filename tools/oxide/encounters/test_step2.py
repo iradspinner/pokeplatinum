@@ -88,14 +88,20 @@ def main():
                     and sorted(proposed) == ["Xerneas", "Yveltal"]
                     and "Nihilego" in pool and "Tapu Koko" in pool,
                     f"{len(pool)} in the pool, {len(proposed)} proposed"))
-    results.append(("the starters are wild: Fennekin and Scorbunny at home (Scorbunny on Route "
-                    "204 north, the delay), Popplio on water, the grass three in the honey trees, none gate",
+    # Scorbunny replaced Chimchar in Rowan's briefcase on 2026-09-21 (Ian), so it
+    # is gate tier and out of the wild; Litten took over its home on Route 204
+    # north, which is what made that half of the route worth delaying for.
+    results.append(("the starters are wild: Fennekin and Litten at home (Litten on Route "
+                    "204 north, the delay), Popplio on water, the grass three in the honey "
+                    "trees, none gate but Scorbunny, which is the starter now",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
-                    and by["Scorbunny"]["home"] == ["encounters_route_204_north"]
+                    and by["Litten"]["home"] == ["encounters_route_204_north"]
                     and by["Popplio"]["status"] == "water"
+                    and by["Scorbunny"]["tier"] == "gate"
+                    and by["Scorbunny"]["non_wild"]
                     and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))
                     and all(by[n]["tier"] == "preferred" for n in
-                            ("Fennekin", "Scorbunny", "Popplio", "Rowlet", "Litten", "Froakie")),
+                            ("Fennekin", "Popplio", "Rowlet", "Litten", "Froakie")),
                     ""))
     results.append(("water lines are homed on water tables",
                     all(r["water"] for r in rows if r["status"] == "water")
