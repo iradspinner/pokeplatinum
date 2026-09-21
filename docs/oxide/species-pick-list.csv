@@ -1,361 +1,361 @@
-dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo
-1,Charmander,native,4,platinum,,yes,Fire,Fire,
-2,Charmeleon,native,5,platinum,,yes,Fire,Fire,
-3,Charizard,native,6,platinum,,yes,Fire,Flying,
-5,Squirtle,native,7,platinum,,yes,Water,Water,
-6,Wartortle,native,8,platinum,,yes,Water,Water,
-7,Blastoise,native,9,platinum,,yes,Water,Water,
-8,Pikachu,native,25,platinum,,yes,Electric,Electric,
-9,Raichu,native,26,platinum,,yes,Electric,Electric,
-10,Pichu,native,172,platinum,,yes,Electric,Electric,
-11,Nidoran F,native,29,platinum,,yes,Poison,Poison,
-12,Nidorina,native,30,platinum,,yes,Poison,Poison,
-13,Nidoqueen,native,31,platinum,,yes,Poison,Ground,
-14,Nidoran M,native,32,platinum,,yes,Poison,Poison,
-15,Nidorino,native,33,platinum,,yes,Poison,Poison,
-16,Nidoking,native,34,platinum,,yes,Poison,Ground,
-17,Vulpix,native,37,platinum,,yes,Fire,Fire,
-18,Ninetales,native,38,platinum,,yes,Fire,Fairy,
-19,Alolan Ninetales,new,38,form,1132,"MISMATCH (73, 67, 75, 81, 100, 109)",Ice,Fairy,
-20,Zubat,native,41,platinum,,yes,Poison,Flying,
-21,Golbat,native,42,platinum,,yes,Poison,Flying,
-22,Crobat,native,169,platinum,,yes,Poison,Flying,
-23,Mankey,native,56,platinum,,yes,Fighting,Fighting,
-24,Primeape,native,57,platinum,,yes,Fighting,Fighting,
-25,Annihilape,new,979,species,1029,yes,Fighting,Ghost,"Primeape, level 50 (method 4)"
-26,Tentacool,native,72,platinum,,yes,Water,Poison,
-27,Tentacruel,native,,platinum,,UNMATCHED,Water,Poison,
-28,Ponyta,native,77,platinum,,yes,Fire,Fire,
-29,Rapidash,native,78,platinum,,yes,Fire,Fire,
-30,Galarian Rapidash,new,78,form,1158,"MISMATCH (65, 100, 70, 80, 80, 105)",Fairy,Fire,
-31,Onix,native,95,platinum,,yes,Rock,Ground,
-32,Steelix,native,208,platinum,,yes,Steel,Ground,
-33,Koffing,native,109,platinum,,yes,Poison,Poison,
-34,Weezing,native,,platinum,,UNMATCHED,Poison,Poison,
-35,Galarian Weezing,new,110,form,1162,yes,Poison,Fairy,
-36,Rhyhorn,native,111,platinum,,yes,Ground,Rock,
-37,Rhydon,native,112,platinum,,yes,Ground,Rock,
-38,Rhyperior,native,464,platinum,,yes,Ground,Rock,
-39,Galarian Mr. Mime,new,122,form,1163,yes,Ice,Psychic,
-40,Mr. Rime,new,866,species,916,yes,Ice,Psychic,"Galarian Mr. Mime, level 42 (method 4)"
-41,Scyther,native,123,platinum,,yes,Bug,Flying,
-42,Scizor,native,212,platinum,,yes,Bug,Steel,
-43,Kleavor,new,900,species,950,yes,Bug,Rock,"Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route"
-44,Electabuzz,native,,platinum,,UNMATCHED,Electric,Electric,
-45,Elekid,native,239,platinum,,yes,Electric,Electric,
-46,Electivire,native,466,platinum,,yes,Electric,Fighting,
-47,Magmar,native,126,platinum,,yes,Fire,Fire,
-48,Magby,native,240,platinum,,yes,Fire,Fire,
-49,Magmortar,native,467,platinum,,yes,Fire,Fire,
-50,Magikarp,native,129,platinum,,yes,Water,Water,
-51,Gyarados,native,,platinum,,UNMATCHED,Water,Flying,
-52,Gyarados M,new,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian"
-53,Eevee,native,133,platinum,,yes,Normal,Normal,
-54,Vaporeon,native,134,platinum,,yes,Water,Water,
-55,Jolteon,native,135,platinum,,yes,Electric,Electric,
-56,Flareon,native,136,platinum,,yes,Fire,Fire,
-57,Espeon,native,196,platinum,,yes,Psychic,Psychic,
-58,Umbreon,native,197,platinum,,yes,Dark,Dark,
-59,Leafeon,native,470,platinum,,yes,Grass,Grass,
-60,Glaceon,native,471,platinum,,yes,Ice,Ice,
-61,Sylveon,new,700,species,750,yes,Fairy,Fairy,"Eevee, level up knowing a Fairy move (method 20)"
-62,Articuno,native,,platinum,,UNMATCHED,Ice,Flying,
-63,Galarian Articuno,new,144,form,1164,yes,Psychic,Flying,
-64,Zapdos,native,,platinum,,UNMATCHED,Electric,Flying,
-65,Galarian Zapdos,new,145,form,1165,yes,Fighting,Flying,
-66,Moltres,native,,platinum,,UNMATCHED,Fire,Flying,
-67,Galarian Moltres,new,146,form,1166,yes,Dark,Flying,
-68,Sentret,native,161,platinum,,yes,Normal,Normal,
-69,Furret,native,162,platinum,,yes,Normal,Normal,
-70,Togepi,native,175,platinum,,yes,Fairy,Fairy,
-71,Togetic,native,176,platinum,,yes,Fairy,Flying,
-72,Togekiss,native,468,platinum,,yes,Fairy,Flying,
-73,Yanma,native,193,platinum,,yes,Bug,Flying,
-74,Yanmega,native,469,platinum,,yes,Bug,Flying,
-75,Wooper,native,194,platinum,,yes,Water,Ground,
-76,Quagsire,native,195,platinum,,yes,Water,Ground,
-77,Clodsire,new,980,species,1030,yes,Poison,Ground,"Wooper, level up holding Poison Barb (methods 18/19)"
-78,Gligar,native,207,platinum,,yes,Ground,Flying,
-79,Gliscor,native,472,platinum,,yes,Ground,Flying,
-80,Heracross,native,214,platinum,,yes,Bug,Fighting,
-81,Sneasel,native,215,platinum,,yes,Dark,Ice,
-82,Weavile,native,461,platinum,,yes,Dark,Ice,
-83,Slugma,native,218,platinum,,yes,Fire,Fire,
-84,Magcargo,native,219,platinum,,yes,Fire,Rock,
-85,Swinub,native,,platinum,,UNMATCHED,Ice,Ground,
-86,Piloswine,native,221,platinum,,yes,Ice,Ground,
-87,Mamoswine,native,,platinum,,UNMATCHED,Ice,Ground,
-88,Skarmory,native,,platinum,,UNMATCHED,Steel,Flying,
-89,Houndour,native,228,platinum,,yes,Fire,Dark,
-90,Houndoom,native,,platinum,,UNMATCHED,Fire,Dark,
-91,Suicune,native,,platinum,,UNMATCHED,Water,Water,
-92,Larvitar,native,246,platinum,,yes,Dark,Ground,
-93,Pupitar,native,247,platinum,,yes,Dark,Ground,
-94,Tyranitar,native,,platinum,,UNMATCHED,Dark,Rock,
-95,Treecko,native,252,platinum,,yes,Grass,Grass,
-96,Grovyle,native,253,platinum,,yes,Grass,Grass,
-97,Sceptile,native,254,platinum,,yes,Grass,Dragon,
-98,Torchic,native,255,platinum,,yes,Fire,Fire,
-99,Combusken,native,256,platinum,,yes,Fire,Fighting,
-100,Blaziken,native,,platinum,,UNMATCHED,Fire,Fighting,
-101,Mudkip,native,,platinum,,UNMATCHED,Water,Water,
-102,Marshtomp,native,259,platinum,,yes,Water,Ground,
-103,Swampert,native,260,platinum,,yes,Water,Ground,
-104,Poochyena,native,261,platinum,,yes,Dark,Dark,
-105,Mightyena,native,262,platinum,,yes,Dark,Dark,
-106,Lotad,native,270,platinum,,yes,Grass,Water,
-107,Lombre,native,271,platinum,,yes,Grass,Water,
-108,Ludicolo,native,272,platinum,,yes,Grass,Water,
-109,Seedot,native,273,platinum,,yes,Grass,Grass,
-110,Nuzleaf,native,274,platinum,,yes,Grass,Dark,
-111,Shiftry,native,275,platinum,,yes,Grass,Dark,
-112,Ralts,native,280,platinum,,yes,Psychic,Fairy,
-113,Kirlia,native,281,platinum,,yes,Psychic,Fairy,
-114,Gardevoir,native,282,platinum,,yes,Psychic,Fairy,
-115,Gallade,native,475,platinum,,yes,Psychic,Fighting,
-116,Surskit,native,283,platinum,,yes,Bug,Water,
-117,Masquerain,native,284,platinum,,yes,Bug,Water,
-118,Shroomish,native,285,platinum,,yes,Grass,Grass,
-119,Breloom,native,286,platinum,,yes,Grass,Fighting,
-120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,
-121,Hariyama,native,297,platinum,,yes,Fighting,Fighting,
-122,Skitty,native,300,platinum,,yes,Normal,Normal,
-123,Delcatty,native,301,platinum,,yes,Normal,Normal,
-124,Roselia,native,315,platinum,,yes,Grass,Poison,
-125,Budew,native,406,platinum,,yes,Grass,Poison,
-126,Roserade,native,,platinum,,UNMATCHED,Grass,Poison,
-127,Trapinch,native,328,platinum,,yes,Bug,Ground,
-128,Vibrava,native,329,platinum,,yes,Bug,Flying,
-129,Flygon,native,330,platinum,,yes,Bug,Dragon,
-130,Swablu,native,333,platinum,,yes,Normal,Flying,
-131,Altaria,native,334,platinum,,yes,Dragon,Flying,
-133,Lunatone,native,337,platinum,,yes,Rock,Psychic,
-134,Solrock,native,338,platinum,,yes,Rock,Psychic,
-135,Barboach,native,339,platinum,,yes,Water,Ground,
-136,Whiscash,native,340,platinum,,yes,Water,Ground,
-137,Lileep,native,345,platinum,,yes,Rock,Grass,
-138,Cradily,native,346,platinum,,yes,Rock,Grass,
-139,Feebas,native,349,platinum,,yes,Water,Water,
-140,Milotic,native,350,platinum,,yes,Water,Dragon,
-141,Castform,native,,platinum,,UNMATCHED,Normal,Normal,
-142,Duskull,native,,platinum,,UNMATCHED,Ghost,Ghost,
-143,Dusclops,native,356,platinum,,yes,Ghost,Ghost,
-144,Dusknoir,native,477,platinum,,yes,Ghost,Ghost,
-145,Absol,native,,platinum,,UNMATCHED,Dark,Dark,
-148,Snorunt,native,361,platinum,,yes,Ice,Ice,
-149,Glalie,native,362,platinum,,yes,Ice,Rock,
-150,Froslass,native,478,platinum,,yes,Ice,Ghost,
-151,Luvdisc,native,370,platinum,,yes,Water,Water,
-152,Beldum,native,374,platinum,,yes,Steel,Psychic,
-153,Metang,native,375,platinum,,yes,Steel,Psychic,
-154,Metagross,native,376,platinum,,yes,Steel,Psychic,
-155,Regirock,native,377,platinum,,yes,Rock,Rock,
-156,Regice,native,378,platinum,,yes,Ice,Ice,
-157,Registeel,native,379,platinum,,yes,Steel,Steel,
-158,Latias,native,380,platinum,,yes,Dragon,Psychic,
-159,Latios,native,381,platinum,,yes,Dragon,Psychic,
-160,Turtwig,native,387,platinum,,yes,Grass,Grass,
-161,Grotle,native,388,platinum,,yes,Grass,Grass,
-162,Torterra,native,389,platinum,,yes,Grass,Ground,
-163,Piplup,native,393,platinum,,yes,Water,Water,
-164,Prinplup,native,394,platinum,,yes,Water,Water,
-165,Empoleon,native,395,platinum,,yes,Water,Steel,
-166,Shinx,native,403,platinum,,yes,Electric,Electric,
-167,Luxio,native,404,platinum,,yes,Electric,Electric,
-168,Luxray,native,405,platinum,,yes,Electric,Dark,
-169,Cranidos,native,408,platinum,,yes,Rock,Rock,
-170,Rampardos,native,409,platinum,,yes,Rock,Rock,
-171,Shieldon,native,410,platinum,,yes,Rock,Steel,
-172,Bastiodon,native,,platinum,,UNMATCHED,Rock,Steel,
-173,Combee,native,415,platinum,,yes,Bug,Flying,
-174,Vespiquen,native,416,platinum,,yes,Bug,Flying,
-175,Pachirisu,native,417,platinum,,yes,Electric,Electric,
-176,Drifloon,native,425,platinum,,yes,Ghost,Flying,
-177,Drifblim,native,426,platinum,,yes,Ghost,Flying,
-178,Buneary,native,427,platinum,,yes,Normal,Normal,
-179,Lopunny,native,428,platinum,,yes,Normal,Fighting,
-180,Lopunny M,new,428,altevo,1117,"MISMATCH (65, 136, 94, 54, 96, 135)",Normal,Fighting,"alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian"
-181,Glameow,native,431,platinum,,yes,Normal,Normal,
-182,Purugly,native,432,platinum,,yes,Normal,Normal,
-183,Stunky,native,434,platinum,,yes,Poison,Dark,
-184,Skuntank,native,435,platinum,,yes,Poison,Dark,
-185,Bronzor,native,437,platinum,,yes,Steel,Psychic,
-186,Bronzong,native,437,platinum,,yes,Steel,Psychic,
-187,Spiritomb,native,442,platinum,,yes,Ghost,Dark,
-188,Gible,native,443,platinum,,yes,Dragon,Ground,
-189,Gabite,native,444,platinum,,yes,Dragon,Ground,
-190,Garchomp,native,445,platinum,,yes,Dragon,Ground,
-191,Riolu,native,447,platinum,,yes,Fighting,Fighting,
-192,Lucario,native,448,platinum,,yes,Fighting,Steel,
-193,Hippopotas,native,449,platinum,,yes,Ground,Ground,
-194,Hippowdon,native,450,platinum,,yes,Ground,Ground,
-195,Skorupi,native,451,platinum,,yes,Poison,Bug,
-196,Drapion,native,452,platinum,,yes,Poison,Dark,
-197,Croagunk,native,453,platinum,,yes,Poison,Fighting,
-198,Toxicroak,native,454,platinum,,yes,Poison,Fighting,
-199,Finneon,native,456,platinum,,yes,Water,Water,
-200,Lumineon,native,457,platinum,,yes,Water,Water,
-201,Snover,native,459,platinum,,yes,Grass,Ice,
-202,Abomasnow,native,460,platinum,,yes,Grass,Ice,
-203,Rotom,native,503,platinum,,yes,Electric,Ghost,
-204,Uxie,native,480,platinum,,yes,Psychic,Fairy,
-205,Mesprit,native,481,platinum,,yes,Psychic,Fairy,
-206,Azelf,native,482,platinum,,yes,Psychic,Fairy,
-207,Dialga,native,483,platinum,,yes,Steel,Dragon,
-208,Palkia,native,484,platinum,,yes,Water,Dragon,
-209,Heatran,native,485,platinum,,yes,Fire,Steel,
-210,Regigigas,native,486,platinum,,yes,Normal,Normal,
-211,Giratina,native,487,platinum,,yes,Ghost,Dragon,
-212,Cresselia,native,,platinum,,UNMATCHED,Psychic,Psychic,
-213,Phione,native,489,platinum,,yes,Water,Water,
-214,Manaphy,native,151,platinum,,yes,Water,Water,
-215,Darkrai,native,491,platinum,,yes,Dark,Dark,
-216,Shaymin,native,151,platinum,,yes,Grass,Grass,
-217,Arceus,native,493,platinum,,yes,Normal,Normal,
-218,Snivy,new,495,species,545,yes,Grass,Grass,
-219,Servine,new,496,species,546,yes,Grass,Grass,
-220,Serperior,new,497,species,547,yes,Grass,Grass,
-221,Purrloin,new,509,species,559,yes,Dark,Dark,
-222,Liepard,new,510,species,560,"MISMATCH (64, 88, 50, 88, 50, 106)",Dark,Dark,
-223,Sewaddle,new,540,species,590,yes,Bug,Grass,
-224,Swadloon,new,541,species,591,yes,Bug,Grass,
-225,Leavanny,new,542,species,592,yes,Bug,Grass,
-226,Dwebble,new,557,species,607,yes,Bug,Rock,
-227,Crustle,new,558,species,608,yes,Bug,Rock,
-228,Yamask,new,562,species,612,yes,Ghost,Ghost,
-229,Cofagrigus,new,563,species,613,yes,Ghost,Ghost,"Yamask, level 34 (method 4) - the non-branch half"
-230,Runerigus,new,867,species,917,yes,Ground,Ghost,"Yamask, level up holding Reaper Cloth (methods 18/19)"
-231,Minccino,new,572,species,622,yes,Normal,Normal,
-232,Cinccino,new,573,species,623,yes,Normal,Normal,
-233,Gothita,new,574,species,624,yes,Psychic,Psychic,
-234,Gothorita,new,575,species,625,yes,Psychic,Psychic,
-235,Gothitelle,new,576,species,626,"MISMATCH (70, 55, 95, 95, 110, 65)",Psychic,Dark,
-236,Emolga,new,587,species,637,yes,Electric,Flying,
-237,Frillish,new,592,species,642,yes,Water,Ghost,
-238,Jellicent,new,593,species,643,yes,Water,Ghost,
-239,Alomomola,new,594,species,644,yes,Water,Water,"Luvdisc, high friendship (method 1)"
-240,Joltik,new,595,species,645,yes,Bug,Electric,
-241,Galvantula,new,596,species,646,yes,Bug,Electric,
-242,Ferroseed,new,597,species,647,yes,Grass,Steel,
-243,Ferrothorn,new,598,species,648,yes,Grass,Steel,
-244,Litwick,new,607,species,657,yes,Ghost,Fire,
-245,Lampent,new,608,species,658,yes,Ghost,Fire,
-246,Chandelure,new,609,species,659,yes,Ghost,Fire,
-247,Mienfoo,new,619,species,669,yes,Fighting,Fighting,
-248,Mienshao,new,620,species,670,yes,Fighting,Fighting,
-249,Vullaby,new,629,species,679,yes,Dark,Flying,
-250,Mandibuzz,new,630,species,680,yes,Dark,Flying,
-251,Larvesta,new,636,species,686,yes,Bug,Fire,
-252,Volcarona,new,637,species,687,yes,Bug,Fire,
-253,Fennekin,new,653,species,703,yes,Fire,Fire,
-254,Braixen,new,654,species,704,yes,Fire,Fire,
-255,Delphox,new,655,species,705,yes,Fire,Psychic,
-256,Froakie,new,656,species,706,yes,Water,Water,
-257,Frogadier,new,657,species,707,yes,Water,Water,
-258,Greninja,new,658,species,708,yes,Water,Dark,
-259,Fletchling,new,661,species,711,yes,Normal,Flying,
-260,Fletchinder,new,662,species,712,yes,Fire,Flying,
-261,Talonflame,new,663,species,713,yes,Fire,Flying,
-262,Flabebe,new,669,species,719,yes,Fairy,Fairy,
-263,Floette,new,670,species,720,yes,Fairy,Fairy,
-264,Florges,new,671,species,721,yes,Fairy,Fairy,
-265,Hawlucha,new,701,species,751,yes,Fighting,Flying,
-266,Carbink,new,703,species,753,yes,Rock,Fairy,
-267,Goomy,new,704,species,754,yes,Dragon,Dragon,
-268,Sliggoo,new,705,species,755,yes,Dragon,Dragon,
-269,Hisuian Sliggoo,new,705,form,1338,yes,Steel,Dragon,"Goomy, level up holding Metal Coat (methods 18/19)"
-270,Goodra,new,706,species,756,yes,Dragon,Dragon,
-271,Hisuian Goodra,new,706,form,1339,yes,Steel,Dragon,"Hisuian Sliggoo, level 50 (method 4)"
-272,Klefki,new,707,species,757,yes,Steel,Fairy,
-273,Xerneas,new,716,species,766,yes,Fairy,Fairy,
-274,Yveltal,new,717,species,767,yes,Dark,Flying,
-275,Zygarde 10%,new,718,form,1269,yes,Dragon,Ground,
-276,Zygarde 50%,new,718,species,768,yes,Dragon,Ground,"Zygarde 10%, level up (method 4) - cells assembling"
-277,Diancie,new,719,species,769,yes,Rock,Fairy,
-278,Rowlet,new,722,species,772,yes,Grass,Flying,
-279,Dartrix,new,723,species,773,yes,Grass,Flying,
-280,Decidueye,new,724,species,774,yes,Grass,Ghost,
-281,Litten,new,725,species,775,yes,Fire,Fire,
-282,Torracat,new,726,species,776,yes,Fire,Fire,
-283,Incineroar,new,727,species,777,yes,Fire,Dark,
-284,Popplio,new,728,species,778,yes,Water,Water,
-285,Brionne,new,729,species,779,yes,Water,Water,
-286,Primarina,new,730,species,780,yes,Water,Fairy,
-287,Pikipek,new,731,species,781,yes,Normal,Flying,
-288,Trumbeak,new,732,species,782,yes,Normal,Flying,
-289,Toucannon,new,733,species,783,yes,Normal,Flying,
-290,Grubbin,new,736,species,786,yes,Bug,Bug,
-291,Charjabug,new,737,species,787,yes,Bug,Electric,
-292,Vikavolt,new,738,species,788,yes,Bug,Electric,"Charjabug, magnetic field (method 24) - direct port"
-293,Mareanie,new,747,species,797,yes,Poison,Water,
-294,Toxapex,new,748,species,798,yes,Poison,Water,
-295,Dewpider,new,751,species,801,yes,Water,Bug,
-296,Araquanid,new,752,species,802,yes,Water,Bug,
-297,Fomantis,new,753,species,803,yes,Grass,Grass,
-298,Lurantis,new,754,species,804,yes,Grass,Grass,
-299,Salandit,new,757,species,807,yes,Poison,Fire,
-300,Salazzle,new,758,species,808,yes,Poison,Fire,"Salandit, level 33 female (method 23) - direct port"
-301,Bounsweet,new,761,species,811,yes,Grass,Grass,
-302,Steenee,new,762,species,812,yes,Grass,Grass,
-303,Tsareena,new,763,species,813,"MISMATCH (72, 120, 98, 50, 98, 72)",Grass,Fighting,"Steenee, level up knowing Stomp (method 20) - direct port"
-304,Sandygast,new,769,species,819,yes,Ghost,Ground,
-305,Palossand,new,770,species,820,yes,Ghost,Ground,
-306,Turtonator,new,776,species,826,yes,Fire,Dragon,
-307,Togedemaru,new,777,species,827,yes,Electric,Steel,
-308,Dhelmise,new,781,species,831,yes,Ghost,Grass,
-309,Jangmo-o,new,782,species,832,yes,Dragon,Dragon,
-310,Hakamo-o,new,783,species,833,yes,Dragon,Fighting,
-311,Kommo-o,new,784,species,834,yes,Dragon,Fighting,
-312,Tapu Koko,new,785,species,835,yes,Electric,Fairy,
-313,Tapu Lele,new,786,species,836,yes,Psychic,Fairy,
-314,Tapu Bulu,new,787,species,837,yes,Grass,Fairy,
-315,Tapu Fini,new,788,species,838,yes,Water,Fairy,
-316,Nihilego,new,793,species,843,yes,Rock,Poison,
-317,Buzzwole,new,794,species,844,yes,Bug,Fighting,
-318,Pheromosa,new,795,species,845,yes,Bug,Fighting,
-319,Xurkitree,new,796,species,846,yes,Electric,Electric,
-320,Celesteela,new,797,species,847,yes,Steel,Flying,
-321,Kartana,new,798,species,848,yes,Grass,Steel,
-322,Guzzlord,new,799,species,849,yes,Dark,Dragon,
-323,Magearna,new,801,species,851,yes,Steel,Fairy,
-324,Poipole,new,803,species,853,yes,Poison,Poison,
-325,Naganadel,new,804,species,854,yes,Poison,Dragon,"Poipole, level up knowing Dragon Pulse (method 20) - direct port"
-326,Stakataka,new,805,species,855,yes,Rock,Steel,
-327,Blacephalon,new,806,species,856,yes,Fire,Ghost,
-328,Scorbunny,new,813,species,863,yes,Fire,Fire,
-329,Raboot,new,814,species,864,yes,Fire,Fire,
-330,Cinderace,new,815,species,865,yes,Fire,Fire,
-331,Rookidee,new,821,species,871,yes,Flying,Flying,
-332,Corvisquire,new,822,species,872,yes,Flying,Flying,
-333,Corviknight,new,823,species,873,yes,Flying,Steel,
-334,Blipbug,new,824,species,874,yes,Bug,Bug,
-335,Dottler,new,825,species,875,yes,Bug,Psychic,
-336,Orbeetle,new,826,species,876,yes,Bug,Psychic,
-337,Wooloo,new,831,species,881,yes,Normal,Normal,
-338,Dubwool,new,832,species,882,yes,Normal,Normal,
-339,Toxel,cut,,,,,Electric,Poison,dropped: nature-split evolution
-340,Toxtricity,cut,,,,,Electric,Poison,dropped: nature-split evolution
-341,Clobbopus,new,852,species,902,yes,Fighting,Fighting,
-342,Grapploct,new,853,species,903,yes,Fighting,Fighting,"Clobbopus, level up knowing Taunt (method 20) - direct port"
-343,Sinistea,new,854,species,904,yes,Ghost,Ghost,
-344,Polteageist,new,855,species,905,yes,Ghost,Ghost,Sinistea + Dusk Stone (method 7)
-345,Sinistcha,new,1013,species,1063,yes,Grass,Ghost,Polteageist + Dusk Stone (method 7)
-346,Snom,new,872,species,922,yes,Ice,Bug,
-347,Frosmoth,new,873,species,923,yes,Ice,Bug,"Snom, high friendship at night (method 3) - direct port"
-348,Sprigatito,new,906,species,956,yes,Grass,Grass,
-349,Floragato,new,907,species,957,yes,Grass,Grass,
-350,Meowscarada,new,908,species,958,yes,Grass,Dark,
-351,Pawmi,new,921,species,971,yes,Electric,Electric,
-352,Pawmo,new,922,species,972,yes,Electric,Fighting,
-353,Pawmot,new,923,species,973,yes,Electric,Fighting,Pawmo + Thunder Stone (method 7)
-354,Smoliv,new,928,species,978,yes,Grass,Normal,
-355,Dolliv,new,929,species,979,yes,Grass,Normal,
-356,Arboliva,new,930,species,980,yes,Grass,Normal,
-357,Nacli,new,932,species,982,yes,Rock,Rock,
-358,Naclstack,new,933,species,983,yes,Rock,Rock,
-359,Garganacl,new,934,species,984,yes,Rock,Rock,
-360,Charcadet,new,935,species,985,yes,Fire,Fire,
-361,Armarouge,new,936,species,986,yes,Fire,Psychic,Charcadet + Sun Stone (method 7)
-362,Ceruledge,new,937,species,987,yes,Fire,Ghost,Charcadet + Dusk Stone (method 7)
-363,Glimmet,new,969,species,1019,yes,Rock,Poison,
-364,Glimmora,new,970,species,1020,yes,Rock,Poison,
+dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
+1,Charmander,native,4,platinum,,yes,Fire,Fire,,gate
+2,Charmeleon,native,5,platinum,,yes,Fire,Fire,,gate
+3,Charizard,native,6,platinum,,yes,Fire,Flying,,gate
+5,Squirtle,native,7,platinum,,yes,Water,Water,,gate
+6,Wartortle,native,8,platinum,,yes,Water,Water,,gate
+7,Blastoise,native,9,platinum,,yes,Water,Water,,gate
+8,Pikachu,native,25,platinum,,yes,Electric,Electric,,preferred
+9,Raichu,native,26,platinum,,yes,Electric,Electric,,preferred
+10,Pichu,native,172,platinum,,yes,Electric,Electric,,preferred
+11,Nidoran F,native,29,platinum,,yes,Poison,Poison,,filler
+12,Nidorina,native,30,platinum,,yes,Poison,Poison,,filler
+13,Nidoqueen,native,31,platinum,,yes,Poison,Ground,,filler
+14,Nidoran M,native,32,platinum,,yes,Poison,Poison,,filler
+15,Nidorino,native,33,platinum,,yes,Poison,Poison,,filler
+16,Nidoking,native,34,platinum,,yes,Poison,Ground,,filler
+17,Vulpix,native,37,platinum,,yes,Fire,Fire,,filler
+18,Ninetales,native,38,platinum,,yes,Fire,Fairy,,filler
+19,Alolan Ninetales,new,38,form,1132,"MISMATCH (73, 67, 75, 81, 100, 109)",Ice,Fairy,,filler
+20,Zubat,native,41,platinum,,yes,Poison,Flying,,starter-adjacent
+21,Golbat,native,42,platinum,,yes,Poison,Flying,,starter-adjacent
+22,Crobat,native,169,platinum,,yes,Poison,Flying,,starter-adjacent
+23,Mankey,native,56,platinum,,yes,Fighting,Fighting,,filler
+24,Primeape,native,57,platinum,,yes,Fighting,Fighting,,filler
+25,Annihilape,new,979,species,1029,yes,Fighting,Ghost,"Primeape, level 50 (method 4)",filler
+26,Tentacool,native,72,platinum,,yes,Water,Poison,,preferred
+27,Tentacruel,native,,platinum,,UNMATCHED,Water,Poison,,preferred
+28,Ponyta,native,77,platinum,,yes,Fire,Fire,,starter-adjacent
+29,Rapidash,native,78,platinum,,yes,Fire,Fire,,starter-adjacent
+30,Galarian Rapidash,new,78,form,1158,"MISMATCH (65, 100, 70, 80, 80, 105)",Fairy,Fire,,filler
+31,Onix,native,95,platinum,,yes,Rock,Ground,,starter-adjacent
+32,Steelix,native,208,platinum,,yes,Steel,Ground,,starter-adjacent
+33,Koffing,native,109,platinum,,yes,Poison,Poison,,filler
+34,Weezing,native,,platinum,,UNMATCHED,Poison,Poison,,filler
+35,Galarian Weezing,new,110,form,1162,yes,Poison,Fairy,,filler
+36,Rhyhorn,native,111,platinum,,yes,Ground,Rock,,preferred
+37,Rhydon,native,112,platinum,,yes,Ground,Rock,,preferred
+38,Rhyperior,native,464,platinum,,yes,Ground,Rock,,preferred
+39,Galarian Mr. Mime,new,122,form,1163,yes,Ice,Psychic,,filler
+40,Mr. Rime,new,866,species,916,yes,Ice,Psychic,"Galarian Mr. Mime, level 42 (method 4)",filler
+41,Scyther,native,123,platinum,,yes,Bug,Flying,,preferred
+42,Scizor,native,212,platinum,,yes,Bug,Steel,,preferred
+43,Kleavor,new,900,species,950,yes,Bug,Rock,"Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route",filler
+44,Electabuzz,native,,platinum,,UNMATCHED,Electric,Electric,,preferred
+45,Elekid,native,239,platinum,,yes,Electric,Electric,,preferred
+46,Electivire,native,466,platinum,,yes,Electric,Fighting,,preferred
+47,Magmar,native,126,platinum,,yes,Fire,Fire,,preferred
+48,Magby,native,240,platinum,,yes,Fire,Fire,,preferred
+49,Magmortar,native,467,platinum,,yes,Fire,Fire,,preferred
+50,Magikarp,native,129,platinum,,yes,Water,Water,,preferred
+51,Gyarados,native,,platinum,,UNMATCHED,Water,Flying,,preferred
+52,Gyarados M,new,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian",filler
+53,Eevee,native,133,platinum,,yes,Normal,Normal,,preferred
+54,Vaporeon,native,134,platinum,,yes,Water,Water,,preferred
+55,Jolteon,native,135,platinum,,yes,Electric,Electric,,preferred
+56,Flareon,native,136,platinum,,yes,Fire,Fire,,preferred
+57,Espeon,native,196,platinum,,yes,Psychic,Psychic,,preferred
+58,Umbreon,native,197,platinum,,yes,Dark,Dark,,preferred
+59,Leafeon,native,470,platinum,,yes,Grass,Grass,,preferred
+60,Glaceon,native,471,platinum,,yes,Ice,Ice,,preferred
+61,Sylveon,new,700,species,750,yes,Fairy,Fairy,"Eevee, level up knowing a Fairy move (method 20)",filler
+62,Articuno,native,,platinum,,UNMATCHED,Ice,Flying,,gate
+63,Galarian Articuno,new,144,form,1164,yes,Psychic,Flying,,gate
+64,Zapdos,native,,platinum,,UNMATCHED,Electric,Flying,,gate
+65,Galarian Zapdos,new,145,form,1165,yes,Fighting,Flying,,gate
+66,Moltres,native,,platinum,,UNMATCHED,Fire,Flying,,gate
+67,Galarian Moltres,new,146,form,1166,yes,Dark,Flying,,gate
+68,Sentret,native,161,platinum,,yes,Normal,Normal,,filler
+69,Furret,native,162,platinum,,yes,Normal,Normal,,filler
+70,Togepi,native,175,platinum,,yes,Fairy,Fairy,,preferred
+71,Togetic,native,176,platinum,,yes,Fairy,Flying,,preferred
+72,Togekiss,native,468,platinum,,yes,Fairy,Flying,,preferred
+73,Yanma,native,193,platinum,,yes,Bug,Flying,,preferred
+74,Yanmega,native,469,platinum,,yes,Bug,Flying,,preferred
+75,Wooper,native,194,platinum,,yes,Water,Ground,,preferred
+76,Quagsire,native,195,platinum,,yes,Water,Ground,,preferred
+77,Clodsire,new,980,species,1030,yes,Poison,Ground,"Wooper, level up holding Poison Barb (methods 18/19)",filler
+78,Gligar,native,207,platinum,,yes,Ground,Flying,,preferred
+79,Gliscor,native,472,platinum,,yes,Ground,Flying,,preferred
+80,Heracross,native,214,platinum,,yes,Bug,Fighting,,preferred
+81,Sneasel,native,215,platinum,,yes,Dark,Ice,,preferred
+82,Weavile,native,461,platinum,,yes,Dark,Ice,,preferred
+83,Slugma,native,218,platinum,,yes,Fire,Fire,,filler
+84,Magcargo,native,219,platinum,,yes,Fire,Rock,,filler
+85,Swinub,native,,platinum,,UNMATCHED,Ice,Ground,,preferred
+86,Piloswine,native,221,platinum,,yes,Ice,Ground,,preferred
+87,Mamoswine,native,,platinum,,UNMATCHED,Ice,Ground,,preferred
+88,Skarmory,native,,platinum,,UNMATCHED,Steel,Flying,,filler
+89,Houndour,native,228,platinum,,yes,Fire,Dark,,preferred
+90,Houndoom,native,,platinum,,UNMATCHED,Fire,Dark,,preferred
+91,Suicune,native,,platinum,,UNMATCHED,Water,Water,,gate
+92,Larvitar,native,246,platinum,,yes,Dark,Ground,,filler
+93,Pupitar,native,247,platinum,,yes,Dark,Ground,,filler
+94,Tyranitar,native,,platinum,,UNMATCHED,Dark,Rock,,filler
+95,Treecko,native,252,platinum,,yes,Grass,Grass,,gate
+96,Grovyle,native,253,platinum,,yes,Grass,Grass,,gate
+97,Sceptile,native,254,platinum,,yes,Grass,Dragon,,gate
+98,Torchic,native,255,platinum,,yes,Fire,Fire,,gate
+99,Combusken,native,256,platinum,,yes,Fire,Fighting,,gate
+100,Blaziken,native,,platinum,,UNMATCHED,Fire,Fighting,,gate
+101,Mudkip,native,,platinum,,UNMATCHED,Water,Water,,gate
+102,Marshtomp,native,259,platinum,,yes,Water,Ground,,gate
+103,Swampert,native,260,platinum,,yes,Water,Ground,,gate
+104,Poochyena,native,261,platinum,,yes,Dark,Dark,,filler
+105,Mightyena,native,262,platinum,,yes,Dark,Dark,,filler
+106,Lotad,native,270,platinum,,yes,Grass,Water,,filler
+107,Lombre,native,271,platinum,,yes,Grass,Water,,filler
+108,Ludicolo,native,272,platinum,,yes,Grass,Water,,filler
+109,Seedot,native,273,platinum,,yes,Grass,Grass,,filler
+110,Nuzleaf,native,274,platinum,,yes,Grass,Dark,,filler
+111,Shiftry,native,275,platinum,,yes,Grass,Dark,,filler
+112,Ralts,native,280,platinum,,yes,Psychic,Fairy,,preferred
+113,Kirlia,native,281,platinum,,yes,Psychic,Fairy,,preferred
+114,Gardevoir,native,282,platinum,,yes,Psychic,Fairy,,preferred
+115,Gallade,native,475,platinum,,yes,Psychic,Fighting,,preferred
+116,Surskit,native,283,platinum,,yes,Bug,Water,,filler
+117,Masquerain,native,284,platinum,,yes,Bug,Water,,filler
+118,Shroomish,native,285,platinum,,yes,Grass,Grass,,filler
+119,Breloom,native,286,platinum,,yes,Grass,Fighting,,filler
+120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,,filler
+121,Hariyama,native,297,platinum,,yes,Fighting,Fighting,,filler
+122,Skitty,native,300,platinum,,yes,Normal,Normal,,filler
+123,Delcatty,native,301,platinum,,yes,Normal,Normal,,filler
+124,Roselia,native,315,platinum,,yes,Grass,Poison,,starter-adjacent
+125,Budew,native,406,platinum,,yes,Grass,Poison,,starter-adjacent
+126,Roserade,native,,platinum,,UNMATCHED,Grass,Poison,,starter-adjacent
+127,Trapinch,native,328,platinum,,yes,Bug,Ground,,filler
+128,Vibrava,native,329,platinum,,yes,Bug,Flying,,filler
+129,Flygon,native,330,platinum,,yes,Bug,Dragon,,filler
+130,Swablu,native,333,platinum,,yes,Normal,Flying,,preferred
+131,Altaria,native,334,platinum,,yes,Dragon,Flying,,preferred
+133,Lunatone,native,337,platinum,,yes,Rock,Psychic,,filler
+134,Solrock,native,338,platinum,,yes,Rock,Psychic,,filler
+135,Barboach,native,339,platinum,,yes,Water,Ground,,preferred
+136,Whiscash,native,340,platinum,,yes,Water,Ground,,preferred
+137,Lileep,native,345,platinum,,yes,Rock,Grass,,gate
+138,Cradily,native,346,platinum,,yes,Rock,Grass,,gate
+139,Feebas,native,349,platinum,,yes,Water,Water,,preferred
+140,Milotic,native,350,platinum,,yes,Water,Dragon,,preferred
+141,Castform,native,,platinum,,UNMATCHED,Normal,Normal,,filler
+142,Duskull,native,,platinum,,UNMATCHED,Ghost,Ghost,,preferred
+143,Dusclops,native,356,platinum,,yes,Ghost,Ghost,,preferred
+144,Dusknoir,native,477,platinum,,yes,Ghost,Ghost,,preferred
+145,Absol,native,,platinum,,UNMATCHED,Dark,Dark,,preferred
+148,Snorunt,native,361,platinum,,yes,Ice,Ice,,preferred
+149,Glalie,native,362,platinum,,yes,Ice,Rock,,preferred
+150,Froslass,native,478,platinum,,yes,Ice,Ghost,,preferred
+151,Luvdisc,native,370,platinum,,yes,Water,Water,,filler
+152,Beldum,native,374,platinum,,yes,Steel,Psychic,,filler
+153,Metang,native,375,platinum,,yes,Steel,Psychic,,filler
+154,Metagross,native,376,platinum,,yes,Steel,Psychic,,filler
+155,Regirock,native,377,platinum,,yes,Rock,Rock,,gate
+156,Regice,native,378,platinum,,yes,Ice,Ice,,gate
+157,Registeel,native,379,platinum,,yes,Steel,Steel,,gate
+158,Latias,native,380,platinum,,yes,Dragon,Psychic,,gate
+159,Latios,native,381,platinum,,yes,Dragon,Psychic,,gate
+160,Turtwig,native,387,platinum,,yes,Grass,Grass,,gate
+161,Grotle,native,388,platinum,,yes,Grass,Grass,,gate
+162,Torterra,native,389,platinum,,yes,Grass,Ground,,gate
+163,Piplup,native,393,platinum,,yes,Water,Water,,gate
+164,Prinplup,native,394,platinum,,yes,Water,Water,,gate
+165,Empoleon,native,395,platinum,,yes,Water,Steel,,gate
+166,Shinx,native,403,platinum,,yes,Electric,Electric,,starter-adjacent
+167,Luxio,native,404,platinum,,yes,Electric,Electric,,starter-adjacent
+168,Luxray,native,405,platinum,,yes,Electric,Dark,,starter-adjacent
+169,Cranidos,native,408,platinum,,yes,Rock,Rock,,gate
+170,Rampardos,native,409,platinum,,yes,Rock,Rock,,gate
+171,Shieldon,native,410,platinum,,yes,Rock,Steel,,gate
+172,Bastiodon,native,,platinum,,UNMATCHED,Rock,Steel,,gate
+173,Combee,native,415,platinum,,yes,Bug,Flying,,preferred
+174,Vespiquen,native,416,platinum,,yes,Bug,Flying,,preferred
+175,Pachirisu,native,417,platinum,,yes,Electric,Electric,,starter-adjacent
+176,Drifloon,native,425,platinum,,yes,Ghost,Flying,,gate
+177,Drifblim,native,426,platinum,,yes,Ghost,Flying,,gate
+178,Buneary,native,427,platinum,,yes,Normal,Normal,,starter-adjacent
+179,Lopunny,native,428,platinum,,yes,Normal,Fighting,,starter-adjacent
+180,Lopunny M,new,428,altevo,1117,"MISMATCH (65, 136, 94, 54, 96, 135)",Normal,Fighting,"alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian",filler
+181,Glameow,native,431,platinum,,yes,Normal,Normal,,preferred
+182,Purugly,native,432,platinum,,yes,Normal,Normal,,preferred
+183,Stunky,native,434,platinum,,yes,Poison,Dark,,preferred
+184,Skuntank,native,435,platinum,,yes,Poison,Dark,,preferred
+185,Bronzor,native,437,platinum,,yes,Steel,Psychic,,preferred
+186,Bronzong,native,437,platinum,,yes,Steel,Psychic,,preferred
+187,Spiritomb,native,442,platinum,,yes,Ghost,Dark,,gate
+188,Gible,native,443,platinum,,yes,Dragon,Ground,,preferred
+189,Gabite,native,444,platinum,,yes,Dragon,Ground,,preferred
+190,Garchomp,native,445,platinum,,yes,Dragon,Ground,,preferred
+191,Riolu,native,447,platinum,,yes,Fighting,Fighting,,preferred
+192,Lucario,native,448,platinum,,yes,Fighting,Steel,,preferred
+193,Hippopotas,native,449,platinum,,yes,Ground,Ground,,preferred
+194,Hippowdon,native,450,platinum,,yes,Ground,Ground,,preferred
+195,Skorupi,native,451,platinum,,yes,Poison,Bug,,preferred
+196,Drapion,native,452,platinum,,yes,Poison,Dark,,preferred
+197,Croagunk,native,453,platinum,,yes,Poison,Fighting,,preferred
+198,Toxicroak,native,454,platinum,,yes,Poison,Fighting,,preferred
+199,Finneon,native,456,platinum,,yes,Water,Water,,preferred
+200,Lumineon,native,457,platinum,,yes,Water,Water,,preferred
+201,Snover,native,459,platinum,,yes,Grass,Ice,,preferred
+202,Abomasnow,native,460,platinum,,yes,Grass,Ice,,preferred
+203,Rotom,native,503,platinum,,yes,Electric,Ghost,,gate
+204,Uxie,native,480,platinum,,yes,Psychic,Fairy,,gate
+205,Mesprit,native,481,platinum,,yes,Psychic,Fairy,,gate
+206,Azelf,native,482,platinum,,yes,Psychic,Fairy,,gate
+207,Dialga,native,483,platinum,,yes,Steel,Dragon,,gate
+208,Palkia,native,484,platinum,,yes,Water,Dragon,,gate
+209,Heatran,native,485,platinum,,yes,Fire,Steel,,gate
+210,Regigigas,native,486,platinum,,yes,Normal,Normal,,gate
+211,Giratina,native,487,platinum,,yes,Ghost,Dragon,,gate
+212,Cresselia,native,,platinum,,UNMATCHED,Psychic,Psychic,,gate
+213,Phione,native,489,platinum,,yes,Water,Water,,gate
+214,Manaphy,native,151,platinum,,yes,Water,Water,,gate
+215,Darkrai,native,491,platinum,,yes,Dark,Dark,,gate
+216,Shaymin,native,151,platinum,,yes,Grass,Grass,,gate
+217,Arceus,native,493,platinum,,yes,Normal,Normal,,gate
+218,Snivy,new,495,species,545,yes,Grass,Grass,,gate
+219,Servine,new,496,species,546,yes,Grass,Grass,,gate
+220,Serperior,new,497,species,547,yes,Grass,Grass,,gate
+221,Purrloin,new,509,species,559,yes,Dark,Dark,,filler
+222,Liepard,new,510,species,560,"MISMATCH (64, 88, 50, 88, 50, 106)",Dark,Dark,,filler
+223,Sewaddle,new,540,species,590,yes,Bug,Grass,,filler
+224,Swadloon,new,541,species,591,yes,Bug,Grass,,filler
+225,Leavanny,new,542,species,592,yes,Bug,Grass,,filler
+226,Dwebble,new,557,species,607,yes,Bug,Rock,,filler
+227,Crustle,new,558,species,608,yes,Bug,Rock,,filler
+228,Yamask,new,562,species,612,yes,Ghost,Ghost,,filler
+229,Cofagrigus,new,563,species,613,yes,Ghost,Ghost,"Yamask, level 34 (method 4) - the non-branch half",filler
+230,Runerigus,new,867,species,917,yes,Ground,Ghost,"Yamask, level up holding Reaper Cloth (methods 18/19)",filler
+231,Minccino,new,572,species,622,yes,Normal,Normal,,filler
+232,Cinccino,new,573,species,623,yes,Normal,Normal,,filler
+233,Gothita,new,574,species,624,yes,Psychic,Psychic,,filler
+234,Gothorita,new,575,species,625,yes,Psychic,Psychic,,filler
+235,Gothitelle,new,576,species,626,"MISMATCH (70, 55, 95, 95, 110, 65)",Psychic,Dark,,filler
+236,Emolga,new,587,species,637,yes,Electric,Flying,,filler
+237,Frillish,new,592,species,642,yes,Water,Ghost,,filler
+238,Jellicent,new,593,species,643,yes,Water,Ghost,,filler
+239,Alomomola,new,594,species,644,yes,Water,Water,"Luvdisc, high friendship (method 1)",filler
+240,Joltik,new,595,species,645,yes,Bug,Electric,,filler
+241,Galvantula,new,596,species,646,yes,Bug,Electric,,filler
+242,Ferroseed,new,597,species,647,yes,Grass,Steel,,filler
+243,Ferrothorn,new,598,species,648,yes,Grass,Steel,,filler
+244,Litwick,new,607,species,657,yes,Ghost,Fire,,filler
+245,Lampent,new,608,species,658,yes,Ghost,Fire,,filler
+246,Chandelure,new,609,species,659,yes,Ghost,Fire,,filler
+247,Mienfoo,new,619,species,669,yes,Fighting,Fighting,,filler
+248,Mienshao,new,620,species,670,yes,Fighting,Fighting,,filler
+249,Vullaby,new,629,species,679,yes,Dark,Flying,,filler
+250,Mandibuzz,new,630,species,680,yes,Dark,Flying,,filler
+251,Larvesta,new,636,species,686,yes,Bug,Fire,,filler
+252,Volcarona,new,637,species,687,yes,Bug,Fire,,filler
+253,Fennekin,new,653,species,703,yes,Fire,Fire,,gate
+254,Braixen,new,654,species,704,yes,Fire,Fire,,gate
+255,Delphox,new,655,species,705,yes,Fire,Psychic,,gate
+256,Froakie,new,656,species,706,yes,Water,Water,,gate
+257,Frogadier,new,657,species,707,yes,Water,Water,,gate
+258,Greninja,new,658,species,708,yes,Water,Dark,,gate
+259,Fletchling,new,661,species,711,yes,Normal,Flying,,filler
+260,Fletchinder,new,662,species,712,yes,Fire,Flying,,filler
+261,Talonflame,new,663,species,713,yes,Fire,Flying,,filler
+262,Flabebe,new,669,species,719,yes,Fairy,Fairy,,filler
+263,Floette,new,670,species,720,yes,Fairy,Fairy,,filler
+264,Florges,new,671,species,721,yes,Fairy,Fairy,,filler
+265,Hawlucha,new,701,species,751,yes,Fighting,Flying,,filler
+266,Carbink,new,703,species,753,yes,Rock,Fairy,,filler
+267,Goomy,new,704,species,754,yes,Dragon,Dragon,,filler
+268,Sliggoo,new,705,species,755,yes,Dragon,Dragon,,filler
+269,Hisuian Sliggoo,new,705,form,1338,yes,Steel,Dragon,"Goomy, level up holding Metal Coat (methods 18/19)",filler
+270,Goodra,new,706,species,756,yes,Dragon,Dragon,,filler
+271,Hisuian Goodra,new,706,form,1339,yes,Steel,Dragon,"Hisuian Sliggoo, level 50 (method 4)",filler
+272,Klefki,new,707,species,757,yes,Steel,Fairy,,filler
+273,Xerneas,new,716,species,766,yes,Fairy,Fairy,,gate
+274,Yveltal,new,717,species,767,yes,Dark,Flying,,gate
+275,Zygarde 10%,new,718,form,1269,yes,Dragon,Ground,,gate
+276,Zygarde 50%,new,718,species,768,yes,Dragon,Ground,"Zygarde 10%, level up (method 4) - cells assembling",gate
+277,Diancie,new,719,species,769,yes,Rock,Fairy,,gate
+278,Rowlet,new,722,species,772,yes,Grass,Flying,,gate
+279,Dartrix,new,723,species,773,yes,Grass,Flying,,gate
+280,Decidueye,new,724,species,774,yes,Grass,Ghost,,gate
+281,Litten,new,725,species,775,yes,Fire,Fire,,gate
+282,Torracat,new,726,species,776,yes,Fire,Fire,,gate
+283,Incineroar,new,727,species,777,yes,Fire,Dark,,gate
+284,Popplio,new,728,species,778,yes,Water,Water,,gate
+285,Brionne,new,729,species,779,yes,Water,Water,,gate
+286,Primarina,new,730,species,780,yes,Water,Fairy,,gate
+287,Pikipek,new,731,species,781,yes,Normal,Flying,,filler
+288,Trumbeak,new,732,species,782,yes,Normal,Flying,,filler
+289,Toucannon,new,733,species,783,yes,Normal,Flying,,filler
+290,Grubbin,new,736,species,786,yes,Bug,Bug,,filler
+291,Charjabug,new,737,species,787,yes,Bug,Electric,,filler
+292,Vikavolt,new,738,species,788,yes,Bug,Electric,"Charjabug, magnetic field (method 24) - direct port",filler
+293,Mareanie,new,747,species,797,yes,Poison,Water,,filler
+294,Toxapex,new,748,species,798,yes,Poison,Water,,filler
+295,Dewpider,new,751,species,801,yes,Water,Bug,,filler
+296,Araquanid,new,752,species,802,yes,Water,Bug,,filler
+297,Fomantis,new,753,species,803,yes,Grass,Grass,,filler
+298,Lurantis,new,754,species,804,yes,Grass,Grass,,filler
+299,Salandit,new,757,species,807,yes,Poison,Fire,,filler
+300,Salazzle,new,758,species,808,yes,Poison,Fire,"Salandit, level 33 female (method 23) - direct port",filler
+301,Bounsweet,new,761,species,811,yes,Grass,Grass,,filler
+302,Steenee,new,762,species,812,yes,Grass,Grass,,filler
+303,Tsareena,new,763,species,813,"MISMATCH (72, 120, 98, 50, 98, 72)",Grass,Fighting,"Steenee, level up knowing Stomp (method 20) - direct port",filler
+304,Sandygast,new,769,species,819,yes,Ghost,Ground,,filler
+305,Palossand,new,770,species,820,yes,Ghost,Ground,,filler
+306,Turtonator,new,776,species,826,yes,Fire,Dragon,,filler
+307,Togedemaru,new,777,species,827,yes,Electric,Steel,,filler
+308,Dhelmise,new,781,species,831,yes,Ghost,Grass,,filler
+309,Jangmo-o,new,782,species,832,yes,Dragon,Dragon,,filler
+310,Hakamo-o,new,783,species,833,yes,Dragon,Fighting,,filler
+311,Kommo-o,new,784,species,834,yes,Dragon,Fighting,,filler
+312,Tapu Koko,new,785,species,835,yes,Electric,Fairy,,gate
+313,Tapu Lele,new,786,species,836,yes,Psychic,Fairy,,gate
+314,Tapu Bulu,new,787,species,837,yes,Grass,Fairy,,gate
+315,Tapu Fini,new,788,species,838,yes,Water,Fairy,,gate
+316,Nihilego,new,793,species,843,yes,Rock,Poison,,gate
+317,Buzzwole,new,794,species,844,yes,Bug,Fighting,,gate
+318,Pheromosa,new,795,species,845,yes,Bug,Fighting,,gate
+319,Xurkitree,new,796,species,846,yes,Electric,Electric,,gate
+320,Celesteela,new,797,species,847,yes,Steel,Flying,,gate
+321,Kartana,new,798,species,848,yes,Grass,Steel,,gate
+322,Guzzlord,new,799,species,849,yes,Dark,Dragon,,gate
+323,Magearna,new,801,species,851,yes,Steel,Fairy,,gate
+324,Poipole,new,803,species,853,yes,Poison,Poison,,gate
+325,Naganadel,new,804,species,854,yes,Poison,Dragon,"Poipole, level up knowing Dragon Pulse (method 20) - direct port",gate
+326,Stakataka,new,805,species,855,yes,Rock,Steel,,gate
+327,Blacephalon,new,806,species,856,yes,Fire,Ghost,,gate
+328,Scorbunny,new,813,species,863,yes,Fire,Fire,,gate
+329,Raboot,new,814,species,864,yes,Fire,Fire,,gate
+330,Cinderace,new,815,species,865,yes,Fire,Fire,,gate
+331,Rookidee,new,821,species,871,yes,Flying,Flying,,filler
+332,Corvisquire,new,822,species,872,yes,Flying,Flying,,filler
+333,Corviknight,new,823,species,873,yes,Flying,Steel,,filler
+334,Blipbug,new,824,species,874,yes,Bug,Bug,,filler
+335,Dottler,new,825,species,875,yes,Bug,Psychic,,filler
+336,Orbeetle,new,826,species,876,yes,Bug,Psychic,,filler
+337,Wooloo,new,831,species,881,yes,Normal,Normal,,filler
+338,Dubwool,new,832,species,882,yes,Normal,Normal,,filler
+339,Toxel,cut,,,,,Electric,Poison,dropped: nature-split evolution,filler
+340,Toxtricity,cut,,,,,Electric,Poison,dropped: nature-split evolution,filler
+341,Clobbopus,new,852,species,902,yes,Fighting,Fighting,,filler
+342,Grapploct,new,853,species,903,yes,Fighting,Fighting,"Clobbopus, level up knowing Taunt (method 20) - direct port",filler
+343,Sinistea,new,854,species,904,yes,Ghost,Ghost,,filler
+344,Polteageist,new,855,species,905,yes,Ghost,Ghost,Sinistea + Dusk Stone (method 7),filler
+345,Sinistcha,new,1013,species,1063,yes,Grass,Ghost,Polteageist + Dusk Stone (method 7),filler
+346,Snom,new,872,species,922,yes,Ice,Bug,,filler
+347,Frosmoth,new,873,species,923,yes,Ice,Bug,"Snom, high friendship at night (method 3) - direct port",filler
+348,Sprigatito,new,906,species,956,yes,Grass,Grass,,gate
+349,Floragato,new,907,species,957,yes,Grass,Grass,,gate
+350,Meowscarada,new,908,species,958,yes,Grass,Dark,,gate
+351,Pawmi,new,921,species,971,yes,Electric,Electric,,filler
+352,Pawmo,new,922,species,972,yes,Electric,Fighting,,filler
+353,Pawmot,new,923,species,973,yes,Electric,Fighting,Pawmo + Thunder Stone (method 7),filler
+354,Smoliv,new,928,species,978,yes,Grass,Normal,,filler
+355,Dolliv,new,929,species,979,yes,Grass,Normal,,filler
+356,Arboliva,new,930,species,980,yes,Grass,Normal,,filler
+357,Nacli,new,932,species,982,yes,Rock,Rock,,filler
+358,Naclstack,new,933,species,983,yes,Rock,Rock,,filler
+359,Garganacl,new,934,species,984,yes,Rock,Rock,,filler
+360,Charcadet,new,935,species,985,yes,Fire,Fire,,filler
+361,Armarouge,new,936,species,986,yes,Fire,Psychic,Charcadet + Sun Stone (method 7),filler
+362,Ceruledge,new,937,species,987,yes,Fire,Ghost,Charcadet + Dusk Stone (method 7),filler
+363,Glimmet,new,969,species,1019,yes,Rock,Poison,,filler
+364,Glimmora,new,970,species,1020,yes,Rock,Poison,,filler

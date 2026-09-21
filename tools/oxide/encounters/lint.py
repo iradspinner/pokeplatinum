@@ -66,6 +66,11 @@ DEFAULT_THRESHOLDS = {
     "r13_share_span_min": 4.0,
     "r13_min_tables": 4,
     "r14_max_shared_land_rate": 0.5,
+    # R12: the most expected encounters a line's first stage may cost at its
+    # cheapest table and rung, by the pick-list's tier. A gate line is
+    # scripted (legendary, starter, fossil, static battle) and is judged on
+    # having a scripted source, not on a cost. Proposed defaults; Ian's.
+    "r12_max_cost": {"starter-adjacent": 5.0, "preferred": 20.0, "filler": 100.0},
     "bands": {
         "early": {"species": [3, 5], "top": [0.40, 0.50], "hhi": [0.35, 0.50]},
         "mid":   {"species": [4, 7], "top": [0.30, 0.40], "hhi": [0.25, 0.35]},
@@ -204,8 +209,9 @@ def lint_table(name, slots, entry, t, rates=A.LAND_RATES, data=None):
 # -- per game -------------------------------------------------------------
 
 
-def lint_game(areas, t):
-    """areas: [(name, slots, entry, data)]."""
+def lint_game(areas, t, availability=None):
+    """areas: [(name, slots, entry, data)]; availability is
+    audit.availability()'s rows, or None when the pick-list has no tiers."""
     out = []
     tables = [s for _, s, _, _ in areas]
     bands = [(e or {}).get("band") for _, _, e, _ in areas]
@@ -300,23 +306,57 @@ def lint_game(areas, t):
                 f"land_rate {common[0]} on {share:.0%} of tables "
                 f"(max {t['r14_max_shared_land_rate']:.0%})"))
 
-    # R12 -- availability. Needs a `tier` per line on the species pick-list,
-    # which does not exist yet, so it is reported as skipped rather than
-    # silently passing.
-    out.append(Finding(
-        "R12", "skip", "game", "*",
-        "availability unchecked: the species pick-list has no `tier` field "
-        "yet (see the build plan's open questions)"))
+    # R12 (error) -- availability, Ian's guarantee in its enforceable form.
+    # `availability` is audit.availability()'s output: one row per native
+    # line with its tier, whether a script hands it over, and the cheapest
+    # wild acquisition (expected encounters at the best table and rung). A
+    # gate line must have a scripted source; any other line must be catchable
+    # under its tier's cost ceiling. Without a `tier` column the rule reports
+    # itself skipped rather than passing quietly.
+    if availability is None:
+        out.append(Finding(
+            "R12", "skip", "game", "*",
+            "availability unchecked: the species pick-list has no `tier` "
+            "column yet (cli tier-init writes the defaults)"))
+    else:
+        ceilings = t.get("r12_max_cost") or {}
+        for row in availability:
+            tier, name = row["tier"], row["name"]
+            if not tier:
+                out.append(Finding("R12", "warn", "game", name,
+                                   "no tier on the pick-list; unchecked"))
+            elif tier == "gate":
+                if not row["non_wild"]:
+                    out.append(Finding(
+                        "R12", "error", "game", name,
+                        "gate line with no scripted source (no gift, trade, "
+                        "static battle, starter or fossil script names it)"))
+            elif row["non_wild"]:
+                continue
+            elif row["cost"] is None:
+                out.append(Finding(
+                    "R12", "error", "game", name,
+                    f"{tier} line with no wild table and no scripted source"))
+            elif tier in ceilings and row["cost"] > ceilings[tier]:
+                area, kind, lead = row["where"]
+                out.append(Finding(
+                    "R12", "error", "game", name,
+                    f"{tier} line costs {row['cost']:.1f} encounters at best "
+                    f"({area.replace('encounters_', '')} {kind}, lead {lead}), "
+                    f"ceiling {ceilings[tier]:.0f}"))
+            elif tier not in ceilings:
+                out.append(Finding("R12", "warn", "game", name,
+                                   f"tier {tier!r} has no ceiling in r12_max_cost"))
     return out
 
 
-def lint_all(areas, sidecar):
+def lint_all(areas, sidecar, availability=None):
     t = thresholds_from(sidecar)
     entries = (sidecar or {}).get("areas") or {}
     out = []
     for name, slots, entry, data in areas:
         out += lint_table(name, slots, entry or entries.get(name), t, data=data)
-    out += lint_game(areas, t)
+    out += lint_game(areas, t, availability)
     return out
 
 

@@ -854,6 +854,79 @@ tree. R12 stays skipped until Step 1 writes `tier`.
 *Gate was:* M1 to M4 tests pass; `integrate.sh --dry-run` passes; audit and
 coverage run on the unchanged tree with numbers matching the plan's facts.
 
+### Step 1 — order and tiers — **done, 2026-09-20**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1        # expect 21/21
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint --rule R12 --all
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint --rule R12 --all
+```
+
+**What was written.** Every one of the 185 sidecar areas carries `order`,
+1 to 185, from the plan's outline expanded to file names in
+`progression.py` and written once by `cli order-init` (the twelve
+`land_rate` 0 files and the two species-only files got minimal entries so
+they carry a position too). The pick-list has a `tier` column on all 360
+rows, derived once by `cli tier-init` from `tiers.py` and appended without
+touching any other byte of the CSV: gate 102, starter-adjacent 16,
+preferred 83, filler 159. Both writers refuse to run twice without
+`--force`, so Ian's corrections in the sidecar and the CSV are safe from a
+re-run. The planner's play order now reads the sidecar's `order` instead
+of approximating it by level (the one-line change the M5 notes promised).
+
+**Placements the outline did not settle**, for Ian's correction: the Old
+Chateau sits after Eterna Forest; Route 207's single file at its first
+mention (before Oreburgh Mine); Mt Coronet's north room 1 (level 13-16)
+with Route 211 west and the rest of the mountain in one climb after Lake
+Acuity; the Ruin Maniac's cave with Maniac Tunnel; Route 224 after
+Victory Road's post-game rooms; Snowpoint Temple after the League; the
+twenty-five `unknown_533` to `unknown_557` files (level 45-48, five
+species, following Turnback Cave in the NARC) last, as the plan's
+"post-game lake rooms".
+
+**How the tiers were derived.** `gate` is legendaries and mythicals,
+starter lines and fossil lines by national number, plus any species a
+static battle command names. `starter-adjacent` is any native line whose
+first stage vanilla places in an early-band land table (median level 12 or
+under). `preferred` is Platinum's 210-species Sinnoh dex, read from the
+pinned vanilla ROM's `pl_pokezukan.narc` (the repo's prebuilt
+`pokezukan.narc` is Diamond and Pearl's 151). `filler` is the rest. A native
+line takes one tier across its stages, the strongest member's. Twenty-one
+native rows have no `natdex` in the CSV (their stats were UNMATCHED against
+the spreadsheet), so the number comes from the tree's species order for
+those; without that the three birds and Cresselia had landed in filler.
+House gifts (Cherubi, Murkrow and the rest of the base ROM's additions) are
+*not* gate: they are Ian's, and the plan's "anything scripted" was read as
+the static battles.
+
+**R12, as it now runs.** `audit.availability()` gives the linter one row
+per native line: its tier, whether a script hands it over (gift, trade,
+static battle, starter, fossil), and its cheapest wild acquisition, the
+expected encounters to the first one at the best table and repel rung over
+every live land and water table, with nothing owned. A gate line passes on
+a scripted source and fails without one; any other line passes on a
+scripted source or on a cost under its tier's ceiling. The ceilings are
+`r12_max_cost` in the sidecar's thresholds, proposed at 5 / 20 / 100
+encounters for starter-adjacent / preferred / filler, Ian's to move. Costs
+count land and water only, not swarms, radar, the dual-slot lists, honey
+trees or the marsh binoculars, since the design scoped the first pass to
+land; a line vanilla supplies only through those (Heracross, Larvitar,
+Beldum, Feebas) fails on `--ref main`, which is a true statement about
+where the pass has to put them, not a bug. Without a `tier` column the rule
+still reports itself skipped.
+
+**Gate.** Step 1 21/21, Step 0 35/35, M3 to M6 still green. `lint` on the
+working tree: 10 errors, 0 skipped, the R8 spread as before plus **9 R12
+errors**: Articuno, Zapdos, Moltres, Mesprit, Cresselia and Phione as gate
+lines no script names (the roamers and Manaphy's egg), and Yanma, Houndour,
+Hippopotas as preferred lines with no wild table. `lint --ref main`: 22 R12
+errors, R12 evaluated rather than skipped, as the plan asked. Because
+vanilla was never built for the pick-list, `integrate.sh`'s vanilla lint
+check now passes `--ignore R12` (a new lint option) and stays at 0 errors;
+R12 is enforced on the working tree, where it belongs.
+
+*Gate was:* R12 runs; `order` covers all 185 areas with no duplicates.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

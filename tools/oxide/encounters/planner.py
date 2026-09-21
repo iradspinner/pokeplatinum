@@ -230,9 +230,12 @@ def plan_inputs(ref=None):
     from . import dex, model
     root = model.repo_root()
     live = [a for a in model.load_all(ref) if a.land_active]
-    # play order approximated by encounter level until the sidecar carries a
-    # real progression order; the same key the page sorts by
-    live.sort(key=lambda a: (A.median(a.levels), min(a.levels), a.name))
+    # play order is the sidecar's `order` (authoring plan Step 1); an area
+    # without one falls back to its encounter level, the old approximation
+    entries = (model.load_sidecar() or {}).get("areas") or {}
+    live.sort(key=lambda a: (entries.get(a.name, {}).get("order") is None,
+                             entries.get(a.name, {}).get("order") or 0,
+                             A.median(a.levels), min(a.levels), a.name))
     enc = model.load_encounters()
     areas = [{"name": a.name, "order": i, "used": a.name in enc,
               "tables": {k: a.kind_slots(k) for k in a.kinds_present()}}

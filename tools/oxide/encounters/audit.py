@@ -178,6 +178,56 @@ def trades(root):
     return out
 
 
+def acquisition_costs(areas, wanted):
+    """{species: (cost, area, kind, lead_level)}: the cheapest place to meet
+    each wanted species, over every live table kind and every repel rung.
+
+    Cost is expected encounters to the first one that is the species: the
+    reciprocal of its share of the surviving pool at the best rung (design
+    doc 2.4, with an empty party: nothing duped out yet). Water slots hold a
+    level range, so their rungs admit fractions of a slot; analysis.pool
+    handles that.
+    """
+    best = {}
+    for a in areas:
+        for kind in a.kinds_present():
+            slots = a.kind_slots(kind)
+            rates = A.TABLE_KINDS[kind][2]
+            for lead, pool in A.distinct_rungs(slots, rates):
+                for sp, share in pool.items():
+                    if sp in wanted and share > 0:
+                        cost = 1.0 / share
+                        if sp not in best or cost < best[sp][0]:
+                            best[sp] = (cost, a.name, kind, lead)
+    return best
+
+
+def availability(ref=None):
+    """R12's input: one row per native line on the pick-list with its tier,
+    whether it has a scripted source, and its cheapest wild acquisition.
+    Returns None when the pick-list has no `tier` column yet, which is the
+    signal for the rule to report itself skipped."""
+    root = model.repo_root()
+    if not any(r.get("tier") for r in dex.pick_list(root)):
+        return None
+    cov = coverage(ref)
+    areas = [a for a in model.load_all(ref) if a.land_active]
+    wanted = {sp for line in cov["lines"] for sp in line["base"]}
+    costs = acquisition_costs(areas, wanted)
+    out = []
+    for line in cov["lines"]:
+        cheapest = min((costs[sp] for sp in line["base"] if sp in costs),
+                       default=None)
+        out.append({
+            "name": line["name"], "line": line["line"], "tier": line["tier"],
+            "non_wild": bool(line["gifts"] or line["trades"] or line["static"]
+                             or line["scripted"]),
+            "cost": cheapest[0] if cheapest else None,
+            "where": cheapest[1:] if cheapest else None,
+        })
+    return out
+
+
 def coverage(ref=None):
     root = model.repo_root()
     listed = on_list(root)

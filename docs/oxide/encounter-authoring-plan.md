@@ -23,6 +23,15 @@ so they are not re-decided.
 > head can never hold a top-rung slot (its 40 is the two 20% slots, whatever the
 > ladder), and `apply` lays levels out as the plain ladder, so `generate --dry-run`
 > is the tool for tuning them afterwards.
+>
+> **Step 1 done, 2026-09-20.** `order` is on all 185 sidecar areas and `tier` on
+> all 360 pick-list rows, both from `cli order-init` and `cli tier-init`, which
+> refuse to run again without `--force` so Ian's edits survive. R12 evaluates and
+> fails 9 lines on the current tables. The placements the outline left open and
+> how the tiers were derived are in the build plan's Step 1 entry. Note for Step
+> 2: R12's cost counts land and water tables only, so a line meant to come from
+> swarms, radar, dual-slot or honey trees needs a wild home or a scripted source
+> as well, or the ceiling raised.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);
