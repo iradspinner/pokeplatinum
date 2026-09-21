@@ -66,7 +66,15 @@ any member of either ROM; `--roundtrip` proves the emitter, and
    bring back the interpreter desync), and `scripts_init_battleground` builds
    the 4-byte equivalent of a terminator plus leftovers. `bulk_scripts.py` skips
    both; do not "fix" them.
-6. **Do not improve while carrying over.** Unifying the clown gifts or naming
+6. **Movement blocks must stay 4-aligned.** Vanilla writes `.balign 4, 0` before every
+   movement label; the generated files do not, they copy the base ROM's padding. Any
+   edit that changes a generated script's length shifts every movement block behind
+   it, and an odd offset makes the ARM9 read garbage movement actions (it drops the
+   low bit on halfword loads), which is how the whiteout hang happened. When you
+   re-humanise or edit a generated script, add the `.balign` before each movement
+   block and re-run `checkmap.py`, which compares command by command rather than
+   byte by byte, so alignment padding alone should not fail it.
+7. **Do not improve while carrying over.** Unifying the clown gifts or naming
    the possible Pokemon is a separate commit after the faithful version passes
    `checkmap.py`, so the two are separable in history. The gift catalogue is
    `docs/oxide/pokemon-gifts.md`.
