@@ -80,11 +80,34 @@ There is room. `SaveData_Init` asserts the whole of `SAVE_BLOCK_ID_NORMAL` fits
 in `SAVE_SECTOR_SIZE * SAVE_PAGE_MAX`, 131,072 bytes, and 239 bytes does not
 threaten that. The problem is compatibility, not capacity.
 
+## The Battle Hall win records grew, and are now close to their ceiling (2026-09-21)
+
+`BattleHallWinRecords` is three `u16[MAX_SPECIES]` arrays, so raising the
+species count took it from 2,976 bytes to 3,932 without anyone touching it. It
+moves nothing else: it is not in `SAVE_BLOCK_ID_NORMAL` but in the **extra** save
+table, whose entries each sit at a fixed sector. This one is
+`EXTRA_SAVE_TABLE_ENTRY_FRONTIER` at sector `SAVE_PAGE_MAX + 3`. An old save's
+Battle Hall streaks are read from the wrong offsets inside that sector and
+should be treated as lost, which matters to nobody before the Frontier opens.
+
+The sector is the cap, and it is the only place in the save with no bounds check.
+`SaveDataExtra_Save` writes `sizeFunc() + sizeof(SaveCheckFooter)` bytes straight
+at `blockID * SAVE_SECTOR_SIZE`, and the next extra entry starts one sector later.
+3,932 plus a 16-byte footer leaves 148 bytes of the 4,096. **`MAX_SPECIES` cannot
+pass 679 without this struct overwriting the stored battle recordings.** A later
+species addition has to move the entry, not grow into its neighbour.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
 
-- 30 PC boxes (Phase 4 element 8)
+- 30 PC boxes (Phase 4 element 8). The budget to check first: `SavePageInfo_Init`
+  asserts the running total of **both** blocks against `SAVE_SECTOR_SIZE *
+  SAVE_PAGE_MAX`, 131,072 bytes, and eighteen more boxes is on the order of
+  70KB. There is room to raise `SAVE_PAGE_MAX`, because the primary copy starts
+  at sector 0 and the backup at 64, but not to 64: the extra save table is laid
+  out at `SAVE_PAGE_MAX + 0` through `+ 11`, so anything above **52** puts the
+  battle recordings on top of the backup copy
 - Move ids past 511 in level-up learnsets, which changes the learnset entry
   from one packed u16 to a (u16 level, u16 move) pair (Phase 4 element 4)
 - The expanded bag, if the item pass outgrows Platinum's free item slots

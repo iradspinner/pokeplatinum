@@ -18,6 +18,24 @@
 
 #define MOVESET_MAX MOVESET_FORM_ROTOM_MOW
 
+// Where the same twelve forms sit in pl_personal and wotbl, which is not where
+// they sit in the tutor table above. Those two archives hold one member per
+// species and then EGG and BAD_EGG before the form records, so the forms start
+// one past the last species id rather than one past the last dex number. The
+// two bases differ by exactly the two egg entries.
+#define FORM_DATA_DEOXYS_ATTACK   MAX_SPECIES + 1
+#define FORM_DATA_DEOXYS_DEFENSE  MAX_SPECIES + 2
+#define FORM_DATA_DEOXYS_SPEED    MAX_SPECIES + 3
+#define FORM_DATA_WORMADAM_SANDY  MAX_SPECIES + 4
+#define FORM_DATA_WORMADAM_TRASH  MAX_SPECIES + 5
+#define FORM_DATA_GIRATINA_ORIGIN MAX_SPECIES + 6
+#define FORM_DATA_SHAYMIN_SKY     MAX_SPECIES + 7
+#define FORM_DATA_ROTOM_HEAT      MAX_SPECIES + 8
+#define FORM_DATA_ROTOM_WASH      MAX_SPECIES + 9
+#define FORM_DATA_ROTOM_FROST     MAX_SPECIES + 10
+#define FORM_DATA_ROTOM_FAN       MAX_SPECIES + 11
+#define FORM_DATA_ROTOM_MOW       MAX_SPECIES + 12
+
 #define UNOWN_FORM_A     0
 #define UNOWN_FORM_B     1
 #define UNOWN_FORM_C     2
