@@ -1,0 +1,199 @@
+{
+    "base_stats": {
+        "hp": 44,
+        "attack": 50,
+        "defense": 91,
+        "speed": 10,
+        "special_attack": 24,
+        "special_defense": 86
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 61,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_GRASS",
+        "EGG_GROUP_MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_IRON_BARBS",
+        "ABILITY_IRON_BARBS",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_FLASH"
+            ],
+            [
+                6,
+                "MOVE_THUNDER_WAVE"
+            ],
+            [
+                9,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                14,
+                "MOVE_PIN_MISSILE"
+            ],
+            [
+                18,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                21,
+                "MOVE_INGRAIN"
+            ],
+            [
+                26,
+                "MOVE_PAYBACK"
+            ],
+            [
+                30,
+                "MOVE_BULLET_SEED"
+            ],
+            [
+                35,
+                "MOVE_GYRO_BALL"
+            ],
+            [
+                38,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                43,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                47,
+                "MOVE_SEED_BOMB"
+            ],
+            [
+                52,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                55,
+                "MOVE_EXPLOSION"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": [],
+        "egg_moves": []
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            40,
+            "SPECIES_FERROTHORN"
+        ]
+    ],
+    "offspring": "SPECIES_FERROSEED",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 41.4,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "fr": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "de": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "it": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "es": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "jp": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

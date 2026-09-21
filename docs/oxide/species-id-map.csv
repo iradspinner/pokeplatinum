@@ -70,8 +70,8 @@ species_id,constant,name,dex_pos,natdex,kind,donor_index
 562,SPECIES_KLEFKI,Klefki,272,707,species,757
 563,SPECIES_XERNEAS,Xerneas,273,716,species,766
 564,SPECIES_YVELTAL,Yveltal,274,717,species,767
-565,SPECIES_ZYGARDE_10%,Zygarde 10%,275,718,form,1269
-566,SPECIES_ZYGARDE_50%,Zygarde 50%,276,718,species,768
+565,SPECIES_ZYGARDE_10,Zygarde 10%,275,718,form,1269
+566,SPECIES_ZYGARDE_50,Zygarde 50%,276,718,species,768
 567,SPECIES_DIANCIE,Diancie,277,719,species,769
 568,SPECIES_ROWLET,Rowlet,278,722,species,772
 569,SPECIES_DARTRIX,Dartrix,279,723,species,773

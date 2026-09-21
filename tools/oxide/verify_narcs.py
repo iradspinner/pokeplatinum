@@ -245,6 +245,24 @@ DIVERGED = {
 }
 
 
+# The three per-species archives are built from one registry, in this order:
+# nothing, the species, EGG, BAD_EGG, then the twelve alternate-form records.
+# Phase 4 element 3 inserted 159 species before EGG, so everything after the
+# natives sits at a different index from the reference ROM's. This maps a
+# reference index onto the built one so the two can still be compared.
+SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
+                    "poketool/personal/evo.narc",
+                    "poketool/personal/wotbl.narc")
+REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
+
+
+def reference_to_built(i, n_built, n_ref):
+    """Where reference member i lives in the built archive."""
+    if i < REF_NATIVE_COUNT:
+        return i
+    return i + (n_built - n_ref)
+
+
 # The species record grew from 44 bytes to 48 in Phase 4 element 2, so
 # pl_personal can no longer be compared byte for byte against a reference ROM
 # that still has the old one. This lays the two layouts side by side instead.
@@ -252,31 +270,46 @@ DIVERGED = {
 PERSONAL_OLD_SIZE = 44
 PERSONAL_NEW_SIZE = 48
 PERSONAL_ABILITIES_AT = 0x16
+PERSONAL_BASE_EXP_AT = 0x09
 
 
 def personal_fields(member):
-    """(head, abilities, tail) for a species record of either size. head is
-    everything up to the abilities, tail everything after them."""
-    head = member[:PERSONAL_ABILITIES_AT]
+    """(head, abilities, base exp, tail) for a species record of either size.
+    Two fields have moved since the reference ROM was made: the abilities are
+    u16 now, and base experience left its byte at 0x09 for the two bytes of
+    padding at the end, because Generation 7 values run past 255. Both are
+    pulled out so what is left can be compared straight across."""
+    head = bytearray(member[:PERSONAL_ABILITIES_AT])
+    base_exp = head[PERSONAL_BASE_EXP_AT]
+    head[PERSONAL_BASE_EXP_AT] = 0
     if len(member) == PERSONAL_OLD_SIZE:
         abilities = (member[0x16], member[0x17], 0)
-        tail = member[0x18:]
+        # 0x1A..0x1B is padding in the old layout and the hidden ability in the
+        # new one, so it is left out of both tails.
+        tail = member[0x18:0x1A] + member[0x1C:]
     else:
         abilities = struct.unpack("<3H", member[0x16:0x1C])
-        tail = member[0x1C:]
-    return head, abilities, tail
+        base_exp = struct.unpack("<H", member[0x1E:0x20])[0]
+        tail = member[0x1C:0x1E] + member[0x20:]
+    return bytes(head), abilities, base_exp, tail
 
 
 def check_personal(b, r, path):
-    """Compare pl_personal field by field. The built archive may hold more
-    species than the reference; the shared ones have to agree, allowing the
-    Fairy retypes and a hidden-ability slot the reference has no room for."""
+    """Compare pl_personal field by field. The built archive holds more species
+    than the reference and the ones after the natives have moved, so each
+    reference member is looked up where it now lives; the shared ones have to
+    agree, allowing the Fairy retypes and a hidden-ability slot the reference
+    has no room for."""
     rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
     bad, intended, extra = [], [], max(0, len(b) - len(r))
-    for i in range(min(len(b), len(r))):
-        bh, ba, bt = personal_fields(b[i])
-        rh, ra, rt = personal_fields(r[i])
-        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2]:
+    for i in range(len(r)):
+        j = reference_to_built(i, len(b), len(r))
+        if j >= len(b):
+            bad.append(i)
+            continue
+        bh, ba, bx, bt = personal_fields(b[j])
+        rh, ra, rx, rt = personal_fields(r[i])
+        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2] or bx != rx:
             bad.append(i)
             continue
         if bh == rh:
@@ -291,7 +324,10 @@ def check_personal(b, r, path):
           + (f", {extra} are new species" if extra else ""))
     if bad:
         i = bad[0]
-        print(f"   first: built {b[i].hex()}\n          ref   {r[i].hex()}")
+        j = reference_to_built(i, len(b), len(r))
+        print(f"   first: reference member {i} against built {j}\n"
+              f"          built {b[j].hex() if j < len(b) else '(missing)'}\n"
+              f"          ref   {r[i].hex()}")
     return not bad
 
 
@@ -303,6 +339,30 @@ def intended_divergence(path, i, built_member, ref_member):
         return False
     return all(built_member[o] == ref_member[o] or o in rule["offsets"]
                for o in range(len(built_member)))
+
+
+def check_species_archive(b, r, path):
+    """evo and wotbl, which are a straight byte comparison once the reference's
+    indices are mapped onto the built archive's."""
+    bad, padded = [], []
+    for i in range(len(r)):
+        j = reference_to_built(i, len(b), len(r))
+        if j >= len(b):
+            bad.append(i)
+        elif b[j] != r[i]:
+            (padded if b[j].rstrip(b"\0") == r[i].rstrip(b"\0") else bad).append(i)
+    extra = len(b) - len(r)
+    if padded:
+        print(f"{path}: {len(padded)} members differ only in trailing zero padding: {padded[:20]}")
+    print(f"{path}: {len(b)} members against the reference's {len(r)}; {len(bad)} disagree"
+          + (f", {extra} are new species" if extra > 0 else ""))
+    if bad:
+        i = bad[0]
+        j = reference_to_built(i, len(b), len(r))
+        print(f"   first: reference member {i} against built {j}\n"
+              f"          built {b[j].hex() if j < len(b) else '(missing)'}\n"
+              f"          ref   {r[i].hex()}")
+    return not bad
 
 
 def main():
@@ -341,6 +401,9 @@ def main():
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if p == "poketool/personal/pl_personal.narc":
             ok = check_personal(b, r, p) and ok
+            continue
+        if p in SPECIES_ARCHIVES:
+            ok = check_species_archive(b, r, p) and ok
             continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False

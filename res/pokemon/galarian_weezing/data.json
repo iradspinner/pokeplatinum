@@ -1,0 +1,189 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 120,
+        "speed": 60,
+        "special_attack": 85,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 172,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_AMORPHOUS",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NEUTRALIZING_GAS",
+        "ABILITY_MISTY_SURGE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_HEAT_WAVE"
+            ],
+            [
+                1,
+                "MOVE_SMOG"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                4,
+                "MOVE_SMOKE_SCREEN"
+            ],
+            [
+                7,
+                "MOVE_GRUDGE"
+            ],
+            [
+                12,
+                "MOVE_HAZE"
+            ],
+            [
+                23,
+                "MOVE_PAYBACK"
+            ],
+            [
+                26,
+                "MOVE_SLUDGE"
+            ],
+            [
+                29,
+                "MOVE_TOXIC"
+            ],
+            [
+                34,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                38,
+                "MOVE_WILL_O_WISP"
+            ],
+            [
+                42,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
+                45,
+                "MOVE_PAIN_SPLIT"
+            ],
+            [
+                55,
+                "MOVE_EXPLOSION"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": [],
+        "egg_moves": []
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_GALARIAN_WEEZING",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 20.9,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "fr": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "de": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "it": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "es": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "jp": {
+            "name": "-----",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

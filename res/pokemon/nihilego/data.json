@@ -1,0 +1,173 @@
+{
+    "base_stats": {
+        "hp": 109,
+        "attack": 53,
+        "defense": 47,
+        "speed": 103,
+        "special_attack": 127,
+        "special_defense": 131
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 285,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_BEAST_BOOST",
+        "ABILITY_BEAST_BOOST",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_WRAP"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                5,
+                "MOVE_ACID"
+            ],
+            [
+                10,
+                "MOVE_TICKLE"
+            ],
+            [
+                35,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                40,
+                "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                50,
+                "MOVE_POWER_GEM"
+            ],
+            [
+                55,
+                "MOVE_STEALTH_ROCK"
+            ],
+            [
+                60,
+                "MOVE_MIRROR_COAT"
+            ],
+            [
+                70,
+                "MOVE_HEAD_SMASH"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": [],
+        "egg_moves": []
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_NIHILEGO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 122.4,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "fr": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "de": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "it": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "es": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "jp": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

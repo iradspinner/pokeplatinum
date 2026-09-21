@@ -119,9 +119,56 @@ def import_abilities(d, dry_run, log):
                     612, first, descs[first:], dry_run, log)
 
 
+# ------------------------------------------------------------------ species
+# The natives that a new species hangs off, so the family root can be carried
+# down. Those natives' own evolution records are a separate pass; this only
+# says where each new species' egg comes from. Source: the evolution table in
+# docs/oxide/species-pick-list.md.
+NEW_SPECIES_PARENTS = {
+    "SPECIES_ANNIHILAPE": "SPECIES_PRIMEAPE",
+    "SPECIES_KLEAVOR": "SPECIES_SCYTHER",
+    "SPECIES_SYLVEON": "SPECIES_EEVEE",
+    "SPECIES_GYARADOS_M": "SPECIES_GYARADOS",
+    "SPECIES_LOPUNNY_M": "SPECIES_LOPUNNY",
+    "SPECIES_CLODSIRE": "SPECIES_WOOPER",
+    "SPECIES_ALOMOMOLA": "SPECIES_LUVDISC",
+}
+
+
+def import_species(d, dry_run, log):
+    import species_import
+    conv = species_import.Converter(d)
+    writer = species_import.Writer(conv, dry_run, log)
+    written = {}
+    for row in conv.map:
+        written[row["constant"]] = writer.write(row)
+    log.extend("  note: " + n for n in conv.notes)
+    if dry_run:
+        log.append("species: would write %d directories" % len(written))
+        return
+
+    natives = {}
+    for constant, parent in NEW_SPECIES_PARENTS.items():
+        path = os.path.join(ROOT, "res", "pokemon",
+                            species_import.dirname_of(parent), "data.json")
+        with open(path, encoding="utf-8") as f:
+            natives[constant] = json.load(f)["offspring"]
+    species_import.fix_offspring(written, natives)
+    for constant, data in written.items():
+        path = os.path.join(ROOT, "res", "pokemon",
+                            species_import.dirname_of(constant), "data.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+            f.write("\n")
+
+    species_import.insert_species_constants(
+        [r["constant"] for r in conv.map], dry_run, log)
+    log.append("species: %d directories written" % len(written))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["abilities"])
+    ap.add_argument("what", choices=["abilities", "species"])
     ap.add_argument("--rom", default=donor.DEFAULT_ROM)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -130,6 +177,8 @@ def main():
     log = []
     if args.what == "abilities":
         import_abilities(d, args.dry_run, log)
+    elif args.what == "species":
+        import_species(d, args.dry_run, log)
     print("\n".join(log) if log else "nothing to do")
 
 

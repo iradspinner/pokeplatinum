@@ -30,6 +30,10 @@ NARC_LEARNSETS = "a/0/3/3"   # one blob, 34 fixed slots per species
 NARC_EVOLUTIONS = "a/0/3/4"  # 1476 records, 9 slots of 6 bytes plus 2 padding
 NARC_ADDON = "a/0/2/8"       # hg-engine's added data, members 7..13 below
 NARC_TEXT = "a/0/2/7"        # 854 text banks
+NARC_POKEGRA = "a/0/0/4"     # 6 members per species, as Platinum's pl_pokegra
+NARC_ICONS = "a/0/2/0"       # 7 shared members, then one per species
+NARC_SPRITE_OFFSETS = "a/0/0/5"  # 4 bytes per species, as Platinum's height.narc
+SDAT = "data/sound/gs_sound_data.sdat"  # cries are wave archives named WAVE_ARC_PV<species>
 
 # Members of a/0/2/8. Identified by reading them, not from hg-engine's source;
 # see docs/oxide/donor-tables.md for the evidence behind each one.

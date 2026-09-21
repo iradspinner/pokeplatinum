@@ -6,7 +6,10 @@
 #include "heap.h"
 #include "pokemon.h"
 
-#define MAX_NUMBER_REMINDER_MOVES 22
+// Platinum Oxide: derived rather than written out, because this buffer is
+// what Pokemon_LoadLevelUpMovesOf fills and it has to hold a whole learnset
+// plus its terminator. It was 22 when a learnset was capped at 20.
+#define MAX_NUMBER_REMINDER_MOVES (MAX_LEARNSET_ENTRIES + 2)
 
 #define GET_LEVEL(move) ((move & 0xfe00) >> 9)
 #define GET_MOVE(move)  ((move & 0x1ff) >> 0)

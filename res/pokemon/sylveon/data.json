@@ -1,0 +1,205 @@
+{
+    "base_stats": {
+        "hp": 95,
+        "attack": 65,
+        "defense": 65,
+        "speed": 60,
+        "special_attack": 110,
+        "special_defense": 130
+    },
+    "types": [
+        "TYPE_FAIRY",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 184,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 35,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_CUTE_CHARM",
+        "ABILITY_CUTE_CHARM",
+        "ABILITY_PIXILATE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_COVET"
+            ],
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_COPYCAT"
+            ],
+            [
+                1,
+                "MOVE_BATON_PASS"
+            ],
+            [
+                1,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                1,
+                "MOVE_CHARM"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                1,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                5,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                11,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                18,
+                "MOVE_SWIFT"
+            ],
+            [
+                28,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                33,
+                "MOVE_SKILL_SWAP"
+            ],
+            [
+                45,
+                "MOVE_PSYCH_UP"
+            ],
+            [
+                48,
+                "MOVE_LAST_RESORT"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": [],
+        "egg_moves": []
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_EEVEE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 51.8,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "fr": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "de": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "it": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "es": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        },
+        "jp": {
+            "name": "SYLVEON",
+            "category": "Intertwining Pokémon",
+            "entry_text": [
+                "No Pokédex data is\n",
+                "available for this\n",
+                "Pokémon yet."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}
