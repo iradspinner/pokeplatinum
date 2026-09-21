@@ -3,39 +3,39 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_WEAVILE"
         },
         {
             "level": 48,
-            "species": "SPECIES_GALARIAN_MR_MIME"
+            "species": "SPECIES_MR_RIME"
         },
         {
             "level": 48,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 48,
-            "species": "SPECIES_SNORUNT"
+            "species": "SPECIES_GLALIE"
         },
         {
             "level": 49,
-            "species": "SPECIES_SNOVER"
+            "species": "SPECIES_ABOMASNOW"
         },
         {
             "level": 49,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_MAMOSWINE"
         },
         {
             "level": 49,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_WEAVILE"
         },
         {
             "level": 49,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 49,
-            "species": "SPECIES_SNORUNT"
+            "species": "SPECIES_GLALIE"
         },
         {
             "level": 49,
@@ -43,30 +43,30 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_SNORUNT"
+            "species": "SPECIES_GLALIE"
         },
         {
             "level": 50,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         }
     ],
     "swarms": [
-        "SPECIES_WEAVILE",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_FROSMOTH"
     ],
     "day": [
-        "SPECIES_SWINUB",
-        "SPECIES_SNORUNT"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_GLALIE"
     ],
     "night": [
-        "SPECIES_SNEASEL",
+        "SPECIES_WEAVILE",
         "SPECIES_ABSOL"
     ],
     "radar": [
-        "SPECIES_WEAVILE",
-        "SPECIES_MR_RIME",
-        "SPECIES_GOLBAT",
-        "SPECIES_GLALIE"
+        "SPECIES_TYRANITAR",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_BRONZONG",
+        "SPECIES_KLEFKI"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_BLAZIKEN",
+        "SPECIES_METAGROSS"
     ],
     "sapphire": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_BLAZIKEN",
+        "SPECIES_METAGROSS"
     ],
     "emerald": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_FLYGON",
+        "SPECIES_GARDEVOIR"
     ],
     "firered": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_GOLEM",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

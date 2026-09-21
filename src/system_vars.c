@@ -78,8 +78,8 @@ u16 SystemVars_GetRivalStarter(VarsFlags *varsFlags)
     u16 playerStarter = TryGetVarValue(varsFlags, VAR_PLAYER_STARTER);
 
     if (playerStarter == SPECIES_TURTWIG) {
-        rivalStarter = SPECIES_CHIMCHAR;
-    } else if (playerStarter == SPECIES_CHIMCHAR) {
+        rivalStarter = SPECIES_SCORBUNNY;
+    } else if (playerStarter == SPECIES_SCORBUNNY) {
         rivalStarter = SPECIES_PIPLUP;
     } else {
         rivalStarter = SPECIES_TURTWIG;
@@ -95,10 +95,10 @@ u16 SystemVars_GetPlayerCounterpartStarter(VarsFlags *varsFlags)
 
     if (playerStarter == SPECIES_TURTWIG) {
         counterpartStarter = SPECIES_PIPLUP;
-    } else if (playerStarter == SPECIES_CHIMCHAR) {
+    } else if (playerStarter == SPECIES_SCORBUNNY) {
         counterpartStarter = SPECIES_TURTWIG;
     } else {
-        counterpartStarter = SPECIES_CHIMCHAR;
+        counterpartStarter = SPECIES_SCORBUNNY;
     }
 
     return counterpartStarter;

@@ -42,6 +42,28 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
     return FALSE;
 }
 
+// Platinum Oxide: a gift Pokemon with its nature, its IVs and its shininess
+// chosen rather than rolled, for the designed gifts the encounter pass hands
+// out. `ivs` is written to all six, `nature` is an index into the usual order
+// (0 is Hardy, one of the neutral ones), and `shiny` is 0 or 1.
+BOOL ScrCmd_GiveDesignedPokemon(ScriptContext *ctx)
+{
+    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 level = ScriptContext_GetVar(ctx);
+    u16 heldItem = ScriptContext_GetVar(ctx);
+    u16 nature = ScriptContext_GetVar(ctx);
+    u16 ivs = ScriptContext_GetVar(ctx);
+    u16 shiny = ScriptContext_GetVar(ctx);
+    u16 *success = ScriptContext_GetVarPointer(ctx);
+
+    *success = Pokemon_GiveDesignedMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData,
+        species, level, heldItem, nature, ivs, shiny != 0, metLocation, TERRAIN_MAX);
+
+    return FALSE;
+}
+
 // Platinum Oxide: switch a party Pokemon to its hidden ability. Writes 1 to the
 // destination variable when the species has one and 0 when it does not, so a
 // gift script can fall back rather than silently hand out the ordinary ability.

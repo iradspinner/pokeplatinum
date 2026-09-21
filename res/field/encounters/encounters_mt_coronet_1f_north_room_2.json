@@ -7,7 +7,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 33,
@@ -23,7 +23,7 @@
         },
         {
             "level": 34,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 34,
@@ -35,19 +35,19 @@
         },
         {
             "level": 34,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 34,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 35,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 35,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         }
     ],
     "swarms": [
@@ -55,16 +55,16 @@
         "SPECIES_GOOMY"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
         "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_MIENSHAO",
         "SPECIES_GLIMMORA"
     ],
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUNATONE",
-        "SPECIES_MARSHTOMP"
+        "SPECIES_METANG",
+        "SPECIES_MILOTIC"
     ],
     "sapphire": [
-        "SPECIES_LUNATONE",
-        "SPECIES_MARSHTOMP"
+        "SPECIES_METANG",
+        "SPECIES_MILOTIC"
     ],
     "emerald": [
-        "SPECIES_MILOTIC",
-        "SPECIES_SHARPEDO"
+        "SPECIES_SHARPEDO",
+        "SPECIES_SOLROCK"
     ],
     "firered": [
-        "SPECIES_WARTORTLE",
+        "SPECIES_GOLEM",
         "SPECIES_EEVEE"
     ],
     "leafgreen": [
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_SCYTHER"
+        "SPECIES_GOLBAT"
     ],
     "surf_rate": 0,
     "surf_encounters": [

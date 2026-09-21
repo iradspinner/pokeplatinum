@@ -7,15 +7,15 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_PIKIPEK"
+            "species": "SPECIES_TOUCANNON"
         },
         {
             "level": 29,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level": 29,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_ARAQUANID"
         },
         {
             "level": 30,
@@ -23,15 +23,15 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_BUIZEL"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level": 30,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level": 30,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_ARAQUANID"
         },
         {
             "level": 30,
@@ -39,7 +39,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_LIEPARD"
         },
         {
             "level": 31,
@@ -47,7 +47,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_LIEPARD"
         }
     ],
     "swarms": [
@@ -55,18 +55,18 @@
         "SPECIES_MAGBY"
     ],
     "day": [
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_MINCCINO"
     ],
     "night": [
         "SPECIES_GLAMEOW",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
     ],
     "radar": [
         "SPECIES_MR_RIME",
-        "SPECIES_TRUMBEAK",
-        "SPECIES_QUAGSIRE",
-        "SPECIES_ARAQUANID"
+        "SPECIES_PURUGLY",
+        "SPECIES_TALONFLAME",
+        "SPECIES_CINCCINO"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT",
         "SPECIES_WHISCASH"
     ],
     "sapphire": [
-        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT",
         "SPECIES_WHISCASH"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_LOMBRE"
+        "SPECIES_BRELOOM",
+        "SPECIES_TRAPINCH"
     ],
     "firered": [
-        "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_GASTLY",
+        "SPECIES_WARTORTLE"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_SEAKING"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "old_rod_rate": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "map_category": {

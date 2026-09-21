@@ -21,6 +21,18 @@
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
+// A trade hands over a Pokemon at the level of the one the player gave up, which
+// is fine when the trade asks for a particular species. Oxide's rebuilt trades
+// take anything, so the Pokemon they give needs a level of its own or the player
+// sets it by choosing what to hand over. 0 keeps the vanilla behaviour, and the
+// trade data has nowhere to put this: every field of it is spoken for.
+static const u8 sFixedTradeLevel[MAX_NPC_TRADES] = {
+    [NPC_TRADE_KAZZA_ABRA] = 10,
+    [NPC_TRADE_CHARAP_CHATOT] = 20,
+    [NPC_TRADE_GASPAR_HAUNTER] = 0,
+    [NPC_TRADE_FOPPA_MAGIKARP] = 0,
+};
+
 static inline String *NPCTrade_GetOTName(enum HeapID heapID, u32 npcTradeID);
 static String *NPCTrade_GetNickname(enum HeapID heapID, u32 npcTradeID);
 static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTrade, u32 level, u32 npcTradeID, enum HeapID heapID, u32 mapID);
@@ -116,6 +128,10 @@ static String *NPCTrade_GetNickname(enum HeapID heapID, u32 npcTradeID)
 
 static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTradeMon, u32 level, u32 npcTradeID, enum HeapID heapID, u32 mapID)
 {
+    if (npcTradeID < MAX_NPC_TRADES && sFixedTradeLevel[npcTradeID] != 0) {
+        level = sFixedTradeLevel[npcTradeID];
+    }
+
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 
     String *string = NPCTrade_GetNickname(heapID, npcTradeID);
@@ -147,5 +163,7 @@ static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTradeMon, u32 level
     UpdateMonStatusAndTrainerInfo(mon, NULL, 1, MapHeader_GetMapLabelTextID(mapID), heapID);
     Pokemon_CalcLevelAndStats(mon);
 
-    GF_ASSERT(!Pokemon_IsShiny(mon));
+    // Vanilla asserted here that a trade is never shiny, because none of its
+    // four was. Two of Oxide's are, on purpose: the personality values in the
+    // trade data are chosen against each OT id to come out shiny.
 }

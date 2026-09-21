@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 25,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 26,
@@ -27,7 +27,7 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 27,
@@ -51,19 +51,19 @@
         }
     ],
     "swarms": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
     ],
     "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
     ],
     "night": [
         "SPECIES_GOTHITA",
         "SPECIES_DHELMISE"
     ],
     "radar": [
-        "SPECIES_GOLBAT",
+        "SPECIES_CROBAT",
         "SPECIES_BRONZONG",
         "SPECIES_DUSCLOPS",
         "SPECIES_POLTEAGEIST"
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_HARIYAMA",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_HARIYAMA",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_BRELOOM",
+        "SPECIES_KIRLIA"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_GRAVELER",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

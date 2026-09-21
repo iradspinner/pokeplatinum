@@ -99,18 +99,11 @@ HearthomeCityPokemonFanClub_Entry6:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT, HearthomeCityPokemonFanClub_041E
     Message 14
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry 15, 0, 255
-    AddListMenuEntry 16, 1, 255
-    AddListMenuEntry 17, 2, 255
-    AddListMenuEntry 18, 3, 255
-    AddListMenuEntry 19, 4, 255
-    AddListMenuEntry 20, 5, 255
-    AddListMenuEntry 21, 6, 255
-    AddListMenuEntry 22, 7, 255
-    AddListMenuEntry 23, 8, 255
-    ShowListMenu
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, HearthomeCityPokemonFanClub_041E
+    GetRandom VAR_0x800C, 9
     SetVarFromVar VAR_0x8008, VAR_0x800C
     CompareVarToValue VAR_0x8008, 0
     GoToIf 1, HearthomeCityPokemonFanClub_0292
@@ -194,7 +187,8 @@ HearthomeCityPokemonFanClub_0292:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BULBASAUR, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_FROAKIE, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -207,6 +201,7 @@ HearthomeCityPokemonFanClub_02BE:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_CHARMANDER, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -219,6 +214,7 @@ HearthomeCityPokemonFanClub_02EA:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SQUIRTLE, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -230,7 +226,8 @@ HearthomeCityPokemonFanClub_0316:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CHIKORITA, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_LITTEN, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -242,7 +239,8 @@ HearthomeCityPokemonFanClub_0342:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CYNDAQUIL, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_TURTWIG, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -254,7 +252,8 @@ HearthomeCityPokemonFanClub_036E:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_TOTODILE, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_PIPLUP, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -267,6 +266,7 @@ HearthomeCityPokemonFanClub_039A:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TREECKO, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -279,6 +279,7 @@ HearthomeCityPokemonFanClub_03C6:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TORCHIC, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll
@@ -291,6 +292,7 @@ HearthomeCityPokemonFanClub_03F2:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_MUDKIP, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
     Message 24
     CloseMessage
     ReleaseAll

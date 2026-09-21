@@ -7,7 +7,7 @@
         },
         {
             "level": 36,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 36,
@@ -15,11 +15,11 @@
         },
         {
             "level": 36,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 37,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
@@ -31,7 +31,7 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
@@ -52,21 +52,21 @@
     ],
     "swarms": [
         "SPECIES_LAMPENT",
-        "SPECIES_GOTHITA"
+        "SPECIES_GOTHORITA"
     ],
     "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
     ],
     "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTCHA"
     ],
     "radar": [
         "SPECIES_LAMPENT",
-        "SPECIES_GOLBAT",
-        "SPECIES_BRONZONG",
-        "SPECIES_DUSCLOPS"
+        "SPECIES_DUSCLOPS",
+        "SPECIES_GOTHITELLE",
+        "SPECIES_GOTHORITA"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BELDUM"
+        "SPECIES_HARIYAMA",
+        "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GOLBAT"
     ],
     "leafgreen": [
-        "SPECIES_EEVEE",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_GYARADOS",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

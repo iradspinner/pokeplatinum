@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 37,
+            "level": 50,
+            "species": "SPECIES_GARCHOMP"
+        },
+        {
+            "level": 51,
+            "species": "SPECIES_METAGROSS"
+        },
+        {
+            "level": 51,
             "species": "SPECIES_DHELMISE"
         },
         {
-            "level": 38,
-            "species": "SPECIES_YAMASK"
+            "level": 51,
+            "species": "SPECIES_PUPITAR"
         },
         {
-            "level": 38,
-            "species": "SPECIES_DUSKULL"
+            "level": 52,
+            "species": "SPECIES_GOODRA"
         },
         {
-            "level": 38,
+            "level": 52,
+            "species": "SPECIES_KOMMO_O"
+        },
+        {
+            "level": 52,
             "species": "SPECIES_ABSOL"
         },
         {
-            "level": 39,
-            "species": "SPECIES_VULLABY"
+            "level": 52,
+            "species": "SPECIES_WEAVILE"
         },
         {
-            "level": 39,
-            "species": "SPECIES_GOTHITA"
+            "level": 52,
+            "species": "SPECIES_SCIZOR"
         },
         {
-            "level": 39,
-            "species": "SPECIES_SINISTEA"
+            "level": 52,
+            "species": "SPECIES_GARDEVOIR"
         },
         {
-            "level": 39,
-            "species": "SPECIES_LITWICK"
+            "level": 53,
+            "species": "SPECIES_HERACROSS"
         },
         {
-            "level": 39,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 39,
-            "species": "SPECIES_SWABLU"
-        },
-        {
-            "level": 40,
-            "species": "SPECIES_HAWLUCHA"
-        },
-        {
-            "level": 40,
-            "species": "SPECIES_GALARIAN_MR_MIME"
+            "level": 53,
+            "species": "SPECIES_ELECTIVIRE"
         }
     ],
     "swarms": [
-        "SPECIES_ZUBAT",
-        "SPECIES_JANGMO_O"
+        "SPECIES_YAMASK",
+        "SPECIES_HAKAMO_O"
     ],
     "day": [
-        "SPECIES_SWABLU",
-        "SPECIES_VULLABY"
+        "SPECIES_SCIZOR",
+        "SPECIES_HERACROSS"
     ],
     "night": [
         "SPECIES_ABSOL",
-        "SPECIES_DUSKULL"
+        "SPECIES_WEAVILE"
     ],
     "radar": [
+        "SPECIES_TYRANITAR",
         "SPECIES_COFAGRIGUS",
-        "SPECIES_DUSCLOPS",
-        "SPECIES_MANDIBUZZ",
-        "SPECIES_GOTHORITA"
+        "SPECIES_YAMASK",
+        "SPECIES_LAMPENT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "sapphire": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "emerald": [
-        "SPECIES_RALTS",
-        "SPECIES_BELDUM"
+        "SPECIES_WHISCASH",
+        "SPECIES_FLYGON"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_SCYTHER"
+        "SPECIES_CHARIZARD",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_KOFFING",
-        "SPECIES_SEAKING"
+        "SPECIES_WEEZING",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 55,
             "level_min": 46,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "old_rod_rate": 100,
@@ -147,7 +147,7 @@
         {
             "level_max": 30,
             "level_min": 26,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 45,
             "level_min": 39,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_BLASTOISE"
         }
     ],
     "map_category": {

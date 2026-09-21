@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 40,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 41,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 41,
@@ -15,11 +15,11 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GABITE"
         },
         {
             "level": 42,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 42,
@@ -27,7 +27,7 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 42,
@@ -35,38 +35,38 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_HARIYAMA"
         },
         {
             "level": 42,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GOLEM"
         },
         {
             "level": 43,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 43,
-            "species": "SPECIES_JANGMO_O"
+            "species": "SPECIES_HAKAMO_O"
         }
     ],
     "swarms": [
-        "SPECIES_PUPITAR",
-        "SPECIES_CARBINK"
+        "SPECIES_CARBINK",
+        "SPECIES_ELECTIVIRE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GOLEM",
+        "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
     ],
     "radar": [
-        "SPECIES_PUPITAR",
-        "SPECIES_STEELIX",
+        "SPECIES_TYRANITAR",
         "SPECIES_RHYDON",
-        "SPECIES_GABITE"
+        "SPECIES_GARCHOMP",
+        "SPECIES_METAGROSS"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_ALTARIA",
+        "SPECIES_BLAZIKEN"
     ],
     "sapphire": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_ALTARIA",
+        "SPECIES_BLAZIKEN"
     ],
     "emerald": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_GLALIE",
+        "SPECIES_METAGROSS"
     ],
     "firered": [
         "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GYARADOS"
+        "SPECIES_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_RAPIDASH",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

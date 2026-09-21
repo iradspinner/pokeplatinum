@@ -36,9 +36,9 @@ def main():
     results.append(("the plan file loads, names only real areas and pick-list lines",
                     not out["problems"], "; ".join(out["problems"][:3])))
     # 177 lines, 180 with Ian's three cave additions, 187 with his seven
-    # fishing lines (both 2026-09-21)
-    results.append(("every one of the 187 lines has a row",
-                    len(rows) == 187, f"{len(rows)} rows"))
+    # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21)
+    results.append(("every one of the 189 lines has a row",
+                    len(rows) == 189, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
@@ -88,14 +88,22 @@ def main():
                     and sorted(proposed) == ["Xerneas", "Yveltal"]
                     and "Nihilego" in pool and "Tapu Koko" in pool,
                     f"{len(pool)} in the pool, {len(proposed)} proposed"))
-    results.append(("the starters are wild: Fennekin and Scorbunny at home (Scorbunny on Route "
-                    "204 north, the delay), Popplio on water, the grass three in the honey trees, none gate",
+    # Scorbunny replaced Chimchar in Rowan's briefcase on 2026-09-21 (Ian), so it
+    # is gate tier and out of the wild; Litten took over its home on Route 204
+    # north, which is what made that half of the route worth delaying for.
+    results.append(("the starters are wild: Fennekin and Litten at home (Litten on Route "
+                    "204 north, the delay), Popplio on water, the grass three in the honey "
+                    "trees, none gate but Scorbunny, which is the starter now",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
-                    and by["Scorbunny"]["home"] == ["encounters_route_204_north"]
-                    and by["Popplio"]["status"] == "water"
+                    and by["Litten"]["home"] == ["encounters_route_204_north"]
+                    # Popplio is still homed on water; it reads as non-wild now
+                    # only because the Eterna trade hands one over as well.
+                    and by["Popplio"]["water"]
+                    and by["Scorbunny"]["tier"] == "gate"
+                    and by["Scorbunny"]["non_wild"]
                     and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))
                     and all(by[n]["tier"] == "preferred" for n in
-                            ("Fennekin", "Scorbunny", "Popplio", "Rowlet", "Litten", "Froakie")),
+                            ("Fennekin", "Popplio", "Rowlet", "Litten", "Froakie")),
                     ""))
     results.append(("water lines are homed on water tables",
                     all(r["water"] for r in rows if r["status"] == "water")

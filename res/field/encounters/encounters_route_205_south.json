@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_ROOKIDEE",
-        "SPECIES_SCORBUNNY"
+        "SPECIES_LITTEN"
     ],
     "day": [
         "SPECIES_MINCCINO",
@@ -109,17 +109,17 @@
         {
             "level_max": 31,
             "level_min": 25,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level_max": 31,
             "level_min": 25,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 24,
             "level_min": 19,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

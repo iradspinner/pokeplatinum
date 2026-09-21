@@ -7,15 +7,15 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 15,
             "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 16,
@@ -27,19 +27,19 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 16,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 16,
             "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 17,
@@ -47,26 +47,26 @@
         },
         {
             "level": 17,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_ZUBAT"
         }
     ],
     "swarms": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_SHROOMISH",
+        "SPECIES_LOTAD"
     ],
     "day": [
         "SPECIES_SINISTEA",
         "SPECIES_LITWICK"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
     ],
     "radar": [
         "SPECIES_POLTEAGEIST",
+        "SPECIES_HAUNTER",
         "SPECIES_LAMPENT",
-        "SPECIES_DUSCLOPS",
-        "SPECIES_COFAGRIGUS"
+        "SPECIES_MISMAGIUS"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SNORUNT",
-        "SPECIES_RALTS"
+        "SPECIES_MARSHTOMP",
+        "SPECIES_SNORUNT"
     ],
     "sapphire": [
-        "SPECIES_SNORUNT",
-        "SPECIES_RALTS"
+        "SPECIES_MARSHTOMP",
+        "SPECIES_SNORUNT"
     ],
     "emerald": [
-        "SPECIES_SWABLU",
-        "SPECIES_CARVANHA"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_TENTACOOL"
+        "SPECIES_WARTORTLE",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_KOFFING",
-        "SPECIES_SCYTHER"
+        "SPECIES_CHARMELEON",
+        "SPECIES_TENTACOOL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

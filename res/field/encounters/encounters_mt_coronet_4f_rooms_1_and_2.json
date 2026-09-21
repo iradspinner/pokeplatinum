@@ -3,35 +3,35 @@
     "land_encounters": [
         {
             "level": 36,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 37,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 38,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 38,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 38,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
@@ -51,22 +51,22 @@
         }
     ],
     "swarms": [
-        "SPECIES_BRONZONG",
-        "SPECIES_CARBINK"
+        "SPECIES_CARBINK",
+        "SPECIES_SNOVER"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
     ],
     "radar": [
-        "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
-        "SPECIES_MIENSHAO",
-        "SPECIES_GLIMMORA"
+        "SPECIES_GARGANACL",
+        "SPECIES_FERROTHORN",
+        "SPECIES_GOLEM",
+        "SPECIES_CARBINK"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -83,16 +83,16 @@
         "SPECIES_SOLROCK"
     ],
     "emerald": [
-        "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_SWAMPERT",
+        "SPECIES_WHISCASH"
     ],
     "firered": [
-        "SPECIES_SCYTHER",
-        "SPECIES_KOFFING"
+        "SPECIES_RAPIDASH",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_CHARIZARD",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

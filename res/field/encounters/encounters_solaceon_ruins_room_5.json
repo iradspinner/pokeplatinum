@@ -3,23 +3,23 @@
     "land_encounters": [
         {
             "level": 20,
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 21,
             "species": "SPECIES_KLEFKI"
         },
         {
             "level": 21,
-            "species": "SPECIES_HIPPOPOTAS"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_HIPPOPOTAS"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 22,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_NOSEPASS"
         },
         {
             "level": 22,
@@ -27,46 +27,46 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_HIPPOPOTAS"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 22,
             "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 22,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_ZUBAT"
+            "level": 23,
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 23,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 23,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
     ],
     "radar": [
-        "SPECIES_HIPPOWDON",
-        "SPECIES_GOTHORITA",
-        "SPECIES_BRONZONG",
-        "SPECIES_GOLBAT"
+        "SPECIES_CRUSTLE",
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS",
+        "SPECIES_BRONZONG"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 6,
     "ruby": [
-        "SPECIES_SNORUNT",
-        "SPECIES_LOMBRE"
+        "SPECIES_LOMBRE",
+        "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_SNORUNT",
-        "SPECIES_LOMBRE"
+        "SPECIES_LOMBRE",
+        "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_BELDUM"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "firered": [
-        "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_EEVEE",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_GYARADOS"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMELEON"
     ],
     "surf_rate": 0,
     "surf_encounters": [

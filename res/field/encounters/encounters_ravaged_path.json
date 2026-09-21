@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_SCORBUNNY",
+        "SPECIES_LITTEN",
         "SPECIES_BUDEW"
     ],
     "day": [
@@ -119,7 +119,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 24,
             "level_min": 19,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "map_category": {

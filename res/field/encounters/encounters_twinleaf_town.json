@@ -104,12 +104,12 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 29,
             "level_min": 23,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 29,
@@ -203,7 +203,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

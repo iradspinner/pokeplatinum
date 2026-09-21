@@ -35,7 +35,7 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 27,
@@ -43,7 +43,7 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 28,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
     ],
     "night": [
         "SPECIES_YAMASK",
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "emerald": [
-        "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_SOLROCK",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_CHARMANDER"
+        "SPECIES_CHARMELEON",
+        "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_PONYTA",
-        "SPECIES_EEVEE"
+        "SPECIES_WARTORTLE",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

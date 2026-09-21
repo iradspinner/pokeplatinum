@@ -3,23 +3,23 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 48,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 48,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 48,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 49,
-            "species": "SPECIES_JANGMO_O"
+            "species": "SPECIES_KOMMO_O"
         },
         {
             "level": 49,
@@ -27,46 +27,46 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 49,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 49,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 49,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METAGROSS"
         },
         {
             "level": 50,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 50,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GARCHOMP"
         }
     ],
     "swarms": [
-        "SPECIES_STEELIX",
-        "SPECIES_LURANTIS"
+        "SPECIES_LURANTIS",
+        "SPECIES_SLIGGOO"
     ],
     "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_CARBINK"
     ],
     "radar": [
-        "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
-        "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR"
+        "SPECIES_TYRANITAR",
+        "SPECIES_LURANTIS",
+        "SPECIES_FLORGES",
+        "SPECIES_ALTARIA"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_GARDEVOIR",
+        "SPECIES_ALTARIA"
     ],
     "sapphire": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_GARDEVOIR",
+        "SPECIES_ALTARIA"
     ],
     "emerald": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_CHARIZARD",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_WEEZING",
+        "SPECIES_GOLEM"
     ],
     "surf_rate": 0,
     "surf_encounters": [

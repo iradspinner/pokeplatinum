@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 35,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 35,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 36,
@@ -19,7 +19,7 @@
         },
         {
             "level": 36,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 36,
@@ -27,11 +27,11 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 37,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 37,
@@ -51,22 +51,22 @@
         }
     ],
     "swarms": [
-        "SPECIES_POLTEAGEIST",
-        "SPECIES_ONIX"
+        "SPECIES_STEELIX",
+        "SPECIES_DUSKULL"
     ],
     "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
     ],
     "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
     ],
     "radar": [
-        "SPECIES_POLTEAGEIST",
-        "SPECIES_GOTHORITA",
-        "SPECIES_PROBOPASS",
-        "SPECIES_GOLBAT"
+        "SPECIES_GOTHITELLE",
+        "SPECIES_STEELIX",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_LAMPENT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BELDUM"
+        "SPECIES_HARIYAMA",
+        "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GOLBAT"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GYARADOS",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

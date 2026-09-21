@@ -47,7 +47,7 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORCHIC"
         }
     ],
     "swarms": [
@@ -75,16 +75,16 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SEEDOT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_SHROOMISH",
+        "SPECIES_CARVANHA"
     ],
     "sapphire": [
-        "SPECIES_SEEDOT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_SHROOMISH",
+        "SPECIES_CARVANHA"
     ],
     "emerald": [
-        "SPECIES_CARVANHA",
-        "SPECIES_LOTAD"
+        "SPECIES_LOTAD",
+        "SPECIES_POOCHYENA"
     ],
     "firered": [
         "SPECIES_NIDORAN_F",

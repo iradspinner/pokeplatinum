@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TORCHIC",
-        "SPECIES_SEEDOT"
+        "SPECIES_FEEBAS",
+        "SPECIES_MASQUERAIN"
     ],
     "sapphire": [
-        "SPECIES_TORCHIC",
-        "SPECIES_SEEDOT"
+        "SPECIES_FEEBAS",
+        "SPECIES_MASQUERAIN"
     ],
     "emerald": [
-        "SPECIES_SHROOMISH",
-        "SPECIES_RALTS"
+        "SPECIES_BRELOOM",
+        "SPECIES_MARSHTOMP"
     ],
     "firered": [
-        "SPECIES_GOLDEEN",
-        "SPECIES_MAGIKARP"
+        "SPECIES_GOLBAT",
+        "SPECIES_PONYTA"
     ],
     "leafgreen": [
-        "SPECIES_ONIX",
-        "SPECIES_TENTACOOL"
+        "SPECIES_RHYHORN",
+        "SPECIES_GASTLY"
     ],
     "surf_rate": 0,
     "surf_encounters": [

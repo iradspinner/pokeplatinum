@@ -322,9 +322,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 325,Naganadel,new,804,species,854,yes,Poison,Dragon,"Poipole, level up knowing Dragon Pulse (method 20) - direct port",gate
 326,Stakataka,new,805,species,855,yes,Rock,Steel,,gate
 327,Blacephalon,new,806,species,856,yes,Fire,Ghost,,gate
-328,Scorbunny,new,813,species,863,yes,Fire,Fire,,preferred
-329,Raboot,new,814,species,864,yes,Fire,Fire,,preferred
-330,Cinderace,new,815,species,865,yes,Fire,Fire,,preferred
+328,Scorbunny,new,813,species,863,yes,Fire,Fire,,gate
+329,Raboot,new,814,species,864,yes,Fire,Fire,,gate
+330,Cinderace,new,815,species,865,yes,Fire,Fire,,gate
 331,Rookidee,new,821,species,871,yes,Flying,Flying,,starter-adjacent
 332,Corvisquire,new,822,species,872,yes,Flying,Flying,,starter-adjacent
 333,Corviknight,new,823,species,873,yes,Flying,Steel,,starter-adjacent
@@ -382,3 +382,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 385,Gastrodon,native,423,platinum,,yes,Water,Ground,,starter-adjacent
 386,Mantyke,native,458,platinum,,yes,Water,Flying,,preferred
 387,Mantine,native,226,platinum,,yes,Water,Flying,,preferred
+388,Gastly,native,92,platinum,,yes,Ghost,Poison,,preferred
+389,Haunter,native,93,platinum,,yes,Ghost,Poison,,preferred
+390,Gengar,native,94,platinum,,yes,Ghost,Poison,,preferred
+391,Misdreavus,native,200,platinum,,yes,Ghost,Ghost,,preferred
+392,Mismagius,native,429,platinum,,yes,Ghost,Ghost,,preferred

@@ -7,7 +7,7 @@
         },
         {
             "level": 26,
-            "species": "SPECIES_HOUNDOUR"
+            "species": "SPECIES_HOUNDOOM"
         },
         {
             "level": 26,
@@ -43,11 +43,11 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORRACAT"
         },
         {
             "level": 28,
-            "species": "SPECIES_SPRIGATITO"
+            "species": "SPECIES_FLORAGATO"
         }
     ],
     "swarms": [
@@ -55,18 +55,18 @@
         "SPECIES_SANDYGAST"
     ],
     "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_FLETCHINDER",
+        "SPECIES_CORVISQUIRE"
     ],
     "night": [
         "SPECIES_ABSOL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
     ],
     "radar": [
         "SPECIES_ALTARIA",
-        "SPECIES_HOUNDOOM",
         "SPECIES_RAPIDASH",
-        "SPECIES_CINCCINO"
+        "SPECIES_CINCCINO",
+        "SPECIES_PURUGLY"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "emerald": [
-        "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_SOLROCK",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_CHARMANDER"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMELEON"
     ],
     "leafgreen": [
-        "SPECIES_RHYHORN",
-        "SPECIES_EEVEE"
+        "SPECIES_GASTLY",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

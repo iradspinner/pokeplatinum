@@ -83,15 +83,15 @@
         "SPECIES_SNORUNT"
     ],
     "emerald": [
-        "SPECIES_RALTS",
+        "SPECIES_MARSHTOMP",
         "SPECIES_LUVDISC"
     ],
     "firered": [
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_KOFFING"
+        "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_SCYTHER",
+        "SPECIES_WARTORTLE",
         "SPECIES_CHARMANDER"
     ],
     "surf_rate": 10,
@@ -203,7 +203,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "map_category": {

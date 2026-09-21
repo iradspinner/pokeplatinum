@@ -15,19 +15,19 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level": 23,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level": 23,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         },
         {
             "level": 23,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_ARAQUANID"
         },
         {
             "level": 23,
@@ -35,7 +35,7 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_SHROOMISH"
+            "species": "SPECIES_BRELOOM"
         },
         {
             "level": 23,
@@ -43,7 +43,7 @@
         },
         {
             "level": 24,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         },
         {
             "level": 24,
@@ -55,8 +55,8 @@
         "SPECIES_EMOLGA"
     ],
     "day": [
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_LOMBRE",
+        "SPECIES_MASQUERAIN"
     ],
     "night": [
         "SPECIES_CROAGUNK",
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_WEEZING",
         "SPECIES_TOXICROAK",
-        "SPECIES_MASQUERAIN",
-        "SPECIES_ARAQUANID"
+        "SPECIES_YANMEGA",
+        "SPECIES_DRAPION"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_SNORUNT"
+        "SPECIES_GROVYLE",
+        "SPECIES_MIGHTYENA"
     ],
     "sapphire": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_SNORUNT"
+        "SPECIES_GROVYLE",
+        "SPECIES_MIGHTYENA"
     ],
     "emerald": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_RALTS",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GYARADOS"
+        "SPECIES_GYARADOS",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACOOL"
+        "SPECIES_CHARMELEON",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -104,22 +104,22 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 37,
             "level_min": 31,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 37,
             "level_min": 31,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_ARAQUANID"
         },
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "old_rod_rate": 25,
@@ -170,12 +170,12 @@
         {
             "level_max": 28,
             "level_min": 22,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "super_rod_rate": 75,
@@ -198,12 +198,12 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_LOMBRE"
+            "species": "SPECIES_LUDICOLO"
         },
         {
             "level_max": 48,
             "level_min": 41,
-            "species": "SPECIES_FROGADIER"
+            "species": "SPECIES_GRENINJA"
         }
     ],
     "map_category": {

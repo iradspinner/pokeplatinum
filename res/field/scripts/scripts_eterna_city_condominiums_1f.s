@@ -42,6 +42,7 @@ EternaCityCondominiums1f_Entry3:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT, EternaCityCondominiums1f_024D
     Message 16
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -101,9 +102,6 @@ EternaCityCondominiums1f_0144:
     InitNPCTrade 1
     SetVarFromVar VAR_0x8004, VAR_0x800C
     GetPartyMonSpecies 32772, VAR_0x8005
-    GetNPCTradeRequestedSpecies VAR_0x800C
-    CompareVarToVar VAR_0x8005, VAR_0x800C
-    GoToIf 5, EternaCityCondominiums1f_02C3
     StartNPCTrade 32772
     FinishNPCTrade
     SetFlag FLAG_TRADED_FOR_CHARAP_CHATOT
@@ -138,6 +136,7 @@ EternaCityCondominiums1f_01C9:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SLUGMA, 23, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT
     Message 20
     CloseMessage
     ReleaseAll
@@ -149,7 +148,8 @@ EternaCityCondominiums1f_01F5:
     GoToIf 1, EternaCityCondominiums1f_02D0
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_NUMEL, 23, 0, VAR_0x800C
+    GivePokemon SPECIES_CHARCADET, 23, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT
     Message 20
     CloseMessage
     ReleaseAll
@@ -161,7 +161,8 @@ EternaCityCondominiums1f_0221:
     GoToIf 1, EternaCityCondominiums1f_02D0
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_TORKOAL, 23, 0, VAR_0x800C
+    GivePokemon SPECIES_YAMASK, 23, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT
     Message 20
     CloseMessage
     ReleaseAll

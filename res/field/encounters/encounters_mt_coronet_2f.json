@@ -3,39 +3,39 @@
     "land_encounters": [
         {
             "level": 36,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 37,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 37,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 38,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 38,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 38,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 38,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
@@ -43,7 +43,7 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 39,
@@ -51,22 +51,22 @@
         }
     ],
     "swarms": [
-        "SPECIES_BRONZONG",
-        "SPECIES_CARBINK"
+        "SPECIES_CARBINK",
+        "SPECIES_GOOMY"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
     ],
     "radar": [
-        "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
-        "SPECIES_MIENSHAO",
-        "SPECIES_GLIMMORA"
+        "SPECIES_GARGANACL",
+        "SPECIES_TYRANITAR",
+        "SPECIES_FERROTHORN",
+        "SPECIES_GOLEM"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BELDUM"
+        "SPECIES_BLAZIKEN",
+        "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_KOFFING",
-        "SPECIES_GYARADOS"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_GOLBAT",
+        "SPECIES_GOLEM"
     ],
     "surf_rate": 0,
     "surf_encounters": [

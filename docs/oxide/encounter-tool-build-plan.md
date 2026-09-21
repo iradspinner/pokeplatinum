@@ -1071,9 +1071,10 @@ Ice earlier, on and beside Mt. Coronet: Alolan Ninetales is at home on
 Route 211 west at 20 and by night, with Snover at 10; Mt. Coronet's first
 room (Gardenia's split) carries Snorunt and Alolan Ninetales at 10 with
 Swinub and Snover behind; the south entrance has Snom and Swinub at 5 and
-Snorunt by night. The tree has no Alolan Vulpix (only the Ninetales form,
-id 1132), so the "likely early Alolan Vulpix" is the Ninetales itself; a
-ported Alolan Vulpix would be a pick-list row and a Phase 4 port. Larvesta's
+Snorunt by night. The tree has no separate Alolan Vulpix and does not need
+one: the Alolan Ninetales here evolves from ordinary Vulpix, which is on the
+list and in the early tables already (Ian, 2026-09-21, closing the port
+question this entry first raised). Larvesta's
 home moved from Stark Mountain to the Fuego Ironworks at 10. Mantyke and
 Mantine are back on the list (rows 386 and 387) and in the sea pools, Route
 219's and 223's surf pinned. The cap-candidates list is empty.
@@ -1100,6 +1101,136 @@ water-only area has none. A sidecar entry with any of `surf`, `old_rod`,
 `good_rod` or `super_rod` now counts too, and `test_step0` asserts the same. The
 lesson is in the design doc's findings log: a new way of authoring a table has to
 extend `authored_encounters()` or the gate quietly reverts the tables.
+
+### Step 7 — the scripted sources, and four notes from Ian — **done, 2026-09-21**
+
+**The gifts are encounters now.** Ian's instruction was to sort the scripted
+sources into buckets by the source rather than the row, to treat each bucket as
+an even-odds pool, and to replace every off-list member. Fourteen gift sources
+are re-pooled, the whole design and the reasoning per town is in
+`docs/oxide/encounters/scripted-sources.md`, and the catalogue's off-list count
+falls from 37 species to 8. What is left is flagged there rather than changed:
+the Oreburgh and Eterna trades, the Day Care's Ditto, the museum's four spare
+fossils (the list has three fossil lines and the machine revives seven) and
+Chimchar, which Rowan still offers although the list does not have it. Pastoria's
+roll is the only behaviour change: six gift branches existed and the roll only
+ever reached three, so it was widened to six. Twelve scripts and two text banks
+now diverge from the base ROM on purpose, which `bulk_scripts.py`,
+`import_base_rom.py` and `bulk_text.py` have each been told about; `bulk_text.py`
+had no skip list at all before this and now honours the importer's.
+
+**Solaceon Ruins is one table.** All eighteen rooms carry the same cast, because
+in game there is no way to tell which room is which and eighteen different tables
+were eighteen ways to guess wrong. Klefki keeps its home in room 2 and the other
+seventeen hold the same twelve lines without claiming it. Hippopotas is in that
+cast at 5% rather than dropped, because it is fully evolved by 34 and Maylene's
+cap is 38, which is Ian's rule for when a line has to be catchable.
+
+**Sendoff Spring is the high-value table**, at Ian's request: Gible, Beldum,
+Larvitar, Goomy and Jangmo-o carry it, with Absol, Sneasel, Scyther, Ralts,
+Heracross and Elekid behind and Dhelmise keeping its home. Its split moved from
+Post to League on the reading that the spring itself needs only Surf and
+Waterfall, and that it is Turnback Cave inside it that is post-champion. If that
+reading is wrong the table is still fine; only the split label moves.
+
+**Two lines joined the pick-list**, Gastly and Misdreavus (rows 388 to 392), to
+answer Ian's note that the Old Chateau was thin on ghosts. The Chateau's nine
+rooms are rewritten around six ghost lines, Gastly at home in the corridor and
+Misdreavus in the side rooms. A side effect: the Snowpoint Gengar trade is on the
+list now, so it is no longer one of the flagged trades.
+
+**Out of scope, on Ian's word (2026-09-21): anything post-champion.** Turnback
+Cave, which is the whole of the Post split bar Sendoff Spring, is not reachable
+before the champion without script work, so its tables stand as they are and are
+not worth more design time.
+
+**Then a second round of notes the same evening.** The gifts are all flag-guarded
+now, one flag each, checked on the way in and set after the Pokemon is handed
+over so a full party does not burn the chance; thirteen spare flags at 0x03BF in
+`generated/vars_flags.txt` were named for them, which is safe because that list
+is positional and nothing referred to any of them. The four spare fossil items
+are to be deleted rather than repointed, which is item and script work in the
+backlog. And Chimchar is answered rather than flagged: Rowan's briefcase offers
+**Scorbunny**, so all three options are on the list. That is one define in
+`src/choose_starter/choose_starter_app.c` and the rival and counterpart mapping
+in `src/system_vars.c`; the rival's trainer files are named for the player's
+choice rather than the rival's species, so none of them needed touching. Scorbunny
+left the wild in the same move, being gate tier now: Litten took its home on
+Route 204 north, Route 207's 1% Litten tail became Torchic so the delay prize is
+not already catchable in Roark's split, and Route 206's 1% Scorbunny tail became
+Froakie.
+
+Gate after all of it: plan gate green with 0 cap candidates, `lint --ignore R12`
+0 errors, `audit --fail-on-leak` exit 0, and the suites at 35/35, 21/21, 18/18,
+28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15 and 19/19. The catalogue's
+off-list species are down to seven: the Unown rooms, the four spare fossils and
+the two Dittos and the Chatot of the flagged trades.
+
+### Step 8 — stages, trades and the last two menus — **done, 2026-09-21**
+
+**Every wild slot now holds the stage its level deserves**, which is Ian's rule
+of the same day and the largest single change the tables have had: an Elekid at
+Sendoff Spring is an Electivire, Treecko and Snivy on Route 208 are a Grovyle and
+a Servine. It is a command rather than a one-off script, `cli evolve`, because it
+has to be re-run whenever a table's levels move: it reads the written tables for
+levels, so it runs after `apply`, writes the sidecar and the plan, and then
+`apply` writes the tables. Three rules decide a slot, and the middle one is the
+one worth arguing with:
+
+1. A species is judged by the **lowest level it appears at in that area**, and a
+   water slot by the floor of its range, so nothing evolves until the whole slot
+   has.
+2. **A line that grows up on its own grows up at its own level.** Where a stage
+   has any level-up evolution, the stone and trade routes out of it are ignored.
+   Without this Snorunt would become a Froslass at the stone's judged level and
+   never reach Glalie at 42.
+3. A method with no level of its own is **judged**: friendship at 20, a stone at
+   30, a trade at 38. That last number is what makes Electabuzz an Electivire
+   late and not before, and it is Ian's own example.
+
+Where a line branches into two stages that are both available, `BRANCH` in
+`evolve.py` picks: Ceruledge over Armarouge, Scizor over Kleavor, Gardevoir over
+Gallade, Glalie over Froslass, Cofagrigus over Runerigus. An unruled branch stays
+put rather than guesses. An evolution into a species the pick-list does not carry
+is refused, and so is one whose stage is already in the same table, which is 51
+slots: those are tables that deliberately hold two stages of one line, the way
+vanilla holds Geodude beside Graveler.
+
+Two bugs in the pass are worth recording because both hid in plain sight. Water
+rows key their levels `level_min`, not `min_level`, so the first run judged every
+water slot at level 0 and quietly evolved nothing in the water. And a water-only
+area keeps a land array at rate 0 that the sidecar has no cast for, so judging it
+asked for a change that could not be written and the pass never converged. Both
+are fixed, and `cli evolve` now reports zero moves on a settled tree, which is
+the check that it has converged.
+
+**The trades are rebuilt** and **the last two list menus roll**; both are
+described in `docs/oxide/encounters/scripted-sources.md`. The trades needed the
+engine: the level a trade hands over is the level of the Pokemon the player gave
+up, which stops making sense once the trade takes anything, so a small table in
+`src/overlay006/npc_trade.c` names a level per trade with 0 keeping vanilla's
+behaviour; and vanilla asserted that a trade is never shiny, which two of ours
+now are on purpose.
+
+**The Day Care's gift** was to become a shiny winter Sawsbuck; neither Deerling
+nor Sawsbuck is in the species tree, so Ian moved it to a **shiny Floette** with
+the same perfect IVs and neutral nature at level 30, and ruled breeding out of
+scope, which is what losing the game's only Ditto costs. That needed the fork's
+second script command. `GivePokemon` rolls the personality value, and therefore
+the nature, and rolls the IVs; `GiveDesignedPokemon` takes a nature, one IV value
+for all six and a shiny flag, and builds the personality to satisfy the nature
+and the shininess at once, the same arithmetic the rebuilt trades use. Like
+`GiveHiddenAbility` it is registered at the end of `scrcmd.h` so no existing
+opcode moves, and `audit.py` and `pokemon_sources.py` both read it now.
+
+The white flower is the one part still missing. Floette's colours are forms and
+this tree has a single Floette with one sprite and one palette, so a white one is
+art and a form record rather than a number in a script. Backlog.
+
+Gate: `cli evolve` 0 moves, plan gate green with 0 cap candidates, `lint --ignore
+R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and
+`verify_narcs --encounters --source` at 184 of 184 tables. Suites 35/35, 21/21,
+18/18, 28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15, 19/19.
 
 ## Suggested order, and what to cut
 

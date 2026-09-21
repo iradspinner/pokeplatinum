@@ -44,6 +44,7 @@ JubilifeCitySouthHouse1f_Entry3:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT, JubilifeCitySouthHouse1f_010A
     Message 3
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -59,6 +60,7 @@ JubilifeCitySouthHouse1f_0086:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_GLAMEOW, 10, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT
     Message 7
     CloseMessage
     ReleaseAll
@@ -71,6 +73,7 @@ JubilifeCitySouthHouse1f_00B2:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SKITTY, 10, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT
     Message 7
     CloseMessage
     ReleaseAll
@@ -82,7 +85,8 @@ JubilifeCitySouthHouse1f_00DE:
     GoToIf 1, JubilifeCitySouthHouse1f_0115
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_MEOWTH, 10, 0, VAR_0x800C
+    GivePokemon SPECIES_PURRLOIN, 10, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT
     Message 7
     CloseMessage
     ReleaseAll

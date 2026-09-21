@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 36,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 37,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 37,
@@ -23,15 +23,15 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_GLIMMET"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 38,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 38,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
@@ -39,7 +39,7 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 39,
@@ -47,26 +47,26 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_JANGMO_O"
+            "species": "SPECIES_HAKAMO_O"
         }
     ],
     "swarms": [
-        "SPECIES_BRONZONG",
-        "SPECIES_SNOVER"
+        "SPECIES_SNOVER",
+        "SPECIES_FERROSEED"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
-        "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
-        "SPECIES_MIENSHAO",
-        "SPECIES_GLIMMORA"
+        "SPECIES_GARGANACL",
+        "SPECIES_TYRANITAR",
+        "SPECIES_KOMMO_O",
+        "SPECIES_GOLEM"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,11 +75,11 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BELDUM",
+        "SPECIES_ALTARIA",
         "SPECIES_CRAWDAUNT"
     ],
     "sapphire": [
-        "SPECIES_BELDUM",
+        "SPECIES_ALTARIA",
         "SPECIES_CRAWDAUNT"
     ],
     "emerald": [
@@ -87,12 +87,12 @@
         "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_TENTACRUEL",
-        "SPECIES_WARTORTLE"
+        "SPECIES_GOLEM",
+        "SPECIES_BLASTOISE"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_EEVEE"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

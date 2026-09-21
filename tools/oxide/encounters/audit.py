@@ -30,7 +30,9 @@ from . import model
 
 # Script commands that put a species in the player's hands or in front of
 # them. Cries, previews and dex flags name species too and are not leaks.
-GIVE_COMMANDS = ("GivePokemon", "GiveEgg", "GivePokemonWithMoves")
+GIVE_COMMANDS = ("GivePokemon", "GiveEgg", "GivePokemonWithMoves",
+                 # Platinum Oxide: a gift with a chosen nature, IVs and shininess
+                 "GiveDesignedPokemon")
 BATTLE_COMMANDS = ("StartWildBattle", "StartLegendaryBattle",
                    "StartGiratinaOriginBattle", "StartFatefulEncounter")
 SCRIPT_COMMANDS = GIVE_COMMANDS + BATTLE_COMMANDS

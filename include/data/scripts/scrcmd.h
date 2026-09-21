@@ -849,6 +849,7 @@ ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCm
 // Platinum Oxide additions go at the end so no existing opcode moves.
 ScriptCommand(SCRCMD_SETREPELSTEPS,                                        ScrCmd_SetRepelSteps)
 ScriptCommand(SCRCMD_GIVEHIDDENABILITY,                                    ScrCmd_GiveHiddenAbility)
+ScriptCommand(SCRCMD_GIVEDESIGNEDPOKEMON,                                  ScrCmd_GiveDesignedPokemon)
 
 // clang-format on
 

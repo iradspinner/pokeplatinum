@@ -19,7 +19,7 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 23,
@@ -59,14 +59,14 @@
         "SPECIES_KLEFKI"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_FERROSEED"
     ],
     "radar": [
         "SPECIES_CRUSTLE",
         "SPECIES_HIPPOWDON",
         "SPECIES_STEELIX",
-        "SPECIES_GOLBAT"
+        "SPECIES_CROBAT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_GROVYLE",
+        "SPECIES_MIGHTYENA"
     ],
     "sapphire": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_GROVYLE",
+        "SPECIES_MIGHTYENA"
     ],
     "emerald": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_RALTS",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACOOL"
+        "SPECIES_GRAVELER",
+        "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_TENTACRUEL",
-        "SPECIES_WARTORTLE"
+        "SPECIES_WARTORTLE",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "surf_rate": 0,
     "surf_encounters": [

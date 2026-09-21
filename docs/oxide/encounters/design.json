@@ -85,15 +85,15 @@
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_SNOVER",
-        "SPECIES_SWINUB",
-        "SPECIES_SNOM",
+        "SPECIES_PILOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_SNORUNT",
         "SPECIES_ABSOL",
         "SPECIES_GALARIAN_MR_MIME"
       ],
       "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SWINUB"
+        "SPECIES_FROSMOTH",
+        "SPECIES_PILOSWINE"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -112,10 +112,10 @@
         "SPECIES_BUNEARY",
         "SPECIES_SEWADDLE",
         "SPECIES_SEEDOT",
-        "SPECIES_BLIPBUG",
+        "SPECIES_DOTTLER",
         "SPECIES_GRUBBIN",
         "SPECIES_COMBEE",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_STEENEE"
       ],
       "day": [
         "SPECIES_ROWLET",
@@ -141,20 +141,20 @@
         "SPECIES_LARVESTA",
         "SPECIES_TOGEDEMARU",
         "SPECIES_SLUGMA",
-        "SPECIES_LITTEN",
+        "SPECIES_TORRACAT",
         "SPECIES_RHYHORN",
-        "SPECIES_SALANDIT",
-        "SPECIES_CHARCADET",
-        "SPECIES_NACLI",
-        "SPECIES_CHARMANDER",
-        "SPECIES_TORCHIC"
+        "SPECIES_SALAZZLE",
+        "SPECIES_CERULEDGE",
+        "SPECIES_NACLSTACK",
+        "SPECIES_CHARMELEON",
+        "SPECIES_COMBUSKEN"
       ],
       "day": [
         "SPECIES_PONYTA",
         "SPECIES_VULPIX"
       ],
       "night": [
-        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOOM",
         "SPECIES_LITWICK"
       ],
       "old_rod": {
@@ -163,7 +163,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
           "SPECIES_MAGIKARP",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -194,7 +194,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -225,7 +225,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -253,10 +253,10 @@
       "surf": {
         "cast": [
           "SPECIES_SHELLOS",
-          "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -297,12 +297,12 @@
         "SPECIES_YANMA",
         "SPECIES_SKORUPI",
         "SPECIES_DEWPIDER",
-        "SPECIES_SURSKIT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_MASQUERAIN",
+        "SPECIES_BRELOOM"
       ],
       "day": [
         "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_MASQUERAIN"
       ],
       "night": [
         "SPECIES_CROAGUNK",
@@ -344,8 +344,8 @@
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
           "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_FROAKIE"
+          "SPECIES_MASQUERAIN",
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -376,7 +376,7 @@
           "SPECIES_LOMBRE",
           "SPECIES_LUDICOLO",
           "SPECIES_ARAQUANID",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -407,7 +407,7 @@
           "SPECIES_DEWPIDER",
           "SPECIES_QUAGSIRE",
           "SPECIES_FRILLISH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -494,7 +494,7 @@
           "SPECIES_DEWPIDER",
           "SPECIES_FRILLISH",
           "SPECIES_CORPHISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -525,7 +525,7 @@
           "SPECIES_LUDICOLO",
           "SPECIES_ARAQUANID",
           "SPECIES_JELLICENT",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -556,7 +556,7 @@
           "SPECIES_FRILLISH",
           "SPECIES_LOMBRE",
           "SPECIES_MASQUERAIN",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -592,11 +592,11 @@
       "split": "Wake",
       "cast": [
         "SPECIES_CROAGUNK",
-        "SPECIES_WOOPER",
+        "SPECIES_QUAGSIRE",
         "SPECIES_DEWPIDER",
         "SPECIES_YANMA",
         "SPECIES_SURSKIT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_BRELOOM"
       ],
       "day": [
         "SPECIES_YANMA",
@@ -643,7 +643,7 @@
           "SPECIES_FRILLISH",
           "SPECIES_CORPHISH",
           "SPECIES_BARBOACH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -674,7 +674,7 @@
           "SPECIES_ARAQUANID",
           "SPECIES_JELLICENT",
           "SPECIES_GYARADOS",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -705,7 +705,7 @@
           "SPECIES_FRILLISH",
           "SPECIES_LOMBRE",
           "SPECIES_MASQUERAIN",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -740,11 +740,11 @@
       "order": 73,
       "split": "Wake",
       "cast": [
-        "SPECIES_WOOPER",
+        "SPECIES_QUAGSIRE",
         "SPECIES_DEWPIDER",
         "SPECIES_CROAGUNK",
         "SPECIES_YANMA",
-        "SPECIES_SHROOMISH",
+        "SPECIES_BRELOOM",
         "SPECIES_SKORUPI"
       ],
       "day": [
@@ -791,8 +791,8 @@
           "SPECIES_FRILLISH",
           "SPECIES_CORPHISH",
           "SPECIES_BARBOACH",
-          "SPECIES_WOOPER",
-          "SPECIES_MUDKIP"
+          "SPECIES_QUAGSIRE",
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -823,7 +823,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_GYARADOS",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -853,8 +853,8 @@
           "SPECIES_LOMBRE",
           "SPECIES_MASQUERAIN",
           "SPECIES_ARAQUANID",
-          "SPECIES_WOOPER",
-          "SPECIES_MUDKIP"
+          "SPECIES_QUAGSIRE",
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -896,7 +896,7 @@
         "SPECIES_SKORUPI",
         "SPECIES_DEWPIDER",
         "SPECIES_SURSKIT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_BRELOOM"
       ],
       "day": [
         "SPECIES_LOTAD",
@@ -943,7 +943,7 @@
           "SPECIES_CORPHISH",
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -974,7 +974,7 @@
           "SPECIES_GYARADOS",
           "SPECIES_CRAWDAUNT",
           "SPECIES_WHISCASH",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -1005,7 +1005,7 @@
           "SPECIES_MASQUERAIN",
           "SPECIES_ARAQUANID",
           "SPECIES_WOOPER",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -1043,11 +1043,11 @@
         "SPECIES_YANMA",
         "SPECIES_WOOPER",
         "SPECIES_CROAGUNK",
-        "SPECIES_LOTAD",
-        "SPECIES_SHROOMISH"
+        "SPECIES_LOMBRE",
+        "SPECIES_BRELOOM"
       ],
       "day": [
-        "SPECIES_SURSKIT",
+        "SPECIES_MASQUERAIN",
         "SPECIES_DEWPIDER"
       ],
       "night": [
@@ -1090,8 +1090,8 @@
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
           "SPECIES_CARVANHA",
-          "SPECIES_LOTAD",
-          "SPECIES_POPPLIO"
+          "SPECIES_LOMBRE",
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -1122,7 +1122,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_WHISCASH",
           "SPECIES_QUAGSIRE",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -1151,9 +1151,9 @@
         "cast": [
           "SPECIES_ARAQUANID",
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_POPPLIO"
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -1191,18 +1191,18 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_ONIX",
         "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_FERROSEED",
         "SPECIES_KLEFKI",
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ]
     },
@@ -1216,18 +1216,18 @@
       "split": "Byron",
       "cast": [
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_TOGEDEMARU",
         "SPECIES_FERROSEED",
-        "SPECIES_MAKUHITA",
+        "SPECIES_HARIYAMA",
         "SPECIES_NOSEPASS"
       ],
       "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_GRAVELER",
         "SPECIES_NOSEPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -1241,18 +1241,18 @@
       "split": "Byron",
       "cast": [
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_BRONZOR",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
       ]
     },
@@ -1267,16 +1267,16 @@
       "cast": [
         "SPECIES_LUNATONE",
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_BRONZOR",
         "SPECIES_CARBINK"
       ],
       "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_GRAVELER",
         "SPECIES_NOSEPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -1291,16 +1291,16 @@
       "cast": [
         "SPECIES_SOLROCK",
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_BRONZOR",
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ]
     },
@@ -1313,21 +1313,21 @@
       "order": 91,
       "split": "Byron",
       "cast": [
-        "SPECIES_BELDUM",
+        "SPECIES_METANG",
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_FERROSEED",
         "SPECIES_KLEFKI",
         "SPECIES_TOGEDEMARU",
-        "SPECIES_LARVITAR",
-        "SPECIES_GIBLE"
+        "SPECIES_PUPITAR",
+        "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
       ]
     },
@@ -1342,18 +1342,18 @@
       "cast": [
         "SPECIES_SNORUNT",
         "SPECIES_ABSOL",
-        "SPECIES_SNOM",
+        "SPECIES_FROSMOTH",
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_SNOVER",
-        "SPECIES_SNEASEL"
+        "SPECIES_ABOMASNOW",
+        "SPECIES_WEAVILE"
       ],
       "day": [
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_ALOLAN_NINETALES"
       ],
       "night": [
         "SPECIES_ABSOL",
-        "SPECIES_SNEASEL"
+        "SPECIES_WEAVILE"
       ],
       "old_rod": {
         "cast": [
@@ -1361,7 +1361,7 @@
           "SPECIES_MAGIKARP",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -1392,7 +1392,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -1423,7 +1423,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_GYARADOS",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -1454,7 +1454,7 @@
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
           "SPECIES_FRILLISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -1490,21 +1490,21 @@
       "split": "Byron",
       "cast": [
         "SPECIES_ABSOL",
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_VULLABY",
         "SPECIES_HAWLUCHA",
-        "SPECIES_SWABLU",
-        "SPECIES_GLAMEOW",
-        "SPECIES_SNEASEL",
-        "SPECIES_LITTEN"
+        "SPECIES_ALTARIA",
+        "SPECIES_PURUGLY",
+        "SPECIES_WEAVILE",
+        "SPECIES_INCINEROAR"
       ],
       "day": [
-        "SPECIES_MINCCINO",
-        "SPECIES_BUNEARY"
+        "SPECIES_CINCCINO",
+        "SPECIES_LOPUNNY"
       ],
       "night": [
         "SPECIES_ABSOL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ],
       "old_rod": {
         "cast": [
@@ -1512,7 +1512,7 @@
           "SPECIES_CHINCHOU",
           "SPECIES_MAGIKARP",
           "SPECIES_GOLDEEN",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -1543,7 +1543,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -1574,7 +1574,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -1605,7 +1605,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -1707,7 +1707,7 @@
           "SPECIES_SHARPEDO",
           "SPECIES_GYARADOS",
           "SPECIES_FLOATZEL",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -1840,7 +1840,7 @@
           "SPECIES_SHARPEDO",
           "SPECIES_GYARADOS",
           "SPECIES_FLOATZEL",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -1908,7 +1908,7 @@
       "cast": [
         "SPECIES_HIPPOPOTAS",
         "SPECIES_DWEBBLE",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_NACLI",
         "SPECIES_FERROSEED",
         "SPECIES_ONIX"
@@ -1918,7 +1918,7 @@
         "SPECIES_NOSEPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ]
     },
@@ -1963,18 +1963,18 @@
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_MIENFOO",
         "SPECIES_GLIMMET",
-        "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE"
+        "SPECIES_PROBOPASS",
+        "SPECIES_GRAVELER"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -2041,7 +2041,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -2072,7 +2072,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -2103,7 +2103,7 @@
           "SPECIES_FRILLISH",
           "SPECIES_FEEBAS",
           "SPECIES_SHELLOS",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -2138,22 +2138,22 @@
       "order": 100,
       "split": "Volkner",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
         "SPECIES_CARBINK",
-        "SPECIES_LARVITAR",
+        "SPECIES_PUPITAR",
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT",
-        "SPECIES_GLIMMET"
+        "SPECIES_CROBAT",
+        "SPECIES_GLIMMORA"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_mt_coronet_2f": {
@@ -2165,20 +2165,20 @@
       "order": 103,
       "split": "Volkner",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
-        "SPECIES_GLIMMET",
-        "SPECIES_LARVITAR",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
+        "SPECIES_GLIMMORA",
+        "SPECIES_PUPITAR",
         "SPECIES_FERROSEED"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_mt_coronet_3f": {
@@ -2190,21 +2190,21 @@
       "order": 104,
       "split": "Volkner",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
         "SPECIES_CARBINK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIMMET",
-        "SPECIES_LARVITAR",
-        "SPECIES_JANGMO_O"
+        "SPECIES_GLIMMORA",
+        "SPECIES_PUPITAR",
+        "SPECIES_HAKAMO_O"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -2218,18 +2218,18 @@
       "split": "Volkner",
       "cast": [
         "SPECIES_CARBINK",
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
         "SPECIES_GOOMY",
-        "SPECIES_MIENFOO",
+        "SPECIES_MIENSHAO",
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -2242,19 +2242,19 @@
       "order": 106,
       "split": "Volkner",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
-        "SPECIES_GLIMMET",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
+        "SPECIES_GLIMMORA",
         "SPECIES_FERROSEED"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_mt_coronet_5f": {
@@ -2266,22 +2266,22 @@
       "order": 109,
       "split": "Volkner",
       "cast": [
-        "SPECIES_JANGMO_O",
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
-        "SPECIES_LARVITAR",
+        "SPECIES_HAKAMO_O",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
+        "SPECIES_PUPITAR",
         "SPECIES_KLEFKI",
         "SPECIES_GOOMY",
-        "SPECIES_GIBLE"
+        "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_mt_coronet_6f": {
@@ -2293,19 +2293,19 @@
       "order": 110,
       "split": "Volkner",
       "cast": [
-        "SPECIES_JANGMO_O",
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
-        "SPECIES_MIENFOO",
+        "SPECIES_HAKAMO_O",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO",
         "SPECIES_KLEFKI",
-        "SPECIES_LARVITAR"
+        "SPECIES_PUPITAR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -2319,20 +2319,20 @@
       "split": "Volkner",
       "cast": [
         "SPECIES_GOOMY",
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
         "SPECIES_CARBINK",
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI",
-        "SPECIES_LARVITAR",
-        "SPECIES_JANGMO_O"
+        "SPECIES_PUPITAR",
+        "SPECIES_HAKAMO_O"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_CARBINK"
       ],
       "old_rod": {
@@ -2341,7 +2341,7 @@
           "SPECIES_MAGIKARP",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -2372,7 +2372,7 @@
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
           "SPECIES_FRILLISH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -2403,7 +2403,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_GYARADOS",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -2434,7 +2434,7 @@
           "SPECIES_BUIZEL",
           "SPECIES_FRILLISH",
           "SPECIES_FEEBAS",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -2470,16 +2470,16 @@
       "split": "Volkner",
       "cast": [
         "SPECIES_SNOVER",
-        "SPECIES_SNOM",
+        "SPECIES_FROSMOTH",
         "SPECIES_HAWLUCHA",
-        "SPECIES_MIENFOO",
+        "SPECIES_MIENSHAO",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_SNEASEL",
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_ABSOL"
       ],
       "day": [
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT"
       ],
       "night": [
@@ -2497,21 +2497,21 @@
       "split": "Volkner",
       "cast": [
         "SPECIES_SNOVER",
-        "SPECIES_SNOM",
-        "SPECIES_MIENFOO",
+        "SPECIES_FROSMOTH",
+        "SPECIES_MIENSHAO",
         "SPECIES_HAWLUCHA",
-        "SPECIES_NACLI",
+        "SPECIES_GARGANACL",
         "SPECIES_SNEASEL",
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_ABSOL",
-        "SPECIES_LARVITAR",
-        "SPECIES_GIBLE"
+        "SPECIES_PUPITAR",
+        "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SWINUB"
+        "SPECIES_FROSMOTH",
+        "SPECIES_PILOSWINE"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -2519,99 +2519,103 @@
       ]
     },
     "encounters_old_chateau": {
-      "archetype": "A13",
+      "archetype": "A18",
       "band": "mid",
-      "intent": "The haunted house's hall, Sinistea's home: teacups and candles, the graveyard ghosts behind them, a cat at night.",
+      "intent": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night.",
       "locked": [],
       "base_level": 14,
       "order": 20,
       "split": "Fantina",
       "cast": [
         "SPECIES_SINISTEA",
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_DUSKULL",
         "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_PURRLOIN",
+        "SPECIES_ZUBAT"
       ],
       "day": [
         "SPECIES_SINISTEA",
         "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_back_east_room": {
-      "archetype": "A11",
+      "archetype": "A14",
       "band": "mid",
-      "intent": "The back east room: teacups again, the cat by night.",
+      "intent": "The back east room: the gas leads, the banshee answers.",
       "locked": [],
       "base_level": 14,
       "order": 28,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS",
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
         "SPECIES_DUSKULL",
         "SPECIES_PURRLOIN"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL"
+        "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_GASTLY",
+        "SPECIES_YAMASK"
       ]
     },
     "encounters_old_chateau_back_middle_east_room": {
       "archetype": "A16",
       "band": "mid",
-      "intent": "Back middle east: three co-equal again, in a different order.",
+      "intent": "Back middle east: three ghosts co-equal.",
       "locked": [],
       "base_level": 14,
       "order": 27,
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
         "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT",
-        "SPECIES_PURRLOIN"
+        "SPECIES_SINISTEA",
+        "SPECIES_ZUBAT"
       ],
       "day": [
         "SPECIES_SINISTEA",
         "SPECIES_DUSKULL"
       ],
       "night": [
-        "SPECIES_YAMASK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_LITWICK"
       ]
     },
     "encounters_old_chateau_back_middle_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The middle room with the television, Litwick's home.",
+      "intent": "The middle room with the television, Litwick’s home.",
       "locked": [],
       "base_level": 14,
       "order": 26,
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
         "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MISDREAVUS"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK"
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_LITWICK",
+        "SPECIES_GASTLY",
         "SPECIES_DUSKULL"
       ]
     },
@@ -2625,11 +2629,11 @@
       "split": "Fantina",
       "cast": [
         "SPECIES_DUSKULL",
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN",
-        "SPECIES_ZUBAT"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_LITWICK",
@@ -2643,49 +2647,49 @@
     "encounters_old_chateau_back_west_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The back west room: Yamask's corner of the house.",
+      "intent": "The back west room: Yamask’s corner.",
       "locked": [],
       "base_level": 14,
       "order": 24,
       "split": "Fantina",
       "cast": [
         "SPECIES_YAMASK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK"
+        "SPECIES_MISDREAVUS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_YAMASK",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_corridor": {
       "archetype": "A11",
       "band": "mid",
-      "intent": "The corridor: candles lead.",
+      "intent": "The corridor, Gastly’s home: the gas fills it end to end.",
       "locked": [],
       "base_level": 14,
       "order": 23,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
         "SPECIES_ZUBAT"
       ],
       "day": [
-        "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL"
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GASTLY",
+        "SPECIES_MISDREAVUS"
       ]
     },
     "encounters_old_chateau_dining_area": {
@@ -2698,10 +2702,35 @@
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK",
         "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_PURRLOIN"
+      ],
+      "night": [
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY"
+      ]
+    },
+    "encounters_old_chateau_side_rooms": {
+      "archetype": "A16",
+      "band": "mid",
+      "intent": "The side rooms, Misdreavus’s home: three ghosts co-equal.",
+      "locked": [],
+      "base_level": 14,
+      "order": 22,
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
         "SPECIES_ZUBAT"
       ],
       "day": [
@@ -2709,33 +2738,8 @@
         "SPECIES_YAMASK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK"
-      ]
-    },
-    "encounters_old_chateau_side_rooms": {
-      "archetype": "A16",
-      "band": "mid",
-      "intent": "The side rooms: three ghosts co-equal.",
-      "locked": [],
-      "base_level": 14,
-      "order": 22,
-      "split": "Fantina",
-      "cast": [
-        "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_PURRLOIN",
-        "SPECIES_ZUBAT"
-      ],
-      "day": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
-      ],
-      "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY"
       ]
     },
     "encounters_oreburgh_gate_1f": {
@@ -2810,7 +2814,7 @@
           "SPECIES_FRILLISH",
           "SPECIES_MAGIKARP",
           "SPECIES_GOLDEEN",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -2841,7 +2845,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_SEAKING",
           "SPECIES_WHISCASH",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -2872,7 +2876,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -2997,7 +3001,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -3028,7 +3032,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -3059,7 +3063,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_SHELLOS",
           "SPECIES_CORPHISH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -3223,7 +3227,7 @@
           "SPECIES_GYARADOS",
           "SPECIES_FLOATZEL",
           "SPECIES_QUAGSIRE",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -3283,12 +3287,12 @@
     "encounters_route_204_north": {
       "archetype": "A14",
       "band": "early",
-      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
+      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
       "locked": [],
       "base_level": 8,
       "order": 15,
       "cast": [
-        "SPECIES_SCORBUNNY",
+        "SPECIES_LITTEN",
         "SPECIES_TREECKO",
         "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET",
@@ -3323,7 +3327,7 @@
           "SPECIES_SHELLOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -3354,7 +3358,7 @@
           "SPECIES_SEAKING",
           "SPECIES_WHISCASH",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -3383,9 +3387,9 @@
         "cast": [
           "SPECIES_BUIZEL",
           "SPECIES_SHELLOS",
-          "SPECIES_WOOPER",
+          "SPECIES_QUAGSIRE",
           "SPECIES_LOTAD",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -3460,7 +3464,7 @@
           "SPECIES_BUIZEL",
           "SPECIES_WOOPER",
           "SPECIES_LOTAD",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -3489,9 +3493,9 @@
         "cast": [
           "SPECIES_FLOATZEL",
           "SPECIES_QUAGSIRE",
-          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
           "SPECIES_GASTRODON",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -3522,7 +3526,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_MASQUERAIN",
           "SPECIES_BUIZEL",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -3557,7 +3561,7 @@
       "order": 18,
       "cast": [
         "SPECIES_LOTAD",
-        "SPECIES_BOUNSWEET",
+        "SPECIES_STEENEE",
         "SPECIES_SEWADDLE",
         "SPECIES_SURSKIT",
         "SPECIES_SHROOMISH",
@@ -3628,7 +3632,7 @@
           "SPECIES_LUDICOLO",
           "SPECIES_ARAQUANID",
           "SPECIES_JELLICENT",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -3734,7 +3738,7 @@
           "SPECIES_SHELLOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -3765,7 +3769,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -3794,9 +3798,9 @@
         "cast": [
           "SPECIES_BUIZEL",
           "SPECIES_SHELLOS",
-          "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -3825,7 +3829,7 @@
     "encounters_route_206": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Scorbunny the 1%s.",
+      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s.",
       "locked": [],
       "base_level": 16,
       "order": 32,
@@ -3840,12 +3844,12 @@
         "SPECIES_SALANDIT",
         "SPECIES_JOLTIK",
         "SPECIES_NACLI",
-        "SPECIES_ROOKIDEE",
-        "SPECIES_CHARMANDER",
-        "SPECIES_SCORBUNNY"
+        "SPECIES_CORVISQUIRE",
+        "SPECIES_CHARMELEON",
+        "SPECIES_FROGADIER"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_STUNKY"
       ],
       "night": [
@@ -3856,7 +3860,7 @@
     "encounters_route_207": {
       "archetype": "A19",
       "band": "early",
-      "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night.",
+      "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Torchic the 1% fire tails, Vulpix and Houndour by night.",
       "locked": [],
       "base_level": 5,
       "order": 10,
@@ -3872,7 +3876,7 @@
         "SPECIES_MAKUHITA",
         "SPECIES_PHANPY",
         "SPECIES_CHARMANDER",
-        "SPECIES_LITTEN"
+        "SPECIES_TORCHIC"
       ],
       "day": [
         "SPECIES_SMOLIV",
@@ -3897,14 +3901,14 @@
         "SPECIES_FLABEBE",
         "SPECIES_BUDEW",
         "SPECIES_RALTS",
-        "SPECIES_FLETCHLING",
-        "SPECIES_BOUNSWEET",
+        "SPECIES_FLETCHINDER",
+        "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
         "SPECIES_COMBEE",
         "SPECIES_MINCCINO",
         "SPECIES_BUNEARY",
-        "SPECIES_TREECKO",
-        "SPECIES_SNIVY"
+        "SPECIES_GROVYLE",
+        "SPECIES_SERVINE"
       ],
       "day": [
         "SPECIES_SEWADDLE",
@@ -3912,7 +3916,7 @@
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
@@ -3951,7 +3955,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -3982,7 +3986,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -4013,7 +4017,7 @@
           "SPECIES_BUIZEL",
           "SPECIES_FRILLISH",
           "SPECIES_FEEBAS",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -4051,15 +4055,15 @@
         "SPECIES_GOTHITA",
         "SPECIES_BUDEW",
         "SPECIES_RALTS",
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_MINCCINO",
         "SPECIES_GLAMEOW",
         "SPECIES_KOFFING",
-        "SPECIES_BOUNSWEET",
+        "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
         "SPECIES_COMBEE",
         "SPECIES_DUSKULL",
-        "SPECIES_TORCHIC"
+        "SPECIES_COMBUSKEN"
       ],
       "day": [
         "SPECIES_BUNEARY",
@@ -4104,9 +4108,9 @@
         "cast": [
           "SPECIES_BUIZEL",
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
+          "SPECIES_LOMBRE",
           "SPECIES_SURSKIT",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -4135,9 +4139,9 @@
         "cast": [
           "SPECIES_FLOATZEL",
           "SPECIES_QUAGSIRE",
-          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
           "SPECIES_GASTRODON",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -4168,7 +4172,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_MASQUERAIN",
           "SPECIES_BUIZEL",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -4336,12 +4340,12 @@
         "SPECIES_BRONZOR"
       ],
       "day": [
-        "SPECIES_FENNEKIN",
-        "SPECIES_LITTEN"
+        "SPECIES_BRAIXEN",
+        "SPECIES_TORRACAT"
       ],
       "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOUNDOOM"
       ],
       "old_rod": {
         "cast": [
@@ -4349,7 +4353,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -4376,11 +4380,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -4411,7 +4415,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -4442,7 +4446,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -4479,20 +4483,20 @@
       "cast": [
         "SPECIES_SCYTHER",
         "SPECIES_PONYTA",
-        "SPECIES_BOUNSWEET",
-        "SPECIES_ROOKIDEE",
+        "SPECIES_STEENEE",
+        "SPECIES_CORVISQUIRE",
         "SPECIES_SWABLU",
-        "SPECIES_FENNEKIN",
+        "SPECIES_BRAIXEN",
         "SPECIES_SMOLIV",
         "SPECIES_SNEASEL",
         "SPECIES_SLUGMA",
         "SPECIES_COMBEE",
-        "SPECIES_TORCHIC",
-        "SPECIES_SPRIGATITO"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_FLORAGATO"
       ],
       "day": [
         "SPECIES_SWABLU",
-        "SPECIES_FLETCHLING"
+        "SPECIES_FLETCHINDER"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -4508,10 +4512,10 @@
       "order": 80,
       "split": "Byron",
       "cast": [
-        "SPECIES_RALTS",
+        "SPECIES_KIRLIA",
         "SPECIES_FERROSEED",
-        "SPECIES_ROWLET",
-        "SPECIES_LITTEN",
+        "SPECIES_DARTRIX",
+        "SPECIES_TORRACAT",
         "SPECIES_JANGMO_O",
         "SPECIES_GLIGAR"
       ],
@@ -4520,7 +4524,7 @@
         "SPECIES_BRONZOR"
       ],
       "night": [
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_SNEASEL"
       ]
     },
@@ -4561,25 +4565,25 @@
       "split": "Wake",
       "cast": [
         "SPECIES_EMOLGA",
-        "SPECIES_FLABEBE",
+        "SPECIES_FLOETTE",
         "SPECIES_FOMANTIS",
-        "SPECIES_RALTS",
+        "SPECIES_KIRLIA",
         "SPECIES_BUDEW",
-        "SPECIES_COMBEE",
+        "SPECIES_VESPIQUEN",
         "SPECIES_MINCCINO",
-        "SPECIES_BOUNSWEET",
+        "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_ROWLET",
-        "SPECIES_SNIVY"
+        "SPECIES_DARTRIX",
+        "SPECIES_SERVINE"
       ],
       "day": [
         "SPECIES_BUNEARY",
         "SPECIES_PACHIRISU"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_LIEPARD",
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
@@ -4616,9 +4620,9 @@
         "cast": [
           "SPECIES_BUIZEL",
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
+          "SPECIES_LOMBRE",
           "SPECIES_SURSKIT",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -4647,9 +4651,9 @@
         "cast": [
           "SPECIES_FLOATZEL",
           "SPECIES_QUAGSIRE",
-          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
           "SPECIES_GASTRODON",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -4680,7 +4684,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_MASQUERAIN",
           "SPECIES_BUIZEL",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -4718,19 +4722,19 @@
         "SPECIES_KOFFING",
         "SPECIES_WOOPER",
         "SPECIES_CROAGUNK",
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT",
-        "SPECIES_FROAKIE",
-        "SPECIES_DEWPIDER",
+        "SPECIES_LOMBRE",
+        "SPECIES_MASQUERAIN",
+        "SPECIES_FROGADIER",
+        "SPECIES_ARAQUANID",
         "SPECIES_YANMA",
-        "SPECIES_SHROOMISH",
+        "SPECIES_BRELOOM",
         "SPECIES_SKORUPI",
-        "SPECIES_MUDKIP",
+        "SPECIES_MARSHTOMP",
         "SPECIES_SQUIRTLE"
       ],
       "day": [
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_LOMBRE",
+        "SPECIES_MASQUERAIN"
       ],
       "night": [
         "SPECIES_CROAGUNK",
@@ -4772,8 +4776,8 @@
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
           "SPECIES_CARVANHA",
-          "SPECIES_LOTAD",
-          "SPECIES_MUDKIP"
+          "SPECIES_LOMBRE",
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -4803,8 +4807,8 @@
           "SPECIES_WHISCASH",
           "SPECIES_QUAGSIRE",
           "SPECIES_SHARPEDO",
-          "SPECIES_LOMBRE",
-          "SPECIES_FROGADIER"
+          "SPECIES_LUDICOLO",
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -4832,10 +4836,10 @@
       "surf": {
         "cast": [
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_DEWPIDER",
-          "SPECIES_MUDKIP"
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_ARAQUANID",
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -4873,23 +4877,23 @@
         "SPECIES_SANDYGAST",
         "SPECIES_CLOBBOPUS",
         "SPECIES_DEWPIDER",
-        "SPECIES_PIKIPEK",
-        "SPECIES_FLETCHLING",
-        "SPECIES_WOOLOO",
+        "SPECIES_TRUMBEAK",
+        "SPECIES_FLETCHINDER",
+        "SPECIES_DUBWOOL",
         "SPECIES_SHELLOS",
         "SPECIES_BUIZEL",
-        "SPECIES_SMOLIV",
-        "SPECIES_BOUNSWEET",
+        "SPECIES_DOLLIV",
+        "SPECIES_STEENEE",
         "SPECIES_POPPLIO",
-        "SPECIES_SQUIRTLE"
+        "SPECIES_WARTORTLE"
       ],
       "day": [
-        "SPECIES_PIKIPEK",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_TRUMBEAK",
+        "SPECIES_CORVISQUIRE"
       ],
       "night": [
         "SPECIES_DEWPIDER",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ],
       "old_rod": {
         "cast": [
@@ -4928,7 +4932,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MAREANIE",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -4959,7 +4963,7 @@
           "SPECIES_TENTACRUEL",
           "SPECIES_OCTILLERY",
           "SPECIES_TOXAPEX",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -4990,7 +4994,7 @@
           "SPECIES_MANTYKE",
           "SPECIES_SHELLOS",
           "SPECIES_FRILLISH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -5026,24 +5030,24 @@
       "split": "Wake",
       "cast": [
         "SPECIES_RHYHORN",
-        "SPECIES_FENNEKIN",
-        "SPECIES_HOUNDOUR",
+        "SPECIES_BRAIXEN",
+        "SPECIES_HOUNDOOM",
         "SPECIES_SALANDIT",
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_DWEBBLE",
         "SPECIES_SWINUB",
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY",
-        "SPECIES_CHARMANDER",
-        "SPECIES_LITTEN"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN",
+        "SPECIES_CHARMELEON",
+        "SPECIES_TORRACAT"
       ],
       "day": [
         "SPECIES_PONYTA",
         "SPECIES_VULPIX"
       ],
       "night": [
-        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOOM",
         "SPECIES_SWINUB"
       ],
       "old_rod": {
@@ -5080,10 +5084,10 @@
       "good_rod": {
         "cast": [
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
+          "SPECIES_LOMBRE",
           "SPECIES_SURSKIT",
           "SPECIES_SHELLOS",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -5111,10 +5115,10 @@
       "super_rod": {
         "cast": [
           "SPECIES_QUAGSIRE",
-          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
           "SPECIES_GASTRODON",
           "SPECIES_SEAKING",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -5143,9 +5147,9 @@
         "cast": [
           "SPECIES_GASTRODON",
           "SPECIES_MASQUERAIN",
-          "SPECIES_BUIZEL",
+          "SPECIES_FLOATZEL",
           "SPECIES_SHELLOS",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -5184,18 +5188,18 @@
         "SPECIES_CASTFORM",
         "SPECIES_SCYTHER",
         "SPECIES_MIENFOO",
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_CROAGUNK",
         "SPECIES_YANMA",
         "SPECIES_KOFFING"
       ],
       "day": [
         "SPECIES_YANMA",
-        "SPECIES_WOOPER"
+        "SPECIES_QUAGSIRE"
       ],
       "night": [
         "SPECIES_CROAGUNK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ]
     },
     "encounters_route_216": {
@@ -5208,20 +5212,20 @@
       "split": "Candice",
       "cast": [
         "SPECIES_SNOVER",
-        "SPECIES_SNOM",
+        "SPECIES_FROSMOTH",
         "SPECIES_SNEASEL",
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_MIENFOO",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_LITTEN"
+        "SPECIES_TORRACAT"
       ],
       "day": [
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT"
       ],
       "night": [
@@ -5243,17 +5247,17 @@
         "SPECIES_SNOVER",
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_SNOM",
-        "SPECIES_LARVITAR",
+        "SPECIES_FROSMOTH",
+        "SPECIES_PUPITAR",
         "SPECIES_MIENFOO",
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_ZUBAT",
-        "SPECIES_TORCHIC",
-        "SPECIES_CHARMANDER"
+        "SPECIES_CROBAT",
+        "SPECIES_COMBUSKEN",
+        "SPECIES_CHARMELEON"
       ],
       "day": [
         "SPECIES_SNOVER",
-        "SPECIES_SNOM"
+        "SPECIES_FROSMOTH"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -5284,21 +5288,21 @@
       "water_split": "Roark",
       "cast": [
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_PIKIPEK",
-        "SPECIES_WOOPER",
-        "SPECIES_DEWPIDER",
+        "SPECIES_TOUCANNON",
+        "SPECIES_QUAGSIRE",
+        "SPECIES_ARAQUANID",
         "SPECIES_GLAMEOW",
-        "SPECIES_BUIZEL",
+        "SPECIES_FLOATZEL",
         "SPECIES_SHELLOS",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_MINCCINO"
       ],
       "night": [
         "SPECIES_GLAMEOW",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ],
       "good_rod": {
         "cast": [
@@ -5306,7 +5310,7 @@
           "SPECIES_REMORAID",
           "SPECIES_SHELLOS",
           "SPECIES_CHINCHOU",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5337,7 +5341,7 @@
           "SPECIES_GYARADOS",
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -5365,10 +5369,10 @@
       "surf": {
         "cast": [
           "SPECIES_TENTACOOL",
-          "SPECIES_BUIZEL",
+          "SPECIES_FLOATZEL",
           "SPECIES_TENTACRUEL",
           "SPECIES_MANTINE",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5404,25 +5408,25 @@
       "split": "Byron",
       "cast": [
         "SPECIES_LURANTIS",
-        "SPECIES_SMOLIV",
-        "SPECIES_FLETCHLING",
-        "SPECIES_WOOLOO",
-        "SPECIES_BOUNSWEET",
-        "SPECIES_PURRLOIN",
+        "SPECIES_DOLLIV",
+        "SPECIES_FLETCHINDER",
+        "SPECIES_DUBWOOL",
+        "SPECIES_STEENEE",
+        "SPECIES_LIEPARD",
         "SPECIES_TRAPINCH",
         "SPECIES_SANDYGAST",
         "SPECIES_SHELLOS",
-        "SPECIES_BUIZEL",
-        "SPECIES_SPRIGATITO",
-        "SPECIES_POPPLIO"
+        "SPECIES_FLOATZEL",
+        "SPECIES_FLORAGATO",
+        "SPECIES_BRIONNE"
       ],
       "day": [
-        "SPECIES_PIKIPEK",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_TOUCANNON",
+        "SPECIES_CORVISQUIRE"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_LIEPARD",
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
@@ -5430,7 +5434,7 @@
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
           "SPECIES_LUVDISC",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -5461,7 +5465,7 @@
           "SPECIES_REMORAID",
           "SPECIES_MAREANIE",
           "SPECIES_LUVDISC",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5492,7 +5496,7 @@
           "SPECIES_LUMINEON",
           "SPECIES_TENTACRUEL",
           "SPECIES_OCTILLERY",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -5520,10 +5524,10 @@
       "surf": {
         "cast": [
           "SPECIES_TENTACOOL",
-          "SPECIES_MANTYKE",
+          "SPECIES_MANTINE",
           "SPECIES_SHELLOS",
           "SPECIES_FRILLISH",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5558,26 +5562,26 @@
       "order": 133,
       "split": "Volkner",
       "cast": [
-        "SPECIES_ELEKID",
+        "SPECIES_ELECTIVIRE",
         "SPECIES_TOGEDEMARU",
         "SPECIES_PACHIRISU",
-        "SPECIES_JOLTIK",
-        "SPECIES_PIKIPEK",
-        "SPECIES_SHINX",
+        "SPECIES_GALVANTULA",
+        "SPECIES_TOUCANNON",
+        "SPECIES_LUXRAY",
         "SPECIES_EMOLGA",
-        "SPECIES_PAWMI",
-        "SPECIES_BUIZEL",
+        "SPECIES_PAWMOT",
+        "SPECIES_FLOATZEL",
         "SPECIES_SHELLOS",
-        "SPECIES_POPPLIO",
-        "SPECIES_SQUIRTLE"
+        "SPECIES_PRIMARINA",
+        "SPECIES_WARTORTLE"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_TALONFLAME",
+        "SPECIES_CORVISQUIRE"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_LIEPARD",
+        "SPECIES_HOUNDOOM"
       ],
       "old_rod": {
         "cast": [
@@ -5585,7 +5589,7 @@
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
           "SPECIES_MAGIKARP",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -5613,10 +5617,10 @@
       "good_rod": {
         "cast": [
           "SPECIES_SHELLOS",
-          "SPECIES_CHINCHOU",
-          "SPECIES_FINNEON",
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
           "SPECIES_TENTACOOL",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5647,7 +5651,7 @@
           "SPECIES_MANTINE",
           "SPECIES_GYARADOS",
           "SPECIES_GASTRODON",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -5675,10 +5679,10 @@
       "surf": {
         "cast": [
           "SPECIES_MAREANIE",
-          "SPECIES_BUIZEL",
+          "SPECIES_FLOATZEL",
           "SPECIES_TENTACRUEL",
           "SPECIES_MANTINE",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -5714,24 +5718,24 @@
       "split": "Post",
       "cast": [
         "SPECIES_LURANTIS",
-        "SPECIES_FLABEBE",
-        "SPECIES_SWABLU",
+        "SPECIES_FLORGES",
+        "SPECIES_ALTARIA",
         "SPECIES_EMOLGA",
-        "SPECIES_SANDYGAST",
-        "SPECIES_BOUNSWEET",
-        "SPECIES_DEWPIDER",
-        "SPECIES_SHELLOS",
-        "SPECIES_PIKIPEK",
-        "SPECIES_SMOLIV",
-        "SPECIES_ROWLET",
-        "SPECIES_POPPLIO"
+        "SPECIES_PALOSSAND",
+        "SPECIES_TSAREENA",
+        "SPECIES_ARAQUANID",
+        "SPECIES_GASTRODON",
+        "SPECIES_TOUCANNON",
+        "SPECIES_ARBOLIVA",
+        "SPECIES_DECIDUEYE",
+        "SPECIES_BRIONNE"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_COMBEE"
+        "SPECIES_TALONFLAME",
+        "SPECIES_VESPIQUEN"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
+        "SPECIES_LIEPARD",
         "SPECIES_ABSOL"
       ],
       "old_rod": {
@@ -5740,7 +5744,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -5769,9 +5773,9 @@
         "cast": [
           "SPECIES_LUVDISC",
           "SPECIES_MANTYKE",
-          "SPECIES_SHELLOS",
-          "SPECIES_CHINCHOU",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_GASTRODON",
+          "SPECIES_LANTURN",
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -5802,7 +5806,7 @@
           "SPECIES_OCTILLERY",
           "SPECIES_TOXAPEX",
           "SPECIES_MANTINE",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -5829,11 +5833,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_SHELLOS",
-          "SPECIES_FRILLISH",
+          "SPECIES_GASTRODON",
+          "SPECIES_JELLICENT",
           "SPECIES_MAREANIE",
-          "SPECIES_BUIZEL",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_FLOATZEL",
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -5868,34 +5872,34 @@
       "order": 150,
       "split": "Post",
       "cast": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_ROOKIDEE",
-        "SPECIES_MIENFOO",
-        "SPECIES_NACLI",
-        "SPECIES_WOOLOO",
+        "SPECIES_HARIYAMA",
+        "SPECIES_CORVIKNIGHT",
+        "SPECIES_MIENSHAO",
+        "SPECIES_GARGANACL",
+        "SPECIES_DUBWOOL",
         "SPECIES_HAWLUCHA",
-        "SPECIES_GEODUDE",
-        "SPECIES_PHANPY",
-        "SPECIES_VULPIX",
-        "SPECIES_PONYTA",
-        "SPECIES_TORCHIC",
-        "SPECIES_LITTEN"
+        "SPECIES_GOLEM",
+        "SPECIES_DONPHAN",
+        "SPECIES_NINETALES",
+        "SPECIES_RAPIDASH",
+        "SPECIES_BLAZIKEN",
+        "SPECIES_INCINEROAR"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_PIKIPEK"
+        "SPECIES_TALONFLAME",
+        "SPECIES_TOUCANNON"
       ],
       "night": [
-        "SPECIES_HOUNDOUR",
-        "SPECIES_PURRLOIN"
+        "SPECIES_HOUNDOOM",
+        "SPECIES_LIEPARD"
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
           "SPECIES_BUIZEL",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -5923,10 +5927,10 @@
       "good_rod": {
         "cast": [
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
+          "SPECIES_LUDICOLO",
           "SPECIES_SURSKIT",
           "SPECIES_SHELLOS",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -5954,10 +5958,10 @@
       "super_rod": {
         "cast": [
           "SPECIES_QUAGSIRE",
-          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
           "SPECIES_GASTRODON",
           "SPECIES_SEAKING",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -5988,7 +5992,7 @@
           "SPECIES_MASQUERAIN",
           "SPECIES_BUIZEL",
           "SPECIES_SHELLOS",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -6023,18 +6027,18 @@
       "order": 151,
       "split": "Post",
       "cast": [
-        "SPECIES_ROOKIDEE",
-        "SPECIES_MIENFOO",
-        "SPECIES_DEWPIDER",
-        "SPECIES_PIKIPEK",
+        "SPECIES_CORVIKNIGHT",
+        "SPECIES_MIENSHAO",
+        "SPECIES_ARAQUANID",
+        "SPECIES_TOUCANNON",
         "SPECIES_VULLABY",
         "SPECIES_CARBINK",
-        "SPECIES_BUIZEL",
+        "SPECIES_FLOATZEL",
         "SPECIES_SHELLOS"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_SWABLU"
+        "SPECIES_TALONFLAME",
+        "SPECIES_ALTARIA"
       ],
       "night": [
         "SPECIES_VULLABY",
@@ -6046,7 +6050,7 @@
           "SPECIES_MAGIKARP",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -6074,10 +6078,10 @@
       "good_rod": {
         "cast": [
           "SPECIES_MAREANIE",
-          "SPECIES_CHINCHOU",
+          "SPECIES_LANTURN",
           "SPECIES_FINNEON",
           "SPECIES_TENTACOOL",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -6108,7 +6112,7 @@
           "SPECIES_MANTINE",
           "SPECIES_GYARADOS",
           "SPECIES_GASTRODON",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6136,10 +6140,10 @@
       "surf": {
         "cast": [
           "SPECIES_MAREANIE",
-          "SPECIES_BUIZEL",
+          "SPECIES_FLOATZEL",
           "SPECIES_TENTACRUEL",
           "SPECIES_MANTINE",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -6174,34 +6178,34 @@
       "order": 152,
       "split": "Post",
       "cast": [
-        "SPECIES_CHARCADET",
+        "SPECIES_CERULEDGE",
         "SPECIES_SKARMORY",
-        "SPECIES_RHYHORN",
-        "SPECIES_KOFFING",
-        "SPECIES_SALANDIT",
+        "SPECIES_RHYPERIOR",
+        "SPECIES_WEEZING",
+        "SPECIES_SALAZZLE",
         "SPECIES_TURTONATOR",
-        "SPECIES_SLUGMA",
-        "SPECIES_HOUNDOUR",
-        "SPECIES_NACLI",
-        "SPECIES_MAGBY",
-        "SPECIES_CHARMANDER",
-        "SPECIES_LITTEN"
+        "SPECIES_MAGCARGO",
+        "SPECIES_HOUNDOOM",
+        "SPECIES_GARGANACL",
+        "SPECIES_MAGMORTAR",
+        "SPECIES_CHARIZARD",
+        "SPECIES_INCINEROAR"
       ],
       "day": [
-        "SPECIES_PONYTA",
-        "SPECIES_VULPIX"
+        "SPECIES_RAPIDASH",
+        "SPECIES_NINETALES"
       ],
       "night": [
-        "SPECIES_HOUNDOUR",
-        "SPECIES_SALANDIT"
+        "SPECIES_HOUNDOOM",
+        "SPECIES_SALAZZLE"
       ],
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -6228,11 +6232,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6263,7 +6267,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -6291,10 +6295,10 @@
       "surf": {
         "cast": [
           "SPECIES_FEEBAS",
-          "SPECIES_SHELLOS",
+          "SPECIES_GASTRODON",
           "SPECIES_CORPHISH",
           "SPECIES_GOLDEEN",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6329,26 +6333,26 @@
       "order": 156,
       "split": "Post",
       "cast": [
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_TRAPINCH",
-        "SPECIES_SANDYGAST",
-        "SPECIES_DWEBBLE",
-        "SPECIES_SALANDIT",
-        "SPECIES_BELDUM",
-        "SPECIES_GLIMMET",
-        "SPECIES_RHYHORN",
-        "SPECIES_NACLI",
-        "SPECIES_ONIX",
-        "SPECIES_GIBLE",
-        "SPECIES_LARVITAR"
+        "SPECIES_HIPPOWDON",
+        "SPECIES_FLYGON",
+        "SPECIES_PALOSSAND",
+        "SPECIES_CRUSTLE",
+        "SPECIES_SALAZZLE",
+        "SPECIES_METAGROSS",
+        "SPECIES_GLIMMORA",
+        "SPECIES_RHYPERIOR",
+        "SPECIES_GARGANACL",
+        "SPECIES_STEELIX",
+        "SPECIES_GARCHOMP",
+        "SPECIES_PUPITAR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_PHANPY"
+        "SPECIES_GOLEM",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_SANDYGAST",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_PALOSSAND",
+        "SPECIES_HOUNDOOM"
       ],
       "old_rod": {
         "cast": [
@@ -6356,7 +6360,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -6383,11 +6387,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_SHELLOS",
+          "SPECIES_GASTRODON",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -6418,7 +6422,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -6445,11 +6449,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_SHELLOS",
-          "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_GASTRODON",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -6485,33 +6489,33 @@
       "split": "Post",
       "cast": [
         "SPECIES_HERACROSS",
-        "SPECIES_BUDEW",
-        "SPECIES_SEWADDLE",
-        "SPECIES_JOLTIK",
+        "SPECIES_ROSERADE",
+        "SPECIES_LEAVANNY",
+        "SPECIES_GALVANTULA",
         "SPECIES_EMOLGA",
-        "SPECIES_SMOLIV",
-        "SPECIES_COMBEE",
-        "SPECIES_BOUNSWEET",
-        "SPECIES_GRUBBIN",
+        "SPECIES_ARBOLIVA",
+        "SPECIES_VESPIQUEN",
+        "SPECIES_TSAREENA",
+        "SPECIES_VIKAVOLT",
         "SPECIES_FOMANTIS",
-        "SPECIES_SNIVY",
-        "SPECIES_SPRIGATITO"
+        "SPECIES_SERPERIOR",
+        "SPECIES_MEOWSCARADA"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_BUNEARY"
+        "SPECIES_TALONFLAME",
+        "SPECIES_LOPUNNY"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_LIEPARD",
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_GYARADOS",
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -6542,7 +6546,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -6573,7 +6577,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -6600,11 +6604,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_MASQUERAIN",
           "SPECIES_GOLDEEN",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -6640,20 +6644,20 @@
       "split": "Post",
       "cast": [
         "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_TOGEPI",
-        "SPECIES_PIKIPEK",
-        "SPECIES_BOUNSWEET",
-        "SPECIES_SMOLIV",
+        "SPECIES_TOGEKISS",
+        "SPECIES_TOUCANNON",
+        "SPECIES_TSAREENA",
+        "SPECIES_ARBOLIVA",
         "SPECIES_LURANTIS",
-        "SPECIES_SHELLOS",
-        "SPECIES_BUIZEL"
+        "SPECIES_GASTRODON",
+        "SPECIES_FLOATZEL"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_SWABLU"
+        "SPECIES_TALONFLAME",
+        "SPECIES_ALTARIA"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
+        "SPECIES_LIEPARD",
         "SPECIES_ABSOL"
       ],
       "old_rod": {
@@ -6661,8 +6665,8 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
-          "SPECIES_FROAKIE"
+          "SPECIES_GYARADOS",
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -6690,10 +6694,10 @@
       "good_rod": {
         "cast": [
           "SPECIES_TENTACOOL",
-          "SPECIES_LUVDISC",
+          "SPECIES_ALOMOMOLA",
           "SPECIES_MANTYKE",
-          "SPECIES_SHELLOS",
-          "SPECIES_POPPLIO"
+          "SPECIES_GASTRODON",
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6724,7 +6728,7 @@
           "SPECIES_LUMINEON",
           "SPECIES_TENTACRUEL",
           "SPECIES_OCTILLERY",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -6752,10 +6756,10 @@
       "surf": {
         "cast": [
           "SPECIES_TENTACOOL",
-          "SPECIES_MAREANIE",
+          "SPECIES_TOXAPEX",
           "SPECIES_MANTYKE",
-          "SPECIES_SHELLOS",
-          "SPECIES_POPPLIO"
+          "SPECIES_GASTRODON",
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6793,7 +6797,7 @@
         "SPECIES_DWEBBLE",
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_NACLI",
         "SPECIES_BRONZOR"
       ],
@@ -6802,7 +6806,7 @@
         "SPECIES_KLEFKI"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_FERROSEED"
       ]
     },
@@ -6818,7 +6822,7 @@
         "SPECIES_DWEBBLE",
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_NACLI"
       ],
       "day": [
@@ -6826,39 +6830,39 @@
         "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_FERROSEED"
       ]
     },
     "encounters_sendoff_spring": {
       "archetype": "A19",
       "band": "late",
-      "intent": "The spring before Turnback Cave, Dhelmise's home: the ghosts gather, Absol watches.",
+      "intent": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk.",
       "locked": [],
-      "base_level": 37,
+      "base_level": 50,
       "order": 111,
-      "split": "Post",
+      "split": "League",
       "cast": [
+        "SPECIES_GARCHOMP",
+        "SPECIES_METAGROSS",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_DUSKULL",
+        "SPECIES_PUPITAR",
+        "SPECIES_GOODRA",
+        "SPECIES_KOMMO_O",
         "SPECIES_ABSOL",
-        "SPECIES_VULLABY",
-        "SPECIES_GOTHITA",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_KLEFKI",
-        "SPECIES_SWABLU",
-        "SPECIES_HAWLUCHA",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_WEAVILE",
+        "SPECIES_SCIZOR",
+        "SPECIES_GARDEVOIR",
+        "SPECIES_HERACROSS",
+        "SPECIES_ELECTIVIRE"
       ],
       "day": [
-        "SPECIES_SWABLU",
-        "SPECIES_VULLABY"
+        "SPECIES_SCIZOR",
+        "SPECIES_HERACROSS"
       ],
       "night": [
         "SPECIES_ABSOL",
-        "SPECIES_DUSKULL"
+        "SPECIES_WEAVILE"
       ],
       "old_rod": {
         "cast": [
@@ -6866,7 +6870,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -6897,7 +6901,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6928,7 +6932,7 @@
           "SPECIES_LANTURN",
           "SPECIES_GYARADOS",
           "SPECIES_JELLICENT",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -6959,7 +6963,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -6994,19 +6998,19 @@
       "order": 144,
       "split": "Post",
       "cast": [
-        "SPECIES_SNORUNT",
-        "SPECIES_ZUBAT",
-        "SPECIES_SNOM",
-        "SPECIES_SNEASEL",
-        "SPECIES_BRONZOR",
+        "SPECIES_GLALIE",
+        "SPECIES_CROBAT",
+        "SPECIES_FROSMOTH",
+        "SPECIES_WEAVILE",
+        "SPECIES_BRONZONG",
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_SWINUB",
-        "SPECIES_SNORUNT"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_GLALIE"
       ],
       "night": [
-        "SPECIES_SNEASEL",
+        "SPECIES_WEAVILE",
         "SPECIES_ABSOL"
       ]
     },
@@ -7019,20 +7023,20 @@
       "order": 145,
       "split": "Post",
       "cast": [
-        "SPECIES_SNEASEL",
-        "SPECIES_SNORUNT",
-        "SPECIES_ZUBAT",
-        "SPECIES_SWINUB",
+        "SPECIES_WEAVILE",
+        "SPECIES_GLALIE",
+        "SPECIES_CROBAT",
+        "SPECIES_MAMOSWINE",
         "SPECIES_CARBINK",
-        "SPECIES_SNOM"
+        "SPECIES_FROSMOTH"
       ],
       "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SNOVER"
+        "SPECIES_FROSMOTH",
+        "SPECIES_ABOMASNOW"
       ],
       "night": [
-        "SPECIES_SNEASEL",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_WEAVILE",
+        "SPECIES_MR_RIME"
       ]
     },
     "encounters_snowpoint_temple_b2f": {
@@ -7045,20 +7049,20 @@
       "split": "Post",
       "cast": [
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_SNORUNT",
-        "SPECIES_ZUBAT",
-        "SPECIES_SNEASEL",
-        "SPECIES_SNOM",
-        "SPECIES_SNOVER",
-        "SPECIES_BRONZOR",
+        "SPECIES_GLALIE",
+        "SPECIES_CROBAT",
+        "SPECIES_WEAVILE",
+        "SPECIES_FROSMOTH",
+        "SPECIES_ABOMASNOW",
+        "SPECIES_BRONZONG",
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_SWINUB",
-        "SPECIES_SNORUNT"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_GLALIE"
       ],
       "night": [
-        "SPECIES_SNEASEL",
+        "SPECIES_WEAVILE",
         "SPECIES_ABSOL"
       ]
     },
@@ -7071,19 +7075,19 @@
       "order": 147,
       "split": "Post",
       "cast": [
-        "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_SNOM",
-        "SPECIES_ZUBAT",
-        "SPECIES_SNORUNT",
+        "SPECIES_MR_RIME",
+        "SPECIES_FROSMOTH",
+        "SPECIES_CROBAT",
+        "SPECIES_GLALIE",
         "SPECIES_CARBINK"
       ],
       "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SNOVER"
+        "SPECIES_FROSMOTH",
+        "SPECIES_ABOMASNOW"
       ],
       "night": [
-        "SPECIES_SNEASEL",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_WEAVILE",
+        "SPECIES_MR_RIME"
       ]
     },
     "encounters_snowpoint_temple_b4f": {
@@ -7095,21 +7099,21 @@
       "order": 148,
       "split": "Post",
       "cast": [
-        "SPECIES_SNEASEL",
-        "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_ZUBAT",
-        "SPECIES_SNORUNT",
-        "SPECIES_SNOVER",
-        "SPECIES_SWINUB",
+        "SPECIES_WEAVILE",
+        "SPECIES_MR_RIME",
+        "SPECIES_CROBAT",
+        "SPECIES_GLALIE",
+        "SPECIES_ABOMASNOW",
+        "SPECIES_MAMOSWINE",
         "SPECIES_ABSOL",
-        "SPECIES_LARVITAR"
+        "SPECIES_PUPITAR"
       ],
       "day": [
-        "SPECIES_SWINUB",
-        "SPECIES_SNORUNT"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_GLALIE"
       ],
       "night": [
-        "SPECIES_SNEASEL",
+        "SPECIES_WEAVILE",
         "SPECIES_ABSOL"
       ]
     },
@@ -7122,43 +7126,49 @@
       "order": 149,
       "split": "Post",
       "cast": [
-        "SPECIES_SNORUNT",
-        "SPECIES_SNEASEL",
-        "SPECIES_ZUBAT",
+        "SPECIES_GLALIE",
+        "SPECIES_WEAVILE",
+        "SPECIES_CROBAT",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_BRONZOR",
+        "SPECIES_BRONZONG",
         "SPECIES_KLEFKI",
         "SPECIES_ABSOL",
-        "SPECIES_BELDUM"
+        "SPECIES_METAGROSS"
       ],
       "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SNOVER"
+        "SPECIES_FROSMOTH",
+        "SPECIES_ABOMASNOW"
       ],
       "night": [
-        "SPECIES_SNEASEL",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_WEAVILE",
+        "SPECIES_MR_RIME"
       ]
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 18 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 60,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_HIPPOPOTAS",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
-        "SPECIES_ONIX"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7166,72 +7176,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 1 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 43,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_DWEBBLE"
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
-      "archetype": "A13",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 2 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 44,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
-        "SPECIES_CARBINK"
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_2": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 3 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 45,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7239,75 +7269,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
-      "archetype": "A16",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 4 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 46,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
-      "archetype": "A18",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 5 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 47,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_3": {
-      "archetype": "A6",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 6 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 48,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_NOSEPASS",
+        "SPECIES_DWEBBLE",
         "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7315,78 +7362,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
-      "archetype": "A7",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 7 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 49,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
+        "SPECIES_DWEBBLE",
         "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
-      "archetype": "A8",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 8 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 50,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_ONIX",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_4": {
-      "archetype": "A15",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 9 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A15.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 51,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7394,72 +7455,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 10 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 52,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_LITWICK",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
         "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
         "SPECIES_GOTHITA",
-        "SPECIES_BRONZOR"
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_5": {
-      "archetype": "A13",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 11 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 53,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 12 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 54,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_DWEBBLE"
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7467,75 +7548,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
-      "archetype": "A16",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 13 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 55,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
-        "SPECIES_CARBINK"
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_6": {
-      "archetype": "A18",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 14 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 56,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
-      "archetype": "A6",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 15 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 57,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7543,55 +7641,65 @@
       ]
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
-      "archetype": "A7",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 16 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 58,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_7": {
-      "archetype": "A8",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 17 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 59,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_stark_mountain_outside": {
@@ -7604,21 +7712,21 @@
       "split": "Post",
       "cast": [
         "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN",
-        "SPECIES_SALANDIT",
-        "SPECIES_CHARCADET",
-        "SPECIES_KOFFING",
+        "SPECIES_MAGCARGO",
+        "SPECIES_RHYPERIOR",
+        "SPECIES_SALAZZLE",
+        "SPECIES_CERULEDGE",
+        "SPECIES_WEEZING",
         "SPECIES_TURTONATOR",
         "SPECIES_LARVESTA"
       ],
       "day": [
-        "SPECIES_MAGBY",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_MAGMORTAR",
+        "SPECIES_HOUNDOOM"
       ],
       "night": [
-        "SPECIES_SALANDIT",
-        "SPECIES_KOFFING"
+        "SPECIES_SALAZZLE",
+        "SPECIES_WEEZING"
       ]
     },
     "encounters_stark_mountain_room_1": {
@@ -7631,21 +7739,21 @@
       "split": "Post",
       "cast": [
         "SPECIES_LARVESTA",
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN",
-        "SPECIES_ZUBAT",
-        "SPECIES_KOFFING",
-        "SPECIES_SALANDIT",
-        "SPECIES_MAGBY",
-        "SPECIES_CHARCADET"
+        "SPECIES_MAGCARGO",
+        "SPECIES_RHYPERIOR",
+        "SPECIES_CROBAT",
+        "SPECIES_WEEZING",
+        "SPECIES_SALAZZLE",
+        "SPECIES_MAGMORTAR",
+        "SPECIES_CERULEDGE"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GOLEM",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SALANDIT"
+        "SPECIES_CROBAT",
+        "SPECIES_SALAZZLE"
       ]
     },
     "encounters_stark_mountain_room_2": {
@@ -7658,21 +7766,21 @@
       "split": "Post",
       "cast": [
         "SPECIES_TURTONATOR",
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN",
-        "SPECIES_ZUBAT",
-        "SPECIES_CHARCADET",
+        "SPECIES_MAGCARGO",
+        "SPECIES_RHYPERIOR",
+        "SPECIES_CROBAT",
+        "SPECIES_CERULEDGE",
         "SPECIES_LARVESTA",
-        "SPECIES_KOFFING",
+        "SPECIES_WEEZING",
         "SPECIES_GALARIAN_WEEZING"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_GOLEM",
+        "SPECIES_STEELIX"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SALANDIT"
+        "SPECIES_CROBAT",
+        "SPECIES_SALAZZLE"
       ]
     },
     "encounters_trophy_garden": {
@@ -7688,21 +7796,21 @@
         "SPECIES_BUNEARY",
         "SPECIES_SKITTY",
         "SPECIES_MINCCINO",
-        "SPECIES_FLABEBE",
+        "SPECIES_FLOETTE",
         "SPECIES_TOGEPI",
         "SPECIES_EEVEE",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_PACHIRISU",
-        "SPECIES_COMBEE",
-        "SPECIES_SPRIGATITO",
-        "SPECIES_ROWLET"
+        "SPECIES_VESPIQUEN",
+        "SPECIES_FLORAGATO",
+        "SPECIES_DARTRIX"
       ],
       "day": [
-        "SPECIES_BOUNSWEET",
+        "SPECIES_STEENEE",
         "SPECIES_SMOLIV"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
+        "SPECIES_LIEPARD",
         "SPECIES_SKITTY"
       ]
     },
@@ -7739,19 +7847,19 @@
       "order": 132,
       "split": "Post",
       "cast": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
       ]
     },
@@ -7924,13 +8032,13 @@
         "SPECIES_DHELMISE",
         "SPECIES_YAMASK",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL"
       ],
       "day": [
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7950,7 +8058,7 @@
         "SPECIES_DHELMISE",
         "SPECIES_YAMASK",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL",
         "SPECIES_SINISTEA",
@@ -7980,12 +8088,12 @@
         "SPECIES_DHELMISE",
         "SPECIES_YAMASK",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_GOTHITA",
@@ -8003,13 +8111,13 @@
       "cast": [
         "SPECIES_YAMASK",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL"
       ],
       "day": [
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -8026,7 +8134,7 @@
       "split": "Post",
       "cast": [
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL",
         "SPECIES_SINISTEA",
@@ -8050,7 +8158,7 @@
       "order": 124,
       "split": "Post",
       "cast": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL",
         "SPECIES_SINISTEA",
@@ -8059,7 +8167,7 @@
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_GOTHITA",
@@ -8075,21 +8183,21 @@
       "order": 125,
       "split": "Post",
       "cast": [
-        "SPECIES_BRONZOR",
+        "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHORITA",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
+        "SPECIES_PROBOPASS",
         "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
+        "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK"
       ]
     },
@@ -8103,18 +8211,18 @@
       "split": "Post",
       "cast": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHORITA",
         "SPECIES_KLEFKI",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_turnback_cave_pillar_3_room_3": {
@@ -8126,19 +8234,19 @@
       "order": 127,
       "split": "Post",
       "cast": [
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHORITA",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
+        "SPECIES_PROBOPASS",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8151,21 +8259,21 @@
       "order": 128,
       "split": "Post",
       "cast": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
+        "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
+        "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK"
       ]
     },
@@ -8180,20 +8288,20 @@
       "cast": [
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
+        "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_turnback_cave_pillar_3_room_6": {
@@ -8206,20 +8314,20 @@
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
+        "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8233,18 +8341,18 @@
       "split": "Post",
       "cast": [
         "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_533": {
@@ -8256,26 +8364,26 @@
       "order": 162,
       "split": "Post",
       "cast": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_534": {
@@ -8287,19 +8395,19 @@
       "order": 163,
       "split": "Post",
       "cast": [
-        "SPECIES_ONIX",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_535": {
@@ -8312,17 +8420,17 @@
       "split": "Post",
       "cast": [
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8335,20 +8443,20 @@
       "order": 165,
       "split": "Post",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
         "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_537": {
@@ -8360,20 +8468,20 @@
       "order": 166,
       "split": "Post",
       "cast": [
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_538": {
@@ -8385,21 +8493,21 @@
       "order": 167,
       "split": "Post",
       "cast": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8412,19 +8520,19 @@
       "order": 168,
       "split": "Post",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_540": {
@@ -8436,20 +8544,20 @@
       "order": 169,
       "split": "Post",
       "cast": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_541": {
@@ -8461,21 +8569,21 @@
       "order": 170,
       "split": "Post",
       "cast": [
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK"
+        "SPECIES_COFAGRIGUS"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8488,22 +8596,22 @@
       "order": 171,
       "split": "Post",
       "cast": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_543": {
@@ -8517,20 +8625,20 @@
       "cast": [
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_544": {
@@ -8543,24 +8651,24 @@
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8573,19 +8681,19 @@
       "order": 174,
       "split": "Post",
       "cast": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_546": {
@@ -8597,19 +8705,19 @@
       "order": 175,
       "split": "Post",
       "cast": [
-        "SPECIES_ONIX",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_547": {
@@ -8622,18 +8730,18 @@
       "split": "Post",
       "cast": [
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8646,20 +8754,20 @@
       "order": 177,
       "split": "Post",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
         "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_549": {
@@ -8671,22 +8779,22 @@
       "order": 178,
       "split": "Post",
       "cast": [
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_550": {
@@ -8698,18 +8806,18 @@
       "order": 179,
       "split": "Post",
       "cast": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8722,20 +8830,20 @@
       "order": 180,
       "split": "Post",
       "cast": [
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_552": {
@@ -8747,22 +8855,22 @@
       "order": 181,
       "split": "Post",
       "cast": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_553": {
@@ -8774,21 +8882,21 @@
       "order": 182,
       "split": "Post",
       "cast": [
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK"
+        "SPECIES_COFAGRIGUS"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8801,22 +8909,22 @@
       "order": 183,
       "split": "Post",
       "cast": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_unknown_555": {
@@ -8830,24 +8938,24 @@
       "cast": [
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR",
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE",
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA",
+        "SPECIES_GOTHITELLE"
       ],
       "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
       ]
     },
     "encounters_unknown_556": {
@@ -8860,17 +8968,17 @@
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK"
+        "SPECIES_COFAGRIGUS"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
       ]
     },
@@ -8883,19 +8991,19 @@
       "order": 186,
       "split": "Post",
       "cast": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_ONIX",
+        "SPECIES_PROBOPASS",
+        "SPECIES_STEELIX",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CROBAT"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_CHANDELURE"
       ]
     },
     "encounters_valley_windworks_outside": {
@@ -8974,7 +9082,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -9002,9 +9110,9 @@
       "surf": {
         "cast": [
           "SPECIES_BUIZEL",
-          "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
           "SPECIES_MUDKIP"
         ],
         "levels": [
@@ -9041,7 +9149,7 @@
       "split": "Wake",
       "cast": [
         "SPECIES_SWABLU",
-        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOOM",
         "SPECIES_PONYTA",
         "SPECIES_ABSOL",
         "SPECIES_MINCCINO",
@@ -9050,16 +9158,16 @@
         "SPECIES_BUNEARY",
         "SPECIES_PACHIRISU",
         "SPECIES_EMOLGA",
-        "SPECIES_LITTEN",
-        "SPECIES_SPRIGATITO"
+        "SPECIES_TORRACAT",
+        "SPECIES_FLORAGATO"
       ],
       "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_FLETCHINDER",
+        "SPECIES_CORVISQUIRE"
       ],
       "night": [
         "SPECIES_ABSOL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
       ]
     },
     "encounters_victory_road_1f": {
@@ -9071,26 +9179,26 @@
       "order": 136,
       "split": "League",
       "cast": [
-        "SPECIES_LARVITAR",
-        "SPECIES_ONIX",
+        "SPECIES_PUPITAR",
+        "SPECIES_STEELIX",
         "SPECIES_RHYHORN",
-        "SPECIES_GIBLE",
-        "SPECIES_NACLI",
+        "SPECIES_GABITE",
+        "SPECIES_GARGANACL",
         "SPECIES_HAWLUCHA",
-        "SPECIES_GLIMMET",
+        "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_MAKUHITA",
-        "SPECIES_GEODUDE",
-        "SPECIES_BELDUM",
-        "SPECIES_JANGMO_O"
+        "SPECIES_HARIYAMA",
+        "SPECIES_GOLEM",
+        "SPECIES_METANG",
+        "SPECIES_HAKAMO_O"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GOLEM",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_victory_road_1f_room_1": {
@@ -9102,20 +9210,20 @@
       "order": 139,
       "split": "League",
       "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_NACLI",
-        "SPECIES_GLIMMET",
-        "SPECIES_LARVITAR",
-        "SPECIES_GIBLE",
-        "SPECIES_RHYHORN"
+        "SPECIES_STEELIX",
+        "SPECIES_GARGANACL",
+        "SPECIES_GLIMMORA",
+        "SPECIES_PUPITAR",
+        "SPECIES_GARCHOMP",
+        "SPECIES_RHYPERIOR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GOLEM",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_CROBAT",
+        "SPECIES_BRONZONG"
       ]
     },
     "encounters_victory_road_1f_room_2": {
@@ -9127,30 +9235,30 @@
       "order": 140,
       "split": "League",
       "cast": [
-        "SPECIES_GOOMY",
-        "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_SLIGGOO",
+        "SPECIES_STEELIX",
+        "SPECIES_GARGANACL",
         "SPECIES_CARBINK",
-        "SPECIES_FERROSEED",
-        "SPECIES_BRONZOR",
-        "SPECIES_GIBLE",
-        "SPECIES_BELDUM"
+        "SPECIES_FERROTHORN",
+        "SPECIES_BRONZONG",
+        "SPECIES_GARCHOMP",
+        "SPECIES_METAGROSS"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GOLEM",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ],
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -9181,7 +9289,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -9212,7 +9320,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -9243,7 +9351,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
-          "SPECIES_MUDKIP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -9278,21 +9386,21 @@
       "order": 141,
       "split": "League",
       "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_NACLI",
-        "SPECIES_GLIMMET",
-        "SPECIES_LARVITAR",
-        "SPECIES_JANGMO_O",
+        "SPECIES_STEELIX",
+        "SPECIES_GARGANACL",
+        "SPECIES_GLIMMORA",
+        "SPECIES_PUPITAR",
+        "SPECIES_KOMMO_O",
         "SPECIES_HAWLUCHA",
-        "SPECIES_BELDUM",
-        "SPECIES_GIBLE"
+        "SPECIES_METAGROSS",
+        "SPECIES_GARCHOMP"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_CARBINK"
       ]
     },
@@ -9305,21 +9413,21 @@
       "order": 137,
       "split": "League",
       "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_NACLI",
+        "SPECIES_STEELIX",
+        "SPECIES_GARGANACL",
         "SPECIES_KLEFKI",
-        "SPECIES_JANGMO_O",
-        "SPECIES_LARVITAR",
-        "SPECIES_GIBLE",
+        "SPECIES_HAKAMO_O",
+        "SPECIES_PUPITAR",
+        "SPECIES_GABITE",
         "SPECIES_CARBINK",
-        "SPECIES_BRONZOR"
+        "SPECIES_BRONZONG"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GOLEM",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
       ]
     },
@@ -9332,28 +9440,28 @@
       "order": 138,
       "split": "League",
       "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_NACLI",
-        "SPECIES_BELDUM",
-        "SPECIES_GOOMY",
-        "SPECIES_GIBLE",
-        "SPECIES_ZUBAT"
+        "SPECIES_STEELIX",
+        "SPECIES_GARGANACL",
+        "SPECIES_METANG",
+        "SPECIES_SLIGGOO",
+        "SPECIES_GABITE",
+        "SPECIES_CROBAT"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_CARBINK"
       ],
       "old_rod": {
         "cast": [
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -9380,11 +9488,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GYARADOS",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -9415,7 +9523,7 @@
           "SPECIES_WHISCASH",
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -9442,11 +9550,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_SHELLOS",
+          "SPECIES_GASTRODON",
           "SPECIES_CORPHISH",
           "SPECIES_GOLDEEN",
           "SPECIES_JELLICENT",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -9540,7 +9648,7 @@
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
           "SPECIES_MAGIKARP",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -9571,7 +9679,7 @@
           "SPECIES_FINNEON",
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -9602,7 +9710,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
           "SPECIES_LANTURN",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -9633,7 +9741,7 @@
           "SPECIES_MANTINE",
           "SPECIES_GASTRODON",
           "SPECIES_TENTACOOL",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -9673,7 +9781,7 @@
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
           "SPECIES_MAGIKARP",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -9704,7 +9812,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -9735,7 +9843,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -9766,7 +9874,7 @@
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
           "SPECIES_FRILLISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -9819,7 +9927,7 @@
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
           "SPECIES_BUIZEL",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -9850,7 +9958,7 @@
           "SPECIES_SHARPEDO",
           "SPECIES_GYARADOS",
           "SPECIES_FLOATZEL",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -9878,10 +9986,10 @@
       "surf": {
         "cast": [
           "SPECIES_SHELLOS",
-          "SPECIES_SURSKIT",
+          "SPECIES_MASQUERAIN",
           "SPECIES_GOLDEEN",
           "SPECIES_CORPHISH",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -9939,7 +10047,7 @@
           "SPECIES_MANTYKE",
           "SPECIES_MAGIKARP",
           "SPECIES_SHELLOS",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -9970,7 +10078,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MAREANIE",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -10001,7 +10109,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_LANTURN",
           "SPECIES_LUMINEON",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -10032,7 +10140,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_TENTACOOL",
           "SPECIES_MANTYKE",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -10101,9 +10209,9 @@
         "cast": [
           "SPECIES_CARVANHA",
           "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
-          "SPECIES_DEWPIDER",
-          "SPECIES_MUDKIP"
+          "SPECIES_MASQUERAIN",
+          "SPECIES_ARAQUANID",
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10134,7 +10242,7 @@
           "SPECIES_SHARPEDO",
           "SPECIES_LOMBRE",
           "SPECIES_LUDICOLO",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10161,11 +10269,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_SURSKIT",
-          "SPECIES_DEWPIDER",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_ARAQUANID",
           "SPECIES_QUAGSIRE",
           "SPECIES_FRILLISH",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10205,7 +10313,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10236,7 +10344,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10267,7 +10375,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_GYARADOS",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -10298,7 +10406,7 @@
           "SPECIES_JELLICENT",
           "SPECIES_FLOATZEL",
           "SPECIES_BUIZEL",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10338,7 +10446,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10369,7 +10477,7 @@
           "SPECIES_LUVDISC",
           "SPECIES_MANTYKE",
           "SPECIES_SHELLOS",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10400,7 +10508,7 @@
           "SPECIES_LANTURN",
           "SPECIES_LUMINEON",
           "SPECIES_TENTACRUEL",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -10431,7 +10539,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_MANTYKE",
           "SPECIES_SHELLOS",
-          "SPECIES_FROAKIE"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10484,7 +10592,7 @@
           "SPECIES_SHELLOS",
           "SPECIES_CHINCHOU",
           "SPECIES_FINNEON",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10515,7 +10623,7 @@
           "SPECIES_LANTURN",
           "SPECIES_LUMINEON",
           "SPECIES_TENTACRUEL",
-          "SPECIES_FROGADIER"
+          "SPECIES_GRENINJA"
         ],
         "levels": [
           [
@@ -10546,7 +10654,7 @@
           "SPECIES_MANTYKE",
           "SPECIES_GASTRODON",
           "SPECIES_TENTACOOL",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10586,7 +10694,7 @@
           "SPECIES_MAGIKARP",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
-          "SPECIES_POPPLIO"
+          "SPECIES_BRIONNE"
         ],
         "levels": [
           [
@@ -10613,11 +10721,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_POPPLIO",
+          "SPECIES_BRIONNE",
           "SPECIES_TENTACOOL",
-          "SPECIES_REMORAID",
+          "SPECIES_OCTILLERY",
           "SPECIES_MAREANIE",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -10648,7 +10756,7 @@
           "SPECIES_LANTURN",
           "SPECIES_LUMINEON",
           "SPECIES_TENTACRUEL",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -10675,11 +10783,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_POPPLIO",
+          "SPECIES_BRIONNE",
           "SPECIES_MANTYKE",
           "SPECIES_GASTRODON",
           "SPECIES_TENTACOOL",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_WARTORTLE"
         ],
         "levels": [
           [
@@ -10719,7 +10827,7 @@
           "SPECIES_MAGIKARP",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -10748,9 +10856,9 @@
         "cast": [
           "SPECIES_FINNEON",
           "SPECIES_TENTACOOL",
-          "SPECIES_REMORAID",
+          "SPECIES_OCTILLERY",
           "SPECIES_MAREANIE",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -10781,7 +10889,7 @@
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
           "SPECIES_LANTURN",
-          "SPECIES_WARTORTLE"
+          "SPECIES_BLASTOISE"
         ],
         "levels": [
           [
@@ -10812,7 +10920,7 @@
           "SPECIES_TENTACRUEL",
           "SPECIES_MANTINE",
           "SPECIES_GASTRODON",
-          "SPECIES_POPPLIO"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -10852,7 +10960,7 @@
           "SPECIES_MANTYKE",
           "SPECIES_MAGIKARP",
           "SPECIES_SHELLOS",
-          "SPECIES_MUDKIP"
+          "SPECIES_MARSHTOMP"
         ],
         "levels": [
           [
@@ -10879,11 +10987,11 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_CHINCHOU",
+          "SPECIES_LANTURN",
           "SPECIES_FINNEON",
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -10914,7 +11022,7 @@
           "SPECIES_GYARADOS",
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
-          "SPECIES_BRIONNE"
+          "SPECIES_PRIMARINA"
         ],
         "levels": [
           [
@@ -10941,11 +11049,11 @@
       },
       "surf": {
         "cast": [
-          "SPECIES_BUIZEL",
+          "SPECIES_FLOATZEL",
           "SPECIES_TENTACRUEL",
           "SPECIES_MANTINE",
           "SPECIES_GASTRODON",
-          "SPECIES_FROAKIE"
+          "SPECIES_FROGADIER"
         ],
         "levels": [
           [
@@ -11029,7 +11137,7 @@
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
           "SPECIES_GYARADOS",
-          "SPECIES_MARSHTOMP"
+          "SPECIES_SWAMPERT"
         ],
         "levels": [
           [
@@ -11057,8 +11165,8 @@
       "surf": {
         "cast": [
           "SPECIES_BUIZEL",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT",
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
           "SPECIES_GOLDEEN",
           "SPECIES_SQUIRTLE"
         ],
@@ -11133,7 +11241,7 @@
     "encounters_honey_tree"
   ],
   "splits": {
-    "_comment": "Ian's gym splits, in order, each with its hard level cap and the split each rod arrives in. Roark's and Gardenia's tables are his; the rest are the tool's reading of the route sequence, provisional.",
+    "_comment": "Ian's gym splits, in order, each with its hard level cap (null until he gives it) and the split each rod arrives in. Roark and Gardenia are his; the rest are the tool's reading of the route sequence, provisional.",
     "order": [
       "Roark",
       "Gardenia",

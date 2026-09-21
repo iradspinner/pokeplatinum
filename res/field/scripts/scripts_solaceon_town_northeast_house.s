@@ -28,6 +28,7 @@ SolaceonTownNortheastHouse_Clown:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT, SolaceonTownNortheastHouse_Declined
     Message SolaceonTownNortheastHouse_Text_WouldYouLikeOneOfThesePokemon
     ShowYesNoMenu VAR_0x800C
     GoToIfEq VAR_0x800C, 0, SolaceonTownNortheastHouse_PickAGift
@@ -54,7 +55,8 @@ SolaceonTownNortheastHouse_GiveNatu:
     GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_NATU, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_LUNATONE, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
     Message SolaceonTownNortheastHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
@@ -67,6 +69,7 @@ SolaceonTownNortheastHouse_GiveTrapinch:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_TRAPINCH, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
     Message SolaceonTownNortheastHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
@@ -78,7 +81,8 @@ SolaceonTownNortheastHouse_GiveClamperl:
     GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CLAMPERL, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_SOLROCK, 30, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
     Message SolaceonTownNortheastHouse_Text_SeeYa
     CloseMessage
     ReleaseAll

@@ -31,6 +31,7 @@ OreburghCityMiddleHouse_Entry2:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT, OreburghCityMiddleHouse_0092
     Message 2
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -60,7 +61,8 @@ OreburghCityMiddleHouse_009D:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_ODDISH, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_RHYHORN, 15, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll
@@ -72,7 +74,8 @@ OreburghCityMiddleHouse_00C9:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BELLSPROUT, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_GLIMMET, 15, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll
@@ -84,7 +87,8 @@ OreburghCityMiddleHouse_00F5:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CACNEA, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_BRONZOR, 15, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
     Message 6
     CloseMessage
     ReleaseAll

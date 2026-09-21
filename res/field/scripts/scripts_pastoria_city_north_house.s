@@ -44,6 +44,7 @@ PastoriaCityNorthHouse_Entry3:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT, PastoriaCityNorthHouse_018E
     Message 3
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -58,7 +59,8 @@ PastoriaCityNorthHouse_0086:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_KINGLER, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_OCTILLERY, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -70,7 +72,8 @@ PastoriaCityNorthHouse_00B2:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_REMORAID, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_MANTINE, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -82,7 +85,8 @@ PastoriaCityNorthHouse_00DE:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_RELICANTH, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_CRAWDAUNT, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -94,7 +98,8 @@ PastoriaCityNorthHouse_010A:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_POLITOED, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_SHARPEDO, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -106,7 +111,8 @@ PastoriaCityNorthHouse_0136:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_DEWGONG, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_LANTURN, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -118,7 +124,8 @@ PastoriaCityNorthHouse_0162:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_SEADRA, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_TOXAPEX, 45, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage
     ReleaseAll
@@ -136,7 +143,7 @@ PastoriaCityNorthHouse_0199:
     ReleaseAll
     End
 PastoriaCityNorthHouse_01A4:
-    GetRandom VAR_0x800C, 3
+    GetRandom VAR_0x800C, 6
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, PastoriaCityNorthHouse_0086
     CompareVarToValue VAR_0x800C, 1

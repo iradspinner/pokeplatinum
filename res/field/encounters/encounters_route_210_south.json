@@ -11,11 +11,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_BOUNSWEET"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 19,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_CORVISQUIRE"
         },
         {
             "level": 20,
@@ -23,7 +23,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_FENNEKIN"
+            "species": "SPECIES_BRAIXEN"
         },
         {
             "level": 20,
@@ -43,11 +43,11 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_TORCHIC"
+            "species": "SPECIES_COMBUSKEN"
         },
         {
             "level": 21,
-            "species": "SPECIES_SPRIGATITO"
+            "species": "SPECIES_FLORAGATO"
         }
     ],
     "swarms": [
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_SWABLU",
-        "SPECIES_FLETCHLING"
+        "SPECIES_FLETCHINDER"
     ],
     "night": [
         "SPECIES_SNEASEL",
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_SCIZOR",
         "SPECIES_RAPIDASH",
-        "SPECIES_STEENEE",
-        "SPECIES_CORVISQUIRE"
+        "SPECIES_TSAREENA",
+        "SPECIES_CORVIKNIGHT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_CARVANHA",
-        "SPECIES_LOMBRE"
+        "SPECIES_RALTS",
+        "SPECIES_MASQUERAIN"
     ],
     "sapphire": [
-        "SPECIES_CARVANHA",
-        "SPECIES_LOMBRE"
+        "SPECIES_RALTS",
+        "SPECIES_MASQUERAIN"
     ],
     "emerald": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_TREECKO"
+        "SPECIES_BRELOOM",
+        "SPECIES_KIRLIA"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_TENTACOOL"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GOLBAT"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_EEVEE",
+        "SPECIES_GASTLY"
     ],
     "surf_rate": 0,
     "surf_encounters": [

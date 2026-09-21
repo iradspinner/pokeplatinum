@@ -49,8 +49,8 @@
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX"],
       "cameo": ["SPECIES_ROOKIDEE", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_FLETCHLING"],
-      "tail": ["SPECIES_HOUNDOUR", "SPECIES_SMOLIV", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_LITTEN"],
-      "note": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night."
+      "tail": ["SPECIES_HOUNDOUR", "SPECIES_SMOLIV", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_TORCHIC"],
+      "note": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Torchic the 1% fire tails, Vulpix and Houndour by night."
     },
     "encounters_oreburgh_mine_b1f": {
       "home": ["SPECIES_MAKUHITA"],
@@ -76,9 +76,9 @@
       "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Wooper in the wet, Nacli and Phanpy by day."
     },
     "encounters_route_204_north": {
-      "home": ["SPECIES_SCORBUNNY", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
+      "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
       "cameo": ["SPECIES_TREECKO", "SPECIES_SNIVY", "SPECIES_FLETCHLING", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO"],
@@ -94,59 +94,59 @@
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD"],
-      "cameo": ["SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_SMOLIV"],
+      "cameo": ["SPECIES_STEENEE", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_SMOLIV"],
       "tail": ["SPECIES_PACHIRISU", "SPECIES_DEWPIDER", "SPECIES_BUIZEL", "SPECIES_GRUBBIN", "SPECIES_FROAKIE", "SPECIES_POPPLIO"],
       "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night."
     },
     "encounters_eterna_forest": {
       "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY"],
-      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_BLIPBUG", "SPECIES_GRUBBIN", "SPECIES_COMBEE", "SPECIES_BOUNSWEET", "SPECIES_ROWLET", "SPECIES_BUDEW", "SPECIES_PURRLOIN"],
+      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_DOTTLER", "SPECIES_GRUBBIN", "SPECIES_COMBEE", "SPECIES_STEENEE", "SPECIES_ROWLET", "SPECIES_BUDEW", "SPECIES_PURRLOIN"],
       "note": "The forest, eight lines: Shroomish and Buneary at home, Sewaddle and Seedot under the trees, Combee in the canopy, Rowlet by day at 10, Seedot and Purrloin by night."
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN"],
-      "note": "The haunted house's hall, Sinistea's home: teacups and candles, the graveyard ghosts behind them, a cat at night."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "note": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night."
     },
     "encounters_old_chateau_dining_area": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
       "note": "The dining room: candles on the table, six lines, none over 25."
     },
     "encounters_old_chateau_side_rooms": {
-      "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
-      "note": "The side rooms: three ghosts co-equal."
+      "home": ["SPECIES_MISDREAVUS"],
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
+      "note": "The side rooms, Misdreavus’s home: three ghosts co-equal."
     },
     "encounters_old_chateau_corridor": {
-      "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
-      "note": "The corridor: candles lead."
+      "home": ["SPECIES_GASTLY"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
+      "note": "The corridor, Gastly’s home: the gas fills it end to end."
     },
     "encounters_old_chateau_back_west_room": {
-      "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The back west room: Yamask's corner of the house."
+      "home": ["SPECIES_YAMASK"],
+      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_GASTLY", "SPECIES_DUSKULL"],
+      "note": "The back west room: Yamask’s corner."
     },
     "encounters_old_chateau_back_middle_west_room": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_DUSKULL", "SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK"],
       "note": "Back middle west: Duskull leads for once."
     },
     "encounters_old_chateau_back_middle_room": {
       "home": ["SPECIES_LITWICK"],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN"],
-      "note": "The middle room with the television, Litwick's home."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_MISDREAVUS"],
+      "note": "The middle room with the television, Litwick’s home."
     },
     "encounters_old_chateau_back_middle_east_room": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_ZUBAT", "SPECIES_PURRLOIN"],
-      "note": "Back middle east: three co-equal again, in a different order."
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
+      "note": "Back middle east: three ghosts co-equal."
     },
     "encounters_old_chateau_back_east_room": {
       "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The back east room: teacups again, the cat by night."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_MISDREAVUS", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
+      "note": "The back east room: the gas leads, the banshee answers."
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO"],
@@ -161,9 +161,9 @@
     },
     "encounters_route_206": {
       "home": ["SPECIES_GLIGAR"],
-      "cameo": ["SPECIES_PONYTA", "SPECIES_STUNKY", "SPECIES_DWEBBLE", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_FLETCHLING", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_NACLI", "SPECIES_ROOKIDEE", "SPECIES_CHARMANDER", "SPECIES_SCORBUNNY"],
-      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Scorbunny the 1%s."
+      "cameo": ["SPECIES_PONYTA", "SPECIES_STUNKY", "SPECIES_DWEBBLE", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
+      "tail": ["SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_NACLI", "SPECIES_CORVISQUIRE", "SPECIES_CHARMELEON", "SPECIES_FROGADIER"],
+      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s."
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
@@ -179,8 +179,8 @@
     },
     "encounters_route_208": {
       "home": ["SPECIES_FOMANTIS", "SPECIES_FLABEBE"],
-      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHLING", "SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PURRLOIN", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_MINCCINO", "SPECIES_BUNEARY", "SPECIES_TREECKO", "SPECIES_SNIVY"],
+      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_STEENEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PURRLOIN", "SPECIES_MIGHTYENA"],
+      "tail": ["SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_MINCCINO", "SPECIES_BUNEARY", "SPECIES_GROVYLE", "SPECIES_SERVINE"],
       "note": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s."
     },
     "encounters_mt_coronet_1f_south": {
@@ -190,13 +190,13 @@
     },
     "encounters_route_209": {
       "home": ["SPECIES_GOTHITA"],
-      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHLING", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_PURRLOIN", "SPECIES_YAMASK"],
-      "tail": ["SPECIES_KOFFING", "SPECIES_BOUNSWEET", "SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_DUSKULL", "SPECIES_TORCHIC"],
+      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_PURRLOIN", "SPECIES_YAMASK"],
+      "tail": ["SPECIES_KOFFING", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_DUSKULL", "SPECIES_COMBUSKEN"],
       "note": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night."
     },
     "encounters_route_209_lost_tower_1f": {
-      "home": ["SPECIES_YAMASK"],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA"],
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA", "SPECIES_YAMASK"],
       "note": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts."
     },
     "encounters_route_209_lost_tower_2f": {
@@ -222,143 +222,160 @@
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 1 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 2 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2": {
       "home": ["SPECIES_KLEFKI"],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 3 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 4 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_ZUBAT"],
-      "note": "Solaceon Ruins, room 5 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_DWEBBLE", "SPECIES_YAMASK", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 6 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
-      "note": "Solaceon Ruins, room 7 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
-      "note": "Solaceon Ruins, room 8 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_4": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_YAMASK"],
-      "tail": ["SPECIES_ZUBAT", "SPECIES_LARVITAR"],
-      "note": "Solaceon Ruins, room 9 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A15."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
-      "note": "Solaceon Ruins, room 10 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 11 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_GEODUDE"],
-      "note": "Solaceon Ruins, room 12 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 13 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 14 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 15 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 16 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_7": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_ZUBAT"],
-      "note": "Solaceon Ruins, room 17 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_HIPPOPOTAS", "SPECIES_DWEBBLE", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_YAMASK", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 18 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_route_210_south": {
       "home": ["SPECIES_SCYTHER"],
-      "cameo": ["SPECIES_PONYTA", "SPECIES_BOUNSWEET", "SPECIES_ROOKIDEE", "SPECIES_SWABLU", "SPECIES_FENNEKIN", "SPECIES_FLETCHLING", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_SMOLIV", "SPECIES_SNEASEL", "SPECIES_SLUGMA", "SPECIES_COMBEE", "SPECIES_TORCHIC", "SPECIES_SPRIGATITO"],
+      "cameo": ["SPECIES_PONYTA", "SPECIES_STEENEE", "SPECIES_CORVISQUIRE", "SPECIES_SWABLU", "SPECIES_BRAIXEN", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
+      "tail": ["SPECIES_SMOLIV", "SPECIES_SNEASEL", "SPECIES_SLUGMA", "SPECIES_COMBEE", "SPECIES_COMBUSKEN", "SPECIES_FLORAGATO"],
       "note": "Route 210's lower half, Scyther's home; the north half is the delay. Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, the fire and grass starters as 1%s."
     },
     "encounters_route_215": {
       "home": ["SPECIES_VULLABY", "SPECIES_CASTFORM"],
-      "cameo": ["SPECIES_SCYTHER", "SPECIES_MIENFOO", "SPECIES_FLETCHLING", "SPECIES_WOOPER", "SPECIES_PURRLOIN"],
+      "cameo": ["SPECIES_SCYTHER", "SPECIES_MIENFOO", "SPECIES_FLETCHINDER", "SPECIES_QUAGSIRE", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_CROAGUNK", "SPECIES_YANMA", "SPECIES_KOFFING"],
       "note": "The rain route: Vullaby's home at 35 with Castform at 20, Yanma and Koffing in the tail by the cap rule, Wooper by day."
     },
     "encounters_route_214": {
-      "home": ["SPECIES_RHYHORN", "SPECIES_FENNEKIN", "SPECIES_HOUNDOUR", "SPECIES_SALANDIT"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_DWEBBLE", "SPECIES_PONYTA", "SPECIES_VULPIX"],
-      "tail": ["SPECIES_SWINUB", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_LITTEN"],
+      "home": ["SPECIES_RHYHORN", "SPECIES_BRAIXEN", "SPECIES_HOUNDOOM", "SPECIES_SALANDIT"],
+      "cameo": ["SPECIES_NACLSTACK", "SPECIES_DWEBBLE", "SPECIES_PONYTA", "SPECIES_VULPIX"],
+      "tail": ["SPECIES_SWINUB", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_CHARMELEON", "SPECIES_TORRACAT"],
       "note": "The road down to Valor: Rhyhorn and Fennekin at 20, Houndour and Salandit at home behind them, Swinub a 5 by the cap rule, the fire starters as 1%s."
     },
     "encounters_maniac_tunnel": {
       "home": ["SPECIES_HIPPOPOTAS"],
-      "cameo": ["SPECIES_DWEBBLE", "SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GOLBAT", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
       "note": "The Ruin Maniac's tunnel: Hippopotas's home in the sand, Ferroseed at 10 by the cap rule."
     },
     "encounters_ruin_maniac_cave_short": {
       "home": ["SPECIES_DWEBBLE"],
-      "cameo": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_CARBINK", "SPECIES_FERROSEED"],
+      "cameo": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_GOLBAT", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_CARBINK", "SPECIES_FERROSEED"],
       "note": "The cave before the maniac digs through: Dwebble's home at 35, Hippopotas beside it."
     },
     "encounters_ruin_maniac_cave_long": {
       "home": [],
-      "cameo": ["SPECIES_DWEBBLE", "SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_FERROSEED"],
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_GOLBAT", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_FERROSEED"],
       "note": "The cave dug through to the ruins: three co-equal, Klefki by day where it meets the ruins."
     },
     "encounters_valor_lakefront": {
       "home": ["SPECIES_SWABLU"],
-      "cameo": ["SPECIES_HOUNDOUR", "SPECIES_PONYTA", "SPECIES_ABSOL", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_FLETCHLING", "SPECIES_ROOKIDEE", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_SKITTY", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_EMOLGA", "SPECIES_LITTEN", "SPECIES_SPRIGATITO"],
+      "cameo": ["SPECIES_HOUNDOOM", "SPECIES_PONYTA", "SPECIES_ABSOL", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_FLETCHINDER", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
+      "tail": ["SPECIES_SKITTY", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_EMOLGA", "SPECIES_TORRACAT", "SPECIES_FLORAGATO"],
       "note": "The hotel grounds above Lake Valor: Swablu's home, Absol at 10 and by night, the cute lines from Floaroma back at other shares, two starters as 1%s."
     },
     "encounters_route_213": {
       "home": ["SPECIES_SANDYGAST", "SPECIES_CLOBBOPUS", "SPECIES_DEWPIDER"],
-      "cameo": ["SPECIES_PIKIPEK", "SPECIES_FLETCHLING", "SPECIES_WOOLOO", "SPECIES_ROOKIDEE", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_SMOLIV", "SPECIES_BOUNSWEET", "SPECIES_POPPLIO", "SPECIES_SQUIRTLE"],
+      "cameo": ["SPECIES_TRUMBEAK", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
+      "tail": ["SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_DOLLIV", "SPECIES_STEENEE", "SPECIES_POPPLIO", "SPECIES_WARTORTLE"],
       "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s."
     },
     "encounters_great_marsh_1": {
       "home": ["SPECIES_WOOPER"],
-      "cameo": ["SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_KOFFING"],
+      "cameo": ["SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_MASQUERAIN", "SPECIES_BRELOOM", "SPECIES_KOFFING"],
       "note": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night."
     },
     "encounters_great_marsh_2": {
@@ -368,193 +385,193 @@
     },
     "encounters_great_marsh_3": {
       "home": ["SPECIES_CROAGUNK"],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_LOTAD", "SPECIES_KOFFING"],
+      "cameo": ["SPECIES_QUAGSIRE", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SURSKIT", "SPECIES_BRELOOM", "SPECIES_LOTAD", "SPECIES_KOFFING"],
       "note": "Area three, Croagunk's home: three co-equal in the reeds."
     },
     "encounters_great_marsh_4": {
       "home": [],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_CROAGUNK", "SPECIES_YANMA", "SPECIES_SHROOMISH", "SPECIES_SKORUPI", "SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_KOFFING"],
+      "cameo": ["SPECIES_QUAGSIRE", "SPECIES_DEWPIDER", "SPECIES_CROAGUNK", "SPECIES_YANMA", "SPECIES_BRELOOM", "SPECIES_SKORUPI", "SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_KOFFING"],
       "note": "Area four: the spread, nobody over 25."
     },
     "encounters_great_marsh_5": {
       "home": ["SPECIES_YANMA"],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_KOFFING"],
+      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_SURSKIT", "SPECIES_BRELOOM", "SPECIES_KOFFING"],
       "note": "Area five, Yanma's home: the broad shape, eight lines."
     },
     "encounters_great_marsh_6": {
       "home": [],
-      "cameo": ["SPECIES_YANMA", "SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SHROOMISH", "SPECIES_SURSKIT", "SPECIES_DEWPIDER", "SPECIES_SKORUPI", "SPECIES_KOFFING"],
+      "cameo": ["SPECIES_YANMA", "SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOMBRE", "SPECIES_BRELOOM", "SPECIES_MASQUERAIN", "SPECIES_DEWPIDER", "SPECIES_SKORUPI", "SPECIES_KOFFING"],
       "note": "Area six: the marsh shape itself, three co-equal faces."
     },
     "encounters_route_212_north": {
       "home": ["SPECIES_EMOLGA"],
-      "cameo": ["SPECIES_FLABEBE", "SPECIES_FOMANTIS", "SPECIES_RALTS", "SPECIES_BUDEW", "SPECIES_COMBEE", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_PURRLOIN", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_MINCCINO", "SPECIES_BOUNSWEET", "SPECIES_SMOLIV", "SPECIES_GALARIAN_MR_MIME", "SPECIES_ROWLET", "SPECIES_SNIVY"],
+      "cameo": ["SPECIES_FLOETTE", "SPECIES_FOMANTIS", "SPECIES_KIRLIA", "SPECIES_BUDEW", "SPECIES_VESPIQUEN", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
+      "tail": ["SPECIES_MINCCINO", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_GALARIAN_MR_MIME", "SPECIES_DARTRIX", "SPECIES_SERVINE"],
       "note": "Route 212's garden half, Emolga's home: the flower lines, Galarian Mr. Mime a 4 by the cap rule, the grass starters as 1%s."
     },
     "encounters_route_212_south": {
       "home": ["SPECIES_KOFFING"],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_FROAKIE"],
-      "tail": ["SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SHROOMISH", "SPECIES_SKORUPI", "SPECIES_MUDKIP", "SPECIES_SQUIRTLE"],
+      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOMBRE", "SPECIES_MASQUERAIN", "SPECIES_FROGADIER"],
+      "tail": ["SPECIES_ARAQUANID", "SPECIES_YANMA", "SPECIES_BRELOOM", "SPECIES_SKORUPI", "SPECIES_MARSHTOMP", "SPECIES_SQUIRTLE"],
       "note": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s."
     },
     "encounters_trophy_garden": {
       "home": ["SPECIES_PICHU"],
-      "cameo": ["SPECIES_BUNEARY", "SPECIES_SKITTY", "SPECIES_MINCCINO", "SPECIES_FLABEBE", "SPECIES_TOGEPI", "SPECIES_BOUNSWEET", "SPECIES_SMOLIV", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_EEVEE", "SPECIES_GALARIAN_MR_MIME", "SPECIES_PACHIRISU", "SPECIES_COMBEE", "SPECIES_SPRIGATITO", "SPECIES_ROWLET"],
+      "cameo": ["SPECIES_BUNEARY", "SPECIES_SKITTY", "SPECIES_MINCCINO", "SPECIES_FLOETTE", "SPECIES_TOGEPI", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_LIEPARD"],
+      "tail": ["SPECIES_EEVEE", "SPECIES_GALARIAN_MR_MIME", "SPECIES_PACHIRISU", "SPECIES_VESPIQUEN", "SPECIES_FLORAGATO", "SPECIES_DARTRIX"],
       "note": "The Pokemon Mansion's garden, Pichu's home: the cute lines, Eevee and Togepi at 5 beside their gifts, Galarian Mr. Mime at 5 by the cap rule, the grass starters as 1%s."
     },
     "encounters_route_210_north": {
       "home": ["SPECIES_HAWLUCHA"],
-      "cameo": ["SPECIES_SWABLU", "SPECIES_SCYTHER", "SPECIES_MIENFOO", "SPECIES_GOOMY", "SPECIES_BRONZOR", "SPECIES_FENNEKIN", "SPECIES_LITTEN", "SPECIES_SNEASEL", "SPECIES_HOUNDOUR"],
+      "cameo": ["SPECIES_SWABLU", "SPECIES_SCYTHER", "SPECIES_MIENFOO", "SPECIES_GOOMY", "SPECIES_BRONZOR", "SPECIES_BRAIXEN", "SPECIES_TORRACAT", "SPECIES_SNEASEL", "SPECIES_HOUNDOOM"],
       "note": "Route 210's foggy upper half, the delay: Hawlucha's home, Goomy at 10 in the mist (fully evolved by 50, so here by Byron), Fennekin and Litten at 10 each by day as the prizes."
     },
     "encounters_route_211_east": {
-      "home": ["SPECIES_RALTS", "SPECIES_FERROSEED"],
-      "cameo": ["SPECIES_ROWLET", "SPECIES_LITTEN", "SPECIES_JANGMO_O", "SPECIES_GLIGAR", "SPECIES_MIENFOO", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_SNEASEL"],
+      "home": ["SPECIES_KIRLIA", "SPECIES_FERROSEED"],
+      "cameo": ["SPECIES_DARTRIX", "SPECIES_TORRACAT", "SPECIES_JANGMO_O", "SPECIES_GLIGAR", "SPECIES_MIENFOO", "SPECIES_BRONZOR", "SPECIES_NACLSTACK", "SPECIES_SNEASEL"],
       "note": "Route 211's Celestic half, the delay: Ralts and Ferroseed at home, Rowlet 20 and Litten 15 the prizes, Jangmo-o at 10 by the cap rule."
     },
     "encounters_fuego_ironworks_outside": {
       "home": ["SPECIES_MAGBY", "SPECIES_JOLTIK", "SPECIES_LARVESTA"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_LITTEN", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOUR", "SPECIES_LITWICK"],
-      "tail": ["SPECIES_RHYHORN", "SPECIES_SALANDIT", "SPECIES_CHARCADET", "SPECIES_NACLI", "SPECIES_CHARMANDER", "SPECIES_TORCHIC"],
+      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_TORRACAT", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOOM", "SPECIES_LITWICK"],
+      "tail": ["SPECIES_RHYHORN", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_NACLSTACK", "SPECIES_CHARMELEON", "SPECIES_COMBUSKEN"],
       "note": "The ironworks' yard: Magby and Joltik at home, and Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), Litten at 10, Charcadet a 4% ember, two fire starters as 1%s."
     },
     "encounters_route_218": {
       "home": ["SPECIES_GALARIAN_MR_MIME"],
-      "cameo": ["SPECIES_PIKIPEK", "SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_GLAMEOW", "SPECIES_BUIZEL", "SPECIES_SHELLOS", "SPECIES_PURRLOIN", "SPECIES_FLETCHLING", "SPECIES_MINCCINO"],
+      "cameo": ["SPECIES_TOUCANNON", "SPECIES_QUAGSIRE", "SPECIES_ARAQUANID", "SPECIES_GLAMEOW", "SPECIES_FLOATZEL", "SPECIES_SHELLOS", "SPECIES_LIEPARD", "SPECIES_FLETCHINDER", "SPECIES_MINCCINO"],
       "note": "The grass by Canalave, reached by Surf: Galarian Mr. Mime's home, the beach lines beside it."
     },
     "encounters_iron_island_1f": {
       "home": ["SPECIES_TOGEDEMARU"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_NACLSTACK", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "note": "Iron Island's first floor, Togedemaru's home: the iron lines, eight deep."
     },
     "encounters_iron_island_b1f_left_room": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_TOGEDEMARU", "SPECIES_FERROSEED", "SPECIES_MAKUHITA", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ZUBAT", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_TOGEDEMARU", "SPECIES_FERROSEED", "SPECIES_HARIYAMA", "SPECIES_NOSEPASS", "SPECIES_GRAVELER", "SPECIES_GOLBAT", "SPECIES_KLEFKI"],
       "note": "B1F left: Onix leads, six lines."
     },
     "encounters_iron_island_b1f_right_room": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_GOLBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
       "note": "B1F right: three co-equal, Klefki and Carbink behind."
     },
     "encounters_iron_island_b2f_right_room": {
       "home": ["SPECIES_SOLROCK"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "note": "B2F right, Solrock's home at 35: the sun room."
     },
     "encounters_iron_island_b2f_left_room": {
       "home": ["SPECIES_LUNATONE"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_GRAVELER", "SPECIES_NOSEPASS", "SPECIES_GOLBAT", "SPECIES_KLEFKI"],
       "note": "B2F left, Lunatone's home at 35: the moon room."
     },
     "encounters_iron_island_b3f": {
-      "home": ["SPECIES_BELDUM"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
-      "tail": ["SPECIES_TOGEDEMARU", "SPECIES_LARVITAR", "SPECIES_GIBLE"],
+      "home": ["SPECIES_METANG"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_GOLBAT", "SPECIES_CARBINK"],
+      "tail": ["SPECIES_TOGEDEMARU", "SPECIES_PUPITAR", "SPECIES_GABITE"],
       "note": "The bottom of Iron Island, Beldum's home at 35: the reason to go down with Riley, Larvitar and Gible in the tail."
     },
     "encounters_route_221": {
       "home": ["SPECIES_LURANTIS"],
-      "cameo": ["SPECIES_SMOLIV", "SPECIES_FLETCHLING", "SPECIES_WOOLOO", "SPECIES_BOUNSWEET", "SPECIES_PURRLOIN", "SPECIES_PIKIPEK", "SPECIES_ROOKIDEE", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_TRAPINCH", "SPECIES_SANDYGAST", "SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_SPRIGATITO", "SPECIES_POPPLIO"],
+      "cameo": ["SPECIES_DOLLIV", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_STEENEE", "SPECIES_LIEPARD", "SPECIES_TOUCANNON", "SPECIES_CORVISQUIRE", "SPECIES_MIGHTYENA"],
+      "tail": ["SPECIES_TRAPINCH", "SPECIES_SANDYGAST", "SPECIES_SHELLOS", "SPECIES_FLOATZEL", "SPECIES_FLORAGATO", "SPECIES_BRIONNE"],
       "note": "The road to Pal Park: Lurantis's home (a line of its own until Fomantis's data is fixed), Trapinch a 5 by the cap rule, the beach lines small."
     },
     "encounters_lake_valor": {
       "home": ["SPECIES_ABSOL"],
-      "cameo": ["SPECIES_GOTHITA", "SPECIES_VULLABY", "SPECIES_HAWLUCHA", "SPECIES_SWABLU", "SPECIES_MINCCINO", "SPECIES_BUNEARY", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_GLAMEOW", "SPECIES_SNEASEL", "SPECIES_LITTEN"],
+      "cameo": ["SPECIES_GOTHORITA", "SPECIES_VULLABY", "SPECIES_HAWLUCHA", "SPECIES_ALTARIA", "SPECIES_CINCCINO", "SPECIES_LOPUNNY", "SPECIES_LIEPARD"],
+      "tail": ["SPECIES_PURUGLY", "SPECIES_WEAVILE", "SPECIES_INCINEROAR"],
       "note": "The drained lake, Absol's home at 35: disaster's omen at the crater, Gothita and Vullaby watching."
     },
     "encounters_route_216": {
-      "home": ["SPECIES_SNOVER", "SPECIES_SNOM"],
-      "cameo": ["SPECIES_SNEASEL", "SPECIES_SWINUB", "SPECIES_MIENFOO", "SPECIES_SNORUNT", "SPECIES_ABSOL"],
-      "tail": ["SPECIES_ALOLAN_NINETALES", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_GALARIAN_MR_MIME", "SPECIES_LITTEN"],
+      "home": ["SPECIES_SNOVER", "SPECIES_FROSMOTH"],
+      "cameo": ["SPECIES_SNEASEL", "SPECIES_PILOSWINE", "SPECIES_MIENFOO", "SPECIES_SNORUNT", "SPECIES_ABSOL"],
+      "tail": ["SPECIES_ALOLAN_NINETALES", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_GALARIAN_MR_MIME", "SPECIES_TORRACAT"],
       "note": "The first snow route: Snover and Snom at home, the mountain's cold cast, Litten a 1% fire in the snow."
     },
     "encounters_route_217": {
       "home": ["SPECIES_SWINUB", "SPECIES_SNORUNT"],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_SNEASEL", "SPECIES_ALOLAN_NINETALES", "SPECIES_SNOM"],
-      "tail": ["SPECIES_LARVITAR", "SPECIES_MIENFOO", "SPECIES_GALARIAN_MR_MIME", "SPECIES_ZUBAT", "SPECIES_TORCHIC", "SPECIES_CHARMANDER"],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_SNEASEL", "SPECIES_ALOLAN_NINETALES", "SPECIES_FROSMOTH"],
+      "tail": ["SPECIES_PUPITAR", "SPECIES_MIENFOO", "SPECIES_GALARIAN_MR_MIME", "SPECIES_CROBAT", "SPECIES_COMBUSKEN", "SPECIES_CHARMELEON"],
       "note": "The blizzard route: Swinub and Snorunt at home, Larvitar a 5 by the cap rule (fully evolved by 55), two fire starters as 1%s."
     },
     "encounters_acuity_lakefront": {
       "home": ["SPECIES_SNEASEL"],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_SWINUB", "SPECIES_SNOM", "SPECIES_ALOLAN_NINETALES"],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_PILOSWINE", "SPECIES_FROSMOTH", "SPECIES_ALOLAN_NINETALES"],
       "tail": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_GALARIAN_MR_MIME"],
       "note": "The lakefront above Snowpoint: Sneasel's home at 35 with Alolan Ninetales at 20, Absol a 4%."
     },
     "encounters_lake_acuity": {
       "home": [],
-      "cameo": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_SNOM", "SPECIES_GALARIAN_MR_MIME", "SPECIES_SNOVER", "SPECIES_SNEASEL", "SPECIES_SWINUB", "SPECIES_ALOLAN_NINETALES"],
+      "cameo": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_FROSMOTH", "SPECIES_GALARIAN_MR_MIME", "SPECIES_ABOMASNOW", "SPECIES_WEAVILE", "SPECIES_PILOSWINE", "SPECIES_ALOLAN_NINETALES"],
       "note": "Lake Acuity's shore: six cold lines, Galarian Mr. Mime dancing on the ice at 15."
     },
     "encounters_mt_coronet_1f_tunnel_room": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_LARVITAR", "SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_GLIMMET", "SPECIES_GEODUDE", "SPECIES_MAKUHITA"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_PUPITAR", "SPECIES_KLEFKI", "SPECIES_CROBAT", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA"],
       "note": "The tunnel room on the climb: eight lines, Larvitar at 10."
     },
     "encounters_mt_coronet_1f_north_room_2": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ZUBAT", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_CROBAT", "SPECIES_KLEFKI"],
       "note": "The second north room: six lines, Glimmet at 15."
     },
     "encounters_mt_coronet_b1f": {
       "home": ["SPECIES_GOOMY"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_LARVITAR", "SPECIES_JANGMO_O"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_CARBINK", "SPECIES_CROBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
       "note": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor."
     },
     "encounters_mt_coronet_2f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_FERROSEED", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_FERROSEED", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
       "note": "Second floor: three co-equal, Larvitar and Ferroseed behind."
     },
     "encounters_mt_coronet_3f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_GLIMMET", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_LARVITAR", "SPECIES_JANGMO_O"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
       "note": "Third floor: eight lines, the dragons in the tail."
     },
     "encounters_mt_coronet_outside_south": {
       "home": [],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_MIENFOO", "SPECIES_HAWLUCHA", "SPECIES_NACLI", "SPECIES_SNEASEL"],
-      "tail": ["SPECIES_SWINUB", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES", "SPECIES_ABSOL", "SPECIES_LARVITAR", "SPECIES_GIBLE"],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_MIENSHAO", "SPECIES_HAWLUCHA", "SPECIES_GARGANACL", "SPECIES_SNEASEL"],
+      "tail": ["SPECIES_PILOSWINE", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES", "SPECIES_ABSOL", "SPECIES_PUPITAR", "SPECIES_GABITE"],
       "note": "The snowy ledge on the south face: the cold cast, twelve lines, the two dragons as 1%s."
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_FERROSEED", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_GLIMMORA", "SPECIES_FERROSEED", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
       "note": "Fourth floor, the paired rooms: Bronzor at 35, the cap's edge."
     },
     "encounters_mt_coronet_4f_room_3": {
       "home": [],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_GOOMY", "SPECIES_MIENFOO", "SPECIES_KLEFKI", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_CARBINK", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_GOOMY", "SPECIES_MIENSHAO", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
       "note": "Fourth floor, room three: Carbink leads, Goomy at 15."
     },
     "encounters_mt_coronet_outside_north": {
       "home": [],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_HAWLUCHA", "SPECIES_MIENFOO", "SPECIES_ALOLAN_NINETALES", "SPECIES_SNEASEL", "SPECIES_SWINUB", "SPECIES_ABSOL", "SPECIES_SNORUNT"],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_HAWLUCHA", "SPECIES_MIENSHAO", "SPECIES_ALOLAN_NINETALES", "SPECIES_SNEASEL", "SPECIES_PILOSWINE", "SPECIES_ABSOL", "SPECIES_SNORUNT"],
       "note": "The snowy ledge on the north face: eight cold lines."
     },
     "encounters_mt_coronet_5f": {
-      "home": ["SPECIES_JANGMO_O"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_LARVITAR", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_GOOMY", "SPECIES_GIBLE"],
+      "home": ["SPECIES_HAKAMO_O"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_PUPITAR", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GOOMY", "SPECIES_GABITE"],
       "note": "Fifth floor, Jangmo-o's home at 35: the dragon floor under the summit."
     },
     "encounters_mt_coronet_6f": {
       "home": [],
-      "cameo": ["SPECIES_JANGMO_O", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_KLEFKI", "SPECIES_LARVITAR", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_HAKAMO_O", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
       "note": "The last floor before Spear Pillar: Jangmo-o co-equal with the mountain's core."
     },
     "encounters_sendoff_spring": {
       "home": ["SPECIES_DHELMISE"],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_ABSOL", "SPECIES_VULLABY", "SPECIES_GOTHITA"],
-      "tail": ["SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_KLEFKI", "SPECIES_SWABLU", "SPECIES_HAWLUCHA", "SPECIES_GALARIAN_MR_MIME"],
-      "note": "The spring before Turnback Cave, Dhelmise's home: the ghosts gather, Absol watches."
+      "cameo": ["SPECIES_GARCHOMP", "SPECIES_METAGROSS", "SPECIES_PUPITAR", "SPECIES_GOODRA", "SPECIES_KOMMO_O"],
+      "tail": ["SPECIES_ABSOL", "SPECIES_WEAVILE", "SPECIES_SCIZOR", "SPECIES_GARDEVOIR", "SPECIES_HERACROSS", "SPECIES_ELECTIVIRE"],
+      "note": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk."
     },
     "encounters_turnback_cave_entrance": {
       "home": [],
@@ -595,336 +612,336 @@
     "encounters_turnback_cave_pillar_2_room_1": {
       "home": [],
       "cameo": ["SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "tail": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "tail": ["SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
       "note": "Turnback Cave, room 10 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17."
     },
     "encounters_turnback_cave_pillar_2_room_2": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
       "tail": ["SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
       "note": "Turnback Cave, room 11 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19."
     },
     "encounters_turnback_cave_pillar_2_room_3": {
       "home": [],
-      "cameo": ["SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
       "note": "Turnback Cave, room 12 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11."
     },
     "encounters_turnback_cave_pillar_2_room_4": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
       "note": "Turnback Cave, room 13 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     },
     "encounters_turnback_cave_pillar_2_room_5": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
       "note": "Turnback Cave, room 14 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_turnback_cave_pillar_2_room_6": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE"],
+      "cameo": ["SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE"],
       "note": "Turnback Cave, room 15 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16."
     },
     "encounters_turnback_cave_pillar_3_room_1": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_DHELMISE", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_CROBAT", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK"],
       "note": "Turnback Cave, room 16 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18."
     },
     "encounters_turnback_cave_pillar_3_room_2": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS"],
       "note": "Turnback Cave, room 17 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6."
     },
     "encounters_turnback_cave_pillar_3_room_3": {
       "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_DHELMISE", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 18 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7."
     },
     "encounters_turnback_cave_pillar_3_room_4": {
       "home": [],
-      "cameo": ["SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_BRONZOR", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 19 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8."
     },
     "encounters_turnback_cave_pillar_3_room_5": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_SINISTEA"],
-      "tail": ["SPECIES_LITWICK", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_DUSKULL", "SPECIES_SINISTCHA"],
+      "tail": ["SPECIES_LITWICK", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 20 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15."
     },
     "encounters_turnback_cave_pillar_3_room_6": {
       "home": [],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
-      "tail": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR"],
+      "cameo": ["SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_KLEFKI", "SPECIES_GOTHORITA"],
+      "tail": ["SPECIES_LITWICK", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
       "note": "Turnback Cave, room 21 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17."
     },
     "encounters_turnback_cave_pillar_room": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_SINISTEA"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_SINISTCHA"],
       "note": "Turnback Cave, room 2 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     },
     "encounters_turnback_cave_giratina_room": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_DHELMISE", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_DHELMISE", "SPECIES_KLEFKI"],
       "note": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_route_222": {
-      "home": ["SPECIES_ELEKID"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_PACHIRISU", "SPECIES_JOLTIK", "SPECIES_PIKIPEK", "SPECIES_SHINX", "SPECIES_FLETCHLING", "SPECIES_ROOKIDEE", "SPECIES_PURRLOIN", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_EMOLGA", "SPECIES_PAWMI", "SPECIES_BUIZEL", "SPECIES_SHELLOS", "SPECIES_POPPLIO", "SPECIES_SQUIRTLE"],
+      "home": ["SPECIES_ELECTIVIRE"],
+      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_PACHIRISU", "SPECIES_GALVANTULA", "SPECIES_TOUCANNON", "SPECIES_LUXRAY", "SPECIES_TALONFLAME", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD", "SPECIES_HOUNDOOM"],
+      "tail": ["SPECIES_EMOLGA", "SPECIES_PAWMOT", "SPECIES_FLOATZEL", "SPECIES_SHELLOS", "SPECIES_PRIMARINA", "SPECIES_WARTORTLE"],
       "note": "The beach road to Sunyshore, Elekid's home: every electric line at once, the water starters as 1%s."
     },
     "encounters_victory_road_1f": {
-      "home": ["SPECIES_LARVITAR"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_RHYHORN", "SPECIES_GIBLE", "SPECIES_NACLI", "SPECIES_HAWLUCHA", "SPECIES_ZUBAT", "SPECIES_BRONZOR"],
-      "tail": ["SPECIES_GLIMMET", "SPECIES_KLEFKI", "SPECIES_MAKUHITA", "SPECIES_GEODUDE", "SPECIES_BELDUM", "SPECIES_JANGMO_O"],
+      "home": ["SPECIES_PUPITAR"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_RHYHORN", "SPECIES_GABITE", "SPECIES_GARGANACL", "SPECIES_HAWLUCHA", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
+      "tail": ["SPECIES_GLIMMORA", "SPECIES_KLEFKI", "SPECIES_HARIYAMA", "SPECIES_GOLEM", "SPECIES_METANG", "SPECIES_HAKAMO_O"],
       "note": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail."
     },
     "encounters_victory_road_2f": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_KLEFKI", "SPECIES_JANGMO_O", "SPECIES_LARVITAR", "SPECIES_GIBLE", "SPECIES_CARBINK", "SPECIES_BRONZOR", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_KLEFKI", "SPECIES_HAKAMO_O", "SPECIES_PUPITAR", "SPECIES_GABITE", "SPECIES_CARBINK", "SPECIES_BRONZONG", "SPECIES_GOLEM", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
       "note": "Second floor: eight lines, Jangmo-o at 15."
     },
     "encounters_victory_road_b1f": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BELDUM", "SPECIES_GOOMY", "SPECIES_GIBLE", "SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CARBINK"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_METANG", "SPECIES_SLIGGOO", "SPECIES_GABITE", "SPECIES_CROBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_CARBINK"],
       "note": "The basement with the water: Beldum co-equal with Onix and Nacli."
     },
     "encounters_victory_road_1f_room_1": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_GIBLE", "SPECIES_RHYHORN", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_ZUBAT", "SPECIES_BRONZOR"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_GARCHOMP", "SPECIES_RHYPERIOR", "SPECIES_GOLEM", "SPECIES_HARIYAMA", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
       "note": "Side room one: six lines, Larvitar at 15."
     },
     "encounters_victory_road_1f_room_2": {
       "home": [],
-      "cameo": ["SPECIES_GOOMY", "SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_FERROSEED", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT", "SPECIES_KLEFKI"],
-      "tail": ["SPECIES_BRONZOR", "SPECIES_GIBLE", "SPECIES_BELDUM"],
+      "cameo": ["SPECIES_SLIGGOO", "SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_CARBINK", "SPECIES_FERROTHORN", "SPECIES_GOLEM", "SPECIES_PROBOPASS", "SPECIES_CROBAT", "SPECIES_KLEFKI"],
+      "tail": ["SPECIES_BRONZONG", "SPECIES_GARCHOMP", "SPECIES_METAGROSS"],
       "note": "Side room two, the wet one: Goomy at 35."
     },
     "encounters_victory_road_1f_room_3": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_JANGMO_O", "SPECIES_HAWLUCHA", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
-      "tail": ["SPECIES_BELDUM", "SPECIES_GIBLE"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_KOMMO_O", "SPECIES_HAWLUCHA", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_CROBAT", "SPECIES_CARBINK"],
+      "tail": ["SPECIES_METAGROSS", "SPECIES_GARCHOMP"],
       "note": "Side room three: eight lines, Beldum and Gible in the tail."
     },
     "encounters_route_224": {
       "home": [],
-      "cameo": ["SPECIES_LURANTIS", "SPECIES_FLABEBE", "SPECIES_SWABLU", "SPECIES_EMOLGA", "SPECIES_SANDYGAST", "SPECIES_BOUNSWEET", "SPECIES_FLETCHLING", "SPECIES_COMBEE", "SPECIES_PURRLOIN", "SPECIES_ABSOL"],
-      "tail": ["SPECIES_DEWPIDER", "SPECIES_SHELLOS", "SPECIES_PIKIPEK", "SPECIES_SMOLIV", "SPECIES_ROWLET", "SPECIES_POPPLIO"],
+      "cameo": ["SPECIES_LURANTIS", "SPECIES_FLORGES", "SPECIES_ALTARIA", "SPECIES_EMOLGA", "SPECIES_PALOSSAND", "SPECIES_TSAREENA", "SPECIES_TALONFLAME", "SPECIES_VESPIQUEN", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
+      "tail": ["SPECIES_ARAQUANID", "SPECIES_GASTRODON", "SPECIES_TOUCANNON", "SPECIES_ARBOLIVA", "SPECIES_DECIDUEYE", "SPECIES_BRIONNE"],
       "note": "The flower route to Seabreak Path: no line's home, every line a cameo at a new share; Yveltal's static is planned here."
     },
     "encounters_snowpoint_temple_1f": {
       "home": [],
-      "cameo": ["SPECIES_SNORUNT", "SPECIES_ZUBAT", "SPECIES_SNOM", "SPECIES_SNEASEL", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_SWINUB", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_GLALIE", "SPECIES_CROBAT", "SPECIES_FROSMOTH", "SPECIES_WEAVILE", "SPECIES_BRONZONG", "SPECIES_KLEFKI", "SPECIES_MAMOSWINE", "SPECIES_ABSOL"],
       "note": "Snowpoint Temple, floor 1 of six: the ice lines and the temple's bats, shape A14; Regigigas waits at the bottom."
     },
     "encounters_snowpoint_temple_b1f": {
       "home": [],
-      "cameo": ["SPECIES_SNEASEL", "SPECIES_SNORUNT", "SPECIES_ZUBAT", "SPECIES_SWINUB", "SPECIES_CARBINK", "SPECIES_SNOM", "SPECIES_SNOVER", "SPECIES_GALARIAN_MR_MIME"],
+      "cameo": ["SPECIES_WEAVILE", "SPECIES_GLALIE", "SPECIES_CROBAT", "SPECIES_MAMOSWINE", "SPECIES_CARBINK", "SPECIES_FROSMOTH", "SPECIES_ABOMASNOW", "SPECIES_MR_RIME"],
       "note": "Snowpoint Temple, floor 2 of six: the ice lines and the temple's bats, shape A16; Regigigas waits at the bottom."
     },
     "encounters_snowpoint_temple_b2f": {
       "home": [],
-      "cameo": ["SPECIES_ALOLAN_NINETALES", "SPECIES_SNORUNT", "SPECIES_ZUBAT", "SPECIES_SNEASEL", "SPECIES_SNOM", "SPECIES_SNOVER", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_SWINUB", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_ALOLAN_NINETALES", "SPECIES_GLALIE", "SPECIES_CROBAT", "SPECIES_WEAVILE", "SPECIES_FROSMOTH", "SPECIES_ABOMASNOW", "SPECIES_BRONZONG", "SPECIES_KLEFKI", "SPECIES_MAMOSWINE", "SPECIES_ABSOL"],
       "note": "Snowpoint Temple, floor 3 of six: the ice lines and the temple's bats, shape A18; Regigigas waits at the bottom."
     },
     "encounters_snowpoint_temple_b3f": {
       "home": [],
-      "cameo": ["SPECIES_GALARIAN_MR_MIME", "SPECIES_SNOM", "SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_CARBINK", "SPECIES_SNOVER", "SPECIES_SNEASEL"],
+      "cameo": ["SPECIES_MR_RIME", "SPECIES_FROSMOTH", "SPECIES_CROBAT", "SPECIES_GLALIE", "SPECIES_CARBINK", "SPECIES_ABOMASNOW", "SPECIES_WEAVILE"],
       "note": "Snowpoint Temple, floor 4 of six: the ice lines and the temple's bats, shape A13; Regigigas waits at the bottom."
     },
     "encounters_snowpoint_temple_b4f": {
       "home": [],
-      "cameo": ["SPECIES_SNEASEL", "SPECIES_GALARIAN_MR_MIME", "SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNOVER", "SPECIES_SWINUB"],
-      "tail": ["SPECIES_ABSOL", "SPECIES_LARVITAR"],
+      "cameo": ["SPECIES_WEAVILE", "SPECIES_MR_RIME", "SPECIES_CROBAT", "SPECIES_GLALIE", "SPECIES_ABOMASNOW", "SPECIES_MAMOSWINE"],
+      "tail": ["SPECIES_ABSOL", "SPECIES_PUPITAR"],
       "note": "Snowpoint Temple, floor 5 of six: the ice lines and the temple's bats, shape A15; Regigigas waits at the bottom."
     },
     "encounters_snowpoint_temple_b5f": {
       "home": [],
-      "cameo": ["SPECIES_SNORUNT", "SPECIES_SNEASEL", "SPECIES_ZUBAT", "SPECIES_ALOLAN_NINETALES", "SPECIES_BRONZOR", "SPECIES_SNOM", "SPECIES_SNOVER", "SPECIES_GALARIAN_MR_MIME"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_ABSOL", "SPECIES_BELDUM"],
+      "cameo": ["SPECIES_GLALIE", "SPECIES_WEAVILE", "SPECIES_CROBAT", "SPECIES_ALOLAN_NINETALES", "SPECIES_BRONZONG", "SPECIES_FROSMOTH", "SPECIES_ABOMASNOW", "SPECIES_MR_RIME"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_ABSOL", "SPECIES_METAGROSS"],
       "note": "Snowpoint Temple, floor 6 of six: the ice lines and the temple's bats, shape A17; Regigigas waits at the bottom."
     },
     "encounters_route_225": {
       "home": [],
-      "cameo": ["SPECIES_MAKUHITA", "SPECIES_ROOKIDEE", "SPECIES_MIENFOO", "SPECIES_NACLI", "SPECIES_WOOLOO", "SPECIES_HAWLUCHA", "SPECIES_FLETCHLING", "SPECIES_PIKIPEK", "SPECIES_HOUNDOUR", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_GEODUDE", "SPECIES_PHANPY", "SPECIES_VULPIX", "SPECIES_PONYTA", "SPECIES_TORCHIC", "SPECIES_LITTEN"],
+      "cameo": ["SPECIES_HARIYAMA", "SPECIES_CORVIKNIGHT", "SPECIES_MIENSHAO", "SPECIES_GARGANACL", "SPECIES_DUBWOOL", "SPECIES_HAWLUCHA", "SPECIES_TALONFLAME", "SPECIES_TOUCANNON", "SPECIES_HOUNDOOM", "SPECIES_LIEPARD"],
+      "tail": ["SPECIES_GOLEM", "SPECIES_DONPHAN", "SPECIES_NINETALES", "SPECIES_RAPIDASH", "SPECIES_BLAZIKEN", "SPECIES_INCINEROAR"],
       "note": "The Battle Zone's first route: the early lines back at post-game levels, none a home, Hawlucha in the hills."
     },
     "encounters_route_226": {
       "home": [],
-      "cameo": ["SPECIES_ROOKIDEE", "SPECIES_MIENFOO", "SPECIES_DEWPIDER", "SPECIES_PIKIPEK", "SPECIES_VULLABY", "SPECIES_CARBINK", "SPECIES_BUIZEL", "SPECIES_SHELLOS", "SPECIES_FLETCHLING", "SPECIES_SWABLU", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_CORVIKNIGHT", "SPECIES_MIENSHAO", "SPECIES_ARAQUANID", "SPECIES_TOUCANNON", "SPECIES_VULLABY", "SPECIES_CARBINK", "SPECIES_FLOATZEL", "SPECIES_SHELLOS", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_ABSOL"],
       "note": "The cliff route above the sea: eight lines, the birds and the beach."
     },
     "encounters_route_227": {
-      "home": ["SPECIES_CHARCADET", "SPECIES_SKARMORY"],
-      "cameo": ["SPECIES_RHYHORN", "SPECIES_KOFFING", "SPECIES_SALANDIT", "SPECIES_TURTONATOR", "SPECIES_PONYTA", "SPECIES_VULPIX"],
-      "tail": ["SPECIES_SLUGMA", "SPECIES_HOUNDOUR", "SPECIES_NACLI", "SPECIES_MAGBY", "SPECIES_CHARMANDER", "SPECIES_LITTEN"],
+      "home": ["SPECIES_CERULEDGE", "SPECIES_SKARMORY"],
+      "cameo": ["SPECIES_RHYPERIOR", "SPECIES_WEEZING", "SPECIES_SALAZZLE", "SPECIES_TURTONATOR", "SPECIES_RAPIDASH", "SPECIES_NINETALES"],
+      "tail": ["SPECIES_MAGCARGO", "SPECIES_HOUNDOOM", "SPECIES_GARGANACL", "SPECIES_MAGMORTAR", "SPECIES_CHARIZARD", "SPECIES_INCINEROAR"],
       "note": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s."
     },
     "encounters_stark_mountain_outside": {
       "home": ["SPECIES_GALARIAN_WEEZING"],
-      "cameo": ["SPECIES_SLUGMA", "SPECIES_RHYHORN", "SPECIES_SALANDIT", "SPECIES_CHARCADET", "SPECIES_MAGBY", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_KOFFING", "SPECIES_TURTONATOR", "SPECIES_LARVESTA"],
+      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_MAGMORTAR", "SPECIES_HOUNDOOM"],
+      "tail": ["SPECIES_WEEZING", "SPECIES_TURTONATOR", "SPECIES_LARVESTA"],
       "note": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes."
     },
     "encounters_stark_mountain_room_1": {
       "home": [],
-      "cameo": ["SPECIES_SLUGMA", "SPECIES_RHYHORN", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_LARVESTA"],
-      "tail": ["SPECIES_SALANDIT", "SPECIES_MAGBY", "SPECIES_CHARCADET"],
+      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_CROBAT", "SPECIES_WEEZING", "SPECIES_GOLEM", "SPECIES_HARIYAMA", "SPECIES_LARVESTA"],
+      "tail": ["SPECIES_SALAZZLE", "SPECIES_MAGMORTAR", "SPECIES_CERULEDGE"],
       "note": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma."
     },
     "encounters_stark_mountain_room_2": {
       "home": ["SPECIES_TURTONATOR"],
-      "cameo": ["SPECIES_SLUGMA", "SPECIES_RHYHORN", "SPECIES_ZUBAT", "SPECIES_CHARCADET", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SALANDIT"],
-      "tail": ["SPECIES_LARVESTA", "SPECIES_KOFFING", "SPECIES_GALARIAN_WEEZING"],
+      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_CROBAT", "SPECIES_CERULEDGE", "SPECIES_GOLEM", "SPECIES_STEELIX", "SPECIES_SALAZZLE"],
+      "tail": ["SPECIES_LARVESTA", "SPECIES_WEEZING", "SPECIES_GALARIAN_WEEZING"],
       "note": "The magma chamber, Turtonator's home at 35: Heatran's room is past it."
     },
     "encounters_route_228": {
-      "home": ["SPECIES_TRAPINCH"],
-      "cameo": ["SPECIES_HIPPOPOTAS", "SPECIES_SANDYGAST", "SPECIES_DWEBBLE", "SPECIES_SALANDIT", "SPECIES_BELDUM", "SPECIES_GEODUDE", "SPECIES_PHANPY", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_GLIMMET", "SPECIES_RHYHORN", "SPECIES_NACLI", "SPECIES_ONIX", "SPECIES_GIBLE", "SPECIES_LARVITAR"],
+      "home": ["SPECIES_FLYGON"],
+      "cameo": ["SPECIES_HIPPOWDON", "SPECIES_PALOSSAND", "SPECIES_CRUSTLE", "SPECIES_SALAZZLE", "SPECIES_METAGROSS", "SPECIES_GOLEM", "SPECIES_DONPHAN", "SPECIES_HOUNDOOM"],
+      "tail": ["SPECIES_GLIMMORA", "SPECIES_RHYPERIOR", "SPECIES_GARGANACL", "SPECIES_STEELIX", "SPECIES_GARCHOMP", "SPECIES_PUPITAR"],
       "note": "The sandstorm route, Trapinch's home: the desert lines, Beldum at 10, the two pseudo-legendaries as 1%s."
     },
     "encounters_route_229": {
       "home": ["SPECIES_HERACROSS"],
-      "cameo": ["SPECIES_BUDEW", "SPECIES_SEWADDLE", "SPECIES_JOLTIK", "SPECIES_EMOLGA", "SPECIES_SMOLIV", "SPECIES_FLETCHLING", "SPECIES_BUNEARY", "SPECIES_PURRLOIN", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_COMBEE", "SPECIES_BOUNSWEET", "SPECIES_GRUBBIN", "SPECIES_FOMANTIS", "SPECIES_SNIVY", "SPECIES_SPRIGATITO"],
+      "cameo": ["SPECIES_ROSERADE", "SPECIES_LEAVANNY", "SPECIES_GALVANTULA", "SPECIES_EMOLGA", "SPECIES_ARBOLIVA", "SPECIES_TALONFLAME", "SPECIES_LOPUNNY", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
+      "tail": ["SPECIES_VESPIQUEN", "SPECIES_TSAREENA", "SPECIES_VIKAVOLT", "SPECIES_FOMANTIS", "SPECIES_SERPERIOR", "SPECIES_MEOWSCARADA"],
       "note": "The tall-grass route to the Resort Area, Heracross's home: the bug and grass lines, two grass starters as 1%s."
     },
     "encounters_route_230": {
       "home": ["SPECIES_GALARIAN_RAPIDASH"],
-      "cameo": ["SPECIES_TOGEPI", "SPECIES_PIKIPEK", "SPECIES_BOUNSWEET", "SPECIES_SMOLIV", "SPECIES_LURANTIS", "SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_FLETCHLING", "SPECIES_SWABLU", "SPECIES_PURRLOIN", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_TOGEKISS", "SPECIES_TOUCANNON", "SPECIES_TSAREENA", "SPECIES_ARBOLIVA", "SPECIES_LURANTIS", "SPECIES_GASTRODON", "SPECIES_FLOATZEL", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
       "note": "The last route, by the sea: Galarian Rapidash's home, Togepi at 20."
     },
     "encounters_unknown_533": {
       "home": [],
-      "cameo": ["SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK"],
+      "cameo": ["SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK"],
       "note": "Turnback Cave, room 22 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19."
     },
     "encounters_unknown_534": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_DUSKULL", "SPECIES_SINISTEA"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA"],
       "note": "Turnback Cave, room 23 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11."
     },
     "encounters_unknown_535": {
       "home": [],
-      "cameo": ["SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_KLEFKI", "SPECIES_GOTHITELLE"],
       "note": "Turnback Cave, room 24 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     },
     "encounters_unknown_536": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_DHELMISE"],
+      "cameo": ["SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_DHELMISE"],
       "note": "Turnback Cave, room 25 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_unknown_537": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS"],
       "note": "Turnback Cave, room 26 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16."
     },
     "encounters_unknown_538": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_DHELMISE"],
+      "cameo": ["SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_DHELMISE"],
       "note": "Turnback Cave, room 27 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18."
     },
     "encounters_unknown_539": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_DHELMISE", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_DHELMISE", "SPECIES_CROBAT", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE"],
       "note": "Turnback Cave, room 28 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6."
     },
     "encounters_unknown_540": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_DHELMISE", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_DHELMISE", "SPECIES_PROBOPASS"],
       "note": "Turnback Cave, room 29 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7."
     },
     "encounters_unknown_541": {
       "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 30 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8."
     },
     "encounters_unknown_542": {
       "home": [],
-      "cameo": ["SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_BRONZOR", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_YAMASK", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE"],
       "note": "Turnback Cave, room 31 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15."
     },
     "encounters_unknown_543": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_DUSKULL", "SPECIES_SINISTEA"],
-      "tail": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA"],
+      "tail": ["SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 32 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17."
     },
     "encounters_unknown_544": {
       "home": [],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "tail": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE"],
+      "tail": ["SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI"],
       "note": "Turnback Cave, room 33 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19."
     },
     "encounters_unknown_545": {
       "home": [],
-      "cameo": ["SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_BRONZOR", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 34 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11."
     },
     "encounters_unknown_546": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_DUSKULL", "SPECIES_SINISTEA"],
+      "cameo": ["SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA"],
       "note": "Turnback Cave, room 35 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     },
     "encounters_unknown_547": {
       "home": [],
-      "cameo": ["SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_KLEFKI", "SPECIES_GOTHITELLE"],
       "note": "Turnback Cave, room 36 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_unknown_548": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_DHELMISE"],
+      "cameo": ["SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_DHELMISE"],
       "note": "Turnback Cave, room 37 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16."
     },
     "encounters_unknown_549": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS"],
       "note": "Turnback Cave, room 38 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18."
     },
     "encounters_unknown_550": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_DHELMISE", "SPECIES_KLEFKI", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_DHELMISE", "SPECIES_KLEFKI", "SPECIES_GOTHITELLE"],
       "note": "Turnback Cave, room 39 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6."
     },
     "encounters_unknown_551": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_DHELMISE", "SPECIES_CROBAT", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE"],
       "note": "Turnback Cave, room 40 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7."
     },
     "encounters_unknown_552": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE"],
+      "cameo": ["SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE"],
       "note": "Turnback Cave, room 41 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8."
     },
     "encounters_unknown_553": {
       "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_DHELMISE", "SPECIES_YAMASK"],
+      "cameo": ["SPECIES_SINISTCHA", "SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_DHELMISE", "SPECIES_COFAGRIGUS"],
       "note": "Turnback Cave, room 42 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15."
     },
     "encounters_unknown_554": {
       "home": [],
-      "cameo": ["SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_ZUBAT"],
-      "tail": ["SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_GOTHITELLE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE"],
       "note": "Turnback Cave, room 43 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17."
     },
     "encounters_unknown_555": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK"],
-      "tail": ["SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS"],
+      "tail": ["SPECIES_CHANDELURE", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKNOIR", "SPECIES_SINISTCHA", "SPECIES_GOTHITELLE"],
       "note": "Turnback Cave, room 44 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19."
     },
     "encounters_unknown_556": {
       "home": [],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_GOTHITA"],
+      "cameo": ["SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_KLEFKI", "SPECIES_CROBAT", "SPECIES_GOTHITELLE"],
       "note": "Turnback Cave, room 45 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11."
     },
     "encounters_unknown_557": {
       "home": [],
-      "cameo": ["SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_DHELMISE", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_BRONZOR", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_CHANDELURE", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
       "note": "Turnback Cave, room 46 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     }
   },

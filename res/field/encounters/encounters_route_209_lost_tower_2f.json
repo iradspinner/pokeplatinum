@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_KIRLIA",
+        "SPECIES_SNORUNT"
     ],
     "sapphire": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_KIRLIA",
+        "SPECIES_SNORUNT"
     ],
     "emerald": [
-        "SPECIES_BELDUM",
-        "SPECIES_RALTS"
+        "SPECIES_CARVANHA",
+        "SPECIES_COMBUSKEN"
     ],
     "firered": [
-        "SPECIES_SQUIRTLE",
-        "SPECIES_GYARADOS"
+        "SPECIES_EEVEE",
+        "SPECIES_TENTACOOL"
     ],
     "leafgreen": [
-        "SPECIES_SEAKING",
+        "SPECIES_GRAVELER",
         "SPECIES_KOFFING"
     ],
     "surf_rate": 0,

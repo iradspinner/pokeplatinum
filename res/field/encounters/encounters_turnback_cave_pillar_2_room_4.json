@@ -19,7 +19,7 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 27,
@@ -31,7 +31,7 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 27,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOLBAT"
     ],
     "night": [
         "SPECIES_YAMASK",
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_COFAGRIGUS",
         "SPECIES_LAMPENT",
-        "SPECIES_GOLBAT",
+        "SPECIES_CROBAT",
         "SPECIES_BRONZONG"
     ],
     "rate_form0": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MARSHTOMP",
+        "SPECIES_LUNATONE",
         "SPECIES_MASQUERAIN"
     ],
     "sapphire": [
-        "SPECIES_MARSHTOMP",
+        "SPECIES_LUNATONE",
         "SPECIES_MASQUERAIN"
     ],
     "emerald": [
-        "SPECIES_MILOTIC",
-        "SPECIES_SHARPEDO"
+        "SPECIES_METANG",
+        "SPECIES_MILOTIC"
     ],
     "firered": [
-        "SPECIES_SCYTHER",
-        "SPECIES_KOFFING"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_TENTACOOL"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMELEON"
     ],
     "surf_rate": 0,
     "surf_encounters": [

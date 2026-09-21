@@ -21,6 +21,7 @@ UnusedJubilifeCitySouthHouse3f_Entry1:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfSet FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT, UnusedJubilifeCitySouthHouse3f_0101
     Message 1
     InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
     AddListMenuEntry 2, 0, 255
@@ -43,6 +44,7 @@ UnusedJubilifeCitySouthHouse3f_007D:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_GLAMEOW, 8, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT
     Message 67
     CloseMessage
     ReleaseAll
@@ -55,6 +57,7 @@ UnusedJubilifeCitySouthHouse3f_00A9:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     GivePokemon SPECIES_SKITTY, 8, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT
     Message 67
     CloseMessage
     ReleaseAll
@@ -66,7 +69,8 @@ UnusedJubilifeCitySouthHouse3f_00D5:
     GoToIf 1, UnusedJubilifeCitySouthHouse3f_010C
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_MEOWTH, 8, 0, VAR_0x800C
+    GivePokemon SPECIES_PURRLOIN, 8, 0, VAR_0x800C
+    SetFlag FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT
     Message 67
     CloseMessage
     ReleaseAll
