@@ -1,6 +1,6 @@
 # Platinum Oxide: Hardlove Gold engine-expansion integration into Pokemon Platinum
 
-Design document, v0.15 (2026-09-20). This file is written for Claude to work from. Read it in full at the start of every session, then read `docs/oxide/tracker.md`, then act. Facts and rules live here; status lives in the tracker; the encounter tool's own status and findings live in `docs/oxide/encounter-tool-build-plan.md`.
+Design document, v0.16 (2026-09-20). This file is written for Claude to work from. Read it in full at the start of every session, then read `docs/oxide/tracker.md`, then act. Facts and rules live here; status lives in the tracker; the encounter tool's own status and findings live in `docs/oxide/encounter-tool-build-plan.md`.
 
 ## 1. What this project is
 

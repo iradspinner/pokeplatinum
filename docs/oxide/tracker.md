@@ -32,7 +32,19 @@ python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
 python3 tools/oxide/scriptdis.py --rom ~/roms/base.nds --verify --base-rom
 ```
 
-The importer is idempotent, so a non-zero count means something moved. Both `scriptdis` runs should report 574 files walked, 0 failed, 550 init scripts read and 0 movement-target collisions. The species and move check reports the twenty Fairy retypes and three Fairy moves as "intended bytes" rather than mismatches: `verify_narcs.py` carries a `DIVERGED` list for Phase 4 changes, the same idea as the bulk tools' skip lists, and any Phase 4 element that changes a base-ROM table must add its members there or the integration gate fails. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-20 at the first integration.
+The importer is idempotent, so a non-zero count means something moved. Both `scriptdis` runs should report 574 files walked, 0 failed, 550 init scripts read and 0 movement-target collisions.
+
+**What "clean" looks like now that Phase 4 has changed these tables.** `verify_narcs.py` carries a `DIVERGED` list for Phase 4 changes, the same idea as the bulk tools' skip lists, and any Phase 4 element that changes a base-ROM table must add its members there or the gate fails. Since element 3 the three per-species archives no longer line up with the reference member for member, so the tool maps the reference's indices onto the built ones and reports each archive as a sentence rather than a diff. Expect exactly this:
+
+- `pl_personal.narc`: 667 members against the reference's 508; **0 disagree**, 20 differ only at the intended bytes (the Fairy retypes), 159 are new species
+- `wotbl.narc`: 667 against 508; 0 disagree, 159 new; 3 members differ only in trailing zero padding
+- `evo.narc`: 667 against 508; 0 disagree, 159 new; 7 members differ on purpose (the natives that gain an evolution) and 501 differ only in trailing zero padding, which is the record going from 44 bytes to 56
+- `pl_waza_tbl.narc`: identical apart from the intended bytes, the three Fairy moves
+- the base ROM importer reports every count 0 and lists those same seven species' evolutions as not carried over
+
+Anything else is a regression. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-20 after Phase 4 element 3 landed.
+
+**Files outside the repo that the tools need**, all of them copies, none of them rebuildable from here: `~/roms/base.nds` (the base ROM), `~/roms/vanilla.nds` (a byte-exact Rev 1 build, made once from `main`) and `~/roms/hardlove.nds` (the donor). If any goes missing, copy it again from the project folder on the G: drive; the paths are in the design doc and `docs/oxide/donor-tables.md`.
 
 **Waiting on Ian:**
 
