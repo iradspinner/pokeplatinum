@@ -304,6 +304,19 @@ def origin_of(cur, van, key, index):
 
 # -- the catalogue ----------------------------------------------------------
 
+# Ian's decision, 2026-09-21: Oxide will never use swarms, the Poke Radar,
+# the dual-slot GBA lists, the Trophy Garden dailies or the base ROM's
+# Twinleaf Town legendary menu, so none of them count as a source and they are
+# left out of the catalogue. The reading code for them stays so the exclusion
+# is one line to lift.
+EXCLUDED_METHODS = ("swarm", "poke radar", "dual-slot ", "trophy garden daily")
+EXCLUDED_SCRIPTS = ("scripts_twinleaf_town.s",)
+
+
+def excluded(map_or_file, method):
+    return (method.startswith(EXCLUDED_METHODS)
+            or (method == "static battle" and map_or_file in EXCLUDED_SCRIPTS))
+
 Row = collections.namedtuple(
     "Row", "location map_or_file species method level conditions origin")
 
@@ -314,6 +327,8 @@ def build():
     rows = []
 
     def add(location, mof, species, method, level, conditions, origin):
+        if excluded(mof, method):
+            return
         rows.append(Row(location, mof, species, method, str(level),
                         conditions, origin))
 
@@ -647,6 +662,12 @@ the three rods are not listed either, having been checked for anything
 exclusive and found to hold nothing a land, gift or scripted source does not
 already reach, except the Feebas tiles, which are listed.
 
+**Left out on Ian's decision (2026-09-21):** swarms, the Poke Radar, the
+dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf
+Town legendary menu. Oxide will never use any of them, so they are not sources
+and the authoring pass does not have to de-leak them; the generator still reads
+them and `EXCLUDED_METHODS` in `tools/oxide/pokemon_sources.py` is the switch.
+
 **How a land table gets overwritten.** Several of the methods below are not
 separate tables at all; they replace numbered slots of the map's own land
 table, so they compete with it rather than adding to it
@@ -665,7 +686,7 @@ table, so they compete with it rather than adding to it
 
 def write_csv(rows, on_list, path):
     with open(path, "w", encoding="utf-8", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(["location", "map_or_file", "species", "method", "level",
                     "conditions", "origin", "on_pick_list"])
         for r in rows:

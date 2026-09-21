@@ -206,7 +206,7 @@ shape the finished game.
 - [ ] **Level-cap split design.** Per split: the areas, trainers, items, and learnsets/evolutions available. Ian expects this to be a lot of work, and it **must precede the trainer balance pass** because it constrains it. Phase 4 only delivers the mechanism
 - [ ] **TM pass.** How many TMs (likely more than 92) and which moves, done with the overall balance pass
 - [ ] **Ability balance pass** across all species, including the base ROM's 228 duplicated second slots, which stay as they are until then
-- [ ] **Encounter design decisions** that Phase 4 leaves open: which encounters set the hidden-ability flag (gifts, statics, a late area), and which areas have wild double battles
+- [ ] **Encounter design decisions** that Phase 4 leaves open: which encounters set the hidden-ability flag (gifts, statics, a late area), and which areas have wild double battles. **Decided 2026-09-21 (Ian): swarms, the Poke Radar, the dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf legendary menu are never used**, so they are not acquisition sources and `docs/oxide/pokemon-sources.md` leaves them out; what happens to their data (emptied or left as-is) is the authoring pass's call
 - [ ] Optional, not scheduled: a ROM-specific PKHeX/PKHaX build. Depends on the save layout being documented as it changes, so keep a `docs/oxide/save-layout.md` listing every block that moved and why
 
 ## Phase 5: Verify
