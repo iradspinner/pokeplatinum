@@ -1076,6 +1076,8 @@ TEXT_BANKS_SKIPPED = {
     117: "the Fan Club's gift menu names the species it hands out, and the encounter pass "
          "re-pooled that gift onto pick-list species (Ian, 2026-09-21)",
     568: "Sandgem's gift menu names the species it hands out, re-pooled with the same pass",
+    578: "the Day Care man offers a Floette rather than the base ROM's Ditto "
+         "(Ian, 2026-09-21), and his line names it",
 }
 
 

@@ -5205,6 +5205,22 @@
     .short \success
     .endm
 
+    /* Platinum Oxide: a gift whose Pokemon is designed rather than rolled.
+       \nature is an index into the usual order (0 is Hardy, a neutral one),
+       \ivs is written to all six, and \shiny is 0 or 1. The personality value
+       the game builds from these also decides gender and which ordinary
+       ability the Pokemon has. */
+    .macro GiveDesignedPokemon species, level, heldItem, nature, ivs, shiny, successVar
+    .short SCRCMD_GIVEDESIGNEDPOKEMON
+    .short \species
+    .short \level
+    .short \heldItem
+    .short \nature
+    .short \ivs
+    .short \shiny
+    .short \successVar
+    .endm
+
     .macro NPCMessage messageID
     PlaySE SE_CONFIRM_sseq_3
     LockAll

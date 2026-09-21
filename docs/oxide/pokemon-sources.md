@@ -282,7 +282,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Ditto | gift | 30 | the Day Care man hands it over on a yes/no prompt; once only (FLAG_RECEIVED_POKEMON_DAY_CARE_DITTO); holds 229 | **base-ROM** | no | `scripts_pokemon_day_care.s` |
+| Floette | gift | 30 | the Day Care man hands it over on a yes/no prompt; once only (FLAG_RECEIVED_POKEMON_DAY_CARE_GIFT); shiny, perfect IVs and a neutral nature, through GiveDesignedPokemon | **base-ROM** | yes | `scripts_pokemon_day_care.s` |
 
 ### Pokémon Mansion
 
@@ -363,7 +363,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| (egg of the mother's line) | day care egg | 1 | breeding at the Solaceon Day Care; the only route to baby stages and to any egg move; Ditto from the Day Care man makes every non-legendary breedable | vanilla | n/a | `src/egg.c` |
+| (egg of the mother's line) | day care egg | 1 | breeding at the Solaceon Day Care; the only route to baby stages and to any egg move; the Day Care man's gift is a Floette rather than the base ROM's Ditto, so there is no longer a universal breeding partner, which Ian ruled out of scope on 2026-09-21 | vanilla | n/a | `src/egg.c` |
 | Lunatone | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
 | Solrock | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
 | Trapinch | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |

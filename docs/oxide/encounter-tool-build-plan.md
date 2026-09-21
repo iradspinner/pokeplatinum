@@ -1212,11 +1212,20 @@ up, which stops making sense once the trade takes anything, so a small table in
 behaviour; and vanilla asserted that a trade is never shiny, which two of ours
 now are on purpose.
 
-**Blocked, and it is the one thing Ian asked for that is not done.** The Day Care
-Ditto was to become a shiny winter Sawsbuck, and neither Deerling nor Sawsbuck is
-in the species tree. That line has to be ported before it can be given away or go
-on the pick-list, so the Ditto stands and the item is in the tracker's backlog,
-with the consequence noted there: the Day Care man is the game's only Ditto.
+**The Day Care's gift** was to become a shiny winter Sawsbuck; neither Deerling
+nor Sawsbuck is in the species tree, so Ian moved it to a **shiny Floette** with
+the same perfect IVs and neutral nature at level 30, and ruled breeding out of
+scope, which is what losing the game's only Ditto costs. That needed the fork's
+second script command. `GivePokemon` rolls the personality value, and therefore
+the nature, and rolls the IVs; `GiveDesignedPokemon` takes a nature, one IV value
+for all six and a shiny flag, and builds the personality to satisfy the nature
+and the shininess at once, the same arithmetic the rebuilt trades use. Like
+`GiveHiddenAbility` it is registered at the end of `scrcmd.h` so no existing
+opcode moves, and `audit.py` and `pokemon_sources.py` both read it now.
+
+The white flower is the one part still missing. Floette's colours are forms and
+this tree has a single Floette with one sprite and one palette, so a white one is
+art and a form record rather than a number in a script. Backlog.
 
 Gate: `cli evolve` 0 moves, plan gate green with 0 cap candidates, `lint --ignore
 R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and

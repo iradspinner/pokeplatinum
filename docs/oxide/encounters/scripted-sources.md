@@ -97,18 +97,30 @@ on the list.
 The nicknames are unchanged, so the Vullaby is still called Kazza and the
 Popplio Charap. Say the word and they move, but each one is a text bank.
 
-## Flagged, not changed
+## The Day Care's gift
 
-The remaining case is one where the species is doing a job beyond being an
-encounter.
+The Day Care man handed over a Ditto. He gives a **shiny Floette** now: perfect
+IVs, a neutral nature, level 30, once only like every other gift (Ian,
+2026-09-21, after first asking for a winter Sawsbuck and then for Floette; the
+Sawsbuck line is not in the species tree). Breeding is out of scope by the same
+ruling, so losing the game's only Ditto is intended rather than a side effect.
 
-- **The Day Care's Ditto**, handed over on a yes/no prompt. Ian's ruling of
-  2026-09-21 is that it becomes a shiny Sawsbuck in its winter form, perfect
-  IVs, neutral nature, level 30. **It is not done**, because neither Deerling
-  nor Sawsbuck is in the species tree: that line has to be ported before it can
-  be given away or put on the pick-list. It is in the tracker's backlog, and it
-  carries a consequence worth deciding on purpose, since the Day Care man is the
-  only Ditto in the game and Ditto is what makes everything else breedable.
+One part of the ask is **not delivered and cannot be yet**: the white flower.
+Floette's flower colours are forms, and this tree has exactly one Floette, with
+one sprite and one palette, so a white-flowered one is new art and a new form
+record rather than a number in a script. The gift is the Floette there is. The
+tracker's backlog carries it.
+
+Designing a gift needed a script command, because `GivePokemon` rolls the
+personality value and therefore the nature, and rolls the IVs. `GiveDesignedPokemon`
+takes a species, a level, a held item, a nature, one IV value for all six and a
+shiny flag, and builds the personality to match: Generation 4 reads the nature
+out of that value modulo 25 and calls a Pokemon shiny when the trainer id, the
+secret id and the value's two halves exclusive-or to under 8, so choosing the
+halves against the player's own id settles both at once. The same value also
+decides gender and which ordinary ability the Pokemon has, which a designed gift
+simply takes. It is the fork's second script command, after `GiveHiddenAbility`,
+and like that one it is registered at the end so no existing opcode moves.
 - **The Oreburgh museum's four spare fossils.** The pick-list has three fossil
   lines (Cranidos, Shieldon, Lileep) and the museum revives seven. The Old Amber,
   Helix, Dome and Claw fossils still revive Aerodactyl, Omanyte, Kabuto and

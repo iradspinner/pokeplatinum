@@ -224,7 +224,8 @@ BATTLE_RE = re.compile(
     r"^\s*(StartWildBattle|StartLegendaryBattle|StartFatefulEncounter"
     r"|StartGiratinaOriginBattle)\s+(SPECIES_[A-Z0-9_]+),\s*(\d+)")
 GIVE_RE = re.compile(
-    r"^\s*(GivePokemon|GiveEgg|GivePokemonWithMoves)\s+(SPECIES_[A-Z0-9_]+),\s*(\d+)"
+    r"^\s*(GivePokemon|GiveEgg|GivePokemonWithMoves|GiveDesignedPokemon)"
+    r"\s+(SPECIES_[A-Z0-9_]+),\s*(\d+)"
     r"(?:,\s*([A-Za-z0-9_]+))?")
 
 
@@ -537,8 +538,9 @@ def build():
     add("Solaceon Town", "src/egg.c", "(egg of the mother's line)",
         "day care egg", "1",
         "breeding at the Solaceon Day Care; the only route to baby stages "
-        "and to any egg move; Ditto from the Day Care man makes every "
-        "non-legendary breedable", "vanilla")
+        "and to any egg move; the Day Care man's gift is a Floette rather "
+        "than the base ROM's Ditto, so there is no longer a universal "
+        "breeding partner, which Ian ruled out of scope on 2026-09-21", "vanilla")
 
     return rows
 
@@ -571,7 +573,8 @@ GIFT_NOTES = {
         "out, and was widened to six; once only "
         "(FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT)",
     "pokemon_day_care": "the Day Care man hands it over on a yes/no prompt; "
-        "once only (FLAG_RECEIVED_POKEMON_DAY_CARE_DITTO)",
+        "once only (FLAG_RECEIVED_POKEMON_DAY_CARE_GIFT); shiny, perfect "
+        "IVs and a neutral nature, through GiveDesignedPokemon",
     "pokemon_mansion_office": "Egg from the Mansion's owner; once only "
         "(FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts "
         "Reset; vanilla only ever gave this through Mystery Gift",

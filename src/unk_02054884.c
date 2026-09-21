@@ -57,6 +57,79 @@ BOOL Pokemon_GiveMonFromScript(enum HeapID heapID, SaveData *saveData, u16 speci
     return result;
 }
 
+// Platinum Oxide: the personality value for a designed gift. Generation 4 reads
+// both the nature and the shininess out of it, so one number settles both: the
+// nature is the value modulo 25, and the Pokemon is shiny when the trainer id,
+// the secret id and the two halves of the value exclusive-or to less than 8.
+// Choosing the halves to cancel against the player's own id leaves that at 0,
+// and flipping one bit of the upper half puts it safely outside the window.
+// Every nature appears within the first 25 values of the loop, so it ends.
+static u32 DesignedPersonality(u32 otID, u8 nature, BOOL shiny)
+{
+    u32 tid = otID & 0xFFFF;
+    u32 sid = otID >> 16;
+    u32 lo;
+
+    for (lo = 0; lo <= 0xFFFF; lo++) {
+        u32 hi = tid ^ sid ^ lo;
+        u32 personality;
+
+        if (!shiny) {
+            hi ^= 0x8000;
+        }
+
+        personality = (hi << 16) | lo;
+
+        if (personality % 25 == nature) {
+            return personality;
+        }
+    }
+
+    return nature;
+}
+
+// Platinum Oxide: a gift whose Pokemon is designed rather than rolled, for the
+// rebuilt gifts of the encounter pass. The personality carries the nature and
+// the shininess, and every IV is set to the same value, which is what "perfect
+// IVs" or "20s across" mean in Ian's briefs. Note that the personality also
+// decides gender and which of the two ordinary abilities the Pokemon has, so a
+// designed gift takes what falls out of it.
+BOOL Pokemon_GiveDesignedMonFromScript(enum HeapID heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, u8 nature, u8 ivs, BOOL shiny, int metLocation, int metTerrain)
+{
+    BOOL result;
+    u32 item, iv;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
+    Party *party = SaveData_GetParty(saveData);
+    Pokemon *mon = Pokemon_New(heapID);
+    u32 otID = TrainerInfo_ID(trainerInfo);
+
+    Pokemon_Init(mon);
+    Pokemon_InitWith(mon, species, level, INIT_IVS_RANDOM, TRUE, DesignedPersonality(otID, nature, shiny), OTID_SET, otID);
+
+    iv = ivs;
+    Pokemon_SetValue(mon, MON_DATA_HP_IV, &iv);
+    Pokemon_SetValue(mon, MON_DATA_ATK_IV, &iv);
+    Pokemon_SetValue(mon, MON_DATA_DEF_IV, &iv);
+    Pokemon_SetValue(mon, MON_DATA_SPEED_IV, &iv);
+    Pokemon_SetValue(mon, MON_DATA_SPATK_IV, &iv);
+    Pokemon_SetValue(mon, MON_DATA_SPDEF_IV, &iv);
+    Pokemon_CalcLevelAndStats(mon);
+
+    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
+
+    item = heldItem;
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    result = Party_AddPokemon(party, mon);
+
+    if (result) {
+        SaveData_UpdateCatchRecords(saveData, mon);
+    }
+
+    Heap_Free(mon);
+
+    return result;
+}
+
 BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int param4, int param5)
 {
     int v0;
