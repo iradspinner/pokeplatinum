@@ -120,14 +120,14 @@
     "evolutions": [],
     "offspring": "SPECIES_ALOLAN_NINETALES",
     "footprint": {
-        "has": false,
+        "has": true,
         "size": "FOOTPRINT_MEDIUM",
-        "type": "FOOTPRINT_TYPE_NONE"
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height_inches": 43,
         "weight_pounds": 43.9,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -140,54 +140,54 @@
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         },
         "fr": {
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         },
         "de": {
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         },
         "it": {
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         },
         "es": {
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         },
         "jp": {
             "name": "-----",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It lives on snowy peaks. This\n",
+                "NINETALES drives away intruders with\n",
+                "a fine, freezing mist."
             ]
         }
     },

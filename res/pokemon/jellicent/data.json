@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 87,
         "weight_pounds": 297.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_TENTACLES",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         },
         "fr": {
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         },
         "de": {
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         },
         "it": {
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         },
         "es": {
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         },
         "jp": {
             "name": "JELLICENT",
             "category": "Floating Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Ships and crews lost at sea are said\n",
+                "to have wandered into its castle of\n",
+                "bubbles."
             ]
         }
     },

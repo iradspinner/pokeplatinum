@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 12,
         "weight_pounds": 12.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         },
         "fr": {
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         },
         "de": {
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         },
         "it": {
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         },
         "es": {
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         },
         "jp": {
             "name": "CARBINK",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born deep underground, it sleeps for\n",
+                "ages. The gem on its head is hard as\n",
+                "diamond."
             ]
         }
     },

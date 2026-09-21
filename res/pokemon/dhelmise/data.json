@@ -111,7 +111,7 @@
     "pokedex_data": {
         "height_inches": 154,
         "weight_pounds": 463.0,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_TENTACLES",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -124,54 +124,54 @@
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         },
         "fr": {
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         },
         "de": {
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         },
         "it": {
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         },
         "es": {
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         },
         "jp": {
             "name": "DHELMISE",
             "category": "Sea Creeper Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Seaweed that took hold of a sunken\n",
+                "anchor. It swings the anchor to sink\n",
+                "ships."
             ]
         }
     },

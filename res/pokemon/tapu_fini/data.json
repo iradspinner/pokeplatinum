@@ -107,7 +107,7 @@
     "pokedex_data": {
         "height_inches": 51,
         "weight_pounds": 46.7,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -120,54 +120,54 @@
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         },
         "fr": {
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         },
         "de": {
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         },
         "it": {
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         },
         "es": {
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         },
         "jp": {
             "name": "TAPU FINI",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It raises a fog that confuses\n",
+                "whoever enters, and has no patience\n",
+                "for the impure."
             ]
         }
     },

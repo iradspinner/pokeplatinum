@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 51,
         "weight_pounds": 551.2,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_BASE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         },
         "fr": {
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         },
         "de": {
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         },
         "it": {
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         },
         "es": {
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         },
         "jp": {
             "name": "PALOSSAND",
             "category": "Sand Castle Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It buries its prey in sand and\n",
+                "drains the life from them at its\n",
+                "leisure."
             ]
         }
     },

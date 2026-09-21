@@ -49,19 +49,6 @@ Written 2026-09-15. Companion to `phase1-hg-engine-survey.md`. Approach A (data-
 - **A local build environment for Ian, or a patch-delivery step.** See section 5.
 - **Learning curve.** The source tree is large. In practice Ian does not need to read it; the design doc and tracker say where things are, and edits to data files (JSON, scripts) need no C.
 
-## 5. Logistics, which is the real decision under C
-
-The finished ROM is 128 MB. The tool that writes files into Ian's folder from my workspace is capped at 20 MB per file, so I cannot hand back a whole ROM that way, and my workspace does not persist between sessions (each session would re-clone and rebuild, which is fine at 8 minutes but means the source cannot *live* here).
-
-Two workable arrangements:
-
-1. **GitHub fork as the source of truth; Ian builds locally.** Ian forks pokeplatinum under his own GitHub account. I clone it each session, make changes, commit, push. Ian pulls and runs `make rom` in WSL2 on his desktop (one-time setup per `INSTALL.md`, about 30 minutes; the toolchain download is automatic). This is the standard workflow for every decomp-based hack and gives Ian a full copy of everything at all times.
-2. **Same fork; I build here and deliver a patch.** I build in my workspace and produce a BPS or xdelta patch against Ian's base ROM. Patches stay small while changes are code and tables (kilobytes to a few MB) and grow when sprites are added (each new species sprite set is ~10 to 30 KB, so even a few hundred species is well under 20 MB). Ian applies the patch with any patcher. This avoids WSL entirely; the cost is that Ian cannot build without me.
-
-Either way the fork is needed, so the first Phase 3 step under C is: Ian creates a GitHub account if he does not have one and forks `pret/pokeplatinum`. Arrangement 1 is recommended; arrangement 2 is the fallback if WSL2 is unwelcome.
-
-Under B the logistics are the same shape (plat-engine also needs a Linux-style toolchain and also emits a 128 MB ROM), so this section is not a point against C specifically.
-
 ## 6. Recommended plan if C is approved
 
 Phase 3 (tooling) becomes:
@@ -76,13 +63,5 @@ Phase 4 (port) order, chosen so each step is testable on its own and the risky s
 4. Move expansion: move table, battle scripts, effect handlers, animations, text. Bring in Hardlove's moves; the script bytecode is shared across Gen 4 so much of hg-engine's `data/battle_scripts` converts mechanically.
 5. Ability effects: reimplement the new abilities' behaviours in the decomp's battle code, using hg-engine's `ability.c` and `individual/*.c` as the spec.
 6. Then the "other engine changes" Ian picks from the hg-engine menu, one at a time.
-
-## 7. Decisions needed from Ian
-
-- Approve approach C (or say why not).
-- Which of the base ROM's existing edits must carry over. If the answer is "none, start clean from vanilla plus Hardlove's content," say so; it removes a whole Phase 3 step.
-- GitHub: does Ian have an account, and is he willing to fork pokeplatinum there?
-- Build arrangement: WSL2 on his desktop (recommended) or patch delivery.
-- Confirm the Phase 4 order above, or reorder it.
 
 Sources consulted today, beyond the repositories themselves: [pret/pokeplatinum](https://github.com/pret/pokeplatinum), [c-crescent/Pokemon_Coarse_Platinum](https://github.com/c-crescent/Pokemon_Coarse_Platinum), [matt-newhall/plat-hack-decomp](https://github.com/matt-newhall/plat-hack-decomp), [JBerben/pokeaotea](https://github.com/JBerben/pokeaotea), [mid-kid/metroskrew](https://github.com/mid-kid/metroskrew).

@@ -113,7 +113,7 @@
     "pokedex_data": {
         "height_inches": 16,
         "weight_pounds": 35.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -126,54 +126,54 @@
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         },
         "fr": {
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         },
         "de": {
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         },
         "it": {
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         },
         "es": {
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         },
         "jp": {
             "name": "NACLI",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Born of salt compressed underground,\n",
+                "it leaves a trail of salt wherever\n",
+                "it rolls."
             ]
         }
     },

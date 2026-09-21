@@ -117,7 +117,7 @@
     "pokedex_data": {
         "height_inches": 16,
         "weight_pounds": 9.5,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -130,54 +130,54 @@
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         },
         "fr": {
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         },
         "de": {
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         },
         "it": {
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         },
         "es": {
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         },
         "jp": {
             "name": "LITTEN",
             "category": "Fire Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grooms itself to gather loose\n",
+                "fur, then coughs it up as a ball of\n",
+                "fire."
             ]
         }
     },

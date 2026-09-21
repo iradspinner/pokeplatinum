@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 197,
         "weight_pounds": 672.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_SERPENTINE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         },
         "fr": {
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         },
         "de": {
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         },
         "it": {
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         },
         "es": {
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         },
         "jp": {
             "name": "ZYGARDE",
             "category": "Order Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It watches over the ecosystem from a\n",
+                "cave, and stirs only when it is\n",
+                "threatened."
             ]
         }
     },

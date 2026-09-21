@@ -109,7 +109,7 @@
     "pokedex_data": {
         "height_inches": 8,
         "weight_pounds": 0.9,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -122,54 +122,54 @@
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         },
         "fr": {
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         },
         "de": {
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         },
         "it": {
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         },
         "es": {
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         },
         "jp": {
             "name": "POLTEGEIST",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It pours a little of itself into\n",
+                "leftover tea. Drinking that tea is\n",
+                "unwise."
             ]
         }
     },

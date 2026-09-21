@@ -82,3 +82,10 @@ The full restart check-list is at the top of the tracker; `integrate.sh` runs
 all of it. The minimum before calling a data or engine change done is
 `make rom` plus the verify tool that covers what changed, and the emulator test
 written into the tracker entry for Ian.
+
+Emulator work is Ian's melonDS on Windows with Ian at the controls, and the
+agent attached over the GDB stub with `tools/oxide/live_watch.py` (recipe:
+`docs/oxide/setup-fork-and-wsl2.md` part 5b). Never launch your own melonDS;
+the WSLg route in part 5 of that doc is a recorded dead end. Ask Ian to
+restart at the startup break, tell him what you have armed, and wait for his
+"go"; he plays and reports, you read.

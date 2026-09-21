@@ -103,7 +103,7 @@
     "pokedex_data": {
         "height_inches": 12,
         "weight_pounds": 3.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -116,54 +116,54 @@
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         },
         "fr": {
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         },
         "de": {
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         },
         "it": {
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         },
         "es": {
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         },
         "jp": {
             "name": "FOMANTIS",
             "category": "Sickle Grass Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sleeps in the sun by day to\n",
+                "photosynthesize, and moves about\n",
+                "after dark."
             ]
         }
     },

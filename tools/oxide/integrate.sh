@@ -146,8 +146,10 @@ for b in "${TRACK_BRANCHES[@]:-}"; do
     fi
     # Two files conflict routinely and each has one right resolution. The
     # tracker belongs to the main track, so its side wins (one status home per
-    # track). The design doc's findings log is append-only, so a conflict there
-    # is both tracks appending entries and the answer is to keep both, in order.
+    # track). Track agents only append to the design doc's findings log, so a
+    # conflict there is both tracks appending entries and the answer is to keep
+    # both, in order. Deletions from the log happen only in a docs pass with
+    # every track paused, precisely so this never resurrects a deleted entry.
     resolved=()
     for f in $conflicts; do
         case "$f" in

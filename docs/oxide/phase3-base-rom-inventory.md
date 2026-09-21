@@ -60,11 +60,3 @@ The base's `arm9` differs from vanilla at 38 places and eleven overlays differ. 
 **Resolved 2026-09-20.** All four unexplained ov16 edits are identified: `+0x1309C..+0x130BE` is `BattleControllerPlayer_CheckObedience`, its badge-scaled disobedience thresholds set to 255 so traded Pokemon always obey; `+0xEA3C` is a literal, `MAX_EVS_ALL_STATS` changed from 510 to 0, which makes the EV routine early-out every time so battling grants no EVs; `+0x2D046` is `UpdateGauge`, doubling the HP bar drain; and `+0x10D58` is the no-items-in-trainer-battles change. Only the HP bar is ported so far.
 
 **Q:** For the ov14 AI fixes, which ones did you apply? Under C they are one-line C fixes in `src/battle/trainer_ai/`, and the ones you did not apply can be applied too.
-
-## 3. What this means for Phase 3
-
-The data side is a scripting job I can do without help: dump each changed NARC member, convert to the decomp's `res/` format, diff against vanilla, keep the deltas. Scripts and events are the slow part because each of the 91 scripts has to be disassembled and rewritten in the decomp's macro language, then checked against the event file and text bank it references. Ian does not need to do that work, but he will be asked what specific scripts were *meant* to do when the bytecode is ambiguous.
-
-The code side needs Ian's answers to the five **Q**s above before anything is ported, because some of those patches may be things he no longer wants, and each one that stays is a C change rather than a byte patch.
-
-Nothing here changes the approach decision. It does make the expanded trainer format (B) a Phase 3 item rather than a "later" one, because the 488 edited trainers depend on it.

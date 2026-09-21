@@ -69,7 +69,7 @@
     "pokedex_data": {
         "height_inches": 16,
         "weight_pounds": 17.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_INSECTOID",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -82,54 +82,54 @@
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         },
         "fr": {
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         },
         "de": {
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         },
         "it": {
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         },
         "es": {
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         },
         "jp": {
             "name": "BLIPBUG",
             "category": "Larva Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It gathers information with the\n",
+                "hairs on its body, though it knows\n",
+                "little as yet."
             ]
         }
     },

@@ -103,7 +103,7 @@
     "pokedex_data": {
         "height_inches": 59,
         "weight_pounds": 99.2,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_BASE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -116,54 +116,54 @@
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         },
         "fr": {
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         },
         "de": {
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         },
         "it": {
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         },
         "es": {
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         },
         "jp": {
             "name": "GLIMMORA",
             "category": "Ore Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its petals are sheets of ore. It\n",
+                "fires them when threatened, spraying\n",
+                "toxic shards."
             ]
         }
     },

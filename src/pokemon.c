@@ -4960,31 +4960,30 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
 
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 {
-    // TODO enum values?
     switch (monSpecies) {
     case SPECIES_DEOXYS:
         if (monForm && monForm <= DEOXYS_FORM_COUNT - 1) {
-            monSpecies = (496 - 1) + monForm;
+            monSpecies = (FORM_DATA_DEOXYS_ATTACK - 1) + monForm;
         }
         break;
     case SPECIES_WORMADAM:
         if (monForm && monForm <= WORMADAM_FORM_COUNT - 1) {
-            monSpecies = (499 - 1) + monForm;
+            monSpecies = (FORM_DATA_WORMADAM_SANDY - 1) + monForm;
         }
         break;
     case SPECIES_GIRATINA:
         if (monForm && monForm <= GIRATINA_FORM_COUNT - 1) {
-            monSpecies = (501 - 1) + monForm;
+            monSpecies = (FORM_DATA_GIRATINA_ORIGIN - 1) + monForm;
         }
         break;
     case SPECIES_SHAYMIN:
         if (monForm && monForm <= SHAYMIN_FORM_COUNT - 1) {
-            monSpecies = (502 - 1) + monForm;
+            monSpecies = (FORM_DATA_SHAYMIN_SKY - 1) + monForm;
         }
         break;
     case SPECIES_ROTOM:
         if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
-            monSpecies = (503 - 1) + monForm;
+            monSpecies = (FORM_DATA_ROTOM_HEAT - 1) + monForm;
         }
         break;
     default:

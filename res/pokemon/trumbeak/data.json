@@ -117,7 +117,7 @@
     "pokedex_data": {
         "height_inches": 24,
         "weight_pounds": 32.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -130,54 +130,54 @@
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         },
         "fr": {
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         },
         "de": {
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         },
         "it": {
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         },
         "es": {
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         },
         "jp": {
             "name": "TRUMBEAK",
             "category": "Bugle Beak Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores seeds in its beak and\n",
+                "fires them off, and mimics the calls\n",
+                "it has heard."
             ]
         }
     },

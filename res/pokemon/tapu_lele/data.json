@@ -103,7 +103,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 41.0,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -116,54 +116,54 @@
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         },
         "fr": {
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         },
         "de": {
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         },
         "it": {
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         },
         "es": {
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         },
         "jp": {
             "name": "TAPU LELE",
             "category": "Land Spirit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters glowing scales that\n",
+                "heal, without caring who is healed\n",
+                "or harmed."
             ]
         }
     },

@@ -108,14 +108,14 @@
     "evolutions": [],
     "offspring": "SPECIES_GALARIAN_RAPIDASH",
     "footprint": {
-        "has": false,
-        "size": "FOOTPRINT_MEDIUM",
-        "type": "FOOTPRINT_TYPE_NONE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height_inches": 67,
         "weight_pounds": 209.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -128,54 +128,54 @@
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         },
         "fr": {
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         },
         "de": {
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         },
         "it": {
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         },
         "es": {
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         },
         "jp": {
             "name": "-----",
             "category": "Unique Horn Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its mane shimmers with psychic\n",
+                "power. It gallops to the aid of the\n",
+                "weak."
             ]
         }
     },

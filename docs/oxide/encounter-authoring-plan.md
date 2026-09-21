@@ -115,10 +115,8 @@ all of that; the linter passing on the finished tables is the definition of done
 
 ### The facts that size it, measured 2026-09-20
 
-- The pick-list has 360 rows: 199 natives that exist in the tree today, 159 new
-  species that **do not exist yet** (they arrive with Phase 4 step 3, the species
-  port), 2 cut. So this pass can only place natives, and has to leave a mechanical
-  path for the other 159.
+- The pick-list has 360 rows: 199 natives, 159 new species (in the tree since
+  element 3 landed, ids 494 to 652), 2 cut.
 - The current tables (the base ROM's rewrite) use 375 distinct species, and **237
   of them are not on the pick-list**. 183 of the 185 encounter files reference an
   off-list species somewhere; 1,250 of the 2,052 land slots do. Sinnoh staples are
@@ -130,27 +128,16 @@ all of that; the linter passing on the finished tables is the definition of done
   lists (about 970), and the day/night overrides (about 390). Any of them left in
   place is a leak: a species the list says is unobtainable, obtainable.
 - The tool writes land slots, `land_rate`, day/night slots 2-3 and water/rod slots.
-  It does not yet write swarms, radar or the dual-slot lists, and it does not read
-  `encounters_honey_tree`, `encounters_great_marsh_lookout` or the trophy-garden
-  source. The Pokedex area pages regenerate at build time from the encounter
+  The Pokedex area pages regenerate at build time from the encounter
   sources (`res/field/encounters/meson.build`), so they need no separate work.
-- Two verification tools assume the tables still match the base ROM and **will
-  start failing the moment a table is authored**: `import_base_rom.py --dry-run`
-  (its encounter count) and `verify_narcs.py --encounters` (compares the built
-  NARC to the base ROM). Both are in `tools/oxide/integrate.sh`. Step 0 fixes
-  them before any table changes, or the integration gate breaks on the first
-  merge.
 
 ## Decisions taken here
 
 Do not re-decide these. Anything marked *Ian* is his to change and the plan says
 what to do meanwhile.
 
-1. **Two stages.** Stage A authors every table with natives only and is playable
-   as soon as it is merged. Stage B places the 159 new species after Phase 4 step
-   3. Stage A records where each new species is meant to go as a *reservation* in
-   the sidecar (a slot holding a native placeholder now, and the intended species
-   named beside it), so Stage B is a mechanical apply, not a redesign.
+1. **Two stages.** Superseded: element 3 landed before Step 2, so every pick-list
+   line is placed directly and no reservation mechanism is built (see the banner).
 2. **All 171 land tables, in play order, early band first.** Every file has to be
    touched anyway (the leak), so there is no cheaper corridor. But the *order* is a
    corridor: Twinleaf to Eterna first, merged, then the rest. The design's
@@ -177,10 +164,23 @@ what to do meanwhile.
    Garden get a no-leak pass only.** Replace each off-list species with an on-list
    one of similar role and level, keep the shapes. Their proper design is a later
    pass; the design doc scoped the first pass to land and the linter is calibrated
-   on land. *Ian* may want to fold surf into the design earlier.
+   on land. **Amended by Ian, 2026-09-21: surf tables get designed in this pass,
+   not only de-leaked**, but a surf table counts as an acquisition path (R12 and
+   the availability report) only where the player can actually reach that water.
+   Several areas carry a surf table with no reachable water; the sidecar needs a
+   per-area flag saying whether the water is reachable, set by reading the map,
+   and the audit skips surf tables where it is false. Rods stay a no-leak pass.
 6. **Progression order.** *Ian's open question 2.* The agent writes `order` for
    all 185 areas from Sinnoh's actual route sequence (the outline below), commits
    it, and Ian corrects it in the file. Nothing waits on the correction.
+   **Ian's review, 2026-09-21:** the committed order is right to his eye with one
+   correction, the Old Chateau needs Cut and so comes after Eterna City and Route
+   211 west, not straight after Eterna Forest. And a task to add: every area gets a
+   `split` in the sidecar, the story gate it sits behind (the badge or HM that
+   opens it, so the Old Chateau is in the Gardenia split), so that `order` is
+   derived from and checked against the gates rather than eyeballed. Areas within
+   one split keep their relative order. Do this in Step 2, where the availability
+   plan needs the gates anyway.
 7. **Tiers.** *Ian's open question 3.* The agent adds a `tier` column to the CSV
    with a proposed default (`gate` for legendaries, fossils, the starter lines and
    anything scripted; `starter-adjacent` for lines whose first stage can sit on
@@ -192,11 +192,20 @@ what to do meanwhile.
    name an off-list species; Ian decides.
 9. **Unown and the Solaceon Ruins.** Unown is off-list, so the ruins rooms become
    ordinary cave tables (Stage A gives them a cave cast) and `unown_table` stops
-   mattering. *Ian* can put Unown back on the list instead; say so before Step 3.
+   mattering. **Ian, 2026-09-21: Unown stays off the list.** Settled.
 10. **Levels stay close to vanilla's.** The base ROM changed species on 114 of 171
     tables but levels on only 27, and vanilla's ladder is the thing the design is
     copying. `base_level` per area comes from vanilla (`--ref main`), and the
     archetype's ladder sits on top of it. Do not re-tune the level curve.
+11. **A line the game hands over with certainty appears in no encounter table
+    (Ian, 2026-09-21).** Togepi from Cynthia's egg in Eterna and Riolu from
+    Riley's egg on Iron Island are the examples; the rule is any species a script
+    gives unconditionally, as opposed to a choice (starter, fossil) or a random
+    roll (the base ROM's gift houses). Build the list from `pokemon-gifts.md` and
+    the scripts, show it to Ian once, then enforce it as a lint rule (next free R
+    number): a guaranteed line is absent from every land, water and rod table, and
+    the availability audit reports it as scripted rather than needing a home. The
+    tiers and the R12 cost ceilings stay as committed; this is the one change.
 
 ## The steps
 
@@ -205,46 +214,12 @@ gate; report instead.
 
 ### Step 0: tooling, before any table changes
 
-Small additions to `tools/oxide/encounters/`, each with a test in `test_m5a.py`
-(or whatever the next test file is called; keep the pattern).
-
-- `model.py`: writers for `swarms`, `radar` and the five dual-slot lists, the same
-  `_replace` mechanism as `set_time_slot`. Readers for `encounters_honey_tree`,
-  `encounters_great_marsh_lookout` and the trophy-garden source, species only.
-- `cli audit`: every species reference in every encounter source, by file and key,
-  flagged on-list or off-list, plus the `StartWildBattle` and `GivePokemon` species
-  in `res/field/scripts/*.s`. Output is the leak table for Step 2 and the zero
-  check for Step 5. Reads the pick-list CSV; the species-name-to-constant mapping
-  is `dex.py`'s job (extend it with the reverse of `display_name`).
-- `cli coverage`: for every line on the pick-list (families from `dex.py`), where it
-  is obtainable: wild home tables, cameos, gifts (`pokemon-gifts.csv`), trades,
-  and nothing. This is R12's input made visible.
-- `cli apply AREA`: materialise an area from its sidecar entry (decision 4).
-  Layout rule: the archetype's signature gives the merged shares; walk the twelve
-  slot rates and assign species so each species' summed rate equals its share
-  (duplicates fill where a share exceeds one slot's rate); levels are `base_level`
-  plus the archetype ladder's offset per slot, non-decreasing by slot index (R1);
-  `cast` may pin a species to a rung, otherwise the first-listed species take the
-  common head. `--all` applies every area with a cast. `--dry-run` prints the diff.
-- `import_base_rom.py`: an `AUTHORED` set (mirroring `bulk_scripts.py`'s `DIVERGED`)
-  naming encounter files the importer must not touch; the dry run reports them as
-  "authored, skipped" and counts 0.
-- `verify_narcs.py --encounters --source`: compare the built ROM's `pl_enc_data.narc`
-  against `res/field/encounters/*.json` field by field (this is M7). The existing
-  `--ref` mode stays for tables still matching the base ROM.
-- `tools/oxide/integrate.sh`: switch the encounters check to `--source`.
-
-*Gate:* M1 to M4 tests still pass; `integrate.sh --dry-run` passes; `cli audit` and
-`cli coverage` run on the unchanged tree and their numbers match the facts above
-(237 off-list species, 61 natives with no table).
+Done 2026-09-20; what was built and the gate's numbers are in the build plan's
+"Authoring pass" section.
 
 ### Step 1: order and tiers
 
-Write `order` into every sidecar entry, write the `tier` column, commit both. Then
-`lint --ref main` must show R12 evaluated rather than skipped. On the current tree
-R12 will fail loudly; that is the point.
-
-*Gate:* R12 runs; `order` covers all 185 areas with no duplicates.
+Done 2026-09-20; see the build plan's Step 1 entry.
 
 ### Step 2: the availability plan
 
@@ -303,13 +278,7 @@ spot-checks a late route and a dex area page in the emulator.
 
 ### Step 7: reservations for Stage B
 
-For every new species with a planned home or cameo, a `reserved` entry in the
-sidecar naming the slot and the species, and a native placeholder in that slot
-chosen so the table still passes lint. After Phase 4 step 3 lands, `cli apply
---reservations` swaps them in and the availability report covers all 358 lines.
-
-*Gate:* every new species on the pick-list has at least one reservation or a
-non-wild source noted in `availability.md`.
+Not needed; see decision 1.
 
 ## Authoring rules, the short form
 
@@ -357,22 +326,14 @@ lint and report numbers against the targets, what could not be reached and why,
 and what is waiting on him. In the tracker, only the one encounter paragraph. At
 the end: the section 6.6 table (vanilla, old tables, new tables, target), the
 availability report's summary line (lines with a wild home / non-wild source /
-none), the leak audit's script list, and the list of reservations for Stage B.
+none), and the leak audit's script list.
 
 ## Open for Ian, none blocking
 
-- Corrections to `order` and `tier` once the agent's defaults are committed.
-- Whether Unown returns to the list (decision 9) and whether surf gets designed
-  now (decision 5).
+- ~~Corrections to `order` and `tier`~~ done 2026-09-21: see decisions 6, 7 and 11.
+- ~~Whether Unown returns to the list and whether surf gets designed now~~ done
+  2026-09-21: Unown off, surf designed but counted only where reachable
+  (decisions 5 and 9).
 - Any off-list species the leak audit finds in scripts.
 - Whether the first two splits' feel is right, from his review in the tool (the
   playthrough is off Step 3's gate).
-
-## Sizing
-
-Step 0 is a day of tool work with tests. Steps 1 and 2 are a session. Steps 3 and
-4 are the bulk: 171 casts and intents, perhaps 20 tables a session once the
-archetype budget is understood, so about nine sessions, with the corridor merge
-after the first two. Steps 5 to 7 are two sessions. The generator (M6) would cut
-Steps 3 and 4 but is not needed for them and is not on this plan's path; build it
-afterwards if the hand pass shows which parts were mechanical.

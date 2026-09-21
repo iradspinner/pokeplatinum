@@ -135,7 +135,7 @@
     "pokedex_data": {
         "height_inches": 256,
         "weight_pounds": 518.1,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_SERPENTINE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -148,54 +148,54 @@
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         },
         "fr": {
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         },
         "de": {
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         },
         "it": {
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         },
         "es": {
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         },
         "jp": {
             "name": "-----",
             "category": "Atrocious Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fury has been drawn out past all\n",
+                "reason. Nothing it sees is left\n",
+                "standing."
             ]
         }
     },

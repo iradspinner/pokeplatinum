@@ -1,11 +1,9 @@
 # Phase 4: Ian's answers to the engine-change questions
 
-Written 2026-09-20. Ian answered the ten questions in
-`phase4-engine-change-questions.md` one at a time, with follow-ups where an
-answer opened a second decision. Format follows `phase3-answers-and-trainer-format.md`.
-
-Claude Code should fold these into `docs/oxide/design-doc.md` (scope table,
-engine-change list) and `docs/oxide/tracker.md`, and keep this file as the record.
+Written 2026-09-20. Ian answered the ten Phase 4 engine-change questions one at
+a time, with follow-ups where an answer opened a second decision. Each answer
+restates what it was asked; the questions file was removed in the 2026-09-21 docs
+pass. Format follows `phase3-answers-and-trainer-format.md`.
 
 ## 1. The answers
 
@@ -175,7 +173,7 @@ held items. Followers deferred.
 
 ## 4. Battle AI
 
-Nothing in this pass changes the AI section of the questions doc: read
+The approach Ian set for element 6 stands: read
 `src/battle/trainer_ai/` first, write it up to the point where a change can be
 predicted, keep fixes separate from behaviour changes, and apply the eleven
 `battle_edits` fixes last. Two things from today's answers feed into that

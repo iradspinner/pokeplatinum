@@ -117,7 +117,7 @@
     "pokedex_data": {
         "height_inches": 16,
         "weight_pounds": 20.7,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -130,54 +130,54 @@
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         },
         "fr": {
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         },
         "de": {
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         },
         "it": {
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         },
         "es": {
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         },
         "jp": {
             "name": "FENNEKIN",
             "category": "Fox Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It vents hot air from its ears to\n",
+                "keep foes at bay, and eats twigs for\n",
+                "fuel."
             ]
         }
     },
