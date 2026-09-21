@@ -110,6 +110,16 @@
             "EVO_LEVEL",
             20,
             "SPECIES_QUAGSIRE"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_POISON_BARB",
+            "SPECIES_CLODSIRE"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
+            "ITEM_POISON_BARB",
+            "SPECIES_CLODSIRE"
         ]
     ],
     "offspring": "SPECIES_WOOPER",

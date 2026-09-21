@@ -1236,6 +1236,16 @@ def main():
     log = []
     counts = {}
 
+    # Species whose evolutions Phase 4 element 3 added to, so the base ROM's
+    # list is no longer the whole truth and re-importing it would drop the new
+    # entry. Everything else about these species is still carried over.
+    EVOLUTIONS_EXTENDED = {
+        57: "Primeape gains Annihilape", 123: "Scyther gains Kleavor",
+        130: "Gyarados gains Gyarados M", 133: "Eevee gains Sylveon",
+        194: "Wooper gains Clodsire", 370: "Luvdisc gains Alomomola",
+        428: "Lopunny gains Lopunny M",
+    }
+
     # species: personal + learnset + evolutions live in one data.json
     bp, vp = base.narc("poketool/personal/pl_personal.narc"), van.narc("poketool/personal/pl_personal.narc")
     bl, vl = base.narc("poketool/personal/wotbl.narc"), van.narc("poketool/personal/wotbl.narc")
@@ -1250,7 +1260,11 @@ def main():
             continue
         new = decode_personal(bp[i]); old = decode_personal(vp[i])
         new["learnset.by_level"] = decode_learnset(bl[i]); old["learnset.by_level"] = decode_learnset(vl[i])
-        new["evolutions"] = decode_evolutions(be[i]); old["evolutions"] = decode_evolutions(ve[i])
+        if i in EVOLUTIONS_EXTENDED:
+            log.append((d, [f"evolutions not carried over, {EVOLUTIONS_EXTENDED[i]} "
+                            f"(Phase 4 element 3); the rest of the record still is"]))
+        else:
+            new["evolutions"] = decode_evolutions(be[i]); old["evolutions"] = decode_evolutions(ve[i])
         # nested keys expressed with dots need to become real nesting for flatten()
         for k in ("learnset.by_tm", "learnset.by_level"):
             for dd in (new, old):

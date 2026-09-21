@@ -11,7 +11,16 @@
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
 
-#define MAX_EVOLUTIONS 7
+// Platinum Oxide: nine, not seven. Eevee decided it: Platinum's seven slots
+// were already full (Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon,
+// Glaceon) and Sylveon makes eight. Nine is also the donor's own slot count, so
+// the record is now its 56 bytes.
+#define MAX_EVOLUTIONS 9
+
+// The packer aligns the table to four bytes, so the archive member is longer
+// than the entries themselves and a whole-member read needs the rounded size.
+#define SPECIES_EVOLUTIONS_MEMBER_SIZE \
+    ((MAX_EVOLUTIONS * sizeof(SpeciesEvolution) + 3) & ~3u)
 
 // Platinum Oxide: 34, not 20. The donor's level-up learnsets are 34 fixed
 // slots and some new species fill more than twenty of them. The wotbl records

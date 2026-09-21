@@ -253,6 +253,18 @@ DIVERGED = {
 SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
                     "poketool/personal/evo.narc",
                     "poketool/personal/wotbl.narc")
+
+# Whole members of a species archive that no longer match the reference on
+# purpose, where the difference is not confined to a few byte offsets the way
+# DIVERGED's entries are. Keyed by the reference's member index.
+DIVERGED_MEMBERS = {
+    "poketool/personal/evo.narc": {
+        "members": {57, 123, 130, 133, 194, 370, 428},
+        "why": "seven natives gain an evolution into a new species "
+               "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
+               "Phase 4 element 3)",
+    },
+}
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
 
 
@@ -344,16 +356,22 @@ def intended_divergence(path, i, built_member, ref_member):
 def check_species_archive(b, r, path):
     """evo and wotbl, which are a straight byte comparison once the reference's
     indices are mapped onto the built archive's."""
-    bad, padded = [], []
+    allowed = DIVERGED_MEMBERS.get(path, {"members": set(), "why": ""})
+    bad, padded, intended = [], [], []
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
             bad.append(i)
         elif b[j] != r[i]:
-            (padded if b[j].rstrip(b"\0") == r[i].rstrip(b"\0") else bad).append(i)
+            if i in allowed["members"]:
+                intended.append(i)
+            else:
+                (padded if b[j].rstrip(b"\0") == r[i].rstrip(b"\0") else bad).append(i)
     extra = len(b) - len(r)
     if padded:
         print(f"{path}: {len(padded)} members differ only in trailing zero padding: {padded[:20]}")
+    if intended:
+        print(f"{path}: {len(intended)} members differ on purpose, {allowed['why']}: {intended}")
     print(f"{path}: {len(b)} members against the reference's {len(r)}; {len(bad)} disagree"
           + (f", {extra} are new species" if extra > 0 else ""))
     if bad:

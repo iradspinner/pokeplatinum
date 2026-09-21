@@ -108,7 +108,18 @@
             "MOVE_UPROAR"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_FIST_PLATE",
+            "SPECIES_LOPUNNY_M"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
+            "ITEM_FIST_PLATE",
+            "SPECIES_LOPUNNY_M"
+        ]
+    ],
     "offspring": "SPECIES_BUNEARY",
     "footprint": {
         "has": true,

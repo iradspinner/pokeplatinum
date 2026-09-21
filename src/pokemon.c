@@ -3551,7 +3551,10 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
         evoTypeResult = &stackVar;
     }
 
-    SpeciesEvolution *speciesEvolutions = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
+    // Platinum Oxide: the archive member is the table rounded up to four bytes,
+    // and LoadSpeciesEvolutions reads the whole member, so the buffer has to be
+    // the member's size. It was two bytes short of that.
+    SpeciesEvolution *speciesEvolutions = Heap_Alloc(HEAP_ID_SYSTEM, SPECIES_EVOLUTIONS_MEMBER_SIZE);
     LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
 
     switch (evoClass) {

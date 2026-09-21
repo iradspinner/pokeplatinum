@@ -4,6 +4,24 @@ base: `base.nds`  vanilla: `vanilla.nds`  dry run: True
 
 Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 0, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
 
+## /home/ian/pokeplatinum/res/pokemon/primeape
+- evolutions not carried over, Primeape gains Annihilape (Phase 4 element 3); the rest of the record still is
+
+## /home/ian/pokeplatinum/res/pokemon/scyther
+- evolutions not carried over, Scyther gains Kleavor (Phase 4 element 3); the rest of the record still is
+
+## /home/ian/pokeplatinum/res/pokemon/eevee
+- evolutions not carried over, Eevee gains Sylveon (Phase 4 element 3); the rest of the record still is
+
+## /home/ian/pokeplatinum/res/pokemon/wooper
+- evolutions not carried over, Wooper gains Clodsire (Phase 4 element 3); the rest of the record still is
+
+## /home/ian/pokeplatinum/res/pokemon/luvdisc
+- evolutions not carried over, Luvdisc gains Alomomola (Phase 4 element 3); the rest of the record still is
+
+## /home/ian/pokeplatinum/res/pokemon/lopunny
+- evolutions not carried over, Lopunny gains Lopunny M (Phase 4 element 3); the rest of the record still is
+
 ## pl_enc_data.narc (partially imported)
 - 241 differing values in unown_table, rate_form0, rate_form1, rate_form2, rate_form3, rate_form4 were not carried over; see ENCOUNTER_SKIP_KEYS in this importer for why
 - 0 authored table(s) left alone; see AUTHORED and the sidecar

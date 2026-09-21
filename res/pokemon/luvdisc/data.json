@@ -92,7 +92,12 @@
             "MOVE_AQUA_RING"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [
+            "EVO_LEVEL_HAPPINESS",
+            "SPECIES_ALOMOMOLA"
+        ]
+    ],
     "offspring": "SPECIES_LUVDISC",
     "footprint": {
         "has": false,

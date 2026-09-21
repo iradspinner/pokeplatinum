@@ -104,7 +104,18 @@
             "MOVE_UPROAR"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_DAY",
+            "ITEM_DRAGON_SCALE",
+            "SPECIES_GYARADOS_M"
+        ],
+        [
+            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
+            "ITEM_DRAGON_SCALE",
+            "SPECIES_GYARADOS_M"
+        ]
+    ],
     "offspring": "SPECIES_MAGIKARP",
     "footprint": {
         "has": false,
