@@ -53,8 +53,12 @@ def changed_lines(path):
 
 def check_endpoints(results):
     areas = get("/api/areas")
-    results.append(("GET /api/areas returns every live table",
-                    len(areas["rows"]) == 171, f"{len(areas['rows'])} rows"))
+    # Every area with a table of any kind: the live grass tables plus the
+    # water-only areas (Twinleaf Town, Route 219 and the cities), which are
+    # capture areas by their rods (Ian, 2026-09-21).
+    want = sum(1 for a in model.load_all() if a.land_active or a.kinds_present())
+    results.append(("GET /api/areas returns every area with a table of any kind",
+                    len(areas["rows"]) == want, f"{len(areas['rows'])} rows, want {want}"))
     results.append(("areas carries game metrics and lint",
                     "game" in areas and "game_findings" in areas
                     and "thresholds" in areas, ""))
@@ -110,25 +114,25 @@ def check_caught_is_global(results):
     before = {r["area"]: r for r in get("/api/areas")["rows"]}
     code, payload = post("/api/caught",
                          {"area": "encounters_route_201",
-                          "species": "SPECIES_BIDOOF"})
+                          "species": "SPECIES_WOOLOO"})
     results.append(("caught write is recorded against its area",
                     code == 200
                     and payload["encounters"] == {"encounters_route_201":
-                                                  "SPECIES_BIDOOF"},
+                                                  "SPECIES_WOOLOO"},
                     f"HTTP {code}"))
     rows = {r["area"]: r for r in get("/api/areas")["rows"]}
     results.append(("the area list shows what was caught there",
-                    rows["encounters_route_201"]["encounter_label"] == "Bidoof"
+                    rows["encounters_route_201"]["encounter_label"] == "Wooloo"
                     and rows["encounters_route_202"]["encounter_label"] is None,
                     ""))
     code, payload = post("/api/caught",
                          {"area": "encounters_route_201",
-                          "species": "SPECIES_STARLY"})
+                          "species": "SPECIES_SHINX"})
     results.append(("a second tick on the same area replaces the first",
                     payload["encounters"] == {"encounters_route_201":
-                                              "SPECIES_STARLY"}, ""))
+                                              "SPECIES_SHINX"}, ""))
     post("/api/caught", {"area": "encounters_route_201",
-                         "species": "SPECIES_BIDOOF"})
+                         "species": "SPECIES_WOOLOO"})
     after = {r["area"]: r for r in get("/api/areas")["rows"]}
     moved = [a for a in before
              if before[a]["live_species"] != after[a]["live_species"]]
@@ -142,7 +146,7 @@ def check_caught_is_global(results):
                     f"{improved[0] if improved else '-'}"))
 
     d = get(f"/api/area/encounters_route_201")
-    bidoof = [s for s in d["slots"] if s["species"] == "SPECIES_BIDOOF"]
+    bidoof = [s for s in d["slots"] if s["species"] == "SPECIES_WOOLOO"]
     results.append(("slots report caught state",
                     bidoof and all(s["caught"] for s in bidoof), ""))
     pool = d["rungs"][0]["pool"]
@@ -156,7 +160,7 @@ def check_caught_is_global(results):
     code, _ = post("/api/caught", {"area": "encounters_route_201",
                                    "species": "SPECIES_NOPE"})
     results.append(("unknown species refused", code == 400, f"HTTP {code}"))
-    code, _ = post("/api/caught", {"species": "SPECIES_BIDOOF"})
+    code, _ = post("/api/caught", {"species": "SPECIES_WOOLOO"})
     results.append(("a tick without an area is refused", code == 400,
                     f"HTTP {code}"))
     post("/api/caught", {"clear": True})
@@ -225,21 +229,21 @@ def check_edit_is_local(results):
 
 
 def check_lines_dupe_out(results):
-    """The dupes clause works on families, not species. Catching Starly on
-    Route 201 has to zero every Starly-line entry everywhere."""
+    """The dupes clause works on families, not species. Catching Shinx on
+    Route 201 has to zero every Shinx-line entry everywhere."""
     post("/api/caught", {"clear": True})
     _, payload = post("/api/caught",
                       {"area": "encounters_route_201",
-                       "species": "SPECIES_STARLY"})
+                       "species": "SPECIES_SHINX"})
     results.append(("catching one species owns its whole line",
-                    set(payload["owned"]) == {"SPECIES_STARLY",
-                                              "SPECIES_STARAVIA",
-                                              "SPECIES_STARAPTOR"},
+                    set(payload["owned"]) == {"SPECIES_SHINX",
+                                              "SPECIES_LUXIO",
+                                              "SPECIES_LUXRAY"},
                     ", ".join(payload["owned"])))
 
     d = get("/api/area/encounters_route_202?kind=land")
-    starly = [m for m in d["merged"] if m["species"] == "SPECIES_STARLY"][0]
-    others = [m for m in d["merged"] if m["species"] != "SPECIES_STARLY"]
+    starly = [m for m in d["merged"] if m["species"] == "SPECIES_SHINX"][0]
+    others = [m for m in d["merged"] if m["species"] != "SPECIES_SHINX"]
     results.append(("a caught species drops to zero",
                     starly["cond"] == 0, f"{starly['cond']}"))
     results.append(("everything else renormalises to 100%",
@@ -250,20 +254,20 @@ def check_lines_dupe_out(results):
     results.append(("slot odds match the merged view",
                     abs(sum(s["odds"] for s in d["slots"]) - 1.0) < 1e-9, ""))
 
-    n = get("/api/area/encounters_route_205_north?kind=land")
-    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_STARAVIA"]
+    n = get("/api/area/encounters_route_222?kind=land")
+    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_LUXIO"]
     results.append(("an uncaught line member reads as duped",
                     bool(staravia) and staravia[0]["duped"]
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
                     bool(staravia) and staravia[0]["caught_at"] == "route 201"
-                    and staravia[0]["via"] == "Starly",
+                    and staravia[0]["via"] == "Shinx",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))
     d201 = get("/api/area/encounters_route_201?kind=land")
     results.append(("the centre carries the area's encounter",
-                    d201["encounter_label"] == "Starly", ""))
+                    d201["encounter_label"] == "Shinx", ""))
     post("/api/caught", {"clear": True})
 
 

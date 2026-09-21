@@ -136,10 +136,11 @@ what to do meanwhile.
    named beside it), so Stage B is a mechanical apply, not a redesign.
 2. **All 171 land tables, in play order, early band first.** Every file has to be
    touched anyway (the leak), so there is no cheaper corridor. But the *order* is a
-   corridor: Twinleaf to Eterna first, merged and play-tested, then the rest. The
-   design's arc rules (R11) only mean anything over the whole game, so the
+   corridor: Twinleaf to Eterna first, merged, then the rest. The design's
+   game-wide rules (R11) only mean anything over the whole game, so the
    game-wide lint gate is at the end, and the per-corridor gate is per-table rules
-   plus Ian playing it.
+   plus the merge (Ian took the playthrough off the gate on 2026-09-21: far too
+   long; he reviews in the tool instead).
 3. **Availability is accounted by evolution line, and every line gets one home.**
    A home is a table where the line's first stage holds at least 10% (a 20% or 25%
    face, or a 10% slot on a real rung). Cameos elsewhere are what R13 wants, and
@@ -250,9 +251,10 @@ first, in one sentence, saying what the table is for; write the `cast` with rung
 for two species that make the time of day matter. Early tables carry the
 `starter-adjacent` lines and nothing above their tier.
 
-*Gate:* every corridor table has 0 lint errors; `report` on the corridor shows early
-tables at 3-5 species, top slot 40-50%, HHI 0.35-0.50; merged to `oxide`; Ian plays
-Route 201 to Eterna Forest in the emulator and says the routes feel like routes.
+*Gate:* every table in the first two splits has 0 lint errors and sits under Ian's
+cap (design doc 2.5, revised: 8-16 lines, top share at or under about a third);
+merged to `oxide`. Ian reviews the tables in the tool; the playthrough came off
+this gate on 2026-09-21 as far too long.
 
 ### Step 4: the rest of the land tables
 
@@ -346,7 +348,8 @@ none), the leak audit's script list, and the list of reservations for Stage B.
 - Whether Unown returns to the list (decision 9) and whether surf gets designed
   now (decision 5).
 - Any off-list species the leak audit finds in scripts.
-- Whether the first corridor's feel is right, after playing it (Step 3's gate).
+- Whether the first two splits' feel is right, from his review in the tool (the
+  playthrough is off Step 3's gate).
 
 ## Sizing
 

@@ -26,8 +26,15 @@ def _corpus(ref="main"):
     areas = [a for a in model.load_all(ref) if a.land_active]
     sidecar = model.load_sidecar()
     entries = (sidecar or {}).get("areas") or {}
-    payload = [(a.name, a.slots, entries.get(a.name) or {"band": a.band},
-                a.data) for a in areas]
+    # Vanilla was never laid out from the sidecar, so its archetype must not
+    # mark a table as authored (R1 and R4 would judge vanilla's slots against
+    # Oxide's design); `cli lint --ref` drops it the same way.
+    payload = []
+    for a in areas:
+        e = dict(entries.get(a.name) or {"band": a.band})
+        if ref is not None:
+            e.pop("archetype", None)
+        payload.append((a.name, a.slots, e, a.data))
     return areas, payload, sidecar
 
 
@@ -47,10 +54,17 @@ def check_descriptive_game_rules(results):
     editing a single table."""
     _, payload, sidecar = _corpus()
     findings = lint.lint_all(payload, sidecar)
-    for rule in ("R8", "R9", "R11", "R14"):
+    for rule in ("R8", "R9", "R14"):
         hits = [f for f in findings if f.rule == rule]
         results.append((f"vanilla passes {rule}", not hits,
                         "silent" if not hits else hits[0].message))
+    # R11 became Ian's cap on 2026-09-21 (no band's median top share over
+    # about a third), a house rule vanilla was never built for: its early
+    # routes run a 45-48% face. So vanilla must trip it, as a warning.
+    hits = [f for f in findings if f.rule == "R11" and f.severity == "warn"]
+    results.append(("vanilla trips R11, the cap, on its early band",
+                    any("early" in f.message for f in hits),
+                    hits[0].message if hits else "silent"))
 
 
 def check_r11_actually_ran(results):

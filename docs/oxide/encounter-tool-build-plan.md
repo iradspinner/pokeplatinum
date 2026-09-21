@@ -1136,8 +1136,9 @@ container" or "'int' object is not callable" in `jsonstyle.py` is that
 fault; rerun it. Ian's call whether to report it upstream.
 
 *Gate:* per-table lint clean, done; the plan's gate passes with the splits.
-Still open: `report` on the two splits, the merge into `oxide`, and Ian
-playing Twinleaf to Eterna and saying the routes feel like routes.
+Still open: the merge into `oxide`. Ian took his playthrough off the gate
+(2026-09-21, far too long); his review happens in the tool, which now lists
+the water-only areas (Twinleaf Town, Route 219) beside the grass ones.
 
 ## Suggested order, and what to cut
 

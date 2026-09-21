@@ -24,10 +24,13 @@ def check_inventory(results):
     twelve more carry twelve slots the game never rolls because land_rate
     is 0. Conflating those two categories is how a loader quietly drops
     files, so they are asserted apart."""
-    for ref, label in ((None, "working tree"), ("main", "main")):
+    # The working tree gained encounters_verity_lakefront.json on 2026-09-21
+    # (a live land table); vanilla on main still has 185.
+    for ref, label, want in ((None, "working tree", (186, 184, 172)),
+                             ("main", "main", (185, 183, 171))):
         n, land, active = _counts(model.load_all(ref))
         results.append((f"inventory [{label}]",
-                        (n, land, active) == (185, 183, 171),
+                        (n, land, active) == want,
                         f"{n} files, {land} land, {active} active"))
 
 

@@ -64,7 +64,10 @@ class State:
                 self.owner_of[member] = (area, sp)
 
     def areas(self):
-        return [a for a in model.load_all(self.ref) if a.land_active]
+        # Every area with a table of any kind: a water-only area (Twinleaf
+        # Town, Route 219) is a capture area by its rods and surf even though
+        # its grass rate is zero.
+        return [a for a in model.load_all(self.ref) if a.land_active or a.kinds_present()]
 
     def entry(self, name):
         return self.entries.get(name) or {}
@@ -91,12 +94,17 @@ def _species_view(species, st, area=None):
 
 
 def area_row(a, st, findings_by_area):
-    m = A.table_metrics(a.slots)
-    c = A.caught_metrics(a.slots, st.owned)
     e = st.entry(a.name)
     f = findings_by_area.get(a.name, [])
-    levels = a.levels
     kinds = a.kinds_present()
+    # The row's numbers come from the grass when it is live, else from the
+    # area's first table of any kind (a water-only area).
+    main = "land" if a.land_active or not kinds else kinds[0]
+    main_slots = a.kind_slots(main) if main != "land" else [(s, lv, lv) for s, lv in a.slots]
+    main_rates = A.TABLE_KINDS[main][2]
+    m = A.table_metrics(main_slots, main_rates)
+    c = A.caught_metrics(main_slots, st.owned, main_rates)
+    levels = [lv for _, lo, hi in main_slots for lv in (lo, hi)]
 
     # "Does this area still owe me anything" has to count every table kind,
     # not just the grass, or a route whose only remaining species is in its
@@ -146,6 +154,13 @@ def area_row(a, st, findings_by_area):
 def area_detail(a, st, kind="land"):
     if kind not in A.TABLE_KINDS:
         kind = "land"
+    # A water-only area opens on a designed table (one its sidecar entry
+    # holds a cast for) if it has one, else its first table, rather than on
+    # empty grass.
+    if kind == "land" and not a.land_active and a.kinds_present():
+        present = a.kinds_present()
+        designed = [k for k in present if isinstance(st.entry(a.name).get(k), dict)]
+        kind = (designed or present)[0]
     slots = a.kind_slots(kind)
     _, _, rates = A.TABLE_KINDS[kind]
     e = st.entry(a.name)

@@ -102,7 +102,11 @@ def check_early_band_dry_run(results):
     # enforced, 88% of current tables are not monotonic, and an illegal
     # ladder that happened to pay well can legally only get worse. So the
     # check is that the drop, where it happens, is on a non-monotonic table.
-    dropped = [p for p in proposals if p["uplift"] < p["uplift_before"] - 1e-9]
+    # An authored table (a sidecar cast) has its ladder from `apply`'s layout
+    # and sits under Ian's cap, so a repel pays less by design; the generator
+    # is not the authority on it and its drops are not judged here.
+    dropped = [p for p in proposals if p["uplift"] < p["uplift_before"] - 1e-9
+               and not (entries.get(p["area"]) or {}).get("cast")]
     illegal = all(any(p["current"][i] > p["current"][i + 1] for i in range(11))
                   for p in dropped)
     results.append(("uplift only drops where the old ladder broke R1",
