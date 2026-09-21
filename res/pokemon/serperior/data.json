@@ -123,7 +123,7 @@
     "pokedex_data": {
         "height_inches": 130,
         "weight_pounds": 138.9,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_SERPENTINE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -136,54 +136,54 @@
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         },
         "fr": {
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         },
         "de": {
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         },
         "it": {
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         },
         "es": {
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         },
         "jp": {
             "name": "SERPERIOR",
             "category": "Regal Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stops moving entirely to glare.\n",
+                "That gaze alone halts most\n",
+                "opponents."
             ]
         }
     },

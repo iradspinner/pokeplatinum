@@ -99,7 +99,7 @@
     "pokedex_data": {
         "height_inches": 71,
         "weight_pounds": 180.8,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_INSECTOID",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -112,54 +112,54 @@
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         },
         "fr": {
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         },
         "de": {
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         },
         "it": {
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         },
         "es": {
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         },
         "jp": {
             "name": "ARAQUANID",
             "category": "Water Bubble Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It keeps weaker creatures inside its\n",
+                "water bubble, sheltering them\n",
+                "without thinking."
             ]
         }
     },

@@ -117,7 +117,7 @@
     "pokedex_data": {
         "height_inches": 4,
         "weight_pounds": 1.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_INSECTOID",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -130,54 +130,54 @@
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         },
         "fr": {
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         },
         "de": {
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         },
         "it": {
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         },
         "es": {
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         },
         "jp": {
             "name": "JOLTIK",
             "category": "Attaching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It clings to larger creatures to\n",
+                "steal the static their fur gives\n",
+                "off."
             ]
         }
     },

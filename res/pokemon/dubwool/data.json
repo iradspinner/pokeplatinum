@@ -103,7 +103,7 @@
     "pokedex_data": {
         "height_inches": 51,
         "weight_pounds": 94.8,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -116,54 +116,54 @@
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         },
         "fr": {
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         },
         "de": {
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         },
         "it": {
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         },
         "es": {
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         },
         "jp": {
             "name": "DUBWOOL",
             "category": "Sheep Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its wool is springy enough to break\n",
+                "a fall from a high place without\n",
+                "harm."
             ]
         }
     },

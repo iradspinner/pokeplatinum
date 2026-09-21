@@ -103,7 +103,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 54.0,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -116,54 +116,54 @@
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         },
         "fr": {
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         },
         "de": {
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         },
         "it": {
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         },
         "es": {
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         },
         "jp": {
             "name": "TALONFLAME",
             "category": "Scorching Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "In a dive it reaches terrific speed,\n",
+                "showering embers from between its\n",
+                "feathers."
             ]
         }
     },

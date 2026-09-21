@@ -105,7 +105,7 @@
     "pokedex_data": {
         "height_inches": 16,
         "weight_pounds": 9.0,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -118,54 +118,54 @@
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         },
         "fr": {
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         },
         "de": {
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         },
         "it": {
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         },
         "es": {
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         },
         "jp": {
             "name": "SPRIGATITO",
             "category": "Grass Cat Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its fur gives off a sweet scent that\n",
+                "calms those near it and dulls their\n",
+                "guard."
             ]
         }
     },

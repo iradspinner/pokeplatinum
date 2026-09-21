@@ -115,7 +115,7 @@
     "pokedex_data": {
         "height_inches": 31,
         "weight_pounds": 31.5,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_INSECTOID",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -128,54 +128,54 @@
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         },
         "fr": {
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         },
         "de": {
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         },
         "it": {
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         },
         "es": {
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         },
         "jp": {
             "name": "GALVANTULA",
             "category": "EleSpider Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It traps prey in electrified silk,\n",
+                "then waits for the shock to do its\n",
+                "work."
             ]
         }
     },

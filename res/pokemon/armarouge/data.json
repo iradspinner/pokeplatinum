@@ -95,7 +95,7 @@
     "pokedex_data": {
         "height_inches": 59,
         "weight_pounds": 187.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -108,54 +108,54 @@
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         },
         "fr": {
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         },
         "de": {
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         },
         "it": {
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         },
         "es": {
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         },
         "jp": {
             "name": "ARMAROUGE",
             "category": "Fire Warrior Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Its armor was forged over a long\n",
+                "war. It fires deliberate bursts of\n",
+                "psychic fire."
             ]
         }
     },

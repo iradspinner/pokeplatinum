@@ -107,7 +107,7 @@
     "pokedex_data": {
         "height_inches": 362,
         "weight_pounds": 2204.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -120,54 +120,54 @@
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         },
         "fr": {
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         },
         "de": {
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         },
         "it": {
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         },
         "es": {
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         },
         "jp": {
             "name": "CELESTEELA",
             "category": "Launch Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It burns gas from its two arms to\n",
+                "fly, scorching the ground black as\n",
+                "it leaves."
             ]
         }
     },

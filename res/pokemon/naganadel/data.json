@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 142,
         "weight_pounds": 330.7,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_MULTI_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         },
         "fr": {
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         },
         "de": {
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         },
         "it": {
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         },
         "es": {
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         },
         "jp": {
             "name": "NAGANADEL",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It stores hundreds of liters of\n",
+                "poison in its body and fires it as\n",
+                "glowing spikes."
             ]
         }
     },

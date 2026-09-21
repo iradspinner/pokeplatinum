@@ -111,7 +111,7 @@
     "pokedex_data": {
         "height_inches": 43,
         "weight_pounds": 57.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -124,54 +124,54 @@
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         },
         "fr": {
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         },
         "de": {
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         },
         "it": {
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         },
         "es": {
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         },
         "jp": {
             "name": "TOUCANNON",
             "category": "Cannon Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gas builds in its beak until it\n",
+                "fires seeds like bullets. The beak\n",
+                "glows with heat."
             ]
         }
     },

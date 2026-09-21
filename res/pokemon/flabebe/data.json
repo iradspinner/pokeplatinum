@@ -105,7 +105,7 @@
     "pokedex_data": {
         "height_inches": 4,
         "weight_pounds": 0.2,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -118,54 +118,54 @@
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         },
         "fr": {
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         },
         "de": {
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         },
         "it": {
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         },
         "es": {
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         },
         "jp": {
             "name": "FLABÉBÉ",
             "category": "Single Bloom Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It chooses a single flower when\n",
+                "young and tends that same bloom all\n",
+                "its life."
             ]
         }
     },

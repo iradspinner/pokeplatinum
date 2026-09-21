@@ -141,7 +141,7 @@
     "pokedex_data": {
         "height_inches": 20,
         "weight_pounds": 19.8,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -154,54 +154,54 @@
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         },
         "fr": {
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         },
         "de": {
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         },
         "it": {
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         },
         "es": {
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         },
         "jp": {
             "name": "VULLABY",
             "category": "Diapered Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wears bones it has scavenged as\n",
+                "armor, swapping them as its body\n",
+                "grows."
             ]
         }
     },

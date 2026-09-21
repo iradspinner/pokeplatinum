@@ -115,7 +115,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 45.2,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -128,54 +128,54 @@
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         },
         "fr": {
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         },
         "de": {
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         },
         "it": {
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         },
         "es": {
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         },
         "jp": {
             "name": "LEAVANNY",
             "category": "Nurturing Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It uses its arm blades and silk to\n",
+                "stitch warm clothes for its smaller\n",
+                "friends."
             ]
         }
     },

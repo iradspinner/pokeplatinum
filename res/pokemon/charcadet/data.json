@@ -86,7 +86,7 @@
     "pokedex_data": {
         "height_inches": 24,
         "weight_pounds": 23.1,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -99,54 +99,54 @@
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         },
         "fr": {
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         },
         "de": {
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         },
         "it": {
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         },
         "es": {
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         },
         "jp": {
             "name": "CHARCADET",
             "category": "Fire Child Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It fights with a blazing piece of\n",
+                "charcoal, and dreams of becoming a\n",
+                "knight."
             ]
         }
     },

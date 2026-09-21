@@ -175,7 +175,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 87.1,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -188,54 +188,54 @@
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         },
         "fr": {
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         },
         "de": {
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         },
         "it": {
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         },
         "es": {
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         },
         "jp": {
             "name": "MANDIBUZZ",
             "category": "Bone Vulture Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It circles high above watching for\n",
+                "the weak, and adorns itself with\n",
+                "their bones."
             ]
         }
     },

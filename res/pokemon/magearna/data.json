@@ -115,7 +115,7 @@
     "pokedex_data": {
         "height_inches": 39,
         "weight_pounds": 177.5,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -128,54 +128,54 @@
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         },
         "fr": {
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         },
         "de": {
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         },
         "it": {
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         },
         "es": {
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         },
         "jp": {
             "name": "MAGEARNA",
             "category": "Artificial Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Built five hundred years ago. Its\n",
+                "artificial heart feels the moods of\n",
+                "those near it."
             ]
         }
     },

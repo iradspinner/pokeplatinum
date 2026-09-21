@@ -119,7 +119,7 @@
     "pokedex_data": {
         "height_inches": 55,
         "weight_pounds": 440.9,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_INSECTOID",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -132,54 +132,54 @@
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         },
         "fr": {
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         },
         "de": {
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         },
         "it": {
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         },
         "es": {
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         },
         "jp": {
             "name": "CRUSTLE",
             "category": "Stone Home Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It carries a slab of rock on its\n",
+                "back. Losing it leaves the POKEMON\n",
+                "badly shaken."
             ]
         }
     },

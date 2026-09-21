@@ -109,7 +109,7 @@
     "pokedex_data": {
         "height_inches": 24,
         "weight_pounds": 4.0,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -122,54 +122,54 @@
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         },
         "fr": {
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         },
         "de": {
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         },
         "it": {
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         },
         "es": {
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         },
         "jp": {
             "name": "POIPOLE",
             "category": "Poison Pin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It sprays poison from the needles on\n",
+                "its head, and does so when it is\n",
+                "happy."
             ]
         }
     },

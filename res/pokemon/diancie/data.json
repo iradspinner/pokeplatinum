@@ -123,7 +123,7 @@
     "pokedex_data": {
         "height_inches": 28,
         "weight_pounds": 19.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -136,54 +136,54 @@
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         },
         "fr": {
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         },
         "de": {
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         },
         "it": {
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         },
         "es": {
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         },
         "jp": {
             "name": "DIANCIE",
             "category": "Jewel Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A sudden change turned a CARBINK\n",
+                "into this. It makes diamonds between\n",
+                "its hands."
             ]
         }
     },

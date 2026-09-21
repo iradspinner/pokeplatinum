@@ -105,7 +105,7 @@
     "pokedex_data": {
         "height_inches": 4,
         "weight_pounds": 0.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -118,54 +118,54 @@
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         },
         "fr": {
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         },
         "de": {
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         },
         "it": {
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         },
         "es": {
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         },
         "jp": {
             "name": "SINISTEA",
             "category": "Black Tea Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A spirit that took up residence in a\n",
+                "teacup. Counterfeit cups are said to\n",
+                "be common."
             ]
         }
     },

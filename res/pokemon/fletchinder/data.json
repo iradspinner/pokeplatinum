@@ -101,7 +101,7 @@
     "pokedex_data": {
         "height_inches": 28,
         "weight_pounds": 35.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -114,54 +114,54 @@
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         },
         "fr": {
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         },
         "de": {
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         },
         "it": {
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         },
         "es": {
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         },
         "jp": {
             "name": "FLECHINDER",
             "category": "Ember Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It scatters embers to flush prey\n",
+                "from the grass, and rarely misses\n",
+                "what it starts."
             ]
         }
     },

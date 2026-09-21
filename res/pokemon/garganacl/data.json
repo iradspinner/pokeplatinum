@@ -123,7 +123,7 @@
     "pokedex_data": {
         "height_inches": 91,
         "weight_pounds": 529.1,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -136,54 +136,54 @@
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         },
         "fr": {
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         },
         "de": {
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         },
         "it": {
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         },
         "es": {
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         },
         "jp": {
             "name": "GARGANACL",
             "category": "Rock Salt Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It grinds salt from its fists and\n",
+                "scatters it, preserving whatever it\n",
+                "touches."
             ]
         }
     },

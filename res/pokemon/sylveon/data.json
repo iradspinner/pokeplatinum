@@ -124,14 +124,14 @@
     "evolutions": [],
     "offspring": "SPECIES_EEVEE",
     "footprint": {
-        "has": false,
+        "has": true,
         "size": "FOOTPRINT_MEDIUM",
-        "type": "FOOTPRINT_TYPE_NONE"
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height_inches": 39,
         "weight_pounds": 51.8,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -144,54 +144,54 @@
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         },
         "fr": {
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         },
         "de": {
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         },
         "it": {
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         },
         "es": {
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         },
         "jp": {
             "name": "SYLVEON",
             "category": "Intertwining Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It wraps its ribbonlike feelers\n",
+                "around a foe to soothe away any wish\n",
+                "to fight."
             ]
         }
     },

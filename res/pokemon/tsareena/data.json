@@ -107,7 +107,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 47.2,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -120,54 +120,54 @@
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         },
         "fr": {
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         },
         "de": {
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         },
         "it": {
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         },
         "es": {
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         },
         "jp": {
             "name": "TSAREENA",
             "category": "Fruit Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It finishes opponents with a\n",
+                "scornful kick from its long,\n",
+                "beautiful legs."
             ]
         }
     },

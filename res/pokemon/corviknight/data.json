@@ -111,7 +111,7 @@
     "pokedex_data": {
         "height_inches": 87,
         "weight_pounds": 165.3,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -124,54 +124,54 @@
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         },
         "fr": {
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         },
         "de": {
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         },
         "it": {
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         },
         "es": {
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         },
         "jp": {
             "name": "CORVIKNITE",
             "category": "Raven Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Clad in steel feathers, it rules the\n",
+                "sky and ferries people across the\n",
+                "region."
             ]
         }
     },

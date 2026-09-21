@@ -111,7 +111,7 @@
     "pokedex_data": {
         "height_inches": 51,
         "weight_pounds": 92.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_MULTI_WINGED",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -124,54 +124,54 @@
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         },
         "fr": {
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         },
         "de": {
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         },
         "it": {
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         },
         "es": {
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         },
         "jp": {
             "name": "FROSMOTH",
             "category": "Frost Moth Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It flies over fields scattering\n",
+                "scales of ice, chilling anything\n",
+                "that angers it."
             ]
         }
     },

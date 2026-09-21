@@ -97,7 +97,7 @@
     "pokedex_data": {
         "height_inches": 31,
         "weight_pounds": 38.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_BASE",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -110,54 +110,54 @@
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         },
         "fr": {
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         },
         "de": {
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         },
         "it": {
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         },
         "es": {
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         },
         "jp": {
             "name": "SLIGGOO",
             "category": "Soft Tissue Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "It melts what it touches with a\n",
+                "sticky fluid, then takes its time\n",
+                "over the meal."
             ]
         }
     },

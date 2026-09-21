@@ -111,7 +111,7 @@
     "pokedex_data": {
         "height_inches": 39,
         "weight_pounds": 75.6,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -124,54 +124,54 @@
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         },
         "fr": {
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         },
         "de": {
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         },
         "it": {
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         },
         "es": {
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         },
         "jp": {
             "name": "CHANDELURE",
             "category": "Luring Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Those burned by its flame lose their\n",
+                "spirit and wander the world in a\n",
+                "daze."
             ]
         }
     },

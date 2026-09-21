@@ -99,7 +99,7 @@
     "pokedex_data": {
         "height_inches": 47,
         "weight_pounds": 122.4,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_TENTACLES",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -112,54 +112,54 @@
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         },
         "fr": {
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         },
         "de": {
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         },
         "it": {
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         },
         "es": {
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         },
         "jp": {
             "name": "NIHILEGO",
             "category": "Parasite Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "A creature from another world. It\n",
+                "may be a parasite, though nobody\n",
+                "knows for sure."
             ]
         }
     },

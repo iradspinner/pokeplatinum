@@ -139,7 +139,7 @@
     "pokedex_data": {
         "height_inches": 67,
         "weight_pounds": 168.7,
-        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "body_shape": "SHAPE_HEAD_ARMS",
         "trainer_scale_f": 256,
         "pokemon_scale_f": 337,
         "trainer_scale_m": 256,
@@ -152,54 +152,54 @@
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         },
         "fr": {
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         },
         "de": {
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         },
         "it": {
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         },
         "es": {
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         },
         "jp": {
             "name": "COFAGRIGUS",
             "category": "Coffin Pokémon",
             "entry_text": [
-                "No Pokédex data is\n",
-                "available for this\n",
-                "Pokémon yet."
+                "Gold ornaments cover its body.\n",
+                "Thieves who reach inside are never\n",
+                "seen again."
             ]
         }
     },
