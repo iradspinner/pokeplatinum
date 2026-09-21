@@ -98,11 +98,11 @@ already exist in Platinum; no new evolution stones are introduced.
 | Cofagrigus | Yamask, level 34 (method 4) - the non-branch half |
 | Frosmoth | Snom, high friendship at night (method 3) - direct port |
 | Grapploct | Clobbopus, level up knowing Taunt (method 20) - direct port |
-| Gyarados M | alt evolution of Gyarados, Water/Dark; trigger TBD by Ian |
+| Gyarados M | alt evolution of Gyarados, Water/Dark; level up holding Dragon Scale (methods 18/19), `phase4-engine-change-answers.md` Q4 |
 | Hisuian Goodra | Hisuian Sliggoo, level 50 (method 4) |
 | Hisuian Sliggoo | Goomy, level up holding Metal Coat (methods 18/19) |
 | Kleavor | Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route |
-| Lopunny M | alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian |
+| Lopunny M | alt evolution of Lopunny, Normal/Fighting offensive; level up holding Fist Plate (methods 18/19), `phase4-engine-change-answers.md` Q4 |
 | Mr. Rime | Galarian Mr. Mime, level 42 (method 4) |
 | Naganadel | Poipole, level up knowing Dragon Pulse (method 20) - direct port |
 | Pawmot | Pawmo + Thunder Stone (method 7) |
@@ -170,15 +170,11 @@ For the 159 new species there is no conflict: the sheet is the only intentional
 source and its buffs (Alolan Ninetales, Galarian Rapidash, Liepard, Gothitelle,
 Tsareena and the two megas) are taken as wanted.
 
-**2. Evolution triggers for Gyarados M and Lopunny M.** Slots and stat blocks are
-settled; what causes the evolution is not.
-
 ## Files
 
 - `docs/oxide/species-pick-list.csv` - all 360 rows: dex position, name, status, national
-  dex number, kind, donor index, verification result, types, evolution note. The encounter
-  tool's R12 rule will want a `tier` column added here (`starter-adjacent` / `preferred` /
-  `filler` / `gate`), which is Ian's to fill in
+  dex number, kind, donor index, verification result, types, evolution note, and the
+  `tier` column the encounter tool's `cli tier-init` added (2026-09-20)
 
 Three scripts produced this and live on the chat surface, in the working folder's
 `tools\`, not in this repo: `build_pick_list.py` (regenerates both files from

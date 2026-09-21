@@ -19,9 +19,7 @@ that predates the merge and none of the files below exist.
 The encounter tool and the Phase 3 script/event carry-over run in parallel on the
 same branch and share no files: this track owns `tools/oxide/encounters/`,
 `res/field/encounters/` and the three `encounter-*.md` docs, and touches nothing
-else. Edits to `tracker.md` and `START-HERE-current-state.md` are the exception,
-and they have caused three merge conflicts; keep this track's footprint in those
-two files to the single status line each already carries.
+else. Its footprint in `tracker.md` is one paragraph (design doc rule 11).
 
 **One thing from the other track that lands here.** The base ROM's custom script
 command, long unidentified, turned out to be a *Repel prompt*: "Repel's effect
@@ -96,22 +94,13 @@ done. Step 1 supplies the progression order and tiers. Status for the pass goes 
 an "Authoring pass" section below, gate by gate. This chat keeps the tool's design
 and any additions to it; the pass is someone else's.
 
-**Two things the authoring plan does not know, because they landed after it was
-written.** M5, the dupe-out planner, and M6, the levels-only generator, are both
-done and available to the pass. Ian asked this session for M5 and M6 while the
-planning session was writing the authoring plan, so the plan says "M5 follows the
-pass"; it does not. The pass should use them: `cli plan` answers whether a table's
-acquisition path actually works, and `cli generate` builds the level ladder under
-species the pass places. Both approximate progression by encounter level from one
-place each, so Step 1's real `order` drops in cleanly.
-
 **Before running the generator for real, read M6's "one consequence"**: it enforces
 R1, most current tables break R1, so it will change almost every table it is
 pointed at and a few will pay less than they did. Use `--dry-run` first.
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
-The design doc's R1 is amended as described under "One finding" below, accepted by
+The design doc's R1 is amended as its section 7 records (v1.1), accepted by
 Ian and implemented in M3. And the doc's thresholds are sorted into *descriptive*
 (vanilla must pass; if it fails, the threshold is wrong) and *aspirational*
 (deliberately beyond vanilla) — the tags live in `lint.py` and the reasoning is in
@@ -133,74 +122,6 @@ generator, and they are the part most likely to be cut or deferred.
 | M5 | Dupe-out planner ✔ | `planner.py`, `cli plan`, `/api/plan` | One hand-verified multi-step plan — **passed** |
 | M6 | Generator, levels-only ✔ | `generate.py`, `cli generate` | A generated band clears R1/R2/R6 and reaches the R3 aim — **passed** |
 | M7 | ROM verification ✔ | `verify_narcs.py --source` | Built ROM's NARC matches the source JSON — **passed, 183/183, 21,045 fields** |
-
-## What the repo already gives you
-
-Not starting from zero. Four things exist and should be used rather than
-rewritten.
-
-| Asset | Where | What it does for this |
-|---|---|---|
-| Encounter JSON | `res/field/encounters/*.json` | 185 files: 183 land tables, of which 171 are live. This *is* the tool's state; there is no database to build |
-| `jsonstyle.py` | `tools/oxide/` | `replace_value` / `get_value` by key path, on text, preserving the decomp's unreproducible formatting. M1 is mostly wiring this up |
-| `verify_narcs.py --encounters` | `tools/oxide/` | Already reads `pl_enc_data.narc` and compares against source. M7 is an extension of it, not a new thing |
-| Pinned vanilla | `~/roms/vanilla.nds`, and `git show main:res/field/encounters/…` | The calibration corpus. See the warning below — this matters more than it sounds |
-
-**The vanilla corpus is on `main`, not in the working tree.** The `oxide` branch's
-`res/field/encounters/` holds the *base ROM's* 125 rewritten tables, imported
-2026-09-20. Every calibration check in the design doc's section 11 — the survey
-numbers, the linter sanity pass — has to read `main`'s copies, not the checked-out
-ones. Build that in from the start: `--ref main` on the CLI, resolved through
-`git show`, defaulting to the working tree. Getting this wrong means calibrating
-the tool against the tables it was built to replace.
-
-Measured once the loader could read both (M1): the two corpora differ in **species
-on 114 of 171** tables but in **levels on only 27**. The base ROM's encounter
-rewrite swapped what you meet and left vanilla's level ladder largely standing, so
-the repel structure the design model is built around is still mostly present in the
-checked-out tables. That is a better starting position than the design doc assumes,
-and it means an early pass could rewrite species against an inherited ladder rather
-than building both at once.
-
-## One finding that changes the design doc
-
-**Accepted by Ian 2026-09-20.** The three bullets at the end of this section are
-now house rules; M3 implements them rather than the design doc's R1 as written.
-
-R1 as written does not survive the files.
-
-> **R1 (error) — Ladder monotonicity.** Slot levels are non-decreasing with slot
-> index. […] the single highest-leverage rule in this document.
-
-and acceptance criterion 6 says vanilla must pass R1. Measured over all 171
-vanilla land tables:
-
-| | |
-|---|---|
-| Levels non-decreasing by slot index | **20 of 171 (12%)** |
-| Tables with exactly 4 distinct levels | 136 of 171 (80%) |
-| Rarity-vs-level Spearman, median | **+0.68** (p10 -0.06, p90 +0.98) |
-| Tables with positive correlation (>0.1) | 150 of 171 (88%) |
-| Tail slots 8-11 averaging above head slots 0-1 | 153 of 171 (89%) |
-
-Vanilla Route 201 is the clean counter-example: levels `2,2,3,3,3,3,3,3,2,2,2,2`.
-The 1% Growlithe slots sit at the table's *minimum* level, so a repel at 3 deletes
-them rather than isolating them.
-
-The survey's ladder claim was always about the *median* offset per slot across
-171 tables, and that claim holds — the census, the 4-rung count and the
-correlation all confirm it. What does not hold is the per-table strict form. So:
-
-- **Keep R1 as an error for Oxide-authored tables.** It is a house rule and a good
-  one; the generator assigns levels this way in step 3, and a hand-edit that breaks
-  it is almost always a mistake.
-- **Do not check R1 against vanilla.** Drop it from criterion 6, which otherwise
-  fails 88% of the corpus on day one and invites someone to "fix" the threshold.
-- **Add R1b (warn), the vanilla-calibrated form:** rarity-vs-level Spearman ≥ 0.5.
-  Vanilla medians 0.68. This is the rule that can be pointed at both corpora.
-
-Everything else in section 11 looks sound and the 171-table count reproduces
-exactly, which is a good sign for the survey's other numbers.
 
 ## The milestones
 
@@ -311,79 +232,6 @@ binary logic" — and it means the fix for complaint 1 is not more uplift but fe
 exclusive tails and more re-weighting, which is what vanilla does and what the
 archetype table's `duplicates` tail policy encodes.
 
-### M2 — how it was built
-
-`analysis.py`, pure functions, no I/O and no globals. Write it rate-array-agnostic
-from the first line — take the rate tuple as an argument, defaulting to
-`model.LAND_RATES` — so water and fishing tables are later a config change rather
-than a rewrite. Then `cli report`, which is just a printer over it.
-
-**The functions, and the exact semantics each has to honour.**
-
-```
-merged(table)            -> {species: share}   share = Σ rates of slots holding it
-hhi(shares)              -> float              Σ share², shares summing to 1
-rungs(table)             -> [level]            sorted distinct slot levels
-pool(table, lead_level)  -> {species: share}   renormalised over surviving slots
-conditional(pool, owned) -> {species: share}   drop owned, renormalise
-throughput(pool, owned)  -> float              expected encounters per counting one
-```
-
-Three semantics to get right, all of them cheap to get wrong:
-
-1. **A slot survives when `slot_level >= lead_level`.** Greater-or-*equal*. The game
-   is `return repelActive && firstBattlerLevel > wildLevel`, so a level-14 lead
-   still meets level-14 wilds. An off-by-one here silently changes every number the
-   tool prints.
-2. **A blocked roll cancels the step; it does not reroll.** So conditional on an
-   encounter happening, the distribution is exactly the surviving slot weights
-   renormalised. Nothing is smeared onto the survivors. This is why the model is
-   exact rather than approximate, and it must never be "improved" into a reroll.
-3. **Collapse rungs that yield the same pool.** Four distinct levels that produce
-   three distinct pools are three rungs. Report three. The UI later shows rungs as
-   *choices the player has*, and a rung that changes nothing is not a choice.
-
-Shares are over merged species, not slots — a species in two slots is one entry at
-the summed weight. HHI, signatures and "rarest species" all read from the merged
-view.
-
-**Then the metrics.** Per table: `n_species`, `top_share`, `min_share`, `hhi`,
-`rung_count`, pool size per rung, `uplift_on_rarest`, `has_real_tail`, `band`.
-Per game: HHI p10/median/p90 over tables with 3+ species and the p90/p10 ratio,
-distinct weight signatures and signatures-per-table, early/mid/late medians, and
-per-species area count and share range.
-
-`uplift_on_rarest` is the headline number and the one the design turns on: take the
-species with the smallest merged share, find the rung that maximises its share, and
-divide by its base share. A table "has a working repel" when that ratio beats 1.
-
-*Gate:* two checks, both from design doc section 11.
-
-1. **`pool()` against a simulation.** Brute-force `RepelPreventsEncounter` over 10⁶
-   trials on 20 random tables and compare to the closed form within Monte-Carlo
-   error. The repel model is the tool's core claim, so it gets verified against the
-   actual comparison rather than against a restatement of it. Seed the RNG so a
-   failure is reproducible.
-2. **`report --ref main` reproduces the survey.** On vanilla: median HHI **0.275**,
-   p10-p90 **0.170-0.420**, **71** distinct signatures over 171 tables, median
-   uplift **5.0x** with a working repel on **88%** of tables, median **5** species
-   per table, top slot **40%**, and the slot-level ladder
-   `+0/+1/+1/+1/+2/+2/+2/+2/+2/+2/+3/+3`. Early-to-late HHI should read
-   **0.37 → 0.28**.
-
-**A warning about that second gate.** The survey's own scripts (`unify.py`,
-`repel.py`, `layout.py`) were written on the chat surface and are *not* in the repo,
-so M2 re-derives these numbers rather than re-running them. The definitions above —
-particularly "signature" and "uplift on rarest" — are read off the survey's prose
-and are the least certain part of this milestone. If a number comes out close but
-wrong, suspect the definition before suspecting the arithmetic. Write down whichever
-definition reproduces the survey, because that is the one the linter's thresholds
-were calibrated against.
-
-A *signature* is the table's merged shares as a sorted descending tuple, e.g.
-`(40,25,20,10,5)`. Vanilla having 71 distinct ones across 171 tables is the 0.42
-figure in R9.
-
 ### M3 — Linter — **done, 2026-09-20**
 
 **Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3` — 18/18.
@@ -448,16 +296,6 @@ asserts R11 actually evaluated.
 
 Thresholds all live in `docs/oxide/encounters/design.json` and a test asserts that
 editing one changes the verdict, so none can quietly drift back into code.
-
-### M3 — how it was built
-
-`lint.py` over M2's output, thresholds read from the sidecar, never hardcoded.
-R1-R14 plus R1b. Severity as the design doc has it, with R1 scoped to authored
-tables and R12 (availability) stubbed to a warning until the pick-list tiers exist.
-
-*Gate:* `lint --ref main` passes R1b, R8, R9 and R11 on vanilla. If a rule vanilla
-was derived from fails vanilla, the threshold is wrong — that is the whole point of
-the check, and it has already caught R1 once.
 
 ### M4 — The UI — **done, 2026-09-20, pending Ian's usability pass**
 
@@ -604,17 +442,6 @@ This is also where the tool's footprint in `tracker.md` was formally cut to one
 paragraph by the other track's docs pass ("one home per fact"); per-milestone
 records live here from now on, which is what has been causing the merge
 conflicts to stop.
-
-`server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
-build step and no CDN. Three columns as specified: area list with sortable HHI,
-twelve-slot editor with merged and ladder views, live analysis panel with the
-dupes checkboxes. Write on blur.
-
-Build it against M2's JSON and nothing else — every number on screen is an
-`analysis.py` call, so there is no second implementation of the math to drift.
-
-*Gate:* edit a slot in the browser, see it in `git diff` at the right key with no
-other key touched.
 
 ### M5 — Dupe-out planner — **done, 2026-09-20**
 
@@ -943,19 +770,3 @@ After that the order is genuinely optional and depends on what Ian wants first:
 
 M6 is the only part that can be dropped entirely without losing the point of the
 tool, and `--levels-only` recovers most of its value cheaply.
-
-## Open questions for Ian
-
-1. ~~**R1's demotion.**~~ **Answered 2026-09-20: accepted as proposed.** R1 stays an
-   error for Oxide-authored tables, R1b (warn, Spearman ≥ 0.5) is the calibration
-   form, and acceptance criterion 6 drops R1 from the list of rules vanilla must
-   pass. M3 implements this; no further confirmation needed.
-2. **Progression order.** M5 needs an explicit area order and the sidecar does not
-   have one. Is there an existing ordering to reuse, or does it get hand-written
-   once into `design.json`?
-3. **Species tiers.** R12's availability thresholds need the pick-list's `tier`
-   field populated (`starter-adjacent` / `preferred` / `filler` / `gate`). Until
-   then R12 stays a warning. This is Ian-only work and gates M3's last rule.
-4. **Scope of the first authored pass.** 171 land tables is a lot of hand design.
-   Is the target all of them, or a corridor — say the first third of the game — to
-   prove the model before committing?

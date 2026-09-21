@@ -39,7 +39,7 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
 2. `docs/oxide/tracker.md`: status, next steps, what is waiting on Ian, decisions.
-3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `phase4-engine-change-questions.md` and `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-gifts.md`.
+3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-gifts.md`.
 4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
 
 ## Decided, do not relitigate without reason
@@ -54,7 +54,8 @@ frozen 2026-09-15. Treat them as background, not current status.
   and the evidence is in the tracker.
 - The base ROM's "Unlocked / Challenge-Adjusted" naming is meaningless history.
 - The species pick-list is an availability list, not a deletion list. All 493
-  Platinum natives stay in the tree; National Dex numbers stay as internal IDs.
+  Platinum natives stay in the tree. Internal ids are dense after Arceus, 494 to
+  652 (`species-id-scheme.md`), not National Dex numbers.
 - The remaining field scripts were generated in bulk from the base ROM's bytecode
   rather than rewritten by hand (Ian, 2026-09-20). They are byte-exact and
   unreadable; re-humanising them is backlog.
@@ -71,25 +72,17 @@ frozen 2026-09-15. Treat them as background, not current status.
    hard stops. Do not delete or overwrite it.
 2. **The importers need a vanilla reference too.** `~/roms/vanilla.nds` is a
    byte-exact Rev 1 build from `main`. Don't rebuild it per session.
-3. **Two carried-over edits nobody has sanity-checked**: the base ROM set hatch
-   cycles to 1 on 228 species, and filled the empty second ability slot on 228
-   species, often by duplicating the first ability. Both are in the source tree
-   exactly as the old ROM had them. If either was a mass-edit accident rather than
-   a design choice, now is the cheap moment to undo it.
-4. **Do not reformat `res/` JSON files wholesale.** The repo's formatting is not
+3. **Do not reformat `res/` JSON files wholesale.** The repo's formatting is not
    uniform; `tools/oxide/jsonstyle.py` edits single keys in place so diffs stay
    readable and upstream merges stay possible.
-5. **`res/` is not vanilla any more.** The working tree holds the base ROM's data.
+4. **`res/` is not vanilla any more.** The working tree holds the base ROM's data.
    Anything that means to compare against retail Platinum must read `main`:
    `git show main:<path>`, or `--ref main` in the encounter tool. Calibrating a
    tool against the checked-out files measures the tables the project is trying
    to replace.
-6. **86 of the field scripts are machine-generated.** Each says so in its first
+5. **86 of the field scripts are machine-generated.** Each says so in its first
    line. They are correct against the base ROM and not the repo's idiom; do not
    take them as examples of how to write a script.
-7. **The Repel prompt is broken in the current build** until Phase 3 hard stop 3
-   is closed. Answering yes to "use another Repel?" runs the interpreter off the
-   rails. Detail in the tracker.
-8. **Two sessions in parallel means one status home each.** The tracker is for
+6. **Two sessions in parallel means one status home each.** The tracker is for
    Phases 0 to 5, the build plan for the encounter tool. Editing the other
    track's file is how the merge conflicts happened.

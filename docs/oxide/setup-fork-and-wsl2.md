@@ -8,11 +8,6 @@ Written 2026-09-15. Do these in order. Each step says what you should see when i
 2. Click **Fork** (top right), keep the name `pokeplatinum`, make sure "Copy the main branch only" is ticked, click **Create fork**. You now have `https://github.com/<your-username>/pokeplatinum`.
 3. Send me the URL of your fork.
 
-For me to push changes into your fork, I need permission. Two options; pick one:
-
-- **Token (recommended).** GitHub > your profile picture > Settings > Developer settings > Personal access tokens > **Fine-grained tokens** > Generate new token. Name it `platinum-oxide`, set an expiry you are comfortable with (90 days is fine, it can be regenerated), under Repository access choose **Only select repositories** and pick your `pokeplatinum` fork, and under Permissions > Repository permissions set **Contents: Read and write**. Generate it and save the token string as a text file named `github-token.txt` in the project working folder. I read that file at the start of each session and never write it anywhere else. It only works on that one repository, and you can revoke it from the same page at any time. It is plain text on your disk, so do not commit it or share the folder.
-- **Patch files.** I write `.patch` files into the working folder and you apply them yourself with `git am` in WSL. No token needed, but every change requires you to run a command, and it gets tedious.
-
 ## Part 2: WSL2 and the build tools (30 to 40 minutes, mostly waiting)
 
 WSL2 is a Linux environment that runs inside Windows. The decomp's build tools are Linux tools, so this is how you run them. You will type commands into a terminal; everything below is copy-paste.
@@ -68,7 +63,7 @@ cd ~/pokeplatinum && git pull && make rom
 
 If you ever want to throw away every local change and match my latest push exactly:
 ```
-cd ~/pokeplatinum && git fetch && git reset --hard origin/main
+cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
 ```
 
 ## Part 4: What about DSPRE and the old base ROM?
@@ -89,8 +84,9 @@ Both stay where they are. The built ROM from the decomp is a normal `.nds` and D
 > interest, and reports what he sees; the agent plants breakpoints, reads memory,
 > and asks Ian for the next input. On 2026-09-22 a fresh bug-fix session was
 > handed a prompt that did not say this and spent its budget rebuilding the
-> Part 5 route before getting anywhere, which is why this banner exists. The
-> section stays as the record of what was built; nothing in it is needed.
+> Part 5 route before getting anywhere, which is why this banner exists. The GDB
+> build below stays because `tools/oxide/melonds.gdb` and offline struct-offset
+> reads use it; the WSLg melonDS recipe was removed in the 2026-09-21 docs pass.
 
 
 What is needed to attach a debugger to the built ROM without leaving WSL2 and without sudo. All of it was done once and lives under `~/tools/`; the only repo pieces are `tools/oxide/live.py` and `tools/oxide/melonds.gdb`.
@@ -110,20 +106,6 @@ CFLAGS="-O2 -std=gnu17 -fpermissive -Wno-error" CXXFLAGS="-O2 -Wno-error" MAKEIN
 make -j32 MAKEINFO=true all-gdb && make MAKEINFO=true install-gdb
 ```
 Result: `~/tools/gdb-nds/bin/arm-none-eabi-gdb` (GDB 16 with the fork's overlay support). `tools/oxide/melonds.gdb` is the init script: from the repo root, `~/tools/gdb-nds/bin/arm-none-eabi-gdb -x tools/oxide/melonds.gdb`. It loads `build/main.nef`, the linked ELF with DWARF, which exists for both `make rom` and `make debug`; `debug.nef` only differs in having source paths rewritten by `debugedit`, which is not installed, and the init script's `substitute-path` does the same job. Only a `make debug` build exports `_ovly_table`, so `overlay auto` follows overlay loads only there; a release build still names whatever overlay is loaded. Offline use also works (`-batch -ex "file build/main.nef" -ex "print/x &((BattleContext*)0)->battleMons[0].curHP"`), which is the quickest way to get a struct offset.
-
-**melonDS under WSLg.** The 1.1 AppImage runs under WSLg once two libraries it expects are supplied locally and Qt is told to use X11 (the AppImage has no Wayland plugin). No FUSE is needed because the image is extracted.
-```
-mkdir -p ~/tools/melonds && cd ~/tools/melonds
-curl -sLO https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-x86_64.zip
-python3 -c "import zipfile; zipfile.ZipFile('melonDS-1.1-appimage-x86_64.zip').extractall('.')"
-chmod +x melonDS-x86_64.AppImage && ./melonDS-x86_64.AppImage --appimage-extract
-mkdir debs extlib && cd debs && apt-get download libasound2t64 libopengl0 && for d in *.deb; do dpkg-deb -x $d ../extlib; done
-```
-Run it as `LD_LIBRARY_PATH=~/tools/melonds/extlib/usr/lib/x86_64-linux-gnu QT_QPA_PLATFORM=xcb ~/tools/melonds/squashfs-root/AppRun <rom.nds>`; `tools/oxide/live.py launch <rom.nds>` does exactly that. The save is `<rom>.sav` beside the ROM (a copy of `~/roms/route202-hang.sav` renamed to match; it loads and plays). The config is `~/.config/melonDS/melonDS.toml`, written on first clean exit; it comes with every key unbound and no GDB section, so add `[Instance0.Gdb] Enabled = true`, `[Instance0.Gdb.ARM9] Port = 3333`, `[Instance0.Gdb.ARM7] Port = 3334`, and bind the buttons under `[Instance0.Keyboard]` with Qt key codes (A=88 x, B=90 z, X=83 s, Y=65 a, L=81 q, R=87 w, Start=16777220 Return, Select=16777219 Backspace, Up=16777235, Down=16777237, Left=16777234, Right=16777236). `[JIT] Enable` must be false; the stub only runs in the interpreter. The stub prints `initializing GDB stub for core 9 on port 3333` when it is on.
-
-Three things about the stub that cost time. It expects the client to send a bare `+` within a second of connecting, before any packet. A client that closes its socket without sending `D` (detach) is never noticed: the stub treats a zero-byte read as "no packet yet" and logs a line per CPU poll forever, which filled 12 GB of stdout in a few minutes, so never capture melonDS's stdout to a file for long and always detach. And `pkill -f AppRun` kills the shell that ran it, because the pattern matches that shell's own command line; use `pkill -x AppRun`.
-
-**Seeing and driving it from Python.** WSLg runs Xwayland rootless, so a root-window screenshot is black; the melonDS window itself has to be captured. `tools/oxide/live.py` does that, sends button presses with XTest, and speaks the stub's protocol directly (halt, continue, registers, memory, breakpoints, watchpoints) so a script can read game state without GDB; it also reads symbols out of `main.nef` on its own. It needs `pip3 install --user --break-system-packages python-xlib pillow`. Presses reached the game reliably through the title and the menus, but in the field the direction keys were dropped intermittently (the raw key register stayed clear while a key was held) for a reason not found, and that is where this stopped on 2026-09-20.
 
 ### Part 5b: the Windows melonDS stub from WSL2 (2026-09-21)
 

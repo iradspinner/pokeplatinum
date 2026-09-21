@@ -5,10 +5,6 @@ section 2. Question B (the trainer patch) he could not answer, so it was determi
 from the ROM instead; that investigation is section 2 below and it **corrects an
 error in the inventory doc**.
 
-Claude Code should fold this into `docs/oxide/design-doc.md` (scope table and
-findings log) and `docs/oxide/tracker.md`, then delete nothing: keep this file as
-the record of how the trainer format was worked out.
-
 ## 1. The answers
 
 **A. Synthetic overlay routines: port all four.** EV/IV viewer on the summary

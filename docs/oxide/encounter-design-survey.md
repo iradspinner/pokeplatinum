@@ -156,15 +156,3 @@ games.
 4. The dupes clause multiplies into the ladder: effective odds are slot weight over
    *unowned* mass in the surviving pool, so the tool must show odds conditioned on both
    the lead level and the dex state.
-
-## Open, for Ian
-
-- Availability guarantee vs per-route character: which is primary, and if availability,
-  bought Drayano's way (repeat species across areas) or Radical Red's way (big roster,
-  placed once)?
-- Keep a genuine 1-2% tail (Radical Red) or fold the tail into duplicates (everyone else)?
-
-## Noted for later
-
-Honey trees, in-game trades and gift Pokemon are out of scope for the first pass of the
-tool but need handling at some point.

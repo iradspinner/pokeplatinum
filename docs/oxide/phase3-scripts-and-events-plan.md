@@ -13,8 +13,7 @@ a job with three interlocking halves.
 > bytecode by `tools/oxide/bulk_scripts.py`, `bulk_events.py` and
 > `bulk_text.py`. Against the base ROM: events 158 of 158, scripts 90 of 91,
 > text banks 72 of 78. The hard stops (`scripts_init_battleground`, the trainer
-> battle messages, and the Repel prompt command below, which desyncs the
-> interpreter in the built ROM until it is ported) and the cost of bulk
+> battle messages, and the Repel prompt command below) and the cost of bulk
 > generation (byte-exact but unreadable source, to be re-humanised a map at a
 > time) are recorded in the tracker under Phase 3. This file stays as the record
 > of the method and the formats.
@@ -181,48 +180,3 @@ rest of the region can be dropped.
 
 `scriptdis.py --base-rom` applies the two-byte reading via `BASE_ROM_OVERRIDES`.
 With it, all 574 base-ROM script files walk, matching vanilla.
-
-## What the disassembler replaced: the original sketch
-
-`scr_seq.narc` members are bytecode. A file opens with a table of `.long
-(target - here - 4)` entries terminated by the halfword `0xFD13`, then the
-script bodies. The decomp writes these as macro assembly in
-`res/field/scripts/scripts_<map>.s`, one macro per command, with symbolic
-labels for jump targets, text-bank entries and `LOCALID_*` object references.
-
-Going the other way means a disassembler that knows every script command's
-opcode and operand shape, because the operand widths decide where the next
-command starts. `asm/macros/scrcmd.inc` is the authority on that list and is the
-place to generate the opcode table from, rather than hand-writing it.
-
-This is the real cost of the item and it is a tool-building job before it is a
-carry-over job.
-
-## Suggested order
-
-1. ~~**Generate the opcode table**~~ Done, and the round trip after it (see
-   "Built on top of it").
-2. ~~**Do one small map end to end** as the template~~ Done: all four candidates
-   (`oreburgh_city_middle_house` first, commit e5c39188b) plus two Regi rooms,
-   six maps by hand. Per-map workflow: `python3 tools/oxide/mapdiff.py <map>`
-   shows all three sides of the diff (events, disassembled script, text with
-   unreferenced ids flagged); write the three files in the repo's idiom; `make
-   rom`; `python3 tools/oxide/checkmap.py <map>` checks against the base ROM,
-   allowing message ids to renumber when orphaned pick-event names are removed.
-3. ~~**The 93 events-only maps.**~~ Done as a bulk pass of 70 whose event edits
-   stand alone (196 changes, every one a ball's item), then the rest with the
-   scripts.
-4. ~~**The remaining maps**, largest last.~~ Superseded: generated in bulk
-   instead (status banner at the top). For the counts: 65 maps changed both
-   script and events, 26 script only, 93 events only; the "86 remaining scripts"
-   the bulk pass generated is 65 plus 26 minus the 5 script-bearing maps done by
-   hand.
-
-## Open questions for Ian
-
-- What specific scripts were *meant* to do, wherever the bytecode is ambiguous.
-  Moot for the faithful carry-over now that it is byte-exact; returns when a
-  generated map is re-humanised or a gift script is unified.
-- ~~Whether any of the 91 scripts call the custom commands written over the
-  Battle Arcade region.~~ Answered above: exactly one command, `Dummy088`, three
-  times, all in `scripts_common`, and it still needs porting as `SetRepelSteps`.
