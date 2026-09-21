@@ -74,3 +74,37 @@ cd ~/pokeplatinum && git fetch && git reset --hard origin/main
 ## Part 4: What about DSPRE and the old base ROM?
 
 Both stay where they are. The built ROM from the decomp is a normal `.nds` and DSPRE can open it for inspection. The old base ROM is now a reference: its edits are being re-created in the source tree (see `phase3-base-rom-inventory.md`), and it will be compared against as that happens. Nothing you do in DSPRE on the old base will flow into the new ROM, so from here on, edits should go through me into the source tree, or, once you are comfortable, directly into the `res/` data files in the fork.
+
+## Part 5: Debugger in WSL2 (written 2026-09-20)
+
+What is needed to attach a debugger to the built ROM without leaving WSL2 and without sudo. All of it was done once and lives under `~/tools/`; the only repo pieces are `tools/oxide/live.py` and `tools/oxide/melonds.gdb`.
+
+**GDB, the overlay-aware fork.** The prebuilt binary on the fork's Releases page needs `libpython3.12`, which Ubuntu 26.04 does not have, so it is built from source with Python off. GMP and MPFR headers are not installed and there is no sudo, so both are built statically first. GCC 15 defaults to C23, which breaks GMP's configure tests and the bundled readline, hence the C-standard and permissive flags; `MAKEINFO=true` has to be on the make line, not in the environment, or the bfd docs fail the build.
+```
+git clone --depth 1 https://github.com/joshua-smith-12/binutils-gdb-nds.git ~/tools/binutils-gdb-nds
+D=~/tools/deps; mkdir -p $D/src $D/prefix; cd $D/src
+curl -sLO https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz && curl -sLO https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz
+tar xf gmp-6.3.0.tar.xz && tar xf mpfr-4.2.1.tar.xz
+(cd gmp-6.3.0 && CC="gcc -std=gnu17" ./configure --prefix=$D/prefix --disable-shared && make -j32 && make install)
+(cd mpfr-4.2.1 && CC="gcc -std=gnu17" ./configure --prefix=$D/prefix --with-gmp=$D/prefix --disable-shared && make -j32 && make install)
+mkdir ~/tools/binutils-gdb-nds/build && cd ~/tools/binutils-gdb-nds/build
+CFLAGS="-O2 -std=gnu17 -fpermissive -Wno-error" CXXFLAGS="-O2 -Wno-error" MAKEINFO=true \
+  ../configure --target=arm-none-eabi --prefix=$HOME/tools/gdb-nds --with-gmp=$D/prefix --with-mpfr=$D/prefix \
+  --with-python=no --disable-binutils --disable-ld --disable-gas --disable-gprof --disable-gold --disable-sim --disable-gdbserver
+make -j32 MAKEINFO=true all-gdb && make MAKEINFO=true install-gdb
+```
+Result: `~/tools/gdb-nds/bin/arm-none-eabi-gdb` (GDB 16 with the fork's overlay support). `tools/oxide/melonds.gdb` is the init script: from the repo root, `~/tools/gdb-nds/bin/arm-none-eabi-gdb -x tools/oxide/melonds.gdb`. It loads `build/main.nef`, the linked ELF with DWARF, which exists for both `make rom` and `make debug`; `debug.nef` only differs in having source paths rewritten by `debugedit`, which is not installed, and the init script's `substitute-path` does the same job. Only a `make debug` build exports `_ovly_table`, so `overlay auto` follows overlay loads only there; a release build still names whatever overlay is loaded. Offline use also works (`-batch -ex "file build/main.nef" -ex "print/x &((BattleContext*)0)->battleMons[0].curHP"`), which is the quickest way to get a struct offset.
+
+**melonDS under WSLg.** The 1.1 AppImage runs under WSLg once two libraries it expects are supplied locally and Qt is told to use X11 (the AppImage has no Wayland plugin). No FUSE is needed because the image is extracted.
+```
+mkdir -p ~/tools/melonds && cd ~/tools/melonds
+curl -sLO https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-x86_64.zip
+python3 -c "import zipfile; zipfile.ZipFile('melonDS-1.1-appimage-x86_64.zip').extractall('.')"
+chmod +x melonDS-x86_64.AppImage && ./melonDS-x86_64.AppImage --appimage-extract
+mkdir debs extlib && cd debs && apt-get download libasound2t64 libopengl0 && for d in *.deb; do dpkg-deb -x $d ../extlib; done
+```
+Run it as `LD_LIBRARY_PATH=~/tools/melonds/extlib/usr/lib/x86_64-linux-gnu QT_QPA_PLATFORM=xcb ~/tools/melonds/squashfs-root/AppRun <rom.nds>`; `tools/oxide/live.py launch <rom.nds>` does exactly that. The save is `<rom>.sav` beside the ROM (a copy of `~/roms/route202-hang.sav` renamed to match; it loads and plays). The config is `~/.config/melonDS/melonDS.toml`, written on first clean exit; it comes with every key unbound and no GDB section, so add `[Instance0.Gdb] Enabled = true`, `[Instance0.Gdb.ARM9] Port = 3333`, `[Instance0.Gdb.ARM7] Port = 3334`, and bind the buttons under `[Instance0.Keyboard]` with Qt key codes (A=88 x, B=90 z, X=83 s, Y=65 a, L=81 q, R=87 w, Start=16777220 Return, Select=16777219 Backspace, Up=16777235, Down=16777237, Left=16777234, Right=16777236). `[JIT] Enable` must be false; the stub only runs in the interpreter. The stub prints `initializing GDB stub for core 9 on port 3333` when it is on.
+
+Three things about the stub that cost time. It expects the client to send a bare `+` within a second of connecting, before any packet. A client that closes its socket without sending `D` (detach) is never noticed: the stub treats a zero-byte read as "no packet yet" and logs a line per CPU poll forever, which filled 12 GB of stdout in a few minutes, so never capture melonDS's stdout to a file for long and always detach. And `pkill -f AppRun` kills the shell that ran it, because the pattern matches that shell's own command line; use `pkill -x AppRun`.
+
+**Seeing and driving it from Python.** WSLg runs Xwayland rootless, so a root-window screenshot is black; the melonDS window itself has to be captured. `tools/oxide/live.py` does that, sends button presses with XTest, and speaks the stub's protocol directly (halt, continue, registers, memory, breakpoints, watchpoints) so a script can read game state without GDB; it also reads symbols out of `main.nef` on its own. It needs `pip3 install --user --break-system-packages python-xlib pillow`. Presses reached the game reliably through the title and the menus, but in the field the direction keys were dropped intermittently (the raw key register stayed clear while a key was held) for a reason not found, and that is where this stopped on 2026-09-20.
