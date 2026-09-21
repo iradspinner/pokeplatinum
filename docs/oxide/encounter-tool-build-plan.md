@@ -1071,9 +1071,10 @@ Ice earlier, on and beside Mt. Coronet: Alolan Ninetales is at home on
 Route 211 west at 20 and by night, with Snover at 10; Mt. Coronet's first
 room (Gardenia's split) carries Snorunt and Alolan Ninetales at 10 with
 Swinub and Snover behind; the south entrance has Snom and Swinub at 5 and
-Snorunt by night. The tree has no Alolan Vulpix (only the Ninetales form,
-id 1132), so the "likely early Alolan Vulpix" is the Ninetales itself; a
-ported Alolan Vulpix would be a pick-list row and a Phase 4 port. Larvesta's
+Snorunt by night. The tree has no separate Alolan Vulpix and does not need
+one: the Alolan Ninetales here evolves from ordinary Vulpix, which is on the
+list and in the early tables already (Ian, 2026-09-21, closing the port
+question this entry first raised). Larvesta's
 home moved from Stark Mountain to the Fuego Ironworks at 10. Mantyke and
 Mantine are back on the list (rows 386 and 387) and in the sea pools, Route
 219's and 223's surf pinned. The cap-candidates list is empty.
@@ -1100,6 +1101,52 @@ water-only area has none. A sidecar entry with any of `surf`, `old_rod`,
 `good_rod` or `super_rod` now counts too, and `test_step0` asserts the same. The
 lesson is in the design doc's findings log: a new way of authoring a table has to
 extend `authored_encounters()` or the gate quietly reverts the tables.
+
+### Step 7 — the scripted sources, and four notes from Ian — **done, 2026-09-21**
+
+**The gifts are encounters now.** Ian's instruction was to sort the scripted
+sources into buckets by the source rather than the row, to treat each bucket as
+an even-odds pool, and to replace every off-list member. Fourteen gift sources
+are re-pooled, the whole design and the reasoning per town is in
+`docs/oxide/encounters/scripted-sources.md`, and the catalogue's off-list count
+falls from 37 species to 8. What is left is flagged there rather than changed:
+the Oreburgh and Eterna trades, the Day Care's Ditto, the museum's four spare
+fossils (the list has three fossil lines and the machine revives seven) and
+Chimchar, which Rowan still offers although the list does not have it. Pastoria's
+roll is the only behaviour change: six gift branches existed and the roll only
+ever reached three, so it was widened to six. Twelve scripts and two text banks
+now diverge from the base ROM on purpose, which `bulk_scripts.py`,
+`import_base_rom.py` and `bulk_text.py` have each been told about; `bulk_text.py`
+had no skip list at all before this and now honours the importer's.
+
+**Solaceon Ruins is one table.** All eighteen rooms carry the same cast, because
+in game there is no way to tell which room is which and eighteen different tables
+were eighteen ways to guess wrong. Klefki keeps its home in room 2 and the other
+seventeen hold the same twelve lines without claiming it. Hippopotas is in that
+cast at 5% rather than dropped, because it is fully evolved by 34 and Maylene's
+cap is 38, which is Ian's rule for when a line has to be catchable.
+
+**Sendoff Spring is the high-value table**, at Ian's request: Gible, Beldum,
+Larvitar, Goomy and Jangmo-o carry it, with Absol, Sneasel, Scyther, Ralts,
+Heracross and Elekid behind and Dhelmise keeping its home. Its split moved from
+Post to League on the reading that the spring itself needs only Surf and
+Waterfall, and that it is Turnback Cave inside it that is post-champion. If that
+reading is wrong the table is still fine; only the split label moves.
+
+**Two lines joined the pick-list**, Gastly and Misdreavus (rows 388 to 392), to
+answer Ian's note that the Old Chateau was thin on ghosts. The Chateau's nine
+rooms are rewritten around six ghost lines, Gastly at home in the corridor and
+Misdreavus in the side rooms. A side effect: the Snowpoint Gengar trade is on the
+list now, so it is no longer one of the flagged trades.
+
+**Out of scope, on Ian's word (2026-09-21): anything post-champion.** Turnback
+Cave, which is the whole of the Post split bar Sendoff Spring, is not reachable
+before the champion without script work, so its tables stand as they are and are
+not worth more design time.
+
+Gate after all of it: plan gate green with 0 cap candidates, `lint --ignore R12`
+0 errors, `audit --fail-on-leak` exit 0, and the suites at 35/35, 21/21, 18/18,
+28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15 and 19/19.
 
 ## Suggested order, and what to cut
 

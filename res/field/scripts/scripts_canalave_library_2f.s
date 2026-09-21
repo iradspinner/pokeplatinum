@@ -136,7 +136,7 @@ CanalaveLibrary2f_01C8:
     GoToIf 1, CanalaveLibrary2f_0341
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_DUGTRIO, 50, 0, VAR_0x800C
+    GivePokemon SPECIES_FLYGON, 50, 0, VAR_0x800C
     Message 15
     CloseMessage
     ReleaseAll
@@ -148,7 +148,7 @@ CanalaveLibrary2f_01F4:
     GoToIf 1, CanalaveLibrary2f_0341
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BANETTE, 50, 0, VAR_0x800C
+    GivePokemon SPECIES_COFAGRIGUS, 50, 0, VAR_0x800C
     Message 15
     CloseMessage
     ReleaseAll
@@ -172,7 +172,7 @@ CanalaveLibrary2f_024C:
     GoToIf 1, CanalaveLibrary2f_0341
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_AGGRON, 50, 0, VAR_0x800C
+    GivePokemon SPECIES_BASTIODON, 50, 0, VAR_0x800C
     Message 15
     CloseMessage
     ReleaseAll

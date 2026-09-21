@@ -54,7 +54,7 @@ SolaceonTownNortheastHouse_GiveNatu:
     GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_NATU, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_LUNATONE, 30, 0, VAR_0x800C
     Message SolaceonTownNortheastHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
@@ -78,7 +78,7 @@ SolaceonTownNortheastHouse_GiveClamperl:
     GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CLAMPERL, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_SOLROCK, 30, 0, VAR_0x800C
     Message SolaceonTownNortheastHouse_Text_SeeYa
     CloseMessage
     ReleaseAll

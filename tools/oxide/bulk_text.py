@@ -60,6 +60,9 @@ def main():
     for i in range(len(bm)):
         if bytes(bm[i]) == bytes(vm[i]) or i in already:
             continue
+        if i in imp.TEXT_BANKS_SKIPPED:
+            skipped.append(f"{names[i]}: {imp.TEXT_BANKS_SKIPPED[i]}")
+            continue
         stem = names[i][len("TEXT_BANK_"):].lower()
         path = os.path.join(ROOT, "res", "text", stem + ".json")
         if not os.path.isfile(path):

@@ -382,3 +382,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 385,Gastrodon,native,423,platinum,,yes,Water,Ground,,starter-adjacent
 386,Mantyke,native,458,platinum,,yes,Water,Flying,,preferred
 387,Mantine,native,226,platinum,,yes,Water,Flying,,preferred
+388,Gastly,native,92,platinum,,yes,Ghost,Poison,,preferred
+389,Haunter,native,93,platinum,,yes,Ghost,Poison,,preferred
+390,Gengar,native,94,platinum,,yes,Ghost,Poison,,preferred
+391,Misdreavus,native,200,platinum,,yes,Ghost,Ghost,,preferred
+392,Mismagius,native,429,platinum,,yes,Ghost,Ghost,,preferred

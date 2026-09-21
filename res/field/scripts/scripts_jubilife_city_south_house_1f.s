@@ -82,7 +82,7 @@ JubilifeCitySouthHouse1f_00DE:
     GoToIf 1, JubilifeCitySouthHouse1f_0115
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_MEOWTH, 10, 0, VAR_0x800C
+    GivePokemon SPECIES_PURRLOIN, 10, 0, VAR_0x800C
     Message 7
     CloseMessage
     ReleaseAll

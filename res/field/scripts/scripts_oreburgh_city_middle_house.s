@@ -60,7 +60,7 @@ OreburghCityMiddleHouse_009D:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_ODDISH, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_RHYHORN, 15, 0, VAR_0x800C
     Message 6
     CloseMessage
     ReleaseAll
@@ -72,7 +72,7 @@ OreburghCityMiddleHouse_00C9:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BELLSPROUT, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_GLIMMET, 15, 0, VAR_0x800C
     Message 6
     CloseMessage
     ReleaseAll
@@ -84,7 +84,7 @@ OreburghCityMiddleHouse_00F5:
     GoToIf 1, OreburghCityMiddleHouse_0121
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CACNEA, 15, 0, VAR_0x800C
+    GivePokemon SPECIES_BRONZOR, 15, 0, VAR_0x800C
     Message 6
     CloseMessage
     ReleaseAll

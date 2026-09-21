@@ -75,10 +75,12 @@ def check_tiers(results):
     rows = dex.pick_list(root)
     bad = [r["name"] for r in rows if r.get("tier") not in tiers.TIERS]
     # 360 rows from Ian's sheet, plus the seven cave rows (Nosepass, Geodude
-    # and Phanpy lines) and the fourteen fishing rows (Goldeen, Corphish,
-    # Chinchou, Carvanha, Remoraid, Buizel, Shellos lines) of 2026-09-21.
+    # and Phanpy lines), the fourteen fishing rows (Goldeen, Corphish,
+    # Chinchou, Carvanha, Remoraid, Buizel, Shellos lines), Mantyke and Mantine,
+    # and the five ghost rows (Gastly and Misdreavus lines) Ian added for the
+    # Old Chateau on 2026-09-21.
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 383 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 388 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     results.append(("legendaries, starters, fossils and static battles are gate",
                     by["Articuno"] == by["Charmander"] == by["Cranidos"]
@@ -101,9 +103,10 @@ def check_tiers(results):
 def check_r12(results):
     avail = audit.availability()
     # 99 native lines before Phase 4 element 3, 177 with the 159 new species
-    # in, 187 with Ian's three cave lines and seven fishing lines.
+    # in, 187 with Ian's three cave lines and seven fishing lines, 189 with the
+    # Gastly and Misdreavus lines.
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 187
+                    avail is not None and len(avail) == 189
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",

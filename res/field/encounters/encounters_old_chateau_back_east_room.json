@@ -3,11 +3,7 @@
     "land_encounters": [
         {
             "level": 14,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 15,
@@ -15,15 +11,11 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
-            "level": 16,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_DUSKULL"
+            "level": 15,
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 16,
@@ -32,6 +24,14 @@
         {
             "level": 16,
             "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_GASTLY"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 16,
@@ -55,12 +55,12 @@
         "SPECIES_ZUBAT"
     ],
     "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL"
+        "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS"
     ],
     "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_GASTLY",
+        "SPECIES_YAMASK"
     ],
     "radar": [
         "SPECIES_POLTEAGEIST",

@@ -3,31 +3,31 @@
     "land_encounters": [
         {
             "level": 20,
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 21,
             "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 20,
+            "level": 21,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 22,
             "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 21,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_GEODUDE"
+            "level": 22,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 22,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_HIPPOPOTAS"
         },
         {
             "level": 22,
@@ -35,19 +35,19 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 22,
+            "species": "SPECIES_GOTHITA"
+        },
+        {
+            "level": 23,
             "species": "SPECIES_SINISTEA"
         },
         {
-            "level": 22,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_SINISTEA"
+            "level": 23,
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [
@@ -55,8 +55,8 @@
         "SPECIES_CARBINK"
     ],
     "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
     ],
     "night": [
         "SPECIES_YAMASK",

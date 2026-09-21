@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 37,
+            "level": 50,
+            "species": "SPECIES_GIBLE"
+        },
+        {
+            "level": 51,
+            "species": "SPECIES_BELDUM"
+        },
+        {
+            "level": 51,
             "species": "SPECIES_DHELMISE"
         },
         {
-            "level": 38,
-            "species": "SPECIES_YAMASK"
+            "level": 51,
+            "species": "SPECIES_LARVITAR"
         },
         {
-            "level": 38,
-            "species": "SPECIES_DUSKULL"
+            "level": 52,
+            "species": "SPECIES_GOOMY"
         },
         {
-            "level": 38,
+            "level": 52,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
+            "level": 52,
             "species": "SPECIES_ABSOL"
         },
         {
-            "level": 39,
-            "species": "SPECIES_VULLABY"
+            "level": 52,
+            "species": "SPECIES_SNEASEL"
         },
         {
-            "level": 39,
-            "species": "SPECIES_GOTHITA"
+            "level": 52,
+            "species": "SPECIES_SCYTHER"
         },
         {
-            "level": 39,
-            "species": "SPECIES_SINISTEA"
+            "level": 52,
+            "species": "SPECIES_RALTS"
         },
         {
-            "level": 39,
-            "species": "SPECIES_LITWICK"
+            "level": 53,
+            "species": "SPECIES_HERACROSS"
         },
         {
-            "level": 39,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 39,
-            "species": "SPECIES_SWABLU"
-        },
-        {
-            "level": 40,
-            "species": "SPECIES_HAWLUCHA"
-        },
-        {
-            "level": 40,
-            "species": "SPECIES_GALARIAN_MR_MIME"
+            "level": 53,
+            "species": "SPECIES_ELEKID"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_JANGMO_O"
     ],
     "day": [
-        "SPECIES_SWABLU",
-        "SPECIES_VULLABY"
+        "SPECIES_SCYTHER",
+        "SPECIES_HERACROSS"
     ],
     "night": [
         "SPECIES_ABSOL",
-        "SPECIES_DUSKULL"
+        "SPECIES_SNEASEL"
     ],
     "radar": [
         "SPECIES_COFAGRIGUS",

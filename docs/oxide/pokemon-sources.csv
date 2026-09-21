@@ -2,61 +2,61 @@ location,map_or_file,species,method,level,conditions,origin,on_pick_list
 Route 201,scripts_route_201.s,SPECIES_TURTWIG,starter,5,"chosen from Rowan's briefcase; once per game; the operand is a variable (GivePokemon 32768), the three options are in src/choose_starter/choose_starter_app.c",vanilla,yes
 Route 201,scripts_route_201.s,SPECIES_CHIMCHAR,starter,5,"chosen from Rowan's briefcase; once per game; the operand is a variable (GivePokemon 32768), the three options are in src/choose_starter/choose_starter_app.c",vanilla,no
 Route 201,scripts_route_201.s,SPECIES_PIPLUP,starter,5,"chosen from Rowan's briefcase; once per game; the operand is a variable (GivePokemon 32768), the three options are in src/choose_starter/choose_starter_app.c",vanilla,yes
-Canalave Library,scripts_canalave_library_2f.s,SPECIES_DUGTRIO,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,no
-Canalave Library,scripts_canalave_library_2f.s,SPECIES_BANETTE,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,no
+Canalave Library,scripts_canalave_library_2f.s,SPECIES_FLYGON,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
+Canalave Library,scripts_canalave_library_2f.s,SPECIES_COFAGRIGUS,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
 Canalave Library,scripts_canalave_library_2f.s,SPECIES_HARIYAMA,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
-Canalave Library,scripts_canalave_library_2f.s,SPECIES_AGGRON,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,no
+Canalave Library,scripts_canalave_library_2f.s,SPECIES_BASTIODON,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
 Canalave Library,scripts_canalave_library_2f.s,SPECIES_DRAPION,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
 Canalave Library,scripts_canalave_library_2f.s,SPECIES_DUSCLOPS,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
 Canalave Library,scripts_canalave_library_2f.s,SPECIES_PRIMEAPE,gift,50,"clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard",base-rom,yes
 Eterna City,scripts_eterna_city.s,SPECIES_TOGEPI,egg gift,11,Egg from the Pokemon Day Care worker outside the city; once only,vanilla,yes
 Eterna City,scripts_eterna_city_condominiums_1f.s,SPECIES_SLUGMA,gift,23,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Eterna City,scripts_eterna_city_condominiums_1f.s,SPECIES_NUMEL,gift,23,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Eterna City,scripts_eterna_city_condominiums_1f.s,SPECIES_TORKOAL,gift,23,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
+Eterna City,scripts_eterna_city_condominiums_1f.s,SPECIES_CHARCADET,gift,23,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Eterna City,scripts_eterna_city_condominiums_1f.s,SPECIES_YAMASK,gift,23,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Floaroma Meadow,scripts_floaroma_meadow_house.s,SPECIES_COMBEE,gift,18,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Floaroma Meadow,scripts_floaroma_meadow_house.s,SPECIES_CHERUBI,gift,18,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
+Floaroma Meadow,scripts_floaroma_meadow_house.s,SPECIES_FLABEBE,gift,18,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Floaroma Meadow,scripts_floaroma_meadow_house.s,SPECIES_PACHIRISU,gift,18,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Floaroma Town,scripts_floaroma_town_middle_house.s,SPECIES_MURKROW,gift,18,"clown gift, one of four rolled at random; repeatable, no flag guard",base-rom,no
+Floaroma Town,scripts_floaroma_town_middle_house.s,SPECIES_SWABLU,gift,18,"clown gift, one of four rolled at random; repeatable, no flag guard",base-rom,yes
 Floaroma Town,scripts_floaroma_town_middle_house.s,SPECIES_POOCHYENA,gift,18,"clown gift, one of four rolled at random; repeatable, no flag guard",base-rom,yes
 Floaroma Town,scripts_floaroma_town_middle_house.s,SPECIES_SEEDOT,gift,18,"clown gift, one of four rolled at random; repeatable, no flag guard",base-rom,yes
 Floaroma Town,scripts_floaroma_town_middle_house.s,SPECIES_STUNKY,gift,18,"clown gift, one of four rolled at random; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_northwest_house.s,SPECIES_EEVEE,gift,20,"gift from the woman in the house; once only (FLAG_RECEIVED_...EEVEE), cleared again by the post-game Trades/Gifts Reset",vanilla,yes
-Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_BULBASAUR,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,no
+Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_FROAKIE,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_CHARMANDER,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_SQUIRTLE,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
-Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_CHIKORITA,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,no
-Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_CYNDAQUIL,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,no
-Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_TOTODILE,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,no
+Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_LITTEN,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
+Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_TURTWIG,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
+Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_PIPLUP,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_TREECKO,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_TORCHIC,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Hearthome City,scripts_hearthome_city_pokemon_fan_club.s,SPECIES_MUDKIP,gift,30,"pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard",base-rom,yes
 Jubilife City,scripts_jubilife_city_south_house_1f.s,SPECIES_GLAMEOW,gift,10,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Jubilife City,scripts_jubilife_city_south_house_1f.s,SPECIES_SKITTY,gift,10,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Jubilife City,scripts_jubilife_city_south_house_1f.s,SPECIES_MEOWTH,gift,10,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_ODDISH,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_BELLSPROUT,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_CACNEA,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_KINGLER,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,no
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_REMORAID,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_RELICANTH,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,no
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_POLITOED,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,no
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_DEWGONG,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,no
-Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_SEADRA,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,no
+Jubilife City,scripts_jubilife_city_south_house_1f.s,SPECIES_PURRLOIN,gift,10,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_RHYHORN,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_GLIMMET,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Oreburgh City,scripts_oreburgh_city_middle_house.s,SPECIES_BRONZOR,gift,15,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_OCTILLERY,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_MANTINE,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_CRAWDAUNT,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_SHARPEDO,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_LANTURN,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
+Pastoria City,scripts_pastoria_city_north_house.s,SPECIES_TOXAPEX,gift,45,"clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard",base-rom,yes
 Pokémon Day Care,scripts_pokemon_day_care.s,SPECIES_DITTO,gift,30,"the Day Care man hands it over on a yes/no prompt with no flag guard, so it is repeatable without limit; holds 229",base-rom,no
 Pokémon Mansion,scripts_pokemon_mansion_office.s,SPECIES_MANAPHY,egg gift,8,"Egg from the Mansion's owner; once only (FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts Reset; vanilla only ever gave this through Mystery Gift",base-rom,yes
-Sandgem Town,scripts_sandgem_town_house.s,SPECIES_VENONAT,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,no
-Sandgem Town,scripts_sandgem_town_house.s,SPECIES_EKANS,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,no
-Sandgem Town,scripts_sandgem_town_house.s,SPECIES_GULPIN,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,no
-Solaceon Town,scripts_solaceon_town_northeast_house.s,SPECIES_NATU,gift,30,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
+Sandgem Town,scripts_sandgem_town_house.s,SPECIES_PICHU,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,yes
+Sandgem Town,scripts_sandgem_town_house.s,SPECIES_GRUBBIN,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,yes
+Sandgem Town,scripts_sandgem_town_house.s,SPECIES_FLETCHLING,gift,5,"pick one of three from a list menu; repeatable, no flag guard",base-rom,yes
+Solaceon Town,scripts_solaceon_town_northeast_house.s,SPECIES_LUNATONE,gift,30,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Solaceon Town,scripts_solaceon_town_northeast_house.s,SPECIES_TRAPINCH,gift,30,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Solaceon Town,scripts_solaceon_town_northeast_house.s,SPECIES_CLAMPERL,gift,30,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
+Solaceon Town,scripts_solaceon_town_northeast_house.s,SPECIES_SOLROCK,gift,30,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Jubilife City,scripts_unused_jubilife_city_south_house_3f.s,SPECIES_GLAMEOW,gift,8,a third-floor copy of the Jubilife clown; check the map is reachable before counting it,base-rom,yes
 Jubilife City,scripts_unused_jubilife_city_south_house_3f.s,SPECIES_SKITTY,gift,8,a third-floor copy of the Jubilife clown; check the map is reachable before counting it,base-rom,yes
-Jubilife City,scripts_unused_jubilife_city_south_house_3f.s,SPECIES_MEOWTH,gift,8,a third-floor copy of the Jubilife clown; check the map is reachable before counting it,base-rom,no
-Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_SHUCKLE,gift,40,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
-Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_PINSIR,gift,40,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,no
+Jubilife City,scripts_unused_jubilife_city_south_house_3f.s,SPECIES_PURRLOIN,gift,8,a third-floor copy of the Jubilife clown; check the map is reachable before counting it,base-rom,yes
+Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_BELDUM,gift,40,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
+Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_SNEASEL,gift,40,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_MASQUERAIN,gift,40,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
-Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_PORYGON,gift,25,"clown gift, one of three rolled at random; repeatable, no flag guard",vanilla,no
+Veilstone City,scripts_veilstone_city_northeast_house.s,SPECIES_ELEKID,gift,25,"clown gift, one of three rolled at random; repeatable, no flag guard",base-rom,yes
 Mining Museum,scripts_mining_museum.s,SPECIES_AERODACTYL,fossil,20,"revive ITEM_OLD_AMBER at the Oreburgh Mining Museum; the fossil comes from the Underground or a route; repeatable, one at a time; the script's operand is VAR_REVIVED_POKEMON_SPECIES and the item-to-species table is src/scrcmd_fossil.c",vanilla,no
 Mining Museum,scripts_mining_museum.s,SPECIES_OMANYTE,fossil,20,"revive ITEM_HELIX_FOSSIL at the Oreburgh Mining Museum; the fossil comes from the Underground or a route; repeatable, one at a time; the script's operand is VAR_REVIVED_POKEMON_SPECIES and the item-to-species table is src/scrcmd_fossil.c",vanilla,no
 Mining Museum,scripts_mining_museum.s,SPECIES_KABUTO,fossil,20,"revive ITEM_DOME_FOSSIL at the Oreburgh Mining Museum; the fossil comes from the Underground or a route; repeatable, one at a time; the script's operand is VAR_REVIVED_POKEMON_SPECIES and the item-to-species table is src/scrcmd_fossil.c",vanilla,no
@@ -66,7 +66,7 @@ Mining Museum,scripts_mining_museum.s,SPECIES_SHIELDON,fossil,20,"revive ITEM_AR
 Mining Museum,scripts_mining_museum.s,SPECIES_CRANIDOS,fossil,20,"revive ITEM_SKULL_FOSSIL at the Oreburgh Mining Museum; the fossil comes from the Underground or a route; repeatable, one at a time; the script's operand is VAR_REVIVED_POKEMON_SPECIES and the item-to-species table is src/scrcmd_fossil.c",vanilla,yes
 Oreburgh City,res/npc_trades/kazza_abra.json,SPECIES_DITTO,in-game trade,(traded mon's level),"trade away SPECIES_MACHOP to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY",base-rom,no
 Eterna City,res/npc_trades/charap_chatot.json,SPECIES_CHATOT,in-game trade,(traded mon's level),"trade away SPECIES_BUIZEL to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY",vanilla,no
-Snowpoint City,res/npc_trades/gaspar_haunter.json,SPECIES_GENGAR,in-game trade,(traded mon's level),"trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE",base-rom,no
+Snowpoint City,res/npc_trades/gaspar_haunter.json,SPECIES_GENGAR,in-game trade,(traded mon's level),"trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE",base-rom,yes
 Route 226,res/npc_trades/foppa_magikarp.json,SPECIES_MAGIKARP,in-game trade,(traded mon's level),"trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY",vanilla,yes
 Acuity Cavern,scripts_acuity_cavern.s,SPECIES_UXIE,static battle,50,"after the Galactic plot at Lake Acuity; once, unless the post-game Legendary Reset is used",vanilla,yes
 Distortion World,scripts_distortion_world_giratina_room.s,SPECIES_GIRATINA,static battle,47,the story battle in the Distortion World; Origin Forme; once,vanilla,yes

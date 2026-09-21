@@ -194,7 +194,7 @@ HearthomeCityPokemonFanClub_0292:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BULBASAUR, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_FROAKIE, 30, 0, VAR_0x800C
     Message 24
     CloseMessage
     ReleaseAll
@@ -230,7 +230,7 @@ HearthomeCityPokemonFanClub_0316:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CHIKORITA, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_LITTEN, 30, 0, VAR_0x800C
     Message 24
     CloseMessage
     ReleaseAll
@@ -242,7 +242,7 @@ HearthomeCityPokemonFanClub_0342:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_CYNDAQUIL, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_TURTWIG, 30, 0, VAR_0x800C
     Message 24
     CloseMessage
     ReleaseAll
@@ -254,7 +254,7 @@ HearthomeCityPokemonFanClub_036E:
     GoToIf 1, HearthomeCityPokemonFanClub_0429
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_TOTODILE, 30, 0, VAR_0x800C
+    GivePokemon SPECIES_PIPLUP, 30, 0, VAR_0x800C
     Message 24
     CloseMessage
     ReleaseAll

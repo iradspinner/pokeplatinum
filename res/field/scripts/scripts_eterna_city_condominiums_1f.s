@@ -149,7 +149,7 @@ EternaCityCondominiums1f_01F5:
     GoToIf 1, EternaCityCondominiums1f_02D0
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_NUMEL, 23, 0, VAR_0x800C
+    GivePokemon SPECIES_CHARCADET, 23, 0, VAR_0x800C
     Message 20
     CloseMessage
     ReleaseAll
@@ -161,7 +161,7 @@ EternaCityCondominiums1f_0221:
     GoToIf 1, EternaCityCondominiums1f_02D0
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_TORKOAL, 23, 0, VAR_0x800C
+    GivePokemon SPECIES_YAMASK, 23, 0, VAR_0x800C
     Message 20
     CloseMessage
     ReleaseAll

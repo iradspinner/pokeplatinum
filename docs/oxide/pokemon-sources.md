@@ -83,11 +83,11 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Aggron | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | no | `scripts_canalave_library_2f.s` |
-| Banette | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | no | `scripts_canalave_library_2f.s` |
+| Bastiodon | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
+| Cofagrigus | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Drapion | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Dugtrio | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | no | `scripts_canalave_library_2f.s` |
 | Dusclops | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
+| Flygon | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Hariyama | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Primeape | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); repeatable, no flag guard | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 
@@ -102,9 +102,9 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Togepi | egg gift | 11 | Egg from the Pokemon Day Care worker outside the city; once only | vanilla | yes | `scripts_eterna_city.s` |
-| Numel | gift | 23 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_eterna_city_condominiums_1f.s` |
+| Charcadet | gift | 23 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Slugma | gift | 23 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
-| Torkoal | gift | 23 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_eterna_city_condominiums_1f.s` |
+| Yamask | gift | 23 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Chatot | in-game trade | (traded mon's level) | trade away SPECIES_BUIZEL to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY | vanilla | no | `res/npc_trades/charap_chatot.json` |
 | Articuno | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
 | Moltres | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
@@ -114,18 +114,18 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Cherubi | gift | 18 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_floaroma_meadow_house.s` |
 | Combee | gift | 18 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
+| Flabebe | gift | 18 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
 | Pachirisu | gift | 18 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
 
 ### Floaroma Town
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Murkrow | gift | 18 | clown gift, one of four rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_floaroma_town_middle_house.s` |
 | Poochyena | gift | 18 | clown gift, one of four rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
 | Seedot | gift | 18 | clown gift, one of four rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
 | Stunky | gift | 18 | clown gift, one of four rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
+| Swablu | gift | 18 | clown gift, one of four rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
 
 ### Flower Paradise
 
@@ -175,16 +175,16 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Bulbasaur | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Charmander | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Chikorita | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Cyndaquil | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Eevee | gift | 20 | gift from the woman in the house; once only (FLAG_RECEIVED_...EEVEE), cleared again by the post-game Trades/Gifts Reset | vanilla | yes | `scripts_hearthome_city_northwest_house.s` |
+| Froakie | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
+| Litten | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Mudkip | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
+| Piplup | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Squirtle | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Torchic | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Totodile | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Treecko | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
+| Turtwig | gift | 30 | pick one of the nine Kanto/Johto/Hoenn starters from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 
 ### Honey trees (21 routes)
 
@@ -217,8 +217,8 @@ table, so they compete with it rather than adding to it
 |---|---|---|---|---|---|---|
 | Glameow | gift | 10 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
 | Glameow | gift | 8 | a third-floor copy of the Jubilife clown; check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
-| Meowth | gift | 10 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_jubilife_city_south_house_1f.s` |
-| Meowth | gift | 8 | a third-floor copy of the Jubilife clown; check the map is reachable before counting it | **base-ROM** | no | `scripts_unused_jubilife_city_south_house_3f.s` |
+| Purrloin | gift | 10 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
+| Purrloin | gift | 8 | a third-floor copy of the Jubilife clown; check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
 | Skitty | gift | 10 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
 | Skitty | gift | 8 | a third-floor copy of the Jubilife clown; check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
 
@@ -256,9 +256,9 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Bellsprout | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_oreburgh_city_middle_house.s` |
-| Cacnea | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_oreburgh_city_middle_house.s` |
-| Oddish | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_oreburgh_city_middle_house.s` |
+| Bronzor | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
+| Glimmet | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
+| Rhyhorn | gift | 15 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
 | Ditto | in-game trade | (traded mon's level) | trade away SPECIES_MACHOP to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY | **base-ROM** | no | `res/npc_trades/kazza_abra.json` |
 
 ### Pal Park
@@ -271,12 +271,12 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Dewgong | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
-| Kingler | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
-| Politoed | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
-| Relicanth | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
-| Remoraid | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Seadra | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
+| Crawdaunt | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Lanturn | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Mantine | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Octillery | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Sharpedo | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Toxapex | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 
 ### Pokémon Day Care
 
@@ -320,15 +320,15 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Ekans | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_sandgem_town_house.s` |
-| Gulpin | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_sandgem_town_house.s` |
-| Venonat | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | no | `scripts_sandgem_town_house.s` |
+| Fletchling | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
+| Grubbin | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
+| Pichu | gift | 5 | pick one of three from a list menu; repeatable, no flag guard | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
 
 ### Snowpoint City
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Gengar | in-game trade | (traded mon's level) | trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | no | `res/npc_trades/gaspar_haunter.json` |
+| Gengar | in-game trade | (traded mon's level) | trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | yes | `res/npc_trades/gaspar_haunter.json` |
 
 ### Snowpoint Temple
 
@@ -364,8 +364,8 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | (egg of the mother's line) | day care egg | 1 | breeding at the Solaceon Day Care; the only route to baby stages and to any egg move; Ditto from the Day Care man makes every non-legendary breedable | vanilla | n/a | `src/egg.c` |
-| Clamperl | gift | 30 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_solaceon_town_northeast_house.s` |
-| Natu | gift | 30 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_solaceon_town_northeast_house.s` |
+| Lunatone | gift | 30 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
+| Solrock | gift | 30 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
 | Trapinch | gift | 30 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
 
 ### Spear Pillar
@@ -403,10 +403,10 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
+| Beldum | gift | 40 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
+| Elekid | gift | 25 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 | Masquerain | gift | 40 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
-| Pinsir | gift | 40 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_veilstone_city_northeast_house.s` |
-| Porygon | gift | 25 | clown gift, one of three rolled at random; repeatable, no flag guard | vanilla | no | `scripts_veilstone_city_northeast_house.s` |
-| Shuckle | gift | 40 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | no | `scripts_veilstone_city_northeast_house.s` |
+| Sneasel | gift | 40 | clown gift, one of three rolled at random; repeatable, no flag guard | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 
 ### Verity Cavern
 

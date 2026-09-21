@@ -108,7 +108,7 @@ FloaromaTownMiddleHouse_0142:
     GoToIf 1, FloaromaTownMiddleHouse_01F2
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_MURKROW, 18, 0, VAR_0x800C
+    GivePokemon SPECIES_SWABLU, 18, 0, VAR_0x800C
     Message 11
     CloseMessage
     ReleaseAll

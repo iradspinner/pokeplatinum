@@ -311,6 +311,9 @@ _SPLIT_STEMS = {
         "route_223", "victory_road_1f", "victory_road_2f", "victory_road_b1f",
         "victory_road_1f_room_1", "victory_road_1f_room_2", "victory_road_1f_room_3",
         "pokemon_league",
+        # The spring itself needs Surf and Waterfall, both in hand by now; it is
+        # Turnback Cave *inside* it that stays post-champion (Ian, 2026-09-21).
+        "sendoff_spring",
     ],
 }
 

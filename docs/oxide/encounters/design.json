@@ -2519,99 +2519,103 @@
       ]
     },
     "encounters_old_chateau": {
-      "archetype": "A13",
+      "archetype": "A18",
       "band": "mid",
-      "intent": "The haunted house's hall, Sinistea's home: teacups and candles, the graveyard ghosts behind them, a cat at night.",
+      "intent": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night.",
       "locked": [],
       "base_level": 14,
       "order": 20,
       "split": "Fantina",
       "cast": [
         "SPECIES_SINISTEA",
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_DUSKULL",
         "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_PURRLOIN",
+        "SPECIES_ZUBAT"
       ],
       "day": [
         "SPECIES_SINISTEA",
         "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_back_east_room": {
-      "archetype": "A11",
+      "archetype": "A14",
       "band": "mid",
-      "intent": "The back east room: teacups again, the cat by night.",
+      "intent": "The back east room: the gas leads, the banshee answers.",
       "locked": [],
       "base_level": 14,
       "order": 28,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS",
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
         "SPECIES_DUSKULL",
         "SPECIES_PURRLOIN"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL"
+        "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_GASTLY",
+        "SPECIES_YAMASK"
       ]
     },
     "encounters_old_chateau_back_middle_east_room": {
       "archetype": "A16",
       "band": "mid",
-      "intent": "Back middle east: three co-equal again, in a different order.",
+      "intent": "Back middle east: three ghosts co-equal.",
       "locked": [],
       "base_level": 14,
       "order": 27,
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
         "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT",
-        "SPECIES_PURRLOIN"
+        "SPECIES_SINISTEA",
+        "SPECIES_ZUBAT"
       ],
       "day": [
         "SPECIES_SINISTEA",
         "SPECIES_DUSKULL"
       ],
       "night": [
-        "SPECIES_YAMASK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_LITWICK"
       ]
     },
     "encounters_old_chateau_back_middle_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The middle room with the television, Litwick's home.",
+      "intent": "The middle room with the television, Litwick’s home.",
       "locked": [],
       "base_level": 14,
       "order": 26,
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
         "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MISDREAVUS"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK"
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_LITWICK",
+        "SPECIES_GASTLY",
         "SPECIES_DUSKULL"
       ]
     },
@@ -2625,11 +2629,11 @@
       "split": "Fantina",
       "cast": [
         "SPECIES_DUSKULL",
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN",
-        "SPECIES_ZUBAT"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_LITWICK",
@@ -2643,49 +2647,49 @@
     "encounters_old_chateau_back_west_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The back west room: Yamask's corner of the house.",
+      "intent": "The back west room: Yamask’s corner.",
       "locked": [],
       "base_level": 14,
       "order": 24,
       "split": "Fantina",
       "cast": [
         "SPECIES_YAMASK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK"
+        "SPECIES_MISDREAVUS"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_YAMASK",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_corridor": {
       "archetype": "A11",
       "band": "mid",
-      "intent": "The corridor: candles lead.",
+      "intent": "The corridor, Gastly’s home: the gas fills it end to end.",
       "locked": [],
       "base_level": 14,
       "order": 23,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
         "SPECIES_ZUBAT"
       ],
       "day": [
-        "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL"
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA"
       ],
       "night": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GASTLY",
+        "SPECIES_MISDREAVUS"
       ]
     },
     "encounters_old_chateau_dining_area": {
@@ -2698,10 +2702,35 @@
       "split": "Fantina",
       "cast": [
         "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
-        "SPECIES_YAMASK",
         "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_PURRLOIN"
+      ],
+      "night": [
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY"
+      ]
+    },
+    "encounters_old_chateau_side_rooms": {
+      "archetype": "A16",
+      "band": "mid",
+      "intent": "The side rooms, Misdreavus’s home: three ghosts co-equal.",
+      "locked": [],
+      "base_level": 14,
+      "order": 22,
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
         "SPECIES_ZUBAT"
       ],
       "day": [
@@ -2709,33 +2738,8 @@
         "SPECIES_YAMASK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK"
-      ]
-    },
-    "encounters_old_chateau_side_rooms": {
-      "archetype": "A16",
-      "band": "mid",
-      "intent": "The side rooms: three ghosts co-equal.",
-      "locked": [],
-      "base_level": 14,
-      "order": 22,
-      "split": "Fantina",
-      "cast": [
-        "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK",
-        "SPECIES_PURRLOIN",
-        "SPECIES_ZUBAT"
-      ],
-      "day": [
-        "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
-      ],
-      "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_GASTLY"
       ]
     },
     "encounters_oreburgh_gate_1f": {
@@ -6833,32 +6837,32 @@
     "encounters_sendoff_spring": {
       "archetype": "A19",
       "band": "late",
-      "intent": "The spring before Turnback Cave, Dhelmise's home: the ghosts gather, Absol watches.",
+      "intent": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk.",
       "locked": [],
-      "base_level": 37,
+      "base_level": 50,
       "order": 111,
-      "split": "Post",
+      "split": "League",
       "cast": [
+        "SPECIES_GIBLE",
+        "SPECIES_BELDUM",
         "SPECIES_DHELMISE",
-        "SPECIES_YAMASK",
-        "SPECIES_DUSKULL",
+        "SPECIES_LARVITAR",
+        "SPECIES_GOOMY",
+        "SPECIES_JANGMO_O",
         "SPECIES_ABSOL",
-        "SPECIES_VULLABY",
-        "SPECIES_GOTHITA",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_KLEFKI",
-        "SPECIES_SWABLU",
-        "SPECIES_HAWLUCHA",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_SNEASEL",
+        "SPECIES_SCYTHER",
+        "SPECIES_RALTS",
+        "SPECIES_HERACROSS",
+        "SPECIES_ELEKID"
       ],
       "day": [
-        "SPECIES_SWABLU",
-        "SPECIES_VULLABY"
+        "SPECIES_SCYTHER",
+        "SPECIES_HERACROSS"
       ],
       "night": [
         "SPECIES_ABSOL",
-        "SPECIES_DUSKULL"
+        "SPECIES_SNEASEL"
       ],
       "old_rod": {
         "cast": [
@@ -7141,24 +7145,30 @@
       ]
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 18 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 60,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_HIPPOPOTAS",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
-        "SPECIES_ONIX"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7166,72 +7176,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 1 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 43,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_DWEBBLE"
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
-      "archetype": "A13",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 2 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 44,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
-        "SPECIES_CARBINK"
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_2": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 3 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 45,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7239,75 +7269,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
-      "archetype": "A16",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 4 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 46,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
-      "archetype": "A18",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 5 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 47,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_3": {
-      "archetype": "A6",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 6 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 48,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_NOSEPASS",
+        "SPECIES_DWEBBLE",
         "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7315,78 +7362,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
-      "archetype": "A7",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 7 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 49,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
+        "SPECIES_DWEBBLE",
         "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
-      "archetype": "A8",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 8 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 50,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_ONIX",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_4": {
-      "archetype": "A15",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 9 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A15.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 51,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7394,72 +7455,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 10 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 52,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_LITWICK",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
         "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
         "SPECIES_GOTHITA",
-        "SPECIES_BRONZOR"
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_5": {
-      "archetype": "A13",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 11 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 53,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_HIPPOPOTAS",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 12 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 54,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
-        "SPECIES_GOTHITA",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
         "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_DWEBBLE"
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7467,75 +7548,92 @@
       ]
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
-      "archetype": "A16",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 13 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 55,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
-        "SPECIES_CARBINK"
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_6": {
-      "archetype": "A18",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 14 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 56,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
-      "archetype": "A6",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 15 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 57,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
-        "SPECIES_YAMASK",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_DWEBBLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
@@ -7543,55 +7641,65 @@
       ]
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
-      "archetype": "A7",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 16 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 58,
       "split": "Maylene",
       "cast": [
-        "SPECIES_KLEFKI",
         "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
+        "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_solaceon_ruins_room_7": {
-      "archetype": "A8",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "Solaceon Ruins, room 17 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
+      "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
       "order": 59,
       "split": "Maylene",
       "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS",
-        "SPECIES_GEODUDE",
+        "SPECIES_BRONZOR",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
-        "SPECIES_HIPPOPOTAS"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA"
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
       ]
     },
     "encounters_stark_mountain_outside": {
@@ -11133,7 +11241,7 @@
     "encounters_honey_tree"
   ],
   "splits": {
-    "_comment": "Ian's gym splits, in order, each with its hard level cap and the split each rod arrives in. Roark's and Gardenia's tables are his; the rest are the tool's reading of the route sequence, provisional.",
+    "_comment": "Ian's gym splits, in order, each with its hard level cap (null until he gives it) and the split each rod arrives in. Roark and Gardenia are his; the rest are the tool's reading of the route sequence, provisional.",
     "order": [
       "Roark",
       "Gardenia",

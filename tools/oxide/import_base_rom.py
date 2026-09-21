@@ -1064,6 +1064,9 @@ TEXT_BANKS_SKIPPED = {
     706: "Pokedex entries decode identically, same as species names",
     617: "trainer battle messages are keyed by TRMSG_* type per trainer, not by a flat bank index; "
          "mapping the 2,497 entries back needs trainerproc's packing order, which is its own job",
+    117: "the Fan Club's gift menu names the species it hands out, and the encounter pass "
+         "re-pooled that gift onto pick-list species (Ian, 2026-09-21)",
+    568: "Sandgem's gift menu names the species it hands out, re-pooled with the same pass",
 }
 
 

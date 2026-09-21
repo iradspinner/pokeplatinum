@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 20,
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 21,
             "species": "SPECIES_KLEFKI"
         },
         {
             "level": 21,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_CARBINK"
         },
         {
-            "level": 21,
-            "species": "SPECIES_KLEFKI"
+            "level": 22,
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 21,
-            "species": "SPECIES_HIPPOPOTAS"
+            "level": 22,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 22,
             "species": "SPECIES_HIPPOPOTAS"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 22,
             "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 22,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_GOTHITA"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_BRONZOR"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_BRONZOR"
+            "level": 23,
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 23,
-            "species": "SPECIES_BRONZOR"
-        },
-        {
-            "level": 23,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_DWEBBLE"
     ],
     "day": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_CARBINK"
     ],
     "night": [
         "SPECIES_YAMASK",
-        "SPECIES_LITWICK"
+        "SPECIES_GOTHITA"
     ],
     "radar": [
         "SPECIES_LAMPENT",

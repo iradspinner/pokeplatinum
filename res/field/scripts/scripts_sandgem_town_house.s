@@ -21,47 +21,47 @@ SandgemTownHouse_Clown:
     FacePlayer
     Message SandgemTownHouse_Text_WouldYouLikeOneOfThesePokemon
     InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry SandgemTownHouse_Text_Venonat, 0
-    AddListMenuEntry SandgemTownHouse_Text_Ekans, 1
-    AddListMenuEntry SandgemTownHouse_Text_Gulpin, 2
+    AddListMenuEntry SandgemTownHouse_Text_Pichu, 0
+    AddListMenuEntry SandgemTownHouse_Text_Grubbin, 1
+    AddListMenuEntry SandgemTownHouse_Text_Fletchling, 2
     ShowListMenu
     SetVarFromVar VAR_0x8008, VAR_0x800C
-    GoToIfEq VAR_0x8008, 0, SandgemTownHouse_GiveVenonat
-    GoToIfEq VAR_0x8008, 1, SandgemTownHouse_GiveEkans
-    GoToIfEq VAR_0x8008, 2, SandgemTownHouse_GiveGulpin
+    GoToIfEq VAR_0x8008, 0, SandgemTownHouse_GivePichu
+    GoToIfEq VAR_0x8008, 1, SandgemTownHouse_GiveGrubbin
+    GoToIfEq VAR_0x8008, 2, SandgemTownHouse_GiveFletchling
     GoTo SandgemTownHouse_Declined
 
-SandgemTownHouse_GiveVenonat:
+SandgemTownHouse_GivePichu:
     CloseMessage
     GetPartyCount VAR_0x800C
     GoToIfEq VAR_0x800C, 6, SandgemTownHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_VENONAT, 5, 0, VAR_0x800C
+    GivePokemon SPECIES_PICHU, 5, 0, VAR_0x800C
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownHouse_GiveEkans:
+SandgemTownHouse_GiveGrubbin:
     CloseMessage
     GetPartyCount VAR_0x800C
     GoToIfEq VAR_0x800C, 6, SandgemTownHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_EKANS, 5, 0, VAR_0x800C
+    GivePokemon SPECIES_GRUBBIN, 5, 0, VAR_0x800C
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownHouse_GiveGulpin:
+SandgemTownHouse_GiveFletchling:
     CloseMessage
     GetPartyCount VAR_0x800C
     GoToIfEq VAR_0x800C, 6, SandgemTownHouse_PartyIsFull
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_GULPIN, 5, 0, VAR_0x800C
+    GivePokemon SPECIES_FLETCHLING, 5, 0, VAR_0x800C
     Message SandgemTownHouse_Text_SeeYa
     CloseMessage
     ReleaseAll

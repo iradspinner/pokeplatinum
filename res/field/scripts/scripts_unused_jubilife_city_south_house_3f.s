@@ -66,7 +66,7 @@ UnusedJubilifeCitySouthHouse3f_00D5:
     GoToIf 1, UnusedJubilifeCitySouthHouse3f_010C
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_MEOWTH, 8, 0, VAR_0x800C
+    GivePokemon SPECIES_PURRLOIN, 8, 0, VAR_0x800C
     Message 67
     CloseMessage
     ReleaseAll

@@ -105,48 +105,48 @@
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN"],
-      "note": "The haunted house's hall, Sinistea's home: teacups and candles, the graveyard ghosts behind them, a cat at night."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "note": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night."
     },
     "encounters_old_chateau_dining_area": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
       "note": "The dining room: candles on the table, six lines, none over 25."
     },
     "encounters_old_chateau_side_rooms": {
-      "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
-      "note": "The side rooms: three ghosts co-equal."
+      "home": ["SPECIES_MISDREAVUS"],
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
+      "note": "The side rooms, Misdreavus’s home: three ghosts co-equal."
     },
     "encounters_old_chateau_corridor": {
-      "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
-      "note": "The corridor: candles lead."
+      "home": ["SPECIES_GASTLY"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
+      "note": "The corridor, Gastly’s home: the gas fills it end to end."
     },
     "encounters_old_chateau_back_west_room": {
-      "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The back west room: Yamask's corner of the house."
+      "home": ["SPECIES_YAMASK"],
+      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_GASTLY", "SPECIES_DUSKULL"],
+      "note": "The back west room: Yamask’s corner."
     },
     "encounters_old_chateau_back_middle_west_room": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_DUSKULL", "SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK"],
       "note": "Back middle west: Duskull leads for once."
     },
     "encounters_old_chateau_back_middle_room": {
       "home": ["SPECIES_LITWICK"],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN"],
-      "note": "The middle room with the television, Litwick's home."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_MISDREAVUS"],
+      "note": "The middle room with the television, Litwick’s home."
     },
     "encounters_old_chateau_back_middle_east_room": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_ZUBAT", "SPECIES_PURRLOIN"],
-      "note": "Back middle east: three co-equal again, in a different order."
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
+      "note": "Back middle east: three ghosts co-equal."
     },
     "encounters_old_chateau_back_east_room": {
       "home": [],
-      "cameo": ["SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The back east room: teacups again, the cat by night."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_MISDREAVUS", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
+      "note": "The back east room: the gas leads, the banshee answers."
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO"],
@@ -195,8 +195,8 @@
       "note": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night."
     },
     "encounters_route_209_lost_tower_1f": {
-      "home": ["SPECIES_YAMASK"],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA"],
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA", "SPECIES_YAMASK"],
       "note": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts."
     },
     "encounters_route_209_lost_tower_2f": {
@@ -222,94 +222,111 @@
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 1 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 2 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2": {
       "home": ["SPECIES_KLEFKI"],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 3 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 4 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_ZUBAT"],
-      "note": "Solaceon Ruins, room 5 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_DWEBBLE", "SPECIES_YAMASK", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 6 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
-      "note": "Solaceon Ruins, room 7 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
-      "note": "Solaceon Ruins, room 8 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_4": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_YAMASK"],
-      "tail": ["SPECIES_ZUBAT", "SPECIES_LARVITAR"],
-      "note": "Solaceon Ruins, room 9 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A15."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
-      "note": "Solaceon Ruins, room 10 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_HIPPOPOTAS", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 11 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_GOTHITA", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_GEODUDE"],
-      "note": "Solaceon Ruins, room 12 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 13 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA"],
-      "note": "Solaceon Ruins, room 14 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_YAMASK", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 15 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_DWEBBLE", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK", "SPECIES_LITWICK"],
-      "note": "Solaceon Ruins, room 16 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_room_7": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_HIPPOPOTAS", "SPECIES_ZUBAT"],
-      "note": "Solaceon Ruins, room 17 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
       "home": [],
-      "cameo": ["SPECIES_KLEFKI", "SPECIES_HIPPOPOTAS", "SPECIES_DWEBBLE", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_GEODUDE", "SPECIES_YAMASK", "SPECIES_GOTHITA"],
-      "note": "Solaceon Ruins, room 18 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_YAMASK", "SPECIES_GOTHITA", "SPECIES_SINISTEA", "SPECIES_LARVITAR"],
+      "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_route_210_south": {
       "home": ["SPECIES_SCYTHER"],
@@ -552,9 +569,9 @@
     },
     "encounters_sendoff_spring": {
       "home": ["SPECIES_DHELMISE"],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_ABSOL", "SPECIES_VULLABY", "SPECIES_GOTHITA"],
-      "tail": ["SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_KLEFKI", "SPECIES_SWABLU", "SPECIES_HAWLUCHA", "SPECIES_GALARIAN_MR_MIME"],
-      "note": "The spring before Turnback Cave, Dhelmise's home: the ghosts gather, Absol watches."
+      "cameo": ["SPECIES_GIBLE", "SPECIES_BELDUM", "SPECIES_LARVITAR", "SPECIES_GOOMY", "SPECIES_JANGMO_O"],
+      "tail": ["SPECIES_ABSOL", "SPECIES_SNEASEL", "SPECIES_SCYTHER", "SPECIES_RALTS", "SPECIES_HERACROSS", "SPECIES_ELEKID"],
+      "note": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk."
     },
     "encounters_turnback_cave_entrance": {
       "home": [],
