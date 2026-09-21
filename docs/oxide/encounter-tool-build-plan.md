@@ -866,7 +866,7 @@ unchanged tables still 81 errors.
 *Gate was:* no line without a source; the early band's cast fits 3-5
 species per table with the lines whose tier says early.
 
-### Step 3 — the first two splits — **regenerated twice on Ian's review, 2026-09-21; gate open**
+### Step 3 — the first two splits — **regenerated twice on Ian's review, 2026-09-21; merged into `oxide` 2026-09-21**
 
 ```
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3                    # expect 28/28
@@ -967,7 +967,7 @@ Still open: the merge into `oxide`. Ian took his playthrough off the gate
 (2026-09-21, far too long); his review happens in the tool, which now lists
 the water-only areas (Twinleaf Town, Route 219) beside the grass ones.
 
-### Step 4 — the rest of the game — **written, 2026-09-21; gate open**
+### Step 4 — the rest of the game — **written, 2026-09-21; merged into `oxide` 2026-09-21**
 
 ```
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run   # 184 areas, 0 failed, nothing to change
@@ -1087,6 +1087,19 @@ after any table change (`PYTHONPATH=. python3 tools/oxide/pokemon_sources.py`).
 It also records what stays off-list on purpose: the eighteen Unown rooms of
 Solaceon Ruins (Unown stays off the list, decision 9, Ian's call of
 2026-09-21) and the thirty-odd clown-gift rows, the script track's levers.
+
+### Step 6 — build, verify, merge — **done, 2026-09-21**
+
+`integrate.sh` merged the branch into `oxide` (a fast-forward of ten commits) and
+ran the full gate: 25 checks green, `verify_narcs.py --encounters --source` at
+183 of 183 tables, every suite passing. One check failed on the first run and was
+fixed before the push: `import_base_rom.py --dry-run` wanted to restore the base
+ROM's surf and rod species on the eleven water-only areas Step 5 authored, because
+its definition of "authored" was a sidecar entry with a land `cast`, and a
+water-only area has none. A sidecar entry with any of `surf`, `old_rod`,
+`good_rod` or `super_rod` now counts too, and `test_step0` asserts the same. The
+lesson is in the design doc's findings log: a new way of authoring a table has to
+extend `authored_encounters()` or the gate quietly reverts the tables.
 
 ## Suggested order, and what to cut
 
