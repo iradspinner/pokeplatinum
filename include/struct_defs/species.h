@@ -29,6 +29,9 @@
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
+// Written into an entry's level field to end the list. It shares a value with
+// LEARNSET_ALL_SLOTS_FILLED above by coincidence, not by meaning: that one is
+// a return code from Pokemon_AddMove.
 #define LEARNSET_SENTINEL_ENTRY     0xFFFF
 
 typedef struct SpeciesBaseStats {
@@ -89,9 +92,15 @@ typedef struct SpeciesEvolution {
     u16 targetSpecies;
 } SpeciesEvolution;
 
+// Platinum Oxide: two whole halfwords, not one packed one. Vanilla squeezed a
+// level and a move into a single u16 as move:9 / level:7, which caps a move id
+// at 511 and a level at 127. There are more than 511 moves now, so the entry is
+// four bytes and each field has its own halfword. The level field keeps a whole
+// u16 rather than dropping back to a u8 so the entry stays four-byte aligned,
+// which is what the packer and every whole-member read already assume.
 typedef struct SpeciesLearnsetEntry {
-    u16 move : 9;
-    u16 level : 7;
+    u16 level;
+    u16 move;
 } SpeciesLearnsetEntry;
 
 // This struct is not explicitly used; it is provided to document and enforce the size of

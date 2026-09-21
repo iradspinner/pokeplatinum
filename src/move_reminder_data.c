@@ -11,8 +11,6 @@
 // plus its terminator. It was 22 when a learnset was capped at 20.
 #define MAX_NUMBER_REMINDER_MOVES (MAX_LEARNSET_ENTRIES + 2)
 
-#define GET_LEVEL(move) ((move & 0xfe00) >> 9)
-#define GET_MOVE(move)  ((move & 0x1ff) >> 0)
 
 MoveReminderData *MoveReminderData_Alloc(enum HeapID heapID)
 {
@@ -39,7 +37,7 @@ u16 *MoveReminderData_GetMoves(Pokemon *mon, enum HeapID heapID)
         currentMoves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
     }
 
-    u16 *levelUpMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
+    SpeciesLearnsetEntry *levelUpMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(SpeciesLearnsetEntry));
     u16 *reminderMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
 
     Pokemon_LoadLevelUpMovesOf(species, form, levelUpMoves);
@@ -47,29 +45,29 @@ u16 *MoveReminderData_GetMoves(Pokemon *mon, enum HeapID heapID)
     j = 0;
 
     for (i = 0; i < MAX_NUMBER_REMINDER_MOVES; i++) {
-        if (levelUpMoves[i] == LEVEL_UP_MOVESET_TERMINATOR) {
+        if (levelUpMoves[i].level == LEARNSET_SENTINEL_ENTRY) {
             reminderMoves[j] = LEVEL_UP_MOVESET_TERMINATOR;
             break;
-        } else if (GET_LEVEL(levelUpMoves[i]) > level) {
+        } else if (levelUpMoves[i].level > level) {
             continue;
         } else {
-            levelUpMoves[i] = GET_MOVE(levelUpMoves[i]);
+            u16 moveID = levelUpMoves[i].move;
 
             for (h = 0; h < LEARNED_MOVES_MAX; h++) {
-                if (levelUpMoves[i] == currentMoves[h]) {
+                if (moveID == currentMoves[h]) {
                     break;
                 }
             }
 
             if (h == LEARNED_MOVES_MAX) {
                 for (h = 0; h < j; h++) {
-                    if (reminderMoves[h] == levelUpMoves[i]) {
+                    if (reminderMoves[h] == moveID) {
                         break;
                     }
                 }
 
                 if (h == j) {
-                    reminderMoves[j] = levelUpMoves[i];
+                    reminderMoves[j] = moveID;
                     j++;
                 }
             }

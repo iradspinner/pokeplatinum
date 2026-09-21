@@ -353,16 +353,48 @@ def intended_divergence(path, i, built_member, ref_member):
                for o in range(len(built_member)))
 
 
+# The level-up learnset entry grew from one packed u16, move:9 / level:7, to a
+# pair of whole halfwords in Phase 4 element 4, because there are more than 511
+# moves now. So wotbl can no longer be compared byte for byte against a
+# reference ROM that still has the packed one; both sides are decoded to
+# [(level, move)] and those are compared instead.
+WOTBL = "poketool/personal/wotbl.narc"
+
+
+def learnset_entries(member, packed):
+    """[(level, move)] for one wotbl member, in either layout."""
+    out = []
+    if packed:
+        for i in range(0, len(member) - 1, 2):
+            (entry,) = struct.unpack_from("<H", member, i)
+            if entry == 0xFFFF:
+                break
+            out.append((entry >> 9, entry & 0x1FF))
+    else:
+        for i in range(0, len(member) - 3, 4):
+            level, move = struct.unpack_from("<2H", member, i)
+            if level == 0xFFFF:
+                break
+            out.append((level, move))
+    return out
+
+
 def check_species_archive(b, r, path):
     """evo and wotbl, which are a straight byte comparison once the reference's
     indices are mapped onto the built archive's."""
     allowed = DIVERGED_MEMBERS.get(path, {"members": set(), "why": ""})
+    learnsets = path == WOTBL
     bad, padded, intended = [], [], []
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
             bad.append(i)
-        elif b[j] != r[i]:
+            continue
+        if learnsets:
+            if learnset_entries(b[j], False) != learnset_entries(r[i], True):
+                (intended if i in allowed["members"] else bad).append(i)
+            continue
+        if b[j] != r[i]:
             if i in allowed["members"]:
                 intended.append(i)
             else:
@@ -373,6 +405,8 @@ def check_species_archive(b, r, path):
     if intended:
         print(f"{path}: {len(intended)} members differ on purpose, {allowed['why']}: {intended}")
     print(f"{path}: {len(b)} members against the reference's {len(r)}; {len(bad)} disagree"
+          + (" (compared as decoded learnsets, the entry format widened in element 4)"
+             if learnsets else "")
           + (f", {extra} are new species" if extra > 0 else ""))
     if bad:
         i = bad[0]

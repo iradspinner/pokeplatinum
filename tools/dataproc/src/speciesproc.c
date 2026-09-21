@@ -660,13 +660,15 @@ static SpeciesLearnsetSized proc_lvlearnset(datafile_t *df) {
         datanode_t level = dp_arrelem(entry, 0);
         datanode_t move  = dp_arrelem(entry, 1);
 
-        result.data.entries[result.size].move  = (u16)(dp_u16(dp_lookup(move, "enum Move")) & maxbit(9));
-        result.data.entries[result.size].level = (u16)(dp_u8(level) & maxbit(7));
+        result.data.entries[result.size].move  = dp_u16(dp_lookup(move, "enum Move"));
+        result.data.entries[result.size].level = dp_u16(level);
         result.size++;
     }
 
-    result.data.entries[result.size].move  = (u16)UINT16_MAX & maxbit(9);
-    result.data.entries[result.size].level = (u16)UINT16_MAX & maxbit(7);
+    // Both halves of the terminator are filled so the record reads the same
+    // whichever field a consumer checks; the readers look at the level.
+    result.data.entries[result.size].move  = (u16)UINT16_MAX;
+    result.data.entries[result.size].level = (u16)UINT16_MAX;
     result.size++;
 
     result.size *= sizeof(SpeciesLearnsetEntry);
