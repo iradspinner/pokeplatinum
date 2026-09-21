@@ -160,7 +160,12 @@ static const u16 sHallTrainerClassesBySelectedType[NUM_POKEMON_TYPES][4] = {
     { TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER, TRAINER_CLASS_DRAGON_TAMER },
     { TRAINER_CLASS_ROUGHNECK, TRAINER_CLASS_ROUGHNECK, TRAINER_CLASS_GUITARIST, TRAINER_CLASS_GUITARIST },
     { TRAINER_CLASS_REPORTER, TRAINER_CLASS_CAMERAMAN, TRAINER_CLASS_CYCLIST_MALE, TRAINER_CLASS_CYCLIST_FEMALE },
-    { TRAINER_CLASS_IDOL, TRAINER_CLASS_CLOWN, TRAINER_CLASS_WAITER, TRAINER_CLASS_WAITRESS }
+    { TRAINER_CLASS_IDOL, TRAINER_CLASS_CLOWN, TRAINER_CLASS_WAITER, TRAINER_CLASS_WAITRESS },
+    // Platinum Oxide: Fairy. Unreachable today, because sBattleHallAppGridOrder
+    // is a fixed twenty-cell grid with no Fairy cell, so the Battle Hall never
+    // offers the type. The row exists because the table is sized by the type
+    // count and an implicit zero row would read as TRAINER_CLASS 0.
+    { TRAINER_CLASS_IDOL, TRAINER_CLASS_AROMA_LADY, TRAINER_CLASS_LADY, TRAINER_CLASS_BEAUTY }
 };
 
 #include "res/trainers/frontier/frontier_trainer_classes.h"

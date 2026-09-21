@@ -345,6 +345,29 @@ ALIGN_4 static const u16 sMovePaletteDark[] = {
     RGB(0, 0, 0),
 };
 
+// Platinum Oxide: the Fairy type's move-select palette. Same shape as the rest
+// of the table: entry 0 and 1 are the shared frame colours, 2 through 8 are the
+// type's own ramp from light to dark, 9 is the highlight, and 10 onwards are
+// shared again. The ramp is the series' Fairy pink.
+ALIGN_4 static const u16 sMovePaletteFairy[] = {
+    RGB(13, 14, 29),
+    RGB(31, 31, 31),
+    RGB(31, 24, 28),
+    RGB(31, 20, 25),
+    RGB(30, 16, 22),
+    RGB(28, 12, 19),
+    RGB(24, 9, 16),
+    RGB(20, 7, 14),
+    RGB(16, 5, 11),
+    RGB(31, 27, 30),
+    RGB(6, 6, 6),
+    RGB(0, 0, 0),
+    RGB(12, 12, 12),
+    RGB(28, 26, 13),
+    RGB(30, 29, 21),
+    RGB(0, 0, 0),
+};
+
 ALIGN_4 static const u16 sMovePaletteNone[] = {
     RGB(13, 14, 29),
     RGB(25, 25, 29),
@@ -403,7 +426,8 @@ ALIGN_4 static const u16 *const sMovePaletteTable[] = {
     sMovePalettePsychic,
     sMovePaletteIce,
     sMovePaletteDragon,
-    sMovePaletteDark
+    sMovePaletteDark,
+    sMovePaletteFairy
 };
 
 void include_unk_ov11_0221FBAC();

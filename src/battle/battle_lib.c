@@ -2506,6 +2506,24 @@ static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_STEEL, TYPE_ROCK, TYPE_MULTI_SUPER_EFF },
     { TYPE_STEEL, TYPE_STEEL, TYPE_MULTI_NOT_VERY_EFF },
 
+    // Platinum Oxide: the Fairy type, added as its own block so the vanilla
+    // chart above is left exactly as it was. Generation 6 values, both
+    // directions. These sit before the 0xFE marker deliberately: everything
+    // after it is what Foresight ignores, and Foresight has never lifted the
+    // Dragon immunity to Fairy.
+    { TYPE_FAIRY, TYPE_FIGHTING, TYPE_MULTI_SUPER_EFF },
+    { TYPE_FAIRY, TYPE_DRAGON, TYPE_MULTI_SUPER_EFF },
+    { TYPE_FAIRY, TYPE_DARK, TYPE_MULTI_SUPER_EFF },
+    { TYPE_FAIRY, TYPE_FIRE, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FAIRY, TYPE_POISON, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FAIRY, TYPE_STEEL, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_POISON, TYPE_FAIRY, TYPE_MULTI_SUPER_EFF },
+    { TYPE_STEEL, TYPE_FAIRY, TYPE_MULTI_SUPER_EFF },
+    { TYPE_FIGHTING, TYPE_FAIRY, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG, TYPE_FAIRY, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_DARK, TYPE_FAIRY, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_DRAGON, TYPE_FAIRY, TYPE_MULTI_IMMUNE },
+
     { 0xFE, 0xFE, TYPE_MULTI_IMMUNE },
 
     // These values are separated from the remainder of the table to support

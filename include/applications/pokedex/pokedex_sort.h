@@ -53,6 +53,10 @@ enum FilterType {
     FT_ICE,
     FT_DRAGON,
     FT_DARK,
+    // Platinum Oxide: Fairy. The search screen's type grid is fixed art with no
+    // Fairy cell, so this cannot be picked yet; it exists so the filter and the
+    // dex index bucket for the type are in place when that art is done.
+    FT_FAIRY,
     MAX_FILTER_TYPE
 };
 

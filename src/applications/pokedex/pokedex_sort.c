@@ -55,6 +55,12 @@ enum PokedexDataSortIndex {
     PDSI_ICE,
     PDSI_DRAGON,
     PDSI_DARK,
+    // Platinum Oxide: this enum is positional, it mirrors the order the
+    // species processor packs the dex index archive in, and that processor
+    // packs one bucket per type before the body-shape buckets. Adding Fairy to
+    // the type list therefore inserts a bucket here, and leaving it out would
+    // shift every body-shape entry below by one.
+    PDSI_FAIRY,
     PDSI_QUADRUPED,
     PDSI_BIPEDALTAILLESS,
     PDSI_BIPEDALTAILED,
@@ -873,6 +879,9 @@ static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResultin
         break;
     case FT_DARK:
         pokedexFromFile = PokedexFromNARC(heapID, PDSI_DARK, &pokedexLength);
+        break;
+    case FT_FAIRY:
+        pokedexFromFile = PokedexFromNARC(heapID, PDSI_FAIRY, &pokedexLength);
         break;
     default:
         GF_ASSERT(FALSE);

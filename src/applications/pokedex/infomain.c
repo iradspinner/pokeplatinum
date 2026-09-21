@@ -708,6 +708,18 @@ int PokedexGraphics_GetAnimIDfromType(int monType)
     case TYPE_DARK:
         animID = 12;
         break;
+    // Platinum Oxide: the Pokedex draws its type plates from its own packed
+    // atlas (res/graphics/pokedex/type_icons.png plus its cell, anim and
+    // palette data), which still has only the eighteen vanilla plates. Until a
+    // Fairy plate is added there, a Fairy Pokemon shows the NORMAL plate on the
+    // Pokedex info page. Every other screen, including the summary screen and
+    // the battle UI, uses the battle sprite NARC and shows FAIRY correctly.
+    // The default is here because vanilla left animID uninitialised for any
+    // type it did not list, which a new type would otherwise walk straight into.
+    case TYPE_FAIRY:
+    default:
+        animID = 0;
+        break;
     }
 
     return animID;
