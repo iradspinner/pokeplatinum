@@ -87,122 +87,122 @@
         "SPECIES_SHARPEDO"
     ],
     "firered": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_GYARADOS"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GYARADOS"
+        "SPECIES_SEAKING",
+        "SPECIES_WARTORTLE"
     ],
     "surf_rate": 10,
     "surf_encounters": [
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_TENTACRUEL"
-        },
-        {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_GASTRODON"
-        },
-        {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_TENTACOOL"
-        },
-        {
-            "level_max": 55,
+            "level_max": 49,
             "level_min": 40,
             "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 55,
+            "level_max": 49,
             "level_min": 40,
+            "species": "SPECIES_FRILLISH"
+        },
+        {
+            "level_max": 52,
+            "level_min": 43,
+            "species": "SPECIES_MAREANIE"
+        },
+        {
+            "level_max": 52,
+            "level_min": 43,
+            "species": "SPECIES_BUIZEL"
+        },
+        {
+            "level_max": 55,
+            "level_min": 46,
             "species": "SPECIES_SQUIRTLE"
         }
     ],
     "old_rod_rate": 25,
     "old_rod_encounters": [
         {
-            "level_max": 30,
+            "level_max": 26,
             "level_min": 22,
             "species": "SPECIES_LUVDISC"
         },
         {
-            "level_max": 30,
+            "level_max": 26,
             "level_min": 22,
             "species": "SPECIES_TENTACOOL"
         },
         {
-            "level_max": 30,
-            "level_min": 22,
+            "level_max": 28,
+            "level_min": 24,
             "species": "SPECIES_REMORAID"
         },
         {
-            "level_max": 30,
-            "level_min": 22,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 28,
+            "level_min": 24,
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 30,
-            "level_min": 22,
+            "level_min": 26,
             "species": "SPECIES_POPPLIO"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 45,
+            "level_max": 41,
             "level_min": 35,
             "species": "SPECIES_LUVDISC"
         },
         {
-            "level_max": 45,
+            "level_max": 41,
             "level_min": 35,
-            "species": "SPECIES_MAREANIE"
+            "species": "SPECIES_MANTYKE"
         },
         {
-            "level_max": 45,
-            "level_min": 35,
+            "level_max": 43,
+            "level_min": 37,
             "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 45,
-            "level_min": 35,
+            "level_max": 43,
+            "level_min": 37,
             "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 45,
-            "level_min": 35,
+            "level_min": 39,
             "species": "SPECIES_SQUIRTLE"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 60,
-            "level_min": 45,
-            "species": "SPECIES_JELLICENT"
-        },
-        {
-            "level_max": 60,
-            "level_min": 45,
-            "species": "SPECIES_LANTURN"
-        },
-        {
-            "level_max": 60,
-            "level_min": 45,
-            "species": "SPECIES_LUMINEON"
-        },
-        {
-            "level_max": 60,
+            "level_max": 54,
             "level_min": 45,
             "species": "SPECIES_TENTACRUEL"
         },
         {
-            "level_max": 60,
+            "level_max": 54,
             "level_min": 45,
+            "species": "SPECIES_OCTILLERY"
+        },
+        {
+            "level_max": 57,
+            "level_min": 48,
+            "species": "SPECIES_TOXAPEX"
+        },
+        {
+            "level_max": 57,
+            "level_min": 48,
+            "species": "SPECIES_MANTINE"
+        },
+        {
+            "level_max": 60,
+            "level_min": 51,
             "species": "SPECIES_MARSHTOMP"
         }
     ],

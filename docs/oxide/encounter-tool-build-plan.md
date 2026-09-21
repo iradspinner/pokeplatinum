@@ -1065,6 +1065,29 @@ entry; `apply --all --dry-run` reports nothing to change on all 184.
 
 *Gate:* `cli audit` reports 0 off-list references outside scripts, done.
 
+### Ian's follow-ups after Steps 4 and 5 — **done, 2026-09-21**
+
+Ice earlier, on and beside Mt. Coronet: Alolan Ninetales is at home on
+Route 211 west at 20 and by night, with Snover at 10; Mt. Coronet's first
+room (Gardenia's split) carries Snorunt and Alolan Ninetales at 10 with
+Swinub and Snover behind; the south entrance has Snom and Swinub at 5 and
+Snorunt by night. The tree has no Alolan Vulpix (only the Ninetales form,
+id 1132), so the "likely early Alolan Vulpix" is the Ninetales itself; a
+ported Alolan Vulpix would be a pick-list row and a Phase 4 port. Larvesta's
+home moved from Stark Mountain to the Fuego Ironworks at 10. Mantyke and
+Mantine are back on the list (rows 386 and 387) and in the sea pools, Route
+219's and 223's surf pinned. The cap-candidates list is empty.
+
+**The sources catalogue is this track's now.** `docs/oxide/pokemon-sources.md`
+and `.csv` (from `tools/oxide/pokemon_sources.py`, Ian's handoff) join the
+availability view: every line's catalogued sources are a column of the Lines
+table, and a gift, egg, trade, static, fossil, roamer or starter row counts as
+a non-wild source where the script scan found none. Regenerate the catalogue
+after any table change (`PYTHONPATH=. python3 tools/oxide/pokemon_sources.py`).
+It also records what stays off-list on purpose: the eighteen Unown rooms of
+Solaceon Ruins (Unown stays off the list, decision 9, Ian's call of
+2026-09-21) and the thirty-odd clown-gift rows, the script track's levers.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

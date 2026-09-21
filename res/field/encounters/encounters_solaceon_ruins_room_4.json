@@ -75,19 +75,19 @@
     "rate_form4": 0,
     "unown_table": 4,
     "ruby": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_LUNATONE",
+        "SPECIES_MARSHTOMP"
     ],
     "sapphire": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_MILOTIC"
+        "SPECIES_LUNATONE",
+        "SPECIES_MARSHTOMP"
     ],
     "emerald": [
-        "SPECIES_SHARPEDO",
+        "SPECIES_MILOTIC",
         "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_WARTORTLE",
         "SPECIES_CHARMANDER"
     ],
     "leafgreen": [

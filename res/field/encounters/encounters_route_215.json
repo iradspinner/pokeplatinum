@@ -75,20 +75,20 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_CARVANHA",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_BELDUM",
+        "SPECIES_CARVANHA"
     ],
     "sapphire": [
-        "SPECIES_CARVANHA",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_BELDUM",
+        "SPECIES_CARVANHA"
     ],
     "emerald": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "firered": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_WARTORTLE"
     ],
     "leafgreen": [
         "SPECIES_CHARMANDER",

@@ -149,14 +149,15 @@
       "note": "The back east room: teacups again, the cat by night."
     },
     "encounters_route_211_west": {
-      "home": ["SPECIES_MIENFOO"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOUNDOUR"],
-      "note": "Route 211's early half, plain on purpose (the east half is the delay with the prize): Bronzor, Vulpix and Mienfoo co-equal, the cave lines behind, Ponyta by day, Houndour by night."
+      "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_SNOVER", "SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOUNDOUR"],
+      "note": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side."
     },
     "encounters_mt_coronet_1f_north_room_1": {
       "home": ["SPECIES_BRONZOR"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
-      "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock, Makuhita and Phanpy by day."
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES", "SPECIES_CARBINK"],
+      "tail": ["SPECIES_NOSEPASS", "SPECIES_SWINUB", "SPECIES_SNOVER", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
+      "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, and the mountain's ice arrives early here: Snorunt and Alolan Ninetales at 10, Swinub and Snover behind, Nosepass where its evolution happens."
     },
     "encounters_route_206": {
       "home": ["SPECIES_GLIGAR"],
@@ -184,8 +185,8 @@
     },
     "encounters_mt_coronet_1f_south": {
       "home": ["SPECIES_GLIMMET"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
-      "note": "Mt. Coronet's south entrance: Glimmet's home in the ore, eight lines, the mountain's core cast at a fifth each."
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_SNOM", "SPECIES_SWINUB", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_SNORUNT"],
+      "note": "Mt. Coronet's south entrance: Glimmet's home in the ore, the mountain's core cast at a fifth each, Snom and Swinub at 5 and Snorunt by night as the ice creeps down."
     },
     "encounters_route_209": {
       "home": ["SPECIES_GOTHITA"],
@@ -414,10 +415,10 @@
       "note": "Route 211's Celestic half, the delay: Ralts and Ferroseed at home, Rowlet 20 and Litten 15 the prizes, Jangmo-o at 10 by the cap rule."
     },
     "encounters_fuego_ironworks_outside": {
-      "home": ["SPECIES_MAGBY", "SPECIES_JOLTIK"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_LITTEN", "SPECIES_KOFFING", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOUR", "SPECIES_LITWICK"],
+      "home": ["SPECIES_MAGBY", "SPECIES_JOLTIK", "SPECIES_LARVESTA"],
+      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_LITTEN", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOUR", "SPECIES_LITWICK"],
       "tail": ["SPECIES_RHYHORN", "SPECIES_SALANDIT", "SPECIES_CHARCADET", "SPECIES_NACLI", "SPECIES_CHARMANDER", "SPECIES_TORCHIC"],
-      "note": "The ironworks' yard: Magby and Joltik at home, Litten at 10, Charcadet a 4% ember before Stark Mountain, two fire starters as 1%s."
+      "note": "The ironworks' yard: Magby and Joltik at home, and Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), Litten at 10, Charcadet a 4% ember, two fire starters as 1%s."
     },
     "encounters_route_218": {
       "home": ["SPECIES_GALARIAN_MR_MIME"],
@@ -480,8 +481,8 @@
       "note": "The blizzard route: Swinub and Snorunt at home, Larvitar a 5 by the cap rule (fully evolved by 55), two fire starters as 1%s."
     },
     "encounters_acuity_lakefront": {
-      "home": ["SPECIES_SNEASEL", "SPECIES_ALOLAN_NINETALES"],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_SWINUB", "SPECIES_SNOM"],
+      "home": ["SPECIES_SNEASEL"],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_SWINUB", "SPECIES_SNOM", "SPECIES_ALOLAN_NINETALES"],
       "tail": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_GALARIAN_MR_MIME"],
       "note": "The lakefront above Snowpoint: Sneasel's home at 35 with Alolan Ninetales at 20, Absol a 4%."
     },
@@ -766,8 +767,8 @@
       "note": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes."
     },
     "encounters_stark_mountain_room_1": {
-      "home": ["SPECIES_LARVESTA"],
-      "cameo": ["SPECIES_SLUGMA", "SPECIES_RHYHORN", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GEODUDE", "SPECIES_MAKUHITA"],
+      "home": [],
+      "cameo": ["SPECIES_SLUGMA", "SPECIES_RHYHORN", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_LARVESTA"],
       "tail": ["SPECIES_SALANDIT", "SPECIES_MAGBY", "SPECIES_CHARCADET"],
       "note": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma."
     },
@@ -964,7 +965,8 @@
     "SPECIES_CARVANHA": ["encounters_route_205_south", "encounters_route_205_north"],
     "SPECIES_REMORAID": ["encounters_route_218"],
     "SPECIES_BUIZEL": ["encounters_route_205_south", "encounters_valley_windworks_outside"],
-    "SPECIES_SHELLOS": ["encounters_eterna_city", "encounters_oreburgh_gate_b1f"]
+    "SPECIES_SHELLOS": ["encounters_eterna_city", "encounters_oreburgh_gate_b1f"],
+    "SPECIES_MANTYKE": ["encounters_route_219", "encounters_route_223"]
   },
   "corridor_splits": ["Roark", "Gardenia"]
 }

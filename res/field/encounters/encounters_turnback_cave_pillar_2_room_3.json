@@ -87,12 +87,12 @@
         "SPECIES_MARSHTOMP"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
         "SPECIES_WARTORTLE",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_SCYTHER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

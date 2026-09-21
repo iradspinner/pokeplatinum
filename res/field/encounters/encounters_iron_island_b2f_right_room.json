@@ -87,12 +87,12 @@
         "SPECIES_SHARPEDO"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_WARTORTLE",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_EEVEE",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_SCYTHER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

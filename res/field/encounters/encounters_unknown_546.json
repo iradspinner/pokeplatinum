@@ -84,15 +84,15 @@
     ],
     "emerald": [
         "SPECIES_TRAPINCH",
-        "SPECIES_SNORUNT"
+        "SPECIES_BELDUM"
     ],
     "firered": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GYARADOS"
+        "SPECIES_WARTORTLE",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

@@ -91,7 +91,12 @@ so they are not re-decided.
 > marsh lookout, the garden dailies) through new `model.py` writers; `cli audit
 > --fail-on-leak` exits 0 with 7046 references and none off-list outside scripts.
 > Steps 6 (build and verify) and 7 (reservations, moot since element 3) remain;
-> the merge into `oxide` is the gate.
+> the merge into `oxide` is the gate. Ian's follow-ups the same evening (ice
+> lines early on and beside Mt. Coronet with Alolan Ninetales at home on Route
+> 211 west, Larvesta at the Fuego Ironworks, Mantyke back on the list) are in,
+> and `docs/oxide/pokemon-sources.md` and `.csv` are this track's from here: the
+> availability view carries their rows as a column and counts them as non-wild
+> sources.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

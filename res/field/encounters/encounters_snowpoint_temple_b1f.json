@@ -87,12 +87,12 @@
         "SPECIES_LOMBRE"
     ],
     "firered": [
-        "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_WARTORTLE",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

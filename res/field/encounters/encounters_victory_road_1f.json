@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SNORUNT",
-        "SPECIES_CRAWDAUNT"
-    ],
-    "sapphire": [
-        "SPECIES_SNORUNT",
-        "SPECIES_CRAWDAUNT"
-    ],
-    "emerald": [
         "SPECIES_LUDICOLO",
         "SPECIES_LUNATONE"
     ],
+    "sapphire": [
+        "SPECIES_LUDICOLO",
+        "SPECIES_LUNATONE"
+    ],
+    "emerald": [
+        "SPECIES_MARSHTOMP",
+        "SPECIES_MILOTIC"
+    ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_WARTORTLE"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_GYARADOS"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_SEAKING",
         "SPECIES_TENTACRUEL"
     ],
     "surf_rate": 0,

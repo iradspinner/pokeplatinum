@@ -84,7 +84,7 @@
     ],
     "emerald": [
         "SPECIES_RALTS",
-        "SPECIES_LOMBRE"
+        "SPECIES_SNORUNT"
     ],
     "firered": [
         "SPECIES_GALARIAN_MR_MIME",
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_SCYTHER",
-        "SPECIES_TENTACOOL"
+        "SPECIES_KOFFING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

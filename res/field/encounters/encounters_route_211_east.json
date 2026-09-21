@@ -87,12 +87,12 @@
         "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_KOFFING",
+        "SPECIES_TENTACOOL",
         "SPECIES_GALARIAN_RAPIDASH"
     ],
     "leafgreen": [
-        "SPECIES_TENTACRUEL",
-        "SPECIES_GYARADOS"
+        "SPECIES_GYARADOS",
+        "SPECIES_SEAKING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

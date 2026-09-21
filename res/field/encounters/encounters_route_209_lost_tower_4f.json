@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_CARVANHA",
-        "SPECIES_TREECKO"
+        "SPECIES_SNORUNT",
+        "SPECIES_CARVANHA"
     ],
     "sapphire": [
-        "SPECIES_CARVANHA",
-        "SPECIES_TREECKO"
+        "SPECIES_SNORUNT",
+        "SPECIES_CARVANHA"
     ],
     "emerald": [
-        "SPECIES_FEEBAS",
-        "SPECIES_LOMBRE"
+        "SPECIES_TREECKO",
+        "SPECIES_FEEBAS"
     ],
     "firered": [
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_TENTACRUEL",
+        "SPECIES_TENTACOOL",
         "SPECIES_CHARMANDER"
     ],
     "surf_rate": 0,

@@ -75,20 +75,20 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SNORUNT",
-        "SPECIES_TRAPINCH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_MASQUERAIN"
     ],
     "sapphire": [
-        "SPECIES_SNORUNT",
-        "SPECIES_TRAPINCH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_MASQUERAIN"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
+        "SPECIES_SWABLU",
         "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_KOFFING",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_TENTACOOL"
     ],
     "leafgreen": [
         "SPECIES_GYARADOS",

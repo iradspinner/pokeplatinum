@@ -76,22 +76,22 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LOMBRE",
-        "SPECIES_SNORUNT"
+        "SPECIES_TRAPINCH"
     ],
     "sapphire": [
         "SPECIES_LOMBRE",
-        "SPECIES_SNORUNT"
+        "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_TRAPINCH",
+        "SPECIES_MASQUERAIN",
         "SPECIES_BELDUM"
     ],
     "firered": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_KOFFING"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_TENTACOOL",
         "SPECIES_GYARADOS"
     ],
     "surf_rate": 0,

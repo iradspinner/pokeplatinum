@@ -75,20 +75,20 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_CARVANHA",
+        "SPECIES_LOMBRE"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_CARVANHA",
+        "SPECIES_LOMBRE"
     ],
     "emerald": [
-        "SPECIES_TREECKO",
-        "SPECIES_BELDUM"
+        "SPECIES_TRAPINCH",
+        "SPECIES_TREECKO"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_TENTACOOL"
     ],
     "leafgreen": [
         "SPECIES_GYARADOS",
@@ -97,112 +97,112 @@
     "surf_rate": 10,
     "surf_encounters": [
         {
-            "level_max": 42,
+            "level_max": 36,
             "level_min": 30,
             "species": "SPECIES_JELLICENT"
         },
         {
-            "level_max": 42,
+            "level_max": 36,
             "level_min": 30,
             "species": "SPECIES_FLOATZEL"
         },
         {
-            "level_max": 42,
-            "level_min": 30,
+            "level_max": 39,
+            "level_min": 33,
             "species": "SPECIES_BUIZEL"
         },
         {
-            "level_max": 42,
-            "level_min": 30,
+            "level_max": 39,
+            "level_min": 33,
             "species": "SPECIES_FRILLISH"
         },
         {
             "level_max": 42,
-            "level_min": 30,
+            "level_min": 36,
             "species": "SPECIES_POPPLIO"
         }
     ],
     "old_rod_rate": 25,
     "old_rod_encounters": [
         {
-            "level_max": 20,
+            "level_max": 18,
             "level_min": 14,
             "species": "SPECIES_FEEBAS"
         },
         {
-            "level_max": 20,
+            "level_max": 18,
             "level_min": 14,
             "species": "SPECIES_CORPHISH"
         },
         {
-            "level_max": 20,
-            "level_min": 14,
+            "level_max": 19,
+            "level_min": 15,
             "species": "SPECIES_CHINCHOU"
         },
         {
-            "level_max": 20,
-            "level_min": 14,
+            "level_max": 19,
+            "level_min": 15,
             "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 20,
-            "level_min": 14,
+            "level_min": 16,
             "species": "SPECIES_FROAKIE"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 34,
+            "level_max": 30,
             "level_min": 24,
             "species": "SPECIES_GOLDEEN"
         },
         {
-            "level_max": 34,
+            "level_max": 30,
             "level_min": 24,
             "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 34,
-            "level_min": 24,
+            "level_max": 32,
+            "level_min": 26,
             "species": "SPECIES_FEEBAS"
         },
         {
-            "level_max": 34,
-            "level_min": 24,
+            "level_max": 32,
+            "level_min": 26,
             "species": "SPECIES_CORPHISH"
         },
         {
             "level_max": 34,
-            "level_min": 24,
+            "level_min": 28,
             "species": "SPECIES_POPPLIO"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 50,
+            "level_max": 44,
             "level_min": 36,
             "species": "SPECIES_WHISCASH"
         },
         {
-            "level_max": 50,
+            "level_max": 44,
             "level_min": 36,
             "species": "SPECIES_MILOTIC"
         },
         {
-            "level_max": 50,
-            "level_min": 36,
+            "level_max": 47,
+            "level_min": 39,
             "species": "SPECIES_CRAWDAUNT"
         },
         {
-            "level_max": 50,
-            "level_min": 36,
+            "level_max": 47,
+            "level_min": 39,
             "species": "SPECIES_LANTURN"
         },
         {
             "level_max": 50,
-            "level_min": 36,
+            "level_min": 42,
             "species": "SPECIES_WARTORTLE"
         }
     ],

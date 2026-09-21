@@ -75,20 +75,20 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_CARVANHA",
+        "SPECIES_LOMBRE"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_CARVANHA",
+        "SPECIES_LOMBRE"
     ],
     "emerald": [
-        "SPECIES_TREECKO",
-        "SPECIES_BELDUM"
+        "SPECIES_TRAPINCH",
+        "SPECIES_TREECKO"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_TENTACOOL"
     ],
     "leafgreen": [
         "SPECIES_GYARADOS",

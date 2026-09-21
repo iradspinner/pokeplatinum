@@ -87,11 +87,11 @@
         "SPECIES_LUVDISC"
     ],
     "firered": [
-        "SPECIES_SCYTHER",
-        "SPECIES_TENTACOOL"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_KOFFING"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_SCYTHER",
         "SPECIES_CHARMANDER"
     ],
     "surf_rate": 0,

@@ -97,28 +97,28 @@
     "surf_rate": 10,
     "surf_encounters": [
         {
-            "level_max": 32,
+            "level_max": 26,
             "level_min": 20,
             "species": "SPECIES_FLOATZEL"
         },
         {
-            "level_max": 32,
+            "level_max": 26,
             "level_min": 20,
             "species": "SPECIES_GASTRODON"
         },
         {
-            "level_max": 32,
-            "level_min": 20,
+            "level_max": 29,
+            "level_min": 23,
             "species": "SPECIES_MASQUERAIN"
         },
         {
-            "level_max": 32,
-            "level_min": 20,
+            "level_max": 29,
+            "level_min": 23,
             "species": "SPECIES_BUIZEL"
         },
         {
             "level_max": 32,
-            "level_min": 20,
+            "level_min": 26,
             "species": "SPECIES_SQUIRTLE"
         }
     ],
@@ -153,56 +153,56 @@
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 22,
+            "level_max": 20,
             "level_min": 15,
             "species": "SPECIES_CORPHISH"
         },
         {
-            "level_max": 22,
+            "level_max": 20,
             "level_min": 15,
             "species": "SPECIES_BUIZEL"
         },
         {
-            "level_max": 22,
-            "level_min": 15,
+            "level_max": 21,
+            "level_min": 16,
             "species": "SPECIES_WOOPER"
         },
         {
-            "level_max": 22,
-            "level_min": 15,
+            "level_max": 21,
+            "level_min": 16,
             "species": "SPECIES_LOTAD"
         },
         {
             "level_max": 22,
-            "level_min": 15,
+            "level_min": 17,
             "species": "SPECIES_SQUIRTLE"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 42,
+            "level_max": 36,
             "level_min": 30,
             "species": "SPECIES_FLOATZEL"
         },
         {
-            "level_max": 42,
+            "level_max": 36,
             "level_min": 30,
             "species": "SPECIES_QUAGSIRE"
         },
         {
-            "level_max": 42,
-            "level_min": 30,
+            "level_max": 39,
+            "level_min": 33,
             "species": "SPECIES_LOMBRE"
         },
         {
-            "level_max": 42,
-            "level_min": 30,
+            "level_max": 39,
+            "level_min": 33,
             "species": "SPECIES_GASTRODON"
         },
         {
             "level_max": 42,
-            "level_min": 30,
+            "level_min": 36,
             "species": "SPECIES_MARSHTOMP"
         }
     ],

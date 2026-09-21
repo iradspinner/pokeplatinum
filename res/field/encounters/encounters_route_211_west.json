@@ -3,6 +3,14 @@
     "land_encounters": [
         {
             "level": 13,
+            "species": "SPECIES_ALOLAN_NINETALES"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_MIENFOO"
+        },
+        {
+            "level": 14,
             "species": "SPECIES_BRONZOR"
         },
         {
@@ -10,12 +18,8 @@
             "species": "SPECIES_VULPIX"
         },
         {
-            "level": 14,
-            "species": "SPECIES_MIENFOO"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_MIENFOO"
+            "level": 15,
+            "species": "SPECIES_SNOVER"
         },
         {
             "level": 15,
@@ -23,10 +27,6 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 15,
             "species": "SPECIES_BRONZOR"
         },
         {
@@ -35,7 +35,7 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 15,
@@ -43,7 +43,7 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 16,
@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_CARBINK",
+        "SPECIES_SNORUNT",
         "SPECIES_SINISTEA"
     ],
     "day": [
@@ -59,14 +59,14 @@
         "SPECIES_ROOKIDEE"
     ],
     "night": [
-        "SPECIES_VULPIX",
+        "SPECIES_ALOLAN_NINETALES",
         "SPECIES_HOUNDOUR"
     ],
     "radar": [
+        "SPECIES_MIENSHAO",
         "SPECIES_BRONZONG",
         "SPECIES_NINETALES",
-        "SPECIES_MIENSHAO",
-        "SPECIES_NACLSTACK"
+        "SPECIES_ABOMASNOW"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,16 +75,16 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_MASQUERAIN",
+        "SPECIES_LUVDISC"
     ],
     "sapphire": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_MASQUERAIN",
+        "SPECIES_LUVDISC"
     ],
     "emerald": [
-        "SPECIES_CORPHISH",
-        "SPECIES_TORCHIC"
+        "SPECIES_BARBOACH",
+        "SPECIES_CORPHISH"
     ],
     "firered": [
         "SPECIES_SQUIRTLE",

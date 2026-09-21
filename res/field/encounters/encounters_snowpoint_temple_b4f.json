@@ -87,12 +87,12 @@
         "SPECIES_SOLROCK"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_GYARADOS",
+        "SPECIES_SEAKING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

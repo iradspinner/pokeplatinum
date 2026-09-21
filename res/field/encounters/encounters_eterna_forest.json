@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_RALTS",
-        "SPECIES_LOTAD"
+        "SPECIES_NOSEPASS",
+        "SPECIES_RALTS"
     ],
     "sapphire": [
-        "SPECIES_RALTS",
-        "SPECIES_LOTAD"
+        "SPECIES_NOSEPASS",
+        "SPECIES_RALTS"
     ],
     "emerald": [
-        "SPECIES_POOCHYENA",
+        "SPECIES_LOTAD",
         "SPECIES_CARVANHA"
     ],
     "firered": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NIDORAN_F"
+        "SPECIES_MAGIKARP",
+        "SPECIES_ONIX"
     ],
     "leafgreen": [
-        "SPECIES_NIDORAN_M",
-        "SPECIES_CHARMANDER"
+        "SPECIES_ZUBAT",
+        "SPECIES_TENTACOOL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

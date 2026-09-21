@@ -15,7 +15,11 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_SNORUNT"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_ALOLAN_NINETALES"
         },
         {
             "level": 15,
@@ -27,15 +31,11 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_SWINUB"
         },
         {
             "level": 15,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_SNOVER"
         },
         {
             "level": 15,
@@ -43,30 +43,30 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 16,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_PHANPY"
         }
     ],
     "swarms": [
         "SPECIES_GLIGAR",
-        "SPECIES_VULPIX"
+        "SPECIES_MIENFOO"
     ],
     "day": [
         "SPECIES_MAKUHITA",
         "SPECIES_PHANPY"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_SNORUNT",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "radar": [
         "SPECIES_BRONZONG",
         "SPECIES_NACLSTACK",
         "SPECIES_GOLBAT",
-        "SPECIES_PROBOPASS"
+        "SPECIES_GLALIE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_ONIX",
-        "SPECIES_KOFFING"
+        "SPECIES_TENTACOOL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

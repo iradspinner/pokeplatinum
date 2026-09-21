@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "day": [
         "SPECIES_SINISTEA",
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_FEEBAS",
+        "SPECIES_LUVDISC"
     ],
     "sapphire": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_FEEBAS",
+        "SPECIES_LUVDISC"
     ],
     "emerald": [
-        "SPECIES_CORPHISH",
-        "SPECIES_TORCHIC"
+        "SPECIES_BARBOACH",
+        "SPECIES_CORPHISH"
     ],
     "firered": [
-        "SPECIES_PONYTA",
-        "SPECIES_RHYHORN"
+        "SPECIES_CHARMANDER",
+        "SPECIES_PONYTA"
     ],
     "leafgreen": [
-        "SPECIES_SQUIRTLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_RHYHORN",
+        "SPECIES_SQUIRTLE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

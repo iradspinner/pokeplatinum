@@ -91,34 +91,34 @@
         "SPECIES_SQUIRTLE"
     ],
     "leafgreen": [
-        "SPECIES_KOFFING",
-        "SPECIES_SCYTHER"
+        "SPECIES_TENTACOOL",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "surf_rate": 10,
     "surf_encounters": [
         {
-            "level_max": 34,
+            "level_max": 28,
             "level_min": 22,
             "species": "SPECIES_FRILLISH"
         },
         {
-            "level_max": 34,
+            "level_max": 28,
             "level_min": 22,
             "species": "SPECIES_FEEBAS"
         },
         {
-            "level_max": 34,
-            "level_min": 22,
+            "level_max": 31,
+            "level_min": 25,
             "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 34,
-            "level_min": 22,
+            "level_max": 31,
+            "level_min": 25,
             "species": "SPECIES_CORPHISH"
         },
         {
             "level_max": 34,
-            "level_min": 22,
+            "level_min": 28,
             "species": "SPECIES_FROAKIE"
         }
     ],
@@ -153,56 +153,56 @@
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 24,
+            "level_max": 20,
             "level_min": 15,
             "species": "SPECIES_GOLDEEN"
         },
         {
-            "level_max": 24,
+            "level_max": 20,
             "level_min": 15,
             "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 24,
-            "level_min": 15,
+            "level_max": 22,
+            "level_min": 17,
             "species": "SPECIES_FEEBAS"
         },
         {
-            "level_max": 24,
-            "level_min": 15,
+            "level_max": 22,
+            "level_min": 17,
             "species": "SPECIES_CORPHISH"
         },
         {
             "level_max": 24,
-            "level_min": 15,
+            "level_min": 19,
             "species": "SPECIES_FROAKIE"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 44,
+            "level_max": 38,
             "level_min": 30,
             "species": "SPECIES_WHISCASH"
         },
         {
-            "level_max": 44,
+            "level_max": 38,
             "level_min": 30,
             "species": "SPECIES_MILOTIC"
         },
         {
-            "level_max": 44,
-            "level_min": 30,
+            "level_max": 41,
+            "level_min": 33,
             "species": "SPECIES_CRAWDAUNT"
         },
         {
-            "level_max": 44,
-            "level_min": 30,
+            "level_max": 41,
+            "level_min": 33,
             "species": "SPECIES_LANTURN"
         },
         {
             "level_max": 44,
-            "level_min": 30,
+            "level_min": 36,
             "species": "SPECIES_BRIONNE"
         }
     ],

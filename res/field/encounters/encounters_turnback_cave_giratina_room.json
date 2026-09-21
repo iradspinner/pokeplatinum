@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SNORUNT",
-        "SPECIES_BELDUM"
+        "SPECIES_BELDUM",
+        "SPECIES_CRAWDAUNT"
     ],
     "sapphire": [
-        "SPECIES_SNORUNT",
-        "SPECIES_BELDUM"
+        "SPECIES_BELDUM",
+        "SPECIES_CRAWDAUNT"
     ],
     "emerald": [
-        "SPECIES_CRAWDAUNT",
-        "SPECIES_LUDICOLO"
+        "SPECIES_LUDICOLO",
+        "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GYARADOS"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_SEAKING",
-        "SPECIES_WARTORTLE"
+        "SPECIES_SCYTHER",
+        "SPECIES_KOFFING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

@@ -78,7 +78,7 @@ def check_tiers(results):
     # and Phanpy lines) and the fourteen fishing rows (Goldeen, Corphish,
     # Chinchou, Carvanha, Remoraid, Buizel, Shellos lines) of 2026-09-21.
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 381 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 383 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     results.append(("legendaries, starters, fossils and static battles are gate",
                     by["Articuno"] == by["Charmander"] == by["Cranidos"]

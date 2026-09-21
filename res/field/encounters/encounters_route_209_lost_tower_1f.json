@@ -75,16 +75,16 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_FEEBAS",
+        "SPECIES_LOMBRE"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_FEEBAS",
+        "SPECIES_LOMBRE"
     ],
     "emerald": [
-        "SPECIES_LUVDISC",
-        "SPECIES_BARBOACH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_LUVDISC"
     ],
     "firered": [
         "SPECIES_CHARMANDER",

@@ -7,6 +7,7 @@ and restores every file it touched. The gate is the design doc's: an edit made
 through the UI lands in git diff at the right key with no other key touched.
 """
 import json
+import os
 import subprocess
 import sys
 import threading
@@ -43,9 +44,40 @@ def git(*args):
                           capture_output=True, text=True).stdout
 
 
+_SNAPSHOTS = {}
+
+
+def snapshot(path):
+    """Remember a file's text so writes can be measured against it and undone.
+    Restoring with `git checkout --` would throw away every uncommitted change
+    in the file, not just this suite's; in this shared checkout that reverted
+    Route 214 and Route 205 south to stale tables more than once."""
+    with open(os.path.join(model.repo_root(), path), encoding="utf-8") as f:
+        _SNAPSHOTS[path] = f.read()
+
+
+def restore(path):
+    with open(os.path.join(model.repo_root(), path), "w",
+              encoding="utf-8", newline="\n") as f:
+        f.write(_SNAPSHOTS[path])
+
+
 def changed_lines(path):
-    """(added, removed) content lines for one file, headers excluded."""
-    out = git("diff", "-U0", "--", path).splitlines()
+    """(added, removed) content lines for one file, headers excluded: against
+    the snapshot when one was taken, else against HEAD."""
+    if path in _SNAPSHOTS:
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False,
+                                         encoding="utf-8", newline="\n") as f:
+            f.write(_SNAPSHOTS[path])
+            snap = f.name
+        try:
+            out = git("diff", "--no-index", "-U0", "--", snap,
+                      os.path.join(model.repo_root(), path)).splitlines()
+        finally:
+            os.unlink(snap)
+    else:
+        out = git("diff", "-U0", "--", path).splitlines()
     add = [l for l in out if l.startswith("+") and not l.startswith("+++")]
     rem = [l for l in out if l.startswith("-") and not l.startswith("---")]
     return add, rem
@@ -183,6 +215,7 @@ def check_rejections(results):
         ("non-time layer refused", f"/api/area/{AREA}/time",
          {"layer": "radar", "index": 0, "species": "SPECIES_ABRA"}, 400),
     ]
+    snapshot(f"{model.ENC_DIR}/{AREA}.json")
     for label, path, body, want in cases:
         code, payload = post(path, body)
         results.append((label, code == want,
@@ -195,6 +228,7 @@ def check_rejections(results):
 def check_edit_is_local(results):
     """The M4 gate itself."""
     path = f"{model.ENC_DIR}/{AREA}.json"
+    snapshot(path)
     before = get(f"/api/area/{AREA}")
     try:
         code, out = post(f"/api/area/{AREA}/slot",
@@ -223,7 +257,7 @@ def check_edit_is_local(results):
         results.append(("the response carries fresh metrics",
                         out["rate"] == 25 and "metrics" in out, ""))
     finally:
-        subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
+        restore(path)
     add, rem = changed_lines(path)
     results.append(("test restored the file", not add and not rem, ""))
 
@@ -318,6 +352,7 @@ def check_water_tables(results):
                     f"{base[first]:.3f} -> {top.get(first, 0):.3f}"))
 
     path = f"{model.ENC_DIR}/encounters_route_205_south.json"
+    snapshot(path)
     try:
         code, out = post("/api/area/encounters_route_205_south/slot",
                          {"kind": "surf", "slot": 0,
@@ -328,7 +363,7 @@ def check_water_tables(results):
                         and "level_max" in add[0],
                         add[0].strip() if add else f"HTTP {code}"))
     finally:
-        subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
+        restore(path)
 
 
 def main():

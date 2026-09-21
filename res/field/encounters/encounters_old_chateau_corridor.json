@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TORCHIC",
-        "SPECIES_MAKUHITA"
+        "SPECIES_CORPHISH",
+        "SPECIES_TORCHIC"
     ],
     "sapphire": [
-        "SPECIES_TORCHIC",
-        "SPECIES_MAKUHITA"
+        "SPECIES_CORPHISH",
+        "SPECIES_TORCHIC"
     ],
     "emerald": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_RALTS"
+        "SPECIES_MAKUHITA",
+        "SPECIES_SNORUNT"
     ],
     "firered": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GOLDEEN"
+        "SPECIES_SQUIRTLE",
+        "SPECIES_GEODUDE"
     ],
     "leafgreen": [
-        "SPECIES_MAGIKARP",
-        "SPECIES_KOFFING"
+        "SPECIES_GOLDEEN",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "surf_rate": 0,
     "surf_encounters": [

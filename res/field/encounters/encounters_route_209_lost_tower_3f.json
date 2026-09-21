@@ -84,14 +84,14 @@
     ],
     "emerald": [
         "SPECIES_MASQUERAIN",
-        "SPECIES_CARVANHA"
+        "SPECIES_SNORUNT"
     ],
     "firered": [
         "SPECIES_KOFFING",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_TENTACOOL",
+        "SPECIES_ALOLAN_NINETALES",
         "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,

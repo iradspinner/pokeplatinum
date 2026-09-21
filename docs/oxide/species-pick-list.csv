@@ -380,3 +380,5 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 383,Floatzel,native,419,platinum,,yes,Water,Water,,starter-adjacent
 384,Shellos,native,422,platinum,,yes,Water,Water,,starter-adjacent
 385,Gastrodon,native,423,platinum,,yes,Water,Ground,,starter-adjacent
+386,Mantyke,native,458,platinum,,yes,Water,Flying,,preferred
+387,Mantine,native,226,platinum,,yes,Water,Flying,,preferred

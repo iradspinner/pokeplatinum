@@ -42,7 +42,7 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-147 rows across 41 locations, generated 2026-09-21.
+142 rows across 41 locations, generated 2026-09-21.
 
 ## Rows by method
 
@@ -51,17 +51,17 @@ table, so they compete with it rather than adding to it
 | gift | 53 |
 | unown room | 18 |
 | static battle | 17 |
-| great marsh daily (post-natdex) | 15 |
-| great marsh daily (pre-natdex) | 8 |
+| great marsh daily (post-natdex) | 12 |
+| great marsh daily (pre-natdex) | 9 |
 | fossil | 7 |
 | roamer | 6 |
-| honey tree (common) | 5 |
-| honey tree (uncommon) | 5 |
 | in-game trade | 4 |
 | starter | 3 |
+| honey tree (common) | 3 |
+| honey tree (rare) | 3 |
 | egg gift | 2 |
+| honey tree (uncommon) | 2 |
 | special tile (rod) | 1 |
-| honey tree (rare) | 1 |
 | pal park migration | 1 |
 | day care egg | 1 |
 
@@ -143,29 +143,27 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Carnivine | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Croagunk | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Drapion | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Exeggcute | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Gulpin | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Kangaskhan | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Kecleon | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Paras | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Quagsire | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Shroomish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
+| Barboach | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Carvanha | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Croagunk | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Dewpider | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Frillish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Koffing | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Lotad | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Shroomish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Skorupi | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Tangela | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Toxicroak | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Tropius | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Yanma | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Carnivine | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Croagunk | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Quagsire | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
+| Surskit | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Wooper | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Yanma | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Croagunk | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Dewpider | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Koffing | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Lotad | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Shroomish | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Skorupi | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Tangela | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | no | `encounters_great_marsh_lookout.json` |
-| Tropius | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | no | `encounters_great_marsh_lookout.json` |
+| Surskit | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Wooper | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Yanma | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
+| Yanma | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 
 ### Hall of Origin
 
@@ -192,17 +190,14 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Aipom | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Burmy | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Cherubi | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
 | Combee | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | yes | `encounters_honey_tree.json` |
-| Wurmple | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Munchlax | honey tree (rare) | 5-15 | group C, only on the four Munchlax trees, 1%; slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Aipom | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Burmy | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Cherubi | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | no | `encounters_honey_tree.json` |
-| Combee | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | yes | `encounters_honey_tree.json` |
-| Heracross | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | vanilla | yes | `encounters_honey_tree.json` |
+| Grubbin | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Sewaddle | honey tree (common) | 5-15 | group A, 70% of a shaking tree (20% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Rowlet | honey tree (rare) | 5-15 | group C, only on the four Munchlax trees, 1%; slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Snivy | honey tree (rare) | 5-15 | group C, only on the four Munchlax trees, 1%; slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Sprigatito | honey tree (rare) | 5-15 | group C, only on the four Munchlax trees, 1%; slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Combee | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
+| Heracross | honey tree (uncommon) | 5-15 | group B, 20% of a shaking tree (70% on a Munchlax tree); slather with Honey, wait 6 hours, 24-hour window; the four Munchlax trees are picked from the trainer ID; slot rates 40/20/20/10/5/5 (src/overlay005/honey_tree.c) | **base-ROM** | yes | `encounters_honey_tree.json` |
 
 ### Iceberg Ruins
 
@@ -280,7 +275,7 @@ table, so they compete with it rather than adding to it
 | Kingler | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
 | Politoed | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
 | Relicanth | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
-| Remoraid | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
+| Remoraid | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 | Seadra | gift | 45 | clown gift; the roll is GetRandom 3 but six branches exist, so only the first three (Kingler, Remoraid, Relicanth) can come out; repeatable, no flag guard | **base-ROM** | no | `scripts_pastoria_city_north_house.s` |
 
 ### Pokémon Day Care

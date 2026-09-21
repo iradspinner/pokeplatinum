@@ -84,15 +84,15 @@
     ],
     "emerald": [
         "SPECIES_LOMBRE",
-        "SPECIES_SNORUNT"
+        "SPECIES_TRAPINCH"
     ],
     "firered": [
-        "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_SCYTHER"
+        "SPECIES_SCYTHER",
+        "SPECIES_KOFFING"
     ],
     "leafgreen": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_KOFFING"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

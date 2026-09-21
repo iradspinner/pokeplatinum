@@ -87,12 +87,12 @@
         "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_SCYTHER"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

@@ -75,15 +75,15 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BARBOACH",
-        "SPECIES_BELDUM"
+        "SPECIES_LUVDISC",
+        "SPECIES_BARBOACH"
     ],
     "sapphire": [
-        "SPECIES_BARBOACH",
-        "SPECIES_BELDUM"
+        "SPECIES_LUVDISC",
+        "SPECIES_BARBOACH"
     ],
     "emerald": [
-        "SPECIES_CORPHISH",
+        "SPECIES_BELDUM",
         "SPECIES_RALTS"
     ],
     "firered": [

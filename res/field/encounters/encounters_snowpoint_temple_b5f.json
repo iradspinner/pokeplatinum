@@ -88,10 +88,10 @@
     ],
     "firered": [
         "SPECIES_SEAKING",
-        "SPECIES_WARTORTLE"
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_TENTACRUEL",
+        "SPECIES_WARTORTLE",
         "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
