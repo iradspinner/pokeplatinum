@@ -18,9 +18,13 @@ Chimchar line. Leaving a species present but unobtainable costs one personal
 record you already have; deleting it costs trainer rewrites, script edits and a
 dex renumber.
 
-National Dex IDs stay as the internal species IDs, so Snivy is 495 in the source
-tree and the donor's index-equals-dex-plus-50 rule keeps working for every import.
-The 360 ordering is a dex presentation layer on top, not a renumbering.
+**Superseded, 2026-09-20:** this file originally said National Dex IDs would
+stay as the internal species IDs, so Snivy would be 495. Ian settled the scheme
+the other way: ids are dense and appended after Arceus, 494 to 652, in this
+file's `dex_pos` order. See `docs/oxide/species-id-scheme.md` and
+`species-id-map.csv`. The donor's index-equals-dex-plus-50 rule still holds on
+the donor side; it is now a lookup rather than an identity. The 360 ordering is
+a dex presentation layer either way, not a renumbering.
 
 ## Counts
 
@@ -41,9 +45,13 @@ without it.
 
 ## Donor slots for the forms and alt-evolutions
 
-Base stats are not randomized in Hardlove (types are), so each of these was
-identified by a six-stat fingerprint rather than by guesswork. Script:
-`tools/find_form_slots.py`.
+Base stats are not randomized in Hardlove, so each of these was identified by a
+six-stat fingerprint rather than by guesswork. Script: `tools/find_form_slots.py`.
+
+**Correction, 2026-09-20:** this paragraph used to say types *are* randomized.
+They are not. Decoding all 493 natives out of the donor, with the one
+substitution that Fairy is type 9 there, gives the same type pair `res/pokemon`
+holds for 493 of 493. See `docs/oxide/donor-tables.md`.
 
 | Entry | Base species | Hardlove personal index |
 |---|---|---|
