@@ -7,7 +7,12 @@
     python3 -m tools.oxide.encounters.cli sidecar-init [--force]
 
 M1 shipped these; `report`, `lint`, `plan` and `generate` arrived with M2,
-M3, M5 and M6.
+M3, M5 and M6. The authoring pass (docs/oxide/encounter-authoring-plan.md,
+Step 0) added:
+
+    python3 -m tools.oxide.encounters.cli audit    [--summary] [--fail-on-leak] [--json]
+    python3 -m tools.oxide.encounters.cli coverage [--status none] [--json]
+    python3 -m tools.oxide.encounters.cli apply    <area> | --all  [--dry-run]
 
 --ref reads a git ref instead of the working tree. The vanilla corpus is on
 `main`; this branch holds the base ROM's rewritten tables.
@@ -345,6 +350,197 @@ def cmd_generate(args):
     return 0
 
 
+def cmd_audit(args):
+    """The leak table: every species reference in every encounter source,
+    flagged on-list or off-list, plus the scripts that give or battle one.
+    `--fail-on-leak` is Step 5's zero check."""
+    from . import audit
+    out = audit.audit(args.ref)
+    s = out["summary"]
+    if args.json:
+        s = dict(s)
+        s["by_key"] = {k: dict(v) for k, v in s["by_key"].items()}
+        json.dump({"summary": s, "rows": out["rows"], "scripts": out["scripts"]},
+                  sys.stdout, indent=2)
+        print()
+    else:
+        ref = args.ref or "working tree"
+        print(f"leak audit   [{ref}]   pick-list natives: {s['natives']}\n")
+        print(f"  {s['references']} species references in {s['files']} files; "
+              f"{s['off_list_references']} are off-list, "
+              f"in {s['files_with_leak']} files")
+        print(f"  {s['distinct_species']} distinct species referenced, "
+              f"{s['distinct_off_list']} off-list")
+        print(f"  live land slots {s['live_land_slots']}, "
+              f"off-list {s['live_land_slots_off_list']}")
+        print(f"  natives in no live land table {s['natives_in_no_live_land_table']}, "
+              f"in no encounter source at all {s['natives_in_no_source']}")
+        print(f"\n  {'key':24} {'refs':>5} {'off':>5} {'species':>8}")
+        for key, d in s["by_key"].items():
+            print(f"  {key:24} {d['refs']:>5} {d['off']:>5} {d['off_species']:>8}")
+        if not args.summary:
+            print("\n  off-list references by file:")
+            by_file = {}
+            for r in out["rows"]:
+                if not r["on_list"]:
+                    by_file.setdefault(r["file"], {}).setdefault(r["key"], []).append(
+                        r["species"].replace("SPECIES_", ""))
+            for name in sorted(by_file):
+                print(f"    {name}")
+                for key, sps in by_file[name].items():
+                    counted = sorted({f"{sp}x{sps.count(sp)}" if sps.count(sp) > 1 else sp
+                                      for sp in sps})
+                    print(f"      {key:24} {', '.join(counted)}")
+        print(f"\n  scripts: {s['script_references']} give/battle commands name a "
+              f"species, {s['script_off_list']} off-list"
+              + (" (reported, not changed: decision 8)" if s["script_off_list"] else ""))
+        for r in out["scripts"]:
+            flag = "" if r["on_list"] else "  OFF-LIST"
+            print(f"    {r['script']:44} {r['command']:26} "
+                  f"{r['species'].replace('SPECIES_', '')}{flag}")
+    if args.fail_on_leak and s["off_list_references"]:
+        return 1
+    return 0
+
+
+def cmd_coverage(args):
+    """For every line on the pick-list, where it is obtainable. R12's input
+    made visible; Step 2 writes the availability plan from it."""
+    from . import audit
+    out = audit.coverage(args.ref)
+    s = out["summary"]
+    if args.json:
+        json.dump(out, sys.stdout, indent=2)
+        print()
+        return 0
+    ref = args.ref or "working tree"
+    print(f"availability coverage   [{ref}]\n")
+    print(f"  {s['native_lines']} native lines: "
+          + ", ".join(f"{k} {v}" for k, v in sorted(s["by_status"].items()))
+          + f"; {s['new_species']} new species not in the tree yet")
+    rows = out["lines"]
+    if args.status:
+        rows = [r for r in rows if r["status"] == args.status]
+    print(f"\n  {'line':14} {'tier':10} {'status':11} sources")
+    for r in rows:
+        parts = []
+        if r["home"]:
+            parts.append("home " + ", ".join(
+                f"{a.replace('encounters_', '')} {sh:.0%}" for a, sh in r["home"][:3])
+                + (f" +{len(r['home']) - 3}" if len(r["home"]) > 3 else ""))
+        if r["cameo"]:
+            parts.append(f"cameo x{len(r['cameo'])}")
+        if r["water"]:
+            parts.append(f"water x{len(r['water'])}")
+        if r["other"]:
+            keys = sorted({k for _, k, _ in r["other"]})
+            parts.append("other " + "/".join(keys))
+        if r["gifts"]:
+            parts.append("gift " + ", ".join(m for m, _, _ in r["gifts"][:2]))
+        if r["trades"]:
+            parts.append("trade " + ", ".join(n for n, _ in r["trades"]))
+        if r["static"]:
+            parts.append("static " + ", ".join(
+                s.replace("scripts_", "") for s, _, _ in r["static"][:2]))
+        if r["scripted"]:
+            parts.append(", ".join(how for how, _ in r["scripted"]))
+        print(f"  {r['name']:14} {r['tier'] or '-':10} {r['status']:11} "
+              f"{'; '.join(parts) or '-'}")
+    return 0
+
+
+def cmd_apply(args):
+    """Materialise an area's land table from its sidecar entry (authoring
+    plan decision 4). The archetype fixes the shares, the cast fills them,
+    the ladder fixes the levels; every write goes through model.py."""
+    import difflib
+    from . import layout
+    sidecar = model.load_sidecar()
+    entries = (sidecar or {}).get("areas") or {}
+    if args.all:
+        names = [n for n, e in entries.items() if e.get("cast")]
+        if not names:
+            print("no sidecar entry has a cast yet", file=sys.stderr)
+            return 1
+    elif args.area:
+        names = [args.area]
+    else:
+        print("say which: AREA or --all", file=sys.stderr)
+        return 2
+
+    failed = written = 0
+    for name in names:
+        entry = entries.get(name)
+        if entry is None:
+            print(f"{name}: no sidecar entry", file=sys.stderr)
+            failed += 1
+            continue
+        if not entry.get("cast"):
+            print(f"{name}: sidecar entry has no cast", file=sys.stderr)
+            failed += 1
+            continue
+        try:
+            slots = layout.layout(entry)
+        except layout.LayoutError as e:
+            print(f"{name}: {e}", file=sys.stderr)
+            failed += 1
+            continue
+        a = model.load_area(name)
+        if not a.has_land:
+            print(f"{name}: not a land table", file=sys.stderr)
+            failed += 1
+            continue
+        # A locked slot is Ian's hand-placed decision (design doc 3.2). The
+        # layout must reproduce it, or the entry is contradicting itself.
+        clash = []
+        for spec in entry.get("locked") or []:
+            m = spec if isinstance(spec, int) else None
+            if m is None:
+                digits = "".join(ch for ch in str(spec) if ch.isdigit())
+                m = int(digits) if digits else None
+            if m is not None and 0 <= m < len(slots) and slots[m] != a.slots[m]:
+                clash.append(m)
+        if clash:
+            print(f"{name}: layout would change locked slot(s) {clash}; "
+                  f"express the lock as a cast pin instead", file=sys.stderr)
+            failed += 1
+            continue
+        before = a.text
+        for i, (sp, lv) in enumerate(slots):
+            cur_sp, cur_lv = a.slots[i]
+            a.set_slot(i, species=sp if sp != cur_sp else None,
+                       level=lv if lv != cur_lv else None)
+        if entry.get("land_rate") is not None \
+                and entry["land_rate"] != a.data.get("land_rate"):
+            a.set_land_rate(entry["land_rate"])
+        for layer in ("day", "night"):
+            want = entry.get(layer)
+            if want:
+                for i, sp in enumerate(want):
+                    if (a.data.get(layer) or [None, None])[i] != sp:
+                        a.set_time_slot(layer, i, sp)
+        label = name.replace("encounters_", "")
+        print(f"{label}: {entry['archetype']} at base {entry['base_level']}, "
+              + "; ".join(layout.describe(slots)))
+        if a.text == before:
+            print("  already laid out, no change")
+            continue
+        diff = list(difflib.unified_diff(
+            before.splitlines(), a.text.splitlines(), name, name, lineterm="", n=0))
+        changed = sum(1 for l in diff if l.startswith("+") and not l.startswith("+++"))
+        if args.dry_run:
+            for l in diff[2:]:
+                print("  " + l)
+            print(f"  dry run: {changed} value(s) would change, nothing written")
+        else:
+            a.save()
+            written += 1
+            print(f"  wrote {changed} value(s)")
+    print(f"\n{len(names)} area(s), {written} written, {failed} failed"
+          + (" (dry run)" if args.dry_run else ""))
+    return 1 if failed else 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -422,6 +618,26 @@ def main(argv=None):
                          "else the table's current minimum)")
     ge.add_argument("--json", action="store_true")
     ge.set_defaults(func=cmd_generate)
+
+    au = sub.add_parser("audit", help="every species reference, on-list or off-list")
+    au.add_argument("--summary", action="store_true", help="numbers only, no leak table")
+    au.add_argument("--fail-on-leak", action="store_true",
+                    help="exit 1 if any encounter source names an off-list species")
+    au.add_argument("--json", action="store_true")
+    au.set_defaults(func=cmd_audit)
+
+    cov = sub.add_parser("coverage", help="where every pick-list line is obtainable")
+    cov.add_argument("--status", choices=("home", "non-wild", "water-only",
+                                          "cameo-only", "other-only", "none"),
+                     help="show only lines in this state")
+    cov.add_argument("--json", action="store_true")
+    cov.set_defaults(func=cmd_coverage)
+
+    ap = sub.add_parser("apply", help="lay a table out from its sidecar entry")
+    ap.add_argument("area", nargs="?")
+    ap.add_argument("--all", action="store_true", help="every area with a cast")
+    ap.add_argument("--dry-run", action="store_true", help="print the diff, write nothing")
+    ap.set_defaults(func=cmd_apply)
 
     args = p.parse_args(argv)
     return args.func(args)

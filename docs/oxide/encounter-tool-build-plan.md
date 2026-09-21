@@ -765,6 +765,95 @@ converter does not carry, and that is a bug in the writer, not the table.
 *Gate was:* `make rom` after a generated pass, then a clean field-by-field
 compare.
 
+## Authoring pass
+
+Status for `docs/oxide/encounter-authoring-plan.md`, gate by gate. The plan
+says what each step is; this says what happened.
+
+### Step 0 — tooling — **done, 2026-09-20**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0        # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli audit --summary
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli coverage
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply AREA --dry-run
+```
+
+**What was built.** In `tools/oxide/encounters/`: `model.py` gained
+`set_swarm`, `set_radar` and `set_dual_slot` (the same `_replace` path as
+`set_time_slot`, one key per write) and species-only readers for the honey
+tree, the Great Marsh lookout and the Trophy Garden dailies, plus
+`Area.reference_species()` for the audit; `dex.py` gained `constant_of` (the
+reverse of `display_name`, so the pick-list's "Nidoran F" and "Mr. Mime"
+resolve), `pick_list` and `line_base`; `audit.py` is new and holds the leak
+audit and the availability coverage; `layout.py` is new and holds the slot
+layout behind `cli apply`; `cli.py` gained `audit`, `coverage` and `apply`.
+Outside the tool: `import_base_rom.py` has an `AUTHORED` table mirroring
+`bulk_scripts.py`'s `DIVERGED`, and `authored_encounters()` unions it with
+every sidecar area that has a `cast`, so a table authored through `apply` is
+protected from the importer without a second list to maintain; the dry run
+reports those as "authored, skipped" and counts 0. `verify_narcs.py
+--encounters --ref` skips the same set and names them (`--source`, M7, is
+their check). `integrate.sh` now runs `--encounters --source` and every
+`test_*.py` in the tool directory.
+
+**The M7 item on the plan's Step 0 list was already done** by the tool track
+the same day (`verify_narcs.py --source`, section M7 above), so it was not
+built again; the plan predates M5 to M7.
+
+**The layout rule, as implemented.** The archetype's signature is the merged
+shares in cast order. The twelve slots are walked in index order and each is
+given to a species whose remaining share covers its rate, backtracking when a
+partial layout cannot complete, so every species' slots sum to exactly its
+share and the first-listed species is the 20% face. Levels are `base_level`
+plus a per-slot offset from the entry's `ladder` or the archetype's default
+(four rungs: vanilla's `0/1/1/1/2/2/2/2/2/2/3/3`; three: `0/0/1/1/1/1/2/...`;
+two: six and six; one: flat), so R1 holds by construction. A cast entry
+`{"species": X, "rung": r}` guarantees X one slot on rung r. One finding
+worth knowing before authoring: **tight signatures decompose only one way.**
+A5's 40 can only be the two 20% slots and its 1s the two 1% slots, so an A5
+head can never sit on the top rung, whatever the ladder; A1's 10 and 5 leave
+room (5+4+1, 4+1), which is where the "duplicate of a head species on the top
+rung" of the authoring rules comes from. `apply` refuses a pin the arithmetic
+cannot honour and says so. It also refuses to change a `locked` slot; a lock
+should be expressed as a pin. Levels come out as the plain ladder; M6's
+`generate --dry-run` can then tune them for R3 if the table needs it.
+
+**Gate, on the unchanged tree.** M1 13/13, M2 23/23, M3 18/18, M4 46/46, M5
+15/15, M6 19/19, Step 0 35/35; `lint --ref main` 0 errors, `lint` 1 error
+(R8), both as before. `verify_narcs --encounters --source` against the main
+checkout's build: 183 of 183 tables, 21,045 fields. `import_base_rom.py
+--dry-run --skip-text`: every count 0, "0 authored table(s) left alone".
+
+The audit's numbers, and how they sit against the plan's "facts that size
+it": live land slots **2,052 with 1,250 off-list** (exact match); water and
+rods **641** off-list references ("about 640"); **183 of the 183 land-format
+files** reference an off-list species somewhere, and so do both non-land
+files. Over every key in every file, **404 distinct species are referenced,
+259 off-list**; over live land tables alone it is 302 and 189. The plan's
+375 / 237 pair is reproduced to within one or two by "live tables, land +
+water + radar + dual-slot" (374 / 236), so it was a different key selection,
+not a different tree; the audit prints the per-key table rather than
+choosing one. Natives in no live land table: **86**; in no encounter source
+of any kind: 54; the plan's 61 is the land + water + dual-slot count. Radar
+488, swarms 250, day/night 440, dual-slot 1,092 off-list references. Scripts:
+88 give or battle commands name a species, **43 off-list**, listed in the
+audit output for Ian (decision 8): the base ROM's house gifts in Sandgem,
+Floaroma, Solaceon, Pastoria, Veilstone and the Canalave library, the Day
+Care Ditto, and the Twinleaf legendary battles (Mewtwo, Mew, the beasts,
+Lugia, Ho-Oh, Celebi, the weather trio, Jirachi, Deoxys).
+
+Coverage on the unchanged tree, by evolution line: **99 native lines**: 35
+with a wild home, 38 with a non-wild source only (gift, trade, static battle,
+starter or fossil), 12 water-only, 8 cameo-only, 1 other-only (Yanma: marsh
+binoculars and dual-slot), and **5 with nothing**: Articuno, Zapdos, Moltres,
+Mesprit and Cresselia, which Platinum places as roamers through a mechanism
+no script names. The 159 new species are listed separately as not in the
+tree. R12 stays skipped until Step 1 writes `tier`.
+
+*Gate was:* M1 to M4 tests pass; `integrate.sh --dry-run` passes; audit and
+coverage run on the unchanged tree with numbers matching the plan's facts.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

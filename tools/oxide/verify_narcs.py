@@ -60,8 +60,15 @@ def check_encounters(built, ref, nb, nr):
     b = ndspy.narc.NARC(built.files[nb[path]]).files
     r = ndspy.narc.NARC(ref.files[nr[path]]).files
     order = [l.strip() for l in open(os.path.join("res", "field", "encounters", "encounters.order")) if l.strip()]
-    mismatches, skipped = 0, 0
+    # Tables the authoring pass rewrote no longer match the base ROM on
+    # purpose; --source is their check. They are skipped here, and named, so
+    # this mode stays usable for the tables that still track the reference.
+    authored = imp.authored_encounters()
+    mismatches, skipped, authored_skipped = 0, 0, []
     for i in range(min(len(b), len(r))):
+        if i < len(order) and order[i] in authored:
+            authored_skipped.append(order[i])
+            continue
         db, dr = imp.decode_encounter(b[i]), imp.decode_encounter(r[i])
         for key in imp.ENCOUNTER_SKIP_KEYS:
             if db[key] != dr[key]:
@@ -77,8 +84,13 @@ def check_encounters(built, ref, nb, nr):
     if mismatches:
         print(f"{path}: {mismatches} of {len(b)} tables differ outside the skipped fields")
     else:
-        print(f"{path}: all {len(b)} tables match the reference outside the skipped fields "
+        print(f"{path}: all {len(b) - len(authored_skipped)} unauthored tables match the "
+              f"reference outside the skipped fields "
               f"({skipped} skipped-field differences left at their vanilla values, as intended)")
+    if authored_skipped:
+        print(f"  {len(authored_skipped)} authored table(s) not compared to the base ROM "
+              f"(use --source for them): {', '.join(authored_skipped[:6])}"
+              + (" ..." if len(authored_skipped) > 6 else ""))
     return mismatches == 0
 
 
