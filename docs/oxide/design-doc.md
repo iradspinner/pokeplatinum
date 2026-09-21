@@ -142,7 +142,7 @@ If the working folder on G: cannot be reached, everything needed to build and ve
 
 ## 8. Findings log
 
-Durable facts discovered during work, newest last. Each entry: date, what was checked, what was found.
+Durable facts discovered during work, newest last. Each entry: date, what was checked, what was found. Track agents only append. An entry may be deleted once its lesson lives in a working rule, a skill, a tool or a status home and the entry no longer changes what a fresh agent would do; such deletions are made in a docs pass with every track paused, because `integrate.sh` resolves a conflict in this section by keeping both sides, which would resurrect a deleted entry next to a concurrent append.
 
 - 2026-09-15: Folder inventory done. Counts in section 2 are from listing `unpacked\personalPokeData` and `unpacked\moveData` in both extractions. Platinum base is CPUE rev 1; Hardlove is IPKE rev 0.
 - 2026-09-15: Base ROM's "Unlocked / Challenge - Adjusted" tags are old hand edits with no relevance here (Ian). Content scope set: subset of new species, all new moves with scripts/sprites/animations, all new abilities.
