@@ -17,3 +17,14 @@ repos:
       - id: check-illegal-windows-names
       - id: check-shebang-scripts-are-executable
       - id: check-yaml
+  - repo: local
+    hooks:
+      # Platinum Oxide: an authored encounter table must clear the linter's
+      # error-severity rules before it is committed. Only runs when an
+      # encounter source or the design sidecar is staged.
+      - id: oxide-encounter-lint
+        name: oxide encounter lint
+        entry: env PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint --fail-on error
+        language: system
+        files: ^(res/field/encounters/|docs/oxide/encounters/design\.json)
+        pass_filenames: false
