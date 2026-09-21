@@ -14,6 +14,11 @@ Step 0) added:
     python3 -m tools.oxide.encounters.cli coverage [--status none] [--json]
     python3 -m tools.oxide.encounters.cli apply    <area> | --all  [--dry-run]
 
+and Step 1 added the two one-off writers, each refusing to run twice:
+
+    python3 -m tools.oxide.encounters.cli order-init [--force]
+    python3 -m tools.oxide.encounters.cli tier-init  [--rom ~/roms/vanilla.nds] [--force]
+
 --ref reads a git ref instead of the working tree. The vanilla corpus is on
 `main`; this branch holds the base ROM's rewritten tables.
 """
@@ -227,10 +232,16 @@ def cmd_lint(args):
                 entries.get(a.name) or {"band": a.band},
                 a.data)
                for a in areas]
-    findings = lint.lint_all(payload, sidecar)
+    # R12 reads the pick-list's tiers and each line's cheapest wild source;
+    # None until `tier-init` has written the column, and the rule says so.
+    from . import audit
+    findings = lint.lint_all(payload, sidecar, audit.availability(args.ref))
     if args.rule:
         wanted = {r.upper() for r in args.rule.split(",")}
         findings = [f for f in findings if f.rule.upper() in wanted]
+    if args.ignore:
+        dropped = {r.upper() for r in args.ignore.split(",")}
+        findings = [f for f in findings if f.rule.upper() not in dropped]
     if args.area:
         findings = [f for f in findings if f.target == args.area]
 
@@ -541,6 +552,54 @@ def cmd_apply(args):
     return 1 if failed else 0
 
 
+def cmd_order_init(args):
+    """Write the progression `order` onto every sidecar area from the
+    default in progression.py (authoring plan decision 6). Run once; after
+    that the sidecar is the source and Ian edits it there. Also seeds the
+    R12 ceilings into the sidecar's thresholds so they are visible to edit."""
+    from . import progression
+    sidecar = model.load_sidecar()
+    if sidecar is None:
+        print(f"{model.SIDECAR} does not exist; run sidecar-init first", file=sys.stderr)
+        return 1
+    have = [n for n, e in sidecar["areas"].items() if e.get("order") is not None]
+    if have and not args.force:
+        print(f"{len(have)} areas already carry an order; pass --force to overwrite "
+              f"Ian's edits with the default", file=sys.stderr)
+        return 1
+    names = model.area_names()
+    missing = progression.write_order(sidecar, names)
+    extra = sorted(set(progression.default_order()) - set(names))
+    sidecar.setdefault("thresholds", {}).setdefault(
+        "r12_max_cost", lint.DEFAULT_THRESHOLDS["r12_max_cost"])
+    model.save_sidecar(sidecar)
+    print(f"wrote order for {len(names) - len(missing)} of {len(names)} areas")
+    if missing:
+        print(f"  no default order for: {', '.join(missing)}")
+    if extra:
+        print(f"  default names no file: {', '.join(extra)}")
+    return 1 if missing or extra else 0
+
+
+def cmd_tier_init(args):
+    """Write the pick-list's `tier` column from the defaults in tiers.py
+    (authoring plan decision 7). Run once; Ian edits the CSV afterwards."""
+    from . import dex, tiers
+    rows = dex.pick_list(model.repo_root())
+    if any(r.get("tier") for r in rows) and not args.force:
+        print("the pick-list already has tiers; pass --force to overwrite Ian's "
+              "edits with the defaults", file=sys.stderr)
+        return 1
+    tier = tiers.defaults(args.rom, args.ref or "main")
+    n = tiers.write_column(tier)
+    counts = {}
+    for t in tier.values():
+        counts[t] = counts.get(t, 0) + 1
+    print(f"wrote tier for {n} rows: "
+          + ", ".join(f"{k} {counts[k]}" for k in tiers.TIERS if k in counts))
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -588,6 +647,9 @@ def main(argv=None):
     ln = sub.add_parser("lint", help="section 7's rules")
     ln.add_argument("area", nargs="?")
     ln.add_argument("--rule", help="comma-separated rule ids, e.g. R8,R9")
+    ln.add_argument("--ignore", help="comma-separated rule ids to drop, e.g. R12 "
+                                     "when linting vanilla, which was never built "
+                                     "for the pick-list")
     ln.add_argument("--fail-on", choices=("error", "warn"), default=None)
     ln.add_argument("--all", action="store_true", help="do not truncate")
     ln.add_argument("--json", action="store_true")
@@ -638,6 +700,18 @@ def main(argv=None):
     ap.add_argument("--all", action="store_true", help="every area with a cast")
     ap.add_argument("--dry-run", action="store_true", help="print the diff, write nothing")
     ap.set_defaults(func=cmd_apply)
+
+    oi = sub.add_parser("order-init", help="write the default progression order "
+                                          "into the sidecar (once)")
+    oi.add_argument("--force", action="store_true")
+    oi.set_defaults(func=cmd_order_init)
+
+    ti = sub.add_parser("tier-init", help="write the default tier column onto the "
+                                         "pick-list (once)")
+    ti.add_argument("--rom", default="~/roms/vanilla.nds",
+                    help="a Platinum ROM, for the Sinnoh dex table")
+    ti.add_argument("--force", action="store_true")
+    ti.set_defaults(func=cmd_tier_init)
 
     args = p.parse_args(argv)
     return args.func(args)

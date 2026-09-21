@@ -196,7 +196,9 @@ for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" python3 -m "tools.oxide.encounters.$name"
 done
-check "encounter lint on vanilla (--ref main --fail-on error)" python3 -m tools.oxide.encounters.cli --ref main lint --fail-on error
+# R12 (availability against Ian's pick-list) is ignored here: vanilla was never
+# built for that list and fails it on purpose. It runs on the working tree.
+check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" python3 -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
 
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"
