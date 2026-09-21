@@ -55,9 +55,9 @@ records still agree field for field. Rerun it if the record moves again.
 ## The Pokedex block grew, and with it every block after it (2026-09-21)
 
 **This row should have been written on 2026-09-20 when element 3 landed and was
-not.** It is the omission that let Ian carry a pre-element-3 save into a
-post-element-3 build, and two hangs found on 2026-09-21 are waiting on a new
-save to tell whether they are real bugs or that.
+not.** It was written a day late, while guessing at two hangs Ian found; that
+guess was wrong, both hangs reproduce on a brand new save. The layout change
+below is real and still has to be known, it just did not cause those.
 
 The `Pokedex` struct in `include/pokedex.h` sizes itself from
 `NATIONAL_DEX_COUNT`, so raising the species count grew it without anyone
