@@ -473,16 +473,27 @@ def cmd_coverage(args):
     return 0
 
 
+WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
+
+
 def cmd_apply(args):
-    """Materialise an area's land table from its sidecar entry (authoring
-    plan decision 4). The archetype fixes the shares, the cast fills them,
-    the ladder fixes the levels; every write goes through model.py."""
+    """Materialise an area's tables from its sidecar entry (authoring plan
+    decision 4). For the land table the archetype fixes the shares, the cast
+    fills them and the ladder fixes the levels. A water kind (`surf`,
+    `old_rod`, `good_rod`, `super_rod`) is a five-species cast with a level
+    range, written slot for slot: the rod rates are fixed by the format and
+    a repel manip does not apply to fishing, so there is nothing to lay out.
+    Every write goes through model.py."""
     import difflib
     from . import layout
+
+    def designed(e):
+        return bool(e.get("cast") or any(e.get(k) for k in WATER_KINDS))
+
     sidecar = model.load_sidecar()
     entries = (sidecar or {}).get("areas") or {}
     if args.all:
-        names = [n for n, e in entries.items() if e.get("cast")]
+        names = [n for n, e in entries.items() if designed(e)]
         if not names:
             print("no sidecar entry has a cast yet", file=sys.stderr)
             return 1
@@ -499,53 +510,82 @@ def cmd_apply(args):
             print(f"{name}: no sidecar entry", file=sys.stderr)
             failed += 1
             continue
-        if not entry.get("cast"):
-            print(f"{name}: sidecar entry has no cast", file=sys.stderr)
-            failed += 1
-            continue
-        try:
-            slots = layout.layout(entry)
-        except layout.LayoutError as e:
-            print(f"{name}: {e}", file=sys.stderr)
+        if not designed(entry):
+            print(f"{name}: sidecar entry has no cast and no water table", file=sys.stderr)
             failed += 1
             continue
         a = model.load_area(name)
-        if not a.has_land:
-            print(f"{name}: not a land table", file=sys.stderr)
-            failed += 1
-            continue
-        # A locked slot is Ian's hand-placed decision (design doc 3.2). The
-        # layout must reproduce it, or the entry is contradicting itself.
-        clash = []
-        for spec in entry.get("locked") or []:
-            m = spec if isinstance(spec, int) else None
-            if m is None:
-                digits = "".join(ch for ch in str(spec) if ch.isdigit())
-                m = int(digits) if digits else None
-            if m is not None and 0 <= m < len(slots) and slots[m] != a.slots[m]:
-                clash.append(m)
-        if clash:
-            print(f"{name}: layout would change locked slot(s) {clash}; "
-                  f"express the lock as a cast pin instead", file=sys.stderr)
-            failed += 1
-            continue
         before = a.text
-        for i, (sp, lv) in enumerate(slots):
-            cur_sp, cur_lv = a.slots[i]
-            a.set_slot(i, species=sp if sp != cur_sp else None,
-                       level=lv if lv != cur_lv else None)
-        if entry.get("land_rate") is not None \
-                and entry["land_rate"] != a.data.get("land_rate"):
-            a.set_land_rate(entry["land_rate"])
-        for layer in ("day", "night"):
-            want = entry.get(layer)
-            if want:
-                for i, sp in enumerate(want):
-                    if (a.data.get(layer) or [None, None])[i] != sp:
-                        a.set_time_slot(layer, i, sp)
         label = name.replace("encounters_", "")
-        print(f"{label}: {entry['archetype']} at base {entry['base_level']}, "
-              + "; ".join(layout.describe(slots)))
+        said = []
+        bad = None
+
+        if entry.get("cast"):
+            try:
+                slots = layout.layout(entry)
+            except layout.LayoutError as e:
+                bad = str(e)
+            if bad is None and not a.has_land:
+                bad = "not a land table"
+            if bad is None:
+                # A locked slot is Ian's hand-placed decision (design doc 3.2).
+                # The layout must reproduce it, or the entry is contradicting
+                # itself.
+                clash = []
+                for spec in entry.get("locked") or []:
+                    m = spec if isinstance(spec, int) else None
+                    if m is None:
+                        digits = "".join(ch for ch in str(spec) if ch.isdigit())
+                        m = int(digits) if digits else None
+                    if m is not None and 0 <= m < len(slots) and slots[m] != a.slots[m]:
+                        clash.append(m)
+                if clash:
+                    bad = (f"layout would change locked slot(s) {clash}; "
+                           f"express the lock as a cast pin instead")
+            if bad is None:
+                for i, (sp, lv) in enumerate(slots):
+                    cur_sp, cur_lv = a.slots[i]
+                    a.set_slot(i, species=sp if sp != cur_sp else None,
+                               level=lv if lv != cur_lv else None)
+                if entry.get("land_rate") is not None \
+                        and entry["land_rate"] != a.data.get("land_rate"):
+                    a.set_land_rate(entry["land_rate"])
+                for layer in ("day", "night"):
+                    want = entry.get(layer)
+                    if want:
+                        for i, sp in enumerate(want):
+                            if (a.data.get(layer) or [None, None])[i] != sp:
+                                a.set_time_slot(layer, i, sp)
+                said.append(f"{entry['archetype']} at base {entry['base_level']}, "
+                            + "; ".join(layout.describe(slots)))
+
+        for kind in WATER_KINDS:
+            spec = entry.get(kind)
+            if bad is not None or not spec:
+                continue
+            try:
+                rows = layout.water(kind, spec)
+            except layout.LayoutError as e:
+                bad = f"{kind}: {e}"
+                break
+            have = a.kind_slots(kind)
+            if len(have) != len(rows):
+                bad = f"{kind}: the file has {len(have)} slots, the format wants {len(rows)}"
+                break
+            for i, (sp, lo, hi) in enumerate(rows):
+                cur_sp, cur_lo, cur_hi = have[i]
+                a.set_water_slot(kind, i, species=sp if sp != cur_sp else None,
+                                 level_min=lo if lo != cur_lo else None,
+                                 level_max=hi if hi != cur_hi else None)
+            if spec.get("rate") is not None and spec["rate"] != a.kind_rate(kind):
+                a.set_kind_rate(kind, spec["rate"])
+            said.append(f"{kind} " + layout.describe_water(kind, rows))
+
+        if bad is not None:
+            print(f"{name}: {bad}", file=sys.stderr)
+            failed += 1
+            continue
+        print(f"{label}: " + " | ".join(said))
         if a.text == before:
             print("  already laid out, no change")
             continue
@@ -594,6 +634,31 @@ def cmd_order_init(args):
     return 1 if missing or extra else 0
 
 
+def cmd_split_init(args):
+    """Write the gym split onto every sidecar area from progression.py's
+    default, plus the split table (order, caps, rods). Run once; after that
+    the sidecar is the source and Ian edits it there."""
+    from . import progression
+    sidecar = model.load_sidecar()
+    if sidecar is None:
+        print(f"{model.SIDECAR} does not exist; run sidecar-init first", file=sys.stderr)
+        return 1
+    have = [n for n, e in sidecar["areas"].items() if e.get("split")]
+    if have and not args.force:
+        print(f"{len(have)} areas already carry a split; pass --force to overwrite "
+              f"Ian's edits with the default", file=sys.stderr)
+        return 1
+    names = model.area_names()
+    missing = progression.write_splits(sidecar, names)
+    model.save_sidecar(sidecar)
+    print(f"wrote split for {len(names) - len(missing)} of {len(names)} areas; "
+          f"caps: " + ", ".join(f"{s} {c if c is not None else '?'}"
+                                 for s, c in sidecar["splits"]["caps"].items()))
+    if missing:
+        print(f"  no default split for: {', '.join(missing)}")
+    return 1 if missing else 0
+
+
 def cmd_tier_init(args):
     """Write the pick-list's `tier` column from the defaults in tiers.py
     (authoring plan decision 7). Run once; Ian edits the CSV afterwards."""
@@ -630,8 +695,9 @@ def cmd_availability(args):
         for key, label in (("no_source", "no source"),
                            ("corridor_intruders", "corridor intruders"),
                            ("early_home_outside", "starter-adjacent home outside corridor"),
-                           ("early_fit", "early tables outside 3-5"),
-                           ("unplanned_tables", "tables with nothing planned (warning)")):
+                           ("early_fit", "early tables outside 4-7"),
+                           ("unplanned_tables", "tables with nothing planned (warning)"),
+                           ("cap_candidates", "cap candidates for Ian (information)")):
             print(f"  {label:42} {len(g[key])}"
                   + (f": {', '.join(g[key][:6])}" + (" ..." if len(g[key]) > 6 else "")
                      if g[key] else ""))
@@ -749,6 +815,12 @@ def main(argv=None):
                                           "into the sidecar (once)")
     oi.add_argument("--force", action="store_true")
     oi.set_defaults(func=cmd_order_init)
+
+    si = sub.add_parser("split-init", help="write the default gym splits (and the "
+                                          "split table with caps and rods) into the "
+                                          "sidecar (once)")
+    si.add_argument("--force", action="store_true")
+    si.set_defaults(func=cmd_split_init)
 
     ti = sub.add_parser("tier-init", help="write the default tier column onto the "
                                          "pick-list (once)")

@@ -1039,54 +1039,83 @@ unchanged tables still 81 errors.
 *Gate was:* no line without a source; the early band's cast fits 3-5
 species per table with the lines whose tier says early.
 
-### Step 3 — the first corridor — **tables written, 2026-09-21; gate open**
+### Step 3 — the first two splits — **regenerated on Ian's review, 2026-09-21; gate open**
 
 ```
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run   # 17 areas, 0 failed, nothing to change
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint encounters_route_201   # 0 errors, R5 warnings only
-PYTHONPATH=. python3 -m tools.oxide.encounters.server                        # Ian's view of the corridor
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3                    # expect 25/25
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run     # 24 areas, 0 failed, nothing to change
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli availability              # the gate, now with splits and caps
+PYTHONPATH=. python3 -m tools.oxide.encounters.server                        # Ian's view: location and split on every row
 ```
 
-**What was written.** The seventeen live land tables from Route 201 to
-Eterna Forest, in `docs/oxide/encounters/design.json` as sidecar entries
-(archetype, intent, cast in signature order, day and night for slots 2-3,
-an explicit two-rung ladder on the three A3 caves) and in `res/` through
-`cli apply --all`, so the JSON is what the layout produces and nothing was
-hand-placed. Casts are the plan's "Tables" rows: the starred lines take the
-shares that make them homes, the rest are cameos. Archetypes are the early
-band's set: A1 on the seven routes with five lines, A9 on Route 201, both
-lake shores, Route 207 and the windworks, A3 on Oreburgh Gate's two floors
-and Mine B2F, A4 on the Ravaged Path and Mine B1F. Day equals the morning
-slots everywhere, so the time of day only matters after dark: Blipbug
-takes Pikipek's slot on Route 201, Purrloin steps up on Routes 202 and 203,
-the Nidoran pair swap on 203, Vulpix takes half of Route 207's head,
-Surskit comes out on the lake and Route 205 north, Poochyena on 204 north,
-Skitty on 205 south, Seedot in the forest; the caves do not change.
+**What Ian said, on the first seventeen tables.** Captures are per location
+*name* (Lake Verity and its drained version, Route 204's halves, the gate's
+floors: one capture each); the game is played in gym splits, each with a
+hard level cap (Gardenia's is 26), and the rods arrive by split (Old Rod in
+Roark's, Good in Maylene's, Super in Candice's), so a fishing spot is an
+early capture wherever its water is; repel manips do not work on fishing or
+honey trees; there is one Repel before Roark, so the early game is where
+randomness is cheapest and a 50% face is monotony; no species over about a
+third of a table, anywhere, as a soft rule; a location whose halves fall in
+different splits is a delay and must be worth delaying for; the early caves
+were thin, so Nosepass, Geodude, Phanpy and Makuhita join the early lines;
+starter lines as 4%/1% one-off tails without lowering their rates elsewhere
+is a move he likes; a line fully evolved by level-up under a split's cap
+belongs in or before that split; the starter gets its own met location, so
+Route 201 counts as a capture; and the clown gifts (Sandgem, Jubilife,
+Oreburgh, Floaroma, Eterna) are levers whose species can change. When a
+table cannot be filled from the list, stop and propose additions before
+pushing.
 
-**One deviation from the plan.** Mine B1F has only Nacli and Zubat: three
-lines fit no early archetype but A3, and three A3 caves in a row was too
-many, so it is a duo and Onix waits for B2F. The plan file and
-`availability.md` say so now; the gate still passes.
+**What was built.** `locations.py` reads the map headers and the location
+names bank, so every table knows its capture area (63 named locations; the
+Turnback rooms and the twenty-five unknown files have no header). The
+sidecar carries a `split` per area and a `splits` table (order, caps, rods;
+`cli split-init`, once), with `water_split` for Route 218, whose fishing
+spot is a step from Jubilife while its grass is by Canalave. Two archetypes
+for the cap, A11 (30/25/20/15/10) and A12 (the same with a real 4% and 1%
+tail); the band targets and R11 are now the cap, not the old concentration
+arc (design doc 2.5 rewritten). `apply` writes rod and surf tables from a
+five-species cast with a level range (`layout.water`). `dex.final_by_level`
+reads the evolution levels for the cap rule. The availability plan gained
+`tail` per area, `corridor_splits` in place of the order cut, captures per
+(split, location) on every line, and a cap-candidates list for Ian; its
+document has a capture-areas section. `encounters_verity_lakefront.json`
+exists and is in the NARC, a new capture area; its header still points at
+no table and the map has no grass (backlog, script track). Seven rows
+joined the pick-list (Nosepass, Geodude and Phanpy lines) and Makuhita's
+line moved to starter-adjacent.
 
-**Tool changes.** `cli lint --ref` drops the sidecar's `archetype` before
-judging a reference tree, since vanilla was never laid out from it and R1
-would otherwise fail the integrate check on the seventeen. Two Step 0
-checks that pinned the pre-authoring figures now read the sidecar: the
-off-list count may only fall (1250 to 1119 with the corridor in), an
-authored table leaks nothing, and the importer's authored set is `AUTHORED`
-plus every entry with a cast.
+**The tables.** Twenty land tables, Route 201 to Eterna Forest plus Route
+211 west and Mt. Coronet's first room, every one A11, A12 or A6, no species
+over 30%; fourteen Old Rod tables (Twinleaf, Lake Verity, Routes 203, 218
+and 219 in Roark's split; the Ravaged Path, Routes 204 and 205, the
+Windworks, Eterna City and Oreburgh Gate B1F in Gardenia's). Scorbunny's
+home is Route 204 north, the delay's prize, with Riolu 4% and Eevee 1%;
+Route 211 west has Ralts and Mienfoo with Absol 4% and Heracross 1%. The
+classic starters on the list are 1% tails once each (Charmander on 207,
+Torchic on 203, Treecko in the forest, Mudkip on the lake, Squirtle by Old
+Rod on 218) and keep their scripted sources. Popplio has a 1% Old Rod
+appearance on Route 219 in the first split. Every line fully evolved by
+level-up under 26 is capturable in the first two splits (the candidates
+list is empty).
 
-**Numbers.** Per-table lint on the seventeen: 0 errors; the warnings are
-R5 band fit (A1's HHI of 0.275 sits under the early band's 0.35 by
-construction, the A3 caves above 0.50) and R3 on the two duos. Game-wide
-R12 fell from 81 to 68 errors. Suites 35/35, 21/21, 18/18, run one at a
-time: `test_step0` rewrites shared files under a restore and cannot share
-the tree with another suite.
+**Thin, and proposed to Ian.** The Old Rod tables draw on twelve water lines
+(Magikarp, Barboach, Finneon, Tentacool, Luvdisc, Surskit, Lotad, Wooper,
+Dewpider, Feebas, Frillish, Mareanie) and repeat. Candidates, his to okay:
+Goldeen, Psyduck, Corphish, Chinchou, Carvanha, Remoraid, Buizel, Shellos.
 
-*Gate:* per-table lint clean, done. Still open: `report` on the corridor,
-the merge into `oxide`, and Ian playing Route 201 to Eterna Forest and
-saying the routes feel like routes. These tables exist first so he can see
-the plan in the tool; the casts are his to change there.
+**Numbers.** Per-table lint 0 errors on the twenty; the warnings are R5
+band fit on the caves (five species each, under the band's HHI floor of
+0.18 with A11's 0.225 exactly at it), R3 on the flat tables (a repel pays
+less when nothing is rare, which is the point of the cap). Game-wide R12
+fell to 61 errors, all pool lines and later-split placements. Suites 35/35,
+21/21, 19/19, 25/25, run one at a time: `test_step0` rewrites shared files
+under a restore and cannot share the tree with another suite.
+
+*Gate:* per-table lint clean, done; the plan's gate passes with the splits.
+Still open: `report` on the two splits, the merge into `oxide`, and Ian
+playing Twinleaf to Eterna and saying the routes feel like routes.
 
 ## Suggested order, and what to cut
 

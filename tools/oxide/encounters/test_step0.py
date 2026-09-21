@@ -81,8 +81,9 @@ def check_dex(results):
     natives = [r for r in rows if r["status"] == "native"]
     new = [r for r in rows if r["status"] == "new"]
     unresolved = [r["name"] for r in natives if not r["constant"]]
+    # 199 natives on Ian's sheet, 206 with the seven cave rows of 2026-09-21.
     results.append(("every native on the pick-list resolves to a species in the tree",
-                    len(natives) == 199 and not unresolved,
+                    len(natives) == 206 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
@@ -172,22 +173,27 @@ def check_audit(results):
     authored = {n for n, e in (sidecar.get("areas") or {}).items() if e.get("cast")}
     live = [r for r in out["rows"] if r["key"] == "land_encounters" and r["live"]]
     authored_off = sum(1 for r in live if r["file"] in authored and not r["on_list"])
-    results.append(("audit reproduces the plan's live land figures: 2052 slots, at most 1250 "
-                    "off-list, none of them in an authored table",
-                    s["live_land_slots"] == 2052 and s["live_land_slots_off_list"] <= 1250
+    # 2052 slots before Verity Lakefront's file (2064 with it: twelve per live table).
+    n_live = sum(1 for a in model.load_all() if a.land_active)
+    results.append(("audit reproduces the plan's live land figures: twelve slots per live table, "
+                    "at most 1250 off-list, none of them in an authored table",
+                    s["live_land_slots"] == 12 * n_live and s["live_land_slots_off_list"] <= 1250
                     and authored_off == 0,
                     f"{s['live_land_slots']} / {s['live_land_slots_off_list']} off-list, "
                     f"{authored_off} in {len(authored)} authored table(s)"))
     # "natives" in the audit means pick-list species present in the tree: all
-    # 358 obtainable rows since element 3, 199 before it.
-    results.append(("audit sees all 358 pick-list species and every encounter file",
-                    s["natives"] == 358 and s["files"] == 185,
+    # 358 obtainable rows since element 3 (199 before it), 365 with Ian's
+    # three cave lines; the files are every JSON in res/field/encounters.
+    n_files = len(model.area_names())
+    results.append(("audit sees all 365 pick-list species and every encounter file",
+                    s["natives"] == 365 and s["files"] == n_files,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
                  "super_rod_encounters"))
-    results.append(("water and rods carry about 640 off-list references",
-                    620 <= water <= 660, str(water)))
+    # 641 before any water table was designed; the count only falls.
+    results.append(("water and rods carry at most the 641 off-list references of the base ROM",
+                    500 <= water <= 641, str(water)))
     trio = {(r["script"], r["command"], r["species"]) for r in out["scripts"]}
     results.append(("scripts list the two StartWildBattle species and a legendary",
                     ("scripts_route_209", "StartWildBattle", "SPECIES_SPIRITOMB") in trio
@@ -204,8 +210,8 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 358 pick-list species into lines, each on one row",
-                    covered == 358 and len({m for r in lines for m in r["members"]}) == 358,
+    results.append(("coverage groups all 365 pick-list species into lines, each on one row",
+                    covered == 365 and len({m for r in lines for m in r["members"]}) == 365,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",

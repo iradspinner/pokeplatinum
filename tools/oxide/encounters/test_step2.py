@@ -35,8 +35,9 @@ def main():
 
     results.append(("the plan file loads, names only real areas and pick-list lines",
                     not out["problems"], "; ".join(out["problems"][:3])))
-    results.append(("every one of the 177 lines has a row",
-                    len(rows) == 177, f"{len(rows)} rows"))
+    # 177 lines, then 180 with Ian's three cave additions (2026-09-21)
+    results.append(("every one of the 180 lines has a row",
+                    len(rows) == 180, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
@@ -50,19 +51,22 @@ def main():
                               if r["tier"] != "gate" and not (len(r["home"]) == 1 or r["non_wild"]
                                                               or r["status"] in ("water", "honey")
                                                               or r["name"] in tails))[:120]))
+    results.append(("a gate line is wild only as a tail (the classic starters), never a home or cameo",
+                    not any(r["home"] or r["cameo"] for r in rows if r["tier"] == "gate")
+                    and by["Charmander"]["tail"] and by["Treecko"]["tail"], ""))
     results.append(("no gate line is planned in the wild",
                     not any(r["home"] or r["cameo"] for r in rows if r["tier"] == "gate"), ""))
-    results.append(("the corridor carries only starter-adjacent and scripted lines",
+    results.append(("the first split carries only starter-adjacent, scripted and tail lines",
                     not g["corridor_intruders"], ", ".join(g["corridor_intruders"][:4])))
     results.append(("every starter-adjacent line is at home in the corridor",
                     not g["early_home_outside"], ", ".join(g["early_home_outside"][:4])))
-    results.append(("every early-band table has 2-5 lines planned, 2 only for a duo",
+    results.append(("every early-band table has 4-7 lines planned (Ian's cap: flat tables)",
                     not g["early_fit"], ", ".join(g["early_fit"][:3])))
     results.append(("every live land table has something planned",
                     not g["unplanned_tables"], ", ".join(g["unplanned_tables"][:4])))
-    results.append(("the corridor ends at Eterna Forest and holds 17 live tables",
-                    out["plan"]["corridor_end"] == "encounters_eterna_forest"
-                    and len(out["corridor"]) == 17, f"{len(out['corridor'])} tables"))
+    results.append(("the corridor is the Roark and Gardenia splits: 20 live land tables",
+                    out["plan"]["corridor_splits"] == ["Roark", "Gardenia"]
+                    and len(out["corridor"]) == 20, f"{len(out['corridor'])} tables"))
     results.append(("known placements: Gible at home in Wayward Cave B1F, Shinx on Route 202, "
                     "Wooper in the marsh",
                     by["Gible"]["home"] == ["encounters_wayward_cave_b1f"]
@@ -82,10 +86,10 @@ def main():
                     and sorted(proposed) == ["Xerneas", "Yveltal"]
                     and "Nihilego" in pool and "Tapu Koko" in pool,
                     f"{len(pool)} in the pool, {len(proposed)} proposed"))
-    results.append(("the starters are wild: Fennekin and Scorbunny at home, Popplio on water, "
-                    "the grass three in the honey trees, none gate",
+    results.append(("the starters are wild: Fennekin and Scorbunny at home (Scorbunny on Route "
+                    "204 north, the delay), Popplio on water, the grass three in the honey trees, none gate",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
-                    and by["Scorbunny"]["home"] == ["encounters_route_206"]
+                    and by["Scorbunny"]["home"] == ["encounters_route_204_north"]
                     and by["Popplio"]["status"] == "water"
                     and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))
                     and all(by[n]["tier"] == "preferred" for n in

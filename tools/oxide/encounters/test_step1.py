@@ -37,10 +37,11 @@ def check_order(results):
     orders = {n: areas.get(n, {}).get("order") for n in names}
     missing = [n for n, o in orders.items() if o is None]
     values = [o for o in orders.values() if o is not None]
-    results.append(("every one of the 185 areas carries an order",
-                    len(names) == 185 and not missing, f"missing {missing[:4]}"))
-    results.append(("orders are the integers 1..185 with no duplicates",
-                    sorted(values) == list(range(1, 186)), f"{len(set(values))} distinct"))
+    # 185 files, 186 with Verity Lakefront's (2026-09-21)
+    results.append(("every one of the 186 areas carries an order",
+                    len(names) == 186 and not missing, f"missing {missing[:4]}"))
+    results.append(("orders are the integers 1..186 with no duplicates",
+                    sorted(values) == list(range(1, len(names) + 1)), f"{len(set(values))} distinct"))
 
     def pos(stem):
         return orders["encounters_" + stem]
@@ -55,7 +56,7 @@ def check_order(results):
                     ""))
     results.append(("the Battle Zone and the unknown rooms come last",
                     pos("pokemon_league") < pos("route_225") < pos("route_230")
-                    < pos("unknown_533") < pos("unknown_557") == 185, ""))
+                    < pos("unknown_533") < pos("unknown_557") == len(names), ""))
     live = [a for a in model.load_all() if a.land_active]
     ordered = progression.sorted_by_order(sidecar, [a.name for a in live])
     results.append(("sorted_by_order puts the early band first and the late band last",
@@ -73,8 +74,10 @@ def check_tiers(results):
     root = model.repo_root()
     rows = dex.pick_list(root)
     bad = [r["name"] for r in rows if r.get("tier") not in tiers.TIERS]
+    # 360 rows from Ian's sheet, plus the seven cave additions of 2026-09-21
+    # (Nosepass, Geodude and Phanpy lines).
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 360 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 367 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     results.append(("legendaries, starters, fossils and static battles are gate",
                     by["Articuno"] == by["Charmander"] == by["Cranidos"]
@@ -96,9 +99,10 @@ def check_tiers(results):
 
 def check_r12(results):
     avail = audit.availability()
-    # 99 native lines before Phase 4 element 3, 177 with the 159 new species in.
+    # 99 native lines before Phase 4 element 3, 177 with the 159 new species
+    # in, 180 with Ian's three cave lines.
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 177
+                    avail is not None and len(avail) == 180
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",

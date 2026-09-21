@@ -25,6 +25,7 @@ import urllib.parse
 from . import analysis as A
 from . import dex
 from . import lint
+from . import locations
 from . import model
 
 HOST, PORT = "127.0.0.1", 8765
@@ -116,6 +117,11 @@ def area_row(a, st, findings_by_area):
         "band": e.get("band") or a.band,
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
+        # Ian's capture rule: one capture per location name, so the name and
+        # the gym split are what a row is worth, not the file it came from.
+        "location": locations.location(a.name),
+        "split": e.get("split"),
+        "no_capture": bool(e.get("no_capture")),
         "species": m["n_species"],
         "hhi": m["hhi"],
         "top": m["top_share"],
@@ -181,6 +187,9 @@ def area_detail(a, st, kind="land"):
         "band": e.get("band") or a.band,
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
+        "location": locations.location(a.name),
+        "split": e.get("split"),
+        "no_capture": bool(e.get("no_capture")),
         "rate": a.kind_rate(kind),
         "ranged": kind != "land",
         "slots": [dict(_species_view(sp, st, a.name), slot=i, rate=rates[i],

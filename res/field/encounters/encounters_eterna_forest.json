@@ -7,31 +7,27 @@
         },
         {
             "level": 11,
+            "species": "SPECIES_BUNEARY"
+        },
+        {
+            "level": 11,
             "species": "SPECIES_SHROOMISH"
         },
         {
             "level": 11,
-            "species": "SPECIES_BUNEARY"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_BUNEARY"
-        },
-        {
-            "level": 12,
             "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 12,
             "species": "SPECIES_SEWADDLE"
-        },
-        {
-            "level": 12,
-            "species": "SPECIES_BUNEARY"
         },
         {
             "level": 12,
             "species": "SPECIES_SEEDOT"
+        },
+        {
+            "level": 12,
+            "species": "SPECIES_BUNEARY"
         },
         {
             "level": 12,
@@ -42,12 +38,16 @@
             "species": "SPECIES_BLIPBUG"
         },
         {
-            "level": 13,
-            "species": "SPECIES_SEEDOT"
+            "level": 12,
+            "species": "SPECIES_COMBEE"
         },
         {
             "level": 13,
             "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 13,
+            "species": "SPECIES_TREECKO"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SLAKOTH"
     ],
     "day": [
-        "SPECIES_BUNEARY",
-        "SPECIES_BUNEARY"
+        "SPECIES_SEWADDLE",
+        "SPECIES_SEWADDLE"
     ],
     "night": [
         "SPECIES_SEEDOT",
-        "SPECIES_BUNEARY"
+        "SPECIES_SEWADDLE"
     ],
     "radar": [
         "SPECIES_NINCADA",

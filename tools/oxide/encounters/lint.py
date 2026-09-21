@@ -47,6 +47,12 @@ ARCHETYPES = {
     "A8":  {"signature": (20, 20, 20, 10, 10, 10, 5, 5), "rungs": (3, 4), "tail": "duplicates"},
     "A9":  {"signature": (50, 20, 20, 10), "rungs": (3, 3), "tail": "none"},
     "A10": {"signature": (60, 25, 10, 4, 1), "rungs": (4, 4), "tail": "real"},
+    # Ian's cap (2026-09-21): no species over about a third of a table, and
+    # the early game the most random of all, since one Repel is all the
+    # first split has. A11 is the flat route; A12 is the same with a real
+    # 4% and 1% tail for a starter or a prize, the "one-off tail" move.
+    "A11": {"signature": (30, 25, 20, 15, 10), "rungs": (4, 4), "tail": "duplicates"},
+    "A12": {"signature": (30, 25, 20, 15, 5, 4, 1), "rungs": (4, 4), "tail": "real"},
 }
 
 DEFAULT_THRESHOLDS = {
@@ -61,8 +67,7 @@ DEFAULT_THRESHOLDS = {
     "r8_spread_min": 2.2,
     "r9_signatures_per_table_min": 0.35,
     "r10_budget_tolerance": 0.05,
-    "r11b_early_hhi_min": 0.35,
-    "r11b_late_hhi_max": 0.25,
+    "r11_top_share_max": 0.35,
     "r13_share_span_min": 4.0,
     "r13_min_tables": 4,
     "r14_max_shared_land_rate": 0.5,
@@ -72,9 +77,12 @@ DEFAULT_THRESHOLDS = {
     # having a scripted source, not on a cost. Proposed defaults; Ian's.
     "r12_max_cost": {"starter-adjacent": 5.0, "preferred": 20.0, "filler": 100.0},
     "bands": {
-        "early": {"species": [3, 5], "top": [0.40, 0.50], "hhi": [0.35, 0.50]},
-        "mid":   {"species": [4, 7], "top": [0.30, 0.40], "hhi": [0.25, 0.35]},
-        "late":  {"species": [5, 8], "top": [0.25, 0.35], "hhi": [0.18, 0.28]},
+        # Ian's cap: at most about a third of a table for any species, in
+        # every band, and the early game the most random. Species counts
+        # still grow with the game.
+        "early": {"species": (4, 7), "top": (0.25, 0.35), "hhi": (0.18, 0.30)},
+        "mid":   {"species": (4, 7), "top": (0.25, 0.35), "hhi": (0.18, 0.30)},
+        "late":  {"species": (5, 8), "top": (0.25, 0.35), "hhi": (0.15, 0.28)},
     },
 }
 
@@ -239,36 +247,32 @@ def lint_game(areas, t, availability=None):
         # realised share per HHI band, against the sidecar's budget
         pass
 
-    # R11 (warn, descriptive) -- the arc has the right shape
-    e, mid, late = g.get("hhi_early"), g.get("hhi_mid"), g.get("hhi_late")
-    if None in (e, mid, late):
-        # A rule that cannot run has to say so. R11 was silently skipped once
-        # because bands arrived as None, and a quiet skip looks exactly like a
-        # pass in the output.
-        out.append(Finding(
-            "R11", "skip", "game", "*",
-            "arc unchecked: one or more bands had no tables "
-            f"(early {g.get('n_early')}, mid {g.get('n_mid')}, "
-            f"late {g.get('n_late')})"))
-    else:
-        if not (e > mid > late):
+    # R11 (warn) -- Ian's cap: no band's median top share above a third.
+    # This replaced the decreasing concentration arc on 2026-09-21: the
+    # early game is where randomness is cheapest to give (one Repel before
+    # Roark), so early tables are the flattest, not the most concentrated.
+    # A band with no tables says so rather than passing quietly.
+    for band in ("early", "mid", "late"):
+        top = g.get(f"top_share_{band}")
+        if top is None:
+            out.append(Finding(
+                "R11", "skip", "game", "*",
+                f"cap unchecked for the {band} band: no tables "
+                f"(n_{band} = {g.get(f'n_{band}')})"))
+        elif top > t["r11_top_share_max"]:
             out.append(Finding(
                 "R11", "warn", "game", "*",
-                f"concentration arc is not decreasing: early {e:.3f}, "
-                f"mid {mid:.3f}, late {late:.3f}"))
-        # R11b (warn, aspirational) -- the absolute targets, which sit beyond
-        # vanilla on purpose: vanilla's late median is 0.275, not <= 0.25
-        if e < t["r11b_early_hhi_min"]:
-            out.append(Finding(
-                "R11b", "warn", "game", "*",
-                f"early median HHI {e:.3f} below "
-                f"{t['r11b_early_hhi_min']}"))
-        if late > t["r11b_late_hhi_max"]:
-            out.append(Finding(
-                "R11b", "warn", "game", "*",
-                f"late median HHI {late:.3f} above "
-                f"{t['r11b_late_hhi_max']} (vanilla is 0.275, so this is a "
-                f"target rather than a regression)"))
+                f"{band} median top share {top:.2f} is over the cap "
+                f"{t['r11_top_share_max']}"))
+        # R11b (warn) -- the band's median HHI inside its range
+        hhi = g.get(f"hhi_{band}")
+        spec = (t.get("bands") or {}).get(band)
+        if hhi is not None and spec:
+            lo, hi = spec["hhi"]
+            if not lo <= hhi <= hi:
+                out.append(Finding(
+                    "R11b", "warn", "game", "*",
+                    f"{band} median HHI {hhi:.3f} outside {lo}-{hi}"))
 
     # R13 (warn, aspirational) -- repetition has to vary
     where = collections.defaultdict(list)

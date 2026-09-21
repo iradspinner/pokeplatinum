@@ -1,116 +1,105 @@
 {
-  "_comment": [
-    "The availability plan, authoring plan Step 2: where every evolution line on the",
-    "species pick-list is meant to be caught, decided on paper before any slot is",
-    "written. Keyed by area so Step 3 can read a table's intended cast straight off",
-    "it; docs/oxide/encounters/availability.md is the per-line view, generated from",
-    "this file by `cli availability --write` and never edited by hand.",
-    "",
-    "Each area lists lines by their first stage's constant. `home` is where the line",
-    "is guaranteed (its first stage at 10% or more of the merged share, authoring",
-    "plan decision 3); `cameo` is any other appearance, at any share and any stage,",
-    "which is where R13's variety and the dupe-out structure come from. A line has",
-    "one home. Lines with a gift, trade, static battle, starter or fossil script",
-    "need no home and are listed only as cameos. `water` names the surf or rod",
-    "tables that are a water line's home, since the design scoped land first and",
-    "those tables get a no-leak pass in Step 5.",
-    "",
-    "The corridor (every area up to and including `corridor_end`) carries only",
-    "starter-adjacent lines and lines with a scripted source, and every",
-    "starter-adjacent line's home is in the corridor. `cli availability` checks",
-    "both, and that each early-band table has three to five lines planned.",
-    "",
-    "Multi-room areas (Old Chateau, Lost Tower, Solaceon Ruins, Great Marsh, Iron",
-    "Island, Mt Coronet, Turnback Cave and its twenty-five post-game rooms) share a",
-    "cast and vary it room by room; the home is on the room named. Hand-edited on",
-    "purpose: this is the design, and it is Ian's to change."
-  ],
-  "corridor_end": "encounters_eterna_forest",
+  "_comment": "The availability plan, keyed by area (authoring plan Step 2, revised 2026-09-21 for Ian's capture rules): per live land table the lines at home there (the one table designed for the line), the cameos, and the tails (4%/1% one-offs, the only wild place for a gate-tier starter). `no_capture` marks a table that is not a capture area (none today: the starter gets its own met location, so Route 201 counts). `corridor_splits` names the splits whose tables carry only starter-adjacent lines, scripted lines and tails. `water` maps water lines to the surf/rod tables that are their homes; `honey`, `pool` and `proposals` are the non-land sources. Splits themselves live in the sidecar.",
   "areas": {
     "encounters_route_201": {
-      "home": ["SPECIES_WOOLOO", "SPECIES_PIKIPEK"],
-      "cameo": ["SPECIES_SENTRET", "SPECIES_BLIPBUG"],
-      "note": "The first route: one sheep and one bird, the Bidoof and Starly of this game."
+      "home": ["SPECIES_WOOLOO", "SPECIES_SENTRET"],
+      "cameo": ["SPECIES_PIKIPEK", "SPECIES_BLIPBUG", "SPECIES_PURRLOIN"],
+      "note": "The first route, a capture area once the starter has its own met location (Ian's preference; backlog for the script track): Wooloo and Sentret at home, Pikipek the bird, Blipbug by night, Purrloin small."
+    },
+    "encounters_verity_lakefront": {
+      "home": ["SPECIES_PIKIPEK"],
+      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_BLIPBUG"],
+      "tail": ["SPECIES_PACHIRISU", "SPECIES_VULPIX"],
+      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, Purrloin a regular, Pachirisu a 4% and a 1% Vulpix as a tease of Route 207."
     },
     "encounters_lake_verity": {
-      "home": ["SPECIES_SENTRET"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_SURSKIT"],
-      "note": "The lake shore: Sentret's home, with the Route 201 pair repeating."
+      "home": ["SPECIES_SURSKIT"],
+      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG"],
+      "tail": ["SPECIES_BUNEARY", "SPECIES_MUDKIP"],
+      "note": "The lake shore, no one over 30%: Surskit at home by the water, Sentret and Wooloo with it, Buneary a 4% early rabbit, Mudkip the 1% lake tail."
     },
     "encounters_lake_verity_low_water": {
       "home": [],
-      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_SURSKIT"],
-      "note": "Same shore after the lake drains; same cast."
+      "cameo": ["SPECIES_SURSKIT", "SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG"],
+      "tail": ["SPECIES_BUNEARY", "SPECIES_MUDKIP"],
+      "note": "The same shore after the lake drains, the same cast: one location name, one capture."
     },
     "encounters_route_202": {
       "home": ["SPECIES_SHINX", "SPECIES_BLIPBUG"],
       "cameo": ["SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_PURRLOIN"],
-      "note": "Shinx's route, as in vanilla; Blipbug is the early bug; Purrloin at night."
+      "note": "Shinx's route as in vanilla, at 30 rather than 40; Blipbug the early bug, Purrloin a regular by night."
     },
     "encounters_route_203": {
-      "home": ["SPECIES_ROOKIDEE", "SPECIES_PURRLOIN", "SPECIES_NIDORAN_F", "SPECIES_NIDORAN_M"],
+      "home": ["SPECIES_ROOKIDEE", "SPECIES_NIDORAN_M", "SPECIES_NIDORAN_F", "SPECIES_PURRLOIN"],
       "cameo": ["SPECIES_SHINX"],
-      "note": "The road to Oreburgh: the Nidoran pair and the second bird."
+      "tail": ["SPECIES_MAKUHITA", "SPECIES_TORCHIC"],
+      "note": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin at home, Makuhita a 4% preview of the caves, Torchic the 1%."
     },
     "encounters_oreburgh_gate_1f": {
-      "home": ["SPECIES_ZUBAT", "SPECIES_NACLI"],
-      "cameo": ["SPECIES_ONIX"],
-      "note": "First cave: Zubat and the rock salt, Onix rare."
+      "home": ["SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_GEODUDE", "SPECIES_MAKUHITA"],
+      "note": "The first cave, five lines deep now: Zubat, Geodude, Nacli, Nosepass and Makuhita, none over 30."
     },
     "encounters_oreburgh_gate_b1f": {
-      "home": ["SPECIES_ONIX"],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_NACLI"],
-      "note": "The lower floor is where Onix is worth a repel."
+      "home": ["SPECIES_GEODUDE"],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_NOSEPASS"],
+      "tail": ["SPECIES_ONIX", "SPECIES_GIBLE"],
+      "note": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Onix a 4% and Gible a 1% tease of Wayward Cave."
     },
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ROOKIDEE"],
-      "note": "The rocky road above Oreburgh: two fire types, as vanilla had Ponyta."
+      "cameo": ["SPECIES_ROOKIDEE", "SPECIES_NACLI", "SPECIES_GEODUDE"],
+      "tail": ["SPECIES_HOUNDOUR", "SPECIES_CHARMANDER"],
+      "note": "The rocky road above Oreburgh: Ponyta and Vulpix at home, Vulpix taking the head at night, Houndour a 4% (fully evolved by 24) and Charmander the 1% fire tail."
     },
     "encounters_oreburgh_mine_b1f": {
-      "home": [],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT"],
-      "note": "The mine's first floor is a Nacli against Zubat duo; Onix waits for B2F."
+      "home": ["SPECIES_MAKUHITA"],
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PHANPY"],
+      "note": "The mine, Makuhita's home: Nacli and Zubat co-equal, Geodude behind, Phanpy in the tail."
     },
     "encounters_oreburgh_mine_b2f": {
-      "home": [],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_ONIX"],
-      "note": "Deeper: Onix climbs the ladder."
+      "home": ["SPECIES_ONIX", "SPECIES_PHANPY"],
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_NOSEPASS"],
+      "note": "Deeper, and different: Onix and Phanpy at home, Nosepass in the rock."
     },
     "encounters_route_204_south": {
       "home": ["SPECIES_BUDEW", "SPECIES_GRUBBIN", "SPECIES_FLETCHLING"],
       "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO"],
-      "note": "Budew's route, with the third bird and the first real bug."
+      "note": "Budew's route with Grubbin and Fletchling at home; the plain half of Route 204, so the north half is the one to wait for."
     },
     "encounters_ravaged_path": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_NACLI"],
-      "note": "A4 duo, as in vanilla: Zubat against Nacli, the level tiebreaker deciding."
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_NACLI", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
+      "note": "The Rock Smash cave, five lines instead of a duo: Zubat, Geodude, Nacli, Makuhita, Phanpy."
     },
     "encounters_route_204_north": {
-      "home": ["SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
-      "cameo": ["SPECIES_FLETCHLING", "SPECIES_BUDEW", "SPECIES_POOCHYENA"],
-      "note": "North of the cave the grass gets greener: Sewaddle and Bounsweet."
+      "home": ["SPECIES_SCORBUNNY", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
+      "cameo": ["SPECIES_FLETCHLING", "SPECIES_POOCHYENA"],
+      "tail": ["SPECIES_RIOLU", "SPECIES_EEVEE"],
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it is the better half. Scorbunny at home (moved from Route 206), Sewaddle and Bounsweet with it, Riolu a 4% and Eevee a 1% worth waiting for."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO"],
       "cameo": ["SPECIES_WOOLOO", "SPECIES_SKITTY"],
-      "note": "Floaroma's meadow route: the cute cast, Pachirisu at its vanilla spot."
+      "note": "Floaroma's meadow: Pachirisu, Smoliv and Minccino at home, Skitty a regular at 10."
     },
     "encounters_valley_windworks_outside": {
       "home": ["SPECIES_PAWMI"],
-      "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO"],
-      "note": "Electric at the windworks: Pawmi's home, Shinx and Pachirisu around it."
+      "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO", "SPECIES_FLETCHLING"],
+      "tail": ["SPECIES_EMOLGA", "SPECIES_PICHU"],
+      "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, Emolga a 4% and Pichu a 1% in the tail."
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD"],
       "cameo": ["SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH"],
-      "note": "The damp side before the forest: Lotad and Surskit by the water."
+      "tail": ["SPECIES_WOOPER", "SPECIES_DEWPIDER"],
+      "note": "The damp side before the forest, the better half of Route 205: Lotad at home, Surskit by night, Wooper (fully evolved by 20) a 4% and Dewpider the 1%."
     },
     "encounters_eterna_forest": {
       "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY"],
       "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_BLIPBUG"],
-      "note": "The forest: Shroomish under the trees, Buneary as vanilla, bugs in the tail."
+      "tail": ["SPECIES_COMBEE", "SPECIES_TREECKO"],
+      "note": "The forest: Shroomish and Buneary at home, Sewaddle and Seedot with them, Blipbug small, Combee a 4% and Treecko the 1% under the trees."
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
@@ -159,18 +148,19 @@
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_RALTS", "SPECIES_MIENFOO"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX"],
-      "note": "The mountain path out of Eterna: Ralts as the base ROM placed it, Mienfoo for Meditite."
+      "cameo": ["SPECIES_VULPIX", "SPECIES_BRONZOR", "SPECIES_NACLI"],
+      "tail": ["SPECIES_ABSOL", "SPECIES_HERACROSS"],
+      "note": "Route 211's west half is reachable from Eterna, the east half much later, so this is the delay's better half: Ralts and Mienfoo at home, Absol a 4% and Heracross a 1%."
     },
     "encounters_mt_coronet_1f_north_room_1": {
       "home": ["SPECIES_BRONZOR"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
-      "note": "First taste of Coronet: Bronzor's home, a jewel in the tail."
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
+      "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock."
     },
     "encounters_route_206": {
-      "home": ["SPECIES_GLIGAR", "SPECIES_SCORBUNNY"],
+      "home": ["SPECIES_GLIGAR"],
       "cameo": ["SPECIES_PONYTA", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_STUNKY"],
-      "note": "The cycling road: Gligar as vanilla, Scorbunny running it at a real share, Dwebble on the rocks below."
+      "note": "Cycling Road's foot: Gligar's home; Scorbunny moved to Route 204 north as that delay's prize (Ian, 2026-09-21)."
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
@@ -222,28 +212,96 @@
       "cameo": ["SPECIES_YAMASK", "SPECIES_ZUBAT", "SPECIES_LITWICK", "SPECIES_SINISTEA"],
       "note": "The top floor: the ghosts thicken."
     },
+    "encounters_solaceon_ruins_room_1_northwest_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_1_southeast_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
     "encounters_solaceon_ruins_room_2": {
       "home": ["SPECIES_KLEFKI"],
       "cameo": ["SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"],
       "note": "Unown is off-list (decision 9); the ruins become a cave with a keyring in it."
     },
-    "encounters_solaceon_ruins_room_1_northwest_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_1_southeast_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_2_northeast_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"], "note": ""},
-    "encounters_solaceon_ruins_room_2_southeast_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"], "note": ""},
-    "encounters_solaceon_ruins_room_3": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"], "note": ""},
-    "encounters_solaceon_ruins_room_3_northwest_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_3_southwest_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_4": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"], "note": ""},
-    "encounters_solaceon_ruins_room_4_southeast_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"], "note": ""},
-    "encounters_solaceon_ruins_room_5": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"], "note": ""},
-    "encounters_solaceon_ruins_room_5_southeast_deadend": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_5_southwest_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"], "note": ""},
-    "encounters_solaceon_ruins_room_6": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"], "note": ""},
-    "encounters_solaceon_ruins_room_6_northwest_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": ""},
-    "encounters_solaceon_ruins_room_6_southeast_dead_end": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"], "note": ""},
-    "encounters_solaceon_ruins_room_7": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"], "note": "The deepest room: the tomb keeper."},
-    "encounters_solaceon_ruins_maniac_tunnel_room": {"home": [], "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_HIPPOPOTAS"], "note": "Where the maniac's tunnel breaks through: Hippopotas sand in the ruins."},
+    "encounters_solaceon_ruins_room_2_northeast_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_2_southeast_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_3_northwest_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_3_southwest_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_4": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_4_southeast_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_5": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_5_southeast_deadend": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_5_southwest_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_6": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_DWEBBLE"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_6_northwest_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_6_southeast_dead_end": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_CARBINK"],
+      "note": ""
+    },
+    "encounters_solaceon_ruins_room_7": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_YAMASK"],
+      "note": "The deepest room: the tomb keeper."
+    },
+    "encounters_solaceon_ruins_maniac_tunnel_room": {
+      "home": [],
+      "cameo": ["SPECIES_KLEFKI", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_HIPPOPOTAS"],
+      "note": "Where the maniac's tunnel breaks through: Hippopotas sand in the ruins."
+    },
     "encounters_route_210_south": {
       "home": ["SPECIES_SCYTHER"],
       "cameo": ["SPECIES_PONYTA", "SPECIES_BOUNSWEET", "SPECIES_ROOKIDEE", "SPECIES_SMOLIV"],
@@ -289,11 +347,31 @@
       "cameo": ["SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI"],
       "note": "The marsh: Wooper's home, as vanilla."
     },
-    "encounters_great_marsh_2": {"home": [], "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI"], "note": ""},
-    "encounters_great_marsh_3": {"home": ["SPECIES_CROAGUNK"], "cameo": ["SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SURSKIT"], "note": "Croagunk's home."},
-    "encounters_great_marsh_4": {"home": [], "cameo": ["SPECIES_CROAGUNK", "SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SHROOMISH"], "note": ""},
-    "encounters_great_marsh_5": {"home": ["SPECIES_YANMA"], "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SKORUPI"], "note": "Yanma's home, as vanilla's deep marsh."},
-    "encounters_great_marsh_6": {"home": [], "cameo": ["SPECIES_YANMA", "SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SHROOMISH"], "note": ""},
+    "encounters_great_marsh_2": {
+      "home": [],
+      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI"],
+      "note": ""
+    },
+    "encounters_great_marsh_3": {
+      "home": ["SPECIES_CROAGUNK"],
+      "cameo": ["SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SURSKIT"],
+      "note": "Croagunk's home."
+    },
+    "encounters_great_marsh_4": {
+      "home": [],
+      "cameo": ["SPECIES_CROAGUNK", "SPECIES_WOOPER", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SHROOMISH"],
+      "note": ""
+    },
+    "encounters_great_marsh_5": {
+      "home": ["SPECIES_YANMA"],
+      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SKORUPI"],
+      "note": "Yanma's home, as vanilla's deep marsh."
+    },
+    "encounters_great_marsh_6": {
+      "home": [],
+      "cameo": ["SPECIES_YANMA", "SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SHROOMISH"],
+      "note": ""
+    },
     "encounters_route_212_north": {
       "home": ["SPECIES_EMOLGA"],
       "cameo": ["SPECIES_FLABEBE", "SPECIES_FOMANTIS", "SPECIES_RALTS", "SPECIES_BUDEW", "SPECIES_COMBEE"],
@@ -334,11 +412,31 @@
       "cameo": ["SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_FERROSEED"],
       "note": "Iron Island: Togedemaru's home at the entrance."
     },
-    "encounters_iron_island_b1f_left_room": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_TOGEDEMARU", "SPECIES_FERROSEED"], "note": ""},
-    "encounters_iron_island_b1f_right_room": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_KLEFKI"], "note": ""},
-    "encounters_iron_island_b2f_right_room": {"home": ["SPECIES_SOLROCK"], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR"], "note": "Solrock's home, as the base ROM placed it; the left room has Lunatone."},
-    "encounters_iron_island_b2f_left_room": {"home": ["SPECIES_LUNATONE"], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR"], "note": "Lunatone's home."},
-    "encounters_iron_island_b3f": {"home": ["SPECIES_BELDUM"], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_KLEFKI"], "note": "The bottom: Beldum's home, the steel prize on the top rung."},
+    "encounters_iron_island_b1f_left_room": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_TOGEDEMARU", "SPECIES_FERROSEED"],
+      "note": ""
+    },
+    "encounters_iron_island_b1f_right_room": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_KLEFKI"],
+      "note": ""
+    },
+    "encounters_iron_island_b2f_right_room": {
+      "home": ["SPECIES_SOLROCK"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR"],
+      "note": "Solrock's home, as the base ROM placed it; the left room has Lunatone."
+    },
+    "encounters_iron_island_b2f_left_room": {
+      "home": ["SPECIES_LUNATONE"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BRONZOR"],
+      "note": "Lunatone's home."
+    },
+    "encounters_iron_island_b3f": {
+      "home": ["SPECIES_BELDUM"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_FERROSEED", "SPECIES_KLEFKI"],
+      "note": "The bottom: Beldum's home, the steel prize on the top rung."
+    },
     "encounters_route_221": {
       "home": ["SPECIES_LURANTIS"],
       "cameo": ["SPECIES_SMOLIV", "SPECIES_FLETCHLING", "SPECIES_WOOLOO", "SPECIES_BOUNSWEET", "SPECIES_PURRLOIN"],
@@ -369,43 +467,171 @@
       "cameo": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_SNOM", "SPECIES_GALARIAN_MR_MIME", "SPECIES_SNOVER"],
       "note": "The frozen lake: Froslass and Mr. Rime territory."
     },
-    "encounters_mt_coronet_1f_tunnel_room": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_LARVITAR"], "note": "The climb begins."},
-    "encounters_mt_coronet_1f_north_room_2": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET"], "note": ""},
-    "encounters_mt_coronet_b1f": {"home": ["SPECIES_GOOMY"], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_ZUBAT"], "note": "The wet basement with the elusive rod: Goomy's home."},
-    "encounters_mt_coronet_2f": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_LARVITAR"], "note": ""},
-    "encounters_mt_coronet_3f": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_KLEFKI"], "note": ""},
-    "encounters_mt_coronet_outside_south": {"home": [], "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_MIENFOO", "SPECIES_HAWLUCHA", "SPECIES_NACLI"], "note": "Snow on the mountainside."},
-    "encounters_mt_coronet_4f_rooms_1_and_2": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_FERROSEED"], "note": ""},
-    "encounters_mt_coronet_4f_room_3": {"home": [], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_GOOMY"], "note": ""},
-    "encounters_mt_coronet_outside_north": {"home": [], "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_MIENFOO", "SPECIES_HAWLUCHA", "SPECIES_ALOLAN_NINETALES"], "note": ""},
-    "encounters_mt_coronet_5f": {"home": ["SPECIES_JANGMO_O"], "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_LARVITAR"], "note": "Near the summit: Jangmo-o's home, the dragon of the mountain."},
-    "encounters_mt_coronet_6f": {"home": [], "cameo": ["SPECIES_JANGMO_O", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_KLEFKI"], "note": "The last floor before Spear Pillar."},
+    "encounters_mt_coronet_1f_tunnel_room": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_LARVITAR"],
+      "note": "The climb begins."
+    },
+    "encounters_mt_coronet_1f_north_room_2": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET"],
+      "note": ""
+    },
+    "encounters_mt_coronet_b1f": {
+      "home": ["SPECIES_GOOMY"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_ZUBAT"],
+      "note": "The wet basement with the elusive rod: Goomy's home."
+    },
+    "encounters_mt_coronet_2f": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_LARVITAR"],
+      "note": ""
+    },
+    "encounters_mt_coronet_3f": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_KLEFKI"],
+      "note": ""
+    },
+    "encounters_mt_coronet_outside_south": {
+      "home": [],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_MIENFOO", "SPECIES_HAWLUCHA", "SPECIES_NACLI"],
+      "note": "Snow on the mountainside."
+    },
+    "encounters_mt_coronet_4f_rooms_1_and_2": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_FERROSEED"],
+      "note": ""
+    },
+    "encounters_mt_coronet_4f_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_GOOMY"],
+      "note": ""
+    },
+    "encounters_mt_coronet_outside_north": {
+      "home": [],
+      "cameo": ["SPECIES_SNOVER", "SPECIES_SNOM", "SPECIES_MIENFOO", "SPECIES_HAWLUCHA", "SPECIES_ALOLAN_NINETALES"],
+      "note": ""
+    },
+    "encounters_mt_coronet_5f": {
+      "home": ["SPECIES_JANGMO_O"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_LARVITAR"],
+      "note": "Near the summit: Jangmo-o's home, the dragon of the mountain."
+    },
+    "encounters_mt_coronet_6f": {
+      "home": [],
+      "cameo": ["SPECIES_JANGMO_O", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_KLEFKI"],
+      "note": "The last floor before Spear Pillar."
+    },
     "encounters_sendoff_spring": {
       "home": ["SPECIES_DHELMISE"],
       "cameo": ["SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_ABSOL", "SPECIES_VULLABY"],
       "note": "The spring before Turnback Cave: Dhelmise's home."
     },
-    "encounters_turnback_cave_entrance": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": "Turnback Cave: the ghost cast, level rising pillar by pillar."},
-    "encounters_turnback_cave_pillar_1_room_1": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_1_room_2": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_1_room_3": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_1_room_4": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_turnback_cave_pillar_1_room_5": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_turnback_cave_pillar_1_room_6": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_1": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_2": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_3": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_4": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_5": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_turnback_cave_pillar_2_room_6": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_1": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_2": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_3": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_4": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_5": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_turnback_cave_pillar_3_room_6": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_turnback_cave_pillar_room": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_turnback_cave_giratina_room": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": "Giratina's room, its own static battle."},
+    "encounters_turnback_cave_entrance": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": "Turnback Cave: the ghost cast, level rising pillar by pillar."
+    },
+    "encounters_turnback_cave_pillar_1_room_1": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_1_room_2": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_1_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_1_room_4": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_1_room_5": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_1_room_6": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_1": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_2": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_4": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_5": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_2_room_6": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_1": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_2": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_4": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_5": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_3_room_6": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_turnback_cave_pillar_room": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_turnback_cave_giratina_room": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": "Giratina's room, its own static battle."
+    },
     "encounters_route_222": {
       "home": ["SPECIES_ELEKID"],
       "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_PACHIRISU", "SPECIES_JOLTIK", "SPECIES_PIKIPEK", "SPECIES_SHINX"],
@@ -416,22 +642,66 @@
       "cameo": ["SPECIES_ONIX", "SPECIES_RHYHORN", "SPECIES_GIBLE", "SPECIES_NACLI", "SPECIES_HAWLUCHA"],
       "note": "Victory Road: Larvitar's home on the first floor."
     },
-    "encounters_victory_road_2f": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_KLEFKI", "SPECIES_JANGMO_O", "SPECIES_LARVITAR", "SPECIES_GIBLE"], "note": ""},
-    "encounters_victory_road_b1f": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BELDUM", "SPECIES_GOOMY", "SPECIES_GIBLE"], "note": "The water floor: Goomy and Beldum in the dark."},
-    "encounters_victory_road_1f_room_1": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_GIBLE"], "note": "The post-game rooms."},
-    "encounters_victory_road_1f_room_2": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_FERROSEED", "SPECIES_GOOMY"], "note": ""},
-    "encounters_victory_road_1f_room_3": {"home": [], "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_JANGMO_O"], "note": ""},
+    "encounters_victory_road_2f": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_KLEFKI", "SPECIES_JANGMO_O", "SPECIES_LARVITAR", "SPECIES_GIBLE"],
+      "note": ""
+    },
+    "encounters_victory_road_b1f": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_BELDUM", "SPECIES_GOOMY", "SPECIES_GIBLE"],
+      "note": "The water floor: Goomy and Beldum in the dark."
+    },
+    "encounters_victory_road_1f_room_1": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_GIBLE"],
+      "note": "The post-game rooms."
+    },
+    "encounters_victory_road_1f_room_2": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_CARBINK", "SPECIES_FERROSEED", "SPECIES_GOOMY"],
+      "note": ""
+    },
+    "encounters_victory_road_1f_room_3": {
+      "home": [],
+      "cameo": ["SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GLIMMET", "SPECIES_LARVITAR", "SPECIES_JANGMO_O"],
+      "note": ""
+    },
     "encounters_route_224": {
       "home": [],
       "cameo": ["SPECIES_FLABEBE", "SPECIES_LURANTIS", "SPECIES_SWABLU", "SPECIES_EMOLGA", "SPECIES_SANDYGAST", "SPECIES_BOUNSWEET"],
       "note": "The beach past Victory Road: the flower cast fully evolved."
     },
-    "encounters_snowpoint_temple_1f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNOM"], "note": "The temple: vanilla's Golbat sanctuary, with the snow cast in the tail."},
-    "encounters_snowpoint_temple_b1f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNEASEL"], "note": ""},
-    "encounters_snowpoint_temple_b2f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES"], "note": ""},
-    "encounters_snowpoint_temple_b3f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNOM", "SPECIES_GALARIAN_MR_MIME"], "note": ""},
-    "encounters_snowpoint_temple_b4f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNEASEL", "SPECIES_GALARIAN_MR_MIME"], "note": ""},
-    "encounters_snowpoint_temple_b5f": {"home": [], "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNEASEL"], "note": "Regigigas's floor."},
+    "encounters_snowpoint_temple_1f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNOM"],
+      "note": "The temple: vanilla's Golbat sanctuary, with the snow cast in the tail."
+    },
+    "encounters_snowpoint_temple_b1f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNEASEL"],
+      "note": ""
+    },
+    "encounters_snowpoint_temple_b2f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES"],
+      "note": ""
+    },
+    "encounters_snowpoint_temple_b3f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNOM", "SPECIES_GALARIAN_MR_MIME"],
+      "note": ""
+    },
+    "encounters_snowpoint_temple_b4f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNEASEL", "SPECIES_GALARIAN_MR_MIME"],
+      "note": ""
+    },
+    "encounters_snowpoint_temple_b5f": {
+      "home": [],
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_SNEASEL"],
+      "note": "Regigigas's floor."
+    },
     "encounters_route_225": {
       "home": [],
       "cameo": ["SPECIES_MAKUHITA", "SPECIES_ROOKIDEE", "SPECIES_MIENFOO", "SPECIES_NACLI", "SPECIES_WOOLOO", "SPECIES_HAWLUCHA"],
@@ -477,74 +747,146 @@
       "cameo": ["SPECIES_TOGEPI", "SPECIES_PIKIPEK", "SPECIES_BOUNSWEET", "SPECIES_SMOLIV", "SPECIES_LURANTIS"],
       "note": "The resort's route: Galarian Rapidash's home."
     },
-    "encounters_unknown_533": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": "The twenty-five unknown files carry Turnback Cave's deep cast at level 45: its post-game rooms. Same cast, evolved."},
-    "encounters_unknown_534": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_unknown_535": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_536": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_537": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_538": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_539": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_540": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_541": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_unknown_542": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_unknown_543": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_544": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_545": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_546": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_547": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_548": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_549": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_unknown_550": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""},
-    "encounters_unknown_551": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_552": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"], "note": ""},
-    "encounters_unknown_553": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_554": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"], "note": ""},
-    "encounters_unknown_555": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_556": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"], "note": ""},
-    "encounters_unknown_557": {"home": [], "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"], "note": ""}
+    "encounters_unknown_533": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": "The twenty-five unknown files carry Turnback Cave's deep cast at level 45: its post-game rooms. Same cast, evolved."
+    },
+    "encounters_unknown_534": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_unknown_535": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_536": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_537": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_538": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_539": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_540": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_541": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_unknown_542": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_unknown_543": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_544": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_545": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_546": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_547": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_548": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_549": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_unknown_550": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    },
+    "encounters_unknown_551": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_552": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_SINISTEA"],
+      "note": ""
+    },
+    "encounters_unknown_553": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_554": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_GOTHITA"],
+      "note": ""
+    },
+    "encounters_unknown_555": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_556": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DHELMISE"],
+      "note": ""
+    },
+    "encounters_unknown_557": {
+      "home": [],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_BRONZOR", "SPECIES_DUSKULL"],
+      "note": ""
+    }
   },
   "pool": {
-    "_comment": [
-      "Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the",
-      "roaming Mesprit) already felt like a lot, and twenty new ones as statics is",
-      "not feasible. So the two lake caverns and the roamer slot each draw at random",
-      "from one pool: Uxie's cavern and Azelf's cavern become two static battles",
-      "drawn without replacement from `candidates`, and Mesprit's roamer becomes a",
-      "random roamer from the same list. A playthrough meets three of them before",
-      "the League, as vanilla did; which three is the draw. The scripting is",
-      "outside this track (decision 8). A candidate counts as sourced on paper;",
-      "R12 in the linter reads the tree and will report these until the scripts",
-      "exist. One list on purpose; split it into a static list and a roamer list",
-      "in this file if some should never roam."
-    ],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible. So the two lake caverns and the roamer slot each draw at random", "from one pool: Uxie's cavern and Azelf's cavern become two static battles", "drawn without replacement from `candidates`, and Mesprit's roamer becomes a", "random roamer from the same list. A playthrough meets three of them before", "the League, as vanilla did; which three is the draw. The scripting is", "outside this track (decision 8). A candidate counts as sourced on paper;", "R12 in the linter reads the tree and will report these until the scripts", "exist. One list on purpose; split it into a static list and a roamer list", "in this file if some should never roam."],
     "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
     "roamer": "Mesprit's roamer, released at Lake Verity",
-    "candidates": [
-      "SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT",
-      "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES",
-      "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE",
-      "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI",
-      "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE",
-      "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA",
-      "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"
-    ]
+    "candidates": ["SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT", "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES", "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE", "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI", "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE", "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA", "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"]
   },
   "honey": {
-    "_comment": [
-      "The honey trees, designed from Step 5 on rather than only de-leaked: 21",
-      "trees from Route 205 onward, three rarity tiers of six slots, today all",
-      "off-list bar Combee and Heracross. The rare tier (Munchlax's six slots in",
-      "vanilla) carries the three grass starters, reachable early and rare."
-    ],
+    "_comment": ["The honey trees, designed from Step 5 on rather than only de-leaked: 21", "trees from Route 205 onward, three rarity tiers of six slots, today all", "off-list bar Combee and Heracross. The rare tier (Munchlax's six slots in", "vanilla) carries the three grass starters, reachable early and rare."],
     "rare": ["SPECIES_ROWLET", "SPECIES_SNIVY", "SPECIES_SPRIGATITO"],
     "uncommon": ["SPECIES_COMBEE", "SPECIES_HERACROSS"],
     "common": ["SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN"]
   },
   "proposals": {
-    "_comment": [
-      "The two box legendaries, the only new statics, both post-League by Ian's",
-      "rule. Script work outside this track; counted as sourced on paper."
-    ],
+    "_comment": ["The two box legendaries, the only new statics, both post-League by Ian's", "rule. Script work outside this track; counted as sourced on paper."],
     "SPECIES_XERNEAS": "static, post-League, Sendoff Spring's shrine (the life tree by the spring)",
     "SPECIES_YVELTAL": "static, post-League, Route 224's shrine stone, the mirror of Xerneas"
   },
@@ -562,5 +904,6 @@
     "SPECIES_LOTAD": ["encounters_route_205_north", "encounters_great_marsh_5"],
     "SPECIES_SURSKIT": ["encounters_lake_verity", "encounters_route_205_north"],
     "SPECIES_DEWPIDER": ["encounters_route_213", "encounters_great_marsh_3"]
-  }
+  },
+  "corridor_splits": ["Roark", "Gardenia"]
 }

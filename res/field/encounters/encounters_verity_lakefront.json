@@ -1,72 +1,72 @@
 {
-    "land_rate": 10,
+    "land_rate": 30,
     "land_encounters": [
         {
+            "level": 2,
+            "species": "SPECIES_PIKIPEK"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_PIKIPEK"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_SENTRET"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
             "level": 5,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_SENTRET"
         },
         {
-            "level": 6,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_PHANPY"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_PHANPY"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 8,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 8,
-            "species": "SPECIES_NOSEPASS"
+            "level": 5,
+            "species": "SPECIES_VULPIX"
         }
     ],
     "swarms": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_DODUO",
+        "SPECIES_DODUO"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_BLIPBUG",
+        "SPECIES_WOOLOO"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_PURRLOIN",
+        "SPECIES_WOOLOO"
     ],
     "radar": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_F",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_NIDORAN_F"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
     ],
     "sapphire": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
     ],
     "emerald": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
     ],
     "firered": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_GROWLITHE",
+        "SPECIES_GROWLITHE"
     ],
     "leafgreen": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
     ],
     "surf_rate": 0,
     "surf_encounters": [
@@ -207,7 +207,7 @@
         }
     ],
     "map_category": {
-        "map_type": "dungeon",
-        "map_number": 1
+        "map_type": "field",
+        "map_number": 12
     }
 }

@@ -204,3 +204,45 @@ def describe(slots, rates=LAND_RATES):
     return [f"{sp.replace('SPECIES_', '')} {d['share']}% at "
             f"lv {'/'.join(str(l) for l in sorted(d['levels']))}"
             for sp, d in sorted(by.items(), key=lambda kv: -kv[1]["share"])]
+
+
+def water(kind, spec):
+    """[(species, level_min, level_max)] for a surf or rod table from its
+    sidecar spec: {"cast": [five species, slot order], "levels": [lo, hi]}
+    with one range for every slot, or "levels" as five [lo, hi] pairs. The
+    format fixes the slot rates (60/30/5/4/1 for surf and the Old Rod,
+    40/40/15/4/1 for the Good and Super Rods), so the cast order is the
+    layout: first listed is the 60% or first 40% slot, last is the 1%.
+    """
+    from . import analysis
+    if kind not in analysis.TABLE_KINDS or kind == "land":
+        raise LayoutError(f"{kind!r} is not a water kind")
+    rates = analysis.TABLE_KINDS[kind][2]
+    cast = spec.get("cast") if isinstance(spec, dict) else None
+    if not isinstance(cast, list) or len(cast) != len(rates):
+        raise LayoutError(f"cast must list {len(rates)} species, one per slot "
+                          f"({'/'.join(str(r) for r in rates)})")
+    if not all(isinstance(s, str) and s for s in cast):
+        raise LayoutError("cast entries must be species constants")
+    levels = spec.get("levels")
+    if (isinstance(levels, list) and len(levels) == 2
+            and all(isinstance(v, int) for v in levels)):
+        ranges = [tuple(levels)] * len(rates)
+    elif (isinstance(levels, list) and len(levels) == len(rates)
+          and all(isinstance(p, list) and len(p) == 2 and all(isinstance(v, int) for v in p)
+                  for p in levels)):
+        ranges = [tuple(p) for p in levels]
+    else:
+        raise LayoutError("levels must be [lo, hi] or one [lo, hi] per slot")
+    for lo, hi in ranges:
+        if not 1 <= lo <= hi <= 100:
+            raise LayoutError(f"level range {lo}-{hi} is not 1 <= lo <= hi <= 100")
+    return [(sp, lo, hi) for sp, (lo, hi) in zip(cast, ranges)]
+
+
+def describe_water(kind, rows):
+    """One line: each species with its slot rate and level range."""
+    from . import analysis
+    rates = analysis.TABLE_KINDS[kind][2]
+    return "; ".join(f"{sp.replace('SPECIES_', '')} {r}% lv {lo}-{hi}"
+                     for (sp, lo, hi), r in zip(rows, rates))

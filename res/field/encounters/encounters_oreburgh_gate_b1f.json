@@ -3,27 +3,7 @@
     "land_encounters": [
         {
             "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 7,
@@ -31,23 +11,43 @@
         },
         {
             "level": 7,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 8,
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
+            "level": 8,
             "species": "SPECIES_NACLI"
         },
         {
-            "level": 7,
-            "species": "SPECIES_NACLI"
+            "level": 8,
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 7,
-            "species": "SPECIES_NACLI"
+            "level": 8,
+            "species": "SPECIES_ONIX"
         },
         {
-            "level": 7,
-            "species": "SPECIES_NACLI"
+            "level": 9,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_GIBLE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PSYDUCK"
     ],
     "day": [
-        "SPECIES_ONIX",
-        "SPECIES_ONIX"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "night": [
-        "SPECIES_ONIX",
-        "SPECIES_ONIX"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "radar": [
         "SPECIES_GEODUDE",
@@ -125,29 +125,29 @@
     "old_rod_rate": 100,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
-            "species": "SPECIES_OMANYTE"
-        },
-        {
-            "level_max": 7,
-            "level_min": 3,
-            "species": "SPECIES_KABUTO"
+            "level_max": 10,
+            "level_min": 6,
+            "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_KABUTO"
+            "level_min": 6,
+            "species": "SPECIES_BARBOACH"
         },
         {
             "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_KABUTO"
+            "level_min": 6,
+            "species": "SPECIES_WOOPER"
         },
         {
-            "level_max": 15,
-            "level_min": 5,
-            "species": "SPECIES_KABUTO"
+            "level_max": 10,
+            "level_min": 6,
+            "species": "SPECIES_FEEBAS"
+        },
+        {
+            "level_max": 10,
+            "level_min": 6,
+            "species": "SPECIES_LUVDISC"
         }
     ],
     "good_rod_rate": 50,

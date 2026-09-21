@@ -3,18 +3,22 @@
     "land_encounters": [
         {
             "level": 8,
-            "species": "SPECIES_SEWADDLE"
+            "species": "SPECIES_SCORBUNNY"
         },
         {
             "level": 9,
             "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_SCORBUNNY"
         },
         {
             "level": 9,
             "species": "SPECIES_BOUNSWEET"
         },
         {
-            "level": 9,
+            "level": 10,
             "species": "SPECIES_BOUNSWEET"
         },
         {
@@ -23,31 +27,27 @@
         },
         {
             "level": 10,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 10,
             "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 10,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_BUDEW"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_BUDEW"
-        },
-        {
-            "level": 10,
             "species": "SPECIES_POOCHYENA"
         },
         {
-            "level": 11,
-            "species": "SPECIES_BUDEW"
+            "level": 10,
+            "species": "SPECIES_RIOLU"
         },
         {
             "level": 11,
             "species": "SPECIES_POOCHYENA"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_EEVEE"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_BOUNSWEET",
+        "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET"
     ],
     "night": [
@@ -125,29 +125,29 @@
     "old_rod_rate": 100,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
-            "species": "SPECIES_AZURILL"
-        },
-        {
-            "level_max": 7,
-            "level_min": 3,
+            "level_max": 12,
+            "level_min": 8,
             "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_PSYDUCK"
+            "level_max": 12,
+            "level_min": 8,
+            "species": "SPECIES_MAGIKARP"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_PSYDUCK"
+            "level_max": 12,
+            "level_min": 8,
+            "species": "SPECIES_SURSKIT"
         },
         {
-            "level_max": 15,
-            "level_min": 5,
+            "level_max": 12,
+            "level_min": 8,
             "species": "SPECIES_LOTAD"
+        },
+        {
+            "level_max": 12,
+            "level_min": 8,
+            "species": "SPECIES_WOOPER"
         }
     ],
     "good_rod_rate": 50,

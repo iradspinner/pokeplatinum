@@ -102,6 +102,7 @@ def _build_lines(root):
     known = set(species_universe(root))
     parent = {s: s for s in known}
     evolves_into = {s: set() for s in known}
+    evo_levels = {}
 
     def find(x):
         while parent[x] != x:
@@ -132,13 +133,52 @@ def _build_lines(root):
             # four of Eevee's seven.
             if not isinstance(evo, list):
                 continue
+            # The level for a level-up method (EVO_LEVEL and its variants,
+            # whose first int is the level); None for a stone, a trade or
+            # friendship, which no level cap gates.
+            method = evo[0] if evo and isinstance(evo[0], str) else ""
+            ints = [x for x in evo if isinstance(x, int) and not isinstance(x, bool)]
+            level = ints[0] if method.startswith("EVO_LEVEL") and ints else None
             for field in evo:
                 if (isinstance(field, str) and field.startswith("SPECIES_")
                         and field in known):
                     union(species, field)
                     evolves_into[species].add(field)
+                    evo_levels.setdefault(species, []).append((field, level))
     _CACHE["evolves_into"] = evolves_into
+    _CACHE["evo_levels"] = evo_levels
     return {s: find(s) for s in known}
+
+
+def final_by_level(root, species):
+    """The lowest level at which `species` stands fully evolved by level-up
+    alone: 0 for a final stage, the last level-up level along the cheapest
+    all-level-up path otherwise, or None when every path needs a stone, a
+    trade or friendship. Ian's cap rule (2026-09-21): a line whose final
+    stage comes by level-up under a split's cap belongs in or before that
+    split."""
+    lines(root)
+    levels = _CACHE.get("evo_levels") or {}
+
+    def walk(s, seen):
+        # A mega or regional form is listed as an "evolution" of its base
+        # (SPECIES_GYARADOS -> SPECIES_GYARADOS_M); it is not a stage.
+        targets = [(t, lv) for t, lv in (levels.get(s) or [])
+                   if not t.startswith(s + "_")]
+        if not targets:
+            return 0
+        best = None
+        for t, lv in targets:
+            if lv is None or t in seen:
+                continue
+            rest = walk(t, seen | {t})
+            if rest is None:
+                continue
+            cand = max(lv, rest)
+            if best is None or cand < best:
+                best = cand
+        return best
+    return walk(species, {species})
 
 
 def lines(root):

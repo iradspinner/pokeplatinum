@@ -2,52 +2,52 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 13,
+            "species": "SPECIES_BRONZOR"
+        },
+        {
             "level": 14,
-            "species": "SPECIES_CHIMECHO"
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 15,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 14,
-            "species": "SPECIES_ANORITH"
+            "level": 15,
+            "species": "SPECIES_CARBINK"
         },
         {
-            "level": 13,
-            "species": "SPECIES_MEDITITE"
+            "level": 15,
+            "species": "SPECIES_NACLI"
         },
         {
-            "level": 16,
-            "species": "SPECIES_SPOINK"
+            "level": 15,
+            "species": "SPECIES_CARBINK"
         },
         {
-            "level": 16,
-            "species": "SPECIES_VOLTORB"
-        },
-        {
-            "level": 13,
-            "species": "SPECIES_LILEEP"
-        },
-        {
-            "level": 14,
+            "level": 15,
             "species": "SPECIES_NOSEPASS"
         },
         {
             "level": 15,
-            "species": "SPECIES_MAWILE"
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 15,
-            "species": "SPECIES_ABRA"
+            "level": 16,
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 15,
-            "species": "SPECIES_CLEFAIRY"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_CLEFFA"
+            "level": 16,
+            "species": "SPECIES_NOSEPASS"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_ANORITH",
-        "SPECIES_MEDITITE"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "night": [
-        "SPECIES_KABUTO",
-        "SPECIES_MEDITITE"
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
     ],
     "radar": [
         "SPECIES_MACHOP",

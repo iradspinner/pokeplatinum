@@ -58,6 +58,10 @@ EARLY_LINES = {
     "SPECIES_PIKIPEK", "SPECIES_GRUBBIN", "SPECIES_BOUNSWEET", "SPECIES_ROOKIDEE",
     "SPECIES_BLIPBUG", "SPECIES_WOOLOO", "SPECIES_PAWMI", "SPECIES_SMOLIV",
     "SPECIES_NACLI",
+    # Ian's cave additions (2026-09-21): the early caves had three lines
+    # between them. Makuhita was already listed; the other three were added
+    # to the pick-list with their evolutions.
+    "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_PHANPY", "SPECIES_MAKUHITA",
 }
 FOSSIL = set(n for lo, hi in ((138, 142), (345, 348), (408, 411), (564, 567),
                               (696, 699), (880, 883))

@@ -6,23 +6,11 @@
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
+            "level": 6,
+            "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 5,
+            "level": 6,
             "species": "SPECIES_ZUBAT"
         },
         {
@@ -30,24 +18,36 @@
             "species": "SPECIES_NACLI"
         },
         {
-            "level": 6,
+            "level": 7,
             "species": "SPECIES_NACLI"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "level": 7,
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "level": 7,
+            "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "level": 7,
+            "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ONIX"
+            "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_MAKUHITA"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PSYDUCK"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
     ],
     "radar": [
         "SPECIES_GEODUDE",

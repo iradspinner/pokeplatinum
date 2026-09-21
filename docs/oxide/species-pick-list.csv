@@ -117,8 +117,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 117,Masquerain,native,284,platinum,,yes,Bug,Water,,filler
 118,Shroomish,native,285,platinum,,yes,Grass,Grass,,starter-adjacent
 119,Breloom,native,286,platinum,,yes,Grass,Fighting,,starter-adjacent
-120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,,filler
-121,Hariyama,native,297,platinum,,yes,Fighting,Fighting,,filler
+120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,,starter-adjacent
+121,Hariyama,native,297,platinum,,yes,Fighting,Fighting,,starter-adjacent
 122,Skitty,native,300,platinum,,yes,Normal,Normal,,filler
 123,Delcatty,native,301,platinum,,yes,Normal,Normal,,filler
 124,Roselia,native,315,platinum,,yes,Grass,Poison,,starter-adjacent
@@ -359,3 +359,10 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 362,Ceruledge,new,937,species,987,yes,Fire,Ghost,Charcadet + Dusk Stone (method 7),filler
 363,Glimmet,new,969,species,1019,yes,Rock,Poison,,filler
 364,Glimmora,new,970,species,1020,yes,Rock,Poison,,filler
+365,Nosepass,native,299,platinum,,yes,Rock,Rock,,starter-adjacent
+366,Probopass,native,476,platinum,,yes,Rock,Steel,,starter-adjacent
+367,Geodude,native,74,platinum,,yes,Rock,Ground,,starter-adjacent
+368,Graveler,native,75,platinum,,yes,Rock,Ground,,starter-adjacent
+369,Golem,native,76,platinum,,yes,Rock,Ground,,starter-adjacent
+370,Phanpy,native,231,platinum,,yes,Ground,Ground,,starter-adjacent
+371,Donphan,native,232,platinum,,yes,Ground,Ground,,starter-adjacent

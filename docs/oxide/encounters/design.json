@@ -12,24 +12,22 @@
     "r8_spread_min": 2.2,
     "r9_signatures_per_table_min": 0.35,
     "r10_budget_tolerance": 0.05,
-    "r11b_early_hhi_min": 0.35,
-    "r11b_late_hhi_max": 0.25,
     "r13_share_span_min": 4.0,
     "r13_min_tables": 4,
     "r14_max_shared_land_rate": 0.5,
     "bands": {
       "early": {
         "species": [
-          3,
-          5
+          4,
+          7
         ],
         "top": [
-          0.4,
-          0.5
+          0.25,
+          0.35
         ],
         "hhi": [
-          0.35,
-          0.5
+          0.18,
+          0.3
         ]
       },
       "mid": {
@@ -38,12 +36,12 @@
           7
         ],
         "top": [
-          0.3,
-          0.4
-        ],
-        "hhi": [
           0.25,
           0.35
+        ],
+        "hhi": [
+          0.18,
+          0.3
         ]
       },
       "late": {
@@ -56,7 +54,7 @@
           0.35
         ],
         "hhi": [
-          0.18,
+          0.15,
           0.28
         ]
       }
@@ -65,7 +63,8 @@
       "starter-adjacent": 5.0,
       "preferred": 20.0,
       "filler": 100.0
-    }
+    },
+    "r11_top_share_max": 0.35
   },
   "budget": {
     "concentrated": 0.18,
@@ -80,30 +79,34 @@
       "intent": "",
       "locked": [],
       "base_level": 32,
-      "order": 97
+      "order": 98,
+      "split": "Candice"
     },
     "encounters_eterna_forest": {
-      "archetype": "A1",
+      "archetype": "A12",
       "band": "early",
-      "intent": "The forest: Shroomish under the trees, Buneary as vanilla, Sewaddle and Blipbug in the tail, Seedot out at night.",
+      "intent": "The forest: Shroomish and Buneary at home, Sewaddle and Seedot with them, Blipbug small, Combee a 4% and Treecko the 1% under the trees.",
       "locked": [],
       "base_level": 10,
-      "order": 18,
+      "order": 19,
       "cast": [
         "SPECIES_SHROOMISH",
         "SPECIES_BUNEARY",
         "SPECIES_SEWADDLE",
         "SPECIES_SEEDOT",
-        "SPECIES_BLIPBUG"
+        "SPECIES_BLIPBUG",
+        "SPECIES_COMBEE",
+        "SPECIES_TREECKO"
       ],
       "day": [
-        "SPECIES_BUNEARY",
-        "SPECIES_BUNEARY"
+        "SPECIES_SEWADDLE",
+        "SPECIES_SEWADDLE"
       ],
       "night": [
         "SPECIES_SEEDOT",
-        "SPECIES_BUNEARY"
-      ]
+        "SPECIES_SEWADDLE"
+      ],
+      "split": "Gardenia"
     },
     "encounters_fuego_ironworks_outside": {
       "archetype": null,
@@ -111,7 +114,8 @@
       "intent": "",
       "locked": [],
       "base_level": 28,
-      "order": 81
+      "order": 82,
+      "split": "Byron"
     },
     "encounters_great_marsh_1": {
       "archetype": null,
@@ -119,7 +123,8 @@
       "intent": "",
       "locked": [],
       "base_level": 28,
-      "order": 69
+      "order": 70,
+      "split": "Wake"
     },
     "encounters_great_marsh_2": {
       "archetype": null,
@@ -127,7 +132,8 @@
       "intent": "",
       "locked": [],
       "base_level": 28,
-      "order": 70
+      "order": 71,
+      "split": "Wake"
     },
     "encounters_great_marsh_3": {
       "archetype": null,
@@ -135,7 +141,8 @@
       "intent": "",
       "locked": [],
       "base_level": 27,
-      "order": 71
+      "order": 72,
+      "split": "Wake"
     },
     "encounters_great_marsh_4": {
       "archetype": null,
@@ -143,7 +150,8 @@
       "intent": "",
       "locked": [],
       "base_level": 27,
-      "order": 72
+      "order": 73,
+      "split": "Wake"
     },
     "encounters_great_marsh_5": {
       "archetype": null,
@@ -151,7 +159,8 @@
       "intent": "",
       "locked": [],
       "base_level": 26,
-      "order": 73
+      "order": 74,
+      "split": "Wake"
     },
     "encounters_great_marsh_6": {
       "archetype": null,
@@ -159,7 +168,8 @@
       "intent": "",
       "locked": [],
       "base_level": 26,
-      "order": 74
+      "order": 75,
+      "split": "Wake"
     },
     "encounters_iron_island_1f": {
       "archetype": null,
@@ -167,7 +177,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 85
+      "order": 86,
+      "split": "Byron"
     },
     "encounters_iron_island_b1f_left_room": {
       "archetype": null,
@@ -175,7 +186,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 86
+      "order": 87,
+      "split": "Byron"
     },
     "encounters_iron_island_b1f_right_room": {
       "archetype": null,
@@ -183,7 +195,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 87
+      "order": 88,
+      "split": "Byron"
     },
     "encounters_iron_island_b2f_left_room": {
       "archetype": null,
@@ -191,7 +204,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 89
+      "order": 90,
+      "split": "Byron"
     },
     "encounters_iron_island_b2f_right_room": {
       "archetype": null,
@@ -199,7 +213,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 88
+      "order": 89,
+      "split": "Byron"
     },
     "encounters_iron_island_b3f": {
       "archetype": null,
@@ -207,7 +222,8 @@
       "intent": "",
       "locked": [],
       "base_level": 30,
-      "order": 90
+      "order": 91,
+      "split": "Byron"
     },
     "encounters_lake_acuity": {
       "archetype": null,
@@ -215,7 +231,8 @@
       "intent": "",
       "locked": [],
       "base_level": 38,
-      "order": 98
+      "order": 99,
+      "split": "Candice"
     },
     "encounters_lake_valor": {
       "archetype": null,
@@ -223,393 +240,24 @@
       "intent": "",
       "locked": [],
       "base_level": 38,
-      "order": 94
+      "order": 95,
+      "split": "Byron"
     },
     "encounters_lake_verity": {
-      "archetype": "A9",
+      "archetype": "A12",
       "band": "early",
-      "intent": "The lake shore is Sentret's home; the Route 201 pair repeat, and Surskit skates out at night.",
-      "locked": [],
-      "base_level": 2,
-      "order": 3,
-      "cast": [
-        "SPECIES_SENTRET",
-        "SPECIES_WOOLOO",
-        "SPECIES_PIKIPEK",
-        "SPECIES_SURSKIT"
-      ],
-      "day": [
-        "SPECIES_SENTRET",
-        "SPECIES_WOOLOO"
-      ],
-      "night": [
-        "SPECIES_SURSKIT",
-        "SPECIES_WOOLOO"
-      ]
-    },
-    "encounters_lake_verity_low_water": {
-      "archetype": "A9",
-      "band": "early",
-      "intent": "The same shore after the lake drains, same cast, so nothing new appears just because the water left.",
+      "intent": "The lake shore, no one over 30%: Surskit at home by the water, Sentret and Wooloo with it, Buneary a 4% early rabbit, Mudkip the 1% lake tail.",
       "locked": [],
       "base_level": 2,
       "order": 4,
       "cast": [
-        "SPECIES_SENTRET",
-        "SPECIES_WOOLOO",
-        "SPECIES_PIKIPEK",
-        "SPECIES_SURSKIT"
-      ],
-      "day": [
-        "SPECIES_SENTRET",
-        "SPECIES_WOOLOO"
-      ],
-      "night": [
         "SPECIES_SURSKIT",
-        "SPECIES_WOOLOO"
-      ]
-    },
-    "encounters_maniac_tunnel": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 21,
-      "order": 63
-    },
-    "encounters_mt_coronet_1f_north_room_1": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 13,
-      "order": 30
-    },
-    "encounters_mt_coronet_1f_north_room_2": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 32,
-      "order": 100
-    },
-    "encounters_mt_coronet_1f_south": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 17,
-      "order": 35
-    },
-    "encounters_mt_coronet_1f_tunnel_room": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 99
-    },
-    "encounters_mt_coronet_2f": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 102
-    },
-    "encounters_mt_coronet_3f": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 103
-    },
-    "encounters_mt_coronet_4f_room_3": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 106
-    },
-    "encounters_mt_coronet_4f_rooms_1_and_2": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 105
-    },
-    "encounters_mt_coronet_5f": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 108
-    },
-    "encounters_mt_coronet_6f": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 109
-    },
-    "encounters_mt_coronet_b1f": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 32,
-      "order": 101
-    },
-    "encounters_mt_coronet_outside_north": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 107
-    },
-    "encounters_mt_coronet_outside_south": {
-      "archetype": null,
-      "band": "late",
-      "intent": "",
-      "locked": [],
-      "base_level": 36,
-      "order": 104
-    },
-    "encounters_old_chateau": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 19
-    },
-    "encounters_old_chateau_back_east_room": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 27
-    },
-    "encounters_old_chateau_back_middle_east_room": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 26
-    },
-    "encounters_old_chateau_back_middle_room": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 25
-    },
-    "encounters_old_chateau_back_middle_west_room": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 24
-    },
-    "encounters_old_chateau_back_west_room": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 23
-    },
-    "encounters_old_chateau_corridor": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 22
-    },
-    "encounters_old_chateau_dining_area": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 20
-    },
-    "encounters_old_chateau_side_rooms": {
-      "archetype": null,
-      "band": "mid",
-      "intent": "",
-      "locked": [],
-      "base_level": 14,
-      "order": 21
-    },
-    "encounters_oreburgh_gate_1f": {
-      "archetype": "A3",
-      "band": "early",
-      "intent": "The first cave is Zubat's; the higher rung is Nacli and Onix at even odds, the first place a repel pays.",
-      "locked": [],
-      "base_level": 5,
-      "order": 7,
-      "cast": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NACLI",
-        "SPECIES_ONIX"
-      ],
-      "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
-      ],
-      "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
-      ],
-      "ladder": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "encounters_oreburgh_gate_b1f": {
-      "archetype": "A3",
-      "band": "early",
-      "intent": "The Rock Smash floor below is Onix's, wall to wall, with Zubat and Nacli only on the higher rung.",
-      "locked": [],
-      "base_level": 6,
-      "order": 8,
-      "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_ZUBAT",
-        "SPECIES_NACLI"
-      ],
-      "day": [
-        "SPECIES_ONIX",
-        "SPECIES_ONIX"
-      ],
-      "night": [
-        "SPECIES_ONIX",
-        "SPECIES_ONIX"
-      ],
-      "ladder": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "encounters_oreburgh_mine_b1f": {
-      "archetype": "A4",
-      "band": "early",
-      "intent": "The mine's first floor is a Nacli against Zubat coin flip, the lead level deciding the higher rung.",
-      "locked": [],
-      "base_level": 5,
-      "order": 10,
-      "cast": [
-        "SPECIES_NACLI",
-        "SPECIES_ZUBAT"
-      ],
-      "day": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
-      ],
-      "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
-      ]
-    },
-    "encounters_oreburgh_mine_b2f": {
-      "archetype": "A3",
-      "band": "early",
-      "intent": "Deeper, still Nacli's, but the higher rung now holds Onix beside Zubat.",
-      "locked": [],
-      "base_level": 5,
-      "order": 11,
-      "cast": [
-        "SPECIES_NACLI",
-        "SPECIES_ONIX",
-        "SPECIES_ZUBAT"
-      ],
-      "day": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
-      ],
-      "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
-      ],
-      "ladder": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "encounters_ravaged_path": {
-      "archetype": "A4",
-      "band": "early",
-      "intent": "A duo as in vanilla: Zubat against Nacli, the higher rung Nacli's, so a repel on the lead level picks the salt.",
-      "locked": [],
-      "base_level": 3,
-      "order": 13,
-      "cast": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NACLI"
-      ],
-      "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
-      ],
-      "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
-      ]
-    },
-    "encounters_route_201": {
-      "archetype": "A9",
-      "band": "early",
-      "intent": "The first route: Wooloo is the face, Pikipek the bird, and Blipbug takes the bird's slot after dark.",
-      "locked": [],
-      "base_level": 2,
-      "order": 2,
-      "cast": [
+        "SPECIES_SENTRET",
         "SPECIES_WOOLOO",
         "SPECIES_PIKIPEK",
-        "SPECIES_SENTRET",
-        "SPECIES_BLIPBUG"
+        "SPECIES_BLIPBUG",
+        "SPECIES_BUNEARY",
+        "SPECIES_MUDKIP"
       ],
       "day": [
         "SPECIES_WOOLOO",
@@ -618,15 +266,462 @@
       "night": [
         "SPECIES_WOOLOO",
         "SPECIES_BLIPBUG"
-      ]
+      ],
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_BARBOACH",
+          "SPECIES_LUVDISC",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          3,
+          7
+        ]
+      }
     },
-    "encounters_route_202": {
-      "archetype": "A1",
+    "encounters_lake_verity_low_water": {
+      "archetype": "A12",
       "band": "early",
-      "intent": "Shinx's route as in vanilla, Blipbug as the early bug, and Purrloin turning from a 5% extra into a night regular.",
+      "intent": "The same shore after the lake drains, the same cast: one location name, one capture.",
       "locked": [],
       "base_level": 2,
       "order": 5,
+      "cast": [
+        "SPECIES_SURSKIT",
+        "SPECIES_SENTRET",
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
+        "SPECIES_BLIPBUG",
+        "SPECIES_BUNEARY",
+        "SPECIES_MUDKIP"
+      ],
+      "day": [
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK"
+      ],
+      "night": [
+        "SPECIES_WOOLOO",
+        "SPECIES_BLIPBUG"
+      ],
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_BARBOACH",
+          "SPECIES_LUVDISC",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          3,
+          7
+        ]
+      }
+    },
+    "encounters_maniac_tunnel": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 21,
+      "order": 64,
+      "split": "Wake"
+    },
+    "encounters_mt_coronet_1f_north_room_1": {
+      "archetype": "A11",
+      "band": "mid",
+      "intent": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock.",
+      "locked": [],
+      "base_level": 13,
+      "order": 31,
+      "split": "Gardenia",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ]
+    },
+    "encounters_mt_coronet_1f_north_room_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32,
+      "order": 101,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_1f_south": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 17,
+      "order": 36,
+      "split": "Fantina"
+    },
+    "encounters_mt_coronet_1f_tunnel_room": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 100,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_2f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 103,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_3f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 104,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_4f_room_3": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 107,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_4f_rooms_1_and_2": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 106,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_5f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 109,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_6f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 110,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_b1f": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 32,
+      "order": 102,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_outside_north": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 108,
+      "split": "Volkner"
+    },
+    "encounters_mt_coronet_outside_south": {
+      "archetype": null,
+      "band": "late",
+      "intent": "",
+      "locked": [],
+      "base_level": 36,
+      "order": 105,
+      "split": "Volkner"
+    },
+    "encounters_old_chateau": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 20,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_back_east_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 28,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_back_middle_east_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 27,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_back_middle_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 26,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_back_middle_west_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 25,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_back_west_room": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 24,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_corridor": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 23,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_dining_area": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 21,
+      "split": "Fantina"
+    },
+    "encounters_old_chateau_side_rooms": {
+      "archetype": null,
+      "band": "mid",
+      "intent": "",
+      "locked": [],
+      "base_level": 14,
+      "order": 22,
+      "split": "Fantina"
+    },
+    "encounters_oreburgh_gate_1f": {
+      "archetype": "A11",
+      "band": "early",
+      "intent": "The first cave, five lines deep now: Zubat, Geodude, Nacli, Nosepass and Makuhita, none over 30.",
+      "locked": [],
+      "base_level": 5,
+      "order": 8,
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE",
+        "SPECIES_NACLI",
+        "SPECIES_NOSEPASS",
+        "SPECIES_MAKUHITA"
+      ],
+      "day": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "night": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "split": "Roark"
+    },
+    "encounters_oreburgh_gate_b1f": {
+      "archetype": "A12",
+      "band": "early",
+      "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Onix a 4% and Gible a 1% tease of Wayward Cave.",
+      "locked": [],
+      "base_level": 6,
+      "order": 9,
+      "cast": [
+        "SPECIES_GEODUDE",
+        "SPECIES_ZUBAT",
+        "SPECIES_MAKUHITA",
+        "SPECIES_NACLI",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_GIBLE"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_FEEBAS",
+          "SPECIES_LUVDISC"
+        ],
+        "levels": [
+          6,
+          10
+        ]
+      }
+    },
+    "encounters_oreburgh_mine_b1f": {
+      "archetype": "A6",
+      "band": "early",
+      "intent": "The mine, Makuhita's home: Nacli and Zubat co-equal, Geodude behind, Phanpy in the tail.",
+      "locked": [],
+      "base_level": 5,
+      "order": 11,
+      "cast": [
+        "SPECIES_NACLI",
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_GEODUDE",
+        "SPECIES_GEODUDE"
+      ],
+      "split": "Roark"
+    },
+    "encounters_oreburgh_mine_b2f": {
+      "archetype": "A11",
+      "band": "early",
+      "intent": "Deeper, and different: Onix and Phanpy at home, Nosepass in the rock.",
+      "locked": [],
+      "base_level": 5,
+      "order": 12,
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_ZUBAT",
+        "SPECIES_PHANPY",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+      ],
+      "split": "Roark"
+    },
+    "encounters_ravaged_path": {
+      "archetype": "A11",
+      "band": "early",
+      "intent": "The Rock Smash cave, five lines instead of a duo: Zubat, Geodude, Nacli, Makuhita, Phanpy.",
+      "locked": [],
+      "base_level": 3,
+      "order": 14,
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE",
+        "SPECIES_NACLI",
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "day": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "night": [
+        "SPECIES_NACLI",
+        "SPECIES_NACLI"
+      ],
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT"
+        ],
+        "levels": [
+          5,
+          9
+        ]
+      }
+    },
+    "encounters_route_201": {
+      "archetype": "A11",
+      "band": "early",
+      "intent": "The first route, a capture area once the starter has its own met location (Ian's preference; backlog for the script track): Wooloo and Sentret at home, Pikipek the bird, Blipbug by night, Purrloin small.",
+      "locked": [],
+      "base_level": 2,
+      "order": 2,
+      "cast": [
+        "SPECIES_WOOLOO",
+        "SPECIES_SENTRET",
+        "SPECIES_PIKIPEK",
+        "SPECIES_BLIPBUG",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_PIKIPEK",
+        "SPECIES_PIKIPEK"
+      ],
+      "night": [
+        "SPECIES_BLIPBUG",
+        "SPECIES_PIKIPEK"
+      ],
+      "split": "Roark"
+    },
+    "encounters_route_202": {
+      "archetype": "A11",
+      "band": "early",
+      "intent": "Shinx's route as in vanilla, at 30 rather than 40; Blipbug the early bug, Purrloin a regular by night.",
+      "locked": [],
+      "base_level": 2,
+      "order": 6,
       "cast": [
         "SPECIES_SHINX",
         "SPECIES_BLIPBUG",
@@ -641,21 +736,24 @@
       "night": [
         "SPECIES_PURRLOIN",
         "SPECIES_BLIPBUG"
-      ]
+      ],
+      "split": "Roark"
     },
     "encounters_route_203": {
-      "archetype": "A1",
+      "archetype": "A12",
       "band": "early",
-      "intent": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin prowls at night.",
+      "intent": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin at home, Makuhita a 4% preview of the caves, Torchic the 1%.",
       "locked": [],
       "base_level": 4,
-      "order": 6,
+      "order": 7,
       "cast": [
         "SPECIES_ROOKIDEE",
         "SPECIES_NIDORAN_M",
         "SPECIES_NIDORAN_F",
         "SPECIES_PURRLOIN",
-        "SPECIES_SHINX"
+        "SPECIES_SHINX",
+        "SPECIES_MAKUHITA",
+        "SPECIES_TORCHIC"
       ],
       "day": [
         "SPECIES_NIDORAN_M",
@@ -664,38 +762,68 @@
       "night": [
         "SPECIES_PURRLOIN",
         "SPECIES_NIDORAN_F"
-      ]
+      ],
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_FEEBAS"
+        ],
+        "levels": [
+          4,
+          8
+        ]
+      }
     },
     "encounters_route_204_north": {
-      "archetype": "A1",
+      "archetype": "A12",
       "band": "early",
-      "intent": "North of the cave the grass gets greener: Sewaddle and Bounsweet at home, Poochyena stepping up at night.",
+      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it is the better half. Scorbunny at home (moved from Route 206), Sewaddle and Bounsweet with it, Riolu a 4% and Eevee a 1% worth waiting for.",
       "locked": [],
       "base_level": 8,
-      "order": 14,
+      "order": 15,
       "cast": [
+        "SPECIES_SCORBUNNY",
         "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET",
         "SPECIES_FLETCHLING",
-        "SPECIES_BUDEW",
-        "SPECIES_POOCHYENA"
+        "SPECIES_POOCHYENA",
+        "SPECIES_RIOLU",
+        "SPECIES_EEVEE"
       ],
       "day": [
-        "SPECIES_BOUNSWEET",
+        "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET"
       ],
       "night": [
         "SPECIES_POOCHYENA",
         "SPECIES_BOUNSWEET"
-      ]
+      ],
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
+          "SPECIES_LOTAD",
+          "SPECIES_WOOPER"
+        ],
+        "levels": [
+          8,
+          12
+        ]
+      }
     },
     "encounters_route_204_south": {
-      "archetype": "A1",
+      "archetype": "A11",
       "band": "early",
-      "intent": "Budew's route with Grubbin as the first real bug and Fletchling the third bird; Sentret doubles after dark.",
+      "intent": "Budew's route with Grubbin and Fletchling at home; the plain half of Route 204, so the north half is the one to wait for.",
       "locked": [],
       "base_level": 3,
-      "order": 12,
+      "order": 13,
       "cast": [
         "SPECIES_BUDEW",
         "SPECIES_GRUBBIN",
@@ -710,38 +838,68 @@
       "night": [
         "SPECIES_SENTRET",
         "SPECIES_GRUBBIN"
-      ]
+      ],
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
+          "SPECIES_LOTAD",
+          "SPECIES_WOOPER"
+        ],
+        "levels": [
+          5,
+          9
+        ]
+      }
     },
     "encounters_route_205_north": {
-      "archetype": "A1",
+      "archetype": "A12",
       "band": "mid",
-      "intent": "The damp side before the forest: Lotad's home, Surskit by the water at night, Shroomish a preview of the forest.",
+      "intent": "The damp side before the forest, the better half of Route 205: Lotad at home, Surskit by night, Wooper (fully evolved by 20) a 4% and Dewpider the 1%.",
       "locked": [],
       "base_level": 12,
-      "order": 17,
+      "order": 18,
       "cast": [
         "SPECIES_LOTAD",
         "SPECIES_BOUNSWEET",
         "SPECIES_SEWADDLE",
         "SPECIES_SURSKIT",
-        "SPECIES_SHROOMISH"
+        "SPECIES_SHROOMISH",
+        "SPECIES_WOOPER",
+        "SPECIES_DEWPIDER"
       ],
       "day": [
-        "SPECIES_BOUNSWEET",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_SEWADDLE",
+        "SPECIES_SEWADDLE"
       ],
       "night": [
         "SPECIES_SURSKIT",
-        "SPECIES_BOUNSWEET"
-      ]
+        "SPECIES_SEWADDLE"
+      ],
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_DEWPIDER"
+        ],
+        "levels": [
+          10,
+          14
+        ]
+      }
     },
     "encounters_route_205_south": {
-      "archetype": "A1",
+      "archetype": "A11",
       "band": "early",
-      "intent": "Floaroma's meadow: Pachirisu at its vanilla spot with Smoliv and Minccino, Skitty a 5% extra that triples at night.",
+      "intent": "Floaroma's meadow: Pachirisu, Smoliv and Minccino at home, Skitty a regular at 10.",
       "locked": [],
       "base_level": 9,
-      "order": 15,
+      "order": 16,
       "cast": [
         "SPECIES_PACHIRISU",
         "SPECIES_SMOLIV",
@@ -756,7 +914,21 @@
       "night": [
         "SPECIES_SMOLIV",
         "SPECIES_SKITTY"
-      ]
+      ],
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_DEWPIDER"
+        ],
+        "levels": [
+          8,
+          12
+        ]
+      }
     },
     "encounters_route_206": {
       "archetype": null,
@@ -764,20 +936,24 @@
       "intent": "",
       "locked": [],
       "base_level": 16,
-      "order": 31
+      "order": 32,
+      "split": "Fantina"
     },
     "encounters_route_207": {
-      "archetype": "A9",
+      "archetype": "A12",
       "band": "early",
-      "intent": "The rocky road above Oreburgh: Ponyta by day, Vulpix taking half the head at night, Nacli and Rookidee behind.",
+      "intent": "The rocky road above Oreburgh: Ponyta and Vulpix at home, Vulpix taking the head at night, Houndour a 4% (fully evolved by 24) and Charmander the 1% fire tail.",
       "locked": [],
       "base_level": 5,
-      "order": 9,
+      "order": 10,
       "cast": [
         "SPECIES_PONYTA",
         "SPECIES_VULPIX",
+        "SPECIES_ROOKIDEE",
         "SPECIES_NACLI",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_GEODUDE",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_CHARMANDER"
       ],
       "day": [
         "SPECIES_PONYTA",
@@ -786,7 +962,8 @@
       "night": [
         "SPECIES_VULPIX",
         "SPECIES_VULPIX"
-      ]
+      ],
+      "split": "Roark"
     },
     "encounters_route_208": {
       "archetype": null,
@@ -794,7 +971,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 34
+      "order": 35,
+      "split": "Fantina"
     },
     "encounters_route_209": {
       "archetype": null,
@@ -802,7 +980,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 36
+      "order": 37,
+      "split": "Maylene"
     },
     "encounters_route_209_lost_tower_1f": {
       "archetype": null,
@@ -810,7 +989,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 37
+      "order": 38,
+      "split": "Maylene"
     },
     "encounters_route_209_lost_tower_2f": {
       "archetype": null,
@@ -818,7 +998,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 38
+      "order": 39,
+      "split": "Maylene"
     },
     "encounters_route_209_lost_tower_3f": {
       "archetype": null,
@@ -826,7 +1007,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 39
+      "order": 40,
+      "split": "Maylene"
     },
     "encounters_route_209_lost_tower_4f": {
       "archetype": null,
@@ -834,7 +1016,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 40
+      "order": 41,
+      "split": "Maylene"
     },
     "encounters_route_209_lost_tower_5f": {
       "archetype": null,
@@ -842,7 +1025,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 41
+      "order": 42,
+      "split": "Maylene"
     },
     "encounters_route_210_north": {
       "archetype": null,
@@ -850,7 +1034,8 @@
       "intent": "",
       "locked": [],
       "base_level": 27,
-      "order": 78
+      "order": 79,
+      "split": "Byron"
     },
     "encounters_route_210_south": {
       "archetype": null,
@@ -858,7 +1043,8 @@
       "intent": "",
       "locked": [],
       "base_level": 18,
-      "order": 60
+      "order": 61,
+      "split": "Maylene"
     },
     "encounters_route_211_east": {
       "archetype": null,
@@ -866,15 +1052,34 @@
       "intent": "",
       "locked": [],
       "base_level": 27,
-      "order": 79
+      "order": 80,
+      "split": "Byron"
     },
     "encounters_route_211_west": {
-      "archetype": null,
+      "archetype": "A12",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 211's west half is reachable from Eterna, the east half much later, so this is the delay's better half: Ralts and Mienfoo at home, Absol a 4% and Heracross a 1%.",
       "locked": [],
       "base_level": 13,
-      "order": 29
+      "order": 30,
+      "split": "Gardenia",
+      "cast": [
+        "SPECIES_RALTS",
+        "SPECIES_MIENFOO",
+        "SPECIES_VULPIX",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_ABSOL",
+        "SPECIES_HERACROSS"
+      ],
+      "day": [
+        "SPECIES_VULPIX",
+        "SPECIES_BRONZOR"
+      ],
+      "night": [
+        "SPECIES_VULPIX",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_route_212_north": {
       "archetype": null,
@@ -882,7 +1087,8 @@
       "intent": "",
       "locked": [],
       "base_level": 21,
-      "order": 75
+      "order": 76,
+      "split": "Wake"
     },
     "encounters_route_212_south": {
       "archetype": null,
@@ -890,7 +1096,8 @@
       "intent": "",
       "locked": [],
       "base_level": 21,
-      "order": 76
+      "order": 77,
+      "split": "Wake"
     },
     "encounters_route_213": {
       "archetype": null,
@@ -898,7 +1105,8 @@
       "intent": "",
       "locked": [],
       "base_level": 23,
-      "order": 67
+      "order": 68,
+      "split": "Wake"
     },
     "encounters_route_214": {
       "archetype": null,
@@ -906,7 +1114,8 @@
       "intent": "",
       "locked": [],
       "base_level": 26,
-      "order": 62
+      "order": 63,
+      "split": "Wake"
     },
     "encounters_route_215": {
       "archetype": null,
@@ -914,7 +1123,8 @@
       "intent": "",
       "locked": [],
       "base_level": 19,
-      "order": 61
+      "order": 62,
+      "split": "Maylene"
     },
     "encounters_route_216": {
       "archetype": null,
@@ -922,7 +1132,8 @@
       "intent": "",
       "locked": [],
       "base_level": 32,
-      "order": 95
+      "order": 96,
+      "split": "Candice"
     },
     "encounters_route_217": {
       "archetype": null,
@@ -930,7 +1141,8 @@
       "intent": "",
       "locked": [],
       "base_level": 32,
-      "order": 96
+      "order": 97,
+      "split": "Candice"
     },
     "encounters_route_218": {
       "archetype": null,
@@ -938,7 +1150,22 @@
       "intent": "",
       "locked": [],
       "base_level": 28,
-      "order": 82
+      "order": 83,
+      "split": "Byron",
+      "old_rod": {
+        "cast": [
+          "SPECIES_FINNEON",
+          "SPECIES_MAGIKARP",
+          "SPECIES_TENTACOOL",
+          "SPECIES_LUVDISC",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          5,
+          9
+        ]
+      },
+      "water_split": "Roark"
     },
     "encounters_route_221": {
       "archetype": null,
@@ -946,7 +1173,8 @@
       "intent": "",
       "locked": [],
       "base_level": 28,
-      "order": 93
+      "order": 94,
+      "split": "Byron"
     },
     "encounters_route_222": {
       "archetype": null,
@@ -954,7 +1182,8 @@
       "intent": "",
       "locked": [],
       "base_level": 38,
-      "order": 132
+      "order": 133,
+      "split": "Volkner"
     },
     "encounters_route_224": {
       "archetype": null,
@@ -962,7 +1191,8 @@
       "intent": "",
       "locked": [],
       "base_level": 49,
-      "order": 141
+      "order": 142,
+      "split": "Post"
     },
     "encounters_route_225": {
       "archetype": null,
@@ -970,7 +1200,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 149
+      "order": 150,
+      "split": "Post"
     },
     "encounters_route_226": {
       "archetype": null,
@@ -978,7 +1209,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 150
+      "order": 151,
+      "split": "Post"
     },
     "encounters_route_227": {
       "archetype": null,
@@ -986,7 +1218,8 @@
       "intent": "",
       "locked": [],
       "base_level": 51,
-      "order": 151
+      "order": 152,
+      "split": "Post"
     },
     "encounters_route_228": {
       "archetype": null,
@@ -994,7 +1227,8 @@
       "intent": "",
       "locked": [],
       "base_level": 49,
-      "order": 155
+      "order": 156,
+      "split": "Post"
     },
     "encounters_route_229": {
       "archetype": null,
@@ -1002,7 +1236,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 156
+      "order": 157,
+      "split": "Post"
     },
     "encounters_route_230": {
       "archetype": null,
@@ -1010,7 +1245,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 158
+      "order": 159,
+      "split": "Post"
     },
     "encounters_ruin_maniac_cave_long": {
       "archetype": null,
@@ -1018,7 +1254,8 @@
       "intent": "",
       "locked": [],
       "base_level": 21,
-      "order": 65
+      "order": 66,
+      "split": "Wake"
     },
     "encounters_ruin_maniac_cave_short": {
       "archetype": null,
@@ -1026,7 +1263,8 @@
       "intent": "",
       "locked": [],
       "base_level": 21,
-      "order": 64
+      "order": 65,
+      "split": "Wake"
     },
     "encounters_sendoff_spring": {
       "archetype": null,
@@ -1034,7 +1272,8 @@
       "intent": "",
       "locked": [],
       "base_level": 37,
-      "order": 110
+      "order": 111,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_1f": {
       "archetype": null,
@@ -1042,7 +1281,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 143
+      "order": 144,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_b1f": {
       "archetype": null,
@@ -1050,7 +1290,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 144
+      "order": 145,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_b2f": {
       "archetype": null,
@@ -1058,7 +1299,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 145
+      "order": 146,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_b3f": {
       "archetype": null,
@@ -1066,7 +1308,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 146
+      "order": 147,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_b4f": {
       "archetype": null,
@@ -1074,7 +1317,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 147
+      "order": 148,
+      "split": "Post"
     },
     "encounters_snowpoint_temple_b5f": {
       "archetype": null,
@@ -1082,7 +1326,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 148
+      "order": 149,
+      "split": "Post"
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
       "archetype": null,
@@ -1090,7 +1335,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 59
+      "order": 60,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
       "archetype": null,
@@ -1098,7 +1344,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 42
+      "order": 43,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
       "archetype": null,
@@ -1106,7 +1353,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 43
+      "order": 44,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_2": {
       "archetype": null,
@@ -1114,7 +1362,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 44
+      "order": 45,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
       "archetype": null,
@@ -1122,7 +1371,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 45
+      "order": 46,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
       "archetype": null,
@@ -1130,7 +1380,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 46
+      "order": 47,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_3": {
       "archetype": null,
@@ -1138,7 +1389,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 47
+      "order": 48,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
       "archetype": null,
@@ -1146,7 +1398,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 48
+      "order": 49,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
       "archetype": null,
@@ -1154,7 +1407,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 49
+      "order": 50,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_4": {
       "archetype": null,
@@ -1162,7 +1416,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 50
+      "order": 51,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
       "archetype": null,
@@ -1170,7 +1425,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 51
+      "order": 52,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_5": {
       "archetype": null,
@@ -1178,7 +1434,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 52
+      "order": 53,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
       "archetype": null,
@@ -1186,7 +1443,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 53
+      "order": 54,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
       "archetype": null,
@@ -1194,7 +1452,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 54
+      "order": 55,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_6": {
       "archetype": null,
@@ -1202,7 +1461,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 55
+      "order": 56,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
       "archetype": null,
@@ -1210,7 +1470,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 56
+      "order": 57,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
       "archetype": null,
@@ -1218,7 +1479,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 57
+      "order": 58,
+      "split": "Maylene"
     },
     "encounters_solaceon_ruins_room_7": {
       "archetype": null,
@@ -1226,7 +1488,8 @@
       "intent": "",
       "locked": [],
       "base_level": 20,
-      "order": 58
+      "order": 59,
+      "split": "Maylene"
     },
     "encounters_stark_mountain_outside": {
       "archetype": null,
@@ -1234,7 +1497,8 @@
       "intent": "",
       "locked": [],
       "base_level": 51,
-      "order": 152
+      "order": 153,
+      "split": "Post"
     },
     "encounters_stark_mountain_room_1": {
       "archetype": null,
@@ -1242,7 +1506,8 @@
       "intent": "",
       "locked": [],
       "base_level": 51,
-      "order": 153
+      "order": 154,
+      "split": "Post"
     },
     "encounters_stark_mountain_room_2": {
       "archetype": null,
@@ -1250,7 +1515,8 @@
       "intent": "",
       "locked": [],
       "base_level": 52,
-      "order": 154
+      "order": 155,
+      "split": "Post"
     },
     "encounters_trophy_garden": {
       "archetype": null,
@@ -1258,7 +1524,8 @@
       "intent": "",
       "locked": [],
       "base_level": 22,
-      "order": 77
+      "order": 78,
+      "split": "Wake"
     },
     "encounters_turnback_cave_entrance": {
       "archetype": null,
@@ -1266,7 +1533,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 111
+      "order": 112,
+      "split": "Post"
     },
     "encounters_turnback_cave_giratina_room": {
       "archetype": null,
@@ -1274,7 +1542,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 131
+      "order": 132,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_1": {
       "archetype": null,
@@ -1282,7 +1551,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 112
+      "order": 113,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_2": {
       "archetype": null,
@@ -1290,7 +1560,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 113
+      "order": 114,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_3": {
       "archetype": null,
@@ -1298,7 +1569,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 114
+      "order": 115,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_4": {
       "archetype": null,
@@ -1306,7 +1578,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 115
+      "order": 116,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_5": {
       "archetype": null,
@@ -1314,7 +1587,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 116
+      "order": 117,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_1_room_6": {
       "archetype": null,
@@ -1322,7 +1596,8 @@
       "intent": "",
       "locked": [],
       "base_level": 15,
-      "order": 117
+      "order": 118,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_1": {
       "archetype": null,
@@ -1330,7 +1605,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 118
+      "order": 119,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_2": {
       "archetype": null,
@@ -1338,7 +1614,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 119
+      "order": 120,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_3": {
       "archetype": null,
@@ -1346,7 +1623,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 120
+      "order": 121,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_4": {
       "archetype": null,
@@ -1354,7 +1632,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 121
+      "order": 122,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_5": {
       "archetype": null,
@@ -1362,7 +1641,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 122
+      "order": 123,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_2_room_6": {
       "archetype": null,
@@ -1370,7 +1650,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 123
+      "order": 124,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_1": {
       "archetype": null,
@@ -1378,7 +1659,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 124
+      "order": 125,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_2": {
       "archetype": null,
@@ -1386,7 +1668,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 125
+      "order": 126,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_3": {
       "archetype": null,
@@ -1394,7 +1677,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 126
+      "order": 127,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_4": {
       "archetype": null,
@@ -1402,7 +1686,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 127
+      "order": 128,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_5": {
       "archetype": null,
@@ -1410,7 +1695,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 128
+      "order": 129,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_3_room_6": {
       "archetype": null,
@@ -1418,7 +1704,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 129
+      "order": 130,
+      "split": "Post"
     },
     "encounters_turnback_cave_pillar_room": {
       "archetype": null,
@@ -1426,7 +1713,8 @@
       "intent": "",
       "locked": [],
       "base_level": 35,
-      "order": 130
+      "order": 131,
+      "split": "Post"
     },
     "encounters_unknown_533": {
       "archetype": null,
@@ -1434,7 +1722,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 161
+      "order": 162,
+      "split": "Post"
     },
     "encounters_unknown_534": {
       "archetype": null,
@@ -1442,7 +1731,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 162
+      "order": 163,
+      "split": "Post"
     },
     "encounters_unknown_535": {
       "archetype": null,
@@ -1450,7 +1740,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 163
+      "order": 164,
+      "split": "Post"
     },
     "encounters_unknown_536": {
       "archetype": null,
@@ -1458,7 +1749,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 164
+      "order": 165,
+      "split": "Post"
     },
     "encounters_unknown_537": {
       "archetype": null,
@@ -1466,7 +1758,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 165
+      "order": 166,
+      "split": "Post"
     },
     "encounters_unknown_538": {
       "archetype": null,
@@ -1474,7 +1767,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 166
+      "order": 167,
+      "split": "Post"
     },
     "encounters_unknown_539": {
       "archetype": null,
@@ -1482,7 +1776,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 167
+      "order": 168,
+      "split": "Post"
     },
     "encounters_unknown_540": {
       "archetype": null,
@@ -1490,7 +1785,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 168
+      "order": 169,
+      "split": "Post"
     },
     "encounters_unknown_541": {
       "archetype": null,
@@ -1498,7 +1794,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 169
+      "order": 170,
+      "split": "Post"
     },
     "encounters_unknown_542": {
       "archetype": null,
@@ -1506,7 +1803,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 170
+      "order": 171,
+      "split": "Post"
     },
     "encounters_unknown_543": {
       "archetype": null,
@@ -1514,7 +1812,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 171
+      "order": 172,
+      "split": "Post"
     },
     "encounters_unknown_544": {
       "archetype": null,
@@ -1522,7 +1821,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 172
+      "order": 173,
+      "split": "Post"
     },
     "encounters_unknown_545": {
       "archetype": null,
@@ -1530,7 +1830,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 173
+      "order": 174,
+      "split": "Post"
     },
     "encounters_unknown_546": {
       "archetype": null,
@@ -1538,7 +1839,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 174
+      "order": 175,
+      "split": "Post"
     },
     "encounters_unknown_547": {
       "archetype": null,
@@ -1546,7 +1848,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 175
+      "order": 176,
+      "split": "Post"
     },
     "encounters_unknown_548": {
       "archetype": null,
@@ -1554,7 +1857,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 176
+      "order": 177,
+      "split": "Post"
     },
     "encounters_unknown_549": {
       "archetype": null,
@@ -1562,7 +1866,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 177
+      "order": 178,
+      "split": "Post"
     },
     "encounters_unknown_550": {
       "archetype": null,
@@ -1570,7 +1875,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 178
+      "order": 179,
+      "split": "Post"
     },
     "encounters_unknown_551": {
       "archetype": null,
@@ -1578,7 +1884,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 179
+      "order": 180,
+      "split": "Post"
     },
     "encounters_unknown_552": {
       "archetype": null,
@@ -1586,7 +1893,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 180
+      "order": 181,
+      "split": "Post"
     },
     "encounters_unknown_553": {
       "archetype": null,
@@ -1594,7 +1902,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 181
+      "order": 182,
+      "split": "Post"
     },
     "encounters_unknown_554": {
       "archetype": null,
@@ -1602,7 +1911,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 182
+      "order": 183,
+      "split": "Post"
     },
     "encounters_unknown_555": {
       "archetype": null,
@@ -1610,7 +1920,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 183
+      "order": 184,
+      "split": "Post"
     },
     "encounters_unknown_556": {
       "archetype": null,
@@ -1618,7 +1929,8 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 184
+      "order": 185,
+      "split": "Post"
     },
     "encounters_unknown_557": {
       "archetype": null,
@@ -1626,29 +1938,47 @@
       "intent": "",
       "locked": [],
       "base_level": 45,
-      "order": 185
+      "order": 186,
+      "split": "Post"
     },
     "encounters_valley_windworks_outside": {
-      "archetype": "A9",
+      "archetype": "A12",
       "band": "early",
-      "intent": "Electric at the windworks: Pawmi's home, with Shinx and Pachirisu around it and Minccino in the grass.",
+      "intent": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, Emolga a 4% and Pichu a 1% in the tail.",
       "locked": [],
       "base_level": 9,
-      "order": 16,
+      "order": 17,
       "cast": [
         "SPECIES_PAWMI",
         "SPECIES_SHINX",
         "SPECIES_PACHIRISU",
-        "SPECIES_MINCCINO"
+        "SPECIES_MINCCINO",
+        "SPECIES_FLETCHLING",
+        "SPECIES_EMOLGA",
+        "SPECIES_PICHU"
       ],
       "day": [
-        "SPECIES_PAWMI",
-        "SPECIES_SHINX"
+        "SPECIES_SHINX",
+        "SPECIES_PACHIRISU"
       ],
       "night": [
-        "SPECIES_PAWMI",
-        "SPECIES_SHINX"
-      ]
+        "SPECIES_SHINX",
+        "SPECIES_PACHIRISU"
+      ],
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_BARBOACH",
+          "SPECIES_FINNEON",
+          "SPECIES_DEWPIDER",
+          "SPECIES_FRILLISH"
+        ],
+        "levels": [
+          8,
+          12
+        ]
+      }
     },
     "encounters_valor_lakefront": {
       "archetype": null,
@@ -1656,7 +1986,8 @@
       "intent": "",
       "locked": [],
       "base_level": 25,
-      "order": 66
+      "order": 67,
+      "split": "Wake"
     },
     "encounters_victory_road_1f": {
       "archetype": null,
@@ -1664,7 +1995,8 @@
       "intent": "",
       "locked": [],
       "base_level": 40,
-      "order": 135
+      "order": 136,
+      "split": "League"
     },
     "encounters_victory_road_1f_room_1": {
       "archetype": null,
@@ -1672,7 +2004,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 138
+      "order": 139,
+      "split": "League"
     },
     "encounters_victory_road_1f_room_2": {
       "archetype": null,
@@ -1680,7 +2013,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 139
+      "order": 140,
+      "split": "League"
     },
     "encounters_victory_road_1f_room_3": {
       "archetype": null,
@@ -1688,7 +2022,8 @@
       "intent": "",
       "locked": [],
       "base_level": 47,
-      "order": 140
+      "order": 141,
+      "split": "League"
     },
     "encounters_victory_road_2f": {
       "archetype": null,
@@ -1696,7 +2031,8 @@
       "intent": "",
       "locked": [],
       "base_level": 41,
-      "order": 136
+      "order": 137,
+      "split": "League"
     },
     "encounters_victory_road_b1f": {
       "archetype": null,
@@ -1704,7 +2040,8 @@
       "intent": "",
       "locked": [],
       "base_level": 41,
-      "order": 137
+      "order": 138,
+      "split": "League"
     },
     "encounters_wayward_cave_1f": {
       "archetype": null,
@@ -1712,7 +2049,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 32
+      "order": 33,
+      "split": "Fantina"
     },
     "encounters_wayward_cave_b1f": {
       "archetype": null,
@@ -1720,7 +2058,8 @@
       "intent": "",
       "locked": [],
       "base_level": 17,
-      "order": 33
+      "order": 34,
+      "split": "Fantina"
     },
     "encounters_canalave_city": {
       "archetype": null,
@@ -1728,7 +2067,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 83
+      "order": 84,
+      "split": "Byron"
     },
     "encounters_celestic_town": {
       "archetype": null,
@@ -1736,7 +2076,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 80
+      "order": 81,
+      "split": "Byron"
     },
     "encounters_eterna_city": {
       "archetype": null,
@@ -1744,7 +2085,21 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 28
+      "order": 29,
+      "split": "Gardenia",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_LOTAD",
+          "SPECIES_BARBOACH",
+          "SPECIES_SURSKIT",
+          "SPECIES_WOOPER"
+        ],
+        "levels": [
+          10,
+          14
+        ]
+      }
     },
     "encounters_great_marsh_lookout": {
       "archetype": null,
@@ -1752,7 +2107,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 160
+      "order": 161,
+      "split": "Post"
     },
     "encounters_honey_tree": {
       "archetype": null,
@@ -1760,7 +2116,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 159
+      "order": 160,
+      "split": "Post"
     },
     "encounters_iron_island": {
       "archetype": null,
@@ -1768,7 +2125,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 84
+      "order": 85,
+      "split": "Byron"
     },
     "encounters_pastoria_city": {
       "archetype": null,
@@ -1776,7 +2134,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 68
+      "order": 69,
+      "split": "Wake"
     },
     "encounters_pokemon_league": {
       "archetype": null,
@@ -1784,7 +2143,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 142
+      "order": 143,
+      "split": "League"
     },
     "encounters_resort_area": {
       "archetype": null,
@@ -1792,7 +2152,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 157
+      "order": 158,
+      "split": "Post"
     },
     "encounters_route_219": {
       "archetype": null,
@@ -1800,7 +2161,21 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 91
+      "order": 92,
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_MAREANIE",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          4,
+          8
+        ]
+      }
     },
     "encounters_route_220": {
       "archetype": null,
@@ -1808,7 +2183,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 92
+      "order": 93,
+      "split": "Byron"
     },
     "encounters_route_223": {
       "archetype": null,
@@ -1816,7 +2192,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 134
+      "order": 135,
+      "split": "League"
     },
     "encounters_sunyshore_city": {
       "archetype": null,
@@ -1824,7 +2201,8 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 133
+      "order": 134,
+      "split": "Volkner"
     },
     "encounters_twinleaf_town": {
       "archetype": null,
@@ -1832,7 +2210,47 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 1
+      "order": 1,
+      "split": "Roark",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_BARBOACH",
+          "SPECIES_SURSKIT",
+          "SPECIES_LOTAD",
+          "SPECIES_WOOPER"
+        ],
+        "levels": [
+          3,
+          6
+        ]
+      }
+    },
+    "encounters_verity_lakefront": {
+      "archetype": "A12",
+      "band": "early",
+      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, Purrloin a regular, Pachirisu a 4% and a 1% Vulpix as a tease of Route 207.",
+      "locked": [],
+      "base_level": 2,
+      "split": "Roark",
+      "order": 3,
+      "cast": [
+        "SPECIES_PIKIPEK",
+        "SPECIES_BLIPBUG",
+        "SPECIES_WOOLOO",
+        "SPECIES_PURRLOIN",
+        "SPECIES_SENTRET",
+        "SPECIES_PACHIRISU",
+        "SPECIES_VULPIX"
+      ],
+      "day": [
+        "SPECIES_BLIPBUG",
+        "SPECIES_WOOLOO"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_WOOLOO"
+      ]
     }
   },
   "inactive_areas": [
@@ -1852,5 +2270,37 @@
   "non_land_files": [
     "encounters_great_marsh_lookout",
     "encounters_honey_tree"
-  ]
+  ],
+  "splits": {
+    "_comment": "Ian's gym splits, in order, each with its hard level cap (null until he gives it) and the split each rod arrives in. Roark and Gardenia are his; the rest are the tool's reading of the route sequence, provisional.",
+    "order": [
+      "Roark",
+      "Gardenia",
+      "Fantina",
+      "Maylene",
+      "Wake",
+      "Byron",
+      "Candice",
+      "Volkner",
+      "League",
+      "Post"
+    ],
+    "caps": {
+      "Roark": null,
+      "Gardenia": 26,
+      "Fantina": null,
+      "Maylene": null,
+      "Wake": null,
+      "Byron": null,
+      "Candice": null,
+      "Volkner": null,
+      "League": null,
+      "Post": null
+    },
+    "rods": {
+      "old_rod": "Roark",
+      "good_rod": "Maylene",
+      "super_rod": "Candice"
+    }
+  }
 }

@@ -7,47 +7,47 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_MIENFOO"
         },
         {
             "level": 14,
-            "species": "SPECIES_GROWLITHE"
+            "species": "SPECIES_RALTS"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_VULPIX"
         },
         {
             "level": 15,
             "species": "SPECIES_VULPIX"
         },
         {
-            "level": 14,
-            "species": "SPECIES_SPOINK"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_KIRLIA"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_CHIMECHO"
+            "level": 15,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 15,
-            "species": "SPECIES_CHARMELEON"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_QUILAVA"
+            "species": "SPECIES_MIENFOO"
         },
         {
             "level": 15,
-            "species": "SPECIES_VOLTORB"
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 16,
-            "species": "SPECIES_TORCHIC"
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_HERACROSS"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_GROWLITHE",
-        "SPECIES_VULPIX"
+        "SPECIES_VULPIX",
+        "SPECIES_BRONZOR"
     ],
     "night": [
-        "SPECIES_GROWLITHE",
-        "SPECIES_VULPIX"
+        "SPECIES_VULPIX",
+        "SPECIES_BRONZOR"
     ],
     "radar": [
         "SPECIES_TYROGUE",

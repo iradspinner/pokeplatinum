@@ -7,31 +7,27 @@
         },
         {
             "level": 13,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 13,
             "species": "SPECIES_LOTAD"
         },
         {
             "level": 13,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
-            "level": 13,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
-            "level": 14,
             "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 14,
             "species": "SPECIES_SEWADDLE"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 14,
             "species": "SPECIES_SURSKIT"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 14,
@@ -42,12 +38,16 @@
             "species": "SPECIES_SHROOMISH"
         },
         {
-            "level": 15,
-            "species": "SPECIES_SURSKIT"
+            "level": 14,
+            "species": "SPECIES_WOOPER"
         },
         {
             "level": 15,
             "species": "SPECIES_SHROOMISH"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_DEWPIDER"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BUDEW"
     ],
     "day": [
-        "SPECIES_BOUNSWEET",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_SEWADDLE",
+        "SPECIES_SEWADDLE"
     ],
     "night": [
         "SPECIES_SURSKIT",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_SEWADDLE"
     ],
     "radar": [
         "SPECIES_SLOWPOKE",
@@ -125,29 +125,29 @@
     "old_rod_rate": 100,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
+            "level_max": 14,
+            "level_min": 10,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 14,
+            "level_min": 10,
+            "species": "SPECIES_FINNEON"
+        },
+        {
+            "level_max": 14,
+            "level_min": 10,
             "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 7,
-            "level_min": 3,
-            "species": "SPECIES_CHINCHOU"
+            "level_max": 14,
+            "level_min": 10,
+            "species": "SPECIES_WOOPER"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_SLOWPOKE"
-        },
-        {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level_max": 15,
-            "level_min": 5,
-            "species": "SPECIES_TOTODILE"
+            "level_max": 14,
+            "level_min": 10,
+            "species": "SPECIES_DEWPIDER"
         }
     ],
     "good_rod_rate": 50,

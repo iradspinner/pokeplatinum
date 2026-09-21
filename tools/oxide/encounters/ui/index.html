@@ -296,7 +296,7 @@ function drawList() {
     return `<div class="arow ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
         title="${esc(r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
-      <div class="nm"><span class="flag ${flag}"></span>${esc(r.label)}${water}</div>
+      <div class="nm"><span class="flag ${flag}"></span>${esc(r.label)}${water}${r.split ? `<span class="sub"> · ${esc(r.split)}</span>` : ""}${r.no_capture ? `<span class="sub"> · no capture</span>` : ""}</div>
       <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${esc(r.encounter_label || "\u2014")}</div>
       <div class="num">lv ${lv}</div>
       <div class="num">${r.live_total}/${r.species_total}</div>
@@ -406,7 +406,10 @@ function drawMid() {
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
       <div><span style="font-weight:650;font-size:15px">${esc(d.label)}</span>
         <span class="tag">${esc(d.band || "—")}</span>
-        <span class="tag">${esc(d.archetype || "no archetype yet")}</span></div>
+        <span class="tag">${esc(d.archetype || "no archetype yet")}</span>
+        ${d.location ? `<span class="tag" title="Capture area: one catch per location name">${esc(d.location)}</span>` : ""}
+        ${d.split ? `<span class="tag" title="Gym split">${esc(d.split)} split</span>` : ""}
+        ${d.no_capture ? `<span class="tag" title="The starter's area: nothing is catchable here">no capture</span>` : ""}</div>
       <div class="encounter"><span class="k">Encounter</span>
         <span class="v ${d.encounter_label ? "" : "none"}">${esc(d.encounter_label || "none yet")}</span>
         <span class="sub" style="display:block">Encounter rate <span class="num">${d.rate}</span></span></div>

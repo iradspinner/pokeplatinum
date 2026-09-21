@@ -23,6 +23,7 @@ DEFAULT_ORDER = [
     # Twinleaf to Oreburgh
     "twinleaf_town",
     "route_201",
+    "verity_lakefront",
     "lake_verity",
     "lake_verity_low_water",
     "route_202",
@@ -224,3 +225,155 @@ def sorted_by_order(sidecar, names):
     areas = (sidecar or {}).get("areas") or {}
     return sorted(names, key=lambda n: (areas.get(n, {}).get("order") is None,
                                         areas.get(n, {}).get("order") or 0, n))
+
+
+# -- gym splits -------------------------------------------------------------
+#
+# Ian's progression unit (2026-09-21): the game is played in splits between
+# gym battles, each with a hard level cap, and what a table is worth depends
+# on the split it is reachable in. The rods arrive by split, so a fishing
+# table is an early capture wherever its water is. The first two splits are
+# his (Roark: up to the Coal Badge; Gardenia: Rock Smash, Floaroma, the
+# forest, Eterna, Route 211 west and Mt. Coronet's first room, no bike). The
+# rest are this module's reading of the route sequence and are provisional
+# until he corrects them in the sidecar. Caps are his to fill; Gardenia's is
+# the one he has given.
+
+SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
+          "Candice", "Volkner", "League", "Post"]
+DEFAULT_CAPS = {"Roark": None, "Gardenia": 26, "Fantina": None, "Maylene": None,
+                "Wake": None, "Byron": None, "Candice": None, "Volkner": None,
+                "League": None, "Post": None}
+RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice"}
+
+# An area whose water is reachable before its grass: Route 218's fishing
+# spot is a step west of Jubilife, its grass across the water by Canalave.
+# `water_split` on the entry is the split its water counts from.
+WATER_SPLITS = {"route_218": "Roark"}
+
+_SPLIT_STEMS = {
+    "Roark": [
+        "twinleaf_town", "verity_lakefront", "route_201", "lake_verity",
+        "lake_verity_low_water", "route_202", "route_203", "oreburgh_gate_1f",
+        "oreburgh_gate_b1f", "route_207", "oreburgh_mine_b1f", "oreburgh_mine_b2f",
+        "route_204_south", "route_219",
+    ],
+    "Gardenia": [
+        "ravaged_path", "route_204_north", "route_205_south",
+        "valley_windworks_outside", "route_205_north", "eterna_forest",
+        "eterna_city", "route_211_west", "mt_coronet_1f_north_room_1",
+    ],
+    "Fantina": [
+        "old_chateau", "old_chateau_dining_area", "old_chateau_side_rooms",
+        "old_chateau_corridor", "old_chateau_back_west_room",
+        "old_chateau_back_middle_west_room", "old_chateau_back_middle_room",
+        "old_chateau_back_middle_east_room", "old_chateau_back_east_room",
+        "route_206", "wayward_cave_1f", "wayward_cave_b1f", "route_208",
+        "mt_coronet_1f_south",
+    ],
+    "Maylene": [
+        "route_209", "route_209_lost_tower_1f", "route_209_lost_tower_2f",
+        "route_209_lost_tower_3f", "route_209_lost_tower_4f", "route_209_lost_tower_5f",
+        "solaceon_ruins_room_1_northwest_dead_end", "solaceon_ruins_room_1_southeast_dead_end",
+        "solaceon_ruins_room_2", "solaceon_ruins_room_2_northeast_dead_end",
+        "solaceon_ruins_room_2_southeast_dead_end", "solaceon_ruins_room_3",
+        "solaceon_ruins_room_3_northwest_dead_end", "solaceon_ruins_room_3_southwest_dead_end",
+        "solaceon_ruins_room_4", "solaceon_ruins_room_4_southeast_dead_end",
+        "solaceon_ruins_room_5", "solaceon_ruins_room_5_southeast_deadend",
+        "solaceon_ruins_room_5_southwest_dead_end", "solaceon_ruins_room_6",
+        "solaceon_ruins_room_6_northwest_dead_end", "solaceon_ruins_room_6_southeast_dead_end",
+        "solaceon_ruins_room_7", "solaceon_ruins_maniac_tunnel_room",
+        "route_210_south", "route_215",
+    ],
+    "Wake": [
+        "route_214", "maniac_tunnel", "ruin_maniac_cave_short", "ruin_maniac_cave_long",
+        "valor_lakefront", "route_213", "pastoria_city", "great_marsh_1", "great_marsh_2",
+        "great_marsh_3", "great_marsh_4", "great_marsh_5", "great_marsh_6",
+        "route_212_north", "route_212_south", "trophy_garden",
+    ],
+    "Byron": [
+        "route_210_north", "route_211_east", "celestic_town", "fuego_ironworks_outside",
+        "route_218", "canalave_city", "iron_island", "iron_island_1f", "iron_island_b1f_left_room",
+        "iron_island_b1f_right_room", "iron_island_b2f_right_room",
+        "iron_island_b2f_left_room", "iron_island_b3f", "route_220", "route_221",
+        "lake_valor",
+    ],
+    "Candice": ["route_216", "route_217", "acuity_lakefront", "lake_acuity"],
+    "Volkner": [
+        "mt_coronet_1f_tunnel_room", "mt_coronet_1f_north_room_2", "mt_coronet_b1f",
+        "mt_coronet_2f", "mt_coronet_3f", "mt_coronet_outside_south",
+        "mt_coronet_4f_rooms_1_and_2", "mt_coronet_4f_room_3", "mt_coronet_outside_north",
+        "mt_coronet_5f", "mt_coronet_6f", "route_222", "sunyshore_city",
+    ],
+    "League": [
+        "route_223", "victory_road_1f", "victory_road_2f", "victory_road_b1f",
+        "victory_road_1f_room_1", "victory_road_1f_room_2", "victory_road_1f_room_3",
+        "pokemon_league",
+    ],
+}
+
+
+def default_splits():
+    """{area file name: split}. Anything not named above is post-League."""
+    out = {}
+    for split, stems in _SPLIT_STEMS.items():
+        for stem in stems:
+            out[f"encounters_{stem}"] = split
+    for stem in DEFAULT_ORDER:
+        out.setdefault(f"encounters_{stem}", "Post")
+    return out
+
+
+def write_splits(sidecar, names, splits=None):
+    """Put `split` on every area entry and the split table (order, caps,
+    rods) at the sidecar's top level. Returns the names no split covers."""
+    splits = splits or default_splits()
+    sidecar["splits"] = {
+        "_comment": "Ian's gym splits, in order, each with its hard level cap "
+                    "(null until he gives it) and the split each rod arrives "
+                    "in. Roark and Gardenia are his; the rest are the tool's "
+                    "reading of the route sequence, provisional.",
+        "order": list(SPLITS),
+        "caps": dict(DEFAULT_CAPS),
+        "rods": dict(RODS),
+    }
+    areas = sidecar.setdefault("areas", {})
+    missing = []
+    for name in names:
+        if name not in splits:
+            missing.append(name)
+            continue
+        entry = areas.setdefault(name, {
+            "archetype": None, "band": None, "intent": "", "locked": [],
+            "base_level": None})
+        entry["split"] = splits[name]
+        stem = name.replace("encounters_", "")
+        if stem in WATER_SPLITS:
+            entry["water_split"] = WATER_SPLITS[stem]
+        else:
+            entry.pop("water_split", None)
+    return missing
+
+
+def split_of(sidecar):
+    """{area: split} as the sidecar has it."""
+    areas = (sidecar or {}).get("areas") or {}
+    return {n: e.get("split") for n, e in areas.items() if e.get("split")}
+
+
+def split_index(sidecar):
+    """{split: position}, so that 'no later than Gardenia' is a comparison."""
+    order = ((sidecar or {}).get("splits") or {}).get("order") or SPLITS
+    return {s: i for i, s in enumerate(order)}
+
+
+def cap_of(sidecar, split):
+    caps = ((sidecar or {}).get("splits") or {}).get("caps") or {}
+    return caps.get(split)
+
+
+def rod_split(sidecar, kind):
+    """The split a rod kind (old_rod, good_rod, super_rod) arrives in; surf
+    is not gated here (it is an HM, tracked by the area's own split)."""
+    rods = ((sidecar or {}).get("splits") or {}).get("rods") or RODS
+    return rods.get(kind)

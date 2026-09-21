@@ -56,11 +56,20 @@ so they are not re-decided.
 > Xerneas and Yveltal are new statics, post-League. Decision 8 stands: that scripting
 > is outside this track and R12 reports the pool lines until it exists.
 >
-> **Step 3 tables written, 2026-09-21.** The seventeen corridor tables are in the
-> sidecar and applied to `res/`, per-table lint clean, so Ian can see the plan in
-> the tool; the archetypes, the one deviation (Mine B1F as a duo) and what the
-> gate still waits on are in the build plan's Step 3 entry. Two suites cannot run
-> at once: `test_step0` rewrites shared files under a restore.
+> **Step 3 regenerated on Ian's review, 2026-09-21.** The first seventeen tables
+> drew a review that changed the design's units: captures are per location name,
+> progression is in gym splits with level caps and rod gating, no species over
+> about a third of a table, the early game the most random, starter lines as
+> 4%/1% one-off tails, a line fully evolved by level-up under a split's cap
+> belongs in or before it, the starter gets its own met location. The tool now
+> knows locations (`locations.py`), splits (`cli split-init`, the sidecar's
+> `splits` table), the flat archetypes A11 and A12 (design doc 2.5 rewritten),
+> rod tables through `apply`, and the evolution levels; the Roark and Gardenia
+> splits are regenerated, twenty land and fourteen Old Rod tables, with Verity
+> Lakefront as a new table file (its header and grass are backlog). The corridor
+> in the steps below now means the first two splits. Details, numbers and the
+> fishing additions proposed to Ian are in the build plan's Step 3 entry. Two
+> suites cannot run at once: `test_step0` rewrites shared files under a restore.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

@@ -223,6 +223,8 @@ carry that exact signature.
 | A8 | **Broad** (7x) | 20/20/20/10/10/10/5/5 | 0.155 | 3-4 rungs | duplicates | Mt. Coronet. The genre's default shape. Allowed, but rationed — see R4. |
 | A9 | **Dominant** (2x) | 50/20/20/10 | 0.340 | 3 rungs | none | Iron Island rooms. Clean, readable, low variance. |
 | A10 | **Lottery** (new) | 60/25/10/4/1 | 0.436 | 4 rungs | **real 1%** | Designed for Oxide. The 1% is something you actually want, and the top rung is 2-3 wide. This is the archetype that pays off a dupe-out plan. |
+| A11 | **Flat route** (new) | 30/25/20/15/10 | 0.225 | 4 rungs | duplicates | Ian's cap (2.5): nobody over a third. The early-game default. |
+| A12 | **Flat lottery** (new) | 30/25/20/15/5/4/1 | 0.219 | 4 rungs | **real 4% and 1%** | A11 with a real tail for a starter or a prize: the one-off tail move Ian likes from Platinum Kaizo, a species at 4% or 1% here without lowering its rate where it is at home. |
 
 Ian picked **"per-route, chosen by archetype"** for tail treatment, which is exactly what
 the Tail column encodes. `real` means the 1% slots hold a species found nowhere else on
@@ -274,25 +276,43 @@ to first catch, given a plausible party state. A line is "available" if that cos
 a threshold Ian sets per tier (see R7). Guarantee is checked against this number, not
 against "does it appear somewhere".
 
-### 2.5 The concentration arc
+### 2.5 The cap, and where randomness is cheapest
 
-Early game feels early through **concentration and a small cast**, not through low levels.
-Vanilla early routes: 4 species, top slot 45-48%, HHI 0.37-0.41. Late routes: 5 species,
-top slot 30-40%, HHI 0.24-0.28.
+*Superseded on 2026-09-21.* This section used to argue for a concentration arc: early
+routes at 4 species with a 45% face (vanilla's numbers), late routes flatter. Ian
+reversed it on the first authored corridor, for a reason the survey numbers do not
+see: the game is played as a nuzlocke, and the first split has exactly one Repel
+before Roark, so a repel manip is a once-only thing until Oreburgh's mart. A 50%
+face on the lake shore is then not "feels early", it is monotony with no way round
+it. His rules:
 
-Every surveyed challenge hack is flat end to end, and two run backwards. Radical Red gives
-early routes eleven species and late routes seven.
-
-**House rule:** archetype selection is biased by progression band.
+- **No species over about a third of a table**, anywhere. Not a hard rule; 40% is
+  tolerable now and then, 50% is not. Fishing tables are exempt by format (the Old Rod's
+  first slot is 60%), and repel manips do not work on fishing or honey trees at all.
+- **The early game is the most random.** Where randomness has to be given, the Roark
+  split is the cheapest place to give it.
+- **A one-off tail is free variety.** A starter or a value line at 4% or 1% on an early
+  table, without lowering its rate where it is at home, is a move Platinum Kaizo makes
+  and Ian wants (A12 above).
 
 | Band (median table level) | Target species/table | Target top slot | Target HHI | Preferred archetypes |
 |---|---|---|---|---|
-| Early (≤12) | 3-5 | 40-50% | 0.35-0.50 | A1, A3, A4, A9, A10 |
-| Mid (13-29) | 4-7 | 30-40% | 0.25-0.35 | A1, A5, A6, A9 |
-| Late (30+) | 5-8 | 25-35% | 0.18-0.28 | A1, A5, A6, A7, A8 |
+| Early (≤12) | 4-7 | 25-35% | 0.18-0.30 | A11, A12, A6, A7 |
+| Mid (13-29) | 4-7 | 25-35% | 0.18-0.30 | A11, A12, A6, A5, A1 (sparingly) |
+| Late (30+) | 5-8 | 25-35% | 0.15-0.28 | A6, A7, A8, A12, A5 |
 
-The cast grows as the game opens up. That is the arc, and it is the opposite of what the
-genre does.
+The cast still grows as the game opens up; the cap is flat. R11 checks the cap per
+band instead of the old decreasing arc, and R5's band targets are these.
+
+**Capture areas and splits.** Two more facts from the same review shape every table.
+A nuzlocke capture is per location *name*: the two Lake Verity tables, both floors of
+Oreburgh Gate, both halves of Route 204 are one capture each (`locations.py` reads the
+map headers for the names). And progression is in gym splits, Roark to the League, each
+with a level cap: the rods arrive by split (Old Rod in Roark's, Good in Maylene's,
+Super in Candice's), so a fishing table is an early capture wherever its water is
+reachable. A location whose halves fall in different splits (Route 204 north, Route
+211 west, Mt. Coronet's rooms) is a *delay*, a capture passed on now for a better one
+later, and has to be worth delaying for: a starter or a value line.
 
 ### 2.6 The dupes clause and the dupe-out cascade
 

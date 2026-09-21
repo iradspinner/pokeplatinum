@@ -204,6 +204,13 @@ class Area:
     def set_land_rate(self, rate):
         self._replace(["land_rate"], int(rate))
 
+    def set_kind_rate(self, kind, rate):
+        """The encounter rate of any table kind (land_rate, surf_rate, the
+        three rod rates)."""
+        from . import analysis
+        _, rate_key, _ = analysis.TABLE_KINDS[kind]
+        self._replace([rate_key], int(rate))
+
     def set_time_slot(self, layer, index, species):
         """day/night carry two species each, standing in for slots 2 and 3.
         Writing anywhere else would be illegal per R7, so it is refused here

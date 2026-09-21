@@ -7,31 +7,27 @@
         },
         {
             "level": 4,
+            "species": "SPECIES_GRUBBIN"
+        },
+        {
+            "level": 4,
             "species": "SPECIES_BUDEW"
         },
         {
             "level": 4,
-            "species": "SPECIES_GRUBBIN"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_GRUBBIN"
-        },
-        {
-            "level": 5,
             "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 5,
             "species": "SPECIES_FLETCHLING"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_GRUBBIN"
         },
         {
             "level": 5,
             "species": "SPECIES_SENTRET"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_GRUBBIN"
         },
         {
             "level": 5,
@@ -42,8 +38,12 @@
             "species": "SPECIES_WOOLOO"
         },
         {
+            "level": 5,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
             "level": 6,
-            "species": "SPECIES_SENTRET"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 6,
@@ -125,29 +125,29 @@
     "old_rod_rate": 100,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
-            "species": "SPECIES_AZURILL"
-        },
-        {
-            "level_max": 7,
-            "level_min": 3,
+            "level_max": 9,
+            "level_min": 5,
             "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 10,
+            "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_MAGIKARP"
         },
         {
-            "level_max": 10,
+            "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_SURSKIT"
         },
         {
-            "level_max": 15,
+            "level_max": 9,
             "level_min": 5,
             "species": "SPECIES_LOTAD"
+        },
+        {
+            "level_max": 9,
+            "level_min": 5,
+            "species": "SPECIES_WOOPER"
         }
     ],
     "good_rod_rate": 50,

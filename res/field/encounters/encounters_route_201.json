@@ -6,8 +6,8 @@
             "species": "SPECIES_WOOLOO"
         },
         {
-            "level": 2,
-            "species": "SPECIES_WOOLOO"
+            "level": 3,
+            "species": "SPECIES_SENTRET"
         },
         {
             "level": 3,
@@ -18,36 +18,36 @@
             "species": "SPECIES_PIKIPEK"
         },
         {
-            "level": 3,
+            "level": 4,
             "species": "SPECIES_PIKIPEK"
         },
         {
-            "level": 3,
+            "level": 4,
+            "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 4,
             "species": "SPECIES_SENTRET"
         },
         {
             "level": 4,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 4,
             "species": "SPECIES_BLIPBUG"
         },
         {
             "level": 4,
-            "species": "SPECIES_BLIPBUG"
+            "species": "SPECIES_PURRLOIN"
         },
         {
             "level": 4,
-            "species": "SPECIES_BLIPBUG"
+            "species": "SPECIES_PURRLOIN"
         },
         {
-            "level": 4,
-            "species": "SPECIES_BLIPBUG"
+            "level": 5,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_PURRLOIN"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_DODUO"
     ],
     "day": [
-        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK",
         "SPECIES_PIKIPEK"
     ],
     "night": [
-        "SPECIES_WOOLOO",
-        "SPECIES_BLIPBUG"
+        "SPECIES_BLIPBUG",
+        "SPECIES_PIKIPEK"
     ],
     "radar": [
         "SPECIES_NIDORAN_M",

@@ -6,28 +6,28 @@
             "species": "SPECIES_PONYTA"
         },
         {
-            "level": 5,
-            "species": "SPECIES_PONYTA"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_PONYTA"
-        },
-        {
             "level": 6,
             "species": "SPECIES_VULPIX"
         },
         {
             "level": 6,
-            "species": "SPECIES_VULPIX"
+            "species": "SPECIES_PONYTA"
         },
         {
             "level": 6,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 7,
             "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_VULPIX"
         },
         {
             "level": 7,
@@ -35,19 +35,19 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 7,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_HOUNDOUR"
         },
         {
-            "level": 7,
-            "species": "SPECIES_ROOKIDEE"
+            "level": 8,
+            "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 7,
-            "species": "SPECIES_ROOKIDEE"
+            "level": 8,
+            "species": "SPECIES_CHARMANDER"
         }
     ],
     "swarms": [

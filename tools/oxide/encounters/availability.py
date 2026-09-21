@@ -1,19 +1,26 @@
-"""The availability plan: authoring plan Step 2.
+"""The availability plan: authoring plan Step 2, revised for Ian's capture
+rules (2026-09-21).
 
 `docs/oxide/encounters/availability-plan.json` is the design, keyed by area:
-which lines are at home on each table and which merely appear. This module
-turns it around into the per-line view the plan asks for, joins it with
-what the tree already provides (gifts, trades, static battles, the starter
-and the fossils, from audit.coverage), checks the step's gate, and renders
+which lines are at home on each table, which merely appear, and which sit
+in a real tail (a 4% or 1% one-off, the only place a gate-tier starter may
+be wild). This module turns it around into the per-line view, joins it
+with what the tree already provides (gifts, trades, static battles, the
+starter and the fossils, from audit.coverage), with where each line can be
+*captured* (per location name and gym split, from locations.py and the
+sidecar's splits), checks the gate and renders
 `docs/oxide/encounters/availability.md`. The markdown is generated, never
 edited.
 
-The gate, from the plan and decision 3: every line on the pick-list has a
-planned wild home or a non-wild source; the corridor (every area up to
-`corridor_end`) carries only starter-adjacent lines and lines with a
-scripted source; every starter-adjacent line's home is in the corridor;
-and every early-band table has three to five lines planned, which is what
-its archetypes can hold.
+The gate: every line on the pick-list has a planned wild home or a non-wild
+source; the first split's tables carry only starter-adjacent lines,
+scripted lines and tails; every starter-adjacent line's home is in the
+corridor (the first two splits); every early-band table has four to seven
+lines planned, which is what the flat archetypes hold. A table flagged
+`no_capture` is exempt from the planning checks (none today: the starter
+gets its own met location, Ian's preference, so Route 201 counts). The cap rule is reported, not gated: a line whose final stage comes
+by level-up under a split's cap and is first capturable later is listed for
+Ian.
 """
 import collections
 import json
@@ -21,6 +28,7 @@ import os
 
 from . import audit
 from . import dex
+from . import locations
 from . import model
 from . import progression
 
@@ -28,11 +36,13 @@ PLAN = os.path.join("docs", "oxide", "encounters", "availability-plan.json")
 DOC = os.path.join("docs", "oxide", "encounters", "availability.md")
 
 # A line's status, best first. `honey` is a line whose home is a honey-tree
-# tier; `pool` is a legendary in the random pool the two lake caverns and
-# the roamer slot draw from; `proposed` is a gate line with a proposal for
-# where its script should go. All three count as sourced on paper and are
-# listed for Ian. `none` fails the gate.
-STATUSES = ("home", "non-wild", "water", "honey", "cameo-only", "pool", "proposed", "none")
+# tier; `tail-only` a line that appears only as a 4% or 1% one-off; `pool`
+# is a legendary in the random pool the two lake caverns and the roamer slot
+# draw from; `proposed` is a gate line with a proposal for where its script
+# should go. All count as sourced on paper. `none` fails the gate.
+STATUSES = ("home", "non-wild", "water", "honey", "cameo-only", "tail-only",
+            "pool", "proposed", "none")
+WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
 
 
 def load_plan():
@@ -56,9 +66,14 @@ def build(ref=None):
         for b in l["base"]:
             base_of[b] = l["line"]
 
-    live = {a.name: a for a in model.load_all(ref) if a.land_active}
-    all_names = set(model.area_names(ref))
+    all_areas = {a.name: a for a in model.load_all(ref)}
+    live = {n: a for n, a in all_areas.items() if a.land_active}
+    all_names = set(all_areas)
     problems = []
+    loc_of = locations.location_of(root)
+    split_of = progression.split_of(sidecar)
+    split_idx = progression.split_index(sidecar)
+    caps = (sidecar.get("splits") or {}).get("caps") or {}
 
     def resolve(sp, where):
         lid = base_of.get(sp) or base_of.get(line_of.get(sp, sp))
@@ -66,28 +81,28 @@ def build(ref=None):
             problems.append(f"{where}: {sp} is not on the pick-list")
         return lid
 
-    # per line: planned homes, cameos, water homes
+    # per line: planned homes, cameos, tails, water homes
     homes = collections.defaultdict(list)
     cameos = collections.defaultdict(list)
+    tails = collections.defaultdict(list)
     water = collections.defaultdict(list)
     per_area = {}
+    no_capture = set()
     for area, spec in plan["areas"].items():
         if area not in all_names:
             problems.append(f"{area}: no such encounter file")
             continue
-        if area not in live:
+        if spec.get("no_capture"):
+            no_capture.add(area)
+        if area not in live and not spec.get("no_capture"):
             problems.append(f"{area}: not a live land table")
         planned = []
-        for sp in spec.get("home") or []:
-            lid = resolve(sp, area)
-            if lid:
-                homes[lid].append(area)
-                planned.append((lid, "home"))
-        for sp in spec.get("cameo") or []:
-            lid = resolve(sp, area)
-            if lid:
-                cameos[lid].append(area)
-                planned.append((lid, "cameo"))
+        for kind, bucket in (("home", homes), ("cameo", cameos), ("tail", tails)):
+            for sp in spec.get(kind) or []:
+                lid = resolve(sp, area)
+                if lid:
+                    bucket[lid].append(area)
+                    planned.append((lid, kind))
         seen = [lid for lid, _ in planned]
         dupes = {lid for lid in seen if seen.count(lid) > 1}
         for lid in dupes:
@@ -101,10 +116,17 @@ def build(ref=None):
             elif lid:
                 water[lid].append(area)
 
-    corridor_end = plan.get("corridor_end")
+    # the corridor: the first splits, or the old order-based cut
+    corridor_splits = plan.get("corridor_splits") or []
+    if corridor_splits:
+        corridor = {n for n in all_names
+                    if split_of.get(n) in corridor_splits and (n in live or n in no_capture)}
+    else:
+        order_of_all = {n: (entries.get(n) or {}).get("order") for n in all_names}
+        end_order = order_of_all.get(plan.get("corridor_end")) or 0
+        corridor = {n for n, o in order_of_all.items()
+                    if o is not None and o <= end_order and n in live}
     order_of = {n: (entries.get(n) or {}).get("order") for n in all_names}
-    end_order = order_of.get(corridor_end) or 0
-    corridor = {n for n, o in order_of.items() if o is not None and o <= end_order and n in live}
 
     proposals = {}
     for sp, text in (plan.get("proposals") or {}).items():
@@ -113,14 +135,11 @@ def build(ref=None):
         lid = resolve(sp, "proposals")
         if lid:
             proposals[lid] = text
-    # the random legendary pool: candidates for the two lake caverns and the
-    # roamer slot, sourced on paper as "one of three draws"
     pool = set()
     for sp in (plan.get("pool") or {}).get("candidates") or []:
         lid = resolve(sp, "pool")
         if lid:
             pool.add(lid)
-    # the honey trees, by rarity tier
     honey = collections.defaultdict(list)
     for tier_name, sps in (plan.get("honey") or {}).items():
         if tier_name.startswith("_"):
@@ -129,6 +148,46 @@ def build(ref=None):
             lid = resolve(sp, f"honey {tier_name}")
             if lid:
                 honey[lid].append(tier_name)
+
+    # captures: every (split, location) a line can be caught in, from the
+    # planned land tables and from the water casts in the sidecar. A rod
+    # table counts from the later of its area's split and the rod's.
+    captures = collections.defaultdict(set)
+
+    def effective_split(area, kind=None):
+        s = split_of.get(area)
+        if kind:
+            # water reachable before the grass (Route 218) carries its own split
+            s = (entries.get(area) or {}).get("water_split") or s
+        if kind and kind != "surf":
+            r = progression.rod_split(sidecar, kind)
+            if r and (s is None or split_idx.get(r, 99) > split_idx.get(s, 99)):
+                s = r
+        return s
+
+    for area, planned in per_area.items():
+        if area in no_capture:
+            continue
+        for lid, _ in planned:
+            captures[lid].add((effective_split(area), loc_of.get(area) or area))
+    for area, e in entries.items():
+        if area in no_capture:
+            continue
+        for kind in WATER_KINDS:
+            spec = e.get(kind)
+            if isinstance(spec, dict) and spec.get("cast"):
+                for sp in spec["cast"]:
+                    lid = base_of.get(sp) or base_of.get(line_of.get(sp, sp))
+                    if lid:
+                        captures[lid].add((effective_split(area, kind), loc_of.get(area) or area))
+
+    def first_split(lid):
+        best = None
+        for s, _ in captures.get(lid, ()):
+            i = split_idx.get(s, 99)
+            if best is None or i < best[0]:
+                best = (i, s)
+        return best[1] if best else None
 
     rows = []
     for l in cov["lines"]:
@@ -153,6 +212,8 @@ def build(ref=None):
             status = "honey"
         elif cameos.get(lid):
             status = "cameo-only"
+        elif tails.get(lid):
+            status = "tail-only"
         elif lid in pool:
             status = "pool"
         elif lid in proposals:
@@ -163,44 +224,77 @@ def build(ref=None):
             problems.append(f"{l['name']}: {len(h)} homes planned ({', '.join(h)}); a line has one")
         if l["tier"] == "gate" and (h or cameos.get(lid)):
             problems.append(f"{l['name']}: a gate line is scripted, not wild, but is planned on "
-                            f"{', '.join(h or cameos.get(lid))}")
+                            f"{', '.join(h or cameos.get(lid))}; a tail is the only wild place for it")
+        base = l["base"][0] if l["base"] else None
+        final = dex.final_by_level(root, base) if base else None
         rows.append({
             "line": lid, "name": l["name"], "tier": l["tier"], "status": status,
             "home": h, "cameo": sorted(cameos.get(lid, []), key=lambda n: order_of.get(n) or 0),
+            "tail": sorted(tails.get(lid, []), key=lambda n: order_of.get(n) or 0),
             "water": water.get(lid, []), "non_wild": non_wild,
             "proposal": proposals.get(lid, ""),
             "honey": honey.get(lid, []), "pool": lid in pool,
             "home_order": order_of.get(h[0]) if h else None,
+            "home_split": split_of.get(h[0]) if h else None,
+            "captures": sorted(captures.get(lid, ()), key=lambda c: (split_idx.get(c[0], 99), c[1])),
+            "first_split": first_split(lid),
+            "final_by_level": final,
+            "stages": len(l["members"]),
         })
 
     # the gate
     gate = {"no_source": [], "corridor_intruders": [], "early_home_outside": [],
-            "early_fit": [], "unplanned_tables": []}
+            "early_fit": [], "unplanned_tables": [], "cap_candidates": []}
     for r in rows:
         if r["status"] == "none":
             gate["no_source"].append(r["name"])
         if r["tier"] == "starter-adjacent" and r["status"] == "home" \
                 and r["home"][0] not in corridor:
             gate["early_home_outside"].append(f"{r['name']} at {r['home'][0]}")
-    for area in sorted(corridor, key=lambda n: order_of[n]):
-        for lid, _ in per_area.get(area, []):
+    # The tier rule bites on the first split only: Roark's tables carry
+    # starter-adjacent lines, scripted lines and tails. Gardenia's split
+    # already reaches Route 211 west and Mt. Coronet's first room, whose
+    # casts are mid-band by design, and its delay prizes (Scorbunny on
+    # Route 204 north) are the point of a delay.
+    first = corridor_splits[0] if corridor_splits else None
+    for area in sorted(corridor, key=lambda n: order_of.get(n) or 0):
+        if first and split_of.get(area) != first:
+            continue
+        for lid, kind in per_area.get(area, []):
             r = next(x for x in rows if x["line"] == lid)
-            if r["tier"] != "starter-adjacent" and not r["non_wild"]:
+            if kind != "tail" and r["tier"] != "starter-adjacent" and not r["non_wild"]:
                 gate["corridor_intruders"].append(f"{r['name']} ({r['tier']}) on {area}")
     for name, a in live.items():
+        if name in no_capture:
+            continue
         n = len(per_area.get(name, []))
         band = (entries.get(name) or {}).get("band") or a.band
-        # Early tables want 3-5 species (design doc 2.5), but A4, the duo, is
-        # in the early set with two, so two lines is a legal plan for a table
-        # meant to be one; the archetype choice is Step 3's.
         if n == 0:
             gate["unplanned_tables"].append(name)
-        elif band == "early" and not 2 <= n <= 5:
-            gate["early_fit"].append(f"{name}: {n} lines planned, early wants 3-5 (2 for an A4 duo)")
+        elif band == "early" and not 4 <= n <= 7:
+            gate["early_fit"].append(f"{name}: {n} lines planned, early wants 4-7")
+    # Ian's cap rule: fully evolved by level-up under a split's cap, but
+    # first capturable after that split. The rule is about evolution levels,
+    # so single-stage lines (final by 0) are not judged by it.
+    for r in rows:
+        fl = r["final_by_level"]
+        if not fl or r["tier"] == "gate" or r["non_wild"] and not r["captures"]:
+            continue
+        first = r["first_split"]
+        for split, cap in caps.items():
+            if cap is None or fl > cap:
+                continue
+            if first is None or split_idx.get(first, 99) > split_idx.get(split, 99):
+                gate["cap_candidates"].append(
+                    f"{r['name']} (final by {fl}, cap {split} {cap}; first "
+                    f"{first or 'never'})")
+            break
     return {
         "rows": rows, "per_area": per_area, "corridor": corridor,
         "order_of": order_of, "entries": entries, "problems": problems,
-        "gate": gate, "plan": plan,
+        "gate": gate, "plan": plan, "no_capture": no_capture,
+        "split_of": split_of, "split_idx": split_idx, "loc_of": loc_of,
+        "caps": caps, "live": set(live),
         "summary": collections.Counter(r["status"] for r in rows),
     }
 
@@ -211,17 +305,21 @@ def render(out):
     rows = out["rows"]
     o = out["order_of"]
     s = out["summary"]
+    split_of, loc_of, idx = out["split_of"], out["loc_of"], out["split_idx"]
     lines = []
     lines.append("# Availability plan")
     lines.append("")
     lines.append("Generated by `python3 -m tools.oxide.encounters.cli availability --write` "
-                 "from `availability-plan.json` and the tree; do not edit. Authoring plan "
-                 "Step 2: where every evolution line on the species pick-list is meant to "
-                 "be caught, decided before any slot is written. A *home* is a live land "
-                 "table where the line's first stage holds at least 10% (decision 3); a "
-                 "*cameo* is any other planned appearance; *non-wild* is a gift, trade, "
-                 "static battle, starter or fossil script the tree already has; *water* "
-                 "is a surf or rod table planned as the line's home.")
+                 "from `availability-plan.json`, the sidecar and the tree; do not edit. "
+                 "Authoring plan Step 2: where every evolution line on the species "
+                 "pick-list is meant to be caught, decided before any slot is written. A "
+                 "*home* is the one land table designed for the line; a *cameo* is any "
+                 "other regular appearance; a *tail* is a 4% or 1% one-off (the only wild "
+                 "place for a gate-tier starter); *non-wild* is a gift, trade, static "
+                 "battle, starter or fossil script the tree already has; *water* is a surf "
+                 "or rod table planned as the line's home. *Captures* are per location name "
+                 "and gym split, Ian's nuzlocke rule: two tables under one name are one "
+                 "capture, and a rod table counts from the split its rod arrives in.")
     lines.append("")
     lines.append(f"{len(rows)} lines: " + ", ".join(
         f"{k} {s[k]}" for k in STATUSES if s.get(k)))
@@ -234,9 +332,9 @@ def render(out):
     lines.append("**Passes.**" if ok else "**Fails.**")
     lines.append("")
     for key, label in (("no_source", "Lines with no home and no non-wild source"),
-                       ("corridor_intruders", "Lines in the corridor that are neither starter-adjacent nor scripted"),
-                       ("early_home_outside", "Starter-adjacent lines whose home is outside the corridor"),
-                       ("early_fit", "Early-band tables outside 3-5 planned lines"),
+                       ("corridor_intruders", "Lines in the first split that are neither starter-adjacent, scripted nor a tail"),
+                       ("early_home_outside", "Starter-adjacent lines whose home is outside the first two splits"),
+                       ("early_fit", "Early-band tables outside 4-7 planned lines"),
                        ("unplanned_tables", "Live tables with nothing planned (a warning, not a gate)")):
         lines.append(f"- {label}: " + (", ".join(g[key]) if g[key] else "none"))
     if out["problems"]:
@@ -244,6 +342,18 @@ def render(out):
     lines.append("")
     lines.append("## For Ian")
     lines.append("")
+    caps = out["caps"]
+    lines.append("**Splits and caps.** " + ", ".join(
+        f"{sp} {caps.get(sp) if caps.get(sp) is not None else '?'}" for sp in idx) +
+        ". The caps are yours to fill in the sidecar's `splits` table; only Gardenia's "
+        "is known. Old Rod from Roark's split, Good Rod from Maylene's, Super Rod from "
+        "Candice's. Roark's and Gardenia's tables are as you set them; the later "
+        "splits are the tool's reading of the route sequence, provisional.")
+    lines.append("")
+    if g["cap_candidates"]:
+        lines.append("**Cap candidates** (your rule: fully evolved by level-up under a "
+                     "split's cap, but first capturable later): " + "; ".join(g["cap_candidates"]) + ".")
+        lines.append("")
     plan = out["plan"]
     pool_rows = [r for r in rows if r["pool"]]
     lines.append("**The legendary pool** (Ian, 2026-09-21). Vanilla's three pre-League "
@@ -264,26 +374,36 @@ def render(out):
         for r in proposed:
             lines.append(f"- **{r['name']}**: {r['proposal']}")
         lines.append("")
-    lines.append("**The starters** are wild, not gifted, and out of the gate tier. Fennekin "
-                 "(Route 214), Scorbunny (Route 206) and Popplio (the surf on Routes 219 "
-                 "and 220) sit at a real share, a good chance with or without a manip; "
-                 "Litten (Fuego Ironworks) and Froakie (Route 212 south) are tails a "
-                 "dupe-out plan pays off; Rowlet, Snivy and Sprigatito are the honey "
-                 "trees' rare tier, which makes the honey trees designed space from "
-                 "Step 5 on rather than only de-leaked.")
+    lines.append("**The starters** are wild, not gifted, and out of the gate tier. Scorbunny "
+                 "is Route 204 north's home line, the reason to delay that capture (Ian's "
+                 "call, moved from Route 206, which needs the bike); Fennekin (Route 214) and "
+                 "Popplio (the surf on Routes 219 and 220, with a 1% Old Rod appearance on 219 "
+                 "in the Roark split) sit at a real share; Litten (Fuego Ironworks) and Froakie "
+                 "(Route 212 south) are tails a dupe-out plan pays off; Rowlet, Snivy and "
+                 "Sprigatito are the honey trees' rare tier. The classic starters on the list "
+                 "(Charmander, Squirtle, Treecko, Torchic, Mudkip) keep their scripted sources "
+                 "and appear once each as a 1% tail in the first two splits, the one-off tail "
+                 "move.")
     lines.append("")
-    lines.append("Also for Ian: the corridor's cast rests on the widened starter-adjacent "
-                 "tier (`EARLY_LINES` in `tiers.py`, the other regions' first-route "
-                 "lines), which is the agent's default; the water lines are homed on "
-                 "surf and rod tables that Step 5 only de-leaks unless surf is designed "
-                 "(open question); and Fomantis and Lurantis are two lines in the tree "
-                 "because the evolution is missing from Fomantis's data, so each has its "
-                 "own home until that is fixed.")
+    tail_rows = [r for r in rows if r["tail"]]
+    if tail_rows:
+        lines.append("**Tails** (4% or 1% one-offs, rates elsewhere untouched): " + "; ".join(
+            f"{r['name']} on {', '.join(n.replace('encounters_', '') for n in r['tail'])}"
+            for r in sorted(tail_rows, key=lambda r: r["name"])) + ".")
+        lines.append("")
+    lines.append("Also for Ian: the early cast rests on the widened starter-adjacent tier "
+                 "(`EARLY_LINES` in `tiers.py`: the other regions' first-route lines plus "
+                 "your cave additions Nosepass, Geodude, Phanpy and Makuhita); the Old Rod "
+                 "tables in the first two splits draw on the pick-list's water lines only "
+                 "(Magikarp, Barboach, Finneon, Tentacool, Luvdisc, Surskit, Lotad, Wooper, "
+                 "Dewpider, Feebas, Frillish, Mareanie), which is thin, so additions there "
+                 "are proposed in the build plan; and Fomantis and Lurantis are two lines "
+                 "in the tree because the evolution is missing from Fomantis's data.")
     lines.append("")
     lines.append("## Lines")
     lines.append("")
-    lines.append("| Line | Tier | Status | Home (order) | Cameos | Water / honey / pool | Non-wild |")
-    lines.append("|---|---|---|---|---|---|---|")
+    lines.append("| Line | Tier | Status | Home (order) | Cameos | Tails | Water / honey / pool | Non-wild | First split | Captures |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|")
 
     def short(n):
         return n.replace("encounters_", "")
@@ -293,29 +413,65 @@ def render(out):
                                          r["name"])):
         home = f"{short(r['home'][0])} ({r['home_order']})" if r["home"] else ""
         cam = ", ".join(short(n) for n in r["cameo"])
+        tl = ", ".join(short(n) for n in r["tail"])
         wat = ", ".join(short(n) for n in r["water"])
         if r["honey"]:
             wat = (wat + "; " if wat else "") + "honey " + "/".join(r["honey"])
         if r["pool"]:
             wat = (wat + "; " if wat else "") + "pool"
         nw = "; ".join(r["non_wild"])
-        lines.append(f"| {r['name']} | {r['tier']} | {r['status']} | {home} | {cam} | {wat} | {nw} |")
+        caps_txt = "; ".join(f"{sp or '?'}: {loc}" for sp, loc in r["captures"])
+        lines.append(f"| {r['name']} | {r['tier']} | {r['status']} | {home} | {cam} | {tl} | {wat} | {nw} | "
+                     f"{r['first_split'] or ''} | {caps_txt} |")
+    lines.append("")
+    lines.append("## Capture areas, first two splits")
+    lines.append("")
+    lines.append("One capture per location name. Tables sharing a name are listed together; "
+                 "a location whose tables fall in different splits is a delay.")
+    lines.append("")
+    names = {r["line"]: r["name"] for r in rows}
+    by_loc = collections.OrderedDict()
+    corridor_sorted = sorted(out["corridor"], key=lambda n: o.get(n) or 0)
+    for n in corridor_sorted:
+        by_loc.setdefault(loc_of.get(n) or short(n), []).append(n)
+    lines.append("| Location | Split(s) | Tables | Planned lines |")
+    lines.append("|---|---|---|---|")
+    for loc, areas in by_loc.items():
+        splits = sorted({split_of.get(n) or "?" for n in areas}, key=lambda s: idx.get(s, 99))
+        planned = collections.OrderedDict()
+        for n in areas:
+            for lid, kind in out["per_area"].get(n, []):
+                mark = "*" if kind == "home" else ("†" if kind == "tail" else "")
+                planned.setdefault(names[lid] + mark, None)
+            e = out["entries"].get(n) or {}
+            for kind in WATER_KINDS:
+                spec = e.get(kind)
+                if isinstance(spec, dict) and spec.get("cast"):
+                    for sp in spec["cast"]:
+                        lid = None
+                        for r in rows:
+                            if sp in (r["line"],):
+                                lid = r["line"]
+                        planned.setdefault(dex.display_name(sp) + f" ({kind.replace('_', ' ')})", None)
+        tables = ", ".join(short(n) + (" (no capture)" if n in out["no_capture"] else "") for n in areas)
+        lines.append(f"| {loc} | {', '.join(splits)} | {tables} | {', '.join(planned)} |")
     lines.append("")
     lines.append("## Tables")
     lines.append("")
     lines.append("Each live land table in progression order with its planned lines; a "
-                 "star marks a home. This is what Step 3 writes casts from.")
+                 "star marks a home, a dagger a tail. This is what Step 3 writes casts from.")
     lines.append("")
-    lines.append("| Order | Table | Band | Base | Planned |")
-    lines.append("|---|---|---|---|---|")
-    names = {r["line"]: r["name"] for r in rows}
+    lines.append("| Order | Table | Location | Split | Band | Base | Planned |")
+    lines.append("|---|---|---|---|---|---|---|")
     live = [n for n in out["per_area"]]
     for n in sorted(live, key=lambda n: o.get(n) or 0):
         e = out["entries"].get(n) or {}
-        planned = ", ".join(f"{names[lid]}{'*' if kind == 'home' else ''}"
+        planned = ", ".join(f"{names[lid]}{'*' if kind == 'home' else ('†' if kind == 'tail' else '')}"
                             for lid, kind in out["per_area"][n])
-        lines.append(f"| {o.get(n)} | {short(n)} | {e.get('band') or ''} | "
-                     f"{e.get('base_level') or ''} | {planned} |")
+        if n in out["no_capture"]:
+            planned = (planned + "; " if planned else "") + "no capture"
+        lines.append(f"| {o.get(n)} | {short(n)} | {loc_of.get(n) or ''} | {split_of.get(n) or ''} | "
+                     f"{e.get('band') or ''} | {e.get('base_level') or ''} | {planned} |")
     lines.append("")
     return "\n".join(lines) + "\n"
 

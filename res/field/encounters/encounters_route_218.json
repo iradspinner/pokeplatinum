@@ -125,29 +125,29 @@
     "old_rod_rate": 100,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
-            "species": "SPECIES_GOLDEEN"
+            "level_max": 9,
+            "level_min": 5,
+            "species": "SPECIES_FINNEON"
         },
         {
-            "level_max": 7,
-            "level_min": 3,
+            "level_max": 9,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 9,
+            "level_min": 5,
+            "species": "SPECIES_TENTACOOL"
+        },
+        {
+            "level_max": 9,
+            "level_min": 5,
             "species": "SPECIES_LUVDISC"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_SLOWPOKE"
-        },
-        {
-            "level_max": 10,
+            "level_max": 9,
             "level_min": 5,
             "species": "SPECIES_SQUIRTLE"
-        },
-        {
-            "level_max": 15,
-            "level_min": 5,
-            "species": "SPECIES_BARBOACH"
         }
     ],
     "good_rod_rate": 50,

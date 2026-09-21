@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 2,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_SENTRET"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 3,
             "species": "SPECIES_SENTRET"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 3,
             "species": "SPECIES_WOOLOO"
         },
         {
-            "level": 3,
+            "level": 4,
             "species": "SPECIES_WOOLOO"
         },
         {
-            "level": 3,
-            "species": "SPECIES_PIKIPEK"
-        },
-        {
             "level": 4,
             "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 4,
+            "species": "SPECIES_SENTRET"
+        },
+        {
+            "level": 4,
             "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 4,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_BLIPBUG"
         },
         {
             "level": 4,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_BUNEARY"
         },
         {
-            "level": 4,
-            "species": "SPECIES_SURSKIT"
+            "level": 5,
+            "species": "SPECIES_BLIPBUG"
         },
         {
-            "level": 4,
-            "species": "SPECIES_SURSKIT"
+            "level": 5,
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_SENTRET",
-        "SPECIES_WOOLOO"
+        "SPECIES_WOOLOO",
+        "SPECIES_PIKIPEK"
     ],
     "night": [
-        "SPECIES_SURSKIT",
-        "SPECIES_WOOLOO"
+        "SPECIES_WOOLOO",
+        "SPECIES_BLIPBUG"
     ],
     "radar": [
         "SPECIES_WOBBUFFET",
@@ -125,29 +125,29 @@
     "old_rod_rate": 25,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
             "level_max": 7,
             "level_min": 3,
             "species": "SPECIES_MAGIKARP"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_FINNEON"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_BARBOACH"
         },
         {
-            "level_max": 15,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_LUVDISC"
+        },
+        {
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "good_rod_rate": 50,
