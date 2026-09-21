@@ -16,6 +16,14 @@ so they are not re-decided.
 > do and what to watch for. Where this file says "M5 follows the pass" or "the
 > tool as it stands after M4", read M6. Everything else here stands.
 >
+> **Element 3 landed the same evening (2026-09-20), which collapses this plan's two
+> stages into one.** All 159 new species are in the tree at ids 494 to 652, so every
+> pick-list line can be placed directly from Step 2 on; the Stage B reservation
+> mechanism (decision 1, Step 7) is not needed and should not be built. Coverage now
+> runs over 358 species in 177 evolution lines, and `test_step0` / `test_step1`
+> were updated to say so. Note the ids are dense after Arceus, not National Dex
+> numbers (`docs/oxide/species-id-scheme.md`).
+>
 > **Step 0 done, 2026-09-20.** M7 (`verify_narcs.py --source`) had landed with the
 > tool, so that item was not rebuilt. The gate's numbers, and where the plan's
 > 375 / 237 / 61 differ from the audit's per-key counts, are in the build plan's

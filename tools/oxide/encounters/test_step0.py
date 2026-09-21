@@ -84,9 +84,11 @@ def check_dex(results):
     results.append(("every native on the pick-list resolves to a species in the tree",
                     len(natives) == 199 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
-    leaked = [r["name"] for r in new if r["constant"]]
-    results.append(("no `new` row resolves (they are not ported yet)",
-                    len(new) == 159 and not leaked, f"{len(new)} new, resolved {leaked[:5]}"))
+    # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
+    # `new` row must now resolve too; before that this asserted the opposite.
+    unported = [r["name"] for r in new if not r["constant"]]
+    results.append(("every `new` row resolves (element 3 ported all 159)",
+                    len(new) == 159 and not unported, f"{len(new)} new, unresolved {unported[:5]}"))
     results.append(("awkward names map: Nidoran F, Mr. Mime, Farfetch'd, Porygon-Z",
                     dex.constant_of(root, "Nidoran F") == "SPECIES_NIDORAN_F"
                     and dex.constant_of(root, "Mr. Mime") == "SPECIES_MR_MIME"
@@ -166,8 +168,10 @@ def check_audit(results):
     results.append(("audit reproduces the plan's live land figures: 2052 slots, 1250 off-list",
                     s["live_land_slots"] == 2052 and s["live_land_slots_off_list"] == 1250,
                     f"{s['live_land_slots']} / {s['live_land_slots_off_list']}"))
-    results.append(("audit sees 199 natives and every encounter file",
-                    s["natives"] == 199 and s["files"] == 185,
+    # "natives" in the audit means pick-list species present in the tree: all
+    # 358 obtainable rows since element 3, 199 before it.
+    results.append(("audit sees all 358 pick-list species and every encounter file",
+                    s["natives"] == 358 and s["files"] == 185,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
@@ -190,8 +194,8 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 199 natives into lines, each on one row",
-                    covered == 199 and len({m for r in lines for m in r["members"]}) == 199,
+    results.append(("coverage groups all 358 pick-list species into lines, each on one row",
+                    covered == 358 and len({m for r in lines for m in r["members"]}) == 358,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",

@@ -138,20 +138,33 @@ for b in "${TRACK_BRANCHES[@]:-}"; do
         continue
     fi
     echo "merging $b ($n commits)"
-    if git merge --no-edit "$b" >/dev/null 2>&1; then
-        MERGED+=("$b"); continue
-    fi
+    merge_out="$(git merge --no-edit "$b" 2>&1)" && { MERGED+=("$b"); continue; }
     conflicts="$(git diff --name-only --diff-filter=U)"
-    if [ "$conflicts" = "docs/oxide/tracker.md" ]; then
-        git checkout --ours docs/oxide/tracker.md
-        git add docs/oxide/tracker.md
-        git commit -q --no-edit || die "could not commit the tracker resolution for $b"
-        echo "      tracker.md conflicted; kept the oxide side (each track has one status home)"
-        MERGED+=("$b (tracker resolved)")
-    else
-        git merge --abort
-        die "merging $b conflicts outside the tracker, aborted:"$'\n'"$conflicts"
+    if [ -z "$conflicts" ]; then
+        git merge --abort 2>/dev/null
+        die "merging $b failed without a content conflict:"$'\n'"$merge_out"
     fi
+    # Two files conflict routinely and each has one right resolution. The
+    # tracker belongs to the main track, so its side wins (one status home per
+    # track). The design doc's findings log is append-only, so a conflict there
+    # is both tracks appending entries and the answer is to keep both, in order.
+    resolved=()
+    for f in $conflicts; do
+        case "$f" in
+            docs/oxide/tracker.md)
+                git checkout --ours "$f" && git add "$f" && resolved+=("$f: kept the oxide side") ;;
+            docs/oxide/design-doc.md)
+                sed -i '/^<<<<<<< /d;/^=======$/d;/^>>>>>>> /d' "$f"
+                grep -q '^<<<<<<<\|^>>>>>>>' "$f" && { git merge --abort; die "design-doc.md conflict in $b is not a plain log append; resolve by hand"; }
+                git add "$f" && resolved+=("$f: kept both sides of the findings log") ;;
+            *)
+                git merge --abort
+                die "merging $b conflicts in a file this script does not resolve, aborted:"$'\n'"$conflicts" ;;
+        esac
+    done
+    git commit -q --no-edit || die "could not commit the resolved merge of $b"
+    printf '      %s\n' "${resolved[@]}"
+    MERGED+=("$b (${#resolved[@]} conflict(s) resolved)")
 done
 [ $DRY_RUN -eq 1 ] && { say "dry run, stopping before verification"; exit 0; }
 
