@@ -49,9 +49,21 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 41/41
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
 ```
+
+The `--source` line is the one that closes the loop: it needs a built ROM and no
+reference ROM, and it must read "all 183 tables match their source JSON". It is the
+only check here that looks at what the game actually runs.
+
+The `plan` line is the whole design in one command: it should take Growlithe from
+3% to 100% by naming five earlier routes to catch on first.
 
 The two reports are the heart of it. The first is vanilla and should read median
 HHI 0.275, spread 2.48x, 71 signatures. The second is the tables the project
@@ -61,28 +73,41 @@ early/late arc running backwards. **The working tree holds the base ROM's tables
 
 **What exists.** `tools/oxide/encounters/` has `model.py` (loading and slot-level
 writing), `analysis.py` (all of section 6's maths, pure functions), `lint.py`
-(section 7's rules, every threshold read from the sidecar), `cli.py` (`areas`,
-`show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint` built; `plan` and
-`generate` are stubs that print a pointer here), `server.py` plus `ui/index.html`
-for the browser editor, and `test_m1.py` through `test_m4.py`. The sidecar is
-`docs/oxide/encounters/design.json`, which holds every threshold.
+(section 7's rules, every threshold read from the sidecar), `dex.py` (species
+names and evolution lines from `res/pokemon/`), `planner.py` (the dupe-out planner,
+pure apart from its one loader), `generate.py` (the levels-only generator, pure),
+`cli.py` (`areas`, `show`, `set`, `roundtrip`, `sidecar-init`, `report`, `lint`,
+`plan`, `generate`), `server.py` plus `ui/index.html` for the browser editor, and
+`test_m1.py` through `test_m6.py`. The sidecar is `docs/oxide/encounters/design.json`,
+which holds every threshold; the per-playthrough caught record is
+`docs/oxide/encounters/caught.json`, gitignored.
 
-**Next: the authoring pass, not M5.** M1-M4 are done (M4 after two rounds of
-Ian's usability feedback) and their sections below record what each found. Ian
-called M4 done for now on 2026-09-20 and asked for the tables themselves to be
-written from the pick-list. The plan for that is
+**The tool is complete: all seven milestones are done.** Their sections below
+record what each found; M6 shipped in its levels-only form, and full species
+placement is deferred, possibly for good. **Next is the authoring pass**, which a
+separate agent picks up: Ian called M4 done for now on 2026-09-20 and asked for the
+tables themselves to be written from the pick-list. The plan for that is
 `docs/oxide/encounter-authoring-plan.md`: read it next, it says what to do in what
 order and which decisions are already taken. Its Step 0 adds the small pieces of
 tooling the pass needs (`cli apply`, `cli audit`, `cli coverage`, writers for the
-remaining encounter keys, and the M7 source-vs-ROM check), and it supplies the
-progression order and tiers M5 was waiting on. Status for the pass goes in an
-"Authoring pass" section below, gate by gate.
+remaining encounter keys); the source-versus-ROM check it also lists is M7, which
+is now built and is the gate every authored batch must clear before it is called
+done. Step 1 supplies the progression order and tiers. Status for the pass goes in
+an "Authoring pass" section below, gate by gate. This chat keeps the tool's design
+and any additions to it; the pass is someone else's.
 
-M5, the dupe-out planner, follows the pass. It inherits two things from M4's
-usability rounds: caught state is already global and server-side, so the planner
-needs no notion of ownership of its own; and the area list's play order is
-currently *approximated* by encounter level, which the pass replaces with the
-sidecar's explicit `order`, a one-line change to the sort key.
+**Two things the authoring plan does not know, because they landed after it was
+written.** M5, the dupe-out planner, and M6, the levels-only generator, are both
+done and available to the pass. Ian asked this session for M5 and M6 while the
+planning session was writing the authoring plan, so the plan says "M5 follows the
+pass"; it does not. The pass should use them: `cli plan` answers whether a table's
+acquisition path actually works, and `cli generate` builds the level ladder under
+species the pass places. Both approximate progression by encounter level from one
+place each, so Step 1's real `order` drops in cleanly.
+
+**Before running the generator for real, read M6's "one consequence"**: it enforces
+R1, most current tables break R1, so it will change almost every table it is
+pointed at and a few will pay less than they did. Use `--dry-run` first.
 
 **Three decisions already taken**, so they do not need rediscovering. Writes go
 through `jsonstyle.replace_value` on file text and never re-serialise a whole file.
@@ -105,9 +130,9 @@ generator, and they are the part most likely to be cut or deferred.
 | M2 | Analysis engine ✔ | `analysis.py`, `cli report` | Monte-Carlo agreement on repel; survey numbers reproduced — **passed** |
 | M3 | Linter ✔ | `lint.py`, `cli lint` | Vanilla passes the rules calibrated on vanilla — **passed** |
 | M4 | UI ✔ | `server.py`, `ui/index.html` | Edit in the browser lands as the right one-key git diff — **passed** |
-| M5 | Dupe-out planner | `plan` in `analysis.py`, `cli plan` | One hand-verified multi-step plan |
-| M6 | Generator | `generate.py`, `cli generate` | A generated band passes lint without hand repair |
-| M7 | ROM verification | acceptance harness | Built ROM's NARC matches the source JSON |
+| M5 | Dupe-out planner ✔ | `planner.py`, `cli plan`, `/api/plan` | One hand-verified multi-step plan — **passed** |
+| M6 | Generator, levels-only ✔ | `generate.py`, `cli generate` | A generated band clears R1/R2/R6 and reaches the R3 aim — **passed** |
+| M7 | ROM verification ✔ | `verify_narcs.py --source` | Built ROM's NARC matches the source JSON — **passed, 183/183, 21,045 fields** |
 
 ## What the repo already gives you
 
@@ -562,6 +587,24 @@ column. The one bold element is the repel ladder, now drawn as proportional bars
 per rung with caught species hatched, so the mass visibly moves to the survivors
 when a box is ticked.
 
+**Third round, same day: caught state is per area.** Ian asked for a column
+saying *what was caught there* and an "Encounter:" heading on the centre table.
+Both imply the nuzlocke model the dupes clause comes from — one encounter per
+area — so the caught record changed shape from a bare species list to
+`{area: species}`. Ticking a species records it against the area being edited;
+ticking a second species on the same area replaces the first; unticking clears
+that area. A species duped out by a relative now says where and by what
+("Starly, route 201") instead of a bare *line caught* tag, and the whole-dex
+owned set is still derived by expanding every recorded encounter's line. The
+area list gained the encounter column, the centre header carries the encounter in
+large type at top right, the species cell was cut to 11.5em from filling the
+column, and the centre's type went up to 15.5px. 46/46.
+
+This is also where the tool's footprint in `tracker.md` was formally cut to one
+paragraph by the other track's docs pass ("one home per fact"); per-milestone
+records live here from now on, which is what has been causing the merge
+conflicts to stop.
+
 `server.py` on `127.0.0.1:8765`, stdlib only, and `ui/index.html`, vanilla JS, no
 build step and no CDN. Three columns as specified: area list with sortable HHI,
 twelve-slot editor with merged and ladder views, live analysis panel with the
@@ -573,37 +616,243 @@ Build it against M2's JSON and nothing else — every number on screen is an
 *Gate:* edit a slot in the browser, see it in `git diff` at the right key with no
 other key touched.
 
-### M5 — Dupe-out planner
+### M5 — Dupe-out planner — **done, 2026-09-20**
 
-The feature the tool exists for. Exhaustive over subsets of a table's ≤12 species
-and the rungs where the target survives; needs a progression order for areas,
-which is new data — the sidecar's `band` is too coarse, so add an explicit
-`order` integer per area. Output the Pareto front and render the best few as prose.
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5` — 13/13,
+first run. The gate is the design doc's own thought experiment built as two
+synthetic tables small enough to do by hand: 98% Rattata in front of 2% Mewtwo,
+with Rattata catchable one route earlier. Unplanned, Mewtwo is 2% and the first
+counting encounter costs one battle. Catch Rattata first (1/0.98 = 1.0204
+encounters at its best rung), and Mewtwo becomes the only thing that counts: 100%,
+for 1/0.02 = 50 battles at the target, 51.0204 in all. The planner returns exactly
+those two Pareto points, to nine decimals.
 
-*Gate:* one hand-verified case, worked out on paper first and then matched.
+On a real table it does what the doc promised. Route 214's Growlithe sits at 1% on
+paper and 3% behind a level-29 repel. The planner finds the cascade: catch Gulpin
+first (Great Marsh, **old rod**, 52%), then Rhyhorn (Ravaged Path, 50%), Meditite
+(Wayward Cave, 22%), Girafarig (Route 206, 20%) and Doduo (Route 201, 8%) — five
+earlier routes, one catch each — and Growlithe is the *only* thing that counts on
+214: **3% → 100%**, about 61 encounters in all. The front has eleven points between
+those two, each buying more odds for more cost, and the page shows them as
+sentences. `cli plan encounters_route_214 growlithe` prints the same.
 
-### M6 — Generator
+**Two things the per-area caught model changed about the doc's description**, both
+enforced and both tested:
 
-Steps 1-4 of design section 8: assign archetypes and bands to satisfy the budget,
-place species under the hard constraints, assign levels and rungs by hill-climb,
-then lint and apply scripted repairs with a log.
+- **A source consumes its area's one encounter.** Sources must be earlier in
+  progression than the target, must have no encounter recorded yet, and each
+  supplies exactly one line. The doc's own example — "pre-catch Hippopotas on Route
+  214 itself" — is not legal under this rule and the planner will not propose it.
+- **Removal is by line**, so any member of a family caught anywhere earlier
+  removes the whole family from the target, and the search enumerates subsets of
+  *lines* on the target table, not species.
 
-Step 3 is, as the doc says, the highest value per line of code here, and it is also
-the one that can ship alone: a `generate --levels-only` that leaves species
-placement to Ian but builds the ladder under them would be useful on day one and is
-perhaps a tenth of the work of the full pipeline. Consider doing that first and
-treating full placement as optional.
+**One modelling choice to know about.** Acquisition cost is the doc's "expected
+encounters until it appears", 1/P at the best rung of the best source, which
+assumes the player can flee a non-target and keep going. The one-shot odds — the
+chance the very first counting encounter at the source is the target — are
+carried in every acquisition beside it, so if Ian plays strict one-encounter, the
+number he needs is already there; switching the optimisation to it is a one-line
+change.
 
-*Gate:* `generate --band early` produces tables that clear lint without hand repair.
+Progression order is still approximated by encounter level, the same key the page
+sorts by. The planner reads it from one place (`plan_inputs`), so the sidecar's
+real order drops in there when it exists. Water tables are already sources: the
+Gulpin above comes from a rod.
 
-### M7 — ROM verification
+*Gate was:* one hand-verified case, worked out on paper first and then matched.
 
-Extend `verify_narcs.py --encounters` to compare a built ROM's `pl_enc_data.narc`
-against the source JSON field by field, the way the trainer and species carry-overs
-were verified. Per design section 8.4: the generator reports success from lint,
-and lint reports from disk, and this reports from the thing the game actually runs.
+### M6 — Generator, levels-only — **done, 2026-09-20**
 
-*Gate:* `make rom` after a generated pass, then a clean field-by-field compare.
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --area encounters_route_201 --aim 10
+```
+
+**Outcome.** `PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6` — 19/19. This
+is step 3 of design section 8.2 shipped alone, as the plan advised: species stay
+where Ian put them and the generator chooses each slot's level so the repel ladder
+under them pays. Full species placement (steps 1, 2 and 4) is deferred and may
+never be needed.
+
+**Not a hill-climb.** The house rule R1 — levels non-decreasing with slot index —
+makes the search tiny: a twelve-slot ladder over four rungs is a choice of where
+three steps fall, **455 ladders**. So the generator enumerates every one and picks
+the best exactly. The paper case is a four-species route shape whose optimum can
+be worked out by hand (the rarest species isolated on the top rung with its
+lightest companion: 60%, a 10x uplift); the search finds it.
+
+**The objective, and why it changed.** The first version maximised uplift on the
+rarest species outright, and it turned every early table into the same thing —
+the 1% species isolated with its lightest companion at 50%, a **50x uplift on all
+sixteen** — which is exactly the homogenisation the design exists to prevent. So
+the objective *satisfices*: every hard rule first (R1 by construction, R2 rung
+count, R6 singleton and top-rung width), then the smallest shortfall below an
+**aim** (R3's threshold, 3.0x, by default), then the fewest slots changed, then
+the widest top rung, and only then the highest uplift. At the default aim the
+early band lands at 5x to 50x across five distinct values with top rungs of two
+to four species; `--aim 100` still reaches the 50x band, deliberately available,
+deliberately not default.
+
+**One consequence Ian should know before running it for real.** The search only
+ever yields ladders that obey R1, and **88% of the tables on this branch do not**
+(M1's finding). So the generator changes something on almost every table, and a
+table whose illegal ladder happened to pay well can come out paying less: Valley
+Windworks Outside and Oreburgh Gate 1F both go from 20x to 16.7x. That is the
+house rule doing its job, not a defect, and the CLI says so in its summary line
+when it happens. If Ian would rather keep a non-monotonic ladder that pays, R1 is
+his to relax.
+
+Locked slots (`locked` in the sidecar) keep their level. Writes go one key per
+changed slot through `model.set_slot`, so a run is a readable git diff; there is no
+separate repairs log because the diff is the record. Nothing is written without
+dropping `--dry-run`.
+
+One unreproduced oddity, recorded so nobody chases a ghost: a single run of the
+gate, immediately after two files were patched, died with a `TypeError` inside
+`analysis.best_uplift` on the `--aim 100` path. Four full reruns since, including
+the exact same sequence with the function instrumented, all pass 19/19, and a
+scan of every ladder on every early table scores cleanly.
+
+*Gate was:* `generate --band early` produces tables that clear lint without hand
+repair. Read against levels-only: every proposal clears R1, R2 and R6 and reaches
+the R3 aim, with nothing written.
+
+### M7 — ROM verification — **done, 2026-09-20**
+
+```
+make rom
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source
+```
+
+**Outcome.** `verify_narcs.py --source` compares `pl_enc_data.narc` in a built ROM
+against `res/field/encounters/*.json` field by field, with no reference ROM
+involved. Run against the current build: **all 183 tables match, 21,045 fields
+checked, nothing skipped.** That build came from the main checkout, whose 188
+encounter files are byte for byte identical to this branch's, so it was a valid
+build of the current data and the first run needed no rebuild.
+
+**Why it is its own mode rather than a flag on `--encounters`.** The existing
+check proves a build matches the *base ROM*, and deliberately skips the six fields
+the importer left at vanilla (`unown_table`, `rate_form0..4`). That reference stops
+being the truth the moment a table is authored, and the skips would then hide real
+drift. `--source` proves the build matches the *JSON*, the only thing that stays
+authoritative, and skips nothing: the JSON is what the build wrote from, so every
+packed field must round-trip, those six included. Per design doc 8.4, the
+generator reports success from lint, lint reports from disk, and this reports from
+the thing the game actually runs.
+
+**Three things the run settled.** The decoder is the converter run backwards and
+yields species by *name*, so a decoded record compares directly against the JSON
+on the keys the packed record carries. It resolves those names through
+`generated/species.txt` when there is no build directory, so the check runs from
+a clean tree. And the three JSON keys it reports as not compared —
+`map_category`, `elusive_rod_encounter`, `daily_encounters` — are keys the
+converter never packs, confirmed by reading `tools/jsoncnv/encounter.py`, so
+"nothing skipped" is a claim about the whole 424-byte record. The NARC holds
+exactly the 183 land tables in `encounters.order`; the two non-land files are
+built separately through `encdata_ex.order` and are not members.
+
+`--ref` is no longer required by the argument parser — every check except
+`--source` asks for it explicitly — and the old `--encounters` mode still passes
+on the same build.
+
+**For the authoring pass:** this is the gate each authored batch clears. Build,
+then `--source`; it must read "all 183 tables match their source JSON". A table
+that lints clean but fails here has been written to the JSON in a way the
+converter does not carry, and that is a bug in the writer, not the table.
+
+*Gate was:* `make rom` after a generated pass, then a clean field-by-field
+compare.
+
+## Authoring pass
+
+Status for `docs/oxide/encounter-authoring-plan.md`, gate by gate. The plan
+says what each step is; this says what happened.
+
+### Step 0 — tooling — **done, 2026-09-20**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0        # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli audit --summary
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli coverage
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply AREA --dry-run
+```
+
+**What was built.** In `tools/oxide/encounters/`: `model.py` gained
+`set_swarm`, `set_radar` and `set_dual_slot` (the same `_replace` path as
+`set_time_slot`, one key per write) and species-only readers for the honey
+tree, the Great Marsh lookout and the Trophy Garden dailies, plus
+`Area.reference_species()` for the audit; `dex.py` gained `constant_of` (the
+reverse of `display_name`, so the pick-list's "Nidoran F" and "Mr. Mime"
+resolve), `pick_list` and `line_base`; `audit.py` is new and holds the leak
+audit and the availability coverage; `layout.py` is new and holds the slot
+layout behind `cli apply`; `cli.py` gained `audit`, `coverage` and `apply`.
+Outside the tool: `import_base_rom.py` has an `AUTHORED` table mirroring
+`bulk_scripts.py`'s `DIVERGED`, and `authored_encounters()` unions it with
+every sidecar area that has a `cast`, so a table authored through `apply` is
+protected from the importer without a second list to maintain; the dry run
+reports those as "authored, skipped" and counts 0. `verify_narcs.py
+--encounters --ref` skips the same set and names them (`--source`, M7, is
+their check). `integrate.sh` now runs `--encounters --source` and every
+`test_*.py` in the tool directory.
+
+**The M7 item on the plan's Step 0 list was already done** by the tool track
+the same day (`verify_narcs.py --source`, section M7 above), so it was not
+built again; the plan predates M5 to M7.
+
+**The layout rule, as implemented.** The archetype's signature is the merged
+shares in cast order. The twelve slots are walked in index order and each is
+given to a species whose remaining share covers its rate, backtracking when a
+partial layout cannot complete, so every species' slots sum to exactly its
+share and the first-listed species is the 20% face. Levels are `base_level`
+plus a per-slot offset from the entry's `ladder` or the archetype's default
+(four rungs: vanilla's `0/1/1/1/2/2/2/2/2/2/3/3`; three: `0/0/1/1/1/1/2/...`;
+two: six and six; one: flat), so R1 holds by construction. A cast entry
+`{"species": X, "rung": r}` guarantees X one slot on rung r. One finding
+worth knowing before authoring: **tight signatures decompose only one way.**
+A5's 40 can only be the two 20% slots and its 1s the two 1% slots, so an A5
+head can never sit on the top rung, whatever the ladder; A1's 10 and 5 leave
+room (5+4+1, 4+1), which is where the "duplicate of a head species on the top
+rung" of the authoring rules comes from. `apply` refuses a pin the arithmetic
+cannot honour and says so. It also refuses to change a `locked` slot; a lock
+should be expressed as a pin. Levels come out as the plain ladder; M6's
+`generate --dry-run` can then tune them for R3 if the table needs it.
+
+**Gate, on the unchanged tree.** M1 13/13, M2 23/23, M3 18/18, M4 46/46, M5
+15/15, M6 19/19, Step 0 35/35; `lint --ref main` 0 errors, `lint` 1 error
+(R8), both as before. `verify_narcs --encounters --source` against the main
+checkout's build: 183 of 183 tables, 21,045 fields. `import_base_rom.py
+--dry-run --skip-text`: every count 0, "0 authored table(s) left alone".
+
+The audit's numbers, and how they sit against the plan's "facts that size
+it": live land slots **2,052 with 1,250 off-list** (exact match); water and
+rods **641** off-list references ("about 640"); **183 of the 183 land-format
+files** reference an off-list species somewhere, and so do both non-land
+files. Over every key in every file, **404 distinct species are referenced,
+259 off-list**; over live land tables alone it is 302 and 189. The plan's
+375 / 237 pair is reproduced to within one or two by "live tables, land +
+water + radar + dual-slot" (374 / 236), so it was a different key selection,
+not a different tree; the audit prints the per-key table rather than
+choosing one. Natives in no live land table: **86**; in no encounter source
+of any kind: 54; the plan's 61 is the land + water + dual-slot count. Radar
+488, swarms 250, day/night 440, dual-slot 1,092 off-list references. Scripts:
+88 give or battle commands name a species, **43 off-list**, listed in the
+audit output for Ian (decision 8): the base ROM's house gifts in Sandgem,
+Floaroma, Solaceon, Pastoria, Veilstone and the Canalave library, the Day
+Care Ditto, and the Twinleaf legendary battles (Mewtwo, Mew, the beasts,
+Lugia, Ho-Oh, Celebi, the weather trio, Jirachi, Deoxys).
+
+Coverage on the unchanged tree, by evolution line: **99 native lines**: 35
+with a wild home, 38 with a non-wild source only (gift, trade, static battle,
+starter or fossil), 12 water-only, 8 cameo-only, 1 other-only (Yanma: marsh
+binoculars and dual-slot), and **5 with nothing**: Articuno, Zapdos, Moltres,
+Mesprit and Cresselia, which Platinum places as roamers through a mechanism
+no script names. The 159 new species are listed separately as not in the
+tree. R12 stays skipped until Step 1 writes `tier`.
+
+*Gate was:* M1 to M4 tests pass; `integrate.sh --dry-run` passes; audit and
+coverage run on the unchanged tree with numbers matching the plan's facts.
 
 ## Suggested order, and what to cut
 

@@ -50,10 +50,58 @@ def species_universe(root):
                   and os.path.isdir(os.path.join(path, d)))
 
 
+def _normalise(name):
+    """The pick-list writes 'Nidoran F', 'Mr. Mime', "Farfetch'd"; the tree
+    writes SPECIES_NIDORAN_F, SPECIES_MR_MIME, SPECIES_FARFETCHD. Both sides
+    collapse to the same key here, so the reverse mapping never needs a
+    hand-written exception table beyond SPECIAL_NAMES."""
+    if name.startswith("SPECIES_"):
+        name = name[len("SPECIES_"):]
+    out = name.upper()
+    for ch in ("'", ".", "%", ":"):
+        out = out.replace(ch, "")
+    out = out.replace("♀", " F").replace("♂", " M")
+    return "_".join(out.replace("-", " ").split())
+
+
+def constant_of(root, name):
+    """'Starly' -> SPECIES_STARLY, or None when nothing in the tree matches.
+
+    The reverse of display_name. A pick-list row whose species has not been
+    ported yet (the 159 `new` rows) has no constant and comes back None,
+    which is the signal the audit and coverage commands key off.
+    """
+    if "constants" not in _CACHE:
+        _CACHE["constants"] = {_normalise(s): s for s in species_universe(root)}
+        for const, shown in SPECIAL_NAMES.items():
+            _CACHE["constants"].setdefault(_normalise(shown), const)
+    return _CACHE["constants"].get(_normalise(name))
+
+
+PICK_LIST = ("docs", "oxide", "species-pick-list.csv")
+
+
+def pick_list(root):
+    """The species pick-list, one dict per row, with `constant` resolved
+    against the tree (None for rows the tree does not have yet) and `tier`
+    present whether or not the CSV has the column yet."""
+    import csv
+    rows = []
+    with open(os.path.join(root, *PICK_LIST), encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            r = dict(r)
+            r["constant"] = constant_of(root, r["name"])
+            r.setdefault("tier", "")
+            rows.append(r)
+    return rows
+
+
 def _build_lines(root):
-    """{species: line_id} over the evolution graph's connected components."""
+    """{species: line_id} over the evolution graph's connected components.
+    Also records the directed edges, which line_base needs."""
     known = set(species_universe(root))
     parent = {s: s for s in known}
+    evolves_into = {s: set() for s in known}
 
     def find(x):
         while parent[x] != x:
@@ -88,6 +136,8 @@ def _build_lines(root):
                 if (isinstance(field, str) and field.startswith("SPECIES_")
                         and field in known):
                     union(species, field)
+                    evolves_into[species].add(field)
+    _CACHE["evolves_into"] = evolves_into
     return {s: find(s) for s in known}
 
 
@@ -95,6 +145,19 @@ def lines(root):
     if "lines" not in _CACHE:
         _CACHE["lines"] = _build_lines(root)
     return _CACHE["lines"]
+
+
+def line_base(root, line_id):
+    """The first stage(s) of a line: members nothing in the line evolves
+    into. Usually one species; a line with two roots (none in Platinum's
+    data, but the graph allows it) returns both, sorted."""
+    lines(root)
+    members = members_of_line(root, line_id)
+    evolved = set()
+    for s in members:
+        evolved |= _CACHE["evolves_into"].get(s, set())
+    roots = [s for s in members if s not in evolved]
+    return roots or members[:1]
 
 
 def line_of(root, species):

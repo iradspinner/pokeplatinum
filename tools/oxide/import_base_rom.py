@@ -456,6 +456,33 @@ def decode_encounter(b):
 # rate_form2..4 are unused by the game and move with the other two.
 ENCOUNTER_SKIP_KEYS = ("unown_table", "rate_form0", "rate_form1", "rate_form2", "rate_form3", "rate_form4")
 
+# Encounter files the authoring pass has rewritten from the species pick-list
+# (docs/oxide/encounter-authoring-plan.md). The base ROM's table is no longer
+# the truth for these, so the importer must not carry it back over them; the
+# dry run reports them as "authored, skipped" and does not count them. Mirrors
+# bulk_scripts.py's DIVERGED: stem -> why. Any area whose sidecar entry
+# (docs/oxide/encounters/design.json) carries a `cast` is authored by
+# definition and is added automatically by authored_encounters(), so this
+# literal set is only for tables authored outside the sidecar.
+AUTHORED = {
+}
+
+
+def authored_encounters():
+    """{stem: reason} for every encounter file the importer must leave alone:
+    AUTHORED plus every sidecar area with a cast."""
+    out = dict(AUTHORED)
+    path = os.path.join(ROOT, "docs", "oxide", "encounters", "design.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            areas = json.load(f).get("areas") or {}
+    except (FileNotFoundError, ValueError):
+        areas = {}
+    for name, entry in areas.items():
+        if entry.get("cast"):
+            out.setdefault(name, "authored from the pick-list (sidecar entry has a cast)")
+    return out
+
 
 TRADE_FIELDS = [
     ("species", SPECIES), ("hpIV", None), ("atkIV", None), ("defIV", None),
@@ -1275,12 +1302,18 @@ def main():
     bencs, vencs = base.narc("fielddata/encountdata/pl_enc_data.narc"), van.narc("fielddata/encountdata/pl_enc_data.narc")
     n = 0
     skipped_fields = 0
+    authored = authored_encounters()
+    authored_skipped = []
     for i in range(len(bencs)):
         if bencs[i] == vencs[i]:
             continue
         d = encounter_json(i)
         if d is None:
             log.append((f"encounter index {i}", ["record differs but has no json; skipped"]))
+            continue
+        stem = os.path.basename(d)[:-len(".json")]
+        if stem in authored:
+            authored_skipped.append(f"{stem}: authored, skipped ({authored[stem]})")
             continue
         new_enc, old_enc = decode_encounter(bencs[i]), decode_encounter(vencs[i])
         for key in ENCOUNTER_SKIP_KEYS:
@@ -1293,7 +1326,8 @@ def main():
     log.append(("pl_enc_data.narc (partially imported)", [
         f"{skipped_fields} differing values in {', '.join(ENCOUNTER_SKIP_KEYS)} were not carried "
         f"over; see ENCOUNTER_SKIP_KEYS in this importer for why",
-    ]))
+        f"{len(authored_skipped)} authored table(s) left alone; see AUTHORED and the sidecar",
+    ] + authored_skipped))
 
     # in-game trades
     btr, vtr = base.narc("fielddata/pokemon_trade/fld_trade.narc"), van.narc("fielddata/pokemon_trade/fld_trade.narc")

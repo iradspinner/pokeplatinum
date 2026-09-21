@@ -9,6 +9,21 @@ so they are not re-decided.
 
 ## Resuming cold
 
+> **Added 2026-09-20, after this plan was written.** The tool did not stop at M4.
+> M5, the dupe-out planner (`cli plan AREA SPECIES`), and M6, the levels-only
+> generator (`cli generate --area AREA --dry-run`), both landed the same day and
+> are available to this pass; the build plan's M5 and M6 sections say what they
+> do and what to watch for. Where this file says "M5 follows the pass" or "the
+> tool as it stands after M4", read M6. Everything else here stands.
+>
+> **Step 0 done, 2026-09-20.** M7 (`verify_narcs.py --source`) had landed with the
+> tool, so that item was not rebuilt. The gate's numbers, and where the plan's
+> 375 / 237 / 61 differ from the audit's per-key counts, are in the build plan's
+> "Authoring pass" section. Two things learned there that bear on Step 3: an A5
+> head can never hold a top-rung slot (its 40 is the two 20% slots, whatever the
+> ladder), and `apply` lays levels out as the plain ladder, so `generate --dry-run`
+> is the tool for tuning them afterwards.
+
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);
 `docs/oxide/encounter-tool-design.md` sections 1, 2 and 7; `CLAUDE.md` and

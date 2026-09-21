@@ -60,8 +60,15 @@ def check_encounters(built, ref, nb, nr):
     b = ndspy.narc.NARC(built.files[nb[path]]).files
     r = ndspy.narc.NARC(ref.files[nr[path]]).files
     order = [l.strip() for l in open(os.path.join("res", "field", "encounters", "encounters.order")) if l.strip()]
-    mismatches, skipped = 0, 0
+    # Tables the authoring pass rewrote no longer match the base ROM on
+    # purpose; --source is their check. They are skipped here, and named, so
+    # this mode stays usable for the tables that still track the reference.
+    authored = imp.authored_encounters()
+    mismatches, skipped, authored_skipped = 0, 0, []
     for i in range(min(len(b), len(r))):
+        if i < len(order) and order[i] in authored:
+            authored_skipped.append(order[i])
+            continue
         db, dr = imp.decode_encounter(b[i]), imp.decode_encounter(r[i])
         for key in imp.ENCOUNTER_SKIP_KEYS:
             if db[key] != dr[key]:
@@ -77,8 +84,69 @@ def check_encounters(built, ref, nb, nr):
     if mismatches:
         print(f"{path}: {mismatches} of {len(b)} tables differ outside the skipped fields")
     else:
-        print(f"{path}: all {len(b)} tables match the reference outside the skipped fields "
+        print(f"{path}: all {len(b) - len(authored_skipped)} unauthored tables match the "
+              f"reference outside the skipped fields "
               f"({skipped} skipped-field differences left at their vanilla values, as intended)")
+    if authored_skipped:
+        print(f"  {len(authored_skipped)} authored table(s) not compared to the base ROM "
+              f"(use --source for them): {', '.join(authored_skipped[:6])}"
+              + (" ..." if len(authored_skipped) > 6 else ""))
+    return mismatches == 0
+
+
+def check_encounters_source(built, nb):
+    """M7: the built pl_enc_data.narc against res/field/encounters/*.json,
+    field by field.
+
+    The --ref check proves the build matches the base ROM, which stops being
+    the truth the moment a table is authored. This proves the build matches
+    the source, which is the only thing that stays authoritative. Nothing is
+    skipped: the JSON is what the build wrote from, so every field, including
+    unown_table and rate_form0..4, must round-trip.
+
+    encounters.order names the 183 land tables in NARC order; the two non-land
+    files (Great Marsh lookout, honey tree) are built separately and are not
+    members here. The decoder is the converter run backwards and yields
+    species by name, so a decoded record compares directly against the JSON
+    on the keys the packed record carries (map_category is not packed).
+    """
+    import json
+    imp = load_importer()
+    path = "fielddata/encountdata/pl_enc_data.narc"
+    b = ndspy.narc.NARC(built.files[nb[path]]).files
+    enc_dir = os.path.join("res", "field", "encounters")
+    order = [l.strip() for l in open(os.path.join(enc_dir, "encounters.order"))
+             if l.strip()]
+    if len(b) != len(order):
+        print(f"{path}: NARC has {len(b)} members but encounters.order names "
+              f"{len(order)}; comparing the first {min(len(b), len(order))}")
+    mismatches = fields_checked = 0
+    unpacked_keys = set()
+    for i in range(min(len(b), len(order))):
+        name = order[i]
+        with open(os.path.join(enc_dir, name + ".json"), encoding="utf-8") as f:
+            src = json.load(f)
+        got = imp.decode_encounter(b[i])
+        unpacked_keys |= set(src) - set(got)
+        want = {tuple(p): v for p, v in imp.scalar_paths({k: src[k] for k in got})}
+        have = {tuple(p): v for p, v in imp.scalar_paths(got)}
+        fields_checked += len(have)
+        diffs = [f"{'.'.join(str(x) for x in p)}: rom {v!r} != json {want.get(p)!r}"
+                 for p, v in have.items() if want.get(p) != v]
+        diffs += [f"{'.'.join(str(x) for x in p)}: missing from rom"
+                  for p in want if p not in have]
+        if diffs:
+            mismatches += 1
+            print(f"{name}: {len(diffs)} field(s) differ: {diffs[:4]}")
+    if mismatches:
+        print(f"{path}: {mismatches} of {len(order)} tables differ from their "
+              f"source JSON")
+    else:
+        print(f"{path}: all {len(order)} tables match their source JSON, "
+              f"{fields_checked} fields checked, nothing skipped")
+    if unpacked_keys:
+        print(f"  (JSON keys not in the packed record, so not compared: "
+              f"{', '.join(sorted(unpacked_keys))})")
     return mismatches == 0
 
 
@@ -158,7 +226,10 @@ def check_map_headers(built, ref):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--built", required=True)
-    ap.add_argument("--ref", required=True)
+    ap.add_argument("--ref", help="reference ROM; not needed with --source")
+    ap.add_argument("--source", action="store_true",
+                    help="M7: check pl_enc_data.narc against res/field/encounters/*.json "
+                         "field by field, no reference ROM involved")
     ap.add_argument("--map-headers", action="store_true",
                     help="compare arm9's sMapHeaders against the reference ROM's")
     ap.add_argument("--text", action="store_true",
@@ -169,8 +240,14 @@ def main():
                     help="field-level check of pl_enc_data.narc instead of a byte comparison")
     ap.add_argument("paths", nargs="*", default=DEFAULT)
     a = ap.parse_args()
-    built, ref = ndspy.rom.NintendoDSRom.fromFile(a.built), ndspy.rom.NintendoDSRom.fromFile(a.ref)
-    nb, nr = walk(built.filenames), walk(ref.filenames)
+    built = ndspy.rom.NintendoDSRom.fromFile(a.built)
+    nb = walk(built.filenames)
+    if a.source:
+        sys.exit(0 if check_encounters_source(built, nb) else 1)
+    if not a.ref:
+        ap.error("--ref is required for every check except --source")
+    ref = ndspy.rom.NintendoDSRom.fromFile(a.ref)
+    nr = walk(ref.filenames)
     ok = True
     if a.encounters:
         sys.exit(0 if check_encounters(built, ref, nb, nr) else 1)

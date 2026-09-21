@@ -161,7 +161,11 @@ if [ $BUILD -eq 1 ]; then
     check "make rom" make rom
     if [ -f "$ROM" ]; then
         check "verify_narcs (species/moves/evo/learnsets)" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
-        check "verify_narcs --encounters" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --encounters
+        # The encounter tables are checked against their source JSON (M7), not
+        # the base ROM: once the authoring pass rewrites a table the base ROM
+        # stops being its truth. --encounters --ref still exists for the
+        # tables that have not been authored yet.
+        check "verify_narcs --encounters --source" python3 tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
         check "verify_narcs --text" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
         check "verify_narcs --map-headers" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
         CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" python3 tools/oxide/bulk_scripts.py --dry-run
@@ -188,9 +192,9 @@ CHECK_EXPECT="0 failed" check "scriptdis --verify (vanilla)" python3 tools/oxide
 CHECK_EXPECT="0 failed" check "scriptdis --verify --base-rom" python3 tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
 
 export PYTHONPATH=.
-for m in 1 2 3 4; do
-    [ -f "tools/oxide/encounters/test_m$m.py" ] || continue
-    CHECK_EXPECT="passed" check "encounter tool test_m$m" python3 -m "tools.oxide.encounters.test_m$m"
+for t in tools/oxide/encounters/test_*.py; do
+    name="$(basename "$t" .py)"
+    CHECK_EXPECT="passed" check "encounter tool $name" python3 -m "tools.oxide.encounters.$name"
 done
 check "encounter lint on vanilla (--ref main --fail-on error)" python3 -m tools.oxide.encounters.cli --ref main lint --fail-on error
 

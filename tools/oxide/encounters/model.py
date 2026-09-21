@@ -30,6 +30,26 @@ LAND_RATES = (20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1)
 # at most 20% of a table. Design doc 1.3.
 DAY_NIGHT_SLOTS = (2, 3)
 
+# The other species lists a land table carries, with their fixed lengths.
+# swarms and the five dual-slot lists stand in for slots 0-1 (swarm) and 8-9
+# (dual-slot) the way day/night stand in for 2-3; radar replaces slots 4-5
+# with one of four species. All of them are leaks if they hold an off-list
+# species, which is why the writers exist before their design does.
+SWARM_KEY = "swarms"
+RADAR_KEY = "radar"
+DUAL_SLOT_KEYS = ("ruby", "sapphire", "emerald", "firered", "leafgreen")
+LIST_KEY_SIZES = {SWARM_KEY: 2, "day": 2, "night": 2, RADAR_KEY: 4,
+                  **{k: 2 for k in DUAL_SLOT_KEYS}}
+
+# Species-only sources outside the land format, read for the audit and left
+# alone by the writers: their design is a later pass.
+HONEY_TREE = "encounters_honey_tree"          # common / uncommon / rare
+GREAT_MARSH_LOOKOUT = "encounters_great_marsh_lookout"  # binocular pools
+TROPHY_GARDEN = "encounters_trophy_garden"    # daily_encounters, 16 species
+HONEY_TREE_KEYS = ("common", "uncommon", "rare")
+GREAT_MARSH_KEYS = ("before_national_dex", "after_national_dex")
+DAILY_KEY = "daily_encounters"
+
 # Band cutoffs on a table's median level. Design doc 2.5.
 BAND_EARLY_MAX = 12
 BAND_MID_MAX = 29
@@ -194,6 +214,50 @@ class Area:
             raise IndexError(f"{layer} has two entries, not {index + 1}")
         self._replace([layer, index], species)
 
+    def _set_list_species(self, key, index, species):
+        size = LIST_KEY_SIZES.get(key)
+        if size is None:
+            raise ValueError(f"not a species list: {key}")
+        if not 0 <= index < size:
+            raise IndexError(f"{key} has {size} entries, not {index + 1}")
+        if not isinstance(self.data.get(key), list):
+            raise KeyError(f"{self.name} has no {key} list")
+        self._replace([key, index], species)
+
+    def set_swarm(self, index, species):
+        """The two swarm species, which replace slots 0-1 while a swarm is on."""
+        self._set_list_species(SWARM_KEY, index, species)
+
+    def set_radar(self, index, species):
+        """The four Poke Radar species, which replace slots 4-5."""
+        self._set_list_species(RADAR_KEY, index, species)
+
+    def set_dual_slot(self, game, index, species):
+        """One of the five dual-slot lists (ruby, sapphire, emerald, firered,
+        leafgreen), each two species standing in for slots 8-9."""
+        if game not in DUAL_SLOT_KEYS:
+            raise ValueError(f"not a dual-slot game: {game}")
+        self._set_list_species(game, index, species)
+
+    def reference_species(self):
+        """Every species reference in the file, {key: [species]} in the
+        file's own order. The audit reads this. Water slots holding
+        SPECIES_NONE are the empty marker, not a reference, and are dropped."""
+        from . import analysis
+        out = {}
+        for kind, (key, _, _) in analysis.TABLE_KINDS.items():
+            rows = self.data.get(key)
+            if isinstance(rows, list) and rows:
+                vals = [e["species"] for e in rows if e["species"] != "SPECIES_NONE"]
+                if vals:
+                    out[key] = vals
+        for key in (SWARM_KEY, "day", "night", RADAR_KEY, *DUAL_SLOT_KEYS,
+                    *HONEY_TREE_KEYS, *GREAT_MARSH_KEYS, DAILY_KEY):
+            vals = self.data.get(key)
+            if isinstance(vals, list) and vals:
+                out[key] = list(vals)
+        return out
+
     def _replace(self, path, value):
         if self.ref is not None:
             raise RuntimeError(
@@ -226,7 +290,7 @@ class Area:
             for i in range(len(LAND_RATES)):
                 paths.append(["land_encounters", i, "species"])
                 paths.append(["land_encounters", i, "level"])
-        for layer in ("day", "night", "swarms", "radar"):
+        for layer in ("day", "night", "swarms", "radar", *DUAL_SLOT_KEYS):
             if isinstance(self.data.get(layer), list):
                 for i in range(len(self.data[layer])):
                     paths.append([layer, i])
@@ -252,12 +316,64 @@ def load_all(ref=None, land_only=False, active_only=False):
     return areas
 
 
+# -- the species-only sources ---------------------------------------------
+#
+# Three encounter sources the land format does not cover. Read for the audit
+# (species only); nothing writes them yet, their design is a later pass.
+
+
+def honey_tree_species(ref=None):
+    """{common|uncommon|rare: [six species]}."""
+    d = load_area(HONEY_TREE, ref).data
+    return {k: list(d[k]) for k in HONEY_TREE_KEYS}
+
+
+def great_marsh_lookout_species(ref=None):
+    """{before_national_dex|after_national_dex: [32 species]}, the pools the
+    lookout binoculars draw from."""
+    d = load_area(GREAT_MARSH_LOOKOUT, ref).data
+    return {k: list(d[k]) for k in GREAT_MARSH_KEYS}
+
+
+def trophy_garden_daily_species(ref=None):
+    """The 16 species Mr. Backlot's garden rotates through, from the same
+    file as the garden's own land table."""
+    return list(load_area(TROPHY_GARDEN, ref).data[DAILY_KEY])
+
+
 # -- the sidecar ----------------------------------------------------------
 #
 # Design intent that the decomp format has nowhere to put. Hand-editable on
 # purpose: it is what Ian diffs when he wants to know why a route looks the
 # way it does. Archetype assignment waits for M2, which is what can measure
 # fit; M1 writes only what can be derived without the analysis engine.
+
+
+# -- the caught record ------------------------------------------------------
+#
+# Per-playthrough state, not design intent, so it is gitignored rather than
+# living in the sidecar. {area: species}: one encounter per area, the
+# nuzlocke model the dupes clause comes from.
+
+CAUGHT_FILE = os.path.join("docs", "oxide", "encounters", "caught.json")
+
+
+def load_encounters():
+    path = os.path.join(repo_root(), CAUGHT_FILE)
+    try:
+        with open(path, encoding="utf-8") as f:
+            return dict(json.load(f).get("encounters") or {})
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def save_encounters(encounters):
+    path = os.path.join(repo_root(), CAUGHT_FILE)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump({"encounters": dict(sorted(encounters.items()))}, f,
+                  indent=2)
+        f.write("\n")
 
 
 def sidecar_path():

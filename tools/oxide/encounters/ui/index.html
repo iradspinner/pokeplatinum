@@ -45,12 +45,23 @@ header .title { font-weight: 650; letter-spacing: -.01em; margin-right: 4px; }
 .metric.fail b { color: var(--alert); }
 .metric.pass b { color: var(--mass); }
 
-main { display: grid; grid-template-columns: 340px minmax(480px, 1fr) 400px;
+main { display: grid; grid-template-columns: 420px minmax(520px, 1fr) 400px;
        height: calc(100vh - 41px); }
 section { overflow-y: auto; }
 #list { border-right: 1px solid var(--rule); background: var(--panel); }
 #right { border-left: 1px solid var(--rule); background: var(--panel); }
-#mid { padding: 14px 18px 40px; }
+#mid { padding: 14px 20px 40px; font-size: 15.5px; }
+#mid table.grid td { padding: 4px 8px; }
+#mid table.grid th { font-size: 12.5px; }
+#mid input.lv { width: 60px; font-size: 15px; }
+#mid .cb { width: 11.5em; }
+#mid .cb input { font-size: 15px; }
+#mid table.grid { width: auto; }
+#mid table.grid td.fill { width: 100%; }
+.encounter { text-align: right; }
+.encounter .k { font-size: 12.5px; color: var(--dim); display: block; }
+.encounter .v { font: 600 24px/1.1 var(--sans); letter-spacing: -.01em; }
+.encounter .v.none { color: var(--faint); font-weight: 400; font-size: 18px; }
 #right { padding: 0 16px 40px; }
 
 /* the filter stays put however far the list is scrolled */
@@ -76,7 +87,7 @@ button:disabled { color: var(--faint); cursor: default; }
 
 /* left list: a real table so the numbers line up down the column */
 .arow {
-  display: grid; grid-template-columns: 1fr 52px 46px 46px;
+  display: grid; grid-template-columns: 1fr 88px 48px 40px 44px;
   gap: 6px; align-items: center; padding: 5px 12px; cursor: pointer;
   border-bottom: 1px solid #e6eaef; position: relative;
 }
@@ -85,6 +96,8 @@ button:disabled { color: var(--faint); cursor: default; }
 .arow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .arow .sub { font-size: 11.5px; color: var(--faint); }
 .arow .num { font-size: 12px; color: var(--dim); }
+.arow .enc { font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.arow .enc.none { color: var(--faint); }
 /* progress is shown by fading the row, so a partly-worked area reads as
    partly done rather than as a binary flag */
 .arow.p1 { opacity: .78; } .arow.p2 { opacity: .60; } .arow.p3 { opacity: .45; }
@@ -147,6 +160,11 @@ input.lv { width: 48px; }
 .finding.error .rule { color: var(--alert); }
 .finding .asp { color: var(--faint); }
 
+.plan ol { margin: 6px 0 0; padding-left: 20px; }
+.plan li { margin: 0 0 8px; font-size: 12.5px; }
+.plan li b { color: var(--gold); }
+.plan .pick { display: flex; gap: 6px; align-items: center; }
+.plan select { flex: 1; }
 #toast { position: fixed; right: 16px; bottom: 14px; background: var(--ink);
          color: #fff; border-radius: 4px; padding: 7px 12px; font-size: 12.5px;
          opacity: 0; transition: opacity .12s; pointer-events: none; z-index: 60; }
@@ -212,6 +230,7 @@ const pct = v => !v ? "0%" : (v * 100).toFixed(v * 100 < 9.95 ? 1 : 0) + "%";
 let ALL = [], GAME = null, DEX = [], BY_LABEL = new Map();
 let SEL = null, DETAIL = null, CAUGHT = new Set();
 let SORT = "level", KIND = "land", LAYER = "base";
+let PLAN = null, PLAN_SP = null;
 
 function toast(msg, bad) {
   const t = $("#toast");
@@ -278,6 +297,7 @@ function drawList() {
         title="${esc(r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
       <div class="nm"><span class="flag ${flag}"></span>${esc(r.label)}${water}</div>
+      <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${esc(r.encounter_label || "\u2014")}</div>
       <div class="num">lv ${lv}</div>
       <div class="num">${r.live_total}/${r.species_total}</div>
       <div class="num">${r.live_total ? pct(r.best_share) : "—"}</div>
@@ -374,10 +394,10 @@ function drawMid() {
   const mergedRows = d.merged.map(m => {
     const w = Math.max(1.5, (m.caught || m.duped ? 0 : m.cond) * 100);
     return `<tr class="${m.caught || m.duped ? "gone" : ""}">
-      <td class="spname">${esc(m.label)}${m.duped ? ' <span class="tag">line caught</span>' : ""}</td>
+      <td class="spname">${esc(m.label)}${m.duped ? ` <span class="tag">${esc((m.via ? m.via + ", " : "") + m.caught_at)}</span>` : ""}</td>
       <td class="num">${m.caught || m.duped ? "0%" : pct(m.cond)}</td>
       <td class="num" style="color:var(--faint)">${pct(m.share)}</td>
-      <td style="width:42%"><div class="bar" style="height:9px">
+      <td class="fill"><div class="bar" style="height:9px">
         <span style="width:${w}%;background:${m.caught || m.duped ? "transparent" : "var(--mass)"}"></span>
       </div></td></tr>`;
   }).join("");
@@ -387,7 +407,9 @@ function drawMid() {
       <div><span style="font-weight:650;font-size:15px">${esc(d.label)}</span>
         <span class="tag">${esc(d.band || "—")}</span>
         <span class="tag">${esc(d.archetype || "no archetype yet")}</span></div>
-      <div class="sub">Encounter rate <span class="num">${d.rate}</span></div>
+      <div class="encounter"><span class="k">Encounter</span>
+        <span class="v ${d.encounter_label ? "" : "none"}">${esc(d.encounter_label || "none yet")}</span>
+        <span class="sub" style="display:block">Encounter rate <span class="num">${d.rate}</span></span></div>
     </div>
     ${d.intent ? `<p class="sub" style="margin:6px 0 0">${esc(d.intent)}</p>` : ""}
     <div class="kinds">${kindBar}</div>
@@ -421,7 +443,7 @@ function drawMid() {
              ${LAYER !== "base" ? "disabled" : ""}>`}</td>
       <td class="num">${gone ? "0%" : pct(s.odds)}</td>
       <td><input type="checkbox" class="ck" ${s.caught ? "checked" : ""}
-           ${s.duped && !s.caught ? "disabled title='Duped out by another member of its line'" : ""}></td>`;
+           ${s.duped ? `disabled title="${esc((s.via ? s.via + " was " : "") + "caught on " + s.caught_at)}"` : ""}></td>`;
     const cell = tr.querySelector(".spname");
     if (locked) cell.innerHTML = `<span class="sub">${esc(shown)}</span>`;
     else cell.appendChild(combobox(shown, val => {
@@ -434,7 +456,7 @@ function drawMid() {
       body[inp.dataset.f] = +inp.value;
       write("slot", body);
     });
-    tr.querySelector("input.ck").onchange = ev => setCaught(s.species, ev.target.checked);
+    tr.querySelector("input.ck").onchange = ev => setCaught(SEL, s.species, ev.target.checked);
     tb.appendChild(tr);
   });
 
@@ -505,6 +527,19 @@ function drawRight() {
       goes to the rest.</p>
     ${rungs || `<p class="sub">This table has a single rung.</p>`}
 
+    <h2>How to make my catch here a particular species</h2>
+    <div class="plan">
+      <div class="pick">
+        <select id="plan-sp" aria-label="Species to plan for">
+          ${d.merged.filter(x => !x.caught && !x.duped).map(x =>
+            `<option value="${esc(x.species)}" ${x.species === PLAN_SP ? "selected" : ""}>${esc(x.label)} (${pct(x.cond)})</option>`).join("")}
+        </select>
+        <button id="plan-go">Plan</button>
+      </div>
+      <div id="plan-out">${PLAN && PLAN.target === d.area && PLAN.kind === d.kind
+        ? renderPlan(PLAN) : `<p class="sub" style="margin:6px 0 0">Picks what to catch on earlier routes so that, when you get here, your one counting encounter is the species you want.</p>`}</div>
+    </div>
+
     <h2>Shape</h2>
     <p class="sub">${m.n_species} species, the commonest at ${pct(m.top_share)},
       concentration ${m.hhi.toFixed(3)}, ${m.rung_count} rungs of
@@ -514,17 +549,40 @@ function drawRight() {
 
     <h2>Problems</h2>
     ${findings}`;
+
+  const go = $("#plan-go"), sel = $("#plan-sp");
+  if (go && sel) {
+    sel.onchange = () => { PLAN_SP = sel.value; };
+    go.onclick = async () => {
+      PLAN_SP = sel.value;
+      go.disabled = true; go.textContent = "Planning…";
+      try {
+        PLAN = await api(`/api/plan?area=${SEL}&species=${PLAN_SP}&kind=${KIND}`);
+        $("#plan-out").innerHTML = renderPlan(PLAN);
+      } catch (e) { toast(e.message, true); }
+      go.disabled = false; go.textContent = "Plan";
+    };
+  }
+}
+
+function renderPlan(pl) {
+  if (!pl.front.length) return `<p class="sub">No way to reach it from here.</p>`;
+  const items = pl.lines.map((s, i) => {
+    const c = pl.front[i];
+    return `<li>${esc(s).replace(/(\d+)%/g, "<b>$1%</b>")}</li>`;
+  }).join("");
+  return `<p class="sub" style="margin:6px 0 0">${pl.n_candidates} plans considered; the ones below each raise the odds for their cost.</p><ol>${items}</ol>`;
 }
 
 // ---- actions ------------------------------------------------------------
 
-async function setCaught(species, caught) {
+async function setCaught(area, species, caught) {
   try {
     const r = await api("/api/caught", { method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ species, caught }) });
+      body: JSON.stringify({ area, species, caught }) });
     CAUGHT = new Set(r.caught);
-    toast(caught ? "Caught" : "Removed from caught");
+    toast(caught ? "Caught here" : "Cleared this area's encounter");
     await Promise.all([reloadDetail(), refreshList()]);
   } catch (e) { toast(e.message, true); }
 }
@@ -558,6 +616,7 @@ async function reloadDetail() {
 }
 
 async function select(name) {
+  if (name !== SEL) { PLAN = null; PLAN_SP = null; }
   SEL = name;
   try {
     DETAIL = await api(`/api/area/${name}?kind=${KIND}`);
