@@ -406,9 +406,13 @@ def check_importer(results):
         return
     base = imp.authored_encounters()
     sidecar = model.load_sidecar() or {}
-    with_cast = {n for n, e in (sidecar.get("areas") or {}).items() if e.get("cast")}
+    # A water-only area has no land cast, so an authored surf or rod table
+    # counts too (Step 5 authored eleven of those).
+    water = ("surf", "old_rod", "good_rod", "super_rod")
+    with_cast = {n for n, e in (sidecar.get("areas") or {}).items()
+                 if e.get("cast") or any(e.get(k) for k in water)}
     results.append(("AUTHORED is a stem -> reason table; authored_encounters() is it plus "
-                    "every sidecar area with a cast",
+                    "every sidecar area with a cast or an authored water table",
                     isinstance(imp.AUTHORED, dict)
                     and set(base) == set(imp.AUTHORED) | with_cast,
                     f"{len(base)} authored now, {len(with_cast)} from the sidecar"))
