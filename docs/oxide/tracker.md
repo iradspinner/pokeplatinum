@@ -50,10 +50,10 @@ Anything else is a regression. The encounter tool's own checks are listed in its
 
 **Waiting on Ian:**
 
-- **The Pokemon Center hang is now the best reproduction of the whiteout hang** and probably the same bug: new game, first Pokemon Center, talk to the nurse, answer yes. No save file to set up, no battle to lose. Whoever takes the debugger work should start there rather than from the pinned save. Both are logged under Phase 5 open bugs.
+- The nurse hang is fixed and confirmed; the box deposit hang is open and with the bug track (Phase 5). Nothing here for either.
 - Emulator checks not yet done: Rare Candy chaining; the frame-rate uncap (options menu reads UNLOCK FPS, with OFF / BATTLE / ALWAYS); Shinx's ability (always Rivalry, never Intimidate) and Bidoof/Starly hatch time (~255 steps, down from ~3825); and a walk through a few bulk-generated maps, the gift houses being the obvious ones. The "use another Repel?" prompt is now safe to answer yes; it is worth testing, since it is the one thing in this build that was broken and is now fixed rather than carried over.
 - The whiteout hang is fixed and confirmed (2026-09-21); nothing left to test there. The Route 201 table in the working tree is temporarily all Glimmora, an uncommitted element 3 test by another session, and rides along in any local build until that session commits or reverts it.
-- The EV/IV viewer is confirmed working (2026-09-20); Rare Candy chaining, the frame-rate uncap and the Repel prompt are still unchecked.
+- The EV/IV viewer is confirmed working (2026-09-20).
 - The ability/gender nibble direction (1=male, 2=female) is a guess; no Route 202 trainer exercises it. Swap if anything reads wrong in-game.
 - **Start a new game first**: the old save reads every ability as NONE by design (element 2 moved the field) and is no longer a valid test bed.
 - After the overworld-sprite carry-over lands (Phase 3, regression item): the NPC outside Sandgem's Pokemon Center draws correctly, and so do the Clown-type NPCs on the other 34 maps that share that sprite slot.
