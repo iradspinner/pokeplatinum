@@ -9,6 +9,7 @@ Ian's guidance: keep overworld events, trainer edits, and Pokemon stat and move 
 > - **Section 2A:** `HandleInput_SelectMove+0x8E` is not a viewer hook; it makes HMs forgettable from the summary screen. Ported with the constant edits (2026-09-19).
 > - **Section 2D:** answered 2026-09-20. The scripts call exactly one custom command, `Dummy088`, three times in `scripts_common`, as part of a "use another Repel?" prompt. Only that command is ported; the rest of the region is dropped. See `phase3-scripts-and-events-plan.md`.
 > - **Section 2E:** `TeachMove+0x5B` is reusable TMs (it skips `Bag_TryRemoveItem`), not HM-forgetting. Ported 2026-09-20.
+> - **Section 1, "tool side effects":** `mmodel.narc`'s six changed members are not building models. They are overworld sprites Ian placed into the dummy slots (members 55, 56, 59, 64, 65, 73; 1,640-byte placeholders in vanilla, real sprites in the base ROM) and 43 object events on 35 maps use them. Found in play 2026-09-20; carry-over tracked under Phase 3. The rest of that side-effects list has not been re-examined with the same test and should be.
 > - **All five Qs** are answered in `phase3-answers-and-trainer-format.md`. Items marked as tool side effects (sprite re-saves, heights, the vitamin records) were confirmed as DSPRE noise and not carried over; evidence in the tracker.
 
 ## 1. Data edits (these carry over to the decomp as data-file changes)
