@@ -75,7 +75,9 @@ round-trips field scripts; `bulk_scripts.py`, `bulk_events.py` and
 `bulk_text.py` regenerate whatever the build still gets wrong against the base
 ROM (their `--dry-run` doubles as the check); `mapdiff.py` and `checkmap.py`
 work one map at a time. `tools/oxide/encounters/` is the encounter tool, with
-its own tests and CLI (see its build plan). The base ROM itself lives outside
+its own tests and CLI (see its build plan). `tools/oxide/live_watch.py` attaches
+to Ian's melonDS on Windows over its GDB stub while Ian drives the game; never
+launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b). The base ROM itself lives outside
 the repo (see the design doc for its path on Ian's machine); a copy is pinned
 at `~/roms/base.nds`. A byte-exact vanilla Rev 1 build (built once from
 `main`) is pinned at `~/roms/vanilla.nds` for `import_base_rom.py --vanilla`

@@ -77,6 +77,22 @@ Both stay where they are. The built ROM from the decomp is a normal `.nds` and D
 
 ## Part 5: Debugger in WSL2 (written 2026-09-20)
 
+> **Do not use this route. Read Part 5b instead.** Part 5 records how an agent ran
+> its own melonDS under WSLg. It was tried on 2026-09-20 and 2026-09-21 and does
+> not work well enough to be worth the tokens: a headless emulator has to be
+> driven blind through screenshots and synthetic button presses, the stub's
+> limits bite harder without a person watching, and a second copy of the game
+> is one more thing to keep in step. The way debugging is done on this project is
+> that **Ian runs melonDS on Windows and drives the game; the agent attaches to
+> his emulator over the stub with `tools/oxide/live_watch.py` and reads.** Ian
+> restarts the emulator at the startup break, says go, plays to the point of
+> interest, and reports what he sees; the agent plants breakpoints, reads memory,
+> and asks Ian for the next input. On 2026-09-22 a fresh bug-fix session was
+> handed a prompt that did not say this and spent its budget rebuilding the
+> Part 5 route before getting anywhere, which is why this banner exists. The
+> section stays as the record of what was built; nothing in it is needed.
+
+
 What is needed to attach a debugger to the built ROM without leaving WSL2 and without sudo. All of it was done once and lives under `~/tools/`; the only repo pieces are `tools/oxide/live.py` and `tools/oxide/melonds.gdb`.
 
 **GDB, the overlay-aware fork.** The prebuilt binary on the fork's Releases page needs `libpython3.12`, which Ubuntu 26.04 does not have, so it is built from source with Python off. GMP and MPFR headers are not installed and there is no sudo, so both are built statically first. GCC 15 defaults to C23, which breaks GMP's configure tests and the bundled readline, hence the C-standard and permissive flags; `MAKEINFO=true` has to be on the make line, not in the environment, or the bfd docs fail the build.
@@ -110,5 +126,14 @@ Three things about the stub that cost time. It expects the client to send a bare
 **Seeing and driving it from Python.** WSLg runs Xwayland rootless, so a root-window screenshot is black; the melonDS window itself has to be captured. `tools/oxide/live.py` does that, sends button presses with XTest, and speaks the stub's protocol directly (halt, continue, registers, memory, breakpoints, watchpoints) so a script can read game state without GDB; it also reads symbols out of `main.nef` on its own. It needs `pip3 install --user --break-system-packages python-xlib pillow`. Presses reached the game reliably through the title and the menus, but in the field the direction keys were dropped intermittently (the raw key register stayed clear while a key was held) for a reason not found, and that is where this stopped on 2026-09-20.
 
 ### Part 5b: the Windows melonDS stub from WSL2 (2026-09-21)
+
+**This is the working method, and it is a two-person loop.** Ian owns the
+emulator; the agent never launches one. The agent starts `live_watch.py` with
+its breakpoints and waits for Ian's "go"; Ian plays; the log fills; the agent
+reads it and says what to do next. One stub client per emulator session, attach
+only at the startup break, never interrupt a running target from the client,
+and warn Ian before arming a breakpoint that a normal action (talking to any
+NPC, a menu) would trip.
+
 
 With `networkingMode=mirrored` in `C:\Users\Ian\.wslconfig` (and a `wsl --shutdown`), WSL2 shares localhost with Windows, so Ian's own melonDS 1.1 on Windows can serve the stub (Config, Emu settings, Devtools: GDB stub on, ARM9 port 3333, **Break on startup on**). Two limits measured against that build: the stub takes one client per emulator session and does not recover from a dropped one (restart melonDS between sessions), and it only services its socket while the CPU is stopped, so a running target cannot be interrupted. The working pattern is `PYTHONPATH=. python3 tools/oxide/live_watch.py SYMBOL ...` started while the emulator sits at the startup break: it connects, plants hardware breakpoints, continues, and logs every stop with registers; `--arm-on SYM` keeps holds and `--plant-on-arm` breakpoints inert until a chosen function fires, `--hold-at SYM:N` and `--hold-burst SYM:K` stop the game for `--auto` commands (`peek` with nested dereferences, `readptr`, `steps`, `trace`) or for a command file, and `touch ~/roms/live-watch.stop` detaches. About ten single-steps a second, so `trace` is for a few thousand instructions at most; heartbeat and stage breakpoints are the way to find a frame first.
