@@ -45,6 +45,8 @@ copy "phase3-scripts-and-events-plan.md" "notes/phase3-scripts-and-events-plan.m
 copy "phase4-engine-change-answers.md" "notes/phase4-engine-change-answers.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
+copy "pokemon-sources.md" "notes/pokemon-sources.md"
+copy "pokemon-sources.csv" "notes/pokemon-sources.csv"
 copy "encounter-design-survey.md" "Claude outputs/encounter-design-survey.md"
 copy "encounter-tool-design.md" "Claude outputs/encounter-tool-design.md"
 copy "encounter-tool-build-plan.md" "Claude outputs/encounter-tool-build-plan.md"
