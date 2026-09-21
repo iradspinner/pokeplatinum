@@ -470,7 +470,8 @@ AUTHORED = {
 
 def authored_encounters():
     """{stem: reason} for every encounter file the importer must leave alone:
-    AUTHORED plus every sidecar area with a cast."""
+    AUTHORED plus every sidecar area with a land cast or an authored water
+    table (surf or a rod), since a water-only area never has a cast."""
     out = dict(AUTHORED)
     path = os.path.join(ROOT, "docs", "oxide", "encounters", "design.json")
     try:
@@ -481,6 +482,8 @@ def authored_encounters():
     for name, entry in areas.items():
         if entry.get("cast"):
             out.setdefault(name, "authored from the pick-list (sidecar entry has a cast)")
+        elif any(entry.get(k) for k in ("surf", "old_rod", "good_rod", "super_rod")):
+            out.setdefault(name, "authored from the pick-list (sidecar entry has a water table)")
     return out
 
 
