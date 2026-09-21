@@ -83,9 +83,9 @@
       "split": "Candice"
     },
     "encounters_eterna_forest": {
-      "archetype": "A12",
+      "archetype": "A18",
       "band": "early",
-      "intent": "The forest: Shroomish and Buneary at home, Sewaddle and Seedot with them, Blipbug small, Combee a 4% and Treecko the 1% under the trees.",
+      "intent": "The forest, eight lines: Shroomish and Buneary at home, Sewaddle and Seedot under the trees, Combee in the canopy, Rowlet by day at 10, Seedot and Purrloin by night.",
       "locked": [],
       "base_level": 10,
       "order": 19,
@@ -95,16 +95,17 @@
         "SPECIES_SEWADDLE",
         "SPECIES_SEEDOT",
         "SPECIES_BLIPBUG",
+        "SPECIES_GRUBBIN",
         "SPECIES_COMBEE",
-        "SPECIES_TREECKO"
+        "SPECIES_BOUNSWEET"
       ],
       "day": [
-        "SPECIES_SEWADDLE",
-        "SPECIES_SEWADDLE"
+        "SPECIES_ROWLET",
+        "SPECIES_BUDEW"
       ],
       "night": [
         "SPECIES_SEEDOT",
-        "SPECIES_SEWADDLE"
+        "SPECIES_PURRLOIN"
       ],
       "split": "Gardenia"
     },
@@ -244,9 +245,9 @@
       "split": "Byron"
     },
     "encounters_lake_verity": {
-      "archetype": "A12",
+      "archetype": "A15",
       "band": "early",
-      "intent": "The lake shore, no one over 30%: Surskit at home by the water, Sentret and Wooloo with it, Buneary a 4% early rabbit, Mudkip the 1% lake tail.",
+      "intent": "The lake shore: Surskit at home by the water, Lotad with it, Skitty by day, Purrloin by night, Buneary a 4% and Mudkip the 1%.",
       "locked": [],
       "base_level": 2,
       "order": 4,
@@ -254,6 +255,7 @@
         "SPECIES_SURSKIT",
         "SPECIES_SENTRET",
         "SPECIES_WOOLOO",
+        "SPECIES_LOTAD",
         "SPECIES_PIKIPEK",
         "SPECIES_BLIPBUG",
         "SPECIES_BUNEARY",
@@ -261,20 +263,20 @@
       ],
       "day": [
         "SPECIES_WOOLOO",
-        "SPECIES_PIKIPEK"
+        "SPECIES_SKITTY"
       ],
       "night": [
-        "SPECIES_WOOLOO",
-        "SPECIES_BLIPBUG"
+        "SPECIES_LOTAD",
+        "SPECIES_PURRLOIN"
       ],
       "split": "Roark",
       "old_rod": {
         "cast": [
           "SPECIES_MAGIKARP",
-          "SPECIES_FINNEON",
-          "SPECIES_BARBOACH",
-          "SPECIES_LUVDISC",
-          "SPECIES_MUDKIP"
+          "SPECIES_GOLDEEN",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP",
+          "SPECIES_SURSKIT"
         ],
         "levels": [
           3,
@@ -283,7 +285,7 @@
       }
     },
     "encounters_lake_verity_low_water": {
-      "archetype": "A12",
+      "archetype": "A15",
       "band": "early",
       "intent": "The same shore after the lake drains, the same cast: one location name, one capture.",
       "locked": [],
@@ -293,6 +295,7 @@
         "SPECIES_SURSKIT",
         "SPECIES_SENTRET",
         "SPECIES_WOOLOO",
+        "SPECIES_LOTAD",
         "SPECIES_PIKIPEK",
         "SPECIES_BLIPBUG",
         "SPECIES_BUNEARY",
@@ -300,20 +303,20 @@
       ],
       "day": [
         "SPECIES_WOOLOO",
-        "SPECIES_PIKIPEK"
+        "SPECIES_SKITTY"
       ],
       "night": [
-        "SPECIES_WOOLOO",
-        "SPECIES_BLIPBUG"
+        "SPECIES_LOTAD",
+        "SPECIES_PURRLOIN"
       ],
       "split": "Roark",
       "old_rod": {
         "cast": [
           "SPECIES_MAGIKARP",
-          "SPECIES_FINNEON",
-          "SPECIES_BARBOACH",
-          "SPECIES_LUVDISC",
-          "SPECIES_MUDKIP"
+          "SPECIES_GOLDEEN",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP",
+          "SPECIES_SURSKIT"
         ],
         "levels": [
           3,
@@ -331,9 +334,9 @@
       "split": "Wake"
     },
     "encounters_mt_coronet_1f_north_room_1": {
-      "archetype": "A11",
+      "archetype": "A14",
       "band": "mid",
-      "intent": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock.",
+      "intent": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock, Makuhita and Phanpy by day.",
       "locked": [],
       "base_level": 13,
       "order": 31,
@@ -343,15 +346,16 @@
         "SPECIES_NACLI",
         "SPECIES_ZUBAT",
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
       ],
       "night": [
         "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZOR"
       ]
     },
     "encounters_mt_coronet_1f_north_room_2": {
@@ -544,9 +548,9 @@
       "split": "Fantina"
     },
     "encounters_oreburgh_gate_1f": {
-      "archetype": "A11",
+      "archetype": "A18",
       "band": "early",
-      "intent": "The first cave, five lines deep now: Zubat, Geodude, Nacli, Nosepass and Makuhita, none over 30.",
+      "intent": "The first cave, eight lines: Zubat and Geodude lead, Nacli and Nosepass at home, Makuhita and Phanpy behind, Onix and a Nidoran small.",
       "locked": [],
       "base_level": 5,
       "order": 8,
@@ -555,50 +559,54 @@
         "SPECIES_GEODUDE",
         "SPECIES_NACLI",
         "SPECIES_NOSEPASS",
-        "SPECIES_MAKUHITA"
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY",
+        "SPECIES_ONIX",
+        "SPECIES_NIDORAN_M"
       ],
       "day": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
       ],
       "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_ZUBAT",
+        "SPECIES_NOSEPASS"
       ],
       "split": "Roark"
     },
     "encounters_oreburgh_gate_b1f": {
-      "archetype": "A12",
+      "archetype": "A15",
       "band": "early",
-      "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Onix a 4% and Gible a 1% tease of Wayward Cave.",
+      "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave.",
       "locked": [],
       "base_level": 6,
       "order": 9,
       "cast": [
         "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT",
         "SPECIES_MAKUHITA",
+        "SPECIES_ZUBAT",
         "SPECIES_NACLI",
         "SPECIES_NOSEPASS",
+        "SPECIES_PHANPY",
         "SPECIES_ONIX",
         "SPECIES_GIBLE"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
       ],
       "night": [
         "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS"
       ],
       "split": "Roark",
       "old_rod": {
         "cast": [
           "SPECIES_MAGIKARP",
           "SPECIES_BARBOACH",
-          "SPECIES_WOOPER",
           "SPECIES_FEEBAS",
-          "SPECIES_LUVDISC"
+          "SPECIES_SHELLOS",
+          "SPECIES_SQUIRTLE"
         ],
         "levels": [
           6,
@@ -607,83 +615,92 @@
       }
     },
     "encounters_oreburgh_mine_b1f": {
-      "archetype": "A6",
+      "archetype": "A15",
       "band": "early",
-      "intent": "The mine, Makuhita's home: Nacli and Zubat co-equal, Geodude behind, Phanpy in the tail.",
+      "intent": "The mine, Makuhita's home: Nacli beside it, Zubat and Geodude behind, Phanpy and Nosepass small, Rhyhorn a 4% and Magby a 1% tease of the deeper rock, Onix by night.",
       "locked": [],
       "base_level": 5,
       "order": 11,
       "cast": [
+        "SPECIES_MAKUHITA",
         "SPECIES_NACLI",
         "SPECIES_ZUBAT",
         "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_PHANPY",
+        "SPECIES_NOSEPASS",
+        "SPECIES_RHYHORN",
+        "SPECIES_MAGBY"
       ],
       "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_ZUBAT",
         "SPECIES_GEODUDE"
       ],
       "night": [
-        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
         "SPECIES_GEODUDE"
       ],
       "split": "Roark"
     },
     "encounters_oreburgh_mine_b2f": {
-      "archetype": "A11",
+      "archetype": "A15",
       "band": "early",
-      "intent": "Deeper, and different: Onix and Phanpy at home, Nosepass in the rock.",
+      "intent": "Deeper, the Onix floor: Onix at 25 with Phanpy at home beside it, the rock lines behind, Rhyhorn and Magby again in the tail, Makuhita by day.",
       "locked": [],
       "base_level": 5,
       "order": 12,
       "cast": [
         "SPECIES_ONIX",
-        "SPECIES_NACLI",
-        "SPECIES_ZUBAT",
         "SPECIES_PHANPY",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NACLI",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ZUBAT",
+        "SPECIES_RHYHORN",
+        "SPECIES_MAGBY"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_NOSEPASS",
+        "SPECIES_MAKUHITA"
       ],
       "night": [
         "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_GEODUDE"
       ],
       "split": "Roark"
     },
     "encounters_ravaged_path": {
-      "archetype": "A11",
+      "archetype": "A8",
       "band": "early",
-      "intent": "The Rock Smash cave, five lines instead of a duo: Zubat, Geodude, Nacli, Makuhita, Phanpy.",
+      "intent": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Wooper in the wet, Nacli and Phanpy by day.",
       "locked": [],
       "base_level": 3,
       "order": 14,
       "cast": [
         "SPECIES_ZUBAT",
         "SPECIES_GEODUDE",
-        "SPECIES_NACLI",
         "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_NACLI",
+        "SPECIES_PHANPY",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_WOOPER"
       ],
       "day": [
         "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_PHANPY"
       ],
       "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_ZUBAT",
+        "SPECIES_NOSEPASS"
       ],
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_SURSKIT"
+          "SPECIES_CORPHISH",
+          "SPECIES_MUDKIP"
         ],
         "levels": [
           5,
@@ -692,9 +709,9 @@
       }
     },
     "encounters_route_201": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "early",
-      "intent": "The first route, a capture area once the starter has its own met location (Ian's preference; backlog for the script track): Wooloo and Sentret at home, Pikipek the bird, Blipbug by night, Purrloin small.",
+      "intent": "The first route, Kaizo-wide: Wooloo and Sentret lead twelve lines, Rookidee by day, Purrloin and Skitty by night.",
       "locked": [],
       "base_level": 2,
       "order": 2,
@@ -703,22 +720,29 @@
         "SPECIES_SENTRET",
         "SPECIES_PIKIPEK",
         "SPECIES_BLIPBUG",
-        "SPECIES_PURRLOIN"
+        "SPECIES_PURRLOIN",
+        "SPECIES_SHINX",
+        "SPECIES_NIDORAN_F",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_ROOKIDEE",
+        "SPECIES_GRUBBIN",
+        "SPECIES_FLETCHLING",
+        "SPECIES_PACHIRISU"
       ],
       "day": [
-        "SPECIES_PIKIPEK",
-        "SPECIES_PIKIPEK"
+        "SPECIES_ROOKIDEE",
+        "SPECIES_BLIPBUG"
       ],
       "night": [
-        "SPECIES_BLIPBUG",
-        "SPECIES_PIKIPEK"
+        "SPECIES_PURRLOIN",
+        "SPECIES_SKITTY"
       ],
       "split": "Roark"
     },
     "encounters_route_202": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "early",
-      "intent": "Shinx's route as in vanilla, at 30 rather than 40; Blipbug the early bug, Purrloin a regular by night.",
+      "intent": "Shinx's route, twelve lines wide: Blipbug beside it, the Nidoran pair small, Budew and Smoliv the 1% teases of the routes ahead, Sewaddle by day, Poochyena by night.",
       "locked": [],
       "base_level": 2,
       "order": 6,
@@ -726,23 +750,30 @@
         "SPECIES_SHINX",
         "SPECIES_BLIPBUG",
         "SPECIES_WOOLOO",
+        "SPECIES_SENTRET",
         "SPECIES_PIKIPEK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_PURRLOIN",
+        "SPECIES_GRUBBIN",
+        "SPECIES_ROOKIDEE",
+        "SPECIES_NIDORAN_F",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_BUDEW",
+        "SPECIES_SMOLIV"
       ],
       "day": [
-        "SPECIES_BLIPBUG",
-        "SPECIES_BLIPBUG"
+        "SPECIES_SEWADDLE",
+        "SPECIES_PIKIPEK"
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_BLIPBUG"
+        "SPECIES_POOCHYENA"
       ],
       "split": "Roark"
     },
     "encounters_route_203": {
-      "archetype": "A12",
+      "archetype": "A8",
       "band": "early",
-      "intent": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin at home, Makuhita a 4% preview of the caves, Torchic the 1%.",
+      "intent": "The road to Oreburgh: Rookidee and the Nidoran pair at home, Makuhita a preview of the caves, Torchic a 5% starter, Fletchling and Grubbin by day.",
       "locked": [],
       "base_level": 4,
       "order": 7,
@@ -753,11 +784,12 @@
         "SPECIES_PURRLOIN",
         "SPECIES_SHINX",
         "SPECIES_MAKUHITA",
+        "SPECIES_WOOLOO",
         "SPECIES_TORCHIC"
       ],
       "day": [
-        "SPECIES_NIDORAN_M",
-        "SPECIES_NIDORAN_M"
+        "SPECIES_FLETCHLING",
+        "SPECIES_GRUBBIN"
       ],
       "night": [
         "SPECIES_PURRLOIN",
@@ -767,10 +799,10 @@
       "old_rod": {
         "cast": [
           "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
           "SPECIES_MAGIKARP",
           "SPECIES_WOOPER",
-          "SPECIES_LOTAD",
-          "SPECIES_FEEBAS"
+          "SPECIES_FROAKIE"
         ],
         "levels": [
           4,
@@ -779,37 +811,36 @@
       }
     },
     "encounters_route_204_north": {
-      "archetype": "A12",
+      "archetype": "A14",
       "band": "early",
-      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it is the better half. Scorbunny at home (moved from Route 206), Sewaddle and Bounsweet with it, Riolu a 4% and Eevee a 1% worth waiting for.",
+      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
       "locked": [],
       "base_level": 8,
       "order": 15,
       "cast": [
         "SPECIES_SCORBUNNY",
+        "SPECIES_TREECKO",
         "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET",
-        "SPECIES_FLETCHLING",
-        "SPECIES_POOCHYENA",
-        "SPECIES_RIOLU",
-        "SPECIES_EEVEE"
+        "SPECIES_SNIVY",
+        "SPECIES_FLETCHLING"
       ],
       "day": [
-        "SPECIES_SEWADDLE",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_TORCHIC",
+        "SPECIES_BUDEW"
       ],
       "night": [
         "SPECIES_POOCHYENA",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_PURRLOIN"
       ],
       "split": "Gardenia",
       "old_rod": {
         "cast": [
           "SPECIES_BARBOACH",
-          "SPECIES_MAGIKARP",
-          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
           "SPECIES_LOTAD",
-          "SPECIES_WOOPER"
+          "SPECIES_CORPHISH",
+          "SPECIES_FROAKIE"
         ],
         "levels": [
           8,
@@ -818,9 +849,9 @@
       }
     },
     "encounters_route_204_south": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "early",
-      "intent": "Budew's route with Grubbin and Fletchling at home; the plain half of Route 204, so the north half is the one to wait for.",
+      "intent": "Budew's route, twelve lines: Grubbin and Fletchling at home with it, the Floaroma lines at 4-5% as a preview, Snivy the 1%; the plain half of Route 204, so the north half is the one to wait for.",
       "locked": [],
       "base_level": 3,
       "order": 13,
@@ -829,24 +860,31 @@
         "SPECIES_GRUBBIN",
         "SPECIES_FLETCHLING",
         "SPECIES_SENTRET",
-        "SPECIES_WOOLOO"
+        "SPECIES_WOOLOO",
+        "SPECIES_SEWADDLE",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SHROOMISH",
+        "SPECIES_LOTAD",
+        "SPECIES_SEEDOT",
+        "SPECIES_SMOLIV",
+        "SPECIES_SNIVY"
       ],
       "day": [
-        "SPECIES_GRUBBIN",
-        "SPECIES_GRUBBIN"
+        "SPECIES_SEWADDLE",
+        "SPECIES_BOUNSWEET"
       ],
       "night": [
-        "SPECIES_SENTRET",
-        "SPECIES_GRUBBIN"
+        "SPECIES_PURRLOIN",
+        "SPECIES_SEEDOT"
       ],
       "split": "Roark",
       "old_rod": {
         "cast": [
           "SPECIES_BARBOACH",
-          "SPECIES_MAGIKARP",
-          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
           "SPECIES_LOTAD",
-          "SPECIES_WOOPER"
+          "SPECIES_CORPHISH",
+          "SPECIES_FROAKIE"
         ],
         "levels": [
           5,
@@ -855,9 +893,9 @@
       }
     },
     "encounters_route_205_north": {
-      "archetype": "A12",
+      "archetype": "A19",
       "band": "mid",
-      "intent": "The damp side before the forest, the better half of Route 205: Lotad at home, Surskit by night, Wooper (fully evolved by 20) a 4% and Dewpider the 1%.",
+      "intent": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night.",
       "locked": [],
       "base_level": 12,
       "order": 18,
@@ -868,24 +906,29 @@
         "SPECIES_SURSKIT",
         "SPECIES_SHROOMISH",
         "SPECIES_WOOPER",
-        "SPECIES_DEWPIDER"
+        "SPECIES_PACHIRISU",
+        "SPECIES_DEWPIDER",
+        "SPECIES_BUIZEL",
+        "SPECIES_GRUBBIN",
+        "SPECIES_FROAKIE",
+        "SPECIES_POPPLIO"
       ],
       "day": [
         "SPECIES_SEWADDLE",
-        "SPECIES_SEWADDLE"
+        "SPECIES_SMOLIV"
       ],
       "night": [
         "SPECIES_SURSKIT",
-        "SPECIES_SEWADDLE"
+        "SPECIES_WOOPER"
       ],
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
-          "SPECIES_FINNEON",
+          "SPECIES_CARVANHA",
           "SPECIES_BARBOACH",
-          "SPECIES_WOOPER",
-          "SPECIES_DEWPIDER"
+          "SPECIES_CHINCHOU",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
         ],
         "levels": [
           10,
@@ -894,9 +937,9 @@
       }
     },
     "encounters_route_205_south": {
-      "archetype": "A11",
+      "archetype": "A19",
       "band": "early",
-      "intent": "Floaroma's meadow: Pachirisu, Smoliv and Minccino at home, Skitty a regular at 10.",
+      "intent": "Floaroma's meadow, twelve lines: Pachirisu, Smoliv and Minccino at home, Skitty a regular, Pawmi and Shinx small, Combee and Pichu the 1%s, Buneary by day, Poochyena by night.",
       "locked": [],
       "base_level": 9,
       "order": 16,
@@ -905,24 +948,31 @@
         "SPECIES_SMOLIV",
         "SPECIES_MINCCINO",
         "SPECIES_WOOLOO",
-        "SPECIES_SKITTY"
+        "SPECIES_SKITTY",
+        "SPECIES_FLETCHLING",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SEWADDLE",
+        "SPECIES_PAWMI",
+        "SPECIES_SHINX",
+        "SPECIES_COMBEE",
+        "SPECIES_PICHU"
       ],
       "day": [
-        "SPECIES_SMOLIV",
-        "SPECIES_SMOLIV"
+        "SPECIES_MINCCINO",
+        "SPECIES_BUNEARY"
       ],
       "night": [
-        "SPECIES_SMOLIV",
-        "SPECIES_SKITTY"
+        "SPECIES_SKITTY",
+        "SPECIES_POOCHYENA"
       ],
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
-          "SPECIES_FINNEON",
+          "SPECIES_CARVANHA",
           "SPECIES_BARBOACH",
-          "SPECIES_WOOPER",
-          "SPECIES_DEWPIDER"
+          "SPECIES_CHINCHOU",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
         ],
         "levels": [
           8,
@@ -940,9 +990,9 @@
       "split": "Fantina"
     },
     "encounters_route_207": {
-      "archetype": "A12",
+      "archetype": "A19",
       "band": "early",
-      "intent": "The rocky road above Oreburgh: Ponyta and Vulpix at home, Vulpix taking the head at night, Houndour a 4% (fully evolved by 24) and Charmander the 1% fire tail.",
+      "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night.",
       "locked": [],
       "base_level": 5,
       "order": 10,
@@ -952,16 +1002,21 @@
         "SPECIES_ROOKIDEE",
         "SPECIES_NACLI",
         "SPECIES_GEODUDE",
+        "SPECIES_FLETCHLING",
         "SPECIES_HOUNDOUR",
-        "SPECIES_CHARMANDER"
+        "SPECIES_SMOLIV",
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY",
+        "SPECIES_CHARMANDER",
+        "SPECIES_LITTEN"
       ],
       "day": [
-        "SPECIES_PONYTA",
-        "SPECIES_VULPIX"
+        "SPECIES_SMOLIV",
+        "SPECIES_FLETCHLING"
       ],
       "night": [
         "SPECIES_VULPIX",
-        "SPECIES_VULPIX"
+        "SPECIES_HOUNDOUR"
       ],
       "split": "Roark"
     },
@@ -1056,29 +1111,28 @@
       "split": "Byron"
     },
     "encounters_route_211_west": {
-      "archetype": "A12",
+      "archetype": "A16",
       "band": "mid",
-      "intent": "Route 211's west half is reachable from Eterna, the east half much later, so this is the delay's better half: Ralts and Mienfoo at home, Absol a 4% and Heracross a 1%.",
+      "intent": "Route 211's early half, plain on purpose (the east half is the delay with the prize): Bronzor, Vulpix and Mienfoo co-equal, the cave lines behind, Ponyta by day, Houndour by night.",
       "locked": [],
       "base_level": 13,
       "order": 30,
       "split": "Gardenia",
       "cast": [
-        "SPECIES_RALTS",
-        "SPECIES_MIENFOO",
-        "SPECIES_VULPIX",
         "SPECIES_BRONZOR",
+        "SPECIES_VULPIX",
+        "SPECIES_MIENFOO",
         "SPECIES_NACLI",
-        "SPECIES_ABSOL",
-        "SPECIES_HERACROSS"
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE"
       ],
       "day": [
-        "SPECIES_VULPIX",
-        "SPECIES_BRONZOR"
+        "SPECIES_PONYTA",
+        "SPECIES_ROOKIDEE"
       ],
       "night": [
         "SPECIES_VULPIX",
-        "SPECIES_BRONZOR"
+        "SPECIES_HOUNDOUR"
       ]
     },
     "encounters_route_212_north": {
@@ -1155,10 +1209,10 @@
       "old_rod": {
         "cast": [
           "SPECIES_FINNEON",
-          "SPECIES_MAGIKARP",
-          "SPECIES_TENTACOOL",
           "SPECIES_LUVDISC",
-          "SPECIES_SQUIRTLE"
+          "SPECIES_REMORAID",
+          "SPECIES_SQUIRTLE",
+          "SPECIES_POPPLIO"
         ],
         "levels": [
           5,
@@ -1942,9 +1996,9 @@
       "split": "Post"
     },
     "encounters_valley_windworks_outside": {
-      "archetype": "A12",
+      "archetype": "A15",
       "band": "early",
-      "intent": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, Emolga a 4% and Pichu a 1% in the tail.",
+      "intent": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%.",
       "locked": [],
       "base_level": 9,
       "order": 17,
@@ -1954,25 +2008,26 @@
         "SPECIES_PACHIRISU",
         "SPECIES_MINCCINO",
         "SPECIES_FLETCHLING",
+        "SPECIES_ROOKIDEE",
         "SPECIES_EMOLGA",
         "SPECIES_PICHU"
       ],
       "day": [
-        "SPECIES_SHINX",
-        "SPECIES_PACHIRISU"
+        "SPECIES_PIKIPEK",
+        "SPECIES_ROOKIDEE"
       ],
       "night": [
         "SPECIES_SHINX",
-        "SPECIES_PACHIRISU"
+        "SPECIES_PAWMI"
       ],
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
-          "SPECIES_BARBOACH",
-          "SPECIES_FINNEON",
-          "SPECIES_DEWPIDER",
-          "SPECIES_FRILLISH"
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_REMORAID",
+          "SPECIES_BUIZEL",
+          "SPECIES_MUDKIP"
         ],
         "levels": [
           8,
@@ -2089,11 +2144,11 @@
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
           "SPECIES_LOTAD",
+          "SPECIES_SHELLOS",
           "SPECIES_BARBOACH",
-          "SPECIES_SURSKIT",
-          "SPECIES_WOOPER"
+          "SPECIES_FROAKIE"
         ],
         "levels": [
           10,
@@ -2166,10 +2221,10 @@
       "old_rod": {
         "cast": [
           "SPECIES_TENTACOOL",
-          "SPECIES_MAGIKARP",
           "SPECIES_FINNEON",
           "SPECIES_MAREANIE",
-          "SPECIES_POPPLIO"
+          "SPECIES_POPPLIO",
+          "SPECIES_REMORAID"
         ],
         "levels": [
           4,
@@ -2214,11 +2269,11 @@
       "split": "Roark",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
-          "SPECIES_SURSKIT",
-          "SPECIES_LOTAD",
-          "SPECIES_WOOPER"
+          "SPECIES_CORPHISH",
+          "SPECIES_SQUIRTLE",
+          "SPECIES_BUIZEL"
         ],
         "levels": [
           3,
@@ -2227,9 +2282,9 @@
       }
     },
     "encounters_verity_lakefront": {
-      "archetype": "A12",
+      "archetype": "A18",
       "band": "early",
-      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, Purrloin a regular, Pachirisu a 4% and a 1% Vulpix as a tease of Route 207.",
+      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Poochyena by night.",
       "locked": [],
       "base_level": 2,
       "split": "Roark",
@@ -2240,16 +2295,17 @@
         "SPECIES_WOOLOO",
         "SPECIES_PURRLOIN",
         "SPECIES_SENTRET",
-        "SPECIES_PACHIRISU",
+        "SPECIES_SURSKIT",
+        "SPECIES_BUNEARY",
         "SPECIES_VULPIX"
       ],
       "day": [
-        "SPECIES_BLIPBUG",
-        "SPECIES_WOOLOO"
+        "SPECIES_PIKIPEK",
+        "SPECIES_MINCCINO"
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_WOOLOO"
+        "SPECIES_POOCHYENA"
       ]
     }
   },
@@ -2272,7 +2328,7 @@
     "encounters_honey_tree"
   ],
   "splits": {
-    "_comment": "Ian's gym splits, in order, each with its hard level cap (null until he gives it) and the split each rod arrives in. Roark and Gardenia are his; the rest are the tool's reading of the route sequence, provisional.",
+    "_comment": "Ian's gym splits, in order, each with its hard level cap and the split each rod arrives in. Roark's and Gardenia's tables are his; the rest are the tool's reading of the route sequence, provisional.",
     "order": [
       "Roark",
       "Gardenia",
@@ -2286,15 +2342,15 @@
       "Post"
     ],
     "caps": {
-      "Roark": null,
+      "Roark": 16,
       "Gardenia": 26,
-      "Fantina": null,
-      "Maylene": null,
-      "Wake": null,
-      "Byron": null,
-      "Candice": null,
-      "Volkner": null,
-      "League": null,
+      "Fantina": 33,
+      "Maylene": 38,
+      "Wake": 44,
+      "Byron": 53,
+      "Candice": 56,
+      "Volkner": 62,
+      "League": 78,
       "Post": null
     },
     "rods": {

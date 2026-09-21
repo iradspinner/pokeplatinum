@@ -74,10 +74,11 @@ def check_tiers(results):
     root = model.repo_root()
     rows = dex.pick_list(root)
     bad = [r["name"] for r in rows if r.get("tier") not in tiers.TIERS]
-    # 360 rows from Ian's sheet, plus the seven cave additions of 2026-09-21
-    # (Nosepass, Geodude and Phanpy lines).
+    # 360 rows from Ian's sheet, plus the seven cave rows (Nosepass, Geodude
+    # and Phanpy lines) and the fourteen fishing rows (Goldeen, Corphish,
+    # Chinchou, Carvanha, Remoraid, Buizel, Shellos lines) of 2026-09-21.
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 367 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 381 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     results.append(("legendaries, starters, fossils and static battles are gate",
                     by["Articuno"] == by["Charmander"] == by["Cranidos"]
@@ -100,9 +101,9 @@ def check_tiers(results):
 def check_r12(results):
     avail = audit.availability()
     # 99 native lines before Phase 4 element 3, 177 with the 159 new species
-    # in, 180 with Ian's three cave lines.
+    # in, 187 with Ian's three cave lines and seven fishing lines.
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 180
+                    avail is not None and len(avail) == 187
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",
@@ -117,10 +118,11 @@ def check_r12(results):
                     r12 and not any(f.severity == "skip" for f in r12)
                     and all(f.target != "*" for f in r12), f"{len(r12)} findings"))
     errors = {f.target for f in r12 if f.severity == "error"}
+    # Snivy used to be here; it is wild on Route 204 since Ian's review.
     results.append(("the roamers pass R12 through their vanilla mechanism; new gate lines "
                     "with no script fail it",
                     not {"Articuno", "Mesprit", "Cresselia"} & errors
-                    and {"Snivy", "Nihilego"} <= errors, ""))
+                    and {"Nihilego", "Xurkitree"} <= errors and "Snivy" not in errors, ""))
     skipped = lint.lint_all(payload, sidecar, None)
     results.append(("without availability rows R12 still reports itself skipped",
                     any(f.rule == "R12" and f.severity == "skip" for f in skipped), ""))

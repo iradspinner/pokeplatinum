@@ -11,31 +11,31 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_PAWMI"
+            "species": "SPECIES_PACHIRISU"
         },
         {
             "level": 10,
-            "species": "SPECIES_PACHIRISU"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_PACHIRISU"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_MINCCINO"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_SHINX"
-        },
-        {
-            "level": 11,
             "species": "SPECIES_MINCCINO"
         },
         {
             "level": 11,
             "species": "SPECIES_FLETCHLING"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_PAWMI"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_MINCCINO"
         },
         {
             "level": 11,
@@ -43,7 +43,7 @@
         },
         {
             "level": 12,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_MINCCINO"
         },
         {
             "level": 12,
@@ -55,12 +55,12 @@
         "SPECIES_ELECTRIKE"
     ],
     "day": [
-        "SPECIES_SHINX",
-        "SPECIES_PACHIRISU"
+        "SPECIES_PIKIPEK",
+        "SPECIES_ROOKIDEE"
     ],
     "night": [
         "SPECIES_SHINX",
-        "SPECIES_PACHIRISU"
+        "SPECIES_PAWMI"
     ],
     "radar": [
         "SPECIES_MAREEP",
@@ -127,27 +127,27 @@
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_BARBOACH"
+            "species": "SPECIES_CARVANHA"
         },
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_REMORAID"
         },
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_BUIZEL"
         },
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_FRILLISH"
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "good_rod_rate": 50,

@@ -695,7 +695,7 @@ def cmd_availability(args):
         for key, label in (("no_source", "no source"),
                            ("corridor_intruders", "corridor intruders"),
                            ("early_home_outside", "starter-adjacent home outside corridor"),
-                           ("early_fit", "early tables outside 4-7"),
+                           ("early_fit", "early tables outside 5-16"),
                            ("unplanned_tables", "tables with nothing planned (warning)"),
                            ("cap_candidates", "cap candidates for Ian (information)")):
             print(f"  {label:42} {len(g[key])}"

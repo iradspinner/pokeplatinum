@@ -127,7 +127,7 @@
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 14,
@@ -137,17 +137,17 @@
         {
             "level_max": 14,
             "level_min": 10,
+            "species": "SPECIES_SHELLOS"
+        },
+        {
+            "level_max": 14,
+            "level_min": 10,
             "species": "SPECIES_BARBOACH"
         },
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_SURSKIT"
-        },
-        {
-            "level_max": 14,
-            "level_min": 10,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_FROAKIE"
         }
     ],
     "good_rod_rate": 50,

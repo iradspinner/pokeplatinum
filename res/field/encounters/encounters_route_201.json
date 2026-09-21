@@ -11,26 +11,10 @@
         },
         {
             "level": 3,
-            "species": "SPECIES_WOOLOO"
+            "species": "SPECIES_PIKIPEK"
         },
         {
             "level": 3,
-            "species": "SPECIES_PIKIPEK"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIKIPEK"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_BLIPBUG"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_SENTRET"
-        },
-        {
-            "level": 4,
             "species": "SPECIES_BLIPBUG"
         },
         {
@@ -39,15 +23,31 @@
         },
         {
             "level": 4,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_SHINX"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_NIDORAN_F"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_NIDORAN_M"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_GRUBBIN"
         },
         {
             "level": 5,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 5,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_PACHIRISU"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_DODUO"
     ],
     "day": [
-        "SPECIES_PIKIPEK",
-        "SPECIES_PIKIPEK"
+        "SPECIES_ROOKIDEE",
+        "SPECIES_BLIPBUG"
     ],
     "night": [
-        "SPECIES_BLIPBUG",
-        "SPECIES_PIKIPEK"
+        "SPECIES_PURRLOIN",
+        "SPECIES_SKITTY"
     ],
     "radar": [
         "SPECIES_NIDORAN_M",

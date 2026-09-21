@@ -366,3 +366,17 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 369,Golem,native,76,platinum,,yes,Rock,Ground,,starter-adjacent
 370,Phanpy,native,231,platinum,,yes,Ground,Ground,,starter-adjacent
 371,Donphan,native,232,platinum,,yes,Ground,Ground,,starter-adjacent
+372,Goldeen,native,118,platinum,,yes,Water,Water,,starter-adjacent
+373,Seaking,native,119,platinum,,yes,Water,Water,,starter-adjacent
+374,Corphish,native,341,platinum,,yes,Water,Water,,starter-adjacent
+375,Crawdaunt,native,342,platinum,,yes,Water,Dark,,starter-adjacent
+376,Chinchou,native,170,platinum,,yes,Water,Electric,,starter-adjacent
+377,Lanturn,native,171,platinum,,yes,Water,Electric,,starter-adjacent
+378,Carvanha,native,318,platinum,,yes,Water,Dark,,starter-adjacent
+379,Sharpedo,native,319,platinum,,yes,Water,Dark,,starter-adjacent
+380,Remoraid,native,223,platinum,,yes,Water,Water,,starter-adjacent
+381,Octillery,native,224,platinum,,yes,Water,Water,,starter-adjacent
+382,Buizel,native,418,platinum,,yes,Water,Water,,starter-adjacent
+383,Floatzel,native,419,platinum,,yes,Water,Water,,starter-adjacent
+384,Shellos,native,422,platinum,,yes,Water,Water,,starter-adjacent
+385,Gastrodon,native,423,platinum,,yes,Water,Ground,,starter-adjacent

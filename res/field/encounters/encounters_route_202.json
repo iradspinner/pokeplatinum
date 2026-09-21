@@ -11,23 +11,11 @@
         },
         {
             "level": 3,
-            "species": "SPECIES_SHINX"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 3,
-            "species": "SPECIES_WOOLOO"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_WOOLOO"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIKIPEK"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_BLIPBUG"
+            "species": "SPECIES_SENTRET"
         },
         {
             "level": 4,
@@ -39,15 +27,27 @@
         },
         {
             "level": 4,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_GRUBBIN"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_NIDORAN_F"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_NIDORAN_M"
         },
         {
             "level": 5,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_BUDEW"
         },
         {
             "level": 5,
-            "species": "SPECIES_PURRLOIN"
+            "species": "SPECIES_SMOLIV"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_ZIGZAGOON"
     ],
     "day": [
-        "SPECIES_BLIPBUG",
-        "SPECIES_BLIPBUG"
+        "SPECIES_SEWADDLE",
+        "SPECIES_PIKIPEK"
     ],
     "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_BLIPBUG"
+        "SPECIES_POOCHYENA"
     ],
     "radar": [
         "SPECIES_SENTRET",

@@ -81,9 +81,9 @@ def check_dex(results):
     natives = [r for r in rows if r["status"] == "native"]
     new = [r for r in rows if r["status"] == "new"]
     unresolved = [r["name"] for r in natives if not r["constant"]]
-    # 199 natives on Ian's sheet, 206 with the seven cave rows of 2026-09-21.
+    # 199 natives on Ian's sheet, 220 with the seven cave and fourteen fishing rows of 2026-09-21.
     results.append(("every native on the pick-list resolves to a species in the tree",
-                    len(natives) == 206 and not unresolved,
+                    len(natives) == 220 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
@@ -185,15 +185,15 @@ def check_audit(results):
     # 358 obtainable rows since element 3 (199 before it), 365 with Ian's
     # three cave lines; the files are every JSON in res/field/encounters.
     n_files = len(model.area_names())
-    results.append(("audit sees all 365 pick-list species and every encounter file",
-                    s["natives"] == 365 and s["files"] == n_files,
+    results.append(("audit sees all 379 pick-list species and every encounter file",
+                    s["natives"] == 379 and s["files"] == n_files,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
                  "super_rod_encounters"))
     # 641 before any water table was designed; the count only falls.
     results.append(("water and rods carry at most the 641 off-list references of the base ROM",
-                    500 <= water <= 641, str(water)))
+                    0 < water <= 641, str(water)))
     trio = {(r["script"], r["command"], r["species"]) for r in out["scripts"]}
     results.append(("scripts list the two StartWildBattle species and a legendary",
                     ("scripts_route_209", "StartWildBattle", "SPECIES_SPIRITOMB") in trio
@@ -210,8 +210,8 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 365 pick-list species into lines, each on one row",
-                    covered == 365 and len({m for r in lines for m in r["members"]}) == 365,
+    results.append(("coverage groups all 379 pick-list species into lines, each on one row",
+                    covered == 379 and len({m for r in lines for m in r["members"]}) == 379,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",

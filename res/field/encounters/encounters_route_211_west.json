@@ -3,7 +3,11 @@
     "land_encounters": [
         {
             "level": 13,
-            "species": "SPECIES_RALTS"
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_VULPIX"
         },
         {
             "level": 14,
@@ -11,19 +15,23 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_RALTS"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_VULPIX"
+            "species": "SPECIES_MIENFOO"
         },
         {
             "level": 15,
-            "species": "SPECIES_VULPIX"
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 15,
             "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_VULPIX"
         },
         {
             "level": 15,
@@ -31,23 +39,15 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_BRONZOR"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_ABSOL"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 16,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_MIENFOO"
         },
         {
             "level": 16,
-            "species": "SPECIES_HERACROSS"
+            "species": "SPECIES_GEODUDE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_VULPIX",
-        "SPECIES_BRONZOR"
+        "SPECIES_PONYTA",
+        "SPECIES_ROOKIDEE"
     ],
     "night": [
         "SPECIES_VULPIX",
-        "SPECIES_BRONZOR"
+        "SPECIES_HOUNDOUR"
     ],
     "radar": [
         "SPECIES_TYROGUE",

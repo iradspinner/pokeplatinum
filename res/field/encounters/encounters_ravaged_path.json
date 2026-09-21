@@ -11,27 +11,15 @@
         },
         {
             "level": 4,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 4,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 5,
             "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 5,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 5,
@@ -39,15 +27,27 @@
         },
         {
             "level": 5,
-            "species": "SPECIES_PHANPY"
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_WOOPER"
         },
         {
             "level": 6,
-            "species": "SPECIES_PHANPY"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 6,
-            "species": "SPECIES_PHANPY"
+            "species": "SPECIES_WOOPER"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_PHANPY"
     ],
     "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_ZUBAT",
+        "SPECIES_NOSEPASS"
     ],
     "radar": [
         "SPECIES_ZUBAT",
@@ -127,7 +127,7 @@
         {
             "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 9,
@@ -142,12 +142,12 @@
         {
             "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_CORPHISH"
         },
         {
             "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "good_rod_rate": 50,

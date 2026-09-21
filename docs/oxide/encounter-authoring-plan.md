@@ -66,10 +66,15 @@ so they are not re-decided.
 > `splits` table), the flat archetypes A11 and A12 (design doc 2.5 rewritten),
 > rod tables through `apply`, and the evolution levels; the Roark and Gardenia
 > splits are regenerated, twenty land and fourteen Old Rod tables, with Verity
-> Lakefront as a new table file (its header and grass are backlog). The corridor
-> in the steps below now means the first two splits. Details, numbers and the
-> fishing additions proposed to Ian are in the build plan's Step 3 entry. Two
-> suites cannot run at once: `test_step0` rewrites shared files under a restore.
+> Lakefront as a new table file (its header and grass are backlog). A second
+> review the same day set the width: Platinum Kaizo's tables (which the base
+> ROM's tables are) at eight to sixteen lines a table with distinct day and night
+> pairs, seven more shapes (A13-A19), starters at 10-25% as the reason to take a
+> delay (Route 204 north; Route 211 east is the next), starters in the Old Rod
+> tails, seven fishing lines added to the list, and his caps for every split.
+> The corridor in the steps below now means the first two splits. Details and
+> numbers are in the build plan's Step 3 entry. Two suites cannot run at once:
+> `test_step0` rewrites shared files under a restore.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

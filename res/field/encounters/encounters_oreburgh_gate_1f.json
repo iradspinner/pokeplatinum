@@ -11,11 +11,19 @@
         },
         {
             "level": 6,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 6,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 7,
@@ -27,27 +35,19 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 7,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_MAKUHITA"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_NIDORAN_M"
         },
         {
             "level": 8,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 8,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_NIDORAN_M"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PSYDUCK"
     ],
     "day": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
     ],
     "night": [
-        "SPECIES_NACLI",
-        "SPECIES_NACLI"
+        "SPECIES_ZUBAT",
+        "SPECIES_NOSEPASS"
     ],
     "radar": [
         "SPECIES_GEODUDE",

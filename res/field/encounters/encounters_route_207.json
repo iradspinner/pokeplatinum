@@ -11,43 +11,43 @@
         },
         {
             "level": 6,
-            "species": "SPECIES_PONYTA"
+            "species": "SPECIES_ROOKIDEE"
         },
         {
             "level": 6,
-            "species": "SPECIES_ROOKIDEE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ROOKIDEE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_VULPIX"
-        },
-        {
-            "level": 7,
             "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
             "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 7,
             "species": "SPECIES_HOUNDOUR"
         },
         {
-            "level": 8,
-            "species": "SPECIES_GEODUDE"
+            "level": 7,
+            "species": "SPECIES_SMOLIV"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 8,
             "species": "SPECIES_CHARMANDER"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_LITTEN"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_PHANPY"
     ],
     "day": [
-        "SPECIES_PONYTA",
-        "SPECIES_VULPIX"
+        "SPECIES_SMOLIV",
+        "SPECIES_FLETCHLING"
     ],
     "night": [
         "SPECIES_VULPIX",
-        "SPECIES_VULPIX"
+        "SPECIES_HOUNDOUR"
     ],
     "radar": [
         "SPECIES_STANTLER",

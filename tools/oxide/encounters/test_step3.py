@@ -77,7 +77,7 @@ def main():
                     and progression.rod_split(sidecar, "good_rod") == "Maylene"
                     and progression.rod_split(sidecar, "super_rod") == "Candice"
                     and progression.cap_of(sidecar, "Gardenia") == 26
-                    and progression.cap_of(sidecar, "Roark") is None, ""))
+                    and progression.cap_of(sidecar, "Post") is None, ""))
     rc, _ = run_cli("split-init")
     results.append(("`split-init` refuses to overwrite existing splits without --force",
                     rc == 1, f"exit {rc}"))
@@ -144,17 +144,36 @@ def main():
         leaks += [s for s in (a.data.get("day") or []) + (a.data.get("night") or []) if s not in listed]
     results.append(("no designed land, day/night or rod slot holds an off-list species",
                     not leaks, ", ".join(sorted(set(leaks))[:5])))
-    tails = {n: e["cast"][-2:] for n, e in entries.items() if e.get("archetype") == "A12"}
-    starters = {"SPECIES_CHARMANDER", "SPECIES_TREECKO", "SPECIES_TORCHIC", "SPECIES_MUDKIP"}
-    # Lake Verity's two tables are one location, so Mudkip's 1% counts once.
-    results.append(("the classic starters appear as 1% tails only, in one location each on land",
-                    all(any(t[-1] == s for t in tails.values()) for s in starters)
-                    and all(len({loc.get(n) or n for n, e in entries.items()
-                                 if s in (e.get("cast") or [])}) == 1
-                            for s in starters), ""))
-    results.append(("Route 204 north is the delay's better half: Scorbunny at home, Riolu and Eevee its tail",
-                    entries["encounters_route_204_north"]["cast"][0] == "SPECIES_SCORBUNNY"
-                    and tails["encounters_route_204_north"] == ["SPECIES_RIOLU", "SPECIES_EEVEE"], ""))
+    def wild_in(s):
+        return {n for n, e in entries.items()
+                if s in (e.get("cast") or []) + (e.get("day") or []) + (e.get("night") or [])
+                or s in ((e.get("old_rod") or {}).get("cast") or [])}
+    starters = {"SPECIES_CHARMANDER", "SPECIES_TREECKO", "SPECIES_TORCHIC", "SPECIES_MUDKIP",
+                "SPECIES_SQUIRTLE"}
+    results.append(("every classic starter on the list is wild somewhere in the first two splits "
+                    "(grass or Old Rod) and none is a home",
+                    all(wild_in(s) for s in starters)
+                    and not any(r for r in availability.build()["rows"]
+                                if r["tier"] == "gate" and r["home"]), ""))
+    r204 = entries["encounters_route_204_north"]
+    shares = A.merged(model.load_area("encounters_route_204_north").slots)
+    results.append(("Route 204 north is the delay: Scorbunny at home at 25, Treecko 20, Snivy 10, "
+                    "Torchic by day; no Riolu or Eevee",
+                    abs(shares["SPECIES_SCORBUNNY"] - 0.25) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
+                    and abs(shares["SPECIES_SNIVY"] - 0.10) < 1e-9 and "SPECIES_TORCHIC" in r204["day"]
+                    and not {"SPECIES_RIOLU", "SPECIES_EEVEE"} & set(r204["cast"] + r204["day"] + r204["night"]),
+                    ""))
+    widths = {n: len(set(e["cast"]) | set(e.get("day") or []) | set(e.get("night") or []))
+              for n, e in entries.items() if e.get("cast")}
+    results.append(("Kaizo's width: every designed table carries 8-16 distinct lines with day and night, "
+                    "and at least five different shapes are in use",
+                    all(8 <= w <= 16 for w in widths.values())
+                    and len({e["archetype"] for e in entries.values() if e.get("cast")}) >= 5,
+                    ", ".join(f"{n.replace('encounters_', '')} {w}" for n, w in widths.items() if not 8 <= w <= 16)))
+    rods = {n: e["old_rod"]["cast"] for n, e in entries.items() if e.get("old_rod")}
+    results.append(("every Old Rod table in the two splits ends in a starter at 4% or 1%",
+                    all(any(s in starters | {"SPECIES_POPPLIO", "SPECIES_FROAKIE"} for s in c[3:])
+                        for c in rods.values()) and len(rods) == 14, f"{len(rods)} rod tables"))
     caves = ["encounters_oreburgh_gate_1f", "encounters_oreburgh_gate_b1f",
              "encounters_oreburgh_mine_b1f", "encounters_oreburgh_mine_b2f", "encounters_ravaged_path"]
     results.append(("the early caves carry five lines each, with Ian's additions",
@@ -185,11 +204,18 @@ def main():
                     and rows["Scorbunny"]["first_split"] == "Gardenia"
                     and ("Gardenia", "Route 204") in rows["Scorbunny"]["captures"]
                     and rows["Squirtle"]["first_split"] == "Roark", ""))
-    results.append(("a gate-tier starter is tail-only on land and keeps its scripted source",
+    results.append(("a gate-tier starter appears as a tail or cameo and keeps its scripted source",
                     rows["Charmander"]["tail"] == ["encounters_route_207"]
+                    and "encounters_route_204_north" in rows["Treecko"]["cameo"]
                     and rows["Charmander"]["status"] == "non-wild", ""))
-    results.append(("cap candidates are reported, not gated, and name the split and cap",
-                    "cap_candidates" in g and all("cap Gardenia 26" in c for c in g["cap_candidates"]),
+    results.append(("the caps are Ian's: Roark 16 through League 78",
+                    [progression.cap_of(sidecar, s) for s in ("Roark", "Gardenia", "Fantina", "Maylene",
+                                                              "Wake", "Byron", "Candice", "Volkner", "League")]
+                    == [16, 26, 33, 38, 44, 53, 56, 62, 78], ""))
+    results.append(("cap candidates are reported, not gated, name the split and cap, and none "
+                    "is for the first two splits (those lines are all placed)",
+                    "cap_candidates" in g and all(" cap " in c for c in g["cap_candidates"])
+                    and not any("cap Roark" in c or "cap Gardenia" in c for c in g["cap_candidates"]),
                     f"{len(g['cap_candidates'])} listed"))
     with open(model.repo_root() + "/" + availability.DOC, encoding="utf-8") as f:
         committed = f.read()

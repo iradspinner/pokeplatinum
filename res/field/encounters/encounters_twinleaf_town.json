@@ -127,7 +127,7 @@
         {
             "level_max": 6,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 6,
@@ -137,17 +137,17 @@
         {
             "level_max": 6,
             "level_min": 3,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_CORPHISH"
         },
         {
             "level_max": 6,
             "level_min": 3,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_SQUIRTLE"
         },
         {
             "level_max": 6,
             "level_min": 3,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_BUIZEL"
         }
     ],
     "good_rod_rate": 50,

@@ -11,7 +11,7 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 14,
@@ -19,18 +19,6 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 15,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 15,
             "species": "SPECIES_CARBINK"
         },
         {
@@ -39,15 +27,27 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 16,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 16,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_GEODUDE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
     ],
     "night": [
         "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_BRONZOR"
     ],
     "radar": [
         "SPECIES_MACHOP",

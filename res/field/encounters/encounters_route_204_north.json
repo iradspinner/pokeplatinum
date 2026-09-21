@@ -7,17 +7,29 @@
         },
         {
             "level": 9,
+            "species": "SPECIES_TREECKO"
+        },
+        {
+            "level": 9,
             "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 9,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 10,
+            "species": "SPECIES_SNIVY"
+        },
+        {
+            "level": 10,
             "species": "SPECIES_SCORBUNNY"
         },
         {
-            "level": 9,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
             "level": 10,
             "species": "SPECIES_BOUNSWEET"
         },
@@ -27,27 +39,15 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_SEWADDLE"
-        },
-        {
-            "level": 10,
             "species": "SPECIES_FLETCHLING"
         },
         {
-            "level": 10,
-            "species": "SPECIES_POOCHYENA"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_RIOLU"
+            "level": 11,
+            "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 11,
-            "species": "SPECIES_POOCHYENA"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_EEVEE"
+            "species": "SPECIES_FLETCHLING"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_BIDOOF"
     ],
     "day": [
-        "SPECIES_SEWADDLE",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_TORCHIC",
+        "SPECIES_BUDEW"
     ],
     "night": [
         "SPECIES_POOCHYENA",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_PURRLOIN"
     ],
     "radar": [
         "SPECIES_SUNKERN",
@@ -132,12 +132,7 @@
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
-            "level_max": 12,
-            "level_min": 8,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 12,
@@ -147,7 +142,12 @@
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_CORPHISH"
+        },
+        {
+            "level_max": 12,
+            "level_min": 8,
+            "species": "SPECIES_FROAKIE"
         }
     ],
     "good_rod_rate": 50,

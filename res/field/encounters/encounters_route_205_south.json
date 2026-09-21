@@ -11,26 +11,10 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_MINCCINO"
         },
         {
             "level": 10,
-            "species": "SPECIES_MINCCINO"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_MINCCINO"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_WOOLOO"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_SMOLIV"
-        },
-        {
-            "level": 11,
             "species": "SPECIES_WOOLOO"
         },
         {
@@ -39,15 +23,31 @@
         },
         {
             "level": 11,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_FLETCHLING"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_BOUNSWEET"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_PAWMI"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SHINX"
         },
         {
             "level": 12,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_COMBEE"
         },
         {
             "level": 12,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_PICHU"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SHELLOS"
     ],
     "day": [
-        "SPECIES_SMOLIV",
-        "SPECIES_SMOLIV"
+        "SPECIES_MINCCINO",
+        "SPECIES_BUNEARY"
     ],
     "night": [
-        "SPECIES_SMOLIV",
-        "SPECIES_SKITTY"
+        "SPECIES_SKITTY",
+        "SPECIES_POOCHYENA"
     ],
     "radar": [
         "SPECIES_HOPPIP",
@@ -127,12 +127,7 @@
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
-            "level_max": 12,
-            "level_min": 8,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_CARVANHA"
         },
         {
             "level_max": 12,
@@ -142,12 +137,17 @@
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 12,
             "level_min": 8,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_BUIZEL"
+        },
+        {
+            "level_max": 12,
+            "level_min": 8,
+            "species": "SPECIES_POPPLIO"
         }
     ],
     "good_rod_rate": 50,

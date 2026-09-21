@@ -132,11 +132,6 @@
         {
             "level_max": 8,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
-            "level_max": 8,
-            "level_min": 4,
             "species": "SPECIES_FINNEON"
         },
         {
@@ -148,6 +143,11 @@
             "level_max": 8,
             "level_min": 4,
             "species": "SPECIES_POPPLIO"
+        },
+        {
+            "level_max": 8,
+            "level_min": 4,
+            "species": "SPECIES_REMORAID"
         }
     ],
     "good_rod_rate": 50,

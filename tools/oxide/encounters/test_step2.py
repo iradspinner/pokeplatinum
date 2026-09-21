@@ -35,9 +35,10 @@ def main():
 
     results.append(("the plan file loads, names only real areas and pick-list lines",
                     not out["problems"], "; ".join(out["problems"][:3])))
-    # 177 lines, then 180 with Ian's three cave additions (2026-09-21)
-    results.append(("every one of the 180 lines has a row",
-                    len(rows) == 180, f"{len(rows)} rows"))
+    # 177 lines, 180 with Ian's three cave additions, 187 with his seven
+    # fishing lines (both 2026-09-21)
+    results.append(("every one of the 187 lines has a row",
+                    len(rows) == 187, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
@@ -51,11 +52,12 @@ def main():
                               if r["tier"] != "gate" and not (len(r["home"]) == 1 or r["non_wild"]
                                                               or r["status"] in ("water", "honey")
                                                               or r["name"] in tails))[:120]))
-    results.append(("a gate line is wild only as a tail (the classic starters), never a home or cameo",
-                    not any(r["home"] or r["cameo"] for r in rows if r["tier"] == "gate")
-                    and by["Charmander"]["tail"] and by["Treecko"]["tail"], ""))
-    results.append(("no gate line is planned in the wild",
-                    not any(r["home"] or r["cameo"] for r in rows if r["tier"] == "gate"), ""))
+    # A gate-tier starter may be a cameo or a tail (Ian: starters are the reason
+    # to take a delay), never a home; a legendary is neither.
+    results.append(("no gate line is planned as a wild home, and no legendary is planned wild at all",
+                    not any(r["home"] for r in rows if r["tier"] == "gate")
+                    and not any(r["cameo"] or r["tail"] for r in rows
+                                if r["tier"] == "gate" and r["name"] in ("Dialga", "Uxie", "Nihilego", "Xerneas")), ""))
     results.append(("the first split carries only starter-adjacent, scripted and tail lines",
                     not g["corridor_intruders"], ", ".join(g["corridor_intruders"][:4])))
     results.append(("every starter-adjacent line is at home in the corridor",

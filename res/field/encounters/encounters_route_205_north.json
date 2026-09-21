@@ -11,26 +11,10 @@
         },
         {
             "level": 13,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 13,
-            "species": "SPECIES_SEWADDLE"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_SEWADDLE"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_SURSKIT"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
-            "level": 14,
             "species": "SPECIES_SURSKIT"
         },
         {
@@ -42,12 +26,28 @@
             "species": "SPECIES_WOOPER"
         },
         {
-            "level": 15,
-            "species": "SPECIES_SHROOMISH"
+            "level": 14,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_DEWPIDER"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_BUIZEL"
+        },
+        {
+            "level": 14,
+            "species": "SPECIES_GRUBBIN"
         },
         {
             "level": 15,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_FROAKIE"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_POPPLIO"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_SEWADDLE",
-        "SPECIES_SEWADDLE"
+        "SPECIES_SMOLIV"
     ],
     "night": [
         "SPECIES_SURSKIT",
-        "SPECIES_SEWADDLE"
+        "SPECIES_WOOPER"
     ],
     "radar": [
         "SPECIES_SLOWPOKE",
@@ -127,12 +127,7 @@
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
-        },
-        {
-            "level_max": 14,
-            "level_min": 10,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_CARVANHA"
         },
         {
             "level_max": 14,
@@ -142,12 +137,17 @@
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_BUIZEL"
+        },
+        {
+            "level_max": 14,
+            "level_min": 10,
+            "species": "SPECIES_POPPLIO"
         }
     ],
     "good_rod_rate": 50,

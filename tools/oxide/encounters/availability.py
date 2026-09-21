@@ -222,9 +222,12 @@ def build(ref=None):
             status = "none"
         if len(h) > 1:
             problems.append(f"{l['name']}: {len(h)} homes planned ({', '.join(h)}); a line has one")
-        if l["tier"] == "gate" and (h or cameos.get(lid)):
-            problems.append(f"{l['name']}: a gate line is scripted, not wild, but is planned on "
-                            f"{', '.join(h or cameos.get(lid))}; a tail is the only wild place for it")
+        # A gate line is scripted, not wild, so it has no wild home. It may
+        # appear (Ian, 2026-09-21: starters are the reason to take a delay,
+        # at 10-20%, and belong in the Old Rod tails) but never as a home.
+        if l["tier"] == "gate" and h:
+            problems.append(f"{l['name']}: a gate line is scripted, not wild, but is planned "
+                            f"as a home on {', '.join(h)}")
         base = l["base"][0] if l["base"] else None
         final = dex.final_by_level(root, base) if base else None
         rows.append({
@@ -271,8 +274,9 @@ def build(ref=None):
         band = (entries.get(name) or {}).get("band") or a.band
         if n == 0:
             gate["unplanned_tables"].append(name)
-        elif band == "early" and not 4 <= n <= 7:
-            gate["early_fit"].append(f"{name}: {n} lines planned, early wants 4-7")
+        elif band == "early" and not 5 <= n <= 16:
+            # Kaizo's width: twelve slots plus two day and two night species
+            gate["early_fit"].append(f"{name}: {n} lines planned, early wants 5-16")
     # Ian's cap rule: fully evolved by level-up under a split's cap, but
     # first capturable after that split. The rule is about evolution levels,
     # so single-stage lines (final by 0) are not judged by it.
@@ -334,7 +338,7 @@ def render(out):
     for key, label in (("no_source", "Lines with no home and no non-wild source"),
                        ("corridor_intruders", "Lines in the first split that are neither starter-adjacent, scripted nor a tail"),
                        ("early_home_outside", "Starter-adjacent lines whose home is outside the first two splits"),
-                       ("early_fit", "Early-band tables outside 4-7 planned lines"),
+                       ("early_fit", "Early-band tables outside 5-16 planned lines"),
                        ("unplanned_tables", "Live tables with nothing planned (a warning, not a gate)")):
         lines.append(f"- {label}: " + (", ".join(g[key]) if g[key] else "none"))
     if out["problems"]:

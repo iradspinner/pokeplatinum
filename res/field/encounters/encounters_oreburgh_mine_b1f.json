@@ -3,11 +3,7 @@
     "land_encounters": [
         {
             "level": 5,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 6,
@@ -22,32 +18,36 @@
             "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 6,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_MAKUHITA"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_MAKUHITA"
-        },
-        {
             "level": 7,
             "species": "SPECIES_PHANPY"
         },
         {
             "level": 7,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 7,
             "species": "SPECIES_MAKUHITA"
         },
         {
             "level": 7,
-            "species": "SPECIES_PHANPY"
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_RHYHORN"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_MAGBY"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_ZUBAT",
         "SPECIES_GEODUDE"
     ],
     "night": [
-        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
         "SPECIES_GEODUDE"
     ],
     "radar": [

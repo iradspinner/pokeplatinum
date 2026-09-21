@@ -1039,10 +1039,10 @@ unchanged tables still 81 errors.
 *Gate was:* no line without a source; the early band's cast fits 3-5
 species per table with the lines whose tier says early.
 
-### Step 3 — the first two splits — **regenerated on Ian's review, 2026-09-21; gate open**
+### Step 3 — the first two splits — **regenerated twice on Ian's review, 2026-09-21; gate open**
 
 ```
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3                    # expect 25/25
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3                    # expect 28/28
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run     # 24 areas, 0 failed, nothing to change
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli availability              # the gate, now with splits and caps
 PYTHONPATH=. python3 -m tools.oxide.encounters.server                        # Ian's view: location and split on every row
@@ -1086,32 +1086,54 @@ no table and the map has no grass (backlog, script track). Seven rows
 joined the pick-list (Nosepass, Geodude and Phanpy lines) and Makuhita's
 line moved to starter-adjacent.
 
-**The tables.** Twenty land tables, Route 201 to Eterna Forest plus Route
-211 west and Mt. Coronet's first room, every one A11, A12 or A6, no species
-over 30%; fourteen Old Rod tables (Twinleaf, Lake Verity, Routes 203, 218
-and 219 in Roark's split; the Ravaged Path, Routes 204 and 205, the
-Windworks, Eterna City and Oreburgh Gate B1F in Gardenia's). Scorbunny's
-home is Route 204 north, the delay's prize, with Riolu 4% and Eevee 1%;
-Route 211 west has Ralts and Mienfoo with Absol 4% and Heracross 1%. The
-classic starters on the list are 1% tails once each (Charmander on 207,
-Torchic on 203, Treecko in the forest, Mudkip on the lake, Squirtle by Old
-Rod on 218) and keep their scripted sources. Popplio has a 1% Old Rod
-appearance on Route 219 in the first split. Every line fully evolved by
-level-up under 26 is capturable in the first two splits (the candidates
-list is empty).
+**The second review, the same day.** Old Rod additions approved bar Psyduck
+(Goldeen, Corphish, Chinchou, Carvanha, Remoraid, Buizel, Shellos: fourteen
+rows on the list, starter-adjacent), starters in the rod tails too; caps
+for every split (Roark 16, Gardenia 26, Fantina 33, Maylene 38, Wake 44,
+Byron 53, Candice 56, Volkner 62, League 78); a delay is worth taking for
+several starters or value lines at 10-20%, not for a 5% tail; Route 211
+west is the early version and 211 east the delay; Riolu (the Iron Island
+egg) and Eevee (Hearthome) are already guaranteed, so out; no fixed share
+split, "variety is the spice of life"; and Platinum Kaizo's tables as the
+model. Those turned out to be the base ROM's own tables, line for line
+(platinumkaizotracker.com/locations against the tree before this step), so
+the reference was already here: ten distinct species a grass table, one per
+slot, two more by day and two by night, starters in the grass as a delay's
+reason (Route 204 north: Bulbasaur 20, Chikorita 24, Treecko 10) and in the
+Old Rod tails, a core cast repeating across neighbours at different shares.
+Design doc 2.5 carries that note.
 
-**Thin, and proposed to Ian.** The Old Rod tables draw on twelve water lines
-(Magikarp, Barboach, Finneon, Tentacool, Luvdisc, Surskit, Lotad, Wooper,
-Dewpider, Feebas, Frillish, Mareanie) and repeat. Candidates, his to okay:
-Goldeen, Psyduck, Corphish, Chinchou, Carvanha, Remoraid, Buizel, Shellos.
+**The tables, second cut.** Seven shapes joined the archetype table
+(A13-A19; A19 is Kaizo's own, twelve distinct lines with real 4s and 1s)
+and the twenty land tables use seven different ones, eight to sixteen lines
+each with distinct day and night pairs, no species over 25%. Route 204
+north is the delay: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic
+by day at 10. Route 211 west is plain (Bronzor, Vulpix, Mienfoo co-equal);
+Route 211 east is planned as the next delay with Ralts, Rowlet and Litten,
+to author with Byron's split. Every classic starter on the list is wild in
+the first two splits (Charmander and Litten as Route 207's 1%s, Torchic on
+203 and 204 north, Treecko on 204 north, Mudkip on the lake and in three
+rod tails, Squirtle in three rod tails) and none is a home. The fourteen
+Old Rod tables use the new lines and end in a starter at 4% or 1%. The
+availability plan lists a gate-tier starter as a cameo or tail, never a
+home; the first split's tier rule stands; early tables want 5-16 lines.
 
-**Numbers.** Per-table lint 0 errors on the twenty; the warnings are R5
-band fit on the caves (five species each, under the band's HHI floor of
-0.18 with A11's 0.225 exactly at it), R3 on the flat tables (a repel pays
-less when nothing is rare, which is the point of the cap). Game-wide R12
-fell to 61 errors, all pool lines and later-split placements. Suites 35/35,
-21/21, 19/19, 25/25, run one at a time: `test_step0` rewrites shared files
-under a restore and cannot share the tree with another suite.
+**Numbers.** Per-table lint 0 errors on the twenty. Game-wide R12 is 59
+errors, all pool lines and later-split placements; the cap-candidates list
+now reads the later caps too and names 21 lines for the later splits
+(Koffing, Yanma, Sneasel, Slugma, Swinub and on), which Step 4 takes up.
+Suites 35/35, 21/21, 18/18, 28/28, run one at a time: `test_step0` rewrites
+shared files under a restore and cannot share the tree with another suite.
+
+**An interpreter fault, not a tool fault.** `test_step0` fails on a random
+file now and then, and chasing it landed on this machine's Python 3.14.4:
+the same string work on the same text gives different answers after a few
+hundred repetitions, with no writes and no threads. The minimal case is
+`tools/oxide/python_flake_repro.py` (its docstring has what was ruled out:
+hash seed, JIT, the C json scanner, the allocator). Until the box has
+another Python, a failed `test_step0` with a KeyError, "unbalanced
+container" or "'int' object is not callable" in `jsonstyle.py` is that
+fault; rerun it. Ian's call whether to report it upstream.
 
 *Gate:* per-table lint clean, done; the plan's gate passes with the splits.
 Still open: `report` on the two splits, the merge into `oxide`, and Ian

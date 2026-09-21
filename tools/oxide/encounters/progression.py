@@ -236,14 +236,14 @@ def sorted_by_order(sidecar, names):
 # his (Roark: up to the Coal Badge; Gardenia: Rock Smash, Floaroma, the
 # forest, Eterna, Route 211 west and Mt. Coronet's first room, no bike). The
 # rest are this module's reading of the route sequence and are provisional
-# until he corrects them in the sidecar. Caps are his to fill; Gardenia's is
-# the one he has given.
+# until he corrects them in the sidecar. The caps are his.
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
           "Candice", "Volkner", "League", "Post"]
-DEFAULT_CAPS = {"Roark": None, "Gardenia": 26, "Fantina": None, "Maylene": None,
-                "Wake": None, "Byron": None, "Candice": None, "Volkner": None,
-                "League": None, "Post": None}
+# Ian's hard level caps per split (2026-09-21); post-game has none.
+DEFAULT_CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 38,
+                "Wake": 44, "Byron": 53, "Candice": 56, "Volkner": 62,
+                "League": 78, "Post": None}
 RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice"}
 
 # An area whose water is reachable before its grass: Route 218's fishing

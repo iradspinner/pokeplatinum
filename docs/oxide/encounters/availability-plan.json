@@ -1,105 +1,107 @@
 {
-  "_comment": "The availability plan, keyed by area (authoring plan Step 2, revised 2026-09-21 for Ian's capture rules): per live land table the lines at home there (the one table designed for the line), the cameos, and the tails (4%/1% one-offs, the only wild place for a gate-tier starter). `no_capture` marks a table that is not a capture area (none today: the starter gets its own met location, so Route 201 counts). `corridor_splits` names the splits whose tables carry only starter-adjacent lines, scripted lines and tails. `water` maps water lines to the surf/rod tables that are their homes; `honey`, `pool` and `proposals` are the non-land sources. Splits themselves live in the sidecar.",
+  "_comment": "The availability plan, keyed by area (authoring plan Step 2, revised 2026-09-21 for Ian's capture rules): per live land table the lines at home there (the one table designed for the line), the cameos (every other appearance, day and night pairs included), and the tails (the real 4% and 1% slots). A gate-tier starter may appear as a cameo or a tail, never as a home. `corridor_splits` names the splits whose tables carry only starter-adjacent lines, scripted lines and tails. `water` maps water lines to the surf/rod tables that are their homes; `honey`, `pool` and `proposals` are the non-land sources. Splits live in the sidecar.",
   "areas": {
     "encounters_route_201": {
       "home": ["SPECIES_WOOLOO", "SPECIES_SENTRET"],
-      "cameo": ["SPECIES_PIKIPEK", "SPECIES_BLIPBUG", "SPECIES_PURRLOIN"],
-      "note": "The first route, a capture area once the starter has its own met location (Ian's preference; backlog for the script track): Wooloo and Sentret at home, Pikipek the bird, Blipbug by night, Purrloin small."
+      "cameo": ["SPECIES_PIKIPEK", "SPECIES_BLIPBUG", "SPECIES_PURRLOIN", "SPECIES_SHINX", "SPECIES_SKITTY"],
+      "tail": ["SPECIES_NIDORAN_F", "SPECIES_NIDORAN_M", "SPECIES_ROOKIDEE", "SPECIES_GRUBBIN", "SPECIES_FLETCHLING", "SPECIES_PACHIRISU"],
+      "note": "The first route, Kaizo-wide: Wooloo and Sentret lead twelve lines, Rookidee by day, Purrloin and Skitty by night."
     },
     "encounters_verity_lakefront": {
-      "home": ["SPECIES_PIKIPEK"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_BLIPBUG"],
-      "tail": ["SPECIES_PACHIRISU", "SPECIES_VULPIX"],
-      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, Purrloin a regular, Pachirisu a 4% and a 1% Vulpix as a tease of Route 207."
+      "home": ["SPECIES_PIKIPEK", "SPECIES_BLIPBUG"],
+      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_SURSKIT", "SPECIES_BUNEARY", "SPECIES_VULPIX", "SPECIES_MINCCINO", "SPECIES_POOCHYENA"],
+      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Poochyena by night."
     },
     "encounters_lake_verity": {
       "home": ["SPECIES_SURSKIT"],
-      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG"],
+      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_LOTAD", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG", "SPECIES_SKITTY", "SPECIES_PURRLOIN"],
       "tail": ["SPECIES_BUNEARY", "SPECIES_MUDKIP"],
-      "note": "The lake shore, no one over 30%: Surskit at home by the water, Sentret and Wooloo with it, Buneary a 4% early rabbit, Mudkip the 1% lake tail."
+      "note": "The lake shore: Surskit at home by the water, Lotad with it, Skitty by day, Purrloin by night, Buneary a 4% and Mudkip the 1%."
     },
     "encounters_lake_verity_low_water": {
       "home": [],
-      "cameo": ["SPECIES_SURSKIT", "SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG"],
+      "cameo": ["SPECIES_SURSKIT", "SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_LOTAD", "SPECIES_PIKIPEK", "SPECIES_BLIPBUG", "SPECIES_SKITTY", "SPECIES_PURRLOIN"],
       "tail": ["SPECIES_BUNEARY", "SPECIES_MUDKIP"],
       "note": "The same shore after the lake drains, the same cast: one location name, one capture."
     },
     "encounters_route_202": {
-      "home": ["SPECIES_SHINX", "SPECIES_BLIPBUG"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_PIKIPEK", "SPECIES_PURRLOIN"],
-      "note": "Shinx's route as in vanilla, at 30 rather than 40; Blipbug the early bug, Purrloin a regular by night."
+      "home": ["SPECIES_SHINX"],
+      "cameo": ["SPECIES_BLIPBUG", "SPECIES_WOOLOO", "SPECIES_SENTRET", "SPECIES_PIKIPEK", "SPECIES_PURRLOIN", "SPECIES_SEWADDLE", "SPECIES_POOCHYENA"],
+      "tail": ["SPECIES_GRUBBIN", "SPECIES_ROOKIDEE", "SPECIES_NIDORAN_F", "SPECIES_NIDORAN_M", "SPECIES_BUDEW", "SPECIES_SMOLIV"],
+      "note": "Shinx's route, twelve lines wide: Blipbug beside it, the Nidoran pair small, Budew and Smoliv the 1% teases of the routes ahead, Sewaddle by day, Poochyena by night."
     },
     "encounters_route_203": {
       "home": ["SPECIES_ROOKIDEE", "SPECIES_NIDORAN_M", "SPECIES_NIDORAN_F", "SPECIES_PURRLOIN"],
-      "cameo": ["SPECIES_SHINX"],
-      "tail": ["SPECIES_MAKUHITA", "SPECIES_TORCHIC"],
-      "note": "The road to Oreburgh: Rookidee leads, the Nidoran pair trade places by time of day, Purrloin at home, Makuhita a 4% preview of the caves, Torchic the 1%."
+      "cameo": ["SPECIES_SHINX", "SPECIES_MAKUHITA", "SPECIES_WOOLOO", "SPECIES_TORCHIC", "SPECIES_FLETCHLING", "SPECIES_GRUBBIN"],
+      "note": "The road to Oreburgh: Rookidee and the Nidoran pair at home, Makuhita a preview of the caves, Torchic a 5% starter, Fletchling and Grubbin by day."
     },
     "encounters_oreburgh_gate_1f": {
       "home": ["SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_NOSEPASS"],
-      "cameo": ["SPECIES_GEODUDE", "SPECIES_MAKUHITA"],
-      "note": "The first cave, five lines deep now: Zubat, Geodude, Nacli, Nosepass and Makuhita, none over 30."
+      "cameo": ["SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_ONIX", "SPECIES_NIDORAN_M"],
+      "note": "The first cave, eight lines: Zubat and Geodude lead, Nacli and Nosepass at home, Makuhita and Phanpy behind, Onix and a Nidoran small."
     },
     "encounters_oreburgh_gate_b1f": {
       "home": ["SPECIES_GEODUDE"],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_NOSEPASS"],
+      "cameo": ["SPECIES_MAKUHITA", "SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_NOSEPASS", "SPECIES_PHANPY"],
       "tail": ["SPECIES_ONIX", "SPECIES_GIBLE"],
-      "note": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Onix a 4% and Gible a 1% tease of Wayward Cave."
+      "note": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave."
     },
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX"],
-      "cameo": ["SPECIES_ROOKIDEE", "SPECIES_NACLI", "SPECIES_GEODUDE"],
-      "tail": ["SPECIES_HOUNDOUR", "SPECIES_CHARMANDER"],
-      "note": "The rocky road above Oreburgh: Ponyta and Vulpix at home, Vulpix taking the head at night, Houndour a 4% (fully evolved by 24) and Charmander the 1% fire tail."
+      "cameo": ["SPECIES_ROOKIDEE", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_FLETCHLING"],
+      "tail": ["SPECIES_HOUNDOUR", "SPECIES_SMOLIV", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_CHARMANDER", "SPECIES_LITTEN"],
+      "note": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Litten the 1% fire tails, Vulpix and Houndour by night."
     },
     "encounters_oreburgh_mine_b1f": {
       "home": ["SPECIES_MAKUHITA"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PHANPY"],
-      "note": "The mine, Makuhita's home: Nacli and Zubat co-equal, Geodude behind, Phanpy in the tail."
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PHANPY", "SPECIES_NOSEPASS", "SPECIES_ONIX"],
+      "tail": ["SPECIES_RHYHORN", "SPECIES_MAGBY"],
+      "note": "The mine, Makuhita's home: Nacli beside it, Zubat and Geodude behind, Phanpy and Nosepass small, Rhyhorn a 4% and Magby a 1% tease of the deeper rock, Onix by night."
     },
     "encounters_oreburgh_mine_b2f": {
       "home": ["SPECIES_ONIX", "SPECIES_PHANPY"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_NOSEPASS"],
-      "note": "Deeper, and different: Onix and Phanpy at home, Nosepass in the rock."
+      "cameo": ["SPECIES_NACLI", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ZUBAT", "SPECIES_MAKUHITA"],
+      "tail": ["SPECIES_RHYHORN", "SPECIES_MAGBY"],
+      "note": "Deeper, the Onix floor: Onix at 25 with Phanpy at home beside it, the rock lines behind, Rhyhorn and Magby again in the tail, Makuhita by day."
     },
     "encounters_route_204_south": {
       "home": ["SPECIES_BUDEW", "SPECIES_GRUBBIN", "SPECIES_FLETCHLING"],
-      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO"],
-      "note": "Budew's route with Grubbin and Fletchling at home; the plain half of Route 204, so the north half is the one to wait for."
+      "cameo": ["SPECIES_SENTRET", "SPECIES_WOOLOO", "SPECIES_SEWADDLE", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_BOUNSWEET", "SPECIES_SHROOMISH", "SPECIES_LOTAD", "SPECIES_SEEDOT", "SPECIES_SMOLIV", "SPECIES_SNIVY"],
+      "note": "Budew's route, twelve lines: Grubbin and Fletchling at home with it, the Floaroma lines at 4-5% as a preview, Snivy the 1%; the plain half of Route 204, so the north half is the one to wait for."
     },
     "encounters_ravaged_path": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_NACLI", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
-      "note": "The Rock Smash cave, five lines instead of a duo: Zubat, Geodude, Nacli, Makuhita, Phanpy."
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_PHANPY", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_WOOPER"],
+      "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Wooper in the wet, Nacli and Phanpy by day."
     },
     "encounters_route_204_north": {
       "home": ["SPECIES_SCORBUNNY", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
-      "cameo": ["SPECIES_FLETCHLING", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_RIOLU", "SPECIES_EEVEE"],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it is the better half. Scorbunny at home (moved from Route 206), Sewaddle and Bounsweet with it, Riolu a 4% and Eevee a 1% worth waiting for."
+      "cameo": ["SPECIES_TREECKO", "SPECIES_SNIVY", "SPECIES_FLETCHLING", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Scorbunny at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_SKITTY"],
-      "note": "Floaroma's meadow: Pachirisu, Smoliv and Minccino at home, Skitty a regular at 10."
+      "cameo": ["SPECIES_WOOLOO", "SPECIES_SKITTY", "SPECIES_FLETCHLING", "SPECIES_BUNEARY", "SPECIES_POOCHYENA"],
+      "tail": ["SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_PAWMI", "SPECIES_SHINX", "SPECIES_COMBEE", "SPECIES_PICHU"],
+      "note": "Floaroma's meadow, twelve lines: Pachirisu, Smoliv and Minccino at home, Skitty a regular, Pawmi and Shinx small, Combee and Pichu the 1%s, Buneary by day, Poochyena by night."
     },
     "encounters_valley_windworks_outside": {
       "home": ["SPECIES_PAWMI"],
-      "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO", "SPECIES_FLETCHLING"],
+      "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO", "SPECIES_FLETCHLING", "SPECIES_ROOKIDEE", "SPECIES_PIKIPEK"],
       "tail": ["SPECIES_EMOLGA", "SPECIES_PICHU"],
-      "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, Emolga a 4% and Pichu a 1% in the tail."
+      "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%."
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD"],
-      "cameo": ["SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH"],
-      "tail": ["SPECIES_WOOPER", "SPECIES_DEWPIDER"],
-      "note": "The damp side before the forest, the better half of Route 205: Lotad at home, Surskit by night, Wooper (fully evolved by 20) a 4% and Dewpider the 1%."
+      "cameo": ["SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_SMOLIV"],
+      "tail": ["SPECIES_PACHIRISU", "SPECIES_DEWPIDER", "SPECIES_BUIZEL", "SPECIES_GRUBBIN", "SPECIES_FROAKIE", "SPECIES_POPPLIO"],
+      "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night."
     },
     "encounters_eterna_forest": {
       "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY"],
-      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_BLIPBUG"],
-      "tail": ["SPECIES_COMBEE", "SPECIES_TREECKO"],
-      "note": "The forest: Shroomish and Buneary at home, Sewaddle and Seedot with them, Blipbug small, Combee a 4% and Treecko the 1% under the trees."
+      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_BLIPBUG", "SPECIES_GRUBBIN", "SPECIES_COMBEE", "SPECIES_BOUNSWEET", "SPECIES_ROWLET", "SPECIES_BUDEW", "SPECIES_PURRLOIN"],
+      "note": "The forest, eight lines: Shroomish and Buneary at home, Sewaddle and Seedot under the trees, Combee in the canopy, Rowlet by day at 10, Seedot and Purrloin by night."
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
@@ -147,15 +149,14 @@
       "note": ""
     },
     "encounters_route_211_west": {
-      "home": ["SPECIES_RALTS", "SPECIES_MIENFOO"],
-      "cameo": ["SPECIES_VULPIX", "SPECIES_BRONZOR", "SPECIES_NACLI"],
-      "tail": ["SPECIES_ABSOL", "SPECIES_HERACROSS"],
-      "note": "Route 211's west half is reachable from Eterna, the east half much later, so this is the delay's better half: Ralts and Mienfoo at home, Absol a 4% and Heracross a 1%."
+      "home": ["SPECIES_MIENFOO"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOUNDOUR"],
+      "note": "Route 211's early half, plain on purpose (the east half is the delay with the prize): Bronzor, Vulpix and Mienfoo co-equal, the cave lines behind, Ponyta by day, Houndour by night."
     },
     "encounters_mt_coronet_1f_north_room_1": {
       "home": ["SPECIES_BRONZOR"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS"],
-      "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock."
+      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_CARBINK", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY"],
+      "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, Nosepass where its evolution happens, Carbink in the rock, Makuhita and Phanpy by day."
     },
     "encounters_route_206": {
       "home": ["SPECIES_GLIGAR"],
@@ -393,9 +394,9 @@
       "note": "The foggy cliffs: Hawlucha's home."
     },
     "encounters_route_211_east": {
-      "home": ["SPECIES_FERROSEED"],
-      "cameo": ["SPECIES_MIENFOO", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_GLIGAR"],
-      "note": "Celestic's side of the mountain: Ferroseed's home."
+      "home": ["SPECIES_FERROSEED", "SPECIES_RALTS"],
+      "cameo": ["SPECIES_MIENFOO", "SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_GLIGAR", "SPECIES_ROWLET", "SPECIES_LITTEN"],
+      "note": "Celestic's side of the mountain and Route 211's delay: Ferroseed and Ralts at home, with Rowlet and Litten at real shares as the prizes (to author in Byron's split)."
     },
     "encounters_fuego_ironworks_outside": {
       "home": ["SPECIES_MAGBY", "SPECIES_JOLTIK"],
@@ -903,7 +904,14 @@
     "SPECIES_WOOPER": ["encounters_great_marsh_1", "encounters_route_212_south"],
     "SPECIES_LOTAD": ["encounters_route_205_north", "encounters_great_marsh_5"],
     "SPECIES_SURSKIT": ["encounters_lake_verity", "encounters_route_205_north"],
-    "SPECIES_DEWPIDER": ["encounters_route_213", "encounters_great_marsh_3"]
+    "SPECIES_DEWPIDER": ["encounters_route_213", "encounters_great_marsh_3"],
+    "SPECIES_GOLDEEN": ["encounters_twinleaf_town", "encounters_ravaged_path"],
+    "SPECIES_CORPHISH": ["encounters_route_203", "encounters_route_204_south"],
+    "SPECIES_CHINCHOU": ["encounters_valley_windworks_outside"],
+    "SPECIES_CARVANHA": ["encounters_route_205_south", "encounters_route_205_north"],
+    "SPECIES_REMORAID": ["encounters_route_218"],
+    "SPECIES_BUIZEL": ["encounters_route_205_south", "encounters_valley_windworks_outside"],
+    "SPECIES_SHELLOS": ["encounters_eterna_city", "encounters_oreburgh_gate_b1f"]
   },
   "corridor_splits": ["Roark", "Gardenia"]
 }

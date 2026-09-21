@@ -11,23 +11,11 @@
         },
         {
             "level": 3,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_WOOLOO"
         },
         {
             "level": 3,
-            "species": "SPECIES_WOOLOO"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_WOOLOO"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_PIKIPEK"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_SENTRET"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 4,
@@ -36,6 +24,18 @@
         {
             "level": 4,
             "species": "SPECIES_BLIPBUG"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_SURSKIT"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_WOOLOO"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 4,
@@ -43,7 +43,7 @@
         },
         {
             "level": 5,
-            "species": "SPECIES_BLIPBUG"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 5,
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_WOOLOO",
-        "SPECIES_PIKIPEK"
+        "SPECIES_SKITTY"
     ],
     "night": [
-        "SPECIES_WOOLOO",
-        "SPECIES_BLIPBUG"
+        "SPECIES_LOTAD",
+        "SPECIES_PURRLOIN"
     ],
     "radar": [
         "SPECIES_WOBBUFFET",
@@ -132,22 +132,22 @@
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_BARBOACH"
-        },
-        {
-            "level_max": 7,
-            "level_min": 3,
-            "species": "SPECIES_LUVDISC"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 7,
             "level_min": 3,
             "species": "SPECIES_MUDKIP"
+        },
+        {
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_SURSKIT"
         }
     ],
     "good_rod_rate": 50,

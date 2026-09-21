@@ -53,6 +53,17 @@ ARCHETYPES = {
     # 4% and 1% tail for a starter or a prize, the "one-off tail" move.
     "A11": {"signature": (30, 25, 20, 15, 10), "rungs": (4, 4), "tail": "duplicates"},
     "A12": {"signature": (30, 25, 20, 15, 5, 4, 1), "rungs": (4, 4), "tail": "real"},
+    # "Variety is the spice of life" (Ian): more shapes under the cap, so
+    # neighbouring tables do not all read 30/25/20/15/10.
+    "A13": {"signature": (35, 30, 15, 10, 10), "rungs": (4, 4), "tail": "duplicates"},
+    "A14": {"signature": (25, 20, 20, 15, 10, 10), "rungs": (4, 4), "tail": "duplicates"},
+    "A15": {"signature": (25, 20, 15, 15, 10, 10, 4, 1), "rungs": (4, 4), "tail": "real"},
+    "A16": {"signature": (25, 25, 25, 10, 10, 5), "rungs": (4, 4), "tail": "duplicates"},
+    "A17": {"signature": (35, 20, 15, 10, 10, 5, 4, 1), "rungs": (4, 4), "tail": "real"},
+    "A18": {"signature": (20, 20, 15, 15, 10, 10, 5, 5), "rungs": (4, 4), "tail": "duplicates"},
+    # Platinum Kaizo's shape, which Ian's base ROM carries: every slot its
+    # own species, twelve lines, the 4s and 1s real.
+    "A19": {"signature": (20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1), "rungs": (4, 4), "tail": "real"},
 }
 
 DEFAULT_THRESHOLDS = {

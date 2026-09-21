@@ -225,6 +225,24 @@ carry that exact signature.
 | A10 | **Lottery** (new) | 60/25/10/4/1 | 0.436 | 4 rungs | **real 1%** | Designed for Oxide. The 1% is something you actually want, and the top rung is 2-3 wide. This is the archetype that pays off a dupe-out plan. |
 | A11 | **Flat route** (new) | 30/25/20/15/10 | 0.225 | 4 rungs | duplicates | Ian's cap (2.5): nobody over a third. The early-game default. |
 | A12 | **Flat lottery** (new) | 30/25/20/15/5/4/1 | 0.219 | 4 rungs | **real 4% and 1%** | A11 with a real tail for a starter or a prize: the one-off tail move Ian likes from Platinum Kaizo, a species at 4% or 1% here without lowering its rate where it is at home. |
+| A13 | **Pair** (new) | 35/30/15/10/10 | 0.255 | 4 rungs | duplicates | Two faces, three behind. The cap's upper edge. |
+| A14 | **Wide** (new) | 25/20/20/15/10/10 | 0.185 | 4 rungs | duplicates | Six lines, nobody dominant. A delay location's shape: several 10-20% prizes. |
+| A15 | **Wide lottery** (new) | 25/20/15/15/10/10/4/1 | 0.173 | 4 rungs | **real 4% and 1%** | A14 with a real tail. |
+| A16 | **Trio** (new) | 25/25/25/10/10/5 | 0.215 | 4 rungs | duplicates | Three co-equal faces under the cap. |
+| A17 | **Face lottery** (new) | 35/20/15/10/10/5/4/1 | 0.203 | 4 rungs | **real 4% and 1%** | One face at the cap, a long tail behind it. |
+| A18 | **Broad flat** (new) | 20/20/15/15/10/10/5/5 | 0.150 | 4 rungs | duplicates | Eight lines, the widest shape under the cap. |
+| A19 | **Kaizo** (new) | 20/20/10/10/10/10/5/5/4/4/1/1 | 0.093 | 4 rungs | **real 4s and 1s** | Every slot its own species: Platinum Kaizo's shape, which Ian's base ROM carries on every route. With distinct day and night pairs, sixteen lines on one table. |
+
+**Platinum Kaizo, the reference (2026-09-21).** Ian's base ROM's tables are Platinum Kaizo's
+(platinumkaizotracker.com/locations lists them), and he wants that feel over vanilla's:
+ten distinct species on every grass table, one per slot, with the two day and two night
+slots holding two more species each; starters in the grass as the reason to take a delay
+(Route 204 north: Bulbasaur 20%, Chikorita 24%, Treecko 10% by day and night) and in the
+Old Rod tails (Squirtle 4% on Route 218, Totodile 1% on Route 205); neighbouring routes
+repeating a core cast at different shares; levels flat per route. Oxide keeps its ladders
+(the repel manip is worth designing for, once the Repels are buyable) but takes the width,
+the starters and the repetition. Vanilla's numbers in 2.1 are the calibration of the
+metrics, not the target.
 
 Ian picked **"per-route, chosen by archetype"** for tail treatment, which is exactly what
 the Tail column encodes. `real` means the 1% slots hold a species found nowhere else on
