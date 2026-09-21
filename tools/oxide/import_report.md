@@ -2,7 +2,7 @@
 
 base: `base.nds`  vanilla: `vanilla.nds`  dry run: True
 
-Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 0, 'encounters': 0, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
+Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized': 0, 'encounters': 1, 'npc_trades': 0, 'text': 0, 'map_headers': 0, 'events': 0, 'heights': 0, 'items': 0}
 
 ## /home/ian/pokeplatinum/res/pokemon/primeape
 - evolutions not carried over, Primeape gains Annihilape (Phase 4 element 3); the rest of the record still is
@@ -21,6 +21,16 @@ Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized
 
 ## /home/ian/pokeplatinum/res/pokemon/lopunny
 - evolutions not carried over, Lopunny gains Lopunny M (Phase 4 element 3); the rest of the record still is
+
+## res/field/encounters/encounters_route_201.json
+- land_encounters.2.species: 'SPECIES_STARLY' -> 'SPECIES_NIDORAN_F'
+- land_encounters.3.species: 'SPECIES_KRICKETOT' -> 'SPECIES_NIDORAN_M'
+- land_encounters.4.species: 'SPECIES_STARLY' -> 'SPECIES_NIDORAN_F'
+- land_encounters.5.species: 'SPECIES_BIDOOF' -> 'SPECIES_NIDORAN_M'
+- land_encounters.8.species: 'SPECIES_STARLY' -> 'SPECIES_DODUO'
+- land_encounters.9.species: 'SPECIES_BIDOOF' -> 'SPECIES_DODUO'
+- land_encounters.10.species: 'SPECIES_STARLY' -> 'SPECIES_GROWLITHE'
+- land_encounters.11.species: 'SPECIES_BIDOOF' -> 'SPECIES_GROWLITHE'
 
 ## pl_enc_data.narc (partially imported)
 - 241 differing values in unown_table, rate_form0, rate_form1, rate_form2, rate_form3, rate_form4 were not carried over; see ENCOUNTER_SKIP_KEYS in this importer for why

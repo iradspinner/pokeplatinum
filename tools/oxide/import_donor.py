@@ -163,6 +163,7 @@ def import_species(d, dry_run, log):
 
     species_import.insert_species_constants(
         [r["constant"] for r in conv.map], dry_run, log)
+    species_import.register_cries(conv.map, dry_run, log)
     log.append("species: %d directories written" % len(written))
 
 

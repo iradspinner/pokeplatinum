@@ -365,6 +365,29 @@ def write_wav(path, samples, sample_rate):
 # CRLF, which is what every existing cry.txt in the repo has.
 CRY_BANK_LINE = "0, Single, 0, 0, 60, 127, 127, 127, 127, 64\r\n"
 
+# The cry player has a heap of its own, PLAYER_PV in res/sound/pl_sound_data.json,
+# 24,200 bytes, and it has to hold one bank plus its whole wave. The build
+# converts a cry to PCM8, one byte a sample, so the sample count is the budget.
+# Vanilla's longest cry is Jynx's at 23,524 samples, which is evidently what that
+# heap was sized for. Forty-one of the donor's cries are longer, because
+# HeartGold trims them less, and a cry that does not fit simply does not play.
+# So they are cut to the same ceiling, with a short fade so the cut does not
+# click.
+MAX_CRY_SAMPLES = 23524
+CRY_FADE_SAMPLES = 1200
+
+
+def trim_cry(samples, limit=MAX_CRY_SAMPLES, fade=CRY_FADE_SAMPLES):
+    """Cut a PCM16 buffer to `limit` samples, fading the last `fade` of them."""
+    values = list(struct.unpack("<%dh" % (len(samples) // 2), samples))
+    if len(values) <= limit:
+        return samples
+    values = values[:limit]
+    for i in range(min(fade, len(values))):
+        scale = i / fade
+        values[len(values) - 1 - i] = int(values[len(values) - 1 - i] * scale)
+    return struct.pack("<%dh" % len(values), *values)
+
 # The twelve form and alt-evolution records the donor keeps as separate species
 # are incomplete in two ways: nine have no wave archive of their own, and all
 # twelve have "???" where their height and weight should be. Each borrows both
@@ -489,7 +512,7 @@ class Writer:
         wave = self.cries.get(dp) or self.cries[FORM_BASE_SPECIES[row["constant"]]]
         sample = wave.waves[0]
         write_wav(os.path.join(out, "cry.wav"),
-                  decode_adpcm(sample.data), sample.sampleRate)
+                  trim_cry(decode_adpcm(sample.data)), sample.sampleRate)
         with open(os.path.join(out, "cry.txt"), "w", newline="") as f:
             f.write(CRY_BANK_LINE)
 
@@ -593,4 +616,93 @@ def insert_species_constants(constants, dry_run, log):
     if not dry_run:
         with open(path, "w") as f:
             f.write("\n".join(lines) + "\n")
+    return True
+
+
+# ------------------------------------------------- registering cries in the SDAT
+# Generating a cry.wav and a cry.txt is only half of it: the sound archive is
+# assembled from res/sound/pl_sound_data.json, which lists every bank and wave
+# archive, and Sound_PlayPokemonCry indexes that bank table by species id
+# directly. A species with no entry at its own index plays nothing and takes the
+# Pokedex's cry screen down with it.
+#
+# Indices 495 to 699 of both tables are empty placeholders, so the 159 fit at
+# 494 to 652 without moving anything, except Shaymin Sky, which sits at 494 and
+# moves to the first free slot after them. Everything refers to it by the symbol
+# the build generates from its filename, so its index is free to change.
+SOUND_DATA = os.path.join(ROOT, "res", "sound", "pl_sound_data.json")
+SHAYMIN_SKY_SWAR = "shaymin/forms/sky/cry.swar"
+SHAYMIN_SKY_SBNK = "shaymin/forms/sky/cry.sbnk"
+FIRST_NEW_PV_NUMBER = 520  # 519 is the highest the vanilla names use
+
+
+def _array_span(text, key):
+    i = text.index('"%s":' % key)
+    j = text.index("[", i)
+    depth = 0
+    for k in range(j, len(text)):
+        if text[k] == "[":
+            depth += 1
+        elif text[k] == "]":
+            depth -= 1
+            if depth == 0:
+                return j, k + 1
+    raise SystemExit("could not find the end of %s" % key)
+
+
+def _render_wavarc(e):
+    if not e.get("name"):
+        return '{\n\t\t\t"name":\t""\n\t\t}'
+    return '{\n\t\t\t"name":\t%s,\n\t\t\t"fileName":\t%s\n\t\t}' % (
+        json.dumps(e["name"]), json.dumps(e["fileName"]))
+
+
+def _render_bank(e):
+    if not e.get("name"):
+        return '{\n\t\t\t"name":\t""\n\t\t}'
+    waves = ", ".join(json.dumps(w) for w in e["waves"])
+    return '{\n\t\t\t"name":\t%s,\n\t\t\t"fileName":\t%s,\n\t\t\t"waves":\t[%s]\n\t\t}' % (
+        json.dumps(e["name"]), json.dumps(e["fileName"]), waves)
+
+
+def register_cries(rows, dry_run, log):
+    """Give every new species a wave archive and a bank at its own species id."""
+    text = open(SOUND_DATA, encoding="utf-8").read()
+    data = json.loads(text)
+    wavarc, bank = data["wavarcInfo"], data["bankInfo"]
+
+    first = int(rows[0]["species_id"])
+    last = int(rows[-1]["species_id"])
+    if wavarc[first].get("fileName", "").endswith("cry.swar") and \
+            wavarc[first]["fileName"] != SHAYMIN_SKY_SWAR:
+        log.append("cries: already registered")
+        return False
+
+    # move Shaymin Sky to the first empty slot past the new block
+    spare = next(i for i in range(last + 1, len(wavarc)) if not wavarc[i].get("name"))
+    wavarc[spare] = dict(wavarc[first])
+    bank[spare] = dict(bank[first])
+    log.append("cries: Shaymin Sky moves from %d to %d" % (first, spare))
+
+    for n, row in enumerate(rows):
+        i = int(row["species_id"])
+        if i != first + n:
+            raise SystemExit("species ids are not contiguous at %s" % row["constant"])
+        if wavarc[i].get("name") and i != first:
+            raise SystemExit("sound slot %d is already %s" % (i, wavarc[i]["name"]))
+        d = dirname_of(row["constant"])
+        name = "PV%03d" % (FIRST_NEW_PV_NUMBER + n)
+        wavarc[i] = {"name": "WAVE_ARC_" + name, "fileName": "%s/cry.swar" % d}
+        bank[i] = {"name": "BANK_" + name, "fileName": "%s/cry.sbnk" % d,
+                   "waves": ["WAVE_ARC_" + name, "", "", ""]}
+
+    # Rewrite only the two arrays, rendered in the file's own style, so every
+    # entry that did not change comes out byte for byte as it was.
+    for key, render in (("bankInfo", _render_bank), ("wavarcInfo", _render_wavarc)):
+        a, b = _array_span(text, key)
+        text = text[:a] + "[" + ", ".join(render(e) for e in data[key]) + "]" + text[b:]
+    log.append("res/sound/pl_sound_data.json: %d cries registered at indices %d to %d"
+               % (len(rows), first, last))
+    if not dry_run:
+        open(SOUND_DATA, "w", encoding="utf-8").write(text)
     return True
