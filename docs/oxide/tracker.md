@@ -6,15 +6,15 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 
 **Where things stand (2026-09-20, end of day).** Phase 3, carrying the base ROM's edits into the source tree, is **finished**. All three hard stops were closed on 2026-09-20: the Repel prompt (fixed with a new script command), the Battleground init script (no init script at all now) and the trainer battle messages (no edit in the bank, only DSPRE zeroing unused slots). The encounter tool has M1 to M4 done and M5 next. **Phase 4, the engine port, has started.** Its engine-change list is settled (`docs/oxide/phase4-engine-change-answers.md`). **Element 1, the Fairy type, is done**, apart from two pieces of fixed Pokedex and Battle Hall art that are listed under it. Also landed on 2026-09-20: the base ROM's last two gameplay rules, traded Pokemon always obeying and battling granting no EVs, the second of which makes vitamins the only EV source and raises them to 26 EVs each. Next is element 2. The tree is clean and `origin/oxide` is current. `git log -1` is the resume point; no commit hash is kept in this file because it goes stale within the hour.
 
-**Second track: the encounter tool.** A separate tool for designing Oxide's wild encounter tables. It owns `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/` and the three `encounter-*.md` docs, and touches nothing else. M1 (round-trip I/O) 13/13, M2 (analysis engine) 23/23, M3 (linter) 18/18, M4 (browser editor, after two usability rounds with Ian) 41/41. **Next is the authoring pass: writing every wild table from the species pick-list**, planned in `docs/oxide/encounter-authoring-plan.md` (two stages, since the 159 new species do not exist until Phase 4 step 3; all 171 land tables, early corridor first; the sidecar becomes the design source). How to resume cold, what each milestone found, and what it is waiting on are all in `docs/oxide/encounter-tool-build-plan.md`. This paragraph is the tool's whole footprint in this file; per-milestone entries go in the build plan, not here.
+**Second track: the encounter tool.** A separate tool for designing Oxide's wild encounter tables. It owns `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/` and the three `encounter-*.md` docs, and touches nothing else. **The tool is complete, all seven milestones done** (M1 round-trip I/O, M2 analysis, M3 linter, M4 browser editor, M5 dupe-out planner, M6 levels-only generator, M7 source-versus-ROM check; the generator's full species placement is deferred, possibly for good). **The authoring pass has started: writing every wild table from the species pick-list**, planned in `docs/oxide/encounter-authoring-plan.md` (two stages, since the 159 new species do not exist until Phase 4 step 3; all 171 land tables, early corridor first; the sidecar becomes the design source). Its Step 0, the tooling, is done; Step 1, the progression order and tiers, is next. How to resume cold, what each milestone found, and what it is waiting on are all in `docs/oxide/encounter-tool-build-plan.md`. This paragraph is the tool's whole footprint in this file; per-milestone entries go in the build plan, not here.
 
 **Done in Phase 3, all verified against the base ROM:** species/move/evolution/learnset import; the trainer carry-over (all 928, ability/gender fields, 0 field mismatches, emulator-confirmed); all four synthetic-overlay routines (no items in trainer battles, Rare Candy chaining, uncapped battle frame rate, EV/IV viewer); encounters (125 tables); both in-game trades; map headers (58); the small constant edits; and the scripts, events and text: events 158 of 158, scripts 89 of 91 matching, with `scripts_common` and `scripts_init_battleground` intentionally diverged, text banks 72 of 78, with every mismatch explained under Phase 3 and none of them an outstanding edit. Three sets of base-ROM changes were deliberately *not* carried over, as DSPRE noise rather than edits, each with its evidence recorded: sprite heights, the six vitamin item records, and the encounter `unown_table`/`rate_form` fields.
 
 **Next steps, in order:**
 
 1. **Ian: emulator pass** on the items under "Waiting on Ian". The 86 bulk-generated scripts are verified byte-for-byte against the base ROM but have never been played from this build.
-2. **Phase 4 prerequisites that touch no Phase 3 file:** read Hardlove's `a/0/2/8` tables, get Ian's "other engine changes" list, settle the species-ID scheme. All three are listed under Phase 4.
-3. **Phase 4 proper**, in the order under Phase 4, starting with Fairy.
+2. **Phase 4 element 2**, the ability field to u16, and before it the two remaining prerequisites under Phase 4: read Hardlove's `a/0/2/8` tables and settle the species-ID scheme. Fairy (element 1) is done apart from two pieces of fixed art, listed under it.
+3. **The encounter authoring pass**, Step 1 onward, on its own worktree branch.
 
 **To confirm the state after a restart**, from the repo root:
 
@@ -22,7 +22,7 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 make rom
 python3 tools/oxide/import_base_rom.py --base ~/roms/base.nds --vanilla ~/roms/vanilla.nds --dry-run   # every count 0
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds
-python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --encounters
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7: built NARC vs res/ JSON
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --text
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
 python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; skips scripts_init_battleground and scripts_common
@@ -32,14 +32,14 @@ python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
 python3 tools/oxide/scriptdis.py --rom ~/roms/base.nds --verify --base-rom
 ```
 
-The importer is idempotent, so a non-zero count means something moved. Both `scriptdis` runs should report 574 files walked, 0 failed, 550 init scripts read and 0 movement-target collisions. The encounter tool's own checks are listed in its build plan. This whole list was last run clean on 2026-09-20 after the Repel fix.
+The importer is idempotent, so a non-zero count means something moved. Both `scriptdis` runs should report 574 files walked, 0 failed, 550 init scripts read and 0 movement-target collisions. The species and move check reports the twenty Fairy retypes and three Fairy moves as "intended bytes" rather than mismatches: `verify_narcs.py` carries a `DIVERGED` list for Phase 4 changes, the same idea as the bulk tools' skip lists, and any Phase 4 element that changes a base-ROM table must add its members there or the integration gate fails. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-20 at the first integration.
 
 **Waiting on Ian:**
 
 - Emulator checks not yet done: Rare Candy chaining; the frame-rate uncap (options menu reads UNLOCK FPS, with OFF / BATTLE / ALWAYS); the EV/IV viewer (R on the Skills page); Shinx's ability (always Rivalry, never Intimidate) and Bidoof/Starly hatch time (~255 steps, down from ~3825); and a walk through a few bulk-generated maps, the gift houses being the obvious ones. The "use another Repel?" prompt is now safe to answer yes; it is worth testing, since it is the one thing in this build that was broken and is now fixed rather than carried over.
 - The ability/gender nibble direction (1=male, 2=female) is a guess; no Route 202 trainer exercises it. Swap if anything reads wrong in-game.
 - Evolution triggers for Gyarados M and Lopunny M.
-- The "other engine changes" list (design doc section 3). The full hg-engine menu is in `docs/oxide/phase1-hg-engine-survey.md` section 3. Gates Phase 4's last item only.
+- Fairy in the emulator (Phase 5 has the exact checks): a Dragon move doing nothing to Clefairy or Ralts, the summary screen reading FAIRY, and the Pokedex info page showing the NORMAL plate rather than garbage.
 - Two data questions from the carry-over, low priority because the default is to leave vanilla: whether the encounter `unown_table`/`rate_form` changes or the sprite-height changes were ever intended (evidence under Phase 3 says they were DSPRE re-saves).
 - Encounter tool: review of the progression `order` and the pick-list `tier` column once the authoring agent commits its defaults (the pass no longer waits on either; see `docs/oxide/encounter-authoring-plan.md`), whether Unown returns to the pick-list, and whether surf tables get designed in the first pass or only de-leaked.
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
@@ -117,7 +117,7 @@ Done 2026-09-15. Write-up: `docs/oxide/phase2-approach-breakdown.md`.
 
 ## Phase 4: Port, one element at a time
 
-Not started. The order was approved by Ian on 2026-09-15 (from `docs/oxide/phase2-approach-breakdown.md` section 6), chosen so each step is testable on its own and the structural changes come first while the tree is still close to vanilla. hg-engine's source is the reference implementation for each feature; Hardlove's tables are the content source. Each element gets its own checklist here when it starts, with the emulator test that proves it.
+Started 2026-09-20 with the Fairy type. The order was approved by Ian on 2026-09-15 (from `docs/oxide/phase2-approach-breakdown.md` section 6), chosen so each step is testable on its own and the structural changes come first while the tree is still close to vanilla. hg-engine's source is the reference implementation for each feature; Hardlove's tables are the content source. Each element gets its own checklist here when it starts, with the emulator test that proves it.
 
 Prerequisites, none of which touch a Phase 3 file:
 

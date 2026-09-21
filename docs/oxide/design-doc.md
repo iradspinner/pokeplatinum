@@ -131,7 +131,7 @@ If the working folder on G: cannot be reached, everything needed to build and ve
 ## 7. Open questions for Ian
 
 - ~~Is Hardlove Gold built on hg-engine?~~ Answered: yes.
-- The exact scope list (section 3). Which of the "other engine changes" are wanted.
+- ~~The exact scope list (section 3). Which of the "other engine changes" are wanted.~~ Answered 2026-09-20: `docs/oxide/phase4-engine-change-answers.md`, reproduced in section 3.
 - ~~Whether Platinum Unlocked v1.1's own modifications need to be preserved.~~ Answered: the tags are irrelevant, treat it simply as a non-vanilla base.
 - ~~How much of Hardlove's content is wanted alongside its engine.~~ Answered: see the content table in section 3.
 - ~~Which species make the cut.~~ Answered 2026-09-15: `docs/oxide/species-pick-list.md`. Two follow-ups remain, both listed there and in the tracker: the 21 native species where the sheet and the base ROM disagree on base stats, and the evolution triggers for Gyarados M and Lopunny M.

@@ -223,6 +223,37 @@ def check_map_headers(built, ref):
     return not bad
 
 
+# Members that no longer match the base ROM on purpose. Phase 4 changes the game
+# beyond what the base ROM had, so "identical to the base ROM" stops being the
+# truth for these. Each entry names the members, the byte offsets allowed to
+# differ, and why; a listed member that differs anywhere else still fails, and an
+# unlisted member that differs at all still fails. Same idea as bulk_scripts.py's
+# DIVERGED and import_base_rom.py's AUTHORED.
+DIVERGED = {
+    "poketool/personal/pl_personal.narc": {
+        "offsets": (6, 7),  # type1, type2
+        "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
+                    209, 210, 280, 281, 282, 298, 303, 439, 468},
+        "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c)",
+    },
+    "poketool/waza/pl_waza_tbl.narc": {
+        "offsets": (4,),  # type
+        "members": {186, 204, 236},
+        "why": "Charm, Sweet Kiss and Moonlight retyped to Fairy (Phase 4 element 1)",
+    },
+}
+
+
+def intended_divergence(path, i, built_member, ref_member):
+    """True when member i of `path` differs from the reference only at bytes a
+    DIVERGED entry allows for it."""
+    rule = DIVERGED.get(path)
+    if not rule or i not in rule["members"] or len(built_member) != len(ref_member):
+        return False
+    return all(built_member[o] == ref_member[o] or o in rule["offsets"]
+               for o in range(len(built_member)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--built", required=True)
@@ -265,11 +296,18 @@ def main():
         bad = [i for i in bad if i not in padded]
         if padded:
             print(f"{p}: {len(padded)} members differ only in trailing zero padding: {padded[:20]}")
+        intended = [i for i in bad if intended_divergence(p, i, b[i], r[i])]
+        bad = [i for i in bad if i not in intended]
+        if intended:
+            print(f"{p}: {len(intended)} members differ only at the intended bytes, "
+                  f"{DIVERGED[p]['why']}: {intended[:20]}")
         if bad:
             ok = False
             print(f"{p}: {len(bad)} members differ: {bad[:20]}{' ...' if len(bad) > 20 else ''}")
             i = bad[0]
             print(f"   first: built {b[i][:48].hex()}\n          ref   {r[i][:48].hex()}")
+        elif intended:
+            print(f"{p}: identical apart from the intended bytes ({len(b)} members)")
         else:
             print(f"{p}: identical ({len(b)} members)")
     sys.exit(0 if ok else 1)

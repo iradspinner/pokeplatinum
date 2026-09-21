@@ -20,8 +20,9 @@ source, not to patch a ROM. Hobby project, no QA gate.
 The work runs in phases. Phases 0 to 2 (setup, survey, approach) are done. Phase 3
 carried Ian's earlier hand edits from an old DSPRE-edited ROM ("the base ROM") into
 the source tree, so nothing of his was lost by switching to a source build. Phase 4
-is the actual engine port and is where the project is heading. Alongside, a
-separate **encounter tool** is being built for designing the wild encounter tables.
+is the actual engine port and is under way, one element at a time. Alongside,
+a separate **encounter tool** for designing the wild encounter tables is built,
+and the pass that writes the tables from the species pick-list has started.
 
 ## The three surfaces and who owns what
 
@@ -38,8 +39,8 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
 2. `docs/oxide/tracker.md`: status, next steps, what is waiting on Ian, decisions.
-3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `species-pick-list.md`, `pokemon-gifts.md`.
-4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance.
+3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `phase4-engine-change-questions.md` and `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-gifts.md`.
+4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
 
 ## Decided, do not relitigate without reason
 
