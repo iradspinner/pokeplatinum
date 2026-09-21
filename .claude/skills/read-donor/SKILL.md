@@ -35,9 +35,15 @@ readers already exist; use them rather than reopening the ROM by hand.
   lookup, not an identity: Oxide ids are dense after Arceus (494 to 652) in
   pick-list `dex_pos` order, `docs/oxide/species-id-map.csv` is the assignment.
 - Fairy is type 9 in the donor (the dead Mystery slot); Oxide's is 18.
-  Substitute it and all 493 natives decode to exactly the type pair `res/pokemon`
-  holds, which is the evidence that types are not randomised and the donor is
-  trustworthy for the 159 new species.
+- **The donor is Hardlove's design, not a canonical reference.** Against the ROM
+  it changes 28 of 493 natives' types and 317 of their abilities. So for the 159
+  new species the split is: base stats, types and both abilities and the hidden
+  ability come from `New Pokedex.xlsx`; everything else comes from the donor.
+  `docs/oxide/donor-tables.md` has the table.
+- **Do not read species data from the DSPRE `unpacked` folder.** It disagrees
+  with the ROM on 242 of 1476 species records, at stats, types and abilities; it
+  is a DSPRE working copy someone has edited. `synthOverlay` does match, but go
+  through `donor.py` and the ROM anyway.
 - Learnsets are 34 fixed slots of (u16 move, u16 level); level 0 means an
   evolution move, which Platinum has no concept of. Platinum packs level and
   move into one u16 with the move capped at 511; widening that format is part

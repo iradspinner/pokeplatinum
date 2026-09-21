@@ -48,10 +48,12 @@ without it.
 Base stats are not randomized in Hardlove, so each of these was identified by a
 six-stat fingerprint rather than by guesswork. Script: `tools/find_form_slots.py`.
 
-**Correction, 2026-09-20:** this paragraph used to say types *are* randomized.
-They are not. Decoding all 493 natives out of the donor, with the one
-substitution that Fairy is type 9 there, gives the same type pair `res/pokemon`
-holds for 493 of 493. See `docs/oxide/donor-tables.md`.
+**Note, 2026-09-20:** this paragraph is right and a correction made against it
+earlier the same day was wrong. Hardlove does change types: measured against the
+donor ROM, 28 of 493 natives carry a different type pair from vanilla, and it
+changes 317 natives' abilities as well. The mistaken check had been run against
+the DSPRE extraction folder, which does not match the ROM (242 of 1476 records
+differ). See `docs/oxide/donor-tables.md`.
 
 | Entry | Base species | Hardlove personal index |
 |---|---|---|

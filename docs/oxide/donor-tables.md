@@ -17,8 +17,9 @@ from. The reader is `tools/oxide/donor.py`; the donor ROM is pinned at
 | `a/0/2/7` | text | 854 banks; abilities are 720, 721, 722 |
 
 DSPRE's extraction folder names map to these: `personalPokeData`, `learnsets`,
-`evolutions`, `synthOverlay`, `textArchives`. The extraction is faithful, member
-counts and bytes both, so either source can be used.
+`evolutions`, `synthOverlay`, `textArchives`. **Only `synthOverlay` was checked
+byte for byte against the ROM and matches.** `personalPokeData` does *not*: it
+disagrees with the ROM on 242 of 1476 records. Read species data from the ROM.
 
 ## The species record
 
@@ -29,18 +30,58 @@ those moved elsewhere. Hardlove additionally zeroes the EV yields and the wild
 held items, which is its own choice rather than hg-engine's.
 
 **Types are Platinum's numbering with one substitution: Fairy is 9**, the dead
-`TYPE_MYSTERY` slot, where Oxide put it on the end at 18. Everything else is
-identical, and that is measured rather than assumed: decoding all 493 natives
-with `9 -> TYPE_FAIRY` applied gives a type pair identical to `res/pokemon` for
-**493 of 493**. Two things follow. Hardlove's types are not randomised, so the
-earlier note in the pick-list saying they were is wrong and the donor is a
-trustworthy source for the 159. And Oxide's twenty Fairy retypings from element
-1 agree with Hardlove's exactly, which is a free check on that work.
+`TYPE_MYSTERY` slot, where Oxide put it on the end at 18. The evidence for that
+is the 159: with the substitution applied, the donor's type pair matches
+`New Pokedex.xlsx` for 155 of them, and the four that differ are the sheet
+deliberately disagreeing rather than a decoding error.
+
+**Correction, 2026-09-20, same day.** This section first said Hardlove's types
+match vanilla for 493 of 493 natives and that its types are therefore not its
+own design. That was measured against the DSPRE extraction folder, which turns
+out **not to match the ROM**: the two disagree on 242 of 1476 species records,
+at the base stats, the types and both abilities. The ROM is the donor; the
+extraction folder is a DSPRE working copy that someone has edited. Measured
+against the ROM, Hardlove changes **28 of 493 natives' types** (Charizard to
+Fire/Dragon, Ninetales to Fire/Fairy, Gyarados to Water/Dragon, Noctowl to
+Psychic/Flying and so on) and **317 of 493 natives' abilities**. So the donor is
+Hardlove's own design throughout, not a canonical reference, and the pick-list
+was right the first time.
+
+The practical consequence is the split in the next section: for the 159 new
+species, base stats, types and abilities come from Ian's sheet and everything
+else comes from the donor. Read the donor through `donor.py`, which goes to the
+ROM; do not read the DSPRE `unpacked` folder for species data.
 
 Base stats, catch rate, gender ratio, hatch cycles, base friendship, exp rate,
 egg groups, body colour and the flip flag are all vanilla-format and canonical.
 Abilities are the official Generation 5+ ability numbers, which is why they run
 past 255 and why element 2 had to widen the field.
+
+## Which source wins for the 159 new species
+
+Settled by the pick-list ("for the 159 new species there is no conflict: the
+sheet is the only intentional source") and confirmed by measuring both.
+
+| Field | Source |
+|---|---|
+| base stats, types, ability 1, ability 2, hidden ability | `New Pokedex.xlsx`, sheet `New Pokedex`, matched by `dex_pos` |
+| catch rate, gender ratio, hatch cycles, base friendship, exp rate, egg groups, safari flee rate, body colour, flip flag | donor species record |
+| base experience, icon palette | donor `a/0/2/8` |
+| level-up learnset | donor `a/0/3/3` |
+| evolutions | donor `a/0/3/4`, overridden by the pick-list's evolution table |
+| sprites, palettes, icons | donor `a/0/0/4` and `a/0/2/0` |
+
+All 159 match the sheet by `dex_pos` and by name. Where the two sources disagree:
+base stats on 2 (Gyarados M and Lopunny M, which the sheet deliberately tones
+down from the real Megas, since they are ordinary evolutions here), types on 4
+(Galarian Rapidash, Serperior, Gothitelle, Florges) and abilities on about 124,
+because Hardlove redesigns abilities wholesale. Three sheet ability names are
+spelled differently from the donor's bank and are aliased: Compound Eyes,
+Soul Heart, Water Compaction.
+
+For **natives** nothing changes: the base ROM's values are what `res/` holds and
+they stay until the Phase 5 balance pass, which is what the pick-list's 21-row
+conflict table is for.
 
 ## a/0/2/8, member by member
 
