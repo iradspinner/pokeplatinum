@@ -52,12 +52,43 @@ member for member. The check that replaced it, run once when the change was
 made, reads the base ROM with the four-byte shift applied and confirms all 508
 records still agree field for field. Rerun it if the record moves again.
 
+## The Pokedex block grew, and with it every block after it (2026-09-21)
+
+**This row should have been written on 2026-09-20 when element 3 landed and was
+not.** It is the omission that let Ian carry a pre-element-3 save into a
+post-element-3 build, and two hangs found on 2026-09-21 are waiting on a new
+save to tell whether they are real bugs or that.
+
+The `Pokedex` struct in `include/pokedex.h` sizes itself from
+`NATIONAL_DEX_COUNT`, so raising the species count grew it without anyone
+touching it:
+
+| Field | Was | Is |
+|---|---|---|
+| `caughtPokemon`, `seenPokemon` | 16 u32 each | 21 u32 each |
+| `recordedGenders[2]` | 16 u32 each | 21 u32 each |
+| `recordedLanguages` | 496 bytes | 655 bytes |
+
+About 239 bytes in total. That matters beyond the Pokedex itself, because
+`gSaveTable` lays `SAVE_BLOCK_ID_NORMAL` out as a running total of each entry's
+size and the Pokedex is eighth of about forty. **Every block after it moves**:
+Daycare, Pal Pad, Misc, Field Overworld State, Underground, Regulation Battles,
+Image Clips, Mailbox, Poffins, Record Mixed RNG, **Journal**, Trainer Case,
+**Game Records**, Seal Case, Chatot, Frontier, Ribbons, Encounters, Global
+Trade, TV Broadcast and the rest. Read an old save with the new build and all
+of them are read from the wrong offset.
+
+The PC boxes are the exception: they are their own block, `SAVE_BLOCK_ID_BOXES`,
+and their offset does not depend on the Pokedex.
+
+There is room. `SaveData_Init` asserts the whole of `SAVE_BLOCK_ID_NORMAL` fits
+in `SAVE_SECTOR_SIZE * SAVE_PAGE_MAX`, 131,072 bytes, and 239 bytes does not
+threaten that. The problem is compatibility, not capacity.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
 
-- Species ids past 493, which widens every species-indexed table and the dex
-  flags in the save (Phase 4 element 3)
 - 30 PC boxes (Phase 4 element 8)
 - Move ids past 511 in level-up learnsets, which changes the learnset entry
   from one packed u16 to a (u16 level, u16 move) pair (Phase 4 element 4)
