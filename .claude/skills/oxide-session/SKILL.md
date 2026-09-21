@@ -68,9 +68,11 @@ Run these in order; skipping one is how the next session starts confused.
    a list entry is a gap.
 4. **Mirror.** `bash tools/oxide/sync-docs.sh` if any file under `docs/oxide/`
    changed. It complains about a new file it has no mapping for; add the mapping.
-5. **Commit and push** `oxide` (or your worktree branch). Commit messages explain
-   why and record what was verified; the attribution trailer is in the session's
-   system reminder.
+5. **Commit and push** `oxide` (or your worktree branch). Stage files by name,
+   never `git add -A` or `git add .`: sessions share this checkout, and a sweep
+   commits another session's half-written files under your message (it has
+   happened). Commit messages explain why and record what was verified; the
+   attribution trailer is in the session's system reminder.
 6. **Report** to Ian in a few sentences: what landed, what was verified and how,
    what is waiting on him. Lead with anything that failed.
 

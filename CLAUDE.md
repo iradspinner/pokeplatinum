@@ -36,6 +36,9 @@ Then say in one or two sentences what this session will do, and do it.
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
   them; do not "fix" a mismatch the tracker says is intended.
+- Stage files by name when committing, never `git add -A` or `git add .`;
+  sessions share this checkout and a sweep commits another session's
+  in-progress files under your message.
 - Two sessions may run in parallel. Each edits only its own status home: the
   tracker for Phases 0 to 5, `docs/oxide/encounter-tool-build-plan.md` for the
   encounter tool (plus its one paragraph at the top of the tracker). A second
@@ -45,6 +48,17 @@ Then say in one or two sentences what this session will do, and do it.
   carry-over is being verified; `checkmap.py` compares against the base ROM.
   Cleanups (re-humanising generated scripts, unifying the clown gifts) are
   backlog items done afterwards, as their own commits.
+
+## Skills
+
+Project skills in `.claude/skills/` hold the procedures; the docs hold the
+facts. Use them by name: `oxide-session` (start and end of every session),
+`port-element` (any Phase 4 engine element), `author-table` (any encounter
+table work), `carry-over-map` (scripts, events and text for one map),
+`read-donor` (anything from the Hardlove ROM), `oxide-spreadsheets` (Ian's
+design sheets on G:, with the synced `xlsx` skill for the mechanics). The
+`/integrate` command in `.claude/commands/` merges every track into `oxide`
+and runs the full verification gate.
 
 ## Build
 
