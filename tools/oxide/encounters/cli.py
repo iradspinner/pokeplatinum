@@ -426,9 +426,11 @@ def cmd_coverage(args):
         return 0
     ref = args.ref or "working tree"
     print(f"availability coverage   [{ref}]\n")
-    print(f"  {s['native_lines']} native lines: "
+    print(f"  {s['native_lines']} lines: "
           + ", ".join(f"{k} {v}" for k, v in sorted(s["by_status"].items()))
-          + f"; {s['new_species']} new species not in the tree yet")
+          + (f"; {s['not_in_tree']} pick-list rows not in the tree yet"
+             if s.get("not_in_tree") else
+             f"; every pick-list row is in the tree ({s['new_species']} new species)"))
     rows = out["lines"]
     if args.status:
         rows = [r for r in rows if r["status"] == args.status]

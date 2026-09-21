@@ -40,7 +40,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 40,Mr. Rime,new,866,species,916,yes,Ice,Psychic,"Galarian Mr. Mime, level 42 (method 4)",filler
 41,Scyther,native,123,platinum,,yes,Bug,Flying,,preferred
 42,Scizor,native,212,platinum,,yes,Bug,Steel,,preferred
-43,Kleavor,new,900,species,950,yes,Bug,Rock,"Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route",filler
+43,Kleavor,new,900,species,950,yes,Bug,Rock,"Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route",preferred
 44,Electabuzz,native,,platinum,,UNMATCHED,Electric,Electric,,preferred
 45,Elekid,native,239,platinum,,yes,Electric,Electric,,preferred
 46,Electivire,native,466,platinum,,yes,Electric,Fighting,,preferred
@@ -49,7 +49,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 49,Magmortar,native,467,platinum,,yes,Fire,Fire,,preferred
 50,Magikarp,native,129,platinum,,yes,Water,Water,,preferred
 51,Gyarados,native,,platinum,,UNMATCHED,Water,Flying,,preferred
-52,Gyarados M,new,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian",filler
+52,Gyarados M,new,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian",preferred
 53,Eevee,native,133,platinum,,yes,Normal,Normal,,preferred
 54,Vaporeon,native,134,platinum,,yes,Water,Water,,preferred
 55,Jolteon,native,135,platinum,,yes,Electric,Electric,,preferred
@@ -58,7 +58,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 58,Umbreon,native,197,platinum,,yes,Dark,Dark,,preferred
 59,Leafeon,native,470,platinum,,yes,Grass,Grass,,preferred
 60,Glaceon,native,471,platinum,,yes,Ice,Ice,,preferred
-61,Sylveon,new,700,species,750,yes,Fairy,Fairy,"Eevee, level up knowing a Fairy move (method 20)",filler
+61,Sylveon,new,700,species,750,yes,Fairy,Fairy,"Eevee, level up knowing a Fairy move (method 20)",preferred
 62,Articuno,native,,platinum,,UNMATCHED,Ice,Flying,,gate
 63,Galarian Articuno,new,144,form,1164,yes,Psychic,Flying,,gate
 64,Zapdos,native,,platinum,,UNMATCHED,Electric,Flying,,gate
@@ -74,7 +74,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 74,Yanmega,native,469,platinum,,yes,Bug,Flying,,preferred
 75,Wooper,native,194,platinum,,yes,Water,Ground,,preferred
 76,Quagsire,native,195,platinum,,yes,Water,Ground,,preferred
-77,Clodsire,new,980,species,1030,yes,Poison,Ground,"Wooper, level up holding Poison Barb (methods 18/19)",filler
+77,Clodsire,new,980,species,1030,yes,Poison,Ground,"Wooper, level up holding Poison Barb (methods 18/19)",preferred
 78,Gligar,native,207,platinum,,yes,Ground,Flying,,preferred
 79,Gliscor,native,472,platinum,,yes,Ground,Flying,,preferred
 80,Heracross,native,214,platinum,,yes,Bug,Fighting,,preferred
@@ -174,7 +174,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 177,Drifblim,native,426,platinum,,yes,Ghost,Flying,,gate
 178,Buneary,native,427,platinum,,yes,Normal,Normal,,starter-adjacent
 179,Lopunny,native,428,platinum,,yes,Normal,Fighting,,starter-adjacent
-180,Lopunny M,new,428,altevo,1117,"MISMATCH (65, 136, 94, 54, 96, 135)",Normal,Fighting,"alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian",filler
+180,Lopunny M,new,428,altevo,1117,"MISMATCH (65, 136, 94, 54, 96, 135)",Normal,Fighting,"alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian",starter-adjacent
 181,Glameow,native,431,platinum,,yes,Normal,Normal,,preferred
 182,Purugly,native,432,platinum,,yes,Normal,Normal,,preferred
 183,Stunky,native,434,platinum,,yes,Poison,Dark,,preferred

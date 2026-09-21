@@ -316,6 +316,8 @@ def coverage(ref=None):
         "summary": {
             "native_lines": len(out),
             "new_species": len(new),
+            # rows the tree cannot resolve: 159 before Phase 4 element 3, 0 after
+            "not_in_tree": sum(1 for r in rows if r["status"] != "cut" and not r["constant"]),
             "by_status": dict(counts),
             "with_wild_home": counts.get("home", 0),
             "with_non_wild_source_only": counts.get("non-wild", 0),

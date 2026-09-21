@@ -925,6 +925,17 @@ vanilla was never built for the pick-list, `integrate.sh`'s vanilla lint
 check now passes `--ignore R12` (a new lint option) and stays at 0 errors;
 R12 is enforced on the working tree, where it belongs.
 
+**Follow-up, 2026-09-21, after element 3.** With the 159 new species in the
+tree the dex knows their lines, and five of them are new evolutions of native
+lines (Kleavor, Gyarados M, Sylveon, Clodsire, Lopunny M) that had been tiered
+by dex number alone. `tier-init --force` was re-run before Ian had touched the
+CSV; exactly those five rows changed, to their line's tier, and the counts are
+now gate 102, starter-adjacent 17, preferred 87, filler 154. Coverage runs over
+**177 lines**, all resolvable: home 35, non-wild 38, water-only 12, cameo-only
+8, other-only 1, and **83 with nothing**: the 5 roamers plus 78 new lines no
+table or script names yet. R12 on the working tree: **87 errors**, the 9 above
+plus those 78. That is the size of Step 2.
+
 *Gate was:* R12 runs; `order` covers all 185 areas with no duplicates.
 
 ## Suggested order, and what to cut
