@@ -710,6 +710,24 @@ def cmd_availability(args):
     return 1 if failed else 0
 
 
+def cmd_evolve(args):
+    """Ian's rule of 2026-09-21: a wild Pokemon is already evolved when its
+    level is high enough. Reads the written tables for levels, so run `apply`
+    first; --apply writes the sidecar and the plan, after which `apply` again
+    writes the tables."""
+    from . import evolve
+    moves, blocked = evolve.plan_changes(args.ref)
+    for area, old, new, level in moves:
+        print(f"  {area:<46} {old[8:]:<18} -> {new[8:]:<18} at lv {level}")
+    for area, old, new, level in blocked:
+        print(f"  {area:<46} {old[8:]:<18} stays: {new[8:]} is already in the table")
+    print(f"{len(moves)} slot(s) would evolve, {len(blocked)} blocked by a "
+          f"duplicate stage")
+    if args.apply and moves:
+        print(f"  wrote {evolve.apply(moves)} area(s) to the sidecar and the plan")
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -835,6 +853,12 @@ def main(argv=None):
                     help="render docs/oxide/encounters/availability.md")
     av.add_argument("--json", action="store_true")
     av.set_defaults(func=cmd_availability)
+
+    ev = sub.add_parser("evolve", help="put every wild slot at the stage its level "
+                                       "deserves")
+    ev.add_argument("--apply", action="store_true",
+                    help="write the sidecar and the plan (then run `apply`)")
+    ev.set_defaults(func=cmd_evolve)
 
     args = p.parse_args(argv)
     return args.func(args)

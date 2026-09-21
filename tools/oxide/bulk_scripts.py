@@ -53,6 +53,9 @@ DIVERGED.update({
           "encounter pass (docs/oxide/encounters/scripted-sources.md)"
     for stem in (
         "scripts_pokemon_day_care",
+        # Not a gift: the Oreburgh trade, which takes any Pokemon now that the
+        # two lines comparing your choice against a species are gone.
+        "scripts_oreburgh_city_north_house_1f",
         "scripts_sandgem_town_house",
         "scripts_jubilife_city_south_house_1f",
         "scripts_unused_jubilife_city_south_house_3f",

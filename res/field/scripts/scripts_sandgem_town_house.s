@@ -21,11 +21,9 @@ SandgemTownHouse_Clown:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT, SandgemTownHouse_Declined
     Message SandgemTownHouse_Text_WouldYouLikeOneOfThesePokemon
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry SandgemTownHouse_Text_Pichu, 0
-    AddListMenuEntry SandgemTownHouse_Text_Grubbin, 1
-    AddListMenuEntry SandgemTownHouse_Text_Fletchling, 2
-    ShowListMenu
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SandgemTownHouse_Declined
+    GetRandom VAR_0x800C, 3
     SetVarFromVar VAR_0x8008, VAR_0x800C
     GoToIfEq VAR_0x8008, 0, SandgemTownHouse_GivePichu
     GoToIfEq VAR_0x8008, 1, SandgemTownHouse_GiveGrubbin

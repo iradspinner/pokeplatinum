@@ -7,7 +7,7 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_SLUGMA"
+            "species": "SPECIES_MAGCARGO"
         },
         {
             "level": 52,
@@ -15,15 +15,15 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_RHYHORN"
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 53,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 53,
-            "species": "SPECIES_KOFFING"
+            "species": "SPECIES_WEEZING"
         },
         {
             "level": 53,
@@ -31,23 +31,23 @@
         },
         {
             "level": 53,
-            "species": "SPECIES_RHYHORN"
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 53,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_SALAZZLE"
         },
         {
             "level": 53,
-            "species": "SPECIES_MAGBY"
+            "species": "SPECIES_MAGMORTAR"
         },
         {
             "level": 54,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_SALAZZLE"
         },
         {
             "level": 54,
-            "species": "SPECIES_CHARCADET"
+            "species": "SPECIES_CERULEDGE"
         }
     ],
     "swarms": [
@@ -55,18 +55,18 @@
         "SPECIES_TURTONATOR"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GOLEM",
+        "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_SALANDIT"
+        "SPECIES_CROBAT",
+        "SPECIES_SALAZZLE"
     ],
     "radar": [
         "SPECIES_VOLCARONA",
-        "SPECIES_MAGCARGO",
-        "SPECIES_RHYDON",
-        "SPECIES_GOLBAT"
+        "SPECIES_TURTONATOR",
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_HIPPOWDON"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_GARDEVOIR",
+        "SPECIES_FLYGON"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_GARDEVOIR",
+        "SPECIES_FLYGON"
     ],
     "emerald": [
-        "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_BLAZIKEN",
+        "SPECIES_GLALIE"
     ],
     "firered": [
-        "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_RAPIDASH",
+        "SPECIES_CHARIZARD"
     ],
     "surf_rate": 0,
     "surf_encounters": [

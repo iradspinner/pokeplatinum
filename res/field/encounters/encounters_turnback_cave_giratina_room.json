@@ -3,35 +3,35 @@
     "land_encounters": [
         {
             "level": 35,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 36,
-            "species": "SPECIES_BRONZOR"
-        },
-        {
-            "level": 36,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 36,
             "species": "SPECIES_DUSKULL"
         },
         {
-            "level": 37,
-            "species": "SPECIES_SINISTEA"
+            "level": 36,
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 37,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 37,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 37,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 37,
@@ -51,22 +51,22 @@
         }
     ],
     "swarms": [
-        "SPECIES_GOLBAT",
-        "SPECIES_ELEKID"
+        "SPECIES_ELECTIVIRE",
+        "SPECIES_LITWICK"
     ],
     "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
     ],
     "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
     ],
     "radar": [
-        "SPECIES_GOLBAT",
-        "SPECIES_BRONZONG",
         "SPECIES_DUSCLOPS",
-        "SPECIES_POLTEAGEIST"
+        "SPECIES_GOTHITELLE",
+        "SPECIES_ELECTIVIRE",
+        "SPECIES_TOGEDEMARU"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,11 +75,11 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BELDUM",
+        "SPECIES_ALTARIA",
         "SPECIES_CRAWDAUNT"
     ],
     "sapphire": [
-        "SPECIES_BELDUM",
+        "SPECIES_ALTARIA",
         "SPECIES_CRAWDAUNT"
     ],
     "emerald": [
@@ -87,12 +87,12 @@
         "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_BLASTOISE",
+        "SPECIES_GOLEM"
     ],
     "leafgreen": [
-        "SPECIES_SCYTHER",
-        "SPECIES_KOFFING"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

@@ -7,15 +7,15 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 37,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 38,
@@ -23,7 +23,7 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_MIENFOO"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 38,
@@ -52,21 +52,21 @@
     ],
     "swarms": [
         "SPECIES_SNOVER",
-        "SPECIES_GLIMMET"
+        "SPECIES_GLIMMORA"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GRAVELER",
+        "SPECIES_PROBOPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
-        "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_SLIGGOO",
-        "SPECIES_MIENSHAO"
+        "SPECIES_GOLEM",
+        "SPECIES_ABOMASNOW"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_WHISCASH",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BELDUM"
+        "SPECIES_HARIYAMA",
+        "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GOLBAT",
+        "SPECIES_GOLEM"
     ],
     "surf_rate": 0,
     "surf_encounters": [

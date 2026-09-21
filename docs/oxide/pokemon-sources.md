@@ -105,7 +105,7 @@ table, so they compete with it rather than adding to it
 | Charcadet | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Slugma | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Yamask | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
-| Chatot | in-game trade | (traded mon's level) | trade away SPECIES_BUIZEL to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY | vanilla | no | `res/npc_trades/charap_chatot.json` |
+| Popplio | in-game trade | (traded mon's level) | trade away SPECIES_NONE to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY; vanilla gave SPECIES_CHATOT holding ITEM_LEPPA_BERRY | **base-ROM** | yes | `res/npc_trades/charap_chatot.json` |
 | Articuno | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
 | Moltres | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
 | Zapdos | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
@@ -144,22 +144,22 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Barboach | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Breloom | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Carvanha | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Croagunk | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Dewpider | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Frillish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Koffing | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Lotad | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Shroomish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Skorupi | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
 | Surskit | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Wooper | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Yanma | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
+| Breloom | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Croagunk | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Dewpider | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Koffing | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Lotad | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Shroomish | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Skorupi | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
 | Surskit | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 | Wooper | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
@@ -259,7 +259,7 @@ table, so they compete with it rather than adding to it
 | Bronzor | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
 | Glimmet | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
 | Rhyhorn | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
-| Ditto | in-game trade | (traded mon's level) | trade away SPECIES_MACHOP to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY | **base-ROM** | no | `res/npc_trades/kazza_abra.json` |
+| Vullaby | in-game trade | (traded mon's level) | trade away SPECIES_NONE to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY | **base-ROM** | yes | `res/npc_trades/kazza_abra.json` |
 
 ### Pal Park
 

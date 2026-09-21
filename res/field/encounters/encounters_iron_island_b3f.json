@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 30,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 31,
@@ -11,11 +11,11 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 31,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
@@ -27,11 +27,11 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 32,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
@@ -39,7 +39,7 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 33,
@@ -47,25 +47,25 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [
-        "SPECIES_METANG",
-        "SPECIES_LURANTIS"
+        "SPECIES_LURANTIS",
+        "SPECIES_LUNATONE"
     ],
     "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
     ],
     "radar": [
-        "SPECIES_METANG",
+        "SPECIES_METAGROSS",
         "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_FERROTHORN"
     ],
     "rate_form0": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_ALTARIA",
+        "SPECIES_BRELOOM"
     ],
     "sapphire": [
-        "SPECIES_TRAPINCH",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_ALTARIA",
+        "SPECIES_BRELOOM"
     ],
     "emerald": [
-        "SPECIES_SWABLU",
+        "SPECIES_KIRLIA",
         "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_TENTACOOL"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMELEON"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_GASTLY",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

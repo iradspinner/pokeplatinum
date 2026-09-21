@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 27,
-            "species": "SPECIES_RALTS"
+            "species": "SPECIES_KIRLIA"
         },
         {
             "level": 28,
@@ -11,15 +11,15 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_ROWLET"
+            "species": "SPECIES_DARTRIX"
         },
         {
             "level": 28,
-            "species": "SPECIES_ROWLET"
+            "species": "SPECIES_DARTRIX"
         },
         {
             "level": 29,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORRACAT"
         },
         {
             "level": 29,
@@ -27,11 +27,11 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_RALTS"
+            "species": "SPECIES_KIRLIA"
         },
         {
             "level": 29,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORRACAT"
         },
         {
             "level": 29,
@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_KIRLIA",
+        "SPECIES_GARDEVOIR",
         "SPECIES_MAGBY"
     ],
     "day": [
@@ -59,14 +59,14 @@
         "SPECIES_BRONZOR"
     ],
     "night": [
-        "SPECIES_NACLI",
+        "SPECIES_NACLSTACK",
         "SPECIES_SNEASEL"
     ],
     "radar": [
-        "SPECIES_KIRLIA",
+        "SPECIES_GARDEVOIR",
         "SPECIES_FERROTHORN",
-        "SPECIES_DARTRIX",
-        "SPECIES_TORRACAT"
+        "SPECIES_DECIDUEYE",
+        "SPECIES_INCINEROAR"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
+        "SPECIES_HARIYAMA",
         "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
+        "SPECIES_HARIYAMA",
         "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "firered": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_GRAVELER",
+        "SPECIES_BLASTOISE"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_SEAKING",
+        "SPECIES_TENTACRUEL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

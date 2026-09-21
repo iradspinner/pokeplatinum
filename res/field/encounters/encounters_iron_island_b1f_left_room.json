@@ -7,7 +7,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 31,
@@ -23,7 +23,7 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_HARIYAMA"
         },
         {
             "level": 32,
@@ -55,18 +55,18 @@
         "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_GRAVELER",
         "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
         "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_FERROTHORN",
-        "SPECIES_HARIYAMA"
+        "SPECIES_PROBOPASS"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_ALTARIA"
     ],
     "sapphire": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_ALTARIA"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BELDUM"
+        "SPECIES_BRELOOM",
+        "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_CHARMELEON",
+        "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_GYARADOS"
+        "SPECIES_WARTORTLE",
+        "SPECIES_BLASTOISE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

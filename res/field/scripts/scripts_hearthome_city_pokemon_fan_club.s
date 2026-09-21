@@ -101,17 +101,9 @@ HearthomeCityPokemonFanClub_Entry6:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT, HearthomeCityPokemonFanClub_041E
     Message 14
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry 15, 0, 255
-    AddListMenuEntry 16, 1, 255
-    AddListMenuEntry 17, 2, 255
-    AddListMenuEntry 18, 3, 255
-    AddListMenuEntry 19, 4, 255
-    AddListMenuEntry 20, 5, 255
-    AddListMenuEntry 21, 6, 255
-    AddListMenuEntry 22, 7, 255
-    AddListMenuEntry 23, 8, 255
-    ShowListMenu
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, HearthomeCityPokemonFanClub_041E
+    GetRandom VAR_0x800C, 9
     SetVarFromVar VAR_0x8008, VAR_0x800C
     CompareVarToValue VAR_0x8008, 0
     GoToIf 1, HearthomeCityPokemonFanClub_0292

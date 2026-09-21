@@ -23,7 +23,7 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_FLETCHINDER"
         },
         {
             "level": 21,
@@ -56,17 +56,17 @@
     ],
     "day": [
         "SPECIES_YANMA",
-        "SPECIES_WOOPER"
+        "SPECIES_QUAGSIRE"
     ],
     "night": [
         "SPECIES_CROAGUNK",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LIEPARD"
     ],
     "radar": [
         "SPECIES_MANDIBUZZ",
         "SPECIES_SCIZOR",
         "SPECIES_MIENSHAO",
-        "SPECIES_FLETCHINDER"
+        "SPECIES_TALONFLAME"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BELDUM",
-        "SPECIES_CARVANHA"
+        "SPECIES_KIRLIA",
+        "SPECIES_MIGHTYENA"
     ],
     "sapphire": [
-        "SPECIES_BELDUM",
-        "SPECIES_CARVANHA"
+        "SPECIES_KIRLIA",
+        "SPECIES_MIGHTYENA"
     ],
     "emerald": [
-        "SPECIES_CRAWDAUNT",
-        "SPECIES_LUDICOLO"
+        "SPECIES_RALTS",
+        "SPECIES_MARSHTOMP"
     ],
     "firered": [
-        "SPECIES_TENTACRUEL",
-        "SPECIES_WARTORTLE"
+        "SPECIES_WARTORTLE",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_CHARMANDER",
-        "SPECIES_PONYTA"
+        "SPECIES_GRAVELER",
+        "SPECIES_TENTACOOL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

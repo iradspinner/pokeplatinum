@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 41,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 42,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 42,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 42,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 43,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_SLIGGOO"
         },
         {
             "level": 43,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GABITE"
         },
         {
             "level": 43,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 43,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 43,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 43,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 44,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 44,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         }
     ],
     "swarms": [
-        "SPECIES_STEELIX",
-        "SPECIES_GLIMMET"
+        "SPECIES_GLIMMORA",
+        "SPECIES_KLEFKI"
     ],
     "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_CARBINK"
     ],
     "radar": [
-        "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
-        "SPECIES_METANG",
-        "SPECIES_SLIGGOO"
+        "SPECIES_METAGROSS",
+        "SPECIES_GOODRA",
+        "SPECIES_GARCHOMP",
+        "SPECIES_GLIMMORA"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -87,19 +87,19 @@
         "SPECIES_SOLROCK"
     ],
     "firered": [
-        "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_GYARADOS"
+        "SPECIES_WEEZING",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_TENTACRUEL",
-        "SPECIES_WARTORTLE"
+        "SPECIES_GRAVELER",
+        "SPECIES_EEVEE"
     ],
     "surf_rate": 15,
     "surf_encounters": [
         {
             "level_max": 46,
             "level_min": 38,
-            "species": "SPECIES_SHELLOS"
+            "species": "SPECIES_GASTRODON"
         },
         {
             "level_max": 46,
@@ -119,7 +119,7 @@
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_BLASTOISE"
         }
     ],
     "old_rod_rate": 25,
@@ -137,7 +137,7 @@
         {
             "level_max": 25,
             "level_min": 21,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_BRIONNE"
         }
     ],
     "good_rod_rate": 55,
@@ -155,7 +155,7 @@
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 38,
@@ -175,7 +175,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_BLASTOISE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 56,
             "level_min": 48,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

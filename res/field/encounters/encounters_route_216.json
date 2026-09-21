@@ -7,7 +7,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_SNOM"
+            "species": "SPECIES_FROSMOTH"
         },
         {
             "level": 33,
@@ -15,7 +15,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_PILOSWINE"
         },
         {
             "level": 34,
@@ -31,15 +31,15 @@
         },
         {
             "level": 34,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_CROBAT"
         },
         {
             "level": 34,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 34,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 35,
@@ -47,15 +47,15 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORRACAT"
         }
     ],
     "swarms": [
         "SPECIES_ABOMASNOW",
-        "SPECIES_LARVITAR"
+        "SPECIES_SWINUB"
     ],
     "day": [
-        "SPECIES_SWINUB",
+        "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT"
     ],
     "night": [
@@ -64,9 +64,9 @@
     ],
     "radar": [
         "SPECIES_ABOMASNOW",
-        "SPECIES_FROSMOTH",
         "SPECIES_WEAVILE",
-        "SPECIES_PILOSWINE"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_MIENSHAO"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "sapphire": [
-        "SPECIES_BELDUM",
-        "SPECIES_CRAWDAUNT"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "emerald": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_LUNATONE",
+        "SPECIES_METANG"
     ],
     "firered": [
-        "SPECIES_GALARIAN_WEEZING",
-        "SPECIES_TENTACOOL"
+        "SPECIES_BLASTOISE",
+        "SPECIES_SEAKING"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

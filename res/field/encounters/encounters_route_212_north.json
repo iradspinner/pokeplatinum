@@ -7,7 +7,7 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_FLABEBE"
+            "species": "SPECIES_FLOETTE"
         },
         {
             "level": 22,
@@ -15,7 +15,7 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_RALTS"
+            "species": "SPECIES_KIRLIA"
         },
         {
             "level": 23,
@@ -23,7 +23,7 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_COMBEE"
+            "species": "SPECIES_VESPIQUEN"
         },
         {
             "level": 23,
@@ -31,7 +31,7 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_BOUNSWEET"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 23,
@@ -43,11 +43,11 @@
         },
         {
             "level": 24,
-            "species": "SPECIES_ROWLET"
+            "species": "SPECIES_DARTRIX"
         },
         {
             "level": 24,
-            "species": "SPECIES_SNIVY"
+            "species": "SPECIES_SERVINE"
         }
     ],
     "swarms": [
@@ -59,14 +59,14 @@
         "SPECIES_PACHIRISU"
     ],
     "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_LIEPARD",
+        "SPECIES_MIGHTYENA"
     ],
     "radar": [
-        "SPECIES_FLOETTE",
-        "SPECIES_KIRLIA",
+        "SPECIES_FLORGES",
+        "SPECIES_GARDEVOIR",
         "SPECIES_ROSELIA",
-        "SPECIES_VESPIQUEN"
+        "SPECIES_CINCCINO"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SWABLU",
-        "SPECIES_TRAPINCH"
+        "SPECIES_BRELOOM",
+        "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_SWABLU",
-        "SPECIES_TRAPINCH"
+        "SPECIES_BRELOOM",
+        "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_SNORUNT",
-        "SPECIES_BELDUM"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_SCYTHER"
+        "SPECIES_GOLBAT",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_GYARADOS",
+        "SPECIES_SCYTHER"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "old_rod_rate": 25,
@@ -165,7 +165,7 @@
         {
             "level_max": 28,
             "level_min": 22,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 28,
@@ -175,7 +175,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -193,7 +193,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_LOMBRE"
+            "species": "SPECIES_LUDICOLO"
         },
         {
             "level_max": 45,
@@ -203,7 +203,7 @@
         {
             "level_max": 48,
             "level_min": 41,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

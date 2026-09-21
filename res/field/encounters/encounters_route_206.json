@@ -39,15 +39,15 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_CORVISQUIRE"
         },
         {
             "level": 19,
-            "species": "SPECIES_CHARMANDER"
+            "species": "SPECIES_CHARMELEON"
         },
         {
             "level": 19,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_FLETCHLING",
+        "SPECIES_FLETCHINDER",
         "SPECIES_STUNKY"
     ],
     "night": [
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_RALTS",
-        "SPECIES_SWABLU"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "sapphire": [
-        "SPECIES_RALTS",
-        "SPECIES_SWABLU"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "emerald": [
-        "SPECIES_SNORUNT",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_MIGHTYENA",
+        "SPECIES_RALTS"
     ],
     "firered": [
         "SPECIES_KOFFING",
-        "SPECIES_SCYTHER"
+        "SPECIES_GASTLY"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_TENTACOOL"
+        "SPECIES_SCYTHER",
+        "SPECIES_WARTORTLE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

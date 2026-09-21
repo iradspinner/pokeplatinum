@@ -96,7 +96,9 @@ def main():
                     "trees, none gate but Scorbunny, which is the starter now",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
                     and by["Litten"]["home"] == ["encounters_route_204_north"]
-                    and by["Popplio"]["status"] == "water"
+                    # Popplio is still homed on water; it reads as non-wild now
+                    # only because the Eterna trade hands one over as well.
+                    and by["Popplio"]["water"]
                     and by["Scorbunny"]["tier"] == "gate"
                     and by["Scorbunny"]["non_wild"]
                     and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))

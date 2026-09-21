@@ -15,7 +15,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
@@ -31,23 +31,23 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 32,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_HARIYAMA"
         },
         {
             "level": 33,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_GRAVELER"
         },
         {
             "level": 33,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_HARIYAMA"
         }
     ],
     "swarms": [
@@ -55,17 +55,17 @@
         "SPECIES_GALARIAN_MR_MIME"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
     ],
     "radar": [
         "SPECIES_STEELIX",
         "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_FERROTHORN"
     ],
     "rate_form0": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "emerald": [
         "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_TRAPINCH"
     ],
     "firered": [
-        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GYARADOS",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
         "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_CHARMELEON"
     ],
     "surf_rate": 0,
     "surf_encounters": [

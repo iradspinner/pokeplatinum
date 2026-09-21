@@ -3,19 +3,19 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_SLIGGOO"
         },
         {
             "level": 48,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 48,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_SLIGGOO"
         },
         {
             "level": 48,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 49,
@@ -23,50 +23,50 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_FERROSEED"
+            "species": "SPECIES_FERROTHORN"
         },
         {
             "level": 49,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_SLIGGOO"
         },
         {
             "level": 49,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 49,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 49,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GARCHOMP"
         },
         {
             "level": 50,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 50,
-            "species": "SPECIES_BELDUM"
+            "species": "SPECIES_METAGROSS"
         }
     ],
     "swarms": [
-        "SPECIES_SLIGGOO",
-        "SPECIES_GLIMMET"
+        "SPECIES_GOODRA",
+        "SPECIES_GLIMMORA"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GOLEM",
+        "SPECIES_PROBOPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
-        "SPECIES_SLIGGOO",
-        "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
-        "SPECIES_FERROTHORN"
+        "SPECIES_GOODRA",
+        "SPECIES_GLIMMORA",
+        "SPECIES_TYRANITAR",
+        "SPECIES_PUPITAR"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_FLYGON",
+        "SPECIES_GARDEVOIR"
     ],
     "sapphire": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_FLYGON",
+        "SPECIES_GARDEVOIR"
     ],
     "emerald": [
-        "SPECIES_MARSHTOMP",
-        "SPECIES_SHARPEDO"
+        "SPECIES_ALTARIA",
+        "SPECIES_LUDICOLO"
     ],
     "firered": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_BLASTOISE",
+        "SPECIES_SEAKING"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 15,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "old_rod_rate": 25,
@@ -132,7 +132,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "good_rod_rate": 55,
@@ -175,7 +175,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 56,
             "level_min": 48,
-            "species": "SPECIES_FROGADIER"
+            "species": "SPECIES_GRENINJA"
         }
     ],
     "map_category": {

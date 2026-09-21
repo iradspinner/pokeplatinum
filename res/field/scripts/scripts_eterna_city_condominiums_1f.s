@@ -102,9 +102,6 @@ EternaCityCondominiums1f_0144:
     InitNPCTrade 1
     SetVarFromVar VAR_0x8004, VAR_0x800C
     GetPartyMonSpecies 32772, VAR_0x8005
-    GetNPCTradeRequestedSpecies VAR_0x800C
-    CompareVarToVar VAR_0x8005, VAR_0x800C
-    GoToIf 5, EternaCityCondominiums1f_02C3
     StartNPCTrade 32772
     FinishNPCTrade
     SetFlag FLAG_TRADED_FOR_CHARAP_CHATOT

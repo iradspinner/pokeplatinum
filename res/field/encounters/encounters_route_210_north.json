@@ -51,16 +51,16 @@
         }
     ],
     "swarms": [
-        "SPECIES_RALTS",
+        "SPECIES_KIRLIA",
         "SPECIES_PICHU"
     ],
     "day": [
-        "SPECIES_FENNEKIN",
-        "SPECIES_LITTEN"
+        "SPECIES_BRAIXEN",
+        "SPECIES_TORRACAT"
     ],
     "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOUNDOOM"
     ],
     "radar": [
         "SPECIES_ALTARIA",
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_RALTS",
-        "SPECIES_SNORUNT"
+        "SPECIES_KIRLIA",
+        "SPECIES_MASQUERAIN"
     ],
     "sapphire": [
-        "SPECIES_RALTS",
-        "SPECIES_SNORUNT"
+        "SPECIES_KIRLIA",
+        "SPECIES_MASQUERAIN"
     ],
     "emerald": [
-        "SPECIES_CARVANHA",
-        "SPECIES_LOMBRE"
+        "SPECIES_LOMBRE",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_GOLEM",
+        "SPECIES_WARTORTLE"
     ],
     "leafgreen": [
-        "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "old_rod_rate": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_GYARADOS"
         },
         {
             "level_max": 30,
@@ -175,7 +175,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_FROAKIE"
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_PRIMARINA"
         }
     ],
     "map_category": {

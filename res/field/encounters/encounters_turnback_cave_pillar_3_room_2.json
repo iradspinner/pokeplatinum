@@ -7,7 +7,7 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 36,
@@ -15,19 +15,19 @@
         },
         {
             "level": 36,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_SINISTCHA"
         },
         {
             "level": 36,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 36,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 37,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_GOTHORITA"
         },
         {
             "level": 37,
@@ -52,21 +52,21 @@
     ],
     "swarms": [
         "SPECIES_DUSCLOPS",
-        "SPECIES_BRONZOR"
+        "SPECIES_BRONZONG"
     ],
     "day": [
         "SPECIES_CARBINK",
-        "SPECIES_NOSEPASS"
+        "SPECIES_PROBOPASS"
     ],
     "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTCHA"
     ],
     "radar": [
         "SPECIES_DUSCLOPS",
-        "SPECIES_POLTEAGEIST",
-        "SPECIES_GOTHORITA",
-        "SPECIES_PROBOPASS"
+        "SPECIES_GOTHITELLE",
+        "SPECIES_BRONZONG",
+        "SPECIES_STEELIX"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -83,16 +83,16 @@
         "SPECIES_SOLROCK"
     ],
     "emerald": [
-        "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_SWAMPERT",
+        "SPECIES_WHISCASH"
     ],
     "firered": [
-        "SPECIES_SCYTHER",
-        "SPECIES_KOFFING"
+        "SPECIES_NINETALES",
+        "SPECIES_RAPIDASH"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
-        "SPECIES_SEAKING"
+        "SPECIES_EEVEE",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

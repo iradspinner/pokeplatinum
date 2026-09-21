@@ -23,7 +23,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_LITTEN"
+            "species": "SPECIES_TORRACAT"
         },
         {
             "level": 30,
@@ -31,23 +31,23 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_SALAZZLE"
         },
         {
             "level": 30,
-            "species": "SPECIES_CHARCADET"
+            "species": "SPECIES_CERULEDGE"
         },
         {
             "level": 30,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 31,
-            "species": "SPECIES_CHARMANDER"
+            "species": "SPECIES_CHARMELEON"
         },
         {
             "level": 31,
-            "species": "SPECIES_TORCHIC"
+            "species": "SPECIES_COMBUSKEN"
         }
     ],
     "swarms": [
@@ -59,7 +59,7 @@
         "SPECIES_VULPIX"
     ],
     "night": [
-        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOOM",
         "SPECIES_LITWICK"
     ],
     "radar": [
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_BRELOOM"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_BRELOOM"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_SWABLU"
+        "SPECIES_KIRLIA",
+        "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_KOFFING",
-        "SPECIES_ALOLAN_NINETALES"
+        "SPECIES_GYARADOS",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_TENTACOOL",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_KOFFING",
+        "SPECIES_GOLEM"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -104,22 +104,22 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level_max": 39,
             "level_min": 33,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LUDICOLO"
         },
         {
             "level_max": 39,
             "level_min": 33,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "old_rod_rate": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_BRIONNE"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

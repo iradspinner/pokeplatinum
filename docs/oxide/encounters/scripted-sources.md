@@ -64,22 +64,51 @@ on-list water lines now and the roll was widened to match, which is the only
 change of behaviour in the batch. Canalave gives Byron's own Bastiodon, plus
 Flygon and Cofagrigus in place of Dugtrio and Banette.
 
-**One thing still worth knowing.** Two of them, Sandgem and the Fan Club, are
-list menus rather than rolls, so the player picks rather than the game. Now that
-each is once only the choice is permanent, which is closer to a starter than to
-an encounter. Converting those two to a roll is a small edit and worth doing if
-the even-odds rule is meant to bind everywhere.
+Sandgem and the Fan Club were the last two that let the player pick from a list
+rather than rolling, and they roll now too (Ian, 2026-09-21). Each keeps its
+question and its yes or no; the list menu is replaced by a `GetRandom` of the
+same width, so the dispatch below it is untouched. The species names those menus
+used are still in their text banks, unread, because deleting them would renumber
+the bank for nothing.
+
+## The trades
+
+Ian rebuilt them on 2026-09-21. Both now take **any Pokemon**: the trade asked
+for a particular species in the map script rather than in the engine, so the two
+lines that compared your choice against it are simply gone.
+
+| Trade | Gives | Nature | IVs | Level |
+|---|---|---|---|---|
+| Oreburgh, for anything | shiny Vullaby | Hardy, a neutral one | 20 across | 10 |
+| Eterna, for anything | shiny Popplio | Bold | 20 across | 20 |
+
+Shininess and nature both come out of one number. Generation 4 makes a Pokemon
+shiny when its trainer id, secret id and the two halves of its personality value
+exclusive-or to less than 8, and the nature is that same value modulo 25, so the
+personality in each trade's data is chosen against that trade's own OT id to
+satisfy both. Vanilla asserted that a trade is never shiny, which is true of its
+four; that assert is gone. The level is the one thing the trade data cannot
+express, because the game hands you a Pokemon at the level of the one you gave
+up, which is no longer sensible when it will take anything. A short table in
+`src/overlay006/npc_trade.c` names the level per trade, and 0 keeps vanilla's
+behaviour for the Snowpoint and Route 226 trades, which are untouched and both
+on the list.
+
+The nicknames are unchanged, so the Vullaby is still called Kazza and the
+Popplio Charap. Say the word and they move, but each one is a text bank.
 
 ## Flagged, not changed
 
-Ian asked for the trades to be left alone and brought back later. These four are
-the same kind of case: the species is doing a job beyond being an encounter.
+The remaining case is one where the species is doing a job beyond being an
+encounter.
 
-- **The in-game trades.** Ditto for Machop in Oreburgh and Chatot for Buizel in
-  Eterna are still off-list. Gengar for Medicham in Snowpoint and Magikarp for
-  Finneon on Route 226 are on-list, Gengar as of the ghost rows below.
-- **The Day Care's Ditto**, handed over on a yes/no prompt with no flag guard. It
-  is off-list, and it is also how breeding works, so it is not simply a gift.
+- **The Day Care's Ditto**, handed over on a yes/no prompt. Ian's ruling of
+  2026-09-21 is that it becomes a shiny Sawsbuck in its winter form, perfect
+  IVs, neutral nature, level 30. **It is not done**, because neither Deerling
+  nor Sawsbuck is in the species tree: that line has to be ported before it can
+  be given away or put on the pick-list. It is in the tracker's backlog, and it
+  carries a consequence worth deciding on purpose, since the Day Care man is the
+  only Ditto in the game and Ditto is what makes everything else breedable.
 - **The Oreburgh museum's four spare fossils.** The pick-list has three fossil
   lines (Cranidos, Shieldon, Lileep) and the museum revives seven. The Old Amber,
   Helix, Dome and Claw fossils still revive Aerodactyl, Omanyte, Kabuto and

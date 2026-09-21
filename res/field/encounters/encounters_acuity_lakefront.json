@@ -19,11 +19,11 @@
         },
         {
             "level": 34,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_PILOSWINE"
         },
         {
             "level": 34,
-            "species": "SPECIES_SNOM"
+            "species": "SPECIES_FROSMOTH"
         },
         {
             "level": 34,
@@ -52,11 +52,11 @@
     ],
     "swarms": [
         "SPECIES_WEAVILE",
-        "SPECIES_LARVITAR"
+        "SPECIES_ABOMASNOW"
     ],
     "day": [
-        "SPECIES_SNOM",
-        "SPECIES_SWINUB"
+        "SPECIES_FROSMOTH",
+        "SPECIES_PILOSWINE"
     ],
     "night": [
         "SPECIES_SNEASEL",
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_WEAVILE",
         "SPECIES_ABOMASNOW",
-        "SPECIES_PILOSWINE",
-        "SPECIES_FROSMOTH"
+        "SPECIES_MAMOSWINE",
+        "SPECIES_GLALIE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "sapphire": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SOLROCK"
+        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT"
     ],
     "emerald": [
         "SPECIES_WHISCASH",
-        "SPECIES_LOMBRE"
+        "SPECIES_TRAPINCH"
     ],
     "firered": [
-        "SPECIES_EEVEE",
-        "SPECIES_SCYTHER"
+        "SPECIES_GOLBAT",
+        "SPECIES_GYARADOS"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_KOFFING"
+        "SPECIES_SCYTHER",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

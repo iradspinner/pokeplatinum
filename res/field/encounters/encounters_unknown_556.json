@@ -7,7 +7,7 @@
         },
         {
             "level": 46,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 46,
@@ -15,19 +15,11 @@
         },
         {
             "level": 46,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 47,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 47,
-            "species": "SPECIES_DHELMISE"
-        },
-        {
-            "level": 47,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 47,
@@ -35,38 +27,46 @@
         },
         {
             "level": 47,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 47,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_DHELMISE"
+        },
+        {
+            "level": 47,
+            "species": "SPECIES_COFAGRIGUS"
+        },
+        {
+            "level": 47,
+            "species": "SPECIES_COFAGRIGUS"
         },
         {
             "level": 48,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_COFAGRIGUS"
         },
         {
             "level": 48,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_COFAGRIGUS"
         }
     ],
     "swarms": [
-        "SPECIES_LITWICK",
-        "SPECIES_BRONZOR"
+        "SPECIES_CHANDELURE",
+        "SPECIES_BRONZONG"
     ],
     "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_ZUBAT"
+        "SPECIES_CROBAT"
     ],
     "night": [
-        "SPECIES_GOTHITA",
+        "SPECIES_GOTHITELLE",
         "SPECIES_DHELMISE"
     ],
     "radar": [
-        "SPECIES_PROBOPASS",
-        "SPECIES_STEELIX",
-        "SPECIES_COFAGRIGUS",
-        "SPECIES_GOLBAT"
+        "SPECIES_CHANDELURE",
+        "SPECIES_BRONZONG",
+        "SPECIES_DUSKNOIR",
+        "SPECIES_SINISTCHA"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MILOTIC",
-        "SPECIES_SHARPEDO"
+        "SPECIES_FLYGON",
+        "SPECIES_GARDEVOIR"
     ],
     "sapphire": [
-        "SPECIES_MILOTIC",
-        "SPECIES_SHARPEDO"
+        "SPECIES_FLYGON",
+        "SPECIES_GARDEVOIR"
     ],
     "emerald": [
-        "SPECIES_SOLROCK",
-        "SPECIES_WHISCASH"
+        "SPECIES_ALTARIA",
+        "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_BLASTOISE",
+        "SPECIES_SEAKING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

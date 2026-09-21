@@ -19,11 +19,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_FLETCHINDER"
         },
         {
             "level": 19,
-            "species": "SPECIES_BOUNSWEET"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 19,
@@ -43,11 +43,11 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_TREECKO"
+            "species": "SPECIES_GROVYLE"
         },
         {
             "level": 20,
-            "species": "SPECIES_SNIVY"
+            "species": "SPECIES_SERVINE"
         }
     ],
     "swarms": [
@@ -60,13 +60,13 @@
     ],
     "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_MIGHTYENA"
     ],
     "radar": [
         "SPECIES_FLOETTE",
         "SPECIES_ROSELIA",
         "SPECIES_KIRLIA",
-        "SPECIES_FLETCHINDER"
+        "SPECIES_TALONFLAME"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_HARIYAMA",
+        "SPECIES_TREECKO"
     ],
     "sapphire": [
-        "SPECIES_LUDICOLO",
-        "SPECIES_LUNATONE"
+        "SPECIES_HARIYAMA",
+        "SPECIES_TREECKO"
     ],
     "emerald": [
-        "SPECIES_SHARPEDO",
-        "SPECIES_SWABLU"
+        "SPECIES_TRAPINCH",
+        "SPECIES_COMBUSKEN"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_TENTACOOL",
+        "SPECIES_GRAVELER"
     ],
     "leafgreen": [
-        "SPECIES_WARTORTLE",
+        "SPECIES_CHARMANDER",
         "SPECIES_KOFFING"
     ],
     "surf_rate": 10,
@@ -119,7 +119,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

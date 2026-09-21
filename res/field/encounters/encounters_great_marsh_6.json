@@ -31,23 +31,23 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level": 28,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level": 28,
-            "species": "SPECIES_SHROOMISH"
+            "species": "SPECIES_BRELOOM"
         },
         {
             "level": 28,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level": 28,
-            "species": "SPECIES_SHROOMISH"
+            "species": "SPECIES_BRELOOM"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_EMOLGA"
     ],
     "day": [
-        "SPECIES_SURSKIT",
+        "SPECIES_MASQUERAIN",
         "SPECIES_DEWPIDER"
     ],
     "night": [
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_YANMEGA",
         "SPECIES_TOXICROAK",
-        "SPECIES_LOMBRE",
-        "SPECIES_BRELOOM"
+        "SPECIES_LUDICOLO",
+        "SPECIES_DRAPION"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MASQUERAIN",
+        "SPECIES_KIRLIA",
         "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_MASQUERAIN",
+        "SPECIES_KIRLIA",
         "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_RALTS",
-        "SPECIES_LOMBRE"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_TENTACRUEL"
+        "SPECIES_WARTORTLE",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_SCYTHER"
+        "SPECIES_GOLEM",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -109,17 +109,17 @@
         {
             "level_max": 37,
             "level_min": 31,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 37,
             "level_min": 31,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_BRIONNE"
         }
     ],
     "old_rod_rate": 25,
@@ -170,12 +170,12 @@
         {
             "level_max": 28,
             "level_min": 22,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_BRIONNE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 48,
             "level_min": 41,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_BLASTOISE"
         }
     ],
     "map_category": {

@@ -119,7 +119,7 @@
         {
             "level_max": 32,
             "level_min": 26,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 22,
             "level_min": 17,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "super_rod_rate": 75,
@@ -193,7 +193,7 @@
         {
             "level_max": 39,
             "level_min": 33,
-            "species": "SPECIES_LOMBRE"
+            "species": "SPECIES_LUDICOLO"
         },
         {
             "level_max": 39,
@@ -203,7 +203,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SWAMPERT"
         }
     ],
     "map_category": {

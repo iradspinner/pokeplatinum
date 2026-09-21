@@ -19,7 +19,7 @@
         },
         {
             "level": 12,
-            "species": "SPECIES_BLIPBUG"
+            "species": "SPECIES_DOTTLER"
         },
         {
             "level": 12,
@@ -39,7 +39,7 @@
         },
         {
             "level": 12,
-            "species": "SPECIES_BOUNSWEET"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 13,
@@ -47,7 +47,7 @@
         },
         {
             "level": 13,
-            "species": "SPECIES_BOUNSWEET"
+            "species": "SPECIES_STEENEE"
         }
     ],
     "swarms": [
@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_RALTS"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "sapphire": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_RALTS"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "emerald": [
-        "SPECIES_LOTAD",
+        "SPECIES_MAKUHITA",
         "SPECIES_CARVANHA"
     ],
     "firered": [
-        "SPECIES_MAGIKARP",
-        "SPECIES_ONIX"
+        "SPECIES_GEODUDE",
+        "SPECIES_GOLDEEN"
     ],
     "leafgreen": [
-        "SPECIES_ZUBAT",
+        "SPECIES_KOFFING",
         "SPECIES_TENTACOOL"
     ],
     "surf_rate": 0,

@@ -1059,6 +1059,15 @@ TEXT_BANK_MOVE_DESCRIPTIONS = 646
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
+# Trades the encounter pass rebuilt (Ian, 2026-09-21). Their records are Oxide's
+# now rather than the base ROM's, so carrying the base ROM's values back over
+# them would undo the species, the IVs and the personality that makes them shiny.
+# Keyed by the index in fld_trade.narc, which is enum NPCTradeID.
+REBUILT_TRADES = {
+    0: "Oreburgh: any Pokemon for a shiny Vullaby",
+    1: "Eterna: any Pokemon for a shiny Popplio",
+}
+
 TEXT_BANKS_SKIPPED = {
     412: "species names decode identically; the bank differs only in bytes the decoder does not read",
     706: "Pokedex entries decode identically, same as species names",
@@ -1354,6 +1363,10 @@ def main():
     n = 0
     for i in range(len(btr)):
         if btr[i] == vtr[i]:
+            continue
+        if i in REBUILT_TRADES:
+            log.append((f"npc trade index {i}",
+                        [f"rebuilt by the encounter pass, left alone ({REBUILT_TRADES[i]})"]))
             continue
         d = trade_json(i)
         if d is None:

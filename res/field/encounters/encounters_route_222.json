@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 38,
-            "species": "SPECIES_ELEKID"
+            "species": "SPECIES_ELECTIVIRE"
         },
         {
             "level": 39,
@@ -15,15 +15,15 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_JOLTIK"
+            "species": "SPECIES_GALVANTULA"
         },
         {
             "level": 40,
-            "species": "SPECIES_PIKIPEK"
+            "species": "SPECIES_TOUCANNON"
         },
         {
             "level": 40,
-            "species": "SPECIES_SHINX"
+            "species": "SPECIES_LUXRAY"
         },
         {
             "level": 40,
@@ -31,11 +31,11 @@
         },
         {
             "level": 40,
-            "species": "SPECIES_PAWMI"
+            "species": "SPECIES_PAWMOT"
         },
         {
             "level": 40,
-            "species": "SPECIES_BUIZEL"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level": 40,
@@ -43,30 +43,30 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_PRIMARINA"
         },
         {
             "level": 41,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "swarms": [
-        "SPECIES_ELECTABUZZ",
-        "SPECIES_LARVITAR"
+        "SPECIES_PUPITAR",
+        "SPECIES_CROBAT"
     ],
     "day": [
-        "SPECIES_FLETCHLING",
-        "SPECIES_ROOKIDEE"
+        "SPECIES_TALONFLAME",
+        "SPECIES_CORVISQUIRE"
     ],
     "night": [
-        "SPECIES_PURRLOIN",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_LIEPARD",
+        "SPECIES_HOUNDOOM"
     ],
     "radar": [
-        "SPECIES_ELECTABUZZ",
-        "SPECIES_GALVANTULA",
-        "SPECIES_TRUMBEAK",
-        "SPECIES_LUXIO"
+        "SPECIES_BLASTOISE",
+        "SPECIES_CORVIKNIGHT",
+        "SPECIES_TYRANITAR",
+        "SPECIES_PUPITAR"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -76,23 +76,23 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_MARSHTOMP"
+        "SPECIES_METANG"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_MARSHTOMP"
+        "SPECIES_METANG"
     ],
     "emerald": [
         "SPECIES_MILOTIC",
         "SPECIES_SHARPEDO"
     ],
     "firered": [
-        "SPECIES_SEAKING",
-        "SPECIES_WARTORTLE"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_GALARIAN_RAPIDASH",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_RAPIDASH",
+        "SPECIES_GRAVELER"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -104,7 +104,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_BUIZEL"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level_max": 45,
@@ -119,7 +119,7 @@
         {
             "level_max": 48,
             "level_min": 42,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "old_rod_rate": 100,
@@ -147,7 +147,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "good_rod_rate": 50,
@@ -160,12 +160,12 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_CHINCHOU"
+            "species": "SPECIES_LANTURN"
         },
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_LUMINEON"
         },
         {
             "level_max": 38,
@@ -175,7 +175,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 54,
             "level_min": 46,
-            "species": "SPECIES_FROGADIER"
+            "species": "SPECIES_GRENINJA"
         }
     ],
     "map_category": {

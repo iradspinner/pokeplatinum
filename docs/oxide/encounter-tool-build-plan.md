@@ -1166,6 +1166,63 @@ Gate after all of it: plan gate green with 0 cap candidates, `lint --ignore R12`
 off-list species are down to seven: the Unown rooms, the four spare fossils and
 the two Dittos and the Chatot of the flagged trades.
 
+### Step 8 — stages, trades and the last two menus — **done, 2026-09-21**
+
+**Every wild slot now holds the stage its level deserves**, which is Ian's rule
+of the same day and the largest single change the tables have had: an Elekid at
+Sendoff Spring is an Electivire, Treecko and Snivy on Route 208 are a Grovyle and
+a Servine. It is a command rather than a one-off script, `cli evolve`, because it
+has to be re-run whenever a table's levels move: it reads the written tables for
+levels, so it runs after `apply`, writes the sidecar and the plan, and then
+`apply` writes the tables. Three rules decide a slot, and the middle one is the
+one worth arguing with:
+
+1. A species is judged by the **lowest level it appears at in that area**, and a
+   water slot by the floor of its range, so nothing evolves until the whole slot
+   has.
+2. **A line that grows up on its own grows up at its own level.** Where a stage
+   has any level-up evolution, the stone and trade routes out of it are ignored.
+   Without this Snorunt would become a Froslass at the stone's judged level and
+   never reach Glalie at 42.
+3. A method with no level of its own is **judged**: friendship at 20, a stone at
+   30, a trade at 38. That last number is what makes Electabuzz an Electivire
+   late and not before, and it is Ian's own example.
+
+Where a line branches into two stages that are both available, `BRANCH` in
+`evolve.py` picks: Ceruledge over Armarouge, Scizor over Kleavor, Gardevoir over
+Gallade, Glalie over Froslass, Cofagrigus over Runerigus. An unruled branch stays
+put rather than guesses. An evolution into a species the pick-list does not carry
+is refused, and so is one whose stage is already in the same table, which is 51
+slots: those are tables that deliberately hold two stages of one line, the way
+vanilla holds Geodude beside Graveler.
+
+Two bugs in the pass are worth recording because both hid in plain sight. Water
+rows key their levels `level_min`, not `min_level`, so the first run judged every
+water slot at level 0 and quietly evolved nothing in the water. And a water-only
+area keeps a land array at rate 0 that the sidecar has no cast for, so judging it
+asked for a change that could not be written and the pass never converged. Both
+are fixed, and `cli evolve` now reports zero moves on a settled tree, which is
+the check that it has converged.
+
+**The trades are rebuilt** and **the last two list menus roll**; both are
+described in `docs/oxide/encounters/scripted-sources.md`. The trades needed the
+engine: the level a trade hands over is the level of the Pokemon the player gave
+up, which stops making sense once the trade takes anything, so a small table in
+`src/overlay006/npc_trade.c` names a level per trade with 0 keeping vanilla's
+behaviour; and vanilla asserted that a trade is never shiny, which two of ours
+now are on purpose.
+
+**Blocked, and it is the one thing Ian asked for that is not done.** The Day Care
+Ditto was to become a shiny winter Sawsbuck, and neither Deerling nor Sawsbuck is
+in the species tree. That line has to be ported before it can be given away or go
+on the pick-list, so the Ditto stands and the item is in the tracker's backlog,
+with the consequence noted there: the Day Care man is the game's only Ditto.
+
+Gate: `cli evolve` 0 moves, plan gate green with 0 cap candidates, `lint --ignore
+R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and
+`verify_narcs --encounters --source` at 184 of 184 tables. Suites 35/35, 21/21,
+18/18, 28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15, 19/19.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

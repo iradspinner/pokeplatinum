@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_RALTS",
-        "SPECIES_SWABLU"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "sapphire": [
-        "SPECIES_RALTS",
-        "SPECIES_SWABLU"
+        "SPECIES_COMBUSKEN",
+        "SPECIES_GROVYLE"
     ],
     "emerald": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_CARVANHA"
+        "SPECIES_MIGHTYENA",
+        "SPECIES_RALTS"
     ],
     "firered": [
         "SPECIES_KOFFING",
-        "SPECIES_SCYTHER"
+        "SPECIES_CHARMELEON"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_SCYTHER",
+        "SPECIES_GASTLY"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -119,7 +119,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_MARSHTOMP"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_FROGADIER"
+            "species": "SPECIES_GRENINJA"
         }
     ],
     "map_category": {

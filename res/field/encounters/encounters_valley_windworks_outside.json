@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_PAWMO",
-        "SPECIES_BOUNSWEET"
+        "SPECIES_LOTAD"
     ],
     "day": [
         "SPECIES_PIKIPEK",
@@ -76,15 +76,15 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_SNORUNT",
-        "SPECIES_TORCHIC"
+        "SPECIES_MARSHTOMP"
     ],
     "sapphire": [
         "SPECIES_SNORUNT",
-        "SPECIES_TORCHIC"
+        "SPECIES_MARSHTOMP"
     ],
     "emerald": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_NOSEPASS"
+        "SPECIES_TORCHIC",
+        "SPECIES_MAKUHITA"
     ],
     "firered": [
         "SPECIES_PONYTA",
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_SQUIRTLE",
-        "SPECIES_GEODUDE"
+        "SPECIES_GASTLY"
     ],
     "surf_rate": 10,
     "surf_encounters": [
@@ -104,17 +104,17 @@
         {
             "level_max": 28,
             "level_min": 22,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level_max": 31,
             "level_min": 25,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_LOMBRE"
         },
         {
             "level_max": 31,
             "level_min": 25,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MASQUERAIN"
         },
         {
             "level_max": 34,
@@ -203,7 +203,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_FROGADIER"
+            "species": "SPECIES_GRENINJA"
         }
     ],
     "map_category": {

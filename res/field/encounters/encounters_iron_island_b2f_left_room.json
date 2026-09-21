@@ -19,7 +19,7 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
@@ -31,7 +31,7 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
@@ -51,22 +51,22 @@
         }
     ],
     "swarms": [
-        "SPECIES_BELDUM",
+        "SPECIES_METANG",
         "SPECIES_SOLROCK"
     ],
     "day": [
-        "SPECIES_GEODUDE",
+        "SPECIES_GRAVELER",
         "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_KLEFKI"
     ],
     "radar": [
         "SPECIES_STEELIX",
-        "SPECIES_NACLSTACK",
+        "SPECIES_GARGANACL",
         "SPECIES_BRONZONG",
-        "SPECIES_GRAVELER"
+        "SPECIES_GOLEM"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT",
         "SPECIES_WHISCASH"
     ],
     "sapphire": [
-        "SPECIES_SOLROCK",
+        "SPECIES_SWAMPERT",
         "SPECIES_WHISCASH"
     ],
     "emerald": [
-        "SPECIES_LOMBRE",
-        "SPECIES_TRAPINCH"
+        "SPECIES_TRAPINCH",
+        "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_SCYTHER",
-        "SPECIES_KOFFING"
+        "SPECIES_GYARADOS",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_GALARIAN_RAPIDASH"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMELEON"
     ],
     "surf_rate": 0,
     "surf_encounters": [

@@ -1,13 +1,13 @@
 {
     "name": "Kazza",
     "otName": "Hilary",
-    "species": "SPECIES_DITTO",
-    "hpIV": 31,
-    "atkIV": 31,
-    "defIV": 31,
-    "speedIV": 31,
-    "spAtkIV": 31,
-    "spDefIV": 31,
+    "species": "SPECIES_VULLABY",
+    "hpIV": 20,
+    "atkIV": 20,
+    "defIV": 20,
+    "speedIV": 20,
+    "spAtkIV": 20,
+    "spDefIV": 20,
     "unused1": 28,
     "otID": 25643,
     "cool": 0,
@@ -15,10 +15,10 @@
     "cute": 0,
     "smart": 0,
     "tough": 0,
-    "personality": 142,
+    "personality": 222250,
     "heldItem": "ITEM_DESTINY_KNOT",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
     "language": "LANGUAGE_ENGLISH",
-    "requestedSpecies": "SPECIES_MACHOP"
+    "requestedSpecies": "SPECIES_NONE"
 }
