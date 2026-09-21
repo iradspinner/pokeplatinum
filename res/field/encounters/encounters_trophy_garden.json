@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 22,
-            "species": "SPECIES_EEVEE"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_SKARMORY"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_CLEFFA"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_HAPPINY"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_WYNAUT"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_ABRA"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_PIKACHU"
-        },
-        {
-            "level": 22,
             "species": "SPECIES_PICHU"
         },
         {
-            "level": 22,
-            "species": "SPECIES_AZURILL"
+            "level": 23,
+            "species": "SPECIES_BUNEARY"
         },
         {
-            "level": 22,
-            "species": "SPECIES_IGGLYBUFF"
+            "level": 23,
+            "species": "SPECIES_SKITTY"
         },
         {
-            "level": 22,
-            "species": "SPECIES_BAGON"
+            "level": 23,
+            "species": "SPECIES_MINCCINO"
         },
         {
-            "level": 22,
-            "species": "SPECIES_DRATINI"
+            "level": 24,
+            "species": "SPECIES_FLABEBE"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_TOGEPI"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_EEVEE"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_GALARIAN_MR_MIME"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_COMBEE"
+        },
+        {
+            "level": 25,
+            "species": "SPECIES_SPRIGATITO"
+        },
+        {
+            "level": 25,
+            "species": "SPECIES_ROWLET"
         }
     ],
     "swarms": [
-        "SPECIES_PICHU",
-        "SPECIES_EEVEE"
+        "SPECIES_PIKACHU",
+        "SPECIES_HAWLUCHA"
     ],
     "day": [
-        "SPECIES_CLEFFA",
-        "SPECIES_HAPPINY"
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV"
     ],
     "night": [
-        "SPECIES_CLEFFA",
-        "SPECIES_HAPPINY"
+        "SPECIES_PURRLOIN",
+        "SPECIES_SKITTY"
     ],
     "radar": [
-        "SPECIES_ROSELIA",
-        "SPECIES_STARAVIA",
         "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_LOPUNNY",
+        "SPECIES_DELCATTY",
+        "SPECIES_CINCCINO"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "sapphire": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_CRAWDAUNT",
+        "SPECIES_LUDICOLO"
     ],
     "emerald": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_LUNATONE",
+        "SPECIES_MARSHTOMP"
     ],
     "firered": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_WARTORTLE",
+        "SPECIES_ALOLAN_NINETALES"
     ],
     "leafgreen": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_CHARMANDER",
+        "SPECIES_PONYTA"
     ],
     "surf_rate": 0,
     "surf_encounters": [
@@ -207,22 +207,22 @@
         }
     ],
     "daily_encounters": [
+        "SPECIES_PICHU",
         "SPECIES_EEVEE",
-        "SPECIES_BONSLY",
-        "SPECIES_HAPPINY",
-        "SPECIES_MEOWTH",
-        "SPECIES_CLEFFA",
-        "SPECIES_CLEFAIRY",
-        "SPECIES_IGGLYBUFF",
-        "SPECIES_PLUSLE",
-        "SPECIES_JIGGLYPUFF",
-        "SPECIES_DITTO",
-        "SPECIES_CASTFORM",
-        "SPECIES_MINUN",
-        "SPECIES_MIME_JR",
-        "SPECIES_MARILL",
-        "SPECIES_CHANSEY",
-        "SPECIES_AZURILL"
+        "SPECIES_TOGEPI",
+        "SPECIES_SKITTY",
+        "SPECIES_BUNEARY",
+        "SPECIES_FLABEBE",
+        "SPECIES_MINCCINO",
+        "SPECIES_PACHIRISU",
+        "SPECIES_COMBEE",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV",
+        "SPECIES_EMOLGA",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_ROWLET",
+        "SPECIES_SPRIGATITO",
+        "SPECIES_FLETCHLING"
     ],
     "map_category": {
         "map_type": "dungeon",

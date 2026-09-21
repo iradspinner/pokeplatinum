@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 27,
-            "species": "SPECIES_TORKOAL"
+            "species": "SPECIES_RALTS"
         },
         {
             "level": 28,
-            "species": "SPECIES_CHIMECHO"
+            "species": "SPECIES_FERROSEED"
         },
         {
             "level": 28,
-            "species": "SPECIES_WEEZING"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_LOUDRED"
+            "species": "SPECIES_ROWLET"
         },
         {
             "level": 28,
-            "species": "SPECIES_CHINGLING"
+            "species": "SPECIES_ROWLET"
         },
         {
             "level": 29,
-            "species": "SPECIES_MACHOKE"
+            "species": "SPECIES_LITTEN"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_RALTS"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_LITTEN"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_GLIGAR"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 30,
-            "species": "SPECIES_XATU"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_GALLADE"
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 30,
-            "species": "SPECIES_GARDEVOIR"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_MR_MIME"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_EXEGGCUTE"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_VIGOROTH"
+            "species": "SPECIES_GLIGAR"
         }
     ],
     "swarms": [
-        "SPECIES_MEDITITE",
-        "SPECIES_GRAVELER"
+        "SPECIES_KIRLIA",
+        "SPECIES_MAGBY"
     ],
     "day": [
-        "SPECIES_SWALOT",
-        "SPECIES_MIGHTYENA"
+        "SPECIES_MIENFOO",
+        "SPECIES_BRONZOR"
     ],
     "night": [
-        "SPECIES_MOTHIM",
-        "SPECIES_KECLEON"
+        "SPECIES_NACLI",
+        "SPECIES_SNEASEL"
     ],
     "radar": [
-        "SPECIES_CHINGLING",
-        "SPECIES_MACHOKE",
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_KIRLIA",
+        "SPECIES_FERROTHORN",
+        "SPECIES_DARTRIX",
+        "SPECIES_TORRACAT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_LOMBRE",
+        "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_LOMBRE",
+        "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_BELDUM",
+        "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_KOFFING",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "leafgreen": [
-        "SPECIES_MACHOKE",
-        "SPECIES_BRONZOR"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_GYARADOS"
     ],
     "surf_rate": 0,
     "surf_encounters": [

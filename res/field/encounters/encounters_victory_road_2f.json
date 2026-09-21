@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 41,
-            "species": "SPECIES_AGGRON"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 42,
-            "species": "SPECIES_URSARING"
-        },
-        {
-            "level": 41,
-            "species": "SPECIES_ESPEON"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 42,
-            "species": "SPECIES_MR_MIME"
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 42,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_LARVITAR"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_GIBLE"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 44,
-            "species": "SPECIES_FLAREON"
-        },
-        {
-            "level": 43,
-            "species": "SPECIES_GALLADE"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 44,
-            "species": "SPECIES_CROBAT"
-        },
-        {
-            "level": 43,
-            "species": "SPECIES_MEDICHAM"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_HARIYAMA"
-        },
-        {
-            "level": 43,
-            "species": "SPECIES_LICKILICKY"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_EXPLOUD"
-        },
-        {
-            "level": 43,
-            "species": "SPECIES_EXPLOUD"
+            "species": "SPECIES_BRONZOR"
         }
     ],
     "swarms": [
-        "SPECIES_MAGNETON",
-        "SPECIES_STEELIX"
+        "SPECIES_STEELIX",
+        "SPECIES_BELDUM"
     ],
     "day": [
-        "SPECIES_ESPEON",
-        "SPECIES_MR_MIME"
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_UMBREON",
-        "SPECIES_JYNX"
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
     ],
     "radar": [
         "SPECIES_STEELIX",
-        "SPECIES_MAGNETON",
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_NACLSTACK",
+        "SPECIES_HAKAMO_O",
+        "SPECIES_PUPITAR"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_LUDICOLO",
+        "SPECIES_LUNATONE"
     ],
     "sapphire": [
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_LUDICOLO",
+        "SPECIES_LUNATONE"
     ],
     "emerald": [
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_MARSHTOMP",
+        "SPECIES_MILOTIC"
     ],
     "firered": [
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_ONIX",
-        "SPECIES_GABITE"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

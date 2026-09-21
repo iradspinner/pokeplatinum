@@ -11,8 +11,10 @@ behind `cli apply`, and an apply on a real table that lands only in the
 land keys and is restored afterwards; the importer's authored set; and the
 M7 source check when a build exists in this checkout.
 
-Every file the checks touch is put back with `git checkout`, and the sidecar
-is restored from the text it had before.
+Every file the checks touch is put back from the text it held a moment
+before, the sidecar included. Restoring with `git checkout` would be wrong
+here: the checkout is shared, and uncommitted work in the same file is not
+this test's to discard.
 """
 import contextlib
 import importlib.util
@@ -39,6 +41,25 @@ def git(*args):
 
 def changed_lines(path):
     out = git("diff", "-U0", "--", path).splitlines()
+    add = [l for l in out if l.startswith("+") and not l.startswith("+++")]
+    rem = [l for l in out if l.startswith("-") and not l.startswith("---")]
+    return add, rem
+
+
+def changed_since(before, path):
+    """The +/- lines one write produced: `git diff -U0` between the text the
+    file held before the write and the file on disk now, rather than against
+    HEAD, so other uncommitted work in the same file is not counted."""
+    import tempfile
+    full = os.path.join(model.repo_root(), path)
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False,
+                                     encoding="utf-8", newline="\n") as f:
+        f.write(before)
+        snapshot = f.name
+    try:
+        out = git("diff", "--no-index", "-U0", "--", snapshot, full).splitlines()
+    finally:
+        os.unlink(snapshot)
     add = [l for l in out if l.startswith("+") and not l.startswith("+++")]
     rem = [l for l in out if l.startswith("-") and not l.startswith("---")]
     return add, rem
@@ -109,14 +130,20 @@ def check_dex(results):
 
 
 def check_model(results):
+    # The diff is taken against the file's own text a moment earlier, and the
+    # text is written back afterwards. It used to be `git diff` against HEAD
+    # and `git checkout --`, which measured every uncommitted change in the
+    # file as well as this one and then threw them away; this checkout is
+    # shared, so that cost Route 214 its authored table once already.
     path = os.path.join(model.ENC_DIR, AREA + ".json")
+    a = model.load_area(AREA)
+    before = a.text
     try:
-        a = model.load_area(AREA)
         a.set_swarm(0, "SPECIES_ABRA")
         a.set_radar(3, "SPECIES_ABRA")
         a.set_dual_slot("emerald", 1, "SPECIES_ABRA")
         a.save()
-        add, rem = changed_lines(path)
+        add, rem = changed_since(before, path)
         results.append(("swarm, radar and dual-slot writers each land on exactly one line",
                         len(add) == 3 and len(rem) == 3
                         and all("SPECIES_ABRA" in l for l in add),
@@ -127,7 +154,9 @@ def check_model(results):
                         and back.data["radar"][3] == "SPECIES_ABRA"
                         and back.data["emerald"][1] == "SPECIES_ABRA", ""))
     finally:
-        subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
+        with open(os.path.join(model.repo_root(), path), "w",
+                  encoding="utf-8", newline="\n") as f:
+            f.write(before)
     a = model.load_area(AREA)
     bad = []
     for fn, args, exc in ((a.set_swarm, (2, "SPECIES_ABRA"), IndexError),
@@ -193,7 +222,7 @@ def check_audit(results):
                  "super_rod_encounters"))
     # 641 before any water table was designed; the count only falls.
     results.append(("water and rods carry at most the 641 off-list references of the base ROM",
-                    0 < water <= 641, str(water)))
+                    water <= 641, str(water)))
     trio = {(r["script"], r["command"], r["species"]) for r in out["scripts"]}
     results.append(("scripts list the two StartWildBattle species and a legendary",
                     ("scripts_route_209", "StartWildBattle", "SPECIES_SPIRITOMB") in trio
@@ -202,8 +231,10 @@ def check_audit(results):
                     and any(c == "StartLegendaryBattle" for _, c, _ in trio),
                     f"{len(trio)} commands"))
     rc, text = run_cli("audit", "--summary", "--fail-on-leak")
-    results.append(("`audit --fail-on-leak` fails on the current tree, which leaks",
-                    rc == 1 and "off-list" in text, f"exit {rc}"))
+    # It failed on the base ROM's tables (1250 off-list land slots); since
+    # Step 5 every source outside scripts is on-list and it passes.
+    results.append(("`audit --fail-on-leak` passes: every source outside scripts is on-list",
+                    rc == 0 and "0 are off-list" in text, f"exit {rc}"))
 
 
 def check_coverage(results):
@@ -308,16 +339,17 @@ def check_apply(results):
     path = os.path.join(model.ENC_DIR, AREA + ".json")
     cast = ["SPECIES_RHYHORN", "SPECIES_HOUNDOUR", "SPECIES_ZUBAT",
             "SPECIES_GRAVELER", "SPECIES_STUNKY"]
+    start = model.load_area(AREA).text
     try:
         with sidecar_with(AREA, archetype="A1", cast=cast, base_level=22,
                           day=["SPECIES_HOUNDOUR", "SPECIES_ZUBAT"]):
             rc, text = run_cli("apply", AREA, "--dry-run")
-            add, rem = changed_lines(path)
+            add, rem = changed_since(start, path)
             results.append(("`apply --dry-run` prints the diff and writes nothing",
                             rc == 0 and "would change" in text and not add and not rem,
                             f"exit {rc}, {len(add)} lines changed"))
             rc, text = run_cli("apply", AREA)
-            add, rem = changed_lines(path)
+            add, rem = changed_since(start, path)
             import re
             allowed = re.compile(r'^\+\s*("species": "SPECIES_\w+"|"level": \d+|"SPECIES_\w+"),?$')
             stray = [l for l in add if not allowed.match(l)]
@@ -346,7 +378,9 @@ def check_apply(results):
             results.append(("a locked slot the layout would change refuses the apply",
                             rc == 1 and model.load_area(AREA).text == before, f"exit {rc}"))
     finally:
-        subprocess.run(["git", "checkout", "--", path], cwd=model.repo_root())
+        with open(os.path.join(model.repo_root(), path), "w",
+                  encoding="utf-8", newline="\n") as f:
+            f.write(start)
 
 
 # -- importer and verifier ----------------------------------------------------
@@ -378,11 +412,14 @@ def check_importer(results):
                     isinstance(imp.AUTHORED, dict)
                     and set(base) == set(imp.AUTHORED) | with_cast,
                     f"{len(base)} authored now, {len(with_cast)} from the sidecar"))
-    with sidecar_with(AREA, archetype="A1", base_level=22,
+    # Every land table carries a cast since Step 4, so the honey tree (a
+    # species-only file with a minimal sidecar entry) is the one to try.
+    probe = model.HONEY_TREE
+    with sidecar_with(probe, archetype="A1", base_level=22,
                       cast=["SPECIES_RHYHORN"] * 5):
         authored = imp.authored_encounters()
     results.append(("a sidecar entry with a cast is authored by definition",
-                    AREA in authored and AREA not in imp.authored_encounters(), ""))
+                    probe in authored and probe not in imp.authored_encounters(), ""))
 
 
 def check_verify_source(results):

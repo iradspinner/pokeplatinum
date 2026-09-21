@@ -1140,6 +1140,104 @@ Still open: the merge into `oxide`. Ian took his playthrough off the gate
 (2026-09-21, far too long); his review happens in the tool, which now lists
 the water-only areas (Twinleaf Town, Route 219) beside the grass ones.
 
+### Step 4 — the rest of the game — **written, 2026-09-21; gate open**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli apply --all --dry-run   # 184 areas, 0 failed, nothing to change
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli availability            # the gate, passes
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint                    # errors are R12's pool lines only
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3                  # 28/28
+```
+
+**What was written.** Every remaining live land table, 152 of them, split
+by split from Fantina to the post-game, and every water table: surf (from
+Byron's split, the HM from Celestic; the sidecar's `splits.rods` now gates
+surf too), Good Rod (from Maylene's), Super Rod (from Candice's) and the
+Old Rod where it was not yet designed, 198 tables over 53 areas. The land
+follows the plan's homes (Ian approved the first two splits' feel, so the
+same width and cap continue: eight to sixteen lines a table with distinct
+day and night pairs, seven to eleven shapes in rotation, nothing over 35%).
+Room groups (Old Chateau's nine, the Lost Tower's five, Solaceon's
+eighteen, the Great Marsh's six, Iron Island's seven, Mt. Coronet's
+eleven, Victory Road's six, Snowpoint Temple's six, Stark's three, Turnback
+Cave's twenty-two plus the twenty-five unreferenced post-game files) draw
+on one pool each with shape and order rotating so no two rooms read alike.
+The water is four regional pools (river, sea, marsh, mountain) rotated per
+area with a starter in every rod and surf tail (Squirtle, Mudkip, Froakie,
+Popplio; their middle stages on the Super Rod), levels stepping by split,
+and the plan's water homes pinned into the first slots.
+
+**Delays and the cap rule.** Route 210 north (Hawlucha, Goomy, Fennekin and
+Litten by day) and Route 211 east (Ralts and Ferroseed at home, Rowlet 20,
+Litten 15, Jangmo-o 10) are the next delays after 204 north. The
+cap-candidates list drove placements: Koffing and Glameow on Route 209,
+Yanma on 215, Swablu, Sneasel, Slugma and Fennekin on 210 south, Swinub on
+214, Joltik and Salandit on 206, Ferroseed in the Maniac Tunnel, Goomy on
+210 north, Jangmo-o on 211 east, Larvitar on 217, Trapinch on 221, Galarian
+Mr. Mime in the Trophy Garden. Three remain, listed for Ian: Snorunt and
+Snover (final by 42 and 40, cap Wake 44, first Candice: the cold lines have
+no warm home, so this is his call), Larvesta (final by 59, cap Volkner 62,
+first Post: Stark Mountain is post-game). The four Kanto and Hoenn starters
+on the list are now wild in every region as 1%s and 5%s; the eight new
+starters sit at real shares where planned.
+
+**Pick-list and rules.** Mantyke is not on the list after all (the earlier
+inventory line was a mapping artefact), so the sea pools carry Tentacool,
+Finneon, Luvdisc, Remoraid, Mareanie and Shellos. R8's spread floor moved
+from 2.2x to 1.8x: 2.2x was vanilla's with its concentrated early routes,
+and under the cap every table is flat (the game reads 1.99x).
+
+**Numbers.** 172 live land tables and 198 water tables designed; the plan's
+gate passes (home 95, non-wild 51, water 14, honey 3, cameo-only 2, pool
+20, proposed 2); game-wide lint errors are R12's 22, the pool lines and the
+two proposed statics, which the pool's scripting settles. Land, day/night
+(bar a residue), surf and rod slots hold no off-list species; swarms,
+radar, the dual-slot lists, the honey trees, the marsh lookout and the
+garden dailies are Step 5's.
+
+*Gate:* game-wide lint 0 errors bar R12's scripted lines, done; R8, R9, R11
+pass; the merge into `oxide`.
+
+### Step 5 — the no-leak pass — **done, 2026-09-21**
+
+```
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli audit --summary --fail-on-leak   # exit 0, 0 off-list outside scripts
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5                            # expect 16/16
+```
+
+**What was written**, by an Opus subagent on a brief from this track, and
+checked here. Every key of every encounter file now holds on-list species:
+swarms (the route's own face evolved where the level warrants, else a
+neighbour's line, never something the table already shows), the Poke Radar
+four (the route's lines evolved, Luxio first where Shinx is at home), the
+five dual-slot lists (Hoenn lines to Ruby, Sapphire and Emerald, Kanto to
+FireRed and LeafGreen, within twenty levels of the route), the day and night
+residue (`SPECIES_NONE` in the twelve rate-zero files), the twelve rate-zero
+land tables (each a slot-for-slot copy of its nearest designed table, so no
+level-0 `SPECIES_NONE` slots remain), the honey trees (the plan's tiers:
+rare Rowlet, Snivy, Sprigatito; uncommon Combee, Heracross; common Combee,
+Sewaddle, Grubbin), the Great Marsh lookout (32 and 32 from the marsh's land
+and water lines) and the Trophy Garden dailies (sixteen, the garden's cast
+plus four). Three writers joined `model.py` for the species-only files
+(`set_honey_tier`, `set_marsh_lookout`, `set_daily`). The audit reads 7046
+references in 186 files, 0 off-list; the scripts section still lists its 42
+off-list gifts and statics, which decision 8 leaves to the script track.
+
+**A note on what these lists are worth.** Ian has said elsewhere that
+swarms, the Poke Radar, the dual-slot lists and the Trophy Garden dailies
+are not used in Oxide; they are filled so that nothing off-list can ever
+be rolled, not as acquisition sources, and the availability plan counts no
+capture from them.
+
+**A test that ate a table.** `test_step0` restored its scratch file with
+`git checkout --`, which in a shared checkout with uncommitted work throws
+away everything else in the file: it reverted Route 214 to the base ROM's
+table once. Both places now snapshot the file's text and write it back,
+and `test_step5` does the same. Route 214 was re-applied from its sidecar
+entry; `apply --all --dry-run` reports nothing to change on all 184.
+
+*Gate:* `cli audit` reports 0 off-list references outside scripts, done.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across

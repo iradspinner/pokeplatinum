@@ -2,36 +2,8 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 54,
-            "species": "SPECIES_MAGCARGO"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_RHYDON"
-        },
-        {
-            "level": 52,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
             "level": 51,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 52,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 53,
-            "species": "SPECIES_WEEZING"
-        },
-        {
-            "level": 51,
-            "species": "SPECIES_WEEZING"
-        },
-        {
-            "level": 53,
-            "species": "SPECIES_GRAVELER"
+            "species": "SPECIES_LARVESTA"
         },
         {
             "level": 52,
@@ -39,34 +11,62 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_RHYHORN"
-        },
-        {
-            "level": 52,
-            "species": "SPECIES_SLUGMA"
+            "species": "SPECIES_LARVESTA"
         },
         {
             "level": 52,
             "species": "SPECIES_RHYHORN"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_KOFFING"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_LARVESTA"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_RHYHORN"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_SALANDIT"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_MAGBY"
+        },
+        {
+            "level": 54,
+            "species": "SPECIES_SALANDIT"
+        },
+        {
+            "level": 54,
+            "species": "SPECIES_CHARCADET"
         }
     ],
     "swarms": [
-        "SPECIES_MAGCARGO",
-        "SPECIES_RHYDON"
+        "SPECIES_VOLCARONA",
+        "SPECIES_TURTONATOR"
     ],
     "day": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GRAVELER"
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GRAVELER"
+        "SPECIES_ZUBAT",
+        "SPECIES_SALANDIT"
     ],
     "radar": [
-        "SPECIES_GOLBAT",
-        "SPECIES_WEEZING",
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_VOLCARONA",
+        "SPECIES_MAGCARGO",
+        "SPECIES_RHYDON",
+        "SPECIES_GOLBAT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_SNORUNT",
+        "SPECIES_MILOTIC"
     ],
     "sapphire": [
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_SNORUNT",
+        "SPECIES_MILOTIC"
     ],
     "emerald": [
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_SHARPEDO",
+        "SPECIES_SOLROCK"
     ],
     "firered": [
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "leafgreen": [
-        "SPECIES_SLUGMA",
-        "SPECIES_RHYHORN"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_GYARADOS"
     ],
     "surf_rate": 0,
     "surf_encounters": [

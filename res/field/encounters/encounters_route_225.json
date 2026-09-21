@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 48,
+            "level": 47,
             "species": "SPECIES_MAKUHITA"
         },
         {
-            "level": 49,
-            "species": "SPECIES_GRAVELER"
+            "level": 48,
+            "species": "SPECIES_ROOKIDEE"
         },
         {
             "level": 48,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_MIENFOO"
         },
         {
-            "level": 50,
-            "species": "SPECIES_FEAROW"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_PRIMEAPE"
-        },
-        {
-            "level": 50,
-            "species": "SPECIES_RATICATE"
-        },
-        {
-            "level": 50,
-            "species": "SPECIES_MACHOKE"
+            "level": 48,
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 49,
-            "species": "SPECIES_PRIMEAPE"
+            "species": "SPECIES_WOOLOO"
         },
         {
-            "level": 47,
-            "species": "SPECIES_SPEAROW"
+            "level": 49,
+            "species": "SPECIES_HAWLUCHA"
         },
         {
-            "level": 47,
-            "species": "SPECIES_RATTATA"
+            "level": 49,
+            "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 47,
-            "species": "SPECIES_MANKEY"
+            "level": 49,
+            "species": "SPECIES_PHANPY"
         },
         {
-            "level": 47,
-            "species": "SPECIES_MANKEY"
+            "level": 49,
+            "species": "SPECIES_VULPIX"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_PONYTA"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_TORCHIC"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_LITTEN"
         }
     ],
     "swarms": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_MAKUHITA"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DEWPIDER"
     ],
     "day": [
-        "SPECIES_FEAROW",
-        "SPECIES_FEAROW"
+        "SPECIES_FLETCHLING",
+        "SPECIES_PIKIPEK"
     ],
     "night": [
-        "SPECIES_BANETTE",
-        "SPECIES_BANETTE"
+        "SPECIES_HOUNDOUR",
+        "SPECIES_PURRLOIN"
     ],
     "radar": [
-        "SPECIES_PRIMEAPE",
-        "SPECIES_PRIMEAPE",
-        "SPECIES_MANKEY",
-        "SPECIES_MANKEY"
+        "SPECIES_HARIYAMA",
+        "SPECIES_CORVISQUIRE",
+        "SPECIES_MIENSHAO",
+        "SPECIES_NACLSTACK"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,135 +75,135 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SPEAROW",
-        "SPECIES_RATTATA"
+        "SPECIES_TRAPINCH",
+        "SPECIES_SNORUNT"
     ],
     "sapphire": [
-        "SPECIES_SPEAROW",
-        "SPECIES_RATTATA"
+        "SPECIES_TRAPINCH",
+        "SPECIES_SNORUNT"
     ],
     "emerald": [
-        "SPECIES_SPEAROW",
-        "SPECIES_RATTATA"
+        "SPECIES_BELDUM",
+        "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_SPEAROW",
-        "SPECIES_RATTATA"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_SPEAROW",
-        "SPECIES_RATTATA"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_GYARADOS"
     ],
     "surf_rate": 10,
     "surf_encounters": [
         {
             "level_max": 55,
-            "level_min": 35,
-            "species": "SPECIES_GOLDUCK"
+            "level_min": 40,
+            "species": "SPECIES_GASTRODON"
         },
         {
             "level_max": 55,
-            "level_min": 35,
-            "species": "SPECIES_GOLDUCK"
+            "level_min": 40,
+            "species": "SPECIES_MASQUERAIN"
         },
         {
-            "level_max": 45,
-            "level_min": 35,
-            "species": "SPECIES_PSYDUCK"
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_BUIZEL"
         },
         {
-            "level_max": 45,
-            "level_min": 35,
-            "species": "SPECIES_PSYDUCK"
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 45,
-            "level_min": 35,
-            "species": "SPECIES_PSYDUCK"
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "old_rod_rate": 25,
     "old_rod_encounters": [
         {
-            "level_max": 6,
-            "level_min": 4,
+            "level_max": 30,
+            "level_min": 22,
             "species": "SPECIES_MAGIKARP"
         },
         {
-            "level_max": 7,
-            "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 30,
+            "level_min": 22,
+            "species": "SPECIES_CHINCHOU"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 30,
+            "level_min": 22,
+            "species": "SPECIES_CARVANHA"
         },
         {
-            "level_max": 10,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 30,
+            "level_min": 22,
+            "species": "SPECIES_BUIZEL"
         },
         {
-            "level_max": 15,
-            "level_min": 5,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 30,
+            "level_min": 22,
+            "species": "SPECIES_SQUIRTLE"
         }
     ],
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 45,
+            "level_min": 35,
+            "species": "SPECIES_WOOPER"
         },
         {
-            "level_max": 20,
-            "level_min": 15,
-            "species": "SPECIES_BARBOACH"
+            "level_max": 45,
+            "level_min": 35,
+            "species": "SPECIES_LOTAD"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_MAGIKARP"
+            "level_max": 45,
+            "level_min": 35,
+            "species": "SPECIES_SURSKIT"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_BARBOACH"
+            "level_max": 45,
+            "level_min": 35,
+            "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_BARBOACH"
+            "level_max": 45,
+            "level_min": 35,
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 40,
-            "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "level_max": 60,
+            "level_min": 45,
+            "species": "SPECIES_QUAGSIRE"
         },
         {
-            "level_max": 40,
-            "level_min": 30,
-            "species": "SPECIES_WHISCASH"
+            "level_max": 60,
+            "level_min": 45,
+            "species": "SPECIES_LOMBRE"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "level_max": 60,
+            "level_min": 45,
+            "species": "SPECIES_GASTRODON"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_WHISCASH"
+            "level_max": 60,
+            "level_min": 45,
+            "species": "SPECIES_SEAKING"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_WHISCASH"
+            "level_max": 60,
+            "level_min": 45,
+            "species": "SPECIES_FROGADIER"
         }
     ],
     "map_category": {

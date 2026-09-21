@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_SNORUNT"
         },
         {
             "level": 48,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 50,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 48,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 51,
             "species": "SPECIES_SNEASEL"
         },
         {
-            "level": 49,
-            "species": "SPECIES_JYNX"
+            "level": 48,
+            "species": "SPECIES_SNORUNT"
+        },
+        {
+            "level": 48,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 49,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_ALOLAN_NINETALES"
         },
         {
-            "level": 51,
-            "species": "SPECIES_JYNX"
+            "level": 49,
+            "species": "SPECIES_BRONZOR"
         },
         {
-            "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "level": 49,
+            "species": "SPECIES_SNORUNT"
         },
         {
-            "level": 51,
-            "species": "SPECIES_JYNX"
+            "level": 49,
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "level": 49,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_ABSOL"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_BELDUM"
         }
     ],
     "swarms": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_GLALIE",
+        "SPECIES_MAKUHITA"
     ],
     "day": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SNOM",
+        "SPECIES_SNOVER"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SNEASEL",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "radar": [
+        "SPECIES_GLALIE",
+        "SPECIES_WEAVILE",
         "SPECIES_GOLBAT",
-        "SPECIES_SNEASEL",
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_BRONZONG"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_WHISCASH",
+        "SPECIES_LOMBRE"
     ],
     "sapphire": [
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_WHISCASH",
+        "SPECIES_LOMBRE"
     ],
     "emerald": [
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_TRAPINCH",
+        "SPECIES_CRAWDAUNT"
     ],
     "firered": [
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_SEAKING",
+        "SPECIES_WARTORTLE"
     ],
     "leafgreen": [
-        "SPECIES_JYNX",
-        "SPECIES_GOLBAT"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_GALARIAN_RAPIDASH"
     ],
     "surf_rate": 0,
     "surf_encounters": [

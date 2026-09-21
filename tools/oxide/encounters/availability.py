@@ -159,7 +159,7 @@ def build(ref=None):
         if kind:
             # water reachable before the grass (Route 218) carries its own split
             s = (entries.get(area) or {}).get("water_split") or s
-        if kind and kind != "surf":
+        if kind:
             r = progression.rod_split(sidecar, kind)
             if r and (s is None or split_idx.get(r, 99) > split_idx.get(s, 99)):
                 s = r

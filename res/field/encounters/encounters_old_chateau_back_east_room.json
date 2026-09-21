@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 14,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 15,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 14,
-            "species": "SPECIES_HAUNTER"
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 15,
-            "species": "SPECIES_HAUNTER"
+            "species": "SPECIES_SINISTEA"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 16,
-            "species": "SPECIES_MISDREAVUS"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_MISDREAVUS"
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 16,
             "species": "SPECIES_DUSKULL"
         },
         {
-            "level": 17,
-            "species": "SPECIES_DRIFLOON"
+            "level": 16,
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_PURRLOIN"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_PURRLOIN"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_GENGAR"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_FROSLASS"
+            "species": "SPECIES_PURRLOIN"
         }
     ],
     "swarms": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
     ],
     "day": [
-        "SPECIES_HAUNTER",
-        "SPECIES_HAUNTER"
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL"
     ],
     "night": [
-        "SPECIES_HAUNTER",
-        "SPECIES_HAUNTER"
+        "SPECIES_YAMASK",
+        "SPECIES_PURRLOIN"
     ],
     "radar": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_POLTEAGEIST",
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_LAMPENT",
+        "SPECIES_DUSCLOPS"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_CARVANHA",
+        "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_KOFFING",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_TENTACOOL",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

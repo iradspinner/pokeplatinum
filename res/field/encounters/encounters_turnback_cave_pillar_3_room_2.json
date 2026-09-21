@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 35,
-            "species": "SPECIES_HAUNTER"
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 35,
-            "species": "SPECIES_BRONZONG"
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 36,
-            "species": "SPECIES_HAUNTER"
-        },
-        {
-            "level": 37,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 37,
-            "species": "SPECIES_HAUNTER"
-        },
-        {
-            "level": 37,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 36,
-            "species": "SPECIES_CHIMECHO"
+            "species": "SPECIES_SINISTEA"
         },
         {
-            "level": 38,
-            "species": "SPECIES_DUSCLOPS"
+            "level": 36,
+            "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 38,
-            "species": "SPECIES_CHIMECHO"
+            "level": 36,
+            "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 38,
-            "species": "SPECIES_DUSCLOPS"
+            "level": 37,
+            "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 38,
-            "species": "SPECIES_CHIMECHO"
+            "level": 37,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_DHELMISE"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_DHELMISE"
         }
     ],
     "swarms": [
-        "SPECIES_HAUNTER",
-        "SPECIES_BRONZONG"
+        "SPECIES_DUSCLOPS",
+        "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_HAUNTER",
-        "SPECIES_GOLBAT"
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_DUSCLOPS",
-        "SPECIES_GOLBAT"
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
     ],
     "radar": [
-        "SPECIES_HAUNTER",
-        "SPECIES_GOLBAT",
         "SPECIES_DUSCLOPS",
-        "SPECIES_CHIMECHO"
+        "SPECIES_POLTEAGEIST",
+        "SPECIES_GOTHORITA",
+        "SPECIES_PROBOPASS"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SOLROCK",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "sapphire": [
-        "SPECIES_LUNATONE",
-        "SPECIES_LUNATONE"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "emerald": [
-        "SPECIES_DUSCLOPS",
-        "SPECIES_CHIMECHO"
+        "SPECIES_SOLROCK",
+        "SPECIES_WHISCASH"
     ],
     "firered": [
-        "SPECIES_DUSCLOPS",
-        "SPECIES_CHIMECHO"
+        "SPECIES_EEVEE",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "leafgreen": [
-        "SPECIES_DUSCLOPS",
-        "SPECIES_CHIMECHO"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_SCYTHER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

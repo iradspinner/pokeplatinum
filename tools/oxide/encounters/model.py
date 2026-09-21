@@ -38,17 +38,24 @@ DAY_NIGHT_SLOTS = (2, 3)
 SWARM_KEY = "swarms"
 RADAR_KEY = "radar"
 DUAL_SLOT_KEYS = ("ruby", "sapphire", "emerald", "firered", "leafgreen")
-LIST_KEY_SIZES = {SWARM_KEY: 2, "day": 2, "night": 2, RADAR_KEY: 4,
-                  **{k: 2 for k in DUAL_SLOT_KEYS}}
 
-# Species-only sources outside the land format, read for the audit and left
-# alone by the writers: their design is a later pass.
+# Species-only sources outside the land format. Their lists are fixed-length
+# too, so the same index-checked writer serves them (authoring plan Step 5).
 HONEY_TREE = "encounters_honey_tree"          # common / uncommon / rare
 GREAT_MARSH_LOOKOUT = "encounters_great_marsh_lookout"  # binocular pools
 TROPHY_GARDEN = "encounters_trophy_garden"    # daily_encounters, 16 species
 HONEY_TREE_KEYS = ("common", "uncommon", "rare")
+HONEY_TIER_SIZE = 6
 GREAT_MARSH_KEYS = ("before_national_dex", "after_national_dex")
+GREAT_MARSH_SIZE = 32
 DAILY_KEY = "daily_encounters"
+DAILY_SIZE = 16
+
+LIST_KEY_SIZES = {SWARM_KEY: 2, "day": 2, "night": 2, RADAR_KEY: 4,
+                  **{k: 2 for k in DUAL_SLOT_KEYS},
+                  **{k: HONEY_TIER_SIZE for k in HONEY_TREE_KEYS},
+                  **{k: GREAT_MARSH_SIZE for k in GREAT_MARSH_KEYS},
+                  DAILY_KEY: DAILY_SIZE}
 
 # Band cutoffs on a table's median level. Design doc 2.5.
 BAND_EARLY_MAX = 12
@@ -246,6 +253,24 @@ class Area:
             raise ValueError(f"not a dual-slot game: {game}")
         self._set_list_species(game, index, species)
 
+    def set_honey_tier(self, tier, index, species):
+        """One slot of one honey tree rarity tier (common, uncommon, rare),
+        six slots each. Only the honey tree file carries them."""
+        if tier not in HONEY_TREE_KEYS:
+            raise ValueError(f"not a honey tree tier: {tier}")
+        self._set_list_species(tier, index, species)
+
+    def set_marsh_lookout(self, key, index, species):
+        """One slot of a Great Marsh lookout pool, 32 slots each: what the
+        binoculars can show before and after the national dex."""
+        if key not in GREAT_MARSH_KEYS:
+            raise ValueError(f"not a Great Marsh lookout pool: {key}")
+        self._set_list_species(key, index, species)
+
+    def set_daily(self, index, species):
+        """One of the sixteen species Mr. Backlot's garden rotates through."""
+        self._set_list_species(DAILY_KEY, index, species)
+
     def reference_species(self):
         """Every species reference in the file, {key: [species]} in the
         file's own order. The audit reads this. Water slots holding
@@ -325,8 +350,9 @@ def load_all(ref=None, land_only=False, active_only=False):
 
 # -- the species-only sources ---------------------------------------------
 #
-# Three encounter sources the land format does not cover. Read for the audit
-# (species only); nothing writes them yet, their design is a later pass.
+# Three encounter sources the land format does not cover, read for the audit
+# (species only). Step 5 authored them; the writers are set_honey_tier,
+# set_marsh_lookout and set_daily on the file's own Area.
 
 
 def honey_tree_species(ref=None):

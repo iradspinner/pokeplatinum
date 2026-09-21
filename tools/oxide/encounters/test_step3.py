@@ -131,9 +131,11 @@ def main():
     for n in designed:
         a = model.load_area(n)
         tops[n] = A.table_metrics(a.slots)["top_share"]
-    results.append(("no designed table puts a species over 30% (Ian's cap is ~35)",
-                    all(t <= 0.30 + 1e-9 for t in tops.values()),
-                    ", ".join(f"{n.replace('encounters_', '')} {t:.2f}" for n, t in tops.items() if t > 0.30)))
+    results.append(("no designed table puts a species over 35% (Ian's cap), and the first two "
+                    "splits stay at or under 30",
+                    all(t <= 0.35 + 1e-9 for t in tops.values())
+                    and all(t <= 0.30 + 1e-9 for n, t in tops.items() if n in first_two),
+                    ", ".join(f"{n.replace('encounters_', '')} {t:.2f}" for n, t in tops.items() if t > 0.35)))
     listed = audit.on_list(root)
     leaks = []
     for n in designed:
@@ -165,12 +167,16 @@ def main():
                     ""))
     widths = {n: len(set(e["cast"]) | set(e.get("day") or []) | set(e.get("night") or []))
               for n, e in entries.items() if e.get("cast")}
-    results.append(("Kaizo's width: every designed table carries 8-16 distinct lines with day and night, "
-                    "and at least five different shapes are in use",
-                    all(8 <= w <= 16 for w in widths.values())
-                    and len({e["archetype"] for e in entries.values() if e.get("cast")}) >= 5,
-                    ", ".join(f"{n.replace('encounters_', '')} {w}" for n, w in widths.items() if not 8 <= w <= 16)))
-    rods = {n: e["old_rod"]["cast"] for n, e in entries.items() if e.get("old_rod")}
+    # The first two splits are Kaizo-wide; a room in a group (a chateau room,
+    # a marsh area, a cave floor) may run five to seven.
+    results.append(("Kaizo's width: the first two splits carry 8-16 distinct lines with day and night, "
+                    "every designed table 5-16, and at least seven shapes are in use",
+                    all(8 <= widths[n] <= 16 for n in first_two)
+                    and all(5 <= w <= 16 for w in widths.values())
+                    and len({e["archetype"] for e in entries.values() if e.get("cast")}) >= 7,
+                    ", ".join(f"{n.replace('encounters_', '')} {w}" for n, w in widths.items() if not 5 <= w <= 16)))
+    rods = {n: e["old_rod"]["cast"] for n, e in entries.items() if e.get("old_rod")
+            and (e.get("water_split") or e.get("split")) in ("Roark", "Gardenia")}
     results.append(("every Old Rod table in the two splits ends in a starter at 4% or 1%",
                     all(any(s in starters | {"SPECIES_POPPLIO", "SPECIES_FROAKIE"} for s in c[3:])
                         for c in rods.values()) and len(rods) == 14, f"{len(rods)} rod tables"))
@@ -205,7 +211,7 @@ def main():
                     and ("Gardenia", "Route 204") in rows["Scorbunny"]["captures"]
                     and rows["Squirtle"]["first_split"] == "Roark", ""))
     results.append(("a gate-tier starter appears as a tail or cameo and keeps its scripted source",
-                    rows["Charmander"]["tail"] == ["encounters_route_207"]
+                    "encounters_route_207" in rows["Charmander"]["tail"]
                     and "encounters_route_204_north" in rows["Treecko"]["cameo"]
                     and rows["Charmander"]["status"] == "non-wild", ""))
     results.append(("the caps are Ian's: Roark 16 through League 78",

@@ -51,8 +51,8 @@
         }
     ],
     "swarms": [
-        "SPECIES_ZUBAT",
-        "SPECIES_PSYDUCK"
+        "SPECIES_PONYTA",
+        "SPECIES_NIDORAN_M"
     ],
     "day": [
         "SPECIES_MAKUHITA",
@@ -63,10 +63,10 @@
         "SPECIES_NOSEPASS"
     ],
     "radar": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA",
+        "SPECIES_GOLBAT",
+        "SPECIES_NACLSTACK"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,51 +75,51 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_TORCHIC",
+        "SPECIES_TREECKO"
     ],
     "sapphire": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_TORCHIC",
+        "SPECIES_TREECKO"
     ],
     "emerald": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SEEDOT",
+        "SPECIES_SHROOMISH"
     ],
     "firered": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_VULPIX",
+        "SPECIES_KOFFING"
     ],
     "leafgreen": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SCYTHER",
+        "SPECIES_TENTACOOL"
     ],
     "surf_rate": 10,
     "surf_encounters": [
         {
-            "level_max": 30,
+            "level_max": 32,
             "level_min": 20,
-            "species": "SPECIES_KABUTO"
+            "species": "SPECIES_SHELLOS"
         },
         {
-            "level_max": 30,
+            "level_max": 32,
             "level_min": 20,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_JELLICENT"
         },
         {
-            "level_max": 40,
+            "level_max": 32,
             "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_FLOATZEL"
         },
         {
-            "level_max": 40,
+            "level_max": 32,
             "level_min": 20,
-            "species": "SPECIES_GOLDUCK"
+            "species": "SPECIES_BUIZEL"
         },
         {
-            "level_max": 40,
+            "level_max": 32,
             "level_min": 20,
-            "species": "SPECIES_RELICANTH"
+            "species": "SPECIES_POPPLIO"
         }
     ],
     "old_rod_rate": 100,
@@ -153,57 +153,57 @@
     "good_rod_rate": 50,
     "good_rod_encounters": [
         {
-            "level_max": 20,
+            "level_max": 22,
             "level_min": 15,
-            "species": "SPECIES_OMANYTE"
+            "species": "SPECIES_CHINCHOU"
         },
         {
-            "level_max": 20,
+            "level_max": 22,
             "level_min": 15,
-            "species": "SPECIES_ANORITH"
+            "species": "SPECIES_FRILLISH"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_LILEEP"
+            "level_max": 22,
+            "level_min": 15,
+            "species": "SPECIES_MAGIKARP"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_LILEEP"
+            "level_max": 22,
+            "level_min": 15,
+            "species": "SPECIES_GOLDEEN"
         },
         {
-            "level_max": 25,
-            "level_min": 10,
-            "species": "SPECIES_LILEEP"
+            "level_max": 22,
+            "level_min": 15,
+            "species": "SPECIES_POPPLIO"
         }
     ],
     "super_rod_rate": 75,
     "super_rod_encounters": [
         {
-            "level_max": 55,
+            "level_max": 42,
             "level_min": 30,
-            "species": "SPECIES_OMASTAR"
+            "species": "SPECIES_GYARADOS"
         },
         {
-            "level_max": 40,
+            "level_max": 42,
             "level_min": 30,
-            "species": "SPECIES_KABUTOPS"
+            "species": "SPECIES_JELLICENT"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_RELICANTH"
+            "level_max": 42,
+            "level_min": 30,
+            "species": "SPECIES_SEAKING"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_RELICANTH"
+            "level_max": 42,
+            "level_min": 30,
+            "species": "SPECIES_WHISCASH"
         },
         {
-            "level_max": 55,
-            "level_min": 40,
-            "species": "SPECIES_RELICANTH"
+            "level_max": 42,
+            "level_min": 30,
+            "species": "SPECIES_WARTORTLE"
         }
     ],
     "map_category": {

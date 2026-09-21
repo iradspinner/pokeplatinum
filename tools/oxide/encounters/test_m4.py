@@ -254,15 +254,19 @@ def check_lines_dupe_out(results):
     results.append(("slot odds match the merged view",
                     abs(sum(s["odds"] for s in d["slots"]) - 1.0) < 1e-9, ""))
 
-    n = get("/api/area/encounters_route_222?kind=land")
-    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_LUXIO"]
+    # Every authored land table holds first stages only, so the evolved line
+    # member to find is on a Super Rod table: Gyarados in Twinleaf's water,
+    # duped out by a Magikarp caught on Lake Verity's Old Rod.
+    post("/api/caught", {"area": "encounters_lake_verity", "species": "SPECIES_MAGIKARP"})
+    n = get("/api/area/encounters_twinleaf_town?kind=super_rod")
+    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_GYARADOS"]
     results.append(("an uncaught line member reads as duped",
                     bool(staravia) and staravia[0]["duped"]
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
-                    bool(staravia) and staravia[0]["caught_at"] == "route 201"
-                    and staravia[0]["via"] == "Shinx",
+                    bool(staravia) and staravia[0]["caught_at"] == "lake verity"
+                    and staravia[0]["via"] == "Magikarp",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))
     d201 = get("/api/area/encounters_route_201?kind=land")

@@ -51,8 +51,8 @@
         }
     ],
     "swarms": [
-        "SPECIES_BRONZOR",
-        "SPECIES_GEODUDE"
+        "SPECIES_GLIGAR",
+        "SPECIES_VULPIX"
     ],
     "day": [
         "SPECIES_MAKUHITA",
@@ -63,10 +63,10 @@
         "SPECIES_BRONZOR"
     ],
     "radar": [
-        "SPECIES_MACHOP",
-        "SPECIES_MEDITITE",
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_GOLBAT",
+        "SPECIES_PROBOPASS"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_TORCHIC",
+        "SPECIES_SEEDOT"
     ],
     "sapphire": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_TORCHIC",
+        "SPECIES_SEEDOT"
     ],
     "emerald": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SHROOMISH",
+        "SPECIES_RALTS"
     ],
     "firered": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_GOLDEEN",
+        "SPECIES_MAGIKARP"
     ],
     "leafgreen": [
-        "SPECIES_ZUBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_ONIX",
+        "SPECIES_KOFFING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

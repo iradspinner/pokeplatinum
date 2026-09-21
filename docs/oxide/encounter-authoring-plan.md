@@ -75,6 +75,23 @@ so they are not re-decided.
 > The corridor in the steps below now means the first two splits. Details and
 > numbers are in the build plan's Step 3 entry. Two suites cannot run at once:
 > `test_step0` rewrites shared files under a restore.
+>
+> **Step 4 written, 2026-09-21.** Ian approved the first two splits' feel and the
+> rest of the game followed the same way: the remaining 152 land tables by split,
+> and every water table (surf from Byron's split, Good Rod from Maylene's, Super
+> Rod from Candice's, Old Rod everywhere), 198 water tables over 53 areas, with
+> the plan's homes kept, the delays paid (Route 210 north, Route 211 east) and the
+> cap-candidates list worked through (three left for Ian: Snorunt, Snover,
+> Larvesta). R8's spread floor is 1.8x now, since the cap flattens every table.
+> Numbers in the build plan's Step 4 entry.
+>
+> **Step 5 done, 2026-09-21.** An Opus subagent on this track's brief filled
+> every remaining key from the list (swarms, radar, the five dual-slot lists, the
+> day and night residue, the twelve rate-zero land tables, the honey trees, the
+> marsh lookout, the garden dailies) through new `model.py` writers; `cli audit
+> --fail-on-leak` exits 0 with 7046 references and none off-list outside scripts.
+> Steps 6 (build and verify) and 7 (reservations, moot since element 3) remain;
+> the merge into `oxide` is the gate.
 
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);

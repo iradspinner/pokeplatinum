@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 20,
-            "species": "SPECIES_BALTOY"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 21,
-            "species": "SPECIES_XATU"
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_NOSEPASS"
         },
         {
             "level": 22,
-            "species": "SPECIES_BALTOY"
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_SINISTEA"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_SINISTEA"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_HIPPOPOTAS"
         },
         {
             "level": 23,
-            "species": "SPECIES_MAWILE"
+            "species": "SPECIES_LITWICK"
         },
         {
-            "level": 24,
-            "species": "SPECIES_ANORITH"
-        },
-        {
-            "level": 25,
-            "species": "SPECIES_LILEEP"
-        },
-        {
-            "level": 26,
-            "species": "SPECIES_ANORITH"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_OMANYTE"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_TORKOAL"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_MAWILE"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_STANTLER"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_STANTLER"
+            "level": 23,
+            "species": "SPECIES_HIPPOPOTAS"
         }
     ],
     "swarms": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_DWEBBLE",
+        "SPECIES_SCYTHER"
     ],
     "day": [
-        "SPECIES_BALTOY",
-        "SPECIES_MAWILE"
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_BALTOY",
-        "SPECIES_MAWILE"
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
     ],
     "radar": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_PROBOPASS",
+        "SPECIES_GRAVELER",
+        "SPECIES_STEELIX",
+        "SPECIES_POLTEAGEIST"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 7,
     "ruby": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_MARSHTOMP",
+        "SPECIES_MILOTIC"
     ],
     "sapphire": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_MARSHTOMP",
+        "SPECIES_MILOTIC"
     ],
     "emerald": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_SHARPEDO",
+        "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_CHARMANDER"
     ],
     "leafgreen": [
-        "SPECIES_UNOWN",
-        "SPECIES_UNOWN"
+        "SPECIES_PONYTA",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

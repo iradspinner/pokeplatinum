@@ -75,7 +75,9 @@ DEFAULT_THRESHOLDS = {
     "r6_max_singleton_rungs": 1,
     "r6_top_rung_min": 2,
     "r6_top_rung_max": 4,
-    "r8_spread_min": 2.2,
+    # 2.2 was vanilla's spread with its concentrated early routes; under
+    # Ian's cap (2026-09-21) every table is flat, so the floor is 1.8.
+    "r8_spread_min": 1.8,
     "r9_signatures_per_table_min": 0.35,
     "r10_budget_tolerance": 0.05,
     "r11_top_share_max": 0.35,

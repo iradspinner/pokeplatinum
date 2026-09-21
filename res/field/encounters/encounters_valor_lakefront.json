@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 26,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
             "level": 25,
-            "species": "SPECIES_PONYTA"
+            "species": "SPECIES_SWABLU"
         },
         {
             "level": 26,
-            "species": "SPECIES_GIRAFARIG"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_PINSIR"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_GROWLITHE"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_VULPIX"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_HOUNDOUR"
         },
         {
             "level": 26,
             "species": "SPECIES_PONYTA"
         },
         {
-            "level": 28,
-            "species": "SPECIES_GROWLITHE"
+            "level": 26,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 27,
-            "species": "SPECIES_VULPIX"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_TORKOAL"
+            "species": "SPECIES_MINCCINO"
         },
         {
             "level": 27,
-            "species": "SPECIES_TORKOAL"
+            "species": "SPECIES_GLAMEOW"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_SKITTY"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_BUNEARY"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_PACHIRISU"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_EMOLGA"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_LITTEN"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_SPRIGATITO"
         }
     ],
     "swarms": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_ALTARIA",
+        "SPECIES_SANDYGAST"
     ],
     "day": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_PINSIR"
+        "SPECIES_FLETCHLING",
+        "SPECIES_ROOKIDEE"
     ],
     "night": [
-        "SPECIES_STANTLER",
-        "SPECIES_NOCTOWL"
+        "SPECIES_ABSOL",
+        "SPECIES_PURRLOIN"
     ],
     "radar": [
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA",
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA"
+        "SPECIES_ALTARIA",
+        "SPECIES_HOUNDOOM",
+        "SPECIES_RAPIDASH",
+        "SPECIES_CINCCINO"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_SHARPEDO",
+        "SPECIES_SOLROCK"
     ],
     "sapphire": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_SHARPEDO",
+        "SPECIES_SOLROCK"
     ],
     "emerald": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_WHISCASH",
+        "SPECIES_LOMBRE"
     ],
     "firered": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_KOFFING",
+        "SPECIES_CHARMANDER"
     ],
     "leafgreen": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_RHYHORN",
+        "SPECIES_EEVEE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

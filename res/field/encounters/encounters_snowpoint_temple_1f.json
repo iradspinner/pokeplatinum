@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_SNORUNT"
         },
         {
             "level": 48,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_GOLBAT"
-        },
-        {
-            "level": 50,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 48,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_SNOM"
+        },
+        {
+            "level": 48,
+            "species": "SPECIES_SNOM"
         },
         {
             "level": 49,
             "species": "SPECIES_SNEASEL"
         },
         {
-            "level": 47,
-            "species": "SPECIES_SMOOCHUM"
+            "level": 49,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 49,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_SNORUNT"
         },
         {
             "level": 49,
-            "species": "SPECIES_SMOOCHUM"
-        },
-        {
-            "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "species": "SPECIES_SNEASEL"
         },
         {
             "level": 49,
-            "species": "SPECIES_SMOOCHUM"
+            "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 47,
-            "species": "SPECIES_GOLBAT"
+            "level": 49,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_KLEFKI"
         }
     ],
     "swarms": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_GLALIE",
+        "SPECIES_CARBINK"
     ],
     "day": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GOLBAT"
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
     ],
     "radar": [
+        "SPECIES_GLALIE",
         "SPECIES_GOLBAT",
-        "SPECIES_SNEASEL",
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_FROSMOTH",
+        "SPECIES_WEAVILE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_LUNATONE",
+        "SPECIES_MARSHTOMP"
     ],
     "sapphire": [
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_LUNATONE",
+        "SPECIES_MARSHTOMP"
     ],
     "emerald": [
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "firered": [
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_WARTORTLE",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_SMOOCHUM",
-        "SPECIES_GOLBAT"
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_GALARIAN_WEEZING"
     ],
     "surf_rate": 0,
     "surf_encounters": [

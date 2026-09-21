@@ -244,7 +244,9 @@ SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
 DEFAULT_CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 38,
                 "Wake": 44, "Byron": 53, "Candice": 56, "Volkner": 62,
                 "League": 78, "Post": None}
-RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice"}
+RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice",
+        # Surf is the HM from Celestic Town, after Wake
+        "surf": "Byron"}
 
 # An area whose water is reachable before its grass: Route 218's fishing
 # spot is a step west of Jubilife, its grass across the water by Canalave.
@@ -373,7 +375,7 @@ def cap_of(sidecar, split):
 
 
 def rod_split(sidecar, kind):
-    """The split a rod kind (old_rod, good_rod, super_rod) arrives in; surf
-    is not gated here (it is an HM, tracked by the area's own split)."""
+    """The split a water kind arrives in: the three rods and Surf (the HM
+    from Celestic Town, so Byron's split)."""
     rods = ((sidecar or {}).get("splits") or {}).get("rods") or RODS
     return rods.get(kind)

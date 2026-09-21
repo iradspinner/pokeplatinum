@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 18,
-            "species": "SPECIES_SPINDA"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_SANDSLASH"
-        },
-        {
             "level": 17,
-            "species": "SPECIES_WHISMUR"
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 19,
-            "species": "SPECIES_NIDORINO"
+            "species": "SPECIES_DWEBBLE"
         },
         {
-            "level": 20,
-            "species": "SPECIES_ARON"
+            "level": 19,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_GIBLE"
         },
         {
             "level": 20,
             "species": "SPECIES_ONIX"
         },
         {
-            "level": 19,
-            "species": "SPECIES_SPINDA"
-        },
-        {
             "level": 20,
-            "species": "SPECIES_MAWILE"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_GIBLE"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_SLAKOTH"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_GIBLE"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_JOLTIK"
         }
     ],
     "swarms": [
-        "SPECIES_BRONZOR",
-        "SPECIES_GEODUDE"
+        "SPECIES_LARVITAR",
+        "SPECIES_GLIGAR"
     ],
     "day": [
-        "SPECIES_WHISMUR",
-        "SPECIES_NIDORINO"
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_DUNSPARCE",
-        "SPECIES_NIDORINA"
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
     ],
     "radar": [
-        "SPECIES_BRONZOR",
-        "SPECIES_ONIX",
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_BRONZONG",
+        "SPECIES_GOLBAT",
+        "SPECIES_STEELIX",
+        "SPECIES_CRUSTLE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_CARVANHA",
+        "SPECIES_TREECKO"
     ],
     "sapphire": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_CARVANHA",
+        "SPECIES_TREECKO"
     ],
     "emerald": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_FEEBAS",
+        "SPECIES_LOMBRE"
     ],
     "firered": [
-        "SPECIES_GEODUDE",
-        "SPECIES_ONIX"
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_SANDSHREW",
-        "SPECIES_SANDSHREW"
+        "SPECIES_TENTACRUEL",
+        "SPECIES_CHARMANDER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

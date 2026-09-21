@@ -1,26 +1,26 @@
 {
     "common": [
         "SPECIES_COMBEE",
-        "SPECIES_WURMPLE",
-        "SPECIES_BURMY",
-        "SPECIES_CHERUBI",
-        "SPECIES_AIPOM",
-        "SPECIES_AIPOM"
+        "SPECIES_SEWADDLE",
+        "SPECIES_GRUBBIN",
+        "SPECIES_COMBEE",
+        "SPECIES_SEWADDLE",
+        "SPECIES_GRUBBIN"
     ],
     "uncommon": [
-        "SPECIES_BURMY",
-        "SPECIES_CHERUBI",
         "SPECIES_COMBEE",
-        "SPECIES_AIPOM",
-        "SPECIES_AIPOM",
+        "SPECIES_HERACROSS",
+        "SPECIES_COMBEE",
+        "SPECIES_HERACROSS",
+        "SPECIES_COMBEE",
         "SPECIES_HERACROSS"
     ],
     "rare": [
-        "SPECIES_MUNCHLAX",
-        "SPECIES_MUNCHLAX",
-        "SPECIES_MUNCHLAX",
-        "SPECIES_MUNCHLAX",
-        "SPECIES_MUNCHLAX",
-        "SPECIES_MUNCHLAX"
+        "SPECIES_ROWLET",
+        "SPECIES_SNIVY",
+        "SPECIES_SPRIGATITO",
+        "SPECIES_ROWLET",
+        "SPECIES_SNIVY",
+        "SPECIES_SPRIGATITO"
     ]
 }

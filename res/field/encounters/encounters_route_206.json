@@ -3,70 +3,70 @@
     "land_encounters": [
         {
             "level": 16,
-            "species": "SPECIES_NUZLEAF"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_PHANPY"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_FLAAFFY"
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 17,
-            "species": "SPECIES_SPEAROW"
+            "species": "SPECIES_PONYTA"
         },
         {
-            "level": 16,
+            "level": 17,
             "species": "SPECIES_STUNKY"
         },
         {
             "level": 17,
-            "species": "SPECIES_STARAVIA"
+            "species": "SPECIES_DWEBBLE"
         },
         {
             "level": 18,
-            "species": "SPECIES_SLAKOTH"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 18,
-            "species": "SPECIES_GLIGAR"
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_SALANDIT"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_JOLTIK"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_ROOKIDEE"
         },
         {
             "level": 19,
-            "species": "SPECIES_PONYTA"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_DODUO"
+            "species": "SPECIES_CHARMANDER"
         },
         {
             "level": 19,
-            "species": "SPECIES_GIRAFARIG"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_FURRET"
+            "species": "SPECIES_SCORBUNNY"
         }
     ],
     "swarms": [
-        "SPECIES_LARVITAR",
-        "SPECIES_LARVITAR"
+        "SPECIES_CARBINK",
+        "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_FLAAFFY",
-        "SPECIES_SPEAROW"
+        "SPECIES_FLETCHLING",
+        "SPECIES_STUNKY"
     ],
     "night": [
-        "SPECIES_LUXIO",
-        "SPECIES_SPEAROW"
+        "SPECIES_STUNKY",
+        "SPECIES_HOUNDOUR"
     ],
     "radar": [
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY"
+        "SPECIES_GLISCOR",
+        "SPECIES_RAPIDASH",
+        "SPECIES_SKUNTANK",
+        "SPECIES_CRUSTLE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_MASQUERAIN",
+        "SPECIES_CARVANHA"
     ],
     "firered": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_KOFFING",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_TENTACOOL",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

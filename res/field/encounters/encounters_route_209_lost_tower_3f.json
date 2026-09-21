@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 18,
-            "species": "SPECIES_WHISMUR"
+            "level": 17,
+            "species": "SPECIES_YAMASK"
         },
         {
-            "level": 17,
-            "species": "SPECIES_DROWZEE"
+            "level": 18,
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 19,
-            "species": "SPECIES_CUBONE"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_KECLEON"
-        },
-        {
-            "level": 18,
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 17,
-            "species": "SPECIES_STUNKY"
+            "level": 19,
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 19,
-            "species": "SPECIES_EKANS"
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_GOTHITA"
         },
         {
             "level": 20,
-            "species": "SPECIES_ARBOK"
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 20,
-            "species": "SPECIES_GRIMER"
-        },
-        {
-            "level": 20,
-            "species": "SPECIES_MUK"
-        },
-        {
-            "level": 20,
-            "species": "SPECIES_NATU"
-        },
-        {
-            "level": 20,
-            "species": "SPECIES_NATU"
+            "species": "SPECIES_GOTHITA"
         }
     ],
     "swarms": [
-        "SPECIES_GASTLY",
-        "SPECIES_ZUBAT"
+        "SPECIES_KLEFKI",
+        "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_CUBONE",
-        "SPECIES_KECLEON"
+        "SPECIES_ZUBAT",
+        "SPECIES_LITWICK"
     ],
     "night": [
-        "SPECIES_VILEPLUME",
-        "SPECIES_GLOOM"
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
     ],
     "radar": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_COFAGRIGUS",
+        "SPECIES_DUSCLOPS",
+        "SPECIES_LAMPENT",
+        "SPECIES_GOLBAT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "sapphire": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RALTS",
+        "SPECIES_SWABLU"
     ],
     "emerald": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_MASQUERAIN",
+        "SPECIES_CARVANHA"
     ],
     "firered": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_KOFFING",
+        "SPECIES_SCYTHER"
     ],
     "leafgreen": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_TENTACOOL",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "surf_rate": 0,
     "surf_encounters": [

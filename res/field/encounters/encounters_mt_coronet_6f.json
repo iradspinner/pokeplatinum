@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 36,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
             "level": 37,
-            "species": "SPECIES_BRONZONG"
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 38,
-            "species": "SPECIES_ELECTRODE"
+            "species": "SPECIES_MIENFOO"
         },
         {
-            "level": 37,
-            "species": "SPECIES_LUXRAY"
+            "level": 38,
+            "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 36,
-            "species": "SPECIES_SOLROCK"
+            "level": 38,
+            "species": "SPECIES_JANGMO_O"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_BRONZOR"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_LARVITAR"
         },
         {
             "level": 39,
-            "species": "SPECIES_GOLEM"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 39,
-            "species": "SPECIES_PROBOPASS"
-        },
-        {
-            "level": 36,
-            "species": "SPECIES_DONPHAN"
-        },
-        {
-            "level": 37,
-            "species": "SPECIES_STEELIX"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_CROBAT"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_CLAYDOL"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_RHYPERIOR"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_GARDEVOIR"
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [
-        "SPECIES_BRONZONG",
-        "SPECIES_GRAVELER"
+        "SPECIES_HAKAMO_O",
+        "SPECIES_DHELMISE"
     ],
     "day": [
-        "SPECIES_LUXRAY",
-        "SPECIES_SOLROCK"
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
     ],
     "night": [
-        "SPECIES_CLEFAIRY",
-        "SPECIES_LUNATONE"
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
     ],
     "radar": [
-        "SPECIES_MACHOKE",
-        "SPECIES_MEDICHAM",
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_HAKAMO_O",
+        "SPECIES_BRONZONG",
+        "SPECIES_NACLSTACK",
+        "SPECIES_MIENSHAO"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SOLROCK",
-        "SPECIES_SOLROCK"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "sapphire": [
-        "SPECIES_LUNATONE",
-        "SPECIES_LUNATONE"
+        "SPECIES_MILOTIC",
+        "SPECIES_SHARPEDO"
     ],
     "emerald": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_WHISCASH"
     ],
     "firered": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_EEVEE",
+        "SPECIES_GALARIAN_MR_MIME"
     ],
     "leafgreen": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_SCYTHER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

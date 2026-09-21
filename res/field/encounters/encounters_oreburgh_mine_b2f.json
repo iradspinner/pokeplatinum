@@ -51,8 +51,8 @@
         }
     ],
     "swarms": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_BUDEW",
+        "SPECIES_WOOPER"
     ],
     "day": [
         "SPECIES_NOSEPASS",
@@ -63,10 +63,10 @@
         "SPECIES_GEODUDE"
     ],
     "radar": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_STEELIX",
+        "SPECIES_DONPHAN",
+        "SPECIES_NACLSTACK",
+        "SPECIES_PROBOPASS"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_LUVDISC",
+        "SPECIES_BARBOACH"
     ],
     "sapphire": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_LUVDISC",
+        "SPECIES_BARBOACH"
     ],
     "emerald": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_CORPHISH",
+        "SPECIES_FEEBAS"
     ],
     "firered": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_CHARMANDER",
+        "SPECIES_PONYTA"
     ],
     "leafgreen": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_SQUIRTLE",
+        "SPECIES_GOLDEEN"
     ],
     "surf_rate": 0,
     "surf_encounters": [

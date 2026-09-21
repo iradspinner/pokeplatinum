@@ -9,7 +9,7 @@
     "r6_max_singleton_rungs": 1,
     "r6_top_rung_min": 2,
     "r6_top_rung_max": 4,
-    "r8_spread_min": 2.2,
+    "r8_spread_min": 1.8,
     "r9_signatures_per_table_min": 0.35,
     "r10_budget_tolerance": 0.05,
     "r13_share_span_min": 4.0,
@@ -74,13 +74,31 @@
   },
   "areas": {
     "encounters_acuity_lakefront": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "The lakefront above Snowpoint: Sneasel's home at 35 with Alolan Ninetales at 20, Absol a 4%.",
       "locked": [],
       "base_level": 32,
       "order": 98,
-      "split": "Candice"
+      "split": "Candice",
+      "cast": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_SNOVER",
+        "SPECIES_SWINUB",
+        "SPECIES_SNOM",
+        "SPECIES_SNORUNT",
+        "SPECIES_ABSOL",
+        "SPECIES_GALARIAN_MR_MIME"
+      ],
+      "day": [
+        "SPECIES_SNOM",
+        "SPECIES_SWINUB"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_eterna_forest": {
       "archetype": "A18",
@@ -110,139 +128,860 @@
       "split": "Gardenia"
     },
     "encounters_fuego_ironworks_outside": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The ironworks' yard: Magby and Joltik at home, Litten at 10, Charcadet a 4% ember before Stark Mountain, two fire starters as 1%s.",
       "locked": [],
       "base_level": 28,
       "order": 82,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_MAGBY",
+        "SPECIES_JOLTIK",
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_SLUGMA",
+        "SPECIES_LITTEN",
+        "SPECIES_KOFFING",
+        "SPECIES_RHYHORN",
+        "SPECIES_SALANDIT",
+        "SPECIES_CHARCADET",
+        "SPECIES_NACLI",
+        "SPECIES_CHARMANDER",
+        "SPECIES_TORCHIC"
+      ],
+      "day": [
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX"
+      ],
+      "night": [
+        "SPECIES_HOUNDOUR",
+        "SPECIES_LITWICK"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_great_marsh_1": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night.",
       "locked": [],
       "base_level": 28,
       "order": 70,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_WOOPER",
+        "SPECIES_CROAGUNK",
+        "SPECIES_LOTAD",
+        "SPECIES_YANMA",
+        "SPECIES_SKORUPI",
+        "SPECIES_DEWPIDER",
+        "SPECIES_SURSKIT",
+        "SPECIES_SHROOMISH"
+      ],
+      "day": [
+        "SPECIES_LOTAD",
+        "SPECIES_SURSKIT"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_MAGIKARP",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SHARPEDO",
+          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_ARAQUANID",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_DEWPIDER",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_FRILLISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_great_marsh_2": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Area two: Croagunk leads, six lines.",
       "locked": [],
       "base_level": 28,
       "order": 71,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_WOOPER",
+        "SPECIES_YANMA",
+        "SPECIES_LOTAD",
+        "SPECIES_SKORUPI",
+        "SPECIES_DEWPIDER"
+      ],
+      "day": [
+        "SPECIES_SURSKIT",
+        "SPECIES_LOTAD"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_SKORUPI"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_MAGIKARP",
+          "SPECIES_LOTAD",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_SURSKIT",
+          "SPECIES_DEWPIDER",
+          "SPECIES_FRILLISH",
+          "SPECIES_CORPHISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_ARAQUANID",
+          "SPECIES_JELLICENT",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_QUAGSIRE",
+          "SPECIES_FRILLISH",
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_great_marsh_3": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Area three, Croagunk's home: three co-equal in the reeds.",
       "locked": [],
       "base_level": 27,
       "order": 72,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_WOOPER",
+        "SPECIES_DEWPIDER",
+        "SPECIES_YANMA",
+        "SPECIES_SURSKIT",
+        "SPECIES_SHROOMISH"
+      ],
+      "day": [
+        "SPECIES_YANMA",
+        "SPECIES_LOTAD"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CARVANHA",
+          "SPECIES_MAGIKARP",
+          "SPECIES_LOTAD",
+          "SPECIES_GOLDEEN",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_DEWPIDER",
+          "SPECIES_FRILLISH",
+          "SPECIES_CORPHISH",
+          "SPECIES_BARBOACH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LUDICOLO",
+          "SPECIES_ARAQUANID",
+          "SPECIES_JELLICENT",
+          "SPECIES_GYARADOS",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_DEWPIDER",
+          "SPECIES_FRILLISH",
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_great_marsh_4": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "mid",
-      "intent": "",
+      "intent": "Area four: the spread, nobody over 25.",
       "locked": [],
       "base_level": 27,
       "order": 73,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_WOOPER",
+        "SPECIES_DEWPIDER",
+        "SPECIES_CROAGUNK",
+        "SPECIES_YANMA",
+        "SPECIES_SHROOMISH",
+        "SPECIES_SKORUPI"
+      ],
+      "day": [
+        "SPECIES_LOTAD",
+        "SPECIES_SURSKIT"
+      ],
+      "night": [
+        "SPECIES_SKORUPI",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_LOTAD",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_CORPHISH",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_ARAQUANID",
+          "SPECIES_JELLICENT",
+          "SPECIES_GYARADOS",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_LOMBRE",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_ARAQUANID",
+          "SPECIES_WOOPER",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_great_marsh_5": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "mid",
-      "intent": "",
+      "intent": "Area five, Yanma's home: the broad shape, eight lines.",
       "locked": [],
       "base_level": 26,
       "order": 74,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_YANMA",
+        "SPECIES_WOOPER",
+        "SPECIES_CROAGUNK",
+        "SPECIES_LOTAD",
+        "SPECIES_SKORUPI",
+        "SPECIES_DEWPIDER",
+        "SPECIES_SURSKIT",
+        "SPECIES_SHROOMISH"
+      ],
+      "day": [
+        "SPECIES_LOTAD",
+        "SPECIES_YANMA"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_LOTAD",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_LOTAD",
+          "SPECIES_CORPHISH",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_JELLICENT",
+          "SPECIES_GYARADOS",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_WHISCASH",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_LOTAD",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_ARAQUANID",
+          "SPECIES_WOOPER",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_great_marsh_6": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "mid",
-      "intent": "",
+      "intent": "Area six: the marsh shape itself, three co-equal faces.",
       "locked": [],
       "base_level": 26,
       "order": 75,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_YANMA",
+        "SPECIES_WOOPER",
+        "SPECIES_CROAGUNK",
+        "SPECIES_LOTAD",
+        "SPECIES_SHROOMISH"
+      ],
+      "day": [
+        "SPECIES_SURSKIT",
+        "SPECIES_DEWPIDER"
+      ],
+      "night": [
+        "SPECIES_SKORUPI",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_LOTAD",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_GYARADOS",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_WHISCASH",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_ARAQUANID",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_iron_island_1f": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Iron Island's first floor, Togedemaru's home: the iron lines, eight deep.",
       "locked": [],
       "base_level": 30,
       "order": 86,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_ONIX",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_FERROSEED",
+        "SPECIES_KLEFKI",
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_iron_island_b1f_left_room": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "B1F left: Onix leads, six lines.",
       "locked": [],
       "base_level": 30,
       "order": 87,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_FERROSEED",
+        "SPECIES_MAKUHITA",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_iron_island_b1f_right_room": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "B1F right: three co-equal, Klefki and Carbink behind.",
       "locked": [],
       "base_level": 30,
       "order": 88,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_BRONZOR",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK"
+      ]
     },
     "encounters_iron_island_b2f_left_room": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "B2F left, Lunatone's home at 35: the moon room.",
       "locked": [],
       "base_level": 30,
       "order": 90,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_LUNATONE",
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_BRONZOR",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_iron_island_b2f_right_room": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "B2F right, Solrock's home at 35: the sun room.",
       "locked": [],
       "base_level": 30,
       "order": 89,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_SOLROCK",
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_BRONZOR",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_iron_island_b3f": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "The bottom of Iron Island, Beldum's home at 35: the reason to go down with Riley, Larvitar and Gible in the tail.",
       "locked": [],
       "base_level": 30,
       "order": 91,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_BELDUM",
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_FERROSEED",
+        "SPECIES_KLEFKI",
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_LARVITAR",
+        "SPECIES_GIBLE"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK"
+      ]
     },
     "encounters_lake_acuity": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Lake Acuity's shore: six cold lines, Galarian Mr. Mime dancing on the ice at 15.",
       "locked": [],
       "base_level": 38,
       "order": 99,
-      "split": "Candice"
+      "split": "Candice",
+      "cast": [
+        "SPECIES_SNORUNT",
+        "SPECIES_ABSOL",
+        "SPECIES_SNOM",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_SNOVER",
+        "SPECIES_SNEASEL"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_ALOLAN_NINETALES"
+      ],
+      "night": [
+        "SPECIES_ABSOL",
+        "SPECIES_SNEASEL"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          16,
+          22
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          28,
+          38
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_GYARADOS",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          38,
+          52
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FRILLISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          34,
+          46
+        ]
+      }
     },
     "encounters_lake_valor": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "The drained lake, Absol's home at 35: disaster's omen at the crater, Gothita and Vullaby watching.",
       "locked": [],
       "base_level": 38,
       "order": 95,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_ABSOL",
+        "SPECIES_GOTHITA",
+        "SPECIES_VULLABY",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_SWABLU",
+        "SPECIES_GLAMEOW",
+        "SPECIES_SNEASEL",
+        "SPECIES_LITTEN"
+      ],
+      "day": [
+        "SPECIES_MINCCINO",
+        "SPECIES_BUNEARY"
+      ],
+      "night": [
+        "SPECIES_ABSOL",
+        "SPECIES_PURRLOIN"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_GOLDEEN",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_lake_verity": {
       "archetype": "A15",
@@ -281,6 +1020,45 @@
         "levels": [
           3,
           7
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
+          "SPECIES_CORPHISH",
+          "SPECIES_FLOATZEL",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          32
         ]
       }
     },
@@ -322,16 +1100,71 @@
           3,
           7
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
+          "SPECIES_CORPHISH",
+          "SPECIES_FLOATZEL",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          32
+        ]
       }
     },
     "encounters_maniac_tunnel": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "The Ruin Maniac's tunnel: Hippopotas's home in the sand, Ferroseed at 10 by the cap rule.",
       "locked": [],
       "base_level": 21,
       "order": 64,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_DWEBBLE",
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI",
+        "SPECIES_FERROSEED",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_mt_coronet_1f_north_room_1": {
       "archetype": "A14",
@@ -359,193 +1192,645 @@
       ]
     },
     "encounters_mt_coronet_1f_north_room_2": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "The second north room: six lines, Glimmet at 15.",
       "locked": [],
       "base_level": 32,
       "order": 101,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_GLIMMET",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_mt_coronet_1f_south": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "mid",
-      "intent": "",
+      "intent": "Mt. Coronet's south entrance: Glimmet's home in the ore, eight lines, the mountain's core cast at a fifth each.",
       "locked": [],
       "base_level": 17,
       "order": 36,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_GLIMMET",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_CARBINK",
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          8,
+          15
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          16,
+          26
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          32,
+          45
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_FRILLISH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          24,
+          36
+        ]
+      }
     },
     "encounters_mt_coronet_1f_tunnel_room": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The tunnel room on the climb: eight lines, Larvitar at 10.",
       "locked": [],
       "base_level": 36,
       "order": 100,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_CARBINK",
+        "SPECIES_LARVITAR",
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT",
+        "SPECIES_GLIMMET"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_mt_coronet_2f": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "Second floor: three co-equal, Larvitar and Ferroseed behind.",
       "locked": [],
       "base_level": 36,
       "order": 103,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_GLIMMET",
+        "SPECIES_LARVITAR",
+        "SPECIES_FERROSEED"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_mt_coronet_3f": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Third floor: eight lines, the dragons in the tail.",
       "locked": [],
       "base_level": 36,
       "order": 104,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_CARBINK",
+        "SPECIES_KLEFKI",
+        "SPECIES_GLIMMET",
+        "SPECIES_LARVITAR",
+        "SPECIES_JANGMO_O"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_mt_coronet_4f_room_3": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Fourth floor, room three: Carbink leads, Goomy at 15.",
       "locked": [],
       "base_level": 36,
       "order": 107,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_GOOMY",
+        "SPECIES_MIENFOO",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Fourth floor, the paired rooms: Bronzor at 35, the cap's edge.",
       "locked": [],
       "base_level": 36,
       "order": 106,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_GLIMMET",
+        "SPECIES_FERROSEED"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_mt_coronet_5f": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Fifth floor, Jangmo-o's home at 35: the dragon floor under the summit.",
       "locked": [],
       "base_level": 36,
       "order": 109,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_JANGMO_O",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_LARVITAR",
+        "SPECIES_KLEFKI",
+        "SPECIES_GOOMY",
+        "SPECIES_GIBLE"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_mt_coronet_6f": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "The last floor before Spear Pillar: Jangmo-o co-equal with the mountain's core.",
       "locked": [],
       "base_level": 36,
       "order": 110,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_JANGMO_O",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_MIENFOO",
+        "SPECIES_KLEFKI",
+        "SPECIES_LARVITAR"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_mt_coronet_b1f": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor.",
       "locked": [],
       "base_level": 32,
       "order": 102,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_GOOMY",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_CARBINK",
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI",
+        "SPECIES_LARVITAR",
+        "SPECIES_JANGMO_O"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_FEEBAS",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          18,
+          24
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FRILLISH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          30,
+          40
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_GYARADOS",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          40,
+          54
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FRILLISH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          36,
+          48
+        ]
+      }
     },
     "encounters_mt_coronet_outside_north": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The snowy ledge on the north face: eight cold lines.",
       "locked": [],
       "base_level": 36,
       "order": 108,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_SNOVER",
+        "SPECIES_SNOM",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_MIENFOO",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_SNEASEL",
+        "SPECIES_SWINUB",
+        "SPECIES_ABSOL"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_mt_coronet_outside_south": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The snowy ledge on the south face: the cold cast, twelve lines, the two dragons as 1%s.",
       "locked": [],
       "base_level": 36,
       "order": 105,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_SNOVER",
+        "SPECIES_SNOM",
+        "SPECIES_MIENFOO",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_NACLI",
+        "SPECIES_SNEASEL",
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_ABSOL",
+        "SPECIES_LARVITAR",
+        "SPECIES_GIBLE"
+      ],
+      "day": [
+        "SPECIES_SNOM",
+        "SPECIES_SWINUB"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_SNORUNT"
+      ]
     },
     "encounters_old_chateau": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "The haunted house's hall, Sinistea's home: teacups and candles, the graveyard ghosts behind them, a cat at night.",
       "locked": [],
       "base_level": 14,
       "order": 20,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
+      ]
     },
     "encounters_old_chateau_back_east_room": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "The back east room: teacups again, the cat by night.",
       "locked": [],
       "base_level": 14,
       "order": 28,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_PURRLOIN"
+      ]
     },
     "encounters_old_chateau_back_middle_east_room": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Back middle east: three co-equal again, in a different order.",
       "locked": [],
       "base_level": 14,
       "order": 27,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_YAMASK",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_ZUBAT",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_old_chateau_back_middle_room": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "The middle room with the television, Litwick's home.",
       "locked": [],
       "base_level": 14,
       "order": 26,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK"
+      ],
+      "night": [
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL"
+      ]
     },
     "encounters_old_chateau_back_middle_west_room": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Back middle west: Duskull leads for once.",
       "locked": [],
       "base_level": 14,
       "order": 25,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK",
+        "SPECIES_PURRLOIN",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
+      ]
     },
     "encounters_old_chateau_back_west_room": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "The back west room: Yamask's corner of the house.",
       "locked": [],
       "base_level": 14,
       "order": 24,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
+      ]
     },
     "encounters_old_chateau_corridor": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "The corridor: candles lead.",
       "locked": [],
       "base_level": 14,
       "order": 23,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_old_chateau_dining_area": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "The dining room: candles on the table, six lines, none over 25.",
       "locked": [],
       "base_level": 14,
       "order": 21,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK",
+        "SPECIES_DUSKULL",
+        "SPECIES_PURRLOIN",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_old_chateau_side_rooms": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "The side rooms: three ghosts co-equal.",
       "locked": [],
       "base_level": 14,
       "order": 22,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_PURRLOIN",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_PURRLOIN"
+      ]
     },
     "encounters_oreburgh_gate_1f": {
       "archetype": "A18",
@@ -611,6 +1896,45 @@
         "levels": [
           6,
           10
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CHINCHOU",
+          "SPECIES_FRILLISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_GYARADOS",
+          "SPECIES_JELLICENT",
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          20,
+          32
         ]
       }
     },
@@ -705,6 +2029,45 @@
         "levels": [
           5,
           9
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SHELLOS",
+          "SPECIES_CORPHISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          22,
+          34
         ]
       }
     },
@@ -808,6 +2171,45 @@
           4,
           8
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SHARPEDO",
+          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_CORPHISH",
+          "SPECIES_FLOATZEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          20,
+          32
+        ]
       }
     },
     "encounters_route_204_north": {
@@ -845,6 +2247,45 @@
         "levels": [
           8,
           12
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_SURSKIT",
+          "SPECIES_SHELLOS",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_SHELLOS",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          22,
+          34
         ]
       }
     },
@@ -890,6 +2331,45 @@
           5,
           9
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_BUIZEL",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_GASTRODON",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BUIZEL",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          32
+        ]
       }
     },
     "encounters_route_205_north": {
@@ -933,6 +2413,45 @@
         "levels": [
           10,
           14
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CARVANHA",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_DEWPIDER",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_ARAQUANID",
+          "SPECIES_JELLICENT",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_FRILLISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          22,
+          34
         ]
       }
     },
@@ -978,16 +2497,77 @@
           8,
           12
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CARVANHA",
+          "SPECIES_SHELLOS",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_SHELLOS",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          22,
+          34
+        ]
       }
     },
     "encounters_route_206": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Scorbunny the 1%s.",
       "locked": [],
       "base_level": 16,
       "order": 32,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_GLIGAR",
+        "SPECIES_PONYTA",
+        "SPECIES_STUNKY",
+        "SPECIES_DWEBBLE",
+        "SPECIES_ONIX",
+        "SPECIES_GEODUDE",
+        "SPECIES_SALANDIT",
+        "SPECIES_JOLTIK",
+        "SPECIES_NACLI",
+        "SPECIES_ROOKIDEE",
+        "SPECIES_CHARMANDER",
+        "SPECIES_SCORBUNNY"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_STUNKY"
+      ],
+      "night": [
+        "SPECIES_STUNKY",
+        "SPECIES_HOUNDOUR"
+      ]
     },
     "encounters_route_207": {
       "archetype": "A19",
@@ -1021,94 +2601,428 @@
       "split": "Roark"
     },
     "encounters_route_208": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s.",
       "locked": [],
       "base_level": 17,
       "order": 35,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_FOMANTIS",
+        "SPECIES_FLABEBE",
+        "SPECIES_BUDEW",
+        "SPECIES_RALTS",
+        "SPECIES_FLETCHLING",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV",
+        "SPECIES_COMBEE",
+        "SPECIES_MINCCINO",
+        "SPECIES_BUNEARY",
+        "SPECIES_TREECKO",
+        "SPECIES_SNIVY"
+      ],
+      "day": [
+        "SPECIES_SEWADDLE",
+        "SPECIES_GRUBBIN"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_POOCHYENA"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          8,
+          15
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          16,
+          26
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          32,
+          45
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FRILLISH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          24,
+          36
+        ]
+      }
     },
     "encounters_route_209": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night.",
       "locked": [],
       "base_level": 17,
       "order": 37,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_GOTHITA",
+        "SPECIES_BUDEW",
+        "SPECIES_RALTS",
+        "SPECIES_FLETCHLING",
+        "SPECIES_MINCCINO",
+        "SPECIES_GLAMEOW",
+        "SPECIES_KOFFING",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV",
+        "SPECIES_COMBEE",
+        "SPECIES_DUSKULL",
+        "SPECIES_TORCHIC"
+      ],
+      "day": [
+        "SPECIES_BUNEARY",
+        "SPECIES_PACHIRISU"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_YAMASK"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          10,
+          16
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          18,
+          28
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_GASTRODON",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          33,
+          46
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BUIZEL",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          25,
+          38
+        ]
+      }
     },
     "encounters_route_209_lost_tower_1f": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts.",
       "locked": [],
       "base_level": 17,
       "order": 38,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_ZUBAT",
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK",
+        "SPECIES_GOTHITA"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_route_209_lost_tower_2f": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Second floor: the same ghosts, wider and flatter.",
       "locked": [],
       "base_level": 17,
       "order": 39,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_ZUBAT",
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_GOTHITA"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_route_209_lost_tower_3f": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Third floor: three ghosts co-equal.",
       "locked": [],
       "base_level": 17,
       "order": 40,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA"
+      ],
+      "day": [
+        "SPECIES_ZUBAT",
+        "SPECIES_LITWICK"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
+      ]
     },
     "encounters_route_209_lost_tower_4f": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "Fourth floor: candles lead the climb.",
       "locked": [],
       "base_level": 17,
       "order": 41,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_YAMASK",
+        "SPECIES_SINISTEA",
+        "SPECIES_DUSKULL",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_YAMASK",
+        "SPECIES_SINISTEA"
+      ],
+      "night": [
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL"
+      ]
     },
     "encounters_route_209_lost_tower_5f": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "mid",
-      "intent": "",
+      "intent": "The top floor: eight lines, Klefki a 4% before the ruins, Dhelmise a 1% anchor far from any sea.",
       "locked": [],
       "base_level": 17,
       "order": 42,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_DUSKULL",
+        "SPECIES_ZUBAT",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_LITWICK",
+        "SPECIES_SINISTEA"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
+      ]
     },
     "encounters_route_210_north": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 210's foggy upper half, the delay: Hawlucha's home, Goomy at 10 in the mist (fully evolved by 50, so here by Byron), Fennekin and Litten at 10 each by day as the prizes.",
       "locked": [],
       "base_level": 27,
       "order": 79,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_HAWLUCHA",
+        "SPECIES_SWABLU",
+        "SPECIES_SCYTHER",
+        "SPECIES_MIENFOO",
+        "SPECIES_GOOMY",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_FENNEKIN",
+        "SPECIES_LITTEN"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_HOUNDOUR"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_route_210_south": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 210's lower half, Scyther's home; the north half is the delay. Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, the fire and grass starters as 1%s.",
       "locked": [],
       "base_level": 18,
       "order": 61,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_SCYTHER",
+        "SPECIES_PONYTA",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_ROOKIDEE",
+        "SPECIES_SWABLU",
+        "SPECIES_FENNEKIN",
+        "SPECIES_SMOLIV",
+        "SPECIES_SNEASEL",
+        "SPECIES_SLUGMA",
+        "SPECIES_COMBEE",
+        "SPECIES_TORCHIC",
+        "SPECIES_SPRIGATITO"
+      ],
+      "day": [
+        "SPECIES_SWABLU",
+        "SPECIES_FLETCHLING"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_HOUNDOUR"
+      ]
     },
     "encounters_route_211_east": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 211's Celestic half, the delay: Ralts and Ferroseed at home, Rowlet 20 and Litten 15 the prizes, Jangmo-o at 10 by the cap rule.",
       "locked": [],
       "base_level": 27,
       "order": 80,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_RALTS",
+        "SPECIES_FERROSEED",
+        "SPECIES_ROWLET",
+        "SPECIES_LITTEN",
+        "SPECIES_JANGMO_O",
+        "SPECIES_GLIGAR"
+      ],
+      "day": [
+        "SPECIES_MIENFOO",
+        "SPECIES_BRONZOR"
+      ],
+      "night": [
+        "SPECIES_NACLI",
+        "SPECIES_SNEASEL"
+      ]
     },
     "encounters_route_211_west": {
       "archetype": "A16",
@@ -1136,72 +3050,430 @@
       ]
     },
     "encounters_route_212_north": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 212's garden half, Emolga's home: the flower lines, Galarian Mr. Mime a 4 by the cap rule, the grass starters as 1%s.",
       "locked": [],
       "base_level": 21,
       "order": 76,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_EMOLGA",
+        "SPECIES_FLABEBE",
+        "SPECIES_FOMANTIS",
+        "SPECIES_RALTS",
+        "SPECIES_BUDEW",
+        "SPECIES_COMBEE",
+        "SPECIES_MINCCINO",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_ROWLET",
+        "SPECIES_SNIVY"
+      ],
+      "day": [
+        "SPECIES_BUNEARY",
+        "SPECIES_PACHIRISU"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_POOCHYENA"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_GASTRODON",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FLOATZEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BUIZEL",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_route_212_south": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s.",
       "locked": [],
       "base_level": 21,
       "order": 77,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_KOFFING",
+        "SPECIES_WOOPER",
+        "SPECIES_CROAGUNK",
+        "SPECIES_LOTAD",
+        "SPECIES_SURSKIT",
+        "SPECIES_FROAKIE",
+        "SPECIES_DEWPIDER",
+        "SPECIES_YANMA",
+        "SPECIES_SHROOMISH",
+        "SPECIES_SKORUPI",
+        "SPECIES_MUDKIP",
+        "SPECIES_SQUIRTLE"
+      ],
+      "day": [
+        "SPECIES_LOTAD",
+        "SPECIES_SURSKIT"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_KOFFING"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_LOTAD",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_SHARPEDO",
+          "SPECIES_LOMBRE",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_DEWPIDER",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_route_213": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s.",
       "locked": [],
       "base_level": 23,
       "order": 68,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_SANDYGAST",
+        "SPECIES_CLOBBOPUS",
+        "SPECIES_DEWPIDER",
+        "SPECIES_PIKIPEK",
+        "SPECIES_FLETCHLING",
+        "SPECIES_WOOLOO",
+        "SPECIES_SHELLOS",
+        "SPECIES_BUIZEL",
+        "SPECIES_SMOLIV",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_POPPLIO",
+        "SPECIES_SQUIRTLE"
+      ],
+      "day": [
+        "SPECIES_PIKIPEK",
+        "SPECIES_ROOKIDEE"
+      ],
+      "night": [
+        "SPECIES_DEWPIDER",
+        "SPECIES_PURRLOIN"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_FINNEON",
+          "SPECIES_LUVDISC",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_DEWPIDER",
+          "SPECIES_TENTACOOL",
+          "SPECIES_MAREANIE",
+          "SPECIES_LUVDISC",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_GYARADOS",
+          "SPECIES_GASTRODON",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_SHELLOS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_route_214": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The road down to Valor: Rhyhorn and Fennekin at 20, Houndour and Salandit at home behind them, Swinub a 5 by the cap rule, the fire starters as 1%s.",
       "locked": [],
       "base_level": 26,
       "order": 63,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_RHYHORN",
+        "SPECIES_FENNEKIN",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_SALANDIT",
+        "SPECIES_NACLI",
+        "SPECIES_DWEBBLE",
+        "SPECIES_SWINUB",
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY",
+        "SPECIES_CHARMANDER",
+        "SPECIES_LITTEN"
+      ],
+      "day": [
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX"
+      ],
+      "night": [
+        "SPECIES_HOUNDOUR",
+        "SPECIES_SWINUB"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_SHELLOS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_GASTRODON",
+          "SPECIES_SEAKING",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BUIZEL",
+          "SPECIES_SHELLOS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_route_215": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "mid",
-      "intent": "",
+      "intent": "The rain route: Vullaby's home at 35 with Castform at 20, Yanma and Koffing in the tail by the cap rule, Wooper by day.",
       "locked": [],
       "base_level": 19,
       "order": 62,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_VULLABY",
+        "SPECIES_CASTFORM",
+        "SPECIES_SCYTHER",
+        "SPECIES_MIENFOO",
+        "SPECIES_FLETCHLING",
+        "SPECIES_CROAGUNK",
+        "SPECIES_YANMA",
+        "SPECIES_KOFFING"
+      ],
+      "day": [
+        "SPECIES_YANMA",
+        "SPECIES_WOOPER"
+      ],
+      "night": [
+        "SPECIES_CROAGUNK",
+        "SPECIES_PURRLOIN"
+      ]
     },
     "encounters_route_216": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The first snow route: Snover and Snom at home, the mountain's cold cast, Litten a 1% fire in the snow.",
       "locked": [],
       "base_level": 32,
       "order": 96,
-      "split": "Candice"
+      "split": "Candice",
+      "cast": [
+        "SPECIES_SNOVER",
+        "SPECIES_SNOM",
+        "SPECIES_SNEASEL",
+        "SPECIES_SWINUB",
+        "SPECIES_MIENFOO",
+        "SPECIES_SNORUNT",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_NACLI",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_LITTEN"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_route_217": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The blizzard route: Swinub and Snorunt at home, Larvitar a 5 by the cap rule (fully evolved by 55), two fire starters as 1%s.",
       "locked": [],
       "base_level": 32,
       "order": 97,
-      "split": "Candice"
+      "split": "Candice",
+      "cast": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT",
+        "SPECIES_SNOVER",
+        "SPECIES_SNEASEL",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_SNOM",
+        "SPECIES_LARVITAR",
+        "SPECIES_MIENFOO",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_ZUBAT",
+        "SPECIES_TORCHIC",
+        "SPECIES_CHARMANDER"
+      ],
+      "day": [
+        "SPECIES_SNOVER",
+        "SPECIES_SNOM"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_SNORUNT"
+      ]
     },
     "encounters_route_218": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The grass by Canalave, reached by Surf: Galarian Mr. Mime's home, the beach lines beside it.",
       "locked": [],
       "base_level": 28,
       "order": 83,
@@ -1219,781 +3491,2848 @@
           9
         ]
       },
-      "water_split": "Roark"
+      "water_split": "Roark",
+      "cast": [
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_PIKIPEK",
+        "SPECIES_WOOPER",
+        "SPECIES_DEWPIDER",
+        "SPECIES_GLAMEOW",
+        "SPECIES_BUIZEL",
+        "SPECIES_SHELLOS",
+        "SPECIES_PURRLOIN"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_MINCCINO"
+      ],
+      "night": [
+        "SPECIES_GLAMEOW",
+        "SPECIES_PURRLOIN"
+      ],
+      "good_rod": {
+        "cast": [
+          "SPECIES_FINNEON",
+          "SPECIES_REMORAID",
+          "SPECIES_MAREANIE",
+          "SPECIES_LUVDISC",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_BUIZEL",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_route_221": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The road to Pal Park: Lurantis's home (a line of its own until Fomantis's data is fixed), Trapinch a 5 by the cap rule, the beach lines small.",
       "locked": [],
       "base_level": 28,
       "order": 94,
-      "split": "Byron"
+      "split": "Byron",
+      "cast": [
+        "SPECIES_LURANTIS",
+        "SPECIES_SMOLIV",
+        "SPECIES_FLETCHLING",
+        "SPECIES_WOOLOO",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_PURRLOIN",
+        "SPECIES_TRAPINCH",
+        "SPECIES_SANDYGAST",
+        "SPECIES_SHELLOS",
+        "SPECIES_BUIZEL",
+        "SPECIES_SPRIGATITO",
+        "SPECIES_POPPLIO"
+      ],
+      "day": [
+        "SPECIES_PIKIPEK",
+        "SPECIES_ROOKIDEE"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_POOCHYENA"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_FINNEON",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FINNEON",
+          "SPECIES_CHINCHOU",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_TOXAPEX",
+          "SPECIES_GYARADOS",
+          "SPECIES_GASTRODON",
+          "SPECIES_JELLICENT",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_MAREANIE",
+          "SPECIES_BUIZEL",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_route_222": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The beach road to Sunyshore, Elekid's home: every electric line at once, the water starters as 1%s.",
       "locked": [],
       "base_level": 38,
       "order": 133,
-      "split": "Volkner"
+      "split": "Volkner",
+      "cast": [
+        "SPECIES_ELEKID",
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_PACHIRISU",
+        "SPECIES_JOLTIK",
+        "SPECIES_PIKIPEK",
+        "SPECIES_SHINX",
+        "SPECIES_EMOLGA",
+        "SPECIES_PAWMI",
+        "SPECIES_BUIZEL",
+        "SPECIES_SHELLOS",
+        "SPECIES_POPPLIO",
+        "SPECIES_SQUIRTLE"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_ROOKIDEE"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_HOUNDOUR"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          18,
+          24
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAREANIE",
+          "SPECIES_LUVDISC",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          30,
+          40
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          40,
+          54
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          36,
+          48
+        ]
+      }
     },
     "encounters_route_224": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The flower route to Seabreak Path: no line's home, every line a cameo at a new share; Yveltal's static is planned here.",
       "locked": [],
       "base_level": 49,
       "order": 142,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LURANTIS",
+        "SPECIES_FLABEBE",
+        "SPECIES_SWABLU",
+        "SPECIES_EMOLGA",
+        "SPECIES_SANDYGAST",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_DEWPIDER",
+        "SPECIES_SHELLOS",
+        "SPECIES_PIKIPEK",
+        "SPECIES_SMOLIV",
+        "SPECIES_ROWLET",
+        "SPECIES_POPPLIO"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_COMBEE"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_ABSOL"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_MAREANIE",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_JELLICENT",
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_225": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The Battle Zone's first route: the early lines back at post-game levels, none a home, Hawlucha in the hills.",
       "locked": [],
       "base_level": 47,
       "order": 150,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_ROOKIDEE",
+        "SPECIES_MIENFOO",
+        "SPECIES_NACLI",
+        "SPECIES_WOOLOO",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_GEODUDE",
+        "SPECIES_PHANPY",
+        "SPECIES_VULPIX",
+        "SPECIES_PONYTA",
+        "SPECIES_TORCHIC",
+        "SPECIES_LITTEN"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_PIKIPEK"
+      ],
+      "night": [
+        "SPECIES_HOUNDOUR",
+        "SPECIES_PURRLOIN"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_BUIZEL",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_QUAGSIRE",
+          "SPECIES_LOMBRE",
+          "SPECIES_GASTRODON",
+          "SPECIES_SEAKING",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_MASQUERAIN",
+          "SPECIES_BUIZEL",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_226": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The cliff route above the sea: eight lines, the birds and the beach.",
       "locked": [],
       "base_level": 47,
       "order": 151,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ROOKIDEE",
+        "SPECIES_MIENFOO",
+        "SPECIES_DEWPIDER",
+        "SPECIES_PIKIPEK",
+        "SPECIES_VULLABY",
+        "SPECIES_CARBINK",
+        "SPECIES_BUIZEL",
+        "SPECIES_SHELLOS"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_SWABLU"
+      ],
+      "night": [
+        "SPECIES_VULLABY",
+        "SPECIES_ABSOL"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_FINNEON",
+          "SPECIES_LUVDISC",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAREANIE",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_MAREANIE",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_227": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s.",
       "locked": [],
       "base_level": 51,
       "order": 152,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_CHARCADET",
+        "SPECIES_SKARMORY",
+        "SPECIES_RHYHORN",
+        "SPECIES_KOFFING",
+        "SPECIES_SALANDIT",
+        "SPECIES_TURTONATOR",
+        "SPECIES_SLUGMA",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_NACLI",
+        "SPECIES_MAGBY",
+        "SPECIES_CHARMANDER",
+        "SPECIES_LITTEN"
+      ],
+      "day": [
+        "SPECIES_PONYTA",
+        "SPECIES_VULPIX"
+      ],
+      "night": [
+        "SPECIES_HOUNDOUR",
+        "SPECIES_SALANDIT"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FEEBAS",
+          "SPECIES_SHELLOS",
+          "SPECIES_CORPHISH",
+          "SPECIES_GOLDEEN",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_228": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The sandstorm route, Trapinch's home: the desert lines, Beldum at 10, the two pseudo-legendaries as 1%s.",
       "locked": [],
       "base_level": 49,
       "order": 156,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_TRAPINCH",
+        "SPECIES_SANDYGAST",
+        "SPECIES_DWEBBLE",
+        "SPECIES_SALANDIT",
+        "SPECIES_BELDUM",
+        "SPECIES_GLIMMET",
+        "SPECIES_RHYHORN",
+        "SPECIES_NACLI",
+        "SPECIES_ONIX",
+        "SPECIES_GIBLE",
+        "SPECIES_LARVITAR"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_SANDYGAST",
+        "SPECIES_HOUNDOUR"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_229": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The tall-grass route to the Resort Area, Heracross's home: the bug and grass lines, two grass starters as 1%s.",
       "locked": [],
       "base_level": 47,
       "order": 157,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_HERACROSS",
+        "SPECIES_BUDEW",
+        "SPECIES_SEWADDLE",
+        "SPECIES_JOLTIK",
+        "SPECIES_EMOLGA",
+        "SPECIES_SMOLIV",
+        "SPECIES_COMBEE",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_GRUBBIN",
+        "SPECIES_FOMANTIS",
+        "SPECIES_SNIVY",
+        "SPECIES_SPRIGATITO"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_BUNEARY"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_POOCHYENA"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_230": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "The last route, by the sea: Galarian Rapidash's home, Togepi at 20.",
       "locked": [],
       "base_level": 47,
       "order": 159,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GALARIAN_RAPIDASH",
+        "SPECIES_TOGEPI",
+        "SPECIES_PIKIPEK",
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV",
+        "SPECIES_LURANTIS",
+        "SPECIES_SHELLOS",
+        "SPECIES_BUIZEL"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_SWABLU"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_ABSOL"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_FINNEON",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_LUVDISC",
+          "SPECIES_MAREANIE",
+          "SPECIES_SHELLOS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_JELLICENT",
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_MAREANIE",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_ruin_maniac_cave_long": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "The cave dug through to the ruins: three co-equal, Klefki by day where it meets the ruins.",
       "locked": [],
       "base_level": 21,
       "order": 66,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_KLEFKI"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_FERROSEED"
+      ]
     },
     "encounters_ruin_maniac_cave_short": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "The cave before the maniac digs through: Dwebble's home at 35, Hippopotas beside it.",
       "locked": [],
       "base_level": 21,
       "order": 65,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_CARBINK"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_FERROSEED"
+      ]
     },
     "encounters_sendoff_spring": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "The spring before Turnback Cave, Dhelmise's home: the ghosts gather, Absol watches.",
       "locked": [],
       "base_level": 37,
       "order": 111,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_DUSKULL",
+        "SPECIES_ABSOL",
+        "SPECIES_VULLABY",
+        "SPECIES_GOTHITA",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_KLEFKI",
+        "SPECIES_SWABLU",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_GALARIAN_MR_MIME"
+      ],
+      "day": [
+        "SPECIES_SWABLU",
+        "SPECIES_VULLABY"
+      ],
+      "night": [
+        "SPECIES_ABSOL",
+        "SPECIES_DUSKULL"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_GYARADOS",
+          "SPECIES_JELLICENT",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_FRILLISH",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_snowpoint_temple_1f": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 1 of six: the ice lines and the temple's bats, shape A14; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 144,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SNORUNT",
+        "SPECIES_ZUBAT",
+        "SPECIES_SNOM",
+        "SPECIES_SNEASEL",
+        "SPECIES_BRONZOR",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_snowpoint_temple_b1f": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 2 of six: the ice lines and the temple's bats, shape A16; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 145,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SNEASEL",
+        "SPECIES_SNORUNT",
+        "SPECIES_ZUBAT",
+        "SPECIES_SWINUB",
+        "SPECIES_CARBINK",
+        "SPECIES_SNOM"
+      ],
+      "day": [
+        "SPECIES_SNOM",
+        "SPECIES_SNOVER"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_GALARIAN_MR_MIME"
+      ]
     },
     "encounters_snowpoint_temple_b2f": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 3 of six: the ice lines and the temple's bats, shape A18; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 146,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_SNORUNT",
+        "SPECIES_ZUBAT",
+        "SPECIES_SNEASEL",
+        "SPECIES_SNOM",
+        "SPECIES_SNOVER",
+        "SPECIES_BRONZOR",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_snowpoint_temple_b3f": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 4 of six: the ice lines and the temple's bats, shape A13; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 147,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_SNOM",
+        "SPECIES_ZUBAT",
+        "SPECIES_SNORUNT",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_SNOM",
+        "SPECIES_SNOVER"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_GALARIAN_MR_MIME"
+      ]
     },
     "encounters_snowpoint_temple_b4f": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 5 of six: the ice lines and the temple's bats, shape A15; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 148,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SNEASEL",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_ZUBAT",
+        "SPECIES_SNORUNT",
+        "SPECIES_SNOVER",
+        "SPECIES_SWINUB",
+        "SPECIES_ABSOL",
+        "SPECIES_LARVITAR"
+      ],
+      "day": [
+        "SPECIES_SWINUB",
+        "SPECIES_SNORUNT"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_ABSOL"
+      ]
     },
     "encounters_snowpoint_temple_b5f": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Snowpoint Temple, floor 6 of six: the ice lines and the temple's bats, shape A17; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
       "order": 149,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SNORUNT",
+        "SPECIES_SNEASEL",
+        "SPECIES_ZUBAT",
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_BRONZOR",
+        "SPECIES_KLEFKI",
+        "SPECIES_ABSOL",
+        "SPECIES_BELDUM"
+      ],
+      "day": [
+        "SPECIES_SNOM",
+        "SPECIES_SNOVER"
+      ],
+      "night": [
+        "SPECIES_SNEASEL",
+        "SPECIES_GALARIAN_MR_MIME"
+      ]
     },
     "encounters_solaceon_ruins_maniac_tunnel_room": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 18 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
       "locked": [],
       "base_level": 20,
       "order": 60,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_DWEBBLE",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 1 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
       "locked": [],
       "base_level": 20,
       "order": 43,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_1_southeast_dead_end": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 2 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
       "locked": [],
       "base_level": 20,
       "order": 44,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_solaceon_ruins_room_2": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 3 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
       "locked": [],
       "base_level": 20,
       "order": 45,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_2_northeast_dead_end": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 4 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
       "locked": [],
       "base_level": 20,
       "order": 46,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_2_southeast_dead_end": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 5 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
       "locked": [],
       "base_level": 20,
       "order": 47,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_solaceon_ruins_room_3": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 6 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
       "locked": [],
       "base_level": 20,
       "order": 48,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
+        "SPECIES_SINISTEA"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_3_northwest_dead_end": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 7 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
       "locked": [],
       "base_level": 20,
       "order": 49,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_3_southwest_dead_end": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 8 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
       "locked": [],
       "base_level": 20,
       "order": 50,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ONIX",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_GOTHITA",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_solaceon_ruins_room_4": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 9 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A15.",
       "locked": [],
       "base_level": 20,
       "order": 51,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_GOTHITA",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_LARVITAR"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_4_southeast_dead_end": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 10 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A11.",
       "locked": [],
       "base_level": 20,
       "order": 52,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_GOTHITA",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_5": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 11 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A13.",
       "locked": [],
       "base_level": 20,
       "order": 53,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_HIPPOPOTAS",
+        "SPECIES_GOTHITA",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_solaceon_ruins_room_5_southeast_deadend": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 12 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A14.",
       "locked": [],
       "base_level": 20,
       "order": 54,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_GOTHITA",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_5_southwest_dead_end": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 13 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A16.",
       "locked": [],
       "base_level": 20,
       "order": 55,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_6": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 14 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A18.",
       "locked": [],
       "base_level": 20,
       "order": 56,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_solaceon_ruins_room_6_northwest_dead_end": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 15 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A6.",
       "locked": [],
       "base_level": 20,
       "order": 57,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_YAMASK",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_DWEBBLE",
+        "SPECIES_GEODUDE"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_GOTHITA"
+      ]
     },
     "encounters_solaceon_ruins_room_6_southeast_dead_end": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 16 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A7.",
       "locked": [],
       "base_level": 20,
       "order": 58,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_DWEBBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_solaceon_ruins_room_7": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "mid",
-      "intent": "",
+      "intent": "Solaceon Ruins, room 17 of eighteen: Klefki in every room (the ruins are its home, room 2 first), the rest of the ruins' pool rotating so no two rooms read alike; shape A8.",
       "locked": [],
       "base_level": 20,
       "order": 59,
-      "split": "Maylene"
+      "split": "Maylene",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
+        "SPECIES_HIPPOPOTAS"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_stark_mountain_outside": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes.",
       "locked": [],
       "base_level": 51,
       "order": 153,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_SLUGMA",
+        "SPECIES_RHYHORN",
+        "SPECIES_SALANDIT",
+        "SPECIES_CHARCADET",
+        "SPECIES_KOFFING",
+        "SPECIES_TURTONATOR",
+        "SPECIES_LARVESTA"
+      ],
+      "day": [
+        "SPECIES_MAGBY",
+        "SPECIES_HOUNDOUR"
+      ],
+      "night": [
+        "SPECIES_SALANDIT",
+        "SPECIES_KOFFING"
+      ]
     },
     "encounters_stark_mountain_room_1": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma.",
       "locked": [],
       "base_level": 51,
       "order": 154,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LARVESTA",
+        "SPECIES_SLUGMA",
+        "SPECIES_RHYHORN",
+        "SPECIES_ZUBAT",
+        "SPECIES_KOFFING",
+        "SPECIES_SALANDIT",
+        "SPECIES_MAGBY",
+        "SPECIES_CHARCADET"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SALANDIT"
+      ]
     },
     "encounters_stark_mountain_room_2": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "The magma chamber, Turtonator's home at 35: Heatran's room is past it.",
       "locked": [],
       "base_level": 52,
       "order": 155,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_TURTONATOR",
+        "SPECIES_SLUGMA",
+        "SPECIES_RHYHORN",
+        "SPECIES_ZUBAT",
+        "SPECIES_CHARCADET",
+        "SPECIES_LARVESTA",
+        "SPECIES_KOFFING",
+        "SPECIES_GALARIAN_WEEZING"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_ONIX"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_SALANDIT"
+      ]
     },
     "encounters_trophy_garden": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The Pokemon Mansion's garden, Pichu's home: the cute lines, Eevee and Togepi at 5 beside their gifts, Galarian Mr. Mime at 5 by the cap rule, the grass starters as 1%s.",
       "locked": [],
       "base_level": 22,
       "order": 78,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_PICHU",
+        "SPECIES_BUNEARY",
+        "SPECIES_SKITTY",
+        "SPECIES_MINCCINO",
+        "SPECIES_FLABEBE",
+        "SPECIES_TOGEPI",
+        "SPECIES_EEVEE",
+        "SPECIES_GALARIAN_MR_MIME",
+        "SPECIES_PACHIRISU",
+        "SPECIES_COMBEE",
+        "SPECIES_SPRIGATITO",
+        "SPECIES_ROWLET"
+      ],
+      "day": [
+        "SPECIES_BOUNSWEET",
+        "SPECIES_SMOLIV"
+      ],
+      "night": [
+        "SPECIES_PURRLOIN",
+        "SPECIES_SKITTY"
+      ]
     },
     "encounters_turnback_cave_entrance": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 1 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 15,
       "order": 112,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_giratina_room": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 35,
       "order": 132,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_1": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 4 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 15,
       "order": 113,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_2": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 5 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 15,
       "order": 114,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_3": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 6 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 15,
       "order": 115,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_4": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 7 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 15,
       "order": 116,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_5": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 8 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 15,
       "order": 117,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_1_room_6": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 9 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 15,
       "order": 118,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_1": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 10 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 25,
       "order": 119,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_2": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 11 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 25,
       "order": 120,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_3": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 12 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 25,
       "order": 121,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_4": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 13 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 25,
       "order": 122,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_5": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 14 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 25,
       "order": 123,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_2_room_6": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "mid",
-      "intent": "",
+      "intent": "Turnback Cave, room 15 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 25,
       "order": 124,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_1": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 16 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 35,
       "order": 125,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_2": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 17 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 35,
       "order": 126,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_3": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 18 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 35,
       "order": 127,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_4": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 19 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 35,
       "order": 128,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_5": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 20 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 35,
       "order": 129,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_turnback_cave_pillar_3_room_6": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 21 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 35,
       "order": 130,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_turnback_cave_pillar_room": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 2 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 35,
       "order": 131,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_533": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 22 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
       "order": 162,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_534": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 23 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
       "order": 163,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_535": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 24 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
       "order": 164,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_536": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 25 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 45,
       "order": 165,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_537": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 26 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 45,
       "order": 166,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_538": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 27 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 45,
       "order": 167,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_539": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 28 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 45,
       "order": 168,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_540": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 29 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 45,
       "order": 169,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_541": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 30 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 45,
       "order": 170,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_542": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 31 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 45,
       "order": 171,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_543": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 32 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 45,
       "order": 172,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_544": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 33 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
       "order": 173,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_545": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 34 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
       "order": 174,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_546": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 35 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
       "order": 175,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_547": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 36 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 45,
       "order": 176,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_548": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 37 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 45,
       "order": 177,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_549": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 38 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 45,
       "order": 178,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_550": {
-      "archetype": null,
+      "archetype": "A6",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 39 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 45,
       "order": 179,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_551": {
-      "archetype": null,
+      "archetype": "A7",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 40 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 45,
       "order": 180,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_552": {
-      "archetype": null,
+      "archetype": "A8",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 41 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 45,
       "order": 181,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_553": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 42 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 45,
       "order": 182,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_554": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 43 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 45,
       "order": 183,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_unknown_555": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 44 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
       "order": 184,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_KLEFKI",
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR",
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA"
+      ],
+      "day": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_DUSKULL",
+        "SPECIES_SINISTEA"
+      ]
     },
     "encounters_unknown_556": {
-      "archetype": null,
+      "archetype": "A11",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 45 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
       "order": 185,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK"
+      ],
+      "day": [
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_GOTHITA",
+        "SPECIES_DHELMISE"
+      ]
     },
     "encounters_unknown_557": {
-      "archetype": null,
+      "archetype": "A13",
       "band": "late",
-      "intent": "",
+      "intent": "Turnback Cave, room 46 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
       "order": 186,
-      "split": "Post"
+      "split": "Post",
+      "cast": [
+        "SPECIES_NOSEPASS",
+        "SPECIES_ONIX",
+        "SPECIES_DHELMISE",
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ],
+      "day": [
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT"
+      ],
+      "night": [
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK"
+      ]
     },
     "encounters_valley_windworks_outside": {
       "archetype": "A15",
@@ -2033,88 +6372,397 @@
           8,
           12
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CHINCHOU",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_WOOPER",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          22,
+          34
+        ]
       }
     },
     "encounters_valor_lakefront": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "mid",
-      "intent": "",
+      "intent": "The hotel grounds above Lake Valor: Swablu's home, Absol at 10 and by night, the cute lines from Floaroma back at other shares, two starters as 1%s.",
       "locked": [],
       "base_level": 25,
       "order": 67,
-      "split": "Wake"
+      "split": "Wake",
+      "cast": [
+        "SPECIES_SWABLU",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_PONYTA",
+        "SPECIES_ABSOL",
+        "SPECIES_MINCCINO",
+        "SPECIES_GLAMEOW",
+        "SPECIES_SKITTY",
+        "SPECIES_BUNEARY",
+        "SPECIES_PACHIRISU",
+        "SPECIES_EMOLGA",
+        "SPECIES_LITTEN",
+        "SPECIES_SPRIGATITO"
+      ],
+      "day": [
+        "SPECIES_FLETCHLING",
+        "SPECIES_ROOKIDEE"
+      ],
+      "night": [
+        "SPECIES_ABSOL",
+        "SPECIES_PURRLOIN"
+      ]
     },
     "encounters_victory_road_1f": {
-      "archetype": null,
+      "archetype": "A19",
       "band": "late",
-      "intent": "",
+      "intent": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail.",
       "locked": [],
       "base_level": 40,
       "order": 136,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_LARVITAR",
+        "SPECIES_ONIX",
+        "SPECIES_RHYHORN",
+        "SPECIES_GIBLE",
+        "SPECIES_NACLI",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_GLIMMET",
+        "SPECIES_KLEFKI",
+        "SPECIES_MAKUHITA",
+        "SPECIES_GEODUDE",
+        "SPECIES_BELDUM",
+        "SPECIES_JANGMO_O"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_victory_road_1f_room_1": {
-      "archetype": null,
+      "archetype": "A14",
       "band": "late",
-      "intent": "",
+      "intent": "Side room one: six lines, Larvitar at 15.",
       "locked": [],
       "base_level": 47,
       "order": 139,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_GLIMMET",
+        "SPECIES_LARVITAR",
+        "SPECIES_GIBLE",
+        "SPECIES_RHYHORN"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_victory_road_1f_room_2": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "late",
-      "intent": "",
+      "intent": "Side room two, the wet one: Goomy at 35.",
       "locked": [],
       "base_level": 47,
       "order": 140,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_GOOMY",
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_CARBINK",
+        "SPECIES_FERROSEED",
+        "SPECIES_BRONZOR",
+        "SPECIES_GIBLE",
+        "SPECIES_BELDUM"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          26
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          32,
+          42
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          42,
+          56
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_GOLDEEN",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          38,
+          52
+        ]
+      }
     },
     "encounters_victory_road_1f_room_3": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "late",
-      "intent": "",
+      "intent": "Side room three: eight lines, Beldum and Gible in the tail.",
       "locked": [],
       "base_level": 47,
       "order": 141,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_GLIMMET",
+        "SPECIES_LARVITAR",
+        "SPECIES_JANGMO_O",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_BELDUM",
+        "SPECIES_GIBLE"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK"
+      ]
     },
     "encounters_victory_road_2f": {
-      "archetype": null,
+      "archetype": "A18",
       "band": "late",
-      "intent": "",
+      "intent": "Second floor: eight lines, Jangmo-o at 15.",
       "locked": [],
       "base_level": 41,
       "order": 137,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_KLEFKI",
+        "SPECIES_JANGMO_O",
+        "SPECIES_LARVITAR",
+        "SPECIES_GIBLE",
+        "SPECIES_CARBINK",
+        "SPECIES_BRONZOR"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_KLEFKI"
+      ]
     },
     "encounters_victory_road_b1f": {
-      "archetype": null,
+      "archetype": "A16",
       "band": "late",
-      "intent": "",
+      "intent": "The basement with the water: Beldum co-equal with Onix and Nacli.",
       "locked": [],
       "base_level": 41,
       "order": 138,
-      "split": "League"
+      "split": "League",
+      "cast": [
+        "SPECIES_ONIX",
+        "SPECIES_NACLI",
+        "SPECIES_BELDUM",
+        "SPECIES_GOOMY",
+        "SPECIES_GIBLE",
+        "SPECIES_ZUBAT"
+      ],
+      "day": [
+        "SPECIES_MAKUHITA",
+        "SPECIES_PHANPY"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_CARBINK"
+      ],
+      "old_rod": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          20,
+          26
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          32,
+          42
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_SEAKING",
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          42,
+          56
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_CORPHISH",
+          "SPECIES_GOLDEEN",
+          "SPECIES_JELLICENT",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          38,
+          52
+        ]
+      }
     },
     "encounters_wayward_cave_1f": {
-      "archetype": null,
+      "archetype": "A15",
       "band": "mid",
-      "intent": "",
+      "intent": "Wayward Cave's upper floor: Carbink's home, Bronzor and the rock lines, Gible a 4% before its own floor, Joltik the 1%.",
       "locked": [],
       "base_level": 17,
       "order": 33,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_CARBINK",
+        "SPECIES_BRONZOR",
+        "SPECIES_ZUBAT",
+        "SPECIES_ONIX",
+        "SPECIES_DWEBBLE",
+        "SPECIES_NACLI",
+        "SPECIES_GIBLE",
+        "SPECIES_JOLTIK"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_NOSEPASS"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_wayward_cave_b1f": {
-      "archetype": null,
+      "archetype": "A17",
       "band": "mid",
-      "intent": "",
+      "intent": "The hidden floor under Cycling Road is Gible's, at 35, the cap's edge: the reason to bring Flash. Larvitar a 1% tease of Victory Road.",
       "locked": [],
       "base_level": 17,
       "order": 34,
-      "split": "Fantina"
+      "split": "Fantina",
+      "cast": [
+        "SPECIES_GIBLE",
+        "SPECIES_BRONZOR",
+        "SPECIES_ONIX",
+        "SPECIES_CARBINK",
+        "SPECIES_ZUBAT",
+        "SPECIES_NACLI",
+        "SPECIES_DWEBBLE",
+        "SPECIES_LARVITAR"
+      ],
+      "day": [
+        "SPECIES_GEODUDE",
+        "SPECIES_MAKUHITA"
+      ],
+      "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_BRONZOR"
+      ]
     },
     "encounters_canalave_city": {
       "archetype": null,
@@ -2123,7 +6771,59 @@
       "locked": [],
       "base_level": null,
       "order": 84,
-      "split": "Byron"
+      "split": "Byron",
+      "old_rod": {
+        "cast": [
+          "SPECIES_FINNEON",
+          "SPECIES_LUVDISC",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_MAREANIE",
+          "SPECIES_LUVDISC",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_celestic_town": {
       "archetype": null,
@@ -2132,7 +6832,59 @@
       "locked": [],
       "base_level": null,
       "order": 81,
-      "split": "Byron"
+      "split": "Byron",
+      "old_rod": {
+        "cast": [
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_MAGIKARP",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_WHISCASH",
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FRILLISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_eterna_city": {
       "archetype": null,
@@ -2153,6 +6905,45 @@
         "levels": [
           10,
           14
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_BUIZEL",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          15,
+          24
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          30,
+          44
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
+          "SPECIES_CORPHISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          22,
+          34
         ]
       }
     },
@@ -2181,7 +6972,59 @@
       "locked": [],
       "base_level": null,
       "order": 85,
-      "split": "Byron"
+      "split": "Byron",
+      "old_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_GYARADOS",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_pastoria_city": {
       "archetype": null,
@@ -2190,7 +7033,59 @@
       "locked": [],
       "base_level": null,
       "order": 69,
-      "split": "Wake"
+      "split": "Wake",
+      "old_rod": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_WOOPER",
+          "SPECIES_CARVANHA",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          12,
+          18
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_CARVANHA",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_DEWPIDER",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          30
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_QUAGSIRE",
+          "SPECIES_SHARPEDO",
+          "SPECIES_LOMBRE",
+          "SPECIES_LUDICOLO",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          35,
+          48
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_SURSKIT",
+          "SPECIES_DEWPIDER",
+          "SPECIES_QUAGSIRE",
+          "SPECIES_FRILLISH",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          28,
+          40
+        ]
+      }
     },
     "encounters_pokemon_league": {
       "archetype": null,
@@ -2199,7 +7094,59 @@
       "locked": [],
       "base_level": null,
       "order": 143,
-      "split": "League"
+      "split": "League",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_GOLDEEN",
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          26
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_FEEBAS",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          32,
+          42
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_MILOTIC",
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_GYARADOS",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          42,
+          56
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GOLDEEN",
+          "SPECIES_JELLICENT",
+          "SPECIES_FLOATZEL",
+          "SPECIES_BUIZEL",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          38,
+          52
+        ]
+      }
     },
     "encounters_resort_area": {
       "archetype": null,
@@ -2208,7 +7155,59 @@
       "locked": [],
       "base_level": null,
       "order": 158,
-      "split": "Post"
+      "split": "Post",
+      "old_rod": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          22,
+          30
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_REMORAID",
+          "SPECIES_MAREANIE",
+          "SPECIES_LUVDISC",
+          "SPECIES_SHELLOS",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          35,
+          45
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_GYARADOS",
+          "SPECIES_GASTRODON",
+          "SPECIES_JELLICENT",
+          "SPECIES_LANTURN",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          45,
+          60
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          40,
+          55
+        ]
+      }
     },
     "encounters_route_219": {
       "archetype": null,
@@ -2230,6 +7229,45 @@
           4,
           8
         ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_POPPLIO",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LANTURN",
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_FROGADIER"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_POPPLIO",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_MAREANIE",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          20,
+          32
+        ]
       }
     },
     "encounters_route_220": {
@@ -2239,7 +7277,59 @@
       "locked": [],
       "base_level": null,
       "order": 93,
-      "split": "Byron"
+      "split": "Byron",
+      "old_rod": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          14,
+          20
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_POPPLIO",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          24,
+          34
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_GYARADOS",
+          "SPECIES_GASTRODON",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          36,
+          50
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_POPPLIO",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      }
     },
     "encounters_route_223": {
       "archetype": null,
@@ -2248,7 +7338,59 @@
       "locked": [],
       "base_level": null,
       "order": 135,
-      "split": "League"
+      "split": "League",
+      "old_rod": {
+        "cast": [
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_FINNEON",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          20,
+          26
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          32,
+          42
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_GYARADOS",
+          "SPECIES_WARTORTLE"
+        ],
+        "levels": [
+          42,
+          56
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_MAREANIE",
+          "SPECIES_POPPLIO"
+        ],
+        "levels": [
+          38,
+          52
+        ]
+      }
     },
     "encounters_sunyshore_city": {
       "archetype": null,
@@ -2257,7 +7399,59 @@
       "locked": [],
       "base_level": null,
       "order": 134,
-      "split": "Volkner"
+      "split": "Volkner",
+      "old_rod": {
+        "cast": [
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
+          "SPECIES_MUDKIP"
+        ],
+        "levels": [
+          18,
+          24
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_LUVDISC",
+          "SPECIES_SHELLOS",
+          "SPECIES_CHINCHOU",
+          "SPECIES_FINNEON",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          30,
+          40
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LUMINEON",
+          "SPECIES_TENTACRUEL",
+          "SPECIES_OCTILLERY",
+          "SPECIES_TOXAPEX",
+          "SPECIES_BRIONNE"
+        ],
+        "levels": [
+          40,
+          54
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_GASTRODON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_SHELLOS",
+          "SPECIES_FRILLISH",
+          "SPECIES_FROAKIE"
+        ],
+        "levels": [
+          36,
+          48
+        ]
+      }
     },
     "encounters_twinleaf_town": {
       "archetype": null,
@@ -2278,6 +7472,45 @@
         "levels": [
           3,
           6
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_BARBOACH",
+          "SPECIES_CORPHISH",
+          "SPECIES_CHINCHOU",
+          "SPECIES_CARVANHA",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          15,
+          22
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_CRAWDAUNT",
+          "SPECIES_LANTURN",
+          "SPECIES_SHARPEDO",
+          "SPECIES_GYARADOS",
+          "SPECIES_MARSHTOMP"
+        ],
+        "levels": [
+          30,
+          42
+        ]
+      },
+      "surf": {
+        "cast": [
+          "SPECIES_BUIZEL",
+          "SPECIES_LOTAD",
+          "SPECIES_SURSKIT",
+          "SPECIES_GOLDEEN",
+          "SPECIES_SQUIRTLE"
+        ],
+        "levels": [
+          20,
+          32
         ]
       }
     },
@@ -2356,7 +7589,8 @@
     "rods": {
       "old_rod": "Roark",
       "good_rod": "Maylene",
-      "super_rod": "Candice"
+      "super_rod": "Candice",
+      "surf": "Byron"
     }
   }
 }

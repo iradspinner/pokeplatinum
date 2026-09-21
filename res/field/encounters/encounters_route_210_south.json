@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 19,
-            "species": "SPECIES_MOTHIM"
-        },
-        {
             "level": 18,
-            "species": "SPECIES_VENOMOTH"
+            "species": "SPECIES_SCYTHER"
         },
         {
-            "level": 20,
-            "species": "SPECIES_FURRET"
-        },
-        {
-            "level": 20,
-            "species": "SPECIES_CACNEA"
-        },
-        {
-            "level": 20,
+            "level": 19,
             "species": "SPECIES_PONYTA"
         },
         {
             "level": 19,
-            "species": "SPECIES_SEVIPER"
+            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 19,
-            "species": "SPECIES_MAGBY"
+            "species": "SPECIES_ROOKIDEE"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_SWABLU"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_FENNEKIN"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_SMOLIV"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_SNEASEL"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_SLUGMA"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_COMBEE"
         },
         {
             "level": 21,
-            "species": "SPECIES_ELEKID"
+            "species": "SPECIES_TORCHIC"
         },
         {
             "level": 21,
-            "species": "SPECIES_PINSIR"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_SCYTHER"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_MILTANK"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_MILTANK"
+            "species": "SPECIES_SPRIGATITO"
         }
     ],
     "swarms": [
-        "SPECIES_STARAVIA",
-        "SPECIES_GEODUDE"
+        "SPECIES_SCIZOR",
+        "SPECIES_VULLABY"
     ],
     "day": [
-        "SPECIES_FURRET",
-        "SPECIES_CACNEA"
+        "SPECIES_SWABLU",
+        "SPECIES_FLETCHLING"
     ],
     "night": [
-        "SPECIES_ILLUMISE",
-        "SPECIES_VOLBEAT"
+        "SPECIES_SNEASEL",
+        "SPECIES_HOUNDOUR"
     ],
     "radar": [
-        "SPECIES_MILTANK",
-        "SPECIES_TAUROS",
-        "SPECIES_MILTANK",
-        "SPECIES_TAUROS"
+        "SPECIES_SCIZOR",
+        "SPECIES_RAPIDASH",
+        "SPECIES_STEENEE",
+        "SPECIES_CORVISQUIRE"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_SEEDOT",
-        "SPECIES_NUZLEAF"
+        "SPECIES_LOMBRE",
+        "SPECIES_TRAPINCH"
     ],
     "sapphire": [
-        "SPECIES_PONYTA",
-        "SPECIES_CHANSEY"
+        "SPECIES_LOMBRE",
+        "SPECIES_TRAPINCH"
     ],
     "emerald": [
-        "SPECIES_PINECO",
-        "SPECIES_PINECO"
+        "SPECIES_TREECKO",
+        "SPECIES_BELDUM"
     ],
     "firered": [
-        "SPECIES_PONYTA",
-        "SPECIES_CHANSEY"
+        "SPECIES_EEVEE",
+        "SPECIES_TENTACRUEL"
     ],
     "leafgreen": [
-        "SPECIES_PONYTA",
-        "SPECIES_CHANSEY"
+        "SPECIES_GYARADOS",
+        "SPECIES_SEAKING"
     ],
     "surf_rate": 0,
     "surf_encounters": [
