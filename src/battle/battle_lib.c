@@ -3103,7 +3103,7 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
-u8 Battler_Ability(BattleContext *battleCtx, int battler)
+u16 Battler_Ability(BattleContext *battleCtx, int battler)
 {
     if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
         && battleCtx->battleMons[battler].ability != ABILITY_MULTITYPE) {
@@ -6610,7 +6610,7 @@ typedef struct DamageCalcParams {
 
     u32 statusMask;
 
-    u8 ability;
+    u16 ability; // Platinum Oxide: u16, ability ids run past 255
     u8 gender;
     u8 type1;
     u8 type2;

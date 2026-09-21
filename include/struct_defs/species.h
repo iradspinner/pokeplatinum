@@ -1,7 +1,13 @@
 #ifndef POKEPLATINUM_SPECIES_H
 #define POKEPLATINUM_SPECIES_H
 
-#define MAX_ABILITIES  2
+// Platinum Oxide: three, not two. Slots 0 and 1 are the ordinary pair a
+// Pokemon picks between on its personality; slot 2 is the hidden ability, and
+// ABILITY_NONE there means the species has none.
+#define MAX_ABILITIES  3
+#define ABILITY_SLOT_1      0
+#define ABILITY_SLOT_2      1
+#define ABILITY_SLOT_HIDDEN 2
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
 
@@ -48,7 +54,11 @@ typedef struct SpeciesData {
     u8 baseFriendship;
     u8 expRate;
     u8 eggGroups[MAX_EGG_GROUPS];
-    u8 abilities[MAX_ABILITIES];
+    // Platinum Oxide: u16, not u8. hg-engine's ability ids run past 255 and the
+    // donor ROM already stores them two bytes wide. This takes the species
+    // record from 44 bytes to 48, which is why it no longer matches the base
+    // ROM's; see docs/oxide/save-layout.md.
+    u16 abilities[MAX_ABILITIES];
     u8 safariFleeRate;
     u8 bodyColor : 7;
     u8 flipSprite : 1;

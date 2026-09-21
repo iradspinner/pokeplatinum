@@ -294,7 +294,12 @@ void FrontierPokemon_InitPokemon(const FrontierPokemon *frontierMon, Pokemon *mo
     val = frontierMon->spDefEV;
     Pokemon_SetValue(mon, MON_DATA_SPDEF_EV, &val);
 
-    Pokemon_SetValue(mon, MON_DATA_ABILITY, &frontierMon->ability);
+    // Platinum Oxide: the stored ability is a u16 now, but FrontierPokemon is a
+    // packed data record and still holds a byte, so it is widened here rather
+    // than letting the setter read a byte of friendship along with it. A
+    // frontier Pokemon cannot have an ability above 255 until that record grows.
+    u16 ability = frontierMon->ability;
+    Pokemon_SetValue(mon, MON_DATA_ABILITY, &ability);
     Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &frontierMon->friendship);
 
     if (frontierMon->setSpeciesAsNickname) {

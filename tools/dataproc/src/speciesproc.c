@@ -460,6 +460,15 @@ static void post_init(void) {
     atexit(free_tutorables);
 }
 
+// Platinum Oxide: the hidden ability is the optional third entry of the
+// abilities array. Most species do not have one, so rather than writing
+// ABILITY_NONE into five hundred files it is simply left out and defaults here.
+static u16 hidden_ability(datafile_t *df) {
+    datanode_t dn = dp_try(df, ".abilities[2]");
+    if (dn.type == DATAPROC_T_ERR) return 0; // ABILITY_NONE
+    return dp_u16(dp_lookup(dn, "enum Ability"));
+}
+
 static void proc_tmlearnset(datafile_t *df, SpeciesData *out);
 
 static SpeciesData proc_personal(datafile_t *df) {
@@ -479,8 +488,9 @@ static SpeciesData proc_personal(datafile_t *df) {
         },
 
         .abilities = {
-            enum_u8(".abilities[0]", enum Ability),
-            enum_u8(".abilities[1]", enum Ability),
+            enum_u16(".abilities[0]", enum Ability),
+            enum_u16(".abilities[1]", enum Ability),
+            hidden_ability(df),
         },
 
         .evYields = {

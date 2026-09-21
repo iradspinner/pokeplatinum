@@ -916,6 +916,11 @@ void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
  */
 void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species);
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, enum HeapID heapID);
+// Platinum Oxide: see the definitions in src/pokemon.c. FALSE means the
+// species has no hidden ability and the Pokemon was left alone.
+BOOL BoxPokemon_TryGiveHiddenAbility(BoxPokemon *boxMon);
+BOOL Pokemon_TryGiveHiddenAbility(Pokemon *mon);
+
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);
 

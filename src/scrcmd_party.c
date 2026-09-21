@@ -42,6 +42,21 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
     return FALSE;
 }
 
+// Platinum Oxide: switch a party Pokemon to its hidden ability. Writes 1 to the
+// destination variable when the species has one and 0 when it does not, so a
+// gift script can fall back rather than silently hand out the ordinary ability.
+BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *partySlot = ScriptContext_GetVarPointer(ctx);
+    u16 *success = ScriptContext_GetVarPointer(ctx);
+
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), *partySlot);
+    *success = Pokemon_TryGiveHiddenAbility(mon);
+
+    return FALSE;
+}
+
 BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;

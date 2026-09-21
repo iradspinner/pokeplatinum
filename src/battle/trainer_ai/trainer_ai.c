@@ -3642,8 +3642,8 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     int i;
     u8 aiSlot1, aiSlot2;
     u8 moveType;
-    u8 ability;
-    u8 checkAbility;
+    u16 ability; // Platinum Oxide: u16, ability ids run past 255
+    u16 checkAbility;
     int start, end;
     Pokemon *mon;
 

@@ -384,7 +384,7 @@ typedef struct PokemonSummaryMonData {
     u16 spAttack;
     u16 spDefense;
     u16 speed;
-    u8 ability;
+    u16 ability; // Platinum Oxide: u16, ability ids run past 255
     u8 nature;
 
     // The stat viewer's alternate readings, in enum PokemonStat order. They sit

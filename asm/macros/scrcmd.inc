@@ -5196,6 +5196,15 @@
     .short \steps
     .endm
 
+    /* Platinum Oxide: switch the party Pokemon in slot \partySlot to its
+       species' hidden ability, and write 1 or 0 to \success depending on
+       whether the species has one. */
+    .macro GiveHiddenAbility partySlot, success
+    .short SCRCMD_GIVEHIDDENABILITY
+    .short \partySlot
+    .short \success
+    .endm
+
     .macro NPCMessage messageID
     PlaySE SE_CONFIRM_sseq_3
     LockAll

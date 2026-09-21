@@ -846,7 +846,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_ABILITY:
-        result = monDataBlockA->ability;
+        result = monDataBlockB->ability;
         break;
 
     case MON_DATA_MARKINGS:
@@ -1054,10 +1054,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->unused1;
         break;
 
-    case MON_DATA_UNUSED_114:
-        result = monDataBlockB->unused2;
-        break;
-
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
@@ -1218,7 +1214,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
 
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
-        if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == ABILITY_MULTITYPE) {
+        if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockB->ability == ABILITY_MULTITYPE) {
             result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         } else {
             result = SpeciesData_GetFormValue(monDataBlockA->species, monDataBlockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
@@ -1396,7 +1392,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_ABILITY:
-        monDataBlockA->ability = *u8Value;
+        monDataBlockB->ability = *u16Value;
         break;
 
     case MON_DATA_MARKINGS:
@@ -1611,10 +1607,6 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     case MON_DATA_UNUSED_113:
         monDataBlockB->unused1 = *u8Value;
-        break;
-
-    case MON_DATA_UNUSED_114:
-        monDataBlockB->unused2 = *u16Value;
         break;
 
     case MON_DATA_NICKNAME_AND_FLAG: {
@@ -2235,6 +2227,9 @@ u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
         break;
     case SPECIES_DATA_ABILITY_2:
         result = speciesData->abilities[1];
+        break;
+    case SPECIES_DATA_ABILITY_HIDDEN:
+        result = speciesData->abilities[ABILITY_SLOT_HIDDEN];
         break;
     case SPECIES_DATA_SAFARI_FLEE_RATE:
         result = speciesData->safariFleeRate;
@@ -4748,6 +4743,35 @@ void Pokemon_CalcAbility(Pokemon *mon)
     BoxPokemon_CalcAbility(&mon->box);
 }
 
+// Platinum Oxide: give a Pokemon its species' hidden ability, the third slot
+// in the species record. Returns FALSE and changes nothing when the species has
+// no hidden ability, which is most of them today.
+//
+// Nothing calls this on its own. Which encounters and gifts hand out hidden
+// abilities is a balance question rather than an engine one, so the mechanism
+// lives here and the policy is a script's decision, through GiveHiddenAbility.
+BOOL BoxPokemon_TryGiveHiddenAbility(BoxPokemon *boxMon)
+{
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    u16 hiddenAbility = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
+    BOOL gaveIt = FALSE;
+
+    if (hiddenAbility != ABILITY_NONE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &hiddenAbility);
+        gaveIt = TRUE;
+    }
+
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    return gaveIt;
+}
+
+BOOL Pokemon_TryGiveHiddenAbility(Pokemon *mon)
+{
+    return BoxPokemon_TryGiveHiddenAbility(Pokemon_GetBoxPokemon(mon));
+}
+
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
@@ -5233,7 +5257,7 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->otID = monDataBlockA->otID;
     param1->exp = monDataBlockA->exp;
     param1->friendship = monDataBlockA->friendship;
-    param1->ability = monDataBlockA->ability;
+    param1->ability = monDataBlockB->ability;
     param1->hpEV = monDataBlockA->hpEV;
     param1->atkEV = monDataBlockA->atkEV;
     param1->defEV = monDataBlockA->defEV;
@@ -5309,7 +5333,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     monDataBlockA->otID = param0->otID;
     monDataBlockA->exp = param0->exp;
     monDataBlockA->friendship = param0->friendship;
-    monDataBlockA->ability = param0->ability;
+    monDataBlockB->ability = param0->ability;
     monDataBlockA->hpEV = param0->hpEV;
     monDataBlockA->atkEV = param0->atkEV;
     monDataBlockA->defEV = param0->defEV;

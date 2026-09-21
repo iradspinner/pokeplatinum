@@ -21,7 +21,7 @@ typedef struct PokemonDataBlockA {
     /* 0x08 */ u32 exp;
 
     /* 0x0C */ u8 friendship;
-    /* 0x0D */ u8 ability;
+    /* 0x0D */ u8 unusedAbility; //!< Platinum Oxide: the ability moved to block B as a u16. Block A is full, block B had three spare bytes, and ability ids now run past 255. See docs/oxide/save-layout.md.
     /* 0x0E */ u8 markings;
     /* 0x0F */ u8 originLanguage;
 
@@ -64,7 +64,7 @@ typedef struct PokemonDataBlockB {
                u8 gender : 2;
                u8 form : 5;
     /* 0x19 */ u8 unused1; //!< First 6 bits track Shiny Leaves from HGSS.
-    /* 0x1A */ u16 unused2;
+    /* 0x1A */ u16 ability; //!< Platinum Oxide: was unused2. See the note on block A's unusedAbility.
 
     /* 0x1C */ u16 EggLocation_PtHGSS;
     /* 0x1E */ u16 MetLocation_PtHGSS;
