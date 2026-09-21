@@ -124,10 +124,23 @@ what to do meanwhile.
    Garden get a no-leak pass only.** Replace each off-list species with an on-list
    one of similar role and level, keep the shapes. Their proper design is a later
    pass; the design doc scoped the first pass to land and the linter is calibrated
-   on land. *Ian* may want to fold surf into the design earlier.
+   on land. **Amended by Ian, 2026-09-21: surf tables get designed in this pass,
+   not only de-leaked**, but a surf table counts as an acquisition path (R12 and
+   the availability report) only where the player can actually reach that water.
+   Several areas carry a surf table with no reachable water; the sidecar needs a
+   per-area flag saying whether the water is reachable, set by reading the map,
+   and the audit skips surf tables where it is false. Rods stay a no-leak pass.
 6. **Progression order.** *Ian's open question 2.* The agent writes `order` for
    all 185 areas from Sinnoh's actual route sequence (the outline below), commits
    it, and Ian corrects it in the file. Nothing waits on the correction.
+   **Ian's review, 2026-09-21:** the committed order is right to his eye with one
+   correction, the Old Chateau needs Cut and so comes after Eterna City and Route
+   211 west, not straight after Eterna Forest. And a task to add: every area gets a
+   `split` in the sidecar, the story gate it sits behind (the badge or HM that
+   opens it, so the Old Chateau is in the Gardenia split), so that `order` is
+   derived from and checked against the gates rather than eyeballed. Areas within
+   one split keep their relative order. Do this in Step 2, where the availability
+   plan needs the gates anyway.
 7. **Tiers.** *Ian's open question 3.* The agent adds a `tier` column to the CSV
    with a proposed default (`gate` for legendaries, fossils, the starter lines and
    anything scripted; `starter-adjacent` for lines whose first stage can sit on
@@ -139,11 +152,20 @@ what to do meanwhile.
    name an off-list species; Ian decides.
 9. **Unown and the Solaceon Ruins.** Unown is off-list, so the ruins rooms become
    ordinary cave tables (Stage A gives them a cave cast) and `unown_table` stops
-   mattering. *Ian* can put Unown back on the list instead; say so before Step 3.
+   mattering. **Ian, 2026-09-21: Unown stays off the list.** Settled.
 10. **Levels stay close to vanilla's.** The base ROM changed species on 114 of 171
     tables but levels on only 27, and vanilla's ladder is the thing the design is
     copying. `base_level` per area comes from vanilla (`--ref main`), and the
     archetype's ladder sits on top of it. Do not re-tune the level curve.
+11. **A line the game hands over with certainty appears in no encounter table
+    (Ian, 2026-09-21).** Togepi from Cynthia's egg in Eterna and Riolu from
+    Riley's egg on Iron Island are the examples; the rule is any species a script
+    gives unconditionally, as opposed to a choice (starter, fossil) or a random
+    roll (the base ROM's gift houses). Build the list from `pokemon-gifts.md` and
+    the scripts, show it to Ian once, then enforce it as a lint rule (next free R
+    number): a guaranteed line is absent from every land, water and rod table, and
+    the availability audit reports it as scripted rather than needing a home. The
+    tiers and the R12 cost ceilings stay as committed; this is the one change.
 
 ## The steps
 
@@ -307,9 +329,10 @@ none), the leak audit's script list, and the list of reservations for Stage B.
 
 ## Open for Ian, none blocking
 
-- Corrections to `order` and `tier` once the agent's defaults are committed.
-- Whether Unown returns to the list (decision 9) and whether surf gets designed
-  now (decision 5).
+- ~~Corrections to `order` and `tier`~~ done 2026-09-21: see decisions 6, 7 and 11.
+- ~~Whether Unown returns to the list and whether surf gets designed now~~ done
+  2026-09-21: Unown off, surf designed but counted only where reachable
+  (decisions 5 and 9).
 - Any off-list species the leak audit finds in scripts.
 - Whether the first corridor's feel is right, after playing it (Step 3's gate).
 
