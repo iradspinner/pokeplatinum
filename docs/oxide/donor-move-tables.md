@@ -288,8 +288,10 @@ so this is a balance question rather than a format one.
 Nothing in the donor's record has no JSON key, and no JSON key has no donor
 field. The record is Platinum's record. What the JSON needs that the donor has
 nowhere at all is the per-move `anim.s` and `script.s` that `moveproc.c` expects
-beside each `data.json`; those are the battle and animation scripts, and where
-they live in the donor is the open question at the top of this document.
+beside each `data.json`; those are the battle and animation scripts. They were
+not taken from the donor: effect scripts come from hg-engine's source through
+`tools/oxide/convert_battle_scripts.py`, and every new move reuses an existing
+Platinum animation (`docs/oxide/move-animation-map.json`).
 
 ## The type 9 trap
 

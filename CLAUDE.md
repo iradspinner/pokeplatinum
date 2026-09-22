@@ -21,9 +21,10 @@ Then say in one or two sentences what this session will do, and do it.
 - Edit `res/` JSON files with `tools/oxide/jsonstyle.py` helpers or by hand in
   the same style; never reformat whole files (the repo's formatting is not
   uniform and reformatting makes upstream merges painful).
-- Ian's preferences: prose over bullets except for real lists, no em-dashes,
-  keep replies short, do not open by praising his message, do not assume he
-  is the expert on a question he asked, annotate code in plain English.
+- Ian's writing rules are in `~/.claude/CLAUDE.md`, which every session and
+  subagent loads, and a hook refuses a dash or a banned phrase in Markdown and
+  commit messages. Paste its "Hard rules" into any subagent brief (the brief
+  template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
 - Update `docs/oxide/tracker.md` at the end of every session and commit it.
   If any `docs/oxide/*.md` file changed this session, also run
@@ -31,7 +32,7 @@ Then say in one or two sentences what this session will do, and do it.
   drive, which a separate chat surface works from.
 - Never delete, move, or overwrite the base ROM in the project folder
   (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It is what every
-  verify tool compares the build against, and and the only source for anything
+  verify tool compares the build against, and the only source for anything
   Phase 3 might need re-checking.
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
@@ -59,8 +60,9 @@ table work), `carry-over-map` (scripts, events and text for one map),
 design sheets on G:, with the synced `xlsx` skill for the mechanics),
 `debug-live` (any in-game bug, with Ian driving melonDS). In
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
-full verification gate, and `/qa-pass <base>` reviews and re-checks a range of
-commits and writes up the findings.
+full verification gate, `/qa-pass <base>` reviews and re-checks a range of
+commits and writes up the findings, and `/docs-pass` audits the docs, skills and
+this file against the tree.
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
 emulator, and committing a file that carries the scratch marker
@@ -99,11 +101,12 @@ ROM (their `--dry-run` doubles as the check); `mapdiff.py` and `checkmap.py`
 work one map at a time. `tools/oxide/encounters/` is the encounter tool, with
 its own tests and CLI (see its build plan). `tools/oxide/live_watch.py` attaches
 to Ian's melonDS on Windows over its GDB stub while Ian drives the game; never
-launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b). The base ROM itself lives outside
-the repo (see the design doc for its path on Ian's machine); a copy is pinned
-at `~/roms/base.nds`. A byte-exact vanilla Rev 1 build (built once from
-`main`) is pinned at `~/roms/vanilla.nds` for `import_base_rom.py --vanilla`
-and `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
+launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b, and the
+`debug-live` skill). The base ROM itself lives outside the repo (see the design
+doc for its path on Ian's machine); a copy is pinned at `~/roms/base.nds`. A
+byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
+`~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
+`verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
 `tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
 complains about any file it has no mapping for. The full restart check-list
 is at the top of the tracker.

@@ -45,11 +45,15 @@ the facts they point at live in the docs, not here.
   `tools/oxide/bulk_scripts.py` for scripts.
 - A change that moves anything in the save file gets a row in
   `docs/oxide/save-layout.md`. Saves made before it will not read correctly and
-  Ian needs to know to start a new game.
+  Ian needs to know to start a new game. The trigger is not "did I edit a save
+  struct" but "does anything sized by a constant I changed end up in the save":
+  the dex flags grow with `NATIONAL_DEX_COUNT`, and Easy Chat word ids (stored
+  in mail) shift whenever a text bank of names grows. Both have been missed.
 - Do not "improve" something while a faithful carry-over of it is being
   verified. Cleanups are their own commits afterwards.
-- Ian's writing preferences are in `CLAUDE.md`: prose over bullets except for
-  real lists, no em-dashes, short, no opening praise.
+- Ian's writing rules are in `~/.claude/CLAUDE.md`, which every session and
+  subagent loads. A hook refuses a dash or a banned phrase in Markdown and in
+  commit messages; the rest is on you.
 
 ## Ending
 
@@ -78,14 +82,49 @@ Run these in order; skipping one is how the next session starts confused.
 
 ## Verification, the short list
 
-The full restart check-list is at the top of the tracker; `integrate.sh` runs
-all of it. The minimum before calling a data or engine change done is
-`make rom` plus the verify tool that covers what changed, and the emulator test
-written into the tracker entry for Ian.
+The full restart check-list is at the top of the tracker, and
+`bash tools/oxide/integrate.sh --verify-only` runs all of it without merging
+anything. The minimum before calling a data or engine change done is `make rom`
+plus the verify tool that covers what changed, and the emulator test written
+into the tracker entry for Ian. Until the replacement CPU is in, a local ROM is
+trusted when its SHA-1 matches the one GitHub's build prints for the same commit
+(CLAUDE.md, Build).
 
-Emulator work is Ian's melonDS on Windows with Ian at the controls, and the
-agent attached over the GDB stub with `tools/oxide/live_watch.py` (recipe:
-`docs/oxide/setup-fork-and-wsl2.md` part 5b). Never launch your own melonDS;
-the WSLg route in part 5 of that doc is a recorded dead end. Ask Ian to
-restart at the startup break, tell him what you have armed, and wait for his
-"go"; he plays and reports, you read.
+Emulator work is the `debug-live` skill: Ian runs melonDS on Windows and
+drives, and the agent attaches over the GDB stub and reads. Never launch your
+own emulator.
+
+## Handing a task to a subagent
+
+Ian's standing preference is that bounded tasks (a catalogue, a survey, a tool
+with a clear gate, a batch of tables) go to a background general-purpose agent
+on Opus, while this session writes the brief, reviews what comes back and
+reports to him. Keep here anything that needs judgment across the project,
+anything in another track's files, and the report itself, since a subagent's
+report never reaches Ian. The agent starts cold, so the brief carries
+everything:
+
+```
+Repo ~/pokeplatinum, branch <oxide, or the worktree to work in>. Invoke the
+<skill> skill first.
+
+Task: <what to produce and why, in a paragraph>.
+
+Already there: <tools, files and earlier results to build on, with paths>.
+
+Rules that bite: stage files by name; never edit res/ JSON by hand (use
+jsonstyle.py or the tool that owns the file); never launch an emulator; edit
+only <files or directories>; retry a build that crashes (degraded CPU).
+
+Write to: <paths>. <Commit on the worktree branch / leave uncommitted>.
+
+Done means: <the check that must pass, and its command>.
+
+Report: failures and anything unverified first, then what changed with paths,
+then what was checked and how. Under <N> words.
+
+<paste the "Hard rules" section of ~/.claude/CLAUDE.md here>
+```
+
+Read the result before relaying it: rerun its check, look at the diff, and
+say in the report what you did not verify.

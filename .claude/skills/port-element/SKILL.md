@@ -43,7 +43,8 @@ commit messages first, they are the house style.
   change the struct and the compiler updates every use.
 - Watch the packers. The species processor buckets the dex index archive by type
   and then by body shape, so adding a type shifted every body-shape bucket; the
-  learnset packer caps move ids at 511; the trainer processor sizes party records
+  learnset packer capped move ids at 511 until element 4 widened the entry; the
+  trainer processor sizes party records
   from a data-type byte. Anything under `tools/dataproc/` that reads a count you
   changed needs reading.
 - Fixed art is the usual leftover: packed atlases and fixed grid layouts

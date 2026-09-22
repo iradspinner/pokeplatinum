@@ -111,9 +111,10 @@ vanilla Generation 4 forms plus the Megas.
 
 One flat blob, `34 * 4` bytes per species, entries of `(u16 move, u16 level)`
 padded with `(0xFFFF, 0)`. Two things Platinum cannot take as they are. Move ids
-run past 511, which is all `SpeciesLearnsetEntry` can hold, so the packed
-`move:9 / level:7` format has to widen. And hg-engine uses **level 0** for an
-evolution move, which Platinum has no concept of.
+ran past 511, which was all the packed `move:9 / level:7` entry could hold, so
+element 4 widened `SpeciesLearnsetEntry` to (u16 level, u16 move). And hg-engine
+uses **level 0** for an evolution move, which Platinum has no concept of; it
+imports as level 1.
 
 ## Evolutions
 

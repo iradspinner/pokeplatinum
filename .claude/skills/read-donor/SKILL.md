@@ -11,13 +11,17 @@ name: HeartGold collapses everything into numbered NARCs (`a/0/x/y`). The
 readers already exist; use them rather than reopening the ROM by hand.
 
 - Reader: `tools/oxide/donor.py` (species records, learnsets, evolutions, the
-  `a/0/2/8` additions, text banks). Nothing in it writes.
+  `a/0/2/8` additions, text banks), and `tools/oxide/donor_moves.py` on top of
+  it for the move table, names and descriptions. Nothing in either writes.
 - Writer: `tools/oxide/import_donor.py`, one idempotent subcommand per table,
   the counterpart of `import_base_rom.py`. Run a subcommand twice and the second
-  run reports nothing to do; `--dry-run` shows what it would change.
+  run reports nothing to do; `--dry-run` shows what it would change. Moves have
+  their own importer, `tools/oxide/import_moves.py`, which owns every move from
+  id 468 up.
 - Evidence: `docs/oxide/donor-tables.md` records what each table and each
   `a/0/2/8` member is and how it was identified, by reading, since none of it
-  came from hg-engine's source. Read it before trusting a number.
+  came from hg-engine's source. Read it before trusting a number. The move
+  tables are in `docs/oxide/donor-move-tables.md`.
 - The ROM: pinned copy at `~/roms/hardlove.nds`. The original in the G: folder
   is a copy too and may be written to for experiments, but say so in the
   findings log if you do, so a later comparison is not silently against an
@@ -45,9 +49,14 @@ readers already exist; use them rather than reopening the ROM by hand.
   is a DSPRE working copy someone has edited. `synthOverlay` does match, but go
   through `donor.py` and the ROM anyway.
 - Learnsets are 34 fixed slots of (u16 move, u16 level); level 0 means an
-  evolution move, which Platinum has no concept of. Platinum packs level and
-  move into one u16 with the move capped at 511; widening that format is part
-  of the move expansion (element 4).
+  evolution move, which Platinum has no concept of and which imports as level 1.
+  Oxide's entry has been (u16 level, u16 move) since element 4, so the move id
+  is no longer capped at 511.
+- Move battle effects share Platinum's numbering: 0 to 276 are Platinum's
+  `BATTLE_EFFECT_*` in order and hg-engine's own run 277 to 406. The effect
+  scripts come from hg-engine's source, not the ROM:
+  `tools/oxide/convert_battle_scripts.py` converts `~/hg-engine/data/battle_scripts`
+  into Platinum's dialect.
 - Evolutions are 9 slots of 6 bytes plus 2 padding per species. Four donor
   methods do not exist in Platinum, two donor targets point past the end of
   Hardlove's own table, and three natives gain an evolution; the pick-list's
@@ -68,6 +77,11 @@ readers already exist; use them rather than reopening the ROM by hand.
 
 ## How to bring a table in
 
+0. **Where the donor's low ids already match Platinum's, take the whole
+   contiguous table**, not the subset the pick-list needs. Abilities 0 to 318
+   and moves 0 to 922 both came across that way, so a donor id and an Oxide id
+   are the same number for good. A sparse import saves a few kilobytes of text
+   and costs a permanent translation layer.
 1. Check `donor-tables.md` for the table; if it is not there yet, read it with
    `donor.py`, work out the layout from the bytes, and add a section with the
    evidence before writing an importer for it.

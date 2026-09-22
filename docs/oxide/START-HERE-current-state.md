@@ -68,8 +68,8 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 1. **The base ROM is irreplaceable input.** `Platinum Unlocked - Challenge -
    Adjusted v1.1.nds` in the project folder (pinned copy `~/roms/base.nds`) is what
-   every verify tool compares against and the only source for the three Phase 3
-   hard stops. Do not delete or overwrite it.
+   every verify tool compares against and the only source for re-checking
+   anything Phase 3 carried over. Do not delete or overwrite it.
 2. **The importers need a vanilla reference too.** `~/roms/vanilla.nds` is a
    byte-exact Rev 1 build from `main`. Don't rebuild it per session.
 3. **Do not reformat `res/` JSON files wholesale.** The repo's formatting is not
@@ -86,3 +86,8 @@ frozen 2026-09-15. Treat them as background, not current status.
 6. **Two sessions in parallel means one status home each.** The tracker is for
    Phases 0 to 5, the build plan for the encounter tool. Editing the other
    track's file is how the merge conflicts happened.
+7. **The build machine's CPU is degraded** until its warranty replacement
+   arrives (2026-09-22). Builds can crash and pass on a retry, so GitHub builds
+   every push to `oxide` and prints the ROM's SHA-1; a ROM is trusted when its
+   hash matches that one. A result from the build machine that looks wrong may
+   be the hardware, so rerun it before chasing it.

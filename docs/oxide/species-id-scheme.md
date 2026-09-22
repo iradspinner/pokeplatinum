@@ -18,7 +18,7 @@ direction as the dex the player sees, and because the dex already keeps
 evolution families together, the families end up adjacent in id space too
 (Charcadet 648, Armarouge 649, Ceruledge 650).
 
-The assignment is in `species-id-map.csv` and is **frozen once element 3 lands**.
+The assignment is in `species-id-map.csv` and is **frozen**: element 3 landed on it, and every species-indexed table, save and script now depends on those ids.
 Re-ordering the dex afterwards changes the dex table, not the ids.
 
 ## Why appending before SPECIES_EGG is the whole change
