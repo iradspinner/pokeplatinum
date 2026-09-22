@@ -105,9 +105,14 @@ def check_chart(results):
 def check_moves_and_sprites(results):
     root = model.repo_root()
     moves = pokedex.moves(root)
+    # Counted from the tree rather than written down: the branch that wrote
+    # this check predates element 4's move import, which took 468 to 923.
+    # A move is a folder with a data.json; `.shared` holds scripts, not a move.
+    folders = [f for f in os.listdir(os.path.join(root, "res", "moves"))
+               if os.path.isfile(os.path.join(root, "res", "moves", f, "data.json"))]
     results.append(("every move folder reads, and meson.build is not a move",
-                    len(moves) == 468 and "MOVE_MESON.BUILD" not in moves,
-                    f"{len(moves)} moves"))
+                    len(moves) == len(folders) and "MOVE_MESON.BUILD" not in moves,
+                    f"{len(moves)} moves of {len(folders)} folders"))
     flamethrower = moves["MOVE_FLAMETHROWER"]
     results.append(("a move carries what a damage formula needs",
                     flamethrower["type"] == "FIRE" and flamethrower["power"] == 95
