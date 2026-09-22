@@ -94,7 +94,12 @@ def load(root, species, ref=None):
     return {
         "species": species,
         "folder": folder_of(species),
-        "name": (en.get("name") or folder_of(species)).title(),
+        # The twelve alternate-form records carry "-----" for a name, because a
+        # form is named after its base in game. Derive one from the folder
+        # rather than show dashes: Alolan Ninetales is a species Ian put in
+        # tables on purpose, not a placeholder.
+        "name": _name_of(en.get("name"), folder_of(species)),
+        "mega_of": _mega_of(species),
         "stats": {k: stats.get(k, 0) for k in STAT_KEYS},
         "bst": sum(stats.get(k, 0) for k in STAT_KEYS),
         # Order matters: the first is the primary type. A single-typed species
@@ -124,6 +129,20 @@ def load(root, species, ref=None):
     }
 
 
+def _name_of(name, folder):
+    name = (name or "").strip()
+    if not name or set(name) <= {"-"}:
+        return folder.replace("_", " ").title()
+    return name.title()
+
+
+def _mega_of(species):
+    """The species this is a mega of, or None. Megas are the base's constant
+    with `_M`; a regional form is its own species with its own name, and a
+    stage like Porygon-Z only looks like a suffix."""
+    return species[:-2] if species.endswith("_M") else None
+
+
 def _evolution(entry):
     """One evolution as {method, level, item, into}; the arity varies."""
     method = entry[0] if isinstance(entry[0], str) else ""
@@ -135,6 +154,7 @@ def _evolution(entry):
         "level": ints[0] if method.startswith("EVO_LEVEL") and ints else None,
         "item": _strip(item, "ITEM_") if item else None,
         "into": into,
+        "form": bool(into and _mega_of(into)),
     }
 
 

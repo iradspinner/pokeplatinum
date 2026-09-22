@@ -238,9 +238,26 @@ tr.gone .ico { opacity: .35; }
 
 table.stats { border-collapse: collapse; width: 100%; max-width: 460px; }
 table.stats td { padding: 2px 6px; }
-table.stats td.bar { width: 100%; }
+/* Not `.bar`: that class is the repel ladder's bordered 22px row, and
+   borrowing it drew every stat as an empty box. */
+table.stats td.meter { width: 100%; }
 table.stats .track { background: var(--sunken); height: 9px; border-radius: 2px; }
-table.stats .track > i { display: block; height: 100%; background: var(--mass-2); }
+table.stats .track > i { display: block; height: 100%; border-radius: 2px; }
+/* A stat reads faster as a colour than as a number, so the bar is banded the
+   way a dex bands it. Muted, to sit beside the teal rather than shout over it. */
+.s0 { background: #a8564e; }
+.s1 { background: #b07a3c; }
+.s2 { background: #8d8a35; }
+.s3 { background: #4b99b3; }
+.s4 { background: #3f7d5a; }
+
+.met.go { cursor: pointer; }
+.met.go:hover { background: var(--sunken); }
+.met .arrow { color: var(--faint); float: right; }
+table.facts { border-collapse: collapse; font-size: 13px; }
+table.facts th { text-align: left; font-weight: 500; color: var(--dim);
+  padding: 1px 12px 1px 0; white-space: nowrap; }
+table.facts td { padding: 1px 0; }
 .delta { font-family: var(--mono); color: var(--gold); font-size: 12px; }
 .delta.down { color: var(--dim); }
 
@@ -383,7 +400,9 @@ function drawDexList() {
       <span class="nm">${esc(r.name)}</span>
       <span class="tt">${r.types.map(tidy).join(" / ")}</span>
       <span class="num" style="width:3.2em">${r.bst}</span>
-      <span class="delta" style="width:3em">${r.bst_delta ? signed(r.bst_delta) : ""}</span>
+      <span class="delta" style="width:3em"
+            title="against this species' real Generation 9 self">${
+        r.canon_delta ? signed(r.canon_delta) : ""}</span>
     </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
   $("#dexrows").querySelectorAll(".dexrow").forEach(el =>
     el.onclick = () => selectSpecies(el.dataset.sp));
@@ -398,17 +417,52 @@ async function selectSpecies(species) {
   drawDexDetail();
 }
 
+// Bands a dex would recognise, so a glance at the colour says as much as
+// reading the number does.
+const band = v => v < 50 ? "s0" : v < 75 ? "s1" : v < 95 ? "s2" : v < 120 ? "s3" : "s4";
+
 function statRows(d) {
-  const delta = (d.delta && d.delta.stats) || {};
+  // Per stat, the comparison is against the real species: it is the one every
+  // species has, including the 159 vanilla Platinum never saw.
+  const delta = (d.canon && d.canon.stats) || {};
   return STATS.map(([k, label]) => {
     const v = d.stats[k], dv = delta[k];
     return `<tr>
       <td class="sub">${label}</td>
       <td class="num" style="width:3em">${v}</td>
-      <td class="bar"><div class="track"><i style="width:${Math.min(100, v / 200 * 100)}%"></i></div></td>
+      <td class="meter"><div class="track">
+        <i class="${band(v)}" style="width:${Math.min(100, v / 200 * 100)}%"></i></div></td>
       <td class="delta${dv < 0 ? " down" : ""}" style="width:3.4em">${dv ? signed(dv) : ""}</td>
     </tr>`;
   }).join("");
+}
+
+// Grass Knot and Low Kick read the target's weight, so the page may as well
+// say what they would do. The tree stores pounds.
+function facts(d) {
+  const kg = d.weight_pounds ? d.weight_pounds * 0.4536 : null;
+  const knot = kg === null ? null
+    : kg < 10 ? 20 : kg < 25 ? 40 : kg < 50 ? 60 : kg < 100 ? 80 : kg < 200 ? 100 : 120;
+  const evs = Object.entries(d.ev_yields || {}).filter(([, v]) => v)
+    .map(([k, v]) => `${v} ${(STATS.find(s => s[0] === k) || [, k])[1]}`).join(", ");
+  const items = Object.entries(d.held_items || {})
+    .filter(([, v]) => v && v !== "ITEM_NONE")
+    .map(([k, v]) => `${k === "rare" ? "5%" : "50%"} ${tidy(v.replace("ITEM_", ""))}`)
+    .join(", ");
+  const row = (k, v) => v ? `<tr><th>${k}</th><td>${v}</td></tr>` : "";
+  return `<table class="facts">
+    ${row("catch rate", d.catch_rate)}
+    ${row("gender", tidy(d.gender_ratio))}
+    ${row("egg groups", (d.egg_groups || []).map(tidy).join(", "))}
+    ${row("hatch cycles", d.hatch_cycles)}
+    ${row("base friendship", d.base_friendship)}
+    ${row("exp rate", tidy(d.exp_rate))}
+    ${row("base exp", d.base_exp)}
+    ${row("EV yield", evs)}
+    ${row("wild item", items)}
+    ${row("weight", kg === null ? "" : `${kg.toFixed(1)} kg
+       <span class="sub">Grass Knot ${knot}</span>`)}
+  </table>`;
 }
 
 function evoText(e) {
@@ -438,7 +492,12 @@ function drawDexDetail() {
 
     <div class="dexsec">
       <h4>base stats &middot; total <span class="num">${d.bst}</span>
-        ${bstDelta ? `<span class="delta">${signed(bstDelta)} from vanilla</span>` : ""}</h4>
+        ${bstDelta ? `<span class="delta">${signed(bstDelta)} from vanilla Platinum</span>` : ""}
+        ${d.canon && d.canon.bst
+          ? `<span class="delta">${signed(d.canon.bst)} from ${esc(d.canon_name)} as it really is</span>`
+          : `<span class="sub">matches ${esc(d.canon_name || "")}</span>`}</h4>
+      ${d.canon && d.canon.types ? `<div class="sub">typed
+        ${d.canon.types.now.join(" / ")} here, ${d.canon.types.was.join(" / ")} really</div>` : ""}
       <table class="stats">${statRows(d)}</table>
     </div>
 
@@ -463,6 +522,14 @@ function drawDexDetail() {
       ${d.evolutions.length ? `<div class="sub" style="margin-top:6px">
         ${d.evolutions.map(e => `${esc(d.name)} &rarr; ${esc(e.label || "")}
           <span class="sub">(${esc(evoText(e))})</span>`).join("; ")}</div>` : ""}
+      ${(d.formes || []).length ? `<div class="sub" style="margin-top:6px">
+        formes: ${d.formes.map(e => `<a href="#" data-sp="${e.into}">${esc(e.label || "")}</a>
+          <span class="sub">(${esc(evoText(e))}, day or night)</span>`).join("; ")}</div>` : ""}
+    </div>
+
+    <div class="dexsec">
+      <h4>the rest of it</h4>
+      ${facts(d)}
     </div>
 
     <div class="dexsec">
@@ -484,9 +551,10 @@ function drawDexDetail() {
   (d.captures || []).forEach(c => (byKind[c.kind] = byKind[c.kind] || []).push(c));
   const met = Object.keys(byKind).map(k => `
     <div class="dexsec"><h4>${esc(KINDS[k] || k)}</h4>
-      ${byKind[k].map(c => `<div class="met">
+      ${byKind[k].map(c => `<div class="met go" data-area="${esc(c.area)}"
+           data-kind="${esc(c.kind)}" title="Open this table">
         <b>${esc(c.location || c.area)}</b>
-        <span class="sub">${esc(c.split || "")}</span><br>
+        <span class="sub">${esc(c.split || "")}</span><span class="arrow">&rsaquo;</span><br>
         <span class="sub">${c.share ? pct(c.share) : "one of five slots"} &middot;
           level ${c.level_min}${c.level_max !== c.level_min ? "&ndash;" + c.level_max : ""}</span>
       </div>`).join("")}
@@ -506,6 +574,18 @@ function drawDexDetail() {
       (d.line || []).some(m => m.appearances)
         ? "Another stage of its line is, above." : ""}</p>`}
     <div class="dexsec"><h4>damage taken</h4>${mx || `<p class="sub">Nothing is unusual against it.</p>`}</div>`;
+
+  // Where it is met is the one thing this dex knows that a general one cannot,
+  // so it opens the table rather than just naming it.
+  $("#dexright").querySelectorAll(".met.go").forEach(el =>
+    el.onclick = () => openTable(el.dataset.area, el.dataset.kind));
+}
+
+function openTable(area, kind) {
+  KIND = kind || "land";
+  LAYER = "base";
+  setView("tables");
+  select(area);
 }
 
 function setView(view) {

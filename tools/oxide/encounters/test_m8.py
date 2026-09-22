@@ -45,7 +45,7 @@ def check_species(results):
     results.append(("evolutions carry their method and level",
                     pokedex.load(root, "SPECIES_LITTEN")["evolutions"]
                     == [{"method": "LEVEL", "level": 16, "item": None,
-                         "into": "SPECIES_TORRACAT"}], ""))
+                         "into": "SPECIES_TORRACAT", "form": False}], ""))
     results.append(("the level-up learnset comes through",
                     pokedex.load(root, "SPECIES_LITTEN")["learnset"][0]
                     == [1, "MOVE_SCRATCH"], ""))
@@ -164,6 +164,71 @@ def check_endpoints(results):
                     "error" in server.dex_detail("SPECIES_NOT_A_POKEMON"), ""))
 
 
+def check_canon(results):
+    """The second baseline: what a species really is, in its own generation.
+
+    `main` answers that for the 493 natives and nothing for the 159 ported
+    ones, which is why the dex read "new" and stopped. The canonical table
+    covers all of them, and it has to be the upstream one: the vendored
+    calculator ships whatever data it was last built with, which is a romhack's.
+    """
+    from . import canon
+    root = model.repo_root()
+    names = pokedex.species_list(root)
+    results.append(("every species in the tree lands on a canonical name, which "
+                    "is also the map the calculator will need",
+                    not canon.unmatched(names),
+                    f"unmatched {canon.unmatched(names)[:4]}"))
+    results.append(("the awkward spellings are the ones the calculator uses",
+                    canon.showdown_name("SPECIES_ALOLAN_NINETALES") == "Ninetales-Alola"
+                    and canon.showdown_name("SPECIES_GYARADOS_M") == "Gyarados-Mega"
+                    and canon.showdown_name("SPECIES_FARFETCHD") == "Farfetch’d"
+                    and canon.showdown_name("SPECIES_JANGMO_O") == "Jangmo-o"
+                    and canon.showdown_name("SPECIES_MR_MIME") == "Mr. Mime"
+                    and canon.showdown_name("SPECIES_PORYGON_Z") == "Porygon-Z", ""))
+
+    # The table that proved untrustworthy had Lopunny as Normal/Fighting, Arbok
+    # as Dark/Poison and Lapras as Dragon/Water. If canon.json is ever
+    # regenerated from the wrong species.js, this is what says so.
+    table = canon.table()
+    results.append(("the canonical table is canonical, not some romhack's",
+                    table["Lopunny"]["types"] == ["Normal"]
+                    and table["Arbok"]["types"] == ["Poison"]
+                    and table["Lapras"]["types"] == ["Water", "Ice"]
+                    and sum(table["Annihilape"]["stats"].values()) == 535,
+                    f"lopunny {table['Lopunny']['types']}"))
+
+    scorbunny = pokedex.load(root, "SPECIES_SCORBUNNY")
+    results.append(("a ported species compares against its real self rather "
+                    "than reading as new and stopping",
+                    pokedex.delta(root, "SPECIES_SCORBUNNY") == {"new": True}
+                    and canon.delta("SPECIES_SCORBUNNY", scorbunny) is not None
+                    and not canon.delta("SPECIES_SCORBUNNY", scorbunny).get("stats"),
+                    ""))
+    # Ian's own buffs should read as buffs: the base ROM lifts a lot of weak
+    # natives, and Alolan Ninetales came in 50 points above the real one.
+    ninetales = pokedex.load(root, "SPECIES_ALOLAN_NINETALES")
+    results.append(("a species this project moved reports how far it moved",
+                    canon.delta("SPECIES_ALOLAN_NINETALES", ninetales)["bst"] == 50
+                    and canon.delta("SPECIES_SLUGMA",
+                                    pokedex.load(root, "SPECIES_SLUGMA"))["bst"] == 140,
+                    ""))
+    results.append(("the alternate-form records get a name rather than dashes",
+                    ninetales["name"] == "Alolan Ninetales"
+                    and pokedex.load(root, "SPECIES_LOPUNNY_M")["name"] == "Lopunny M",
+                    ""))
+    # A mega shares its base's line but is not a stage of it, and it is entered
+    # twice, once for the day method and once for the night one.
+    lopunny = server.dex_detail("SPECIES_LOPUNNY")
+    results.append(("a mega is a forme, listed once, not two extra stages",
+                    [m["label"] for m in lopunny["line"]] == ["Buneary", "Lopunny"]
+                    and len(lopunny["formes"]) == 1
+                    and not lopunny["evolutions"], ""))
+    results.append(("a stage that merely looks like a form suffix is still a stage",
+                    [m["label"] for m in server.dex_detail("SPECIES_PORYGON")["line"]]
+                    == ["Porygon", "Porygon2", "Porygon-Z"], ""))
+
+
 def check_page(results):
     """D2's gate: every line the pick-list carries opens, and carries what the
     page draws. A species that half renders is worse than one that fails."""
@@ -244,7 +309,7 @@ def check_page(results):
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
-                  check_captures, check_endpoints, check_page):
+                  check_captures, check_endpoints, check_canon, check_page):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

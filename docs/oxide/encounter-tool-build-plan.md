@@ -1372,6 +1372,47 @@ The left list is deliberately untouched: its species column is the caught
 encounter, which is empty for most rows, so icons there would be mostly blank
 space.
 
+**Then a pass against ddex's own dex, on Ian's comparison.** Three bugs of mine
+and two features.
+
+The bugs. The stat bars drew as empty boxes, because the cell borrowed the
+existing `.bar` class, which is the repel ladder's bordered 22-pixel row.
+Twelve species read as `-----`, because the alternate-form records carry a
+placeholder name, a form being named after its base in game; one of them is
+Alolan Ninetales, which is at home on Route 211 west. And a mega listed as a
+stage of its line, twice, once for each of the day and night methods an
+alt-evolution is entered under.
+
+The features. Stat bars are banded by value the way a dex bands them, muted
+enough to sit beside the teal. And every line of "where it is met" opens that
+table: the dex knows which area, kind and split it means, so it switches view,
+selects the area and picks the right rod. That is the cross-link working in both
+directions, and it is the thing no general dex can do.
+
+**A second baseline, and a trap avoided.** Ian's other note was that the ported
+species do not compare against anything: `main` has never heard of Annihilape,
+so the dex said "new" and stopped. `canon.py` fixes that by comparing every
+species against its real Generation 9 self, and the same map from our constants
+to Showdown's spellings is exactly what D5 needs, so it is written once and
+tested here: all 652 land on a canonical entry.
+
+The trap: the obvious source was the species table inside the vendored
+calculator, and it is **not canonical**. It ships whatever data it was last
+built with, and the calculator loads the real thing at runtime, so its table is
+some romhack's: Arbok as Dark/Poison, Lapras as Dragon/Water, Lopunny as
+Normal/Fighting. Comparing against it would have had the dex report 27 type
+changes this project never made. The baseline is upstream `@smogon/calc 0.12.0`
+instead, vendored at `canon_src/` with its provenance, and `test_m8` pins those
+three species so a regeneration from the wrong file fails loudly rather than
+quietly lying.
+
+What it says now is worth reading: 470 of 652 species match canon exactly, 181
+differ in stats, which is the base ROM's own buffing (Slugma and Surskit both
++140, Spinda +120), and **three differ in type**: Galarian Rapidash is Fairy/Fire
+here against Fairy/Psychic, Gothitelle is Dark/Psychic against Psychic, and
+Tsareena is Fighting/Grass against Grass. Those three are either deliberate or
+import slips, and either way they were invisible until now.
+
 **D4, moves.** A move list and per-move page, plus the reverse index: which
 species learn this, and at what level.
 

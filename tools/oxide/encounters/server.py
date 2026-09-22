@@ -28,6 +28,7 @@ import urllib.parse
 import zlib
 
 from . import analysis as A
+from . import canon
 from . import dex
 from . import lint
 from . import locations
@@ -279,6 +280,9 @@ def dex_list():
             "new": bool(d and d.get("new")),
             "changed": bool(d and not d.get("new")),
             "bst_delta": (d or {}).get("bst"),
+            # Against the species' real self, which is the only comparison the
+            # ported ones have: vanilla Platinum has never heard of them.
+            "canon_delta": (canon.delta(species, rec) or {}).get("bst"),
             "appearances": len(caught.get(species) or []),
         })
     return {"rows": rows, "count": len(rows)}
@@ -303,6 +307,8 @@ def dex_detail(species):
     out = dict(rec)
     out["delta"] = pokedex.delta(root, species)
     out["vanilla"] = pokedex.load(root, species, "main")
+    out["canon"] = canon.delta(species, rec)
+    out["canon_name"] = canon.showdown_name(species)
     out["sprites"] = pokedex.sprites(root, species)
     out["captures"] = _captures().get(species) or []
     out["matchups"] = matchups
@@ -317,8 +323,20 @@ def dex_detail(species):
             "power": m.get("power"), "accuracy": m.get("accuracy"),
             "pp": m.get("pp"),
         })
-    for evo in out["evolutions"]:
-        evo["label"] = dex.display_name(evo["into"]) if evo["into"] else None
+    # A mega is entered twice, once under the day method and once under the
+    # night one, which is how the tree holds an alt-evolution. That is one
+    # forme, not two evolutions.
+    seen, evolutions = set(), []
+    for evo in rec["evolutions"]:
+        if evo["into"] in seen:
+            continue
+        seen.add(evo["into"])
+        into = pokedex.load(root, evo["into"]) if evo["into"] else None
+        evo = dict(evo, label=into["name"] if into else None,
+                   folder=into["folder"] if into else None)
+        evolutions.append(evo)
+    out["evolutions"] = [e for e in evolutions if not e["form"]]
+    out["formes"] = [e for e in evolutions if e["form"]]
     # The captures index is per species, not per line: after the evolution pass
     # a table that used to hold Litten holds Torracat, so the page has to be able
     # to say where the rest of the line is met.
@@ -341,7 +359,11 @@ def dex_detail(species):
             "appearances": len(caps.get(member) or []),
             "evolutions": rec_m["evolutions"],
             "bst": rec_m["bst"],
+            "mega_of": rec_m["mega_of"],
         })
+    # A mega shares its base's line but is not a stage of it, so it belongs with
+    # the formes rather than in the chain.
+    out["line"] = [m for m in out["line"] if not m["mega_of"]]
     return out
 
 
