@@ -75,11 +75,12 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 
 **Next steps, in order:**
 
-1. **Ian: the rest of the emulator pass** under "Waiting on Ian". The nurse hang is confirmed gone; the box deposit hang is confirmed still there and belongs to the bug track.
-2. **Bug track:** the box deposit hang first, then the UNLOCK FPS ALWAYS crash entering Sandgem. Each bug entry under Phase 5 says what is known and which breakpoints to start from.
-3. **Phase 4 element 4**, the move expansion, is down to its last two pieces: **writing the 114 new battle effect scripts**, which are stubs today so a new move does its damage but skips its extra, and then **refilling the 159 new species' learnsets** unfiltered. Element 3's remaining fill-in, the TM and tutor and egg-move lists, still waits on the Phase 5 TM pass.
-4. **The encounter authoring pass** is through Step 8 and merged into `oxide`; every wild and scripted source is designed and the tables build. What it has left is listed in its own build plan, and nothing there blocks Phase 4.
-5. **Backlog items that are now cheap:** the six overworld sprites the carry-over missed (Phase 3 regression item), and the re-examination of the inventory's other "tool side effect" archives.
+1. **Once the QA pass at the top of this file is closed** (the Python pin settled one way or the other, the code review findings fixed or ruled on): **a full documentation review, cull and realignment** across `docs/oxide/`, the skills in `.claude/skills/` and `CLAUDE.md`, in the shape of the 2026-09-21 docs pass (every file classified as status home, live plan, reference or history; the findings log pruned under its own rule), **followed by an integration** of every track. Ian, 2026-09-22
+2. **Ian: the rest of the emulator pass** under "Waiting on Ian". The nurse hang is confirmed gone; the box deposit hang is confirmed still there and belongs to the bug track.
+3. **Bug track:** the box deposit hang first, then the UNLOCK FPS ALWAYS crash entering Sandgem. Each bug entry under Phase 5 says what is known and which breakpoints to start from.
+4. **Phase 4 element 4**, the move expansion, is down to its last two pieces: **writing the 114 new battle effect scripts**, which are stubs today so a new move does its damage but skips its extra, and then **refilling the 159 new species' learnsets** unfiltered. Element 3's remaining fill-in, the TM and tutor and egg-move lists, still waits on the Phase 5 TM pass.
+5. **The encounter authoring pass** is through Step 8 and merged into `oxide`; every wild and scripted source is designed and the tables build. What it has left is listed in its own build plan, and nothing there blocks Phase 4.
+6. **Backlog items that are now cheap:** the six overworld sprites the carry-over missed (Phase 3 regression item), and the re-examination of the inventory's other "tool side effect" archives.
 
 **To confirm the state after a restart**, from the repo root:
 
