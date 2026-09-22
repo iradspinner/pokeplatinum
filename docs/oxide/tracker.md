@@ -26,11 +26,19 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 >    rename map is derived rather than written down and that derivation is
 >    worth a look: `--selftest` should say 161 of 198 convert exactly.
 >
-> **Run `/code-review` on that range.** It is user-triggered and billed, so a
-> session cannot launch it on its own; ask Ian to run it, or have him run
-> `/code-review ultra` if he wants the multi-agent pass. The two commits worth
-> the most scrutiny are 3 and 4: a re-exec that goes wrong silently changes
-> which interpreter writes `res/`, and `pinned_python.ensure()` is called from
+> **The code review has run.** Ian ran the multi-agent cloud review on
+> 2026-09-22 night over commits 2 to 6 (the full range was refused as too
+> large, so **commit 1, the move import, is still unreviewed**). Its seven
+> findings, each re-checked by hand, are in
+> **`docs/oxide/qa-review-2026-09-22.md`**, with a suggested order. The one
+> that outranks the rest: **the pin does not reach the build.** ninja runs
+> each generator script by its path, so its `#!/usr/bin/env python3` shebang
+> resolves to the system 3.14.4 regardless of what ran `meson setup`;
+> `build/build.ninja` never mentions `oxide-python`. The "pinned away" claims
+> below and in `CLAUDE.md` are wrong for `make rom` until that is fixed.
+> Nothing in the report has been fixed yet. The two commits worth the most
+> scrutiny remain 3 and 4: a re-exec that goes wrong silently changes which
+> interpreter writes `res/`, and `pinned_python.ensure()` is called from
 > `__main__` only for a reason (`verify_narcs` imports `import_base_rom` as a
 > module, and an import-time re-exec would restart the wrong tool mid-run).
 >
