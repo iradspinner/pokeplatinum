@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Before any stylesheet, so the browser knows both schemes are supported. -->
+<meta name="color-scheme" content="light dark">
 <title>Encounter Tool</title>
+<link rel="stylesheet" href="theme.css">
+<!-- Blocking on purpose: it pins a chosen scheme before the first paint. -->
+<script src="theme.js"></script>
 <style>
 /* A cold instrument, not a dashboard. Teal carries probability mass, ochre
    marks the one thing worth acting on, red is reserved for lint errors, and
@@ -295,6 +300,7 @@ table.facts td { padding: 1px 0; }
   <span class="metric" id="w-lint">problems <b id="h-lint">—</b></span>
   <span class="metric">caught <b id="h-caught">0</b></span>
   <button id="clear-caught" title="Clear the caught list">Reset caught</button>
+  <button id="theme-toggle" data-theme-toggle>Dark</button>
 </header>
 
 <main>
