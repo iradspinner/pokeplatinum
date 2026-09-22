@@ -44,11 +44,17 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 > - `moveproc.c` no longer writes members 468..470, but the archive still has
 >   them and they still match the base ROM
 >
-> **Known blocker, not caused by any of this.** `pgrep` hangs on this box right
-> now, and `integrate.sh` calls it in its preconditions, so the gate stalls
-> before the fetch. Every check it runs was run by hand instead and all passed.
-> A `wsl --shutdown` from Windows should clear it; confirm the gate completes
-> normally before signing the QA off.
+> **Blocker to clear first, not caused by any of this.** `pgrep` hangs on this
+> box, and `integrate.sh` calls it in its preconditions (the loop that looks for
+> a Claude session still attached to a worktree), so **the gate stalls before
+> the fetch and no integration can run**. Confirmed at the kernel level: reading
+> `/proc/<pid>/stat` blocks, and `timeout` cannot kill the reader, which is a
+> task wedged in uninterruptible state. Nothing is actually contended, memory
+> and IO pressure are both zero. **Ian runs `wsl --shutdown` from Windows and
+> reopens the shell**; that is the only fix, and it has to happen before the
+> Overseer can integrate. Every check the gate runs was run by hand in the
+> meantime and all passed, so this is a scheduling problem rather than a red
+> gate.
 >
 > **Judgement calls to sanity-check rather than assume.** Z-moves imported as
 > inert data to keep ids contiguous; King's Rock set on every new damaging move;
