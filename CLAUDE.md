@@ -56,12 +56,18 @@ facts. Use them by name: `oxide-session` (start and end of every session),
 `port-element` (any Phase 4 engine element), `author-table` (any encounter
 table work), `carry-over-map` (scripts, events and text for one map),
 `read-donor` (anything from the Hardlove ROM), `oxide-spreadsheets` (Ian's
-design sheets on G:, with the synced `xlsx` skill for the mechanics). The
-`/integrate` command in `.claude/commands/` merges every track into `oxide`
-and runs the full verification gate. A hook in `.claude/settings.json` refuses
-`git add -A` or `.`, launching an emulator, and committing a file that carries
-the scratch marker (`.claude/hooks/oxide_guard.py`); a refusal from it means
-the rule above it in this file applies.
+design sheets on G:, with the synced `xlsx` skill for the mechanics),
+`debug-live` (any in-game bug, with Ian driving melonDS). In
+`.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
+full verification gate, and `/qa-pass <base>` reviews and re-checks a range of
+commits and writes up the findings.
+
+A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
+emulator, and committing a file that carries the scratch marker
+(`.claude/hooks/oxide_guard.py`); a refusal from it means the rule above it in
+this file applies. `.githooks/pre-commit` runs the encounter linter on any
+commit that touches the encounter tables or tool; a clone enables it once with
+`git config core.hooksPath .githooks`.
 
 ## Build
 

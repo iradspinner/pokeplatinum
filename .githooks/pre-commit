@@ -1,0 +1,23 @@
+#!/bin/sh
+# Platinum Oxide pre-commit hook. Enabled per clone with
+#   git config core.hooksPath .githooks
+# (worktrees share the clone's config, so one command covers them all).
+#
+# When a commit touches the wild encounter tables or the encounter tool, run
+# the encounter linter and refuse the commit on any error, as the encounter
+# tool's design doc asks ("Before a commit"). R12 is ignored: its errors are
+# the scripted-only lines (the legendary pool and the post-League statics),
+# which have no wild home by design. Lint reads the working tree, so a commit
+# of part of a change is checked against the whole change.
+# Skip it for one commit with `git commit --no-verify`.
+
+if git diff --cached --name-only | grep -qE '^(res/field/encounters/|tools/oxide/encounters/|docs/oxide/encounters/)'; then
+    out=$(python3 -m tools.oxide.encounters.cli lint --fail-on error --ignore R12 2>&1)
+    rc=$?
+    if [ $rc -ne 0 ]; then
+        printf '%s\n' "$out" | grep -E '^\s*error' | head -n 20 >&2
+        echo "pre-commit: encounter lint found errors (exit $rc); fix them or commit with --no-verify" >&2
+        exit 1
+    fi
+fi
+exit 0
