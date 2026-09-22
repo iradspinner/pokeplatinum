@@ -12,7 +12,7 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 > here is blocked on the QA, but treat a finding from it as outranking whatever
 > else is in flight.
 >
-> **Scope: `git log --oneline 427c823b9..43a71c1e8`**, five commits.
+> **Scope: `git log --oneline 427c823b9..HEAD`**, eight commits.
 >
 > 1. `c6f8fa133` the move import. `MAX_MOVES` 468 to 923, 455 new move
 >    directories, 130 new battle-effect stubs, `pack_extra_moves()` deleted.
@@ -20,7 +20,11 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 > 3. `419c07c31` **the build's Python interpreter changed.** Makefile, and a
 >    new `tools/oxide/oxide-python`.
 > 4. `2db8f0fef` **the tools now re-exec themselves onto that interpreter.**
-> 5. `43a71c1e8` a tracker note.
+> 5. `43a71c1e8`, `23ed088e3`, `3b22eb04c` tracker and QA notes.
+> 6. `5ab8d7cde` the battle-script converter for element 4's effect scripts.
+>    Tooling only, nothing in `res/` and no change to the ROM, but its
+>    rename map is derived rather than written down and that derivation is
+>    worth a look: `--selftest` should say 161 of 198 convert exactly.
 >
 > **Run `/code-review` on that range.** It is user-triggered and billed, so a
 > session cannot launch it on its own; ask Ian to run it, or have him run
