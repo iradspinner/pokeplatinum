@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 59/59, the dex and moves
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 60/60, the dex and moves
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
@@ -1552,6 +1552,22 @@ of placeholder effects, since element 4 will bring it down; they pin what a
 placeholder can and cannot be instead. The page was rendered in a headless
 Windows Chrome in both themes with no page errors, and the jump from Gible's
 egg moves to Outrage was driven through and landed on the right row.
+
+**Ian's notes after D4: 2026-09-22.** A species in a table now opens its dex
+page. The name in a slot is the slot's editor, so the way through is the party
+icon beside it, and the same goes for the icons in the water panels and the
+encounter heading. In "what a player meets" the name itself is a link. The
+tables view catches these clicks on the way down, so a water panel's own click,
+which opens that table for editing, never sees one.
+
+There is a Back button too, and it is the browser's history rather than a
+stack of the page's own. Every place the page can show (a view, plus the area
+and table, species or move in it) is a history entry with the place in the URL,
+such as `#dex/SPECIES_GIBLE`. So Back, Alt+Left and a mouse's back button all
+retrace a path like table, species, move, another species, and a reload opens
+where it was. Driven through in a headless Chrome, back and forward and after a
+reload, with no page errors. `test_m8` is at 60, the new check pinning the
+wiring, since no endpoint can see it.
 
 **D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
 with its licence intact, generate its data from `res/`, serve both from our

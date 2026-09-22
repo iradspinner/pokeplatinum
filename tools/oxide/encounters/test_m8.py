@@ -328,6 +328,20 @@ def check_page(results):
                     bool(hides) and views == 3 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
+    # Ian's notes after D4: a species in a table opens its dex page, and Back
+    # retraces the path. Both live only in the page, so the wiring is pinned:
+    # the slot, water and "meets" icons link, the tables view catches their
+    # click on the way down (before a water panel's own click can switch the
+    # table), and every place is a history entry the popstate handler restores.
+    results.append(("a species in the tables view opens the dex, and Back "
+                    "retraces the path",
+                    "icon(held, true)" in script and "icon(sl.species, true)" in script
+                    and "icon(m.species, true)" in script
+                    and '$("#mid").addEventListener("click"' in script
+                    and "}, true);" in script
+                    and 'id="back"' in page and "history.pushState" in script
+                    and 'addEventListener("popstate"' in script, ""))
+
     # The sprites carry no alpha, so the server marks palette entry 0 clear.
     raw = open(os.path.join(root, "res", "pokemon", "clefairy",
                             "male_front.png"), "rb").read()
