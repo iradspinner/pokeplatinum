@@ -8488,6 +8488,115 @@
         "The Distortion World’s {STRVAR_1 1, 0, 0}\n",
         "appeared!\r"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAbsorbingPower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is absorbing\n",
+        "power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAbsorbingPower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is absorbing\n",
+        "power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAbsorbingPower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is absorbing\n",
+        "power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInAFreezingLight_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInAFreezingLight_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInAFreezingLight_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInFreezingAir_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInFreezingAir_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBecameCloakedInFreezingAir_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAboutToBeAttackedByItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAboutToBeAttackedByItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsAboutToBeAttackedByItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsGoingAllOutForThisAttack_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is going\n",
+        "all out for this attack!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsGoingAllOutForThisAttack_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is going\n",
+        "all out for this attack!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsGoingAllOutForThisAttack_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is going\n",
+        "all out for this attack!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_NeitherPokemonCanRunAway",
+      "en_US": "Neither Pokémon can run away!"
     }
   ]
 }

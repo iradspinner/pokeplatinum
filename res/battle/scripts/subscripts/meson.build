@@ -319,4 +319,5 @@ subscript_files = files(
     'subscript_set_stealth_rock.s',
     'subscript_set_spikes.s',
     'subscript_fell_stinger.s',
+    'subscript_jaw_lock.s',
 )

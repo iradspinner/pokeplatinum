@@ -85,6 +85,21 @@ PLATINUM_SUBSCRIPTS = 297   # likewise for subscripts; 292 share a name as well
 # put at 1,275.
 PLATINUM_BATTLE_STRINGS = 1269
 
+# hg-engine's own battle strings that Oxide has added to Platinum's bank, by
+# hg-engine's number. The text comes from the donor ROM's bank 197, the same
+# bank hg-engine prints from, with Platinum's "The foe’s" for HeartGold's
+# "The opposing" and lines rewrapped where Platinum's box needs it; each
+# message about a Pokemon is three in a row, ally, wild and foe, because the
+# engine picks the variant by adding to the first one's id (2026-09-22).
+HG_STRINGS = {
+    1436: "BattleStrings_Text_PokemonIsAbsorbingPower_Ally",
+    1533: "BattleStrings_Text_PokemonBecameCloakedInAFreezingLight_Ally",
+    1536: "BattleStrings_Text_PokemonBecameCloakedInFreezingAir_Ally",
+    1542: "BattleStrings_Text_PokemonIsAboutToBeAttackedByItsItem_Ally",
+    1545: "BattleStrings_Text_PokemonIsGoingAllOutForThisAttack_Ally",
+    1548: "BattleStrings_Text_NeitherPokemonCanRunAway",
+}
+
 # The message commands and which argument is the message.
 MESSAGE_ARG = {"PrintMessage": 0, "PrintGlobalMessage": 0, "BufferMessage": 0,
                "BufferLocalMessage": 1}
@@ -361,7 +376,12 @@ def map_message(line, strings):
         return line, None
     n = int(args[at])
     if n >= PLATINUM_BATTLE_STRINGS:
-        return line, None
+        if n not in HG_STRINGS:
+            return line, None
+        index = [i for i, (mid, _) in enumerate(strings) if mid == HG_STRINGS[n]]
+        if not index:
+            sys.exit("HG_STRINGS names %s, which the bank does not have" % HG_STRINGS[n])
+        n = index[0]
     args[at] = strings[n][0]
     indent = line[:len(line) - len(line.lstrip())]
     return indent + head + " " + ", ".join(args), strings[n][1]
@@ -381,6 +401,11 @@ FIXES = {
     ],
     # Sets its side effect with no TO_ flag, so its subscript's Defense drop
     # lands on battler slot 0 rather than the user; `unaimed` flags it.
+    # Geomancy's second turn buffers message 0 after raising its stats, which
+    # nothing prints afterwards in Platinum; it is dropped (None deletes).
+    "effect_script_0318_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2.s": [
+        ("BufferMessage 0, TAG_NONE", None),
+    ],
     "effect_script_0343_USER_DEF_DOWN_HIT_REMOVE_PROTECT.s": [
         ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_HYPERSPACE_FURY",
          "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SIDE_EFFECT_TO_ATTACKER|MOVE_SUBSCRIPT_PTR_HYPERSPACE_FURY"),
@@ -404,6 +429,13 @@ C_REVIEWED = {
     343: "BeforeMove fails the move for anyone but Hoopa; no Oxide species learns it and Hoopa is "
          "not in Oxide, so only Metronome reaches it",
     346: "BeforeMove fails the move below a third of max HP; the subscript checks the same",
+    318: "BeforeMove runs the charge turn from C; Platinum runs it from the script, as Skull Bash "
+         "does, and the effect is on Move_IsMultiTurn",
+    345: "BeforeMove fails the move when the target holds nothing; the script checks the same",
+    363: "BeforeMove runs the charge turn from C; Platinum runs it from the script, as Sky Attack "
+         "does, with the message set in the move's own script.s, and the effect is on "
+         "Move_IsMultiTurn; the rest is Kyurem's form change, and Kyurem is not in Oxide",
+    364: "as Freeze Shock",
     348: "BeforeMove thaws a frozen user, ported beside Flame Wheel's in battle_controller_player.c",
 }
 
@@ -430,7 +462,10 @@ def convert(path, renames, strings=None):
         renamed = TOKEN.sub(lambda m: renames.get(m.group(0), m.group(0)), stripped)
         if renamed.strip() in fixes:
             indent = renamed[:len(renamed) - len(renamed.lstrip())]
-            renamed = indent + fixes.pop(renamed.strip())
+            fixed = fixes.pop(renamed.strip())
+            if fixed is None:
+                continue
+            renamed = indent + fixed
         renamed, text = map_message(renamed, strings)
         if text:
             out.append("%s// %s" % (renamed[:len(renamed) - len(renamed.lstrip())], text))

@@ -184,5 +184,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_STEALTH_ROCK_HIT]                 = subscript_set_stealth_rock,
     [MOVE_SUBSCRIPT_PTR_SPIKES_HIT]                       = subscript_set_spikes,
     [MOVE_SUBSCRIPT_PTR_FELL_STINGER]                     = subscript_fell_stinger,
+    [MOVE_SUBSCRIPT_PTR_JAW_LOCK]                         = subscript_jaw_lock,
 };
 // clang-format on
