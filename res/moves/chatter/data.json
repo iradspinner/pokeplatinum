@@ -20,6 +20,7 @@
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {

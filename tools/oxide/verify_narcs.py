@@ -251,6 +251,18 @@ def check_map_headers(built, ref):
 # differ, and why; a listed member that differs anywhere else still fails, and an
 # unlisted member that differs at all still fails. Same idea as bulk_scripts.py's
 # DIVERGED and import_base_rom.py's AUTHORED.
+# The 95 native damaging moves that lacked the King's Rock flag, by move id.
+# The new moves all carry it, so Ian gave it to these too (2026-09-22).
+KINGS_ROCK_NATIVES = {
+    7, 8, 9, 12, 23, 29, 32, 34, 40, 41, 44, 51, 52, 53, 58, 59, 60, 61, 62,
+    68, 71, 72, 84, 85, 87, 90, 93, 94, 122, 123, 124, 125, 126, 132, 138,
+    141, 145, 146, 157, 158, 161, 162, 168, 172, 181, 188, 189, 190, 192,
+    196, 202, 209, 217, 221, 223, 228, 231, 232, 242, 243, 246, 247, 248,
+    249, 252, 257, 263, 264, 265, 276, 282, 290, 295, 296, 299, 302, 304,
+    305, 306, 310, 317, 323, 326, 329, 343, 353, 363, 364, 368, 374, 394,
+    405, 411, 412, 448,
+}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
         "offsets": (6, 7),  # type1, type2
@@ -258,12 +270,31 @@ DIVERGED = {
                     209, 210, 280, 281, 282, 298, 303, 439, 468},
         "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c)",
     },
-    "poketool/waza/pl_waza_tbl.narc": {
-        "offsets": (4,),  # type
-        "members": {186, 204, 236},
-        "why": "Charm, Sweet Kiss and Moonlight retyped to Fairy (Phase 4 element 1)",
-    },
+    # A list when more than one change touches the archive; a member passes if
+    # any one entry allows every byte it differs at.
+    "poketool/waza/pl_waza_tbl.narc": [
+        {
+            "offsets": (4,),  # type
+            "members": {186, 204, 236},
+            "why": "Charm, Sweet Kiss and Moonlight retyped to Fairy (Phase 4 element 1)",
+        },
+        {
+            "offsets": (11,),  # flags
+            "members": KINGS_ROCK_NATIVES,
+            "why": "native damaging moves given the King's Rock flag (Ian, 2026-09-22)",
+        },
+    ],
 }
+
+
+def diverged_rules(path):
+    """DIVERGED's entries for path, always as a list."""
+    rule = DIVERGED.get(path, [])
+    return rule if isinstance(rule, list) else [rule]
+
+
+def diverged_why(path):
+    return "; ".join(r["why"] for r in diverged_rules(path))
 
 
 # The three per-species archives are built from one registry, in this order:
@@ -367,11 +398,12 @@ def check_personal(b, r, path):
 def intended_divergence(path, i, built_member, ref_member):
     """True when member i of `path` differs from the reference only at bytes a
     DIVERGED entry allows for it."""
-    rule = DIVERGED.get(path)
-    if not rule or i not in rule["members"] or len(built_member) != len(ref_member):
+    if len(built_member) != len(ref_member):
         return False
-    return all(built_member[o] == ref_member[o] or o in rule["offsets"]
-               for o in range(len(built_member)))
+    return any(i in rule["members"]
+               and all(built_member[o] == ref_member[o] or o in rule["offsets"]
+                       for o in range(len(built_member)))
+               for rule in diverged_rules(path))
 
 
 # The level-up learnset entry grew from one packed u16, move:9 / level:7, to a
@@ -450,7 +482,6 @@ def check_move_table(b, r, path):
     check is the ordinary byte comparison over the reference's range plus a
     count of the tail.
     """
-    rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
     bad, intended = [], []
     for i in range(len(r)):
         if i >= len(b):
@@ -460,7 +491,7 @@ def check_move_table(b, r, path):
     extra = len(b) - len(r)
     if intended:
         print(f"{path}: {len(intended)} members differ only at the intended bytes, "
-              f"{rule['why']}: {intended}")
+              f"{diverged_why(path)}: {intended}")
     print(f"{path}: {len(b)} members against the reference's {len(r)}; "
           f"{len(bad)} disagree"
           + (f", {extra} are new moves" if extra > 0 else ""))
@@ -527,7 +558,7 @@ def main():
         bad = [i for i in bad if i not in intended]
         if intended:
             print(f"{p}: {len(intended)} members differ only at the intended bytes, "
-                  f"{DIVERGED[p]['why']}: {intended[:20]}")
+                  f"{diverged_why(p)}: {intended[:20]}")
         if bad:
             ok = False
             print(f"{p}: {len(bad)} members differ: {bad[:20]}{' ...' if len(bad) > 20 else ''}")
@@ -541,8 +572,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import os as _os, sys as _sys
-    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-    import pinned_python
-    pinned_python.ensure()
     main()
