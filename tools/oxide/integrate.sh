@@ -244,23 +244,43 @@ make_rom() {
     done
     return 1
 }
-# The ROM of record is GitHub's build of the same commit (oxide-rom.yml): the
-# local ROM passes when its SHA-1 matches the one that run printed. No run for
-# HEAD yet (not pushed, or still building) is a warning, not a failure.
+# The ROM of record is GitHub's build (oxide-rom.yml): the local ROM passes
+# when its SHA-1 matches the one a successful run printed. That workflow skips
+# a push that changes only Markdown, so the run to compare against is the
+# newest ancestor of HEAD that has one and differs from HEAD in Markdown alone;
+# its ROM is HEAD's ROM. The exclusion stays exactly `*.md`, the workflow's own
+# filter, because the build reads the rest of tools/. Prints "<sha1> <commit>".
+# No such run (not pushed, or still building) is a warning, not a failure.
+# The hash is read from the job's own log: `gh run view --log` comes back empty
+# for some finished runs whose logs GitHub still holds (2026-09-22).
 ci_hash() {
-    local run
-    run="$(gh run list --workflow oxide-rom.yml --commit "$(git rev-parse HEAD)" \
-           --status success --limit 1 --json databaseId --jq '.[0].databaseId' 2>/dev/null)"
-    [ -n "$run" ] || return 1
-    gh run view "$run" --log 2>/dev/null | grep -o 'ROM SHA-1: [0-9a-f]\{40\}' | head -n 1 | cut -d' ' -f3
+    local c sha id job
+    declare -A run=()
+    while read -r sha id; do
+        [ -n "$sha" ] && run[$sha]="$id"
+    done < <(gh run list --workflow oxide-rom.yml --status success --limit 100 \
+             --json headSha,databaseId --jq '.[] | "\(.headSha) \(.databaseId)"' 2>/dev/null)
+    for c in $(git rev-list --max-count=200 HEAD); do
+        [ -n "${run[$c]:-}" ] || continue
+        git diff --quiet "$c" HEAD -- . ':(exclude)*.md' || continue
+        job="$(gh run view "${run[$c]}" --json jobs --jq '.jobs[0].databaseId' 2>/dev/null)"
+        printf '%s %s\n' "$(gh api "repos/{owner}/{repo}/actions/jobs/$job/logs" 2>/dev/null |
+            grep -o 'ROM SHA-1: [0-9a-f]\{40\}' | head -n 1 | cut -d' ' -f3)" "$c"
+        return 0
+    done
+    return 1
 }
 if [ $BUILD -eq 1 ]; then
     check "make rom" make_rom
     if [ -f "$ROM" ]; then
         local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"
-        if remote_sha="$(ci_hash)" && [ -n "$remote_sha" ]; then
-            if [ "$local_sha" = "$remote_sha" ]; then ok "ROM matches GitHub's build ($local_sha)"
-            else bad "ROM $local_sha differs from GitHub's build $remote_sha: rebuild before trusting it"; fi
+        if ci="$(ci_hash)" && remote_sha="${ci%% *}" && [ -n "$remote_sha" ]; then
+            ci_commit="${ci#* }"
+            of="GitHub's build"
+            [ "$ci_commit" = "$(git rev-parse HEAD)" ] ||
+                of="GitHub's build of $(git rev-parse --short "$ci_commit") (HEAD differs from it only in Markdown)"
+            if [ "$local_sha" = "$remote_sha" ]; then ok "ROM matches $of ($local_sha)"
+            else bad "ROM $local_sha differs from $of, $remote_sha: rebuild before trusting it"; fi
         else
             warn "no finished GitHub build for HEAD to compare the ROM against ($local_sha)"
         fi

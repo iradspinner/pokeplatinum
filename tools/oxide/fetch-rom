@@ -11,8 +11,10 @@
 # Usage: tools/oxide/fetch-rom [commit-or-branch]    default: HEAD
 #
 # The commit has to be pushed already, because the builder reads it from
-# GitHub. If a successful build of that commit is still inside its three-day
-# retention, it is reused rather than built again.
+# GitHub. If a successful build is still inside its three-day retention, of
+# that commit or of the newest ancestor that differs from it only in Markdown,
+# it is reused rather than built again: a docs-only commit builds the same ROM
+# as its parent. The files are then named for the commit that was built.
 #
 # Output goes to $OXIDE_PLAYTEST_DIR (default ~/oxide-playtest), one file per
 # commit, and the script prints the path to paste into Windows Explorer.
@@ -45,11 +47,36 @@ find_run() {
         -q "[.[] | select(.displayTitle == \"$title\") $1] | sort_by(.createdAt) | last | .databaseId // empty"
 }
 
-run=$(find_run '| select(.conclusion == "success")')
-if [ -n "$run" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$short" \
-        -D "$DEST/.incoming-$short" >/dev/null 2>&1; then
-    echo "reusing build $run of $short"
+# Successful builds as "<commit> <run id>", then the newest ancestor of the
+# commit that has one and differs from it in Markdown alone. The exclusion is
+# exactly *.md, the same filter the public workflow skips pushes on, because
+# the build reads everything else, tools/ included.
+built=$(gh run list -R "$REPO" --workflow "$WORKFLOW" -L 100 \
+    --json databaseId,displayTitle,conclusion \
+    -q '.[] | select(.conclusion == "success" and (.displayTitle | startswith("build "))) | "\(.displayTitle[6:]) \(.databaseId)"')
+reuse=
+for candidate in $(git rev-list --max-count=200 "$commit" | awk -v built="$built" '
+        BEGIN { n = split(built, line, "\n"); for (i = 1; i <= n; i++) { split(line[i], f, " "); run[f[1]] = f[2] } }
+        ($1 in run) { print $1 ":" run[$1] }'); do
+    if git diff --quiet "${candidate%:*}" "$commit" -- . ':(exclude)*.md'; then
+        reuse=$candidate
+        break
+    fi
+done
+
+run=${reuse#*:}
+reuse=${reuse%:*}
+rshort=$(printf '%s' "$reuse" | cut -c1-9)
+if [ -n "$reuse" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$rshort" \
+        -D "$DEST/.incoming-$rshort" >/dev/null 2>&1; then
+    if [ "$reuse" = "$commit" ]; then
+        echo "reusing build $run of $short"
+    else
+        echo "reusing build $run of $rshort: $short differs from it only in Markdown, so the ROM is the same"
+        short=$rshort
+    fi
 else
+    [ -z "$reuse" ] || rm -rf "$DEST/.incoming-$rshort"
     rm -rf "$DEST/.incoming-$short"
     # Only a run created after this moment can be ours; an older run of the
     # same commit (a failed one, say) must not be mistaken for it.
