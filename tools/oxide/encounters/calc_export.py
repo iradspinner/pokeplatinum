@@ -120,6 +120,84 @@ def move_name(rec):
     return hit[0] if hit else None
 
 
+# The alternate forms the game has, picked by hand, since the calculator knows
+# every form of every species and most of those are not in Oxide. Picked:
+# the twelve forms with a record of their own, whose numbers are Oxide's
+# (Rotom's appliances are Electric/Fire and so on here, and Deoxys-Attack has
+# Magic Guard); Castform's and Cherrim's weather forms; and Arceus under each
+# plate but Fairy, since the game has no Pixie Plate. Left out: the forms that
+# only change a sprite (Burmy's cloaks, the East Sea Shellos and Gastrodon, the
+# Unown letters), whose numbers are the base species'.
+FORM_RECORDS = {
+    ("SPECIES_DEOXYS", "attack"): "Deoxys-Attack",
+    ("SPECIES_DEOXYS", "defense"): "Deoxys-Defense",
+    ("SPECIES_DEOXYS", "speed"): "Deoxys-Speed",
+    ("SPECIES_WORMADAM", "sandy"): "Wormadam-Sandy",
+    ("SPECIES_WORMADAM", "trash"): "Wormadam-Trash",
+    ("SPECIES_GIRATINA", "origin"): "Giratina-Origin",
+    ("SPECIES_SHAYMIN", "sky"): "Shaymin-Sky",
+    ("SPECIES_ROTOM", "heat"): "Rotom-Heat",
+    ("SPECIES_ROTOM", "wash"): "Rotom-Wash",
+    ("SPECIES_ROTOM", "frost"): "Rotom-Frost",
+    ("SPECIES_ROTOM", "fan"): "Rotom-Fan",
+    ("SPECIES_ROTOM", "mow"): "Rotom-Mow",
+}
+# Forms with no record: the base species' numbers with another type, which is
+# all a weather form or a plate changes. None keeps the base's types.
+TYPE_FORMS = {
+    "Castform-Sunny": ("SPECIES_CASTFORM", ["FIRE"]),
+    "Castform-Rainy": ("SPECIES_CASTFORM", ["WATER"]),
+    "Castform-Snowy": ("SPECIES_CASTFORM", ["ICE"]),
+    "Cherrim-Sunshine": ("SPECIES_CHERRIM", None),
+}
+TYPE_FORMS.update({f"Arceus-{t.title()}": ("SPECIES_ARCEUS", [t]) for t in (
+    "BUG", "DARK", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST",
+    "GRASS", "GROUND", "ICE", "POISON", "PSYCHIC", "ROCK", "STEEL", "WATER")})
+
+
+def form_folders():
+    """{Showdown name: (species, form folder)} for every picked form, which is
+    where its sprites are. A weather form's folder is named for the weather
+    (Cherrim's Sunshine is `sunny`), a plate form's for its type."""
+    out = {name: key for key, name in FORM_RECORDS.items()}
+    for name, (sp, _) in TYPE_FORMS.items():
+        suffix = name.split("-", 1)[1].lower()
+        out[name] = (sp, "sunny" if suffix == "sunshine" else suffix)
+    return out
+
+
+def form_record(root, species, form):
+    """A form's record as `species_entry` reads it: the base species, with the
+    stats, types and abilities of the form's own data.json. Weight stays the
+    base's, because the game keeps weight per species, not per form."""
+    base = pokedex.load(root, species)
+    folder = pokedex.folder_of(species)
+    with open(os.path.join(root, "res", "pokemon", folder, "forms", form, "data.json"),
+              encoding="utf-8") as f:
+        raw = json.load(f)
+    rec = dict(base)
+    stats = raw.get("base_stats") or {}
+    rec["stats"] = {k: stats.get(k, 0) for k in pokedex.STAT_KEYS}
+    rec["types"] = list(dict.fromkeys(t.replace("TYPE_", "") for t in raw.get("types") or []))
+    abilities = [a.replace("ABILITY_", "") for a in raw.get("abilities") or []]
+    ordinary = [a for a in abilities[:2] if a not in ("NONE", "")]
+    rec["abilities"] = list(dict.fromkeys(ordinary))
+    rec["hidden_ability"] = None
+    return rec
+
+
+def forms(root=None):
+    """{Showdown name: record} for every form the picker offers."""
+    root = root or model.repo_root()
+    out = {name: form_record(root, sp, form) for (sp, form), name in FORM_RECORDS.items()}
+    for name, (sp, types) in TYPE_FORMS.items():
+        rec = dict(pokedex.load(root, sp))
+        if types:
+            rec["types"] = types
+        out[name] = rec
+    return out
+
+
 def species_entry(rec):
     stats = {STAT_KEYS[k]: v for k, v in rec["stats"].items()}
     abilities = {}
@@ -175,6 +253,8 @@ def build(root=None):
         if rec is None or not name:
             continue
         poks[name] = species_entry(rec)
+    for name, rec in forms(root).items():
+        poks[name] = species_entry(rec)
     moves = {}
     for rec in pokedex.moves(root).values():
         if rec["move"] == "MOVE_NONE" or rec["name"] in ("-", ""):
@@ -194,6 +274,9 @@ def build(root=None):
         "formatted_sets": {},
         "order": {},
         "type_chart": type_chart,
+        # What the species picker offers: Oxide's species and the forms above,
+        # rather than every species the calculator knows (a patch reads it).
+        "picker": sorted(poks),
         "oxide_report": report(root),
     }
 

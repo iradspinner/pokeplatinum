@@ -332,11 +332,29 @@ def _transparent_background(data):
     return data[:end] + chunk + data[end:]
 
 
-def _calc_sprite_folders():
-    """{cleaned Showdown name: our folder}, for the calculator's sprite URLs."""
+def _calc_sprite_files():
+    """{cleaned Showdown name: (front sprite, party icon)} as paths under the
+    repo, for the calculator's sprite URLs: every species, and every form the
+    picker offers. A form without an icon of its own borrows its species'."""
     root = model.repo_root()
-    return {calc_export.clean(canon.showdown_name(sp)): pokedex.folder_of(sp)
-            for sp in pokedex.species_list(root) if canon.showdown_name(sp)}
+    base = os.path.join(root, "res", "pokemon")
+    out = {}
+    for sp in pokedex.species_list(root):
+        name = canon.showdown_name(sp)
+        if not name:
+            continue
+        folder = os.path.join(base, pokedex.folder_of(sp))
+        front = os.path.join(folder, "male_front.png")
+        if not os.path.isfile(front):
+            front = os.path.join(folder, "female_front.png")
+        out[calc_export.clean(name)] = (front, os.path.join(folder, "icon.png"))
+    for name, (sp, form) in calc_export.form_folders().items():
+        folder = os.path.join(base, pokedex.folder_of(sp))
+        icon = os.path.join(folder, "forms", form, "icon.png")
+        out[calc_export.clean(name)] = (
+            os.path.join(folder, "forms", form, "front.png"),
+            icon if os.path.isfile(icon) else os.path.join(folder, "icon.png"))
+    return out
 
 
 def calc_sprite(sprite_set, filename):
@@ -345,15 +363,11 @@ def calc_sprite(sprite_set, filename):
     size the calculator expects: a party icon for its box ("pokesprite") and
     the front sprite everywhere else. The PNG rides inside as a data URI,
     because an SVG drawn as an image may not load anything external."""
-    name = calc_export.clean(filename.rsplit(".", 1)[0])
-    folder = _calc_sprite_folders().get(name)
-    if not folder:
+    files = _calc_sprite_files().get(calc_export.clean(filename.rsplit(".", 1)[0]))
+    if not files:
         return None
     icon = sprite_set == "pokesprite"
-    kind, frame, sheet = ("icon", 32, (32, 64)) if icon else ("male_front", 80, (160, 80))
-    path = os.path.join(model.repo_root(), "res", "pokemon", folder, kind + ".png")
-    if not os.path.isfile(path) and not icon:
-        path = os.path.join(model.repo_root(), "res", "pokemon", folder, "female_front.png")
+    path, frame, sheet = (files[1], 32, (32, 64)) if icon else (files[0], 80, (160, 80))
     try:
         with open(path, "rb") as f:
             png = _transparent_background(f.read())

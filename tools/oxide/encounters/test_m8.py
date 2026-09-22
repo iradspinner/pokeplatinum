@@ -499,7 +499,7 @@ def check_calculator(results):
     garchomp = poks.get("Garchomp", {})
     results.append(("every species is exported under the calculator's name, with "
                     "Oxide's numbers",
-                    len(poks) == len(pokedex.species_list(root))
+                    len(poks) == len(pokedex.species_list(root)) + len(calc_export.form_folders())
                     and garchomp.get("bs") == {"hp": 108, "at": 130, "df": 95,
                                                "sa": 85, "sd": 85, "sp": 102}
                     and poks["Clefairy"]["types"] == ["Fairy"]
@@ -576,6 +576,32 @@ def check_calculator(results):
                     and server.calc_sprite("pokesprite", "ninetales-alola.png")
                     and server.calc_sprite("front", "notapokemon.gif") is None, ""))
 
+    # The picker: Oxide's species and the forms picked by hand, not every
+    # species Showdown knows. Forms with a record carry Oxide's numbers
+    # (Rotom's appliances are Electric/Fire here, Deoxys-Attack has Magic
+    # Guard); there is no Pixie Plate, so no Arceus-Fairy.
+    from . import canon
+    picker = set(blob["picker"])
+    forms = calc_export.form_folders()
+    results.append(("the species picker offers Oxide's species and its hand-picked "
+                    "forms, and nothing else",
+                    picker == set(poks) and len(picker) == len(pokedex.species_list(root)) + len(forms)
+                    and {"Rotom-Heat", "Giratina-Origin", "Shaymin-Sky", "Castform-Sunny",
+                         "Cherrim-Sunshine", "Arceus-Fire"} <= picker
+                    and not {"Arceus-Fairy", "Pikachu-Alola", "Burmy-Sandy"} & picker
+                    and all(n in canon.table() for n in forms),
+                    f"{len(picker)} names, {len(forms)} forms"))
+    results.append(("a form with its own record carries Oxide's numbers for it",
+                    poks["Rotom-Heat"]["types"] == ["Electric", "Fire"]
+                    and poks["Rotom-Heat"]["bs"]["sp"] == 91
+                    and poks["Deoxys-Attack"]["abilities"] == {"0": "Magic Guard"}
+                    and poks["Castform-Rainy"]["types"] == ["Water"], ""))
+    results.append(("every picked form has a sprite to draw",
+                    all(server.calc_sprite("front", n.lower() + ".gif")
+                        and server.calc_sprite("pokesprite", n.lower() + ".png")
+                        for n in forms), ""))
+    shared = open(os.path.join(calc_dir, "js", "shared_controls.js"), encoding="utf-8").read()
+
     # The skin is generated from upstream's stylesheets. If either changes
     # without a rerun, the calculator is drawn in stale colours.
     from . import make_calc_skin
@@ -592,7 +618,9 @@ def check_calculator(results):
     results.append(("every patch to the vendored calculator is in its patch list",
                     all(f in vendored for f in ("js/initialize.js", "index.html",
                                                 "js/oxide/title_to_backup_mappings.js",
-                                                "js/vendor/oxide/", "oxide-skin.css")), ""))
+                                                "js/vendor/oxide/", "oxide-skin.css",
+                                                "js/shared_controls.js"))
+                    and "npoint_data.picker" in shared, ""))
 
 
 def main():

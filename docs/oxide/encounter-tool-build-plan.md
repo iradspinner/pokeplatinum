@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 70/70, the dex, moves and calculator
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 73/73, the dex, moves and calculator
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
@@ -1644,10 +1644,21 @@ which edits a species file and reads the change back from the next export):
 the page was driven in a headless Windows Chrome with every non-local request
 blocked. It made none, threw no errors, and drew in both themes.
 
-Two known gaps, neither blocking. The species picker offers every species
-Showdown knows, not only Oxide's 652, since filtering it would also drop the
-alternate forms. And upstream's menu icon and emulator icon are missing, since
-`img/` was never vendored.
+The species picker, on Ian's note the same day, offers Oxide's 652 species
+and 32 alternate forms picked by hand, instead of every species Showdown knows.
+The forms: the twelve with a record of their own (three Deoxys, two Wormadam,
+Giratina Origin, Shaymin Sky, five Rotom), exported with Oxide's numbers for
+them; Castform's and Cherrim's weather forms; and Arceus under each plate but
+Fairy, since the game has no Pixie Plate. The record matters: ten of the twelve
+differ from vanilla, so Rotom-Heat is Electric/Fire here and Deoxys-Attack has
+Magic Guard. Left out are the forms that only change a sprite: Burmy's cloaks,
+the East Sea Shellos and Gastrodon, and the Unown letters. Each form draws its
+own sprite. The list lives in `calc_export.py`, and one more calculator patch
+(`shared_controls.js`, in `VENDORED.md`) makes the picker read it. `test_m8` is
+at 73 checks.
+
+One known gap, not blocking: upstream's menu icon and emulator icon are
+missing, since `img/` was never vendored.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a

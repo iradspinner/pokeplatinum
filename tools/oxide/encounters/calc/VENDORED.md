@@ -68,6 +68,12 @@ calculator checks fail if the offline ones are lost.
    literal replaced by the tool's token for its role, and layout is left
    alone. **After an update, rerun it**; `test_m8` fails while it is stale.
 
+7. **`js/shared_controls.js`, the species picker.** `getSetOptions` keeps
+   only the names in the data's `picker` list (Oxide's species and the forms
+   `calc_export.py` picks by hand), plus any name with a saved set. Upstream
+   offers every species it knows. The patch is a no-op for data without a
+   `picker`, so other data sources behave as upstream.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 
