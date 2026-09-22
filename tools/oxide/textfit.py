@@ -27,7 +27,7 @@ Known box sizes, read off the WindowTemplate that draws each one:
   move name           87 px x 1 line    `SUMMARY_WINDOW_BATTLE_MOVE_1`..`_5`,
                                         11 tiles wide, printed at x = 1
 
-    python3 tools/oxide/textfit.py "some text to measure"
+    tools/oxide/oxide-python tools/oxide/textfit.py "some text to measure"
 """
 
 import json
@@ -122,4 +122,6 @@ def main():
 
 
 if __name__ == "__main__":
+    import pinned_python
+    pinned_python.ensure()
     main()

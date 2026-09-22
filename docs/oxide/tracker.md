@@ -46,17 +46,26 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 > every build and every test result on this box as needing a second run.
 >
 > **Code findings, with their status**, from the three reviews combined (the
-> detail is in the QA file): the Metronome and Assist exclusion list needs the
-> three placeholder moves and the Z-moves; the TV segment's random-move line
-> can pass -1 and 0 (vanilla bug, widened); `import_moves.py` re-runs overwrite
-> hand-ported effect scripts; the guard can re-exec onto a fallback interpreter
-> while announcing it as the pin, and the wrapper's bare-uv tier warns nothing;
-> the converter's `--show` output carries its summary line and loses its header
-> blank lines; `textfit.py` lacks the guard and two docstrings still say
-> `python3`; `RANGE_ALL` has no engine branch, so the three moves mapped to it
-> fall through; the `.shared` scripts are dead. Ruled out of scope for now:
-> the eight pasted bootstrap blocks, the converter's duplicated filter, the
-> verifier's duplicated compare loop. Cleanups for the docs pass or later.
+> detail is in the QA file). **Fixed 2026-09-22, one commit:** the Makefile
+> puts the pinned interpreter first on PATH so the build's generators run on
+> it (probe-verified); Metronome, Assist, Sleep Talk and Copycat exclude the
+> three placeholder records and the 36 inert Z-moves; the TV segment's
+> random-move line no longer passes -1 or 0; the converter's summary goes to
+> stderr so `--show` output is a clean script, with its header blank lines
+> back; the wrapper reports an unusable `OXIDE_PYTHON` and its bare-uv tier,
+> and the guard shows those warnings and refuses to re-exec onto a fallback;
+> `import_moves.py` leaves existing `anim.s` and effect scripts alone unless
+> `--force`, and copies its placeholder animation from `unused_468` rather
+> than `.shared`; `textfit.py` has the guard; both docstrings say
+> `oxide-python`. **Still open:** `RANGE_ALL` has no engine branch, so
+> Rototiller, Flower Shield and Teatime fall through until element 4 writes
+> it; the five computed-power moves (Nature's Madness, Hard Press and the
+> like) are 0-power until their effects exist and stay reachable by
+> Metronome; the `.shared` scripts are dead and still assembled (remove with
+> the moves build file, after a build on a stable box); the TV line can still
+> name a placeholder, which is cosmetic. **Out of scope for now:** the eight
+> pasted bootstrap blocks, the converter's duplicated filter, the verifier's
+> duplicated compare loop.
 >
 > Delete this block once the platform question is answered and the fixes are in.
 

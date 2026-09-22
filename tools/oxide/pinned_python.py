@@ -37,6 +37,15 @@ def pinned():
                              timeout=30)
     except (OSError, subprocess.SubprocessError):
         return None
+    # The wrapper warns on stderr whenever it is not handing back the real pin
+    # (an ignored override, a bare uv interpreter, or plain python3). Show the
+    # warning and do not re-exec onto that: moving a tool from the interpreter
+    # it was started on to a fallback the wrapper itself distrusts, while
+    # announcing it as "the pinned interpreter", is worse than staying put
+    # (2026-09-22 review finding).
+    if out.stderr.strip():
+        sys.stderr.write(out.stderr)
+        return None
     path = out.stdout.strip()
     return path if path and os.path.exists(path) else None
 

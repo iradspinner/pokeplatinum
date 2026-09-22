@@ -25,8 +25,12 @@ the same bytes, because the enum is positional and Hone Claws cannot be 471
 unless three entries sit in front of it. Those three records still match the
 base ROM byte for byte, which `verify_narcs.py` checks.
 
-    python3 tools/oxide/import_moves.py --dry-run
-    python3 tools/oxide/import_moves.py
+    tools/oxide/oxide-python tools/oxide/import_moves.py --dry-run
+    tools/oxide/oxide-python tools/oxide/import_moves.py
+
+A re-run rewrites the move data and the generated lists but leaves an existing
+`anim.s` or `effect_script_NNNN.s` alone, because those are where hand work
+lands (a ported effect, a tuned animation); pass `--force` to regenerate them.
 """
 
 import argparse
@@ -314,6 +318,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--dry-run", action="store_true", help="report, write nothing")
     ap.add_argument("--rom", default=donor_moves.donor.DEFAULT_ROM)
+    ap.add_argument("--force", action="store_true",
+                    help="also overwrite existing anim.s and effect_script files")
     a = ap.parse_args()
 
     dm = donor_moves.DonorMoves(a.rom)
@@ -417,8 +423,10 @@ def main():
         with open(os.path.join(d, "script.s"), "w", encoding="utf-8", newline="\n") as f:
             f.write(SCRIPT_S)
         anim_src = (os.path.join(MOVES_DIR, src, "anim.s") if src else
-                    os.path.join(MOVES_DIR, ".shared", "anim_0468_0474.s"))
-        shutil.copyfile(anim_src, os.path.join(d, "anim.s"))
+                    os.path.join(MOVES_DIR, "unused_468", "anim.s"))
+        anim_dst = os.path.join(d, "anim.s")
+        if a.force or not os.path.exists(anim_dst):
+            shutil.copyfile(anim_src, anim_dst)
 
     with open(MOVES_TXT, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(natives + [e for _, e, _, _, _ in written]
@@ -429,6 +437,8 @@ def main():
 
     for n, name in enumerate(effect_names, start=PLATINUM_EFFECTS):
         p = os.path.join(EFFECTS_DIR, "effect_script_%04d.s" % n)
+        if not a.force and os.path.exists(p):
+            continue
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(effect_stub(n, recs))
 

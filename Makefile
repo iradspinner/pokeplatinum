@@ -31,11 +31,21 @@ MESON_PY  := $(MESON_DIR)/meson.py
 # This machine's system Python intermittently returns wrong answers from pure
 # string work, and `make rom` runs Python about 227 times to generate event
 # data, map matrices and the encounter archives, so the build is exposed to it.
-# tools/oxide/oxide-python resolves the pinned interpreter and explains why;
-# meson bakes whichever interpreter runs it into build.ninja, which is what
-# makes one variable here cover all 227 invocations. Override with
-# OXIDE_PYTHON=/path/to/python, or set MESON to bypass this entirely.
+# tools/oxide/oxide-python resolves the pinned interpreter and explains why.
+# Two things have to happen for it to cover the build. PYTHON runs meson
+# itself. But meson records each generator script as the command, not an
+# interpreter plus the script, so ninja runs each one's `#!/usr/bin/env
+# python3` shebang; the pinned interpreter's directory therefore goes first on
+# PATH for every recipe below, which is what makes the shebang resolve to it
+# (the 2026-09-22 QA pass found the build on the system Python without this).
+# Override with OXIDE_PYTHON=/path/to/python, or set MESON to bypass this.
+# Note the wrapper is not a fix for this machine's fault: see the QA outcome at
+# the top of docs/oxide/tracker.md.
 PYTHON ?= tools/oxide/oxide-python
+OXIDE_PYTHON_DIR := $(dir $(shell $(PYTHON) --path 2>/dev/null))
+ifneq ($(OXIDE_PYTHON_DIR),)
+  export PATH := $(OXIDE_PYTHON_DIR):$(PATH)
+endif
 
 MESON ?= $(PYTHON) $(MESON_PY)
 NINJA ?= ninja

@@ -148,7 +148,7 @@ def derive_renames(effects=None):
 
 def convert(path, renames):
     """One hg-engine script in Platinum's dialect."""
-    out = [HEADER.rstrip("\n")]
+    out = [HEADER.rstrip("\n"), "", ""]
     for line in open(path, encoding="utf-8"):
         raw = line.rstrip("\n")
         stripped = raw.split("//")[0].rstrip()
@@ -228,13 +228,15 @@ def main():
                  "(see the tracker's element 4 entry)" % HG)
 
     renames, aligned, skipped, conflicts = derive_renames()
+    # The summary goes to stderr: `--show N > effect_script_NNNN.s` must leave
+    # nothing but the script on stdout (2026-09-22 review finding).
     print("rename map: %d entries, derived from %d aligned script pairs of %d; "
           "%d pairs differ in shape and were not used"
-          % (len(renames), aligned, PLATINUM_EFFECTS, len(skipped)))
+          % (len(renames), aligned, PLATINUM_EFFECTS, len(skipped)), file=sys.stderr)
     if conflicts:
-        print("AMBIGUOUS, the map is not trustworthy until these are resolved:")
+        print("AMBIGUOUS, the map is not trustworthy until these are resolved:", file=sys.stderr)
         for x, ys in conflicts.items():
-            print("    %-44s %s" % (x, ys))
+            print("    %-44s %s" % (x, ys), file=sys.stderr)
 
     if a.map:
         for x, y in sorted(renames.items()):

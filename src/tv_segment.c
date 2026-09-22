@@ -2770,7 +2770,11 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *template, TVEp
         }
     }
 
-    StringTemplate_SetMoveName(template, 3, (LCRNG_Next() % NUM_VALID_MOVES - 2) + 1);
+    // Platinum Oxide: vanilla wrote `% NUM_VALID_MOVES - 2`, which parses as
+    // `(x % N) - 2` and can hand MOVE_NONE or -1 to the name lookup. The
+    // intended range is a random real move; the placeholders at 468..470 are
+    // still reachable here and print "-", which is cosmetic.
+    StringTemplate_SetMoveName(template, 3, (LCRNG_Next() % (NUM_VALID_MOVES - 2)) + 1);
 
     return 17;
 }

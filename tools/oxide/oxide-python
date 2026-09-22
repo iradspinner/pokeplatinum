@@ -28,9 +28,12 @@
 set -eu
 
 resolve() {
-    if [ -n "${OXIDE_PYTHON:-}" ] && [ -x "${OXIDE_PYTHON}" ]; then
-        printf '%s\n' "${OXIDE_PYTHON}"
-        return
+    if [ -n "${OXIDE_PYTHON:-}" ]; then
+        if [ -x "${OXIDE_PYTHON}" ]; then
+            printf '%s\n' "${OXIDE_PYTHON}"
+            return
+        fi
+        echo "oxide-python: OXIDE_PYTHON=${OXIDE_PYTHON} is not executable, ignoring it" >&2
     fi
     if [ -x "${HOME}/.venvs/oxide/bin/python" ]; then
         printf '%s\n' "${HOME}/.venvs/oxide/bin/python"
@@ -40,6 +43,7 @@ resolve() {
         if command -v "${uv}" >/dev/null 2>&1; then
             found=$("${uv}" python find 3.13 2>/dev/null || true)
             if [ -n "${found}" ] && [ -x "${found}" ]; then
+                echo "oxide-python: no ~/.venvs/oxide, using a bare uv 3.13 (${found}) without ndspy, Pillow or openpyxl; see the setup doc" >&2
                 printf '%s\n' "${found}"
                 return
             fi
