@@ -109,8 +109,14 @@ echo "track branches: ${TRACK_BRANCHES[*]:-(none)}"
 
 # A Claude process whose working directory is inside a worktree is probably a
 # session that has not been stopped. Reported, not fatal: an idle one is harmless.
-for pid in $(pgrep -x claude 2>/dev/null || true); do
-    cwd="$(readlink "/proc/$pid/cwd" 2>/dev/null || true)"
+# Found by reading each process's comm file rather than with pgrep: while the
+# degraded CPU leaves a process wedged on its memory lock, pgrep and ps block
+# for good reading that process, and comm and cwd are the two reads that do not
+# need the lock (2026-09-22: this check hung the whole gate).
+for d in /proc/[0-9]*; do
+    [ "$(cat "$d/comm" 2>/dev/null)" = claude ] || continue
+    pid="${d#/proc/}"
+    cwd="$(readlink "$d/cwd" 2>/dev/null || true)"
     case "$cwd" in
         "$REPO"/.claude/worktrees/*) warn "claude pid $pid still has its cwd in $cwd" ;;
     esac
