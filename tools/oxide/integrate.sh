@@ -32,6 +32,11 @@ set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO"
 
+# The pinned interpreter, for the same reason the Makefile pins it: this
+# machine's system Python intermittently returns wrong answers from pure
+# string work, which made this gate fail at random. See tools/oxide/oxide-python.
+PY="$("$REPO/tools/oxide/oxide-python" --path)"
+
 DRY_RUN=0; BUILD=1; PUSH=1
 for arg in "$@"; do
     case "$arg" in
@@ -175,17 +180,17 @@ say "verify"
 if [ $BUILD -eq 1 ]; then
     check "make rom" make rom
     if [ -f "$ROM" ]; then
-        check "verify_narcs (species/moves/evo/learnsets)" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
+        check "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
         # The encounter tables are checked against their source JSON (M7), not
         # the base ROM: once the authoring pass rewrites a table the base ROM
         # stops being its truth. --encounters --ref still exists for the
         # tables that have not been authored yet.
-        check "verify_narcs --encounters --source" python3 tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
-        check "verify_narcs --text" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
-        check "verify_narcs --map-headers" python3 tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
-        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" python3 tools/oxide/bulk_scripts.py --dry-run
-        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" python3 tools/oxide/bulk_events.py --dry-run
-        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" python3 tools/oxide/bulk_text.py --dry-run
+        check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
+        check "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
+        check "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
+        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run
+        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run
+        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run
     else
         bad "built ROM missing at $ROM"
     fi
@@ -194,7 +199,7 @@ else
 fi
 
 # The importer must find nothing left to import: every count 0.
-out="$(python3 tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
+out="$("$PY" tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
 printf '      %s\n' "$out"
 if printf '%s' "$out" | grep -q "would change" && ! printf '%s' "$out" | grep -Eq "': [1-9]"; then
     ok "import_base_rom --dry-run, every count 0"
@@ -203,17 +208,17 @@ else
 fi
 git checkout -q tools/oxide/import_report.md 2>/dev/null || true   # the dry run rewrites the report
 
-CHECK_EXPECT="0 failed" check "scriptdis --verify (vanilla)" python3 tools/oxide/scriptdis.py --rom "$VANILLA" --verify
-CHECK_EXPECT="0 failed" check "scriptdis --verify --base-rom" python3 tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
+CHECK_EXPECT="0 failed" check "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
+CHECK_EXPECT="0 failed" check "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
 
 export PYTHONPATH=.
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
-    CHECK_EXPECT="passed" check "encounter tool $name" python3 -m "tools.oxide.encounters.$name"
+    CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
 done
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
-check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" python3 -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
+check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
 
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"

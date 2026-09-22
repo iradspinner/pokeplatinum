@@ -66,6 +66,46 @@ If you ever want to throw away every local change and match my latest push exact
 cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
 ```
 
+## Part 3b: The pinned Python (2026-09-22)
+
+This project does not use the system Python, and `make` will not either. It is
+worth knowing why, because if the pinned interpreter ever goes missing the
+build still works but quietly gets less trustworthy.
+
+Ubuntu 26.04 ships Python 3.14.4, and that build intermittently returns **wrong
+answers from ordinary string work**: a missing key that is present, a rewrite
+that silently changes the text, `len` reported as not callable. Measured on this
+machine with everything but the interpreter held constant, it failed 10 of 15
+runs of `tools/oxide/python_flake_repro.py`; CPython 3.13.15 failed 0 of 15 over
+the same 30,000 iterations. It is not the hardware, and it is not Python 3.14 in
+general. Apt has no newer 3.14, so the fix is a different interpreter.
+
+This matters beyond the helper scripts: `make rom` runs Python about 227 times,
+generating event data, map matrices, area data and the encounter archives.
+
+The setup, all of it outside the repo and all of it reversible:
+
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh     # installs to ~/.local/bin
+uv python install 3.13
+uv venv --python 3.13 ~/.venvs/oxide
+VIRTUAL_ENV=~/.venvs/oxide uv pip install ndspy pillow openpyxl
+```
+
+`tools/oxide/oxide-python` finds that interpreter and is the single place the
+policy lives; the `Makefile` and `tools/oxide/integrate.sh` both go through it,
+and `meson` bakes whichever interpreter runs it into `build.ninja`, which is how
+one setting covers all 227 build invocations. Override with `OXIDE_PYTHON=...`.
+If nothing is found it falls back to `python3` **and prints a warning**; that
+warning means the build is running on the unreliable interpreter again.
+
+Do not use CPython 3.14.7 here even though it measures clean on the repro: the
+astral build is compiled `--with-tail-call-interp`, and that interpreter aborted
+a `meson setup` outright with `Fatal Python error: _TAIL_CALL_CACHE`.
+
+To check: `tools/oxide/oxide-python tools/oxide/python_flake_repro.py` should
+print `done, failures: 0` every time.
+
 ## Part 4: What about DSPRE and the old base ROM?
 
 Both stay where they are. The built ROM from the decomp is a normal `.nds` and DSPRE can open it for inspection. The old base ROM is now a reference: its edits are being re-created in the source tree (see `phase3-base-rom-inventory.md`), and it will be compared against as that happens. Nothing you do in DSPRE on the old base will flow into the new ROM, so from here on, edits should go through me into the source tree, or, once you are comfortable, directly into the `res/` data files in the fork.

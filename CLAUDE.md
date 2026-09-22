@@ -66,6 +66,16 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
+**Run every Python script in this repo through `tools/oxide/oxide-python`, not
+through `python3`.** This box's system Python, Ubuntu 26.04's 3.14.4, returns
+wrong answers from ordinary string work often enough to fail the gate about
+half the time, and `make rom` runs Python about 227 times, so the build was
+exposed too. The wrapper resolves the pinned interpreter (CPython 3.13 in
+`~/.venvs/oxide`), the `Makefile` and `integrate.sh` both go through it, and it
+prints a warning if it has to fall back. Part 3b of the setup doc has the
+evidence and the one-time install; `tools/oxide/python_flake_repro.py` is the
+regression check.
+
 ## Tools
 
 `tools/oxide/import_base_rom.py` carries edits from Ian's earlier DSPRE-edited

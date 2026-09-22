@@ -25,8 +25,19 @@ SUBPROJ_DIR := subprojects
 
 MESON_VER := 1.12.0
 MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
+MESON_PY  := $(MESON_DIR)/meson.py
 
-MESON ?= $(MESON_DIR)/meson.py
+# Platinum Oxide: the build's Python is pinned rather than inherited from PATH.
+# This machine's system Python intermittently returns wrong answers from pure
+# string work, and `make rom` runs Python about 227 times to generate event
+# data, map matrices and the encounter archives, so the build is exposed to it.
+# tools/oxide/oxide-python resolves the pinned interpreter and explains why;
+# meson bakes whichever interpreter runs it into build.ninja, which is what
+# makes one variable here cover all 227 invocations. Override with
+# OXIDE_PYTHON=/path/to/python, or set MESON to bypass this entirely.
+PYTHON ?= tools/oxide/oxide-python
+
+MESON ?= $(PYTHON) $(MESON_PY)
 NINJA ?= ninja
 GIT ?= git
 
@@ -118,7 +129,7 @@ distclean:
 
 purge: distclean
 	rm -rf $(SKREW_DIR)
-	! test -f $(MESON) || $(MESON) subprojects purge --confirm
+	! test -f $(MESON_PY) || $(MESON) subprojects purge --confirm
 	rm -rf $(MESON_DIR)
 
 update: meson skrewup
@@ -143,9 +154,9 @@ $(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
 $(BUILD):
 	mkdir -p -- $(BUILD)
 
-meson: $(MESON)
+meson: $(MESON_PY)
 
-$(MESON):
+$(MESON_PY):
 	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
 
 skrew: $(SKREW_EXE)
