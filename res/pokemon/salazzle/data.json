@@ -69,12 +69,24 @@
                 "MOVE_SWEET_SCENT"
             ],
             [
+                13,
+                "MOVE_VENOM_DRENCH"
+            ],
+            [
+                17,
+                "MOVE_FLAME_BURST"
+            ],
+            [
                 21,
                 "MOVE_DRAGON_RAGE"
             ],
             [
                 24,
                 "MOVE_TOXIC"
+            ],
+            [
+                29,
+                "MOVE_VENOSHOCK"
             ],
             [
                 36,

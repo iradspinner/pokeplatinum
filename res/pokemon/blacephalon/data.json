@@ -73,8 +73,16 @@
                 "MOVE_MAGIC_COAT"
             ],
             [
+                30,
+                "MOVE_INCINERATE"
+            ],
+            [
                 35,
                 "MOVE_HYPNOSIS"
+            ],
+            [
+                40,
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
                 45,
@@ -95,6 +103,10 @@
             [
                 65,
                 "MOVE_FIRE_BLAST"
+            ],
+            [
+                70,
+                "MOVE_MIND_BLOWN"
             ]
         ],
         "by_tm": [],

@@ -46,7 +46,15 @@
         "by_level": [
             [
                 1,
+                "MOVE_PLAY_NICE"
+            ],
+            [
+                1,
                 "MOVE_HYDRO_PUMP"
+            ],
+            [
+                1,
+                "MOVE_WIDE_GUARD"
             ],
             [
                 1,
@@ -77,6 +85,10 @@
                 "MOVE_DOUBLE_SLAP"
             ],
             [
+                17,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
                 21,
                 "MOVE_PROTECT"
             ],
@@ -87,6 +99,10 @@
             [
                 29,
                 "MOVE_WAKE_UP_SLAP"
+            ],
+            [
+                33,
+                "MOVE_SOAK"
             ],
             [
                 37,
@@ -111,6 +127,10 @@
             [
                 57,
                 "MOVE_HEALING_WISH"
+            ],
+            [
+                61,
+                "MOVE_WIDE_GUARD"
             ],
             [
                 65,

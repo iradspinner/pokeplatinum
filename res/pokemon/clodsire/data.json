@@ -73,6 +73,10 @@
                 "MOVE_YAWN"
             ],
             [
+                24,
+                "MOVE_BULLDOZE"
+            ],
+            [
                 30,
                 "MOVE_POISON_JAB"
             ],

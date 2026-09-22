@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                1,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                1,
                 "MOVE_NASTY_PLOT"
             ],
             [
@@ -79,6 +87,10 @@
             [
                 1,
                 "MOVE_MIST"
+            ],
+            [
+                1,
+                "MOVE_AURORA_VEIL"
             ],
             [
                 1,

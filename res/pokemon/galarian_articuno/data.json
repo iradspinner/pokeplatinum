@@ -81,8 +81,16 @@
                 "MOVE_RECOVER"
             ],
             [
+                45,
+                "MOVE_FREEZING_GLARE"
+            ],
+            [
                 50,
                 "MOVE_DREAM_EATER"
+            ],
+            [
+                55,
+                "MOVE_HURRICANE"
             ],
             [
                 60,

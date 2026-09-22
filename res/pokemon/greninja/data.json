@@ -46,11 +46,27 @@
         "by_level": [
             [
                 1,
+                "MOVE_WATER_SHURIKEN"
+            ],
+            [
+                1,
                 "MOVE_NIGHT_SLASH"
             ],
             [
                 1,
+                "MOVE_RETALIATE"
+            ],
+            [
+                1,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                1,
                 "MOVE_MUD_SHOT"
+            ],
+            [
+                1,
+                "MOVE_MAT_BLOCK"
             ],
             [
                 1,
@@ -93,6 +109,10 @@
                 "MOVE_THIEF"
             ],
             [
+                22,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 25,
                 "MOVE_LOW_KICK"
             ],
@@ -105,12 +125,20 @@
                 "MOVE_FLING"
             ],
             [
+                37,
+                "MOVE_SCALD"
+            ],
+            [
                 40,
                 "MOVE_DARK_PULSE"
             ],
             [
                 43,
                 "MOVE_EXTRASENSORY"
+            ],
+            [
+                47,
+                "MOVE_SLUDGE_WAVE"
             ],
             [
                 51,

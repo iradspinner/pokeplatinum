@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
+                1,
                 "MOVE_GROWL"
             ],
             [

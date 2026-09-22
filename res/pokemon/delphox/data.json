@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_BURN_UP"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_BALL"
             ],
             [
@@ -93,6 +97,18 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
+                29,
+                "MOVE_FLAME_BURST"
+            ],
+            [
+                34,
+                "MOVE_PSYSHOCK"
+            ],
+            [
+                36,
+                "MOVE_MYSTICAL_FIRE"
+            ],
+            [
                 40,
                 "MOVE_HYPNOSIS"
             ],
@@ -109,12 +125,20 @@
                 "MOVE_PSYCHIC"
             ],
             [
+                61,
+                "MOVE_MAGIC_ROOM"
+            ],
+            [
                 64,
                 "MOVE_FUTURE_SIGHT"
             ],
             [
                 66,
                 "MOVE_OVERHEAT"
+            ],
+            [
+                72,
+                "MOVE_EXPANDING_FORCE"
             ],
             [
                 82,

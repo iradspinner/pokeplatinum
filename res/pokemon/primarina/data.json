@@ -53,6 +53,18 @@
                 "MOVE_WATER_GUN"
             ],
             [
+                4,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                7,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                10,
+                "MOVE_LIFE_DEW"
+            ],
+            [
                 14,
                 "MOVE_AQUA_JET"
             ],
@@ -69,12 +81,28 @@
                 "MOVE_SING"
             ],
             [
+                36,
+                "MOVE_SPARKLING_ARIA"
+            ],
+            [
+                40,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
                 46,
                 "MOVE_PERISH_SONG"
             ],
             [
                 51,
                 "MOVE_HYPER_VOICE"
+            ],
+            [
+                56,
+                "MOVE_FLIP_TURN"
+            ],
+            [
+                64,
+                "MOVE_MOONBLAST"
             ],
             [
                 70,

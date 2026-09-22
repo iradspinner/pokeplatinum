@@ -85,12 +85,20 @@
                 "MOVE_SYNTHESIS"
             ],
             [
+                45,
+                "MOVE_LASER_FOCUS"
+            ],
+            [
                 50,
                 "MOVE_DEFOG"
             ],
             [
                 55,
                 "MOVE_LEAF_BLADE"
+            ],
+            [
+                60,
+                "MOVE_SACRED_SWORD"
             ],
             [
                 65,

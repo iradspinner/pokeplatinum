@@ -54,6 +54,10 @@
             ],
             [
                 1,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                1,
                 "MOVE_HELPING_HAND"
             ],
             [
@@ -63,6 +67,10 @@
             [
                 4,
                 "MOVE_STUN_SPORE"
+            ],
+            [
+                8,
+                "MOVE_INFESTATION"
             ],
             [
                 12,
@@ -89,12 +97,24 @@
                 "MOVE_BUG_BUZZ"
             ],
             [
+                36,
+                "MOVE_AURORA_VEIL"
+            ],
+            [
                 40,
                 "MOVE_BLIZZARD"
             ],
             [
                 44,
                 "MOVE_TAILWIND"
+            ],
+            [
+                48,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                52,
+                "MOVE_QUIVER_DANCE"
             ]
         ],
         "by_tm": [],

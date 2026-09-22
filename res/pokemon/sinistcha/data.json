@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_MATCHA_GOTCHA"
+            ],
+            [
+                1,
                 "MOVE_STUN_SPORE"
             ],
             [
@@ -61,8 +65,28 @@
                 "MOVE_ABSORB"
             ],
             [
+                12,
+                "MOVE_LIFE_DEW"
+            ],
+            [
+                18,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
                 24,
                 "MOVE_MEGA_DRAIN"
+            ],
+            [
+                30,
+                "MOVE_HEX"
+            ],
+            [
+                36,
+                "MOVE_RAGE_POWDER"
+            ],
+            [
+                42,
+                "MOVE_STRENGTH_SAP"
             ],
             [
                 48,

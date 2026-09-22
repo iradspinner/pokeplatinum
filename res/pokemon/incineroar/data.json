@@ -89,8 +89,16 @@
                 "MOVE_BLAZE_KICK"
             ],
             [
+                36,
+                "MOVE_DARKEST_LARIAT"
+            ],
+            [
                 40,
                 "MOVE_FLAMETHROWER"
+            ],
+            [
+                45,
+                "MOVE_PARTING_SHOT"
             ],
             [
                 48,

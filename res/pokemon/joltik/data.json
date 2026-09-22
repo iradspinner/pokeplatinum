@@ -65,12 +65,20 @@
                 "MOVE_SPIDER_WEB"
             ],
             [
+                15,
+                "MOVE_ELECTROWEB"
+            ],
+            [
                 18,
                 "MOVE_BUG_BITE"
             ],
             [
                 23,
                 "MOVE_GASTRO_ACID"
+            ],
+            [
+                26,
+                "MOVE_STRUGGLE_BUG"
             ],
             [
                 29,

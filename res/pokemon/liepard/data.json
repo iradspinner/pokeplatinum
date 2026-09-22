@@ -97,6 +97,10 @@
                 "MOVE_ASSURANCE"
             ],
             [
+                27,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
                 34,
                 "MOVE_SLASH"
             ],
@@ -119,6 +123,10 @@
             [
                 47,
                 "MOVE_SNATCH"
+            ],
+            [
+                54,
+                "MOVE_PLAY_ROUGH"
             ]
         ],
         "by_tm": [],

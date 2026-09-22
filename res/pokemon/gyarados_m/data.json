@@ -62,6 +62,10 @@
             ],
             [
                 1,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
+                1,
                 "MOVE_FLAIL"
             ],
             [
@@ -119,6 +123,10 @@
             [
                 61,
                 "MOVE_AQUA_TAIL"
+            ],
+            [
+                66,
+                "MOVE_SCALE_SHOT"
             ]
         ],
         "by_tm": [],

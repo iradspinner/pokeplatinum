@@ -50,7 +50,15 @@
             ],
             [
                 1,
+                "MOVE_STICKY_WEB"
+            ],
+            [
+                1,
                 "MOVE_BUBBLE"
+            ],
+            [
+                5,
+                "MOVE_INFESTATION"
             ],
             [
                 9,
@@ -73,12 +81,28 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                31,
+                "MOVE_SOAK"
+            ],
+            [
                 36,
                 "MOVE_DIVE"
             ],
             [
+                41,
+                "MOVE_LUNGE"
+            ],
+            [
+                48,
+                "MOVE_SCALD"
+            ],
+            [
                 51,
                 "MOVE_HYDRO_PUMP"
+            ],
+            [
+                55,
+                "MOVE_LIQUIDATION"
             ],
             [
                 61,

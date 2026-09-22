@@ -81,6 +81,14 @@
                 "MOVE_RAZOR_LEAF"
             ],
             [
+                22,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                29,
+                "MOVE_FELL_STINGER"
+            ],
+            [
                 32,
                 "MOVE_HELPING_HAND"
             ],
@@ -91,6 +99,10 @@
             [
                 39,
                 "MOVE_X_SCISSOR"
+            ],
+            [
+                43,
+                "MOVE_ENTRAINMENT"
             ],
             [
                 46,

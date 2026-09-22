@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_STICKY_WEB"
+            ],
+            [
+                1,
                 "MOVE_VICE_GRIP"
             ],
             [

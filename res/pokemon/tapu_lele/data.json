@@ -61,12 +61,20 @@
                 "MOVE_AROMATHERAPY"
             ],
             [
+                15,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
                 20,
                 "MOVE_PSYBEAM"
             ],
             [
                 25,
                 "MOVE_FLATTER"
+            ],
+            [
+                30,
+                "MOVE_AROMATIC_MIST"
             ],
             [
                 35,
@@ -77,8 +85,20 @@
                 "MOVE_EXTRASENSORY"
             ],
             [
+                45,
+                "MOVE_PSYSHOCK"
+            ],
+            [
                 50,
                 "MOVE_MEAN_LOOK"
+            ],
+            [
+                55,
+                "MOVE_NATURES_MADNESS"
+            ],
+            [
+                60,
+                "MOVE_MOONBLAST"
             ],
             [
                 65,
@@ -87,6 +107,10 @@
             [
                 70,
                 "MOVE_SKILL_SWAP"
+            ],
+            [
+                75,
+                "MOVE_PSYCHIC_TERRAIN"
             ]
         ],
         "by_tm": [],

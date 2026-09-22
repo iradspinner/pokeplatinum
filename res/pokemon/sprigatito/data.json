@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_LEAFAGE"
+            ],
+            [
+                1,
                 "MOVE_SCRATCH"
             ],
             [
@@ -79,6 +83,10 @@
             [
                 34,
                 "MOVE_ENERGY_BALL"
+            ],
+            [
+                40,
+                "MOVE_PLAY_ROUGH"
             ],
             [
                 46,

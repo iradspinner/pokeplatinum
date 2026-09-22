@@ -61,8 +61,16 @@
                 "MOVE_SHARPEN"
             ],
             [
+                11,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
                 12,
                 "MOVE_REFLECT"
+            ],
+            [
+                13,
+                "MOVE_GUARD_SPLIT"
             ],
             [
                 25,
@@ -101,12 +109,20 @@
                 "MOVE_POWER_GEM"
             ],
             [
+                64,
+                "MOVE_MOONBLAST"
+            ],
+            [
                 67,
                 "MOVE_STONE_EDGE"
             ],
             [
                 70,
                 "MOVE_SAFEGUARD"
+            ],
+            [
+                71,
+                "MOVE_DIAMOND_STORM"
             ]
         ],
         "by_tm": [],

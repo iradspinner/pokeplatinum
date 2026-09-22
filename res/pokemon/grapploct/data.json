@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_OCTOLOCK"
+            ],
+            [
+                1,
                 "MOVE_OCTAZOOKA"
             ],
             [
@@ -91,6 +95,10 @@
             [
                 45,
                 "MOVE_SUPERPOWER"
+            ],
+            [
+                50,
+                "MOVE_TOPSY_TURVY"
             ]
         ],
         "by_tm": [],

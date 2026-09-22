@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_STICKY_WEB"
+            ],
+            [
+                1,
                 "MOVE_STRING_SHOT"
             ],
             [
@@ -65,12 +69,20 @@
                 "MOVE_SPIDER_WEB"
             ],
             [
+                15,
+                "MOVE_ELECTROWEB"
+            ],
+            [
                 18,
                 "MOVE_BUG_BITE"
             ],
             [
                 23,
                 "MOVE_GASTRO_ACID"
+            ],
+            [
+                26,
+                "MOVE_STRUGGLE_BUG"
             ],
             [
                 29,
@@ -99,6 +111,10 @@
             [
                 55,
                 "MOVE_THUNDER"
+            ],
+            [
+                65,
+                "MOVE_VOLT_SWITCH"
             ]
         ],
         "by_tm": [],

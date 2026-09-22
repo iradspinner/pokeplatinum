@@ -45,6 +45,10 @@
     "learnset": {
         "by_level": [
             [
+                1,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 81,
                 "MOVE_TRICK_ROOM"
             ]

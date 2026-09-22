@@ -61,12 +61,36 @@
                 "MOVE_TICKLE"
             ],
             [
+                15,
+                "MOVE_ACID_SPRAY"
+            ],
+            [
+                20,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                25,
+                "MOVE_POWER_SPLIT"
+            ],
+            [
+                25,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                30,
+                "MOVE_VENOSHOCK"
+            ],
+            [
                 35,
                 "MOVE_HEADBUTT"
             ],
             [
                 40,
                 "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                45,
+                "MOVE_VENOM_DRENCH"
             ],
             [
                 50,
@@ -79,6 +103,10 @@
             [
                 60,
                 "MOVE_MIRROR_COAT"
+            ],
+            [
+                65,
+                "MOVE_WONDER_ROOM"
             ],
             [
                 70,

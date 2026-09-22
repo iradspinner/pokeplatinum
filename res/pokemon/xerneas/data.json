@@ -54,6 +54,10 @@
             ],
             [
                 1,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                1,
                 "MOVE_AROMATHERAPY"
             ],
             [
@@ -89,12 +93,28 @@
                 "MOVE_NATURE_POWER"
             ],
             [
+                41,
+                "MOVE_GEOMANCY"
+            ],
+            [
                 43,
                 "MOVE_PSYCH_UP"
             ],
             [
+                44,
+                "MOVE_HORN_LEECH"
+            ],
+            [
                 45,
                 "MOVE_INGRAIN"
+            ],
+            [
+                48,
+                "MOVE_MOONBLAST"
+            ],
+            [
+                50,
+                "MOVE_MISTY_TERRAIN"
             ],
             [
                 50,
@@ -103,6 +123,10 @@
             [
                 57,
                 "MOVE_MEGAHORN"
+            ],
+            [
+                65,
+                "MOVE_HEAL_PULSE"
             ],
             [
                 77,

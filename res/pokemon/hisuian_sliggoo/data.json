@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_SHELTER"
+            ],
+            [
+                1,
+                "MOVE_SHELTER"
+            ],
+            [
+                1,
                 "MOVE_ABSORB"
             ],
             [

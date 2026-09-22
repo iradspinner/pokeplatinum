@@ -53,6 +53,14 @@
                 "MOVE_STRING_SHOT"
             ],
             [
+                10,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                20,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 30,
                 "MOVE_FLAME_WHEEL"
             ],
@@ -63,6 +71,10 @@
             [
                 50,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                64,
+                "MOVE_ACROBATICS"
             ],
             [
                 66,

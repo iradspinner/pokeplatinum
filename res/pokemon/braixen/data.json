@@ -73,6 +73,14 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
+                29,
+                "MOVE_FLAME_BURST"
+            ],
+            [
+                34,
+                "MOVE_PSYSHOCK"
+            ],
+            [
                 39,
                 "MOVE_HYPNOSIS"
             ],
@@ -87,6 +95,10 @@
             [
                 54,
                 "MOVE_PSYCHIC"
+            ],
+            [
+                58,
+                "MOVE_MAGIC_ROOM"
             ],
             [
                 61,

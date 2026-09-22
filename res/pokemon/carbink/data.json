@@ -61,6 +61,14 @@
                 "MOVE_SHARPEN"
             ],
             [
+                10,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                15,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
                 18,
                 "MOVE_REFLECT"
             ],
@@ -95,6 +103,10 @@
             [
                 45,
                 "MOVE_POWER_GEM"
+            ],
+            [
+                52,
+                "MOVE_MOONBLAST"
             ],
             [
                 54,

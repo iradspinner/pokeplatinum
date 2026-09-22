@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
                 "MOVE_WATER_GUN"
             ],
             [
@@ -77,6 +81,10 @@
                 "MOVE_DEFOG"
             ],
             [
+                35,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
                 40,
                 "MOVE_SURF"
             ],
@@ -89,8 +97,24 @@
                 "MOVE_MEAN_LOOK"
             ],
             [
+                55,
+                "MOVE_NATURES_MADNESS"
+            ],
+            [
+                60,
+                "MOVE_MOONBLAST"
+            ],
+            [
                 65,
                 "MOVE_HYDRO_PUMP"
+            ],
+            [
+                70,
+                "MOVE_SOAK"
+            ],
+            [
+                75,
+                "MOVE_MISTY_TERRAIN"
             ]
         ],
         "by_tm": [],

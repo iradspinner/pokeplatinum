@@ -105,6 +105,10 @@
                 "MOVE_EXPLOSION"
             ],
             [
+                65,
+                "MOVE_HEAVY_SLAM"
+            ],
+            [
                 70,
                 "MOVE_POWER_WHIP"
             ]

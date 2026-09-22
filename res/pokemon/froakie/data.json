@@ -77,6 +77,10 @@
                 "MOVE_FAINT_ATTACK"
             ],
             [
+                22,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 25,
                 "MOVE_LOW_KICK"
             ],

@@ -53,6 +53,10 @@
                 "MOVE_KARATE_CHOP"
             ],
             [
+                1,
+                "MOVE_COACHING"
+            ],
+            [
                 4,
                 "MOVE_FEINT"
             ],
@@ -69,12 +73,24 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
+                20,
+                "MOVE_FLYING_PRESS"
+            ],
+            [
+                20,
+                "MOVE_SKY_DROP"
+            ],
+            [
                 24,
                 "MOVE_SUBMISSION"
             ],
             [
                 28,
                 "MOVE_TAILWIND"
+            ],
+            [
+                32,
+                "MOVE_DUAL_WINGBEAT"
             ],
             [
                 36,
@@ -89,12 +105,20 @@
                 "MOVE_ME_FIRST"
             ],
             [
+                55,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 60,
                 "MOVE_CLOSE_COMBAT"
             ],
             [
                 82,
                 "MOVE_BRAVE_BIRD"
+            ],
+            [
+                83,
+                "MOVE_ENTRAINMENT"
             ]
         ],
         "by_tm": [],

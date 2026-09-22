@@ -57,6 +57,10 @@
                 "MOVE_CONFUSION"
             ],
             [
+                4,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 8,
                 "MOVE_CONFUSE_RAY"
             ],
@@ -83,6 +87,18 @@
             [
                 32,
                 "MOVE_BUG_BUZZ"
+            ],
+            [
+                36,
+                "MOVE_PSYSHOCK"
+            ],
+            [
+                40,
+                "MOVE_INFESTATION"
+            ],
+            [
+                44,
+                "MOVE_AFTER_YOU"
             ],
             [
                 48,

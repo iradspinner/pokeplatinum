@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_FAIRY_LOCK"
+            ],
+            [
+                1,
                 "MOVE_ASTONISH"
             ],
             [
@@ -55,6 +59,10 @@
             [
                 4,
                 "MOVE_TACKLE"
+            ],
+            [
+                6,
+                "MOVE_FAIRY_WIND"
             ],
             [
                 8,
@@ -69,8 +77,16 @@
                 "MOVE_METAL_SOUND"
             ],
             [
+                19,
+                "MOVE_CRAFTY_SHIELD"
+            ],
+            [
                 21,
                 "MOVE_TORMENT"
+            ],
+            [
+                21,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 33,
@@ -87,6 +103,18 @@
             [
                 36,
                 "MOVE_FLASH_CANNON"
+            ],
+            [
+                38,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
+                41,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                44,
+                "MOVE_MAGIC_ROOM"
             ],
             [
                 50,

@@ -53,6 +53,14 @@
                 "MOVE_HARDEN"
             ],
             [
+                1,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                7,
+                "MOVE_ACID_SPRAY"
+            ],
+            [
                 11,
                 "MOVE_ANCIENT_POWER"
             ],
@@ -63,6 +71,10 @@
             [
                 18,
                 "MOVE_STEALTH_ROCK"
+            ],
+            [
+                22,
+                "MOVE_VENOSHOCK"
             ],
             [
                 26,
@@ -83,6 +95,10 @@
             [
                 41,
                 "MOVE_ACID_ARMOR"
+            ],
+            [
+                46,
+                "MOVE_SLUDGE_WAVE"
             ]
         ],
         "by_tm": [],

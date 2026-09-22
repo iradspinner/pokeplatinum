@@ -81,6 +81,10 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
+                24,
+                "MOVE_BULLDOZE"
+            ],
+            [
                 28,
                 "MOVE_HYPNOSIS"
             ],
@@ -99,6 +103,10 @@
             [
                 50,
                 "MOVE_EARTH_POWER"
+            ],
+            [
+                57,
+                "MOVE_SHORE_UP"
             ],
             [
                 64,

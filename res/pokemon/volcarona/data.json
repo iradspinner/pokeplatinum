@@ -53,12 +53,28 @@
                 "MOVE_STRING_SHOT"
             ],
             [
+                6,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                10,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                20,
+                "MOVE_MYSTICAL_FIRE"
+            ],
+            [
                 30,
                 "MOVE_U_TURN"
             ],
             [
                 40,
                 "MOVE_FIRE_SPIN"
+            ],
+            [
+                50,
+                "MOVE_RAGE_POWDER"
             ],
             [
                 60,
@@ -81,8 +97,16 @@
                 "MOVE_HEAT_WAVE"
             ],
             [
+                72,
+                "MOVE_POLLEN_PUFF"
+            ],
+            [
                 77,
                 "MOVE_ROOST"
+            ],
+            [
+                82,
+                "MOVE_FIERY_DANCE"
             ]
         ],
         "by_tm": [],

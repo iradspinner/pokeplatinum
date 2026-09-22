@@ -53,6 +53,10 @@
                 "MOVE_GROWL"
             ],
             [
+                7,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
                 9,
                 "MOVE_ROCK_SMASH"
             ],

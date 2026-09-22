@@ -69,8 +69,16 @@
                 "MOVE_FALSE_SWIPE"
             ],
             [
+                22,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
                 25,
                 "MOVE_AERIAL_ACE"
+            ],
+            [
+                28,
+                "MOVE_DUAL_WINGBEAT"
             ],
             [
                 32,
@@ -85,6 +93,10 @@
                 "MOVE_SUPERPOWER"
             ],
             [
+                44,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 48,
                 "MOVE_STONE_EDGE"
             ],
@@ -95,6 +107,10 @@
             [
                 53,
                 "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                55,
+                "MOVE_ACCELEROCK"
             ]
         ],
         "by_tm": [],

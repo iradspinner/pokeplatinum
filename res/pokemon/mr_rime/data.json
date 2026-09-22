@@ -54,6 +54,10 @@
             ],
             [
                 1,
+                "MOVE_AFTER_YOU"
+            ],
+            [
+                1,
                 "MOVE_BLOCK"
             ],
             [
@@ -94,6 +98,14 @@
             ],
             [
                 1,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                1,
+                "MOVE_MISTY_TERRAIN"
+            ],
+            [
+                1,
                 "MOVE_POUND"
             ],
             [
@@ -111,6 +123,10 @@
             [
                 12,
                 "MOVE_CONFUSION"
+            ],
+            [
+                16,
+                "MOVE_ALLY_SWITCH"
             ],
             [
                 20,
@@ -135,6 +151,10 @@
             [
                 40,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                44,
+                "MOVE_FREEZE_DRY"
             ],
             [
                 48,

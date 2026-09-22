@@ -61,6 +61,10 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
+                12,
+                "MOVE_NUZZLE"
+            ],
+            [
                 19,
                 "MOVE_BITE"
             ],
@@ -73,8 +77,20 @@
                 "MOVE_ARM_THRUST"
             ],
             [
+                29,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
                 33,
                 "MOVE_SUPER_FANG"
+            ],
+            [
+                35,
+                "MOVE_ENTRAINMENT"
+            ],
+            [
+                40,
+                "MOVE_WILD_CHARGE"
             ]
         ],
         "by_tm": [],

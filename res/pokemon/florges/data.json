@@ -58,7 +58,15 @@
             ],
             [
                 1,
+                "MOVE_FLOWER_SHIELD"
+            ],
+            [
+                1,
                 "MOVE_WISH"
+            ],
+            [
+                1,
+                "MOVE_FAIRY_WIND"
             ],
             [
                 1,
@@ -69,12 +77,20 @@
                 "MOVE_LUCKY_CHANT"
             ],
             [
+                6,
+                "MOVE_TEARFUL_LOOK"
+            ],
+            [
                 10,
                 "MOVE_COVET"
             ],
             [
                 15,
                 "MOVE_MEGA_DRAIN"
+            ],
+            [
+                21,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 24,
@@ -89,6 +105,10 @@
                 "MOVE_GIGA_DRAIN"
             ],
             [
+                37,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
                 42,
                 "MOVE_HELPING_HAND"
             ],
@@ -99,6 +119,10 @@
             [
                 53,
                 "MOVE_SOLAR_BEAM"
+            ],
+            [
+                57,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [],

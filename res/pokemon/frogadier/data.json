@@ -50,6 +50,10 @@
             ],
             [
                 1,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                1,
                 "MOVE_MUD_SHOT"
             ],
             [
@@ -83,6 +87,10 @@
             [
                 20,
                 "MOVE_FAINT_ATTACK"
+            ],
+            [
+                22,
+                "MOVE_ACROBATICS"
             ],
             [
                 25,

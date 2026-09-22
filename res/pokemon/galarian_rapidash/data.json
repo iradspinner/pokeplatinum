@@ -77,6 +77,10 @@
                 "MOVE_CONFUSION"
             ],
             [
+                15,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
                 20,
                 "MOVE_AGILITY"
             ],
@@ -89,8 +93,16 @@
                 "MOVE_STOMP"
             ],
             [
+                35,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
                 43,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                49,
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 56,

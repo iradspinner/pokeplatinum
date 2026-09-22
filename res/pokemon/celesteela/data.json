@@ -57,12 +57,24 @@
                 "MOVE_HARDEN"
             ],
             [
+                10,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
                 15,
                 "MOVE_MEGA_DRAIN"
             ],
             [
+                20,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
                 25,
                 "MOVE_INGRAIN"
+            ],
+            [
+                30,
+                "MOVE_AUTOTOMIZE"
             ],
             [
                 35,
@@ -83,6 +95,10 @@
             [
                 55,
                 "MOVE_LEECH_SEED"
+            ],
+            [
+                60,
+                "MOVE_HEAVY_SLAM"
             ],
             [
                 65,

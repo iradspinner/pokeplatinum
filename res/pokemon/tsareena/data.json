@@ -46,7 +46,15 @@
         "by_level": [
             [
                 1,
+                "MOVE_TROP_KICK"
+            ],
+            [
+                1,
                 "MOVE_PUNISHMENT"
+            ],
+            [
+                1,
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 1,
@@ -75,6 +83,14 @@
             [
                 23,
                 "MOVE_TEETER_DANCE"
+            ],
+            [
+                25,
+                "MOVE_TROP_KICK"
+            ],
+            [
+                32,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 38,

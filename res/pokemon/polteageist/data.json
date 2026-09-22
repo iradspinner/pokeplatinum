@@ -46,11 +46,23 @@
         "by_level": [
             [
                 1,
+                "MOVE_TEATIME"
+            ],
+            [
+                1,
+                "MOVE_STRENGTH_SAP"
+            ],
+            [
+                1,
                 "MOVE_ASTONISH"
             ],
             [
                 1,
                 "MOVE_WITHDRAW"
+            ],
+            [
+                1,
+                "MOVE_AROMATIC_MIST"
             ],
             [
                 1,
@@ -83,6 +95,10 @@
             [
                 54,
                 "MOVE_MEMENTO"
+            ],
+            [
+                60,
+                "MOVE_SHELL_SMASH"
             ],
             [
                 66,

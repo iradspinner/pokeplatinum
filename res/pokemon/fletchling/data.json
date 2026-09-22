@@ -81,6 +81,10 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
+                35,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 40,
                 "MOVE_ME_FIRST"
             ],

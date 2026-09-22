@@ -54,6 +54,14 @@
             ],
             [
                 1,
+                "MOVE_TRIPLE_AXEL"
+            ],
+            [
+                1,
+                "MOVE_LEAFAGE"
+            ],
+            [
+                1,
                 "MOVE_SCRATCH"
             ],
             [
@@ -89,8 +97,16 @@
                 "MOVE_NIGHT_SLASH"
             ],
             [
+                36,
+                "MOVE_FLOWER_TRICK"
+            ],
+            [
                 42,
                 "MOVE_ENERGY_BALL"
+            ],
+            [
+                47,
+                "MOVE_PLAY_ROUGH"
             ],
             [
                 51,

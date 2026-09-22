@@ -46,11 +46,19 @@
         "by_level": [
             [
                 1,
+                "MOVE_STEEL_ROLLER"
+            ],
+            [
+                1,
                 "MOVE_U_TURN"
             ],
             [
                 1,
                 "MOVE_TICKLE"
+            ],
+            [
+                1,
+                "MOVE_NUZZLE"
             ],
             [
                 5,
@@ -73,12 +81,36 @@
                 "MOVE_PIN_MISSILE"
             ],
             [
+                24,
+                "MOVE_EERIE_IMPULSE"
+            ],
+            [
+                26,
+                "MOVE_SMART_STRIKE"
+            ],
+            [
                 29,
                 "MOVE_SUPER_FANG"
             ],
             [
+                34,
+                "MOVE_ZING_ZAP"
+            ],
+            [
                 38,
                 "MOVE_IRON_HEAD"
+            ],
+            [
+                42,
+                "MOVE_ELECTROWEB"
+            ],
+            [
+                48,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
+                55,
+                "MOVE_SPIKY_SHIELD"
             ]
         ],
         "by_tm": [],

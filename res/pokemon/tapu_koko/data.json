@@ -57,6 +57,10 @@
                 "MOVE_WITHDRAW"
             ],
             [
+                10,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
                 15,
                 "MOVE_FALSE_SWIPE"
             ],
@@ -89,12 +93,24 @@
                 "MOVE_MEAN_LOOK"
             ],
             [
+                55,
+                "MOVE_NATURES_MADNESS"
+            ],
+            [
+                60,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
                 65,
                 "MOVE_BRAVE_BIRD"
             ],
             [
                 70,
                 "MOVE_POWER_SWAP"
+            ],
+            [
+                75,
+                "MOVE_ELECTRIC_TERRAIN"
             ]
         ],
         "by_tm": [],

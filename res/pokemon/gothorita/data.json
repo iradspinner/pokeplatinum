@@ -54,6 +54,10 @@
             ],
             [
                 1,
+                "MOVE_PLAY_NICE"
+            ],
+            [
+                1,
                 "MOVE_TICKLE"
             ],
             [
@@ -79,6 +83,10 @@
             [
                 19,
                 "MOVE_EMBARGO"
+            ],
+            [
+                22,
+                "MOVE_PSYSHOCK"
             ],
             [
                 24,
@@ -111,6 +119,14 @@
             [
                 42,
                 "MOVE_FUTURE_SIGHT"
+            ],
+            [
+                43,
+                "MOVE_TELEKINESIS"
+            ],
+            [
+                55,
+                "MOVE_MAGIC_ROOM"
             ]
         ],
         "by_tm": [],

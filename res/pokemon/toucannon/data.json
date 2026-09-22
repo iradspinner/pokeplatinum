@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_BEAK_BLAST"
+            ],
+            [
+                1,
                 "MOVE_GROWL"
             ],
             [
@@ -59,6 +63,10 @@
             [
                 1,
                 "MOVE_ROCK_BLAST"
+            ],
+            [
+                1,
+                "MOVE_ECHOED_VOICE"
             ],
             [
                 13,

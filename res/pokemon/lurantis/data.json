@@ -46,11 +46,27 @@
         "by_level": [
             [
                 1,
+                "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                1,
+                "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                1,
                 "MOVE_NIGHT_SLASH"
             ],
             [
                 1,
                 "MOVE_SOLAR_BEAM"
+            ],
+            [
+                1,
+                "MOVE_DUAL_CHOP"
+            ],
+            [
+                1,
+                "MOVE_LEAFAGE"
             ],
             [
                 1,
@@ -71,6 +87,10 @@
             [
                 1,
                 "MOVE_RAZOR_LEAF"
+            ],
+            [
+                5,
+                "MOVE_LEAFAGE"
             ],
             [
                 12,
@@ -107,6 +127,10 @@
             [
                 52,
                 "MOVE_SUNNY_DAY"
+            ],
+            [
+                55,
+                "MOVE_SOLAR_BLADE"
             ]
         ],
         "by_tm": [],

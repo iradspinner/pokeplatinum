@@ -49,6 +49,14 @@
                 "MOVE_POUND"
             ],
             [
+                1,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                3,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
                 5,
                 "MOVE_HELPING_HAND"
             ],
@@ -59,6 +67,10 @@
             [
                 16,
                 "MOVE_SING"
+            ],
+            [
+                19,
+                "MOVE_ECHOED_VOICE"
             ],
             [
                 19,
@@ -77,8 +89,16 @@
                 "MOVE_TICKLE"
             ],
             [
+                28,
+                "MOVE_TAIL_SLAP"
+            ],
+            [
                 31,
                 "MOVE_WAKE_UP_SLAP"
+            ],
+            [
+                37,
+                "MOVE_AFTER_YOU"
             ],
             [
                 38,

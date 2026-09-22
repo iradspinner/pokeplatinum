@@ -46,7 +46,23 @@
         "by_level": [
             [
                 1,
+                "MOVE_THOUSAND_ARROWS"
+            ],
+            [
+                1,
+                "MOVE_THOUSAND_WAVES"
+            ],
+            [
+                1,
+                "MOVE_CORE_ENFORCER"
+            ],
+            [
+                1,
                 "MOVE_BIND"
+            ],
+            [
+                1,
+                "MOVE_BULLDOZE"
             ],
             [
                 1,
@@ -77,6 +93,10 @@
                 "MOVE_HAZE"
             ],
             [
+                37,
+                "MOVE_LANDS_WRATH"
+            ],
+            [
                 40,
                 "MOVE_CRUNCH"
             ],
@@ -99,6 +119,10 @@
             [
                 68,
                 "MOVE_EARTHQUAKE"
+            ],
+            [
+                72,
+                "MOVE_COIL"
             ],
             [
                 84,

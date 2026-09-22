@@ -53,6 +53,10 @@
                 "MOVE_WITHDRAW"
             ],
             [
+                6,
+                "MOVE_AROMATIC_MIST"
+            ],
+            [
                 12,
                 "MOVE_MEGA_DRAIN"
             ],
@@ -83,6 +87,10 @@
             [
                 54,
                 "MOVE_MEMENTO"
+            ],
+            [
+                60,
+                "MOVE_SHELL_SMASH"
             ]
         ],
         "by_tm": [],

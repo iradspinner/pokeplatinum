@@ -47,6 +47,10 @@
             [
                 1,
                 "MOVE_POWDER_SNOW"
+            ],
+            [
+                1,
+                "MOVE_STRUGGLE_BUG"
             ]
         ],
         "by_tm": [],

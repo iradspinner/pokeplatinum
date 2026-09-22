@@ -85,6 +85,10 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
+                23,
+                "MOVE_GRASSY_TERRAIN"
+            ],
+            [
                 29,
                 "MOVE_SEED_BOMB"
             ],
@@ -95,6 +99,14 @@
             [
                 39,
                 "MOVE_LEECH_SEED"
+            ],
+            [
+                46,
+                "MOVE_TERRAIN_PULSE"
+            ],
+            [
+                52,
+                "MOVE_PETAL_BLIZZARD"
             ],
             [
                 58,

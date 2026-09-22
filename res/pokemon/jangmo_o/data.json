@@ -65,6 +65,10 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                21,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
                 25,
                 "MOVE_SCARY_FACE"
             ],
@@ -79,6 +83,14 @@
             [
                 37,
                 "MOVE_ROAR"
+            ],
+            [
+                41,
+                "MOVE_NOBLE_ROAR"
+            ],
+            [
+                45,
+                "MOVE_SCALE_SHOT"
             ],
             [
                 49,

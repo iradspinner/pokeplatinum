@@ -77,6 +77,10 @@
                 "MOVE_HYPNOSIS"
             ],
             [
+                35,
+                "MOVE_EERIE_IMPULSE"
+            ],
+            [
                 40,
                 "MOVE_THUNDER_PUNCH"
             ],
@@ -91,6 +95,10 @@
             [
                 55,
                 "MOVE_THUNDERBOLT"
+            ],
+            [
+                60,
+                "MOVE_ELECTRIC_TERRAIN"
             ],
             [
                 65,

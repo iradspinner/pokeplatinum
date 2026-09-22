@@ -46,7 +46,15 @@
         "by_level": [
             [
                 1,
+                "MOVE_LEAFAGE"
+            ],
+            [
+                1,
                 "MOVE_FURY_CUTTER"
+            ],
+            [
+                5,
+                "MOVE_LEAFAGE"
             ],
             [
                 9,

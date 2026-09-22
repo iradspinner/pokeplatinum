@@ -93,8 +93,16 @@
                 "MOVE_FLARE_BLITZ"
             ],
             [
+                64,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 66,
                 "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                72,
+                "MOVE_PYRO_BALL"
             ]
         ],
         "by_tm": [],

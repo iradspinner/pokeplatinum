@@ -89,8 +89,16 @@
                 "MOVE_JUMP_KICK"
             ],
             [
+                48,
+                "MOVE_DUAL_CHOP"
+            ],
+            [
                 51,
                 "MOVE_FOCUS_BLAST"
+            ],
+            [
+                55,
+                "MOVE_ACROBATICS"
             ],
             [
                 64,

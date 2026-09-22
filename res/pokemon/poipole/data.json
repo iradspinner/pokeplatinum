@@ -69,8 +69,20 @@
                 "MOVE_FURY_ATTACK"
             ],
             [
+                14,
+                "MOVE_FELL_STINGER"
+            ],
+            [
                 21,
                 "MOVE_CHARM"
+            ],
+            [
+                28,
+                "MOVE_VENOSHOCK"
+            ],
+            [
+                35,
+                "MOVE_VENOM_DRENCH"
             ],
             [
                 42,

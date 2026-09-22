@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_LEAFAGE"
+            ],
+            [
+                1,
                 "MOVE_ROCK_SMASH"
             ],
             [
@@ -77,12 +81,20 @@
                 "MOVE_SCARY_FACE"
             ],
             [
+                40,
+                "MOVE_HORN_LEECH"
+            ],
+            [
                 45,
                 "MOVE_ZEN_HEADBUTT"
             ],
             [
                 50,
                 "MOVE_MEAN_LOOK"
+            ],
+            [
+                55,
+                "MOVE_NATURES_MADNESS"
             ],
             [
                 60,
@@ -95,6 +107,10 @@
             [
                 70,
                 "MOVE_SKULL_BASH"
+            ],
+            [
+                75,
+                "MOVE_GRASSY_TERRAIN"
             ]
         ],
         "by_tm": [],

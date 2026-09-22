@@ -93,6 +93,10 @@
                 "MOVE_BRAVE_BIRD"
             ],
             [
+                55,
+                "MOVE_BODY_PRESS"
+            ],
+            [
                 65,
                 "MOVE_ROOST"
             ]

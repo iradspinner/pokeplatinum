@@ -45,6 +45,10 @@
     "learnset": {
         "by_level": [
             [
+                1,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 5,
                 "MOVE_ROCK_BLAST"
             ],
@@ -83,6 +87,10 @@
             [
                 34,
                 "MOVE_ROCK_SLIDE"
+            ],
+            [
+                39,
+                "MOVE_STOMPING_TANTRUM"
             ],
             [
                 42,

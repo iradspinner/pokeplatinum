@@ -49,6 +49,10 @@
                 "MOVE_SPLASH"
             ],
             [
+                5,
+                "MOVE_PLAY_NICE"
+            ],
+            [
                 9,
                 "MOVE_RAPID_SPIN"
             ],
@@ -71,6 +75,10 @@
             [
                 29,
                 "MOVE_FLAIL"
+            ],
+            [
+                33,
+                "MOVE_AROMATIC_MIST"
             ]
         ],
         "by_tm": [],

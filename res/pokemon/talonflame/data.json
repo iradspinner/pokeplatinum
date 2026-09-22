@@ -61,6 +61,10 @@
                 "MOVE_AERIAL_ACE"
             ],
             [
+                17,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
                 22,
                 "MOVE_ROOST"
             ],
@@ -71,6 +75,10 @@
             [
                 31,
                 "MOVE_NATURAL_GIFT"
+            ],
+            [
+                38,
+                "MOVE_ACROBATICS"
             ],
             [
                 42,

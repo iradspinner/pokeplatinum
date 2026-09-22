@@ -61,6 +61,14 @@
                 "MOVE_BITE"
             ],
             [
+                10,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                19,
+                "MOVE_VENOSHOCK"
+            ],
+            [
                 22,
                 "MOVE_TOXIC_SPIKES"
             ],
@@ -79,6 +87,14 @@
             [
                 36,
                 "MOVE_TOXIC"
+            ],
+            [
+                40,
+                "MOVE_VENOM_DRENCH"
+            ],
+            [
+                41,
+                "MOVE_LIQUIDATION"
             ],
             [
                 41,

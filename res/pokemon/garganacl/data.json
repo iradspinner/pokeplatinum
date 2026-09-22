@@ -58,6 +58,10 @@
             ],
             [
                 1,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                1,
                 "MOVE_HARDEN"
             ],
             [
@@ -85,6 +89,10 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                24,
+                "MOVE_SALT_CURE"
+            ],
+            [
                 30,
                 "MOVE_RECOVER"
             ],
@@ -95,6 +103,10 @@
             [
                 40,
                 "MOVE_STEALTH_ROCK"
+            ],
+            [
+                44,
+                "MOVE_HEAVY_SLAM"
             ],
             [
                 49,

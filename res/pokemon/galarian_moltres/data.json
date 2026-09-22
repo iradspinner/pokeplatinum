@@ -81,8 +81,20 @@
                 "MOVE_AIR_SLASH"
             ],
             [
+                40,
+                "MOVE_AFTER_YOU"
+            ],
+            [
+                45,
+                "MOVE_FIERY_WRATH"
+            ],
+            [
                 50,
                 "MOVE_NASTY_PLOT"
+            ],
+            [
+                55,
+                "MOVE_HURRICANE"
             ],
             [
                 60,

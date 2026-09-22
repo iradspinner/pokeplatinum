@@ -70,6 +70,14 @@
             ],
             [
                 1,
+                "MOVE_AFTER_YOU"
+            ],
+            [
+                1,
+                "MOVE_TAIL_SLAP"
+            ],
+            [
+                1,
                 "MOVE_TICKLE"
             ],
             [
@@ -90,7 +98,15 @@
             ],
             [
                 1,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                1,
                 "MOVE_HELPING_HAND"
+            ],
+            [
+                1,
+                "MOVE_ECHOED_VOICE"
             ]
         ],
         "by_tm": [],

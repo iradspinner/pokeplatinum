@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_NUZZLE"
+            ],
+            [
+                1,
                 "MOVE_TAIL_WHIP"
             ],
             [
@@ -73,6 +77,10 @@
                 "MOVE_CHARGE"
             ],
             [
+                15,
+                "MOVE_NUZZLE"
+            ],
+            [
                 16,
                 "MOVE_PURSUIT"
             ],
@@ -85,12 +93,24 @@
                 "MOVE_SHOCK_WAVE"
             ],
             [
+                26,
+                "MOVE_ELECTRO_BALL"
+            ],
+            [
+                27,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 36,
                 "MOVE_ENCORE"
             ],
             [
                 39,
                 "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                40,
+                "MOVE_VOLT_SWITCH"
             ],
             [
                 50,

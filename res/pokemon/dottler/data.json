@@ -57,6 +57,10 @@
                 "MOVE_CONFUSION"
             ],
             [
+                1,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 10,
                 "MOVE_REFLECT"
             ],
@@ -73,8 +77,16 @@
                 "MOVE_PSYBEAM"
             ],
             [
+                36,
+                "MOVE_BODY_PRESS"
+            ],
+            [
                 40,
                 "MOVE_RECOVER"
+            ],
+            [
+                48,
+                "MOVE_STICKY_WEB"
             ]
         ],
         "by_tm": [],

@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_PHANTOM_FORCE"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_SNEAK"
             ],
             [
@@ -55,6 +59,10 @@
             [
                 1,
                 "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_LEAFAGE"
             ],
             [
                 4,
@@ -89,6 +97,10 @@
                 "MOVE_SEED_BOMB"
             ],
             [
+                34,
+                "MOVE_SPIRIT_SHACKLE"
+            ],
+            [
                 38,
                 "MOVE_SUCKER_PUNCH"
             ],
@@ -103,6 +115,10 @@
             [
                 55,
                 "MOVE_LEAF_BLADE"
+            ],
+            [
+                61,
+                "MOVE_POLTERGEIST"
             ],
             [
                 65,

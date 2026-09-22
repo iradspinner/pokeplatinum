@@ -46,6 +46,22 @@
         "by_level": [
             [
                 1,
+                "MOVE_SOLAR_BLADE"
+            ],
+            [
+                1,
+                "MOVE_STEEL_ROLLER"
+            ],
+            [
+                1,
+                "MOVE_POLTERGEIST"
+            ],
+            [
+                1,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                1,
                 "MOVE_SYNTHESIS"
             ],
             [
@@ -85,12 +101,28 @@
                 "MOVE_RAPID_SPIN"
             ],
             [
+                34,
+                "MOVE_ANCHOR_SHOT"
+            ],
+            [
                 40,
                 "MOVE_SHADOW_CLAW"
             ],
             [
+                46,
+                "MOVE_GRASSY_GLIDE"
+            ],
+            [
                 51,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                55,
+                "MOVE_HEAVY_SLAM"
+            ],
+            [
+                65,
+                "MOVE_PHANTOM_FORCE"
             ],
             [
                 70,

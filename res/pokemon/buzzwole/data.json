@@ -46,11 +46,19 @@
         "by_level": [
             [
                 1,
+                "MOVE_POWER_UP_PUNCH"
+            ],
+            [
+                1,
                 "MOVE_HARDEN"
             ],
             [
                 5,
                 "MOVE_TAUNT"
+            ],
+            [
+                10,
+                "MOVE_FELL_STINGER"
             ],
             [
                 15,
@@ -71,6 +79,10 @@
             [
                 35,
                 "MOVE_MEGA_PUNCH"
+            ],
+            [
+                40,
+                "MOVE_LUNGE"
             ],
             [
                 45,

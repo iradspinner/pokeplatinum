@@ -61,6 +61,10 @@
                 "MOVE_WRAP"
             ],
             [
+                14,
+                "MOVE_HOLD_BACK"
+            ],
+            [
                 18,
                 "MOVE_MAGICAL_LEAF"
             ],

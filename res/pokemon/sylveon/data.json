@@ -46,6 +46,18 @@
         "by_level": [
             [
                 1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
                 "MOVE_COVET"
             ],
             [
@@ -89,6 +101,10 @@
                 "MOVE_TAIL_WHIP"
             ],
             [
+                1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
                 5,
                 "MOVE_SAND_ATTACK"
             ],
@@ -97,16 +113,32 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
+                12,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
                 18,
                 "MOVE_SWIFT"
+            ],
+            [
+                25,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 28,
                 "MOVE_LIGHT_SCREEN"
             ],
             [
+                32,
+                "MOVE_MISTY_TERRAIN"
+            ],
+            [
                 33,
                 "MOVE_SKILL_SWAP"
+            ],
+            [
+                43,
+                "MOVE_MOONBLAST"
             ],
             [
                 45,

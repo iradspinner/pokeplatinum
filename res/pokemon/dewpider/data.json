@@ -53,6 +53,10 @@
                 "MOVE_BUBBLE"
             ],
             [
+                5,
+                "MOVE_INFESTATION"
+            ],
+            [
                 9,
                 "MOVE_BITE"
             ],
@@ -73,12 +77,28 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                29,
+                "MOVE_SOAK"
+            ],
+            [
                 33,
                 "MOVE_DIVE"
             ],
             [
+                37,
+                "MOVE_LUNGE"
+            ],
+            [
+                41,
+                "MOVE_SCALD"
+            ],
+            [
                 45,
                 "MOVE_HYDRO_PUMP"
+            ],
+            [
+                49,
+                "MOVE_LIQUIDATION"
             ],
             [
                 53,

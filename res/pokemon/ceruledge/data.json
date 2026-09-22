@@ -54,6 +54,14 @@
             ],
             [
                 1,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                1,
+                "MOVE_SOLAR_BLADE"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_CLAW"
             ],
             [
@@ -63,6 +71,14 @@
             [
                 1,
                 "MOVE_SHADOW_SNEAK"
+            ],
+            [
+                1,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                1,
+                "MOVE_SOLAR_BLADE"
             ],
             [
                 1,
@@ -77,6 +93,10 @@
                 "MOVE_ASTONISH"
             ],
             [
+                8,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
                 12,
                 "MOVE_FIRE_SPIN"
             ],
@@ -89,12 +109,28 @@
                 "MOVE_NIGHT_SHADE"
             ],
             [
+                24,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                28,
+                "MOVE_INCINERATE"
+            ],
+            [
                 32,
                 "MOVE_LAVA_PLUME"
             ],
             [
                 37,
                 "MOVE_SWORDS_DANCE"
+            ],
+            [
+                42,
+                "MOVE_ALLY_SWITCH"
+            ],
+            [
+                48,
+                "MOVE_BITTER_BLADE"
             ],
             [
                 56,

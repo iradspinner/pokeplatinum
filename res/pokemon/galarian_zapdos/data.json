@@ -81,6 +81,14 @@
                 "MOVE_DRILL_PECK"
             ],
             [
+                40,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                45,
+                "MOVE_THUNDEROUS_KICK"
+            ],
+            [
                 50,
                 "MOVE_BULK_UP"
             ],

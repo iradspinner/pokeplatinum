@@ -46,11 +46,23 @@
         "by_level": [
             [
                 1,
+                "MOVE_BANEFUL_BUNKER"
+            ],
+            [
+                1,
+                "MOVE_BANEFUL_BUNKER"
+            ],
+            [
+                1,
                 "MOVE_POISON_STING"
             ],
             [
                 1,
                 "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_WIDE_GUARD"
             ],
             [
                 1,
@@ -67,6 +79,14 @@
             [
                 9,
                 "MOVE_BITE"
+            ],
+            [
+                17,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                19,
+                "MOVE_VENOSHOCK"
             ],
             [
                 22,
@@ -89,8 +109,16 @@
                 "MOVE_TOXIC"
             ],
             [
+                42,
+                "MOVE_VENOM_DRENCH"
+            ],
+            [
                 43,
                 "MOVE_POISON_JAB"
+            ],
+            [
+                45,
+                "MOVE_LIQUIDATION"
             ]
         ],
         "by_tm": [],

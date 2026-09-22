@@ -49,6 +49,10 @@
                 "MOVE_TACKLE"
             ],
             [
+                1,
+                "MOVE_LEAFAGE"
+            ],
+            [
                 4,
                 "MOVE_GROWL"
             ],

@@ -49,6 +49,18 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
+                1,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                1,
+                "MOVE_HEAVY_SLAM"
+            ],
+            [
+                1,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
                 5,
                 "MOVE_ROCK_BLAST"
             ],
@@ -87,6 +99,10 @@
             [
                 34,
                 "MOVE_ROCK_SLIDE"
+            ],
+            [
+                40,
+                "MOVE_STOMPING_TANTRUM"
             ],
             [
                 45,

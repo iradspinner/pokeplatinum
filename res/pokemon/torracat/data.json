@@ -85,6 +85,10 @@
                 "MOVE_FLAMETHROWER"
             ],
             [
+                42,
+                "MOVE_PARTING_SHOT"
+            ],
+            [
                 45,
                 "MOVE_KNOCK_OFF"
             ],

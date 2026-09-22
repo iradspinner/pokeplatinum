@@ -57,12 +57,24 @@
                 "MOVE_DRAGON_BREATH"
             ],
             [
+                10,
+                "MOVE_LIFE_DEW"
+            ],
+            [
                 16,
                 "MOVE_FLAIL"
             ],
             [
                 23,
                 "MOVE_WATER_PULSE"
+            ],
+            [
+                28,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
+                34,
+                "MOVE_INFESTATION"
             ],
             [
                 42,

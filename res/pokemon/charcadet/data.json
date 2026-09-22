@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                1,
                 "MOVE_FIRE_SPIN"
             ],
             [
@@ -55,6 +59,10 @@
             [
                 30,
                 "MOVE_NIGHT_SHADE"
+            ],
+            [
+                40,
+                "MOVE_INCINERATE"
             ],
             [
                 50,

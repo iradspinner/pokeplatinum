@@ -73,6 +73,14 @@
                 "MOVE_ROCK_SLIDE"
             ],
             [
+                30,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                35,
+                "MOVE_AUTOTOMIZE"
+            ],
+            [
                 40,
                 "MOVE_ROCK_BLAST"
             ],

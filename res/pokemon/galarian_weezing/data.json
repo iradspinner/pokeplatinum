@@ -69,6 +69,14 @@
                 "MOVE_HAZE"
             ],
             [
+                15,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                18,
+                "MOVE_BELCH"
+            ],
+            [
                 23,
                 "MOVE_PAYBACK"
             ],
@@ -95,6 +103,10 @@
             [
                 45,
                 "MOVE_PAIN_SPLIT"
+            ],
+            [
+                48,
+                "MOVE_STRANGE_STEAM"
             ],
             [
                 55,

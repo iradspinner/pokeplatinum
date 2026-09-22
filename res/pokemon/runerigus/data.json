@@ -73,6 +73,18 @@
                 "MOVE_DISABLE"
             ],
             [
+                16,
+                "MOVE_BRUTAL_SWING"
+            ],
+            [
+                20,
+                "MOVE_CRAFTY_SHIELD"
+            ],
+            [
+                24,
+                "MOVE_HEX"
+            ],
+            [
                 28,
                 "MOVE_MEAN_LOOK"
             ],
@@ -91,6 +103,14 @@
             [
                 50,
                 "MOVE_EARTHQUAKE"
+            ],
+            [
+                56,
+                "MOVE_POWER_SPLIT"
+            ],
+            [
+                56,
+                "MOVE_GUARD_SPLIT"
             ],
             [
                 62,

@@ -69,6 +69,10 @@
                 "MOVE_SPARK"
             ],
             [
+                25,
+                "MOVE_STICKY_WEB"
+            ],
+            [
                 30,
                 "MOVE_X_SCISSOR"
             ],

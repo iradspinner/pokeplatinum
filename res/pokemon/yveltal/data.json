@@ -54,6 +54,10 @@
             ],
             [
                 1,
+                "MOVE_HURRICANE"
+            ],
+            [
+                1,
                 "MOVE_RAZOR_WIND"
             ],
             [
@@ -73,6 +77,10 @@
                 "MOVE_DOUBLE_TEAM"
             ],
             [
+                13,
+                "MOVE_SNARL"
+            ],
+            [
                 23,
                 "MOVE_AIR_SLASH"
             ],
@@ -89,6 +97,10 @@
                 "MOVE_ROOST"
             ],
             [
+                38,
+                "MOVE_OBLIVION_WING"
+            ],
+            [
                 41,
                 "MOVE_DARK_PULSE"
             ],
@@ -101,8 +113,20 @@
                 "MOVE_PSYCHIC"
             ],
             [
+                55,
+                "MOVE_PHANTOM_FORCE"
+            ],
+            [
+                55,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
                 64,
                 "MOVE_DRAGON_RUSH"
+            ],
+            [
+                70,
+                "MOVE_HURRICANE"
             ],
             [
                 73,

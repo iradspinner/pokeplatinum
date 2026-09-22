@@ -46,11 +46,19 @@
         "by_level": [
             [
                 1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                1,
                 "MOVE_ABSORB"
             ],
             [
                 1,
                 "MOVE_LUCKY_CHANT"
+            ],
+            [
+                6,
+                "MOVE_TEARFUL_LOOK"
             ],
             [
                 10,
@@ -59,6 +67,10 @@
             [
                 15,
                 "MOVE_MEGA_DRAIN"
+            ],
+            [
+                20,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 22,
@@ -73,6 +85,10 @@
                 "MOVE_GIGA_DRAIN"
             ],
             [
+                33,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
                 37,
                 "MOVE_HELPING_HAND"
             ],
@@ -83,6 +99,10 @@
             [
                 45,
                 "MOVE_SOLAR_BEAM"
+            ],
+            [
+                48,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [],
