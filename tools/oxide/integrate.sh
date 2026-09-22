@@ -27,6 +27,8 @@
 #   tools/oxide/integrate.sh --dry-run    # preconditions and what would merge, nothing changes
 #   tools/oxide/integrate.sh --no-build   # skip `make rom` and the checks that need the built ROM
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
+#   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
+#                                           # no fetch, no merge, no push (the QA pass)
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -34,12 +36,13 @@ cd "$REPO"
 
 PY=python3
 
-DRY_RUN=0; BUILD=1; PUSH=1
+DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0
 for arg in "$@"; do
     case "$arg" in
         --dry-run) DRY_RUN=1 ;;
         --no-build) BUILD=0 ;;
         --no-push) PUSH=0 ;;
+        --verify-only) VERIFY_ONLY=1; PUSH=0 ;;
         -h|--help) sed -n '2,30p' "$0"; exit 0 ;;
         *) echo "integrate: unknown option $arg" >&2; exit 2 ;;
     esac
@@ -81,7 +84,9 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 # Every worktree must be clean. Worktree branches are collected here too.
+# A verify-only run looks at this checkout alone, so it skips all of this.
 declare -a TRACK_BRANCHES=()
+if [ $VERIFY_ONLY -eq 0 ]; then
 while IFS= read -r line; do
     case "$line" in
         worktree\ *) wt="${line#worktree }" ;;
@@ -110,11 +115,13 @@ for pid in $(pgrep -x claude 2>/dev/null || true); do
         "$REPO"/.claude/worktrees/*) warn "claude pid $pid still has its cwd in $cwd" ;;
     esac
 done
+fi
 
 [ -f "$BASE" ] || die "$BASE missing (pinned base ROM)"
 [ -f "$VANILLA" ] || die "$VANILLA missing (pinned vanilla ROM)"
 
 # ---------------------------------------------------------------- 2. fetch and ff
+if [ $VERIFY_ONLY -eq 0 ]; then
 say "fetch"
 git fetch -q origin || die "git fetch failed"
 if [ "$(git rev-list --count oxide..origin/oxide)" != "0" ]; then
@@ -170,12 +177,42 @@ for b in "${TRACK_BRANCHES[@]:-}"; do
     printf '      %s\n' "${resolved[@]}"
     MERGED+=("$b (${#resolved[@]} conflict(s) resolved)")
 done
+fi
 [ $DRY_RUN -eq 1 ] && { say "dry run, stopping before verification"; exit 0; }
 
 # ---------------------------------------------------------------- 4. verify
 say "verify"
+# Until the replacement CPU is in, a build can crash and pass on a rerun, so
+# `make rom` gets a few tries (delete the retry with the Makefile's venv block).
+make_rom() {
+    local i
+    for i in 1 2 3 4; do
+        make rom && return 0
+        echo "make rom failed, try $i of 4 (degraded CPU, see CLAUDE.md)"
+    done
+    return 1
+}
+# The ROM of record is GitHub's build of the same commit (oxide-rom.yml): the
+# local ROM passes when its SHA-1 matches the one that run printed. No run for
+# HEAD yet (not pushed, or still building) is a warning, not a failure.
+ci_hash() {
+    local run
+    run="$(gh run list --workflow oxide-rom.yml --commit "$(git rev-parse HEAD)" \
+           --status success --limit 1 --json databaseId --jq '.[0].databaseId' 2>/dev/null)"
+    [ -n "$run" ] || return 1
+    gh run view "$run" --log 2>/dev/null | grep -o 'ROM SHA-1: [0-9a-f]\{40\}' | head -n 1 | cut -d' ' -f3
+}
 if [ $BUILD -eq 1 ]; then
-    check "make rom" make rom
+    check "make rom" make_rom
+    if [ -f "$ROM" ]; then
+        local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"
+        if remote_sha="$(ci_hash)" && [ -n "$remote_sha" ]; then
+            if [ "$local_sha" = "$remote_sha" ]; then ok "ROM matches GitHub's build ($local_sha)"
+            else bad "ROM $local_sha differs from GitHub's build $remote_sha: rebuild before trusting it"; fi
+        else
+            warn "no finished GitHub build for HEAD to compare the ROM against ($local_sha)"
+        fi
+    fi
     if [ -f "$ROM" ]; then
         check "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
         # The encounter tables are checked against their source JSON (M7), not
