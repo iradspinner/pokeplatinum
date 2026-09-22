@@ -83,8 +83,12 @@ all-core load compilers and Python crash or return wrong answers (design doc
 findings log, 2026-09-22). So a result here is trusted only after a second run
 agrees with it. GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
-summary; a local ROM is trusted when its hash matches that one. The ROM is
-never uploaded, because the repo is public. Retry a local build that crashes,
+summary; a local ROM is trusted when its hash matches that one. This public
+repo never uploads the ROM. **Ian's playtest ROMs come from
+`tools/oxide/fetch-rom`**, which builds a pushed commit in the private repo
+`iradspinner/oxide-rom-builder`, keeps the ROM there as a private artifact for
+three days, and downloads it to `~/oxide-playtest` after checking its SHA-1.
+Hand Ian that ROM, not one built on this CPU. Retry a local build that crashes,
 and rerun a failed test before believing it. The `Makefile` puts the 3.13
 venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.

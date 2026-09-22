@@ -61,6 +61,12 @@ cd ~/pokeplatinum && git pull && make rom
 ```
 `make rom` skips the checksum test (which is expected to fail once we change things) and rebuilds only what changed, usually well under a minute. Copy the ROM out as in step 8 and play-test. Report what you see; screenshots help.
 
+**While this box's CPU is degraded (2026-09-23 onward), take playtest ROMs from GitHub instead.** A local build can come out wrong on this chip, so a copy for the emulator is built on GitHub's machines by the private repo `iradspinner/oxide-rom-builder`, which holds one workflow and nothing else. After `git pull`, run:
+```
+cd ~/pokeplatinum && tools/oxide/fetch-rom
+```
+It builds the commit you are on (or reuses a build of it from the last three days), downloads the ROM to `~/oxide-playtest/pokeplatinum-oxide-<commit>.nds`, checks it against the SHA-1 the build machine recorded, and prints the `\\wsl$` path to paste into Explorer. The commit must already be pushed. It needs the `gh` token to reach that repo with read and write on Contents and Actions.
+
 If you ever want to throw away every local change and match my latest push exactly:
 ```
 cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide

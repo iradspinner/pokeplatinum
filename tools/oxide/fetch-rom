@@ -1,0 +1,97 @@
+#!/bin/sh
+# Get a playtest ROM built on GitHub's machines instead of this box's CPU.
+#
+# Ian's i9-14900K is degraded, so a local build can come out wrong. The private
+# repo iradspinner/oxide-rom-builder holds one workflow that checks out this
+# repo at a given commit, builds it, and keeps the ROM as a private artifact.
+# This script starts that build, waits for it, downloads the ROM and checks it
+# against the SHA-1 the build recorded. The ROM is never published: the source
+# repo is public, the builder is not.
+#
+# Usage: tools/oxide/fetch-rom [commit-or-branch]    default: HEAD
+#
+# The commit has to be pushed already, because the builder reads it from
+# GitHub. If a successful build of that commit is still inside its three-day
+# retention, it is reused rather than built again.
+#
+# Output goes to $OXIDE_PLAYTEST_DIR (default ~/oxide-playtest), one file per
+# commit, and the script prints the path to paste into Windows Explorer.
+
+set -eu
+
+REPO=iradspinner/oxide-rom-builder
+WORKFLOW=build.yml
+DEST=${OXIDE_PLAYTEST_DIR:-$HOME/oxide-playtest}
+
+die() { printf 'fetch-rom: %s\n' "$*" >&2; exit 1; }
+
+cd "$(dirname "$0")/../.."
+ref=${1:-HEAD}
+commit=$(git rev-parse --verify "$ref^{commit}") || die "no such commit: $ref"
+short=$(printf '%s' "$commit" | cut -c1-9)
+
+gh repo view "$REPO" >/dev/null 2>&1 ||
+    die "cannot reach $REPO; it must exist and the gh token needs access to it"
+git fetch -q origin || die "git fetch failed"
+[ -n "$(git branch -r --contains "$commit" 2>/dev/null)" ] ||
+    die "$short is not on GitHub yet; push it first"
+
+# The workflow titles each run "build <ref>", so a run for this exact commit
+# can be found again by its title.
+title="build $commit"
+find_run() {
+    gh run list -R "$REPO" --workflow "$WORKFLOW" -L 30 \
+        --json databaseId,displayTitle,conclusion,createdAt \
+        -q "[.[] | select(.displayTitle == \"$title\") $1] | sort_by(.createdAt) | last | .databaseId // empty"
+}
+
+run=$(find_run '| select(.conclusion == "success")')
+if [ -n "$run" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$short" \
+        -D "$DEST/.incoming-$short" >/dev/null 2>&1; then
+    echo "reusing build $run of $short"
+else
+    rm -rf "$DEST/.incoming-$short"
+    # Only a run created after this moment can be ours; an older run of the
+    # same commit (a failed one, say) must not be mistaken for it.
+    since=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    gh workflow run "$WORKFLOW" -R "$REPO" -f ref="$commit" >/dev/null ||
+        die "could not start the build; does the token reach $REPO with Actions write?"
+    echo "started a build of $short on GitHub, usually about five minutes"
+    run=
+    tries=0
+    while [ -z "$run" ]; do
+        tries=$((tries + 1))
+        [ "$tries" -le 30 ] || die "the build never appeared in $REPO's run list"
+        sleep 4
+        run=$(find_run "| select(.createdAt >= \"$since\")")
+    done
+    # Poll rather than `gh run watch`: watch also reads check annotations,
+    # which needs a Checks permission the fine-grained token does not have,
+    # and it gives up on the first 403 while the build is still running.
+    while :; do
+        sleep 20
+        state=$(gh run view "$run" -R "$REPO" --json status,conclusion \
+            -q '"\(.status) \(.conclusion)"') || continue
+        case "$state" in
+            "completed success") break ;;
+            completed*) die "build $run ended ${state#completed }; see: gh run view $run -R $REPO --log-failed" ;;
+        esac
+    done
+    gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$short" \
+        -D "$DEST/.incoming-$short" || die "download of build $run failed"
+fi
+
+# Trust the file only if it hashes to what the build machine recorded.
+(cd "$DEST/.incoming-$short" && sha1sum -c --quiet "pokeplatinum-oxide-$short.sha1") ||
+    die "downloaded ROM does not match the build's SHA-1"
+mv -f "$DEST/.incoming-$short/pokeplatinum-oxide-$short.nds" "$DEST/"
+mv -f "$DEST/.incoming-$short/pokeplatinum-oxide-$short.sha1" "$DEST/"
+rmdir "$DEST/.incoming-$short"
+
+rom="$DEST/pokeplatinum-oxide-$short.nds"
+echo "ROM:     $rom"
+echo "SHA-1:   $(cut -d' ' -f1 "$DEST/pokeplatinum-oxide-$short.sha1")"
+case "$rom" in
+    "$HOME"/*) printf 'Windows: \\\\wsl$\\%s%s\n' "${WSL_DISTRO_NAME:-Ubuntu}" \
+                   "$(printf '%s' "$rom" | sed 's|/|\\|g')" ;;
+esac
