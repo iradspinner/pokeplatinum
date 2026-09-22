@@ -542,6 +542,28 @@ events_files = files(
     'events_rock_peak_ruins.json',
 )
 
+# Platinum Oxide: the test kit build swaps the bedroom's events for a copy with
+# the kit's NPC appended (tools/oxide/testkit_merge.py, res/testkit/).
+if get_option('oxide_testkit')
+    testkit_bedroom_events = custom_target('testkit_events_twinleaf_town_player_house_2f',
+        output: 'events_twinleaf_town_player_house_2f.json',
+        input: [
+            files('events_twinleaf_town_player_house_2f.json'),
+            files('../../testkit/events_twinleaf_town_player_house_2f.json'),
+        ],
+        command: [ testkit_merge_py, '@INPUT0@', '@INPUT1@', '@OUTPUT@' ],
+    )
+    events_files_kit = []
+    foreach events_file : events_files
+        if events_file.full_path().endswith('/events_twinleaf_town_player_house_2f.json')
+            events_files_kit += testkit_bedroom_events
+        else
+            events_files_kit += events_file
+        endif
+    endforeach
+    events_files = events_files_kit
+endif
+
 events_headers = []
 foreach events_file : events_files
     events_h = events_file.full_path().split('/')[-1].split('.')[0] + '.h'

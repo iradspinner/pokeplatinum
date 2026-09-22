@@ -84,6 +84,11 @@ if get_option('logging_enabled')
     ]
 endif
 
+# Platinum Oxide: the test kit's code is compiled only into `make testkit`.
+if get_option('oxide_testkit')
+    pokeplatinum_args += '-DOXIDE_TESTKIT'
+endif
+
 asm_args = [
     '-proc', 'arm5TE',
     '-16',

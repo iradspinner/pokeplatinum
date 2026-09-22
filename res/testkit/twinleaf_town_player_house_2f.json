@@ -1,0 +1,178 @@
+{
+    "//": "Platinum Oxide test kit (docs/oxide/test-kit.md). Appended to the bedroom's text bank in `make testkit` builds only, by tools/oxide/testkit_merge.py.",
+    "messages": [
+        {
+            "id": "TestKit_Text_WhatDoYouNeed",
+            "en_US": "Test kit. What do you need?"
+        },
+        {
+            "id": "TestKit_Text_MenuRareCandies",
+            "en_US": "99 Rare Candies"
+        },
+        {
+            "id": "TestKit_Text_MenuForms",
+            "en_US": "Rotom and Giratina"
+        },
+        {
+            "id": "TestKit_Text_MenuEevee",
+            "en_US": "Eevee with Charm"
+        },
+        {
+            "id": "TestKit_Text_MenuKlefki",
+            "en_US": "Klefki, Lv. 5"
+        },
+        {
+            "id": "TestKit_Text_MenuFairy",
+            "en_US": "Gible vs. Clefairy"
+        },
+        {
+            "id": "TestKit_Text_MenuMoveSets",
+            "en_US": "New move sets"
+        },
+        {
+            "id": "TestKit_Text_MenuWildChansey",
+            "en_US": "Wild Chansey"
+        },
+        {
+            "id": "TestKit_Text_MenuWarp",
+            "en_US": "Warp"
+        },
+        {
+            "id": "TestKit_Text_MenuNothing",
+            "en_US": "Nothing"
+        },
+        {
+            "id": "TestKit_Text_RareCandies",
+            "en_US": [
+                "Here are 99 Rare Candies.\n",
+                "After one, the party menu should\r",
+                "open again for the next."
+            ]
+        },
+        {
+            "id": "TestKit_Text_Forms",
+            "en_US": [
+                "Rotom is in its Wash form, and\n",
+                "Giratina in its Origin form.\r",
+                "Each summary should show its\n",
+                "form’s own stats and types."
+            ]
+        },
+        {
+            "id": "TestKit_Text_Eevee",
+            "en_US": [
+                "This Eevee knows Charm.\n",
+                "One Rare Candy should make it\r",
+                "evolve into Sylveon."
+            ]
+        },
+        {
+            "id": "TestKit_Text_Klefki",
+            "en_US": [
+                "This Klefki is Lv. 5. At Lv. 6\n",
+                "it learns Fairy Wind, move 587,\r",
+                "past the old learnset cap of 511."
+            ]
+        },
+        {
+            "id": "TestKit_Text_Fairy",
+            "en_US": [
+                "This Gible knows Dragon Claw.\n",
+                "Send it out against the Clefairy:\r",
+                "a Fairy type should take no\n",
+                "damage from a Dragon move."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WhichSet",
+            "en_US": "Which move set?"
+        },
+        {
+            "id": "TestKit_Text_MenuSet1",
+            "en_US": "Set 1"
+        },
+        {
+            "id": "TestKit_Text_MenuSet2",
+            "en_US": "Set 2"
+        },
+        {
+            "id": "TestKit_Text_MenuSet3",
+            "en_US": "Set 3"
+        },
+        {
+            "id": "TestKit_Text_MenuSet4",
+            "en_US": "Set 4"
+        },
+        {
+            "id": "TestKit_Text_MenuSet5",
+            "en_US": "Set 5"
+        },
+        {
+            "id": "TestKit_Text_MenuSet6",
+            "en_US": "Set 6"
+        },
+        {
+            "id": "TestKit_Text_MenuSet7",
+            "en_US": "Set 7"
+        },
+        {
+            "id": "TestKit_Text_MenuSet8",
+            "en_US": "Set 8"
+        },
+        {
+            "id": "TestKit_Text_MenuSet9",
+            "en_US": "Set 9"
+        },
+        {
+            "id": "TestKit_Text_MoveSet",
+            "en_US": [
+                "Mew knows {STRVAR_1 6, 0, 0},\n",
+                "{STRVAR_1 6, 1, 0},\r",
+                "{STRVAR_1 6, 2, 0}\n",
+                "and {STRVAR_1 6, 3, 0}."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WildChansey",
+            "en_US": [
+                "A wild Chansey, Lv. 50, to try\n",
+                "the new moves on."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WhereTo",
+            "en_US": "Where to?"
+        },
+        {
+            "id": "TestKit_Text_MenuTwinleaf",
+            "en_US": "Twinleaf Town"
+        },
+        {
+            "id": "TestKit_Text_MenuSandgem",
+            "en_US": "Sandgem Town"
+        },
+        {
+            "id": "TestKit_Text_MenuSandgemCenter",
+            "en_US": "Sandgem Pokémon Center"
+        },
+        {
+            "id": "TestKit_Text_MenuJubilife",
+            "en_US": "Jubilife City"
+        },
+        {
+            "id": "TestKit_Text_MenuPastoria",
+            "en_US": "Pastoria City"
+        },
+        {
+            "id": "TestKit_Text_MenuVeilstone",
+            "en_US": "Veilstone City"
+        },
+        {
+            "id": "TestKit_Text_PartyFull",
+            "en_US": [
+                "Your party has no room.\n",
+                "Put some Pokémon in a box first."
+            ]
+        }
+    ]
+}

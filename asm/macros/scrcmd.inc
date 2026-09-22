@@ -5221,6 +5221,18 @@
     .short \successVar
     .endm
 
+#ifdef OXIDE_TESTKIT
+    /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
+       \partySlot into \form. Rotom takes the game's own form change, which
+       also swaps its appliance move; anything else has its form, ability and
+       stats set directly. */
+    .macro TestKitSetPartyMonForm partySlot, form
+    .short SCRCMD_TESTKITSETPARTYMONFORM
+    .short \partySlot
+    .short \form
+    .endm
+#endif
+
     .macro NPCMessage messageID
     PlaySE SE_CONFIRM_sseq_3
     LockAll

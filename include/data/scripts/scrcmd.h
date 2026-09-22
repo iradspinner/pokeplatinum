@@ -851,6 +851,11 @@ ScriptCommand(SCRCMD_SETREPELSTEPS,                                        ScrCm
 ScriptCommand(SCRCMD_GIVEHIDDENABILITY,                                    ScrCmd_GiveHiddenAbility)
 ScriptCommand(SCRCMD_GIVEDESIGNEDPOKEMON,                                  ScrCmd_GiveDesignedPokemon)
 
+#ifdef OXIDE_TESTKIT
+// The test kit's own commands, built only by `make testkit` (docs/oxide/test-kit.md).
+ScriptCommand(SCRCMD_TESTKITSETPARTYMONFORM,                               ScrCmd_TestKitSetPartyMonForm)
+#endif
+
 // clang-format on
 
 #endif // POKEPLATINUM_DATA_SCRIPTS_SCRCMD_H

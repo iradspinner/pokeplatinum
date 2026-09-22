@@ -73,7 +73,15 @@ text_bank_consts = fs.read(text_banks_txt).splitlines()
 text_bank_files = []
 foreach text_bank : text_bank_consts
     text_bank_name = (text_bank.replace('TEXT_BANK_', '').to_lower() + '.json')
-    if not generated_text_banks.contains(text_bank_name)
+    if get_option('oxide_testkit') and text_bank_name == 'twinleaf_town_player_house_2f.json'
+        # Platinum Oxide: the test kit build appends the kit NPC's messages to
+        # the bedroom's bank (tools/oxide/testkit_merge.py, res/testkit/).
+        text_bank_files += custom_target('testkit_' + text_bank_name,
+            output: text_bank_name,
+            input: [ files(text_bank_name), files('../testkit/' + text_bank_name) ],
+            command: [ testkit_merge_py, '@INPUT0@', '@INPUT1@', '@OUTPUT@' ],
+        )
+    elif not generated_text_banks.contains(text_bank_name)
         text_bank_files += files(text_bank_name)
     endif
 endforeach

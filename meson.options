@@ -1,3 +1,6 @@
 option('gdb_debugging', type : 'boolean', value : false)
 option('revision', type : 'combo', choices: ['0', '1'], value : '1')
 option('logging_enabled', type: 'boolean', value: false)
+# Platinum Oxide: the in-game test kit. Set only by `make testkit`, in its own
+# build folder; every other build leaves it off (docs/oxide/test-kit.md).
+option('oxide_testkit', type: 'boolean', value: false)
