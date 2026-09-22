@@ -1,0 +1,39 @@
+name: oxide-rom
+
+# Platinum Oxide: build the ROM on GitHub's machines and publish its SHA-1, so
+# a ROM built on Ian's degraded CPU can be trusted by matching this hash. The
+# ROM itself is never uploaded: this repo is public and the ROM is Nintendo's.
+
+on:
+  push:
+    branches: [ oxide ]
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+env:
+  LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
+
+jobs:
+  rom:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install Software
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 wget xz-utils libpng-dev
+
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Install Metroskrew
+        run: sudo make skrew
+
+      - name: Build ROM
+        run: make rom
+
+      - name: Publish SHA-1
+        run: |
+          sha=$(sha1sum build/pokeplatinum.us.nds | cut -d' ' -f1)
+          echo "ROM SHA-1: $sha"
+          echo "ROM SHA-1 for ${GITHUB_SHA::9}: \`$sha\`" >> "$GITHUB_STEP_SUMMARY"
