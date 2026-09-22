@@ -67,18 +67,17 @@ unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
 **Run every Python script in this repo through `tools/oxide/oxide-python`, not
-through `python3`**, and know what that buys. This box returns wrong answers
-from ordinary Python string work on every interpreter tried (the system 3.14.4
-and the pinned CPython 3.13 fail a repro at the same rate), and a build's
-Python wedges in an unkillable kernel state within minutes of a boot; the QA
-outcome at the top of the tracker has the evidence and the experiment that
-decides whether it is the WSL2 kernel or hardware. The wrapper gives every
-tool one interpreter with the right packages, the `Makefile` puts it first on
-PATH for the ninja steps, and `integrate.sh` goes through it. It is not a fix
-for the fault. Until the platform is fixed, a result on this box is trusted
-after a second run agrees with it: build twice and compare hashes, rerun a
-failed test before believing it. `tools/oxide/python_flake_repro.py` is the
-check; `tools/oxide/oxide-python --path` says which interpreter is in use.
+through `python3`**, and know what that buys. The wrapper gives every tool one
+interpreter with the right packages, the `Makefile` puts it first on PATH for
+the ninja steps, and `integrate.sh` goes through it.
+
+**This box's CPU is faulty until its warranty replacement arrives.** The
+i9-14900K is degraded: capped, single-threaded work is clean, but under
+all-core load compilers and Python crash or return wrong answers (design doc
+findings log, 2026-09-22). So a result here is trusted only after a second run
+agrees with it. Retry a build that crashes, trust a ROM only when two complete
+builds agree on its hash, and rerun a failed test before believing it.
+`tools/oxide/python_flake_repro.py` is the check.
 
 ## Tools
 
