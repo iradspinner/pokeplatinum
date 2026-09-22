@@ -18,6 +18,7 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 4. **Phase 4 element 4**, the move expansion, is down to its last two pieces: **writing the 116 effect scripts**, which are stubs today so a new move does its damage but skips its extra, and then **refilling the 159 new species' learnsets** unfiltered. Element 3's remaining fill-in, the TM and tutor and egg-move lists, still waits on the Phase 5 TM pass.
 5. **The encounter authoring pass** has designed every wild and scripted source and the tables build; it is now in a design and formatting pass on its own branch. What it has left is in its own build plan, and nothing there blocks Phase 4.
 6. **Backlog items that are now cheap:** the six overworld sprites the carry-over missed (Phase 3 regression item), and the re-examination of the inventory's other "tool side effect" archives.
+7. **Workflow improvements, the agent side** (Ian, 2026-09-22): `docs/oxide/agent-brief-workflow-improvements.md` is the brief for a fresh agent started in the repo. It covers the tracker split, one memory folder, safer integration, a wedge guard, docs-only commit hashes, a test-kit proposal and the delegation memory.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
 

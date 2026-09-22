@@ -49,6 +49,7 @@ copy "phase3-scripts-and-events-plan.md" "notes/phase3-scripts-and-events-plan.m
 copy "phase4-engine-change-answers.md" "notes/phase4-engine-change-answers.md"
 copy "qa-review-2026-09-22.md" "notes/qa-review-2026-09-22.md"
 copy "qa-review-2026-09-22-encounter-m8.md" "notes/qa-review-2026-09-22-encounter-m8.md"
+copy "agent-brief-workflow-improvements.md" "notes/agent-brief-workflow-improvements.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "pokemon-sources.md" "notes/pokemon-sources.md"
