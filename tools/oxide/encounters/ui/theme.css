@@ -1,4 +1,4 @@
-/* Every colour the encounter tool draws, in one place.
+/* Every colour the encounter tool draws, and its three faces, in one place.
 
    Palette B, "Lake Guardians", chosen by Ian on 2026-09-22 and specified in
    docs/oxide/encounter-tool-visual-design.md. Each hue carries one meaning:
@@ -79,4 +79,25 @@
 
   accent-color: var(--mass);              /* native checkboxes and radios */
   scrollbar-color: var(--faint) var(--panel);
+
+  /* The three faces. The sans and the tabular mono carry everything that is
+     read or compared; the pixel face is for identity only (the title, the view
+     and time-of-day tabs, the uplift headline, the dex number). They live here
+     rather than in the page so the damage calculator's skin can share them. */
+  --sans: system-ui, "Segoe UI Variable", "Segoe UI", sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --pixel: "Pixelify Sans", var(--mono);
+}
+
+/* Pixelify Sans, weight 600, latin subset; provenance in fonts/README.md.
+   Blocking rather than swapping: the file is local and 8 KB, and a swap would
+   make the title jump on every load. The url resolves against this file, so
+   the calculator's skin can load theme.css from another folder and still find
+   the font. */
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(fonts/PixelifySans-600-latin.woff2) format("woff2");
 }
