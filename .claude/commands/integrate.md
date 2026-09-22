@@ -5,9 +5,13 @@ allowed-tools: Bash(tools/oxide/integrate.sh *), Bash(bash tools/oxide/integrate
 
 Integrate the Platinum Oxide tracks. Run this only when Ian says the other agents are stopped. Everything mechanical is in the script; your job is the reading afterwards.
 
+## 0. QA each track before it merges
+
+Run `bash tools/oxide/integrate.sh --dry-run` to list the branches that would merge. For each one, unless Ian says to skip it, run `/qa-pass` over `$(git merge-base oxide <branch>)..<branch>` in place of its usual `..HEAD` range, and leave its gate step for step 1 below, which runs the same gate on the merged tree. The 2026-09-22 pass over the encounter branch found two real dex bugs before they reached `oxide` (`docs/oxide/qa-review-2026-09-22-encounter-m8.md`). A defect in a track's own files goes back to that track, and the branch merges once it is fixed or Ian waives it. Leave the cloud review out unless Ian asks for it.
+
 ## 1. Merge and verify
 
-Run `bash tools/oxide/integrate.sh $ARGUMENTS`. Read its summary. If it stopped at a precondition (a dirty worktree, a conflict outside the tracker, a diverged origin), report exactly what it said and stop; those are Ian's calls, not yours.
+Run `bash tools/oxide/integrate.sh $ARGUMENTS`. Read its summary. If it stopped at a precondition (a dirty worktree, a conflict it will not resolve, a diverged origin), report exactly what it said and stop; those are Ian's calls, not yours. The exception is a tracker conflict outside the encounter paragraph, which the script stops on by design and prints: merge that block by hand, keeping both tracks' lines, then rerun.
 
 If a verification check failed, do not push and do not "fix" data files. Report which check failed, its last lines of output, and which merged branch most likely caused it (`git log --oneline` since the previous integration, per file). Then stop.
 

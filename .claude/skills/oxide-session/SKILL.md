@@ -24,8 +24,12 @@ the facts they point at live in the docs, not here.
    - The encounter tool and the encounter authoring pass:
      `docs/oxide/encounter-tool-build-plan.md`, plus exactly one paragraph at
      the top of the tracker. Nothing else in the tracker.
-4. Say in one or two sentences what this session will do, then do it.
-5. If the work is more than a small fix, do it on a worktree branch
+4. On a worktree branch, run `git merge oxide` before anything else, resolve
+   any conflict in your own files, and run your own suites. A branch cut before
+   a change on `oxide` otherwise finds out only at the integration gate: the
+   encounter branch's `test_m8` still expected 468 moves when `oxide` had 923.
+5. Say in one or two sentences what this session will do, then do it.
+6. If the work is more than a small fix, do it on a worktree branch
    (`EnterWorktree` or `git worktree add`) and merge into `oxide` when its tests
    are green. `tools/oxide/integrate.sh` does the merge and verification;
    `/integrate` in the planning session runs it.

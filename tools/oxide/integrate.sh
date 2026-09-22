@@ -13,10 +13,11 @@
 #      because a stopped-but-idle session looks the same as a running one.
 #   2. `git fetch`, then fast-forward `oxide` onto `origin/oxide` if it is behind.
 #   3. Merge every local `worktree-*` branch (and every branch a worktree has
-#      checked out) that is not already an ancestor of `oxide`. A conflict that
-#      touches only docs/oxide/tracker.md is resolved by taking the `oxide` side,
-#      which is the project's rule (each track has one status home; the tracker
-#      belongs to the main track). Any other conflict aborts the merge and stops.
+#      checked out) that is not already an ancestor of `oxide`. A conflict in
+#      docs/oxide/tracker.md is resolved block by block: the encounter track's
+#      paragraph takes that track's side, and any other block stops the merge.
+#      Findings-log appends in the design doc keep both sides. Any other
+#      conflict aborts the merge and stops.
 #   4. Verification: the restart check-list from the tracker plus the encounter
 #      tool's tests. Each check reports pass or fail; the script keeps going so
 #      the summary is complete, and exits non-zero if any failed.
@@ -43,7 +44,7 @@ for arg in "$@"; do
         --no-build) BUILD=0 ;;
         --no-push) PUSH=0 ;;
         --verify-only) VERIFY_ONLY=1; PUSH=0 ;;
-        -h|--help) sed -n '2,30p' "$0"; exit 0 ;;
+        -h|--help) sed -n '/^set -uo/q;2,$p' "$0"; exit 0 ;;
         *) echo "integrate: unknown option $arg" >&2; exit 2 ;;
     esac
 done
@@ -140,6 +141,50 @@ if [ "$(git rev-list --count oxide..origin/oxide)" != "0" ]; then
 fi
 
 # ---------------------------------------------------------------- 3. merge tracks
+# The tracker belongs to the main track, apart from the encounter track's one
+# paragraph near its top, so its conflicts are resolved one block at a time.
+# A block whose two sides are both that paragraph takes the encounter branch's
+# side. Any other block, or that paragraph conflicting on some other branch,
+# fails with the block printed: keeping one side of the whole file came close
+# to silently dropping the encounter track's update on 2026-09-22, and a stop
+# costs less than a loss. $1 is the conflicted file, $2 the branch merging in.
+ENCOUNTER_PARAGRAPH='**Second track: the encounter tool.**'
+resolve_tracker() {
+    local take=0
+    case "$2" in *encounter*) take=1 ;; esac
+    awk -v mark="$ENCOUNTER_PARAGRAPH" -v take="$take" -v branch="$2" '
+        # True when every non-blank line of a conflict side is the paragraph.
+        function paragraph_only(side,   n, i, line, seen) {
+            n = split(side, line, "\n")
+            for (i = 1; i <= n; i++) {
+                if (line[i] == "") continue
+                if (index(line[i], mark) != 1) return 0
+                seen = 1
+            }
+            return seen
+        }
+        !inblock && /^<<<<<<< / { inblock = 1; side = "ours"; ours = theirs = ""; block = $0 "\n"; next }
+        inblock {
+            block = block $0 "\n"
+            if (substr($0, 1, 8) == "||||||| ") { side = "base"; next }
+            if ($0 == "=======") { side = "theirs"; next }
+            if (/^>>>>>>> /) {
+                inblock = 0
+                if (take && paragraph_only(ours) && paragraph_only(theirs)) { printf "%s", theirs; next }
+                printf "tracker.md: a conflict block this script will not resolve, merging %s:\n%s", branch, block > "/dev/stderr"
+                failed = 1
+                next
+            }
+            if (side == "ours") ours = ours $0 "\n"
+            else if (side == "theirs") theirs = theirs $0 "\n"
+            next
+        }
+        { print }
+        END { exit failed }
+    ' "$1" > "$1.resolved" || { rm -f "$1.resolved"; return 1; }
+    mv "$1.resolved" "$1"
+}
+
 say "merge"
 for b in "${TRACK_BRANCHES[@]:-}"; do
     [ -n "$b" ] || continue
@@ -159,17 +204,18 @@ for b in "${TRACK_BRANCHES[@]:-}"; do
         git merge --abort 2>/dev/null
         die "merging $b failed without a content conflict:"$'\n'"$merge_out"
     fi
-    # Two files conflict routinely and each has one right resolution. The
-    # tracker belongs to the main track, so its side wins (one status home per
-    # track). Track agents only append to the design doc's findings log, so a
-    # conflict there is both tracks appending entries and the answer is to keep
-    # both, in order. Deletions from the log happen only in a docs pass with
-    # every track paused, precisely so this never resurrects a deleted entry.
+    # Two files conflict routinely. The tracker is resolved one conflict block
+    # at a time by resolve_tracker, above. Track agents only append to the
+    # design doc's findings log, so a conflict there is both tracks appending
+    # entries and the answer is to keep both, in order. Deletions from the log
+    # happen only in a docs pass with every track paused, precisely so this
+    # never resurrects a deleted entry.
     resolved=()
     for f in $conflicts; do
         case "$f" in
             docs/oxide/tracker.md)
-                git checkout --ours "$f" && git add "$f" && resolved+=("$f: kept the oxide side") ;;
+                resolve_tracker "$f" "$b" || { git merge --abort; die "tracker.md conflict in $b needs a hand merge; the block is printed above"; }
+                git add "$f" && resolved+=("$f: took $b's side of the encounter paragraph") ;;
             docs/oxide/design-doc.md)
                 sed -i '/^<<<<<<< /d;/^=======$/d;/^>>>>>>> /d' "$f"
                 grep -q '^<<<<<<<\|^>>>>>>>' "$f" && { git merge --abort; die "design-doc.md conflict in $b is not a plain log append; resolve by hand"; }
