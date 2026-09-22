@@ -8,7 +8,7 @@ Run a QA pass over `$ARGUMENTS..HEAD` on `oxide`. What it produces is a findings
 
 ## 1. Scope
 
-Run `git log --oneline $ARGUMENTS..HEAD` and `git diff --shortstat $ARGUMENTS..HEAD`. If the range is within the cloud review's limits (500 files and 8,000 changed lines), tell Ian he can run `/code-review ultra $ARGUMENTS` from a session started in `~/pokeplatinum`. That review is his to launch, because it is billed; do not wait for it. If the range is too large, name the latest base commit that fits. When its findings arrive, check each against the tree before believing it.
+Run `git log --oneline $ARGUMENTS..HEAD` and `git diff --shortstat $ARGUMENTS..HEAD`. Note any vendored or generated files in the range: they get a provenance and licence check rather than a line-by-line read, and the authored code gets the time.
 
 ## 2. Review the diff
 
