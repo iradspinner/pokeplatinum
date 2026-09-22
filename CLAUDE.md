@@ -58,7 +58,10 @@ table work), `carry-over-map` (scripts, events and text for one map),
 `read-donor` (anything from the Hardlove ROM), `oxide-spreadsheets` (Ian's
 design sheets on G:, with the synced `xlsx` skill for the mechanics). The
 `/integrate` command in `.claude/commands/` merges every track into `oxide`
-and runs the full verification gate.
+and runs the full verification gate. A hook in `.claude/settings.json` refuses
+`git add -A` or `.`, launching an emulator, and committing a file that carries
+the scratch marker (`.claude/hooks/oxide_guard.py`); a refusal from it means
+the rule above it in this file applies.
 
 ## Build
 
