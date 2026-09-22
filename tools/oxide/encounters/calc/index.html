@@ -8,18 +8,15 @@
     <title>Dynamic Calc</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css?01" />
     <link type="text/css" rel="stylesheet" href="./css/main.css?003c246b" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/styles/ag-theme-alpine-dark.css">
+    <link rel="stylesheet" href="./js/vendor/oxide/ag-theme-alpine-dark-28.2.1.css">
     <link type="text/css" rel="stylesheet" href="./css/frags.css?splitcolors1" />
     <link type="text/css" rel="stylesheet" href="./css/encounters.css?2b1e290b" />
     <link type="text/css" rel="stylesheet" href="./css/settings-ui.css?15f070fe" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css?1" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/jquery.terminal-2.43.0.min.css?1" />
-    <script src="
-    https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js
-    "></script>
-    <script src="https://unpkg.com/pako@2.1.0/dist/pako.min.js"></script>
+    <script src="./js/vendor/oxide/object_hash-3.0.0.min.js"></script>
+    <script src="./js/vendor/oxide/pako-2.1.0.min.js"></script>
     <script type="text/javascript" src="./js/romhack_catalog.js?inclementemerald"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->    
     <script>
         params = new URLSearchParams(window.location.search)
         SOURCES = window.romhackSourceTitles || {}
@@ -30,37 +27,16 @@
             
         }
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-26211653-3');
-
-        window.onerror = function(err, uri, line) {
-            gtag('event', 'exception', {'description': uri + ':' + line + ': ' + err});
-            return false;
-        };
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="./js/vendor/oxide/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="./js/vendor/oxide/jquery-ui-1.13.2-smoothness.css">
+    <script src="./js/vendor/oxide/jquery-ui-1.13.2.min.js"></script>
 
     <script src="./js/vendor/jquery.terminal-2.43.0.min.js"></script>
     <script src="./js/vendor/ai.min.js?30e82835"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/31.0.1/ag-grid-community.min.js"></script>
+    <script src="./js/vendor/oxide/ag-grid-community-31.0.1.min.js"></script>
 
 
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1PSZYZ0XPP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1PSZYZ0XPP');
-</script>
 
 <body>
 
@@ -704,7 +680,7 @@
             <div class="unfrag-text">Alive</div>
             <div class="frag-counter">0 Frags</div>
 
-            <img class="poke-sprite-weather" src="https://media2.giphy.com/media/Wmp1EOzVybWd13s5DB/200w.gif?cid=6c09b952rai5r3vmm3x48g9vu0yk62venn3mmwf8t1aqy9tx&ep=v1_gifs_search&rid=200w.gif&ct=s">
+            <img class="poke-sprite-weather" alt=""><!-- Oxide patch: a remote GIF; removed. -->
             <legend align="center">Pok&eacute;mon 1</legend>
             <input type="text" class="set-selector calc-trigger player" />
             
@@ -2548,7 +2524,7 @@
     
 
 
-     <script type="text/javascript" src="./backups/title_to_backup_mappings.js?wishywashywhite2redux"></script>
+     <script type="text/javascript" src="./js/oxide/title_to_backup_mappings.js"></script>
 
 
     <script type="text/javascript" src="./calc/util.js?8fa0c7f3"></script>
@@ -2696,7 +2672,7 @@
         <br><br>
         <button type="button" id="download-bug-report" class="bug-report-download">Download bug report</button>
         <br><br>
-        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'P5P4H04EL');kofiwidget2.draw();</script> <br>
+        <!-- Oxide patch: upstream's Ko-fi widget loaded a remote script; removed. --> <br>
     </div>
 
     <div class="shortcut-info">

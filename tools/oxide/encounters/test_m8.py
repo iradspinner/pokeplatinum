@@ -1,5 +1,6 @@
-"""M8 D1 to D4: the dex data layer reads species, moves, sprites and the type
-chart out of res/, says what changed from vanilla, and indexes who learns what.
+"""M8 D1 to D5: the dex data layer reads species, moves, sprites and the type
+chart out of res/, says what changed from vanilla, indexes who learns what, and
+feeds the vendored damage calculator Oxide's own numbers.
 
     PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8
 
@@ -325,7 +326,7 @@ def check_page(results):
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    bool(hides) and views == 3 and toggled == views,
+                    bool(hides) and views == 4 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
     # Ian's notes after D4: a species in a table opens its dex page, and Back
@@ -488,11 +489,106 @@ def check_moves_view(results):
                     ""))
 
 
+def check_calculator(results):
+    """D5: the calculator's data comes from res/, carries this fork's chart,
+    names everything the calculator can model, and loads nothing remote."""
+    from . import calc_export
+    root = model.repo_root()
+    blob = calc_export.build()
+    poks = blob["poks"]
+    garchomp = poks.get("Garchomp", {})
+    results.append(("every species is exported under the calculator's name, with "
+                    "Oxide's numbers",
+                    len(poks) == len(pokedex.species_list(root))
+                    and garchomp.get("bs") == {"hp": 108, "at": 130, "df": 95,
+                                               "sa": 85, "sd": 85, "sp": 102}
+                    and poks["Clefairy"]["types"] == ["Fairy"]
+                    and poks["Ninetales-Alola"]["types"] == ["Ice", "Fairy"]
+                    and poks["Gible"]["abilities"] == {"0": "Sand Veil", "1": "Rough Skin"},
+                    f"{len(poks)} species"))
+    moves = blob["moves"]
+    results.append(("moves carry Oxide's type, category and power, and a coded "
+                    "power is left to the calculator",
+                    moves["Charm"]["type"] == "Fairy"
+                    and moves["Attack Order"]["basePower"] == 120
+                    and moves["Dragon Breath"]["type"] == "Dragon"
+                    and "basePower" not in moves["Grass Knot"], f"{len(moves)} moves"))
+
+    # The chart is the reason the data travels at all: Generation 4 with
+    # Fairy, Steel keeping its resistances to Ghost and Dark (Ian, 2026-09-22).
+    chart = blob["type_chart"]
+    results.append(("the exported chart is this fork's, not a stock one",
+                    chart["Dark"]["Steel"] == 0.5 and chart["Ghost"]["Steel"] == 0.5
+                    and chart["Dragon"]["Fairy"] == 0.0
+                    and chart["Fairy"]["Dragon"] == 2.0
+                    and chart["Fighting"]["Fairy"] == 0.5, ""))
+
+    report = calc_export.report()
+    known = calc_export.calc_names()["moves"]
+    results.append(("every ability and move lands on a name the calculator has "
+                    "logic for, and every hand-listed alias exists there",
+                    not report["unknown_abilities"] and not report["unknown_moves"]
+                    and all(calc_export.clean(t) in known
+                            for t in calc_export.ALIASES.values()),
+                    f"unknown: {report['unknown_abilities'][:3]} {report['unknown_moves'][:3]}"))
+    stubbed = {m["name"] for m in pokedex.moves(root).values() if m["stub"]}
+    results.append(("the report names the moves modelled with an effect Oxide's "
+                    "script does not have yet",
+                    set(report["placeholder_effects"]) <= stubbed
+                    and "Acrobatics" in report["placeholder_effects"],
+                    f"{len(report['placeholder_effects'])} moves"))
+
+    # A species edited while the server runs is in the next export. The file
+    # is put back exactly as it was whatever happens.
+    path = os.path.join(root, "res", "pokemon", "gible", "data.json")
+    with open(path, encoding="utf-8") as f:
+        original = f.read()
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(original.replace('"attack": 70,', '"attack": 71,', 1))
+        edited = calc_export.build()["poks"]["Gible"]["bs"]["at"]
+    finally:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(original)
+    results.append(("an edited species regenerates in the export without a restart",
+                    edited == 71
+                    and calc_export.build()["poks"]["Gible"]["bs"]["at"] == 70,
+                    f"edited attack read {edited}"))
+
+    # Offline: nothing the calculator's page loads may leave the machine. A
+    # link a person could click is allowed; a script, stylesheet or image
+    # source is not.
+    calc_dir = os.path.join(root, "tools", "oxide", "encounters", "calc")
+    page = open(os.path.join(calc_dir, "index.html"), encoding="utf-8").read()
+    loads = re.findall(r'<(?:script|link|img|iframe)\b[^>]*?(?:src|href)=["\']\s*([^"\']+)', page)
+    remote = [u for u in loads if re.match(r"\s*(https?:)?//", u)]
+    init = open(os.path.join(calc_dir, "js", "initialize.js"), encoding="utf-8").read()
+    results.append(("the calculator's page loads nothing from the network, and its "
+                    "data comes from this server",
+                    loads and not remote and "api.npoint.io" not in init
+                    and "const npoint = `/api/calc-data`" in init
+                    and "googletagmanager" not in page,
+                    f"{len(loads)} loads, remote {remote[:3]}"))
+
+    svg = server.calc_sprite("front", "garchomp.gif") or b""
+    results.append(("the calculator's sprites are Oxide's own, first frame only",
+                    svg.startswith(b"<svg") and b'viewBox="0 0 80 80"' in svg
+                    and server.calc_sprite("pokesprite", "ninetales-alola.png")
+                    and server.calc_sprite("front", "notapokemon.gif") is None, ""))
+
+    # Every patch is written down, so an upstream update knows what to redo.
+    vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()
+    results.append(("every patch to the vendored calculator is in its patch list",
+                    all(f in vendored for f in ("js/initialize.js", "index.html",
+                                                "js/oxide/title_to_backup_mappings.js",
+                                                "js/vendor/oxide/")), ""))
+
+
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
                   check_captures, check_endpoints, check_canon, check_page,
-                  check_qa_findings, check_moves_view):
+                  check_qa_findings, check_moves_view, check_calculator):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

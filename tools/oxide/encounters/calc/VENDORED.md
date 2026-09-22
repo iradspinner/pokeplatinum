@@ -35,14 +35,37 @@ patches, so a clean copy plus the patch list is always the whole story.
 
 ## Patches this fork applies
 
-None yet. When the data loader is pointed at our own server rather than
-npoint.io (M8's D5), the change goes here with the file and the reason, so the
-next update knows what to re-apply.
+Applied 2026-09-22 for D5. Re-apply every one after an update; `test_m8`'s
+calculator checks fail if the offline ones are lost.
 
-That patch alone does not make the page offline (QA pass, 2026-09-22). As
-vendored, `index.html` also loads jQuery and other libraries from Google's,
-jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag, and game data
-from `hzla.github.io`, about 100 remote references. D5 has to vendor or drop
-every CDN script, remove the analytics tag and remove every remote data URL,
-and record each change here. None of it runs today: the server serves only
-`ui/`, so nothing under `calc/` is reachable yet.
+1. **`js/initialize.js`, the data source.** `const npoint` is `/api/calc-data`,
+   the encounter tool's server, which builds the blob from `res/` on each
+   request (`calc_export.py`). Upstream fetches `https://api.npoint.io/<id>`.
+2. **`js/initialize.js`, a "Platinum Oxide" branch in `setGameSettings`.** An
+   unknown title falls to upstream's trainers-only mode with Generation 8
+   mechanics. The branch sets Generation 4 damage and crits, full source data
+   (our species and moves), and hides the dex and AI panels, which need data
+   Oxide does not export. The type chart is not set here: the blob carries it
+   as `type_chart` and upstream's own `applyBackupDataTypeChart` installs it.
+3. **`index.html`, the CDN libraries**, now loaded from `js/vendor/oxide/`,
+   each pinned at the version upstream asked for: jQuery 3.4.1, jQuery UI
+   1.13.2 with its smoothness theme and that theme's eleven images, ag-grid
+   31.0.1, object-hash 3.0.0 and pako 2.1.0, all MIT (pako MIT and Zlib).
+   Upstream's ag-grid stylesheet URL is unversioned and resolved to 28.2.1 on
+   2026-09-22, so that is the copy vendored.
+4. **`index.html`, removed**: both Google Tag Manager analytics tags and the
+   `window.onerror` hook that reported errors to them, the Ko-fi donation
+   widget (a remote script), and a remote GIF on the weather sprite.
+5. **`index.html`, the backup mappings.** Upstream loads
+   `backups/title_to_backup_mappings.js`, which was not vendored.
+   `js/oxide/title_to_backup_mappings.js` stands in for it with an empty
+   `backupFiles`, so the page always takes its data from the loader.
+
+Sprites are not a patch: the server answers `img/<set>/<name>` itself from
+`res/pokemon/`, so `img/` stays absent.
+
+What is still remote, and harmless: the romhack picker's `<option>` entries
+and the footer's links point at hzla's hosted calculator, GitHub and Discord.
+They are links a person could follow, and the page loads none of them. With
+every non-local request blocked, the page makes none (checked 2026-09-22 in a
+headless Chrome over the DevTools protocol).

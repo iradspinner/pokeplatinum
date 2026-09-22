@@ -430,6 +430,13 @@ table.facts td { padding: 1px 0; }
 .mx { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .mx span { font-size: 14px; }
 
+/* ---- the calculator view ----------------------------------------------- */
+/* One column, the frame filling it. Still a grid, so main[hidden] hides it. */
+#calcmain { grid-template-columns: 1fr; }
+#calcframe { width: 100%; height: 100%; border: 0; display: block;
+  background: var(--ground); }
+.tocalc { font-size: 15px; margin-left: 10px; }
+
 /* ---- the moves view ---------------------------------------------------- */
 /* One row per move, the numbers in columns so they line up down the list. */
 .movecols, .moverow { display: grid; align-items: center; gap: 6px;
@@ -478,6 +485,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <button data-view="tables" class="on">Tables</button>
     <button data-view="dex">Dex</button>
     <button data-view="moves">Moves</button>
+    <button data-view="calc">Calc</button>
   </nav>
   <div class="strip">
     <span class="metric">Source <b id="h-ref">—</b></span>
@@ -559,6 +567,12 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   </section>
   <section id="movemid"><p class="sub">Choose a move.</p></section>
   <section id="moveright"></section>
+</main>
+
+<!-- The vendored damage calculator, fed Oxide's data by /api/calc-data. It is
+     loaded the first time the view opens, since it is a large page. -->
+<main id="calcmain" hidden>
+  <iframe id="calcframe" title="Damage calculator"></iframe>
 </main>
 <div id="toast"></div>
 
@@ -758,7 +772,9 @@ function drawDexDetail() {
         <div class="species-name">${esc(d.name)}
           ${d.delta && d.delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
         <div>${d.types.map(t => typeChip(t)).join("")}
-             <span class="sub">${esc(d.category || "")}</span></div>
+             <span class="sub">${esc(d.category || "")}</span>
+             ${d.canon_name ? `<a href="#" class="tocalc" id="tocalc"
+               title="Open the calculator with this species as the attacker">Calc</a>` : ""}</div>
         <div class="sub" style="margin-top:8px">${canonNote}${
           bstDelta ? `; <span class="delta${bstDelta < 0 ? " down" : ""}">${signed(bstDelta)}</span> from vanilla Platinum` : ""}</div>
         ${d.canon && d.canon.types ? `<div class="sub">typed
@@ -823,6 +839,8 @@ function drawDexDetail() {
     </div></div>`;
   $("#dexmid").querySelectorAll("a[data-sp]").forEach(a =>
     a.onclick = ev => { ev.preventDefault(); selectSpecies(a.dataset.sp); });
+  const toCalc = $("#tocalc");
+  if (toCalc) toCalc.onclick = ev => { ev.preventDefault(); openCalc(d.canon_name); };
   $("#dexmid").querySelectorAll("a[data-mv]").forEach(a =>
     a.onclick = ev => { ev.preventDefault(); openMove(a.dataset.mv); });
 
@@ -1017,6 +1035,38 @@ async function openSpecies(species) {
   await selectSpecies(species);
 }
 
+// ---- the calculator -----------------------------------------------------
+// Served from this same server, so the page can reach into the frame and
+// pick a species for it, which is all the cross-link needs.
+const CALC_URL = "/calc/?data=oxide&gen=8&dmgGen=4";
+
+async function openCalc(showdownName) {
+  await setView("calc");
+  remember();
+  const frame = $("#calcframe");
+  // Wait for the calculator to have loaded Oxide's data and drawn its first
+  // result: until then it is still building its pickers, and a species set
+  // any earlier is cleared again. Then check the pick held.
+  const want = `${showdownName} (Blank Set)`;
+  for (let i = 0; i < 200; i++) {                    // up to 30 seconds
+    const w = frame.contentWindow;
+    // The calculator declares its data with `let`, which is global to the
+    // frame's scripts but not a property of its window, so ask the frame.
+    let ready = false;
+    try {
+      const result = w && w.document.getElementById("mainResult");
+      ready = !!(w && w.$ && result && result.textContent !== "Loading..."
+                 && w.eval(`typeof poksData !== "undefined" && !!poksData[${JSON.stringify(showdownName)}]`));
+    } catch (e) { ready = false; }
+    if (ready) {
+      if (w.$("#p1 .set-selector").val() === want) return;
+      w.$("#p1 .set-selector").val(want).change();
+    }
+    await new Promise(r => setTimeout(r, 150));
+  }
+  toast("The calculator did not load in time", true);
+}
+
 async function openTable(area, kind) {
   KIND = kind || "land";
   LAYER = "base";
@@ -1032,7 +1082,8 @@ async function openTable(area, kind) {
 let VIEW = "tables", RESTORING = false;
 
 const here = () => VIEW === "tables" ? { view: VIEW, area: SEL, kind: SEL ? KIND : undefined }
-  : VIEW === "dex" ? { view: VIEW, species: DEXSEL } : { view: VIEW, move: MOVESEL };
+  : VIEW === "dex" ? { view: VIEW, species: DEXSEL }
+  : VIEW === "moves" ? { view: VIEW, move: MOVESEL } : { view: VIEW };
 const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move"]
   .every(k => (a[k] || null) === (b[k] || null));
 const hashOf = p => "#" + [p.view, p.area || p.species || p.move, p.area ? p.kind : null]
@@ -1043,6 +1094,7 @@ function parseHash() {
   if (view === "tables") return { view, area: key, kind };
   if (view === "dex") return { view, species: key };
   if (view === "moves") return { view, move: key };
+  if (view === "calc") return { view };
   return null;
 }
 
@@ -1078,9 +1130,12 @@ async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain)").hidden = view !== "tables";
   $("#dexmain").hidden = view !== "dex";
   $("#movemain").hidden = view !== "moves";
+  $("#calcmain").hidden = view !== "calc";
+  if (view === "calc" && !$("#calcframe").getAttribute("src"))
+    $("#calcframe").src = CALC_URL;
   try {
     if (view === "dex" && !POKEDEX.length) {
       POKEDEX = (await api("/api/dex")).rows;

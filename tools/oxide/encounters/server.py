@@ -17,6 +17,7 @@ these endpoints. There is no second implementation of the maths in
 JavaScript, so the page and the CLI cannot disagree.
 """
 import argparse
+import base64
 import errno
 import functools
 import http.server
@@ -29,6 +30,7 @@ import urllib.parse
 import zlib
 
 from . import analysis as A
+from . import calc_export
 from . import canon
 from . import dex
 from . import lint
@@ -39,6 +41,9 @@ from . import progression
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
+# The vendored damage calculator, served as it is under /calc/ (M8 D5). Its
+# game data comes from /api/calc-data, built from res/ on each request.
+CALC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "calc")
 
 from .model import load_encounters, save_encounters  # noqa: E402
 from . import planner  # noqa: E402
@@ -327,6 +332,40 @@ def _transparent_background(data):
     return data[:end] + chunk + data[end:]
 
 
+def _calc_sprite_folders():
+    """{cleaned Showdown name: our folder}, for the calculator's sprite URLs."""
+    root = model.repo_root()
+    return {calc_export.clean(canon.showdown_name(sp)): pokedex.folder_of(sp)
+            for sp in pokedex.species_list(root) if canon.showdown_name(sp)}
+
+
+def calc_sprite(sprite_set, filename):
+    """The calculator asks for ./img/<set>/<showdown name>.<ext>. Answer from
+    Oxide's own sprites, as an SVG that shows the sheet's first frame at the
+    size the calculator expects: a party icon for its box ("pokesprite") and
+    the front sprite everywhere else. The PNG rides inside as a data URI,
+    because an SVG drawn as an image may not load anything external."""
+    name = calc_export.clean(filename.rsplit(".", 1)[0])
+    folder = _calc_sprite_folders().get(name)
+    if not folder:
+        return None
+    icon = sprite_set == "pokesprite"
+    kind, frame, sheet = ("icon", 32, (32, 64)) if icon else ("male_front", 80, (160, 80))
+    path = os.path.join(model.repo_root(), "res", "pokemon", folder, kind + ".png")
+    if not os.path.isfile(path) and not icon:
+        path = os.path.join(model.repo_root(), "res", "pokemon", folder, "female_front.png")
+    try:
+        with open(path, "rb") as f:
+            png = _transparent_background(f.read())
+    except OSError:
+        return None
+    data = base64.b64encode(png).decode()
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{frame}" height="{frame}" '
+            f'viewBox="0 0 {frame} {frame}"><image width="{sheet[0]}" height="{sheet[1]}" '
+            f'style="image-rendering:pixelated" href="data:image/png;base64,{data}"/></svg>'
+            ).encode()
+
+
 def dex_list():
     """Every species in the tree, as one row each: what the list view needs and
     nothing it does not, because there are 652 of them."""
@@ -548,6 +587,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
+    def translate_path(self, path):
+        # /calc/... is the vendored calculator; everything else is the tool.
+        bare = urllib.parse.urlparse(path).path
+        if bare == "/calc" or bare.startswith("/calc/"):
+            self.directory = CALC
+            return super().translate_path(path[len("/calc"):] or "/")
+        self.directory = UI
+        return super().translate_path(path)
+
     def end_headers(self):
         # Everything here is read from disk per request, so a cached copy is
         # only ever a way to be shown yesterday's tool. That is not theoretical:
@@ -594,6 +642,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         kind = (q.get("kind") or ["land"])[0]
         parts = [p for p in url.path.split("/") if p]
 
+        if len(parts) == 4 and parts[:2] == ["calc", "img"]:
+            body = calc_sprite(parts[2], parts[3])
+            if body is not None:
+                self.send_response(200)
+                self.send_header("Content-Type", "image/svg+xml")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
         if not parts or parts[0] != "api":
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
@@ -649,6 +706,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                   else dex_detail(parts[2]))
             if parts[1] == "moves":
                 return self._send(move_list())
+            if parts[1] == "calc-data":
+                return self._send(calc_export.build())
             if parts[1] == "move":
                 out = move_detail(parts[2])
                 return self._send(out, 404 if "error" in out else 200)
