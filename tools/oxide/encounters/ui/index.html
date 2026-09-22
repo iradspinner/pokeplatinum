@@ -191,6 +191,13 @@ input.lv { width: 48px; }
    this both views draw, one below the other. */
 main[hidden] { display: none; }
 
+/* A species reads faster with its sprite beside it, in the tables as much as
+   in the dex. The cells become flex rows so the icon sits against the name
+   rather than on its own line. */
+#mid td.spname { display: flex; align-items: center; gap: 8px; }
+#mid td.spname .ico { margin-left: -2px; }
+tr.gone .ico { opacity: .35; }
+
 #views { display: flex; gap: 0; margin-right: 6px; }
 #views button { font: inherit; font-size: 12.5px; padding: 2px 10px;
   border: 1px solid var(--rule); background: var(--paper); color: var(--dim);
@@ -346,6 +353,14 @@ const STATS = [["hp","HP"],["attack","Attack"],["defense","Defense"],
                ["special_attack","Sp. Atk"],["special_defense","Sp. Def"],
                ["speed","Speed"]];
 const sprite = (folder, kind) => `/api/sprite/${folder}/${kind}`;
+// Every species folder in res/pokemon is its constant lowercased, checked for
+// all 652. A sprite that is somehow missing hides rather than drawing the
+// browser's broken-image glyph in the middle of a table.
+const folderOf = sp => String(sp).replace("SPECIES_", "").toLowerCase();
+const icon = sp => sp
+  ? `<span class="ico"><img src="${sprite(folderOf(sp), "icon")}" alt="" loading="lazy"
+       onerror="this.parentNode.style.visibility='hidden'"></span>`
+  : "";
 const tidy = t => t ? t[0] + t.slice(1).toLowerCase().replace(/_/g, " ") : "";
 const signed = n => (n > 0 ? "+" : "") + n;
 
@@ -652,7 +667,8 @@ function drawMid() {
   const mergedRows = d.merged.map(m => {
     const w = Math.max(1.5, (m.caught || m.duped ? 0 : m.cond) * 100);
     return `<tr class="${m.caught || m.duped ? "gone" : ""}">
-      <td class="spname">${esc(m.label)}${m.duped ? ` <span class="tag">${esc((m.via ? m.via + ", " : "") + m.caught_at)}</span>` : ""}</td>
+      <td class="spname">${icon(m.species)}<span>${esc(m.label)}</span>${m.duped
+        ? ` <span class="tag">${esc((m.via ? m.via + ", " : "") + m.caught_at)}</span>` : ""}</td>
       <td class="num">${m.caught || m.duped ? "0%" : pct(m.cond)}</td>
       <td class="num" style="color:var(--faint)">${pct(m.share)}</td>
       <td class="fill"><div class="bar" style="height:9px">
@@ -706,7 +722,12 @@ function drawMid() {
       <td><input type="checkbox" class="ck" ${s.caught ? "checked" : ""}
            ${s.duped ? `disabled title="${esc((s.via ? s.via + " was " : "") + "caught on " + s.caught_at)}"` : ""}></td>`;
     const cell = tr.querySelector(".spname");
-    if (locked) cell.innerHTML = `<span class="sub">${esc(shown)}</span>`;
+    // The icon follows what the slot holds now, including a day or night
+    // substitution, which is the species the combobox is showing.
+    const held = substituted ? (BY_LABEL.get(String(shown).toLowerCase()) || s.species)
+                             : s.species;
+    cell.innerHTML = icon(held);
+    if (locked) cell.insertAdjacentHTML("beforeend", `<span class="sub">${esc(shown)}</span>`);
     else cell.appendChild(combobox(shown, val => {
       if (d.kind !== "land") write("slot", { kind: d.kind, slot: s.slot, species: val });
       else if (LAYER === "base") write("slot", { slot: s.slot, species: val });

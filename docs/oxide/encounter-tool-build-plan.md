@@ -1357,9 +1357,20 @@ rows, Toxel and Toxtricity, are excluded by name: they are on the sheet and
 deliberately not in the tree, because their evolution depends on nature and
 Generation 4 has no method for it.
 
-**D3, sprites in the tables.** Party icons beside every slot in the encounter
-views, and front sprites on the species page. Cheap, and it is what makes a
-twelve-slot table readable at a glance.
+**D3, sprites in the tables — done, 2026-09-22.** A party icon sits beside every
+slot in the table being edited and beside every line of what a player meets, from
+the same endpoint the dex uses. The page works the sprite out rather than being
+told: a species' folder is its constant lowercased, which holds for all 652, and
+`test_m8` checks that every species any table holds has an icon to draw, so a
+table naming one it does not hold for is a failing check rather than a broken
+image in the middle of a table. A slot showing a day or night substitution draws
+the substituted species, not the morning one. Anything already caught draws its
+icon faded, which is the same "absence rather than another colour" the rest of
+the view uses.
+
+The left list is deliberately untouched: its species column is the caught
+encounter, which is empty for most rows, so icons there would be mostly blank
+space.
 
 **D4, moves.** A move list and per-move page, plus the reverse index: which
 species learn this, and at what level.

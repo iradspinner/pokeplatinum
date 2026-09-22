@@ -136,6 +136,16 @@ def check_captures(results):
                     rods and all(r["level_min"] is not None for r in rods),
                     f"{len(rods)} water appearances"))
 
+    # D3 draws a party icon beside every slot, and the page finds it by
+    # lowercasing the species constant rather than asking. That holds for all
+    # 652 species today; this is what notices if a table ever names one it does
+    # not hold for, which would be a broken image in the middle of a table.
+    root = model.repo_root()
+    iconless = [s for s in caught
+                if "icon" not in pokedex.sprites(root, s)]
+    results.append(("every species a table holds has an icon to draw beside it",
+                    not iconless, f"no icon: {iconless[:4]}"))
+
 
 def check_endpoints(results):
     out = server.dex_list()
