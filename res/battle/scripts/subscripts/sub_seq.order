@@ -311,3 +311,8 @@ subscript_raise_all_stats_lose_third_max_hp
 subscript_burn_and_drain_health
 subscript_take_heart
 subscript_entrainment
+subscript_mortal_spin
+subscript_prevent_escape_hit
+subscript_set_stealth_rock
+subscript_set_spikes
+subscript_fell_stinger

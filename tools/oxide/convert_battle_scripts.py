@@ -79,6 +79,11 @@ BATTLE_STRINGS = os.path.join(ROOT, "res", "text", "battle_strings.json")
 
 PLATINUM_EFFECTS = 277      # the ids both projects have
 PLATINUM_SUBSCRIPTS = 297   # likewise for subscripts; 292 share a name as well
+# Platinum's battle strings, the part of the bank HeartGold shares index for
+# index. Fixed rather than read from the bank's length: once Oxide appends
+# strings of its own, hg-engine's number 1,275 must not map to whatever Oxide
+# put at 1,275.
+PLATINUM_BATTLE_STRINGS = 1269
 
 # The message commands and which argument is the message.
 MESSAGE_ARG = {"PrintMessage": 0, "PrintGlobalMessage": 0, "BufferMessage": 0,
@@ -355,7 +360,7 @@ def map_message(line, strings):
     if at is None or len(args) <= at or not re.fullmatch(r"\d+", args[at]):
         return line, None
     n = int(args[at])
-    if n >= len(strings):
+    if n >= PLATINUM_BATTLE_STRINGS:
         return line, None
     args[at] = strings[n][0]
     indent = line[:len(line) - len(line.lstrip())]
@@ -394,6 +399,8 @@ C_REVIEWED = {
     290: "BeforeMove fails the move when all three raised stats are maxed; the subscript lowers the "
          "defenses regardless, a small departure",
     295: "BeforeMove fails the move early when both stats are maxed; the subscript checks the same",
+    328: "BeforeMove fails the move early when Defense is maxed, the same case as Iron Defense's, "
+         "which Platinum's stat subscript handles",
     343: "BeforeMove fails the move for anyone but Hoopa; no Oxide species learns it and Hoopa is "
          "not in Oxide, so only Metronome reaches it",
     346: "BeforeMove fails the move below a third of max HP; the subscript checks the same",
@@ -862,11 +869,16 @@ def main():
             sub = renames.get(targets[p], targets[p])
             if sub == "BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE":
                 # hg-engine decodes the stat and the amount from the pointer in
-                # C, and Platinum's ChangeStatStage only knows the one- and
-                # two-stage ranges; an unknown pointer there indexes past the
-                # stat array.
-                sys.exit("refusing %s: a stat-stage pointer needs ChangeStatStage "
-                         "taught its range first" % p)
+                # C, and Platinum's ChangeStatStage decodes only the ranges it
+                # names; an unknown pointer there indexes past the stat array.
+                # The three-stage ranges were taught on 2026-09-22, and they
+                # must be appended whole and in hg-engine's order, which is
+                # Platinum's stat order.
+                known = open(os.path.join(ROOT, "src", "battle", "battle_script.c"),
+                             encoding="utf-8").read()
+                stages = re.search(r"_(UP|DOWN)_(\d)_STAGES?$", p)
+                if not stages or ("MOVE_SUBSCRIPT_PTR_ATTACK_%s_%s_STAGES" % stages.groups()) not in known:
+                    sys.exit("refusing %s: ChangeStatStage does not know its range" % p)
             if sub not in enum_subs:
                 sys.exit("refusing %s: its subscript %s is not in Platinum yet" % (p, sub))
             plan.append((p, sub))

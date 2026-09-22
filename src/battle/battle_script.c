@@ -2821,7 +2821,22 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
     battleCtx->battleStatusMask &= ~SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-    if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
+    // Oxide's three-stage changes (Cotton Guard, Fell Stinger) sit after every
+    // vanilla pointer, so they are matched first and by range: the vanilla
+    // chain below treats anything past the two-stage drops as one, which for
+    // a later pointer would index past the stat array. The message for three
+    // stages is the two-stage one, "sharply rose", as Platinum has no other.
+    if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES
+        && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_DOWN_3_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES;
+        stageChange = -3;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_UP_3_STAGES
+        && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_UP_3_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_3_STAGES;
+        stageChange = 3;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES;
         stageChange = -2;
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;

@@ -314,4 +314,9 @@ subscript_files = files(
     'subscript_burn_and_drain_health.s',
     'subscript_take_heart.s',
     'subscript_entrainment.s',
+    'subscript_mortal_spin.s',
+    'subscript_prevent_escape_hit.s',
+    'subscript_set_stealth_rock.s',
+    'subscript_set_spikes.s',
+    'subscript_fell_stinger.s',
 )
