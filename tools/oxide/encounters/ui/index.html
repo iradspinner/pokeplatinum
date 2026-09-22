@@ -37,6 +37,7 @@ header {
 }
 /* the pixel face is identity: the title, the tabs, the headline, the number */
 header .title { font: 600 16px/1 var(--pixel); margin-right: 4px; white-space: nowrap; }
+header .title .ox { color: var(--place-ink); }
 /* The metric strip is the flexible gap: it takes the room between the tabs
    and the checkout, and when there is not enough it wraps inside itself, so
    the title, the tabs, the checkout and the toggle always hold the first row
@@ -158,6 +159,10 @@ input.lv { width: 48px; font-family: var(--mono); font-variant-numeric: tabular-
   border-right: 1px solid var(--panel);
 }
 .bar span:last-child { border-right: 0; }
+/* When a species is ticked its share goes to the rest; the widths ease over
+   200ms so that redistribution can be watched. Reduced motion turns it off,
+   through the global rule further down. */
+.bar span { transition: width .2s ease; }
 .bar span.gone {
   background: repeating-linear-gradient(135deg, var(--panel) 0 3px, var(--sunken) 3px 6px);
   color: var(--faint);
@@ -174,6 +179,11 @@ input.lv { width: 48px; font-family: var(--mono); font-variant-numeric: tabular-
 .kinds button[data-layer] { font: 600 13px/1.4 var(--pixel); }
 
 .aname { font: 650 18px/1.2 var(--sans); }
+/* Before an area is chosen, one party icon from the pick-list keeps the empty
+   column company, faded, and a different one each load. */
+.empty { display: flex; flex-direction: column; align-items: center; gap: 8px;
+         margin-top: 96px; }
+.empty .ico { opacity: .4; }
 .tag { font-size: 11.5px; color: var(--dim); background: var(--sunken);
        border-radius: 3px; padding: 1px 6px; }
 .finding { padding: 5px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
@@ -345,7 +355,7 @@ table.facts td { padding: 1px 0; }
 </head>
 <body>
 <header>
-  <span class="title">Platinum Oxide</span>
+  <span class="title">Platinum <span class="ox">Oxide</span></span>
   <nav id="views">
     <button data-view="tables" class="on">Tables</button>
     <button data-view="dex">Dex</button>
@@ -380,7 +390,8 @@ table.facts td { padding: 1px 0; }
     <div id="rows"></div>
   </section>
 
-  <section id="mid"><p class="sub">Choose an area to edit its tables.</p></section>
+  <section id="mid"><div class="empty"><span id="empty-icon"></span>
+    <p class="sub">Choose an area to edit its tables.</p></div></section>
   <section id="right"></section>
 </main>
 
@@ -978,6 +989,13 @@ if (window.oxideTheme) oxideTheme.onChange(() => { SEG_TEXT = null; if (DETAIL) 
 function drawRight() {
   const d = DETAIL;
   if (!d || d.empty) { $("#right").innerHTML = ""; return; }
+  // Remember every ladder segment's width before the pane is rebuilt, so the
+  // same segments can start from where they were and ease to where they are
+  // now. Keys carry the area and table kind, so moving to another area never
+  // animates from a different table's shapes.
+  const before = new Map();
+  document.querySelectorAll("#right .bar span[data-k]").forEach(el =>
+    before.set(el.dataset.k, el.style.width));
   const m = d.metrics, c = d.caught_metrics, t = GAME.thresholds;
   const payThreshold = t.r3_uplift_min;
   const best = m.uplift_at_level;
@@ -986,7 +1004,7 @@ function drawRight() {
     const segs = r.pool.map((p, i) => {
       const gone = p.caught || p.duped;
       const w = (gone ? p.share : p.share) * 100;
-      return `<span class="${gone ? "gone" : ""}" style="width:${w}%;
+      return `<span class="${gone ? "gone" : ""}" data-k="${esc(d.area + "|" + d.kind + "|" + r.level + "|" + p.species)}" style="width:${w}%;
         ${gone ? "" : `background:var(--seg-${(i % SEGMENTS) + 1});color:${segText(i)}`}"
         title="${esc(p.label)} ${pct(p.share)}${gone ? " — already caught" : ""}">${
         w > 11 ? (gone ? "" : pct(p.cond)) : ""}</span>`;
@@ -1054,6 +1072,15 @@ function drawRight() {
 
     <h2>Problems</h2>
     ${findings}`;
+
+  if (before.size && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const segs = [...document.querySelectorAll("#right .bar span[data-k]")]
+      .filter(el => before.has(el.dataset.k));
+    const target = segs.map(el => el.style.width);
+    segs.forEach(el => { el.style.width = before.get(el.dataset.k); });
+    void document.body.offsetWidth;          // lay the old widths out first
+    segs.forEach((el, i) => { el.style.width = target[i]; });
+  }
 
   const go = $("#plan-go"), sel = $("#plan-sp");
   if (go && sel) {
@@ -1149,6 +1176,12 @@ async function boot() {
     BY_LABEL = new Map(DEX.map(d => [d.label.toLowerCase(), d.value]));
     CAUGHT = new Set(caught.caught);
     drawHeader(); drawList();
+    // Every species a table holds is on the pick-list, which the leak audit
+    // guarantees, so the tables are where the empty column's icon comes from.
+    const held = [...new Set(ALL.flatMap(r => r.holds || []))];
+    const pickFrom = held.map(l => BY_LABEL.get(l.toLowerCase())).filter(Boolean);
+    if (pickFrom.length && $("#empty-icon"))
+      $("#empty-icon").innerHTML = icon(pickFrom[Math.floor(Math.random() * pickFrom.length)]);
   } catch (e) {
     $("#rows").innerHTML = `<p class="sub" style="padding:12px">${esc(e.message)}</p>`;
   }

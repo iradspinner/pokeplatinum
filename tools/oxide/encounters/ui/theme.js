@@ -104,6 +104,51 @@
     for (var i = 0; i < buttons.length; i++) wire(buttons[i]);
   });
 
+  // The favicon: a 16 by 16 pixel mark, a teal diamond with a pink core. It is
+  // an SVG drawn from the page's own tokens rather than from colour literals,
+  // so it follows the theme like everything else and this file stays free of
+  // hex. A favicon is its own document and cannot read CSS variables, so the
+  // resolved colours are read back from the page and written into it.
+  function tokenColour(name) {
+    var probe = document.createElement("span");
+    probe.style.color = "var(" + name + ")";
+    document.body.appendChild(probe);
+    var colour = getComputedStyle(probe).color;
+    document.body.removeChild(probe);
+    return colour;
+  }
+
+  function pixelDiamond(widths, top, fill) {
+    // One rect per row, centred, so the edges step like a sprite's do.
+    var out = "";
+    for (var i = 0; i < widths.length; i++) {
+      var w = widths[i];
+      out += '<rect x="' + (8 - w / 2) + '" y="' + (top + i) + '" width="' + w +
+             '" height="1" fill="' + fill + '"/>';
+    }
+    return out;
+  }
+
+  function drawFavicon() {
+    if (!document.body) return;
+    var outer = [2, 4, 6, 8, 10, 12, 14, 16, 16, 14, 12, 10, 8, 6, 4, 2];
+    var core = [2, 4, 6, 6, 4, 2];
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ' +
+              'shape-rendering="crispEdges">' +
+              pixelDiamond(outer, 0, tokenColour("--mass")) +
+              pixelDiamond(core, 5, tokenColour("--place-ink")) + "</svg>";
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.href = "data:image/svg+xml," + encodeURIComponent(svg);
+  }
+
+  listeners.push(drawFavicon);
+  document.addEventListener("DOMContentLoaded", drawFavicon);
+
   window.oxideTheme = {
     label: label,
     toggle: toggle,
