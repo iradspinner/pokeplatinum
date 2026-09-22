@@ -74,6 +74,11 @@ calculator checks fail if the offline ones are lost.
    offers every species it knows. The patch is a no-op for data without a
    `picker`, so other data sources behave as upstream.
 
+8. **`index.html`, `js/oxide/prefill_picker.js`.** Loaded last. Opening a
+   species picker starts its search at the species already picked, selected,
+   so every other set of that species is in view and typing replaces it
+   (Ian, 2026-09-22). Upstream opens the search empty.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

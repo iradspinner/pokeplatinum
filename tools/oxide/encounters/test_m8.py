@@ -619,8 +619,10 @@ def check_calculator(results):
                     all(f in vendored for f in ("js/initialize.js", "index.html",
                                                 "js/oxide/title_to_backup_mappings.js",
                                                 "js/vendor/oxide/", "oxide-skin.css",
-                                                "js/shared_controls.js"))
-                    and "npoint_data.picker" in shared, ""))
+                                                "js/shared_controls.js",
+                                                "js/oxide/prefill_picker.js"))
+                    and "npoint_data.picker" in shared
+                    and 'src="./js/oxide/prefill_picker.js"' in page, ""))
 
 
 def check_trainer_sets(results):
