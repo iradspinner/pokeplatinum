@@ -8,7 +8,11 @@
 # against the SHA-1 the build recorded. The ROM is never published: the source
 # repo is public, the builder is not.
 #
-# Usage: tools/oxide/fetch-rom [commit-or-branch]    default: HEAD
+# Usage: tools/oxide/fetch-rom [--testkit] [commit-or-branch]    default: HEAD
+#
+# --testkit builds the test kit (`make testkit`, docs/oxide/test-kit.md) in
+# place of the ordinary ROM. Its runs are titled "testkit <commit>" rather than
+# "build <commit>", and its files are named pokeplatinum-oxide-testkit-<commit>.
 #
 # The commit has to be pushed already, because the builder reads it from
 # GitHub. If a successful build is still inside its three-day retention, of
@@ -28,6 +32,15 @@ DEST=${OXIDE_PLAYTEST_DIR:-$HOME/oxide-playtest}
 die() { printf 'fetch-rom: %s\n' "$*" >&2; exit 1; }
 
 cd "$(dirname "$0")/../.."
+target=rom
+title_word=build
+kind=
+if [ "${1:-}" = --testkit ]; then
+    target=testkit
+    title_word=testkit
+    kind=testkit-
+    shift
+fi
 ref=${1:-HEAD}
 commit=$(git rev-parse --verify "$ref^{commit}") || die "no such commit: $ref"
 short=$(printf '%s' "$commit" | cut -c1-9)
@@ -38,9 +51,9 @@ git fetch -q origin || die "git fetch failed"
 [ -n "$(git branch -r --contains "$commit" 2>/dev/null)" ] ||
     die "$short is not on GitHub yet; push it first"
 
-# The workflow titles each run "build <ref>", so a run for this exact commit
-# can be found again by its title.
-title="build $commit"
+# The workflow titles each run "build <ref>" (or "testkit <ref>"), so a run for
+# this exact commit can be found again by its title.
+title="$title_word $commit"
 find_run() {
     gh run list -R "$REPO" --workflow "$WORKFLOW" -L 30 \
         --json databaseId,displayTitle,conclusion,createdAt \
@@ -53,7 +66,7 @@ find_run() {
 # the build reads everything else, tools/ included.
 built=$(gh run list -R "$REPO" --workflow "$WORKFLOW" -L 100 \
     --json databaseId,displayTitle,conclusion \
-    -q '.[] | select(.conclusion == "success" and (.displayTitle | startswith("build "))) | "\(.displayTitle[6:]) \(.databaseId)"')
+    -q ".[] | select(.conclusion == \"success\" and (.displayTitle | startswith(\"$title_word \"))) | \"\(.displayTitle | ltrimstr(\"$title_word \")) \(.databaseId)\"")
 reuse=
 for candidate in $(git rev-list --max-count=200 "$commit" | awk -v built="$built" '
         BEGIN { n = split(built, line, "\n"); for (i = 1; i <= n; i++) { split(line[i], f, " "); run[f[1]] = f[2] } }
@@ -67,8 +80,8 @@ done
 run=${reuse#*:}
 reuse=${reuse%:*}
 rshort=$(printf '%s' "$reuse" | cut -c1-9)
-if [ -n "$reuse" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$rshort" \
-        -D "$DEST/.incoming-$rshort" >/dev/null 2>&1; then
+if [ -n "$reuse" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$kind$rshort" \
+        -D "$DEST/.incoming-$kind$rshort" >/dev/null 2>&1; then
     if [ "$reuse" = "$commit" ]; then
         echo "reusing build $run of $short"
     else
@@ -76,12 +89,19 @@ if [ -n "$reuse" ] && gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$
         short=$rshort
     fi
 else
-    [ -z "$reuse" ] || rm -rf "$DEST/.incoming-$rshort"
-    rm -rf "$DEST/.incoming-$short"
+    [ -z "$reuse" ] || rm -rf "$DEST/.incoming-$kind$rshort"
+    rm -rf "$DEST/.incoming-$kind$short"
     # Only a run created after this moment can be ours; an older run of the
     # same commit (a failed one, say) must not be mistaken for it.
     since=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-    gh workflow run "$WORKFLOW" -R "$REPO" -f ref="$commit" >/dev/null ||
+    # The target input is passed only for the kit, so the ordinary build asks
+    # the builder exactly what it always has.
+    if [ "$target" = rom ]; then
+        set -- -f ref="$commit"
+    else
+        set -- -f ref="$commit" -f target="$target"
+    fi
+    gh workflow run "$WORKFLOW" -R "$REPO" "$@" >/dev/null ||
         die "could not start the build; does the token reach $REPO with Actions write?"
     echo "started a build of $short on GitHub, usually about five minutes"
     run=
@@ -104,20 +124,20 @@ else
             completed*) die "build $run ended ${state#completed }; see: gh run view $run -R $REPO --log-failed" ;;
         esac
     done
-    gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$short" \
-        -D "$DEST/.incoming-$short" || die "download of build $run failed"
+    gh run download "$run" -R "$REPO" -n "pokeplatinum-oxide-$kind$short" \
+        -D "$DEST/.incoming-$kind$short" || die "download of build $run failed"
 fi
 
 # Trust the file only if it hashes to what the build machine recorded.
-(cd "$DEST/.incoming-$short" && sha1sum -c --quiet "pokeplatinum-oxide-$short.sha1") ||
+(cd "$DEST/.incoming-$kind$short" && sha1sum -c --quiet "pokeplatinum-oxide-$kind$short.sha1") ||
     die "downloaded ROM does not match the build's SHA-1"
-mv -f "$DEST/.incoming-$short/pokeplatinum-oxide-$short.nds" "$DEST/"
-mv -f "$DEST/.incoming-$short/pokeplatinum-oxide-$short.sha1" "$DEST/"
-rmdir "$DEST/.incoming-$short"
+mv -f "$DEST/.incoming-$kind$short/pokeplatinum-oxide-$kind$short.nds" "$DEST/"
+mv -f "$DEST/.incoming-$kind$short/pokeplatinum-oxide-$kind$short.sha1" "$DEST/"
+rmdir "$DEST/.incoming-$kind$short"
 
-rom="$DEST/pokeplatinum-oxide-$short.nds"
+rom="$DEST/pokeplatinum-oxide-$kind$short.nds"
 echo "ROM:     $rom"
-echo "SHA-1:   $(cut -d' ' -f1 "$DEST/pokeplatinum-oxide-$short.sha1")"
+echo "SHA-1:   $(cut -d' ' -f1 "$DEST/pokeplatinum-oxide-$kind$short.sha1")"
 case "$rom" in
     "$HOME"/*) printf 'Windows: \\\\wsl$\\%s%s\n' "${WSL_DISTRO_NAME:-Ubuntu}" \
                    "$(printf '%s' "$rom" | sed 's|/|\\|g')" ;;
