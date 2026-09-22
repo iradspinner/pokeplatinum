@@ -578,6 +578,49 @@ def apply_scalar_diff(json_path, new, old, dry_run, log):
     return bool(changed)
 
 
+# Oxide lets a trainer's party member name its nature ("nature"), which the
+# game then forces instead of rolling it (src/trainer_data.c). The base ROM
+# has no such field, and a member that names one has been re-tuned in Oxide:
+# its IV scale is free to rise now that the nature no longer depends on it.
+# So for such a member both fields are Oxide's own, and the importer neither
+# compares nor overwrites them.
+def _has_nature(text, i):
+    try:
+        return jsonstyle.get_value(text, ["party", i, "nature"]) is not None
+    except KeyError:
+        return False
+
+
+def _party_differs(current, new_party):
+    """Whether the JSON party differs from the base ROM's, leaving out what
+    is Oxide's own: every nature, and a re-tuned member's IV scale."""
+    if len(current) != len(new_party):
+        return True
+    for cur, new in zip(current, new_party):
+        a = {k: v for k, v in cur.items() if k != "nature"}
+        b = dict(new)
+        if cur.get("nature") is not None:
+            a.pop("iv_scale", None)
+            b.pop("iv_scale", None)
+        if a != b:
+            return True
+    return False
+
+
+def _keep_oxide_tuning(current, new_party):
+    """The base ROM's party, with each re-tuned member's nature and IV scale
+    carried over where the same species still stands in the same place."""
+    out = []
+    for i, m in enumerate(new_party):
+        m = dict(m)
+        old = current[i] if i < len(current) else {}
+        if old.get("nature") is not None and old.get("species") == m["species"]:
+            m["iv_scale"] = old["iv_scale"]
+            m["nature"] = old["nature"]
+        out.append(m)
+    return out
+
+
 def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, dry_run, log):
     """Like apply_diff, but for trainers: `party` is a list of objects, which
     the flatten()-based apply_diff can't reach into (it treats any list as
@@ -608,12 +651,17 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
         # dumps() inlines (its general "<=2 scalars" rule). Still valid JSON,
         # just occasionally not matching this file's existing hand style.
         current = jsonstyle.get_value(text, ["party"])
-        if current != new_party:
-            text = jsonstyle.replace_value(text, ["party"], new_party)
+        if _party_differs(current, new_party):
+            text = jsonstyle.replace_value(text, ["party"], _keep_oxide_tuning(current, new_party))
             changed.append(f"party: {len(old_party)} -> {len(new_party)} mons (full rewrite, size changed)")
     else:
         for i, (nm, om) in enumerate(zip(new_party, old_party)):
+            # A member with an explicit nature has been re-tuned in Oxide, and
+            # its IV scale is Oxide's, not the base ROM's (see _has_nature).
+            tuned = _has_nature(text, i)
             for key in ("species", "form", "level", "item", "moves", "iv_scale", "ball_seal"):
+                if key == "iv_scale" and tuned:
+                    continue
                 val = nm[key]
                 if om.get(key) == val:
                     continue

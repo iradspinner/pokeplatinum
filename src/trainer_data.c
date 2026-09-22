@@ -3,6 +3,7 @@
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 #include "generated/genders.h"
+#include "generated/natures.h"
 #include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer.h"
@@ -218,6 +219,42 @@ static u8 TrainerMon_PersonalityLowByte(u16 species, u8 genderOverride, u8 abili
 }
 
 /**
+ * @brief The personality a trainer's party member is built with.
+ *
+ * The vanilla roll: seed the LCRNG with the IV scale, level, species and
+ * trainer ID, step it once per trainer class ID, and put the last value above
+ * the low byte. If the trainer file names a nature (Oxide), the rolled value
+ * is then stepped up until the personality lands on that nature. Only the
+ * high part moves, so the low byte, which carries the gender and ability
+ * requests, is untouched; and since 256 is 6 mod 25 and 6 is coprime to 25,
+ * at most 24 steps reach any nature. With no nature named this is exactly
+ * the roll the game has always made.
+ *
+ * @param ivScaleField   The party member's ivScale field: the IV scale in the
+ *                       low byte, nature + 1 (or 0) in the high byte.
+ */
+static u32 TrainerMon_Personality(u16 ivScaleField, u16 level, u16 species, int trainerID, u8 trainerType, u8 gender, u8 ability, u8 genderMod)
+{
+    u32 rnd = (ivScaleField & TRAINER_MON_IV_SCALE_MASK) + level + species + trainerID;
+    LCRNG_SetSeed(rnd);
+
+    for (int j = 0; j < trainerType; j++) {
+        rnd = LCRNG_Next();
+    }
+
+    u8 low = TrainerMon_PersonalityLowByte(species, gender, ability, genderMod);
+    u8 nature = ivScaleField >> TRAINER_MON_NATURE_SHIFT;
+
+    if (nature != TRAINER_MON_NATURE_DONT_CARE) {
+        while (((rnd << 8) + low) % NATURE_COUNT != (u32)(nature - 1)) {
+            rnd++;
+        }
+    }
+
+    return (rnd << 8) + low;
+}
+
+/**
  * @brief Build the party for a trainer as loaded in the FieldBattleDTO struct.
  *
  * @param dto  The parent FieldBattleDTO struct containing trainer data.
@@ -254,15 +291,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
-            LCRNG_SetSeed(rnd);
-
-            for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
-                rnd = LCRNG_Next();
-            }
-
-            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
-            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            rnd = TrainerMon_Personality(trmon[i].ivScale, trmon[i].level, species, dto->trainerIDs[battler], dto->trainer[battler].header.trainerType, trmon[i].gender, trmon[i].ability, (u8)genderMod);
+            ivs = (trmon[i].ivScale & TRAINER_MON_IV_SCALE_MASK) * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
@@ -279,15 +309,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
-            LCRNG_SetSeed(rnd);
-
-            for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
-                rnd = LCRNG_Next();
-            }
-
-            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
-            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            rnd = TrainerMon_Personality(trmon[i].ivScale, trmon[i].level, species, dto->trainerIDs[battler], dto->trainer[battler].header.trainerType, trmon[i].gender, trmon[i].ability, (u8)genderMod);
+            ivs = (trmon[i].ivScale & TRAINER_MON_IV_SCALE_MASK) * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
 
@@ -309,15 +332,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
-            LCRNG_SetSeed(rnd);
-
-            for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
-                rnd = LCRNG_Next();
-            }
-
-            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
-            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            rnd = TrainerMon_Personality(trmon[i].ivScale, trmon[i].level, species, dto->trainerIDs[battler], dto->trainer[battler].header.trainerType, trmon[i].gender, trmon[i].ability, (u8)genderMod);
+            ivs = (trmon[i].ivScale & TRAINER_MON_IV_SCALE_MASK) * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
@@ -335,15 +351,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
-            LCRNG_SetSeed(rnd);
-
-            for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
-                rnd = LCRNG_Next();
-            }
-
-            rnd = (rnd << 8) + TrainerMon_PersonalityLowByte(species, trmon[i].gender, trmon[i].ability, (u8)genderMod);
-            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            rnd = TrainerMon_Personality(trmon[i].ivScale, trmon[i].level, species, dto->trainerIDs[battler], dto->trainer[battler].header.trainerType, trmon[i].gender, trmon[i].ability, (u8)genderMod);
+            ivs = (trmon[i].ivScale & TRAINER_MON_IV_SCALE_MASK) * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);

@@ -660,6 +660,31 @@ def check_trainer_sets(results):
                     and ct.gender_of(127, ct.low_byte(127, "male", 0, 120)) == "M"
                     and ct.gender_of(127, ct.low_byte(127, "female", 2, 136)) == "F", ""))
 
+    # A named nature (Oxide) steps the rolled high part until it lands, and
+    # leaves the low byte, which holds gender and ability, alone. The C that
+    # does this (TrainerMon_Personality) was compiled on the host and agreed
+    # with this on 20,000 random inputs on 2026-09-22.
+    rolled = ct.personality(246, 62, False, 74, 12, 50, 127)
+    named = [ct.personality(246, 62, False, 74, 12, 255, 127, nature=n) for n in range(25)]
+    results.append(("a named nature always lands, keeping the gender and ability "
+                    "byte", all(p % 25 == n and p & 0xFF == rolled & 0xFF
+                                for n, p in enumerate(named))
+                    and ct.personality(246, 62, False, 74, 12, 50, 127,
+                                       nature=rolled % 25) == rolled, ""))
+    # The importer leaves a re-tuned member's nature and IV scale alone, and
+    # still sees any real difference from the base ROM.
+    sys.path.insert(0, os.path.join(root, "tools", "oxide"))
+    import import_base_rom as ib
+    base = [{"species": "SPECIES_NOSEPASS", "level": 15, "iv_scale": 250}]
+    tuned = [dict(base[0], iv_scale=255, nature="NATURE_ADAMANT")]
+    results.append(("the base ROM importer treats a named nature and its IV scale "
+                    "as Oxide's own",
+                    not ib._party_differs(tuned, base)
+                    and ib._party_differs([dict(tuned[0], level=16)], base)
+                    and ib._party_differs([dict(base[0], iv_scale=255)], base)
+                    and ib._keep_oxide_tuning(tuned, base)[0]["nature"] == "NATURE_ADAMANT",
+                    ""))
+
     blob = calc_export.build()
     sets = blob["formatted_sets"]
     members = 0

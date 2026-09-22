@@ -17,6 +17,9 @@ because the parts a calculator needs most are not stored anywhere:
   one. It is the base species' pair even for a form, because
   `Pokemon_InitWith` sets the ability before the form is set.
 - **Gender.** The low byte against the species' gender ratio.
+- **Nature, when named.** Oxide lets a party member name its nature, which
+  the game then forces by stepping the rolled high part up until the
+  personality lands on it; gender and ability, in the low byte, stay put.
 - **IVs.** The IV scale times 31 over 255, the same in every stat. No EVs.
 - **Moves**, when a trainer lists none: the level-up learnset walked in order
   up to the Pokemon's level, filling empty slots, skipping a move already
@@ -84,8 +87,10 @@ def _tables(root):
 
 
 def personality(trainer_id, class_id, female_class, species_id, level, iv_scale,
-                gender_ratio, want_gender=None, want_slot=0):
-    """The personality `TrainerData_BuildParty` gives one party member."""
+                gender_ratio, want_gender=None, want_slot=0, nature=None):
+    """The personality `TrainerMon_Personality` gives one party member. A
+    named nature (0 to 24) steps the rolled high part up until the
+    personality lands on it, leaving the low byte alone."""
     rnd = (iv_scale + level + species_id + trainer_id) & 0xFFFFFFFF
     state = rnd
     for _ in range(class_id):
@@ -93,6 +98,9 @@ def personality(trainer_id, class_id, female_class, species_id, level, iv_scale,
         rnd = state >> 16
     low = low_byte(gender_ratio, want_gender, want_slot,
                    LOW_BYTE_FEMALE_CLASS if female_class else LOW_BYTE_MALE_CLASS)
+    if nature is not None:
+        while ((rnd << 8) + low) % 25 != nature:
+            rnd += 1
     return ((rnd << 8) + low) & 0xFFFFFFFF
 
 
@@ -192,9 +200,12 @@ def build_trainer(root, stem, data=None):
         form = m.get("form") or 0
         base = _raw_species(root, species)
         ratio = GENDER_RATIOS[base["gender_ratio"].replace("GENDER_RATIO_", "")]
+        named = m.get("nature")
         pid = personality(trainer_id, class_id, female, species_ids[species],
                           m["level"], m["iv_scale"], ratio,
-                          want_gender=m.get("gender"), want_slot=m.get("ability") or 0)
+                          want_gender=m.get("gender"), want_slot=m.get("ability") or 0,
+                          nature=NATURES.index(named.replace("NATURE_", "").title())
+                          if named else None)
         # The ability pair is the base species', whatever the form.
         a1, a2 = (base["abilities"] + ["ABILITY_NONE"])[:2]
         ability = a2 if a2 != "ABILITY_NONE" and pid & 1 else a1

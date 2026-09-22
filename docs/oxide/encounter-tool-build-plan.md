@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 80/80, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 82/82, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
@@ -1699,6 +1699,52 @@ the calculator has no name for is Rare Candy, held twice, which does nothing
 in battle. Building every party takes about 1.6 seconds, so it is cached
 against the trainer, species and move files, and an edit rebuilds it on the
 next request.
+
+The calculator's picker then opens its search at the species already picked,
+selected, so the other trainers with an Electivire are one click away (Ian's
+note; a small script of ours, patch 8 in `calc/VENDORED.md`).
+
+**Trainer natures, an engine change taken on here: 2026-09-22.** Outside
+this track's files (`src/trainer_data.c`, `tools/dataproc/src/trainerproc.c`,
+`include/struct_defs/trainer_data.h`, and the Phase 3 importer), taken on by
+Ian's decision after the warning. Why it was needed is in the design doc's
+findings log (same date): the nature is rolled from a seed that sums the IV
+scale, level, species and trainer id, so a wanted nature often costs IVs.
+
+How to use it. In a trainer file, give a party member
+`"nature": "NATURE_ADAMANT"` (any of the 25 constants), and its IV scale is then
+free to go to 255. Gender and ability requests keep working alongside it. A
+member without the field rolls exactly as before.
+
+How it works. `TrainerMon_Personality` in `src/trainer_data.c` now holds the
+roll, once rather than four times over, and after rolling it steps the high
+part up until the personality lands on the named nature. The packer stores
+nature + 1 in the high byte of the `ivScale` field, which the IV scale never
+used, and it now refuses an IV scale above 255. The calculator export applies
+the same step. The base ROM importer treats a member that names a nature as
+re-tuned in Oxide: it neither compares nor overwrites that member's nature or
+IV scale, and carries both over if it ever rewrites the party. Without that,
+the next import would have reverted a raised IV scale to the base ROM's.
+
+How it was checked:
+
+- With no nature named, both trainer archives are byte-identical to the build
+  before the change, and two complete builds agree on the ROM's hash.
+- The real C was checked against the export. `TrainerMon_Personality` and the
+  game's two RNG functions were lifted verbatim from the source, compiled on
+  the host, and compared with the export's Python on 20,000 random inputs:
+  none disagreed, and every named nature landed. The export's unnamed roll
+  had already matched upstream's vanilla data (above).
+- End to end, with a temporary edit that was reverted: Roark's Nosepass named
+  Adamant with IV scale 255 packed as `0x04ff`, read back as Adamant with IVs
+  of 31 and still male with Solid Rock, and the importer's dry run still
+  reported 0.
+- The importer dry run, `verify_narcs` against the base ROM and the encounter
+  source check are unchanged, and `test_m8` is at 82 and `test_step0` at 35.
+
+What is left is Ian's: choosing which trainer Pokemon get a nature, which is
+Phase 5 balance work. The calculator shows the result as soon as a file is
+edited.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a
