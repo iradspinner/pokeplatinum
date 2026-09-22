@@ -63,6 +63,7 @@ Anything else is a regression. The encounter tool's own checks are listed in its
 - Fairy in the emulator (Phase 5 has the exact checks): a Dragon move doing nothing to Clefairy or Ralts, the summary screen reading FAIRY, and the Pokedex info page showing the NORMAL plate rather than garbage.
 - Two data questions from the carry-over, low priority because the default is to leave vanilla: whether the encounter `unown_table`/`rate_form` changes or the sprite-height changes were ever intended (evidence under Phase 3 says they were DSPRE re-saves).
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
+- **A test kit for in-game checks** (2026-09-22): `docs/oxide/test-kit-proposal.md` proposes a debug-only build with a helper in the player's house (Rare Candies, the Pokemon each waiting check needs, a warp list, and later trainers for the new moves), off by default so the ROM of record is unchanged. Nothing is built; three questions for Ian at its end.
 
 ## Phase 0: Setup
 
