@@ -1289,6 +1289,34 @@ names are capitalised everywhere the tool prints one (floors as 1F and B1F,
 "Mt." and "Pokémon" spelt as the game spells them), and the search box
 also matches the file name, so "mt coronet" still finds Mt. Coronet.
 
+### The QA pass before the merge: 2026-09-22
+
+The Overseer's `/qa-pass` over this branch
+(`docs/oxide/qa-review-2026-09-22-encounter-m8.md` on `oxide`) found two dex
+defects, one gap in D5's plan and two nits, all in this track's files and none
+blocking. All five are dealt with:
+
+1. Nidoran♂ was taken for a mega, because any constant ending in `_M` was.
+   A mega now needs its base species to exist, so Gyarados and Lopunny keep
+   their megas and Nidoran♂ is back in its own line.
+2. Evolution lines were sorted by name (Incineroar, Litten, Torracat). The
+   server now walks each line from the member nothing evolves into and marks
+   every member's stage; the page draws one group per stage, so Eevee's eight
+   evolutions sit side by side after Eevee.
+3. The calculator is not offline as vendored. D5's plan above now lists
+   everything its patches have to remove, not only the data loader, and
+   `calc/VENDORED.md` says the same.
+4. The dex's caches outlived hand edits while the server promised nothing was
+   stale. Species, the species list and moves are now cached against their
+   files' modification times, so an edit shows on the next request.
+5. A bare `/api` answered 500. It, and `/api/area`, `/api/move` or
+   `/api/sprite` without the name they need, now answer 404.
+
+`test_m8` has three new checks (46) and `test_m4` one (51). The review's figure
+for R12 is right: 27 scripted lines, up from the 22 of Step 4 as Steps 7 and 8
+re-pooled the gifts; the tracker says so now. Its question about Steel's two
+Generation 4 resistances is Ian's and is left open.
+
 A third note, drawn as a sketch: more of an area on one screen. The heading
 above the tables is three short lines now (name, tags and the encounter on one;
 the note; the table and time-of-day tabs on one row). Grass rows are 46px with
@@ -1491,8 +1519,14 @@ forms, the megas, Mr. Mime, Jangmo-o and the Tapus; species entries with stats,
 types, abilities, weight and gender ratio; moves with category, power, accuracy,
 priority and the flags the formula reads; learnsets so the set builder offers the
 right moves; and a patch to its loader so it reads from `localhost` instead of
-npoint. Gate: a hand-checked damage roll against the game, and the export
-regenerating clean after a species edit.
+npoint. That one patch is not enough to make it offline, which the QA pass of
+2026-09-22 found: as vendored, the page also loads jQuery and other libraries
+from Google's, jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag,
+and game data from `hzla.github.io`, about 100 remote references in all. D5's
+patch list has to vendor or drop every CDN script, remove the analytics tag and
+remove every remote data URL, and its gate includes the page loading with the
+network off. Gate: a hand-checked damage roll against the game, the export
+regenerating clean after a species edit, and no request leaving the machine.
 
 ### Decisions and risks, recorded before starting
 

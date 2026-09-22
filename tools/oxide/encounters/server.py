@@ -432,6 +432,35 @@ def dex_detail(species):
     # A mega shares its base's line but is not a stage of it, so it belongs with
     # the formes rather than in the chain.
     out["line"] = [m for m in out["line"] if not m["mega_of"]]
+    out["line"] = _in_stage_order(out["line"])
+    return out
+
+
+def _in_stage_order(line):
+    """The line from its first stage out, each member marked with its stage.
+
+    Members come from the line index sorted by name, which read Incineroar,
+    Litten, Torracat. Walk the evolutions instead, from the member nothing
+    evolves into; a branch (Eevee's eight) is siblings at one stage, in the
+    order the game lists them."""
+    by_species = {m["species"]: m for m in line}
+    into = {m["species"]: [e["into"] for e in m["evolutions"]
+                           if not e["form"] and e["into"] in by_species]
+            for m in line}
+    evolved = {t for targets in into.values() for t in targets}
+    frontier = [m["species"] for m in line if m["species"] not in evolved]
+    stage, seen, out = 0, set(), []
+    while frontier:
+        nxt = []
+        for sp in frontier:
+            if sp in seen:
+                continue
+            seen.add(sp)
+            out.append(dict(by_species[sp], stage=stage))
+            nxt.extend(into[sp])
+        frontier, stage = nxt, stage + 1
+    # Anything the walk cannot reach still shows, after the rest.
+    out.extend(dict(m, stage=stage) for m in line if m["species"] not in seen)
     return out
 
 
@@ -490,6 +519,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         if not parts or parts[0] != "api":
             return super().do_GET()
+        # /api alone, or /api/area, /api/move or /api/sprite without the name
+        # they need, is an unknown endpoint like any other, not a crash.
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite") and len(parts) < 3):
+            return self._send({"error": "unknown endpoint"}, 404)
         try:
             st = State(ref)
             if parts[1] == "areas":

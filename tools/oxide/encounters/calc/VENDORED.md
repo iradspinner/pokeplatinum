@@ -38,3 +38,11 @@ patches, so a clean copy plus the patch list is always the whole story.
 None yet. When the data loader is pointed at our own server rather than
 npoint.io (M8's D5), the change goes here with the file and the reason, so the
 next update knows what to re-apply.
+
+That patch alone does not make the page offline (QA pass, 2026-09-22). As
+vendored, `index.html` also loads jQuery and other libraries from Google's,
+jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag, and game data
+from `hzla.github.io`, about 100 remote references. D5 has to vendor or drop
+every CDN script, remove the analytics tag and remove every remote data URL,
+and record each change here. None of it runs today: the server serves only
+`ui/`, so nothing under `calc/` is reachable yet.

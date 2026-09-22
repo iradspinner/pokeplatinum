@@ -210,6 +210,16 @@ def check_caught_is_global(results):
 def check_rejections(results):
     """The page's datalist is a suggestion, not a constraint, so the server is
     the only thing standing between a typo and a broken build."""
+    # /api alone, or a route missing the name it needs, is a 404, not a 500.
+    codes = []
+    for path in ("/api", "/api/area", "/api/sprite"):
+        try:
+            get(path)
+            codes.append(200)
+        except urllib.error.HTTPError as e:
+            codes.append(e.code)
+    results.append(("a bare /api or a route missing its name is a 404",
+                    codes == [404, 404, 404], str(codes)))
     cases = [
         ("bad species refused", f"/api/area/{AREA}/slot",
          {"slot": 0, "species": "SPECIES_GIBEL"}, 400),

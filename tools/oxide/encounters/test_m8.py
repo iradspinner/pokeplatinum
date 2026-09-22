@@ -328,10 +328,49 @@ def check_page(results):
                     and server._transparent_background(once) == once, ""))
 
 
+def check_qa_findings(results):
+    """The QA pass of 2026-09-22 (docs/oxide/qa-review-2026-09-22-encounter-m8.md)."""
+    root = model.repo_root()
+    names = lambda d: [m["label"] for m in d["line"]]
+    # Finding 1: Nidoran's male constant ends in _M, which is not a mega.
+    nido = server.dex_detail("SPECIES_NIDORAN_M")
+    results.append(("Nidoran\u2642 is a species in its own line, not a mega",
+                    nido["mega_of"] is None
+                    and names(nido) == ["Nidoran\u2642", "Nidorino", "Nidoking"]
+                    and server.dex_detail("SPECIES_GYARADOS_M")["mega_of"]
+                    == "SPECIES_GYARADOS", ""))
+    # Finding 2: a line reads from its first stage, not alphabetically.
+    eevee = server.dex_detail("SPECIES_EEVEE")
+    results.append(("a line is in stage order, and a branch is siblings at one stage",
+                    names(server.dex_detail("SPECIES_LITTEN"))
+                    == ["Litten", "Torracat", "Incineroar"]
+                    and names(server.dex_detail("SPECIES_GYARADOS"))
+                    == ["Magikarp", "Gyarados"]
+                    and eevee["line"][0]["label"] == "Eevee"
+                    and eevee["line"][0]["stage"] == 0
+                    and len(eevee["line"]) > 2
+                    and all(m["stage"] == 1 for m in eevee["line"][1:]),
+                    f"Eevee's branch: {len(eevee['line']) - 1}"))
+    # Finding 4: a species file touched while the server runs is read again.
+    path = os.path.join(root, "res", "pokemon", "litten", "data.json")
+    st = os.stat(path)
+    pokedex.load(root, "SPECIES_LITTEN")
+    before = pokedex._load.cache_info().misses
+    try:
+        os.utime(path, ns=(st.st_atime_ns, st.st_mtime_ns + 1_000_000_000))
+        pokedex.load(root, "SPECIES_LITTEN")
+        reread = pokedex._load.cache_info().misses == before + 1
+    finally:
+        os.utime(path, ns=(st.st_atime_ns, st.st_mtime_ns))
+    results.append(("a species file changed while the server runs is read again",
+                    reread, ""))
+
+
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
-                  check_captures, check_endpoints, check_canon, check_page):
+                  check_captures, check_endpoints, check_canon, check_page,
+                  check_qa_findings):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

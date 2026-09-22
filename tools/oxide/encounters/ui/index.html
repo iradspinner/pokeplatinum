@@ -403,6 +403,10 @@ table.facts td { padding: 1px 0; }
   color: var(--dim); text-transform: lowercase; letter-spacing: .03em; }
 .evoline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .evoline .arrow { color: var(--faint); font-size: 16.5px; }
+/* One group per stage: a branch such as Eevee's is siblings in one group,
+   and only the stages are joined by the chevron. */
+.evoline .evostage { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+.evoline .member { display: inline-flex; align-items: center; gap: 6px; }
 /* the stage being viewed is place */
 .evoline a.here { text-decoration: underline 2px var(--place-ink); text-underline-offset: 3px; }
 .learn { border-collapse: collapse; font-size: 15.5px; }
@@ -533,6 +537,13 @@ const icon = sp => sp
   ? `<span class="ico"><img src="${sprite(folderOf(sp), "icon")}" alt="" loading="lazy"
        onerror="this.parentNode.style.visibility='hidden'"></span>`
   : "";
+// The server sends the line in stage order with each member's stage;
+// this groups it, one array per stage.
+const stagesOf = line => {
+  const out = [];
+  line.forEach(m => { (out[m.stage || 0] = out[m.stage || 0] || []).push(m); });
+  return out.filter(Boolean);
+};
 const tidy = t => t ? t[0] + t.slice(1).toLowerCase().replace(/_/g, " ") : "";
 
 // A type chip names its type and tints itself with it; the colour is a token,
@@ -691,11 +702,11 @@ function drawDexDetail() {
     <div class="dexsec">
       <h4>the line</h4>
       <div class="evoline">
-        ${(d.line || []).map(m => `
-          <span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
+        ${stagesOf(d.line || []).map(group => `<span class="evostage">${group.map(m => `
+          <span class="member"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
           <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a>
-          <span class="sub num">${m.appearances ? m.appearances + " tables" : "not in a table"}</span>
-        `).join('<span class="arrow">&rsaquo;</span>')}
+          <span class="sub num">${m.appearances ? m.appearances + " tables" : "not in a table"}</span></span>
+        `).join("")}</span>`).join('<span class="arrow">&rsaquo;</span>')}
       </div>
       ${d.evolutions.length ? `<div class="sub" style="margin-top:6px">
         ${d.evolutions.map(e => `${esc(d.name)} &rarr; ${esc(e.label || "")}
