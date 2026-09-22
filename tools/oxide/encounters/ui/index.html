@@ -130,19 +130,25 @@ button { cursor: pointer; background: var(--panel); }
 button:hover:not(:disabled) { border-color: var(--mass); }
 button:disabled { color: var(--faint); cursor: default; }
 
-/* left list: a real table so the numbers line up down the column */
+/* Left list: a real table so the numbers line up down the column. The name
+   has the whole first line to itself, so it is never cut short; the split
+   tag, the catch and the numbers share the second, under labelled columns. */
+.colhead, .arow { grid-template-columns: 1fr 104px 76px 56px 48px; }
+.colhead { display: grid; gap: 4px; margin-top: 8px; font-size: 13px;
+           color: var(--dim); align-items: end; line-height: 1.2; }
+.colhead .num { font-family: inherit; white-space: normal; }
 .arow {
-  display: grid; grid-template-columns: 1fr 104px 76px 56px 48px;
-  gap: 4px; align-items: center; min-height: 44px; padding: 4px 12px; cursor: pointer;
+  display: grid;
+  gap: 2px 4px; align-items: center; min-height: 44px; padding: 4px 12px; cursor: pointer;
   border-bottom: 1px solid var(--rule); position: relative;
 }
-.arow .l2 { display: flex; gap: 4px; align-items: center; margin-top: 2px; }
+.arow .l2 { display: flex; gap: 4px; align-items: center; }
 .arow .enc { display: flex; align-items: center; gap: 4px; }
 .arow .enc .ico { margin: -4px 0; }
 .arow:hover { background: var(--sunken); }
 .arow.sel { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
-.arow .nm { overflow: hidden; min-width: 0; }
-.arow .nm .l1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.arow .l1 { grid-column: 1 / -1; }
+.arow .l2 { min-width: 0; }
 .arow .sub { font-size: 14px; color: var(--faint); }
 .arow .num { font-size: 14.5px; color: var(--dim); }
 .arow .enc span.lbl { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -151,7 +157,7 @@ button:disabled { color: var(--faint); cursor: default; }
    partly done rather than as a binary flag */
 .arow.p1 { opacity: .78; } .arow.p2 { opacity: .60; } .arow.p3 { opacity: .45; }
 .arow.done { opacity: .38; }
-.arow.done .nm .l1 { text-decoration: line-through; }
+.arow.done .l1 { text-decoration: line-through; }
 .flag { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
         margin-right: 6px; background: transparent; vertical-align: middle; }
 .flag.err { background: var(--error); }
@@ -414,6 +420,13 @@ table.facts td { padding: 1px 0; }
         <button data-k="live_total">Left to catch</button>
         <button data-k="best_share">Best odds</button>
         <button data-k="warns">Problems</button>
+      </div>
+      <div class="colhead">
+        <span></span>
+        <span title="The species recorded as this area's one catch">Caught</span>
+        <span class="num" title="Lowest to highest level across the area's tables">Levels</span>
+        <span class="num" title="Species you still need, out of every species across the area's tables">Left</span>
+        <span class="num" title="Your best chance of meeting the rarest species you still need here, with the best repel lead">Best odds</span>
       </div>
     </div>
     <div id="rows"></div>
@@ -772,7 +785,9 @@ function drawList() {
     const sp = q.slice(1);
     rows = rows.filter(r => (r.holds || []).some(s => s.toLowerCase().includes(sp)));
   } else if (q) {
-    rows = rows.filter(r => r.label.toLowerCase().includes(q));
+    // The file name too, so "mt coronet" still finds "Mt. Coronet".
+    rows = rows.filter(r => r.label.toLowerCase().includes(q)
+      || r.area.replace("encounters_", "").replace(/_/g, " ").includes(q));
   }
   // Play order is the game's progression, not the level: grouped by gym
   // split (Post last) and, within a split, in the sidecar's order. An area
@@ -796,13 +811,11 @@ function drawList() {
     return `<div class="arow ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
         title="${esc(r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
-      <div class="nm">
-        <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
-        <div class="l2">${splitTag(r.split)}${water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
-      </div>
+      <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
+      <div class="l2">${splitTag(r.split)}${water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
       <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
-      <div class="num">lv ${lv}</div>
+      <div class="num">${lv}</div>
       <div class="num">${r.live_total}/${r.species_total}</div>
       <div class="num">${r.live_total ? pct(r.best_share) : "—"}</div>
     </div>`;

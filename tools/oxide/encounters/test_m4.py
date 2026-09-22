@@ -306,7 +306,7 @@ def check_lines_dupe_out(results):
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
-                    bool(staravia) and staravia[0]["caught_at"] == "lake verity"
+                    bool(staravia) and staravia[0]["caught_at"] == "Lake Verity"
                     and staravia[0]["via"] == "Magikarp",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))

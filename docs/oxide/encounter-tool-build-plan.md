@@ -1279,6 +1279,16 @@ the bars ease between times as they do on a catch. The planner's species menu
 still reads the base list, which is what it plans against. `test_m4` gained a
 check for the day and night lists and one for the split ranks (49 checks).
 
+A second note the same day: area names were cut short in the list, and the last
+two numbers had no labels. Each list row now gives the name its whole first
+line and puts the split tag, the catch, the levels and the two numbers on the
+second. A header row names those columns, with an explanation on hover: Left
+is the species still needed out of all the area's species, and Best odds is
+the best chance of meeting the rarest of those with the best repel lead. Area
+names are capitalised everywhere the tool prints one (floors as 1F and B1F,
+"Mt." and "Pokémon" spelt as the game spells them), and the search box
+also matches the file name, so "mt coronet" still finds Mt. Coronet.
+
 ## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at

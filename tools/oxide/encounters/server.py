@@ -22,6 +22,7 @@ import functools
 import http.server
 import json
 import os
+import re
 import socketserver
 import sys
 import urllib.parse
@@ -98,8 +99,17 @@ class State:
                  a.data) for a in areas]
 
 
+# How an area's file name reads as a place: each word capitalised, floors in
+# capitals (1F, B2F), and the few words the game spells its own way.
+_LABEL_WORDS = {"mt": "Mt.", "pokemon": "Pok\u00e9mon", "and": "and",
+                "deadend": "Dead End"}
+
+
 def _area_label(name):
-    return name.replace("encounters_", "").replace("_", " ")
+    words = name.replace("encounters_", "").split("_")
+    return " ".join(_LABEL_WORDS.get(w) or
+                    (w.upper() if re.fullmatch(r"b?\d+f", w) else w.capitalize())
+                    for w in words)
 
 
 def _species_view(species, st, area=None):
