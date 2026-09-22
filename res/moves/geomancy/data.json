@@ -1,0 +1,30 @@
+{
+    "name": "Geomancy",
+    "description": [
+        "The user absorbs\n",
+        "energy, then sharply\n",
+        "boosts its Sp. Atk,\n",
+        "Sp. Def and Speed on\n",
+        "the next turn."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_GEOMANCY",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Razor Shell",
+    "description": [
+        "The foe is cut by\n",
+        "sharp shells. It may\n",
+        "also lower the foe’s\n",
+        "Defense."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 75,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
+        "chance": 50
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

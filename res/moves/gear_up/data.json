@@ -1,0 +1,30 @@
+{
+    "name": "Gear Up",
+    "description": [
+        "The user engages its\n",
+        "gears to raise the\n",
+        "Attack and Sp. Atk\n",
+        "stats of ally Pokémon\n",
+        "with Plus or Minus."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

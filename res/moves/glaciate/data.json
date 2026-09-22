@@ -1,0 +1,31 @@
+{
+    "name": "Glaciate",
+    "description": [
+        "The user attacks by\n",
+        "blowing freezing cold\n",
+        "air at opposing\n",
+        "Pokémon. This lowers\n",
+        "their Speed."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ICE",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_SPEED_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

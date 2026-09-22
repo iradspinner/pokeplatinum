@@ -1,0 +1,30 @@
+{
+    "name": "Powder",
+    "description": [
+        "The user covers the\n",
+        "target in an explosive\n",
+        "powder that damages\n",
+        "the target if they use\n",
+        "a Fire-type move."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_BUG",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_POWDER",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 1,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

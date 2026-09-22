@@ -1,0 +1,29 @@
+{
+    "name": "Simple Beam",
+    "description": [
+        "The user’s mysterious\n",
+        "psychic wave changes\n",
+        "the target’s Ability\n",
+        "to Simple."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_SIMPLE_BEAM",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

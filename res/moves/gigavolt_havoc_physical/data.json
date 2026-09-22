@@ -1,0 +1,30 @@
+{
+    "name": "Gigavolt Havoc",
+    "description": [
+        "The user summons a\n",
+        "strong current with\n",
+        "Z-Power. Power varies\n",
+        "with the original move."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 1,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

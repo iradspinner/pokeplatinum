@@ -1,0 +1,30 @@
+{
+    "name": "Apple Acid",
+    "description": [
+        "The user attacks with\n",
+        "acid from tart apples.\n",
+        "This also lowers the\n",
+        "foe’s Sp. Def stat."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_SP_DEF_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

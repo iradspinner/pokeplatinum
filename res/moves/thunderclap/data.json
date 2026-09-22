@@ -1,0 +1,30 @@
+{
+    "name": "Thunderclap",
+    "description": [
+        "The user attacks\n",
+        "first with a jolt. This\n",
+        "fails if the foe is not\n",
+        "readying an attack."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 1,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

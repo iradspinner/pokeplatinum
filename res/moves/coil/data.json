@@ -1,0 +1,28 @@
+{
+    "name": "Coil",
+    "description": [
+        "The user coils up,\n",
+        "raising its Attack,\n",
+        "Defense, and\n",
+        "accuracy."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_POISON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_COIL",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

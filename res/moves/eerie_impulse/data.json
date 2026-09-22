@@ -1,0 +1,30 @@
+{
+    "name": "Eerie Impulse",
+    "description": [
+        "The user emits an\n",
+        "eerie impulse from its\n",
+        "body, harshly lowering\n",
+        "the target’s Sp. Atk\n",
+        "stat."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_SP_ATK_DOWN_2",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

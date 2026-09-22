@@ -1,0 +1,30 @@
+{
+    "name": "Baby-Doll Eyes",
+    "description": [
+        "The user stares at\n",
+        "the target with its\n",
+        "baby-eyes, lowering\n",
+        "its Attack stat.\n",
+        "Always goes first."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_ATK_DOWN",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 1,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

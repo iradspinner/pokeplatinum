@@ -1,0 +1,30 @@
+{
+    "name": "Gigaton Hammer",
+    "description": [
+        "The user swings its\n",
+        "huge hammer. This\n",
+        "move can’t be used\n",
+        "twice in a row."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 160,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

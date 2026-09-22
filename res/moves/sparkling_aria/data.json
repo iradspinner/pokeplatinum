@@ -1,0 +1,30 @@
+{
+    "name": "Sparkling Aria",
+    "description": [
+        "The user sings,\n",
+        "emitting bubbles. Any\n",
+        "Pokémon with a burn is\n",
+        "cured by their touch."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

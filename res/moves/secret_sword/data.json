@@ -1,0 +1,31 @@
+{
+    "name": "Secret Sword",
+    "description": [
+        "The user cuts with its\n",
+        "long horn. The odd\n",
+        "power in the horn\n",
+        "does physical damage\n",
+        "to the foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIGHTING",
+    "power": 85,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

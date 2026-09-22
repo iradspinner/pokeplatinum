@@ -1,0 +1,27 @@
+{
+    "name": "Shift Gear",
+    "description": [
+        "Rotating its gears,\n",
+        "the user raises its\n",
+        "Attack and sharply\n",
+        "raises its Speed."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_SHIFT_GEAR",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

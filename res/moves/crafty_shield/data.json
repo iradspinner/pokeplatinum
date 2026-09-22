@@ -1,0 +1,30 @@
+{
+    "name": "Crafty Shield",
+    "description": [
+        "The user protects\n",
+        "itself and its allies\n",
+        "from status moves\n",
+        "with a mysterious\n",
+        "power."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_WIDE_GUARD",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 3,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

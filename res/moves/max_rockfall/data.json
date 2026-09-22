@@ -1,0 +1,31 @@
+{
+    "name": "Max Rockfall",
+    "description": [
+        "This is a Rock-type\n",
+        "attack Dynamax\n",
+        "Pokémon use. The user\n",
+        "summons a sandstorm\n",
+        "lasting five turns."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ROCK",
+    "power": 10,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

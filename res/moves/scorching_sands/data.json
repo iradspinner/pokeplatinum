@@ -1,0 +1,30 @@
+{
+    "name": "Scorching Sands",
+    "description": [
+        "The user throws\n",
+        "scorching sand at the\n",
+        "target to attack. The\n",
+        "target may also be\n",
+        "left with a burn."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GROUND",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

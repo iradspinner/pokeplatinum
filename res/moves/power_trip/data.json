@@ -1,0 +1,31 @@
+{
+    "name": "Power Trip",
+    "description": [
+        "The user flaunts its\n",
+        "strength. The more\n",
+        "the user’s stats are\n",
+        "boosted, the greater\n",
+        "the move’s power."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_DARK",
+    "power": 20,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

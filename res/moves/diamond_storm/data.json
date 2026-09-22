@@ -1,0 +1,30 @@
+{
+    "name": "Diamond Storm",
+    "description": [
+        "A storm of diamonds\n",
+        "whips opposing\n",
+        "Pokémon. This may also\n",
+        "sharply boost the\n",
+        "user’s Defense stat."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ROCK",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_DIAMOND_STORM",
+        "chance": 50
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Hyper Drill",
+    "description": [
+        "The user spins fast to\n",
+        "pierce the foe. This\n",
+        "hits through Protect\n",
+        "or Detect."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

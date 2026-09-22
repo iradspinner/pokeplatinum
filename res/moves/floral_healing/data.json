@@ -1,0 +1,30 @@
+{
+    "name": "Floral Healing",
+    "description": [
+        "The user restores the\n",
+        "target’s HP by up to\n",
+        "half of its max HP. It\n",
+        "restores more HP when\n",
+        "the terrain is grass."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

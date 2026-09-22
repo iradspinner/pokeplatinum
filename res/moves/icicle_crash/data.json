@@ -1,0 +1,30 @@
+{
+    "name": "Icicle Crash",
+    "description": [
+        "Icicles are dropped\n",
+        "on the foe. It may\n",
+        "also make the foe\n",
+        "flinch."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ICE",
+    "power": 85,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_FLINCH_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

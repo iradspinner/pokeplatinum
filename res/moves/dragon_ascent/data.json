@@ -1,0 +1,32 @@
+{
+    "name": "Dragon Ascent",
+    "description": [
+        "The user drops out of\n",
+        "the sky at high speed.\n",
+        "This also lowers the\n",
+        "user’s Defense and\n",
+        "Sp. Def."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FLYING",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_DEF_SPD_DOWN_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

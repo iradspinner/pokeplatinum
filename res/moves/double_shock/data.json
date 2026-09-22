@@ -1,0 +1,32 @@
+{
+    "name": "Double Shock",
+    "description": [
+        "The user discharges\n",
+        "all the electricity\n",
+        "from its body. After\n",
+        "this, the user loses\n",
+        "the Electric type."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_DOUBLE_SHOCK",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

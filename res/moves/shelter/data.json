@@ -1,0 +1,30 @@
+{
+    "name": "Shelter",
+    "description": [
+        "The user makes its\n",
+        "skin as hard as an\n",
+        "iron shield, sharply\n",
+        "boosting its Defense\n",
+        "stat."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_DEF_UP_2",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

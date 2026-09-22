@@ -1,0 +1,29 @@
+{
+    "name": "Mountain Gale",
+    "description": [
+        "The user hurls giant\n",
+        "chunks of ice at the\n",
+        "foe. This may also\n",
+        "make the foe flinch."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ICE",
+    "power": 120,
+    "accuracy": 85,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_FLINCH_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

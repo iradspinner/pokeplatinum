@@ -1,0 +1,30 @@
+{
+    "name": "Aura Wheel",
+    "description": [
+        "Morpeko attacks and\n",
+        "boosts its Speed. This\n",
+        "move’s type changes\n",
+        "with the user’s form."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 110,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

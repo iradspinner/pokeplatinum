@@ -1,0 +1,30 @@
+{
+    "name": "SandsearStorm",
+    "description": [
+        "Fierce winds and\n",
+        "searing sand wrap\n",
+        "opposing Pokémon.\n",
+        "This may also leave\n",
+        "them with a burn."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GROUND",
+    "power": 100,
+    "accuracy": 80,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_SANDSEAR_STORM",
+        "chance": 30
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Soulblaze",
+    "description": [
+        "After obtaining\n",
+        "Z-Power, Kommo-o\n",
+        "attacks. This move\n",
+        "boosts the all the\n",
+        "user’s stats at once."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_DRAGON",
+    "power": 185,
+    "accuracy": 0,
+    "pp": 1,
+    "effect": {
+        "type": "BATTLE_EFFECT_RAISE_ALL_STATS_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

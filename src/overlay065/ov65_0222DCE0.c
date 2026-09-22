@@ -4,6 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+#include "constants/species.h"
+
 #include "generated/journal_online_events.h"
 
 #include "struct_decls/struct_02012B20_decl.h"
@@ -3697,15 +3700,15 @@ static BOOL ov65_02231978(UnkStruct_0207E060 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (495 == param0->unk_00[v0]) {
+        if (SPECIES_BAD_EGG == param0->unk_00[v0]) {
             return 0;
         }
 
-        if (495 < param0->unk_00[v0]) {
+        if (MAX_SPECIES < param0->unk_00[v0]) {
             return 0;
         }
 
-        if (467 < param0->unk_0C[v0]) {
+        if (NUM_ITEMS < param0->unk_0C[v0]) {
             return 0;
         }
     }

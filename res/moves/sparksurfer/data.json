@@ -1,0 +1,31 @@
+{
+    "name": "Sparksurfer",
+    "description": [
+        "Alolan Raichu uses\n",
+        "Z-Power to attack\n",
+        "with full force,\n",
+        "leaving the foe\n",
+        "paralyzed."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 175,
+    "accuracy": 0,
+    "pp": 1,
+    "effect": {
+        "type": "BATTLE_EFFECT_PARALYZE_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

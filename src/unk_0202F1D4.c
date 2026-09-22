@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/items.h"
+#include "constants/moves.h"
 #include "constants/species.h"
 
 #include "struct_defs/battle_recording.h"
@@ -398,12 +400,12 @@ static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *battleRecord
                     return 0;
                 }
 
-                if (v6->heldItem > 467) {
+                if (v6->heldItem > NUM_ITEMS) {
                     return 0;
                 }
 
                 for (v5 = 0; v5 < 4; v5++) {
-                    if (v6->unk_1C[v5] > 467) {
+                    if (v6->unk_1C[v5] > NUM_VALID_MOVES) {
                         return 0;
                     }
                 }

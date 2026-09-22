@@ -1,0 +1,30 @@
+{
+    "name": "Chilling Water",
+    "description": [
+        "The user attacks the\n",
+        "target by showering it\n",
+        "with cold water. This\n",
+        "also lowers the\n",
+        "target’s Attack stat."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_ATTACK_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

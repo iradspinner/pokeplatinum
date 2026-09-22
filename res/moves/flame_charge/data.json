@@ -1,0 +1,30 @@
+{
+    "name": "Flame Charge",
+    "description": [
+        "The user cloaks itself\n",
+        "in flames and attacks.\n",
+        "It also ups the\n",
+        "user’s Speed."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_FLAME_CHARGE",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

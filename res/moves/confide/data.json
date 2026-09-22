@@ -1,0 +1,29 @@
+{
+    "name": "Confide",
+    "description": [
+        "The user whispers a\n",
+        "secret, making the\n",
+        "foe lose focus. This\n",
+        "lowers the foe’s Sp.\n",
+        "Atk stat."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_SP_ATK_DOWN",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

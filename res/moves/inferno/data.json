@@ -1,0 +1,29 @@
+{
+    "name": "Inferno",
+    "description": [
+        "The foe is engulfed by\n",
+        "an intense fire that is\n",
+        "sure to leave a burn."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIRE",
+    "power": 100,
+    "accuracy": 50,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

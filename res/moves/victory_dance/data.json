@@ -1,0 +1,30 @@
+{
+    "name": "Victory Dance",
+    "description": [
+        "The user dances to\n",
+        "usher in victory,\n",
+        "boosting its Attack,\n",
+        "Defense and Speed\n",
+        "stats."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FIGHTING",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_VICTORY_DANCE",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

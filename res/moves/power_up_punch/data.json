@@ -1,0 +1,32 @@
+{
+    "name": "Power-Up Punch",
+    "description": [
+        "Striking opponents\n",
+        "over and over makes\n",
+        "the user’s fists\n",
+        "harder. Hitting a\n",
+        "target raises Attack."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 40,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_RAISE_ATTACK_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

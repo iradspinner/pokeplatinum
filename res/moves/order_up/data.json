@@ -1,0 +1,30 @@
+{
+    "name": "Order Up",
+    "description": [
+        "The user attacks with\n",
+        "poise. With a Tatsugiri\n",
+        "in its mouth, one of\n",
+        "its stats is boosted."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_DRAGON",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

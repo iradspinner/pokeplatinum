@@ -1,0 +1,30 @@
+{
+    "name": "Phantom Force",
+    "description": [
+        "The user disappears,\n",
+        "then strikes the foe\n",
+        "on the second turn.\n",
+        "It hits even if the foe\n",
+        "protects itself."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GHOST",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_SHADOW_FORCE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Mortal Spin",
+    "description": [
+        "A spin attack that\n",
+        "eliminates moves like\n",
+        "Bind, Wrap and Leech\n",
+        "Seed. It also poisons\n",
+        "foes."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_POISON",
+    "power": 30,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_MORTAL_SPIN",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

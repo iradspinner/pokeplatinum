@@ -1,0 +1,29 @@
+{
+    "name": "Hyperspace Hole",
+    "description": [
+        "Using a hyperspace\n",
+        "hole, the user strikes\n",
+        "from far away. This\n",
+        "can hit a target using\n",
+        "Protect or Detect."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 80,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_REMOVE_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

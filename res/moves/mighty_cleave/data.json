@@ -1,0 +1,30 @@
+{
+    "name": "Mighty Cleave",
+    "description": [
+        "Light from the user’s\n",
+        "head cleaves the foe.\n",
+        "This hits even if the\n",
+        "foe protects itself."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ROCK",
+    "power": 95,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_MIGHTY_CLEAVE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

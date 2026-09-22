@@ -1,0 +1,31 @@
+{
+    "name": "Bolt Strike",
+    "description": [
+        "The user surrounds\n",
+        "itself with abundant\n",
+        "electricity that can\n",
+        "paralyze and charges\n",
+        "its target."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 130,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_PARALYZE_HIT",
+        "chance": 20
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

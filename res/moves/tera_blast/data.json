@@ -1,0 +1,31 @@
+{
+    "name": "Tera Blast",
+    "description": [
+        "If Terastallized, the\n",
+        "user attacks with its\n",
+        "Tera Type, using\n",
+        "Attack or Sp. Atk,\n",
+        "whichever is higher."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_NORMAL",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

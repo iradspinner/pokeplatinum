@@ -1,0 +1,30 @@
+{
+    "name": "Noble Roar",
+    "description": [
+        "Letting out a noble\n",
+        "roar, the user\n",
+        "intimidates the target\n",
+        "and lowers its Attack\n",
+        "and Sp. Atk stats."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_NOBLE_ROAR",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

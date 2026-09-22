@@ -1,0 +1,3166 @@
+{
+    "471": {
+        "name": "Hone Claws",
+        "type": "TYPE_DARK",
+        "class": "CLASS_STATUS",
+        "reuse": "nasty_plot",
+        "why": "dark self attack boost, same beat"
+    },
+    "472": {
+        "name": "Wide Guard",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_STATUS",
+        "reuse": "reflect",
+        "why": "side-wide barrier, user side range"
+    },
+    "473": {
+        "name": "Guard Split",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "guard_swap",
+        "why": "psychic defensive stat sharing"
+    },
+    "474": {
+        "name": "Power Split",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "power_swap",
+        "why": "psychic offensive stat sharing"
+    },
+    "475": {
+        "name": "Wonder Room",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "power_trick",
+        "why": "psychic self stat rearrangement"
+    },
+    "476": {
+        "name": "Psyshock",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psychic",
+        "why": "psychic special strike, 80-90 band"
+    },
+    "477": {
+        "name": "Venoshock",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge",
+        "why": "poison special single target, same power"
+    },
+    "478": {
+        "name": "Autotomize",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "agility",
+        "why": "self speed boost animation"
+    },
+    "479": {
+        "name": "Rage Powder",
+        "type": "TYPE_BUG",
+        "class": "CLASS_STATUS",
+        "reuse": "follow_me",
+        "why": "same redirection effect, self targeted"
+    },
+    "480": {
+        "name": "Telekinesis",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "kinesis",
+        "why": "psychic force bent at one target"
+    },
+    "481": {
+        "name": "Magic Room",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "imprison",
+        "why": "psychic self field trick"
+    },
+    "482": {
+        "name": "Smack Down",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_throw",
+        "why": "rock physical 50, single target"
+    },
+    "483": {
+        "name": "Storm Throw",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "karate_chop",
+        "why": "fighting always-crit strike"
+    },
+    "484": {
+        "name": "Flame Burst",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ember",
+        "why": "fire special single target burst"
+    },
+    "485": {
+        "name": "Sludge Wave",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "acid",
+        "why": "poison special spread wave"
+    },
+    "486": {
+        "name": "Quiver Dance",
+        "type": "TYPE_BUG",
+        "class": "CLASS_STATUS",
+        "reuse": "dragon_dance",
+        "why": "dance raising several own stats"
+    },
+    "487": {
+        "name": "Heavy Slam",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_head",
+        "why": "steel body slam into one target"
+    },
+    "488": {
+        "name": "Synchronoise",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psychic",
+        "why": "psychic burst; no psychic spread anim"
+    },
+    "489": {
+        "name": "Electro Ball",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "zap_cannon",
+        "why": "electric ball hurled at target"
+    },
+    "490": {
+        "name": "Soak",
+        "type": "TYPE_WATER",
+        "class": "CLASS_STATUS",
+        "reuse": "water_gun",
+        "why": "water drenches single target"
+    },
+    "491": {
+        "name": "Flame Charge",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flame_wheel",
+        "why": "fire physical charge, 50 band"
+    },
+    "492": {
+        "name": "Coil",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "acid_armor",
+        "why": "poison self buff, coiling up"
+    },
+    "493": {
+        "name": "Low Sweep",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rolling_kick",
+        "why": "fighting low kick, 60 band"
+    },
+    "494": {
+        "name": "Acid Spray",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge_bomb",
+        "why": "poison sprayed at single target"
+    },
+    "495": {
+        "name": "Foul Play",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "crunch",
+        "why": "dark physical strike, 80-95 band"
+    },
+    "496": {
+        "name": "Simple Beam",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "lock_on",
+        "why": "beam aimed at one target"
+    },
+    "497": {
+        "name": "Entrainment",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "role_play",
+        "why": "ability sharing family, single target"
+    },
+    "498": {
+        "name": "After You",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "support gesture toward another battler"
+    },
+    "499": {
+        "name": "Round",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "snore",
+        "why": "normal sound attack, single target"
+    },
+    "500": {
+        "name": "Echoed Voice",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sonic_boom",
+        "why": "normal sound wave, single target"
+    },
+    "501": {
+        "name": "Chip Away",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "headbutt",
+        "why": "normal physical 70, plain hit"
+    },
+    "502": {
+        "name": "Clear Smog",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge_bomb",
+        "why": "poison cloud burst on target"
+    },
+    "503": {
+        "name": "Stored Power",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psywave",
+        "why": "psychic energy release, variable power"
+    },
+    "504": {
+        "name": "Quick Guard",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "light_screen",
+        "why": "side barrier, user side range"
+    },
+    "505": {
+        "name": "Ally Switch",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "teleport",
+        "why": "psychic self reposition"
+    },
+    "506": {
+        "name": "Scald",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "water_pulse",
+        "why": "water special single target, 80 band"
+    },
+    "507": {
+        "name": "Shell Smash",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "belly_drum",
+        "why": "drastic self stat upheaval"
+    },
+    "508": {
+        "name": "Heal Pulse",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "psycho_shift",
+        "why": "psychic effect sent into the target"
+    },
+    "509": {
+        "name": "Hex",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "shadow_ball",
+        "why": "ghost special single target"
+    },
+    "510": {
+        "name": "Sky Drop",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aerial_ace",
+        "why": "flying physical; script is single turn"
+    },
+    "511": {
+        "name": "Shift Gear",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_STATUS",
+        "reuse": "iron_defense",
+        "why": "steel self stat boost"
+    },
+    "512": {
+        "name": "Circle Throw",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "vital_throw",
+        "why": "fighting throw, 60-70 band"
+    },
+    "513": {
+        "name": "Incinerate",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "heat_wave",
+        "why": "fire special spread at opponents"
+    },
+    "514": {
+        "name": "Quash",
+        "type": "TYPE_DARK",
+        "class": "CLASS_STATUS",
+        "reuse": "torment",
+        "why": "dark status debuff on one target"
+    },
+    "515": {
+        "name": "Acrobatics",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "wing_attack",
+        "why": "flying physical, single target"
+    },
+    "516": {
+        "name": "Reflect Type",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "mimic",
+        "why": "copies something off the target"
+    },
+    "517": {
+        "name": "Retaliate",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "slash",
+        "why": "normal physical 70 strike"
+    },
+    "518": {
+        "name": "Final Gambit",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "focus_blast",
+        "why": "fighting special all-out burst"
+    },
+    "519": {
+        "name": "Bestow",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "trick",
+        "why": "item handed to the target"
+    },
+    "520": {
+        "name": "Inferno",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "fire_blast",
+        "why": "fire special single target, 100 band"
+    },
+    "521": {
+        "name": "Water Pledge",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hydro_pump",
+        "why": "water special single target column"
+    },
+    "522": {
+        "name": "Fire Pledge",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "flamethrower",
+        "why": "fire special single target column"
+    },
+    "523": {
+        "name": "Grass Pledge",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "energy_ball",
+        "why": "grass special single target, 80"
+    },
+    "524": {
+        "name": "Volt Switch",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "shock_wave",
+        "why": "electric special 60-70, single target"
+    },
+    "525": {
+        "name": "Struggle Bug",
+        "type": "TYPE_BUG",
+        "class": "CLASS_SPECIAL",
+        "reuse": "bug_buzz",
+        "why": "bug special; no bug spread anim"
+    },
+    "526": {
+        "name": "Bulldoze",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "magnitude",
+        "why": "ground physical, all adjacent"
+    },
+    "527": {
+        "name": "Frost Breath",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "aurora_beam",
+        "why": "ice special single target, 60-65"
+    },
+    "528": {
+        "name": "Dragon Tail",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_claw",
+        "why": "dragon physical strike, single target"
+    },
+    "529": {
+        "name": "Work Up",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "howl",
+        "why": "normal self attack boost"
+    },
+    "530": {
+        "name": "Electroweb",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "discharge",
+        "why": "electric spread at all adjacent"
+    },
+    "531": {
+        "name": "Wild Charge",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "volt_tackle",
+        "why": "electric physical recoil charge"
+    },
+    "532": {
+        "name": "Drill Run",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bone_club",
+        "why": "ground physical single target impact"
+    },
+    "533": {
+        "name": "Dual Chop",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_claw",
+        "why": "dragon physical strike, two hits"
+    },
+    "534": {
+        "name": "Heart Stamp",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "zen_headbutt",
+        "why": "psychic physical headbutt"
+    },
+    "535": {
+        "name": "Horn Leech",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "giga_drain",
+        "why": "grass drain, same effect family"
+    },
+    "536": {
+        "name": "Sacred Sword",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "cross_chop",
+        "why": "fighting blade-like double strike"
+    },
+    "537": {
+        "name": "Razor Shell",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "crabhammer",
+        "why": "water physical shell strike"
+    },
+    "538": {
+        "name": "Heat Crash",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flare_blitz",
+        "why": "fire physical body crash"
+    },
+    "539": {
+        "name": "Leaf Tornado",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "magical_leaf",
+        "why": "grass leaves swirl at target"
+    },
+    "540": {
+        "name": "Steamroller",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rollout",
+        "why": "rolling crush; no bug roll anim"
+    },
+    "541": {
+        "name": "Cotton Guard",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "harden",
+        "why": "self defense boost, user range"
+    },
+    "542": {
+        "name": "Night Daze",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dark_pulse",
+        "why": "dark special single target"
+    },
+    "543": {
+        "name": "Psystrike",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psycho_boost",
+        "why": "psychic special, 100-140 band"
+    },
+    "544": {
+        "name": "Tail Slap",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "double_slap",
+        "why": "normal multi-hit slapping"
+    },
+    "545": {
+        "name": "Hurricane",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "aeroblast",
+        "why": "flying special, 100-110 band"
+    },
+    "546": {
+        "name": "Head Charge",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "double_edge",
+        "why": "normal physical recoil charge"
+    },
+    "547": {
+        "name": "Gear Grind",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "magnet_bomb",
+        "why": "steel object thrown at target"
+    },
+    "548": {
+        "name": "Searing Shot",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "lava_plume",
+        "why": "fire special, all adjacent"
+    },
+    "549": {
+        "name": "Techno Blast",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "judgment",
+        "why": "normal special type-varying beam"
+    },
+    "550": {
+        "name": "Relic Song",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_voice",
+        "why": "normal sound spread at opponents"
+    },
+    "551": {
+        "name": "Secret Sword",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "aura_sphere",
+        "why": "fighting special, 85-90 band"
+    },
+    "552": {
+        "name": "Glaciate",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "icy_wind",
+        "why": "ice special spread at opponents"
+    },
+    "553": {
+        "name": "Bolt Strike",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder",
+        "why": "electric special, 120-130 band"
+    },
+    "554": {
+        "name": "Blue Flare",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "overheat",
+        "why": "fire special, 130-140 band"
+    },
+    "555": {
+        "name": "Fiery Dance",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "fire_blast",
+        "why": "fire special single target flames"
+    },
+    "556": {
+        "name": "Freeze Shock",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ice_beam",
+        "why": "ice special single target beam"
+    },
+    "557": {
+        "name": "Ice Burn",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ice_beam",
+        "why": "ice special single target beam"
+    },
+    "558": {
+        "name": "Snarl",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dark_pulse",
+        "why": "dark special; only dark special anim"
+    },
+    "559": {
+        "name": "Icicle Crash",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "icicle_spear",
+        "why": "ice physical falling icicles"
+    },
+    "560": {
+        "name": "V-create",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sacred_fire",
+        "why": "fire physical pillar of flame"
+    },
+    "561": {
+        "name": "Fusion Flare",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "fire_blast",
+        "why": "fire special single target, 100 band"
+    },
+    "562": {
+        "name": "Fusion Bolt",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunderbolt",
+        "why": "electric special, 95-100 band"
+    },
+    "563": {
+        "name": "Flying Press",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "hi_jump_kick",
+        "why": "fighting physical leap, 100 band"
+    },
+    "564": {
+        "name": "Mat Block",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "safeguard",
+        "why": "side-wide guard, user side range"
+    },
+    "565": {
+        "name": "Belch",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge_bomb",
+        "why": "poison special single target, 120"
+    },
+    "566": {
+        "name": "Rototiller",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_STATUS",
+        "reuse": "mud_sport",
+        "why": "field-wide ground effect"
+    },
+    "567": {
+        "name": "Sticky Web",
+        "type": "TYPE_BUG",
+        "class": "CLASS_STATUS",
+        "reuse": "spikes",
+        "why": "opponent-side hazard placement"
+    },
+    "568": {
+        "name": "Fell Stinger",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "twineedle",
+        "why": "bug physical stinger jab"
+    },
+    "569": {
+        "name": "Phantom Force",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_force",
+        "why": "genuine two-turn shadow move"
+    },
+    "570": {
+        "name": "Trick-or-Treat",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_STATUS",
+        "reuse": "confuse_ray",
+        "why": "ghost status lights at one target"
+    },
+    "571": {
+        "name": "Noble Roar",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "screech",
+        "why": "normal roar lowering target stats"
+    },
+    "572": {
+        "name": "Ion Deluge",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_STATUS",
+        "reuse": "haze",
+        "why": "field-wide sweep; no electric field anim"
+    },
+    "573": {
+        "name": "ParabolicCharge",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "discharge",
+        "why": "electric special, all adjacent"
+    },
+    "574": {
+        "name": "Forest’s Curse",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "worry_seed",
+        "why": "grass seed planted on target"
+    },
+    "575": {
+        "name": "Petal Blizzard",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "razor_leaf",
+        "why": "grass physical spread of leaves"
+    },
+    "576": {
+        "name": "Freeze-Dry",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ice_beam",
+        "why": "ice special single target freeze"
+    },
+    "577": {
+        "name": "Disarming Voice",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_voice",
+        "why": "sound spread; fairy has no anims"
+    },
+    "578": {
+        "name": "Parting Shot",
+        "type": "TYPE_DARK",
+        "class": "CLASS_STATUS",
+        "reuse": "taunt",
+        "why": "dark status shout at target"
+    },
+    "579": {
+        "name": "Topsy-Turvy",
+        "type": "TYPE_DARK",
+        "class": "CLASS_STATUS",
+        "reuse": "embargo",
+        "why": "dark status single target hex"
+    },
+    "580": {
+        "name": "Draining Kiss",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mega_drain",
+        "why": "drain family; fairy has no anims"
+    },
+    "581": {
+        "name": "Crafty Shield",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "lucky_chant",
+        "why": "side-wide guard, user side range"
+    },
+    "582": {
+        "name": "Flower Shield",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "safeguard",
+        "why": "side-wide guard; fairy has no anims"
+    },
+    "583": {
+        "name": "Grassy Terrain",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "mud_sport",
+        "why": "field-wide ground terrain effect"
+    },
+    "584": {
+        "name": "Misty Terrain",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "water_sport",
+        "why": "field-wide mist over the field"
+    },
+    "585": {
+        "name": "Electrify",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_STATUS",
+        "reuse": "thunder_wave",
+        "why": "electric status at single target"
+    },
+    "586": {
+        "name": "Play Rough",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "slam",
+        "why": "rough physical tackle; no fairy anims"
+    },
+    "587": {
+        "name": "Fairy Wind",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "gust",
+        "why": "wind gust; fairy has no anims"
+    },
+    "588": {
+        "name": "Moonblast",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "luster_purge",
+        "why": "light burst; fairy has no anims"
+    },
+    "589": {
+        "name": "Boomburst",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_voice",
+        "why": "normal sound blast, spread"
+    },
+    "590": {
+        "name": "Fairy Lock",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "perish_song",
+        "why": "field-wide binding; no fairy anims"
+    },
+    "591": {
+        "name": "King’s Shield",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_STATUS",
+        "reuse": "protect",
+        "why": "same protect effect, self targeted"
+    },
+    "592": {
+        "name": "Play Nice",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "charm",
+        "why": "attack drop on one target, cute beat"
+    },
+    "593": {
+        "name": "Confide",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "fake_tears",
+        "why": "stat-drop chatter at one target"
+    },
+    "594": {
+        "name": "Diamond Storm",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_slide",
+        "why": "rock physical spread at opponents"
+    },
+    "595": {
+        "name": "Steam Eruption",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hydro_pump",
+        "why": "water special, 110 band"
+    },
+    "596": {
+        "name": "Hyperspace Hole",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "extrasensory",
+        "why": "psychic special 80, single target"
+    },
+    "597": {
+        "name": "Water Shuriken",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "water_gun",
+        "why": "water shot at single target"
+    },
+    "598": {
+        "name": "Mystical Fire",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ember",
+        "why": "fire special single target, 75"
+    },
+    "599": {
+        "name": "Spiky Shield",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "detect",
+        "why": "same protect effect, self targeted"
+    },
+    "600": {
+        "name": "Aromatic Mist",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "only ally-range anim; support beat"
+    },
+    "601": {
+        "name": "Eerie Impulse",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_STATUS",
+        "reuse": "thunder_wave",
+        "why": "electric status at single target"
+    },
+    "602": {
+        "name": "Venom Drench",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "poison_gas",
+        "why": "poison status spread cloud"
+    },
+    "603": {
+        "name": "Powder",
+        "type": "TYPE_BUG",
+        "class": "CLASS_STATUS",
+        "reuse": "stun_spore",
+        "why": "powder thrown at one target"
+    },
+    "604": {
+        "name": "Geomancy",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "cosmic_power",
+        "why": "self multi-stat boost; no fairy anims"
+    },
+    "605": {
+        "name": "Magnetic Flux",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_STATUS",
+        "reuse": "tailwind",
+        "why": "side-wide buff, user side range"
+    },
+    "606": {
+        "name": "Happy Hour",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "lucky_chant",
+        "why": "side-wide luck effect, does nothing"
+    },
+    "607": {
+        "name": "ElectricTerrain",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_STATUS",
+        "reuse": "rain_dance",
+        "why": "field-wide weather-style terrain"
+    },
+    "608": {
+        "name": "Dazzling Gleam",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "swift",
+        "why": "sparkle spread; fairy has no anims"
+    },
+    "609": {
+        "name": "Celebrate",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "splash",
+        "why": "self targeted, does nothing"
+    },
+    "610": {
+        "name": "Hold Hands",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "ally-range gesture, does nothing"
+    },
+    "611": {
+        "name": "Baby-Doll Eyes",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "sweet_kiss",
+        "why": "fairy single target cute status"
+    },
+    "612": {
+        "name": "Nuzzle",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "spark",
+        "why": "electric physical contact, paralysis"
+    },
+    "613": {
+        "name": "Hold Back",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "false_swipe",
+        "why": "same leave-with-1-HP effect"
+    },
+    "614": {
+        "name": "Infestation",
+        "type": "TYPE_BUG",
+        "class": "CLASS_SPECIAL",
+        "reuse": "bind",
+        "why": "binding trap move, same script shape"
+    },
+    "615": {
+        "name": "Power-Up Punch",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "mach_punch",
+        "why": "fighting punch, 40 band"
+    },
+    "616": {
+        "name": "Oblivion Wing",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "air_slash",
+        "why": "flying special, 75-80 band"
+    },
+    "617": {
+        "name": "Thousand Arrows",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "earthquake",
+        "why": "ground physical spread from below"
+    },
+    "618": {
+        "name": "Thousand Waves",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "magnitude",
+        "why": "ground physical spread tremor"
+    },
+    "619": {
+        "name": "Land’s Wrath",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "earthquake",
+        "why": "ground physical spread from below"
+    },
+    "620": {
+        "name": "Light of Ruin",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mist_ball",
+        "why": "light burst; fairy has no anims"
+    },
+    "621": {
+        "name": "Origin Pulse",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "surf",
+        "why": "water special wave, all adjacent"
+    },
+    "622": {
+        "name": "PrecipiceBlades",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "earthquake",
+        "why": "ground physical spread from below"
+    },
+    "623": {
+        "name": "Dragon Ascent",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "brave_bird",
+        "why": "flying physical dive, 120 band"
+    },
+    "624": {
+        "name": "Hyperspace Fury",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "night_slash",
+        "why": "dark physical repeated strikes"
+    },
+    "625": {
+        "name": "Breakneck Blitz",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "giga_impact",
+        "why": "normal physical finisher"
+    },
+    "626": {
+        "name": "Breakneck Blitz",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_beam",
+        "why": "normal special finisher"
+    },
+    "627": {
+        "name": "All-Out Pummel",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "close_combat",
+        "why": "fighting physical finisher"
+    },
+    "628": {
+        "name": "All-Out Pummel",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "focus_blast",
+        "why": "fighting special finisher"
+    },
+    "629": {
+        "name": "Super Skystrike",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "drill_peck",
+        "why": "flying physical finisher"
+    },
+    "630": {
+        "name": "Super Skystrike",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "aeroblast",
+        "why": "flying special finisher"
+    },
+    "631": {
+        "name": "Acid Downpour",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "gunk_shot",
+        "why": "poison physical finisher"
+    },
+    "632": {
+        "name": "Acid Downpour",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge_bomb",
+        "why": "poison special finisher"
+    },
+    "633": {
+        "name": "Tectonic Rage",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fissure",
+        "why": "ground physical finisher"
+    },
+    "634": {
+        "name": "Tectonic Rage",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_SPECIAL",
+        "reuse": "earth_power",
+        "why": "ground special finisher"
+    },
+    "635": {
+        "name": "Continent Crush",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_wrecker",
+        "why": "rock physical finisher"
+    },
+    "636": {
+        "name": "Continent Crush",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "power_gem",
+        "why": "rock special finisher"
+    },
+    "637": {
+        "name": "Savage Spin-Out",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "megahorn",
+        "why": "bug physical finisher"
+    },
+    "638": {
+        "name": "Savage Spin-Out",
+        "type": "TYPE_BUG",
+        "class": "CLASS_SPECIAL",
+        "reuse": "bug_buzz",
+        "why": "bug special finisher"
+    },
+    "639": {
+        "name": "EndlessNitemare",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_punch",
+        "why": "ghost physical finisher"
+    },
+    "640": {
+        "name": "EndlessNitemare",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "shadow_ball",
+        "why": "ghost special finisher"
+    },
+    "641": {
+        "name": "Corkscrew Crash",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "meteor_mash",
+        "why": "steel physical finisher"
+    },
+    "642": {
+        "name": "Corkscrew Crash",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "flash_cannon",
+        "why": "steel special finisher"
+    },
+    "643": {
+        "name": "Inferno Drive",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flare_blitz",
+        "why": "fire physical finisher"
+    },
+    "644": {
+        "name": "Inferno Drive",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "blast_burn",
+        "why": "fire special finisher"
+    },
+    "645": {
+        "name": "Hydro Vortex",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "waterfall",
+        "why": "water physical finisher"
+    },
+    "646": {
+        "name": "Hydro Vortex",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hydro_cannon",
+        "why": "water special finisher"
+    },
+    "647": {
+        "name": "Bloom Doom",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "power_whip",
+        "why": "grass physical finisher"
+    },
+    "648": {
+        "name": "Bloom Doom",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "frenzy_plant",
+        "why": "grass special finisher"
+    },
+    "649": {
+        "name": "Gigavolt Havoc",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "volt_tackle",
+        "why": "electric physical finisher"
+    },
+    "650": {
+        "name": "Gigavolt Havoc",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder",
+        "why": "electric special finisher"
+    },
+    "651": {
+        "name": "ShatteredPsyche",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "psycho_cut",
+        "why": "psychic physical finisher"
+    },
+    "652": {
+        "name": "ShatteredPsyche",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psycho_boost",
+        "why": "psychic special finisher"
+    },
+    "653": {
+        "name": "Subzero Slammer",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "avalanche",
+        "why": "ice physical finisher"
+    },
+    "654": {
+        "name": "Subzero Slammer",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ice_beam",
+        "why": "ice special finisher"
+    },
+    "655": {
+        "name": "Ultimate Drake",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_rush",
+        "why": "dragon physical finisher"
+    },
+    "656": {
+        "name": "Ultimate Drake",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "draco_meteor",
+        "why": "dragon special finisher"
+    },
+    "657": {
+        "name": "Black Eclipse",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sucker_punch",
+        "why": "dark physical finisher"
+    },
+    "658": {
+        "name": "Black Eclipse",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dark_pulse",
+        "why": "dark special finisher"
+    },
+    "659": {
+        "name": "Twinkle Tackle",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "body_slam",
+        "why": "physical finisher; fairy has no anims"
+    },
+    "660": {
+        "name": "Twinkle Tackle",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mist_ball",
+        "why": "light finisher; fairy has no anims"
+    },
+    "661": {
+        "name": "Catastropika",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "volt_tackle",
+        "why": "electric physical all-out charge"
+    },
+    "662": {
+        "name": "Shore Up",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_STATUS",
+        "reuse": "morning_sun",
+        "why": "self heal scaling with weather"
+    },
+    "663": {
+        "name": "FirstImpression",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "x_scissor",
+        "why": "bug physical quick strike"
+    },
+    "664": {
+        "name": "Baneful Bunker",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "protect",
+        "why": "same protect effect, self targeted"
+    },
+    "665": {
+        "name": "Spirit Shackle",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_claw",
+        "why": "ghost physical strike, 90 band"
+    },
+    "666": {
+        "name": "Darkest Lariat",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "knock_off",
+        "why": "dark physical swing, 70-85 band"
+    },
+    "667": {
+        "name": "Sparkling Aria",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "muddy_water",
+        "why": "water special spread at opponents"
+    },
+    "668": {
+        "name": "Ice Hammer",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "ice_punch",
+        "why": "ice physical punch, 100 band"
+    },
+    "669": {
+        "name": "Floral Healing",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "psycho_shift",
+        "why": "healing glow sent to the target"
+    },
+    "670": {
+        "name": "High Horsepower",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bone_club",
+        "why": "ground physical single target stomp"
+    },
+    "671": {
+        "name": "Strength Sap",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "absorb",
+        "why": "grass drain off single target"
+    },
+    "672": {
+        "name": "Solar Blade",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "solar_beam",
+        "why": "genuine charge move, same script"
+    },
+    "673": {
+        "name": "Leafage",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "vine_whip",
+        "why": "grass physical 35-40 band"
+    },
+    "674": {
+        "name": "Spotlight",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "flash",
+        "why": "light thrown at one target"
+    },
+    "675": {
+        "name": "Toxic Thread",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "toxic",
+        "why": "poison status on single target"
+    },
+    "676": {
+        "name": "Laser Focus",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "focus_energy",
+        "why": "self focus, crit setup"
+    },
+    "677": {
+        "name": "Gear Up",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_STATUS",
+        "reuse": "tailwind",
+        "why": "side-wide buff, user side range"
+    },
+    "678": {
+        "name": "Throat Chop",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "crunch",
+        "why": "dark physical bite, 80 band"
+    },
+    "679": {
+        "name": "Pollen Puff",
+        "type": "TYPE_BUG",
+        "class": "CLASS_SPECIAL",
+        "reuse": "silver_wind",
+        "why": "bug special powder burst"
+    },
+    "680": {
+        "name": "Anchor Shot",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "magnet_bomb",
+        "why": "steel object thrown at target"
+    },
+    "681": {
+        "name": "Psychic Terrain",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "gravity",
+        "why": "field-wide psychic effect"
+    },
+    "682": {
+        "name": "Lunge",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bug_bite",
+        "why": "bug physical lunge into target"
+    },
+    "683": {
+        "name": "Fire Lash",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fire_fang",
+        "why": "fire physical lash, 90 band"
+    },
+    "684": {
+        "name": "Power Trip",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "punishment",
+        "why": "dark power scaling with boosts"
+    },
+    "685": {
+        "name": "Burn Up",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "overheat",
+        "why": "fire special, 130 band"
+    },
+    "686": {
+        "name": "Speed Swap",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "heart_swap",
+        "why": "psychic stat swap with target"
+    },
+    "687": {
+        "name": "Smart Strike",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "steel_wing",
+        "why": "steel physical 70, single target"
+    },
+    "688": {
+        "name": "Purify",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "psycho_shift",
+        "why": "status cleared off the target"
+    },
+    "689": {
+        "name": "RevelationDance",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "tri_attack",
+        "why": "normal special multi-colour beams"
+    },
+    "690": {
+        "name": "Core Enforcer",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "twister",
+        "why": "dragon special spread at opponents"
+    },
+    "691": {
+        "name": "Trop Kick",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "needle_arm",
+        "why": "grass physical limb strike"
+    },
+    "692": {
+        "name": "Instruct",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "skill_swap",
+        "why": "psychic prod at single target"
+    },
+    "693": {
+        "name": "Beak Blast",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "drill_peck",
+        "why": "flying physical beak strike"
+    },
+    "694": {
+        "name": "Clanging Scales",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "twister",
+        "why": "dragon special spread at opponents"
+    },
+    "695": {
+        "name": "Dragon Hammer",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_rush",
+        "why": "dragon physical slam, 100 band"
+    },
+    "696": {
+        "name": "Brutal Swing",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "night_slash",
+        "why": "dark swing; no dark spread anim"
+    },
+    "697": {
+        "name": "Aurora Veil",
+        "type": "TYPE_ICE",
+        "class": "CLASS_STATUS",
+        "reuse": "mist",
+        "why": "ice side screen, user side range"
+    },
+    "698": {
+        "name": "Sinister Raid",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_claw",
+        "why": "ghost physical finisher"
+    },
+    "699": {
+        "name": "Moonsault",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sucker_punch",
+        "why": "dark physical finisher"
+    },
+    "700": {
+        "name": "OceanicOperetta",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hydro_cannon",
+        "why": "water special finisher"
+    },
+    "701": {
+        "name": "Alolan Guardian",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "luster_purge",
+        "why": "light finisher; fairy has no anims"
+    },
+    "702": {
+        "name": "7-Star Strike",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_punch",
+        "why": "ghost physical finisher"
+    },
+    "703": {
+        "name": "Sparksurfer",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder",
+        "why": "electric special finisher"
+    },
+    "704": {
+        "name": "Pulver-Pancake",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "giga_impact",
+        "why": "normal physical finisher"
+    },
+    "705": {
+        "name": "ExtremeEvoboost",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "cosmic_power",
+        "why": "self multi-stat boost"
+    },
+    "706": {
+        "name": "OriginSupernova",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psycho_boost",
+        "why": "psychic special finisher"
+    },
+    "707": {
+        "name": "Shell Trap",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "eruption",
+        "why": "fire special spread at opponents"
+    },
+    "708": {
+        "name": "Fleur Cannon",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "overheat",
+        "why": "cannon burst dropping own sp.atk"
+    },
+    "709": {
+        "name": "Psychic Fangs",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "zen_headbutt",
+        "why": "psychic physical headbutt"
+    },
+    "710": {
+        "name": "StompingTantrum",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fissure",
+        "why": "ground physical stomp on target"
+    },
+    "711": {
+        "name": "Shadow Bone",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_claw",
+        "why": "ghost physical strike, 85 band"
+    },
+    "712": {
+        "name": "Accelerock",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_throw",
+        "why": "rock physical 40, quick throw"
+    },
+    "713": {
+        "name": "Liquidation",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_tail",
+        "why": "water physical strike, 85-90"
+    },
+    "714": {
+        "name": "Prismatic Laser",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_beam",
+        "why": "recharge laser, same script shape"
+    },
+    "715": {
+        "name": "Spectral Thief",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_sneak",
+        "why": "ghost physical shadow strike"
+    },
+    "716": {
+        "name": "Sunsteel Strike",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "meteor_mash",
+        "why": "steel physical charge, 100 band"
+    },
+    "717": {
+        "name": "Moongeist Beam",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "night_shade",
+        "why": "ghost special beam at target"
+    },
+    "718": {
+        "name": "Tearful Look",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "fake_tears",
+        "why": "tearful look at one target"
+    },
+    "719": {
+        "name": "Zing Zap",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thunder_punch",
+        "why": "electric physical punch, 80 band"
+    },
+    "720": {
+        "name": "Nature’sMadness",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "super_fang",
+        "why": "halves the target's HP, same family"
+    },
+    "721": {
+        "name": "Multi-Attack",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "double_edge",
+        "why": "normal physical charge, 120 band"
+    },
+    "722": {
+        "name": "10,000,000 Bolt",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "zap_cannon",
+        "why": "electric special finisher"
+    },
+    "723": {
+        "name": "Mind Blown",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "lava_plume",
+        "why": "fire special, all adjacent"
+    },
+    "724": {
+        "name": "Plasma Fists",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thunder_punch",
+        "why": "electric physical punch, 100 band"
+    },
+    "725": {
+        "name": "Photon Geyser",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "luster_purge",
+        "why": "psychic light burst, 100 band"
+    },
+    "726": {
+        "name": "LightBurnSky",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psycho_boost",
+        "why": "psychic special finisher"
+    },
+    "727": {
+        "name": "Sunraze Smash",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_head",
+        "why": "steel physical finisher"
+    },
+    "728": {
+        "name": "Moonraze Storm",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ominous_wind",
+        "why": "ghost special storm finisher"
+    },
+    "729": {
+        "name": "Let’s Snuggle",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "body_slam",
+        "why": "physical finisher; fairy has no anims"
+    },
+    "730": {
+        "name": "Stormshards",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "stone_edge",
+        "why": "rock physical finisher"
+    },
+    "731": {
+        "name": "Soulblaze",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "twister",
+        "why": "dragon special spread finisher"
+    },
+    "732": {
+        "name": "Zippy Zap",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "spark",
+        "why": "electric physical quick contact"
+    },
+    "733": {
+        "name": "Splishy Splash",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "muddy_water",
+        "why": "water special spread at opponents"
+    },
+    "734": {
+        "name": "Floaty Fall",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "brave_bird",
+        "why": "flying physical dive, 90 band"
+    },
+    "735": {
+        "name": "Pika Papow",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunderbolt",
+        "why": "electric special single target"
+    },
+    "736": {
+        "name": "Bouncy Bubble",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "bubble_beam",
+        "why": "water special 60-65, single target"
+    },
+    "737": {
+        "name": "Buzzy Buzz",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder_shock",
+        "why": "electric special 40-60, paralysis"
+    },
+    "738": {
+        "name": "Sizzly Slide",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flame_wheel",
+        "why": "fire physical contact, 60 band"
+    },
+    "739": {
+        "name": "Glitzy Glow",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psybeam",
+        "why": "psychic special beam, 65-80"
+    },
+    "740": {
+        "name": "Baddy Bad",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dark_pulse",
+        "why": "dark special single target"
+    },
+    "741": {
+        "name": "Sappy Seed",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "seed_bomb",
+        "why": "grass physical seed thrown"
+    },
+    "742": {
+        "name": "Freezy Frost",
+        "type": "TYPE_ICE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ice_beam",
+        "why": "ice special beam, 100 band"
+    },
+    "743": {
+        "name": "Sparkly Swirl",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mist_ball",
+        "why": "sparkling orb; fairy has no anims"
+    },
+    "744": {
+        "name": "Veevee Volley",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "return",
+        "why": "same friendship-scaled effect"
+    },
+    "745": {
+        "name": "Double IronBash",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_head",
+        "why": "steel physical bash, two hits"
+    },
+    "746": {
+        "name": "Max Guard",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "protect",
+        "why": "same protect effect, self targeted"
+    },
+    "747": {
+        "name": "Dynamax Cannon",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dragon_pulse",
+        "why": "dragon special, 90-100 band"
+    },
+    "748": {
+        "name": "Snipe Shot",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "octazooka",
+        "why": "water special shot, single target"
+    },
+    "749": {
+        "name": "Jaw Lock",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bite",
+        "why": "dark physical bite that locks on"
+    },
+    "750": {
+        "name": "Stuff Cheeks",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "stockpile",
+        "why": "self targeted, stores something up"
+    },
+    "751": {
+        "name": "No Retreat",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "bulk_up",
+        "why": "fighting self stat boost"
+    },
+    "752": {
+        "name": "Tar Shot",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_STATUS",
+        "reuse": "sand_attack",
+        "why": "stuff thrown at one target"
+    },
+    "753": {
+        "name": "Magic Powder",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "sleep_powder",
+        "why": "powder thrown at one target"
+    },
+    "754": {
+        "name": "Dragon Darts",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_claw",
+        "why": "dragon physical, two darts"
+    },
+    "755": {
+        "name": "Teatime",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "teeter_dance",
+        "why": "all-adjacent normal status beat"
+    },
+    "756": {
+        "name": "Octolock",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "block",
+        "why": "same prevent-escape effect"
+    },
+    "757": {
+        "name": "Bolt Beak",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thunder_fang",
+        "why": "electric physical bite, 80 band"
+    },
+    "758": {
+        "name": "Fishious Rend",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "crabhammer",
+        "why": "water physical bite-strike, 80"
+    },
+    "759": {
+        "name": "Court Change",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "trick_room",
+        "why": "field-wide swap effect"
+    },
+    "760": {
+        "name": "Max Flare",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sacred_fire",
+        "why": "fire physical pillar of flame"
+    },
+    "761": {
+        "name": "Max Flutterby",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bug_buzz",
+        "why": "bug elemental blast"
+    },
+    "762": {
+        "name": "Max Lightning",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thunder",
+        "why": "electric elemental blast"
+    },
+    "763": {
+        "name": "Max Strike",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "giga_impact",
+        "why": "normal elemental blast"
+    },
+    "764": {
+        "name": "Max Knuckle",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "close_combat",
+        "why": "fighting elemental blast"
+    },
+    "765": {
+        "name": "Max Phantasm",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_ball",
+        "why": "ghost elemental blast"
+    },
+    "766": {
+        "name": "Max Hailstorm",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "icicle_spear",
+        "why": "ice elemental blast"
+    },
+    "767": {
+        "name": "Max Ooze",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sludge_bomb",
+        "why": "poison elemental blast"
+    },
+    "768": {
+        "name": "Max Geyser",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "hydro_pump",
+        "why": "water elemental blast"
+    },
+    "769": {
+        "name": "Max Airstream",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aeroblast",
+        "why": "flying elemental blast"
+    },
+    "770": {
+        "name": "Max Starfall",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "mist_ball",
+        "why": "light blast; fairy has no anims"
+    },
+    "771": {
+        "name": "Max Wyrmwind",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "draco_meteor",
+        "why": "dragon elemental blast"
+    },
+    "772": {
+        "name": "Max Mindstorm",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "psychic",
+        "why": "psychic elemental blast"
+    },
+    "773": {
+        "name": "Max Rockfall",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_wrecker",
+        "why": "rock elemental blast"
+    },
+    "774": {
+        "name": "Max Quake",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fissure",
+        "why": "ground elemental blast"
+    },
+    "775": {
+        "name": "Max Darkness",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dark_pulse",
+        "why": "dark elemental blast"
+    },
+    "776": {
+        "name": "Max Overgrowth",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "frenzy_plant",
+        "why": "grass elemental blast"
+    },
+    "777": {
+        "name": "Max Steelspike",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flash_cannon",
+        "why": "steel elemental blast"
+    },
+    "778": {
+        "name": "Clangorous Soul",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_STATUS",
+        "reuse": "dragon_dance",
+        "why": "dragon self multi-stat boost"
+    },
+    "779": {
+        "name": "Body Press",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "submission",
+        "why": "fighting physical body press, 80"
+    },
+    "780": {
+        "name": "Decorate",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_STATUS",
+        "reuse": "acupressure",
+        "why": "stat boost given to another battler"
+    },
+    "781": {
+        "name": "Drum Beating",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "needle_arm",
+        "why": "grass physical limb strike, 80"
+    },
+    "782": {
+        "name": "Snap Trap",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "metal_claw",
+        "why": "steel physical snap at target"
+    },
+    "783": {
+        "name": "Pyro Ball",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "blaze_kick",
+        "why": "fire physical kicked flame"
+    },
+    "784": {
+        "name": "Behemoth Blade",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_tail",
+        "why": "steel physical heavy swing"
+    },
+    "785": {
+        "name": "Behemoth Bash",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_head",
+        "why": "steel physical bash, 100 band"
+    },
+    "786": {
+        "name": "Aura Wheel",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "volt_tackle",
+        "why": "electric physical charge, 110"
+    },
+    "787": {
+        "name": "Breaking Swipe",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "twister",
+        "why": "dragon spread at opponents"
+    },
+    "788": {
+        "name": "Branch Poke",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "vine_whip",
+        "why": "grass physical poke, 40 band"
+    },
+    "789": {
+        "name": "Overdrive",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "discharge",
+        "why": "electric spread at opponents"
+    },
+    "790": {
+        "name": "Apple Acid",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "energy_ball",
+        "why": "grass special single target, 90"
+    },
+    "791": {
+        "name": "Grav Apple",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "seed_bomb",
+        "why": "grass physical fruit dropped"
+    },
+    "792": {
+        "name": "Spirit Break",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "slam",
+        "why": "physical slam; fairy has no anims"
+    },
+    "793": {
+        "name": "Strange Steam",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psybeam",
+        "why": "confusing haze at one target"
+    },
+    "794": {
+        "name": "Life Dew",
+        "type": "TYPE_WATER",
+        "class": "CLASS_STATUS",
+        "reuse": "aromatherapy",
+        "why": "side-wide healing, user side range"
+    },
+    "795": {
+        "name": "Obstruct",
+        "type": "TYPE_DARK",
+        "class": "CLASS_STATUS",
+        "reuse": "detect",
+        "why": "same protect effect, self targeted"
+    },
+    "796": {
+        "name": "False Surrender",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "faint_attack",
+        "why": "same never-miss dark strike"
+    },
+    "797": {
+        "name": "Meteor Assault",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "superpower",
+        "why": "fighting physical all-out charge"
+    },
+    "798": {
+        "name": "Eternabeam",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "roar_of_time",
+        "why": "dragon special recharge beam"
+    },
+    "799": {
+        "name": "Steel Beam",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "flash_cannon",
+        "why": "steel special beam, 140 band"
+    },
+    "800": {
+        "name": "Expanding Force",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "extrasensory",
+        "why": "psychic special 80, single target"
+    },
+    "801": {
+        "name": "Steel Roller",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "gyro_ball",
+        "why": "steel physical rolling strike"
+    },
+    "802": {
+        "name": "Scale Shot",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "spike_cannon",
+        "why": "volley of projectiles, multi-hit"
+    },
+    "803": {
+        "name": "Meteor Beam",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "power_gem",
+        "why": "rock special charged beam"
+    },
+    "804": {
+        "name": "Shell Side Arm",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge_bomb",
+        "why": "poison special single target, 90"
+    },
+    "805": {
+        "name": "Misty Explosion",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "explosion",
+        "why": "explosion-class move, same script"
+    },
+    "806": {
+        "name": "Grassy Glide",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "vine_whip",
+        "why": "grass physical glide, 55 band"
+    },
+    "807": {
+        "name": "Rising Voltage",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "shock_wave",
+        "why": "electric special 70, single target"
+    },
+    "808": {
+        "name": "Terrain Pulse",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "weather_ball",
+        "why": "same weather-varying effect"
+    },
+    "809": {
+        "name": "Skitter Smack",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "x_scissor",
+        "why": "bug physical strike, 70 band"
+    },
+    "810": {
+        "name": "BurningJealousy",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "heat_wave",
+        "why": "fire special spread at opponents"
+    },
+    "811": {
+        "name": "Lash Out",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "assurance",
+        "why": "dark physical strike, 75 band"
+    },
+    "812": {
+        "name": "Poltergeist",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "astonish",
+        "why": "ghost scare, objects thrown"
+    },
+    "813": {
+        "name": "Corrosive Gas",
+        "type": "TYPE_POISON",
+        "class": "CLASS_STATUS",
+        "reuse": "poison_gas",
+        "why": "poison status cloud, all adjacent"
+    },
+    "814": {
+        "name": "Coaching",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "ally-range encouragement"
+    },
+    "815": {
+        "name": "Flip Turn",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_jet",
+        "why": "water physical dash then switch"
+    },
+    "816": {
+        "name": "Triple Axel",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "triple_kick",
+        "why": "three escalating kicks, same beat"
+    },
+    "817": {
+        "name": "Dual Wingbeat",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "wing_attack",
+        "why": "flying physical, two beats"
+    },
+    "818": {
+        "name": "Scorching Sands",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_SPECIAL",
+        "reuse": "earth_power",
+        "why": "ground special from below"
+    },
+    "819": {
+        "name": "Jungle Healing",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "heal_bell",
+        "why": "side-wide healing, user side range"
+    },
+    "820": {
+        "name": "Wicked Blow",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "sucker_punch",
+        "why": "dark physical focused blow"
+    },
+    "821": {
+        "name": "Surging Strikes",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_jet",
+        "why": "water physical rushing strikes"
+    },
+    "822": {
+        "name": "Thunder Cage",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "zap_cannon",
+        "why": "electric special orb at target"
+    },
+    "823": {
+        "name": "Dragon Energy",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "twister",
+        "why": "dragon spread at opponents, 150"
+    },
+    "824": {
+        "name": "Freezing Glare",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psychic",
+        "why": "psychic special glare, 90 band"
+    },
+    "825": {
+        "name": "Fiery Wrath",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dark_pulse",
+        "why": "dark special; only dark special anim"
+    },
+    "826": {
+        "name": "Thunderous Kick",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "jump_kick",
+        "why": "fighting physical kick, 90 band"
+    },
+    "827": {
+        "name": "Glacial Lance",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "blizzard",
+        "why": "ice spread at opponents"
+    },
+    "828": {
+        "name": "Astral Barrage",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ominous_wind",
+        "why": "ghost special storm at opponents"
+    },
+    "829": {
+        "name": "Eerie Spell",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psywave",
+        "why": "psychic special wave, 80 band"
+    },
+    "830": {
+        "name": "Dire Claw",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "poison_jab",
+        "why": "poison physical jab, 80 band"
+    },
+    "831": {
+        "name": "Psyshield Bash",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "zen_headbutt",
+        "why": "psychic physical bash, 90 band"
+    },
+    "832": {
+        "name": "Power Shift",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "power_trick",
+        "why": "same attack-defense swap effect"
+    },
+    "833": {
+        "name": "Stone Axe",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_tomb",
+        "why": "rock physical strike leaving shards"
+    },
+    "834": {
+        "name": "SpringtideStorm",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "air_cutter",
+        "why": "wind spread; fairy has no anims"
+    },
+    "835": {
+        "name": "Mystical Power",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mist_ball",
+        "why": "psychic orb of light, 70 band"
+    },
+    "836": {
+        "name": "Raging Fury",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thrash",
+        "why": "rampage at a random target"
+    },
+    "837": {
+        "name": "Wave Crash",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "waterfall",
+        "why": "water physical charge, 120 band"
+    },
+    "838": {
+        "name": "Chloroblast",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "leaf_storm",
+        "why": "grass special all-out blast"
+    },
+    "839": {
+        "name": "Mountain Gale",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "avalanche",
+        "why": "ice physical fall, 120 band"
+    },
+    "840": {
+        "name": "Victory Dance",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_STATUS",
+        "reuse": "dragon_dance",
+        "why": "dance raising own stats"
+    },
+    "841": {
+        "name": "Headlong Rush",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "bone_club",
+        "why": "ground physical charge into target"
+    },
+    "842": {
+        "name": "Barb Barrage",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "poison_sting",
+        "why": "poison physical barbs"
+    },
+    "843": {
+        "name": "Esper Wing",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "extrasensory",
+        "why": "psychic special 80, single target"
+    },
+    "844": {
+        "name": "Bitter Malice",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "night_shade",
+        "why": "ghost special malice at target"
+    },
+    "845": {
+        "name": "Shelter",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_STATUS",
+        "reuse": "iron_defense",
+        "why": "steel self defense boost"
+    },
+    "846": {
+        "name": "Triple Arrows",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "arm_thrust",
+        "why": "fighting physical repeated strikes"
+    },
+    "847": {
+        "name": "Infernal Parade",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_SPECIAL",
+        "reuse": "ominous_wind",
+        "why": "ghost special procession, 65 band"
+    },
+    "848": {
+        "name": "Ceaseless Edge",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "night_slash",
+        "why": "dark physical blade, 65 band"
+    },
+    "849": {
+        "name": "BleakwindStorm",
+        "type": "TYPE_FLYING",
+        "class": "CLASS_SPECIAL",
+        "reuse": "air_cutter",
+        "why": "flying special spread at opponents"
+    },
+    "850": {
+        "name": "WildboltStorm",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "discharge",
+        "why": "electric spread at opponents"
+    },
+    "851": {
+        "name": "SandsearStorm",
+        "type": "TYPE_GROUND",
+        "class": "CLASS_SPECIAL",
+        "reuse": "earth_power",
+        "why": "ground special; no ground spread anim"
+    },
+    "852": {
+        "name": "Lunar Blessing",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "ally-range blessing"
+    },
+    "853": {
+        "name": "Take Heart",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "ally-range encouragement"
+    },
+    "854": {
+        "name": "Tera Blast",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hidden_power",
+        "why": "type-varying normal special"
+    },
+    "855": {
+        "name": "Silk Trap",
+        "type": "TYPE_BUG",
+        "class": "CLASS_STATUS",
+        "reuse": "protect",
+        "why": "same protect effect, self targeted"
+    },
+    "856": {
+        "name": "Axe Kick",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "hi_jump_kick",
+        "why": "same crash-on-miss kick family"
+    },
+    "857": {
+        "name": "Last Respects",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_sneak",
+        "why": "ghost physical shadow strike"
+    },
+    "858": {
+        "name": "Lumina Crash",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "luster_purge",
+        "why": "psychic light crash, 80 band"
+    },
+    "859": {
+        "name": "Order Up",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_rush",
+        "why": "dragon physical slam, 80 band"
+    },
+    "860": {
+        "name": "Jet Punch",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_jet",
+        "why": "water physical priority dash"
+    },
+    "861": {
+        "name": "Spicy Extract",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_STATUS",
+        "reuse": "worry_seed",
+        "why": "grass extract applied to target"
+    },
+    "862": {
+        "name": "Spin Out",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "gyro_ball",
+        "why": "steel physical spin, 100 band"
+    },
+    "863": {
+        "name": "Population Bomb",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fury_swipes",
+        "why": "normal multi-hit flurry"
+    },
+    "864": {
+        "name": "Ice Spinner",
+        "type": "TYPE_ICE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "ice_ball",
+        "why": "ice physical spin, 80 band"
+    },
+    "865": {
+        "name": "Glaive Rush",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dragon_rush",
+        "why": "dragon physical rush, 120 band"
+    },
+    "866": {
+        "name": "RevivalBlessing",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "healing_wish",
+        "why": "self targeted revival wish"
+    },
+    "867": {
+        "name": "Salt Cure",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rock_blast",
+        "why": "rock physical grains thrown"
+    },
+    "868": {
+        "name": "Triple Dive",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_jet",
+        "why": "water physical repeated dives"
+    },
+    "869": {
+        "name": "Mortal Spin",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "rapid_spin",
+        "why": "same spin clearing hazards"
+    },
+    "870": {
+        "name": "Doodle",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "sketch",
+        "why": "copies something off the target"
+    },
+    "871": {
+        "name": "Fillet Away",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "belly_drum",
+        "why": "self HP spent for stat boost"
+    },
+    "872": {
+        "name": "Kowtow Cleave",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "faint_attack",
+        "why": "same never-miss dark strike"
+    },
+    "873": {
+        "name": "Flower Trick",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "magical_leaf",
+        "why": "grass never-miss trick"
+    },
+    "874": {
+        "name": "Torch Song",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "flamethrower",
+        "why": "fire special stream, 80 band"
+    },
+    "875": {
+        "name": "Aqua Step",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "aqua_tail",
+        "why": "water physical step, 80 band"
+    },
+    "876": {
+        "name": "Raging Bull",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "take_down",
+        "why": "normal physical charging bull"
+    },
+    "877": {
+        "name": "Make It Rain",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "pay_day",
+        "why": "coins scattered, same look"
+    },
+    "878": {
+        "name": "Psyblade",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "psycho_cut",
+        "why": "psychic physical blade"
+    },
+    "879": {
+        "name": "Hydro Steam",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "brine",
+        "why": "water special stream, 80 band"
+    },
+    "880": {
+        "name": "Ruination",
+        "type": "TYPE_DARK",
+        "class": "CLASS_SPECIAL",
+        "reuse": "super_fang",
+        "why": "halves the target's HP, same family"
+    },
+    "881": {
+        "name": "ColisionCourse",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "close_combat",
+        "why": "fighting physical collision, 100"
+    },
+    "882": {
+        "name": "Electro Drift",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunderbolt",
+        "why": "electric special, 100 band"
+    },
+    "883": {
+        "name": "Shed Tail",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "substitute",
+        "why": "same substitute-making family"
+    },
+    "884": {
+        "name": "ChillyReception",
+        "type": "TYPE_ICE",
+        "class": "CLASS_STATUS",
+        "reuse": "hail",
+        "why": "field-wide snowfall"
+    },
+    "885": {
+        "name": "Tidy Up",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_STATUS",
+        "reuse": "swords_dance",
+        "why": "self boost after tidying up"
+    },
+    "886": {
+        "name": "Snowscape",
+        "type": "TYPE_ICE",
+        "class": "CLASS_STATUS",
+        "reuse": "hail",
+        "why": "field-wide snowfall"
+    },
+    "887": {
+        "name": "Pounce",
+        "type": "TYPE_BUG",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "leech_life",
+        "why": "bug physical pounce, 50 band"
+    },
+    "888": {
+        "name": "Trailblaze",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "needle_arm",
+        "why": "grass physical dash, 50 band"
+    },
+    "889": {
+        "name": "Chilling Water",
+        "type": "TYPE_WATER",
+        "class": "CLASS_SPECIAL",
+        "reuse": "water_gun",
+        "why": "water special splash, 50 band"
+    },
+    "890": {
+        "name": "Hyper Drill",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "horn_attack",
+        "why": "normal physical drilling strike"
+    },
+    "891": {
+        "name": "Twin Beam",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psybeam",
+        "why": "psychic special beam, two shots"
+    },
+    "892": {
+        "name": "Rage Fist",
+        "type": "TYPE_GHOST",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "shadow_punch",
+        "why": "ghost physical punch, 100 band"
+    },
+    "893": {
+        "name": "Armor Cannon",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_SPECIAL",
+        "reuse": "fire_blast",
+        "why": "fire special burst, 120 band"
+    },
+    "894": {
+        "name": "Bitter Blade",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fire_punch",
+        "why": "fire physical blade, 90 band"
+    },
+    "895": {
+        "name": "Double Shock",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "volt_tackle",
+        "why": "electric physical full discharge"
+    },
+    "896": {
+        "name": "Gigaton Hammer",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_tail",
+        "why": "steel physical heavy swing, 160"
+    },
+    "897": {
+        "name": "Comeuppance",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "metal_burst",
+        "why": "same counter effect and range"
+    },
+    "898": {
+        "name": "Aqua Cutter",
+        "type": "TYPE_WATER",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "crabhammer",
+        "why": "water physical slicing strike"
+    },
+    "899": {
+        "name": "Blazing Torque",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "flame_wheel",
+        "why": "fire physical spin, 80 band"
+    },
+    "900": {
+        "name": "Wicked Torque",
+        "type": "TYPE_DARK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "assurance",
+        "why": "dark physical spin, 80 band"
+    },
+    "901": {
+        "name": "Noxious Torque",
+        "type": "TYPE_POISON",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "poison_jab",
+        "why": "poison physical spin, 100 band"
+    },
+    "902": {
+        "name": "Combat Torque",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dynamic_punch",
+        "why": "fighting physical spin, 100 band"
+    },
+    "903": {
+        "name": "Magical Torque",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "dizzy_punch",
+        "why": "confusing strike; no fairy anims"
+    },
+    "904": {
+        "name": "Blood Moon",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "hyper_beam",
+        "why": "normal special beam, 130 band"
+    },
+    "905": {
+        "name": "Matcha Gotcha",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "giga_drain",
+        "why": "grass drain, same effect family"
+    },
+    "906": {
+        "name": "Syrup Bomb",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_SPECIAL",
+        "reuse": "energy_ball",
+        "why": "grass special lobbed, 60 band"
+    },
+    "907": {
+        "name": "Ivy Cudgel",
+        "type": "TYPE_GRASS",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "power_whip",
+        "why": "grass physical cudgel, 100 band"
+    },
+    "908": {
+        "name": "Electro Shot",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder",
+        "why": "electric special charged shot"
+    },
+    "909": {
+        "name": "Tera Starstorm",
+        "type": "TYPE_NORMAL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "swift",
+        "why": "stars spread at opponents"
+    },
+    "910": {
+        "name": "Fickle Beam",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "dragon_pulse",
+        "why": "dragon special beam, 80 band"
+    },
+    "911": {
+        "name": "Burning Bulwark",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_STATUS",
+        "reuse": "detect",
+        "why": "same protect effect, self targeted"
+    },
+    "912": {
+        "name": "Thunderclap",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "thunder_shock",
+        "why": "electric special priority zap"
+    },
+    "913": {
+        "name": "Mighty Cleave",
+        "type": "TYPE_ROCK",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "stone_edge",
+        "why": "rock physical cleave, 95 band"
+    },
+    "914": {
+        "name": "Tachyon Cutter",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_SPECIAL",
+        "reuse": "mirror_shot",
+        "why": "steel special shot, two hits"
+    },
+    "915": {
+        "name": "Hard Press",
+        "type": "TYPE_STEEL",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "iron_head",
+        "why": "steel physical press"
+    },
+    "916": {
+        "name": "Dragon Cheer",
+        "type": "TYPE_DRAGON",
+        "class": "CLASS_STATUS",
+        "reuse": "helping_hand",
+        "why": "ally-range cheer"
+    },
+    "917": {
+        "name": "Alluring Voice",
+        "type": "TYPE_FAIRY",
+        "class": "CLASS_SPECIAL",
+        "reuse": "chatter",
+        "why": "voice attack; fairy has no anims"
+    },
+    "918": {
+        "name": "Temper Flare",
+        "type": "TYPE_FIRE",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "fire_punch",
+        "why": "fire physical flare, 75 band"
+    },
+    "919": {
+        "name": "Supercell Slam",
+        "type": "TYPE_ELECTRIC",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "thunder_punch",
+        "why": "electric physical slam, 100 band"
+    },
+    "920": {
+        "name": "Psychic Noise",
+        "type": "TYPE_PSYCHIC",
+        "class": "CLASS_SPECIAL",
+        "reuse": "psywave",
+        "why": "psychic special noise, 75 band"
+    },
+    "921": {
+        "name": "Upper Hand",
+        "type": "TYPE_FIGHTING",
+        "class": "CLASS_PHYSICAL",
+        "reuse": "mach_punch",
+        "why": "fighting priority punch"
+    },
+    "922": {
+        "name": "Malignant Chain",
+        "type": "TYPE_POISON",
+        "class": "CLASS_SPECIAL",
+        "reuse": "sludge",
+        "why": "poison special single target, 100"
+    }
+}

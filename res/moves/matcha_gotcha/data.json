@@ -1,0 +1,31 @@
+{
+    "name": "Matcha Gotcha",
+    "description": [
+        "The user fires a blast\n",
+        "of tea, restoring HP\n",
+        "by up to half the\n",
+        "damage dealt. This may\n",
+        "also burn the target."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 80,
+    "accuracy": 90,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_MATCHA_GOTCHA",
+        "chance": 20
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

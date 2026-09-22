@@ -163,6 +163,7 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
     r = ndspy.narc.NARC(ref.files[nr[path]]).files
     names = imp.text_bank_names()
     checked = mismatches = skipped_slots = deferred = 0
+    prefixed = prefix_bad = 0
     with tempfile.TemporaryDirectory() as tmp:
         for i in range(min(len(b), len(r))):
             if b[i] == r[i]:
@@ -171,6 +172,24 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
             got = imp.decode_text_bank(msgenc, charmap, b[i], tmp, f"{i}_built")
             if len(new) != len(got) or i in imp.TEXT_BANKS_SKIPPED:
                 deferred += 1
+                # A bank Phase 4 appended to cannot be compared entry for entry
+                # against a reference that predates the append, but its shared
+                # prefix still has to match, and without this nothing would
+                # notice a native species name or move name coming out wrong.
+                # Only a bank that grew qualifies: one that shrank or was
+                # rewritten has no prefix to speak of.
+                if (len(got) > len(new) and i not in imp.TEXT_BANKS_SKIPPED
+                        and not isinstance(imp.message_body(new[0]), tuple)):
+                    prefixed += 1
+                    bad = [f"[{s}] built {imp.message_body(h)!r} != ref {imp.message_body(w)!r}"
+                           for s, (w, h) in enumerate(zip(new, got))
+                           if imp.message_body(w) != imp.message_body(h)
+                           and not isinstance(imp.message_body(w), tuple)
+                           and not isinstance(imp.message_body(h), tuple)]
+                    if bad:
+                        prefix_bad += 1
+                        print(f"{names[i]}: {len(bad)} of the {len(new)} entries it "
+                              f"shares with the reference differ: {bad[:3]}")
                 continue
             if imp.text_targets(i, len(new)) is None:
                 deferred += 1
@@ -200,7 +219,9 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
                 print(f"{names[i]}: {len(bad)} messages differ: {bad[:3]}")
     print(f"{path}: {checked} imported banks checked, {mismatches} with unexpected differences; "
           f"{skipped_slots} unused slots left empty and {deferred} banks deferred, both as intended")
-    return mismatches == 0
+    print(f"{path}: of the deferred, {prefixed} grew in Phase 4 and were compared on the "
+          f"entries they still share with the reference; {prefix_bad} disagree")
+    return mismatches == 0 and prefix_bad == 0
 
 
 def check_map_headers(built, ref):
@@ -417,6 +438,40 @@ def check_species_archive(b, r, path):
     return not bad
 
 
+WAZA = "poketool/waza/pl_waza_tbl.narc"
+
+
+def check_move_table(b, r, path):
+    """pl_waza_tbl, which element 4 appended to rather than rearranged.
+
+    The reference's members stay where they are, all 471 of them, including the
+    three inaccessible retail records at 468..470 that are ordinary move
+    directories now. Everything from 471 up is a move Hardlove added, so the
+    check is the ordinary byte comparison over the reference's range plus a
+    count of the tail.
+    """
+    rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
+    bad, intended = [], []
+    for i in range(len(r)):
+        if i >= len(b):
+            bad.append(i)
+        elif b[i] != r[i]:
+            (intended if intended_divergence(path, i, b[i], r[i]) else bad).append(i)
+    extra = len(b) - len(r)
+    if intended:
+        print(f"{path}: {len(intended)} members differ only at the intended bytes, "
+              f"{rule['why']}: {intended}")
+    print(f"{path}: {len(b)} members against the reference's {len(r)}; "
+          f"{len(bad)} disagree"
+          + (f", {extra} are new moves" if extra > 0 else ""))
+    if bad:
+        i = bad[0]
+        print(f"   first: member {i}\n"
+              f"          built {b[i].hex() if i < len(b) else '(missing)'}\n"
+              f"          ref   {r[i].hex()}")
+    return not bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--built", required=True)
@@ -456,6 +511,9 @@ def main():
             continue
         if p in SPECIES_ARCHIVES:
             ok = check_species_archive(b, r, p) and ok
+            continue
+        if p == WAZA:
+            ok = check_move_table(b, r, p) and ok
             continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False

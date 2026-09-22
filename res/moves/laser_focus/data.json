@@ -1,0 +1,30 @@
+{
+    "name": "Laser Focus",
+    "description": [
+        "The user\n",
+        "concentrates. Its\n",
+        "attack on the next\n",
+        "turn always lands a\n",
+        "critical hit."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 30,
+    "effect": {
+        "type": "BATTLE_EFFECT_LASER_FOCUS",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

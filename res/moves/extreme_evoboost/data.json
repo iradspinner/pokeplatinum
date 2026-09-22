@@ -1,0 +1,30 @@
+{
+    "name": "ExtremeEvoboost",
+    "description": [
+        "With Z-Power, Eevee\n",
+        "draws energy from its\n",
+        "evolved friends and\n",
+        "sharply boosts its\n",
+        "stats."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 1,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

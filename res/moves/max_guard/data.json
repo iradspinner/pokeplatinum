@@ -1,0 +1,26 @@
+{
+    "name": "Max Guard",
+    "description": [
+        "This move protects\n",
+        "the user from all\n",
+        "attacks. Its chance\n",
+        "of failing rises if it is\n",
+        "used in succession."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 4,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Liquidation",
+    "description": [
+        "The user slams the\n",
+        "foe with a blast of\n",
+        "water. This may also\n",
+        "lower the foe’s\n",
+        "Defense."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 85,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
+        "chance": 20
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

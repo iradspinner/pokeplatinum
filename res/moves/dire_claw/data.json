@@ -1,0 +1,31 @@
+{
+    "name": "Dire Claw",
+    "description": [
+        "The user lashes out\n",
+        "at the target with\n",
+        "ruinous claws. May\n",
+        "also poison, paralyze,\n",
+        "or sleep the target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_POISON",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_DIRE_CLAW",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Synchronoise",
+    "description": [
+        "Using an odd shock\n",
+        "wave, the user\n",
+        "damages same-type\n",
+        "Pokémon in the\n",
+        "surrounding area."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

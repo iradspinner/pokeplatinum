@@ -1,0 +1,32 @@
+{
+    "name": "Anchor Shot",
+    "description": [
+        "The user entangles\n",
+        "the foe with its\n",
+        "anchor chain while\n",
+        "attacking. The foe\n",
+        "cannot flee."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_THOUSAND_WAVES",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

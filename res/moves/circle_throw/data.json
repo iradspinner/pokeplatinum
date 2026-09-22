@@ -1,0 +1,31 @@
+{
+    "name": "Circle Throw",
+    "description": [
+        "The foe is made to\n",
+        "switch out with an\n",
+        "ally. In the wild, the\n",
+        "battle ends."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 60,
+    "accuracy": 95,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_CIRCLE_THROW",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": -6,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Meteor Assault",
+    "description": [
+        "The user attacks\n",
+        "wildly with its thick\n",
+        "leek. The user can’t\n",
+        "move on the next\n",
+        "turn."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 150,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_RECHARGE_AFTER",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

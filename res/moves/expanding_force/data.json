@@ -1,0 +1,31 @@
+{
+    "name": "Expanding Force",
+    "description": [
+        "The user attacks with\n",
+        "psychic power. On\n",
+        "Psychic Terrain, its\n",
+        "power goes up and it\n",
+        "hits all foes."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

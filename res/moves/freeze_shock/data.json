@@ -1,0 +1,31 @@
+{
+    "name": "Freeze Shock",
+    "description": [
+        "A two-turn attack\n",
+        "that hits the foe with\n",
+        "electrically charged\n",
+        "ice. It may paralyze\n",
+        "the foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ICE",
+    "power": 140,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_FREEZE_SHOCK",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

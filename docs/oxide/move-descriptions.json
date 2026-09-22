@@ -1,0 +1,882 @@
+{
+  "577": {
+    "name": "Disarming Voice",
+    "was": "Letting out a charming  cry, the user does  emotional damage to  opposing Pokémon. This  attack never misses.",
+    "text": "A charming cry does emotional damage to opposing Pokémon. This attack never misses."
+  },
+  "588": {
+    "name": "Moonblast",
+    "was": "Borrowing the power of  the moon, the user  attacks the target.  This may also lower the  target’s Sp. Atk stat.",
+    "text": "The user attacks with the power of the moon. This may also lower the foe’s Sp. Atk stat."
+  },
+  "591": {
+    "name": "King’s Shield",
+    "was": "The user protects  itself from damage  while lowering the  Attack of any attacker  that makes contact.",
+    "text": "Protects the user from damage and lowers the Attack of any attacker that makes contact."
+  },
+  "593": {
+    "name": "Confide",
+    "was": "The user tells the  target a secret,  making it lose focus.  This lowers the  target’s Sp. Atk stat.",
+    "text": "The user whispers a secret, making the foe lose focus. This lowers the foe’s Sp. Atk stat."
+  },
+  "602": {
+    "name": "Venom Drench",
+    "was": "Foes are drenched in  a poisonous liquid.  This lowers the Attack,  Sp. Atk, and Speed of  a poisoned target.",
+    "text": "Foes are drenched in poison. This lowers the Attack, Sp. Atk and Speed of a poisoned foe."
+  },
+  "604": {
+    "name": "Geomancy",
+    "was": "The user absorbs energy  and sharply boosts its  Sp. Atk, Sp. Def, and  Speed stats on the next  turn.",
+    "text": "The user absorbs energy, then sharply boosts its Sp. Atk, Sp. Def and Speed on the next turn."
+  },
+  "607": {
+    "name": "ElectricTerrain",
+    "was": "For five turns, Pokémon  on the ground have  powered up Electric-type  moves and can no longer  fall asleep.",
+    "text": "For five turns, grounded Pokémon get stronger Electric moves and cannot sleep."
+  },
+  "616": {
+    "name": "Oblivion Wing",
+    "was": "The user absorbs the  target’s HP. The user’s  HP is restored by over  half the damage taken  by the target.",
+    "text": "The user’s HP is restored by over half the damage it deals to the foe."
+  },
+  "619": {
+    "name": "Land’s Wrath",
+    "was": "The user gathers the  energy of the land and  focuses that power on  opposing Pokémon to  inflict damage.",
+    "text": "The user focuses the energy of the land on opposing Pokémon to inflict damage."
+  },
+  "620": {
+    "name": "Light of Ruin",
+    "was": "Drawing power from the  Eternal Flower, the user  fires a powerful beam of  light. This also damages  the user terribly.",
+    "text": "The user fires a powerful beam of light. This also damages the user terribly."
+  },
+  "623": {
+    "name": "Dragon Ascent",
+    "was": "The user attacks by  dropping out of the sky  at high speed. This also  lowers the user’s  Defense and Sp. Def.",
+    "text": "The user drops out of the sky at high speed. This also lowers the user’s Defense and Sp. Def."
+  },
+  "624": {
+    "name": "Hyperspace Fury",
+    "was": "The user unleashes a  barrage that ignores the  effects of protection  moves. This also lowers  the user’s Defense.",
+    "text": "A barrage that ignores the effects of protection moves. This also lowers the user’s Defense."
+  },
+  "625": {
+    "name": "Breakneck Blitz",
+    "was": "The user crashes into  the target at full speed  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user charges the foe at full speed with Z-Power. Power varies with the original move."
+  },
+  "626": {
+    "name": "Breakneck Blitz",
+    "was": "The user crashes into  the target at full speed  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user charges the foe at full speed with Z-Power. Power varies with the original move."
+  },
+  "627": {
+    "name": "All-Out Pummel",
+    "was": "The user fires an  energy orb created by  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user fires an energy orb made with Z-Power. Power varies with the original move."
+  },
+  "628": {
+    "name": "All-Out Pummel",
+    "was": "The user fires an  energy orb created by  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user fires an energy orb made with Z-Power. Power varies with the original move."
+  },
+  "629": {
+    "name": "Super Skystrike",
+    "was": "The user plummets toward  the target at full speed  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user plummets at the foe with Z-Power. Power varies with the original move."
+  },
+  "630": {
+    "name": "Super Skystrike",
+    "was": "The user plummets toward  the target at full speed  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user plummets at the foe with Z-Power. Power varies with the original move."
+  },
+  "631": {
+    "name": "Acid Downpour",
+    "was": "The user creates a  poisonous swamp using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user creates a poisonous swamp with Z-Power. Power varies with the original move."
+  },
+  "632": {
+    "name": "Acid Downpour",
+    "was": "The user creates a  poisonous swamp using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user creates a poisonous swamp with Z-Power. Power varies with the original move."
+  },
+  "633": {
+    "name": "Tectonic Rage",
+    "was": "The user slams into the  target from underground  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user slams the foe from underground with Z-Power. Power varies with the original move."
+  },
+  "634": {
+    "name": "Tectonic Rage",
+    "was": "The user slams into the  target from underground  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user slams the foe from underground with Z-Power. Power varies with the original move."
+  },
+  "635": {
+    "name": "Continent Crush",
+    "was": "The user drops a huge  mountain onto the target  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user drops a huge mountain on the foe with Z-Power. Power varies with the original move."
+  },
+  "636": {
+    "name": "Continent Crush",
+    "was": "The user drops a huge  mountain onto the target  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user drops a huge mountain on the foe with Z-Power. Power varies with the original move."
+  },
+  "637": {
+    "name": "Savage Spin-Out",
+    "was": "The user spits threads  at the target made  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user spits threads made with Z-Power. Power varies with the original move."
+  },
+  "638": {
+    "name": "Savage Spin-Out",
+    "was": "The user spits threads  at the target made  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user spits threads made with Z-Power. Power varies with the original move."
+  },
+  "639": {
+    "name": "EndlessNitemare",
+    "was": "Deep-seated grudges are  summoned by the user’s  Z-Power. The power  varies, depending on  the original move.",
+    "text": "Deep-seated grudges are summoned by Z-Power. Power varies with the original move."
+  },
+  "640": {
+    "name": "EndlessNitemare",
+    "was": "Deep-seated grudges are  summoned by the user’s  Z-Power. The power  varies, depending on  the original move.",
+    "text": "Deep-seated grudges are summoned by Z-Power. Power varies with the original move."
+  },
+  "641": {
+    "name": "Corkscrew Crash",
+    "was": "The user spins very fast  and rams into the target  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user spins fast and rams the foe with Z-Power. Power varies with the original move."
+  },
+  "642": {
+    "name": "Corkscrew Crash",
+    "was": "The user spins very fast  and rams into the target  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user spins fast and rams the foe with Z-Power. Power varies with the original move."
+  },
+  "643": {
+    "name": "Inferno Drive",
+    "was": "The user breathes a  stream of intense fire  using its Z-Power. The  power varies depending  on the original move.",
+    "text": "The user breathes intense fire with Z-Power. Power varies with the original move."
+  },
+  "644": {
+    "name": "Inferno Drive",
+    "was": "The user breathes a  stream of intense fire  using its Z-Power. The  power varies depending  on the original move.",
+    "text": "The user breathes intense fire with Z-Power. Power varies with the original move."
+  },
+  "645": {
+    "name": "Hydro Vortex",
+    "was": "The user creates a huge  whirling current using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user creates a huge whirling current with Z-Power. Power varies with the original move."
+  },
+  "646": {
+    "name": "Hydro Vortex",
+    "was": "The user creates a huge  whirling current using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user creates a huge whirling current with Z-Power. Power varies with the original move."
+  },
+  "647": {
+    "name": "Bloom Doom",
+    "was": "The user attacks with  energy drawn from plants  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user attacks with plant energy and Z-Power. Power varies with the original move."
+  },
+  "648": {
+    "name": "Bloom Doom",
+    "was": "The user attacks with  energy drawn from plants  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user attacks with plant energy and Z-Power. Power varies with the original move."
+  },
+  "649": {
+    "name": "Gigavolt Havoc",
+    "was": "The user summons a  strong electric current  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user summons a strong current with Z-Power. Power varies with the original move."
+  },
+  "650": {
+    "name": "Gigavolt Havoc",
+    "was": "The user summons a  strong electric current  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user summons a strong current with Z-Power. Power varies with the original move."
+  },
+  "651": {
+    "name": "ShatteredPsyche",
+    "was": "The user hurts the  target’s mind using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user hurts the foe’s mind with Z-Power. Power varies with the original move."
+  },
+  "652": {
+    "name": "ShatteredPsyche",
+    "was": "The user hurts the  target’s mind using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user hurts the foe’s mind with Z-Power. Power varies with the original move."
+  },
+  "655": {
+    "name": "Ultimate Drake",
+    "was": "The user materializes  and projects its aura  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user projects its aura with Z-Power. Power varies with the original move."
+  },
+  "656": {
+    "name": "Ultimate Drake",
+    "was": "The user materializes  and projects its aura  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user projects its aura with Z-Power. Power varies with the original move."
+  },
+  "657": {
+    "name": "Black Eclipse",
+    "was": "The user sucks the  target into dark energy  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user sucks the foe into dark energy with Z-Power. Power varies with the original move."
+  },
+  "658": {
+    "name": "Black Eclipse",
+    "was": "The user sucks the  target into dark energy  using its Z-Power. The  power varies, depending  on the original move.",
+    "text": "The user sucks the foe into dark energy with Z-Power. Power varies with the original move."
+  },
+  "659": {
+    "name": "Twinkle Tackle",
+    "was": "The user totally toys  with the target using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user toys with the foe using Z-Power. Power varies with the original move."
+  },
+  "660": {
+    "name": "Twinkle Tackle",
+    "was": "The user totally toys  with the target using  its Z-Power. The power  varies, depending on  the original move.",
+    "text": "The user toys with the foe using Z-Power. Power varies with the original move."
+  },
+  "663": {
+    "name": "FirstImpression",
+    "was": "Although this move has  great power, it works  only on the first turn  each time the user  enters battle.",
+    "text": "A powerful move that works only on the first turn after the user enters battle."
+  },
+  "665": {
+    "name": "Spirit Shackle",
+    "was": "The user attacks while  simultaneously stitching  the target’s shadow to  the ground to prevent  the target from fleeing.",
+    "text": "The user attacks and stitches the foe’s shadow to the ground, preventing it from fleeing."
+  },
+  "666": {
+    "name": "Darkest Lariat",
+    "was": "The user swings both  arms and hits the  target, ignoring changes  to the target’s Defense  and Evasion.",
+    "text": "The user swings both arms, ignoring changes to the foe’s Defense and Evasion."
+  },
+  "667": {
+    "name": "Sparkling Aria",
+    "was": "The user bursts into  song, emitting bubbles.  Any Pokémon suffering  from a burn will be  cured by their touch.",
+    "text": "The user sings, emitting bubbles. Any Pokémon with a burn is cured by their touch."
+  },
+  "671": {
+    "name": "Strength Sap",
+    "was": "The user restores its  HP by the same amount  as the target’s Attack  stat. It also lowers the  target’s Attack stat.",
+    "text": "The user restores HP equal to the foe’s Attack stat. It also lowers the foe’s Attack."
+  },
+  "674": {
+    "name": "Spotlight",
+    "was": "The user shines a  spotlight on the target  so that only the target  will be attacked during  the turn.",
+    "text": "A spotlight shines on the foe so that only it will be attacked during the turn."
+  },
+  "676": {
+    "name": "Laser Focus",
+    "was": "The user concentrates  intensely.  The attack on the next  turn always results in  a critical hit.",
+    "text": "The user concentrates. Its attack on the next turn always lands a critical hit."
+  },
+  "678": {
+    "name": "Throat Chop",
+    "was": "The user attacks the  target’s throat,  preventing the target  from using sound-based  moves for two turns.",
+    "text": "The user strikes the foe’s throat, preventing sound-based moves for two turns."
+  },
+  "680": {
+    "name": "Anchor Shot",
+    "was": "The user entangles the  target with its anchor  chain while attacking.  The target becomes  unable to flee.",
+    "text": "The user entangles the foe with its anchor chain while attacking. The foe cannot flee."
+  },
+  "681": {
+    "name": "Psychic Terrain",
+    "was": "This protects Pokémon  on the ground from  priority moves and  powers up Psychic-type  moves for five turns.",
+    "text": "For five turns, grounded Pokémon are safe from priority moves and Psychic moves are stronger."
+  },
+  "682": {
+    "name": "Lunge",
+    "was": "The user makes a lunge  at the target, attacking  with full force.  This also lowers the  target’s Attack stat.",
+    "text": "The user lunges at the foe with full force. This also lowers the foe’s Attack stat."
+  },
+  "685": {
+    "name": "Burn Up",
+    "was": "To inflict massive  damage, the user burns  itself out. After using  this move, the user will  no longer be Fire type.",
+    "text": "The user burns itself out for massive damage. After this, the user is no longer Fire type."
+  },
+  "688": {
+    "name": "Purify",
+    "was": "The user cures the  target’s status  condition. If the move  succeeds, it also  restores the user’s HP.",
+    "text": "The user cures the foe’s status condition. If it succeeds, the user’s HP is also restored."
+  },
+  "689": {
+    "name": "RevelationDance",
+    "was": "The user attacks the  target by dancing with  all its might. This  move becomes the same  type as the user’s type.",
+    "text": "The user dances with all its might. This move becomes the same type as the user."
+  },
+  "690": {
+    "name": "Core Enforcer",
+    "was": "If a target has already  used their move this  turn, this move  eliminates the effects  of their Ability.",
+    "text": "If the foe has already moved this turn, this move eliminates the effects of its Ability."
+  },
+  "691": {
+    "name": "Trop Kick",
+    "was": "The user lands an  intense kick of tropical  origins on the target.  This also lowers the  target’s Attack stat.",
+    "text": "The user lands an intense tropical kick. This also lowers the foe’s Attack stat."
+  },
+  "693": {
+    "name": "Beak Blast",
+    "was": "The user heats up its  beak before attacking.  Making contact before  the user attacks  results in a burn.",
+    "text": "The user heats up its beak first. Making contact before it attacks results in a burn."
+  },
+  "694": {
+    "name": "Clanging Scales",
+    "was": "The user rubs its  scales to make a huge  noise. The user’s  Defense stat is lowered  after the attack.",
+    "text": "The user rubs its scales to make a huge noise. The user’s Defense is lowered after."
+  },
+  "698": {
+    "name": "Sinister Raid",
+    "was": "The user, Decidueye,  creates countless  arrows using its Z-Power  and shoots the target  with full force.",
+    "text": "Decidueye creates countless arrows with Z-Power and shoots the foe with full force."
+  },
+  "699": {
+    "name": "Moonsault",
+    "was": "The user, Incineroar,  strengthens its body  using its Z-Power and  crashes into the target  with full force.",
+    "text": "Incineroar strengthens its body with Z-Power and crashes into the foe with full force."
+  },
+  "700": {
+    "name": "OceanicOperetta",
+    "was": "The user, Primarina,  summons a massive  amount of water using its  Z-Power and attacks the  target with full force.",
+    "text": "Primarina summons a mass of water with Z-Power and attacks the foe with full force."
+  },
+  "701": {
+    "name": "Alolan Guardian",
+    "was": "The Land Spirit Pokémon  uses its Z-Power to  attack with Alola’s  energy. This reduces the  target’s HP greatly.",
+    "text": "The Land Spirit Pokémon uses Z-Power to attack with Alola’s energy, greatly cutting the foe’s HP."
+  },
+  "703": {
+    "name": "Sparksurfer",
+    "was": "After obtaining  Z-Power, Alolan Raichu  attacks the target with  full force, leaving  them with paralysis.",
+    "text": "Alolan Raichu uses Z-Power to attack with full force, leaving the foe paralyzed."
+  },
+  "704": {
+    "name": "Pulver-Pancake",
+    "was": "Z-Power brings out the  true capabilities of  Snorlax, which excitedly  moves its enormous body  to attack the target.",
+    "text": "Z-Power lets Snorlax move its enormous body excitedly to attack the foe."
+  },
+  "705": {
+    "name": "ExtremeEvoboost",
+    "was": "After obtaining  Z-Power, Eevee gets  energy from its evolved  friends and boosts its  stats sharply.",
+    "text": "With Z-Power, Eevee draws energy from its evolved friends and sharply boosts its stats."
+  },
+  "709": {
+    "name": "Psychic Fangs",
+    "was": "The user bites the  target with its psychic  capabilities. This can  also destroy Light  Screen and Reflect.",
+    "text": "The user bites with psychic power. This can also destroy Light Screen and Reflect."
+  },
+  "711": {
+    "name": "Shadow Bone",
+    "was": "The user beats the  target with a bone that  contains a spirit. This  may also lower the  target’s Defense stat.",
+    "text": "The user beats the foe with a haunted bone. This may also lower the foe’s Defense."
+  },
+  "713": {
+    "name": "Liquidation",
+    "was": "The user slams into  the target using a  blast of water. This  may also lower the  target’s Defense stat.",
+    "text": "The user slams the foe with a blast of water. This may also lower the foe’s Defense."
+  },
+  "719": {
+    "name": "Zing Zap",
+    "was": "The user crashes into  the target, delivering  a powerful electric  shock. This may also  make the target flinch.",
+    "text": "The user crashes into the foe with a powerful shock. This may also make the foe flinch."
+  },
+  "721": {
+    "name": "Multi-Attack",
+    "was": "Cloaking itself in high  energy, the user slams  into the target. The  memory held determines  the move’s type.",
+    "text": "Cloaked in high energy, the user slams the foe. The memory held sets the move’s type."
+  },
+  "723": {
+    "name": "Mind Blown",
+    "was": "The user attacks  everything around it by  causing its own head to  explode. This also  damages the user.",
+    "text": "The user attacks everything around it by exploding its own head. This also damages the user."
+  },
+  "725": {
+    "name": "Photon Geyser",
+    "was": "The user attacks with a  pillar of light. This  can inflict damage using  Attack or Sp. Atk-  whichever is higher.",
+    "text": "A pillar of light that deals damage using Attack or Sp. Atk, whichever is higher."
+  },
+  "726": {
+    "name": "LightBurnSky",
+    "was": "Necrozma inflicts damage  using Attack or Sp. Atk-  whichever is higher.  This move ignores the  target’s Ability.",
+    "text": "Necrozma deals damage using Attack or Sp. Atk, whichever is higher. It ignores the foe’s Ability."
+  },
+  "727": {
+    "name": "Sunraze Smash",
+    "was": "After obtaining Z-Power,  Solgaleo attacks the  target. This move can  ignore the effect of the  target’s Ability.",
+    "text": "With Z-Power, Solgaleo attacks the foe. This move ignores the foe’s Ability."
+  },
+  "728": {
+    "name": "Moonraze Storm",
+    "was": "After obtaining Z-Power,  Lunala attacks the  target. This move can  ignore the effect of the  target’s Ability.",
+    "text": "With Z-Power, Lunala attacks the foe. This move ignores the foe’s Ability."
+  },
+  "733": {
+    "name": "Splishy Splash",
+    "was": "The user charges a huge  wave with electricity.  This may also leave the  opposing Pokémon with  paralysis.",
+    "text": "The user charges a huge wave with electricity. This may also paralyze opposing Pokémon."
+  },
+  "734": {
+    "name": "Floaty Fall",
+    "was": "The user floats in the  air, then dives at a  steep angle to attack.  This may also make the  target flinch.",
+    "text": "The user floats, then dives at a steep angle. This may also make the foe flinch."
+  },
+  "742": {
+    "name": "Freezy Frost",
+    "was": "The user attacks with a  crystal made of frozen  haze. It eliminates  every stat change among  all Pokémon in battle.",
+    "text": "The user attacks with a crystal of frozen haze. It eliminates every stat change in battle."
+  },
+  "745": {
+    "name": "Double IronBash",
+    "was": "The user spins on its  nut, striking the target  with its arms twice in a  row. This may also make  the target flinch.",
+    "text": "The user spins on its nut and strikes the foe twice. This may also make the foe flinch."
+  },
+  "748": {
+    "name": "Snipe Shot",
+    "was": "The user ignores  opposing Pokémon’s moves  and Abilities that draw  in moves, allowing it to  hit the chosen target.",
+    "text": "The user ignores moves and Abilities that draw in moves, hitting the foe it chose."
+  },
+  "749": {
+    "name": "Jaw Lock",
+    "was": "This move prevents the  user and the target from  switching out until  either of them faints or  leaves the field.",
+    "text": "Neither the user nor the foe can switch out until one faints or leaves the field."
+  },
+  "754": {
+    "name": "Dragon Darts",
+    "was": "The user attacks twice  using Dreepy. If there  are two opposing  Pokémon, this move  hits each of them once.",
+    "text": "The user attacks twice using Dreepy. Against two foes, it hits each of them once."
+  },
+  "756": {
+    "name": "Octolock",
+    "was": "The user prevents the  target from fleeing.  This move also lowers  the target’s Defense  and Sp. Def every turn.",
+    "text": "The foe cannot flee. This also lowers the foe’s Defense and Sp. Def every turn."
+  },
+  "757": {
+    "name": "Bolt Beak",
+    "was": "The user stabs with its  electrified beak. This  move’s power is doubled  if the user moves before  the target.",
+    "text": "The user stabs with its electrified beak. Power is doubled if the user moves first."
+  },
+  "758": {
+    "name": "Fishious Rend",
+    "was": "The user rends with its  hard gills. If the user  attacks before the  target, the power of  this move is doubled.",
+    "text": "The user rends with its hard gills. Power is doubled if the user moves first."
+  },
+  "762": {
+    "name": "Max Lightning",
+    "was": "This is an Electric-type  attack Dynamax Pokémon  use. The user turns the  ground into Electric  Terrain for five turns.",
+    "text": "An Electric-type Dynamax attack. It creates Electric Terrain for five turns."
+  },
+  "768": {
+    "name": "Max Geyser",
+    "was": "This is a Water-type  attack Dynamax Pokémon  use. The user summons  a heavy rain that  falls for five turns.",
+    "text": "A Water-type attack Dynamax Pokémon use. It summons heavy rain for five turns."
+  },
+  "770": {
+    "name": "Max Starfall",
+    "was": "This is a Fairy-type  attack Dynamax Pokémon  use. The user turns the  ground into Misty  Terrain for five turns.",
+    "text": "A Fairy-type attack Dynamax Pokémon use. It creates Misty Terrain for five turns."
+  },
+  "772": {
+    "name": "Max Mindstorm",
+    "was": "This is a Psychic-type  attack Dynamax Pokémon  use. The user turns the  ground into Psychic  Terrain for five turns.",
+    "text": "A Psychic-type attack Dynamax Pokémon use. It creates Psychic Terrain for five turns."
+  },
+  "776": {
+    "name": "Max Overgrowth",
+    "was": "This is a Grass-type  attack Dynamax Pokémon  use. The user turns the  ground into Grassy  Terrain for five turns.",
+    "text": "A Grass-type attack Dynamax Pokémon use. It creates Grassy Terrain for five turns."
+  },
+  "781": {
+    "name": "Drum Beating",
+    "was": "The user plays its drum,  controlling the drum’s  roots to attack the  target. This also lowers  the target’s Speed stat.",
+    "text": "The user attacks with the roots of its drum. This also lowers the foe’s Speed stat."
+  },
+  "783": {
+    "name": "Pyro Ball",
+    "was": "The user ignites a small  stone and launches it as  a fiery ball. This may  also leave the target  with a burn.",
+    "text": "The user launches a fiery ball of ignited stone. This may also leave the foe with a burn."
+  },
+  "786": {
+    "name": "Aura Wheel",
+    "was": "Morpeko attacks and  boosts its Speed stat.  This move’s type  changes depending on  the user’s form.",
+    "text": "Morpeko attacks and boosts its Speed. This move’s type changes with the user’s form."
+  },
+  "787": {
+    "name": "Breaking Swipe",
+    "was": "The user swings its  tough tail and attacks  opposing Pokémon.  This also lowers their  Attack stats.",
+    "text": "The user swings its tough tail at opposing Pokémon. This also lowers their Attack."
+  },
+  "790": {
+    "name": "Apple Acid",
+    "was": "The user attacks with an  acidic liquid created  from tart apples. This  also lowers the target’s  Sp. Def stat.",
+    "text": "The user attacks with acid from tart apples. This also lowers the foe’s Sp. Def stat."
+  },
+  "791": {
+    "name": "Grav Apple",
+    "was": "The user inflicts  damage by dropping  an apple from above.  This also lowers the  target’s Defense stat.",
+    "text": "The user drops an apple from above. This also lowers the foe’s Defense stat."
+  },
+  "792": {
+    "name": "Spirit Break",
+    "was": "The user attacks with  enough force to break  the target’s spirit.  This also lowers the  target’s Sp. Atk stat.",
+    "text": "The user attacks hard enough to break the foe’s spirit. This also lowers the foe’s Sp. Atk."
+  },
+  "794": {
+    "name": "Life Dew",
+    "was": "The user scatters  mysterious water around  and restores the HP of  itself and its allies  currently in battle.",
+    "text": "The user scatters mysterious water, restoring the HP of itself and its allies in battle."
+  },
+  "795": {
+    "name": "Obstruct",
+    "was": "The user protects itself  from damage while  harshly lowering the  Defense of any attacker  that makes contact.",
+    "text": "Protects the user and harshly lowers the Defense of any attacker that makes contact."
+  },
+  "800": {
+    "name": "Expanding Force",
+    "was": "The user attacks with  its psychic power. This  move’s power goes up and  damages all opponents on  Psychic Terrain.",
+    "text": "The user attacks with psychic power. On Psychic Terrain, its power goes up and it hits all foes."
+  },
+  "801": {
+    "name": "Steel Roller",
+    "was": "The user attacks while  destroying the terrain.  This move fails if the  ground hasn’t turned  into a terrain.",
+    "text": "The user attacks and destroys the terrain. This move fails if there is no terrain."
+  },
+  "804": {
+    "name": "Shell Side Arm",
+    "was": "This move is either  physical or special,  whichever will inflict  more damage. This may  also poison the target.",
+    "text": "This move is physical or special, whichever deals more damage. It may also poison the foe."
+  },
+  "805": {
+    "name": "Misty Explosion",
+    "was": "The user attacks  everything around it  and faints. This move’s  power is boosted on  Misty Terrain.",
+    "text": "The user attacks everything around it and faints. Its power is boosted on Misty Terrain."
+  },
+  "807": {
+    "name": "Rising Voltage",
+    "was": "The user attacks with  electricity rising from  the ground. Its power is  doubled if the target is  on Electric Terrain.",
+    "text": "Electricity rises from the ground. Power is doubled if the foe is on Electric Terrain."
+  },
+  "808": {
+    "name": "Terrain Pulse",
+    "was": "The user utilizes the  energy of the terrain.  This move’s type and  power change depending  on the current terrain.",
+    "text": "The user uses the energy of the terrain. Its type and power change with the terrain."
+  },
+  "810": {
+    "name": "BurningJealousy",
+    "was": "The user attacks with  energy from jealousy.  This burns all opposing  Pokémon that have had  their stats boosted.",
+    "text": "The user attacks with jealous energy. This burns all foes that have had stats boosted."
+  },
+  "811": {
+    "name": "Lash Out",
+    "was": "The user vents its  frustration. Its power is  doubled if the user’s  stats were lowered  during this turn.",
+    "text": "The user vents its frustration. Power is doubled if the user’s stats fell this turn."
+  },
+  "813": {
+    "name": "Corrosive Gas",
+    "was": "The user surrounds  everything around it  with highly acidic gas  and melts away items  held by other Pokémon.",
+    "text": "Highly acidic gas surrounds everything around the user and melts away held items."
+  },
+  "819": {
+    "name": "Jungle Healing",
+    "was": "The user restores HP and  cures status conditions  for itself and its ally  Pokémon currently in the  battle.",
+    "text": "The user restores HP and cures status conditions for itself and its allies in battle."
+  },
+  "821": {
+    "name": "Surging Strikes",
+    "was": "The user strikes the  target with a flowing  motion three times in  a row. This move always  lands a critical hit.",
+    "text": "The user strikes the foe three times in a row. This move always lands a critical hit."
+  },
+  "822": {
+    "name": "Thunder Cage",
+    "was": "The user traps the  target inside a cage of  sparking electricity  that inflicts damage  for four to five turns.",
+    "text": "The foe is trapped in a cage of sparking electricity for four to five turns of damage."
+  },
+  "825": {
+    "name": "Fiery Wrath",
+    "was": "The user transforms its  wrath into a fire-like  aura to attack. This may  also make opposing  Pokémon flinch.",
+    "text": "The user turns its wrath into a fire-like aura. This may also make opposing Pokémon flinch."
+  },
+  "826": {
+    "name": "Thunderous Kick",
+    "was": "With lightning-like  movement, the user  delivers a kick. This  also lowers the  target’s Defense stat.",
+    "text": "The user kicks with lightning-like movement. This also lowers the foe’s Defense stat."
+  },
+  "829": {
+    "name": "Eerie Spell",
+    "was": "The user attacks with  its tremendous psychic  power. This also drains  3 PP from the move last  used by the target.",
+    "text": "The user attacks with psychic power. This also drains 3 PP from the foe’s last move."
+  },
+  "833": {
+    "name": "Stone Axe",
+    "was": "The user swings its  stone axes at the  target. Splinters left  behind by this attack  float around the target.",
+    "text": "The user swings its stone axes. Splinters left behind float around the foe."
+  },
+  "839": {
+    "name": "Mountain Gale",
+    "was": "The user hurls giant  chunks of ice at the  target to inflict  damage. This may also  make the target flinch.",
+    "text": "The user hurls giant chunks of ice at the foe. This may also make the foe flinch."
+  },
+  "840": {
+    "name": "Victory Dance",
+    "was": "The user performs an  intense dance to usher  in victory, boosting  its Attack, Defense,  and Speed stats.",
+    "text": "The user dances to usher in victory, boosting its Attack, Defense and Speed stats."
+  },
+  "841": {
+    "name": "Headlong Rush",
+    "was": "The user smashes into  the target in a  full-body tackle. This  also lowers the user’s  Defense and Sp. Def.",
+    "text": "A full-body tackle. This also lowers the user’s Defense and Sp. Def."
+  },
+  "842": {
+    "name": "Barb Barrage",
+    "was": "The user launches barbs  which may poison the  target. Its power is  doubled if the target  is already poisoned.",
+    "text": "Barbs that may poison the foe. Power is doubled if the foe is already poisoned."
+  },
+  "843": {
+    "name": "Esper Wing",
+    "was": "The user slashes with  aura-enriched wings and  boosts its Speed. This  move has a heightened  critical hit chance.",
+    "text": "The user slashes with aura-enriched wings and boosts its Speed. Critical hits come easily."
+  },
+  "846": {
+    "name": "Triple Arrows",
+    "was": "The user kicks and fires  three arrows. This has a  high critical hit chance  and may lower Defense or  make the target flinch.",
+    "text": "A kick and three arrows. Critical hits come easily, and the foe may flinch or lose Defense."
+  },
+  "847": {
+    "name": "Infernal Parade",
+    "was": "The user summons myriad  fireballs which may burn  the target. Its power is  doubled if the target  has a status condition.",
+    "text": "Fireballs that may burn the foe. Power is doubled if the foe has a status condition."
+  },
+  "851": {
+    "name": "SandsearStorm",
+    "was": "The user wraps opposing  Pokémon in fierce winds  and searingly hot sand.  This may also leave them  with a burn.",
+    "text": "Fierce winds and searing sand wrap opposing Pokémon. This may also leave them with a burn."
+  },
+  "852": {
+    "name": "Lunar Blessing",
+    "was": "The user receives a  blessing from the moon,  restoring HP and curing  status conditions for  itself and its allies.",
+    "text": "A blessing from the moon restores HP and cures status for the user and its allies."
+  },
+  "854": {
+    "name": "Tera Blast",
+    "was": "If Terastallized, the  user unleashes energy of  its Tera Type. It can  use Attack or Sp. Atk-  whichever is higher.",
+    "text": "If Terastallized, the user attacks with its Tera Type, using Attack or Sp. Atk, whichever is higher."
+  },
+  "855": {
+    "name": "Silk Trap",
+    "was": "The user spins a silken  trap, protecting itself  while lowering the Speed  of any attacker that  makes direct contact.",
+    "text": "A silken trap protects the user and lowers the Speed of any attacker that makes contact."
+  },
+  "856": {
+    "name": "Axe Kick",
+    "was": "The user slams its heel  down upon the target,  which may also confuse  them. If it misses, the  user is hurt instead.",
+    "text": "The user slams its heel down, which may also confuse the foe. A miss hurts the user."
+  },
+  "857": {
+    "name": "Last Respects",
+    "was": "The user attacks to  avenge its allies. The  more defeated allies  in the user’s party,  the greater its power.",
+    "text": "The user avenges its allies. The more of them defeated, the greater this move’s power."
+  },
+  "858": {
+    "name": "Lumina Crash",
+    "was": "The user unleashes a  peculiar light that even  affects the mind. This  also harshly lowers the  target’s Sp. Def stat.",
+    "text": "A peculiar light that affects the mind. This also harshly lowers the foe’s Sp. Def stat."
+  },
+  "859": {
+    "name": "Order Up",
+    "was": "The user attacks with  elegant poise. If it has  a Tatsugiri in its  mouth, this move boosts  one of the user’s stats.",
+    "text": "The user attacks with poise. With a Tatsugiri in its mouth, one of its stats is boosted."
+  },
+  "861": {
+    "name": "Spicy Extract",
+    "was": "The user’s incredibly  spicy extract sharply  boosts the target’s  Attack stat and harshly  lowers their Defense.",
+    "text": "A spicy extract sharply boosts the foe’s Attack and harshly lowers the foe’s Defense."
+  },
+  "862": {
+    "name": "Spin Out",
+    "was": "The user spins furiously  by straining its legs,  inflicting damage while  harshly lowering the  user’s Speed stat.",
+    "text": "The user strains its legs to spin furiously, harshly lowering the user’s Speed stat."
+  },
+  "863": {
+    "name": "Population Bomb",
+    "was": "The user’s fellows  gather in droves to  perform a combo attack  that hits the target one  to ten times in a row.",
+    "text": "The user’s fellows gather in droves to hit the foe one to ten times in a row."
+  },
+  "865": {
+    "name": "Glaive Rush",
+    "was": "The user charges  recklessly. Attacks on  the user on the next  turn always hit and will  inflict double damage.",
+    "text": "The user charges recklessly. Attacks on it next turn always hit and deal double damage."
+  },
+  "866": {
+    "name": "RevivalBlessing",
+    "was": "The user’s loving  blessing revives a party  Pokémon that has fainted  and restores half that  Pokémon’s max HP.",
+    "text": "A loving blessing revives a fainted party Pokémon and restores half its max HP."
+  },
+  "867": {
+    "name": "Salt Cure",
+    "was": "The user salt cures the  target, dealing damage  every turn. Steel and  Water types are strongly  affected by this move.",
+    "text": "The foe is salt cured, taking damage every turn. Steel and Water types suffer more."
+  },
+  "868": {
+    "name": "Triple Dive",
+    "was": "The user performs a  perfectly timed triple  dive, hitting the target  with splashes of water  three times in a row.",
+    "text": "The user hits the foe with splashes of water three times in a row."
+  },
+  "869": {
+    "name": "Mortal Spin",
+    "was": "A spin attack that can  eliminate such moves as  Bind, Wrap and Leech  Seed. It also poisons  opposing Pokémon.",
+    "text": "A spin attack that eliminates moves like Bind, Wrap and Leech Seed. It also poisons foes."
+  },
+  "870": {
+    "name": "Doodle",
+    "was": "The target’s essence is  captured in a sketch.  This makes the Abilities  of the user and its ally  match the target’s.",
+    "text": "The foe’s essence is sketched, making the Abilities of the user and its ally match the foe’s."
+  },
+  "872": {
+    "name": "Kowtow Cleave",
+    "was": "The user slashes at the  target after kowtowing  to make the target let  down its guard. This  attack never misses.",
+    "text": "The user kowtows, then slashes the off-guard foe. This attack never misses."
+  },
+  "873": {
+    "name": "Flower Trick",
+    "was": "The user throws a rigged  bouquet of flowers at  the target. This attack  never misses and always  lands a critical hit.",
+    "text": "The user throws a rigged bouquet. This attack never misses and always lands a critical hit."
+  },
+  "874": {
+    "name": "Torch Song",
+    "was": "The user blows out  raging flames as if  singing, scorching the  target. This also boosts  the user’s Sp. Atk stat.",
+    "text": "The user scorches the foe with raging flames. This also boosts the user’s Sp. Atk stat."
+  },
+  "875": {
+    "name": "Aqua Step",
+    "was": "The user toys with the  target and attacks using  light and fluid dance  steps. This also boosts  the user’s Speed stat.",
+    "text": "The user attacks with light, fluid dance steps. This also boosts the user’s Speed stat."
+  },
+  "876": {
+    "name": "Raging Bull",
+    "was": "The user performs a  tackle like a raging  bull. It can also break  barriers, such as Light  Screen and Reflect.",
+    "text": "A tackle like a raging bull. It can also break Light Screen and Reflect."
+  },
+  "877": {
+    "name": "Make It Rain",
+    "was": "The user throws out a  mass of coins. This also  lowers the user’s Sp.  Atk stat. Money is  earned after the battle.",
+    "text": "The user throws out a mass of coins. This lowers the user’s Sp. Atk. Money is earned after battle."
+  },
+  "878": {
+    "name": "Psyblade",
+    "was": "The user rends with an  ethereal blade. Its  power is boosted by 50  percent if the user is  on Electric Terrain.",
+    "text": "The user rends with an ethereal blade. Power rises 50 percent on Electric Terrain."
+  },
+  "879": {
+    "name": "Hydro Steam",
+    "was": "The user blasts out  boiling-hot water. Its  power is not lowered in  harsh sunlight but  rather boosted by 50%.",
+    "text": "The user blasts boiling water. Harsh sunlight boosts its power by 50% instead of lowering it."
+  },
+  "881": {
+    "name": "ColisionCourse",
+    "was": "The user causes a  massive prehistoric  explosion. This move’s  power is boosted more if  it’s super effective.",
+    "text": "A massive prehistoric explosion. Its power is boosted more if it’s super effective."
+  },
+  "882": {
+    "name": "Electro Drift",
+    "was": "The user pierces its  target with futuristic  electricity. This move’s  power is boosted more if  it’s supereffective.",
+    "text": "Futuristic electricity pierces the foe. Its power is boosted more if it’s super effective."
+  },
+  "884": {
+    "name": "ChillyReception",
+    "was": "The user tells a  chillingly bad joke  before switching out.  This summons a snowstorm  lasting five turns.",
+    "text": "The user tells a bad joke and switches out. This summons a snowstorm for five turns."
+  },
+  "885": {
+    "name": "Tidy Up",
+    "was": "The user tidies up and  removes entry hazards  and Substitutes. This  also boosts the user’s  Attack and Speed stats.",
+    "text": "The user removes entry hazards and Substitutes. This also boosts the user’s Attack and Speed."
+  },
+  "890": {
+    "name": "Hyper Drill",
+    "was": "The user spins at high  speed to pierce the  target. This attack can  hit through a move such  as Protect or Detect.",
+    "text": "The user spins fast to pierce the foe. This hits through Protect or Detect."
+  },
+  "892": {
+    "name": "Rage Fist",
+    "was": "The user converts its  rage into energy to  attack. The more the  user has been attacked,  the greater the power.",
+    "text": "The user turns rage into energy. The more it has been attacked, the greater the power."
+  },
+  "893": {
+    "name": "Armor Cannon",
+    "was": "The user shoots its own  armor out as blazing  projectiles. It also  cuts the user’s Defense  and Sp. Def stats.",
+    "text": "The user fires its own armor as blazing projectiles. This cuts the user’s Defense and Sp. Def."
+  },
+  "894": {
+    "name": "Bitter Blade",
+    "was": "The user focuses its  bitter feelings into a  slash. The user’s HP  is restored by up to  half the damage taken.",
+    "text": "The user’s HP is restored by up to half the damage it deals to the foe."
+  },
+  "896": {
+    "name": "Gigaton Hammer",
+    "was": "The user swings its  whole body around to  attack with its huge  hammer. This move can’t  be used twice in a row.",
+    "text": "The user swings its huge hammer. This move can’t be used twice in a row."
+  },
+  "904": {
+    "name": "Blood Moon",
+    "was": "The user unleashes the  full brunt of its spirit  from a full moon.  This move can’t be used  twice in a row.",
+    "text": "The user unleashes its spirit from a full moon. This move can’t be used twice in a row."
+  },
+  "906": {
+    "name": "Syrup Bomb",
+    "was": "The user sets off a  gooey explosion, which  causes the target’s  Speed stat to drop each  turn for three turns.",
+    "text": "A gooey explosion drops the foe’s Speed stat each turn for three turns."
+  },
+  "907": {
+    "name": "Ivy Cudgel",
+    "was": "The user strikes with a  cudgel. It has a high  critical hit chance, and  its type changes with  the user’s mask.",
+    "text": "The user strikes with a cudgel. Critical hits come easily, and its type changes with the user’s mask."
+  },
+  "909": {
+    "name": "Tera Starstorm",
+    "was": "The user bombards the  target with crystalline  power. When used by  Stellar Terapagos, this  move damages all foes.",
+    "text": "Crystalline power bombards the foe. Used by Stellar Terapagos, it damages all foes."
+  },
+  "910": {
+    "name": "Fickle Beam",
+    "was": "The user shoots a beam  of light. Sometimes  the user’s heads shoot  in unison, doubling  the move’s power.",
+    "text": "The user shoots a beam of light. Sometimes all its heads shoot at once, doubling the power."
+  },
+  "911": {
+    "name": "Burning Bulwark",
+    "was": "The user’s intensely hot  fur protects it from  attacks and also burns  any attacker that makes  direct contact with it.",
+    "text": "The user’s hot fur protects it from attacks and burns any attacker that makes contact."
+  },
+  "912": {
+    "name": "Thunderclap",
+    "was": "The user attacks first  with a jolt of  electricity. This move  fails if the target is  not readying an attack.",
+    "text": "The user attacks first with a jolt. This fails if the foe is not readying an attack."
+  },
+  "913": {
+    "name": "Mighty Cleave",
+    "was": "Light from atop the  user’s head cleaves the  target. This move hits  even if the target  protects itself.",
+    "text": "Light from the user’s head cleaves the foe. This hits even if the foe protects itself."
+  },
+  "916": {
+    "name": "Dragon Cheer",
+    "was": "Allies’ morale is raised  with a draconic cry,  boosting their critical  hit rate. This rouses  Dragon types more.",
+    "text": "A draconic cry boosts allies’ critical hit rate. Dragon types are roused more."
+  },
+  "917": {
+    "name": "Alluring Voice",
+    "was": "The user attacks using  its angelic voice. This  also confuses the target  if its stats have been  boosted during the turn.",
+    "text": "The user attacks with its angelic voice. This confuses the foe if its stats rose this turn."
+  },
+  "919": {
+    "name": "Supercell Slam",
+    "was": "The user electrifies its  body and drops onto the  target. If this move  misses, the user takes  damage instead.",
+    "text": "The user electrifies its body and drops on the foe. A miss hurts the user instead."
+  },
+  "920": {
+    "name": "Psychic Noise",
+    "was": "The user attacks with  unpleasant sound waves.  For two turns, the  target is prevented  from recovering HP.",
+    "text": "Unpleasant sound waves prevent the foe from recovering HP for two turns."
+  },
+  "921": {
+    "name": "Upper Hand",
+    "was": "The user strikes  reactively, making the  target flinch. This move  fails if the target is  not readying a priority move.",
+    "text": "The user strikes first and makes the foe flinch. This fails unless the foe readies a priority move."
+  },
+  "922": {
+    "name": "Malignant Chain",
+    "was": "The user pours toxins  into the target through  a corrosive chain. This  may also leave the  target badly poisoned.",
+    "text": "Toxins pour into the foe through a corrosive chain. This may badly poison the foe."
+  }
+}

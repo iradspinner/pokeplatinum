@@ -1,0 +1,28 @@
+{
+    "name": "Wonder Room",
+    "description": [
+        "The user creates a\n",
+        "bizarre area where\n",
+        "Pokémon’s Defense and\n",
+        "Sp. Def swap for five\n",
+        "turns."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

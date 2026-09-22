@@ -1,0 +1,31 @@
+{
+    "name": "Fickle Beam",
+    "description": [
+        "The user shoots a\n",
+        "beam of light.\n",
+        "Sometimes all its\n",
+        "heads shoot at once,\n",
+        "doubling the power."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_DRAGON",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_FICKLE_BEAM",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

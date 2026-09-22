@@ -1,0 +1,29 @@
+{
+    "name": "Spotlight",
+    "description": [
+        "A spotlight shines on\n",
+        "the foe so that only\n",
+        "it will be attacked\n",
+        "during the turn."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_MAKE_GLOBAL_TARGET",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 3,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

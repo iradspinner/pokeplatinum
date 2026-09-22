@@ -1,40 +1,49 @@
 """Dump JSON in the style used by pokeplatinum's res/ data files.
 
 Objects are always multi-line with 4-space indent. Arrays of scalars with at
-most two elements are written inline ("[ a, b ]"); longer arrays and arrays
-of containers go one element per line. Empty arrays are "[  ]". Verified to round-trip every
-res/pokemon/*/data.json and res/moves/*/data.json byte-for-byte.
+most `max_inline` elements are written inline ("[ a, b ]"); longer arrays and
+arrays of containers go one element per line.
+
+The repo's res/ folders are not all in one style, so the differences are
+options rather than guesses. `res/moves/*/data.json` is
+`max_inline=0, ascii_strings=False, empty_array="[]"`, which round-trips all
+468 of those files byte for byte; the defaults are the older res/pokemon
+style. Check with a round-trip before trusting either on a folder that is not
+one of those two.
 """
 import json
 
 WIDTH = 80
 
-def _scalar(v):
+def _scalar(v, ascii_strings=True):
     if isinstance(v, bool): return "true" if v else "false"
     if v is None: return "null"
-    if isinstance(v, str): return json.dumps(v, ensure_ascii=True)
+    if isinstance(v, str): return json.dumps(v, ensure_ascii=ascii_strings)
     if isinstance(v, float):
         s = repr(v)
         return s
     return str(v)
 
-def dumps(obj, indent=0, width=WIDTH, max_inline=2):
+def dumps(obj, indent=0, width=WIDTH, max_inline=2, ascii_strings=True,
+          empty_array="[  ]"):
     pad = " " * indent
+    kw = dict(max_inline=max_inline, ascii_strings=ascii_strings,
+              empty_array=empty_array)
     if isinstance(obj, dict):
         if not obj: return "{}"
         lines = []
         for k, v in obj.items():
-            lines.append(f'{pad}    {json.dumps(k, ensure_ascii=False)}: {dumps(v, indent + 4, width, max_inline)}')
+            lines.append(f'{pad}    {json.dumps(k, ensure_ascii=False)}: {dumps(v, indent + 4, width, **kw)}')
         return "{\n" + ",\n".join(lines) + f"\n{pad}}}"
     if isinstance(obj, list):
-        if not obj: return "[  ]"
+        if not obj: return empty_array
         if all(not isinstance(x, (dict, list)) for x in obj):
-            inline = "[ " + ", ".join(_scalar(x) for x in obj) + " ]"
+            inline = "[ " + ", ".join(_scalar(x, ascii_strings) for x in obj) + " ]"
             if len(obj) <= max_inline:
                 return inline
-        lines = [f"{pad}    {dumps(x, indent + 4, width, max_inline)}" for x in obj]
+        lines = [f"{pad}    {dumps(x, indent + 4, width, **kw)}" for x in obj]
         return "[\n" + ",\n".join(lines) + f"\n{pad}]"
-    return _scalar(obj)
+    return _scalar(obj, ascii_strings)
 
 def dump_file(obj, path, width=WIDTH):
     with open(path, "w", encoding="utf-8", newline="\n") as f:

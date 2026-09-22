@@ -1,0 +1,31 @@
+{
+    "name": "Pounce",
+    "description": [
+        "The user attacks by\n",
+        "pouncing on the\n",
+        "target. This also\n",
+        "lowers the target’s\n",
+        "Speed stat."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_BUG",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_SPEED_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

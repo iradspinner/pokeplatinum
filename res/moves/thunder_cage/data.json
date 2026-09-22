@@ -1,0 +1,31 @@
+{
+    "name": "Thunder Cage",
+    "description": [
+        "The foe is trapped in\n",
+        "a cage of sparking\n",
+        "electricity for four\n",
+        "to five turns of\n",
+        "damage."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

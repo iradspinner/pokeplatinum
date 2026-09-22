@@ -1,0 +1,30 @@
+{
+    "name": "Shore Up",
+    "description": [
+        "The user restores its\n",
+        "own HP by up to half\n",
+        "its max HP. It regains\n",
+        "more HP in a\n",
+        "sandstorm."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GROUND",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

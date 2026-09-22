@@ -1,0 +1,31 @@
+{
+    "name": "Shell Side Arm",
+    "description": [
+        "This move is physical\n",
+        "or special, whichever\n",
+        "deals more damage. It\n",
+        "may also poison the\n",
+        "foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_POISON",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 20
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

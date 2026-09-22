@@ -1,0 +1,30 @@
+{
+    "name": "Fleur Cannon",
+    "description": [
+        "The user unleashes a\n",
+        "strong beam. The\n",
+        "attack’s recoil\n",
+        "harshly lowers the\n",
+        "user’s Sp. Atk stat."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FAIRY",
+    "power": 130,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_USER_SP_ATK_DOWN_2",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

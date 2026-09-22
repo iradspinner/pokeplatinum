@@ -1,0 +1,30 @@
+{
+    "name": "Headlong Rush",
+    "description": [
+        "A full-body tackle.\n",
+        "This also lowers the\n",
+        "user’s Defense and\n",
+        "Sp. Def."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_DEF_SPD_DOWN_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

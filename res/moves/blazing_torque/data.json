@@ -1,0 +1,31 @@
+{
+    "name": "Blazing Torque",
+    "description": [
+        "The user rams into\n",
+        "the target with\n",
+        "blazing energy. This\n",
+        "may also leave the\n",
+        "target with a burn."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

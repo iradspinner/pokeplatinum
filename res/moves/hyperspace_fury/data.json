@@ -1,0 +1,29 @@
+{
+    "name": "Hyperspace Fury",
+    "description": [
+        "A barrage that\n",
+        "ignores the effects of\n",
+        "protection moves.\n",
+        "This also lowers the\n",
+        "user’s Defense."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_DARK",
+    "power": 100,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HYPERSPACE_FURY",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

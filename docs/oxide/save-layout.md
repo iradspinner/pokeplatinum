@@ -97,6 +97,42 @@ at `blockID * SAVE_SECTOR_SIZE`, and the next extra entry starts one sector late
 pass 679 without this struct overwriting the stored battle recordings.** A later
 species addition has to move the entry, not grow into its neighbour.
 
+## Easy Chat word ids all moved, three times over (2026-09-22)
+
+Found while element 4 was adding moves, and it covers elements 2, 3 and 4
+together, because all three did the same thing and only this one noticed.
+
+An Easy Chat word is not a per-group index. `include/applications/easy_chat/defs.h`
+lays the groups end to end and makes every id a running total: `MOVE_WORD` starts
+where the species names stop, `TYPE_WORD` where the move names stop, and so on
+through abilities, trainer words, people, greetings, lifestyle, feelings, tough
+words and the Union Room list. So **adding names to an early group shifts every
+id in every later group**, and all three Phase 4 elements so far added names to an
+early group: element 2 put 195 abilities in, element 3 put 161 species names in,
+and element 4 puts 455 move names in.
+
+| | Words | First id after the moves (`TYPE_WORD(0)`) |
+|---|---|---|
+| vanilla | 1,494 | 962 |
+| after elements 2 and 3 | 1,850 | 1,123 |
+| after element 4 | 2,305 | 1,578 |
+
+The stored form is `EasyChatSentence`, whose `words[2]` are `u16`, and it is
+saved in `Mail` (twenty of them in the mailbox, plus one on every Pokemon
+holding mail) and in the player's trainer messages. **On an old save, every
+stored word that was not a species name now names a different word**, so mail
+and greetings read as nonsense rather than failing. Nothing crashes and nothing
+overflows: 2,305 is far inside a `u16`, and `EASY_CHAT_WORD_COUNT` derives from
+the same running total, so `EasyChatWordList`'s two `u16` arrays grew with it,
+from about 7.4KB to 9.2KB on the Easy Chat app's own heap rather than in the
+save.
+
+Nothing to do at this size. It is written down because the trigger for the rule
+at the top of this file is not "did I edit a save struct" but "did anything
+sized by a constant I changed end up in the save", and a text bank's entry count
+is exactly that kind of constant. The next element that adds names to any group
+before the Union Room list moves these ids again.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
@@ -108,7 +144,5 @@ Listed so the next change can be planned rather than discovered:
   at sector 0 and the backup at 64, but not to 64: the extra save table is laid
   out at `SAVE_PAGE_MAX + 0` through `+ 11`, so anything above **52** puts the
   battle recordings on top of the backup copy
-- Move ids past 511 in level-up learnsets, which changes the learnset entry
-  from one packed u16 to a (u16 level, u16 move) pair (Phase 4 element 4)
 - The expanded bag, if the item pass outgrows Platinum's free item slots
   (Phase 4 element 7)

@@ -1,0 +1,27 @@
+{
+    "name": "Cotton Guard",
+    "description": [
+        "The user protects\n",
+        "itself with cotton,\n",
+        "drastically raising its\n",
+        "Defense."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GRASS",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_COTTON_GUARD",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

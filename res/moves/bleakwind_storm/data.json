@@ -1,0 +1,30 @@
+{
+    "name": "BleakwindStorm",
+    "description": [
+        "The user attacks with\n",
+        "savagely cold winds.\n",
+        "This may also lower\n",
+        "the Speed stats of\n",
+        "opposing Pokémon."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FLYING",
+    "power": 100,
+    "accuracy": 80,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_BLEAKWIND_STORM",
+        "chance": 30
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

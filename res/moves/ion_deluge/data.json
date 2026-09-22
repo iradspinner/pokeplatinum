@@ -1,0 +1,30 @@
+{
+    "name": "Ion Deluge",
+    "description": [
+        "The user disperses\n",
+        "electrically charged\n",
+        "particles, which\n",
+        "changes Normal-type\n",
+        "moves to Electric."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 25,
+    "effect": {
+        "type": "BATTLE_EFFECT_ION_DELUGE",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 1,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Incinerate",
+    "description": [
+        "The user burns the\n",
+        "foe completely,\n",
+        "rendering a held\n",
+        "Berry useless."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIRE",
+    "power": 60,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_INCINERATE",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

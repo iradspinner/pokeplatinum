@@ -1,0 +1,29 @@
+{
+    "name": "Dragon Cheer",
+    "description": [
+        "A draconic cry boosts\n",
+        "allies’ critical hit\n",
+        "rate. Dragon types\n",
+        "are roused more."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_DRAGON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ALLY",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Oblivion Wing",
+    "description": [
+        "The user’s HP is\n",
+        "restored by over half\n",
+        "the damage it deals to\n",
+        "the foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FLYING",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_DRAINING_KISS",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

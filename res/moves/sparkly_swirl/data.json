@@ -1,0 +1,31 @@
+{
+    "name": "Sparkly Swirl",
+    "description": [
+        "The user attacks with\n",
+        "an overpowering\n",
+        "scent. This also heals\n",
+        "all status conditions\n",
+        "of the user’s party."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FAIRY",
+    "power": 120,
+    "accuracy": 85,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_SPARKLY_SWIRL",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Trop Kick",
+    "description": [
+        "The user lands an\n",
+        "intense tropical kick.\n",
+        "This also lowers the\n",
+        "foe’s Attack stat."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GRASS",
+    "power": 85,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_ATTACK_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

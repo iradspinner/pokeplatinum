@@ -1,0 +1,30 @@
+{
+    "name": "Electrify",
+    "description": [
+        "If the target is\n",
+        "electrified, their\n",
+        "moves become Electric\n",
+        "type for the rest of\n",
+        "that turn."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

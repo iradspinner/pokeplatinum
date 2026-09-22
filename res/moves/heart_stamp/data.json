@@ -1,0 +1,30 @@
+{
+    "name": "Heart Stamp",
+    "description": [
+        "The foe is hit after a\n",
+        "cute act. It may also\n",
+        "make the foe flinch."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 60,
+    "accuracy": 100,
+    "pp": 25,
+    "effect": {
+        "type": "BATTLE_EFFECT_FLINCH_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

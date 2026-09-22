@@ -1,0 +1,30 @@
+{
+    "name": "Blue Flare",
+    "description": [
+        "The user attacks by\n",
+        "engulfing the foe in a\n",
+        "severe, beautiful,\n",
+        "blue flame. It may\n",
+        "burn the foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIRE",
+    "power": 130,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 20
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

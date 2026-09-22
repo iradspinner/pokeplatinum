@@ -1,0 +1,30 @@
+{
+    "name": "Psychic Terrain",
+    "description": [
+        "For five turns,\n",
+        "grounded Pokémon are\n",
+        "safe from priority\n",
+        "moves and Psychic\n",
+        "moves are stronger."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_GRASSY_TERRAIN",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

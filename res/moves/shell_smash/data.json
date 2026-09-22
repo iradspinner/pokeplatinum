@@ -1,0 +1,27 @@
+{
+    "name": "Shell Smash",
+    "description": [
+        "Sharply raises\n",
+        "Attack, Sp. Atk, and\n",
+        "Speed, but lowers\n",
+        "Defense and Sp. Def."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_SHELL_SMASH",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

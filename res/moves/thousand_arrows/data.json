@@ -1,0 +1,31 @@
+{
+    "name": "Thousand Arrows",
+    "description": [
+        "This move can hit\n",
+        "opposing Pokémon that\n",
+        "are in the air. Those\n",
+        "Pokémon are knocked\n",
+        "down to the ground."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_SMACK_DOWN",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

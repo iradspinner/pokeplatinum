@@ -1,0 +1,30 @@
+{
+    "name": "Scale Shot",
+    "description": [
+        "The user attacks by\n",
+        "shooting scales two\n",
+        "to five times in a row.\n",
+        "This raises Speed but\n",
+        "lowers Defense."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_DRAGON",
+    "power": 25,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_MULTI_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

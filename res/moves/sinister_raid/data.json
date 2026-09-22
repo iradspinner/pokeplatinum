@@ -1,0 +1,31 @@
+{
+    "name": "Sinister Raid",
+    "description": [
+        "Decidueye creates\n",
+        "countless arrows with\n",
+        "Z-Power and shoots\n",
+        "the foe with full\n",
+        "force."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GHOST",
+    "power": 180,
+    "accuracy": 0,
+    "pp": 1,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

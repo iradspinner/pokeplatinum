@@ -1,0 +1,31 @@
+{
+    "name": "Malignant Chain",
+    "description": [
+        "Toxins pour into the\n",
+        "foe through a\n",
+        "corrosive chain. This\n",
+        "may badly poison the\n",
+        "foe."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_POISON",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_BADLY_POISON_HIT",
+        "chance": 50
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

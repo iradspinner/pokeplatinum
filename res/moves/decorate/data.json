@@ -1,0 +1,29 @@
+{
+    "name": "Decorate",
+    "description": [
+        "The user sharply\n",
+        "boosts the target’s\n",
+        "Attack and Sp. Atk\n",
+        "stats by decorating\n",
+        "the target."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_DECORATE",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

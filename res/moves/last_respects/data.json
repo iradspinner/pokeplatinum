@@ -1,0 +1,31 @@
+{
+    "name": "Last Respects",
+    "description": [
+        "The user avenges its\n",
+        "allies. The more of\n",
+        "them defeated, the\n",
+        "greater this move’s\n",
+        "power."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GHOST",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

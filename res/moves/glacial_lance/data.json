@@ -1,0 +1,30 @@
+{
+    "name": "Glacial Lance",
+    "description": [
+        "The user attacks by\n",
+        "hurling a\n",
+        "blizzard-cloaked\n",
+        "icicle lance at\n",
+        "opposing Pokémon."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ICE",
+    "power": 130,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Clanging Scales",
+    "description": [
+        "The user rubs its\n",
+        "scales to make a huge\n",
+        "noise. The user’s\n",
+        "Defense is lowered\n",
+        "after."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_DRAGON",
+    "power": 110,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_CLANGING_SCALES",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

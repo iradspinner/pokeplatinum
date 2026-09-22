@@ -151,6 +151,9 @@ Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized
 - encounters_route_226: authored, skipped (authored from the pick-list (sidecar entry has a cast))
 - encounters_route_230: authored, skipped (authored from the pick-list (sidecar entry has a cast))
 
+## npc trade index 0
+- rebuilt by the encounter pass, left alone (Oreburgh: any Pokemon for a shiny Vullaby)
+
 ## TEXT_BANK_WAYWARD_CAVE_1F[6]
 - unused slot gained or lost text; skipped: ('garbage', 29) -> 'Please leave me alone!!\r'
 
@@ -204,6 +207,9 @@ Files changed: {'species': 0, 'moves': 0, 'trainers': 0, 'trainers_party_resized
 - TEXT_BANK_SPECIES_NAME: skipped, species names decode identically; the bank differs only in bytes the decoder does not read
 - TEXT_BANK_SPECIES_POKEDEX_ENTRY_EN: skipped, Pokedex entries decode identically, same as species names
 - TEXT_BANK_NPC_TRAINER_MESSAGES: skipped, trainer battle messages are keyed by TRMSG_* type per trainer, not by a flat bank index; mapping the 2,497 entries back needs trainerproc's packing order, which is its own job
+- TEXT_BANK_HEARTHOME_CITY_POKEMON_FAN_CLUB: skipped, the Fan Club's gift menu names the species it hands out, and the encounter pass re-pooled that gift onto pick-list species (Ian, 2026-09-21)
+- TEXT_BANK_SANDGEM_TOWN_HOUSE: skipped, Sandgem's gift menu names the species it hands out, re-pooled with the same pass
+- TEXT_BANK_POKEMON_DAY_CARE: skipped, the Day Care man offers a Floette rather than the base ROM's Ditto (Ian, 2026-09-21), and his line names it
 
 ## fielddata/eventdata/zone_event.narc (partially imported)
 - 88 maps left for the per-map carry-over:

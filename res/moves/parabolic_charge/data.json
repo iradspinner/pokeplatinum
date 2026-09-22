@@ -1,0 +1,31 @@
+{
+    "name": "ParabolicCharge",
+    "description": [
+        "An energy-draining\n",
+        "shockwave. The user’s\n",
+        "HP is restored by half\n",
+        "the damage taken by\n",
+        "those hit."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT",
+        "chance": 0
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

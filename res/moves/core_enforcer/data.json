@@ -1,0 +1,29 @@
+{
+    "name": "Core Enforcer",
+    "description": [
+        "If the foe has already\n",
+        "moved this turn, this\n",
+        "move eliminates the\n",
+        "effects of its Ability."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_DRAGON",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Infernal Parade",
+    "description": [
+        "Fireballs that may\n",
+        "burn the foe. Power is\n",
+        "doubled if the foe has\n",
+        "a status condition."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GHOST",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_INFERNAL_PARADE",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

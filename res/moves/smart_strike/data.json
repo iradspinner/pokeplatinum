@@ -1,0 +1,30 @@
+{
+    "name": "Smart Strike",
+    "description": [
+        "The user stabs the\n",
+        "target with a sharp\n",
+        "horn. This attack\n",
+        "never misses."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 70,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_BYPASS_ACCURACY",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

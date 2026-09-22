@@ -1,0 +1,31 @@
+{
+    "name": "Beak Blast",
+    "description": [
+        "The user heats up its\n",
+        "beak first. Making\n",
+        "contact before it\n",
+        "attacks results in a\n",
+        "burn."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FLYING",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": -3,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "Aromatic Mist",
+    "description": [
+        "The user boosts the\n",
+        "Sp. Def stat of an\n",
+        "ally Pokémon by using\n",
+        "a mysterious aroma."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FAIRY",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ALLY",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

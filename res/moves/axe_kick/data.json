@@ -1,0 +1,31 @@
+{
+    "name": "Axe Kick",
+    "description": [
+        "The user slams its\n",
+        "heel down, which may\n",
+        "also confuse the foe.\n",
+        "A miss hurts the user."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 120,
+    "accuracy": 90,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_AXE_KICK",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

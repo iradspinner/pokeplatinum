@@ -1,0 +1,30 @@
+{
+    "name": "Freeze-Dry",
+    "description": [
+        "The user rapidly cools\n",
+        "the target, possibly\n",
+        "leaving them frozen.\n",
+        "This move is super\n",
+        "effective on Water."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ICE",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_FREEZE_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

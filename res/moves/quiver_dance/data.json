@@ -1,0 +1,27 @@
+{
+    "name": "Quiver Dance",
+    "description": [
+        "The user mystically\n",
+        "dances, raising its\n",
+        "Sp. Atk, Sp. Def, and\n",
+        "Speed."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_BUG",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_QUIVER_DANCE",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_NONE",
+        "type": "CONTEST_TYPE_SMART"
+    }
+}
