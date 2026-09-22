@@ -207,6 +207,21 @@ def check_page(results):
                     litten["learnset"][1]["type"] == "FIRE"
                     and litten["learnset"][1]["power"] == 40, ""))
 
+    # The page has two views and shows one by toggling `hidden` on a <main>.
+    # That attribute carries its own display:none, but any author display rule
+    # outranks it, and main is display:grid here: the first cut drew both views
+    # stacked. The rule that settles it is easy to lose in a refactor and no
+    # endpoint test can see it, so it is pinned here.
+    page = open(os.path.join(root, "tools", "oxide", "encounters", "ui",
+                             "index.html"), encoding="utf-8").read()
+    style = page[page.index("<style>"):page.index("</style>")]
+    hides = [line for line in style.splitlines()
+             if "[hidden]" in line and "display" in line and "none" in line]
+    toggled = page.count(".hidden = view !==")
+    results.append(("a hidden view is actually hidden, which `hidden` alone does "
+                    "not manage against a styled display",
+                    bool(hides) and toggled == 2, f"{hides}, {toggled} toggles"))
+
     # The sprites carry no alpha, so the server marks palette entry 0 clear.
     raw = open(os.path.join(root, "res", "pokemon", "clefairy",
                             "male_front.png"), "rb").read()

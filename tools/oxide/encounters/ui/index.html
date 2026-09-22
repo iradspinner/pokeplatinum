@@ -186,6 +186,11 @@ input.lv { width: 48px; }
 .cb .menu div.on, .cb .menu div:hover { background: var(--sunken); }
 
 /* ---- the dex view ------------------------------------------------------ */
+/* main is a grid, and an author display rule beats the hidden attribute's own
+   display:none, so hiding a view takes a rule that outranks `main`. Without
+   this both views draw, one below the other. */
+main[hidden] { display: none; }
+
 #views { display: flex; gap: 0; margin-right: 6px; }
 #views button { font: inherit; font-size: 12.5px; padding: 2px 10px;
   border: 1px solid var(--rule); background: var(--paper); color: var(--dim);
