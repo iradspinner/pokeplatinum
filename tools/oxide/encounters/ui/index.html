@@ -136,7 +136,7 @@ section { overflow-y: auto; }
 /* the filter stays put however far the list is scrolled */
 .listhead { position: sticky; top: 0; z-index: 10; background: var(--panel);
             padding: 12px 12px 8px; border-bottom: 1px solid var(--rule); }
-#filter { width: 100%; }
+#filter, #movefilter { width: 100%; }
 .sortbar { margin-top: 7px; font-size: 14.5px; color: var(--dim);
            display: flex; gap: 4px; flex-wrap: wrap; }
 .sortbar button {
@@ -302,10 +302,10 @@ tr.gone .ico { opacity: .35; }
 #views button:last-child { border-radius: 0 3px 3px 0; border-left: 0; }
 
 
-#dexlist { border-right: 1px solid var(--rule); background: var(--panel); }
-#dexright { border-left: 1px solid var(--rule); background: var(--panel);
+#dexlist, #movelist { border-right: 1px solid var(--rule); background: var(--panel); }
+#dexright, #moveright { border-left: 1px solid var(--rule); background: var(--panel);
   padding: 12px 14px 40px; }
-#dexmid { padding: 14px 20px 40px; font-size: 18px; }
+#dexmid, #movemid { padding: 14px 20px 40px; font-size: 18px; }
 
 /* The sprites are frame sheets: a front or back is two 80x80 frames side by
    side, a party icon is two 32x32 frames stacked. Both show their first. */
@@ -420,6 +420,45 @@ table.facts td { padding: 1px 0; }
 .met .share { font-family: var(--mono); color: var(--mass); }
 .mx { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .mx span { font-size: 14px; }
+
+/* ---- the moves view ---------------------------------------------------- */
+/* One row per move, the numbers in columns so they line up down the list. */
+.movecols, .moverow { display: grid; align-items: center; gap: 6px;
+  grid-template-columns: 74px 1fr 64px 38px 38px 38px; }
+.movecols { margin-top: 8px; font-size: 13px; color: var(--dim); line-height: 1.2; }
+.movecols .num { font-family: inherit; }
+.moverow { min-height: 34px; padding: 2px 12px; cursor: pointer; }
+.moverow:hover { background: var(--sunken); }
+.moverow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
+.moverow .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.moverow .num { font-size: 14.5px; color: var(--dim); }
+.moverow .sub { font-size: 14px; }
+.moverow.is-new .nm::after { content: " new"; color: var(--place-ink);
+  font-size: 13.5px; }
+/* A placeholder effect is a known gap, not an error: the lint warning's dot,
+   beside the name, so the list shows how much of the move pass is left. */
+.moverow.is-stub .nm::before { content: ""; display: inline-block; width: 6px;
+  height: 6px; border-radius: 50%; background: var(--warn); margin-right: 6px;
+  vertical-align: middle; }
+.stubnote { border-left: 3px solid var(--warn); padding: 4px 10px;
+  margin-top: 12px; font-size: 15.5px; }
+.movelinks { display: flex; flex-wrap: wrap; gap: 4px 2px; }
+.movelinks a { text-decoration: none; }
+.movelinks a:hover .chip { border-color: var(--place-ink); }
+.learner { display: flex; align-items: center; gap: 8px; padding: 2px 0;
+  cursor: pointer; }
+.learner:hover { background: var(--sunken); }
+.learner .nm { flex: 1; }
+.learner .lv { width: 3.4em; }
+.learner .sub { font-size: 14px; }
+table.was { border-collapse: collapse; font-size: 15.5px; }
+table.was th { text-align: left; font-weight: 500; color: var(--dim);
+  padding: 1px 12px 1px 0; white-space: nowrap; vertical-align: top; }
+table.was td { padding: 1px 16px 1px 0; font-family: var(--mono);
+  vertical-align: top; }
+/* A description is prose, so it keeps the text face and a reading width. */
+table.was td.text { font-family: var(--sans); max-width: 34ch; }
+table.was td.old { color: var(--dim); text-decoration: line-through; }
 </style>
 </head>
 <body>
@@ -428,6 +467,7 @@ table.facts td { padding: 1px 0; }
   <nav id="views">
     <button data-view="tables" class="on">Tables</button>
     <button data-view="dex">Dex</button>
+    <button data-view="moves">Moves</button>
   </nav>
   <div class="strip">
     <span class="metric">source <b id="h-ref">—</b></span>
@@ -486,6 +526,29 @@ table.facts td { padding: 1px 0; }
   </section>
   <section id="dexmid"><p class="sub">Choose a species.</p></section>
   <section id="dexright"></section>
+</main>
+
+<main id="movemain" hidden>
+  <section id="movelist">
+    <div class="listhead">
+      <input id="movefilter" placeholder="Find a move, a type or an effect">
+      <div class="sortbar">
+        <button data-f="all" class="on">All</button>
+        <button data-f="learnt" title="Moves at least one species can learn">Learnt</button>
+        <button data-f="changed" title="Natives whose numbers differ from vanilla Platinum">Changed</button>
+        <button data-f="new">New</button>
+        <button data-f="stub" title="Moves whose effect is still a placeholder script">Unscripted</button>
+      </div>
+      <div class="movecols">
+        <span></span><span>Move</span><span>Cat</span>
+        <span class="num">Pow</span><span class="num">Acc</span>
+        <span class="num" title="Species that learn it, by any means">Who</span>
+      </div>
+    </div>
+    <div id="moverows"></div>
+  </section>
+  <section id="movemid"><p class="sub">Choose a move.</p></section>
+  <section id="moveright"></section>
 </main>
 <div id="toast"></div>
 
@@ -547,9 +610,10 @@ const stagesOf = line => {
 const tidy = t => t ? t[0] + t.slice(1).toLowerCase().replace(/_/g, " ") : "";
 
 // A type chip names its type and tints itself with it; the colour is a token,
-// so the chip follows the theme like everything else.
-const typeChip = (t, cls = "") =>
-  `<span class="chip ${cls}" style="--t: var(--type-${String(t).toLowerCase()})">${esc(tidy(t))}</span>`;
+// so the chip follows the theme like everything else. A move chip is tinted
+// by its type and carries the move's name instead.
+const typeChip = (t, cls = "", label = tidy(t)) =>
+  `<span class="chip ${cls}" style="--t: var(--type-${String(t).toLowerCase()})">${esc(label)}</span>`;
 
 // Split tags borrow the gym leader's type, so the area list reads as the
 // game's progression at a glance. The League is Cynthia's Garchomp; after the
@@ -588,6 +652,8 @@ function drawDexList() {
     </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
   $("#dexrows").querySelectorAll(".dexrow").forEach(el =>
     el.onclick = () => selectSpecies(el.dataset.sp));
+  const on = $("#dexrows .dexrow.on");
+  if (on) on.scrollIntoView({ block: "nearest" });
 }
 
 async function selectSpecies(species) {
@@ -645,6 +711,15 @@ function facts(d) {
     ${row("weight", kg === null ? "" : `${kg.toFixed(1)} kg
        <span class="sub">Grass Knot ${knot}</span>`)}
   </table>`;
+}
+
+// Machine, tutor and egg moves as a run of type chips, each opening its move.
+// The level-up table carries the numbers; these only need to say what.
+function moveLinks(title, list, prefix) {
+  if (!list || !list.length) return "";
+  return `<div class="dexsec"><h4>${title} &middot; ${list.length}</h4>
+    <div class="movelinks">${list.map(m => `<a href="#" data-mv="${m.move}"
+      title="${esc(prefix ? prefix(m) : "")}">${typeChip(m.type || "NORMAL", "mini", m.label)}</a>`).join("")}</div></div>`;
 }
 
 function evoText(e) {
@@ -727,14 +802,19 @@ function drawDexDetail() {
         <thead><tr><th>Lv</th><th>Move</th><th>Type</th><th>Cat</th>
           <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
         <tbody>${d.learnset.map(m => `<tr>
-          <td class="num">${m.level}</td><td>${esc(m.label)}</td>
+          <td class="num">${m.level}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
           <td>${m.type ? typeChip(m.type, "mini") : ""}</td><td class="sub">${tidy(m.class)}</td>
           <td class="num">${m.power || ""}</td><td class="num">${m.accuracy || ""}</td>
         </tr>`).join("")}</tbody>
       </table>
-    </div>`;
+    </div>
+    ${moveLinks("machine moves", d.machine_moves, m => m.machine)}
+    ${moveLinks("tutor moves", d.tutor_moves)}
+    ${moveLinks("egg moves", d.egg_moves)}`;
   $("#dexmid").querySelectorAll("a[data-sp]").forEach(a =>
     a.onclick = ev => { ev.preventDefault(); selectSpecies(a.dataset.sp); });
+  $("#dexmid").querySelectorAll("a[data-mv]").forEach(a =>
+    a.onclick = ev => { ev.preventDefault(); openMove(a.dataset.mv); });
 
   const byKind = {};
   (d.captures || []).forEach(c => (byKind[c.kind] = byKind[c.kind] || []).push(c));
@@ -771,6 +851,161 @@ function drawDexDetail() {
     el.onclick = () => openTable(el.dataset.area, el.dataset.kind));
 }
 
+// ---- the moves ----------------------------------------------------------
+// Every move in res/moves, what changed from vanilla, whether its effect is
+// still a placeholder, and who learns it. The reverse index is the part a
+// species page cannot give: which species, and from which split.
+let MOVES = [], MOVESEL = null, MOVEDETAIL = null, MOVEFILTER = "all";
+const HOW = { level: "level-up", machine: "by machine", tutor: "by tutor",
+              egg: "as an egg move" };
+
+function moveMatch(r) {
+  const q = ($("#movefilter").value || "").trim().toLowerCase();
+  if (q && !r.name.toLowerCase().includes(q)
+        && !r.type.toLowerCase().includes(q)
+        && !r.effect.toLowerCase().replace(/_/g, " ").includes(q)) return false;
+  if (MOVEFILTER === "learnt") return r.learners > 0;
+  if (MOVEFILTER === "changed") return r.changed;
+  if (MOVEFILTER === "new") return r.new;
+  if (MOVEFILTER === "stub") return r.stub;
+  return true;
+}
+
+function drawMoveList() {
+  const rows = MOVES.filter(moveMatch);
+  $("#moverows").innerHTML = rows.map(r => `
+    <div class="moverow${r.move === MOVESEL ? " on" : ""}${r.new ? " is-new" : ""}${r.stub ? " is-stub" : ""}"
+         data-mv="${r.move}"${r.stub ? ' title="Its effect is still a placeholder script"' : ""}>
+      <span>${typeChip(r.type, "mini")}</span>
+      <span class="nm">${esc(r.name)}</span>
+      <span class="sub">${tidy(r.class)}</span>
+      <span class="num">${r.power || ""}</span>
+      <span class="num">${r.accuracy || ""}</span>
+      <span class="num">${r.learners || ""}</span>
+    </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
+  $("#moverows").querySelectorAll(".moverow").forEach(el =>
+    el.onclick = () => selectMove(el.dataset.mv));
+  const on = $("#moverows .moverow.on");
+  if (on) on.scrollIntoView({ block: "nearest" });
+}
+
+async function selectMove(move) {
+  MOVESEL = move;
+  drawMoveList();
+  try {
+    MOVEDETAIL = await api("/api/move/" + move);
+  } catch (e) { return toast(e.message, true); }
+  drawMoveDetail();
+}
+
+// A field's value as the page prints it, for the "was and is" table.
+function moveValue(k, v) {
+  if (v === null || v === undefined || v === "") return "none";
+  if (k === "type" || k === "class" || k === "range" || k === "effect") return tidy(String(v));
+  if (k === "effect_chance") return v + "%";
+  return String(v);
+}
+
+function drawMoveDetail() {
+  const d = MOVEDETAIL;
+  if (!d) return;
+  const status = d.class === "STATUS";
+  const row = (k, v) => v !== "" && v !== null && v !== undefined
+    ? `<tr><th>${k}</th><td>${v}</td></tr>` : "";
+  const delta = d.delta || {};
+  const changed = Object.entries(delta).filter(([k]) => k !== "new" && k !== "flags");
+  const flags = delta.flags;
+  const was = delta.new
+    ? `<p class="sub">New in Oxide: vanilla Platinum has no move ${d.id}.</p>`
+    : changed.length || flags
+      ? `<table class="was">${changed.map(([k, c]) => {
+           const text = k === "description" ? " text" : "";
+           return `<tr><th>${tidy(k)}</th>
+             <td class="old${text}">${esc(moveValue(k, c.was))}</td>
+             <td class="${text}">${esc(moveValue(k, c.now))}</td></tr>`; }).join("")}
+         ${flags && flags.gained.length ? `<tr><th>gained</th><td colspan="2">${flags.gained.map(tidy).join(", ")}</td></tr>` : ""}
+         ${flags && flags.lost.length ? `<tr><th>lost</th><td colspan="2">${flags.lost.map(tidy).join(", ")}</td></tr>` : ""}
+         </table>`
+      : `<p class="sub">As vanilla Platinum has it.</p>`;
+  $("#movemid").innerHTML = `
+    <span class="dexnum">#${String(d.id).padStart(3, "0")}</span>
+    <div class="species-name">${esc(d.name)}
+      ${delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
+    <div>${typeChip(d.type)} <span class="sub">${tidy(d.class)}</span></div>
+    <div class="sub" style="margin-top:8px; max-width:46ch">${esc(d.description || "")}</div>
+    ${d.stub ? `<div class="stubnote">Its effect, ${esc(tidy(d.effect))}, is still a
+      placeholder script. ${status ? "Used in battle it says \u201cBut nothing happened!\u201d"
+        : "It does its damage and skips the rest"} until the script is written.</div>` : ""}
+
+    <div class="dexsec">
+      <h4>the numbers</h4>
+      <table class="facts">
+        ${row("power", status ? "" : d.power || "varies")}
+        ${row("accuracy", d.accuracy ? d.accuracy + "%" : "never misses")}
+        ${row("PP", d.pp)}
+        ${row("priority", d.priority ? signed(d.priority) : "")}
+        ${row("target", tidy(d.range))}
+        ${row("effect", `${esc(tidy(d.effect))}${d.effect_chance ? ` <span class="sub">${d.effect_chance}%</span>` : ""}
+          <span class="sub num">#${d.effect_id}</span>`)}
+        ${row("machine", d.machine || "")}
+      </table>
+    </div>
+
+    <div class="dexsec">
+      <h4>flags</h4>
+      ${(d.flags || []).map(f => `<span class="chip plain">${esc(tidy(f))}</span>`).join("")
+        || `<span class="sub">none</span>`}
+    </div>
+
+    <div class="dexsec">
+      <h4>against vanilla</h4>
+      ${was}
+    </div>`;
+
+  // Who learns it, one group per way of learning. Each row opens the species,
+  // and says the first split its species is met wild, if it is at all.
+  const groups = {};
+  (d.learners || []).forEach(l => (groups[l.how] = groups[l.how] || []).push(l));
+  const who = Object.keys(HOW).filter(h => groups[h]).map(h => `
+    <div class="dexsec"><h4>${HOW[h]} &middot; ${groups[h].length}</h4>
+      ${groups[h].map(l => `<div class="learner" data-sp="${l.species}" title="Open ${esc(l.label)}">
+        ${icon(l.species)}
+        ${h === "level" ? `<span class="num lv">Lv ${l.level}</span>` : ""}
+        <span class="nm">${esc(l.label)}</span>
+        ${l.first_split ? splitTag(l.first_split)
+          : `<span class="sub">not wild</span>`}
+      </div>`).join("")}
+    </div>`).join("");
+  $("#moveright").innerHTML = `
+    <h4 style="margin:0 0 8px; font-size:15px; color:var(--dim)">who learns it</h4>
+    ${who || `<p class="sub">No species learns it${delta.new
+      ? ". The new species' learnsets are still to be refilled, which is element 4's last piece." : "."}</p>`}`;
+  $("#moveright").querySelectorAll(".learner").forEach(el =>
+    el.onclick = () => openSpecies(el.dataset.sp));
+}
+
+// A jump from another view clears a filter that would hide the row it lands
+// on, so the list always shows where the page is.
+async function openMove(move) {
+  await setView("moves");
+  const row = MOVES.find(r => r.move === move);
+  if (row && !moveMatch(row)) {
+    $("#movefilter").value = "";
+    $('#movelist .sortbar button[data-f="all"]').click();
+  }
+  selectMove(move);
+}
+
+async function openSpecies(species) {
+  await setView("dex");
+  const row = POKEDEX.find(r => r.species === species);
+  if (row && !dexMatch(row)) {
+    $("#dexfilter").value = "";
+    $('#dexlist .sortbar button[data-f="all"]').click();
+  }
+  selectSpecies(species);
+}
+
 function openTable(area, kind) {
   KIND = kind || "land";
   LAYER = "base";
@@ -778,15 +1013,24 @@ function openTable(area, kind) {
   select(area);
 }
 
-function setView(view) {
+// Resolves once the view's list is loaded, so a jump from one view to a
+// row of another can select that row and scroll to it.
+async function setView(view) {
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain)").hidden = view !== "tables";
   $("#dexmain").hidden = view !== "dex";
-  if (view === "dex" && !POKEDEX.length) {
-    api("/api/dex").then(j => { POKEDEX = j.rows; drawDexList(); })
-                   .catch(e => toast(e.message, true));
-  }
+  $("#movemain").hidden = view !== "moves";
+  try {
+    if (view === "dex" && !POKEDEX.length) {
+      POKEDEX = (await api("/api/dex")).rows;
+      drawDexList();
+    }
+    if (view === "moves" && !MOVES.length) {
+      MOVES = (await api("/api/moves")).rows;
+      drawMoveList();
+    }
+  } catch (e) { toast(e.message, true); }
 }
 
 // ---- header -------------------------------------------------------------
@@ -1316,6 +1560,13 @@ async function boot() {
 
 $("#filter").oninput = drawList;
 $("#dexfilter").oninput = drawDexList;
+$("#movefilter").oninput = drawMoveList;
+document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = () => {
+  MOVEFILTER = b.dataset.f;
+  document.querySelectorAll("#movelist .sortbar button")
+          .forEach(x => x.classList.toggle("on", x === b));
+  drawMoveList();
+});
 document.querySelectorAll("nav#views button").forEach(b =>
   b.onclick = () => setView(b.dataset.view));
 document.querySelectorAll("#dexlist .sortbar button").forEach(b => b.onclick = () => {

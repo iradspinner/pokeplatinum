@@ -391,6 +391,16 @@ def dex_detail(species):
             "power": m.get("power"), "accuracy": m.get("accuracy"),
             "pp": m.get("pp"),
         })
+    # The other three ways a species learns a move, as names and types only:
+    # the page lists them compactly and each opens its move.
+    by_machine = pokedex.machines(root)
+    brief = lambda mv, **kw: dict(kw, move=mv, type=(moves.get(mv) or {}).get("type"),
+                                  label=(moves.get(mv) or {}).get("name")
+                                  or dex.display_name(mv))
+    out["machine_moves"] = [brief(by_machine[t], machine=t) for t in rec["by_tm"]
+                            if t in by_machine]
+    out["tutor_moves"] = [brief(mv) for mv in rec["by_tutor"]]
+    out["egg_moves"] = [brief(mv) for mv in rec["egg_moves"]]
     # A mega is entered twice, once under the day method and once under the
     # night one, which is how the tree holds an alt-evolution. That is one
     # forme, not two evolutions.
@@ -461,6 +471,73 @@ def _in_stage_order(line):
         frontier, stage = nxt, stage + 1
     # Anything the walk cannot reach still shows, after the rest.
     out.extend(dict(m, stage=stage) for m in line if m["species"] not in seen)
+    return out
+
+
+def _move_name(move):
+    move = move.upper()
+    return move if move.startswith("MOVE_") else "MOVE_" + move
+
+
+def move_list():
+    """Every move in the tree, one row each, with what changed from vanilla and
+    how many species learn it."""
+    root = model.repo_root()
+    moves = pokedex.moves(root)
+    vanilla = pokedex.vanilla_moves(root)
+    learnt = pokedex.learners(root)
+    rows = []
+    for move, rec in sorted(moves.items(), key=lambda kv: kv[1]["id"] or 0):
+        if move == "MOVE_NONE":
+            continue
+        d = pokedex.move_delta(rec, vanilla.get(move))
+        rows.append({
+            "move": move, "id": rec["id"], "name": rec["name"],
+            "type": rec["type"], "class": rec["class"], "power": rec["power"],
+            "accuracy": rec["accuracy"], "pp": rec["pp"],
+            "priority": rec["priority"], "effect": rec["effect"],
+            "stub": rec["stub"],
+            "new": bool(d and d.get("new")),
+            "changed": bool(d and not d.get("new")),
+            "learners": len({r["species"] for r in learnt.get(move) or []}),
+        })
+    return {"rows": rows, "count": len(rows)}
+
+
+def move_detail(move):
+    """One move, with what changed from vanilla and every species that learns
+    it: how, at what level, and the earliest split a player can meet it wild,
+    which is the question an author asks of a move."""
+    root = model.repo_root()
+    move = _move_name(move)
+    rec = pokedex.moves(root).get(move)
+    if rec is None:
+        return {"error": "no such move"}
+    was = pokedex.vanilla_moves(root).get(move)
+    split_rank = progression.split_index(model.load_sidecar())
+    caps = _captures()
+    out = dict(rec)
+    out["delta"] = pokedex.move_delta(rec, was)
+    out["vanilla"] = was
+    out["machine"] = next((m for m, mv in pokedex.machines(root).items()
+                           if mv == move), None)
+    learners = []
+    for row in pokedex.learners(root).get(move) or []:
+        sp = pokedex.load(root, row["species"])
+        met = caps.get(row["species"]) or []
+        splits = sorted({c["split"] for c in met if c.get("split")},
+                        key=lambda s: split_rank.get(s, 99))
+        learners.append(dict(row, label=sp["name"], folder=sp["folder"],
+                             types=sp["types"], appearances=len(met),
+                             first_split=splits[0] if splits else None))
+    # Grouped by how, then by level for level-up, then by how early a player
+    # can have the species at all, so the top of each group is the answer to
+    # "who is the first thing that can use this".
+    how = {h: i for i, h in enumerate(pokedex.LEARN_KINDS)}
+    learners.sort(key=lambda r: (how[r["how"]], r["level"] or 0,
+                                 split_rank.get(r["first_split"], 99),
+                                 r["label"]))
+    out["learners"] = learners
     return out
 
 
@@ -570,12 +647,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "dex":
                 return self._send(dex_list() if len(parts) < 3
                                   else dex_detail(parts[2]))
+            if parts[1] == "moves":
+                return self._send(move_list())
             if parts[1] == "move":
-                moves = pokedex.moves(model.repo_root())
-                row = moves.get(parts[2].upper())
-                if row is None:
-                    return self._send({"error": "no such move"}, 404)
-                return self._send(row)
+                out = move_detail(parts[2])
+                return self._send(out, 404 if "error" in out else 200)
             if parts[1] == "sprite":
                 return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
             if parts[1] == "caught":

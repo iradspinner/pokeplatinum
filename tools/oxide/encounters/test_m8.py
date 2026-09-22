@@ -1,5 +1,5 @@
-"""M8 D1: the dex data layer reads species, moves, sprites and the type chart
-out of res/, and says what changed from vanilla.
+"""M8 D1 to D4: the dex data layer reads species, moves, sprites and the type
+chart out of res/, says what changed from vanilla, and indexes who learns what.
 
     PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8
 
@@ -320,10 +320,13 @@ def check_page(results):
     style = page[page.index("<style>"):page.index("</style>")]
     hides = [line for line in style.splitlines()
              if "[hidden]" in line and "display" in line and "none" in line]
+    # One toggle per view, so every view the header offers can be hidden.
+    views = len(re.findall(r'<button data-view="', page))
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    bool(hides) and toggled == 2, f"{hides}, {toggled} toggles"))
+                    bool(hides) and views == 3 and toggled == views,
+                    f"{hides}, {toggled} toggles for {views} views"))
 
     # The sprites carry no alpha, so the server marks palette entry 0 clear.
     raw = open(os.path.join(root, "res", "pokemon", "clefairy",
@@ -372,11 +375,110 @@ def check_qa_findings(results):
                     reread, ""))
 
 
+def check_moves_view(results):
+    """D4: the move list, the move page and the reverse index."""
+    root = model.repo_root()
+    moves = pokedex.moves(root)
+    results.append(("a move's id is its place in the enum, which is positional",
+                    moves["MOVE_POUND"]["id"] == 1
+                    and moves["MOVE_HONE_CLAWS"]["id"] == 471
+                    and all(m["id"] is not None for m in moves.values()), ""))
+
+    # Which effects are placeholders changes as element 4 writes scripts, so
+    # nothing here pins a count: only what a placeholder can and cannot be.
+    stubs = pokedex.stub_effects(root)
+    ids = pokedex._effect_ids(root)
+    results.append(("only an effect from the donor's range can be a placeholder, "
+                    "and Platinum's own plain hit and Splash never are",
+                    all(ids[e] >= pokedex.FIRST_DONOR_EFFECT for e in stubs)
+                    and "HIT" not in stubs and "DO_NOTHING" not in stubs,
+                    f"{len(stubs)} placeholder effects"))
+    results.append(("a move is flagged exactly when its effect is a placeholder",
+                    all(m["stub"] == (m["effect"] in stubs) for m in moves.values())
+                    and not moves["MOVE_FLAMETHROWER"]["stub"],
+                    f"{sum(m['stub'] for m in moves.values())} moves"))
+
+    vanilla = pokedex.vanilla_moves(root)
+    d = lambda mv: pokedex.move_delta(moves[mv], vanilla.get(mv))
+    results.append(("the vanilla baseline is every move main has, read in one go",
+                    len(vanilla) == 468 and "MOVE_MOONBLAST" not in vanilla,
+                    f"{len(vanilla)} moves"))
+    # Charm is element 1's Fairy retype, Tackle and Attack Order are the base
+    # ROM's own edits, and Flamethrower is one of the 95 natives given the
+    # King's Rock flag.
+    results.append(("a move reports what changed from vanilla, field by field",
+                    d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"}}
+                    and d("MOVE_TACKLE") == {"accuracy": {"was": 95, "now": 100}}
+                    and d("MOVE_ATTACK_ORDER")["effect"]["now"] == "POISON_HIT"
+                    and d("MOVE_FLAMETHROWER")
+                    == {"flags": {"gained": ["TRIGGERS_KINGS_ROCK"], "lost": []}}
+                    and d("MOVE_POUND") is None
+                    and d("MOVE_MOONBLAST") == {"new": True}, ""))
+
+    machines = pokedex.machines(root)
+    results.append(("every TM and HM names the move it teaches",
+                    len(machines) == 100 and machines["TM02"] == "MOVE_DRAGON_CLAW"
+                    and machines["HM03"] == "MOVE_SURF", f"{len(machines)} machines"))
+    learnt = pokedex.learners(root)
+    surf = {(r["species"], r["how"], r["machine"]) for r in learnt["MOVE_SURF"]}
+    results.append(("the reverse index covers level-up, machines, tutors and eggs",
+                    ("SPECIES_SQUIRTLE", "machine", "HM03") in surf
+                    and {"species": "SPECIES_LITTEN", "how": "level", "level": 1,
+                         "machine": None} in learnt["MOVE_SCRATCH"]
+                    and any(r["how"] == "tutor" for r in learnt["MOVE_MUD_SLAP"])
+                    and any(r["species"] == "SPECIES_GIBLE" and r["how"] == "egg"
+                            for r in learnt["MOVE_OUTRAGE"]), ""))
+
+    rows = server.move_list()["rows"]
+    results.append(("the list is every move but NONE, with the comparison and the "
+                    "learner count folded in",
+                    len(rows) == len(moves) - 1
+                    and [r["id"] for r in rows] == sorted(r["id"] for r in rows)
+                    and any(r["new"] for r in rows) and any(r["changed"] for r in rows)
+                    and next(r for r in rows if r["move"] == "MOVE_SURF")["learners"]
+                    == len({s for s, _, _ in surf}), f"{len(rows)} rows"))
+
+    detail = server.move_detail("surf")
+    order = [pokedex.LEARN_KINDS.index(l["how"]) for l in detail["learners"]]
+    wild = [l for l in detail["learners"] if l["first_split"]]
+    results.append(("the move page names its machine and sorts who learns it by "
+                    "how, then level",
+                    detail["machine"] == "HM03" and order == sorted(order)
+                    and wild and all(l["label"] and l["folder"] for l in wild), ""))
+    scratch = [l["level"] for l in server.move_detail("MOVE_SCRATCH")["learners"]]
+    results.append(("level-up learners come in level order",
+                    scratch == sorted(scratch), ""))
+    results.append(("an unknown move is an error rather than a crash",
+                    "error" in server.move_detail("MOVE_NOT_A_MOVE"), ""))
+
+    # Every move opens with what its page draws. Sampled, because each page
+    # walks every species' learnset; one in twenty-five covers every range.
+    needed = ("name", "type", "class", "id", "effect", "effect_id", "stub",
+              "delta", "learners", "flags", "description")
+    sample = [r["move"] for r in rows[::25]] + ["MOVE_HONE_CLAWS", "MOVE_CHARM"]
+    broken = [mv for mv in sample
+              if any(k not in server.move_detail(mv) for k in needed)]
+    results.append(("a sample of moves across the whole range opens with "
+                    "everything the page draws", not broken,
+                    f"{len(sample)} opened, broken {broken[:4]}"))
+
+    gible = server.dex_detail("SPECIES_GIBLE")
+    garchomp = server.dex_detail("SPECIES_GARCHOMP")
+    results.append(("the species page lists its machine, tutor and egg moves, "
+                    "each naming the move it opens",
+                    garchomp["machine_moves"][0] == {
+                        "machine": "TM02", "move": "MOVE_DRAGON_CLAW",
+                        "type": "DRAGON", "label": "Dragon Claw"}
+                    and garchomp["tutor_moves"]
+                    and any(m["move"] == "MOVE_OUTRAGE" for m in gible["egg_moves"]),
+                    ""))
+
+
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
                   check_captures, check_endpoints, check_canon, check_page,
-                  check_qa_findings):
+                  check_qa_findings, check_moves_view):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

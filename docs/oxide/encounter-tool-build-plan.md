@@ -51,6 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 59/59, the dex and moves
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
@@ -1329,7 +1330,7 @@ hover), drawn from a new `water` list in `/api/area`. A panel is a view:
 clicking it opens that table above for editing, as its tab does, and the one
 being edited is outlined. `test_m4` checks the water list (50 checks).
 
-## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
+## M8, the dex and the damage calculator: **D1 to D4 done 2026-09-22, D5 next**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
 `hzla/ddex`) and its damage calculator (`hzla/Dynamic-Calc-Decomps`) do into this
@@ -1512,8 +1513,45 @@ here against Fairy/Psychic, Gothitelle is Dark/Psychic against Psychic, and
 Tsareena is Fighting/Grass against Grass. Those three are either deliberate or
 import slips, and either way they were invisible until now.
 
-**D4, moves.** A move list and per-move page, plus the reverse index: which
-species learn this, and at what level.
+**D4, moves: done, 2026-09-22.** A third view, Moves, beside Tables and Dex.
+The list holds all 922 moves with type, class, power, accuracy and how many
+species learn each, filtered by a search over name, type or effect and by five
+buttons: all, learnt, changed, new, unscripted. A move's page gives its numbers,
+target, effect with its id, the machine that teaches it, its flags, and a table
+of every field that differs from vanilla. The right pane is the reverse index:
+every species that learns the move, by level-up, machine, tutor or egg, sorted
+by level and then by the earliest split the species is met wild. Every name is
+a link. A learner opens its dex page, and the dex page's level-up moves, plus
+new lists of its machine, tutor and egg moves, open the move. A jump from one
+view clears any filter that would hide the row it lands on.
+
+Three things the page knows that the move files do not say directly:
+
+1. **Which moves are unscripted.** Element 4 gave the donor's effects 277 to
+   406 placeholder scripts, a copy of either effect 0's plain hit or Splash's.
+   `pokedex.stub_effects()` finds them by comparing the scripts, so an effect
+   stops being flagged as soon as its real script lands, with no list to keep.
+   Today that is 130 effects and 136 moves. The list marks them with the lint
+   warning's dot, and the move page says what the player will see: the damage
+   without its extra, or "But nothing happened!" for a status move.
+2. **What changed from vanilla**, per field. 190 natives differ. Most of them
+   (96) differ only in the King's Rock flag element 4 gave every damaging move.
+   The rest are the base ROM's own edits: Tackle's accuracy, and Attack Order
+   rebuilt as a 120-power poison hit. Charm's Fairy retype shows too. The
+   baseline is `main` read in one `git cat-file --batch` call rather than 468
+   `git show` calls, which keeps the list at about 70ms.
+3. **Who can use it, and from when.** 464 of the 922 moves are learnt by at
+   least one species. Most of the other 458 are new moves nothing learns yet,
+   because refilling the new species' learnsets is element 4's last piece, and
+   the move page says so rather than looking broken. A machine is read from
+   its item record (`res/items/data/tm02.json` teaches Dragon Claw), so the
+   index follows any change to the TM list.
+
+Gate: `test_m8` at 59 checks, thirteen of them D4's. None of them pins a count
+of placeholder effects, since element 4 will bring it down; they pin what a
+placeholder can and cannot be instead. The page was rendered in a headless
+Windows Chrome in both themes with no page errors, and the jump from Gible's
+egg moves to Outrage was driven through and landed on the right row.
 
 **D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
 with its licence intact, generate its data from `res/`, serve both from our
