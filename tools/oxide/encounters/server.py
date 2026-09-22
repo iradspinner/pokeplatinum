@@ -357,6 +357,36 @@ def _calc_sprite_files():
     return out
 
 
+@functools.lru_cache(maxsize=1)
+def _calc_item_icons():
+    """{cleaned item name: icon PNG path}, from each item's own record: its
+    display name, and the icon sprite it names under res/items/icons/."""
+    root = model.repo_root()
+    base = os.path.join(root, "res", "items")
+    out = {}
+    for f in os.listdir(os.path.join(base, "data")):
+        try:
+            with open(os.path.join(base, "data", f), encoding="utf-8") as fh:
+                raw = json.load(fh)
+        except (OSError, ValueError):
+            continue
+        sprite = ((raw.get("icon") or {}).get("sprite") or "").replace("_NCGR", "")
+        path = os.path.join(base, "icons", sprite + ".png")
+        if raw.get("name") and os.path.isfile(path):
+            out.setdefault(calc_export.clean(raw["name"]), path)
+    return out
+
+
+def calc_item_icon(filename):
+    """A held item's icon for the calculator (img/items/<name>.png), from
+    res/items/icons/, with palette entry 0 made clear as the sprites are."""
+    path = _calc_item_icons().get(calc_export.clean(filename.rsplit(".", 1)[0]))
+    if not path:
+        return None
+    with open(path, "rb") as f:
+        return _transparent_background(f.read())
+
+
 def calc_sprite(sprite_set, filename):
     """The calculator asks for ./img/<set>/<showdown name>.<ext>. Answer from
     Oxide's own sprites, as an SVG that shows the sheet's first frame at the
@@ -657,10 +687,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         parts = [p for p in url.path.split("/") if p]
 
         if len(parts) == 4 and parts[:2] == ["calc", "img"]:
-            body = calc_sprite(parts[2], parts[3])
+            items = parts[2] == "items"
+            body = calc_item_icon(parts[3]) if items else calc_sprite(parts[2], parts[3])
             if body is not None:
                 self.send_response(200)
-                self.send_header("Content-Type", "image/svg+xml")
+                self.send_header("Content-Type", "image/png" if items else "image/svg+xml")
                 self.send_header("Content-Length", str(len(body)))
                 self.end_headers()
                 self.wfile.write(body)

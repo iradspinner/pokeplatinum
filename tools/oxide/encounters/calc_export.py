@@ -33,6 +33,7 @@ import os
 import re
 import sys
 
+from . import calc_trainers
 from . import canon
 from . import model
 from . import pokedex
@@ -60,12 +61,14 @@ def clean(name):
 
 @functools.lru_cache(maxsize=1)
 def calc_names():
-    """{"abilities": {id: name}, "moves": {id: (name, type, category)}} the
-    calculator knows, dumped from it by make_calc_names.js."""
+    """{"abilities": {id: name}, "moves": {id: (name, type, category)},
+    "items": {id: name}} the calculator knows, dumped from it by
+    make_calc_names.js."""
     with open(NAMES, encoding="utf-8") as f:
         raw = json.load(f)
     return {"abilities": {clean(n): n for n in raw["abilities"]},
-            "moves": {clean(n): (n, t, c) for n, (t, c) in raw["moves"].items()}}
+            "moves": {clean(n): (n, t, c) for n, (t, c) in raw["moves"].items()},
+            "items": {clean(n): n for n in raw.get("items") or []}}
 
 
 def type_name(t):
@@ -164,6 +167,11 @@ def form_folders():
         suffix = name.split("-", 1)[1].lower()
         out[name] = (sp, "sunny" if suffix == "sunshine" else suffix)
     return out
+
+
+def form_folders_inverse():
+    """{(species, form folder): Showdown name}, the other way round."""
+    return {v: k for k, v in form_folders().items()}
 
 
 def form_record(root, species, form):
@@ -271,7 +279,9 @@ def build(root=None):
         "poks": poks,
         "moves": moves,
         "custom_moves": {},
-        "formatted_sets": {},
+        # Every trainer's party, rebuilt the way the game builds it in
+        # battle (calc_trainers.py), so a gym leader can be picked by name.
+        "formatted_sets": calc_trainers.all_sets(root),
         "order": {},
         "type_chart": type_chart,
         # What the species picker offers: Oxide's species and the forms above,
