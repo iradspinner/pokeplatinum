@@ -8597,6 +8597,45 @@
     {
       "id": "BattleStrings_Text_NeitherPokemonCanRunAway",
       "en_US": "Neither Pokémon can run away!"
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBurnedItselfOut_Ally",
+      "en_US": "{STRVAR_1 1, 0, 0} burned itself out!"
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBurnedItselfOut_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "burned itself out!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBurnedItselfOut_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "burned itself out!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used up all\n",
+        "its electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used up\n",
+        "all its electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used up\n",
+        "all its electricity!"
+      ]
     }
   ]
 }

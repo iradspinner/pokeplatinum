@@ -320,4 +320,9 @@ subscript_files = files(
     'subscript_set_spikes.s',
     'subscript_fell_stinger.s',
     'subscript_jaw_lock.s',
+    'subscript_final_gambit.s',
+    'subscript_recoil_half_max_hp.s',
+    'subscript_remove_user_fire_type.s',
+    'subscript_remove_user_electric_type.s',
+    'subscript_clear_smog.s',
 )

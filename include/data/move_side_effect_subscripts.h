@@ -185,5 +185,10 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SPIKES_HIT]                       = subscript_set_spikes,
     [MOVE_SUBSCRIPT_PTR_FELL_STINGER]                     = subscript_fell_stinger,
     [MOVE_SUBSCRIPT_PTR_JAW_LOCK]                         = subscript_jaw_lock,
+    [MOVE_SUBSCRIPT_PTR_FINAL_GAMBIT]                     = subscript_final_gambit,
+    [MOVE_SUBSCRIPT_PTR_RECOIL_HALF_MAX_HP]               = subscript_recoil_half_max_hp,
+    [MOVE_SUBSCRIPT_PTR_REMOVE_USER_FIRE_TYPE]            = subscript_remove_user_fire_type,
+    [MOVE_SUBSCRIPT_PTR_REMOVE_USER_ELECTRIC_TYPE]        = subscript_remove_user_electric_type,
+    [MOVE_SUBSCRIPT_PTR_CLEAR_SMOG]                       = subscript_clear_smog,
 };
 // clang-format on

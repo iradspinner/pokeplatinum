@@ -98,6 +98,8 @@ HG_STRINGS = {
     1542: "BattleStrings_Text_PokemonIsAboutToBeAttackedByItsItem_Ally",
     1545: "BattleStrings_Text_PokemonIsGoingAllOutForThisAttack_Ally",
     1548: "BattleStrings_Text_NeitherPokemonCanRunAway",
+    1601: "BattleStrings_Text_PokemonBurnedItselfOut_Ally",
+    1604: "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -711,9 +713,12 @@ def check_script(text, have):
         if head not in have:
             unresolved.add(head)
         for a in args:
-            for t in re.findall(r"[A-Za-z_]\w*", a):
-                if t not in labels and t not in have:
-                    unresolved.add(t)
+            # A hex number is matched whole first, so its digits after the x
+            # are not read as a name (they were, until 2026-09-22).
+            for t in re.findall(r"\b0[xX][0-9A-Fa-f]+\b|[A-Za-z_]\w*", a):
+                if t[:2] in ("0x", "0X") or t in labels or t in have:
+                    continue
+                unresolved.add(t)
         at = MESSAGE_ARG.get(head)
         if at is not None and len(args) > at and re.fullmatch(r"\d+", args[at]):
             messages.append(int(args[at]))

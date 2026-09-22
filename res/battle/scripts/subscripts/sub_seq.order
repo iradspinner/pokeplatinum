@@ -317,3 +317,8 @@ subscript_set_stealth_rock
 subscript_set_spikes
 subscript_fell_stinger
 subscript_jaw_lock
+subscript_final_gambit
+subscript_recoil_half_max_hp
+subscript_remove_user_fire_type
+subscript_remove_user_electric_type
+subscript_clear_smog
