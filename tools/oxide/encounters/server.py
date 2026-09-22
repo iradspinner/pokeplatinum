@@ -34,6 +34,7 @@ from . import lint
 from . import locations
 from . import model
 from . import pokedex
+from . import progression
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -49,6 +50,15 @@ def species_universe():
     return dex.species_universe(model.repo_root())
 
 
+# The twenty-five unknown_533 to unknown_557 files are post-game rooms nothing
+# in Oxide uses yet, and Ian asked for them out of the tool until something
+# does (2026-09-22). They are parked here, in the browser tool only: the files,
+# the CLI, the linter and the availability plan still see them. Parked areas
+# leave the area list, the header's game metrics and the dex's cross-links.
+def parked(area_name):
+    return area_name.startswith("encounters_unknown_")
+
+
 class State:
     """Loaded per request; the files are the state, so nothing is cached
     across writes."""
@@ -59,6 +69,9 @@ class State:
         self.sidecar = model.load_sidecar()
         self.entries = (self.sidecar or {}).get("areas") or {}
         self.thresholds = lint.thresholds_from(self.sidecar)
+        # {split: position}, so the page can group areas by the game's
+        # progression: Roark first, Post last.
+        self.split_rank = progression.split_index(self.sidecar)
         self.encounters = load_encounters()          # {area: species}
         self.caught = set(self.encounters.values())
         # The dupes clause works on families: a Starly caught on Route 201
@@ -74,7 +87,8 @@ class State:
         # Every area with a table of any kind: a water-only area (Twinleaf
         # Town, Route 219) is a capture area by its rods and surf even though
         # its grass rate is zero.
-        return [a for a in model.load_all(self.ref) if a.land_active or a.kinds_present()]
+        return [a for a in model.load_all(self.ref)
+                if (a.land_active or a.kinds_present()) and not parked(a.name)]
 
     def entry(self, name):
         return self.entries.get(name) or {}
@@ -136,6 +150,8 @@ def area_row(a, st, findings_by_area):
         # the gym split are what a row is worth, not the file it came from.
         "location": locations.location(a.name),
         "split": e.get("split"),
+        "split_rank": st.split_rank.get(e.get("split")),
+        "order": e.get("order"),
         "no_capture": bool(e.get("no_capture")),
         "species": m["n_species"],
         "hhi": m["hhi"],
@@ -179,8 +195,28 @@ def area_detail(a, st, kind="land"):
     odds = A.slot_odds(slots, st.owned, rates)
     m = A.table_metrics(slots, rates)
     c = A.caught_metrics(slots, st.owned, rates)
-    merged = A.merged(slots, rates)
-    cond_merged = A.conditional(merged, st.owned)
+
+    def merged_view(table):
+        # One line per species with its share on paper and its real odds
+        # (the share among what is still uncaught), most common first.
+        merged = A.merged(table, rates)
+        cond = A.conditional(merged, st.owned)
+        return [dict(_species_view(s, st, a.name), share=v, cond=cond.get(s, 0.0))
+                for s, v in sorted(merged.items(), key=lambda kv: -kv[1])]
+
+    # Day and night put their own two species in slots 2 and 3 and leave the
+    # rest alone, so each gets its own list; the page shows the one for the
+    # time of day being viewed rather than the morning table's at all hours.
+    merged_layers = {}
+    if kind == "land":
+        for layer in ("day", "night"):
+            swap_in = a.data.get(layer) or []
+            if len(swap_in) == 2:
+                table = list(slots)
+                for i, sp in enumerate(swap_in):
+                    _, lo, hi = table[2 + i]
+                    table[2 + i] = (sp, lo, hi)
+                merged_layers[layer] = merged_view(table)
 
     rung_rows = []
     for level, p in A.distinct_rungs(slots, rates):
@@ -221,9 +257,8 @@ def area_detail(a, st, kind="land"):
         "day_labels": [dex.display_name(s) for s in (a.data.get("day") or [])],
         "night_labels": [dex.display_name(s)
                          for s in (a.data.get("night") or [])],
-        "merged": [dict(_species_view(s, st, a.name), share=v,
-                        cond=cond_merged.get(s, 0.0))
-                   for s, v in sorted(merged.items(), key=lambda kv: -kv[1])],
+        "merged": merged_view(slots),
+        "merged_layers": merged_layers,
         "rungs": rung_rows,
         "metrics": m,
         "caught_metrics": c,
@@ -237,7 +272,13 @@ def area_detail(a, st, kind="land"):
 
 @functools.lru_cache(maxsize=1)
 def _captures():
-    return pokedex.captures()
+    # Parked areas leave the dex's "where it is met" as well as the area list.
+    out = {}
+    for species, rows in pokedex.captures().items():
+        kept = [r for r in rows if not parked(r["area"])]
+        if kept:
+            out[species] = kept
+    return out
 
 
 def _transparent_background(data):

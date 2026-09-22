@@ -150,6 +150,12 @@ The page follows Windows by default and offers a toggle for the moments it shoul
 
 The 15.5px centre column is Ian's M4 request and stays.
 
+Changed 2026-09-22 at Ian's request: every size in this table is 2.5px larger in
+the build (base 16px, centre 18px, title 18.5px), the left column is 460px, and
+the slot table's party icons are 64px in 68px rows. "What a player meets" sits
+beside the slot table without a heading, and the slot table no longer has a real
+odds column. The build plan's entry for that date has the details.
+
 Stacks: sans is `system-ui, "Segoe UI Variable", "Segoe UI", sans-serif`; mono is `ui-monospace, "Cascadia Mono", Consolas, monospace` with `font-variant-numeric: tabular-nums`.
 
 ### The pixel face

@@ -1244,6 +1244,41 @@ still catchable there in Roark's split, since the Old Rod carries it. The
 no-leak pass followed the change into Oreburgh Mine B2F's swarm field, which
 Oxide never uses.
 
+### Ian's notes on the Tables view: 2026-09-22
+
+Play order had been sorting by each area's median level, which put Twinleaf Town
+after Route 219 and scattered splits (Wayward Cave away from the rest of
+Fantina's). `/api/areas` now gives each row its split's position and its sidecar
+`order`, and the page sorts by split first, Post last, then by that order.
+Within a split the sidecar's order stands, so Route 219 (order 92) closes
+Roark's split.
+
+The twenty-five `unknown_533` to `unknown_557` files are parked out of the
+browser tool until something uses them: gone from the area list, the header's
+game metrics and the dex's "where it is met". The CLI, the linter and the
+availability plan still read them. `test_m4` expects 159 areas now.
+
+In the centre, party icons are drawn at 64px (rows 68px), and "What a player
+meets" sits beside the slot table with its rows level with the slots, each line
+two rows high: name and both odds on top, the bar across the full width
+beneath. Ian then asked for the list's heading and the slot table's own "Real
+odds" column to go, since the list shows real odds and the heading pushed its
+rows out of line. The two sit side by side when the window is about 1880px wide
+or more and stack below that. Ticking a catch now eases those bars to their new
+lengths over 350ms, as the repel ladder already did, instead of jumping.
+
+Every font size in the page went up 2.5px (base 16px, centre 18px), and the left
+pane widened from 420px to 460px with wider number columns so the level range
+and catch count no longer collide.
+
+One bug Ian found along the way: that list showed the morning table's odds
+whatever time of day was picked. The server built it from the base slots only.
+`/api/area` now also sends `merged_layers`, a day and a night list with their
+two species in slots 2 and 3, and the page shows the one for the chosen time;
+the bars ease between times as they do on a catch. The planner's species menu
+still reads the base list, which is what it plans against. `test_m4` gained a
+check for the day and night lists and one for the split ranks (49 checks).
+
 ## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
