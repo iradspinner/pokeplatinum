@@ -948,10 +948,13 @@ function drawMid() {
 // ---- right --------------------------------------------------------------
 
 // The ladder's segments cycle through five fills, teal and pink alternating,
-// all of them tokens. The text on a segment has to be worked out per segment:
-// dark ink on a light fill and light on a dark one, which is a different pair
-// of tokens in each theme, so the fill's real colour is read back from the
-// page and its luminance decides. The answer is cached until the theme moves.
+// all of them tokens. The text on a segment has to be worked out per segment,
+// and it is whichever of --ink and --on-mass contrasts more with that fill,
+// read back from the page because the fills differ between themes. The design
+// suggested a 0.33 luminance threshold instead, but that picks light text on
+// the dark theme's third segment at 3.2 to 1, under AA for 11px labels; the
+// higher-contrast choice agrees with it everywhere else and gives 4.8 there.
+// The answer is cached until the theme moves.
 const SEGMENTS = 5;
 let SEG_TEXT = null;
 
@@ -971,14 +974,17 @@ function luminance([r, g, b]) {
   return .2126 * lin(r) + .7152 * lin(g) + .0722 * lin(b);
 }
 
+// WCAG contrast ratio between two relative luminances.
+const contrast = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+
 function segText(i) {
   if (!SEG_TEXT) {
     const ink = luminance(resolvedRGB("--ink")), onMass = luminance(resolvedRGB("--on-mass"));
-    const dark = ink < onMass ? "var(--ink)" : "var(--on-mass)";
-    const light = ink < onMass ? "var(--on-mass)" : "var(--ink)";
     SEG_TEXT = [];
-    for (let n = 1; n <= SEGMENTS; n++)
-      SEG_TEXT.push(luminance(resolvedRGB(`--seg-${n}`)) > .33 ? dark : light);
+    for (let n = 1; n <= SEGMENTS; n++) {
+      const fill = luminance(resolvedRGB(`--seg-${n}`));
+      SEG_TEXT.push(contrast(ink, fill) >= contrast(onMass, fill) ? "var(--ink)" : "var(--on-mass)");
+    }
   }
   return SEG_TEXT[i % SEGMENTS];
 }
