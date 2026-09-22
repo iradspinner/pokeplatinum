@@ -1232,6 +1232,116 @@ R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and
 `verify_narcs --encounters --source` at 184 of 184 tables. Suites 35/35, 21/21,
 18/18, 28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15, 19/19.
 
+## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
+
+Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
+`hzla/ddex`) and its damage calculator (`hzla/Dynamic-Calc-Decomps`) do into this
+tool: a species viewer with sprites, base stats and what changed from vanilla,
+learnsets, and a calculator that knows Oxide's numbers. His four rulings, given
+before any of it was designed: build it **into this tool** rather than feeding
+ddex, go as far as a **full local calculator**, treat it as **an instrument for
+him while authoring** rather than something players see, and cover **all four**
+surfaces (stats with deltas, learnsets and moves, sprites, encounter
+cross-links).
+
+### What the survey turned up
+
+**ddex reads a Gen 4 hack by uploading an `.nds`**, which `make rom` produces
+every time, so that looked like a free second opinion. Ian tried it on
+2026-09-22 and it half works: much of the Pokedex, the encounter tables and the
+location names come back as garbage. That is the expected failure and it is worth
+writing down, because it is the argument for this milestone. A parser written for
+vanilla Platinum assumes vanilla's shapes, and Phase 4 moved all three of them:
+the species archives hold 667 members rather than 508, the species record grew
+from 44 bytes to 48 when the abilities became `u16`, and the evolution record
+grew from 44 to 56, so reading them at vanilla's stride walks off the end of
+every record after the first. Location names are a message bank whose indices
+moved for the same reason. Nothing in ddex is wrong; it simply cannot know what
+this fork did, and no upload will fix that.
+
+The lesson for us is that reading `res/` is not merely more convenient than
+parsing the ROM, it is the only source that is correct by construction: the JSON
+is what the build consumes, so a viewer built on it cannot drift from the game.
+ddex also already does wild encounters with nuzlocke routing and dupe tracking,
+which overlaps this tool; what it cannot do either way is know our design data,
+which is why the cross-links below are the part worth building rather than
+borrowing.
+
+**The licences differ and decide what may be copied.** `Dynamic-Calc-Decomps` is
+MIT, so vendoring it is clean as long as its licence travels with it. `hzla/ddex`
+has no licence file at all, so none of its code comes into this repo without
+asking him first. Nothing here needs it.
+
+**The calculator is static files.** `index.html`, `js/`, `css/`, `calc/` and
+`data/`, served directly by GitHub Pages with no build step, so it can be vendored
+and served by our own Python server without adding node or npm to this project's
+build. It takes its game data as a JSON blob in Showdown's naming, which the
+hosted version fetches from npoint.io. Feeding it ours is a data export, not a UI
+job, and pointing it at our server is the one patch it needs.
+
+**Everything the dex needs is already in `res/`.** Each species' `data.json`
+holds base stats, types, the three abilities, evolution methods and the level-up
+learnset; `res/moves/` holds 469 moves with class, type, power, accuracy, PP,
+priority and flags, which is everything a damage formula wants; sprites are
+ordinary indexed PNGs a browser renders as they are (160x80, two 80x80 frames
+side by side) with a party icon beside them; and the vanilla baseline for "what
+changed" is `git show main:res/pokemon/<name>/data.json`, the same trick the
+linter already uses for tables. No ROM parsing, no uploads, no network.
+
+### The milestones
+
+**D1, the data layer.** A new `pokedex.py` beside `dex.py` (which is about
+pick-list lines and keeps its name): species records, moves, learnsets,
+evolution chains, and the vanilla delta for anything that existed on `main`. New
+species have no vanilla row and read as new rather than as a change. Server
+endpoints for species, move, and sprite. Gate: a suite that pins a known species'
+stats, one of the twenty Fairy retypes as a type delta, one of the seven natives
+that gained an evolution, and a new species reading as new.
+
+**D2, the dex tab.** A searchable species list, filterable by type, tier, split
+and availability status, and a species page: sprite, base stats with the vanilla
+delta shown next to them, types, abilities, the evolution chain with its methods
+and levels, and the level-up learnset. Gate: every pick-list line opens and
+renders.
+
+**D3, sprites in the tables.** Party icons beside every slot in the encounter
+views, and front sprites on the species page. Cheap, and it is what makes a
+twelve-slot table readable at a glance.
+
+**D4, moves.** A move list and per-move page, plus the reverse index: which
+species learn this, and at what level.
+
+**D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
+with its licence intact, generate its data from `res/`, serve both from our
+server. The work is the export, in rough order of difficulty: a naming map from
+our constants to Showdown's spellings, with the awkward cases being the regional
+forms, the megas, Mr. Mime, Jangmo-o and the Tapus; species entries with stats,
+types, abilities, weight and gender ratio; moves with category, power, accuracy,
+priority and the flags the formula reads; learnsets so the set builder offers the
+right moves; and a patch to its loader so it reads from `localhost` instead of
+npoint. Gate: a hand-checked damage roll against the game, and the export
+regenerating clean after a species edit.
+
+### Decisions and risks, recorded before starting
+
+- **Mechanics settings.** Oxide has Fairy, so the type chart cannot be the Gen 4
+  one. hzla's calc separates these: damage mechanics, type chart, crit and
+  switch-in are each their own parameter, so the intended setting is Gen 4
+  damage with a Gen 6 type chart. Worth checking against a real battle.
+- **Bespoke abilities and moves.** The calculator keys its effects off Showdown
+  names, so anything Hardlove invented that Showdown has no logic for will be
+  inert in the numbers even when the name shows. The export should list which
+  ones those are rather than let them pass silently.
+- **Vendoring, and the one open question.** Committing the calculator is a few
+  megabytes of third-party JavaScript in a decomp repo. Committing it pinned is
+  the recommendation, because the whole point is that this works offline and
+  reproducibly; the alternative is a fetch script and an untracked directory,
+  which keeps the repo clean and needs the network once.
+- **Out of scope for now**, and each is a small addition later: items, trainer
+  teams in the calculator (the 928 carried-over teams would let a gym leader be
+  checked against a party at a level cap, which is the obvious next want), and
+  anything player-facing or hosted.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across
