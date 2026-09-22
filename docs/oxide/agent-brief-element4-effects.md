@@ -1,5 +1,11 @@
 # Brief: element 4's battle effects, picking up from 2026-09-23
 
+**Superseded for status (2026-09-22, later that day).** The counts and next
+steps below are from `388331c51`; the tracker's element 4 entry is current,
+and `convert_battle_scripts.py --audit` gives the live list. The tools, traps
+and verification steps still apply, and the converter's docstring now lists
+the checks it makes before writing.
+
 Written by the session that did this work, for the session that continues it.
 Read `CLAUDE.md`, the design doc and the tracker first, as always; this brief
 adds what those do not say yet and the order to do things in. Ian's writing
