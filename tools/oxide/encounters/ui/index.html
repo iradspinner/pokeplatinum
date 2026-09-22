@@ -31,14 +31,19 @@ a:hover { color: var(--place-ink); text-decoration-color: currentColor; }
 :focus-visible { outline: 2px solid var(--mass); outline-offset: 1px; }
 
 header {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 16px; flex-wrap: nowrap;
   min-height: 44px; padding: 4px 16px; background: var(--panel);
   border-bottom: 1px solid var(--rule); flex: none;
 }
 /* the pixel face is identity: the title, the tabs, the headline, the number */
 header .title { font: 600 16px/1 var(--pixel); margin-right: 4px; white-space: nowrap; }
-header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap; }
-header .gap { flex: 1; }
+/* The metric strip is the flexible gap: it takes the room between the tabs
+   and the checkout, and when there is not enough it wraps inside itself, so
+   the title, the tabs, the checkout and the toggle always hold the first row
+   rather than being stranded on a second one. */
+header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap;
+                flex: 1 1 auto; min-width: 0; padding: 4px 0; }
+header > nav, header > .title, header > .checkout, header > button { flex: none; }
 header .checkout { font: 12px/1 var(--mono); color: var(--faint); white-space: nowrap; }
 .metric { color: var(--dim); font-size: 12.5px; white-space: nowrap; }
 .metric b { font-family: var(--mono); font-variant-numeric: tabular-nums;
@@ -356,7 +361,6 @@ table.facts td { padding: 1px 0; }
     <span class="metric">caught <b id="h-caught">0</b></span>
     <button id="clear-caught" title="Clear the caught list">Reset caught</button>
   </div>
-  <span class="gap"></span>
   <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   <button id="theme-toggle" data-theme-toggle>Dark</button>
 </header>
