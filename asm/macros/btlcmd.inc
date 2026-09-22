@@ -1235,6 +1235,13 @@
     .long BTLCMD_END
     .endm
 
+    // Platinum Oxide's commands follow. They are appended after End so that
+    // no existing opcode moves.
+
+    .macro CalcBoltBeakPower
+    .long BTLCMD_CALCBOLTBEAKPOWER
+    .endm
+
     .text
     .globl _start
 _start:

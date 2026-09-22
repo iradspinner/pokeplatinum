@@ -307,6 +307,7 @@ static BOOL BtlCmd_CheckCurMoveIsType(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RefreshMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcBoltBeakPower(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
@@ -9461,6 +9462,32 @@ static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     battleCtx->battleProgressFlag = TRUE;
     return BattleSystem_PopScript(battleCtx);
+}
+
+/**
+ * @brief Calculates the power for Bolt Beak and Fishious Rend.
+ *
+ * Payback's rule turned around: the power doubles if the target has not acted
+ * yet this turn. A target that switched in this turn counts as not having
+ * acted, which is the Generation 8 rule, so its switch does not spend the
+ * bonus the way it would for Payback.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcBoltBeakPower(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+
+    if (DEFENDER_ACTION[BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_MOVE_END
+        || DEFENDER_ACTION[BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_PARTY) {
+        battleCtx->movePower = CURRENT_MOVE_DATA.power * 2;
+    } else {
+        battleCtx->movePower = CURRENT_MOVE_DATA.power;
+    }
+
+    return FALSE;
 }
 
 /**

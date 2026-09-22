@@ -229,6 +229,9 @@ ScriptCommand(BTLCMD_LOADARCHIVEDMONDATA,         BtlCmd_LoadArchivedMonData)
 ScriptCommand(BTLCMD_REFRESHMONDATA,              BtlCmd_RefreshMonData)
 ScriptCommand(BTLCMD_END,                         BtlCmd_End)
 
+// Platinum Oxide's commands, appended so that no existing opcode moves
+ScriptCommand(BTLCMD_CALCBOLTBEAKPOWER,           BtlCmd_CalcBoltBeakPower)
+
 // clang-format on
 
 #endif // POKEPLATINUM_DATA_SCRIPTS_BTLCMD_H

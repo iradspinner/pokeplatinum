@@ -2,6 +2,7 @@
 
 
 _000:
+    CalcBoltBeakPower
     CalcCrit
     CalcDamage
     End

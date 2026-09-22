@@ -288,6 +288,22 @@ def body_lines_from_text(text):
 
 PLAT_EFFECTS_OWNED = range(PLATINUM_EFFECTS, 407)   # the stubs element 4 created
 
+# The two stubs element 4 wrote for every new effect: a plain hit, and a status
+# move's "But nothing happened!". A script in the tree that is neither has been
+# written, by `--write` or by hand, and the audit says so rather than offering
+# to convert it again.
+STUBS = (["_000:", "CalcCrit", "CalcDamage", "End"],
+         ["_000:", "UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_SPLASH", "End"])
+
+# Effects that are finished although the tree still holds a stub, because the
+# work is in C or because the stub is already the right behaviour for Oxide.
+SETTLED = {
+    282: "always a critical hit, done in BattleSystem_CalcCriticalMulti",
+    300: "a plain hit until Electric Terrain exists",
+    307: "a plain hit of its own type; Drives are not in Oxide",
+    308: "a plain hit of its own type; Memories are not in Oxide",
+}
+
 
 def hg_move_names():
     """hg-engine's own MOVE_ constant for each move id, for finding where its C
@@ -365,7 +381,12 @@ def audit(ids, renames, have):
                 messages.append(int(args[0]))
         code = sorted({f for n in [effect_const[e]] + [mnames.get(i) for i in users[e]]
                        for kind, f in refs.get(n, []) if kind == "code"})
-        if items:
+        tree = os.path.join(PLAT_EFFECTS, "effect_script_%04d.s" % e)
+        if e in SETTLED:
+            verdict = "settled"
+        elif os.path.exists(tree) and body_lines(tree) not in STUBS:
+            verdict = "done"
+        elif items:
             verdict = "items"
         elif unresolved:
             verdict = "names"
@@ -420,14 +441,15 @@ def main():
         wanted = sorted({r["effect"] for r in recs[1:923] if r["effect"] >= PLATINUM_EFFECTS})
         rows = audit(a.audit or wanted, renames, have)
         if a.audit is not None:
-            order = ["ready", "c", "text", "names", "items"]
+            order = ["done", "settled", "ready", "c", "text", "names", "items"]
             for v in order:
                 group = [r for r in rows if r["verdict"] == v]
                 if not group:
                     continue
                 print("%s: %d" % (v, len(group)))
                 for r in group:
-                    why = {"ready": "", "c": "C: " + ", ".join(r["code"]),
+                    why = {"done": "", "settled": SETTLED.get(r["id"], ""), "ready": "",
+                           "c": "C: " + ", ".join(r["code"]),
                            "text": "messages %s" % r["messages"],
                            "names": "unresolved: " + ", ".join(r["unresolved"]),
                            "items": "items: " + ", ".join(r["items"][:3])}[v]
