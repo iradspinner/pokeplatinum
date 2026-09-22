@@ -16,11 +16,14 @@ Every number the page shows comes from analysis.py, lint.py or dex.py through
 these endpoints. There is no second implementation of the maths in
 JavaScript, so the page and the CLI cannot disagree.
 """
+import argparse
+import errno
 import functools
 import http.server
 import json
 import os
 import socketserver
+import sys
 import urllib.parse
 import zlib
 
@@ -349,12 +352,18 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
+    def end_headers(self):
+        # Everything here is read from disk per request, so a cached copy is
+        # only ever a way to be shown yesterday's tool. That is not theoretical:
+        # a stale page is indistinguishable from a view that was never built.
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
     def _send(self, obj, code=200):
         body = json.dumps(obj).encode()
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
 
@@ -404,6 +413,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     [st.entry(a.name).get("band") or a.band for a in areas])
                 return self._send({
                     "ref": ref or "working tree",
+                    "root": model.repo_root(),
                     "rows": [area_row(a, st, by_area) for a in areas],
                     "game": g,
                     "game_findings": [f._asdict() for f in findings
@@ -545,17 +555,36 @@ class Server(socketserver.ThreadingTCPServer):
     daemon_threads = True
 
 
-def main():
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    # There is a copy of this tool in every checkout and worktree, and they all
+    # want the same port. Running two at once is the point of the flag: one on
+    # the branch being written, one on what is merged.
+    ap.add_argument("--port", type=int, default=PORT,
+                    help=f"default {PORT}; use another to run a second checkout")
+    a = ap.parse_args(argv)
+
     os.chdir(model.repo_root())
-    with Server((HOST, PORT), Handler) as httpd:
-        print(f"encounter tool on http://{HOST}:{PORT}")
+    try:
+        httpd = Server((HOST, a.port), Handler)
+    except OSError as exc:
+        if exc.errno != errno.EADDRINUSE:
+            raise
+        print(f"port {a.port} is already taken, most likely by another copy of "
+              f"this tool.\nEither stop that one, or start this one on another "
+              f"port:\n    PYTHONPATH=. python3 -m tools.oxide.encounters.server "
+              f"--port {a.port + 1}")
+        return 1
+    with httpd:
+        print(f"encounter tool on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")
         print("ctrl-c to stop")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
             print("\nstopped")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

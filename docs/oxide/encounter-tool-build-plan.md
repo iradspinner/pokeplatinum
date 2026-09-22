@@ -53,7 +53,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 gro
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
-PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
+PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
 ```
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
@@ -1341,6 +1341,15 @@ the page crops to the first. And they carry no alpha at all: the colour the game
 treats as transparent is simply palette entry 0, which a browser would draw as a
 beige box, so the server adds the `tRNS` chunk that says so as it serves them.
 That is 28 bytes and it leaves the file on disk alone.
+
+**Running two copies at once.** There is a copy of this tool in every checkout
+and worktree, they all want port 8765, and a page served from the wrong one is
+indistinguishable from a view that was never built, which is exactly how the dex
+first appeared to be missing. Three changes so that cannot happen quietly: the
+header names the checkout it is reading, a taken port says so in a sentence and
+suggests the next one rather than unwinding a stack trace, and `--port` lets a
+branch and what is merged run side by side. Nothing the server sends is
+cacheable now either, for the same reason.
 
 Gate: `test_m8` at 30 checks, including every pick-list line opening with all
 twelve fields the page draws and a party icon to draw beside it. The two `cut`

@@ -257,6 +257,7 @@ table.stats .track > i { display: block; height: 100%; background: var(--mass-2)
     <button data-view="dex">Dex</button>
   </nav>
   <span class="metric">source <b id="h-ref">—</b></span>
+  <span class="metric" title="Which checkout this server is reading">checkout <b id="h-root">—</b></span>
   <span class="metric">areas <b id="h-n">—</b></span>
   <span class="metric" id="w-spread">route variety <b id="h-spread">—</b></span>
   <span class="metric" id="w-sig">distinct shapes <b id="h-sig">—</b></span>
@@ -895,6 +896,7 @@ async function boot() {
       api("/api/areas"), api("/api/species"), api("/api/caught")]);
     GAME = areas; ALL = areas.rows; DEX = dexRows.species;
     KINDS = areas.kind_labels || KINDS;
+    if (areas.root) $("#h-root").textContent = areas.root.split("/").pop();
     BY_LABEL = new Map(DEX.map(d => [d.label.toLowerCase(), d.value]));
     CAUGHT = new Set(caught.caught);
     drawHeader(); drawList();
