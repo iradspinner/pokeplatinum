@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """PreToolUse guard for Bash commands in the Platinum Oxide repo.
 
-Refuses three things the project rules forbid, by exiting 2 with the reason on
-stderr (Claude Code then blocks the command and shows the reason to the agent):
+Refuses four things, by exiting 2 with the reason on stderr (Claude Code then
+blocks the command and shows the reason to the agent):
 
 - `git add -A`, `git add --all` or `git add .`: sessions share this checkout,
   so a sweep commits another session's in-progress files. Stage by name.
@@ -10,9 +10,16 @@ stderr (Claude Code then blocks the command and shows the reason to the agent):
   melonDS on Windows over its GDB stub, and never start one of their own.
 - A `git commit` whose staged changes add a line carrying the scratch marker
   (MARKER below): that marker is how a file says it must never be committed.
+- `ps`, `pgrep`, `pkill`, `top`, `htop` or `pidof` while a process is wedged
+  in the kernel on `__vma_start_write`. Until the replacement CPU is in, that
+  wedge happens, and anything that reads the stuck process's details then
+  blocks for good; a session lost two shells that way. Only these commands pay
+  for the /proc scan. Delete this rule, and `wedge_status.sh` beside it, when
+  the new chip is in.
 
 Anything it cannot parse it lets through; this is a guard rail, not a sandbox.
 """
+import glob
 import json
 import os
 import re
@@ -27,6 +34,32 @@ MARKER = "do not " "commit"
 WRAPPERS = {"nohup", "setsid", "exec", "env", "timeout", "xvfb-run", "sudo",
             "nice", "stdbuf", "wine", "wine64", "cmd.exe", "powershell.exe",
             "pwsh.exe", "start", "start-process", "/c", "-command"}
+
+
+# Commands that read every process's details, so one wedged process hangs them.
+PROC_READERS = {"ps", "pgrep", "pkill", "top", "htop", "pidof"}
+WEDGE = "__vma_start_write"
+
+
+def wedged(proc_root="/proc"):
+    """(pid, name) of every process stuck on the kernel's memory-map lock.
+
+    Reads only wchan and comm, the two per-process files that do not need the
+    lock the wedged process holds; cmdline, status and stat would block too.
+    proc_root lets a test point this at a fake /proc tree.
+    """
+    found = []
+    for d in glob.glob(os.path.join(proc_root, "[0-9]*")):
+        try:
+            with open(os.path.join(d, "wchan")) as f:
+                if WEDGE not in f.read():
+                    continue
+            with open(os.path.join(d, "comm")) as f:
+                name = f.read().strip()
+        except OSError:
+            continue
+        found.append((os.path.basename(d), name))
+    return sorted(found, key=lambda p: int(p[0]) if p[0].isdigit() else 0)
 
 
 def segments(command):
@@ -89,7 +122,7 @@ def added_lines(repo, commit_all):
     return found
 
 
-def check(command, cwd):
+def check(command, cwd, proc_root="/proc"):
     for seg in segments(command):
         ws = strip_env(words(seg))
         if not ws:
@@ -98,6 +131,15 @@ def check(command, cwd):
             return ("Refused: this launches an emulator. Agents never run their own "
                     "melonDS; attach to Ian's over its GDB stub while Ian drives the "
                     "game (docs/oxide/setup-fork-and-wsl2.md part 5b).")
+        if os.path.basename(ws[0]) in PROC_READERS:
+            stuck = wedged(proc_root)
+            if stuck:
+                who = ", ".join("pid %s (%s)" % p for p in stuck)
+                return ("Refused: %s is wedged in the kernel on %s, and `%s` would "
+                        "block for good reading it. Only Ian can clear it, with "
+                        "`wsl --shutdown`; tell him. To list processes safely, read "
+                        "only comm: for d in /proc/[0-9]*; do echo \"${d#/proc/} "
+                        "$(cat $d/comm)\"; done" % (who, WEDGE, os.path.basename(ws[0])))
         g = git_args(ws)
         if not g:
             continue
