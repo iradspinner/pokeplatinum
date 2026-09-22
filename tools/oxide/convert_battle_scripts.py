@@ -302,6 +302,7 @@ SETTLED = {
     300: "a plain hit until Electric Terrain exists",
     307: "a plain hit of its own type; Drives are not in Oxide",
     308: "a plain hit of its own type; Memories are not in Oxide",
+    405: "ignores Protect because its move record lacks MOVE_FLAG_CAN_PROTECT, as Feint's does",
 }
 
 
@@ -377,8 +378,14 @@ def audit(ids, renames, have):
                     if t in labels or t in have:
                         continue
                     (items if t.startswith("HOLD_EFFECT_") else unresolved).add(t)
-            if head == "PrintMessage" and args and re.fullmatch(r"\d+", args[0]):
-                messages.append(int(args[0]))
+            # Platinum's own scripts always name their messages, so a bare
+            # number in any message command is one of hg-engine's battle
+            # strings. Only PrintMessage was checked until 2026-09-22, which let
+            # Geomancy's BufferMessage 1436 through as if it were fine.
+            msg = {"PrintMessage": 0, "PrintGlobalMessage": 0, "BufferMessage": 0,
+                   "BufferLocalMessage": 1}.get(head)
+            if msg is not None and len(args) > msg and re.fullmatch(r"\d+", args[msg]):
+                messages.append(int(args[msg]))
         code = sorted({f for n in [effect_const[e]] + [mnames.get(i) for i in users[e]]
                        for kind, f in refs.get(n, []) if kind == "code"})
         tree = os.path.join(PLAT_EFFECTS, "effect_script_%04d.s" % e)
