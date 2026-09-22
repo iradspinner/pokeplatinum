@@ -259,9 +259,12 @@ _SPLIT_STEMS = {
         "lake_verity_low_water", "route_202", "route_203", "oreburgh_gate_1f",
         "oreburgh_gate_b1f", "route_207", "oreburgh_mine_b1f", "oreburgh_mine_b2f",
         "route_204_south", "route_219",
+        # Reachable before Roark's badge (Ian, 2026-09-22). Its Old Rod was
+        # already counted here; the whole area is now.
+        "ravaged_path",
     ],
     "Gardenia": [
-        "ravaged_path", "route_204_north", "route_205_south",
+        "route_204_north", "route_205_south",
         "valley_windworks_outside", "route_205_north", "eterna_forest",
         "eterna_city", "route_211_west", "mt_coronet_1f_north_room_1",
     ],

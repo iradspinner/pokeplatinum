@@ -1232,6 +1232,18 @@ R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and
 `verify_narcs --encounters --source` at 184 of 184 tables. Suites 35/35, 21/21,
 18/18, 28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15, 19/19.
 
+### Ravaged Path is Roark's split: 2026-09-22
+
+Ian's correction: Ravaged Path is reached before Roark's badge, so the whole
+area belongs to Roark's split, where only its Old Rod had been counted before.
+`progression.py` moved it and `test_step3` pins the new boundary. Roark's split
+may hold only starter-adjacent lines, scripted ones and 4% or 1% tails, and the
+plan's gate caught Wooper, a preferred-tier line in a 5% grass slot. Lotad took
+that slot, which keeps the table's approved shape and its wet corner. Wooper is
+still catchable there in Roark's split, since the Old Rod carries it. The
+no-leak pass followed the change into Oreburgh Mine B2F's swarm field, which
+Oxide never uses.
+
 ## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at

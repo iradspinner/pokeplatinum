@@ -39,7 +39,7 @@
         },
         {
             "level": 5,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 6,
@@ -47,7 +47,7 @@
         },
         {
             "level": 6,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_LOTAD"
         }
     ],
     "swarms": [
@@ -75,16 +75,16 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_TORCHIC",
-        "SPECIES_LUVDISC"
+        "SPECIES_LUVDISC",
+        "SPECIES_CARVANHA"
     ],
     "sapphire": [
-        "SPECIES_TORCHIC",
-        "SPECIES_LUVDISC"
+        "SPECIES_LUVDISC",
+        "SPECIES_CARVANHA"
     ],
     "emerald": [
-        "SPECIES_CARVANHA",
-        "SPECIES_TREECKO"
+        "SPECIES_TREECKO",
+        "SPECIES_SNORUNT"
     ],
     "firered": [
         "SPECIES_RHYHORN",
