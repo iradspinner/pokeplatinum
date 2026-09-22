@@ -1569,6 +1569,18 @@ where it was. Driven through in a headless Chrome, back and forward and after a
 reload, with no page errors. `test_m8` is at 60, the new check pinning the
 wiring, since no endpoint can see it.
 
+A third round the same day. The species page's centre is two columns: the
+creature on the left (stats, abilities, the line and three facts) and what it
+learns on the right (level-up, machine, tutor and egg moves). The columns stack
+when the centre is narrower than about 870px. "The rest of it" keeps only gender,
+wild item and weight; catch rate, egg groups, hatch cycles, friendship, exp rate,
+base exp and EV yield are gone from the page but still in `/api/dex`. Every
+heading and label is in sentence case as written: the dex headings had been
+forced to lowercase by a `text-transform` rule, which is gone, and the header's
+metric labels, the move page's labels and its "against vanilla" field names now
+start with a capital. Small status tags (new, water, no capture, not wild) stay
+lowercase, since they are markers rather than titles.
+
 **D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
 with its licence intact, generate its data from `res/`, serve both from our
 server. The work is the export, in rough order of difficulty: a naming map from
