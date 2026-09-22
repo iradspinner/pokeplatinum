@@ -65,17 +65,17 @@ section { overflow-y: auto; }
 #right { padding: 0 16px 40px; }
 
 /* the filter stays put however far the list is scrolled */
-#listhead { position: sticky; top: 0; z-index: 10; background: var(--panel);
+.listhead { position: sticky; top: 0; z-index: 10; background: var(--panel);
             padding: 12px 12px 8px; border-bottom: 1px solid var(--rule); }
 #filter { width: 100%; }
-#sortbar { margin-top: 7px; font-size: 12px; color: var(--dim);
+.sortbar { margin-top: 7px; font-size: 12px; color: var(--dim);
            display: flex; gap: 4px; flex-wrap: wrap; }
-#sortbar button {
+.sortbar button {
   border: 0; background: none; color: var(--dim); cursor: pointer;
   padding: 1px 5px; border-radius: 3px; font: inherit;
 }
-#sortbar button:hover { background: var(--sunken); }
-#sortbar button.on { background: var(--mass); color: #fff; }
+.sortbar button:hover { background: var(--sunken); }
+.sortbar button.on { background: var(--mass); color: #fff; }
 
 input, button, select {
   font: inherit; color: var(--ink); background: #fff;
@@ -299,9 +299,9 @@ table.facts td { padding: 1px 0; }
 
 <main>
   <section id="list">
-    <div id="listhead">
+    <div class="listhead">
       <input id="filter" placeholder="Find an area, or /starly to find its tables">
-      <div id="sortbar">
+      <div class="sortbar">
         <button data-k="level" class="on">Play order</button>
         <button data-k="area">Name</button>
         <button data-k="live_total">Left to catch</button>
@@ -318,9 +318,9 @@ table.facts td { padding: 1px 0; }
 
 <main id="dexmain" hidden>
   <section id="dexlist">
-    <div id="listhead">
+    <div class="listhead">
       <input id="dexfilter" placeholder="Find a species, or a type">
-      <div id="sortbar">
+      <div class="sortbar">
         <button data-f="all" class="on">All</button>
         <button data-f="tables">In tables</button>
         <button data-f="changed">Changed</button>
@@ -1015,15 +1015,16 @@ $("#filter").oninput = drawList;
 $("#dexfilter").oninput = drawDexList;
 document.querySelectorAll("nav#views button").forEach(b =>
   b.onclick = () => setView(b.dataset.view));
-document.querySelectorAll("#dexmain #sortbar button").forEach(b => b.onclick = () => {
+document.querySelectorAll("#dexlist .sortbar button").forEach(b => b.onclick = () => {
   DEXFILTER = b.dataset.f;
-  document.querySelectorAll("#dexmain #sortbar button")
+  document.querySelectorAll("#dexlist .sortbar button")
           .forEach(x => x.classList.toggle("on", x === b));
   drawDexList();
 });
-document.querySelectorAll("#sortbar button").forEach(b => b.onclick = () => {
+document.querySelectorAll("#list .sortbar button").forEach(b => b.onclick = () => {
   SORT = b.dataset.k;
-  document.querySelectorAll("#sortbar button").forEach(x => x.classList.toggle("on", x === b));
+  document.querySelectorAll("#list .sortbar button")
+          .forEach(x => x.classList.toggle("on", x === b));
   drawList();
 });
 $("#clear-caught").onclick = clearCaught;

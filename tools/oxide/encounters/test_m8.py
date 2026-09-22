@@ -7,6 +7,7 @@ Read-only. The point of the milestone is that the dex cannot drift from the
 game, so these checks pin real values out of the tree rather than fixtures.
 """
 import os
+import re
 import sys
 
 from . import model
@@ -281,6 +282,27 @@ def check_page(results):
                     "name",
                     litten["learnset"][1]["type"] == "FIRE"
                     and litten["learnset"][1]["power"] == 40, ""))
+
+    # Two views in one page means two of everything, and the first thing that
+    # went wrong was an id used twice: both lists had `id="sortbar"`, the
+    # tables view wires its buttons with the unscoped `#sortbar button`, and it
+    # ran last, so the dex's four filters silently sorted the hidden tables
+    # list instead. An id is unique or it is a class.
+    page_path = os.path.join(root, "tools", "oxide", "encounters", "ui", "index.html")
+    page = open(page_path, encoding="utf-8").read()
+    ids = re.findall(r'id="([\w-]+)"', page)
+    dupes = sorted({i for i in ids if ids.count(i) > 1})
+    results.append(("no id is used twice, now that one page holds two views",
+                    not dupes, f"duplicated: {dupes}"))
+    script = page[page.index("<script>"):]
+    used = set(re.findall(r'\$\("#([\w-]+)"\)', script))
+    results.append(("every id the script reaches for exists in the markup",
+                    not (used - set(ids)), f"missing: {sorted(used - set(ids))}"))
+    # Each view's controls are selected through its own section, so neither can
+    # reach into the other even if a class is shared.
+    results.append(("each list's buttons are wired through its own section",
+                    '"#list .sortbar button"' in script
+                    and '"#dexlist .sortbar button"' in script, ""))
 
     # The page has two views and shows one by toggling `hidden` on a <main>.
     # That attribute carries its own display:none, but any author display rule
