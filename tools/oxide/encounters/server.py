@@ -214,6 +214,22 @@ def area_detail(a, st, kind="land"):
         return [dict(_species_view(s, st, a.name), share=v, cond=cond.get(s, 0.0))
                 for s, v in sorted(merged.items(), key=lambda kv: -kv[1])]
 
+    # Every water table in brief, so the page can show all four under the one
+    # being edited: each slot's species, rate, levels and real odds.
+    water = []
+    for k in a.kinds_present():
+        if k == "land":
+            continue
+        k_slots = a.kind_slots(k)
+        _, _, k_rates = A.TABLE_KINDS[k]
+        k_odds = A.slot_odds(k_slots, st.owned, k_rates)
+        water.append({
+            "kind": k, "label": KIND_LABELS[k], "rate": a.kind_rate(k),
+            "slots": [dict(_species_view(sp, st, a.name), rate=k_rates[i],
+                           level_min=lo, level_max=hi, odds=k_odds[i])
+                      for i, (sp, lo, hi) in enumerate(k_slots)],
+        })
+
     # Day and night put their own two species in slots 2 and 3 and leave the
     # rest alone, so each gets its own list; the page shows the one for the
     # time of day being viewed rather than the morning table's at all hours.
@@ -269,6 +285,7 @@ def area_detail(a, st, kind="land"):
                          for s in (a.data.get("night") or [])],
         "merged": merged_view(slots),
         "merged_layers": merged_layers,
+        "water": water,
         "rungs": rung_rows,
         "metrics": m,
         "caught_metrics": c,

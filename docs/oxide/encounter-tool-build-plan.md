@@ -1289,6 +1289,16 @@ names are capitalised everywhere the tool prints one (floors as 1F and B1F,
 "Mt." and "Pokémon" spelt as the game spells them), and the search box
 also matches the file name, so "mt coronet" still finds Mt. Coronet.
 
+A third note, drawn as a sketch: more of an area on one screen. The heading
+above the tables is three short lines now (name, tags and the encounter on one;
+the note; the table and time-of-day tabs on one row). Grass rows are 46px with
+the 64px icon overhanging, which makes the twelve slots about as tall as the
+odds list beside them. Underneath, the area's water tables sit four across in
+brief (each slot's rate, icon, species and levels, with its real odds on
+hover), drawn from a new `water` list in `/api/area`. A panel is a view:
+clicking it opens that table above for editing, as its tab does, and the one
+being edited is outlined. `test_m4` checks the water list (50 checks).
+
 ## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at

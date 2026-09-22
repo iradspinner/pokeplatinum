@@ -371,6 +371,12 @@ def check_water_tables(results):
                         for s in d["slots"]), ""))
     results.append(("lint does not run on water tables",
                     d["findings"] == [], "rules are calibrated on land"))
+    # The page shows every water table under the one being edited.
+    results.append(("the detail carries every water table in brief",
+                    [w["kind"] for w in d["water"]] == [k for k in d["kinds"] if k != "land"]
+                    and all(len(w["slots"]) == 5 and "odds" in w["slots"][0]
+                            for w in d["water"]),
+                    ", ".join(w["label"] for w in d["water"])))
 
     rates = A.SURF_RATES
     slots = [(s["species"], s["level_min"], s["level_max"]) for s in d["slots"]]
