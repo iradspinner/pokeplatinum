@@ -366,6 +366,25 @@ def check_water_tables(results):
         restore(path)
 
 
+def check_no_colour_literals(results):
+    """Every colour lives in ui/theme.css as a token written once with
+    light-dark(), so both themes come from the same place. A hex literal
+    anywhere else is a colour one of the two themes never got, and it would
+    break that theme quietly rather than loudly. The visual design asks for
+    exactly this check."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    hex_colour = re.compile(r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b")
+    found = {}
+    for name in ("index.html", "theme.js"):
+        with open(os.path.join(ui, name), encoding="utf-8") as f:
+            hits = hex_colour.findall(f.read())
+        if hits:
+            found[name] = hits[:4]
+    results.append(("index.html and theme.js hold no hex colour; theme.css owns them all",
+                    not found, str(found)))
+
+
 def main():
     httpd = srv.Server(("127.0.0.1", PORT), srv.Handler)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
@@ -375,7 +394,7 @@ def main():
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_rejections,
-                      check_edit_is_local):
+                      check_edit_is_local, check_no_colour_literals):
             check(results)
     finally:
         httpd.shutdown()
