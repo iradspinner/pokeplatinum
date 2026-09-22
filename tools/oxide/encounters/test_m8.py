@@ -1,0 +1,171 @@
+"""M8 D1: the dex data layer reads species, moves, sprites and the type chart
+out of res/, and says what changed from vanilla.
+
+    PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8
+
+Read-only. The point of the milestone is that the dex cannot drift from the
+game, so these checks pin real values out of the tree rather than fixtures.
+"""
+import sys
+
+from . import model
+from . import pokedex
+from . import server
+
+
+def check_species(results):
+    root = model.repo_root()
+    names = pokedex.species_list(root)
+    # 493 natives plus the 159 Phase 4 added; SPECIES_NONE, EGG and BAD_EGG are
+    # not species and are left out.
+    results.append(("every species in the tree has a folder and a record",
+                    len(names) == 652 and "SPECIES_NONE" not in names
+                    and all(pokedex.load(root, n) for n in names[:40]),
+                    f"{len(names)} species"))
+
+    clefairy = pokedex.load(root, "SPECIES_CLEFAIRY")
+    results.append(("a species reads its stats, its total and its name",
+                    clefairy["bst"] == 323 and clefairy["stats"]["hp"] == 70
+                    and clefairy["name"] == "Clefairy", f"bst {clefairy['bst']}"))
+
+    gyarados = pokedex.load(root, "SPECIES_GYARADOS")
+    results.append(("a dual type keeps its order, a single type is one type",
+                    gyarados["types"] == ["WATER", "FLYING"]
+                    and clefairy["types"] == ["FAIRY"],
+                    f"{gyarados['types']}, {clefairy['types']}"))
+
+    floette = pokedex.load(root, "SPECIES_FLOETTE")
+    results.append(("the third ability slot is the hidden one, and NONE is not "
+                    "an ability",
+                    floette["hidden_ability"] == "SYMBIOSIS"
+                    and floette["abilities"] == ["FLOWER_VEIL"]
+                    and gyarados["abilities"] == ["INTIMIDATE"], ""))
+
+    results.append(("evolutions carry their method and level",
+                    pokedex.load(root, "SPECIES_LITTEN")["evolutions"]
+                    == [{"method": "LEVEL", "level": 16, "item": None,
+                         "into": "SPECIES_TORRACAT"}], ""))
+    results.append(("the level-up learnset comes through",
+                    pokedex.load(root, "SPECIES_LITTEN")["learnset"][0]
+                    == [1, "MOVE_SCRATCH"], ""))
+
+
+def check_delta(results):
+    root = model.repo_root()
+    # Clefairy is one of the twenty species Phase 4 element 1 retyped to Fairy,
+    # and it lost Cute Charm in the same pass.
+    d = pokedex.delta(root, "SPECIES_CLEFAIRY")
+    results.append(("a retyped species reports the type it was and the type it is",
+                    d and d["types"] == {"was": ["NORMAL"], "now": ["FAIRY"]},
+                    str(d and d.get("types"))))
+    results.append(("a species this project added reads as new, not as changed",
+                    pokedex.delta(root, "SPECIES_SCORBUNNY") == {"new": True}, ""))
+    # One of the seven natives that gained an evolution into a new species.
+    d = pokedex.delta(root, "SPECIES_PRIMEAPE")
+    results.append(("a native that gained an evolution reports it",
+                    bool(d and d.get("evolutions")),
+                    str((d or {}).get("evolutions"))))
+    unchanged = pokedex.delta(root, "SPECIES_BULBASAUR")
+    results.append(("a species vanilla still agrees with reports nothing",
+                    unchanged is None, str(unchanged)))
+
+
+def check_chart(results):
+    root = model.repo_root()
+    chart = pokedex.type_chart(root)
+    types = {a for a, _ in chart} | {d for _, d in chart}
+    results.append(("the chart is read out of the battle code, all eighteen types",
+                    len(types) == 18 and "FAIRY" in types, f"{len(types)} types"))
+    # This fork's chart is neither generation's, which is why the calculator
+    # cannot use a stock setting: Fairy is in, and Steel still resists Dark and
+    # Ghost the way it did before Generation 6 took that away.
+    results.append(("Steel still resists Dark and Ghost, as Generation 4 had it",
+                    chart.get(("DARK", "STEEL")) == 0.5
+                    and chart.get(("GHOST", "STEEL")) == 0.5,
+                    f"dark {chart.get(('DARK', 'STEEL'))}, "
+                    f"ghost {chart.get(('GHOST', 'STEEL'))}"))
+    results.append(("Fairy is complete: strong on three, weak to two, immune to "
+                    "Dragon",
+                    chart.get(("FAIRY", "DRAGON")) == 2.0
+                    and chart.get(("FAIRY", "DARK")) == 2.0
+                    and chart.get(("FAIRY", "FIGHTING")) == 2.0
+                    and chart.get(("POISON", "FAIRY")) == 2.0
+                    and chart.get(("STEEL", "FAIRY")) == 2.0
+                    and chart.get(("DRAGON", "FAIRY")) == 0.0, ""))
+    results.append(("effectiveness multiplies across both of a species' types",
+                    pokedex.effectiveness(chart, "FIGHTING", ["STEEL", "FAIRY"]) == 1.0
+                    and pokedex.effectiveness(chart, "GROUND", ["FIRE"]) == 2.0
+                    and pokedex.effectiveness(chart, "ELECTRIC", ["GROUND"]) == 0.0,
+                    ""))
+
+
+def check_moves_and_sprites(results):
+    root = model.repo_root()
+    moves = pokedex.moves(root)
+    results.append(("every move folder reads, and meson.build is not a move",
+                    len(moves) == 468 and "MOVE_MESON.BUILD" not in moves,
+                    f"{len(moves)} moves"))
+    flamethrower = moves["MOVE_FLAMETHROWER"]
+    results.append(("a move carries what a damage formula needs",
+                    flamethrower["type"] == "FIRE" and flamethrower["power"] == 95
+                    and flamethrower["class"] == "SPECIAL"
+                    and flamethrower["accuracy"] == 100
+                    and flamethrower["priority"] == 0, ""))
+    sprites = pokedex.sprites(root, "SPECIES_CLEFAIRY")
+    results.append(("a species finds its sprites and its icon",
+                    "icon" in sprites and "male_front" in sprites
+                    and sprites["icon"].startswith("res/pokemon/clefairy/"), ""))
+
+
+def check_captures(results):
+    caught = pokedex.captures()
+    results.append(("the cross-link finds every species the tables actually hold",
+                    len(caught) > 200 and "SPECIES_LITTEN" in caught,
+                    f"{len(caught)} species"))
+    litten = caught["SPECIES_LITTEN"][0]
+    results.append(("an appearance names the area, its location, its split, its "
+                    "share and its levels",
+                    litten["area"] == "encounters_route_204_north"
+                    and litten["location"] == "Route 204"
+                    and litten["split"] == "Gardenia"
+                    and abs(litten["share"] - 0.25) < 1e-9
+                    and litten["level_min"] == 8, str(litten)))
+    rods = [r for rows in caught.values() for r in rows if r["kind"] != "land"]
+    results.append(("water tables are cross-linked too, with their level ranges",
+                    rods and all(r["level_min"] is not None for r in rods),
+                    f"{len(rods)} water appearances"))
+
+
+def check_endpoints(results):
+    out = server.dex_list()
+    results.append(("the list endpoint returns one row per species, with the "
+                    "vanilla comparison folded in",
+                    out["count"] == 652
+                    and any(r["new"] for r in out["rows"])
+                    and any(r["changed"] for r in out["rows"]), f"{out['count']} rows"))
+    detail = server.dex_detail("SPECIES_LITTEN")
+    results.append(("the detail endpoint carries the record, the delta, the "
+                    "sprites, the captures and the matchups",
+                    detail["name"] == "Litten" and detail["delta"] == {"new": True}
+                    and detail["sprites"] and detail["captures"]
+                    and detail["matchups"]["WATER"] == 2.0, ""))
+    results.append(("an unknown species is an error rather than a crash",
+                    "error" in server.dex_detail("SPECIES_NOT_A_POKEMON"), ""))
+
+
+def main():
+    results = []
+    for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
+                  check_captures, check_endpoints):
+        check(results)
+    width = max(len(l) for l, _, _ in results)
+    failed = 0
+    for label, ok, note in results:
+        failed += not ok
+        print(f"  {'ok  ' if ok else 'FAIL'}  {label:{width}}  {note}")
+    print(f"\n{len(results) - failed}/{len(results)} passed")
+    return 1 if failed else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

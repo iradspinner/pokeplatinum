@@ -1290,13 +1290,33 @@ linter already uses for tables. No ROM parsing, no uploads, no network.
 
 ### The milestones
 
-**D1, the data layer.** A new `pokedex.py` beside `dex.py` (which is about
-pick-list lines and keeps its name): species records, moves, learnsets,
-evolution chains, and the vanilla delta for anything that existed on `main`. New
-species have no vanilla row and read as new rather than as a change. Server
-endpoints for species, move, and sprite. Gate: a suite that pins a known species'
-stats, one of the twenty Fairy retypes as a type delta, one of the seven natives
-that gained an evolution, and a new species reading as new.
+**D1, the data layer — done, 2026-09-22.** `pokedex.py` beside `dex.py` (which is
+about pick-list lines and keeps its name): all 652 species with stats, types,
+abilities, evolutions and learnsets, 468 moves with what a damage formula reads,
+sprite paths, the type chart, and the vanilla delta for anything that existed on
+`main`. New species have no vanilla row and read as new rather than as changed.
+`captures()` is the cross-link the dex exists for: from a species, every table,
+kind, location, split, share and level range it appears in, taken from the tables
+themselves rather than from the design, 248 species over 1,060 water appearances
+and the land besides. Endpoints: `/api/dex`, `/api/dex/<species>`,
+`/api/move/<move>` and `/api/sprite/<folder>/<kind>`, which serves the PNG out of
+`res/`. Gate: `test_m8`, 23 checks, green.
+
+Two things worth knowing came out of it. Clefairy is the reminder that the delta
+is worth showing at all: it is Fairy now and it lost Cute Charm, neither of which
+any note in this repo mentions. And **the type chart is this fork's own**, which
+is the next item.
+
+**The type chart, checked against the ROM on Ian's hunch.** He guessed it might
+have Fairy while keeping Generation 4's Steel, and it does. Read out of
+`sTypeMatchupMultipliers` in `src/battle/battle_lib.c`: all eighteen types, Fairy
+complete and correct (strong on Dragon, Dark and Fighting, weak to Poison and
+Steel, immune to Dragon), and Steel still resisting Dark and Ghost, which
+Generation 6 took away. So no stock `types=` setting in the calculator matches:
+Generation 4's has no Fairy and Generation 6's drops those two resistances. The
+chart therefore travels with the exported data rather than being named by a
+parameter, which `pokedex.type_chart()` already reads from the source of truth so
+it cannot drift if the table is edited again.
 
 **D2, the dex tab.** A searchable species list, filterable by type, tier, split
 and availability status, and a species page: sprite, base stats with the vanilla
@@ -1324,19 +1344,21 @@ regenerating clean after a species edit.
 
 ### Decisions and risks, recorded before starting
 
-- **Mechanics settings.** Oxide has Fairy, so the type chart cannot be the Gen 4
-  one. hzla's calc separates these: damage mechanics, type chart, crit and
-  switch-in are each their own parameter, so the intended setting is Gen 4
-  damage with a Gen 6 type chart. Worth checking against a real battle.
+- **Mechanics settings: settled, and not what it looked like.** Checked against
+  the ROM on 2026-09-22 rather than assumed. The chart is Generation 4 with Fairy
+  added, so neither `types=4` nor `types=6` is right and the export carries the
+  chart itself. Damage mechanics stay Generation 4. Still worth one real battle
+  to confirm the damage side.
 - **Bespoke abilities and moves.** The calculator keys its effects off Showdown
   names, so anything Hardlove invented that Showdown has no logic for will be
   inert in the numbers even when the name shows. The export should list which
   ones those are rather than let them pass silently.
-- **Vendoring, and the one open question.** Committing the calculator is a few
-  megabytes of third-party JavaScript in a decomp repo. Committing it pinned is
-  the recommendation, because the whole point is that this works offline and
-  reproducibly; the alternative is a fetch script and an untracked directory,
-  which keeps the repo clean and needs the network once.
+- **Vendoring: decided, and done.** Ian's call was to commit it. It sits at
+  `tools/oxide/encounters/calc/`, MIT, pinned at upstream `b347b337`, 12 MB over
+  195 files out of a 649 MB clone; `VENDORED.md` there records what was taken,
+  what was pruned and why, and the patch list to re-apply on an update. Its own
+  319 MB of sprites were left behind because Oxide's are in `res/` and are the
+  only ones right for this fork.
 - **Out of scope for now**, and each is a small addition later: items, trainer
   teams in the calculator (the 928 carried-over teams would let a gym leader be
   checked against a party at a level cap, which is the obvious next want), and

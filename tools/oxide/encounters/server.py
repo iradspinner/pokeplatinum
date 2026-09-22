@@ -16,6 +16,7 @@ Every number the page shows comes from analysis.py, lint.py or dex.py through
 these endpoints. There is no second implementation of the maths in
 JavaScript, so the page and the CLI cannot disagree.
 """
+import functools
 import http.server
 import json
 import os
@@ -27,6 +28,7 @@ from . import dex
 from . import lint
 from . import locations
 from . import model
+from . import pokedex
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -228,6 +230,66 @@ def area_detail(a, st, kind="land"):
     }
 
 
+@functools.lru_cache(maxsize=1)
+def _captures():
+    return pokedex.captures()
+
+
+def dex_list():
+    """Every species in the tree, as one row each: what the list view needs and
+    nothing it does not, because there are 652 of them."""
+    root = model.repo_root()
+    caught = _captures()
+    rows = []
+    for species in pokedex.species_list(root):
+        rec = pokedex.load(root, species)
+        if rec is None:
+            continue
+        d = pokedex.delta(root, species)
+        rows.append({
+            "species": species,
+            "name": rec["name"],
+            "types": rec["types"],
+            "bst": rec["bst"],
+            "stats": rec["stats"],
+            "new": bool(d and d.get("new")),
+            "changed": bool(d and not d.get("new")),
+            "bst_delta": (d or {}).get("bst"),
+            "appearances": len(caught.get(species) or []),
+        })
+    return {"rows": rows, "count": len(rows)}
+
+
+def dex_detail(species):
+    """One species, with what changed from vanilla, where it is met, and what
+    every type does to it."""
+    root = model.repo_root()
+    species = species.upper()
+    if not species.startswith("SPECIES_"):
+        species = "SPECIES_" + species
+    rec = pokedex.load(root, species)
+    if rec is None:
+        return {"error": "no such species"}
+    chart = pokedex.type_chart(root)
+    matchups = {}
+    for attacking in sorted({a for a, _ in chart}):
+        mult = pokedex.effectiveness(chart, attacking, rec["types"])
+        if mult != 1.0:
+            matchups[attacking] = mult
+    out = dict(rec)
+    out["delta"] = pokedex.delta(root, species)
+    out["vanilla"] = pokedex.load(root, species, "main")
+    out["sprites"] = pokedex.sprites(root, species)
+    out["captures"] = _captures().get(species) or []
+    out["matchups"] = matchups
+    out["learnset"] = [{"level": lv, "move": mv,
+                        "label": dex.display_name(mv).replace("Move ", "")}
+                       for lv, mv in rec["learnset"]]
+    for evo in out["evolutions"]:
+        evo["label"] = dex.display_name(evo["into"]) if evo["into"] else None
+    return out
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=UI, **kw)
@@ -241,6 +303,26 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _sprite(self, folder, kind):
+        """A species' sprite straight out of res/. The PNGs are indexed colour
+        with their own palette, so a browser draws them as they are; a front or
+        back sheet is two frames side by side, which the page crops."""
+        kind = kind.replace(".png", "")
+        if kind not in pokedex.SPRITES or "/" in folder or ".." in folder:
+            return self._send({"error": "no such sprite"}, 404)
+        path = os.path.join(model.repo_root(), "res", "pokemon", folder,
+                            kind + ".png")
+        try:
+            with open(path, "rb") as f:
+                body = f.read()
+        except OSError:
+            return self._send({"error": "no such sprite"}, 404)
+        self.send_response(200)
+        self.send_header("Content-Type", "image/png")
+        self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 
@@ -300,6 +382,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                                 _area_label, KIND_LABELS)
                 return self._send(out)
 
+            if parts[1] == "dex":
+                return self._send(dex_list() if len(parts) < 3
+                                  else dex_detail(parts[2]))
+            if parts[1] == "move":
+                moves = pokedex.moves(model.repo_root())
+                row = moves.get(parts[2].upper())
+                if row is None:
+                    return self._send({"error": "no such move"}, 404)
+                return self._send(row)
+            if parts[1] == "sprite":
+                return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,
