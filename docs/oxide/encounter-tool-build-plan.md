@@ -51,7 +51,8 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 60/60, the dex and moves
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 70/70, the dex, moves and calculator
+PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
@@ -1330,7 +1331,7 @@ hover), drawn from a new `water` list in `/api/area`. A panel is a view:
 clicking it opens that table above for editing, as its tab does, and the one
 being edited is outlined. `test_m4` checks the water list (50 checks).
 
-## M8, the dex and the damage calculator: **D1 to D4 done 2026-09-22, D5 next**
+## M8, the dex and the damage calculator: **done 2026-09-22, one in-game roll to check**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
 `hzla/ddex`) and its damage calculator (`hzla/Dynamic-Calc-Decomps`) do into this
@@ -1581,22 +1582,77 @@ metric labels, the move page's labels and its "against vanilla" field names now
 start with a capital. Small status tags (new, water, no capture, not wild) stay
 lowercase, since they are markers rather than titles.
 
-**D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
-with its licence intact, generate its data from `res/`, serve both from our
-server. The work is the export, in rough order of difficulty: a naming map from
-our constants to Showdown's spellings, with the awkward cases being the regional
-forms, the megas, Mr. Mime, Jangmo-o and the Tapus; species entries with stats,
-types, abilities, weight and gender ratio; moves with category, power, accuracy,
-priority and the flags the formula reads; learnsets so the set builder offers the
-right moves; and a patch to its loader so it reads from `localhost` instead of
-npoint. That one patch is not enough to make it offline, which the QA pass of
-2026-09-22 found: as vendored, the page also loads jQuery and other libraries
-from Google's, jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag,
-and game data from `hzla.github.io`, about 100 remote references in all. D5's
-patch list has to vendor or drop every CDN script, remove the analytics tag and
-remove every remote data URL, and its gate includes the page loading with the
-network off. Gate: a hand-checked damage roll against the game, the export
-regenerating clean after a species edit, and no request leaving the machine.
+**D5, the calculator: done, 2026-09-22.** The vendored calculator runs on
+Oxide's data, offline, in the tool's colours. It opens from a fourth view,
+Calc, in the header, and every species page has a Calc link that opens it with
+that species picked as the attacker.
+
+The data is one JSON blob, which `calc_export.py` builds from `res/` on each
+request to `/api/calc-data`. It holds 652 species under Showdown's names
+(`canon.py`'s map, written for D3) with Oxide's stats, types, abilities and
+weight, and every move with Oxide's type, category, power and priority. It
+also carries this fork's type chart, which the calculator's own loader
+installs. A move whose power is 1 keeps the calculator's coded power, since 1
+is the game's marker for a power worked out in code (Grass Knot, Gyro Ball).
+Learnsets are not exported, although the plan listed them: the calculator
+offers every move to every species and has no way to limit a set.
+
+Four patches to the calculator, listed in `calc/VENDORED.md`. The data source
+points at our server. A "Platinum Oxide" branch in its game settings selects
+Generation 4 damage and crits; without it an unknown title falls to
+trainers-only mode with Generation 8 mechanics. Every CDN library (jQuery,
+jQuery UI, ag-grid, object-hash, pako) is vendored at the version upstream
+asked for. And both analytics tags, the Ko-fi widget and a remote GIF are
+gone. Sprites are not a patch: the server answers the calculator's
+`img/<set>/<name>` requests from `res/pokemon/`, cropped to the first frame.
+
+Three things worth knowing came out of it:
+
+1. **Every ability and move lands on a name the calculator has logic for.**
+   The cleaned id matches almost all of them, Generation 4 spellings included.
+   The rest are 26 names the donor shortened to fit the name box (Collision
+   Course and 21 Z-moves) plus Platinum's own four old spellings. They are an
+   explicit alias list, each checked by hand. A closest-name match was tried
+   first and put 7-Star Strike on Shadow Strike, which is why the list is
+   explicit. `test_m8` checks every alias exists in the calculator.
+2. **136 moves are modelled with an effect the game does not have yet.** The
+   calculator knows Acrobatics, Hex, Venoshock and the rest, but in Oxide their
+   effect scripts are still element 4's placeholders. `calc_export` prints the
+   list, and D4's Moves view flags the same moves, so neither passes silently.
+3. **The damage is right, checked by hand.** Five matchups at level 50 (31
+   IVs, no EVs, a neutral nature) match hand-computed Generation 4 rolls, roll
+   for roll:
+
+   | Matchup | Calculator |
+   |---|---|
+   | Garchomp's Earthquake into Clefairy | 126 to 148 |
+   | Garchomp's Dragon Claw into Clefairy | 0, Fairy is immune |
+   | Machamp's Crunch into Bronzor | 42 to 50, Steel still resists Dark |
+   | Machamp's Cross Chop into Bronzor | 81 to 96 |
+   | Machamp's Cross Chop into Clefairy | 63 to 74 |
+
+The skin is visual design section 8. `make_calc_skin.py` generates
+`calc/oxide-skin.css` from upstream's own stylesheets. It repeats each rule
+that sets a colour, with the literal replaced by the tool's token for its
+role, and leaves layout alone. That gives 550 rules with no colour literal
+left. The few colours the calculator's scripts set inline are mapped by value.
+`theme.js` now follows a change made in any other page of the tool, so the
+header's toggle flips the calculator in its frame without a reload.
+
+How it was checked, beyond `test_m8` at 70 checks (ten of them D5's, one of
+which edits a species file and reads the change back from the next export):
+the page was driven in a headless Windows Chrome with every non-local request
+blocked. It made none, threw no errors, and drew in both themes.
+
+Two known gaps, neither blocking. The species picker offers every species
+Showdown knows, not only Oxide's 652, since filtering it would also drop the
+alternate forms. And upstream's menu icon and emulator icon are missing, since
+`img/` was never vendored.
+
+**What is left is Ian's:** one roll in the game against the calculator. In
+melonDS, note an attacker's and a defender's level, stats and the damage a
+move does. Enter the same two in the calculator, then check the damage falls
+in its range.
 
 ### Decisions and risks, recorded before starting
 
@@ -1620,7 +1676,7 @@ regenerating clean after a species edit, and no request leaving the machine.
   checked against a party at a level cap, which is the obvious next want), and
   anything player-facing or hosted.
 
-## The visual design, palette B: built 2026-09-22, awaiting Ian's sign-off
+## The visual design, palette B: built 2026-09-22, signed off by Ian
 
 Ian's design for how the tool looks is `docs/oxide/encounter-tool-visual-design.md`
 (palette B, Lake Guardians), mirrored by `sync-docs.sh`. It was built in the order
@@ -1671,11 +1727,9 @@ table, as did the type chips. The toggle and the favicon were driven under node
 with a stubbed browser: follow the system, pin, release, keep a pin across a
 reload and a Windows switch, and survive storage that throws.
 
-What is left is the design's own acceptance: Ian opens the tool in both themes at
-his usual display scaling and signs off. The one thing only he can judge is the
-pixel face at his scaling, at 16px for the title and the dex number, 13px for the
-tabs and 28px for the headline; the design asks for any that look soft to move by
-a pixel.
+Ian signed it off on 2026-09-22, the pixel face included ("looks fantastic"), so
+no size needed moving. The damage calculator's skin, the last piece of it,
+landed with D5.
 
 ## Suggested order, and what to cut
 
