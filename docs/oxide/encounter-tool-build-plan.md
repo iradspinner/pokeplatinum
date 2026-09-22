@@ -1449,6 +1449,63 @@ regenerating clean after a species edit.
   checked against a party at a level cap, which is the obvious next want), and
   anything player-facing or hosted.
 
+## The visual design, palette B: built 2026-09-22, awaiting Ian's sign-off
+
+Ian's design for how the tool looks is `docs/oxide/encounter-tool-visual-design.md`
+(palette B, Lake Guardians), mirrored by `sync-docs.sh`. It was built in the order
+its section 11 gives, one commit per step: the tokens and the light and dark
+toggle; every colour literal in the page replaced with a token; the pixel face and
+the type scale; type chips, split tags and every "on" state moving from teal to
+place; the Dex species page; and the four flavor items. The section 8 skin for the
+damage calculator waits for D5, as the design says.
+
+Every colour now lives in `ui/theme.css`, written once with `light-dark()`, and
+`test_m4` gained the one check the design asks for: `index.html` and `theme.js`
+hold no hex colour. `test_m4` went from 46 to 47 with it and `test_m8` stayed at
+43. Pixelify Sans is vendored at `ui/fonts/` with its OFL licence and a note of
+where it came from.
+
+Four places where the build departs from the letter of the design, each because
+the letter would not have done what the design wanted:
+
+1. The theme pin. Section 3 pins a scheme by writing the `color-scheme` meta tag,
+   but that tag only applies while the root element's own `color-scheme` is
+   `normal`, and `theme.css` sets it to `light dark` so the page follows Windows
+   with scripts off. So `theme.js` also sets the root's inline `color-scheme`,
+   which outranks the stylesheet, and keeps the meta tag in step.
+2. The ladder labels. Section 6 picks each label's colour with a 0.33 luminance
+   threshold from the palette preview. In the dark theme that chose light text on
+   the third segment at 3.2 to 1, under AA for 11px text and against section 10's
+   own claim. Each label now takes whichever text token contrasts more with its
+   fill, which agrees with the threshold on the other nine segments.
+3. The ladder animation. Section 9 has segments ease their widths when a species
+   is ticked, but a caught segment keeps its on-paper width and is only hatched,
+   so a tick changes no width. The ease runs when a slot is edited instead, which
+   is when widths do change.
+4. Links. The design does not name them, and teal is reserved for mass, so its
+   first principle makes a link neutral ink with an underline that turns to place
+   on hover.
+
+Two smaller calls. The header's metric strip is the flexible gap, so when it has
+to wrap it wraps inside itself and the title, tabs, checkout and toggle hold the
+first row; rendered at 1600px, the first cut had stranded the checkout and toggle
+on a row of their own. And the dex number is the species' place in the tree, read
+off the list the page already has, so no field was added to the API.
+
+How it was checked, since no suite can see a colour. The page was rendered in a
+headless Windows Chrome driven over the DevTools protocol, with a throwaway
+profile, in both themes and both views, with no page errors. Every contrast pair
+in section 10 was recomputed from the shipped tokens and matched the design's
+table, as did the type chips. The toggle and the favicon were driven under node
+with a stubbed browser: follow the system, pin, release, keep a pin across a
+reload and a Windows switch, and survive storage that throws.
+
+What is left is the design's own acceptance: Ian opens the tool in both themes at
+his usual display scaling and signs off. The one thing only he can judge is the
+pixel face at his scaling, at 16px for the title and the dex number, 13px for the
+tabs and 28px for the headline; the design asks for any that look soft to move by
+a pixel.
+
 ## Suggested order, and what to cut
 
 M1 → M2 → M3 is one continuous piece of work and should not be split across
