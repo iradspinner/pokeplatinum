@@ -15,7 +15,7 @@
 // wrapped: a private window or blocked storage throws, and an empty or
 // throwing store simply means "follow the system".
 //
-// The damage calculator (M8 D5) will load this same file, so any button marked
+// The damage calculator (M8 D5) loads this same file, so any button marked
 // data-theme-toggle is wired automatically and the two pages share one setting.
 (function () {
   "use strict";
@@ -92,6 +92,15 @@
     button.title = "Colour scheme: follow Windows, or pin the other one";
     button.addEventListener("click", function () { toggle(); });
   }
+
+  // Another page of the tool changed the setting: the calculator in its
+  // frame, or a second tab. The storage event reaches every other document on
+  // this origin, so each follows without a reload.
+  window.addEventListener("storage", function (event) {
+    if (event.key !== KEY && event.key !== null) return;
+    apply(pinned());
+    notify();
+  });
 
   // Keep every toggle's label current, however the change came about.
   listeners.push(function () {

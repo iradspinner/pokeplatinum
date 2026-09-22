@@ -576,12 +576,23 @@ def check_calculator(results):
                     and server.calc_sprite("pokesprite", "ninetales-alola.png")
                     and server.calc_sprite("front", "notapokemon.gif") is None, ""))
 
+    # The skin is generated from upstream's stylesheets. If either changes
+    # without a rerun, the calculator is drawn in stale colours.
+    from . import make_calc_skin
+    skin = open(make_calc_skin.OUT, encoding="utf-8").read()
+    results.append(("the calculator's skin is current, loaded after upstream's "
+                    "stylesheets, and follows the tool's toggle",
+                    skin == make_calc_skin.build()
+                    and not re.search(r"#[0-9a-fA-F]{6}\b", skin.split("*/", 1)[1])
+                    and page.index("oxide-skin.css") > page.rindex("stylesheet\" href=\"./css/")
+                    and '<script src="/theme.js">' in page, ""))
+
     # Every patch is written down, so an upstream update knows what to redo.
     vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()
     results.append(("every patch to the vendored calculator is in its patch list",
                     all(f in vendored for f in ("js/initialize.js", "index.html",
                                                 "js/oxide/title_to_backup_mappings.js",
-                                                "js/vendor/oxide/")), ""))
+                                                "js/vendor/oxide/", "oxide-skin.css")), ""))
 
 
 def main():
