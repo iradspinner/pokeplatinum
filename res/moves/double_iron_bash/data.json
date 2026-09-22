@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_DOUBLE_IRON_BASH",
+        "type": "BATTLE_EFFECT_HIT_TWICE_AND_FLINCH",
         "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",

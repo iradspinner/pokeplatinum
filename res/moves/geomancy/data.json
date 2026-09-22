@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_GEOMANCY",
+        "type": "BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2",
         "chance": 0
     },
     "range": "RANGE_USER",

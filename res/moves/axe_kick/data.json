@@ -12,7 +12,7 @@
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_AXE_KICK",
+        "type": "BATTLE_EFFECT_CONFUSE_HIT_CRASH_ON_MISS",
         "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",

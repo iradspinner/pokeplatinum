@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HEX",
+        "type": "BATTLE_EFFECT_DOUBLE_DAMAGE_ON_STATUS",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

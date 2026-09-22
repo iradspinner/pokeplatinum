@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_SOAK",
+        "type": "BATTLE_EFFECT_CHANGE_TO_WATER_TYPE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

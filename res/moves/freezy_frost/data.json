@@ -13,7 +13,7 @@
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_FREEZY_FROST",
+        "type": "BATTLE_EFFECT_RESET_STAT_CHANGES_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

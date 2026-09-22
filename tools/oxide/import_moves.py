@@ -51,6 +51,7 @@ EFFECTS_DIR = os.path.join(ROOT, "res", "battle", "scripts", "effects")
 EFFECTS_MESON = os.path.join(EFFECTS_DIR, "meson.build")
 ANIM_MAP = os.path.join(ROOT, "docs", "oxide", "move-animation-map.json")
 DESC_OVERRIDE = os.path.join(ROOT, "docs", "oxide", "move-descriptions.json")
+EFFECT_NAMES = os.path.join(ROOT, "docs", "oxide", "battle-effect-names.json")
 
 FIRST_NEW = 468          # the first id this tool owns; 468..470 are the retail tail
 LAST_NEW = 922           # the donor's last named move
@@ -225,13 +226,30 @@ def convert(i, rec, name, desc, types, ranges, flags, effects):
 def name_effects(recs, enums):
     """Names for the donor's battle effects 277..406.
 
-    The donor ROM carries no names for them, so these are Oxide's own: each
-    effect is named after the first move that uses it, which is already the
-    house style for a one-move effect (BATTLE_EFFECT_SHADOW_FORCE,
-    BATTLE_EFFECT_CHATTER). An id no move uses is named for its number. The
-    name says which move's behaviour the script has to implement, which is the
-    thing the next reader needs.
+    The donor ROM carries no names, but hg-engine's source does: it keeps them
+    in its filenames, `effect_script_0277_ATK_ACC_UP.s`. Those are the names
+    used here, from `docs/oxide/battle-effect-names.json`, so that an Oxide
+    constant and the hg-engine file whose script has to be ported into it are
+    called the same thing. That also makes the shared range check out:
+    hg-engine and Platinum agree on the name of 256 of the first 277 effects,
+    and the 21 that differ are two projects' words for the same behaviour, so
+    the numbering really is shared and not just consistent.
+
+    One deviation, and it is the only one. hg-engine calls effect 299
+    `HIT_THREE_TIMES`, which is already Platinum's name for effect 104; the two
+    are different, 299 being a flat three hits (Triple Dive) and 104 the one
+    that gains ten power a hit (Triple Kick). hg-engine's own name for 104 says
+    so, `HIT_THREE_TIMES_INCREMENT_BASE_POWER_10`, but Platinum's constant
+    cannot be renamed without touching every move that points at it, so 299 is
+    `HIT_THREE_TIMES_FIXED_POWER` here.
+
+    If the names file is missing, each effect falls back to the first move that
+    uses it, which keeps the tool working without a clone of hg-engine on disk.
     """
+    names = {}
+    if os.path.exists(EFFECT_NAMES):
+        names = {int(k): v
+                 for k, v in json.load(open(EFFECT_NAMES, encoding="utf-8")).items()}
     first = {}
     for i in range(1, LAST_NEW + 1):
         e = recs[i]["effect"]
@@ -239,8 +257,12 @@ def name_effects(recs, enums):
             first[e] = enums[i][len("MOVE_"):]
     out = []
     for e in range(PLATINUM_EFFECTS, LAST_EFFECT + 1):
-        out.append("BATTLE_EFFECT_" + first[e] if e in first else
-                   "BATTLE_EFFECT_UNUSED_%d" % e)
+        if e in names:
+            out.append("BATTLE_EFFECT_" + names[e])
+        elif e in first:
+            out.append("BATTLE_EFFECT_" + first[e])
+        else:
+            out.append("BATTLE_EFFECT_UNUSED_%d" % e)
     return out
 
 
@@ -363,7 +385,7 @@ def main():
 
     print("new move directories: %d (ids %d..%d, of which %d are the retail tail)"
           % (len(written), FIRST_NEW, LAST_NEW, len(PLACEHOLDERS)))
-    print("new battle effect ids: %d (%d..%d), %d named after a move, %d unused"
+    print("new battle effect ids: %d (%d..%d), %d named from hg-engine, %d unnamed"
           % (len(effect_names), PLATINUM_EFFECTS, LAST_EFFECT,
              sum(1 for n in effect_names if "_UNUSED_" not in n),
              sum(1 for n in effect_names if "_UNUSED_" in n)))

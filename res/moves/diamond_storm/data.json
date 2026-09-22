@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_DIAMOND_STORM",
+        "type": "BATTLE_EFFECT_RAISE_DEF_2_HIT",
         "chance": 50
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

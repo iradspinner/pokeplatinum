@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_STEEL_ROLLER",
+        "type": "BATTLE_EFFECT_END_TERRAIN",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

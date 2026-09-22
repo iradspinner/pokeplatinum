@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_FLAME_CHARGE",
+        "type": "BATTLE_EFFECT_RAISE_SPEED_HIT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

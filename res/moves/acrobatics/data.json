@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_ACROBATICS",
+        "type": "BATTLE_EFFECT_DOUBLE_DAMAGE_WITHOUT_ITEM",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_QUIVER_DANCE",
+        "type": "BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP",
         "chance": 0
     },
     "range": "RANGE_USER",

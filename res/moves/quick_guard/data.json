@@ -11,7 +11,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_WIDE_GUARD",
+        "type": "BATTLE_EFFECT_PROTECT_USER_SIDE",
         "chance": 0
     },
     "range": "RANGE_USER_SIDE",

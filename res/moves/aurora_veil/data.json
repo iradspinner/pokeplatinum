@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_AURORA_VEIL",
+        "type": "BATTLE_EFFECT_SET_AURORA_VEIL",
         "chance": 0
     },
     "range": "RANGE_USER_SIDE",

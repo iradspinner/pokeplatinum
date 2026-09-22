@@ -13,7 +13,7 @@
     "accuracy": 90,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_MATCHA_GOTCHA",
+        "type": "BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT",
         "chance": 20
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

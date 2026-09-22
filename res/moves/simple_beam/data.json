@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_SIMPLE_BEAM",
+        "type": "BATTLE_EFFECT_SET_ABILITY_TO_SIMPLE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

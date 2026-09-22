@@ -13,7 +13,7 @@
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_SAPPY_SEED",
+        "type": "BATTLE_EFFECT_LEECH_SEED_HIT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

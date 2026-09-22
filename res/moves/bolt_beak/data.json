@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_BOLT_BEAK",
+        "type": "BATTLE_EFFECT_DOUBLE_POWER_IF_FASTER",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

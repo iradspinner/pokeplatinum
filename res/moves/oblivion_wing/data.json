@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DRAINING_KISS",
+        "type": "BATTLE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

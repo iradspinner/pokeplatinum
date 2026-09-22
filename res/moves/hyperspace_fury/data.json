@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_HYPERSPACE_FURY",
+        "type": "BATTLE_EFFECT_USER_DEF_DOWN_HIT_REMOVE_PROTECT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

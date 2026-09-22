@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_DOUBLE_SHOCK",
+        "type": "BATTLE_EFFECT_REMOVE_USER_ELECTRIC_TYPE_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

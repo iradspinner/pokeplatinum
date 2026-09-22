@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_GRASSY_TERRAIN",
+        "type": "BATTLE_EFFECT_APPLY_TERRAINS",
         "chance": 0
     },
     "range": "RANGE_FIELD",

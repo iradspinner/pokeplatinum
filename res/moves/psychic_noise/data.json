@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_PSYCHIC_NOISE",
+        "type": "BATTLE_EFFECT_HIT_AND_PREVENT_HEALING",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

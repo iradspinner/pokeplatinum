@@ -12,7 +12,7 @@
     "accuracy": 95,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CIRCLE_THROW",
+        "type": "BATTLE_EFFECT_FORCE_SWITCH_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_SURGING_STRIKES",
+        "type": "BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

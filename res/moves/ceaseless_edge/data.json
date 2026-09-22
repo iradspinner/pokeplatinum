@@ -13,7 +13,7 @@
     "accuracy": 90,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_CEASELESS_EDGE",
+        "type": "BATTLE_EFFECT_SET_SPIKES_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

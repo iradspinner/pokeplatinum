@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_DIRE_CLAW",
+        "type": "BATTLE_EFFECT_SLEEP_POISON_PARALYZE_HIT",
         "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",

@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_NOBLE_ROAR",
+        "type": "BATTLE_EFFECT_TEARFUL_LOOK",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

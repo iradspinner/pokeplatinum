@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_JAW_LOCK",
+        "type": "BATTLE_EFFECT_PREVENT_ESCAPE_BOTH_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_ICE_BURN",
+        "type": "BATTLE_EFFECT_CHARGE_TURN_BURN_HIT",
         "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",

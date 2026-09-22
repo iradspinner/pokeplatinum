@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_FORESTS_CURSE",
+        "type": "BATTLE_EFFECT_ADD_THIRD_TYPE_GRASS",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

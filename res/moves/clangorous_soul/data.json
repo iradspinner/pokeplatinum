@@ -11,7 +11,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_CLANGOROUS_SOUL",
+        "type": "BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP",
         "chance": 100
     },
     "range": "RANGE_USER",

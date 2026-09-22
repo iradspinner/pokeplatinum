@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_BOUNCY_BUBBLE",
+        "type": "BATTLE_EFFECT_RECOVER_FULL_DAMAGE_DEALT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

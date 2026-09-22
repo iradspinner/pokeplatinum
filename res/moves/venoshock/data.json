@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_VENOSHOCK",
+        "type": "BATTLE_EFFECT_DOUBLE_POWER_ON_POISONED",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

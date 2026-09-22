@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_MIGHTY_CLEAVE",
+        "type": "BATTLE_EFFECT_IGNORE_PROTECT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

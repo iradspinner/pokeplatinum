@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 1,
     "effect": {
-        "type": "BATTLE_EFFECT_ALOLAN_GUARDIAN",
+        "type": "BATTLE_EFFECT_QUARTER_HP",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

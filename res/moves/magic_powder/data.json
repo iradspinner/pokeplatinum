@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_MAGIC_POWDER",
+        "type": "BATTLE_EFFECT_CHANGE_TO_PSYCHIC_TYPE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

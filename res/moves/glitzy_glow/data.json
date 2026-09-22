@@ -13,7 +13,7 @@
     "accuracy": 95,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_GLITZY_GLOW",
+        "type": "BATTLE_EFFECT_SET_LIGHT_SCREEN_HIT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",

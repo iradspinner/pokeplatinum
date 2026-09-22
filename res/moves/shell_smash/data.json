@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_SHELL_SMASH",
+        "type": "BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN",
         "chance": 0
     },
     "range": "RANGE_USER",

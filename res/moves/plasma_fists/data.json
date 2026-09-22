@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_PLASMA_FISTS",
+        "type": "BATTLE_EFFECT_ION_DELUGE_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

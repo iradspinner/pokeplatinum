@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_STORM_THROW",
+        "type": "BATTLE_EFFECT_ALWAYS_CRITICAL",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

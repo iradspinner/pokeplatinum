@@ -13,7 +13,7 @@
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_TRIPLE_AXEL",
+        "type": "BATTLE_EFFECT_HIT_THREE_TIMES_INCREMENT_BASE_POWER_20",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

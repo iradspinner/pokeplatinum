@@ -13,7 +13,7 @@
     "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_V_CREATE",
+        "type": "BATTLE_EFFECT_USER_DEF_SP_DEF_SPEED_DOWN_HIT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
