@@ -1315,7 +1315,9 @@ blocking. All five are dealt with:
 `test_m8` has three new checks (46) and `test_m4` one (51). The review's figure
 for R12 is right: 27 scripted lines, up from the 22 of Step 4 as Steps 7 and 8
 re-pooled the gifts; the tracker says so now. Its question about Steel's two
-Generation 4 resistances is Ian's and is left open.
+Generation 4 resistances went to Ian, who ruled the same day to keep them: the
+chart stays as it is, and `test_m8` pinning Steel's resistance to Dark and
+Ghost now guards a decision rather than a finding.
 
 A third note, drawn as a sketch: more of an area on one screen. The heading
 above the tables is three short lines now (name, tags and the encounter on one;
@@ -1411,7 +1413,9 @@ Generation 6 took away. So no stock `types=` setting in the calculator matches:
 Generation 4's has no Fairy and Generation 6's drops those two resistances. The
 chart therefore travels with the exported data rather than being named by a
 parameter, which `pokedex.type_chart()` already reads from the source of truth so
-it cannot drift if the table is edited again.
+it cannot drift if the table is edited again. Keeping those two resistances was
+never decided when Fairy was ported; Ian decided it on 2026-09-22: Steel keeps
+them.
 
 **D2, the dex tab — done, 2026-09-22.** The page has two views now, switched
 from the header, and the tables view is untouched. The dex list draws a party

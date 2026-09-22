@@ -80,7 +80,8 @@ def check_chart(results):
                     len(types) == 18 and "FAIRY" in types, f"{len(types)} types"))
     # This fork's chart is neither generation's, which is why the calculator
     # cannot use a stock setting: Fairy is in, and Steel still resists Dark and
-    # Ghost the way it did before Generation 6 took that away.
+    # Ghost the way it did before Generation 6 took that away. Ian ruled to
+    # keep it that way (2026-09-22), so this guards a decision.
     results.append(("Steel still resists Dark and Ghost, as Generation 4 had it",
                     chart.get(("DARK", "STEEL")) == 0.5
                     and chart.get(("GHOST", "STEEL")) == 0.5,

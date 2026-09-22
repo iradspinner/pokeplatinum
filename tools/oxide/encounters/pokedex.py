@@ -268,8 +268,9 @@ def type_chart(root):
 
     Worth knowing what this fork's chart actually is, because it is neither
     generation's: Fairy is in and complete, but Steel still resists Dark and
-    Ghost, which Generation 6 removed. No stock setting in a damage calculator
-    matches that, so the chart travels with the data.
+    Ghost, which Generation 6 removed. That is deliberate (Ian, 2026-09-22).
+    No stock setting in a damage calculator matches it, so the chart travels
+    with the data.
     """
     with open(os.path.join(root, BATTLE_LIB), encoding="utf-8") as f:
         src = f.read()
