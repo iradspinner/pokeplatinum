@@ -4,76 +4,61 @@ Top-level task list. Tick items as they finish; add detail only where it changes
 
 Where things live, so each fact has one home: **status** is here; **durable facts** are in the design doc's findings log (section 8); the **encounter tool's** status, milestones and findings are in `docs/oxide/encounter-tool-build-plan.md`. Everywhere else points, it does not repeat.
 
-> ## URGENT: QA pass owed, morning of 2026-09-23 (Overseer)
+> ## QA outcome, 2026-09-22 (Overseer): the flake is the platform, not the interpreter, and nothing has "pinned it away"
 >
-> Ian's instruction, 2026-09-22 night: **the Overseer agent runs a QA pass on
-> everything below before any of it is built on.** It landed fast, in one
-> session, and two pieces of it change how the whole project builds. Nothing
-> here is blocked on the QA, but treat a finding from it as outranking whatever
-> else is in flight.
+> Three reviews ran on `427c823b9..55c0b9cbc`: a local code review, Ian's cloud
+> review (`docs/oxide/qa-review-2026-09-22.md`), and an independent verification
+> pass whose results are appended to that file. **Read the verification section
+> before building anything on the Python pin.** The headline facts:
 >
-> **Scope: `git log --oneline 427c823b9..HEAD`**, eight commits.
+> - **The pin does not reach the build.** Meson records each generator script as
+>   the command itself, so ninja execs `#!/usr/bin/env python3`, which is the
+>   system 3.14.4. About a thousand generator runs per build (event data, map
+>   matrices, encounters, species) run there; only `meson.py` itself and one
+>   644-mode script run on the pin. Confirmed in `build/build.ninja` and with a
+>   probe. Fix landed the same day: the pinned interpreter's directory goes first
+>   on PATH for the ninja steps, so the shebang resolves to it.
+> - **The pin would not have helped anyway.** On the pinned CPython 3.13.15 the
+>   repro failed 4 of 15 runs, `test_step0` 2 of 10, and `meson setup` aborted
+>   with `Fatal Python error: _PyEval_EvalFrameDefault: Executing a cache`, the
+>   same class of abort the wrapper's comment rejected 3.14.7 for. The system
+>   3.14.4 failed 2 of 5. Same rate, different binaries.
+> - **The pgrep hang is a symptom of the same fault and `wsl --shutdown` only
+>   resets it.** Within minutes of a fresh boot a build's Python (pid in state D,
+>   wchan `__vma_start_write`, unkillable) wedges; everything that reads
+>   `/proc/<pid>/cmdline` then blocks, which is why `pgrep`, `ps` and the gate
+>   stall. Wrong string results, KeyErrors on present keys, cache-execution
+>   aborts and segfaults across two interpreter builds, plus a kernel VMA lock
+>   wedge, read as a WSL2 kernel or hardware memory fault. The 8 GiB userland
+>   pattern test does not rule that out.
+> - **The ROM itself checks out**: three clean builds across both interpreters
+>   gave the same SHA-1, `verify_narcs` reports 923 moves against 471 with 0
+>   disagreeing and 452 new, and every gate check passed by hand. Corruption
+>   would show as non-reproducible output, so **until the platform is fixed,
+>   build twice and compare hashes before trusting a ROM.**
 >
-> 1. `c6f8fa133` the move import. `MAX_MOVES` 468 to 923, 455 new move
->    directories, 130 new battle-effect stubs, `pack_extra_moves()` deleted.
-> 2. `0fc00a304` the 130 effects renamed to hg-engine's own names.
-> 3. `419c07c31` **the build's Python interpreter changed.** Makefile, and a
->    new `tools/oxide/oxide-python`.
-> 4. `2db8f0fef` **the tools now re-exec themselves onto that interpreter.**
-> 5. `43a71c1e8`, `23ed088e3`, `3b22eb04c` tracker and QA notes.
-> 6. `5ab8d7cde` the battle-script converter for element 4's effect scripts.
->    Tooling only, nothing in `res/` and no change to the ROM, but its
->    rename map is derived rather than written down and that derivation is
->    worth a look: `--selftest` should say 161 of 198 convert exactly.
+> **For Ian, in this order:** (1) `wsl --shutdown` again; the wedged pid is
+> still there. (2) The decisive experiment: run `tools/oxide/python_flake_repro.py`
+> under a Windows-native Python fifteen times. Clean there means the WSL2 kernel
+> (this box runs 6.18.33.2-microsoft-standard-WSL2, very new; `wsl --update`
+> or a rollback is the next step). Failing there means hardware, and the next
+> step is memtest86 from boot, not a userland pattern test. (3) Until then treat
+> every build and every test result on this box as needing a second run.
 >
-> **The code review has run.** Ian ran the multi-agent cloud review on
-> 2026-09-22 night over commits 2 to 6 (the full range was refused as too
-> large, so **commit 1, the move import, is still unreviewed**). Its seven
-> findings, each re-checked by hand, are in
-> **`docs/oxide/qa-review-2026-09-22.md`**, with a suggested order. The one
-> that outranks the rest: **the pin does not reach the build.** ninja runs
-> each generator script by its path, so its `#!/usr/bin/env python3` shebang
-> resolves to the system 3.14.4 regardless of what ran `meson setup`;
-> `build/build.ninja` never mentions `oxide-python`. The "pinned away" claims
-> below and in `CLAUDE.md` are wrong for `make rom` until that is fixed.
-> Nothing in the report has been fixed yet. The two commits worth the most
-> scrutiny remain 3 and 4: a re-exec that goes wrong silently changes which
-> interpreter writes `res/`, and `pinned_python.ensure()` is called from
-> `__main__` only for a reason (`verify_narcs` imports `import_base_rom` as a
-> module, and an import-time re-exec would restart the wrong tool mid-run).
+> **Code findings, with their status**, from the three reviews combined (the
+> detail is in the QA file): the Metronome and Assist exclusion list needs the
+> three placeholder moves and the Z-moves; the TV segment's random-move line
+> can pass -1 and 0 (vanilla bug, widened); `import_moves.py` re-runs overwrite
+> hand-ported effect scripts; the guard can re-exec onto a fallback interpreter
+> while announcing it as the pin, and the wrapper's bare-uv tier warns nothing;
+> the converter's `--show` output carries its summary line and loses its header
+> blank lines; `textfit.py` lacks the guard and two docstrings still say
+> `python3`; `RANGE_ALL` has no engine branch, so the three moves mapped to it
+> fall through; the `.shared` scripts are dead. Ruled out of scope for now:
+> the eight pasted bootstrap blocks, the converter's duplicated filter, the
+> verifier's duplicated compare loop. Cleanups for the docs pass or later.
 >
-> **Verify independently rather than re-reading the claims.** The load-bearing
-> ones, each with the command that settles it:
->
-> - the moves reproduce the base ROM: `verify_narcs` should say
->   `923 members against the reference's 471; 0 disagree, 452 are new moves`
-> - the interpreter switch is inert: wipe `build/`, rebuild, and the ROM should
->   come out byte-identical to the one before the switch
-> - the flake is really gone: `tools/oxide/python_flake_repro.py` on the pinned
->   interpreter should be 0 failures every time, and `test_step0` should stop
->   being flaky
-> - the guard cannot loop and cannot fire on an imported module
-> - `moveproc.c` no longer writes members 468..470, but the archive still has
->   them and they still match the base ROM
->
-> **Blocker to clear first, not caused by any of this.** `pgrep` hangs on this
-> box, and `integrate.sh` calls it in its preconditions (the loop that looks for
-> a Claude session still attached to a worktree), so **the gate stalls before
-> the fetch and no integration can run**. Confirmed at the kernel level: reading
-> `/proc/<pid>/stat` blocks, and `timeout` cannot kill the reader, which is a
-> task wedged in uninterruptible state. Nothing is actually contended, memory
-> and IO pressure are both zero. **Ian runs `wsl --shutdown` from Windows and
-> reopens the shell**; that is the only fix, and it has to happen before the
-> Overseer can integrate. Every check the gate runs was run by hand in the
-> meantime and all passed, so this is a scheduling problem rather than a red
-> gate.
->
-> **Judgement calls to sanity-check rather than assume.** Z-moves imported as
-> inert data to keep ids contiguous; King's Rock set on every new damaging move;
-> contest type derived from move type; the three range-24 moves mapped to
-> `RANGE_ALL`; descriptions rewrapped and 176 of them shortened.
->
-> Delete this block once the QA is done and its findings are recorded.
+> Delete this block once the platform question is answered and the fixes are in.
 
 **Where things stand (2026-09-21).** Phase 3, carrying the base ROM's edits into the source tree, is **finished**. All three hard stops were closed on 2026-09-20: the Repel prompt (fixed with a new script command), the Battleground init script (no init script at all now) and the trainer battle messages (no edit in the bank, only DSPRE zeroing unused slots). **Phase 4, the engine port, has started.** Its engine-change list is settled (`docs/oxide/phase4-engine-change-answers.md`). **Elements 1 and 2 are done**: the Fairy type, apart from two pieces of fixed Pokedex and Battle Hall art listed under it, and the ability widening to u16 with a hidden-ability slot. Element 2 broke the save format, which is now tracked in `docs/oxide/save-layout.md`; a save made before it reads every ability as NONE, so start a new game. Also landed on 2026-09-20: the base ROM's last two gameplay rules, traded Pokemon always obeying and battling granting no EVs, the second of which makes vitamins the only EV source and raises them to 26 EVs each. **Element 3, the species-slot expansion, is most of the way done.** All 159 new species are in the tree with real data and real art, ids 494 to 652, so `MAX_SPECIES` is 654 and the three per-species archives hold 667 members. **Element 3's structure is finished as of 2026-09-21**, the caps audit being the last of it: it found and fixed one live defect, the alternate-form records for Deoxys, Wormadam, Giratina, Shaymin and Rotom being read from hardcoded archive members that the species insertion had moved. What is left under element 3 is all fill-in: TM, tutor and egg-move lists, the dex size scales, and the learnsets element 4 refills; the entry text, body shapes and footprints landed the same day. The 30-box PC moved to element 8, where it already was. **Element 4, the move expansion, is most of the way done.** The learnset entry is widened to (u16 level, u16 move), the donor's move tables are surveyed in `docs/oxide/donor-move-tables.md`, and **the moves themselves are in**: `MAX_MOVES` is 923 and `pl_waza_tbl.narc` holds 923 records against the base ROM's 471 with 0 disagreeing and 452 new. Names, descriptions and animations are all there, the descriptions remade to fit Platinum's smaller text box. What is left under element 4 is the 114 new battle effects, whose constants and script files already exist as stubs, and then refilling the 159 new species' learnsets unfiltered. Two emulator checks are waiting on Ian. The tree is clean and `origin/oxide` is current. **Bug fixing is its own track from 2026-09-21**, run by a dedicated session: its status home is the "Open bug" entries under Phase 5 and nothing else in this file; it works from `~/roms/route202-hang.sav` and the pinned ROMs, uses `tools/oxide/live_watch.py` against Ian's Windows melonDS **with Ian driving the game** (recipe in `docs/oxide/setup-fork-and-wsl2.md` part 5b; the agent never runs its own melonDS, part 5's WSLg route is recorded there as a dead end and a 2026-09-22 session lost its budget to it), and records causes in the design doc's findings log. `git log -1` is the resume point; no commit hash is kept in this file because it goes stale within the hour.
 
@@ -317,7 +302,7 @@ shape the finished game.
 - [ ] **Encounter design decisions** that Phase 4 leaves open: which encounters set the hidden-ability flag (gifts, statics, a late area), and which areas have wild double battles. **Decided 2026-09-21 (Ian): swarms, the Poke Radar, the dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf legendary menu are never used**, so they are not acquisition sources and `docs/oxide/pokemon-sources.md` leaves them out; what happens to their data (emptied or left as-is) is the authoring pass's call
 - [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
 - [ ] **The starter's own met location** (Ian's preference, 2026-09-21): give the starter a unique met-location name so Route 201 counts as a nuzlocke capture area; the encounter plan already assumes it. A script and text-bank change
-- [x] **Python 3.14.4 on this box is unreliable; the project pins its own interpreter now** (found 2026-09-21 by the encounter track, diagnosed and fixed 2026-09-22). Ubuntu 26.04's `python3.14` 3.14.4-1ubuntu0.2 returns wrong answers from pure string work: 10 of 15 runs of the repro failed, 37 wrong results over 30,000 iterations, against 0 of 15 on CPython 3.13.15 with everything else held constant. Not the hardware (8GiB pattern-verified twice; three synthetic Python workloads clean) and not Python 3.14 as such. **The reach was wider than `test_step0`**: it failed `import_base_rom.py` about half the time, and `make rom` runs Python about 227 times to generate event data, map matrices and the encounter archives, so the build was exposed. The build was checked and was not corrupted, byte-identical over a full 4,847-object recompile. Fixed by pinning through `tools/oxide/oxide-python`, which the Makefile and `integrate.sh` both use
+- [ ] **Superseded by the QA outcome at the top of this file (2026-09-22): the pin does not fix the fault and did not reach the build.** The entry below is kept as the record of what was believed. Python 3.14.4 on this box is unreliable; the project pins its own interpreter (found 2026-09-21 by the encounter track, diagnosed and fixed 2026-09-22). Ubuntu 26.04's `python3.14` 3.14.4-1ubuntu0.2 returns wrong answers from pure string work: 10 of 15 runs of the repro failed, 37 wrong results over 30,000 iterations, against 0 of 15 on CPython 3.13.15 with everything else held constant. Not the hardware (8GiB pattern-verified twice; three synthetic Python workloads clean) and not Python 3.14 as such. **The reach was wider than `test_step0`**: it failed `import_base_rom.py` about half the time, and `make rom` runs Python about 227 times to generate event data, map matrices and the encounter archives, so the build was exposed. The build was checked and was not corrupted, byte-identical over a full 4,847-object recompile. Fixed by pinning through `tools/oxide/oxide-python`, which the Makefile and `integrate.sh` both use
 - [ ] **The encounter tool is not covered by the interpreter re-exec guard** (for that track, 2026-09-22). `tools/oxide/pinned_python.ensure()` moves the eight main-track tools onto the pinned Python even when started with `python3`; the encounter tool has no such call, and its build plan carries about 45 `python3 -m tools.oxide.encounters...` invocations. The gate is safe either way, because `integrate.sh` runs every check on the pinned interpreter, so this only bites someone running a command out of the build plan by hand. That track owns those files
 - [ ] **Route 211 east as a delay** (encounter track, Byron's split): the plan homes Ralts there with Rowlet and Litten at real shares as the prizes; author it with that split. The clown gifts were levers of the same kind and have now been re-pooled, see the next item
 - [ ] **Delete the Old Amber, Helix Fossil, Dome Fossil and Claw Fossil** (Ian, 2026-09-21): they revive off-list species, and his call is to remove the items rather than repoint the museum. Take them out of the Underground's dig pools and any route or NPC that hands them out; the museum's four revive branches then become unreachable, which is fine. Item and script work, outside the encounter track
