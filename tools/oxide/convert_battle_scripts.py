@@ -31,8 +31,8 @@ are not renames and must never be translated. hg-engine simply made some
 effects behave differently, which is its right and not something a converter
 should paper over. There is no identifier left unaccounted for.
 
-    tools/oxide/oxide-python tools/oxide/convert_battle_scripts.py --selftest
-    tools/oxide/oxide-python tools/oxide/convert_battle_scripts.py --map
+    python3 tools/oxide/convert_battle_scripts.py --selftest
+    python3 tools/oxide/convert_battle_scripts.py --map
 """
 
 import argparse
@@ -259,6 +259,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import pinned_python
-    pinned_python.ensure()
     sys.exit(main())

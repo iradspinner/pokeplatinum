@@ -66,45 +66,21 @@ If you ever want to throw away every local change and match my latest push exact
 cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
 ```
 
-## Part 3b: The pinned Python (2026-09-22)
+## Part 3b: Python packages
 
-This project does not use the system Python, and `make` will not either. It is
-worth knowing why, because if the pinned interpreter ever goes missing the
-build still works but quietly gets less trustworthy.
-
-Ubuntu 26.04 ships Python 3.14.4, and that build intermittently returns **wrong
-answers from ordinary string work**: a missing key that is present, a rewrite
-that silently changes the text, `len` reported as not callable. Measured on this
-machine with everything but the interpreter held constant, it failed 10 of 15
-runs of `tools/oxide/python_flake_repro.py`; CPython 3.13.15 failed 0 of 15 over
-the same 30,000 iterations. It is not the hardware, and it is not Python 3.14 in
-general. Apt has no newer 3.14, so the fix is a different interpreter.
-
-This matters beyond the helper scripts: `make rom` runs Python about 227 times,
-generating event data, map matrices, area data and the encounter archives.
-
-The setup, all of it outside the repo and all of it reversible:
+The helper scripts under `tools/oxide/` run on the system `python3` and need
+three packages that Ubuntu does not ship. They are installed for the user:
 
 ```
-curl -LsSf https://astral.sh/uv/install.sh | sh     # installs to ~/.local/bin
-uv python install 3.13
-uv venv --python 3.13 ~/.venvs/oxide
-VIRTUAL_ENV=~/.venvs/oxide uv pip install ndspy pillow openpyxl
+python3 -m pip install --user --break-system-packages ndspy pillow openpyxl
 ```
 
-`tools/oxide/oxide-python` finds that interpreter and is the single place the
-policy lives; the `Makefile` and `tools/oxide/integrate.sh` both go through it,
-and `meson` bakes whichever interpreter runs it into `build.ninja`, which is how
-one setting covers all 227 build invocations. Override with `OXIDE_PYTHON=...`.
-If nothing is found it falls back to `python3` **and prints a warning**; that
-warning means the build is running on the unreliable interpreter again.
-
-Do not use CPython 3.14.7 here even though it measures clean on the repro: the
-astral build is compiled `--with-tail-call-interp`, and that interpreter aborted
-a `meson setup` outright with `Fatal Python error: _TAIL_CALL_CACHE`.
-
-To check: `tools/oxide/oxide-python tools/oxide/python_flake_repro.py` should
-print `done, failures: 0` every time.
+For a day in September 2026 the project pinned its own interpreter, blaming
+the system Python for wrong answers that turned out to be a degraded CPU; the
+pin was removed once that was found (design doc findings log, 2026-09-22).
+Until the replacement CPU is in, the `Makefile` still puts `~/.venvs/oxide`
+first on PATH when it exists, because this chip crashes the system Python far
+more often.
 
 ## Part 4: What about DSPRE and the old base ROM?
 

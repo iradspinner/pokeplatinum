@@ -27,27 +27,17 @@ MESON_VER := 1.12.0
 MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
 MESON_PY  := $(MESON_DIR)/meson.py
 
-# Platinum Oxide: the build's Python is pinned rather than inherited from PATH.
-# This machine's system Python intermittently returns wrong answers from pure
-# string work, and `make rom` runs Python about 227 times to generate event
-# data, map matrices and the encounter archives, so the build is exposed to it.
-# tools/oxide/oxide-python resolves the pinned interpreter and explains why.
-# Two things have to happen for it to cover the build. PYTHON runs meson
-# itself. But meson records each generator script as the command, not an
-# interpreter plus the script, so ninja runs each one's `#!/usr/bin/env
-# python3` shebang; the pinned interpreter's directory therefore goes first on
-# PATH for every recipe below, which is what makes the shebang resolve to it
-# (the 2026-09-22 QA pass found the build on the system Python without this).
-# Override with OXIDE_PYTHON=/path/to/python, or set MESON to bypass this.
-# Note the wrapper is not a fix for this machine's fault: see the QA outcome at
-# the top of docs/oxide/tracker.md.
-PYTHON ?= tools/oxide/oxide-python
-OXIDE_PYTHON_DIR := $(dir $(shell $(PYTHON) --path 2>/dev/null))
-ifneq ($(OXIDE_PYTHON_DIR),)
-  export PATH := $(OXIDE_PYTHON_DIR):$(PATH)
+# Platinum Oxide, until the replacement CPU is in: the degraded chip crashes
+# the system Python 3.14 far more often than the 3.13 venv (46 against 6 of
+# 160 crash-test runs, 2026-09-22), so the venv goes first on PATH when it
+# exists; the build's generators run through `#!/usr/bin/env python3`. Delete
+# this block once the new CPU is in. CI has no venv and skips it.
+OXIDE_VENV := $(HOME)/.venvs/oxide/bin
+ifneq ($(wildcard $(OXIDE_VENV)/python3),)
+  export PATH := $(OXIDE_VENV):$(PATH)
 endif
 
-MESON ?= $(PYTHON) $(MESON_PY)
+MESON ?= $(MESON_PY)
 NINJA ?= ninja
 GIT ?= git
 

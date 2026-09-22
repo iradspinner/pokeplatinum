@@ -66,17 +66,17 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-**Run every Python script in this repo through `tools/oxide/oxide-python`, not
-through `python3`**, and know what that buys. The wrapper gives every tool one
-interpreter with the right packages, the `Makefile` puts it first on PATH for
-the ninja steps, and `integrate.sh` goes through it.
-
 **This box's CPU is faulty until its warranty replacement arrives.** The
 i9-14900K is degraded: capped, single-threaded work is clean, but under
 all-core load compilers and Python crash or return wrong answers (design doc
 findings log, 2026-09-22). So a result here is trusted only after a second run
-agrees with it. Retry a build that crashes, trust a ROM only when two complete
-builds agree on its hash, and rerun a failed test before believing it.
+agrees with it. GitHub builds every push to `oxide` on its own machines
+(`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
+summary; a local ROM is trusted when its hash matches that one. The ROM is
+never uploaded, because the repo is public. Retry a local build that crashes,
+and rerun a failed test before believing it. The `Makefile` puts the 3.13
+venv first on PATH because this chip crashes it far less than the system
+Python; that block goes when the new CPU is in.
 `tools/oxide/python_flake_repro.py` is the check.
 
 ## Tools

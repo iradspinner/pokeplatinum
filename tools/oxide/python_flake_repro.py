@@ -1,46 +1,23 @@
-"""Regression check for the interpreter fault that made this project pin its
-Python. Run it after changing the pinned interpreter, and nowhere else.
+"""Stability check for this machine's CPU, which is degraded.
 
-**The fault.** Ubuntu 26.04's Python 3.14.4-1ubuntu0.2 intermittently returns
-wrong results from pure-Python string work: a KeyError on a key that is there,
-"unbalanced container" on a balanced one, "'int' object is not callable" on the
-builtin len, or, worst of all, a rewrite that silently changes the text. No
-threads, no writes, the same input every iteration.
+The i9-14900K in this box returns wrong answers and crashes processes under
+load; the warranty replacement is pending (design doc findings log,
+2026-09-22). This script does the same pure-Python string work 400 times on
+one input and reports any result that differs, so on a sound machine it
+prints "done, failures: 0" every time. Wrong answers show up as a KeyError on
+a key that is there, "unbalanced container" on a balanced one, or a rewrite
+that silently changes the text; crashes show up as a segfault or a fatal
+Python error.
 
-**It is not the hardware and it is not Python 3.14.** Measured 2026-09-22 on
-this machine, same code and same input, only the interpreter binary changing:
+It was first read as an interpreter bug, because one Python failed more than
+another on a small sample, and the project pinned its interpreter for a day.
+The same fault then showed on every interpreter, on Windows-native Python and
+in the C compilers, which is what put it in the hardware.
 
-    /usr/bin/python3.14  3.14.4-1ubuntu0.2   10 of 15 runs, 37 wrong / 30,000 iterations
-    uv cpython 3.13.15                        0 of 15 runs,  0 wrong / 30,000
-    uv cpython 3.14.7                         0 of 27 runs,  0 wrong / 54,000
+One copy at a time is clean with the CPU capped; the fault needs many cores
+busy, so run several at once to test it:
 
-If it were RAM or CPU, swapping the interpreter would not move that. Also
-checked and cleared: 8GiB written with a pattern and verified twice, three
-synthetic Python workloads (integer math, C-level hashing, string and container
-churn) at 3,000 iterations each, and the C json extension, which makes no
-difference when disabled. `gc.disable()` cuts the rate but does not remove it.
-
-**Two things earlier notes got wrong.** The failures are not a warm-up effect:
-first failures were seen at iterations 1, 2, 63 and 193. And PYTHONMALLOC=debug,
-which hid it in this small repro, does not hide it at real workloads; it failed
-twice in three runs of import_base_rom.py.
-
-**Why 3.13 and not 3.14.7**, although both measured clean here: the astral 3.14
-build is compiled --with-tail-call-interp, and that interpreter aborted a
-`meson setup` outright with "Fatal Python error: _TAIL_CALL_CACHE: Executing a
-cache." An interpreter that can kill the build configuration is worse than one
-that occasionally returns a wrong string. 3.13 has no tail-call interpreter.
-
-The pin lives in `tools/oxide/oxide-python`, which the Makefile and
-`integrate.sh` both go through. It mattered beyond the tools because `make rom`
-runs Python about 227 times to generate event data, map matrices and the
-encounter archives.
-
-    tools/oxide/oxide-python tools/oxide/python_flake_repro.py     # the pinned one
-    python3 tools/oxide/python_flake_repro.py                      # the system one
-
-Expected on a good interpreter: "done, failures: 0" every time. On Ubuntu's
-3.14.4, about two runs in three report failures.
+    for i in $(seq 16); do python3 tools/oxide/python_flake_repro.py & done; wait
 """
 import os
 import sys

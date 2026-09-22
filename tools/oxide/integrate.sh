@@ -32,10 +32,7 @@ set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO"
 
-# The pinned interpreter, for the same reason the Makefile pins it: this
-# machine's system Python intermittently returns wrong answers from pure
-# string work, which made this gate fail at random. See tools/oxide/oxide-python.
-PY="$("$REPO/tools/oxide/oxide-python" --path)"
+PY=python3
 
 DRY_RUN=0; BUILD=1; PUSH=1
 for arg in "$@"; do

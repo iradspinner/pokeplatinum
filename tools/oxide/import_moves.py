@@ -25,8 +25,8 @@ the same bytes, because the enum is positional and Hone Claws cannot be 471
 unless three entries sit in front of it. Those three records still match the
 base ROM byte for byte, which `verify_narcs.py` checks.
 
-    tools/oxide/oxide-python tools/oxide/import_moves.py --dry-run
-    tools/oxide/oxide-python tools/oxide/import_moves.py
+    python3 tools/oxide/import_moves.py --dry-run
+    python3 tools/oxide/import_moves.py
 
 A re-run rewrites the move data and the generated lists but leaves an existing
 `anim.s` or `effect_script_NNNN.s` alone, because those are where hand work
@@ -453,8 +453,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import os as _os, sys as _sys
-    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-    import pinned_python
-    pinned_python.ensure()
     main()
