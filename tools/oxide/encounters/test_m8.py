@@ -6,6 +6,7 @@ out of res/, and says what changed from vanilla.
 Read-only. The point of the milestone is that the dex cannot drift from the
 game, so these checks pin real values out of the tree rather than fixtures.
 """
+import os
 import sys
 
 from . import model
@@ -153,10 +154,72 @@ def check_endpoints(results):
                     "error" in server.dex_detail("SPECIES_NOT_A_POKEMON"), ""))
 
 
+def check_page(results):
+    """D2's gate: every line the pick-list carries opens, and carries what the
+    page draws. A species that half renders is worse than one that fails."""
+    from . import dex
+    root = model.repo_root()
+    needed = ("name", "types", "stats", "bst", "abilities", "evolutions",
+              "learnset", "sprites", "captures", "matchups", "line", "delta")
+    # The two `cut` rows, Toxel and Toxtricity, are on the sheet and deliberately
+    # not in the tree: their evolution depends on nature, which Generation 4 has
+    # no method for. Everything else must be there.
+    rows = [r for r in dex.pick_list(root) if r.get("status") != "cut"]
+    constants = []
+    for row in rows:
+        try:
+            constants.append(dex.constant_of(root, row["name"]))
+        except Exception:
+            constants.append(None)
+    known = [c for c in constants if c]
+    results.append(("every pick-list row but the two cut ones resolves to a "
+                    "species in the tree",
+                    len(known) == len(rows), f"{len(known)} of {len(rows)}"))
+
+    broken, iconless = [], []
+    for species in known:
+        detail = server.dex_detail(species)
+        if "error" in detail or any(k not in detail for k in needed):
+            broken.append(species)
+            continue
+        if "icon" not in detail["sprites"]:
+            iconless.append(species)
+    results.append(("every one of them opens with everything the page draws",
+                    not broken, f"broken {broken[:4]}"))
+    results.append(("every one of them has a party icon to draw in the list",
+                    not iconless, f"no icon: {iconless[:4]}"))
+
+    # The list view draws an icon per row, so a row without a folder is a hole.
+    rows = server.dex_list()["rows"]
+    results.append(("every list row carries the folder its icon comes from",
+                    all(r.get("folder") and r.get("name") and r.get("types")
+                        for r in rows), ""))
+
+    litten = server.dex_detail("SPECIES_LITTEN")
+    members = {m["species"]: m for m in litten["line"]}
+    results.append(("the line view answers where the other stages are met, which "
+                    "is what the per-species index cannot",
+                    "SPECIES_TORRACAT" in members
+                    and members["SPECIES_TORRACAT"]["appearances"] > 0
+                    and members["SPECIES_TORRACAT"]["folder"] == "torracat", ""))
+    results.append(("a learnset row carries the move's own numbers, not just its "
+                    "name",
+                    litten["learnset"][1]["type"] == "FIRE"
+                    and litten["learnset"][1]["power"] == 40, ""))
+
+    # The sprites carry no alpha, so the server marks palette entry 0 clear.
+    raw = open(os.path.join(root, "res", "pokemon", "clefairy",
+                            "male_front.png"), "rb").read()
+    once = server._transparent_background(raw)
+    results.append(("a served sprite gets its transparent entry, and only once",
+                    b"tRNS" not in raw and b"tRNS" in once
+                    and server._transparent_background(once) == once, ""))
+
+
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
-                  check_captures, check_endpoints):
+                  check_captures, check_endpoints, check_page):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

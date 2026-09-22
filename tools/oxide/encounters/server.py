@@ -22,6 +22,7 @@ import json
 import os
 import socketserver
 import urllib.parse
+import zlib
 
 from . import analysis as A
 from . import dex
@@ -235,6 +236,25 @@ def _captures():
     return pokedex.captures()
 
 
+def _transparent_background(data):
+    """Make palette entry 0 transparent before serving a sprite.
+
+    The sprites carry no alpha: the colour the game treats as transparent is
+    simply the first palette entry, so a browser draws every sprite inside a
+    beige box. A tRNS chunk saying entry 0 is clear is the same statement the
+    game makes when it draws one, and it is four bytes of header around a byte
+    array, so the file is otherwise untouched."""
+    if b"tRNS" in data or b"PLTE" not in data:
+        return data
+    at = data.find(b"PLTE")
+    length = int.from_bytes(data[at - 4:at], "big")
+    end = at + 4 + length + 4                    # past PLTE's own checksum
+    payload = b"tRNS" + bytes([0] + [255] * (length // 3 - 1))
+    chunk = (len(payload) - 4).to_bytes(4, "big") + payload \
+        + zlib.crc32(payload).to_bytes(4, "big")
+    return data[:end] + chunk + data[end:]
+
+
 def dex_list():
     """Every species in the tree, as one row each: what the list view needs and
     nothing it does not, because there are 652 of them."""
@@ -248,6 +268,7 @@ def dex_list():
         d = pokedex.delta(root, species)
         rows.append({
             "species": species,
+            "folder": rec["folder"],
             "name": rec["name"],
             "types": rec["types"],
             "bst": rec["bst"],
@@ -282,11 +303,42 @@ def dex_detail(species):
     out["sprites"] = pokedex.sprites(root, species)
     out["captures"] = _captures().get(species) or []
     out["matchups"] = matchups
-    out["learnset"] = [{"level": lv, "move": mv,
-                        "label": dex.display_name(mv).replace("Move ", "")}
-                       for lv, mv in rec["learnset"]]
+    moves = pokedex.moves(root)
+    out["learnset"] = []
+    for lv, mv in rec["learnset"]:
+        m = moves.get(mv) or {}
+        out["learnset"].append({
+            "level": lv, "move": mv,
+            "label": m.get("name") or dex.display_name(mv),
+            "type": m.get("type"), "class": m.get("class"),
+            "power": m.get("power"), "accuracy": m.get("accuracy"),
+            "pp": m.get("pp"),
+        })
     for evo in out["evolutions"]:
         evo["label"] = dex.display_name(evo["into"]) if evo["into"] else None
+    # The captures index is per species, not per line: after the evolution pass
+    # a table that used to hold Litten holds Torracat, so the page has to be able
+    # to say where the rest of the line is met.
+    caps = _captures()
+    line_id = None
+    try:
+        line_id = dex.line_of(root, species)
+    except Exception:
+        line_id = None
+    members = dex.members_of_line(root, line_id) if line_id else []
+    out["line"] = []
+    for member in members:
+        rec_m = pokedex.load(root, member)
+        if rec_m is None:
+            continue
+        out["line"].append({
+            "species": member,
+            "label": rec_m["name"],
+            "folder": rec_m["folder"],
+            "appearances": len(caps.get(member) or []),
+            "evolutions": rec_m["evolutions"],
+            "bst": rec_m["bst"],
+        })
     return out
 
 
@@ -317,7 +369,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                             kind + ".png")
         try:
             with open(path, "rb") as f:
-                body = f.read()
+                body = _transparent_background(f.read())
         except OSError:
             return self._send({"error": "no such sprite"}, 404)
         self.send_response(200)

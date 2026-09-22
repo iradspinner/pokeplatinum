@@ -1318,11 +1318,35 @@ chart therefore travels with the exported data rather than being named by a
 parameter, which `pokedex.type_chart()` already reads from the source of truth so
 it cannot drift if the table is edited again.
 
-**D2, the dex tab.** A searchable species list, filterable by type, tier, split
-and availability status, and a species page: sprite, base stats with the vanilla
-delta shown next to them, types, abilities, the evolution chain with its methods
-and levels, and the level-up learnset. Gate: every pick-list line opens and
-renders.
+**D2, the dex tab — done, 2026-09-22.** The page has two views now, switched
+from the header, and the tables view is untouched. The dex list draws a party
+icon, the name, the types and the base-stat total with its change from vanilla,
+filtered by a search box that matches names or types and by four buttons: all, in
+tables, changed, new. The species page carries the front sprite, the types, the
+dex entry, base stats as bars with each stat's delta beside it, the abilities
+with the hidden one marked and vanilla's listed when they differ, the whole
+evolution line with how many tables each stage is in, and the level-up learnset
+with each move's type, class, power and accuracy. The right pane answers where
+it is met, grouped by grass and each rod, with the location, the split, the share
+and the level range, and what every type does to it.
+
+The line view is there because the cross-link is per species and has to be: after
+the evolution pass a table that used to hold Litten holds Torracat, so Litten's
+own page says one table while its line says five. That is the truth rather than a
+wrinkle, but the page has to show both halves of it or it misleads.
+
+Two details worth recording. The sprites are frame sheets, a front or back being
+two 80 by 80 frames side by side and a party icon two 32 by 32 frames stacked, so
+the page crops to the first. And they carry no alpha at all: the colour the game
+treats as transparent is simply palette entry 0, which a browser would draw as a
+beige box, so the server adds the `tRNS` chunk that says so as it serves them.
+That is 28 bytes and it leaves the file on disk alone.
+
+Gate: `test_m8` at 30 checks, including every pick-list line opening with all
+twelve fields the page draws and a party icon to draw beside it. The two `cut`
+rows, Toxel and Toxtricity, are excluded by name: they are on the sheet and
+deliberately not in the tree, because their evolution depends on nature and
+Generation 4 has no method for it.
 
 **D3, sprites in the tables.** Party icons beside every slot in the encounter
 views, and front sprites on the species page. Cheap, and it is what makes a
