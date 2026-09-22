@@ -100,13 +100,14 @@ own emulator.
 
 ## Handing a task to a subagent
 
-Ian's standing preference is that bounded tasks (a catalogue, a survey, a tool
-with a clear gate, a batch of tables) go to a background general-purpose agent
-on Opus, while this session writes the brief, reviews what comes back and
-reports to him. Keep here anything that needs judgment across the project,
-anything in another track's files, and the report itself, since a subagent's
-report never reaches Ian. The agent starts cold, so the brief carries
-everything:
+Delegate a task to a background general-purpose agent when it can run in
+parallel with other work, or when it is a long read (a catalogue, a survey, a
+batch of tables) whose detail this session does not need to hold; Ian has made
+that a standing preference. Do the rest inline. Ian's default model is Opus
+now, so a subagent no longer saves anything by being cheaper, and it starts
+cold. Keep here anything that needs judgment across the project, anything in
+another track's files, and the report itself, since a subagent's report never
+reaches Ian. The brief has to carry everything:
 
 ```
 Repo ~/pokeplatinum, branch <oxide, or the worktree to work in>. Invoke the
