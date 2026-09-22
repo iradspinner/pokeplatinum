@@ -53,7 +53,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 gro
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
-PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765
+PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
 ```
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
@@ -1231,6 +1231,385 @@ Gate: `cli evolve` 0 moves, plan gate green with 0 cap candidates, `lint --ignor
 R12` 0 errors, `audit --fail-on-leak` exit 0, a full `make rom` clean, and
 `verify_narcs --encounters --source` at 184 of 184 tables. Suites 35/35, 21/21,
 18/18, 28/28, 16/16, 13/13, 23/23, 18/18, 46/46, 15/15, 19/19.
+
+### Ravaged Path is Roark's split: 2026-09-22
+
+Ian's correction: Ravaged Path is reached before Roark's badge, so the whole
+area belongs to Roark's split, where only its Old Rod had been counted before.
+`progression.py` moved it and `test_step3` pins the new boundary. Roark's split
+may hold only starter-adjacent lines, scripted ones and 4% or 1% tails, and the
+plan's gate caught Wooper, a preferred-tier line in a 5% grass slot. Lotad took
+that slot, which keeps the table's approved shape and its wet corner. Wooper is
+still catchable there in Roark's split, since the Old Rod carries it. The
+no-leak pass followed the change into Oreburgh Mine B2F's swarm field, which
+Oxide never uses.
+
+### Ian's notes on the Tables view: 2026-09-22
+
+Play order had been sorting by each area's median level, which put Twinleaf Town
+after Route 219 and scattered splits (Wayward Cave away from the rest of
+Fantina's). `/api/areas` now gives each row its split's position and its sidecar
+`order`, and the page sorts by split first, Post last, then by that order.
+Within a split the sidecar's order stands, so Route 219 (order 92) closes
+Roark's split.
+
+The twenty-five `unknown_533` to `unknown_557` files are parked out of the
+browser tool until something uses them: gone from the area list, the header's
+game metrics and the dex's "where it is met". The CLI, the linter and the
+availability plan still read them. `test_m4` expects 159 areas now.
+
+In the centre, party icons are drawn at 64px (rows 68px), and "What a player
+meets" sits beside the slot table with its rows level with the slots, each line
+two rows high: name and both odds on top, the bar across the full width
+beneath. Ian then asked for the list's heading and the slot table's own "Real
+odds" column to go, since the list shows real odds and the heading pushed its
+rows out of line. The two sit side by side when the window is about 1880px wide
+or more and stack below that. Ticking a catch now eases those bars to their new
+lengths over 350ms, as the repel ladder already did, instead of jumping.
+
+Every font size in the page went up 2.5px (base 16px, centre 18px), and the left
+pane widened from 420px to 460px with wider number columns so the level range
+and catch count no longer collide.
+
+One bug Ian found along the way: that list showed the morning table's odds
+whatever time of day was picked. The server built it from the base slots only.
+`/api/area` now also sends `merged_layers`, a day and a night list with their
+two species in slots 2 and 3, and the page shows the one for the chosen time;
+the bars ease between times as they do on a catch. The planner's species menu
+still reads the base list, which is what it plans against. `test_m4` gained a
+check for the day and night lists and one for the split ranks (49 checks).
+
+A second note the same day: area names were cut short in the list, and the last
+two numbers had no labels. Each list row now gives the name its whole first
+line and puts the split tag, the catch, the levels and the two numbers on the
+second. A header row names those columns, with an explanation on hover: Left
+is the species still needed out of all the area's species, and Best odds is
+the best chance of meeting the rarest of those with the best repel lead. Area
+names are capitalised everywhere the tool prints one (floors as 1F and B1F,
+"Mt." and "Pokémon" spelt as the game spells them), and the search box
+also matches the file name, so "mt coronet" still finds Mt. Coronet.
+
+### The QA pass before the merge: 2026-09-22
+
+The Overseer's `/qa-pass` over this branch
+(`docs/oxide/qa-review-2026-09-22-encounter-m8.md` on `oxide`) found two dex
+defects, one gap in D5's plan and two nits, all in this track's files and none
+blocking. All five are dealt with:
+
+1. Nidoran♂ was taken for a mega, because any constant ending in `_M` was.
+   A mega now needs its base species to exist, so Gyarados and Lopunny keep
+   their megas and Nidoran♂ is back in its own line.
+2. Evolution lines were sorted by name (Incineroar, Litten, Torracat). The
+   server now walks each line from the member nothing evolves into and marks
+   every member's stage; the page draws one group per stage, so Eevee's eight
+   evolutions sit side by side after Eevee.
+3. The calculator is not offline as vendored. D5's plan above now lists
+   everything its patches have to remove, not only the data loader, and
+   `calc/VENDORED.md` says the same.
+4. The dex's caches outlived hand edits while the server promised nothing was
+   stale. Species, the species list and moves are now cached against their
+   files' modification times, so an edit shows on the next request.
+5. A bare `/api` answered 500. It, and `/api/area`, `/api/move` or
+   `/api/sprite` without the name they need, now answer 404.
+
+`test_m8` has three new checks (46) and `test_m4` one (51). The review's figure
+for R12 is right: 27 scripted lines, up from the 22 of Step 4 as Steps 7 and 8
+re-pooled the gifts; the tracker says so now. Its question about Steel's two
+Generation 4 resistances went to Ian, who ruled the same day to keep them: the
+chart stays as it is, and `test_m8` pinning Steel's resistance to Dark and
+Ghost now guards a decision rather than a finding.
+
+A third note, drawn as a sketch: more of an area on one screen. The heading
+above the tables is three short lines now (name, tags and the encounter on one;
+the note; the table and time-of-day tabs on one row). Grass rows are 46px with
+the 64px icon overhanging, which makes the twelve slots about as tall as the
+odds list beside them. Underneath, the area's water tables sit four across in
+brief (each slot's rate, icon, species and levels, with its real odds on
+hover), drawn from a new `water` list in `/api/area`. A panel is a view:
+clicking it opens that table above for editing, as its tab does, and the one
+being edited is outlined. `test_m4` checks the water list (50 checks).
+
+## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
+
+Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
+`hzla/ddex`) and its damage calculator (`hzla/Dynamic-Calc-Decomps`) do into this
+tool: a species viewer with sprites, base stats and what changed from vanilla,
+learnsets, and a calculator that knows Oxide's numbers. His four rulings, given
+before any of it was designed: build it **into this tool** rather than feeding
+ddex, go as far as a **full local calculator**, treat it as **an instrument for
+him while authoring** rather than something players see, and cover **all four**
+surfaces (stats with deltas, learnsets and moves, sprites, encounter
+cross-links).
+
+### What the survey turned up
+
+**ddex reads a Gen 4 hack by uploading an `.nds`**, which `make rom` produces
+every time, so that looked like a free second opinion. Ian tried it on
+2026-09-22 and it half works: much of the Pokedex, the encounter tables and the
+location names come back as garbage. That is the expected failure and it is worth
+writing down, because it is the argument for this milestone. A parser written for
+vanilla Platinum assumes vanilla's shapes, and Phase 4 moved all three of them:
+the species archives hold 667 members rather than 508, the species record grew
+from 44 bytes to 48 when the abilities became `u16`, and the evolution record
+grew from 44 to 56, so reading them at vanilla's stride walks off the end of
+every record after the first. Location names are a message bank whose indices
+moved for the same reason. Nothing in ddex is wrong; it simply cannot know what
+this fork did, and no upload will fix that.
+
+The lesson for us is that reading `res/` is not merely more convenient than
+parsing the ROM, it is the only source that is correct by construction: the JSON
+is what the build consumes, so a viewer built on it cannot drift from the game.
+ddex also already does wild encounters with nuzlocke routing and dupe tracking,
+which overlaps this tool; what it cannot do either way is know our design data,
+which is why the cross-links below are the part worth building rather than
+borrowing.
+
+**The licences differ and decide what may be copied.** `Dynamic-Calc-Decomps` is
+MIT, so vendoring it is clean as long as its licence travels with it. `hzla/ddex`
+has no licence file at all, so none of its code comes into this repo without
+asking him first. Nothing here needs it.
+
+**The calculator is static files.** `index.html`, `js/`, `css/`, `calc/` and
+`data/`, served directly by GitHub Pages with no build step, so it can be vendored
+and served by our own Python server without adding node or npm to this project's
+build. It takes its game data as a JSON blob in Showdown's naming, which the
+hosted version fetches from npoint.io. Feeding it ours is a data export, not a UI
+job, and pointing it at our server is the one patch it needs.
+
+**Everything the dex needs is already in `res/`.** Each species' `data.json`
+holds base stats, types, the three abilities, evolution methods and the level-up
+learnset; `res/moves/` holds 469 moves with class, type, power, accuracy, PP,
+priority and flags, which is everything a damage formula wants; sprites are
+ordinary indexed PNGs a browser renders as they are (160x80, two 80x80 frames
+side by side) with a party icon beside them; and the vanilla baseline for "what
+changed" is `git show main:res/pokemon/<name>/data.json`, the same trick the
+linter already uses for tables. No ROM parsing, no uploads, no network.
+
+### The milestones
+
+**D1, the data layer — done, 2026-09-22.** `pokedex.py` beside `dex.py` (which is
+about pick-list lines and keeps its name): all 652 species with stats, types,
+abilities, evolutions and learnsets, 468 moves with what a damage formula reads,
+sprite paths, the type chart, and the vanilla delta for anything that existed on
+`main`. New species have no vanilla row and read as new rather than as changed.
+`captures()` is the cross-link the dex exists for: from a species, every table,
+kind, location, split, share and level range it appears in, taken from the tables
+themselves rather than from the design, 248 species over 1,060 water appearances
+and the land besides. Endpoints: `/api/dex`, `/api/dex/<species>`,
+`/api/move/<move>` and `/api/sprite/<folder>/<kind>`, which serves the PNG out of
+`res/`. Gate: `test_m8`, 23 checks, green.
+
+Two things worth knowing came out of it. Clefairy is the reminder that the delta
+is worth showing at all: it is Fairy now and it lost Cute Charm, neither of which
+any note in this repo mentions. And **the type chart is this fork's own**, which
+is the next item.
+
+**The type chart, checked against the ROM on Ian's hunch.** He guessed it might
+have Fairy while keeping Generation 4's Steel, and it does. Read out of
+`sTypeMatchupMultipliers` in `src/battle/battle_lib.c`: all eighteen types, Fairy
+complete and correct (strong on Dragon, Dark and Fighting, weak to Poison and
+Steel, immune to Dragon), and Steel still resisting Dark and Ghost, which
+Generation 6 took away. So no stock `types=` setting in the calculator matches:
+Generation 4's has no Fairy and Generation 6's drops those two resistances. The
+chart therefore travels with the exported data rather than being named by a
+parameter, which `pokedex.type_chart()` already reads from the source of truth so
+it cannot drift if the table is edited again. Keeping those two resistances was
+never decided when Fairy was ported; Ian decided it on 2026-09-22: Steel keeps
+them.
+
+**D2, the dex tab — done, 2026-09-22.** The page has two views now, switched
+from the header, and the tables view is untouched. The dex list draws a party
+icon, the name, the types and the base-stat total with its change from vanilla,
+filtered by a search box that matches names or types and by four buttons: all, in
+tables, changed, new. The species page carries the front sprite, the types, the
+dex entry, base stats as bars with each stat's delta beside it, the abilities
+with the hidden one marked and vanilla's listed when they differ, the whole
+evolution line with how many tables each stage is in, and the level-up learnset
+with each move's type, class, power and accuracy. The right pane answers where
+it is met, grouped by grass and each rod, with the location, the split, the share
+and the level range, and what every type does to it.
+
+The line view is there because the cross-link is per species and has to be: after
+the evolution pass a table that used to hold Litten holds Torracat, so Litten's
+own page says one table while its line says five. That is the truth rather than a
+wrinkle, but the page has to show both halves of it or it misleads.
+
+Two details worth recording. The sprites are frame sheets, a front or back being
+two 80 by 80 frames side by side and a party icon two 32 by 32 frames stacked, so
+the page crops to the first. And they carry no alpha at all: the colour the game
+treats as transparent is simply palette entry 0, which a browser would draw as a
+beige box, so the server adds the `tRNS` chunk that says so as it serves them.
+That is 28 bytes and it leaves the file on disk alone.
+
+**Running two copies at once.** There is a copy of this tool in every checkout
+and worktree, they all want port 8765, and a page served from the wrong one is
+indistinguishable from a view that was never built, which is exactly how the dex
+first appeared to be missing. Three changes so that cannot happen quietly: the
+header names the checkout it is reading, a taken port says so in a sentence and
+suggests the next one rather than unwinding a stack trace, and `--port` lets a
+branch and what is merged run side by side. Nothing the server sends is
+cacheable now either, for the same reason.
+
+Gate: `test_m8` at 30 checks, including every pick-list line opening with all
+twelve fields the page draws and a party icon to draw beside it. The two `cut`
+rows, Toxel and Toxtricity, are excluded by name: they are on the sheet and
+deliberately not in the tree, because their evolution depends on nature and
+Generation 4 has no method for it.
+
+**D3, sprites in the tables — done, 2026-09-22.** A party icon sits beside every
+slot in the table being edited and beside every line of what a player meets, from
+the same endpoint the dex uses. The page works the sprite out rather than being
+told: a species' folder is its constant lowercased, which holds for all 652, and
+`test_m8` checks that every species any table holds has an icon to draw, so a
+table naming one it does not hold for is a failing check rather than a broken
+image in the middle of a table. A slot showing a day or night substitution draws
+the substituted species, not the morning one. Anything already caught draws its
+icon faded, which is the same "absence rather than another colour" the rest of
+the view uses.
+
+The left list is deliberately untouched: its species column is the caught
+encounter, which is empty for most rows, so icons there would be mostly blank
+space.
+
+**Then a pass against ddex's own dex, on Ian's comparison.** Three bugs of mine
+and two features.
+
+The bugs. The stat bars drew as empty boxes, because the cell borrowed the
+existing `.bar` class, which is the repel ladder's bordered 22-pixel row.
+Twelve species read as `-----`, because the alternate-form records carry a
+placeholder name, a form being named after its base in game; one of them is
+Alolan Ninetales, which is at home on Route 211 west. And a mega listed as a
+stage of its line, twice, once for each of the day and night methods an
+alt-evolution is entered under.
+
+The features. Stat bars are banded by value the way a dex bands them, muted
+enough to sit beside the teal. And every line of "where it is met" opens that
+table: the dex knows which area, kind and split it means, so it switches view,
+selects the area and picks the right rod. That is the cross-link working in both
+directions, and it is the thing no general dex can do.
+
+**A second baseline, and a trap avoided.** Ian's other note was that the ported
+species do not compare against anything: `main` has never heard of Annihilape,
+so the dex said "new" and stopped. `canon.py` fixes that by comparing every
+species against its real Generation 9 self, and the same map from our constants
+to Showdown's spellings is exactly what D5 needs, so it is written once and
+tested here: all 652 land on a canonical entry.
+
+The trap: the obvious source was the species table inside the vendored
+calculator, and it is **not canonical**. It ships whatever data it was last
+built with, and the calculator loads the real thing at runtime, so its table is
+some romhack's: Arbok as Dark/Poison, Lapras as Dragon/Water, Lopunny as
+Normal/Fighting. Comparing against it would have had the dex report 27 type
+changes this project never made. The baseline is upstream `@smogon/calc 0.12.0`
+instead, vendored at `canon_src/` with its provenance, and `test_m8` pins those
+three species so a regeneration from the wrong file fails loudly rather than
+quietly lying.
+
+What it says now is worth reading: 470 of 652 species match canon exactly, 181
+differ in stats, which is the base ROM's own buffing (Slugma and Surskit both
++140, Spinda +120), and **three differ in type**: Galarian Rapidash is Fairy/Fire
+here against Fairy/Psychic, Gothitelle is Dark/Psychic against Psychic, and
+Tsareena is Fighting/Grass against Grass. Those three are either deliberate or
+import slips, and either way they were invisible until now.
+
+**D4, moves.** A move list and per-move page, plus the reverse index: which
+species learn this, and at what level.
+
+**D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
+with its licence intact, generate its data from `res/`, serve both from our
+server. The work is the export, in rough order of difficulty: a naming map from
+our constants to Showdown's spellings, with the awkward cases being the regional
+forms, the megas, Mr. Mime, Jangmo-o and the Tapus; species entries with stats,
+types, abilities, weight and gender ratio; moves with category, power, accuracy,
+priority and the flags the formula reads; learnsets so the set builder offers the
+right moves; and a patch to its loader so it reads from `localhost` instead of
+npoint. That one patch is not enough to make it offline, which the QA pass of
+2026-09-22 found: as vendored, the page also loads jQuery and other libraries
+from Google's, jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag,
+and game data from `hzla.github.io`, about 100 remote references in all. D5's
+patch list has to vendor or drop every CDN script, remove the analytics tag and
+remove every remote data URL, and its gate includes the page loading with the
+network off. Gate: a hand-checked damage roll against the game, the export
+regenerating clean after a species edit, and no request leaving the machine.
+
+### Decisions and risks, recorded before starting
+
+- **Mechanics settings: settled, and not what it looked like.** Checked against
+  the ROM on 2026-09-22 rather than assumed. The chart is Generation 4 with Fairy
+  added, so neither `types=4` nor `types=6` is right and the export carries the
+  chart itself. Damage mechanics stay Generation 4. Still worth one real battle
+  to confirm the damage side.
+- **Bespoke abilities and moves.** The calculator keys its effects off Showdown
+  names, so anything Hardlove invented that Showdown has no logic for will be
+  inert in the numbers even when the name shows. The export should list which
+  ones those are rather than let them pass silently.
+- **Vendoring: decided, and done.** Ian's call was to commit it. It sits at
+  `tools/oxide/encounters/calc/`, MIT, pinned at upstream `b347b337`, 12 MB over
+  195 files out of a 649 MB clone; `VENDORED.md` there records what was taken,
+  what was pruned and why, and the patch list to re-apply on an update. Its own
+  319 MB of sprites were left behind because Oxide's are in `res/` and are the
+  only ones right for this fork.
+- **Out of scope for now**, and each is a small addition later: items, trainer
+  teams in the calculator (the 928 carried-over teams would let a gym leader be
+  checked against a party at a level cap, which is the obvious next want), and
+  anything player-facing or hosted.
+
+## The visual design, palette B: built 2026-09-22, awaiting Ian's sign-off
+
+Ian's design for how the tool looks is `docs/oxide/encounter-tool-visual-design.md`
+(palette B, Lake Guardians), mirrored by `sync-docs.sh`. It was built in the order
+its section 11 gives, one commit per step: the tokens and the light and dark
+toggle; every colour literal in the page replaced with a token; the pixel face and
+the type scale; type chips, split tags and every "on" state moving from teal to
+place; the Dex species page; and the four flavor items. The section 8 skin for the
+damage calculator waits for D5, as the design says.
+
+Every colour now lives in `ui/theme.css`, written once with `light-dark()`, and
+`test_m4` gained the one check the design asks for: `index.html` and `theme.js`
+hold no hex colour. `test_m4` went from 46 to 47 with it and `test_m8` stayed at
+43. Pixelify Sans is vendored at `ui/fonts/` with its OFL licence and a note of
+where it came from.
+
+Four places where the build departs from the letter of the design, each because
+the letter would not have done what the design wanted:
+
+1. The theme pin. Section 3 pins a scheme by writing the `color-scheme` meta tag,
+   but that tag only applies while the root element's own `color-scheme` is
+   `normal`, and `theme.css` sets it to `light dark` so the page follows Windows
+   with scripts off. So `theme.js` also sets the root's inline `color-scheme`,
+   which outranks the stylesheet, and keeps the meta tag in step.
+2. The ladder labels. Section 6 picks each label's colour with a 0.33 luminance
+   threshold from the palette preview. In the dark theme that chose light text on
+   the third segment at 3.2 to 1, under AA for 11px text and against section 10's
+   own claim. Each label now takes whichever text token contrasts more with its
+   fill, which agrees with the threshold on the other nine segments.
+3. The ladder animation. Section 9 has segments ease their widths when a species
+   is ticked, but a caught segment keeps its on-paper width and is only hatched,
+   so a tick changes no width. The ease runs when a slot is edited instead, which
+   is when widths do change.
+4. Links. The design does not name them, and teal is reserved for mass, so its
+   first principle makes a link neutral ink with an underline that turns to place
+   on hover.
+
+Two smaller calls. The header's metric strip is the flexible gap, so when it has
+to wrap it wraps inside itself and the title, tabs, checkout and toggle hold the
+first row; rendered at 1600px, the first cut had stranded the checkout and toggle
+on a row of their own. And the dex number is the species' place in the tree, read
+off the list the page already has, so no field was added to the API.
+
+How it was checked, since no suite can see a colour. The page was rendered in a
+headless Windows Chrome driven over the DevTools protocol, with a throwaway
+profile, in both themes and both views, with no page errors. Every contrast pair
+in section 10 was recomputed from the shipped tokens and matched the design's
+table, as did the type chips. The toggle and the favicon were driven under node
+with a stubbed browser: follow the system, pin, release, keep a pin across a
+reload and a Windows switch, and survive storage that throws.
+
+What is left is the design's own acceptance: Ian opens the tool in both themes at
+his usual display scaling and signs off. The one thing only he can judge is the
+pixel face at his scaling, at 16px for the title and the dex number, 13px for the
+tabs and 28px for the headline; the design asks for any that look soft to move by
+a pixel.
 
 ## Suggested order, and what to cut
 

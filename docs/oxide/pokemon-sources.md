@@ -42,7 +42,7 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-142 rows across 41 locations, generated 2026-09-21.
+142 rows across 41 locations, generated 2026-09-22.
 
 ## Rows by method
 

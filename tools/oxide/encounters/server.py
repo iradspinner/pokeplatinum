@@ -16,17 +16,26 @@ Every number the page shows comes from analysis.py, lint.py or dex.py through
 these endpoints. There is no second implementation of the maths in
 JavaScript, so the page and the CLI cannot disagree.
 """
+import argparse
+import errno
+import functools
 import http.server
 import json
 import os
+import re
 import socketserver
+import sys
 import urllib.parse
+import zlib
 
 from . import analysis as A
+from . import canon
 from . import dex
 from . import lint
 from . import locations
 from . import model
+from . import pokedex
+from . import progression
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -42,6 +51,15 @@ def species_universe():
     return dex.species_universe(model.repo_root())
 
 
+# The twenty-five unknown_533 to unknown_557 files are post-game rooms nothing
+# in Oxide uses yet, and Ian asked for them out of the tool until something
+# does (2026-09-22). They are parked here, in the browser tool only: the files,
+# the CLI, the linter and the availability plan still see them. Parked areas
+# leave the area list, the header's game metrics and the dex's cross-links.
+def parked(area_name):
+    return area_name.startswith("encounters_unknown_")
+
+
 class State:
     """Loaded per request; the files are the state, so nothing is cached
     across writes."""
@@ -52,6 +70,9 @@ class State:
         self.sidecar = model.load_sidecar()
         self.entries = (self.sidecar or {}).get("areas") or {}
         self.thresholds = lint.thresholds_from(self.sidecar)
+        # {split: position}, so the page can group areas by the game's
+        # progression: Roark first, Post last.
+        self.split_rank = progression.split_index(self.sidecar)
         self.encounters = load_encounters()          # {area: species}
         self.caught = set(self.encounters.values())
         # The dupes clause works on families: a Starly caught on Route 201
@@ -67,7 +88,8 @@ class State:
         # Every area with a table of any kind: a water-only area (Twinleaf
         # Town, Route 219) is a capture area by its rods and surf even though
         # its grass rate is zero.
-        return [a for a in model.load_all(self.ref) if a.land_active or a.kinds_present()]
+        return [a for a in model.load_all(self.ref)
+                if (a.land_active or a.kinds_present()) and not parked(a.name)]
 
     def entry(self, name):
         return self.entries.get(name) or {}
@@ -77,8 +99,17 @@ class State:
                  a.data) for a in areas]
 
 
+# How an area's file name reads as a place: each word capitalised, floors in
+# capitals (1F, B2F), and the few words the game spells its own way.
+_LABEL_WORDS = {"mt": "Mt.", "pokemon": "Pok\u00e9mon", "and": "and",
+                "deadend": "Dead End"}
+
+
 def _area_label(name):
-    return name.replace("encounters_", "").replace("_", " ")
+    words = name.replace("encounters_", "").split("_")
+    return " ".join(_LABEL_WORDS.get(w) or
+                    (w.upper() if re.fullmatch(r"b?\d+f", w) else w.capitalize())
+                    for w in words)
 
 
 def _species_view(species, st, area=None):
@@ -129,6 +160,8 @@ def area_row(a, st, findings_by_area):
         # the gym split are what a row is worth, not the file it came from.
         "location": locations.location(a.name),
         "split": e.get("split"),
+        "split_rank": st.split_rank.get(e.get("split")),
+        "order": e.get("order"),
         "no_capture": bool(e.get("no_capture")),
         "species": m["n_species"],
         "hhi": m["hhi"],
@@ -172,8 +205,44 @@ def area_detail(a, st, kind="land"):
     odds = A.slot_odds(slots, st.owned, rates)
     m = A.table_metrics(slots, rates)
     c = A.caught_metrics(slots, st.owned, rates)
-    merged = A.merged(slots, rates)
-    cond_merged = A.conditional(merged, st.owned)
+
+    def merged_view(table):
+        # One line per species with its share on paper and its real odds
+        # (the share among what is still uncaught), most common first.
+        merged = A.merged(table, rates)
+        cond = A.conditional(merged, st.owned)
+        return [dict(_species_view(s, st, a.name), share=v, cond=cond.get(s, 0.0))
+                for s, v in sorted(merged.items(), key=lambda kv: -kv[1])]
+
+    # Every water table in brief, so the page can show all four under the one
+    # being edited: each slot's species, rate, levels and real odds.
+    water = []
+    for k in a.kinds_present():
+        if k == "land":
+            continue
+        k_slots = a.kind_slots(k)
+        _, _, k_rates = A.TABLE_KINDS[k]
+        k_odds = A.slot_odds(k_slots, st.owned, k_rates)
+        water.append({
+            "kind": k, "label": KIND_LABELS[k], "rate": a.kind_rate(k),
+            "slots": [dict(_species_view(sp, st, a.name), rate=k_rates[i],
+                           level_min=lo, level_max=hi, odds=k_odds[i])
+                      for i, (sp, lo, hi) in enumerate(k_slots)],
+        })
+
+    # Day and night put their own two species in slots 2 and 3 and leave the
+    # rest alone, so each gets its own list; the page shows the one for the
+    # time of day being viewed rather than the morning table's at all hours.
+    merged_layers = {}
+    if kind == "land":
+        for layer in ("day", "night"):
+            swap_in = a.data.get(layer) or []
+            if len(swap_in) == 2:
+                table = list(slots)
+                for i, sp in enumerate(swap_in):
+                    _, lo, hi = table[2 + i]
+                    table[2 + i] = (sp, lo, hi)
+                merged_layers[layer] = merged_view(table)
 
     rung_rows = []
     for level, p in A.distinct_rungs(slots, rates):
@@ -214,9 +283,9 @@ def area_detail(a, st, kind="land"):
         "day_labels": [dex.display_name(s) for s in (a.data.get("day") or [])],
         "night_labels": [dex.display_name(s)
                          for s in (a.data.get("night") or [])],
-        "merged": [dict(_species_view(s, st, a.name), share=v,
-                        cond=cond_merged.get(s, 0.0))
-                   for s, v in sorted(merged.items(), key=lambda kv: -kv[1])],
+        "merged": merged_view(slots),
+        "merged_layers": merged_layers,
+        "water": water,
         "rungs": rung_rows,
         "metrics": m,
         "caught_metrics": c,
@@ -228,6 +297,173 @@ def area_detail(a, st, kind="land"):
     }
 
 
+@functools.lru_cache(maxsize=1)
+def _captures():
+    # Parked areas leave the dex's "where it is met" as well as the area list.
+    out = {}
+    for species, rows in pokedex.captures().items():
+        kept = [r for r in rows if not parked(r["area"])]
+        if kept:
+            out[species] = kept
+    return out
+
+
+def _transparent_background(data):
+    """Make palette entry 0 transparent before serving a sprite.
+
+    The sprites carry no alpha: the colour the game treats as transparent is
+    simply the first palette entry, so a browser draws every sprite inside a
+    beige box. A tRNS chunk saying entry 0 is clear is the same statement the
+    game makes when it draws one, and it is four bytes of header around a byte
+    array, so the file is otherwise untouched."""
+    if b"tRNS" in data or b"PLTE" not in data:
+        return data
+    at = data.find(b"PLTE")
+    length = int.from_bytes(data[at - 4:at], "big")
+    end = at + 4 + length + 4                    # past PLTE's own checksum
+    payload = b"tRNS" + bytes([0] + [255] * (length // 3 - 1))
+    chunk = (len(payload) - 4).to_bytes(4, "big") + payload \
+        + zlib.crc32(payload).to_bytes(4, "big")
+    return data[:end] + chunk + data[end:]
+
+
+def dex_list():
+    """Every species in the tree, as one row each: what the list view needs and
+    nothing it does not, because there are 652 of them."""
+    root = model.repo_root()
+    caught = _captures()
+    rows = []
+    for species in pokedex.species_list(root):
+        rec = pokedex.load(root, species)
+        if rec is None:
+            continue
+        d = pokedex.delta(root, species)
+        rows.append({
+            "species": species,
+            "folder": rec["folder"],
+            "name": rec["name"],
+            "types": rec["types"],
+            "bst": rec["bst"],
+            "stats": rec["stats"],
+            "new": bool(d and d.get("new")),
+            "changed": bool(d and not d.get("new")),
+            "bst_delta": (d or {}).get("bst"),
+            # Against the species' real self, which is the only comparison the
+            # ported ones have: vanilla Platinum has never heard of them.
+            "canon_delta": (canon.delta(species, rec) or {}).get("bst"),
+            "appearances": len(caught.get(species) or []),
+        })
+    return {"rows": rows, "count": len(rows)}
+
+
+def dex_detail(species):
+    """One species, with what changed from vanilla, where it is met, and what
+    every type does to it."""
+    root = model.repo_root()
+    species = species.upper()
+    if not species.startswith("SPECIES_"):
+        species = "SPECIES_" + species
+    rec = pokedex.load(root, species)
+    if rec is None:
+        return {"error": "no such species"}
+    chart = pokedex.type_chart(root)
+    matchups = {}
+    for attacking in sorted({a for a, _ in chart}):
+        mult = pokedex.effectiveness(chart, attacking, rec["types"])
+        if mult != 1.0:
+            matchups[attacking] = mult
+    out = dict(rec)
+    out["delta"] = pokedex.delta(root, species)
+    out["vanilla"] = pokedex.load(root, species, "main")
+    out["canon"] = canon.delta(species, rec)
+    out["canon_name"] = canon.showdown_name(species)
+    out["sprites"] = pokedex.sprites(root, species)
+    out["captures"] = _captures().get(species) or []
+    out["matchups"] = matchups
+    moves = pokedex.moves(root)
+    out["learnset"] = []
+    for lv, mv in rec["learnset"]:
+        m = moves.get(mv) or {}
+        out["learnset"].append({
+            "level": lv, "move": mv,
+            "label": m.get("name") or dex.display_name(mv),
+            "type": m.get("type"), "class": m.get("class"),
+            "power": m.get("power"), "accuracy": m.get("accuracy"),
+            "pp": m.get("pp"),
+        })
+    # A mega is entered twice, once under the day method and once under the
+    # night one, which is how the tree holds an alt-evolution. That is one
+    # forme, not two evolutions.
+    seen, evolutions = set(), []
+    for evo in rec["evolutions"]:
+        if evo["into"] in seen:
+            continue
+        seen.add(evo["into"])
+        into = pokedex.load(root, evo["into"]) if evo["into"] else None
+        evo = dict(evo, label=into["name"] if into else None,
+                   folder=into["folder"] if into else None)
+        evolutions.append(evo)
+    out["evolutions"] = [e for e in evolutions if not e["form"]]
+    out["formes"] = [e for e in evolutions if e["form"]]
+    # The captures index is per species, not per line: after the evolution pass
+    # a table that used to hold Litten holds Torracat, so the page has to be able
+    # to say where the rest of the line is met.
+    caps = _captures()
+    line_id = None
+    try:
+        line_id = dex.line_of(root, species)
+    except Exception:
+        line_id = None
+    members = dex.members_of_line(root, line_id) if line_id else []
+    out["line"] = []
+    for member in members:
+        rec_m = pokedex.load(root, member)
+        if rec_m is None:
+            continue
+        out["line"].append({
+            "species": member,
+            "label": rec_m["name"],
+            "folder": rec_m["folder"],
+            "appearances": len(caps.get(member) or []),
+            "evolutions": rec_m["evolutions"],
+            "bst": rec_m["bst"],
+            "mega_of": rec_m["mega_of"],
+        })
+    # A mega shares its base's line but is not a stage of it, so it belongs with
+    # the formes rather than in the chain.
+    out["line"] = [m for m in out["line"] if not m["mega_of"]]
+    out["line"] = _in_stage_order(out["line"])
+    return out
+
+
+def _in_stage_order(line):
+    """The line from its first stage out, each member marked with its stage.
+
+    Members come from the line index sorted by name, which read Incineroar,
+    Litten, Torracat. Walk the evolutions instead, from the member nothing
+    evolves into; a branch (Eevee's eight) is siblings at one stage, in the
+    order the game lists them."""
+    by_species = {m["species"]: m for m in line}
+    into = {m["species"]: [e["into"] for e in m["evolutions"]
+                           if not e["form"] and e["into"] in by_species]
+            for m in line}
+    evolved = {t for targets in into.values() for t in targets}
+    frontier = [m["species"] for m in line if m["species"] not in evolved]
+    stage, seen, out = 0, set(), []
+    while frontier:
+        nxt = []
+        for sp in frontier:
+            if sp in seen:
+                continue
+            seen.add(sp)
+            out.append(dict(by_species[sp], stage=stage))
+            nxt.extend(into[sp])
+        frontier, stage = nxt, stage + 1
+    # Anything the walk cannot reach still shows, after the rest.
+    out.extend(dict(m, stage=stage) for m in line if m["species"] not in seen)
+    return out
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=UI, **kw)
@@ -235,12 +471,38 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
+    def end_headers(self):
+        # Everything here is read from disk per request, so a cached copy is
+        # only ever a way to be shown yesterday's tool. That is not theoretical:
+        # a stale page is indistinguishable from a view that was never built.
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
     def _send(self, obj, code=200):
         body = json.dumps(obj).encode()
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _sprite(self, folder, kind):
+        """A species' sprite straight out of res/. The PNGs are indexed colour
+        with their own palette, so a browser draws them as they are; a front or
+        back sheet is two frames side by side, which the page crops."""
+        kind = kind.replace(".png", "")
+        if kind not in pokedex.SPRITES or "/" in folder or ".." in folder:
+            return self._send({"error": "no such sprite"}, 404)
+        path = os.path.join(model.repo_root(), "res", "pokemon", folder,
+                            kind + ".png")
+        try:
+            with open(path, "rb") as f:
+                body = _transparent_background(f.read())
+        except OSError:
+            return self._send({"error": "no such sprite"}, 404)
+        self.send_response(200)
+        self.send_header("Content-Type", "image/png")
+        self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 
@@ -257,6 +519,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         if not parts or parts[0] != "api":
             return super().do_GET()
+        # /api alone, or /api/area, /api/move or /api/sprite without the name
+        # they need, is an unknown endpoint like any other, not a crash.
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite") and len(parts) < 3):
+            return self._send({"error": "unknown endpoint"}, 404)
         try:
             st = State(ref)
             if parts[1] == "areas":
@@ -270,6 +536,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     [st.entry(a.name).get("band") or a.band for a in areas])
                 return self._send({
                     "ref": ref or "working tree",
+                    "root": model.repo_root(),
                     "rows": [area_row(a, st, by_area) for a in areas],
                     "game": g,
                     "game_findings": [f._asdict() for f in findings
@@ -300,6 +567,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                                 _area_label, KIND_LABELS)
                 return self._send(out)
 
+            if parts[1] == "dex":
+                return self._send(dex_list() if len(parts) < 3
+                                  else dex_detail(parts[2]))
+            if parts[1] == "move":
+                moves = pokedex.moves(model.repo_root())
+                row = moves.get(parts[2].upper())
+                if row is None:
+                    return self._send({"error": "no such move"}, 404)
+                return self._send(row)
+            if parts[1] == "sprite":
+                return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,
@@ -400,17 +678,36 @@ class Server(socketserver.ThreadingTCPServer):
     daemon_threads = True
 
 
-def main():
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    # There is a copy of this tool in every checkout and worktree, and they all
+    # want the same port. Running two at once is the point of the flag: one on
+    # the branch being written, one on what is merged.
+    ap.add_argument("--port", type=int, default=PORT,
+                    help=f"default {PORT}; use another to run a second checkout")
+    a = ap.parse_args(argv)
+
     os.chdir(model.repo_root())
-    with Server((HOST, PORT), Handler) as httpd:
-        print(f"encounter tool on http://{HOST}:{PORT}")
+    try:
+        httpd = Server((HOST, a.port), Handler)
+    except OSError as exc:
+        if exc.errno != errno.EADDRINUSE:
+            raise
+        print(f"port {a.port} is already taken, most likely by another copy of "
+              f"this tool.\nEither stop that one, or start this one on another "
+              f"port:\n    PYTHONPATH=. python3 -m tools.oxide.encounters.server "
+              f"--port {a.port + 1}")
+        return 1
+    with httpd:
+        print(f"encounter tool on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")
         print("ctrl-c to stop")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
             print("\nstopped")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

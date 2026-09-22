@@ -88,7 +88,9 @@ def check_endpoints(results):
     # Every area with a table of any kind: the live grass tables plus the
     # water-only areas (Twinleaf Town, Route 219 and the cities), which are
     # capture areas by their rods (Ian, 2026-09-21).
-    want = sum(1 for a in model.load_all() if a.land_active or a.kinds_present())
+    # Less the unknown_5xx rooms, parked out of the browser tool (Ian, 2026-09-22).
+    want = sum(1 for a in model.load_all()
+               if (a.land_active or a.kinds_present()) and not srv.parked(a.name))
     results.append(("GET /api/areas returns every area with a table of any kind",
                     len(areas["rows"]) == want, f"{len(areas['rows'])} rows, want {want}"))
     results.append(("areas carries game metrics and lint",
@@ -108,7 +110,12 @@ def check_endpoints(results):
     results.append(("rows carry play order and caught state",
                     all(k in areas["rows"][0] for k in
                         ("level_min", "level_med", "live_species",
-                         "best_share", "holds")), ""))
+                         "best_share", "holds", "split_rank", "order")), ""))
+    # Play order groups by split, Post last, whatever the levels say.
+    ranks = [r["split_rank"] for r in areas["rows"] if r["split_rank"] is not None]
+    post = srv.progression.split_index(model.load_sidecar()).get("Post")
+    results.append(("every split has a rank and Post ranks last",
+                    len(ranks) == len(areas["rows"]) and max(ranks) == post, ""))
 
 
 def check_display_names(results):
@@ -203,6 +210,16 @@ def check_caught_is_global(results):
 def check_rejections(results):
     """The page's datalist is a suggestion, not a constraint, so the server is
     the only thing standing between a typo and a broken build."""
+    # /api alone, or a route missing the name it needs, is a 404, not a 500.
+    codes = []
+    for path in ("/api", "/api/area", "/api/sprite"):
+        try:
+            get(path)
+            codes.append(200)
+        except urllib.error.HTTPError as e:
+            codes.append(e.code)
+    results.append(("a bare /api or a route missing its name is a 404",
+                    codes == [404, 404, 404], str(codes)))
     cases = [
         ("bad species refused", f"/api/area/{AREA}/slot",
          {"slot": 0, "species": "SPECIES_GIBEL"}, 400),
@@ -299,7 +316,7 @@ def check_lines_dupe_out(results):
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
-                    bool(staravia) and staravia[0]["caught_at"] == "lake verity"
+                    bool(staravia) and staravia[0]["caught_at"] == "Lake Verity"
                     and staravia[0]["via"] == "Magikarp",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))
@@ -325,6 +342,29 @@ def check_plan_endpoint(results):
                     not d2.get("front"), ""))
 
 
+def check_time_layers(results):
+    """Day and night swap slots 2 and 3, so the list of what a player meets
+    has to change with them rather than show the morning table all day."""
+    area = next(a for a in model.load_all()
+                if a.land_active and not srv.parked(a.name)
+                and len(a.data.get("day") or []) == 2
+                and len(a.data.get("night") or []) == 2
+                and a.data["day"] != [a.slots[2][0], a.slots[3][0]])
+    d = get(f"/api/area/{area.name}")
+    ok, detail = True, []
+    for layer in ("day", "night"):
+        table = [(sp, lv, lv) for sp, lv in area.slots]
+        for i, sp in enumerate(area.data[layer]):
+            table[2 + i] = (sp, table[2 + i][1], table[2 + i][2])
+        want = A.merged(table, A.LAND_RATES)
+        got = {m["species"]: m["share"] for m in d["merged_layers"].get(layer, [])}
+        ok &= got.keys() == want.keys() and all(
+            abs(got[k] - want[k]) < 1e-9 for k in want)
+        detail.append(f"{layer} {len(got)} species")
+    results.append((f"day and night each get their own merged list ({area.name})",
+                    ok, ", ".join(detail)))
+
+
 def check_water_tables(results):
     """Surf and the three rods, with the fractional repel their level ranges
     require."""
@@ -341,6 +381,12 @@ def check_water_tables(results):
                         for s in d["slots"]), ""))
     results.append(("lint does not run on water tables",
                     d["findings"] == [], "rules are calibrated on land"))
+    # The page shows every water table under the one being edited.
+    results.append(("the detail carries every water table in brief",
+                    [w["kind"] for w in d["water"]] == [k for k in d["kinds"] if k != "land"]
+                    and all(len(w["slots"]) == 5 and "odds" in w["slots"][0]
+                            for w in d["water"]),
+                    ", ".join(w["label"] for w in d["water"])))
 
     rates = A.SURF_RATES
     slots = [(s["species"], s["level_min"], s["level_max"]) for s in d["slots"]]
@@ -366,6 +412,25 @@ def check_water_tables(results):
         restore(path)
 
 
+def check_no_colour_literals(results):
+    """Every colour lives in ui/theme.css as a token written once with
+    light-dark(), so both themes come from the same place. A hex literal
+    anywhere else is a colour one of the two themes never got, and it would
+    break that theme quietly rather than loudly. The visual design asks for
+    exactly this check."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    hex_colour = re.compile(r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b")
+    found = {}
+    for name in ("index.html", "theme.js"):
+        with open(os.path.join(ui, name), encoding="utf-8") as f:
+            hits = hex_colour.findall(f.read())
+        if hits:
+            found[name] = hits[:4]
+    results.append(("index.html and theme.js hold no hex colour; theme.css owns them all",
+                    not found, str(found)))
+
+
 def main():
     httpd = srv.Server(("127.0.0.1", PORT), srv.Handler)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
@@ -374,8 +439,8 @@ def main():
     try:
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
-                      check_water_tables, check_rejections,
-                      check_edit_is_local):
+                      check_water_tables, check_time_layers, check_rejections,
+                      check_edit_is_local, check_no_colour_literals):
             check(results)
     finally:
         httpd.shutdown()

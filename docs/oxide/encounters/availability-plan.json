@@ -72,8 +72,8 @@
     },
     "encounters_ravaged_path": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_PHANPY", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_WOOPER"],
-      "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Wooper in the wet, Nacli and Phanpy by day."
+      "cameo": ["SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_PHANPY", "SPECIES_NOSEPASS", "SPECIES_ONIX", "SPECIES_LOTAD"],
+      "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Lotad in the wet, Nacli and Phanpy by day. Roark split since 2026-09-22, so Wooper moved to the Old Rod only."
     },
     "encounters_route_204_north": {
       "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],

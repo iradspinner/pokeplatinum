@@ -63,11 +63,12 @@ def main():
     results.append(("every sidecar area carries a split, and the split table has the nine gyms "
                     "plus post-game in order",
                     len(sp) == len(entries) and list(idx) == progression.SPLITS, f"{len(sp)}/{len(entries)}"))
-    results.append(("Ian's boundaries: Route 207 and both mine floors in Roark's split, Ravaged Path, "
+    # Ravaged Path moved to Roark's split on Ian's correction of 2026-09-22.
+    results.append(("Ian's boundaries: Route 207, both mine floors and Ravaged Path in Roark's split, "
                     "Route 204 north, 211 west and Coronet's first room in Gardenia's, Route 206 later",
                     sp["encounters_route_207"] == "Roark" and sp["encounters_oreburgh_mine_b2f"] == "Roark"
                     and sp["encounters_route_204_south"] == "Roark"
-                    and sp["encounters_ravaged_path"] == "Gardenia" and sp["encounters_route_204_north"] == "Gardenia"
+                    and sp["encounters_ravaged_path"] == "Roark" and sp["encounters_route_204_north"] == "Gardenia"
                     and sp["encounters_route_211_west"] == "Gardenia"
                     and sp["encounters_mt_coronet_1f_north_room_1"] == "Gardenia"
                     and idx[sp["encounters_route_206"]] > idx["Gardenia"], ""))
