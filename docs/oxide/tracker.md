@@ -37,13 +37,17 @@ Where things live, so each fact has one home: **status** is here; **durable fact
 >   would show as non-reproducible output, so **until the platform is fixed,
 >   build twice and compare hashes before trusting a ROM.**
 >
-> **For Ian, in this order:** (1) `wsl --shutdown` again; the wedged pid is
-> still there. (2) The decisive experiment: run `tools/oxide/python_flake_repro.py`
-> under a Windows-native Python fifteen times. Clean there means the WSL2 kernel
-> (this box runs 6.18.33.2-microsoft-standard-WSL2, very new; `wsl --update`
-> or a rollback is the next step). Failing there means hardware, and the next
-> step is memtest86 from boot, not a userland pattern test. (3) Until then treat
-> every build and every test result on this box as needing a second run.
+> **For Ian, in this order:** (1) `wsl --shutdown`: done, the box was up
+> twelve minutes at the next check. (2) **The decisive experiment has run, and
+> it fails on Windows too**, so the fault is the hardware, not the WSL2
+> kernel. A session ran the repro on Windows-native CPython 3.12.10 through
+> WSL interop, from a copy on C: that reads nothing inside the VM: 6 of 309
+> runs failed, five with an access violation inside pure Python and one with a
+> wrong answer. The detail is in the design doc's findings log, 2026-09-22.
+> The next checks are Ian's and are under "Waiting on Ian": memtest86 from
+> boot, then the CPU, which is an i9-14900K and the stronger suspect. (3) Until
+> then treat every build and every test result on this box as needing a second
+> run.
 >
 > **Code findings, with their status**, from the three reviews combined (the
 > detail is in the QA file). **Fixed 2026-09-22, one commit:** the Makefile
@@ -116,6 +120,7 @@ Anything else is a regression. The encounter tool's own checks are listed in its
 
 **Waiting on Ian:**
 
+- **The platform fault** (2026-09-22): Windows-native Python fails the flake repro too, so the fault is in the hardware (design doc findings log, same date). Two checks only Ian can run, cheapest first. Boot memtest86 and let it finish at least one full pass; a failure there is the RAM, and a clean pass points at the CPU. For the CPU, lower the P-core maximum ratio a few steps in the BIOS and rerun the repro in WSL fifteen times (`tools/oxide/oxide-python tools/oxide/python_flake_repro.py`, which failed 3 of 15 at stock); if the failures stop, the i9-14900K has the degradation Intel acknowledged in 2024, and Intel extended the warranty on boxed 13th and 14th generation desktop chips by two years because of it. To rerun the Windows check, double-click `C:\Users\Ian\oxide-flake-check\run-flake-check.bat`, which runs sixty times and keeps its window open. Expect it to come back clean more often than not, since Windows fails about one run in fifty, so a clean pass does not overturn the result.
 - **Element 4, the moves themselves** (2026-09-22): the cheapest check is the Move Relearner or a TM shop, where a long move list gets drawn; look at whether any name is clipped and whether the descriptions read sensibly in five lines. Then use a new move in battle and confirm it animates and does its damage. **A move whose effect is one of the 114 stubs will do its damage and skip its extra, or say "But nothing happened!" if it is a status move; that is expected, not a bug.** Eight names are known to clip by a few pixels on the summary screen, six of them Z-moves plus Thousand Arrows and Hyperspace Fury
 - **Element 4, the widened learnset format** (2026-09-21): level a Pokemon through a move it should learn and confirm it learns the right one at the right level, then open the Move Relearner and confirm its list. Every learnset in the game was repacked, so if the widening were wrong it would be wrong for all 667 of them, not just the new species. No new save needed, nothing in the save moved. Also worth folding in while at the controls: the element 3 form fix, a Rotom in a form or a Giratina holding the Griseous Orb showing its form's stats rather than the base form's.
 - Emulator checks not yet done: Rare Candy chaining; the frame-rate uncap (options menu reads UNLOCK FPS, with OFF / BATTLE / ALWAYS); Shinx's ability (always Rivalry, never Intimidate) and Bidoof/Starly hatch time (~255 steps, down from ~3825); and a walk through a few bulk-generated maps, the gift houses being the obvious ones. The "use another Repel?" prompt is now safe to answer yes; it is worth testing, since it is the one thing in this build that was broken and is now fixed rather than carried over.
