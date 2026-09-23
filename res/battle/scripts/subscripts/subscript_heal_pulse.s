@@ -5,6 +5,8 @@
 // with Mega Launcher, rounded up as hg-engine's own divide does it; adding
 // before dividing does the same for Platinum's, which truncates.
 _000:
+    // A substitute blocks it, as it does Pain Split.
+    CheckSubstitute BTLSCR_DEFENDER, _blocked
     PrintAttackMessage
     Wait
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_DEFENDER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
@@ -21,4 +23,8 @@ _threeQuarters:
 _heal:
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_DEFENDER
     Call BATTLE_SUBSCRIPT_RECOVER_HP
+    End
+
+_blocked:
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
     End

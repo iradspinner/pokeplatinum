@@ -1242,6 +1242,19 @@
     .long BTLCMD_CALCBOLTBEAKPOWER
     .endm
 
+    .macro CalcHeavySlamPower
+    .long BTLCMD_CALCHEAVYSLAMPOWER
+    .endm
+
+    .macro ReduceWeight amount
+    .long BTLCMD_REDUCEWEIGHT
+    .long \amount
+    .endm
+
+    .macro CalcStrengthSap
+    .long BTLCMD_CALCSTRENGTHSAP
+    .endm
+
     .text
     .globl _start
 _start:

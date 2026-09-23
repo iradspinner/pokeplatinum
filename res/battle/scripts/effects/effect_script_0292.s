@@ -2,6 +2,7 @@
 
 
 _000:
+    CalcHeavySlamPower
     CalcCrit
     CalcDamage
     End

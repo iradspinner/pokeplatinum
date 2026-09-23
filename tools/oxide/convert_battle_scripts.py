@@ -100,6 +100,10 @@ HG_STRINGS = {
     1548: "BattleStrings_Text_NeitherPokemonCanRunAway",
     1601: "BattleStrings_Text_PokemonBurnedItselfOut_Ally",
     1604: "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Ally",
+    1324: "BattleStrings_Text_PokemonSharedItsGuardWithTheTarget_Ally",
+    1327: "BattleStrings_Text_PokemonSharedItsPowerWithTheTarget_Ally",
+    1330: "BattleStrings_Text_PokemonTransformedIntoTheWaterType_Ally",
+    1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -281,6 +285,7 @@ def supplemented(renames, have=None):
     merged = dict(SUPPLEMENT)
     merged.update(subscript_renames())
     merged.update(ability_renames())
+    merged.update(battler_field_renames())
     merged.update(renames)
     return merged
 
@@ -294,6 +299,17 @@ def ability_renames():
     oxide = lines_of(os.path.join(ROOT, "generated", "abilities.txt"))
     return {name: oxide[value] for name, value in hg_values().items()
             if name.startswith("ABILITY_") and value < len(oxide) and oxide[value] != name}
+
+
+def battler_field_renames():
+    """hg-engine's BMON_DATA_ names mapped to Platinum's battler fields by
+    number. All 101 of hg-engine's fields name the same field as Platinum's at
+    the same number (checked by eye, 2026-09-22), and the derivation had
+    already found 49 of them independently; this supplies the rest, such as
+    BMON_DATA_SPDEF, which no shared script happens to use."""
+    fields = lines_of(os.path.join(ROOT, "generated", "battle_mon_params.txt"))
+    return {name: fields[value] for name, value in hg_values().items()
+            if name.startswith("BMON_DATA_") and value < len(fields) and fields[value] != name}
 
 
 def lines_of(path):
@@ -420,6 +436,17 @@ FIXES = {
     "effect_script_0318_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2.s": [
         ("BufferMessage 0, TAG_NONE", None),
     ],
+    # Guard Split and Power Split are status moves, and Platinum runs a status
+    # move's side effect through the direct path, as its own Pain Split does;
+    # hg-engine sets them as indirect, which Platinum only runs after a hit.
+    "effect_script_0278_GUARD_SPLIT.s": [
+        ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_GUARD_SPLIT",
+         "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_GUARD_SPLIT"),
+    ],
+    "effect_script_0279_POWER_SPLIT.s": [
+        ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_POWER_SPLIT",
+         "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_POWER_SPLIT"),
+    ],
     "effect_script_0343_USER_DEF_DOWN_HIT_REMOVE_PROTECT.s": [
         ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_HYPERSPACE_FURY",
          "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SIDE_EFFECT_TO_ATTACKER|MOVE_SUBSCRIPT_PTR_HYPERSPACE_FURY"),
@@ -450,6 +477,13 @@ C_REVIEWED = {
          "does, with the message set in the move's own script.s, and the effect is on "
          "Move_IsMultiTurn; the rest is Kyurem's form change, and Kyurem is not in Oxide",
     364: "as Freeze Shock",
+    278: "BeforeMove fails the move against a substitute; the Oxide subscript checks the same",
+    279: "as Guard Split",
+    284: "BeforeMove fails the move against pure Water, Multitype or a substitute; the Oxide "
+         "subscript checks the same",
+    292: "CalcBaseDamage works out the same weight ratio that CalcHeavySlamPower now does",
+    378: "BeforeMove fails the move when the target's Attack is at its lowest; the Oxide "
+         "subscript checks the same",
     348: "BeforeMove thaws a frozen user, ported beside Flame Wheel's in battle_controller_player.c",
 }
 

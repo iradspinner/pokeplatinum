@@ -197,5 +197,11 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_HEAL_PULSE]                       = subscript_heal_pulse,
     [MOVE_SUBSCRIPT_PTR_POLLEN_PUFF_HEAL]                 = subscript_pollen_puff_heal,
     [MOVE_SUBSCRIPT_PTR_LIFE_DEW]                         = subscript_life_dew,
+    [MOVE_SUBSCRIPT_PTR_GUARD_SPLIT]                      = subscript_guard_split,
+    [MOVE_SUBSCRIPT_PTR_POWER_SPLIT]                      = subscript_power_split,
+    [MOVE_SUBSCRIPT_PTR_CHANGE_TARGET_TO_WATER_TYPE]      = subscript_change_target_to_water_type,
+    [MOVE_SUBSCRIPT_PTR_AUTOTOMIZE]                       = subscript_autotomize,
+    [MOVE_SUBSCRIPT_PTR_STRENGTH_SAP]                     = subscript_strength_sap,
+    [MOVE_SUBSCRIPT_PTR_INCINERATE]                       = subscript_incinerate,
 };
 // clang-format on

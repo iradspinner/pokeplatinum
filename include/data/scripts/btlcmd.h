@@ -231,6 +231,9 @@ ScriptCommand(BTLCMD_END,                         BtlCmd_End)
 
 // Platinum Oxide's commands, appended so that no existing opcode moves
 ScriptCommand(BTLCMD_CALCBOLTBEAKPOWER,           BtlCmd_CalcBoltBeakPower)
+ScriptCommand(BTLCMD_CALCHEAVYSLAMPOWER,          BtlCmd_CalcHeavySlamPower)
+ScriptCommand(BTLCMD_REDUCEWEIGHT,                BtlCmd_ReduceWeight)
+ScriptCommand(BTLCMD_CALCSTRENGTHSAP,             BtlCmd_CalcStrengthSap)
 
 // clang-format on
 

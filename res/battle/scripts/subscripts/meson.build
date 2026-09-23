@@ -332,4 +332,10 @@ subscript_files = files(
     'subscript_heal_pulse.s',
     'subscript_pollen_puff_heal.s',
     'subscript_life_dew.s',
+    'subscript_guard_split.s',
+    'subscript_power_split.s',
+    'subscript_change_target_to_water_type.s',
+    'subscript_incinerate.s',
+    'subscript_strength_sap.s',
+    'subscript_autotomize.s',
 )
