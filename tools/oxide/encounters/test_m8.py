@@ -531,11 +531,14 @@ def check_calculator(results):
                     and all(calc_export.clean(t) in known
                             for t in calc_export.ALIASES.values()),
                     f"unknown: {report['unknown_abilities'][:3]} {report['unknown_moves'][:3]}"))
+    # The named example has to be a move element 4 has not done. Grassy Terrain
+    # stays a stub until terrain is ported, which waits on Ian; Acrobatics was
+    # the example until element 4 finished it.
     stubbed = {m["name"] for m in pokedex.moves(root).values() if m["stub"]}
     results.append(("the report names the moves modelled with an effect Oxide's "
                     "script does not have yet",
                     set(report["placeholder_effects"]) <= stubbed
-                    and "Acrobatics" in report["placeholder_effects"],
+                    and "Grassy Terrain" in report["placeholder_effects"],
                     f"{len(report['placeholder_effects'])} moves"))
 
     # A species edited while the server runs is in the next export. The file
