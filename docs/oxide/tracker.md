@@ -48,7 +48,7 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 
 Anything else is a regression. The encounter tool's own checks are listed in its build plan. `tools/oxide/integrate.sh` runs all of this in one go. This whole list was last run clean on 2026-09-22 with `integrate.sh --verify-only`: 24 passed, 0 failed.
 
-**Files outside the repo that the tools need**, all of them copies, none of them rebuildable from here: `~/roms/base.nds` (the base ROM), `~/roms/vanilla.nds` (a byte-exact Rev 1 build, made once from `main`) and `~/roms/hardlove.nds` (the donor). Also `~/hg-engine`, a sparse 30MB clone of the reference implementation (`data/battle_scripts`, `src`, `include`, `armips/data`), added 2026-09-22 for element 4's effect scripts; no tool depends on it, so it can be re-cloned or deleted freely. If any goes missing, copy it again from the project folder on the G: drive; the paths are in the design doc and `docs/oxide/donor-tables.md`.
+**Files outside the repo that the tools need**, all of them copies, none of them rebuildable from here: `~/roms/base.nds` (the base ROM), `~/roms/vanilla.nds` (a byte-exact Rev 1 build, made once from `main`) and `~/roms/hardlove.nds` (the donor). Also `~/hg-engine`, a sparse 30MB clone of the reference implementation (`data/battle_scripts`, `src`, `include`, `armips/data`), added 2026-09-22 for element 4's effect scripts; no tool depends on it, so it can be re-cloned or deleted freely. And `~/roms/balance-refs/` (2026-09-22), the balance track's reference data: the reference hacks' calculator data and Ian's Run & Bun sheet, with a `MANIFEST.txt` of SHA-256 sums; no tool depends on it yet, the balance plan's B1 will. If any goes missing, copy it again from the project folder on the G: drive; the paths are in the design doc and `docs/oxide/donor-tables.md`.
 
 **Waiting on Ian:**
 
@@ -267,11 +267,11 @@ Elements, in order:
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
 shape the finished game.
 
-- [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`; it scores every fight against reference hacks and feeds the level-cap, TM, ability and trainer passes. Six questions for Ian at the end of the plan.
+- [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`; it scores every fight against reference hacks. Ian answered its questions the same day and widened it to the whole game's balance: trainers, level caps, species stats, abilities, learnsets, TMs, item access, and route and gym weather. **The three passes below are that track's work**; their status lives in its plan, not here.
 
-- [ ] **Level-cap split design.** Per split: the areas, trainers, items, and learnsets/evolutions available. Ian expects this to be a lot of work, and it **must precede the trainer balance pass** because it constrains it. Phase 4 only delivers the mechanism
-- [ ] **TM pass.** How many TMs (likely more than 92) and which moves, done with the overall balance pass
-- [ ] **Ability balance pass** across all species, including the base ROM's 228 duplicated second slots, which stay as they are until then
+- [ ] **Level-cap split design** (balance track). Per split: the areas, trainers, items, and learnsets/evolutions available. Ian expects this to be a lot of work, and it **must precede the trainer balance pass** because it constrains it. Phase 4 only delivers the mechanism
+- [ ] **TM pass** (balance track). How many TMs (likely more than 92) and which moves, done with the overall balance pass
+- [ ] **Ability balance pass** (balance track) across all species, including the base ROM's 228 duplicated second slots, which stay as they are until then
 - [ ] **Encounter design decisions** that Phase 4 leaves open: which encounters set the hidden-ability flag (gifts, statics, a late area), and which areas have wild double battles. **Decided 2026-09-21 (Ian): swarms, the Poke Radar, the dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf legendary menu are never used**, so they are not acquisition sources and `docs/oxide/pokemon-sources.md` leaves them out; what happens to their data (emptied or left as-is) is the authoring pass's call
 - [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
 - [ ] **The starter's own met location** (Ian's preference, 2026-09-21): give the starter a unique met-location name so Route 201 counts as a nuzlocke capture area; the encounter plan already assumes it. A script and text-bank change
