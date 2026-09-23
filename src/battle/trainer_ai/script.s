@@ -3799,7 +3799,8 @@ Expert_SunnyDay:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_FLOWER_GIFT, Expert_SunnyDay_ScorePlus1
     IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Expert_SunnyDay_End
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): sun helps Leaf Guard only while the user has no status
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
     GoTo Expert_SunnyDay_End
 
 Expert_SunnyDay_ScorePlus1:
