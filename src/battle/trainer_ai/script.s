@@ -7068,6 +7068,10 @@ TagStrategy_FollowMe:
     //    - If the partner's HP is between 30% and 50%, 75% chance of score +1
     //    - If the partner's HP is < 30%, 75% chance of score +2
     //  - If the attacker's HP < 30%, 75% chance of score -5
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Follow Me does nothing
+    // with no partner left to protect. The bands below read an empty slot as a
+    // partner at 0% HP, the most urgent case, and gave the move up to +3
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, ScoreMinus10
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TagStrategy_FollowMe_SelfHighHP
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TagStrategy_FollowMe_SelfMediumHP
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TagStrategy_FollowMe_SelfLowHP
