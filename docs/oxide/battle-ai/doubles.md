@@ -2,7 +2,7 @@
 
 Element 6's doubles review (2026-09-22). `other-flags.md` reads the double-battle code line by line: the driver, Tag Strategy's two halves, and the bugs O1 to O19. `switching-and-items.md` does the same for switching. This file asks a narrower question. Given the trainers, parties and flags Oxide actually has, which of those faults and gaps does a player meet, and in which battles? The answer is a short list. Ian ruled on all six the same day, and all six are now applied (the last section).
 
-Line numbers here are the element 6 branch's, since the fixes below would be made there.
+Line numbers here are the element 6 branch's as it stood before the fixes below were applied (commit `c6f61ebe2`). Applying them moved the spread-move routines in `script.s` down by 7 to 72 lines, so search for the routine's label rather than trusting the number.
 
 ## The double battles
 
