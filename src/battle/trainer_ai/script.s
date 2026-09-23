@@ -4075,7 +4075,9 @@ Expert_ChargeTurnWithInvuln_End:
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln_ScorePlus1:
-    AddToMoveScore 1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): reached only when the target is immune
+    // or resists, which is a reason not to use the move, so -1 rather than +1
+    AddToMoveScore -1
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln_SandImmuneTypes:
