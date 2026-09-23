@@ -76,13 +76,13 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 | The bench damage check uses the active Pokemon's stats and types | vanilla | `expert-2.md` bug 10, `switching-and-items.md` | Skews U-turn, Healing Wish and switching |
 | Status moves count as super-effective in the bench checks | vanilla | `switching-and-items.md` | Skews when and to what the AI switches |
 
-The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. The guide they come from was not read for this write-up, so each is located from the code; two (the "Sunny Day check", most likely `basic.md` B2, and the "charge-turn scoring fix", most likely `expert-2.md` bug 3) need the guide's wording confirmed before they are applied.
+The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
 
 What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step.
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix and eight vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix and nineteen vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
@@ -96,7 +96,23 @@ One Oxide fix and eight vanilla fixes, each its own commit so any can be reverte
 | Weather Ball's weather type where the AI read the listed type (QA pass before the integration) | vanilla | Basic's absorb and Levitate checks, Tag Strategy's type dispatch and the absorb-ability switch now see a rain Weather Ball as Water and a sun one as Fire. Hidden Power, Natural Gift and Judgment still read their listed type |
 | Weather Ball in the post-knockout pick (same QA pass) | vanilla | A bench Weather Ball in weather is costed at double power and the weather's type, not as a 50-power Normal move |
 
-Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes are approved but not yet applied: two of their locations need the guide's wording confirmed first.
+Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes (approved by Ian on 2026-09-15) are applied as eleven more commits, each titled "VANILLA FIX (battle_edits)":
+
+| battle_edits fix | Where | In Ian's base ROM | What changes in play |
+|---|---|---|---|
+| Water immunity vs Dry Skin | `basic.md` B1 | yes | A Water move into a known Dry Skin Pokemon takes -12 |
+| Sunny Day check | `basic.md` B2 | yes | Sunny Day takes -10 against a target with Leaf Guard and no status, not one with Hydration and a status |
+| Foresight and Odor Sleuth Ghost check | `expert-1.md` bug 2 | yes | They are rewarded against a Ghost target, not for a Ghost user |
+| Leaf Guard Sunny Day logic | `expert-1.md` bug 3 | yes | Sunny Day is rewarded for a Leaf Guard user without a status, not with one |
+| Charge-turn scoring | `expert-2.md` bug 3 | yes | Fly, Dig, Dive, Bounce and Shadow Force take -1, not +1, into a target that resists or is immune |
+| Facade status check | `expert-2.md` bug 7 | yes | Facade's +1 follows the user's status |
+| Water Spout and Eruption HP check | `expert-2.md` bug 8 | yes | Both follow the user's HP, not the target's |
+| Thunder scoring | `expert-1.md` bug 1 | no | Thunder reaches its weather routine |
+| Discharge in doubles | `other-flags.md` O6 | no | A Ground partner is checked first, so a Swampert or Gliscor partner no longer stops Discharge |
+| Fire Fang vs Wonder Guard | battle engine | no | Fire Fang no longer hits a Wonder Guard Pokemon regardless of type |
+| Rage glitch | battle engine | no | Choosing another move after Rage clears only Rage, not every other volatile status |
+
+The first seven are the ones Ian played with: the base ROM's overlay 14 carries exactly their thirteen bytes, and the source edits assembled reproduce that overlay with no byte different. Phase 3 rebuilt the game from source, so they had been missing from Oxide until now. The last four are new behaviour.
 
 ## The parts
 
