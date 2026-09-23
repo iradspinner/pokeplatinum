@@ -124,5 +124,6 @@ The first seven are the ones Ian played with: the base ROM's overlay 14 carries 
 | `expert-2.md` | the Expert flag, second half |
 | `other-flags.md` | every other flag, and the double-battle driver |
 | `switching-and-items.md` | the damage the AI calculates, switching, replacements and item use |
+| `doubles.md` | the doubles review: which of the double-battle faults Oxide's own double battles reach, and the fixes proposed for them |
 
 Each part ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide, then the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.
