@@ -7,8 +7,10 @@ the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-22).** Scoping is done, and the reference data is
-pinned outside the repo. Nothing is built yet. The next step is B1, the data
-layer. No questions are open.
+pinned outside the repo. B1, the data layer, is under way: its first part is
+built and tested (`tools/oxide/balance/`, `test_b1` 24 of 24, run twice), and
+reads Oxide and the five Platinum-based references side by side for all 28
+story fights. Next is the rest of B1. No questions are open.
 
 ## The target
 
@@ -91,6 +93,25 @@ Roark, set by set:
 | Oxide now | 4 | about 27 to 30 | all | rolled | Headbutt, Leer, Constrict, Rock Throw |
 | Renegade | 6 | 29 to 30 | all | chosen | coverage: Fire and Thunder Punch, Zen Headbutt |
 | Kaizo | 6 | 30 | all, Focus Sash included | chosen | Head Smash, Earth Power, Accelerock |
+
+What B1a found, beyond the table above:
+
+- **Every Platinum-based hack keeps Platinum's trainer ids**, the same ids
+  Oxide uses (Roark is 246 everywhere), so a fight is looked up by id, not
+  guessed. Two hacks need overrides, which `fights.json` records. Kaizo's
+  League sits at level 100 in Platinum's rematch slots, after an 84 Volkner;
+  the first-fight slots still hold vanilla's sets. Redux swaps the two
+  Galactic HQ fights. It also has several level 100 League sets, and the one
+  taken as its first run (787 to 791) is a guess until Redux's scripts or
+  docs confirm it.
+- The calculator's data names the rival "Pkmn Trainer Cedric".
+- Oxide's aces match the Level Caps sheet for every boss the sheet lists
+  except Barry 2, whose ace is 11 in the tree against 10 in the sheet.
+- **Ian's base ROM already uses weather.** 57 map headers differ from
+  vanilla on weather. Oreburgh Gym has a sandstorm, Pastoria Gym heavy rain,
+  Snowpoint Gym a blizzard, Bertha's room a sandstorm and Flint's room
+  ashfall, and several caves lost their fog. Which of these become battle
+  weather is for the weather pass to read from the battle code.
 
 ## What gets measured
 
@@ -246,6 +267,25 @@ disagrees with them.
   for trainers, items, marts and TMs. The check: trainer and set counts match
   each source, a sample of fights matches the calculator's own view of them,
   and every Oxide trainer lands in exactly one split.
+  - [x] **B1a, the Platinum-based references and the story fights**
+    (2026-09-22). `data.py` reads Oxide and every reference into one shape.
+    Oxide is rebuilt per trainer by the encounter tool's `calc_trainers`, so
+    its rolled natures and default moves come with it. `fights.json` lists
+    the 28 story fights, in the splits Ian's Level Caps sheet gives them.
+    `test_b1` checks that every pinned file is unchanged, that set counts
+    match each source, and that every fight resolves in every Platinum-based
+    hack. It also checks that no hack's League sits below its Volkner. That
+    check fails without the per-hack overrides below, so it does test
+    something.
+  - [ ] **B1b**, milestone maps for Hardlove, Null and Unbound, and a reader
+    for Ian's Run & Bun sheet.
+  - [ ] **B1c**, Odyssey read from the ROM through the HexManiacAdvance
+    anchors, once its move table is found.
+  - [ ] **B1d**, Oxide's split map: every filler trainer, item ball, mart
+    and TM placed in a split, through each map's events and scripts, its map
+    header's location name, and the encounter design's split for that
+    location. Map headers also carry the weather, so the weather survey comes
+    from the same pass.
 - [ ] **B2, structural metrics** for every reference and for Oxide as it
   stands. The check: vanilla, Renegade and Kaizo come out in that order on
   almost every metric.
