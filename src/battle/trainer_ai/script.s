@@ -7988,6 +7988,10 @@ Weather_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, Weather_Rain
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, Weather_Sand
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, Weather_Hail
+    // Oxide, vanilla fix (Ian, 2026-09-22): every other move used to fall
+    // through into Weather_Sun, so every move got the same +5 and the flag
+    // changed nothing. Only the weather moves are scored here.
+    GoTo Weather_Terminate
 
 Weather_Sun:
     LoadCurrentWeather 
