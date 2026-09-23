@@ -435,6 +435,12 @@ FIXES = {
     # nothing prints afterwards in Platinum; it is dropped (None deletes).
     "effect_script_0318_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2.s": [
         ("BufferMessage 0, TAG_NONE", None),
+        # Its second turn plays its own animation before the charge cleanup
+        # sets the effect chance to 1, which is what its animation reads to
+        # tell the turns apart; set it first so the second turn is not drawn
+        # as another charge.
+        ("PlayMoveAnimation BTLSCR_ATTACKER",
+         "UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1\n    PlayMoveAnimation BTLSCR_ATTACKER"),
     ],
     # Guard Split and Power Split are status moves, and Platinum runs a status
     # move's side effect through the direct path, as its own Pain Split does;

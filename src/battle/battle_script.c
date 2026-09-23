@@ -2827,8 +2827,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     // Oxide's three-stage changes (Cotton Guard, Fell Stinger) sit after every
     // vanilla pointer, so they are matched first and by range: the vanilla
     // chain below treats anything past the two-stage drops as one, which for
-    // a later pointer would index past the stat array. The message for three
-    // stages is the two-stage one, "sharply rose", as Platinum has no other.
+    // a later pointer would index past the stat array. Three stages print the
+    // donor's "rose drastically" and "severely fell" lines, added for them.
     if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES
         && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_DOWN_3_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES;
@@ -2880,7 +2880,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             } else {
                 SetupNicknameStatMsg(battleCtx,
                     stageChange == 1 ? BattleStrings_Text_PokemonsStatRose_Ally : // "{0}'s {1} rose!"
-                        BattleStrings_Text_PokemonsStatSharplyRose_Ally, // "{0}'s {1} sharply rose!"
+                        stageChange == 2 ? BattleStrings_Text_PokemonsStatSharplyRose_Ally : // "{0}'s {1} sharply rose!"
+                        BattleStrings_Text_PokemonsStatRoseDrastically_Ally, // Oxide's three stages: "{0}'s {1} rose drastically!"
                     statOffset);
             }
 
@@ -2981,7 +2982,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         } else {
             SetupNicknameStatMsg(battleCtx,
                 stageChange == -1 ? BattleStrings_Text_PokemonsStatFell_Ally : // "{0}'s {1} fell!"
-                    BattleStrings_Text_PokemonsStatHarshlyFell_Ally, // "{0}'s {1} harshly fell!"
+                    stageChange == -2 ? BattleStrings_Text_PokemonsStatHarshlyFell_Ally : // "{0}'s {1} harshly fell!"
+                    BattleStrings_Text_PokemonsStatSeverelyFell_Ally, // Oxide's three stages: "{0}'s {1} severely fell!"
                 statOffset);
         }
 
