@@ -680,6 +680,8 @@ The comments above each routine in `script.s` were written for the decomp, and l
 
 ## Apparent bugs
 
+Fixed on 2026-09-22 in other parts: the Oxide ability byte (see `basic.md` B11). Nothing in this half has been changed; bug 4, the faster-heal branch, was put to Ian and kept as vanilla has it.
+
 Every entry is present in vanilla Platinum: `script.s` is identical to `main`, so the vanilla line is the same number, and the C commands involved are unchanged from `main`. None is introduced by Oxide in this half (Oxide's own problems are in the last section). Fixing any of them changes vanilla behaviour and is Ian's call. Where an entry says a bug is inherited from Gen 3, that is from memory of pokeemerald's AI script and was not re-checked for this file.
 
 1. **Thunder never reaches its routine.** Present in vanilla, line 1719. The test reads `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN`, the same effect as line 1716, which is tested first and sends Solar Beam to the charge-turn routine. So line 1719 can never fire, `Expert_Thunder` (3975) is unreachable, and Thunder (`BATTLE_EFFECT_THUNDER`, id 152, which has no other entry) gets nothing from Expert. The source comment at 1718 says the same. This is a battle_edits fix, below.

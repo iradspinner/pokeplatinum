@@ -334,6 +334,8 @@ Lines 1567 to 1621 are the shared exits `ScoreMinus1`, `ScoreMinus2`, `ScoreMinu
 
 ## Apparent bugs
 
+Fixed on 2026-09-22: B11 (Oxide, the ability byte) and B6 (vanilla fix, approved by Ian). The rest stand as vanilla has them.
+
 Every script bug below is present in vanilla Platinum, at the same line on `main`, because `script.s` is unchanged. Two of them come from C code, and one of those (B11) is introduced by Oxide. None has been fixed.
 
 | # | Lines | Origin | What goes wrong |

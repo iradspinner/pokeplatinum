@@ -536,6 +536,8 @@ Magic Coat's line 4508 sits after an unconditional jump and never runs. Refresh 
 
 ## Apparent bugs
 
+Fixed on 2026-09-22: bug 2, Punishment (vanilla fix, approved by Ian), and bug 14, the ability byte (Oxide). Bug 10, the bench damage check, was put to Ian and kept as vanilla has it. The rest stand as vanilla has them.
+
 Every entry is present in vanilla Platinum except bug 14, which Oxide introduced. For script bugs the vanilla line is the same line on `main`, since the file is unchanged; for C bugs the vanilla line is given.
 
 1. **Thunder never reaches its routine.** Present in vanilla, `Expert_Main` line 1719. The line tests `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN` (151), which line 1716 has already sent to `Expert_ChargeTurnNoInvuln`, so `Expert_Thunder` (3975 to 3990) has no way in. Thunder's own effect, `BATTLE_EFFECT_THUNDER` (152), matches no dispatch line and gets nothing from the Expert flag. The decomp flags it at 1718.

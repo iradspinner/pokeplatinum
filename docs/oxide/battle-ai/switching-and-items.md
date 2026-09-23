@@ -279,6 +279,8 @@ The pret file `docs/bugs_and_glitches.md` gives the stage 1 wrap as 65. The arit
 
 ## Apparent bugs
 
+Fixed on 2026-09-22 in other parts: the ability byte (Oxide). Nothing in this file's code has been changed; status moves counting as super-effective and the bench damage check were put to Ian and kept as vanilla has them.
+
 Each entry is labelled as present in vanilla Platinum or introduced by Oxide. A fix to a vanilla bug changes the game's original behaviour and is Ian's call; none has been made.
 
 1. **Weather Ball's type is unset with no weather.** Present in vanilla (`trainer_ai.c` 3222 to 3240; `battle_lib.c` vanilla 8176, Oxide 8247). Both type helpers assign Weather Ball's type only inside the weather tests, and neither sets it first, so with clear skies or Cloud Nine or Air Lock out the function returns whatever the register held. Every other case in both functions sets a type, including a default of Normal. What the compiled code returns cannot be read from the source. It affects the switching checks and the replacement routine when a Pokemon knows Weather Ball.

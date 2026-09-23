@@ -80,6 +80,20 @@ The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. N
 
 What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step.
 
+## Fixes applied, 2026-09-22
+
+One Oxide fix and four vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+
+| Fix | Kind | What changes in play |
+|---|---|---|
+| The AI's remembered ability is u16 (`ai_context.h`) | Oxide | Quark Drive, Protosynthesis, Hospitality and the rest are remembered as themselves |
+| Weather flag (O1) | vanilla | Only a weather move that would set new weather gets the +5 on the first turn |
+| Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | Water Spout into Water Absorb, Dragon Energy into a Fairy and the like are now refused |
+| Punishment's ladder (expert-2 bug 2) | vanilla | 50% +4, 25% +3, 12.5% +2, 6.25% +1 against +7 boosts or more, as its comment says, instead of summing up to +10 |
+| Trick, Switcheroo and Gastro Acid on the partner (O11) | vanilla | Refused (-30), except Gastro Acid on a partner with Truant or Slow Start (+5, as before) |
+
+Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes are approved but not yet applied: two of their locations need the guide's wording confirmed first.
+
 ## The parts
 
 | File | Covers |
