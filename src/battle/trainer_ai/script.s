@@ -1727,7 +1727,8 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_ChargeTurnNoInvuln
 
     // BUG: Thunder is not properly scored. This is supposed to check for BATTLE_EFFECT_THUNDER.
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_Thunder
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Thunder's own effect, so its routine is reached
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_THUNDER, Expert_Thunder
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, Expert_ChargeTurnWithInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, Expert_Recovery
