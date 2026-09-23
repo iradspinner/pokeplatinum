@@ -10,9 +10,10 @@ the same day, and his answers are recorded below as decisions.
 pinned outside the repo. B1, the data layer, is nearly done. B1a, B1b and B1d are
 built and tested (`tools/oxide/balance/`, `test_b1` 43 of 43, run twice).
 Oxide and eight rated references line up fight by fight, and every Oxide map,
-trainer, item and shop has a split. Left in B1 is B1c, Odyssey from its ROM,
-which carries little weight; B2, the structural metrics, can start without
-it. Two small questions for Ian are at the end.
+trainer, item and shop has a split. Left in B1 are B1c, Odyssey from its
+ROM, which carries little weight, and B1e, which trainers cannot be avoided,
+which comes after B2 and before the level curve. B2, the structural metrics,
+is next. No questions are open.
 
 ## The target
 
@@ -56,6 +57,11 @@ Ian's rulings, 2026-09-22:
   at 38 until the cap redesign lands, and the encounter track then re-runs
   `cli evolve` once against the approved caps. The approved caps go to the
   Overseer, who hands them over.
+- **More ordinary trainers should be required** (Ian, 2026-09-22). In the
+  base ROM most route trainers can be walked around, and Ian wants that
+  changed. It is a design pass of its own (trainer placement and sight
+  lines), and B1e measures which trainers are avoidable today so the pass
+  has a list to work from and a way to check its result.
 
 ## What the first look found
 
@@ -124,7 +130,10 @@ What B1b found:
   exactly. **Hardlove's League is Will, Koga, Karen and Lance, with Blue as
   Champion.** Lance has the Elite Four trainer class, Blue the Champion
   class, and both of Bruno's slots hold Zubat placeholders. Ian pointed at
-  this ("the other elite four"), and the classes confirm it.
+  this ("the other elite four") and confirmed it; he adds that only two
+  people have beaten Hardlove as a hardcore nuzlocke.
+- **Null's eighth gym is Ex Leader Juan** (level 97), as Ian confirmed; the
+  Leader Steven in the same gym is not the gym fight.
 - **Hardlove rebalanced species stats**, so its fights are scored with its
   own records from the ROM, not the calculator's (its Alolan Ninetales is
   79/89/79/109/99/100 where vanilla's is 73/67/75/81/100/109). The ROM also
@@ -158,9 +167,10 @@ What B1d found:
 | League | 55 | 20 | 15 | 2 | 10 |
 
 - **Candice's split is the thinnest in the game and Wake's the fullest.**
-  Byron to Candice raises the cap by 3 with 27 trainers to fight; Maylene to
-  Wake raises it by 5 with 75. That is the shape the natural-level curve (B4)
-  will measure, and the likeliest reason the caps feel unevenly spread.
+  Byron to Candice raises the cap by 3 with 27 trainers placed; Maylene to
+  Wake raises it by 5 with 75. These are trainers placed, not trainers
+  required: Ian notes most of them can be walked around, which is what B1e
+  measures before B4 turns them into a level curve.
 - **89 of the 92 TMs have a source**, and each has a split. Roark's gym
   gives TM76 in Roark's split, which the check anchors on. The three not
   found (TM08, TM61, TM73) are expected at the Battle Frontier's prize
@@ -357,6 +367,22 @@ disagrees with them.
     marts and the Game Corner. The check that matters: 27 of the 28 story
     fights land in the split Ian's sheet gives them from map data alone, and
     the 28th, Mars at Lake Verity, is a return visit to a Roark-split map.
+- [ ] **B1e, required trainers.** For each split, which trainers the player
+  cannot avoid. A trainer is unavoidable when no walkable path through its
+  map gets from where the player enters to where they must leave without
+  stepping into its sight. Everything needed is in the tree: each trainer's
+  position, facing, movement pattern and sight range are in its event
+  record (Route 202's Youngster Tristan looks south with a range of 5), and
+  each map's walkable tiles are the collision bits in its land data, laid
+  out by its map matrix. The limits are real and the report will name them:
+  what the player can cross depends on the split (Cut, Rock Smash,
+  Strength, Surf, Rock Climb and the bike), trainers that turn or walk see
+  more than one line, ledges are one-way, and a script can force a battle
+  that no sight line explains. The check: the story fights come out
+  required, and a handful of route trainers Ian knows to be avoidable come
+  out avoidable. It comes after B2, which scores the bosses and needs none
+  of it, and before B4, whose natural levels should count only the
+  experience a player cannot skip.
 - [ ] **B2, structural metrics** for every reference and for Oxide as it
   stands. The check: vanilla, Renegade and Kaizo come out in that order on
   almost every metric.
@@ -383,20 +409,11 @@ lands, and each change is re-scored as it lands.
    duplicated second ability slots.
 4. **Weather** on routes and in gyms.
 5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
-   then each fight into the band. Filler trainers come after.
+   then each fight into the band. Filler trainers come after, and with them
+   Ian's placement change: more ordinary trainers made unavoidable, checked
+   against B1e's list.
 
 Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before
 the trainer pass uses the field: the packer accepts `NATURE_COUNT`, and that
 hangs the game (encounter build plan, QA findings).
-
-## Questions for Ian
-
-Neither blocks B1c or B1d.
-
-1. Hardlove's League: the ROM's trainer classes make Lance an Elite Four
-   member and Blue the Champion, with Bruno's slots empty. Is that the
-   League you played?
-2. Null's eighth gym: the Sootopolis Gym holds "Leader Steven" at 100 and
-   "Ex Leader Juan" at 97. This file takes Steven as the eighth leader. Is
-   that right?

@@ -21,15 +21,15 @@
     "milestones": {
         "_comment": "Hacks built on other games line up by position: their Nth gym leader against Oxide's Nth gym fight, their Elite Four in order against Aaron, Bertha, Flint and Lucian, their Champion against Cynthia. ids are the hack's trainer ids, or trainer names where its data has none. A fight the hack has not rebalanced is left out rather than compared. Checked by hand against levels, classes and locations on 2026-09-22.",
         "hardlove": {
-            "_note": "Read from the donor ROM, Hardlove 0.6.9. Chuck (47) comes before Jasmine (54) and Pryce (66). The ROM's League is Will, Koga, Karen and Lance as the Elite Four (Lance has the Elite Four class) with Blue (class Champion) as Champion; both of Bruno's slots hold Zubat placeholders. Lance and Blue confirmed by the trainer classes, not yet by Ian.",
+            "_note": "Read from the donor ROM, Hardlove 0.6.9. Chuck (47) comes before Jasmine (54) and Pryce (66). The ROM's League is Will, Koga, Karen and Lance as the Elite Four (Lance has the Elite Four class) with Blue (class Champion) as Champion; both of Bruno's slots hold Zubat placeholders. Ian confirmed this League on 2026-09-22.",
             "roark": [20], "gardenia": [21], "fantina": [30], "maylene": [31],
             "wake": [34], "byron": [33], "candice": [32], "volkner": [35],
             "aaron": [245], "bertha": [247], "flint": [246], "lucian": [244], "cynthia": [727]
         },
         "null": {
-            "_note": "Emerald order. Tate and Liza are a tag fight (794, 795) in the Mossdeep Gym. The Sootopolis Gym holds Leader Steven (100) and Ex Leader Juan (97); Steven is taken as the eighth gym, unconfirmed. The Elite Four's singles sets are used; the rival replaces Glacia.",
+            "_note": "Emerald order. Tate and Liza are a tag fight (794, 795) in the Mossdeep Gym. The eighth gym is Ex Leader Juan (272, level 97), as Ian confirmed on 2026-09-22; Leader Steven (804) in the same gym is not the gym fight. The Elite Four's singles sets are used; the rival replaces Glacia.",
             "roark": [265], "gardenia": [266], "fantina": [267], "maylene": [269],
-            "wake": [268], "byron": [270], "candice": [794, 795], "volkner": [804],
+            "wake": [268], "byron": [270], "candice": [794, 795], "volkner": [272],
             "aaron": [261], "bertha": [262], "flint": [40], "lucian": [264], "cynthia": [335]
         },
         "unbound": {
