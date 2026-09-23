@@ -42,10 +42,16 @@ REFS = {
     "redux": {"file": "platredux.js", "title": "Platinum Redux", "rating": 8, "game": "platinum"},
     "redux_hc": {"file": "platreduxhc.js", "title": "Platinum Redux hardcore", "rating": 8.5, "game": "platinum"},
     "kaizo": {"file": "pkv5h.js", "title": "Platinum Kaizo", "rating": 10, "game": "platinum"},
-    "hardlove": {"file": "hardlove.js", "title": "Hardlove Gold", "rating": 9.5, "game": "hgss"},
-    "null": {"file": "null12.js", "title": "Pokemon Null 1.2", "rating": 10, "game": "other"},
+    # Hardlove is read from the donor ROM (hardlove_rom.py): the calculator's
+    # file predates 0.6.9's Clair and League. The file stays as a cross-check.
+    "hardlove": {"file": "hardlove.js", "title": "Hardlove Gold 0.6.9", "rating": 9.5,
+                 "game": "hgss", "source": "rom"},
+    "null": {"file": "null12.js", "title": "Pokemon Null 1.2", "rating": 10, "game": "emerald"},
     "unbound": {"file": "unbound.js", "title": "Pokemon Unbound, difficult", "rating": 5.25,
-                "game": "other", "mode": "difficult"},
+                "game": "firered", "mode": "difficult"},
+    # Run & Bun is read from Ian's sheet of its battles (run_and_bun.py).
+    "run_and_bun": {"file": "run-and-bun-trainer-battles.xlsx", "title": "Run & Bun",
+                    "rating": 10, "game": "emerald", "source": "sheet"},
 }
 
 NO_MOVE = {"", "-", "(No Move)", "None"}
@@ -99,6 +105,7 @@ def _mon(species, s):
         "evs": s.get("evs"),
         "moves": [m for m in s.get("moves", []) if m not in NO_MOVE],
         "sub_index": s.get("sub_index"),
+        "mega": None,
     }
 
 
@@ -109,10 +116,43 @@ def _ordered(trainers):
     return trainers
 
 
+def _fold_megas(trainers):
+    """The calculator lists a Mega as its own set beside the Pokemon that
+    becomes it ("Aerodactyl" and "Aerodactyl-Mega"). That is one Pokemon, so
+    the Mega set is folded into its base as the form it turns into."""
+    for t in trainers.values():
+        by_species = {m["species"]: m for m in t["party"]}
+        kept = []
+        for m in t["party"]:
+            base = m["species"].split("-Mega")[0] if "-Mega" in m["species"] else None
+            if base and base in by_species and by_species[base] is not m:
+                by_species[base]["mega"] = m["species"]
+            else:
+                kept.append(m)
+        t["party"] = kept
+    return trainers
+
+
+def calc_sets(hack):
+    """Every set the hack's calculator file holds, keyed as ref_trainers
+    keys trainers, before Megas are folded. Tests count against this."""
+    return _read_calc(hack)
+
+
 @functools.lru_cache(maxsize=None)
 def ref_trainers(hack):
     """Every trainer in a reference hack, keyed by tr_id where the source has
-    ids, else by trainer name."""
+    ids, else by trainer name. Megas are folded into their base Pokemon."""
+    if REFS[hack].get("source") == "rom":
+        from . import hardlove_rom
+        return hardlove_rom.trainers()
+    if REFS[hack].get("source") == "sheet":
+        from . import run_and_bun
+        return run_and_bun.trainers()
+    return _fold_megas(_read_calc(hack))
+
+
+def _read_calc(hack):
     out = {}
     for species, sets in raw(hack)["formatted_sets"].items():
         for set_name, s in sets.items():
@@ -172,7 +212,8 @@ def fight_trainers(hack, fight):
         pool = ref_trainers(hack)
         ids = fights()["overrides"].get(hack, {}).get(fight["key"], fight["tr_ids"])
     else:
-        return []
+        pool = ref_trainers(hack)
+        ids = fights()["milestones"].get(hack, {}).get(fight["key"], [])
     return [pool[i] for i in ids if i in pool]
 
 
@@ -180,9 +221,9 @@ def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     key = argv[0] if argv else "roark"
     fight = next(f for f in fights()["fights"] if f["key"] == key)
-    for hack in ["oxide"] + [h for h in REFS if REFS[h]["game"] == "platinum"]:
+    for hack in ["oxide"] + list(REFS):
         for t in fight_trainers(hack, fight):
-            print(f"{hack:10} {t['tr_id']:>4} {t['name']}")
+            print(f"{hack:10} {str(t['tr_id'] or ''):>4} {t['name']}")
             for m in t["party"]:
                 print(f"{'':16}{m['species']:12} {m['level']:>3} {str(m['item']):16} "
                       f"{str(m['nature']):8} {', '.join(m['moves'])}")

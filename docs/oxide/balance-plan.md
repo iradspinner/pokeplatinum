@@ -7,10 +7,12 @@ the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-22).** Scoping is done, and the reference data is
-pinned outside the repo. B1, the data layer, is under way: its first part is
-built and tested (`tools/oxide/balance/`, `test_b1` 24 of 24, run twice), and
-reads Oxide and the five Platinum-based references side by side for all 28
-story fights. Next is the rest of B1. No questions are open.
+pinned outside the repo. B1, the data layer, is under way. B1a and B1b are built and
+tested (`tools/oxide/balance/`, `test_b1` 36 of 36, run twice). Oxide and
+eight rated references now line up fight by fight: the five Platinum-based
+hacks for all 28 story fights, and Hardlove, Null, Unbound and Run & Bun for
+every gym, Elite Four seat and Champion. Next are B1c (Odyssey) and B1d
+(Oxide's split map). Two small questions for Ian are at the end.
 
 ## The target
 
@@ -112,6 +114,34 @@ What B1a found, beyond the table above:
   Snowpoint Gym a blizzard, Bertha's room a sandstorm and Flint's room
   ashfall, and several caves lost their fog. Which of these become battle
   weather is for the weather pass to read from the battle code.
+
+What B1b found:
+
+- **The calculator's Hardlove file is out of date.** It holds vanilla
+  HeartGold's Clair and League, where Hardlove 0.6.9 has Clair at 77 and its
+  League at 82. So Hardlove is read from the donor ROM, the same one the port
+  reads, and the file is kept only as a cross-check: Bugsy to Pryce match it
+  exactly. **Hardlove's League is Will, Koga, Karen and Lance, with Blue as
+  Champion.** Lance has the Elite Four trainer class, Blue the Champion
+  class, and both of Bruno's slots hold Zubat placeholders. Ian pointed at
+  this ("the other elite four"), and the classes confirm it.
+- **Hardlove rebalanced species stats**, so its fights are scored with its
+  own records from the ROM, not the calculator's (its Alolan Ninetales is
+  79/89/79/109/99/100 where vanilla's is 73/67/75/81/100/109). The ROM also
+  gave up three details worth keeping. Its species names are cut to ten
+  characters, so 14 are spelled out by hand. It has no form names, so the 44
+  forms its trainers use are named in a table checked against each form's
+  types. And it adds abilities past the 319 it has names for (up to 484),
+  which the reader keeps as numbers.
+- **The calculator lists a Mega as a seventh set** beside the Pokemon that
+  becomes it; Null's leaders all looked like seven-Pokemon parties until the
+  146 Mega sets were folded in.
+- **Unbound's gym levels are almost Oxide's** (21, 27, 33, 37, 46, 53, 58,
+  62 against 16, 26, 33, 39, 44, 53, 56, 62), with three to five Pokemon a
+  leader, at a rating of 5 to 5.5. It is the cleanest reading of how much
+  party size and roster quality are worth.
+- **Run & Bun's sheet is whole for every boss.** 76 filler trainers in the
+  later splits have no moves on the sheet itself.
 
 ## What gets measured
 
@@ -277,8 +307,15 @@ disagrees with them.
     hack. It also checks that no hack's League sits below its Volkner. That
     check fails without the per-hack overrides below, so it does test
     something.
-  - [ ] **B1b**, milestone maps for Hardlove, Null and Unbound, and a reader
-    for Ian's Run & Bun sheet.
+  - [x] **B1b, the hacks built on other games** (2026-09-22). Each lines up
+    with Oxide by position: its Nth gym against Oxide's Nth, its Elite Four
+    in order against Aaron to Lucian, its Champion against Cynthia
+    (`fights.json`, "milestones"). Their rivals and villain bosses are not
+    mapped yet; the gyms and League are what calibration needs first.
+    Hardlove is read from the donor ROM (`hardlove_rom.py`) and Run & Bun
+    from Ian's sheet (`run_and_bun.py`); Null and Unbound from the
+    calculator's files, with each Mega set folded into the Pokemon that
+    becomes it.
   - [ ] **B1c**, Odyssey read from the ROM through the HexManiacAdvance
     anchors, once its move table is found.
   - [ ] **B1d**, Oxide's split map: every filler trainer, item ball, mart
@@ -318,3 +355,14 @@ Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before
 the trainer pass uses the field: the packer accepts `NATURE_COUNT`, and that
 hangs the game (encounter build plan, QA findings).
+
+## Questions for Ian
+
+Neither blocks B1c or B1d.
+
+1. Hardlove's League: the ROM's trainer classes make Lance an Elite Four
+   member and Blue the Champion, with Bruno's slots empty. Is that the
+   League you played?
+2. Null's eighth gym: the Sootopolis Gym holds "Leader Steven" at 100 and
+   "Ex Leader Juan" at 97. This file takes Steven as the eighth leader. Is
+   that right?

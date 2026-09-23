@@ -18,6 +18,38 @@
             "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870]
         }
     },
+    "milestones": {
+        "_comment": "Hacks built on other games line up by position: their Nth gym leader against Oxide's Nth gym fight, their Elite Four in order against Aaron, Bertha, Flint and Lucian, their Champion against Cynthia. ids are the hack's trainer ids, or trainer names where its data has none. A fight the hack has not rebalanced is left out rather than compared. Checked by hand against levels, classes and locations on 2026-09-22.",
+        "hardlove": {
+            "_note": "Read from the donor ROM, Hardlove 0.6.9. Chuck (47) comes before Jasmine (54) and Pryce (66). The ROM's League is Will, Koga, Karen and Lance as the Elite Four (Lance has the Elite Four class) with Blue (class Champion) as Champion; both of Bruno's slots hold Zubat placeholders. Lance and Blue confirmed by the trainer classes, not yet by Ian.",
+            "roark": [20], "gardenia": [21], "fantina": [30], "maylene": [31],
+            "wake": [34], "byron": [33], "candice": [32], "volkner": [35],
+            "aaron": [245], "bertha": [247], "flint": [246], "lucian": [244], "cynthia": [727]
+        },
+        "null": {
+            "_note": "Emerald order. Tate and Liza are a tag fight (794, 795) in the Mossdeep Gym. The Sootopolis Gym holds Leader Steven (100) and Ex Leader Juan (97); Steven is taken as the eighth gym, unconfirmed. The Elite Four's singles sets are used; the rival replaces Glacia.",
+            "roark": [265], "gardenia": [266], "fantina": [267], "maylene": [269],
+            "wake": [268], "byron": [270], "candice": [794, 795], "volkner": [804],
+            "aaron": [261], "bertha": [262], "flint": [40], "lucian": [264], "cynthia": [335]
+        },
+        "unbound": {
+            "_note": "Difficult mode, bosses only, keyed by name.",
+            "roark": ["Leader Mirskle"], "gardenia": ["Leader Vega"], "fantina": ["Leader Alice"],
+            "maylene": ["Leader Mel"], "wake": ["Leader Galavan"], "byron": ["Leader Big Mo"],
+            "candice": ["Leader Tessy"], "volkner": ["Leader Benjamin"],
+            "aaron": ["Elite Four Moleman"], "bertha": ["Elite Four Elias"],
+            "flint": ["Elite Four Arabella"], "lucian": ["Elite Four Penny"], "cynthia": ["Champion Jax"]
+        },
+        "run_and_bun": {
+            "_note": "From Ian's sheet, keyed by name. Run & Bun's gym order is Brawly, Roxanne, Wattson, Norman, Flannery, Winona, Tate and Liza, Juan, the sheet's tab order. Flannery and Juan are double battles; Tate and Liza are one fight. The Elite Four's singles sets are used.",
+            "roark": ["Leader Brawly [Boss]"], "gardenia": ["Leader Roxanne [Boss]"],
+            "fantina": ["Leader Wattson [Boss]"], "maylene": ["Leader Norman [Boss]"],
+            "wake": ["Leader Flannery [Double] [Boss]"], "byron": ["Leader Winona [Boss]"],
+            "candice": ["Leader Tate [Boss]", "Leader Liza [Boss]"], "volkner": ["Leader Juan [Double] [Boss]"],
+            "aaron": ["Elite Four Sidney"], "bertha": ["Elite Four Phoebe"],
+            "flint": ["Elite Four Glacia"], "lucian": ["Elite Four Drake"], "cynthia": ["Champion Wallace"]
+        }
+    },
     "fights": [
         {"key": "barry_1", "label": "Barry 1", "split": "Roark", "sheet_ace": null,
          "trainers": ["TRAINER_RIVAL_ROUTE_201_PIPLUP", "TRAINER_RIVAL_ROUTE_201_TURTWIG", "TRAINER_RIVAL_ROUTE_201_CHIMCHAR"]},

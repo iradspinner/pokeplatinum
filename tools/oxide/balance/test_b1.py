@@ -1,4 +1,4 @@
-"""B1 acceptance, first part: the reference data and the story fights.
+"""B1 acceptance: the reference data, the story fights and the milestone maps.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_b1
 
@@ -44,7 +44,7 @@ def check_set_counts(results):
     """The loader keeps every set each file holds, no more and no fewer."""
     for hack, want in SET_COUNTS.items():
         raw = sum(len(v) for v in data.raw(hack)["formatted_sets"].values())
-        loaded = sum(len(t["party"]) for t in data.ref_trainers(hack).values())
+        loaded = sum(len(t["party"]) for t in data.calc_sets(hack).values())
         results.append((f"{hack}: every set is read once", raw == want == loaded,
                         f"{raw} in the file, {loaded} loaded, {want} expected"))
 
@@ -117,11 +117,82 @@ def check_roark(results):
     results.append(("Roark's party sizes", got == want, str(got)))
 
 
+def check_megas_folded(results):
+    """A Mega listed as its own set is folded into the Pokemon that becomes
+    it, so no compared fight runs past six Pokemon a trainer. Null's gym
+    leaders had seven before folding. Only the fights that get compared are
+    checked: some filler keys (Null's Root Academy slots, Unbound's rivals
+    keyed by name) hold several alternative teams under one key."""
+    compared = data.fights()["fights"]
+    for hack in ("null", "kaizo", "renegade", "unbound"):
+        over = [t["name"] for f in compared for t in data.fight_trainers(hack, f)
+                if len(t["party"]) > 6]
+        megas = sum(1 for t in data.ref_trainers(hack).values() for m in t["party"] if m.get("mega"))
+        results.append((f"{hack}: no compared fight over six a trainer, Megas folded", not over,
+                        f"{megas} Megas folded" + (f"; over six: {over[:3]}" if over else "")))
+
+
+def check_hardlove_rom(results):
+    """Hardlove comes from the donor ROM. Its first seven gyms agree with the
+    calculator's file wherever that file is current; the League is the
+    ROM's own, at 82, with Lance an Elite Four member and Blue the Champion."""
+    from . import hardlove_rom
+    rom, calc = hardlove_rom.trainers(), data.calc_sets("hardlove")
+    members = sum(len(t["party"]) for t in rom.values())
+    results.append(("hardlove: every trainer in the ROM is read", (len(rom), members) == (737, 1909),
+                    f"{len(rom)} trainers, {members} Pokemon"))
+    # Falkner and Whitney are left out: the calculator's file has one old
+    # level and no Galarian forms there, and the ROM is the newer of the two.
+    diff = []
+    for tr_id in (21, 31, 34, 33, 32):
+        a = sorted((m["mega"] or m["species"], m["level"]) for m in rom[tr_id]["party"])
+        b = sorted((m["species"], m["level"]) for m in calc[tr_id]["party"])
+        if a != b:
+            diff.append(tr_id)
+    results.append(("hardlove: Bugsy to Pryce match the calculator's file", not diff,
+                    f"differ: {diff}" if diff else "5 gyms, species and levels"))
+    anchors = {m["species"]: m["types"] for t in rom.values() for m in t["party"]}
+    ok = (rom[244]["name"].startswith("Elite Four") and rom[727]["name"].startswith("Champion")
+          and anchors.get("Farfetch’d-Galar") == ["Fighting"]
+          and anchors.get("Ninetales-Alola") == ["Ice", "Fairy"])
+    results.append(("hardlove: League roles and form types read from the ROM", ok,
+                    f"244 {rom[244]['name']}, 727 {rom[727]['name']}"))
+
+
+def check_run_and_bun(results):
+    """Ian's Run & Bun sheet: every Pokemon has a level, every boss a full
+    set of moves. 76 filler trainers in the later splits have no moves on
+    the sheet itself, which is the sheet's gap, not the reader's."""
+    from . import run_and_bun
+    ts = run_and_bun.trainers()
+    members = sum(len(t["party"]) for t in ts.values())
+    no_level = sum(1 for t in ts.values() for m in t["party"] if m["level"] is None)
+    boss_gaps = [k for k, t in ts.items() if "[Boss]" in k and any(not m["moves"] for m in t["party"])]
+    results.append(("run_and_bun: the sheet reads whole",
+                    (len(ts), members, no_level, boss_gaps) == (436, 1832, 0, []),
+                    f"{len(ts)} trainers, {members} Pokemon, {no_level} without a level, "
+                    f"bosses without moves: {boss_gaps}"))
+
+
+def check_milestones_resolve(results):
+    """Each hack built on another game has a counterpart for every gym, Elite
+    Four seat and Champion, found under the name its milestone map gives."""
+    seats = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
+             "aaron", "bertha", "flint", "lucian", "cynthia")
+    by_key = {f["key"]: f for f in data.fights()["fights"]}
+    for hack in ("hardlove", "null", "unbound", "run_and_bun"):
+        want = data.fights()["milestones"][hack]
+        missing = [k for k in seats if len(data.fight_trainers(hack, by_key[k])) != len(want[k])]
+        results.append((f"{hack}: all 13 gym and League seats resolve", not missing,
+                        f"unresolved: {missing}" if missing else ""))
+
+
 def main():
     results = []
     for check in (check_pinned_files, check_set_counts, check_oxide_members,
                   check_fights_resolve, check_sheet_levels,
-                  check_league_after_volkner, check_roark):
+                  check_league_after_volkner, check_roark, check_megas_folded,
+                  check_hardlove_rom, check_run_and_bun, check_milestones_resolve):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
