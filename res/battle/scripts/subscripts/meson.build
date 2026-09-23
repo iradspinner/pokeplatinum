@@ -325,4 +325,11 @@ subscript_files = files(
     'subscript_remove_user_fire_type.s',
     'subscript_remove_user_electric_type.s',
     'subscript_clear_smog.s',
+    'subscript_drain_three_quarters.s',
+    'subscript_atk_sp_atk_down.s',
+    'subscript_atk_sp_atk_speed_down.s',
+    'subscript_coaching.s',
+    'subscript_heal_pulse.s',
+    'subscript_pollen_puff_heal.s',
+    'subscript_life_dew.s',
 )

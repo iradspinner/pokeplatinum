@@ -322,3 +322,10 @@ subscript_recoil_half_max_hp
 subscript_remove_user_fire_type
 subscript_remove_user_electric_type
 subscript_clear_smog
+subscript_drain_three_quarters
+subscript_atk_sp_atk_down
+subscript_atk_sp_atk_speed_down
+subscript_coaching
+subscript_heal_pulse
+subscript_pollen_puff_heal
+subscript_life_dew

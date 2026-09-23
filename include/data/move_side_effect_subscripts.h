@@ -190,5 +190,12 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_REMOVE_USER_FIRE_TYPE]            = subscript_remove_user_fire_type,
     [MOVE_SUBSCRIPT_PTR_REMOVE_USER_ELECTRIC_TYPE]        = subscript_remove_user_electric_type,
     [MOVE_SUBSCRIPT_PTR_CLEAR_SMOG]                       = subscript_clear_smog,
+    [MOVE_SUBSCRIPT_PTR_DRAIN_THREE_QUARTERS]             = subscript_drain_three_quarters,
+    [MOVE_SUBSCRIPT_PTR_ATK_SP_ATK_DOWN]                  = subscript_atk_sp_atk_down,
+    [MOVE_SUBSCRIPT_PTR_ATK_SP_ATK_SPEED_DOWN]            = subscript_atk_sp_atk_speed_down,
+    [MOVE_SUBSCRIPT_PTR_COACHING]                         = subscript_coaching,
+    [MOVE_SUBSCRIPT_PTR_HEAL_PULSE]                       = subscript_heal_pulse,
+    [MOVE_SUBSCRIPT_PTR_POLLEN_PUFF_HEAL]                 = subscript_pollen_puff_heal,
+    [MOVE_SUBSCRIPT_PTR_LIFE_DEW]                         = subscript_life_dew,
 };
 // clang-format on

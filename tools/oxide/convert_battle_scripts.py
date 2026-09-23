@@ -280,8 +280,20 @@ def supplemented(renames, have=None):
         sys.exit("SUPPLEMENT names identifiers Platinum no longer has: %s" % gone)
     merged = dict(SUPPLEMENT)
     merged.update(subscript_renames())
+    merged.update(ability_renames())
     merged.update(renames)
     return merged
+
+
+def ability_renames():
+    """hg-engine's ability names that differ from Oxide's at the same id. Element
+    3 imported the donor's abilities contiguously, so the ids agree for good,
+    and 309 of hg-engine's 320 names agree too (2026-09-22). The other ten are
+    names the donor's display text squashed (MEGALAUNCHER for MEGA_LAUNCHER),
+    the two As One forms and two placeholders, matched here by id."""
+    oxide = lines_of(os.path.join(ROOT, "generated", "abilities.txt"))
+    return {name: oxide[value] for name, value in hg_values().items()
+            if name.startswith("ABILITY_") and value < len(oxide) and oxide[value] != name}
 
 
 def lines_of(path):
@@ -694,6 +706,27 @@ def unaimed(line):
     return None
 
 
+def oxide_effect_learners():
+    """Effect id to the Oxide species that learn a move using it, from every
+    list in every species' learnset. No trainer party, gift or field script
+    uses a new move (checked 2026-09-22), so a learnset is the only way a
+    player meets one; Metronome aside."""
+    import json
+    effects = lines_of(os.path.join(ROOT, "generated", "move_battle_effects.txt"))
+    effect_of = {}
+    for p in glob.glob(os.path.join(ROOT, "res", "moves", "*", "data.json")):
+        name = json.load(open(p, encoding="utf-8"))["effect"]["type"]
+        if name in effects:
+            effect_of["MOVE_" + os.path.basename(os.path.dirname(p)).upper()] = effects.index(name)
+    out = collections.defaultdict(set)
+    for p in glob.glob(os.path.join(ROOT, "res", "pokemon", "*", "data.json")):
+        learnset = json.dumps(json.load(open(p, encoding="utf-8")).get("learnset", {}))
+        for move in set(re.findall(r"MOVE_\w+", learnset)):
+            if move in effect_of:
+                out[effect_of[move]].add(os.path.basename(os.path.dirname(p)))
+    return out
+
+
 def check_script(text, have):
     """The names a converted script uses that Platinum lacks, and the message
     numbers it still prints. After conversion a bare number in a message
@@ -765,6 +798,7 @@ def audit(ids, renames, have):
 
     strings = battle_strings()
     oxide_users = oxide_effect_users()
+    learners = oxide_effect_learners()
     rows = []
     for e in ids:
         unresolved, messages = check_script(convert(effects[e][1], renames, strings), have)
@@ -779,6 +813,11 @@ def audit(ids, renames, have):
             verdict = "done"
         elif e not in oxide_users:
             verdict = "unused"
+        elif e not in learners:
+            # Ian, 2026-09-22: an effect only Metronome can reach is not
+            # ported. Computed, so one comes back if a later TM or tutor pass
+            # makes one of its moves learnable.
+            verdict = "unreachable"
         elif items:
             verdict = "items"
         elif unresolved:
@@ -842,7 +881,7 @@ def main():
         wanted = sorted({r["effect"] for r in recs[1:923] if r["effect"] >= PLATINUM_EFFECTS})
         rows = audit(a.audit or wanted, renames, have)
         if a.audit is not None:
-            order = ["done", "settled", "unused", "ready", "c", "text", "names", "items"]
+            order = ["done", "settled", "unused", "unreachable", "ready", "c", "text", "names", "items"]
             for v in order:
                 group = [r for r in rows if r["verdict"] == v]
                 if not group:
@@ -851,6 +890,7 @@ def main():
                 for r in group:
                     why = {"done": "", "settled": SETTLED.get(r["id"], ""), "ready": "",
                            "unused": "no Oxide move uses it",
+                           "unreachable": "no Oxide species learns a move that uses it",
                            "c": ("C reviewed: " + C_REVIEWED[r["id"]]) if r["id"] in C_REVIEWED
                                 else "C: " + ", ".join(r["code"]),
                            "text": "messages %s" % r["messages"],
