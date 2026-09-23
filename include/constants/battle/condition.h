@@ -96,7 +96,7 @@
 #define SIDE_CONDITION_TAILWIND_0   (1 << 8)
 #define SIDE_CONDITION_TAILWIND_1   (1 << 9)
 #define SIDE_CONDITION_TOXIC_SPIKES (1 << 10)
-// unused flag: 1 << 11
+#define SIDE_CONDITION_STICKY_WEB   (1 << 11) // Oxide
 #define SIDE_CONDITION_LUCKY_CHANT_0 (1 << 12)
 #define SIDE_CONDITION_LUCKY_CHANT_1 (1 << 13)
 #define SIDE_CONDITION_LUCKY_CHANT_2 (1 << 14)

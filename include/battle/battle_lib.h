@@ -556,6 +556,16 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move);
 int Battler_AttackAfterStage(BattleContext *battleCtx, int battler);
 
 /**
+ * @brief Oxide: whether the battler is on the ground, for Sticky Web, which is
+ * checked in battle_script.c. The same test Arena Trap uses.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if the battler is grounded
+ */
+BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

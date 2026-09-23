@@ -8801,6 +8801,41 @@
         "The foe’s {STRVAR_1 1, 0, 0}\n",
         "fell straight down!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_AStickyWebHasBeenLaidOutOnYourSide",
+      "en_US": [
+        "A sticky web has been laid out on the\n",
+        "ground on your side!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_AStickyWebHasBeenLaidOutOnTheFoesSide",
+      "en_US": [
+        "A sticky web has been laid out on the\n",
+        "ground on the foe’s side!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
     }
   ]
 }

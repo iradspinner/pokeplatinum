@@ -1260,6 +1260,17 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    .macro TryStickyWeb jump_on_fail
+    .long BTLCMD_TRYSTICKYWEB
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
+    .macro CheckStickyWeb battler, jump_no_effect
+    .long BTLCMD_CHECKSTICKYWEB
+    .long \battler
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

@@ -235,6 +235,8 @@ ScriptCommand(BTLCMD_CALCHEAVYSLAMPOWER,          BtlCmd_CalcHeavySlamPower)
 ScriptCommand(BTLCMD_REDUCEWEIGHT,                BtlCmd_ReduceWeight)
 ScriptCommand(BTLCMD_CALCSTRENGTHSAP,             BtlCmd_CalcStrengthSap)
 ScriptCommand(BTLCMD_TRYDRAGONTAIL,               BtlCmd_TryDragonTail)
+ScriptCommand(BTLCMD_TRYSTICKYWEB,                BtlCmd_TryStickyWeb)
+ScriptCommand(BTLCMD_CHECKSTICKYWEB,              BtlCmd_CheckStickyWeb)
 
 // clang-format on
 

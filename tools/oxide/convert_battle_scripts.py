@@ -106,6 +106,8 @@ HG_STRINGS = {
     1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
     1616: "BattleStrings_Text_PokemonConcentratedIntensely_Ally",
     1784: "BattleStrings_Text_PokemonFellStraightDown_Ally",
+    1514: "BattleStrings_Text_AStickyWebHasBeenLaidOutOnYourSide",
+    1516: "BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Ally",
 }
 
 # The message commands and which argument is the message.
