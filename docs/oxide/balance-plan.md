@@ -8,7 +8,7 @@ the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-22).** Scoping is done, and the reference data is
 pinned outside the repo. Nothing is built yet. The next step is B1, the data
-layer. Two small questions for Ian are at the end, and neither blocks B1.
+layer. No questions are open.
 
 ## The target
 
@@ -28,9 +28,9 @@ Ian's scale runs from 1 to 10:
 Ian named three more comparison points without a number: **Pokemon Odyssey**
 as a good match for the target, though it is all double battles with many
 type and move changes, and **Pokemon Unbound** and **Pokemon Insurgence** as
-very slightly on the easy side. This file carries them provisionally as
-Odyssey about 6, and Unbound and Insurgence about 5 to 5.5, until Ian puts
-numbers on them (question 1 below).
+very slightly on the easy side. Ian confirmed the numbers this file had put on
+them: Odyssey about 6, and Unbound (difficult mode, as he remembers it) and
+Insurgence about 5 to 5.5.
 
 Ian's rulings, 2026-09-22:
 
@@ -171,7 +171,7 @@ never run.
 | `pkv5h.js` | Platinum Kaizo | 10 | 3,077 |
 | `null12.js` | Pokemon Null 1.2 | 10 | 2,282 |
 | `run-and-bun-trainer-battles.xlsx` | Run & Bun | 10 | Ian's sheet |
-| `unbound.js` | Pokemon Unbound, bosses only | about 5 to 5.5 | 357 to 417 per mode |
+| `unbound.js` | Pokemon Unbound, bosses only; difficult mode is the rated one | about 5 to 5.5 | 357 in difficult mode |
 | `odyssey-4.1.1.gba` and `.hma.toml` | Pokemon Odyssey 4.1.1 | about 6 | 350 trainers, in the ROM |
 
 Run & Bun comes from Ian's own sheet, not the calculator. It has one tab per
@@ -278,12 +278,3 @@ Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before
 the trainer pass uses the field: the packer accepts `NATURE_COUNT`, and that
 hangs the game (encounter build plan, QA findings).
-
-## Questions for Ian
-
-Neither blocks B1.
-
-1. Numbers for the three new comparison points: is Odyssey about a 6, and
-   are Unbound and Insurgence about 5 to 5.5?
-2. Unbound: which mode did you play? The data has difficult, expert and
-   insane.
