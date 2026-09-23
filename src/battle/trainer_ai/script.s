@@ -4135,7 +4135,8 @@ Expert_Hail_End:
 Expert_Facade:
     // If the opponent has a status condition which would boost Facade, score +1.
     // BUG: This should instead check if the attacker has such a status condition.
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the user's status powers Facade
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
     AddToMoveScore 1
 
 Expert_Facade_End:
