@@ -12,7 +12,8 @@ linter cannot disagree. Editing the JSON by hand throws all of that away.
 
 The plan for the whole pass is `docs/oxide/encounter-authoring-plan.md`; its
 status is the "Authoring pass" section of
-`docs/oxide/encounter-tool-build-plan.md`. The design model is
+`docs/oxide/encounter-tool-build-plan.md`, and each finished step's full entry
+is in `docs/oxide/encounter-tool-build-plan-archive.md`. The design model is
 `docs/oxide/encounter-tool-design.md` sections 2 and 7. This skill is the
 two-screen version for working on one table.
 
@@ -45,12 +46,11 @@ the pass replaces them. Calibrate against `main`, never the working tree.
 2. Write the `intent` line first, one sentence: what this table is for and what
    a player remembers it by. If you cannot write it, you do not know the table
    yet. It is what Ian reads in six months.
-3. Pick the archetype from the band's preferred set (design doc 2.5): early
-   tables want A1, A3, A4, A9, A10 (3 to 5 species, top slot 40 to 50%); mid A1,
-   A5, A6, A9; late A1, A5, A6, A7, A8 (5 to 8 species, top slot 25 to 35%). The
-   game-wide budget in 2.3 is the constraint that only shows at the end, so check
-   `report` every twenty tables: if the spread is stuck under 2.2, the fix is
-   more concentrated tables (A2, A3, A4, A9, A10), not tweaks to A1 ones.
+3. Pick the archetype from the band's preferred set in design doc 2.5, which
+   since 2026-09-21 is the cap rather than a concentration arc: A11 to A19 in
+   rotation, top slot 25 to 35% in every band. The game-wide budget in 2.3 is
+   the constraint that only shows at the end, so check `report` every twenty
+   tables: R8's spread floor is 1.8x now (the authored game reads about 1.96x).
 4. Write the `cast` in share order: the first entry is the face. Pin a species
    to a rung with `{"species": X, "rung": r}` when the rung is the point of it.
    Two facts about the layout: an A5 head can never hold a top-rung slot (its 40
@@ -93,10 +93,55 @@ the pass replaces them. Calibrate against `main`, never the working tree.
   R8, R9, R11, R14) must pass on `--ref main`; if one does not, the threshold is
   wrong, not vanilla.
 
+## Ian's rulings from the pass, still in force
+
+These came out of his reviews of Steps 2 to 8 (2026-09-21 and 22). The steps'
+full entries are in the build plan's archive; the rules are here so nobody has
+to read it.
+
+- Tables are designed per capture area (one location name, however many
+  files) and per gym split. The splits, their level caps and the split each rod
+  and Surf arrives in are the sidecar's `splits` table; Maylene's cap is 38 in
+  the tables and 39 in Ian's sheet, waiting on the balance track.
+- A grass table holds eight to sixteen lines with distinct day and night pairs,
+  and nothing over 35%. Room groups (the Old Chateau, Iron Island, Mt. Coronet,
+  Victory Road and the rest) draw on one pool each and rotate shape and order.
+  All eighteen Solaceon Ruins rooms share one cast, because the player cannot
+  tell them apart.
+- Roark's split holds only starter-adjacent lines, lines with a scripted
+  source, and 4% or 1% tails. Ravaged Path is in Roark's split.
+- A gate-tier starter is a cameo or a tail, never a home. A delay (a location
+  whose halves fall in different splits) must be worth delaying for: several
+  starters or value lines at 10 to 20%, not a 5% tail.
+- A line fully evolved by level-up under a split's cap belongs in or before
+  that split. The availability gate's cap-candidates list must be empty.
+- When a table cannot be filled from the pick-list, stop and propose additions
+  to Ian before pushing; do not pad it.
+- After any change to a table's levels, run `cli evolve`: it puts the stage a
+  level deserves in each slot (friendship judged at 20, a stone at 30, a trade at
+  38, `BRANCH` in `evolve.py` for a split line), writes the sidecar, and `apply`
+  then writes the tables. It has converged when it reports 0 moves.
+- Swarms, the Poke Radar, the dual-slot lists and the Trophy Garden dailies are
+  not used in Oxide. They are filled with on-list species only so that nothing
+  off-list can be rolled, and no capture is counted from them.
+- Anything post-champion (Turnback Cave) is out of scope. Scripted gifts are
+  even-odds pools per source, one flag each, recorded in
+  `docs/oxide/encounters/scripted-sources.md`.
+- After any table change, regenerate the sources catalogue:
+  `PYTHONPATH=. python3 tools/oxide/pokemon_sources.py`.
+- A new way of authoring a table (a sidecar key, a file kind) extends
+  `authored_encounters()` in `import_base_rom.py` and `test_step0`'s mirror of
+  it in the same commit, or the importer's dry run reverts the table.
+
 ## When a batch is done
 
-`lint --fail-on error` clean; `make rom`; `python3 tools/oxide/verify_narcs.py
---built build/pokeplatinum.us.nds --encounters --source` reports every table
-matching its JSON; the numbers from `report` go into the build plan's
+`cli evolve` reports 0 moves; `cli availability` passes with no cap
+candidates; `lint --ignore R12 --fail-on error` is clean (R12's 27 errors are
+the legendary pool's lines, which wait on script work); `audit --fail-on-leak`
+exits 0; the ROM is built (on GitHub with `tools/oxide/fetch-rom` until the
+replacement CPU is in, otherwise `make rom`) and `python3
+tools/oxide/verify_narcs.py --built <rom> --encounters --source` reports all 184
+tables matching their JSON. The numbers from `report` go into the build plan's
 "Authoring pass" section against the targets in design doc 2.1; the tracker's
-encounter paragraph is updated and nothing else in the tracker is touched.
+encounter paragraph changes only if what is live changes, and nothing else in
+the tracker is touched.
