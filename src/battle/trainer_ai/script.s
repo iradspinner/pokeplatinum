@@ -820,8 +820,10 @@ Basic_CheckSunnyDay:
     // If the target's ability is Hydration and they are currently statused, score -10.
     // Why does this consider Hydration? This is clearly a bug, but what was the intention?
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_HYDRATION, Basic_CheckCurrentWeatherIsSun
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): sun would protect a target with Leaf Guard
+    // that has no status yet, so that is the case that scores -10
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Basic_CheckCurrentWeatherIsSun
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
 
 Basic_CheckCurrentWeatherIsSun:
     // If the weather is currently Sun, score -8.
