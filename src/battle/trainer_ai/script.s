@@ -7156,8 +7156,14 @@ TagStrategy_Earthquake:
     // last stood there, so a lone Earthquake user took -3, or -10 after a partner weak to it
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_End
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Earthquake_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
+
+TagStrategy_Earthquake_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, ScorePlus2
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
@@ -7280,10 +7286,16 @@ TagStrategy_SpreadElectricMove:
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
     // when the partner's slot is empty for the rest of the battle
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckElectric_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadElectricMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadElectricMove_CheckTypes:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
     // before the Water and Flying weaknesses a Swampert or a Gliscor also has
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
@@ -7324,10 +7336,16 @@ TagStrategy_SpreadWaterMove:
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
     // when the partner's slot is empty for the rest of the battle
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadWaterMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadWaterMove_CheckTypes:
 
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
@@ -7369,10 +7387,16 @@ TagStrategy_SpreadFireMove:
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
     // when the partner's slot is empty for the rest of the battle
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckFire_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadFireMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadFireMove_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
