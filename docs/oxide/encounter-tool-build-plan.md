@@ -46,9 +46,9 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 18/18
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 1 error, R8
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # errors: R12's 27 scripted lines only
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 82/82, the dex, moves, calculator and trainer sets
@@ -59,7 +59,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8
 ```
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
-reference ROM, and it must read "all 183 tables match their source JSON". It is the
+reference ROM, and it must read "all 184 tables match their source JSON". It is the
 only check here that looks at what the game actually runs.
 
 The `plan` line is the whole design in one command: it should take Growlithe from
@@ -1535,8 +1535,9 @@ Three things the page knows that the move files do not say directly:
    Today that is 130 effects and 136 moves. The list marks them with the lint
    warning's dot, and the move page says what the player will see: the damage
    without its extra, or "But nothing happened!" for a status move.
-2. **What changed from vanilla**, per field. 190 natives differ. Most of them
-   (96) differ only in the King's Rock flag element 4 gave every damaging move.
+2. **What changed from vanilla**, per field. 190 natives differ. Of them, 80
+   differ only in the King's Rock flag element 4 gave every damaging move (95
+   gain it; the QA pass before the merge recounted, where this said 96).
    The rest are the base ROM's own edits: Tackle's accuracy, and Attack Order
    rebuilt as a 120-power poison hit. Charm's Fairy retype shows too. The
    baseline is `main` read in one `git cat-file --batch` call rather than 468
@@ -1745,6 +1746,21 @@ How it was checked:
 What is left is Ian's: choosing which trainer Pokemon get a nature, which is
 Phase 5 balance work. The calculator shows the result as soon as a file is
 edited.
+
+**Open from the QA pass before the merge** (2026-09-22,
+`docs/oxide/qa-review-2026-09-22-encounter-d4d5.md`; none of it blocked the
+merge). The trainer packer accepts `"nature": "NATURE_COUNT"`, and the game
+then loops forever building that party, because no personality lands on a
+26th nature; a numeric or `true` nature is dropped without a word. It needs a
+range check in `trainerproc.c` before Phase 5 names a nature. The calculator
+applies a dual type's two factors in the defender's type order where the game
+uses chart order, so Crunch into Bronzor reads 42 to 50 against the game's 43
+to 51; this is upstream's behaviour and Ian's call, and the roll below settles
+it if it uses such a matchup. The four always-critical moves (Flower Trick,
+Frost Breath, Storm Throw, Wicked Blow) are listed as placeholders, because
+element 4 did their effect in C and left the script a plain hit. `object_hash`
+and the ag-grid theme CSS came in with no licence notice. Smaller: the Z-move
+twins share one calculator name, so one overwrites the other.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a
