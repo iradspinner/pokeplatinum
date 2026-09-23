@@ -7268,16 +7268,14 @@ TagStrategy_SpreadElectricMove:
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
+    // before the Water and Flying weaknesses a Swampert or a Gliscor also has
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-
-    // BUG: This should be before the checks for all other types; in its present position, the
-    // vanilla trainer AI will never use Discharge if their partner is, e.g., Swampert or Gliscor
-    // (which should be treated as Immune to the move, but are not).
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
     AddToMoveScore -3
 
 TagStrategy_CheckElectric_End:
