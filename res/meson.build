@@ -100,6 +100,15 @@ relative_source_root = fs.relative_to(meson.project_source_root(), meson.project
 # *breaks* the dependency-chain if any of these files are edited. However, because
 # this generator produces a depfile, the build back-end will still see the correct
 # granular headers on which each input source file depends.
+# Platinum Oxide: the test kit (docs/oxide/test-kit.md). Its field script code
+# sits in #ifdef OXIDE_TESTKIT blocks, and the bedroom's events and text bank are
+# swapped for merged copies, so none of it reaches a build without the option.
+script_defines = []
+if get_option('oxide_testkit')
+    script_defines = ['--define', 'OXIDE_TESTKIT']
+    testkit_merge_py = find_program(meson.project_source_root() / 'tools' / 'oxide' / 'testkit_merge.py', native: true)
+endif
+
 script_bin_gen = generator(make_script_bin_sh,
     arguments: [
         '-i', relative_source_root / 'include',
@@ -109,6 +118,7 @@ script_bin_gen = generator(make_script_bin_sh,
         '--enumproc', enumproc_exe.full_path(),
         '--assembler', arm_none_eabi_gcc_exe.full_path(),
         '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
+        script_defines,
         '@EXTRA_ARGS@',
         '@INPUT@',
     ],

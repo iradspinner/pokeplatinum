@@ -862,3 +862,27 @@ BOOL ScrCmd_CheckPartyHasHeldItem(ScriptContext *ctx)
 
     return FALSE;
 }
+
+#ifdef OXIDE_TESTKIT
+/* Platinum Oxide test kit only (make testkit, docs/oxide/test-kit.md): puts a
+   party Pokemon into the given form. Rotom goes through the game's own form
+   change, which also swaps its appliance move. Anything else has its form
+   written and its ability and stats recomputed, which is what Giratina's form
+   change does when it takes the Griseous Orb. */
+BOOL ScrCmd_TestKitSetPartyMonForm(ScriptContext *ctx)
+{
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 form = ScriptContext_GetVar(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    if (!Pokemon_SetRotomForm(mon, form, 0)) {
+        u8 value = form;
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &value);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+    }
+
+    return FALSE;
+}
+#endif

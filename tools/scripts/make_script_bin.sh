@@ -13,6 +13,7 @@ help() {
     echo "  -d | --out-dir      directory for output files (default: current directory)"
     echo "  -M | --depfile      output a compiler-generated depfile for the source"
     echo "  -P | --parent-dir   use the parent directory name of each input script to avoid name collisions"
+    echo "  --define NAME       define a preprocessor symbol for every script"
 }
 
 INCLUDE_ARGS=()
@@ -62,6 +63,11 @@ while [[ $# -gt 0 ]] ; do
             ;;
         -P|--parent-dir)
             USE_PARENT_DIR=1
+            shift
+            ;;
+        --define)
+            INCLUDE_ARGS+=("-D$2")
+            shift
             shift
             ;;
         *)

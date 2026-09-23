@@ -47,4 +47,8 @@ BOOL ScrCmd_Dummy0A0(ScriptContext *ctx);
 BOOL ScrCmd_FindPartySlotWithFatefulEncounterSpecies(ScriptContext *ctx);
 BOOL ScrCmd_CheckPartyHasHeldItem(ScriptContext *ctx);
 
+#ifdef OXIDE_TESTKIT
+BOOL ScrCmd_TestKitSetPartyMonForm(ScriptContext *ctx);
+#endif
+
 #endif // POKEPLATINUM_SCRCMD_PARTY_H

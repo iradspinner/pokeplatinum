@@ -8,24 +8,17 @@ ruled out, cut it to a one-line pointer in the tracker and delete it.
 ## Where it stands
 
 Items 2 to 7 were done on 2026-09-22; each commit carries its check. What is
-left is item 1, below, and two lines for Ian's user settings.
+left is item 1, below.
 
 | Item | State |
 |---|---|
 | 1. Cut the tracker to open work | **Open.** Waits for Ian's word that no other session is working in the main checkout (his call, 2026-09-22) |
-| 2. One memory folder | Done: the five memories and one index are in `~/.claude/projects/-home-ian-pokeplatinum/memory/`, and the old index points there. **The `autoMemoryDirectory` line is Ian's to add**: auto mode refused the session's edit to `~/.claude/settings.json` |
+| 2. One memory folder | Done: the memories and one index are in `~/.claude/projects/-home-ian-pokeplatinum/memory/`, the old index points there, and Ian added `autoMemoryDirectory` to his user settings himself, since auto mode refuses a session's edit to that file |
 | 3. Safer integration | Done in `e08c178b3`: per-block tracker resolution in `integrate.sh`, `git merge oxide` as a starting step, `/qa-pass` before a track merges |
-| 4. The wedge guard | Done in `2412133bf`: the rule in `.claude/hooks/oxide_guard.py`, its test, and `wedge_status.sh`. **The `statusLine` entry is Ian's to add**, for the same reason as item 2 |
+| 4. The wedge guard | Done in `2412133bf`: the rule in `.claude/hooks/oxide_guard.py`, its test, and `wedge_status.sh`, shown by the `statusLine` entry Ian added to his user settings |
 | 5. Docs-only commits | Done in `95919ed6b`: `ci_hash` and `fetch-rom` use the newest ancestor that differs only in Markdown |
-| 6. The test kit | Proposed in `docs/oxide/test-kit-proposal.md`, waiting on Ian |
+| 6. The test kit | Approved by Ian and built on `worktree-testkit`: `docs/oxide/test-kit.md` |
 | 7. The delegation memory | Done, in the new memory folder, and the `oxide-session` skill's paragraph matches it (`e1876ede9`) |
-
-The two settings lines, in `~/.claude/settings.json` beside `"model"`:
-
-```json
-"autoMemoryDirectory": "~/.claude/projects/-home-ian-pokeplatinum/memory",
-"statusLine": { "type": "command", "command": "sh /home/ian/pokeplatinum/.claude/hooks/wedge_status.sh" },
-```
 
 ## Before you start item 1
 

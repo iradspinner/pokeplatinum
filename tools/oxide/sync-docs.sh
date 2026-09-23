@@ -54,7 +54,7 @@ copy "qa-review-2026-09-22-encounter-d4d5.md" "notes/qa-review-2026-09-22-encoun
 copy "agent-brief-workflow-improvements.md" "notes/agent-brief-workflow-improvements.md"
 copy "agent-brief-encounter-docs-split.md" "notes/agent-brief-encounter-docs-split.md"
 copy "agent-brief-element4-effects.md" "notes/agent-brief-element4-effects.md"
-copy "test-kit-proposal.md" "notes/test-kit-proposal.md"
+copy "test-kit.md" "notes/test-kit.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "pokemon-sources.md" "notes/pokemon-sources.md"

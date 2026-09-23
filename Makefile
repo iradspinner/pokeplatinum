@@ -17,6 +17,7 @@
 	skrewrm       \
 	skrewup       \
 	target        \
+	testkit       \
 	update
 
 ROM_REVISION ?= 1
@@ -140,6 +141,16 @@ setup_release: $(BUILD)/build.ninja
 
 setup_debug: $(BUILD)/build.ninja
 	$(MESON) configure $(BUILD) -Dgdb_debugging=true -Dlogging_enabled=true
+
+# Platinum Oxide: the in-game test kit (docs/oxide/test-kit.md), a ROM with a
+# helper in the player's bedroom. It builds in its own folder because meson
+# remembers an option once set, so `build/` never carries it and the ROM of
+# record stays the one GitHub builds. Output: build-testkit/pokeplatinum.us.nds
+TESTKIT_BUILD := build-testkit
+testkit:
+	$(MAKE) BUILD=$(TESTKIT_BUILD) $(TESTKIT_BUILD)/build.ninja
+	$(MESON) configure $(TESTKIT_BUILD) -Doxide_testkit=true
+	$(MAKE) BUILD=$(TESTKIT_BUILD) rom
 
 configure: $(BUILD)/build.ninja
 
