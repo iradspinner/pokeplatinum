@@ -368,6 +368,19 @@ for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
 done
+# The balance track's reference suite reads data kept outside the repo (the
+# reference hacks and the donor ROM) and two outputs of the build, so on a
+# machine or a --no-build run without any of them it is skipped with a
+# warning rather than failed. About a minute, mostly decoding Hardlove's text.
+b1_missing=""
+for p in "$HOME/roms/balance-refs" "$HOME/roms/hardlove.nds" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
+    [ -e "$p" ] || b1_missing="$b1_missing $p"
+done
+if [ -z "$b1_missing" ]; then
+    CHECK_EXPECT="passed" check "balance test_b1" "$PY" -m tools.oxide.balance.test_b1
+else
+    warn "balance test_b1 skipped, missing:$b1_missing"
+fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
 check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
