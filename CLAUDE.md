@@ -7,8 +7,9 @@ HeartGold hack) into Pokemon Platinum by editing this decomp directly.
 Start every session by reading, in order:
 
 1. `docs/oxide/design-doc.md`   what the project is, ground truth, scope, working rules
-2. `docs/oxide/tracker.md`      what is done, what is next, decisions made
-3. The `docs/oxide/phase*.md` notes only as the tracker points you to them
+2. `docs/oxide/tracker.md`      open work, what is next, what waits on Ian
+3. The `docs/oxide/phase*.md` notes and `docs/oxide/tracker-archive.md`
+   (finished work) only as the tracker points you to them
 
 Then say in one or two sentences what this session will do, and do it.
 
@@ -26,7 +27,8 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
-- Update `docs/oxide/tracker.md` at the end of every session and commit it.
+- Update `docs/oxide/tracker.md` at the end of every session and commit it;
+  a finished block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
   drive, which a separate chat surface works from.
@@ -36,7 +38,7 @@ Then say in one or two sentences what this session will do, and do it.
   Phase 3 might need re-checking.
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
-  them; do not "fix" a mismatch the tracker says is intended.
+  them; do not "fix" a mismatch the tracker or its archive says is intended.
 - Stage files by name when committing, never `git add -A` or `git add .`;
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
