@@ -6,14 +6,16 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-22).** Scoping is done, and the reference data is
-pinned outside the repo. B1, the data layer, is nearly done. B1a, B1b and B1d are
-built and tested (`tools/oxide/balance/`, `test_b1` 43 of 43, run twice).
-Oxide and eight rated references line up fight by fight, and every Oxide map,
-trainer, item and shop has a split. Left in B1 are B1c, Odyssey from its
-ROM, which carries little weight, and B1e, which trainers cannot be avoided,
-which comes after B2 and before the level curve. B2, the structural metrics,
-is next. No questions are open.
+**Where it stands (2026-09-23).** Scoping is done, and the reference data is
+pinned outside the repo. B1a, B1b and B1d are built and tested (`test_b1` 43
+of 43). B2, the structural metrics, is built (`metrics.py`, `test_b2` 7 of
+7), but its check as the plan wrote it does not pass: nine of the fourteen
+metrics put vanilla, Renegade and Kaizo in order, and five do not. The
+check was narrowed to those nine after seeing the data, which is the one
+open question for Ian below. Left in B1 are B1c, Odyssey from its ROM, which
+carries little weight, and B1e, which trainers cannot be avoided. B1e is
+next, and it now also has to re-place 18 filler trainers that B1d put in too
+early a split.
 
 ## The target
 
@@ -183,6 +185,71 @@ What B1d found:
 - 179 trainers no map fields, and all are rematch copies, tag partners,
   unused rival variants or unused slots. The Pokemon Center visitors come
   from a shared script and are placed after the League, unverified.
+- **18 filler trainers sit in too early a split** (found in B2). A map takes
+  the split in which the player first reaches it, and part of a map can open
+  later: Surf on Route 219, the bike on Route 207, Strength in Oreburgh
+  Gate's basement, Surf on Route 208, and the far side of Route 210 South. A
+  story revisit adds trainers too (the four grunts at Lake Verity). Each is
+  above its split's cap, which a hard cap rules out, so B2 leaves them out
+  and B1e places them by what the player can reach. The gym leaders'
+  rematch copies are also placed, in their gyms' splits, and B2 skips them.
+
+What B2 found, over the 28 story fights and each hack's 13 gym and League
+seats (`metrics.py`; `--order` prints the check, `--filler` the filler):
+
+| Hack | Party | IVs | Nature fit | Items | Evolved | Mean BST | Setup | Hazards | Coverage |
+|---|---|---|---|---|---|---|---|---|---|
+| Oxide | 5.7 | 28.7 | 0.74 | 1.00 | 0.91 | 499 | 0.31 | 0.23 | 15.3 |
+| Vanilla (3) | 4.0 | 22.9 | 0.30 | 0.22 | 0.73 | 468 | 0.38 | 0.15 | 12.5 |
+| Unbound (5.25) | 4.6 | 31.0 | 0.41 | 0.47 | 0.88 | 492 | 0.85 | 0.46 | 13.8 |
+| Renegade (7) | 6.0 | 29.8 | 0.91 | 1.00 | 0.88 | 492 | 0.69 | 0.54 | 14.9 |
+| Redux (8) | 6.0 | 16.3 | 0.87 | 1.00 | 0.86 | 533 | 1.54 | 0.15 | 15.7 |
+| Hardlove (9.5) | 6.0 | 31.0 | 1.00 | 1.00 | 0.90 | 530 | 1.15 | 0.62 | 15.5 |
+| Kaizo (10) | 6.0 | 30.4 | 0.55 | 1.00 | 0.92 | 534 | 1.46 | 1.00 | 15.5 |
+| Null (10) | 6.2 | 30.6 | 0.85 | 1.00 | 0.99 | 548 | 2.00 | 0.85 | 15.7 |
+
+Setup and hazards are moves per party; coverage is how many types the
+party's moves hit super effectively (17 in the Platinum-based hacks, 18
+elsewhere). Nature fit is the share of natures that read as picked: one
+that raises something and lowers neither the attacking stat the Pokemon
+uses nor its Speed (a slow Pokemon may trade Speed), and raises one of
+those or lowers the attacking stat it does not use. Chance gives 8 in 25.
+
+- **Oxide's bosses already match Renegade's on structure.** Every gym and
+  League Pokemon holds an item, IVs are near the ceiling, and base stats,
+  evolution and coverage are level with or just above Renegade's. Oxide is
+  lighter in three places: one Pokemon fewer at Roark (4), Gardenia and
+  Fantina (5 each), and about half Renegade's setup and hazard moves. So the
+  roster alone does not explain a 6 against Renegade's 7. With hard caps and
+  the item ban on top, B3's pressure scores are what should say where the
+  gap to 6 comes from.
+- **Oxide's natures read as picked**: 0.74 at the bosses and 0.6 to 0.8 in
+  filler, against 0.32 for vanilla, whose natures roll. The base ROM varies
+  each Pokemon's IV value (Roark's Nosepass 250, Geodude 245), and in
+  Generation 4 that value feeds the nature, so these were very likely
+  chosen that way. Renegade's filler reads as rolled (0.35); only its bosses
+  are picked.
+- **The structure metrics do not separate a 7 from a 10.** Party size,
+  items, IVs and coverage are at the ceiling from Renegade up; what grows
+  from 7 to 10 is level, base stats, setup and hazards. Unbound's 5.25
+  shows up as smaller parties and half its Pokemon without items.
+- **The plan's check held on nine of fourteen metrics.** Vanilla, Renegade
+  and Kaizo come out in order on party size, ace and mean level, items,
+  evolution, base stats, setup, hazards and coverage. They do not on IVs
+  (Renegade and Kaizo are both at the ceiling, and Kaizo's Barry 1 keeps
+  vanilla's zeros), natures (Kaizo picks less often than Renegade, 0.57
+  against 0.67 over the story fights), and priority, speed control and
+  recovery, which Kaizo's bosses carry less of than Renegade's. Those five
+  measure style, not strength, and B5's fit should weight them low.
+- **Filler compares by id only for vanilla, Renegade and Redux.** Renegade
+  keeps all but one of Platinum's filler ids, Redux loses 81 of 369 to other
+  trainers, and Kaizo reuses 252 of them, some at level 90 to 100, so
+  Kaizo's filler needs its own map before it can be read. Oxide's filler
+  runs one Pokemon smaller than Renegade's (1.3 to 2.4 against 1.8 to 3.3 a
+  trainer) with higher IVs and picked natures.
+- Vanilla's calculator file lists no moves for 487 of its 1,873 sets
+  (default moves); `metrics.py` fills them from vanilla's learnsets the way
+  the game does. One Unbound move, Leech Fang, is in no table.
 
 ## What gets measured
 
@@ -329,6 +396,16 @@ report says so. Ian's playtests remain the final gate. The scores aim the
 changes and catch outliers, and they are recalibrated when Ian's feel
 disagrees with them.
 
+## Open questions for Ian
+
+1. **B2's check was narrowed after the data came in** (2026-09-23). The
+   plan said vanilla, Renegade and Kaizo should come out in order on almost
+   every metric; they do on nine of fourteen. The five that do not (IVs,
+   natures, priority, speed control, recovery) look like style rather than
+   strength, so B2 is marked done with the test pinning the nine, and B5's
+   fit is left to weight the five low. Nothing waits on this; if you read
+   Kaizo as harder partly because of move choice, say so and B5 keeps them.
+
 ## Order of work
 
 - [x] **B0, scoping** (2026-09-22). Ian's answers are in, and the reference
@@ -382,10 +459,15 @@ disagrees with them.
   required, and a handful of route trainers Ian knows to be avoidable come
   out avoidable. It comes after B2, which scores the bosses and needs none
   of it, and before B4, whose natural levels should count only the
-  experience a player cannot skip.
-- [ ] **B2, structural metrics** for every reference and for Oxide as it
-  stands. The check: vanilla, Renegade and Kaizo come out in that order on
-  almost every metric.
+  experience a player cannot skip. The same reachability also gives each
+  trainer the split in which the player can first reach it, which fixes
+  the 18 filler trainers B1d places too early (`metrics.late_visits`).
+- [x] **B2, structural metrics** for every reference and for Oxide as it
+  stands (2026-09-23, `metrics.py`, `test_b2`). The check: vanilla, Renegade
+  and Kaizo come out in that order on almost every metric. It held on nine
+  of fourteen, and the test pins which; see "What B2 found". The percentile
+  of base stats against the player's pool moves to B3, which builds the
+  pool, and the filler report skips Kaizo until its filler has a map.
 - [ ] **B3, the player's side and pressure.** This covers the pool per split
   (species, moves, items) and the pressure scores. The check: damage agrees
   with the calculator's page and with the in-game roll already waiting on Ian

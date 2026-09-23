@@ -1,6 +1,6 @@
 # Platinum Oxide: Hardlove Gold engine-expansion integration into Pokemon Platinum
 
-Design document, v0.34 (2026-09-22). This file is written for Claude to work from. Read it in full at the start of every session, then read `docs/oxide/tracker.md`, then act. Facts and rules live here; status lives in the tracker; the encounter tool's own status and findings live in `docs/oxide/encounter-tool-build-plan.md`.
+Design document, v0.35 (2026-09-23). This file is written for Claude to work from. Read it in full at the start of every session, then read `docs/oxide/tracker.md`, then act. Facts and rules live here; status lives in the tracker; the encounter tool's own status and findings live in `docs/oxide/encounter-tool-build-plan.md`.
 
 ## 1. What this project is
 
@@ -29,6 +29,8 @@ Everything in this section is verified from the files, not assumed. Update it wh
 Everything in this folder is a copy. Ian has confirmed (2026-09-15) that any file here, including the Hardlove ROM and its DSPRE contents, may be modified. The originals in the hub folder and in `HeartGold Roms` are untouched by this project.
 
 Since approach C (section 4) the source of truth is the repo `iradspinner/pokeplatinum`, branch `oxide`, checked out at `~/pokeplatinum` in WSL2. The working folder is reference input (the two ROMs and their extractions) plus mirror copies of the docs, written by `tools/oxide/sync-docs.sh`. Pinned copies of the two reference ROMs live at `~/roms/base.nds` (the base ROM) and `~/roms/vanilla.nds` (a byte-exact Rev 1 build from `main`).
+
+**Files outside the repo that the tools need**, all of them copies, none of them rebuildable from here: `~/roms/base.nds` (the base ROM), `~/roms/vanilla.nds` (a byte-exact Rev 1 build, made once from `main`) and `~/roms/hardlove.nds` (the donor). Also `~/hg-engine`, a sparse 30MB clone of the reference implementation (`data/battle_scripts`, `src`, `include`, `armips/data`), added 2026-09-22 for element 4's effect scripts; no tool depends on it, so it can be re-cloned or deleted freely. And `~/roms/balance-refs/` (2026-09-22), the balance track's reference data: the reference hacks' calculator data and Ian's Run & Bun sheet, with a `MANIFEST.txt` of SHA-256 sums, read by the balance track's `test_b1`. If any goes missing, copy it again from the project folder on the G: drive; the paths are above and in `docs/oxide/donor-tables.md`.
 
 ### Size of the gap, by the numbers
 
@@ -115,7 +117,7 @@ These are standing instructions. Follow them every session.
 8. Ian's writing rules are listed once, in `~/.claude/CLAUDE.md`, which every session and subagent loads. Follow them.
 9. Ask up front when a task branches on something only Ian can answer. He would rather be asked than watch a wrong guess get built.
 10. Update the tracker at the end of every session. Update this document when a fact in section 2 changes or a decision in section 3 or 4 is made, and bump the version and date at the top. If any file under `docs/oxide/` changed this session, run `tools/oxide/sync-docs.sh`.
-11. One status home per track. The tracker is for Phases 0 to 5; `docs/oxide/encounter-tool-build-plan.md` is for the encounter tool, which keeps exactly one paragraph at the top of the tracker and nothing else there. A fact is written in one place and pointed at from the others. A parallel session works on its own branch or worktree and merges into `oxide` when its tests are green.
+11. One status home per track. The tracker is for Phases 0 to 5 and holds open work only, finished blocks moving verbatim to `docs/oxide/tracker-archive.md`; `docs/oxide/encounter-tool-build-plan.md` is for the encounter tool, which keeps exactly one paragraph at the top of the tracker and nothing else there. A fact is written in one place and pointed at from the others. A parallel session works on its own branch or worktree and merges into `oxide` when its tests are green.
 12. Do not "improve" a carried-over map, script or table while a faithful carry-over is being verified; `checkmap.py` and the bulk tools compare against the base ROM. Cleanups are backlog items done afterwards as their own commits, so the faithful copy and the improvement are separable in the history.
 
 ## 6. Session protocol
