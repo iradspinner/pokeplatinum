@@ -266,6 +266,8 @@ Elements, in order:
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
 shape the finished game.
 
+- [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`; it scores every fight against reference hacks and feeds the level-cap, TM, ability and trainer passes. Six questions for Ian at the end of the plan.
+
 - [ ] **Level-cap split design.** Per split: the areas, trainers, items, and learnsets/evolutions available. Ian expects this to be a lot of work, and it **must precede the trainer balance pass** because it constrains it. Phase 4 only delivers the mechanism
 - [ ] **TM pass.** How many TMs (likely more than 92) and which moves, done with the overall balance pass
 - [ ] **Ability balance pass** across all species, including the base ROM's 228 duplicated second slots, which stay as they are until then

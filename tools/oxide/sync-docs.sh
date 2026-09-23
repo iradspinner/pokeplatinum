@@ -55,6 +55,7 @@ copy "agent-brief-workflow-improvements.md" "notes/agent-brief-workflow-improvem
 copy "agent-brief-encounter-docs-split.md" "notes/agent-brief-encounter-docs-split.md"
 copy "agent-brief-element4-effects.md" "notes/agent-brief-element4-effects.md"
 copy "test-kit.md" "notes/test-kit.md"
+copy "balance-plan.md" "notes/balance-plan.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "pokemon-sources.md" "notes/pokemon-sources.md"
