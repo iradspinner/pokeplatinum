@@ -11,11 +11,13 @@ pinned outside the repo. B1a, B1b and B1d are built and tested (`test_b1` 43
 of 43). B2, the structural metrics, is built (`metrics.py`, `test_b2` 7 of
 7), but its check as the plan wrote it does not pass: nine of the fourteen
 metrics put vanilla, Renegade and Kaizo in order, and five do not. The
-check was narrowed to those nine after seeing the data, which is the one
-open question for Ian below. Left in B1 are B1c, Odyssey from its ROM, which
-carries little weight, and B1e, which trainers cannot be avoided. B1e is
-next, and it now also has to re-place 18 filler trainers that B1d put in too
-early a split.
+check was narrowed to those nine after seeing the data, which is the first
+open question for Ian below. B1e, which trainers cannot be avoided, is built
+for the story path's 33 crossings of maps with trainers (`required.py`,
+`test_b1e` 6 of 6). Its own check waits on Ian: the second open question
+asks for the route trainers he knows he walks around. B1c, Odyssey from its
+ROM, is still open and carries little weight. B3, the player's side and
+pressure, is next, and needs nothing from Ian to start.
 
 ## The target
 
@@ -100,7 +102,7 @@ Roark, set by set:
 | Version | Party | IVs | Held items | Natures | Moves, in short |
 |---|---|---|---|---|---|
 | Vanilla | 3 | low | none | rolled | Rock Throw, Stealth Rock, Headbutt |
-| Oxide now | 4 | about 27 to 30 | all | rolled | Headbutt, Leer, Constrict, Rock Throw |
+| Oxide now | 4 | about 27 to 30 | all | read as picked (B2) | Headbutt, Leer, Constrict, Rock Throw |
 | Renegade | 6 | 29 to 30 | all | chosen | coverage: Fire and Thunder Punch, Zen Headbutt |
 | Kaizo | 6 | 30 | all, Focus Sash included | chosen | Head Smash, Earth Power, Accelerock |
 
@@ -250,6 +252,50 @@ those or lowers the attacking stat it does not use. Chance gives 8 in 25.
 - Vanilla's calculator file lists no moves for 487 of its 1,873 sets
   (default moves); `metrics.py` fills them from vanilla's learnsets the way
   the game does. One Unbound move, Leech Fang, is in no table.
+
+What B1e found (`required.py`; `world.py` reads the collision maps). The
+model follows the game's own rules for sight (a straight line up to the
+trainer's range, stopped by any solid tile or object), ledges (one way) and
+field moves (Surf from Byron's split, the bike from Fantina's, and so on,
+each dated from where its HM is found and which badge allows it). The story
+path is a hand table of 33 crossings, and a trainer counts where the player
+first reaches it:
+
+| Split | Trainers met | Required | Avoidable |
+|---|---|---|---|
+| Roark | 14 | 3 | 11 |
+| Gardenia | 27 | 7 | 20 |
+| Fantina | 26 | 3 | 23 |
+| Maylene | 22 | 5 | 17 |
+| Wake | 13 | 4 | 9 |
+| Byron | 24 | 4 | 20 |
+| Candice | 21 | 7 | 14 |
+| Volkner | 11 | 1 | 10 |
+| League | 13 | 2 | 11 |
+
+- **About one trainer in five on the story path is required**: 36 of 171.
+  Route 202's three are (traced by hand on its collision map: the ledges
+  funnel the player past each one in turn); Route 203's five, Route 206's
+  nine and Route 218's four are all avoidable. So Ian's sense that most
+  route trainers can be walked around holds, and the placement pass has a
+  list to work from.
+- **228 trainers are outside the model.** 92 are on maps the story does not
+  send the player through (Routes 211, 212 and 219 to 221, the post-game
+  Routes 224 to 230, and a few buildings), 43 are in the seven gyms with moving parts, and 93 are in
+  multi-floor places (Galactic HQ, Victory Road, Mt. Coronet, Iron Island's
+  other rooms, Wayward Cave, the Lost Tower). Only Roark's gym is static
+  enough to read, and it comes out with both trainers avoidable, which the
+  flat model may get wrong (the gym has raised floors).
+- **B1e places 13 of B2's 18 late visits** in the split where the player
+  first reaches them, each under that split's cap: Route 207's six in
+  Fantina's, the Lake Verity grunts in Candice's, the Route 210 South ninja
+  boys in Byron's. The other five sit behind Surf or Rock Climb on routes
+  the story never sends the player back to (Route 219's tubers, Route 208's
+  Cody and Alexander, Oreburgh Gate's basement), so they are optional.
+- The model reads the field flat: bridges are one level, and a trainer that
+  turns or walks is taken to see every way it can face, from where it
+  starts. The report names both per map. Story blockers other than Route
+  210's Psyduck are taken as gone.
 
 ## What gets measured
 
@@ -405,6 +451,13 @@ disagrees with them.
    strength, so B2 is marked done with the test pinning the nine, and B5's
    fit is left to weight the five low. Nothing waits on this; if you read
    Kaizo as harder partly because of move choice, say so and B5 keeps them.
+2. **Which route trainers do you know you walk around, and which can you
+   not?** (2026-09-23.) B1e's check is a handful of your own examples. The
+   model says Route 202's three trainers are required and Route 203's five,
+   Route 206's nine and Route 218's four are all avoidable; a yes or no on
+   those, plus any others you remember either way, is enough. B1e is built
+   and waits only on this; the placement pass should not start until it is
+   checked.
 
 ## Order of work
 
@@ -462,6 +515,11 @@ disagrees with them.
   experience a player cannot skip. The same reachability also gives each
   trainer the split in which the player can first reach it, which fixes
   the 18 filler trainers B1d places too early (`metrics.late_visits`).
+  Built 2026-09-23 (`world.py`, `required.py`, `test_b1e`) for the story
+  path's overworld routes and the simple indoor maps; see "What B1e
+  found". Its check waits on Ian's examples (open question 2). Gyms with
+  moving parts and multi-floor dungeons are left for later, if the
+  placement pass needs them.
 - [x] **B2, structural metrics** for every reference and for Oxide as it
   stands (2026-09-23, `metrics.py`, `test_b2`). The check: vanilla, Renegade
   and Kaizo come out in that order on almost every metric. It held on nine
