@@ -8124,13 +8124,25 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
                 if (move && MOVE_DATA(move).power != 1) {
+                    // Oxide, vanilla fix (Ian, 2026-09-22): Weather Ball was
+                    // costed as its listed 50-power Normal move. In weather it
+                    // has double power and the weather's type, which moveType
+                    // already holds (Normal when there is none, or under Cloud
+                    // Nine or Air Lock), as BtlCmd_CalcWeatherBallParams sets it.
+                    int power = 0, type = 0;
+
+                    if (move == MOVE_WEATHER_BALL && moveType != TYPE_NORMAL) {
+                        power = MOVE_DATA(move).power * 2;
+                        type = moveType;
+                    }
+
                     score = BattleSystem_CalcMoveDamage(battleSys,
                         battleCtx,
                         move,
                         battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, defender)],
                         battleCtx->fieldConditionsMask,
-                        0,
-                        0,
+                        power,
+                        type,
                         battler,
                         defender,
                         1);
