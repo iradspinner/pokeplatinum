@@ -5942,14 +5942,17 @@ Expert_Punishment:
 Expert_Punishment_TryScorePlus4:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus3
     AddToMoveScore 4
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus3:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus2
     AddToMoveScore 3
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus2:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus1
     AddToMoveScore 2
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus1:
     IfRandomLessThan 128, Expert_Punishment_End
