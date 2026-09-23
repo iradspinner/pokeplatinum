@@ -58,6 +58,22 @@ def main():
                     "htop", "echo hi && ps -ef | grep x"):
             expect("%s refused while wedged" % cmd, oxide_guard.check(cmd, "/", proc_root=stuck) is not None)
 
+        # The local-build rule (until the new CPU is in): full builds refused,
+        # small ninja jobs, non-build make targets, --rom checks and heredoc
+        # text (a commit message saying "make rom") let through.
+        builds = {
+            "make rom": True, "make": True, "make testkit": True, "cd x && make rom": True,
+            "ninja -C build": True, "ninja -C build -j8 x": True,
+            "bash tools/oxide/integrate.sh --verify-only": True,
+            "make clean": False, "ninja -C build -j2 generated/moves.h": False,
+            "ninja -C build -t targets all": False, "OXIDE_LOCAL_BUILD_OK=1 make rom": False,
+            "bash tools/oxide/integrate.sh --verify-only --rom x.nds": False,
+            "git commit -F - <<'EOF'\nSubject\n\nmake rom on this branch\nEOF": False,
+        }
+        for cmd, refused in builds.items():
+            got = oxide_guard.check(cmd, "/", proc_root=clean) is not None
+            expect("%r %s" % (cmd, "refused" if refused else "allowed"), got == refused)
+
         status = os.path.join(HERE, "wedge_status.sh")
         out = subprocess.run(["sh", status, stuck], input="{}", capture_output=True, text=True).stdout
         expect("status line names the wedged pid", "4242" in out and "cc1" in out)
