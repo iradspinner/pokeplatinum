@@ -340,4 +340,5 @@ subscript_files = files(
     'subscript_autotomize.s',
     'subscript_force_switch_hit.s',
     'subscript_parting_shot.s',
+    'subscript_laser_focus.s',
 )

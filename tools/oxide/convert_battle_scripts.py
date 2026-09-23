@@ -104,6 +104,7 @@ HG_STRINGS = {
     1327: "BattleStrings_Text_PokemonSharedItsPowerWithTheTarget_Ally",
     1330: "BattleStrings_Text_PokemonTransformedIntoTheWaterType_Ally",
     1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
+    1616: "BattleStrings_Text_PokemonConcentratedIntensely_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -484,6 +485,8 @@ C_REVIEWED = {
          "does, with the message set in the move's own script.s, and the effect is on "
          "Move_IsMultiTurn; the rest is Kyurem's form change, and Kyurem is not in Oxide",
     364: "as Freeze Shock",
+    399: "the C is hg-engine's move-condition flag; Oxide keeps it as a two-bit countdown in "
+         "the unused effect-mask bits 19 and 20, run down at the end of turn with Lock-On's",
     278: "BeforeMove fails the move against a substitute; the Oxide subscript checks the same",
     279: "as Guard Split",
     284: "BeforeMove fails the move against pure Water, Multitype or a substitute; the Oxide "

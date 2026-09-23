@@ -7153,12 +7153,14 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
         effectiveCritStage = 4;
     }
 
-    // Storm Throw, Frost Breath and Surging Strikes always land a critical hit
-    // unless the target is protected from one. The roll still happens first,
+    // Storm Throw, Frost Breath and Surging Strikes always land a critical hit,
+    // and so does a move made on the turn after Laser Focus, unless the target
+    // is protected from one. The roll still happens first,
     // so the random number sequence is the same as for any other move.
     if ((BattleSystem_RandNext(battleSys) % sCriticalStageRates[effectiveCritStage] == 0
             || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_ALWAYS_CRITICAL
-            || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL)
+            || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL
+            || (battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS))
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BATTLE_ARMOR) == FALSE
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SHELL_ARMOR) == FALSE
         && (sideConditions & SIDE_CONDITION_LUCKY_CHANT) == FALSE

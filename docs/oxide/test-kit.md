@@ -88,7 +88,8 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 20 | Pollen Puff, Strength Sap, Guard Split, Power Split | 9664a529a and a32b5ab7d |
 | 21 | Soak, Thunderbolt, Incinerate, Coaching | same; Coaching needs a double battle, so here it should fail |
 | 22 | Heavy Slam, Heat Crash, Autotomize, Swords Dance, on Metagross | a32b5ab7d; weight-based power needs a heavy user |
-| 23 | Dragon Tail, Circle Throw, Parting Shot, Roar | this batch; against a wild Pokemon Dragon Tail and Circle Throw end the battle, and Roar checks its reshaped code behaves as before |
+| 23 | Dragon Tail, Circle Throw, Parting Shot, Roar | 38766c70a; against a wild Pokemon Dragon Tail and Circle Throw end the battle, and Roar checks its reshaped code behaves as before |
+| 24 | Laser Focus, Tackle, Lock-On, Zap Cannon | this batch; against Shuckle, Tackle lands a critical hit on the turn after Laser Focus and only then, and Zap Cannon still never misses the turn after Lock-On, which counts down beside Laser Focus |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and

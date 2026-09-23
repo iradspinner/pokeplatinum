@@ -573,6 +573,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet21, 20
     AddListMenuEntry TestKit_Text_MenuSet22, 21
     AddListMenuEntry TestKit_Text_MenuSet23, 22
+    AddListMenuEntry TestKit_Text_MenuSet24, 23
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -597,6 +598,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet21
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet22
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet23
+    GoToIfEq VAR_0x8004, 23, TestKit_MoveSet24
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -788,6 +790,18 @@ TestKit_MoveSet23:
     SetVar VAR_0x8007, MOVE_CIRCLE_THROW
     SetVar VAR_0x8008, MOVE_PARTING_SHOT
     SetVar VAR_0x8009, MOVE_ROAR
+    GoTo TestKit_GiveMew
+
+/* Laser Focus makes Mew's move on the next turn a critical hit, and only that
+   turn's. Tackle shows it against Shuckle: a critical hit the turn after Laser
+   Focus, then ordinary odds the turn after that. Lock-On and Zap Cannon are here
+   because Laser Focus counts down beside Lock-On at the end of each turn, so
+   Zap Cannon on the turn after Lock-On should still never miss. */
+TestKit_MoveSet24:
+    SetVar VAR_0x8006, MOVE_LASER_FOCUS
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_LOCK_ON
+    SetVar VAR_0x8009, MOVE_ZAP_CANNON
     GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in
