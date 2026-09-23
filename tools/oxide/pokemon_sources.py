@@ -207,13 +207,24 @@ def starter_species():
     return re.findall(r"#define STARTER_OPTION_\d\s+(SPECIES_\w+)", src)
 
 
+# The test kit's field script code (make testkit, docs/oxide/test-kit.md) sits
+# in #ifdef OXIDE_TESTKIT blocks that the ROM of record never contains, so none
+# of its gifts or wild battles is a source of anything in the game.
+TESTKIT_BLOCK_RE = re.compile(r"^#ifdef OXIDE_TESTKIT\n.*?^#endif[^\n]*\n?", re.M | re.S)
+
+
+def game_script_text(path):
+    """A field script's text as the ROM of record builds it: kit blocks removed."""
+    return TESTKIT_BLOCK_RE.sub("", open(path, encoding="utf-8").read())
+
+
 def roamer_activations():
     """{slot constant: [script archive]} for every ActivateRoamingPokemon."""
     out = collections.defaultdict(list)
     for path in sorted(glob.glob(os.path.join(ROOT, SCRIPT_DIR, "*.s"))):
         name = os.path.basename(path)[:-2]
         for m in re.finditer(r"ActivateRoamingPokemon\s+(\S+)",
-                             open(path, encoding="utf-8").read()):
+                             game_script_text(path)):
             out[m.group(1)].append(name)
     return out
 
@@ -235,7 +246,7 @@ def script_commands(regex):
     rows = []
     for path in sorted(glob.glob(os.path.join(ROOT, SCRIPT_DIR, "*.s"))):
         name = os.path.basename(path)[:-2]
-        text = open(path, encoding="utf-8").read()
+        text = game_script_text(path)
         hits = [m for m in (regex.match(l) for l in text.split("\n")) if m]
         if not hits:
             continue
@@ -262,7 +273,7 @@ def trade_hookups():
     for path in sorted(glob.glob(os.path.join(ROOT, SCRIPT_DIR, "*.s"))):
         name = os.path.basename(path)[:-2]
         for m in re.finditer(r"InitNPCTrade\s+(\S+)",
-                             open(path, encoding="utf-8").read()):
+                             game_script_text(path)):
             arg = m.group(1)
             idx = by_name.get(arg, int(arg) if arg.isdigit() else None)
             if idx is not None:
