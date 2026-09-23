@@ -1,6 +1,6 @@
 # Double battles in Oxide: which faults are live
 
-Element 6's doubles review (2026-09-22). `other-flags.md` reads the double-battle code line by line: the driver, Tag Strategy's two halves, and the bugs O1 to O19. `switching-and-items.md` does the same for switching. This file asks a narrower question. Given the trainers, parties and flags Oxide actually has, which of those faults and gaps does a player meet, and in which battles? The answer is a short list, and the fixes it proposes wait on Ian, since each one changes how a fight plays.
+Element 6's doubles review (2026-09-22). `other-flags.md` reads the double-battle code line by line: the driver, Tag Strategy's two halves, and the bugs O1 to O19. `switching-and-items.md` does the same for switching. This file asks a narrower question. Given the trainers, parties and flags Oxide actually has, which of those faults and gaps does a player meet, and in which battles? The answer is a short list. Ian ruled on all six the same day, and all six are now applied (the last section).
 
 Line numbers here are the element 6 branch's, since the fixes below would be made there.
 
@@ -65,7 +65,7 @@ From the switching write-up, two doubles faults can fire in these battles but ra
 
 The AI partners on the player's side (Cheryl, Riley, Marley, Buck, Mira) run Tag Strategy with the player's Pokemon as their partner. Two of their partner cases are deliberate rather than faults: Buck's Torkoal may Will-O-Wisp the player's healthy Guts Pokemon (+5), and any partner may attack the player's Flash Fire, Volt Absorb or Water Absorb Pokemon with the matching type to power it up or heal it, which is what the partner routine is for.
 
-## Proposed, awaiting Ian
+## Applied (Ian, 2026-09-22)
 
 | Finding | Kind | Reach in Oxide |
 |---|---|---|
@@ -76,4 +76,11 @@ The AI partners on the player's side (Cheryl, Riley, Marley, Buck, Mira) run Tag
 | 5. Poison Gas hits the partner | data (base ROM) or change | the Jubilife tag battle's Stunky |
 | 6. Follow Me with no partner | vanilla fix | Lady Kylie's Clefairy |
 
-Each would be its own commit, marked as the earlier fixes are. None is applied yet.
+Ian approved the four vanilla fixes, asked for Explosion and Self-Destruct to take a penalty unless the partner is immune, and asked for Poison Gas to hit only the foes. Each is its own commit, and each script edit is marked with an "Oxide, vanilla fix" or "Oxide, change" comment. Choices made in applying them:
+
+- Finding 2 keeps a neutral partner at -3: a Steel partner that is also Bug or Grass (Forretress keeps its -3 at Spear Pillar), and a Rock partner that is also Water, Grass or Dragon.
+- Finding 3 is fixed in all four spread handlers, not only Earthquake's, since the engine lets Mold Breaker past every one of those abilities (`Battler_IgnorableAbility`). Magnet Rise and a Flying type still protect from Earthquake.
+- Finding 4 is graded like Earthquake: -10 beside a partner, -3 if it is Rock or Steel, nothing beside a Ghost or an empty slot. Misty Explosion shares the effect but is Fairy type, which Ghosts do not resist, so it waits for the new-moves work.
+- Finding 5 changes the data, not the AI: Poison Gas's range is now "both foes" (`RANGE_ADJACENT_OPPONENTS`), and `verify_narcs.py` records the difference from the base ROM. The existing Tag Strategy and Basic handling then fits it.
+
+Still as vanilla has them, because nothing in Oxide reaches them: the same stale-partner reads in the weather, Gravity, Lightning Rod and Storm Drain rows, and Surf's -10 for a Water and Ground partner that takes neutral damage (O7).

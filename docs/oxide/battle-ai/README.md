@@ -82,7 +82,7 @@ What Oxide's new content meets, beyond the bug above: none of the new effects 27
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix and twenty vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix, twenty-four vanilla fixes and one change Ian asked for, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
@@ -96,6 +96,11 @@ One Oxide fix and twenty vanilla fixes, each its own commit so any can be revert
 | Weather Ball's weather type where the AI read the listed type (QA pass before the integration) | vanilla | Basic's absorb and Levitate checks, Tag Strategy's type dispatch and the absorb-ability switch now see a rain Weather Ball as Water and a sun one as Fire. Hidden Power, Natural Gift and Judgment still read their listed type |
 | Weather Ball in the post-knockout pick (same QA pass) | vanilla | A bench Weather Ball in weather is costed at double power and the weather's type, not as a 50-power Normal move |
 | Trainer form Pokemon use their form's stats (pret's `docs/bugs_and_glitches.md`; a party-building fix in `trainer_data.c`, not an AI one) | vanilla | The party builder set the form after the stats were worked out, so a trainer's form Pokemon had its base form's stats. Six in Oxide change: Volkner's Rotom-Mow in both battles, Fantina's rematch Rotom-Wash, Beauty Devon's two Wormadam and Worker Jackson's |
+| A lone Pokemon's spread moves read its fainted partner (`doubles.md` 1) | vanilla | Earthquake, Magnitude, Surf, Discharge and Lava Plume make no partner check once the partner's slot is empty for the rest of the battle, instead of -3, or -10 after a partner weak to them |
+| Steel missing from Earthquake's partner check, Rock from Surf's (`doubles.md` 2, O7) | vanilla | -10 beside a partner weak to the move, except where a second type cancels the weakness (Bug or Grass for Earthquake, Water, Grass or Dragon for Surf) |
+| Mold Breaker ignored beside an ability that protects the partner (`doubles.md` 3) | vanilla | With Mold Breaker, a partner's Levitate, Volt Absorb, Motor Drive, Water Absorb, Dry Skin or Flash Fire no longer earns the spread move a bonus |
+| Follow Me with no partner (`doubles.md` 6, O9) | vanilla | -10 once the partner's slot is empty, instead of up to +3 |
+| Explosion and Self-Destruct beside a partner (`doubles.md` 4) | change | -10 beside a partner, -3 beside a Rock or Steel one, nothing beside a Ghost or an empty slot |
 
 Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes (approved by Ian on 2026-09-15) are applied as eleven more commits, each titled "VANILLA FIX (battle_edits)":
 
