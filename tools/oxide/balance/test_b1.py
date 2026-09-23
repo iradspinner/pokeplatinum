@@ -187,12 +187,100 @@ def check_milestones_resolve(results):
                         f"unresolved: {missing}" if missing else ""))
 
 
+# Trainers no map fields are expected to be one of these: a numbered or
+# rematch copy, a tag partner or unused rival variant, or an unused slot.
+UNPLACED_OK = re.compile(r"rematch|_\d+$|^rival_|^lucas_|^dawn_|^cheryl_|^mira_|^riley_"
+                         r"|^marley_|^buck_|_unused$")
+
+
+def check_split_map(results):
+    """B1d: every map outside the internal Mystery Zone has a split; every
+    story fight lands in the split Ian's sheet gives it, apart from the
+    fights STORY_REVISITS lists, which do not; and no trainer stays
+    unplaced unless it is a rematch copy, a partner or rival variant, or an
+    unused slot."""
+    from . import splits
+    unplaced = sorted({splits.location_name(h) for h in splits.headers()
+                       if splits.map_split(h)[0] is None} - {"Mystery Zone"})
+    results.append(("every map but the internal ones has a split", not unplaced,
+                    f"{len(splits.headers())} maps" + (f", unplaced: {unplaced}" if unplaced else "")))
+    wrong, revisits = [], []
+    for fight in data.fights()["fights"]:
+        got = {splits.trainer_split(t) for t in fight["tr_ids"]}
+        (revisits if fight["key"] in splits.STORY_REVISITS else wrong).append(
+            (fight["key"], got == {fight["split"]}))
+    bad = [k for k, ok in wrong if not ok] + [k for k, ok in revisits if ok]
+    results.append(("every story fight's map lands in its sheet split", not bad,
+                    f"{len(wrong)} fights, {len(revisits)} listed revisits"
+                    + (f"; wrong: {bad}" if bad else "")))
+    ox = data.oxide_trainers()
+    stray = [ox[t]["stem"] for t in ox if splits.trainer_split(t) is None
+             and not UNPLACED_OK.search(ox[t]["stem"])]
+    placed = sum(1 for t in ox if splits.trainer_split(t))
+    results.append(("no first-run trainer is left without a split", not stray,
+                    f"{placed} placed" + (f"; stray: {stray[:5]}" if stray else "")))
+
+
+def check_items_and_marts(results):
+    """Every item ball and hidden item names an item and has a split, and
+    every mart table has its city's split. Two anchors: Poke Balls are on
+    sale from the start, and the Eterna herb shop opens in Gardenia's split."""
+    from . import splits
+    items = splits.items()
+    loose = [(h, i) for sp, h, i, _how in items if not sp or not i or not i.startswith("ITEM_")]
+    results.append(("every item ball and hidden item resolves", not loose,
+                    f"{len(items)} items" + (f"; loose: {loose[:3]}" if loose else "")))
+    marts = splits.marts()
+    poke = [sp for sp, t, i in marts if t == "common" and i == "ITEM_POKE_BALL"]
+    herb = {sp for sp, t, _i in marts if t == "EternaHerbShopStock"}
+    ok = not [m for m in marts if m[0] is None] and poke == ["Roark"] and herb == {"Gardenia"}
+    results.append(("every mart item has a split", ok, f"{len(marts)} mart items"))
+
+
+# TMs no source read so far offers. They are expected at the Battle
+# Frontier's prize counters, which B1d does not read; unverified.
+TMS_NOT_FOUND = ["ITEM_TM08", "ITEM_TM61", "ITEM_TM73"]
+
+
+def check_tm_sources(results):
+    """Every TM but three is found in a ball, a hidden item, a gift or a
+    shop, and Roark's gym gives TM76 in Roark's split."""
+    from . import splits
+    found = {}
+    for sp, _h, item, _how in splits.items():
+        found.setdefault(item, sp)
+    for sp, _t, item in splits.marts():
+        found.setdefault(item, sp)
+    roark_tm = [(sp, h) for sp, h, item in splits.gifts() if item == "ITEM_TM76"]
+    for sp, _h, item in splits.gifts():
+        found.setdefault(item, sp)
+    tms = [f"ITEM_TM{n:02d}" for n in range(1, 93)]
+    missing = [t for t in tms if t not in found]
+    ok = missing == TMS_NOT_FOUND and ("Roark", "OREBURGH_CITY_GYM") in roark_tm
+    results.append(("every TM has a source but the Frontier's three", ok,
+                    f"{92 - len(missing)} of 92 TMs; not found: {missing}"))
+
+
+def check_weather(results):
+    """The weather the base ROM set on three gyms and two Elite Four rooms,
+    as a battle sees it: sand at Roark's, rain at Wake's, hail at Candice's
+    and Bertha's sand. Flint's ashfall starts no battle weather."""
+    from . import splits
+    by_key = {f["key"]: f for f in data.fights()["fights"]}
+    got = {k: splits.trainer_weather(by_key[k]["tr_ids"][0])
+           for k in ("roark", "wake", "candice", "bertha", "flint")}
+    want = {"roark": ["Sand"], "wake": ["Rain"], "candice": ["Hail"], "bertha": ["Sand"], "flint": []}
+    results.append(("boss fights start in the weather their maps set", got == want, str(got)))
+
+
 def main():
     results = []
     for check in (check_pinned_files, check_set_counts, check_oxide_members,
                   check_fights_resolve, check_sheet_levels,
                   check_league_after_volkner, check_roark, check_megas_folded,
-                  check_hardlove_rom, check_run_and_bun, check_milestones_resolve):
+                  check_hardlove_rom, check_run_and_bun, check_milestones_resolve,
+                  check_split_map, check_items_and_marts, check_tm_sources,
+                  check_weather):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

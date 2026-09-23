@@ -7,12 +7,12 @@ the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-22).** Scoping is done, and the reference data is
-pinned outside the repo. B1, the data layer, is under way. B1a and B1b are built and
-tested (`tools/oxide/balance/`, `test_b1` 36 of 36, run twice). Oxide and
-eight rated references now line up fight by fight: the five Platinum-based
-hacks for all 28 story fights, and Hardlove, Null, Unbound and Run & Bun for
-every gym, Elite Four seat and Champion. Next are B1c (Odyssey) and B1d
-(Oxide's split map). Two small questions for Ian are at the end.
+pinned outside the repo. B1, the data layer, is nearly done. B1a, B1b and B1d are
+built and tested (`tools/oxide/balance/`, `test_b1` 43 of 43, run twice).
+Oxide and eight rated references line up fight by fight, and every Oxide map,
+trainer, item and shop has a split. Left in B1 is B1c, Odyssey from its ROM,
+which carries little weight; B2, the structural metrics, can start without
+it. Two small questions for Ian are at the end.
 
 ## The target
 
@@ -142,6 +142,37 @@ What B1b found:
   party size and roster quality are worth.
 - **Run & Bun's sheet is whole for every boss.** 76 filler trainers in the
   later splits have no moves on the sheet itself.
+
+What B1d found:
+
+| Split | Trainers | Item balls | Hidden items | NPC gifts | Shop items |
+|---|---|---|---|---|---|
+| Roark | 43 | 38 | 12 | 39 | 11 |
+| Gardenia | 38 | 30 | 26 | 14 | 20 |
+| Fantina | 44 | 32 | 17 | 6 | 5 |
+| Maylene | 46 | 28 | 21 | 30 | 91 |
+| Wake | 75 | 43 | 38 | 12 | 5 |
+| Byron | 66 | 44 | 24 | 16 | 14 |
+| Candice | 27 | 17 | 12 | 4 | 5 |
+| Volkner | 51 | 41 | 56 | 6 | 11 |
+| League | 55 | 20 | 15 | 2 | 10 |
+
+- **Candice's split is the thinnest in the game and Wake's the fullest.**
+  Byron to Candice raises the cap by 3 with 27 trainers to fight; Maylene to
+  Wake raises it by 5 with 75. That is the shape the natural-level curve (B4)
+  will measure, and the likeliest reason the caps feel unevenly spread.
+- **89 of the 92 TMs have a source**, and each has a split. Roark's gym
+  gives TM76 in Roark's split, which the check anchors on. The three not
+  found (TM08, TM61, TM73) are expected at the Battle Frontier's prize
+  counters, which B1d does not read.
+- **Only four boss fights start in weather**: Roark in sand, Wake in rain,
+  Candice in hail and Bertha in sand. Map headers can only start rain, hail,
+  sand or fog; Flint's ashfall starts nothing, and harsh sun and Trick Room
+  come only from scripts. Twinleaf's snow means every battle there starts in
+  hail.
+- 179 trainers no map fields, and all are rematch copies, tag partners,
+  unused rival variants or unused slots. The Pokemon Center visitors come
+  from a shared script and are placed after the League, unverified.
 
 ## What gets measured
 
@@ -318,11 +349,14 @@ disagrees with them.
     becomes it.
   - [ ] **B1c**, Odyssey read from the ROM through the HexManiacAdvance
     anchors, once its move table is found.
-  - [ ] **B1d**, Oxide's split map: every filler trainer, item ball, mart
-    and TM placed in a split, through each map's events and scripts, its map
-    header's location name, and the encounter design's split for that
-    location. Map headers also carry the weather, so the weather survey comes
-    from the same pass.
+  - [x] **B1d, Oxide's split map** (2026-09-22, `splits.py`). A map takes
+    its split from its own wild table where it has one, else from its
+    location name (a hand table of towns and wild-less places), else from
+    the map outside its door by warps. Trainers take the splits of the maps
+    that battle them. Items come from item balls, hidden items, NPC gifts,
+    marts and the Game Corner. The check that matters: 27 of the 28 story
+    fights land in the split Ian's sheet gives them from map data alone, and
+    the 28th, Mars at Lake Verity, is a return visit to a Roark-split map.
 - [ ] **B2, structural metrics** for every reference and for Oxide as it
   stands. The check: vanilla, Renegade and Kaizo come out in that order on
   almost every metric.
