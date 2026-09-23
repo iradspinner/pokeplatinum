@@ -30,6 +30,10 @@
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
 #   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
 #                                           # no fetch, no merge, no push (the QA pass)
+#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM from tools/oxide/fetch-rom,
+#                                         # instead of building one; only the build's small
+#                                         # helper files are made, on two jobs (for while
+#                                         # this CPU cannot take a full build)
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -37,21 +41,27 @@ cd "$REPO"
 
 PY=python3
 
-DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0
-for arg in "$@"; do
-    case "$arg" in
+DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0; ROM_GIVEN=""
+while [ $# -gt 0 ]; do
+    case "$1" in
         --dry-run) DRY_RUN=1 ;;
         --no-build) BUILD=0 ;;
         --no-push) PUSH=0 ;;
         --verify-only) VERIFY_ONLY=1; PUSH=0 ;;
+        --rom) ROM_GIVEN="${2:-}"; shift ;;
+        --rom=*) ROM_GIVEN="${1#--rom=}" ;;
         -h|--help) sed -n '/^set -uo/q;2,$p' "$0"; exit 0 ;;
-        *) echo "integrate: unknown option $arg" >&2; exit 2 ;;
+        *) echo "integrate: unknown option $1" >&2; exit 2 ;;
     esac
+    shift
 done
+if [ -n "$ROM_GIVEN" ] && [ ! -f "$ROM_GIVEN" ]; then
+    echo "integrate: --rom $ROM_GIVEN: no such file" >&2; exit 2
+fi
 
 BASE="$HOME/roms/base.nds"
 VANILLA="$HOME/roms/vanilla.nds"
-ROM="build/pokeplatinum.us.nds"
+ROM="${ROM_GIVEN:-build/pokeplatinum.us.nds}"
 PASS=(); FAIL=(); MERGED=(); WARN=()
 
 say()  { printf '\n== %s ==\n' "$*"; }
@@ -316,8 +326,20 @@ ci_hash() {
     done
     return 1
 }
+# With --rom, the ROM comes from GitHub and only the helpers the checks read
+# from build/ are made: the generated headers, msgenc and enumproc, and the
+# sound archive's index. Two jobs, so this CPU is never loaded on every core.
+make_helpers() {
+    [ -f build/build.ninja ] || make configure || return 1
+    ninja -C build -j2 tools/msgenc/msgenc tools/enumproc/enumproc res/sound/pl_sound_data.naix \
+        $(ninja -C build -t targets all | cut -d: -f1 | grep -E '^generated/[^/]+\.h$')
+}
 if [ $BUILD -eq 1 ]; then
-    check "make rom" make_rom
+    if [ -n "$ROM_GIVEN" ]; then
+        check "build helpers on two jobs (the ROM is $ROM_GIVEN, not built here)" make_helpers
+    else
+        check "make rom" make_rom
+    fi
     if [ -f "$ROM" ]; then
         local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"
         if ci="$(ci_hash)" && remote_sha="${ci%% *}" && [ -n "$remote_sha" ]; then
@@ -340,9 +362,9 @@ if [ $BUILD -eq 1 ]; then
         check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
         check "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
         check "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
-        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run
-        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run
-        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run
+        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run --built "$ROM"
     else
         bad "built ROM missing at $ROM"
     fi

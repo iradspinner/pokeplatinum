@@ -88,8 +88,18 @@ repo never uploads the ROM. **Ian's playtest ROMs come from
 `tools/oxide/fetch-rom`**, which builds a pushed commit in the private repo
 `iradspinner/oxide-rom-builder`, keeps the ROM there as a private artifact for
 three days, and downloads it to `~/oxide-playtest` after checking its SHA-1.
-Hand Ian that ROM, not one built on this CPU. Retry a local build that crashes,
-and rerun a failed test before believing it. The `Makefile` puts the 3.13
+Hand Ian that ROM, not one built on this CPU.
+
+**No local builds until the new CPU is in (Ian, 2026-09-23).** Fresh paste
+and a verified cooler did not help: builds still crash or wedge within
+seconds at 60 to 73 °C, so the fault is the chip. Build on GitHub instead:
+push your branch, run `tools/oxide/fetch-rom <commit>` (or `--testkit`), and
+check the downloaded ROM, with `bash tools/oxide/integrate.sh --verify-only
+--rom <path>` for the whole gate. The guard hook refuses `make rom`, `make
+testkit`, a full `ninja` and `integrate.sh` without `--rom`; `ninja -C build
+-j2 <targets>` for a few helper files is allowed. Run one test suite at a
+time across all sessions, since several at once is all-core load again.
+Rerun a failed test before believing it. The `Makefile` puts the 3.13
 venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.
 `tools/oxide/python_flake_repro.py` is the check.
