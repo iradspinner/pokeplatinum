@@ -8,7 +8,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 **Next steps, in order:**
 
-1. **The QA pass over element 6's last merge**: `/qa-pass` over `git log 10782dd04^1..10782dd04^2`, the 26 commits it brought in. That integration (2026-09-22) went in without one, on Ian's word, because the machine kept crashing; the archive has the detail.
+1. **The QA pass over element 6's last merge is done** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`, over `git log 10782dd04^1..10782dd04^2`). It found one defect, fixed as a VANILLA FIX (45ad243a6: after a knockout the AI now also doubles a bench Weather Ball in fog), two questions now under "Waiting on Ian", and two nits under element 6. Merged into `oxide` with the encounter branch's docs split the same day, the gate checking a ROM built on GitHub since the CPU cannot build (26 of 26).
 2. **Ian: the rest of the emulator pass** under "Waiting on Ian".
 3. **Bug track:** the box deposit hang first, then the UNLOCK FPS ALWAYS crash entering Sandgem (Phase 5).
 4. **Phase 4 element 4**: the last new battle effects. **Resume from branch `wip-element4-after-crash-2`**, where the Overseer parked the element 4 session's uncommitted, unverified work on Defog and the entry hazards after the second crash (2026-09-22): merge it onto `oxide` and verify before committing. `convert_battle_scripts.py --audit` lists what is left.
@@ -47,6 +47,9 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
+
+- **Element 6 QA questions** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`): should a trainer's form Pokemon also get its form's ability, as it now gets its form's stats? And is Snow Cloak on Wormadam's Sandy and Trash forms intended? It looks like a base-ROM slip, and it means Beauty Devon's two and Worker Jackson's Wormadam fight with Anticipation. Also for the record, one more VANILLA FIX landed: 45ad243a6, Weather Ball in fog after a knockout.
+- **Balance: which route trainers can Ian walk around?** (`docs/oxide/balance-plan.md`, open question 2): examples of trainers he knows are avoidable and ones he cannot get past, to check B1e's required-trainer model. It blocks that check and the trainer placement pass. Question 1 there, the narrowed B2 check, blocks nothing.
 
 - **Element 6, the AI fixes** (2026-09-22): with the `debug-live` method, break at the end of `TrainerAI_MainSingles` on Camper Zackary's first turn (level 15, a Castform with Rain Dance, a Weather-flag trainer) and read `moveScore`. Rain Dance should read 105 and neither attack should carry the Weather flag's +5, which before the fix every move got (compare the +5, not the gap). Gardenia's Cherrim with Sunny Day is the same test later. No new game needed
 - **Element 6, trainer form stats** (2026-09-22): with the `debug-live` method, read the enemy party in Volkner's battle. His Rotom-Mow (level 61, Modest, every IV 29) should show 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed, where before the fix Attack to Sp. Def read 74, 116, 151 and 116. Worker Jackson's Wormadam-Trash (level 49, Relaxed, every IV 27) should show 131, 85, 122, 85, 111, 47, against 95, 111, 95 and 121 before. No new game needed
@@ -97,6 +100,7 @@ Each element gets a checklist here when it starts, with the emulator test that p
 - [ ] **5. Ability effects.** Reimplement the new abilities' behaviour in the decomp's battle code from hg-engine's `ability.c` and `individual/*.c`
 - [ ] **6. Battle AI.** Platinum's own AI is the baseline; Hardlove's is not ported. `docs/oxide/battle-ai/` (README first) is the write-up and the table of fixes; the fixes so far are archived.
   - Taken on by the encounter-track session on Ian's instruction (2026-09-22), on branch `worktree-element6`; if the Phase 4 session finishes elements 4 and 5 first, it takes element 6 back. Every bug found is labelled vanilla or Oxide, and **any fix to a vanilla bug is called out explicitly**
+  - [ ] Two nits from the 2026-09-23 QA, for this track: the README says every fix is marked in `script.s`, but the C fixes are marked in C; and `Expert_ChargeTurnWithInvuln_ScorePlus1` now subtracts 1, so its name no longer says what it does
   - [ ] Keep fixes and changes separate: a fix restores what the code plainly intended, a change makes the AI play differently and is Ian's call
   - [ ] Teach it the new moves and abilities, and the held items that change a decision (Eviolite, Assault Vest, Air Balloon, Rocky Helmet, Weakness Policy, the seeds)
 - [ ] **7. Items, a curated subset**, after the move expansion. New items go into Platinum's free slots, not Hardlove's 2,687-record table; the in and out lists are in the answers file. **The TM count must not be hard-capped at 92.** A Pixie Plate is needed for Arceus's Fairy form, since Multitype reads the held item
@@ -106,7 +110,7 @@ Each element gets a checklist here when it starts, with the emulator test that p
 
 None is Phase 4 work; all of them shape the finished game.
 
-- [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`, covering the whole game's balance. **The three passes below are that track's work**; their status lives in its plan
+- [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`, covering the whole game's balance. As of 2026-09-23: B2's structural metrics are done (48640c88b); B1e's required-trainer model is built (c98f9fd01), its check waiting on Ian's avoidable-trainer examples; B3, the calculator run over many matchups, waits for the new CPU because it is heavy. **The three passes below are that track's work**; their status lives in its plan
 - [ ] **Level-cap split design** (balance track), which **must precede the trainer balance pass**; Phase 4 delivers only the mechanism
 - [ ] **TM pass** (balance track): how many TMs (likely more than 92) and which moves
 - [ ] **Ability balance pass** (balance track), including the base ROM's 228 duplicated second slots
