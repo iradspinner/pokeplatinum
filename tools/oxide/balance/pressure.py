@@ -97,6 +97,109 @@ def wins(row, def_info, speeds, weather, sash=False):
     return False
 
 
+CHOICE = {"Choice Band", "Choice Specs", "Choice Scarf"}
+
+
+def turns_to_ko(row, def_info, weather, sash=False):
+    """{move: turns it takes to knock the defender out}, for the moves that
+    ever do, with the same hit, charge and Focus Sash rules as wins()."""
+    out = {}
+    for move, r in row["moves"].items():
+        if "error" in r:
+            continue
+        n = hits_to_ko(r["rolls"], def_info["hp"])
+        if n is None:
+            continue
+        if sash and n == 1:
+            n = 2
+        out[move] = turns(move, n, weather)
+    return out
+
+
+def locked_move(rows, key, side_keys, info, weather):
+    """The move a Choice-locked boss is taken to lock into: the one that
+    knocks out most of the side within two turns, ignoring Speed, with ties
+    going to the one that takes off most HP on average."""
+    tally = {}
+    for pk in side_keys:
+        for move, r in rows[(key, pk)]["moves"].items():
+            if "error" in r:
+                continue
+            t = turns_to_ko({"moves": {move: r}}, info[pk], weather).get(move)
+            ko, share = tally.get(move, (0, 0.0))
+            tally[move] = (ko + (t is not None and t <= 2),
+                           share + min(1.0, r["rolls"][len(r["rolls"]) // 2] / info[pk]["hp"]))
+    return max(tally, key=lambda m: tally[m]) if tally else None
+
+
+def lock_answer(up, down, locked, player_info, boss_info, weather, sash):
+    """True when a player Pokemon that is not a plain answer beats a
+    Choice-locked boss by coming in on its locked move. Coming in costs one
+    hit of that move; then the player needs its knockout (two turns at most,
+    as for any answer) to land before the locked move knocks it out. Moving
+    first, it takes n hits for its n attacks (the switch-in hit and n - 1
+    more); moving second it takes n + 1. The locked move knocks it out in k
+    turns, so the answer holds when the hits taken stay below k."""
+    r = down["moves"].get(locked)
+    k = turns_to_ko({"moves": {locked: r}}, player_info, weather).get(locked) \
+        if r and "error" not in r else None
+    for move, n in turns_to_ko(up, boss_info, weather, sash).items():
+        if n > 2:
+            continue
+        pr = up["moves"][move]["priority"]
+        first = pr > 0 or (pr == 0 and up["speeds"][0] > up["speeds"][1])
+        taken = n if first else n + 1
+        if k is None or taken < k:
+            return True
+    return False
+
+
+def score_mons(bosses, side_keys, rows, info):
+    """Per boss Pokemon: threat, answers, and for a Choice holder the answers
+    counting the lock (answers_lock; equal to answers for anyone else)."""
+    per_mon = []
+    for v, key, mon, w in bosses:
+        sash = mon.get("item") == "Focus Sash"
+        choice = mon.get("item") in CHOICE
+        locked = locked_move(rows, key, side_keys, info, w) if choice else None
+        threat = answer = lock = 0
+        for pk in side_keys:
+            down, up = rows[(key, pk)], rows[(pk, key)]
+            if wins(down, info[pk], down["speeds"], w):
+                threat += 1
+            if wins(up, info[key], up["speeds"], w, sash=sash):
+                answer += 1
+                lock += 1
+            elif choice and locked and lock_answer(up, down, locked, info[pk], info[key], w, sash):
+                lock += 1
+        n = len(side_keys)
+        per_mon.append({"variant": v, "species": mon["species"], "level": mon["level"],
+                        "item": mon.get("item"), "weather": w, "choice": choice,
+                        "locked_move": locked,
+                        "threat": round(threat / n, 3), "answers": round(answer / n, 3),
+                        "answers_lock": round(lock / n, 3)})
+    return per_mon
+
+
+def roll_up(per_mon):
+    """A fight's scores from its Pokemon's: the mean over each variant's
+    Pokemon, then over the variants."""
+    by_variant = {}
+    for m in per_mon:
+        by_variant.setdefault(m["variant"], []).append(m)
+
+    def mean(k):
+        return round(sum(sum(m[k] for m in ms) / len(ms) for ms in by_variant.values())
+                     / len(by_variant), 3)
+
+    return {"threat": mean("threat"), "answers": mean("answers"),
+            "answers_lock": mean("answers_lock"),
+            "max_threat": max(m["threat"] for m in per_mon),
+            "min_answers": min(m["answers"] for m in per_mon),
+            "min_answers_lock": min(m["answers_lock"] for m in per_mon),
+            "choice_mons": sum(m["choice"] for m in per_mon)}
+
+
 def boss_parties(fight):
     """[[boss Pokemon]] per variant: a rival's three starters are three
     variants, a tag battle's two opponents one party."""
@@ -154,38 +257,13 @@ def score_fight(fight, blob, blob_path):
     out = run_node(blob_path, jobs)
     seconds = time.time() - t0
     rows = {(r["a"], r["d"]): r for r in out["results"]}
-    info = out["pokemon"]
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
-    per_mon = []
-    for v, key, mon, w in bosses:
-        threat = answer = 0
-        for i in range(len(side)):
-            pk = f"p{i}"
-            down = rows[(key, pk)]
-            up = rows[(pk, key)]
-            if wins(down, info[pk], down["speeds"], w):
-                threat += 1
-            if wins(up, info[key], up["speeds"], w, sash=mon.get("item") == "Focus Sash"):
-                answer += 1
-        per_mon.append({"variant": v, "species": mon["species"], "level": mon["level"],
-                        "item": mon.get("item"), "weather": w,
-                        "threat": round(threat / len(side), 3),
-                        "answers": round(answer / len(side), 3)})
-    by_variant = {}
-    for m in per_mon:
-        by_variant.setdefault(m["variant"], []).append(m)
-
-    def mean(k):
-        return round(sum(sum(m[k] for m in ms) / len(ms) for ms in by_variant.values())
-                     / len(by_variant), 3)
-
+    per_mon = score_mons(bosses, [f"p{i}" for i in range(len(side))], rows, out["pokemon"])
     return {
         "key": fight["key"], "label": fight["label"], "split": split,
         "cap": pool.caps()[split], "pool": len(side), "weather": weather,
-        "threat": mean("threat"), "answers": mean("answers"),
-        "max_threat": max(m["threat"] for m in per_mon),
-        "min_answers": min(m["answers"] for m in per_mon),
+        **roll_up(per_mon),
         "mons": per_mon, "calcs": sum(len(r["moves"]) for r in out["results"]),
         "errors": errors, "node_seconds": round(out.get("seconds", 0), 2),
         "wall_seconds": round(seconds, 2),

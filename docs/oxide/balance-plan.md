@@ -71,6 +71,24 @@ Ian's rulings, 2026-09-22:
   lines), and B1e measures which trainers are avoidable today so the pass
   has a list to work from and a way to check its result.
 
+Ian's rulings, 2026-09-23, after reading B3a:
+
+- **A Choice item is weaker in play than its score, and Choice items should
+  be rare in Oxide.** A Choice item locks its holder into one move, so the
+  player can bait the lock, switch in something that walls that move, and
+  win from there. B3a's finding that Choice Scarf bosses have almost no
+  answers overstates them for that reason. The scores are not expected to
+  model switching in full, but every table and report marks the Choice
+  holders so the reader can discount them, and says that a Choice-locked
+  boss plays weaker than its score. B3b adds one cheap adjustment for it,
+  described under "What B3 found" (answers counting the lock). For the item
+  pass and the trainer pass: Choice items are to be quite rare in Oxide, on
+  both sides.
+- **The rest of B3a's analysis stands.** Ian's next change to the base
+  ROM's content was already going to be a slight nerf to Gardenia's
+  Roserade. It is recorded here for the trainer design pass, and is not made
+  in the balance tooling.
+
 ## What the first look found
 
 **Oxide's gym caps are Renegade Platinum's gym aces.** Each leader's
