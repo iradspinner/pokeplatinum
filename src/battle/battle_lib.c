@@ -7668,7 +7668,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIVE:
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
-    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: Fire Fang Always Bypasses Wonder Guard (see docs/bugs_and_glitches.md)
+    case BATTLE_EFFECT_SHADOW_FORCE: // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Shadow Force, one before Fire Fang's effect, which was listed by mistake
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }
