@@ -49,7 +49,8 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Klefki, Lv. 5 | Klefki, which learns Fairy Wind (move 587) at Lv. 6 | the widened learnset: one Rare Candy teaches a move the old format could not hold; then the Move Relearner |
 | Gible vs. Clefairy | Gible, Lv. 20, with Dragon Claw, then a wild Clefairy, Lv. 10 | Fairy: the Dragon move does nothing |
 | New move sets | a Lv. 50 Mew knowing four of the new moves (sets below) | the battle effect scripts, from the player's side |
-| Wild Chansey | a wild Chansey, Lv. 50 | something to use the move sets on |
+| Wild Chansey | a wild Chansey, Lv. 50 | a target for special moves |
+| Wild Shuckle | a wild Shuckle, Lv. 50 | a target for physical moves: Chansey faints before an extra like Sappy Seed's seed, Axe Kick's confusion or a flinch can show, and Shuckle is slower than Mew |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where

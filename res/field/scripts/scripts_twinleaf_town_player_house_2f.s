@@ -455,6 +455,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuFairy, 4
     AddListMenuEntry TestKit_Text_MenuMoveSets, 5
     AddListMenuEntry TestKit_Text_MenuWildChansey, 6
+    AddListMenuEntry TestKit_Text_MenuWildShuckle, 9
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -466,6 +467,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSets
     GoToIfEq VAR_0x8004, 6, TestKit_WildChansey
     GoToIfEq VAR_0x8004, 7, TestKit_Warp
+    GoToIfEq VAR_0x8004, 9, TestKit_WildShuckle
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -520,6 +522,16 @@ TestKit_WildChansey:
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_CHANSEY, 50
+    GoTo TestKit_AfterBattle
+
+/* Chansey's Defense is so low that a physical hit ends the battle before an
+   extra effect shows (Sappy Seed, Axe Kick's confusion, Double Iron Bash's
+   flinch), so Shuckle is the physical target. It is also slower than Mew. */
+TestKit_WildShuckle:
+    Message TestKit_Text_WildShuckle
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_SHUCKLE, 50
     GoTo TestKit_AfterBattle
 
 TestKit_AfterBattle:

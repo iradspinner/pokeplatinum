@@ -34,6 +34,10 @@
             "en_US": "Wild Chansey"
         },
         {
+            "id": "TestKit_Text_MenuWildShuckle",
+            "en_US": "Wild Shuckle"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -137,6 +141,13 @@
             "en_US": [
                 "A wild Chansey, Lv. 50, to try\n",
                 "the new moves on."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WildShuckle",
+            "en_US": [
+                "A wild Shuckle, Lv. 50, to take\n",
+                "the physical moves."
             ]
         },
         {
