@@ -1246,6 +1246,19 @@ still catchable there in Roark's split, since the Old Rod carries it. The
 no-leak pass followed the change into Oreburgh Mine B2F's swarm field, which
 Oxide never uses.
 
+### Maylene's cap: 38 in the tables, 39 in Ian's sheet (known, waiting)
+
+A known mismatch, written down on Ian's ruling of 2026-09-22. Every table in
+Maylene's split was designed against a level cap of 38, the figure from his
+second review (above). His Level Caps sheet says 39, and the balance track
+found the difference (question 5 in `docs/oxide/balance-plan.md`). Ian settled
+it in the sheet's favour, but ruled **not to change the tables now**: the
+balance track is redesigning the whole cap curve first and taking it to him.
+Until those final caps land, the tables stay as designed at 38. Then they
+re-run `cli evolve` once against the final caps (the evolution stages are the
+only part of a table that depends on a cap), with the suites and the source
+check after it, rather than moving for 39 now and again later.
+
 ### Ian's notes on the Tables view: 2026-09-22
 
 Play order had been sorting by each area's median level, which put Twinleaf Town
