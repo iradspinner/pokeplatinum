@@ -3623,9 +3623,10 @@ Expert_Foresight:
     // If the target's Evasion stat stage is at +3 or higher, 68.75% chance of score +2.
     //
     // Otherwise, score -2.
-    LoadTypeFrom LOAD_ATTACKER_TYPE_1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the target's types, not the user's
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
-    LoadTypeFrom LOAD_ATTACKER_TYPE_2
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
     IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_Foresight_SecondRoll
     AddToMoveScore -2
