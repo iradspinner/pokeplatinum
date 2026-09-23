@@ -128,11 +128,44 @@
             "en_US": "Set 9"
         },
         {
+            "id": "TestKit_Text_MenuSet10",
+            "en_US": "Set 10"
+        },
+        {
+            "id": "TestKit_Text_MenuSet11",
+            "en_US": "Set 11"
+        },
+        {
+            "id": "TestKit_Text_MenuSet12",
+            "en_US": "Set 12"
+        },
+        {
+            "id": "TestKit_Text_MenuSet13",
+            "en_US": "Set 13"
+        },
+        {
+            "id": "TestKit_Text_MenuSet14",
+            "en_US": "Set 14"
+        },
+        {
+            "id": "TestKit_Text_MenuSet15",
+            "en_US": "Set 15"
+        },
+        {
+            "id": "TestKit_Text_MenuSet16",
+            "en_US": "Set 16"
+        },
+        {
+            "id": "TestKit_Text_MenuSet17",
+            "en_US": "Set 17"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
-                "Mew knows {STRVAR_1 6, 0, 0},\n",
-                "{STRVAR_1 6, 1, 0},\r",
-                "{STRVAR_1 6, 2, 0}\n",
+                "The new Pokémon knows\n",
+                "{STRVAR_1 6, 0, 0},\r",
+                "{STRVAR_1 6, 1, 0},\n",
+                "{STRVAR_1 6, 2, 0}\r",
                 "and {STRVAR_1 6, 3, 0}."
             ]
         },

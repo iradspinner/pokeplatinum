@@ -61,7 +61,8 @@ destination; that is the kit's nature, not a defect.
 
 One set per four moves, a batch of effect scripts at a time. Each is a block in
 the kit script that loads four move ids into `VAR_0x8006` to `VAR_0x8009` and
-jumps to `TestKit_GiveMew`.
+jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
+`TestKit_GivePokemonWithMoves` when a move needs a particular user.
 
 | Set | Moves | Batch |
 |---|---|---|
@@ -71,9 +72,17 @@ jumps to `TestKit_GiveMew`.
 | 4 | Dire Claw, Spin Out, Guardian of Alola, Esper Wing | 388331c51 |
 | 5 | Toxic, Venoshock, Hex, Acrobatics | 2f84be2ef |
 | 6 | Flame Charge, Axe Kick, Double Iron Bash, Triple Axel | 2f84be2ef |
-| 7 | Relic Song, Surging Strikes, Flower Trick, Bolt Beak | 2f84be2ef |
+| 7 | Relic Song, Surging Strikes, Spin Out, Bolt Beak | 2f84be2ef; Spin Out slows Mew so Bolt Beak can be seen moving second |
 | 8 | Rain Dance, Hurricane, Wildbolt Storm, Bleakwind Storm | 5d1d1a970 |
 | 9 | Sunny Day, Sandsear Storm, Diamond Storm, First Impression | 5d1d1a970 |
+| 10 | Hone Claws, Quiver Dance, Coil, Shift Gear | 7a7df8b7d to 59e966cf0 |
+| 11 | Shell Smash, Work Up, Victory Dance, Cotton Guard | same |
+| 12 | Fillet Away, Clangorous Soul, Geomancy, Take Heart | same |
+| 13 | V-create, Clanging Scales, Hyperspace Fury, Spicy Extract | same |
+| 14 | Poltergeist, Fickle Beam, Matcha Gotcha, Anchor Shot | same; Poltergeist fails against a target holding nothing |
+| 15 | Jaw Lock, Stone Axe, Ceaseless Edge, Mortal Spin | same |
+| 16 | Freeze Shock, Ice Burn, Fell Stinger, Double Shock, on Electivire | same; Double Shock needs an Electric user |
+| 17 | Burn Up, Clear Smog, Final Gambit, Chloroblast, on Magmortar | same; Burn Up needs a Fire user |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and

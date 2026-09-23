@@ -559,6 +559,14 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet7, 6
     AddListMenuEntry TestKit_Text_MenuSet8, 7
     AddListMenuEntry TestKit_Text_MenuSet9, 8
+    AddListMenuEntry TestKit_Text_MenuSet10, 9
+    AddListMenuEntry TestKit_Text_MenuSet11, 10
+    AddListMenuEntry TestKit_Text_MenuSet12, 11
+    AddListMenuEntry TestKit_Text_MenuSet13, 12
+    AddListMenuEntry TestKit_Text_MenuSet14, 13
+    AddListMenuEntry TestKit_Text_MenuSet15, 14
+    AddListMenuEntry TestKit_Text_MenuSet16, 15
+    AddListMenuEntry TestKit_Text_MenuSet17, 16
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -569,6 +577,14 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet7
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet8
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet9
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet10
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet11
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet12
+    GoToIfEq VAR_0x8004, 12, TestKit_MoveSet13
+    GoToIfEq VAR_0x8004, 13, TestKit_MoveSet14
+    GoToIfEq VAR_0x8004, 14, TestKit_MoveSet15
+    GoToIfEq VAR_0x8004, 15, TestKit_MoveSet16
+    GoToIfEq VAR_0x8004, 16, TestKit_MoveSet17
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -617,10 +633,13 @@ TestKit_MoveSet6:
     SetVar VAR_0x8009, MOVE_TRIPLE_AXEL
     GoTo TestKit_GiveMew
 
+/* Set 7 carries Spin Out so Bolt Beak can be compared: first while Mew moves
+   first (double power), then after two Spin Outs, when Chansey outspeeds it.
+   Flower Trick, which it replaced, passed in Ian's first run. */
 TestKit_MoveSet7:
     SetVar VAR_0x8006, MOVE_RELIC_SONG
     SetVar VAR_0x8007, MOVE_SURGING_STRIKES
-    SetVar VAR_0x8008, MOVE_FLOWER_TRICK
+    SetVar VAR_0x8008, MOVE_SPIN_OUT
     SetVar VAR_0x8009, MOVE_BOLT_BEAK
     GoTo TestKit_GiveMew
 
@@ -640,10 +659,75 @@ TestKit_MoveSet9:
     SetVar VAR_0x8009, MOVE_FIRST_IMPRESSION
     GoTo TestKit_GiveMew
 
-/* Gives a Lv. 50 Mew in slot VAR_0x8005 holding the four moves in
-   VAR_0x8006 to VAR_0x8009, and names them. */
+/* Sets 10 to 17: the four batches after 5d1d1a970, up to c4d800e11. */
+TestKit_MoveSet10:
+    SetVar VAR_0x8006, MOVE_HONE_CLAWS
+    SetVar VAR_0x8007, MOVE_QUIVER_DANCE
+    SetVar VAR_0x8008, MOVE_COIL
+    SetVar VAR_0x8009, MOVE_SHIFT_GEAR
+    GoTo TestKit_GiveMew
+
+TestKit_MoveSet11:
+    SetVar VAR_0x8006, MOVE_SHELL_SMASH
+    SetVar VAR_0x8007, MOVE_WORK_UP
+    SetVar VAR_0x8008, MOVE_VICTORY_DANCE
+    SetVar VAR_0x8009, MOVE_COTTON_GUARD
+    GoTo TestKit_GiveMew
+
+TestKit_MoveSet12:
+    SetVar VAR_0x8006, MOVE_FILLET_AWAY
+    SetVar VAR_0x8007, MOVE_CLANGOROUS_SOUL
+    SetVar VAR_0x8008, MOVE_GEOMANCY
+    SetVar VAR_0x8009, MOVE_TAKE_HEART
+    GoTo TestKit_GiveMew
+
+TestKit_MoveSet13:
+    SetVar VAR_0x8006, MOVE_V_CREATE
+    SetVar VAR_0x8007, MOVE_CLANGING_SCALES
+    SetVar VAR_0x8008, MOVE_HYPERSPACE_FURY
+    SetVar VAR_0x8009, MOVE_SPICY_EXTRACT
+    GoTo TestKit_GiveMew
+
+/* Poltergeist fails against a target holding nothing, which is correct. */
+TestKit_MoveSet14:
+    SetVar VAR_0x8006, MOVE_POLTERGEIST
+    SetVar VAR_0x8007, MOVE_FICKLE_BEAM
+    SetVar VAR_0x8008, MOVE_MATCHA_GOTCHA
+    SetVar VAR_0x8009, MOVE_ANCHOR_SHOT
+    GoTo TestKit_GiveMew
+
+TestKit_MoveSet15:
+    SetVar VAR_0x8006, MOVE_JAW_LOCK
+    SetVar VAR_0x8007, MOVE_STONE_AXE
+    SetVar VAR_0x8008, MOVE_CEASELESS_EDGE
+    SetVar VAR_0x8009, MOVE_MORTAL_SPIN
+    GoTo TestKit_GiveMew
+
+/* Double Shock needs an Electric user, so set 16 is on Electivire. */
+TestKit_MoveSet16:
+    SetVar VAR_0x8006, MOVE_FREEZE_SHOCK
+    SetVar VAR_0x8007, MOVE_ICE_BURN
+    SetVar VAR_0x8008, MOVE_FELL_STINGER
+    SetVar VAR_0x8009, MOVE_DOUBLE_SHOCK
+    SetVar VAR_0x800A, SPECIES_ELECTIVIRE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Burn Up needs a Fire user, so set 17 is on Magmortar. */
+TestKit_MoveSet17:
+    SetVar VAR_0x8006, MOVE_BURN_UP
+    SetVar VAR_0x8007, MOVE_CLEAR_SMOG
+    SetVar VAR_0x8008, MOVE_FINAL_GAMBIT
+    SetVar VAR_0x8009, MOVE_CHLOROBLAST
+    SetVar VAR_0x800A, SPECIES_MAGMORTAR
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in
+   slot VAR_0x8005, holding the four moves in VAR_0x8006 to VAR_0x8009, and
+   names them. */
 TestKit_GiveMew:
-    GivePokemon SPECIES_MEW, 50, ITEM_NONE, VAR_RESULT
+    SetVar VAR_0x800A, SPECIES_MEW
+TestKit_GivePokemonWithMoves:
+    GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, VAR_0x8006
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
