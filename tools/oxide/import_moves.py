@@ -29,8 +29,9 @@ base ROM byte for byte, which `verify_narcs.py` checks.
     python3 tools/oxide/import_moves.py
 
 A re-run rewrites the move data and the generated lists but leaves an existing
-`anim.s` or `effect_script_NNNN.s` alone, because those are where hand work
-lands (a ported effect, a tuned animation); pass `--force` to regenerate them.
+`anim.s`, `script.s` or `effect_script_NNNN.s` alone, because those are where
+hand work lands (a ported effect, a tuned animation, a charge-turn message
+such as Freeze Shock's); pass `--force` to regenerate them.
 """
 
 import argparse
@@ -319,7 +320,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true", help="report, write nothing")
     ap.add_argument("--rom", default=donor_moves.donor.DEFAULT_ROM)
     ap.add_argument("--force", action="store_true",
-                    help="also overwrite existing anim.s and effect_script files")
+                    help="also overwrite existing anim.s, script.s and effect_script files")
     a = ap.parse_args()
 
     dm = donor_moves.DonorMoves(a.rom)
@@ -420,8 +421,10 @@ def main():
         os.makedirs(d, exist_ok=True)
         with open(os.path.join(d, "data.json"), "w", encoding="utf-8", newline="\n") as f:
             f.write(move_json(data))
-        with open(os.path.join(d, "script.s"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(SCRIPT_S)
+        script = os.path.join(d, "script.s")
+        if a.force or not os.path.exists(script):
+            with open(script, "w", encoding="utf-8", newline="\n") as f:
+                f.write(SCRIPT_S)
         anim_src = (os.path.join(MOVES_DIR, src, "anim.s") if src else
                     os.path.join(MOVES_DIR, "unused_468", "anim.s"))
         anim_dst = os.path.join(d, "anim.s")

@@ -3003,6 +3003,10 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
     case BATTLE_EFFECT_SHADOW_FORCE:
+    // Oxide's two-turn moves: Geomancy, Freeze Shock and Ice Burn
+    case BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2:
+    case BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT:
+    case BATTLE_EFFECT_CHARGE_TURN_BURN_HIT:
         return TRUE;
     }
 

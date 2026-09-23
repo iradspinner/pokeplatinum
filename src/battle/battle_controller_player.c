@@ -2491,8 +2491,10 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
         case CHECK_STATUS_STATE_FREEZE:
             if (ATTACKING_MON.status & MON_CONDITION_FREEZE) {
                 if (BattleSystem_RandNext(battleSys) % 5 != 0) {
+                    // Matcha Gotcha thaws its user the way Flame Wheel does.
                     if (moveEffect != BATTLE_EFFECT_THAW_AND_BURN_HIT
-                        && moveEffect != BATTLE_EFFECT_RECOIL_BURN_HIT) {
+                        && moveEffect != BATTLE_EFFECT_RECOIL_BURN_HIT
+                        && moveEffect != BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT) {
                         LOAD_SUBSEQ(subscript_frozen);
                         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                         battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
@@ -2740,7 +2742,9 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
 
         case CHECK_STATUS_STATE_SELF_THAW:
             if ((ATTACKING_MON.status & MON_CONDITION_FREEZE)
-                && (moveEffect == BATTLE_EFFECT_THAW_AND_BURN_HIT || moveEffect == BATTLE_EFFECT_RECOIL_BURN_HIT)) {
+                && (moveEffect == BATTLE_EFFECT_THAW_AND_BURN_HIT
+                    || moveEffect == BATTLE_EFFECT_RECOIL_BURN_HIT
+                    || moveEffect == BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT)) {
                 LOAD_SUBSEQ(subscript_defrosted_by_move);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;

@@ -2821,7 +2821,22 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
     battleCtx->battleStatusMask &= ~SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-    if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
+    // Oxide's three-stage changes (Cotton Guard, Fell Stinger) sit after every
+    // vanilla pointer, so they are matched first and by range: the vanilla
+    // chain below treats anything past the two-stage drops as one, which for
+    // a later pointer would index past the stat array. The message for three
+    // stages is the two-stage one, "sharply rose", as Platinum has no other.
+    if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES
+        && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_DOWN_3_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES;
+        stageChange = -3;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_UP_3_STAGES
+        && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_UP_3_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_3_STAGES;
+        stageChange = 3;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES;
         stageChange = -2;
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
@@ -4219,9 +4234,18 @@ static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battle
 
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    // Oxide's Glitzy Glow sets Light Screen as a side effect after its hit. A screen
+    // already up is then no failure of the move, which has done its damage,
+    // and the message names Light Screen, because "Glitzy Glow raised your team's..."
+    // never says a screen went up.
+    BOOL fromHit = CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SET_LIGHT_SCREEN_HIT;
+
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LIGHT_SCREEN) {
         BattleScript_Iter(battleCtx, jump);
-        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+
+        if (fromHit == FALSE) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        }
     } else {
         battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_LIGHT_SCREEN;
         battleCtx->sideConditions[side].lightScreenTurns = NUM_SCREEN_TURNS;
@@ -4232,7 +4256,7 @@ static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battle
         }
 
         battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
-        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[0] = fromHit ? MOVE_LIGHT_SCREEN : battleCtx->moveCur;
         battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
         if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
@@ -4262,9 +4286,18 @@ static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx)
 
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    // Oxide's Baddy Bad sets Reflect as a side effect after its hit. A screen
+    // already up is then no failure of the move, which has done its damage,
+    // and the message names Reflect, because "Baddy Bad raised your team's..."
+    // never says a screen went up.
+    BOOL fromHit = CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SET_REFLECT_HIT;
+
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_REFLECT) {
         BattleScript_Iter(battleCtx, jump);
-        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+
+        if (fromHit == FALSE) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        }
     } else {
         battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_REFLECT;
         battleCtx->sideConditions[side].reflectTurns = NUM_SCREEN_TURNS;
@@ -4275,7 +4308,7 @@ static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx)
         }
 
         battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
-        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[0] = fromHit ? MOVE_REFLECT : battleCtx->moveCur;
         battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
         if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
