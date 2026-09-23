@@ -311,7 +311,9 @@ static BOOL BtlCmd_CalcBoltBeakPower(BattleSystem *battleSys, BattleContext *bat
 static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ReduceWeight(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx);
 
+static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
 static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file);
@@ -5265,6 +5267,92 @@ static BOOL BtlCmd_TrySubstitute(BattleSystem *battleSys, BattleContext *battleC
 }
 
 /**
+ * @brief Pick the Pokemon a trainer's battler is dragged out for, into
+ * battleCtx->switchedPartySlot. Taken out of TryWhirlwind so Oxide's Dragon
+ * Tail can share it; with checkLevel TRUE it is exactly the vanilla code,
+ * random-number calls in the same order.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param checkLevel    Apply Roar's and Whirlwind's level-based chance
+ * @return TRUE if a Pokemon was picked; FALSE if none is eligible or the
+ * level check failed
+ */
+static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel)
+{
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    Party *defenderParty;
+    Pokemon *mon;
+    int defenderPartyCount;
+    int eligibleMons = 0, maxActiveMons, i, partyStart, partyEnd, max;
+    int selectedSlot1, selectedSlot2;
+
+    defenderParty = BattleSystem_GetParty(battleSys, battleCtx->defender);
+    defenderPartyCount = BattleSystem_GetPartyCount(battleSys, battleCtx->defender);
+
+    if ((battleType & BATTLE_TYPE_2vs2)
+        || ((battleType & BATTLE_TYPE_TAG) && BattleSystem_GetBattlerSide(battleSys, battleCtx->defender))) {
+        // There are two battlers out at one time, but only one of these belongs to each trainer.
+        partyStart = 0;
+        partyEnd = defenderPartyCount;
+        max = defenderPartyCount;
+        maxActiveMons = 1;
+        selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
+        selectedSlot2 = battleCtx->selectedPartySlot[battleCtx->defender];
+    } else if (battleType & BATTLE_TYPE_DOUBLES) {
+        // There are two battlers out at one time, and both belong to the same trainer.
+        partyStart = 0;
+        partyEnd = defenderPartyCount;
+        max = defenderPartyCount;
+        maxActiveMons = 2;
+        selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
+        selectedSlot2 = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battleCtx->defender)];
+    } else {
+        // There is only one active battler (singles).
+        partyStart = 0;
+        partyEnd = defenderPartyCount;
+        max = defenderPartyCount;
+        maxActiveMons = 1;
+        selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
+        selectedSlot2 = battleCtx->selectedPartySlot[battleCtx->defender];
+    }
+
+    // Count the number of eligible mons in the party.
+    for (i = partyStart; i < partyEnd; i++) {
+        mon = Party_GetPokemonBySlotIndex(defenderParty, i);
+
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+            eligibleMons++;
+        }
+    }
+
+    // Check if there are more eligible mons in the back of the party.
+    if (eligibleMons <= maxActiveMons) {
+        return FALSE;
+    } else if (checkLevel == FALSE || BattleSystem_CanWhirlwind(battleSys, battleCtx)) {
+        // Pick a random eligible mon from the back of the party.
+        do {
+            do {
+                i = BattleSystem_RandNext(battleSys) % max;
+                i += partyStart;
+            } while (i == selectedSlot1 || i == selectedSlot2);
+
+            mon = Party_GetPokemonBySlotIndex(defenderParty, i);
+        } while (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE
+            || Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == TRUE
+            || Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0);
+
+        battleCtx->switchedPartySlot[battleCtx->defender] = i;
+        return TRUE;
+    }
+
+    // We failed the random Whirlwind check.
+    return FALSE;
+}
+
+/**
  * @brief Try to execute the Whirlwind effect.
  *
  * This command does NOT check for any other effects which would prevent this
@@ -5284,72 +5372,7 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if (battleType & BATTLE_TYPE_TRAINER) {
-        Party *defenderParty;
-        Pokemon *mon;
-        int defenderPartyCount;
-        int eligibleMons = 0, maxActiveMons, i, partyStart, partyEnd, max;
-        int selectedSlot1, selectedSlot2;
-
-        defenderParty = BattleSystem_GetParty(battleSys, battleCtx->defender);
-        defenderPartyCount = BattleSystem_GetPartyCount(battleSys, battleCtx->defender);
-
-        if ((battleType & BATTLE_TYPE_2vs2)
-            || ((battleType & BATTLE_TYPE_TAG) && BattleSystem_GetBattlerSide(battleSys, battleCtx->defender))) {
-            // There are two battlers out at one time, but only one of these belongs to each trainer.
-            partyStart = 0;
-            partyEnd = defenderPartyCount;
-            max = defenderPartyCount;
-            maxActiveMons = 1;
-            selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
-            selectedSlot2 = battleCtx->selectedPartySlot[battleCtx->defender];
-        } else if (battleType & BATTLE_TYPE_DOUBLES) {
-            // There are two battlers out at one time, and both belong to the same trainer.
-            partyStart = 0;
-            partyEnd = defenderPartyCount;
-            max = defenderPartyCount;
-            maxActiveMons = 2;
-            selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
-            selectedSlot2 = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battleCtx->defender)];
-        } else {
-            // There is only one active battler (singles).
-            partyStart = 0;
-            partyEnd = defenderPartyCount;
-            max = defenderPartyCount;
-            maxActiveMons = 1;
-            selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
-            selectedSlot2 = battleCtx->selectedPartySlot[battleCtx->defender];
-        }
-
-        // Count the number of eligible mons in the party.
-        for (i = partyStart; i < partyEnd; i++) {
-            mon = Party_GetPokemonBySlotIndex(defenderParty, i);
-
-            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)
-                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
-                && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
-                eligibleMons++;
-            }
-        }
-
-        // Check if there are more eligible mons in the back of the party.
-        if (eligibleMons <= maxActiveMons) {
-            BattleScript_Iter(battleCtx, jumpOnFail);
-        } else if (BattleSystem_CanWhirlwind(battleSys, battleCtx)) {
-            // Pick a random eligible mon from the back of the party.
-            do {
-                do {
-                    i = BattleSystem_RandNext(battleSys) % max;
-                    i += partyStart;
-                } while (i == selectedSlot1 || i == selectedSlot2);
-
-                mon = Party_GetPokemonBySlotIndex(defenderParty, i);
-            } while (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE
-                || Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == TRUE
-                || Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0);
-
-            battleCtx->switchedPartySlot[battleCtx->defender] = i;
-        } else {
-            // We failed the random Whirlwind check.
+        if (BattleScript_PickDraggedOutMon(battleSys, battleCtx, TRUE) == FALSE) {
             BattleScript_Iter(battleCtx, jumpOnFail);
         }
     } else if (BattleSystem_CanWhirlwind(battleSys, battleCtx) == FALSE) {
@@ -9601,6 +9624,39 @@ static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battl
 {
     BattleScript_Iter(battleCtx, 1);
     battleCtx->hpCalcTemp = Battler_AttackAfterStage(battleCtx, battleCtx->defender);
+
+    return FALSE;
+}
+
+/**
+ * @brief Checks whether Oxide's Dragon Tail and Circle Throw can drag the
+ * target out after they hit.
+ *
+ * Inputs:
+ * 1. The jump distance if they cannot.
+ *
+ * The later generations' rule rather than Roar's: in a trainer battle the
+ * target is always dragged out when its trainer has another Pokemon, with no
+ * level-based chance; in a wild battle the battle ends unless the target is
+ * the higher level, and in a wild double battle nothing happens.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+
+    if (battleType & BATTLE_TYPE_TRAINER) {
+        if (BattleScript_PickDraggedOutMon(battleSys, battleCtx, FALSE) == FALSE) {
+            BattleScript_Iter(battleCtx, jumpOnFail);
+        }
+    } else if ((battleType & BATTLE_TYPE_DOUBLES) || DEFENDING_MON.level > ATTACKING_MON.level) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
 
     return FALSE;
 }

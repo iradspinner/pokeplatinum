@@ -180,6 +180,10 @@
             "en_US": "Set 22"
         },
         {
+            "id": "TestKit_Text_MenuSet23",
+            "en_US": "Set 23"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",

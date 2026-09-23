@@ -572,6 +572,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet20, 19
     AddListMenuEntry TestKit_Text_MenuSet21, 20
     AddListMenuEntry TestKit_Text_MenuSet22, 21
+    AddListMenuEntry TestKit_Text_MenuSet23, 22
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -595,6 +596,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet20
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet21
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet22
+    GoToIfEq VAR_0x8004, 22, TestKit_MoveSet23
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -775,6 +777,18 @@ TestKit_MoveSet22:
     SetVar VAR_0x8009, MOVE_SWORDS_DANCE
     SetVar VAR_0x800A, SPECIES_METAGROSS
     GoTo TestKit_GivePokemonWithMoves
+
+/* Dragon Tail and Circle Throw hit, then drag the target out: against a wild
+   Pokemon no higher in level than Mew they end the battle. Parting Shot lowers
+   the target's Attack and Special Attack, then switches Mew out if there is
+   another Pokemon to send in. Roar is here because its code was reshaped to
+   share with Dragon Tail and should behave exactly as before. */
+TestKit_MoveSet23:
+    SetVar VAR_0x8006, MOVE_DRAGON_TAIL
+    SetVar VAR_0x8007, MOVE_CIRCLE_THROW
+    SetVar VAR_0x8008, MOVE_PARTING_SHOT
+    SetVar VAR_0x8009, MOVE_ROAR
+    GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in
    slot VAR_0x8005, holding the four moves in VAR_0x8006 to VAR_0x8009, and

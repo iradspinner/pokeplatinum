@@ -272,6 +272,7 @@ def platinum_identifiers():
                 t = open(os.path.join(dp, n), encoding="utf-8", errors="ignore").read()
                 have |= set(re.findall(r"#define\s+(\w+)", t))
                 have |= set(re.findall(r"^\s*\.macro\s+(\w+)", t, re.M))
+                have |= set(re.findall(r"^\s*\.equ\s+(\w+)\s*,", t, re.M))
                 for blk in re.findall(r"enum\s*\w*\s*\{(.*?)\}", t, re.S):
                     have |= set(re.findall(r"^\s*([A-Za-z_]\w*)\s*(?:=|,|$)", blk, re.M))
     return have
