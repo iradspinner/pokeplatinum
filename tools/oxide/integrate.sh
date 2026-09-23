@@ -407,6 +407,17 @@ fi
 # built for that list and fails it on purpose. It runs on the working tree.
 check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
 
+# The tracker holds open work only and every main-track session reads it in
+# full, so it is kept short: finished blocks move to tracker-archive.md. This
+# warns rather than fails when it passes 6,000 words, so it cannot quietly
+# grow back to the 20,000 it reached before the 2026-09-23 cut.
+tracker_words="$(wc -w < docs/oxide/tracker.md)"
+if [ "$tracker_words" -gt 6000 ]; then
+    warn "tracker.md is $tracker_words words, over 6,000: move finished blocks to docs/oxide/tracker-archive.md"
+else
+    echo "tracker.md is $tracker_words words (warns over 6,000)"
+fi
+
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"
 check "sync-docs" bash tools/oxide/sync-docs.sh
