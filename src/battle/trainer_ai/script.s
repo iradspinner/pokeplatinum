@@ -7630,7 +7630,11 @@ TagStrategy_PartnerSwagger_End:
     PopOrEnd 
 
 TagStrategy_PartnerTrick:
-    PopOrEnd 
+    // Oxide, vanilla fix (Ian, 2026-09-22): this was an empty stub, so Trick
+    // and Switcheroo kept 100 against the partner, passed the doubles
+    // filter and could be used on it. They now take the -30 every other
+    // status move without partner logic takes.
+    GoTo TagStrategy_PartnerScoreMinus30
 
 TagStrategy_PartnerGastroAcid:
     // If our partner's ability is already suppressed, score -30
@@ -7646,7 +7650,10 @@ TagStrategy_PartnerGastroAcid:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SLOW_START
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerGastroAcid_ScorePlus5
 
-    GoTo TagStrategy_PartnerGastroAcid_End
+    // Oxide, vanilla fix (Ian, 2026-09-22): "otherwise" changed nothing, so
+    // Gastro Acid kept 100 against any partner and could be used on it.
+    // Suppressing a partner's Truant or Slow Start (+5 above) is kept.
+    GoTo TagStrategy_PartnerScoreMinus30
 
 TagStrategy_PartnerGastroAcid_ScorePlus5:
     AddToMoveScore 5
