@@ -6756,6 +6756,9 @@ TagStrategy_CheckSpecialScoring:
     LoadTypeFrom LOAD_MOVE_TYPE
     IfMoveEqualTo MOVE_EARTHQUAKE, TagStrategy_Earthquake
     IfMoveEqualTo MOVE_MAGNITUDE, TagStrategy_Earthquake
+    // Oxide, change (doubles review, approved by Ian 2026-09-22): these hit the partner too
+    IfMoveEqualTo MOVE_EXPLOSION, TagStrategy_Explosion
+    IfMoveEqualTo MOVE_SELFDESTRUCT, TagStrategy_Explosion
     IfMoveEqualTo MOVE_FUTURE_SIGHT, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_DOOM_DESIRE, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_RAIN_DANCE, TagStrategy_RainDance
@@ -7189,6 +7192,25 @@ TagStrategy_Earthquake_CheckTypes:
     GoTo ScoreMinus10
 
 TagStrategy_Earthquake_End:
+    PopOrEnd 
+
+TagStrategy_Explosion:
+    // Oxide, change (doubles review, approved by Ian 2026-09-22).
+    // Explosion and Self-Destruct hit the partner as well as both foes. Vanilla never looked
+    // at the partner for them. If our partner:
+    //  - Is absent (its slot is empty for the rest of the battle) or a Ghost, no change
+    //  - Resists the move (has a Rock or Steel typing), score -3
+    //  - Otherwise, score -10
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Explosion_End
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GHOST
+    IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
+
+TagStrategy_Explosion_End:
     PopOrEnd 
 
 TagStrategy_FutureSight:
