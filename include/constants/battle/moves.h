@@ -36,6 +36,7 @@
 #define MOVE_EFFECT_CAMOUFLAGE         (1 << 28)
 #define MOVE_EFFECT_SHADOW_FORCE       (1 << 29)
 #define MOVE_EFFECT_IMPRISONED         (1 << 30) // applied to mons which are affected by Imprison
+#define MOVE_EFFECT_SMACKED_DOWN       (1 << 31) // Oxide: grounded by Smack Down or Thousand Arrows
 
 #define MOVE_EFFECT_LEECH_SEED_RECIPIENT (MOVE_EFFECT_LEECH_SEED_RECIPIENT_0 | MOVE_EFFECT_LEECH_SEED_RECIPIENT_1)
 #define MOVE_EFFECT_LOCK_ON              (MOVE_EFFECT_LOCK_ON_0 | MOVE_EFFECT_LOCK_ON_1)

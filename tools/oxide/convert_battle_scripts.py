@@ -105,6 +105,7 @@ HG_STRINGS = {
     1330: "BattleStrings_Text_PokemonTransformedIntoTheWaterType_Ally",
     1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
     1616: "BattleStrings_Text_PokemonConcentratedIntensely_Ally",
+    1784: "BattleStrings_Text_PokemonFellStraightDown_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -487,6 +488,10 @@ C_REVIEWED = {
     364: "as Freeze Shock",
     399: "the C is hg-engine's move-condition flag; Oxide keeps it as a two-bit countdown in "
          "the unused effect-mask bits 19 and 20, run down at the end of turn with Lock-On's",
+    406: "the C grounds the target after the hit, lets Smack Down hit a Pokemon mid-Fly and "
+         "makes Thousand Arrows neutral on Flying; Oxide's subscript and battle_lib.c do the same "
+         "with the unused effect-mask bit 31, and also end the target's Fly and block Fly, "
+         "Bounce and Magnet Rise afterwards",
     278: "BeforeMove fails the move against a substitute; the Oxide subscript checks the same",
     279: "as Guard Split",
     284: "BeforeMove fails the move against pure Water, Multitype or a substitute; the Oxide "

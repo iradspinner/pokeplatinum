@@ -51,7 +51,7 @@
 #define TRMSG_LAST_BATTLER_FLAG           3
 #define TRMSG_LAST_BATTLER_HALF_HP_FLAG   4
 
-static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
+static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry, int move);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect);
 static int ApplyTypeMultiplier(BattleContext *battleCtx, int attacker, int mul, int damage, BOOL update, u32 *moveStatus);
 static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int chartEntry);
@@ -2541,15 +2541,20 @@ static const u8 sTypeMatchupMultipliers[][3] = {
  * @param attacker
  * @param defender
  * @param chartEntry    Index of the entry into the type-chart
+ * @param move          The move being used (Oxide: Thousand Arrows ignores the
+ *                      Flying type's Ground immunity)
  * @return TRUE if there are no active effects to override the given chart-entry,
  * FALSE if the chart-entry should be overriden
  */
-static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry)
+static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry, int move)
 {
     int itemEffect = Battler_HeldItemEffect(battleCtx, defender);
     BOOL result = TRUE;
 
-    if ((itemEffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED || (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN))
+    if ((itemEffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED
+            || (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+            || (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN)
+            || move == MOVE_THOUSAND_ARROWS)
         && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
         && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
         result = FALSE;
@@ -2615,14 +2620,18 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         }
     }
 
+    // Oxide: Thousand Arrows hits a Pokemon in the air, so neither Levitate nor
+    // Magnet Rise makes it miss.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
         && moveType == TYPE_GROUND
-        && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED
+        && move != MOVE_THOUSAND_ARROWS) {
         *moveStatusMask |= MOVE_STATUS_LEVITATED;
     } else if (battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns
         && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
         && moveType == TYPE_GROUND
-        && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED
+        && move != MOVE_THOUSAND_ARROWS) {
         *moveStatusMask |= MOVE_STATUS_MAGNET_RISE;
     } else {
         chartEntry = 0;
@@ -2641,7 +2650,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
 
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
-                    && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
+                    && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
                     damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
 
                     if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
@@ -2651,7 +2660,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
-                    && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
+                    && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
                     damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
 
                     if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
@@ -3124,6 +3133,12 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
         return ABILITY_NONE;
     }
 
+    // Oxide: Smack Down grounds a Levitate Pokemon the way Ingrain does.
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN)
+        && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        return ABILITY_NONE;
+    }
+
     return battleCtx->battleMons[battler].ability;
 }
 
@@ -3235,9 +3250,11 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
 
     if ((tmp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_ARENA_TRAP))) {
         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE && itemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+            // Oxide: a Flying Pokemon brought down by Smack Down is trapped.
             if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
-                && MON_IS_NOT_TYPE(battler, TYPE_FLYING)) {
+                && (MON_IS_NOT_TYPE(battler, TYPE_FLYING)
+                    || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN))) {
                 if (msgOut == NULL) {
                     return TRUE;
                 }
@@ -5525,7 +5542,8 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
-        || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY);
+        || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN); // Oxide
 }
 
 static inline int CountAbilityTheirSide(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int ability)

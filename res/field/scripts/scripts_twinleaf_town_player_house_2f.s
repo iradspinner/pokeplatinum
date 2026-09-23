@@ -457,6 +457,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildChansey, 6
     AddListMenuEntry TestKit_Text_MenuWildShuckle, 9
     AddListMenuEntry TestKit_Text_MenuWildLugia, 10
+    AddListMenuEntry TestKit_Text_MenuWildSkarmory, 11
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -470,6 +471,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 7, TestKit_Warp
     GoToIfEq VAR_0x8004, 9, TestKit_WildShuckle
     GoToIfEq VAR_0x8004, 10, TestKit_WildLugia
+    GoToIfEq VAR_0x8004, 11, TestKit_WildSkarmory
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -545,6 +547,15 @@ TestKit_WildLugia:
     StartWildBattle SPECIES_LUGIA, 2
     GoTo TestKit_AfterBattle
 
+/* A Flying Pokemon bulky enough to take Smack Down and Thousand Arrows and
+   still be there to show it was grounded (set 26). */
+TestKit_WildSkarmory:
+    Message TestKit_Text_WildSkarmory
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_SKARMORY, 50
+    GoTo TestKit_AfterBattle
+
 TestKit_AfterBattle:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
@@ -586,6 +597,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet23, 22
     AddListMenuEntry TestKit_Text_MenuSet24, 23
     AddListMenuEntry TestKit_Text_MenuSet25, 24
+    AddListMenuEntry TestKit_Text_MenuSet26, 25
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -612,6 +624,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet23
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet24
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet25
+    GoToIfEq VAR_0x8004, 25, TestKit_MoveSet26
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -824,6 +837,16 @@ TestKit_MoveSet25:
     SetVar VAR_0x8006, MOVE_INGRAIN
     SetVar VAR_0x8007, MOVE_AQUA_RING
     SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 26, against the wild Skarmory: Earthquake does nothing to it until
+   Smack Down or Thousand Arrows has brought it down. Thousand Arrows hits it
+   anyway, as a Ground move against Steel alone. */
+TestKit_MoveSet26:
+    SetVar VAR_0x8006, MOVE_SMACK_DOWN
+    SetVar VAR_0x8007, MOVE_EARTHQUAKE
+    SetVar VAR_0x8008, MOVE_THOUSAND_ARROWS
     SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
