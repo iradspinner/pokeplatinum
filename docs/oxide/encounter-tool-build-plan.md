@@ -1755,8 +1755,9 @@ then loops forever building that party, because no personality lands on a
 range check in `trainerproc.c` before Phase 5 names a nature. The calculator
 applies a dual type's two factors in the defender's type order where the game
 uses chart order, so Crunch into Bronzor reads 42 to 50 against the game's 43
-to 51; this is upstream's behaviour and Ian's call, and the roll below settles
-it if it uses such a matchup. The four always-critical moves (Flower Trick,
+to 51; this is upstream's behaviour, and **Ian ruled (2026-09-22) that the
+calculator follow the game's chart order**, so it is this track's next patch
+to the vendored calculator, recorded in `VENDORED.md`'s patch list. The four always-critical moves (Flower Trick,
 Frost Breath, Storm Throw, Wicked Blow) are listed as placeholders, because
 element 4 did their effect in C and left the script a plain hit. `object_hash`
 and the ag-grid theme CSS came in with no licence notice. Smaller: the Z-move
