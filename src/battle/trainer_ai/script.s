@@ -4635,11 +4635,12 @@ Expert_WaterSpout:
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, Expert_WaterSpout_SlowerCheckHP
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, Expert_WaterSpout_End
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the user's HP sets the power, here and below
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, Expert_WaterSpout_End
     GoTo Expert_WaterSpout_ScoreMinus1
 
 Expert_WaterSpout_SlowerCheckHP:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, Expert_WaterSpout_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, Expert_WaterSpout_End
 
 Expert_WaterSpout_ScoreMinus1:
     AddToMoveScore -1
