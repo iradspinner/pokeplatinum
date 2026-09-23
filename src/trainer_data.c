@@ -297,6 +297,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            // Oxide, vanilla fix (Ian, 2026-09-22; pret's docs/bugs_and_glitches.md): the stats
+            // were worked out before the form was set, so a form Pokemon fought with its base
+            // form's stats. Work them out again for the form.
+            Pokemon_CalcStats(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -320,6 +324,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            // Oxide, vanilla fix (Ian, 2026-09-22; pret's docs/bugs_and_glitches.md): the stats
+            // were worked out before the form was set, so a form Pokemon fought with its base
+            // form's stats. Work them out again for the form.
+            Pokemon_CalcStats(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -339,6 +347,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            // Oxide, vanilla fix (Ian, 2026-09-22; pret's docs/bugs_and_glitches.md): the stats
+            // were worked out before the form was set, so a form Pokemon fought with its base
+            // form's stats. Work them out again for the form.
+            Pokemon_CalcStats(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -363,6 +375,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            // Oxide, vanilla fix (Ian, 2026-09-22; pret's docs/bugs_and_glitches.md): the stats
+            // were worked out before the form was set, so a form Pokemon fought with its base
+            // form's stats. Work them out again for the form.
+            Pokemon_CalcStats(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
