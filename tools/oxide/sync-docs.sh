@@ -49,6 +49,8 @@ copy "phase3-scripts-and-events-plan.md" "notes/phase3-scripts-and-events-plan.m
 copy "phase4-engine-change-answers.md" "notes/phase4-engine-change-answers.md"
 copy "qa-review-2026-09-22.md" "notes/qa-review-2026-09-22.md"
 copy "qa-review-2026-09-22-encounter-m8.md" "notes/qa-review-2026-09-22-encounter-m8.md"
+copy "qa-review-2026-09-22-element6.md" "notes/qa-review-2026-09-22-element6.md"
+copy "qa-review-2026-09-22-encounter-d4d5.md" "notes/qa-review-2026-09-22-encounter-d4d5.md"
 copy "agent-brief-workflow-improvements.md" "notes/agent-brief-workflow-improvements.md"
 copy "agent-brief-encounter-docs-split.md" "notes/agent-brief-encounter-docs-split.md"
 copy "agent-brief-element4-effects.md" "notes/agent-brief-element4-effects.md"
