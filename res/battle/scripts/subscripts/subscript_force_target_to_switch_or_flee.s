@@ -4,7 +4,10 @@
 _000:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_SEMI_INVULNERABLE, _074
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_SUCTION_CUPS, _079
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_INGRAIN, _086
+    // VANILLA FIX (Oxide, approved by Ian): vanilla compared the whole mask
+    // with OPCODE_EQU, so Ingrain failed to anchor a target with any other
+    // move effect up, Aqua Ring for one. This tests the Ingrain flag alone.
+    CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_INGRAIN, _086
     CompareVarToValue OPCODE_EQU, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES|BATTLE_TYPE_2vs2|BATTLE_TYPE_AI, _074
     TryWhirlwind _074
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION

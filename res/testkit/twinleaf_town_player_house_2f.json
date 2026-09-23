@@ -38,6 +38,10 @@
             "en_US": "Wild Shuckle"
         },
         {
+            "id": "TestKit_Text_MenuWildLugia",
+            "en_US": "Wild Lugia"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -188,6 +192,10 @@
             "en_US": "Set 24"
         },
         {
+            "id": "TestKit_Text_MenuSet25",
+            "en_US": "Set 25"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",
@@ -209,6 +217,13 @@
             "en_US": [
                 "A wild Shuckle, Lv. 50, to take\n",
                 "the physical moves."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WildLugia",
+            "en_US": [
+                "A wild Lugia, Lv. 2, that knows\n",
+                "only Whirlwind."
             ]
         },
         {

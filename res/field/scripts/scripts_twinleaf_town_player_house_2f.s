@@ -456,6 +456,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuMoveSets, 5
     AddListMenuEntry TestKit_Text_MenuWildChansey, 6
     AddListMenuEntry TestKit_Text_MenuWildShuckle, 9
+    AddListMenuEntry TestKit_Text_MenuWildLugia, 10
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -468,6 +469,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 6, TestKit_WildChansey
     GoToIfEq VAR_0x8004, 7, TestKit_Warp
     GoToIfEq VAR_0x8004, 9, TestKit_WildShuckle
+    GoToIfEq VAR_0x8004, 10, TestKit_WildLugia
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -534,6 +536,15 @@ TestKit_WildShuckle:
     StartWildBattle SPECIES_SHUCKLE, 50
     GoTo TestKit_AfterBattle
 
+/* At Lv. 2 Lugia knows only Whirlwind, so it uses it every turn: the attacker
+   for the Roar and Whirlwind Ingrain fix (set 25). */
+TestKit_WildLugia:
+    Message TestKit_Text_WildLugia
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_LUGIA, 2
+    GoTo TestKit_AfterBattle
+
 TestKit_AfterBattle:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
@@ -574,6 +585,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet22, 21
     AddListMenuEntry TestKit_Text_MenuSet23, 22
     AddListMenuEntry TestKit_Text_MenuSet24, 23
+    AddListMenuEntry TestKit_Text_MenuSet25, 24
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -599,6 +611,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet22
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet23
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet24
+    GoToIfEq VAR_0x8004, 24, TestKit_MoveSet25
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -802,6 +815,16 @@ TestKit_MoveSet24:
     SetVar VAR_0x8007, MOVE_TACKLE
     SetVar VAR_0x8008, MOVE_LOCK_ON
     SetVar VAR_0x8009, MOVE_ZAP_CANNON
+    GoTo TestKit_GiveMew
+
+/* Set 25, against the wild Lugia: Ingrain on the first turn, so its Whirlwind
+   fails as it always did, then Aqua Ring. Vanilla let the next Whirlwind end
+   the battle once a second effect was up; with the fix Mew stays anchored. */
+TestKit_MoveSet25:
+    SetVar VAR_0x8006, MOVE_INGRAIN
+    SetVar VAR_0x8007, MOVE_AQUA_RING
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in

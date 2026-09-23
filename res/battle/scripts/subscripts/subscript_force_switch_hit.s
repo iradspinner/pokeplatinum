@@ -5,8 +5,7 @@
 // is Roar's switch, from its subscript, run as a hit's side effect. Nothing
 // happens if the target fainted, is behind a substitute, anchored by Suction
 // Cups or Ingrain, or cannot be dragged out by TryDragonTail's rules; the hit
-// has already done its damage, so none of these fails the move. Ingrain is
-// tested as a flag, where Roar's subscript compares the whole mask.
+// has already done its damage, so none of these fails the move.
 _000:
     CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_CUR_HP, 0, _end
     CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_CUR_HP, 0, _end
