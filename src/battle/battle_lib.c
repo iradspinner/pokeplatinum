@@ -8145,13 +8145,17 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
                 if (move && MOVE_DATA(move).power != 1) {
                     // Oxide, vanilla fix (Ian, 2026-09-22): Weather Ball was
-                    // costed as its listed 50-power Normal move. In weather it
-                    // has double power and the weather's type, which moveType
-                    // already holds (Normal when there is none, or under Cloud
-                    // Nine or Air Lock), as BtlCmd_CalcWeatherBallParams sets it.
+                    // costed as its listed 50-power Normal move. In any weather,
+                    // deep fog included, and with no Cloud Nine or Air Lock out,
+                    // it has double power, as BtlCmd_CalcWeatherBallParams sets
+                    // it. Its type is the weather's, which moveType already
+                    // holds; fog leaves it Normal, and a type of 0 here means
+                    // "the listed type", which is Normal too.
                     int power = 0, type = 0;
 
-                    if (move == MOVE_WEATHER_BALL && moveType != TYPE_NORMAL) {
+                    if (move == MOVE_WEATHER_BALL
+                        && NO_CLOUD_NINE
+                        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER)) {
                         power = MOVE_DATA(move).power * 2;
                         type = moveType;
                     }
