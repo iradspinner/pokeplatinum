@@ -1,10 +1,10 @@
 # How Platinum's trainer AI chooses a move
 
-Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here is read from the code in this tree, with line numbers, and was checked against vanilla on `main` where the two could differ. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
+Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes have since shifted lines in the branch (by up to 22 in `script.s` and 31 in `trainer_ai.c`); find a routine by its label, not its number. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
 
 The AI lives in two files. `src/battle/trainer_ai/trainer_ai.c` is the interpreter: it sets up the scores, runs the script, picks the move, and holds the switching and item logic, which are plain C. `src/battle/trainer_ai/script.s` is the script itself, about 8,100 lines of commands such as "if the target is asleep, add minus 10", one routine per AI flag. The commands are the `AICmd_*` functions in the C file. The game asks for a move from `src/battle/battle_display.c` line 3590, through `TrainerAI_Main`, but only for a trainer's Pokemon, a roaming legendary, the tutorial battle, or a partner on the player's side (lines 3586 to 3589). **Every other wild Pokemon picks a usable move at random** (lines 3600 to 3612) and never reaches anything described here. That includes both Pokemon in a wild double battle, so Oxide's wild doubles do not run the AI unless element 8 changes that line; whether they should is a decision for then.
 
-A trainer's turn is decided in the order switch, then item, then move (`TrainerAI_PickCommand`, `trainer_ai.c` lines 3989 to 4040, in `switching-and-items.md`), and the move scoring below never runs on a turn the AI switches. Oxide's trainers never use items, since Phase 3 stopped giving them any, so in practice it is switch or move.
+A trainer's turn is decided in the order switch, then item, then move (`TrainerAI_PickCommand`, `trainer_ai.c` lines 3989 to 4040, in `switching-and-items.md`), and the move scoring below never runs on a turn the AI switches. Oxide's trainers never use items: 40 trainer files still list some, but Phase 3 made `BattleControllerPlayer_InitAI` stop loading them (`battle_controller_player.c`), so in practice it is switch or move.
 
 ## The scoring engine
 
@@ -63,12 +63,12 @@ The base ROM changed the flags of 362 trainers, nearly all towards more: the com
 
 ## What the write-up found
 
-About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists its own with the vanilla line on `main`; `script.s` is byte-identical to `main`, so every script bug is vanilla at the same line. The headline items, the ones that change what Oxide's trainers actually do:
+About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists its own with the vanilla line on `main`; `script.s` was byte-identical to `main` when they were written, so every script bug is vanilla at the line given. The headline items, the ones that change what Oxide's trainers actually do:
 
 | Finding | Origin | Where | What it does in play |
 |---|---|---|---|
 | Revealed abilities above 255 are remembered as another ability | Oxide | `ai_context.h` line 28 | Quark Drive reads as Levitate and Protosynthesis as Wonder Guard, Hospitality as Soundproof. Element 2 widened abilities to u16 and missed this one byte |
-| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch and gets the same +5 on the first turn. 17 Oxide trainers carry the flag, gym leaders and Elite Four among them |
+| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch, so on the first turn every move gets the same +5 (or, with the sun already up, nothing). 17 Oxide trainers carry the flag, gym leaders and Elite Four among them |
 | A faster Pokemon almost never heals | vanilla | `expert-1.md` bug 4 | Under Expert (559 trainers), Recover, Roost, Synthesis and the rest get -8 whenever the user is not slower |
 | Some moves skip every immunity check | vanilla | `basic.md` B6 | Moves whose power is worked out elsewhere (Solar Beam, Eruption, Sucker Punch and others) keep a full score into an immune target; Oxide's Dragon Energy into a Fairy is one |
 | Punishment adds every rung of its ladder | vanilla | `expert-2.md` bug 2 | Up to +10 where one rung was meant |
@@ -82,17 +82,19 @@ What Oxide's new content meets, beyond the bug above: none of the new effects 27
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix and six vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix and eight vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
 | The AI's remembered ability is u16 (`ai_context.h`) | Oxide | Quark Drive, Protosynthesis, Hospitality and the rest are remembered as themselves |
 | Weather flag (O1) | vanilla | Only a weather move that would set new weather gets the +5 on the first turn |
-| Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | Water Spout into Water Absorb, Dragon Energy into a Fairy and the like are now refused |
+| Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | 52 moves now go through the checks (every damaging move the comparison leaves out: the recharge moves, Explosion, Dream Eater, Focus Punch, Solar Beam, and the power-1 moves such as Counter, Flail and Fling among them), so Water Spout into Water Absorb, Dragon Energy into a Fairy, Explosion or Counter into a Ghost are now refused |
 | Punishment's ladder (expert-2 bug 2) | vanilla | 50% +4, 25% +3, 12.5% +2, 6.25% +1 against +7 boosts or more, as its comment says, instead of summing up to +10 |
 | Trick, Switcheroo and Gastro Acid on the partner (O11) | vanilla | Refused (-30), except Gastro Acid on a partner with Truant or Slow Start (+5, as before) |
-| Weather Ball's type in clear weather (switching bug 1) | vanilla | All three type helpers start from Normal. Read from the compiled code, they had returned a pointer: the engine's redirection check was right by luck, but the AI's effectiveness check saw Weather Ball as Normal only if the heap put the battle system at an address ending in 00, and otherwise as neutral against everything, Ghost types included |
+| Weather Ball's type in clear weather (switching bug 1) | vanilla | All three type helpers start from Normal. Read from the compiled code, they had returned a pointer: the engine's redirection check was right by luck, but the AI's effectiveness check took the low byte of the battle system's address as the type. `Heap_Alloc` aligns to 4, so that read as Normal, Ground, Steel, Grass or Dragon for a byte of 00 to 10, and as neutral against everything above. The fix also changes AI switching, through `Move_CalcVariableType`'s callers in the switching checks and the post-knockout pick |
 | Weather Ball in the AI's damage estimate (found after the write-up, from Ian's pokemow reference) | vanilla | In weather the AI now estimates the doubled power and the weather's type, as the battle sets them, instead of always a 50-power Normal move |
+| Weather Ball's weather type where the AI read the listed type (QA pass before the integration) | vanilla | Basic's absorb and Levitate checks, Tag Strategy's type dispatch and the absorb-ability switch now see a rain Weather Ball as Water and a sun one as Fire. Hidden Power, Natural Gift and Judgment still read their listed type |
+| Weather Ball in the post-knockout pick (same QA pass) | vanilla | A bench Weather Ball in weather is costed at double power and the weather's type, not as a 50-power Normal move |
 
 Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes are approved but not yet applied: two of their locations need the guide's wording confirmed first.
 
