@@ -104,6 +104,8 @@ HG_STRINGS = {
     1327: "BattleStrings_Text_PokemonSharedItsPowerWithTheTarget_Ally",
     1330: "BattleStrings_Text_PokemonTransformedIntoTheWaterType_Ally",
     1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
+    1616: "BattleStrings_Text_PokemonConcentratedIntensely_Ally",
+    1784: "BattleStrings_Text_PokemonFellStraightDown_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -272,6 +274,7 @@ def platinum_identifiers():
                 t = open(os.path.join(dp, n), encoding="utf-8", errors="ignore").read()
                 have |= set(re.findall(r"#define\s+(\w+)", t))
                 have |= set(re.findall(r"^\s*\.macro\s+(\w+)", t, re.M))
+                have |= set(re.findall(r"^\s*\.equ\s+(\w+)\s*,", t, re.M))
                 for blk in re.findall(r"enum\s*\w*\s*\{(.*?)\}", t, re.S):
                     have |= set(re.findall(r"^\s*([A-Za-z_]\w*)\s*(?:=|,|$)", blk, re.M))
     return have
@@ -483,6 +486,12 @@ C_REVIEWED = {
          "does, with the message set in the move's own script.s, and the effect is on "
          "Move_IsMultiTurn; the rest is Kyurem's form change, and Kyurem is not in Oxide",
     364: "as Freeze Shock",
+    399: "the C is hg-engine's move-condition flag; Oxide keeps it as a two-bit countdown in "
+         "the unused effect-mask bits 19 and 20, run down at the end of turn with Lock-On's",
+    406: "the C grounds the target after the hit, lets Smack Down hit a Pokemon mid-Fly and "
+         "makes Thousand Arrows neutral on Flying; Oxide's subscript and battle_lib.c do the same "
+         "with the unused effect-mask bit 31, and also end the target's Fly and block Fly, "
+         "Bounce and Magnet Rise afterwards",
     278: "BeforeMove fails the move against a substitute; the Oxide subscript checks the same",
     279: "as Guard Split",
     284: "BeforeMove fails the move against pure Water, Multitype or a substitute; the Oxide "

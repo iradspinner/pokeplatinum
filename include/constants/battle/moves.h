@@ -24,8 +24,8 @@
 #define MOVE_EFFECT_MUD_SPORT              (1 << 16)
 #define MOVE_EFFECT_WATER_SPORT            (1 << 17)
 #define MOVE_EFFECT_UNDERWATER             (1 << 18) // Dive
-// unused flag: 1 << 19
-// unused flag: 1 << 20
+#define MOVE_EFFECT_LASER_FOCUS_0          (1 << 19) // Oxide
+#define MOVE_EFFECT_LASER_FOCUS_1          (1 << 20) // Oxide
 #define MOVE_EFFECT_ABILITY_SUPPRESSED (1 << 21) // Gastro Acid
 #define MOVE_EFFECT_MIRACLE_EYE        (1 << 22)
 #define MOVE_EFFECT_POWER_TRICK        (1 << 23)
@@ -36,10 +36,12 @@
 #define MOVE_EFFECT_CAMOUFLAGE         (1 << 28)
 #define MOVE_EFFECT_SHADOW_FORCE       (1 << 29)
 #define MOVE_EFFECT_IMPRISONED         (1 << 30) // applied to mons which are affected by Imprison
+#define MOVE_EFFECT_SMACKED_DOWN       (1 << 31) // Oxide: grounded by Smack Down or Thousand Arrows
 
 #define MOVE_EFFECT_LEECH_SEED_RECIPIENT (MOVE_EFFECT_LEECH_SEED_RECIPIENT_0 | MOVE_EFFECT_LEECH_SEED_RECIPIENT_1)
 #define MOVE_EFFECT_LOCK_ON              (MOVE_EFFECT_LOCK_ON_0 | MOVE_EFFECT_LOCK_ON_1)
 #define MOVE_EFFECT_YAWN                 (MOVE_EFFECT_YAWN_0 | MOVE_EFFECT_YAWN_1)
+#define MOVE_EFFECT_LASER_FOCUS          (MOVE_EFFECT_LASER_FOCUS_0 | MOVE_EFFECT_LASER_FOCUS_1)
 
 #define MOVE_EFFECT_SEMI_INVULNERABLE (MOVE_EFFECT_AIRBORNE | MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER | MOVE_EFFECT_SHADOW_FORCE)
 
@@ -51,6 +53,7 @@
 
 #define MOVE_EFFECT_LOCK_ON_SHIFT 3
 #define MOVE_EFFECT_YAWN_SHIFT    11
+#define MOVE_EFFECT_LASER_FOCUS_SHIFT 19 // Oxide
 
 #define MOVE_EFFECT_LOCK_ON_INITIAL_DURATION (1 << (MOVE_EFFECT_LOCK_ON_SHIFT + 1))
 

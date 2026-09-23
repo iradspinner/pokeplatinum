@@ -10,6 +10,15 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SRC="$REPO_ROOT/docs/oxide"
+
+# The mirror is what the chat surface reads as current, so it only ever comes
+# from `oxide`. Run from a track branch or worktree, it would copy that
+# branch's older tracker over the current one (it happened on 2026-09-22).
+branch="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)"
+if [ "$branch" != "oxide" ]; then
+    echo "sync-docs: refusing to mirror from branch '$branch'; run it from the main checkout on oxide" >&2
+    exit 1
+fi
 DEST="/mnt/g/PokeROMs/Rokemon RomHack Creation Hub/Hardlove Gold-Platinum Oxide Integration Project"
 
 if [ ! -d "$DEST" ]; then
@@ -55,6 +64,7 @@ copy "agent-brief-workflow-improvements.md" "notes/agent-brief-workflow-improvem
 copy "agent-brief-encounter-docs-split.md" "notes/agent-brief-encounter-docs-split.md"
 copy "agent-brief-element4-effects.md" "notes/agent-brief-element4-effects.md"
 copy "test-kit.md" "notes/test-kit.md"
+copy "balance-plan.md" "notes/balance-plan.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "pokemon-sources.md" "notes/pokemon-sources.md"

@@ -335,3 +335,7 @@ subscript_change_target_to_water_type
 subscript_incinerate
 subscript_strength_sap
 subscript_autotomize
+subscript_force_switch_hit
+subscript_parting_shot
+subscript_laser_focus
+subscript_smack_down

@@ -203,5 +203,9 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_AUTOTOMIZE]                       = subscript_autotomize,
     [MOVE_SUBSCRIPT_PTR_STRENGTH_SAP]                     = subscript_strength_sap,
     [MOVE_SUBSCRIPT_PTR_INCINERATE]                       = subscript_incinerate,
+    [MOVE_SUBSCRIPT_PTR_FORCE_SWITCH_HIT]                 = subscript_force_switch_hit,
+    [MOVE_SUBSCRIPT_PTR_PARTING_SHOT]                     = subscript_parting_shot,
+    [MOVE_SUBSCRIPT_PTR_LASER_FOCUS]                      = subscript_laser_focus,
+    [MOVE_SUBSCRIPT_PTR_SMACK_DOWN]                       = subscript_smack_down,
 };
 // clang-format on

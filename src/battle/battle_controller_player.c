@@ -1620,6 +1620,12 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].moveEffectsMask -= (1 << MOVE_EFFECT_LOCK_ON_SHIFT);
             }
 
+            // Oxide: Laser Focus counts down the same way, from 2 when used, so
+            // it lasts through the end of the next turn.
+            if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS) {
+                battleCtx->battleMons[battler].moveEffectsMask -= (1 << MOVE_EFFECT_LASER_FOCUS_SHIFT);
+            }
+
             battleCtx->monConditionCheckState++;
             break;
 

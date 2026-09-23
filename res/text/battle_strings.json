@@ -8762,6 +8762,45 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "severely fell!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonConcentratedIntensely_Ally",
+      "en_US": "{STRVAR_1 1, 0, 0} concentrated intensely!"
+    },
+    {
+      "id": "BattleStrings_Text_PokemonConcentratedIntensely_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} concentrated\n",
+        "intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonConcentratedIntensely_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} concentrated\n",
+        "intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFellStraightDown_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "fell straight down!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFellStraightDown_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "fell straight down!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFellStraightDown_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "fell straight down!"
+      ]
     }
   ]
 }
