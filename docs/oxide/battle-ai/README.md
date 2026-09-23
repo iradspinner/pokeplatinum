@@ -82,7 +82,7 @@ What Oxide's new content meets, beyond the bug above: none of the new effects 27
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix and four vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix and six vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
@@ -91,6 +91,8 @@ One Oxide fix and four vanilla fixes, each its own commit so any can be reverted
 | Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | Water Spout into Water Absorb, Dragon Energy into a Fairy and the like are now refused |
 | Punishment's ladder (expert-2 bug 2) | vanilla | 50% +4, 25% +3, 12.5% +2, 6.25% +1 against +7 boosts or more, as its comment says, instead of summing up to +10 |
 | Trick, Switcheroo and Gastro Acid on the partner (O11) | vanilla | Refused (-30), except Gastro Acid on a partner with Truant or Slow Start (+5, as before) |
+| Weather Ball's type in clear weather (switching bug 1) | vanilla | All three type helpers start from Normal. Read from the compiled code, they had returned a pointer: the engine's redirection check was right by luck, but the AI's effectiveness check saw Weather Ball as Normal only if the heap put the battle system at an address ending in 00, and otherwise as neutral against everything, Ghost types included |
+| Weather Ball in the AI's damage estimate (found after the write-up, from Ian's pokemow reference) | vanilla | In weather the AI now estimates the doubled power and the weather's type, as the battle sets them, instead of always a 50-power Normal move |
 
 Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes are approved but not yet applied: two of their locations need the guide's wording confirmed first.
 

@@ -279,7 +279,7 @@ The pret file `docs/bugs_and_glitches.md` gives the stage 1 wrap as 65. The arit
 
 ## Apparent bugs
 
-Fixed on 2026-09-22 in other parts: the ability byte (Oxide). Nothing in this file's code has been changed; status moves counting as super-effective and the bench damage check were put to Ian and kept as vanilla has them.
+Fixed on 2026-09-22: bug 1, Weather Ball's unset type (vanilla fix, approved by Ian), in all three helpers; the compiled code showed each returned its caller's register, a pointer. Also fixed, and missed by this write-up: `TrainerAI_CalcDamage` has no Weather Ball case, so the AI always estimated it as a 50-power Normal move (vanilla; Ian's pokemow reference names it). The ability byte (Oxide) is fixed in another part. Otherwise nothing in this file's code has been changed; status moves counting as super-effective and the bench damage check were put to Ian and kept as vanilla has them.
 
 Each entry is labelled as present in vanilla Platinum or introduced by Oxide. A fix to a vanilla bug changes the game's original behaviour and is Ian's call; none has been made.
 
