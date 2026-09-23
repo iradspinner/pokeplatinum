@@ -3051,6 +3051,35 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
     case MOVE_SONIC_BOOM:
         damage = 20;
         break;
+    case MOVE_WEATHER_BALL:
+        // Oxide, vanilla fix (Ian, 2026-09-22): the estimate had no Weather
+        // Ball case, so the AI always judged it as a 50-power Normal move.
+        // This follows BtlCmd_CalcWeatherBallParams, which sets it in battle:
+        // in weather, double power and the weather's type; otherwise the
+        // move as listed (power 0 here means "use the listed power").
+        power = 0;
+        type = TYPE_NORMAL;
+
+        if (NO_CLOUD_NINE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER)) {
+            power = MOVE_DATA(move).power * 2;
+
+            if (WEATHER_IS_RAIN) {
+                type = TYPE_WATER;
+            }
+
+            if (WEATHER_IS_SAND) {
+                type = TYPE_ROCK;
+            }
+
+            if (WEATHER_IS_SUN) {
+                type = TYPE_FIRE;
+            }
+
+            if (WEATHER_IS_HAIL) {
+                type = TYPE_ICE;
+            }
+        }
+        break;
 
     case MOVE_LOW_KICK:
     case MOVE_GRASS_KNOT: {
