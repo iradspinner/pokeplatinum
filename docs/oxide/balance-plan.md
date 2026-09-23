@@ -8,8 +8,7 @@ the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-22).** Scoping is done, and the reference data is
 pinned outside the repo. Nothing is built yet. The next step is B1, the data
-layer. Four small questions for Ian are at the end, and none of them blocks
-B1.
+layer. Two small questions for Ian are at the end, and neither blocks B1.
 
 ## The target
 
@@ -21,9 +20,17 @@ Ian's scale runs from 1 to 10:
 | 3 | vanilla Platinum |
 | 6 | **Oxide's target**: a Drayano hack made very slightly easier |
 | 7 | Renegade Platinum (Drayano) |
-| 8 | Platinum Redux |
+| 8 | Platinum Redux, normal mode |
+| 8.5 | Platinum Redux, hardcore mode |
 | 9.5 | Hardlove Gold |
-| 10 | Platinum Kaizo, Run & Bun, Pokemon Null |
+| 10 | Platinum Kaizo, Run & Bun, Pokemon Null 1.2 |
+
+Ian named three more comparison points without a number: **Pokemon Odyssey**
+as a good match for the target, though it is all double battles with many
+type and move changes, and **Pokemon Unbound** and **Pokemon Insurgence** as
+very slightly on the easy side. This file carries them provisionally as
+Odyssey about 6, and Unbound and Insurgence about 5 to 5.5, until Ian puts
+numbers on them (question 1 below).
 
 Ian's rulings, 2026-09-22:
 
@@ -31,16 +38,20 @@ Ian's rulings, 2026-09-22:
   bag items in trainer battles, no EVs from battling, and captures by location
   name.
 - **The curve ramps up slightly through the first two splits, then holds.**
-  Roark's party goes to five Pokemon and Gardenia's to six. This file reads
-  that as: Roark's fight sits a little under 6, Gardenia's reaches it, and
-  every fight after is scored against 6. Ian can correct that reading.
+  Roark's party goes to five Pokemon and Gardenia's to six (Ian confirmed
+  that the five is a party size, not a rating). So Roark's fight sits a
+  little under 6, Gardenia's reaches it, and every fight after is scored
+  against 6.
 - **Balance is the whole game, not only the opposition.** It covers trainers
   and AI, level caps, species stats, abilities, learnsets, TMs and tutors,
   item access by split (held items, marts, field items), and weather on
   routes and in gyms. The tracker's Phase 5 level-cap split design, TM pass
   and ability pass are therefore this track's work.
 - **Maylene's cap is 39**, as the Level Caps sheet says. The caps are unevenly
-  spread, and changing them is in this track's scope.
+  spread, and changing them is in this track's scope. The encounter tables stay
+  at 38 until the cap redesign lands, and the encounter track then re-runs
+  `cli evolve` once against the approved caps. The approved caps go to the
+  Overseer, who hands them over.
 
 ## What the first look found
 
@@ -155,17 +166,33 @@ never run.
 |---|---|---|---|
 | `pt.js` | vanilla Platinum | 3 | 1,873 |
 | `rp.js` | Renegade Platinum | 7 | 2,823 |
-| `platredux.js`, `platreduxhc.js` | Platinum Redux, normal and hardcore | 8 | 2,829 each |
+| `platredux.js`, `platreduxhc.js` | Platinum Redux, normal and hardcore | 8 and 8.5 | 2,829 each |
 | `hardlove.js` | Hardlove Gold | 9.5 | 1,871 |
 | `pkv5h.js` | Platinum Kaizo | 10 | 3,077 |
-| `null12.js`, `null.js` | Pokemon Null 1.2 and 1.1 | 10 | 2,282 and 2,203 |
+| `null12.js` | Pokemon Null 1.2 | 10 | 2,282 |
 | `run-and-bun-trainer-battles.xlsx` | Run & Bun | 10 | Ian's sheet |
+| `unbound.js` | Pokemon Unbound, bosses only | about 5 to 5.5 | 357 to 417 per mode |
+| `odyssey-4.1.1.gba` and `.hma.toml` | Pokemon Odyssey 4.1.1 | about 6 | 350 trainers, in the ROM |
 
 Run & Bun comes from Ian's own sheet, not the calculator. It has one tab per
 split, from Brawly to the League, with a block per trainer giving level, held
 item, ability, nature and moves. So it is scored structurally, with pressure
 where its species exist in Oxide's data. Sacred Gold and Blaze Black 2 Redux
 are unrated and left out. FireRed is the scale's floor and needs no data.
+
+Unbound's calculator file holds only bosses, about 95 trainers in each of its
+three modes (difficult, expert, insane), so it calibrates the boss scores but
+not filler. Odyssey is not in the calculator's data. It is a FireRed-based
+ROM, and Ian's HexManiacAdvance metadata beside it gives the addresses and
+layouts of its trainer table (350 trainers), species stats, level-up moves,
+names and type chart, so B1 reads it straight from the ROM. Its move table is
+not among the named anchors and has to be located. Because Odyssey is all
+double battles, it needs the doubles version of the pressure score (spread
+moves, two attackers at once). Oxide needs that anyway for its 34 double
+trainer battles and its wild doubles. Until the doubles score is checked,
+Odyssey's weight in the fit is kept low. Insurgence is an RPG Maker game with
+no data here, and Ian last played it long ago, so it is left out unless a
+trainer list turns up.
 
 Hacks built on other games (Hardlove, Null, Run & Bun) do not share
 Platinum's bosses. They line up by milestone: badge number, then rivals and
@@ -178,12 +205,12 @@ The ratings set the weights: the composite score is fitted so that each
 reference lands at Ian's rating, and "6" becomes a band of scores per
 milestone.
 
-The fit is thin exactly where it matters. Vanilla at 3 is the only anchor
-below the target, and the next is Renegade at 7, so the 6 band is interpolated
-between them. Two things make that safer. A hack Ian rates 4 to 5 would add a
-point (question 3 below). After the Roark and Gardenia splits are tuned, his
-playtest of them is a direct reading at the bottom of the ramp, and the band
-is corrected to it before the later splits are tuned.
+Below Renegade's 7, the fit rests on vanilla at 3, Unbound at about 5 to 5.5
+and Odyssey at about 6. Each of those is weaker than a Platinum hack would be:
+Unbound has bosses only, and Odyssey is doubles only, on another game. So a
+direct reading is still needed. After the Roark and Gardenia splits are tuned,
+Ian's playtest of them reads the bottom of the ramp directly, and the band is
+corrected to it before the later splits are tuned.
 
 ## Tooling
 
@@ -254,13 +281,9 @@ hangs the game (encounter build plan, QA findings).
 
 ## Questions for Ian
 
-None of these blocks B1.
+Neither blocks B1.
 
-1. Platinum Redux: is the 8 for normal mode or hardcore? The data has both.
-2. Null: is the 10 for 1.2 or 1.1?
-3. Have you played any hack you would put at 4 or 5? The calculator's data
-   also covers, among others, Luminescent Platinum, Sterling Silver, Vintage
-   White, Inclement Emerald, Emerald Imperium and Radical Red's normal mode.
-   One rated point between vanilla and Renegade would firm up the 6 band.
-4. The ramp: does "Roark at 5" mean his party size (as read here, with his
-   fight a little under 6), or a 5 out of 10 for his fight?
+1. Numbers for the three new comparison points: is Odyssey about a 6, and
+   are Unbound and Insurgence about 5 to 5.5?
+2. Unbound: which mode did you play? The data has difficult, expert and
+   insane.
