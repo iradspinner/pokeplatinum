@@ -51,6 +51,8 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 46/46
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 82/82, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
@@ -1329,7 +1331,7 @@ hover), drawn from a new `water` list in `/api/area`. A panel is a view:
 clicking it opens that table above for editing, as its tab does, and the one
 being edited is outlined. `test_m4` checks the water list (50 checks).
 
-## M8 — the dex and the damage calculator — **scoped 2026-09-22, not started**
+## M8, the dex and the damage calculator: **done 2026-09-22, one in-game roll to check**
 
 Ian asked to pull the things `ddex` (https://ddex-chi.vercel.app/, source at
 `hzla/ddex`) and its damage calculator (`hzla/Dynamic-Calc-Decomps`) do into this
@@ -1512,25 +1514,242 @@ here against Fairy/Psychic, Gothitelle is Dark/Psychic against Psychic, and
 Tsareena is Fighting/Grass against Grass. Those three are either deliberate or
 import slips, and either way they were invisible until now.
 
-**D4, moves.** A move list and per-move page, plus the reverse index: which
-species learn this, and at what level.
+**D4, moves: done, 2026-09-22.** A third view, Moves, beside Tables and Dex.
+The list holds all 922 moves with type, class, power, accuracy and how many
+species learn each, filtered by a search over name, type or effect and by five
+buttons: all, learnt, changed, new, unscripted. A move's page gives its numbers,
+target, effect with its id, the machine that teaches it, its flags, and a table
+of every field that differs from vanilla. The right pane is the reverse index:
+every species that learns the move, by level-up, machine, tutor or egg, sorted
+by level and then by the earliest split the species is met wild. Every name is
+a link. A learner opens its dex page, and the dex page's level-up moves, plus
+new lists of its machine, tutor and egg moves, open the move. A jump from one
+view clears any filter that would hide the row it lands on.
 
-**D5, the calculator.** Vendor the MIT calc under `tools/oxide/encounters/calc/`
-with its licence intact, generate its data from `res/`, serve both from our
-server. The work is the export, in rough order of difficulty: a naming map from
-our constants to Showdown's spellings, with the awkward cases being the regional
-forms, the megas, Mr. Mime, Jangmo-o and the Tapus; species entries with stats,
-types, abilities, weight and gender ratio; moves with category, power, accuracy,
-priority and the flags the formula reads; learnsets so the set builder offers the
-right moves; and a patch to its loader so it reads from `localhost` instead of
-npoint. That one patch is not enough to make it offline, which the QA pass of
-2026-09-22 found: as vendored, the page also loads jQuery and other libraries
-from Google's, jsDelivr's and unpkg's CDNs, a Google Tag Manager analytics tag,
-and game data from `hzla.github.io`, about 100 remote references in all. D5's
-patch list has to vendor or drop every CDN script, remove the analytics tag and
-remove every remote data URL, and its gate includes the page loading with the
-network off. Gate: a hand-checked damage roll against the game, the export
-regenerating clean after a species edit, and no request leaving the machine.
+Three things the page knows that the move files do not say directly:
+
+1. **Which moves are unscripted.** Element 4 gave the donor's effects 277 to
+   406 placeholder scripts, a copy of either effect 0's plain hit or Splash's.
+   `pokedex.stub_effects()` finds them by comparing the scripts, so an effect
+   stops being flagged as soon as its real script lands, with no list to keep.
+   Today that is 130 effects and 136 moves. The list marks them with the lint
+   warning's dot, and the move page says what the player will see: the damage
+   without its extra, or "But nothing happened!" for a status move.
+2. **What changed from vanilla**, per field. 190 natives differ. Most of them
+   (96) differ only in the King's Rock flag element 4 gave every damaging move.
+   The rest are the base ROM's own edits: Tackle's accuracy, and Attack Order
+   rebuilt as a 120-power poison hit. Charm's Fairy retype shows too. The
+   baseline is `main` read in one `git cat-file --batch` call rather than 468
+   `git show` calls, which keeps the list at about 70ms.
+3. **Who can use it, and from when.** 464 of the 922 moves are learnt by at
+   least one species. Most of the other 458 are new moves nothing learns yet,
+   because refilling the new species' learnsets is element 4's last piece, and
+   the move page says so rather than looking broken. A machine is read from
+   its item record (`res/items/data/tm02.json` teaches Dragon Claw), so the
+   index follows any change to the TM list.
+
+Gate: `test_m8` at 59 checks, thirteen of them D4's. None of them pins a count
+of placeholder effects, since element 4 will bring it down; they pin what a
+placeholder can and cannot be instead. The page was rendered in a headless
+Windows Chrome in both themes with no page errors, and the jump from Gible's
+egg moves to Outrage was driven through and landed on the right row.
+
+**Ian's notes after D4: 2026-09-22.** A species in a table now opens its dex
+page. The name in a slot is the slot's editor, so the way through is the party
+icon beside it, and the same goes for the icons in the water panels and the
+encounter heading. In "what a player meets" the name itself is a link. The
+tables view catches these clicks on the way down, so a water panel's own click,
+which opens that table for editing, never sees one.
+
+There is a Back button too, and it is the browser's history rather than a
+stack of the page's own. Every place the page can show (a view, plus the area
+and table, species or move in it) is a history entry with the place in the URL,
+such as `#dex/SPECIES_GIBLE`. So Back, Alt+Left and a mouse's back button all
+retrace a path like table, species, move, another species, and a reload opens
+where it was. Driven through in a headless Chrome, back and forward and after a
+reload, with no page errors. `test_m8` is at 60, the new check pinning the
+wiring, since no endpoint can see it.
+
+A third round the same day. The species page's centre is two columns: the
+creature on the left (stats, abilities, the line and three facts) and what it
+learns on the right (level-up, machine, tutor and egg moves). The columns stack
+when the centre is narrower than about 870px. "The rest of it" keeps only gender,
+wild item and weight; catch rate, egg groups, hatch cycles, friendship, exp rate,
+base exp and EV yield are gone from the page but still in `/api/dex`. Every
+heading and label is in sentence case as written: the dex headings had been
+forced to lowercase by a `text-transform` rule, which is gone, and the header's
+metric labels, the move page's labels and its "against vanilla" field names now
+start with a capital. Small status tags (new, water, no capture, not wild) stay
+lowercase, since they are markers rather than titles.
+
+**D5, the calculator: done, 2026-09-22.** The vendored calculator runs on
+Oxide's data, offline, in the tool's colours. It opens from a fourth view,
+Calc, in the header, and every species page has a Calc link that opens it with
+that species picked as the attacker.
+
+The data is one JSON blob, which `calc_export.py` builds from `res/` on each
+request to `/api/calc-data`. It holds 652 species under Showdown's names
+(`canon.py`'s map, written for D3) with Oxide's stats, types, abilities and
+weight, and every move with Oxide's type, category, power and priority. It
+also carries this fork's type chart, which the calculator's own loader
+installs. A move whose power is 1 keeps the calculator's coded power, since 1
+is the game's marker for a power worked out in code (Grass Knot, Gyro Ball).
+Learnsets are not exported, although the plan listed them: the calculator
+offers every move to every species and has no way to limit a set.
+
+Four patches to the calculator, listed in `calc/VENDORED.md`. The data source
+points at our server. A "Platinum Oxide" branch in its game settings selects
+Generation 4 damage and crits; without it an unknown title falls to
+trainers-only mode with Generation 8 mechanics. Every CDN library (jQuery,
+jQuery UI, ag-grid, object-hash, pako) is vendored at the version upstream
+asked for. And both analytics tags, the Ko-fi widget and a remote GIF are
+gone. Sprites are not a patch: the server answers the calculator's
+`img/<set>/<name>` requests from `res/pokemon/`, cropped to the first frame.
+
+Three things worth knowing came out of it:
+
+1. **Every ability and move lands on a name the calculator has logic for.**
+   The cleaned id matches almost all of them, Generation 4 spellings included.
+   The rest are 26 names the donor shortened to fit the name box (Collision
+   Course and 21 Z-moves) plus Platinum's own four old spellings. They are an
+   explicit alias list, each checked by hand. A closest-name match was tried
+   first and put 7-Star Strike on Shadow Strike, which is why the list is
+   explicit. `test_m8` checks every alias exists in the calculator.
+2. **136 moves are modelled with an effect the game does not have yet.** The
+   calculator knows Acrobatics, Hex, Venoshock and the rest, but in Oxide their
+   effect scripts are still element 4's placeholders. `calc_export` prints the
+   list, and D4's Moves view flags the same moves, so neither passes silently.
+3. **The damage is right, checked by hand.** Five matchups at level 50 (31
+   IVs, no EVs, a neutral nature) match hand-computed Generation 4 rolls, roll
+   for roll:
+
+   | Matchup | Calculator |
+   |---|---|
+   | Garchomp's Earthquake into Clefairy | 126 to 148 |
+   | Garchomp's Dragon Claw into Clefairy | 0, Fairy is immune |
+   | Machamp's Crunch into Bronzor | 42 to 50, Steel still resists Dark |
+   | Machamp's Cross Chop into Bronzor | 81 to 96 |
+   | Machamp's Cross Chop into Clefairy | 63 to 74 |
+
+The skin is visual design section 8. `make_calc_skin.py` generates
+`calc/oxide-skin.css` from upstream's own stylesheets. It repeats each rule
+that sets a colour, with the literal replaced by the tool's token for its
+role, and leaves layout alone. That gives 550 rules with no colour literal
+left. The few colours the calculator's scripts set inline are mapped by value.
+`theme.js` now follows a change made in any other page of the tool, so the
+header's toggle flips the calculator in its frame without a reload.
+
+How it was checked, beyond `test_m8` at 70 checks (ten of them D5's, one of
+which edits a species file and reads the change back from the next export):
+the page was driven in a headless Windows Chrome with every non-local request
+blocked. It made none, threw no errors, and drew in both themes.
+
+The species picker, on Ian's note the same day, offers Oxide's 652 species
+and 32 alternate forms picked by hand, instead of every species Showdown knows.
+The forms: the twelve with a record of their own (three Deoxys, two Wormadam,
+Giratina Origin, Shaymin Sky, five Rotom), exported with Oxide's numbers for
+them; Castform's and Cherrim's weather forms; and Arceus under each plate but
+Fairy, since the game has no Pixie Plate. The record matters: ten of the twelve
+differ from vanilla, so Rotom-Heat is Electric/Fire here and Deoxys-Attack has
+Magic Guard. Left out are the forms that only change a sprite: Burmy's cloaks,
+the East Sea Shellos and Gastrodon, and the Unown letters. Each form draws its
+own sprite. The list lives in `calc_export.py`, and one more calculator patch
+(`shared_controls.js`, in `VENDORED.md`) makes the picker read it. `test_m8` is
+at 73 checks.
+
+One known gap, not blocking: upstream's menu icon and emulator icon are
+missing, since `img/` was never vendored.
+
+**Trainer teams in the calculator: done, 2026-09-22.** Every trainer's party
+is in the calculator as opponent sets, 1,758 sets for 747 trainers (the dummies
+and empty parties left out), so "Cranidos (Lvl 15 Leader Roark)" can be picked
+by name and checked against a team at a level cap. `calc_trainers.py` builds
+them from `res/trainers/data/` the way `TrainerData_BuildParty` builds a party
+in battle, because the parts a calculator needs most are stored nowhere:
+
+- **Nature** comes from a personality the game rolls. It seeds the LCRNG with
+  the IV scale, level, species and trainer id, steps it once per trainer-class
+  id, and puts the result above a low byte (136 for a male class, 120 for a
+  female one, or what this fork's gender and ability requests set).
+- **Ability** is personality bit 0 over the base species' pair, even for a
+  form, because the game sets the ability before the form.
+- **IVs** are the IV scale times 31 over 255, with no EVs.
+- **A trainer that lists no moves** gets the default moveset, the level-up
+  learnset walked in file order exactly as `BoxPokemon_SetDefaultMoves` walks it.
+
+The roll was checked against an independent source rather than only against
+itself. Upstream publishes its data for vanilla Platinum, generated by hzla's
+own tools from the ROM. Running this code over vanilla's trainers from `main`
+agreed on the nature of 1,872 of 1,873 sets, and on every ability and IV. The
+one disagreement is Volkner's Electivire, whose upstream entry also has a blank
+ability, so it reads as an error in their data. Their default movesets
+disagree with the game's code for about 1,180 sets. Lopunny at level 38, for
+instance, has Defense Curl, Endure, Quick Attack and Baton Pass there, but the
+game's walk ends on Jump Kick, Baton Pass, Agility and Dizzy Punch. So this
+export follows the code and not upstream. `test_m8` pins three vanilla natures
+from their data and the Lopunny walk.
+
+Each set also carries the trainer's AI flags as the calculator's `ai` mask,
+which a scoring tab will read. Sets are named "Lvl N Class Name", the shape
+the calculator parses a trainer out of. A rematch or a rival battle is told
+apart by the rest of its file name ("Leader Roark Rematch"), and a second
+Pokemon of one species in a party gets a Slot suffix. Held items take the
+calculator's names, and their icons come from `res/items/icons/`. The one item
+the calculator has no name for is Rare Candy, held twice, which does nothing
+in battle. Building every party takes about 1.6 seconds, so it is cached
+against the trainer, species and move files, and an edit rebuilds it on the
+next request.
+
+The calculator's picker then opens its search at the species already picked,
+selected, so the other trainers with an Electivire are one click away (Ian's
+note; a small script of ours, patch 8 in `calc/VENDORED.md`).
+
+**Trainer natures, an engine change taken on here: 2026-09-22.** Outside
+this track's files (`src/trainer_data.c`, `tools/dataproc/src/trainerproc.c`,
+`include/struct_defs/trainer_data.h`, and the Phase 3 importer), taken on by
+Ian's decision after the warning. Why it was needed is in the design doc's
+findings log (same date): the nature is rolled from a seed that sums the IV
+scale, level, species and trainer id, so a wanted nature often costs IVs.
+
+How to use it. In a trainer file, give a party member
+`"nature": "NATURE_ADAMANT"` (any of the 25 constants), and its IV scale is then
+free to go to 255. Gender and ability requests keep working alongside it. A
+member without the field rolls exactly as before.
+
+How it works. `TrainerMon_Personality` in `src/trainer_data.c` now holds the
+roll, once rather than four times over, and after rolling it steps the high
+part up until the personality lands on the named nature. The packer stores
+nature + 1 in the high byte of the `ivScale` field, which the IV scale never
+used, and it now refuses an IV scale above 255. The calculator export applies
+the same step. The base ROM importer treats a member that names a nature as
+re-tuned in Oxide: it neither compares nor overwrites that member's nature or
+IV scale, and carries both over if it ever rewrites the party. Without that,
+the next import would have reverted a raised IV scale to the base ROM's.
+
+How it was checked:
+
+- With no nature named, both trainer archives are byte-identical to the build
+  before the change, and two complete builds agree on the ROM's hash.
+- The real C was checked against the export. `TrainerMon_Personality` and the
+  game's two RNG functions were lifted verbatim from the source, compiled on
+  the host, and compared with the export's Python on 20,000 random inputs:
+  none disagreed, and every named nature landed. The export's unnamed roll
+  had already matched upstream's vanilla data (above).
+- End to end, with a temporary edit that was reverted: Roark's Nosepass named
+  Adamant with IV scale 255 packed as `0x04ff`, read back as Adamant with IVs
+  of 31 and still male with Solid Rock, and the importer's dry run still
+  reported 0.
+- The importer dry run, `verify_narcs` against the base ROM and the encounter
+  source check are unchanged, and `test_m8` is at 82 and `test_step0` at 35.
+
+What is left is Ian's: choosing which trainer Pokemon get a nature, which is
+Phase 5 balance work. The calculator shows the result as soon as a file is
+edited.
+
+**What is left is Ian's:** one roll in the game against the calculator. In
+melonDS, note an attacker's and a defender's level, stats and the damage a
+move does. Enter the same two in the calculator, then check the damage falls
+in its range.
 
 ### Decisions and risks, recorded before starting
 
@@ -1549,12 +1768,11 @@ regenerating clean after a species edit, and no request leaving the machine.
   what was pruned and why, and the patch list to re-apply on an update. Its own
   319 MB of sprites were left behind because Oxide's are in `res/` and are the
   only ones right for this fork.
-- **Out of scope for now**, and each is a small addition later: items, trainer
-  teams in the calculator (the 928 carried-over teams would let a gym leader be
-  checked against a party at a level cap, which is the obvious next want), and
+- **Out of scope for now**, and each is a small addition later: items (trainer
+  teams landed 2026-09-22, see above), and
   anything player-facing or hosted.
 
-## The visual design, palette B: built 2026-09-22, awaiting Ian's sign-off
+## The visual design, palette B: built 2026-09-22, signed off by Ian
 
 Ian's design for how the tool looks is `docs/oxide/encounter-tool-visual-design.md`
 (palette B, Lake Guardians), mirrored by `sync-docs.sh`. It was built in the order
@@ -1605,11 +1823,9 @@ table, as did the type chips. The toggle and the favicon were driven under node
 with a stubbed browser: follow the system, pin, release, keep a pin across a
 reload and a Windows switch, and survive storage that throws.
 
-What is left is the design's own acceptance: Ian opens the tool in both themes at
-his usual display scaling and signs off. The one thing only he can judge is the
-pixel face at his scaling, at 16px for the title and the dex number, 13px for the
-tabs and 28px for the headline; the design asks for any that look soft to move by
-a pixel.
+Ian signed it off on 2026-09-22, the pixel face included ("looks fantastic"), so
+no size needed moving. The damage calculator's skin, the last piece of it,
+landed with D5.
 
 ## Suggested order, and what to cut
 

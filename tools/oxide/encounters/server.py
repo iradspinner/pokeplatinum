@@ -17,6 +17,7 @@ these endpoints. There is no second implementation of the maths in
 JavaScript, so the page and the CLI cannot disagree.
 """
 import argparse
+import base64
 import errno
 import functools
 import http.server
@@ -29,6 +30,7 @@ import urllib.parse
 import zlib
 
 from . import analysis as A
+from . import calc_export
 from . import canon
 from . import dex
 from . import lint
@@ -39,6 +41,9 @@ from . import progression
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
+# The vendored damage calculator, served as it is under /calc/ (M8 D5). Its
+# game data comes from /api/calc-data, built from res/ on each request.
+CALC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "calc")
 
 from .model import load_encounters, save_encounters  # noqa: E402
 from . import planner  # noqa: E402
@@ -327,6 +332,84 @@ def _transparent_background(data):
     return data[:end] + chunk + data[end:]
 
 
+def _calc_sprite_files():
+    """{cleaned Showdown name: (front sprite, party icon)} as paths under the
+    repo, for the calculator's sprite URLs: every species, and every form the
+    picker offers. A form without an icon of its own borrows its species'."""
+    root = model.repo_root()
+    base = os.path.join(root, "res", "pokemon")
+    out = {}
+    for sp in pokedex.species_list(root):
+        name = canon.showdown_name(sp)
+        if not name:
+            continue
+        folder = os.path.join(base, pokedex.folder_of(sp))
+        front = os.path.join(folder, "male_front.png")
+        if not os.path.isfile(front):
+            front = os.path.join(folder, "female_front.png")
+        out[calc_export.clean(name)] = (front, os.path.join(folder, "icon.png"))
+    for name, (sp, form) in calc_export.form_folders().items():
+        folder = os.path.join(base, pokedex.folder_of(sp))
+        icon = os.path.join(folder, "forms", form, "icon.png")
+        out[calc_export.clean(name)] = (
+            os.path.join(folder, "forms", form, "front.png"),
+            icon if os.path.isfile(icon) else os.path.join(folder, "icon.png"))
+    return out
+
+
+@functools.lru_cache(maxsize=1)
+def _calc_item_icons():
+    """{cleaned item name: icon PNG path}, from each item's own record: its
+    display name, and the icon sprite it names under res/items/icons/."""
+    root = model.repo_root()
+    base = os.path.join(root, "res", "items")
+    out = {}
+    for f in os.listdir(os.path.join(base, "data")):
+        try:
+            with open(os.path.join(base, "data", f), encoding="utf-8") as fh:
+                raw = json.load(fh)
+        except (OSError, ValueError):
+            continue
+        sprite = ((raw.get("icon") or {}).get("sprite") or "").replace("_NCGR", "")
+        path = os.path.join(base, "icons", sprite + ".png")
+        if raw.get("name") and os.path.isfile(path):
+            out.setdefault(calc_export.clean(raw["name"]), path)
+    return out
+
+
+def calc_item_icon(filename):
+    """A held item's icon for the calculator (img/items/<name>.png), from
+    res/items/icons/, with palette entry 0 made clear as the sprites are."""
+    path = _calc_item_icons().get(calc_export.clean(filename.rsplit(".", 1)[0]))
+    if not path:
+        return None
+    with open(path, "rb") as f:
+        return _transparent_background(f.read())
+
+
+def calc_sprite(sprite_set, filename):
+    """The calculator asks for ./img/<set>/<showdown name>.<ext>. Answer from
+    Oxide's own sprites, as an SVG that shows the sheet's first frame at the
+    size the calculator expects: a party icon for its box ("pokesprite") and
+    the front sprite everywhere else. The PNG rides inside as a data URI,
+    because an SVG drawn as an image may not load anything external."""
+    files = _calc_sprite_files().get(calc_export.clean(filename.rsplit(".", 1)[0]))
+    if not files:
+        return None
+    icon = sprite_set == "pokesprite"
+    path, frame, sheet = (files[1], 32, (32, 64)) if icon else (files[0], 80, (160, 80))
+    try:
+        with open(path, "rb") as f:
+            png = _transparent_background(f.read())
+    except OSError:
+        return None
+    data = base64.b64encode(png).decode()
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{frame}" height="{frame}" '
+            f'viewBox="0 0 {frame} {frame}"><image width="{sheet[0]}" height="{sheet[1]}" '
+            f'style="image-rendering:pixelated" href="data:image/png;base64,{data}"/></svg>'
+            ).encode()
+
+
 def dex_list():
     """Every species in the tree, as one row each: what the list view needs and
     nothing it does not, because there are 652 of them."""
@@ -391,6 +474,16 @@ def dex_detail(species):
             "power": m.get("power"), "accuracy": m.get("accuracy"),
             "pp": m.get("pp"),
         })
+    # The other three ways a species learns a move, as names and types only:
+    # the page lists them compactly and each opens its move.
+    by_machine = pokedex.machines(root)
+    brief = lambda mv, **kw: dict(kw, move=mv, type=(moves.get(mv) or {}).get("type"),
+                                  label=(moves.get(mv) or {}).get("name")
+                                  or dex.display_name(mv))
+    out["machine_moves"] = [brief(by_machine[t], machine=t) for t in rec["by_tm"]
+                            if t in by_machine]
+    out["tutor_moves"] = [brief(mv) for mv in rec["by_tutor"]]
+    out["egg_moves"] = [brief(mv) for mv in rec["egg_moves"]]
     # A mega is entered twice, once under the day method and once under the
     # night one, which is how the tree holds an alt-evolution. That is one
     # forme, not two evolutions.
@@ -464,12 +557,88 @@ def _in_stage_order(line):
     return out
 
 
+def _move_name(move):
+    move = move.upper()
+    return move if move.startswith("MOVE_") else "MOVE_" + move
+
+
+def move_list():
+    """Every move in the tree, one row each, with what changed from vanilla and
+    how many species learn it."""
+    root = model.repo_root()
+    moves = pokedex.moves(root)
+    vanilla = pokedex.vanilla_moves(root)
+    learnt = pokedex.learners(root)
+    rows = []
+    for move, rec in sorted(moves.items(), key=lambda kv: kv[1]["id"] or 0):
+        if move == "MOVE_NONE":
+            continue
+        d = pokedex.move_delta(rec, vanilla.get(move))
+        rows.append({
+            "move": move, "id": rec["id"], "name": rec["name"],
+            "type": rec["type"], "class": rec["class"], "power": rec["power"],
+            "accuracy": rec["accuracy"], "pp": rec["pp"],
+            "priority": rec["priority"], "effect": rec["effect"],
+            "stub": rec["stub"],
+            "new": bool(d and d.get("new")),
+            "changed": bool(d and not d.get("new")),
+            "learners": len({r["species"] for r in learnt.get(move) or []}),
+        })
+    return {"rows": rows, "count": len(rows)}
+
+
+def move_detail(move):
+    """One move, with what changed from vanilla and every species that learns
+    it: how, at what level, and the earliest split a player can meet it wild,
+    which is the question an author asks of a move."""
+    root = model.repo_root()
+    move = _move_name(move)
+    rec = pokedex.moves(root).get(move)
+    if rec is None:
+        return {"error": "no such move"}
+    was = pokedex.vanilla_moves(root).get(move)
+    split_rank = progression.split_index(model.load_sidecar())
+    caps = _captures()
+    out = dict(rec)
+    out["delta"] = pokedex.move_delta(rec, was)
+    out["vanilla"] = was
+    out["machine"] = next((m for m, mv in pokedex.machines(root).items()
+                           if mv == move), None)
+    learners = []
+    for row in pokedex.learners(root).get(move) or []:
+        sp = pokedex.load(root, row["species"])
+        met = caps.get(row["species"]) or []
+        splits = sorted({c["split"] for c in met if c.get("split")},
+                        key=lambda s: split_rank.get(s, 99))
+        learners.append(dict(row, label=sp["name"], folder=sp["folder"],
+                             types=sp["types"], appearances=len(met),
+                             first_split=splits[0] if splits else None))
+    # Grouped by how, then by level for level-up, then by how early a player
+    # can have the species at all, so the top of each group is the answer to
+    # "who is the first thing that can use this".
+    how = {h: i for i, h in enumerate(pokedex.LEARN_KINDS)}
+    learners.sort(key=lambda r: (how[r["how"]], r["level"] or 0,
+                                 split_rank.get(r["first_split"], 99),
+                                 r["label"]))
+    out["learners"] = learners
+    return out
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=UI, **kw)
 
     def log_message(self, fmt, *args):
         pass
+
+    def translate_path(self, path):
+        # /calc/... is the vendored calculator; everything else is the tool.
+        bare = urllib.parse.urlparse(path).path
+        if bare == "/calc" or bare.startswith("/calc/"):
+            self.directory = CALC
+            return super().translate_path(path[len("/calc"):] or "/")
+        self.directory = UI
+        return super().translate_path(path)
 
     def end_headers(self):
         # Everything here is read from disk per request, so a cached copy is
@@ -517,6 +686,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         kind = (q.get("kind") or ["land"])[0]
         parts = [p for p in url.path.split("/") if p]
 
+        if len(parts) == 4 and parts[:2] == ["calc", "img"]:
+            items = parts[2] == "items"
+            body = calc_item_icon(parts[3]) if items else calc_sprite(parts[2], parts[3])
+            if body is not None:
+                self.send_response(200)
+                self.send_header("Content-Type", "image/png" if items else "image/svg+xml")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
         if not parts or parts[0] != "api":
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
@@ -570,12 +749,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "dex":
                 return self._send(dex_list() if len(parts) < 3
                                   else dex_detail(parts[2]))
+            if parts[1] == "moves":
+                return self._send(move_list())
+            if parts[1] == "calc-data":
+                return self._send(calc_export.build())
             if parts[1] == "move":
-                moves = pokedex.moves(model.repo_root())
-                row = moves.get(parts[2].upper())
-                if row is None:
-                    return self._send({"error": "no such move"}, 404)
-                return self._send(row)
+                out = move_detail(parts[2])
+                return self._send(out, 404 if "error" in out else 200)
             if parts[1] == "sprite":
                 return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
             if parts[1] == "caught":

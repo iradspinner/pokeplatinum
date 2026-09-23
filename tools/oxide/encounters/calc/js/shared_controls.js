@@ -3911,6 +3911,15 @@ function getSetOptions(sets) {
 		setsHolder = pokedex;
 	}
 	var pokeNames = Object.keys(setsHolder);
+	// Oxide patch: offer only the species and forms the data names as its
+	// picker, not every species the calculator knows. A name with a saved
+	// set stays, so a custom set is never hidden.
+	if (typeof npoint_data !== "undefined" && npoint_data && Array.isArray(npoint_data.picker)) {
+		var oxideAllowed = new Set(npoint_data.picker);
+		pokeNames = pokeNames.filter(function (name) {
+			return oxideAllowed.has(name) || (typeof setdex !== "undefined" && setdex && name in setdex);
+		});
+	}
 	pokeNames.sort();
 	var setOptions = [];
 	for (var i = 0; i < pokeNames.length; i++) {

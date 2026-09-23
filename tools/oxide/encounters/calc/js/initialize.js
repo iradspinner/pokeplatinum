@@ -1,7 +1,9 @@
 // --- Initialization ----------------------------------------------------------
 
 const params = new URLSearchParams(window.location.search);
-const npoint = `https://api.npoint.io/${params.get('data')}`
+// Oxide patch: the data always comes from the encounter tool's own server,
+// built from res/, never from npoint.io.
+const npoint = `/api/calc-data`
 
 // Helper for boolean flags
 const getBool = (key, truthy = "1") => params.get(key) === truthy;
@@ -1247,6 +1249,22 @@ function setGameSettings(title) {
     showAI = true;
     $('label[for="snow"]').hide()
     $('label[for="fog"]').show()
+  } else if (title == "Platinum Oxide") {
+    // Oxide patch: Generation 4 damage and crits, species and moves from
+    // Oxide's own data, and the type chart the data carries (Generation 4's
+    // with Fairy added), which applyBackupDataTypeChart installs after this.
+    gameGen = 4
+    settings.damageGen = 4
+    if (!settings.noSwitch) {
+      settings.gameSwitchIn = 4;
+      settings.switchIn = 4;
+    }
+    settings.sourceType = "full"
+    settings.critGen = 4;
+    save_expansion = false
+    showDex = false;
+    showAI = false;
+    $('label[for="snow"]').hide()
   } else if (title == "Platinum Kaizo" || title == "Platinum") {
     gameGen = 4
     settings.damageGen = 4

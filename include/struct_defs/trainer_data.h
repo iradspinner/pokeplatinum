@@ -14,6 +14,14 @@
 #define MAX_TRAINER_ITEMS 4
 #define MAX_IV_SCALE      255
 
+// A party member's ivScale field is 16 bits, and the IV scale only ever uses
+// the low 8 (0 to MAX_IV_SCALE). Oxide keeps an optional nature in the high 8:
+// 0 means roll the nature as the game always has, from the personality; n + 1
+// forces nature n. So a trainer file without a nature packs exactly as before.
+#define TRAINER_MON_IV_SCALE_MASK   0x00FF
+#define TRAINER_MON_NATURE_SHIFT    8
+#define TRAINER_MON_NATURE_DONT_CARE 0
+
 enum TrainerDataType {
     TRDATATYPE_BASE = 0,
     TRDATATYPE_WITH_MOVES,

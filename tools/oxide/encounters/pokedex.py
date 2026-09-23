@@ -145,6 +145,7 @@ def _load(root, species, ref, stamp):
         "learnset": [[lv, mv] for lv, mv in (learnset.get("by_level") or [])],
         "by_tm": learnset.get("by_tm") or [],
         "by_tutor": learnset.get("by_tutor") or [],
+        "egg_moves": learnset.get("egg_moves") or [],
         "category": en.get("category"),
         "entry": "".join(en.get("entry_text") or []).strip(),
         "height_inches": pokedex.get("height_inches"),
@@ -221,12 +222,16 @@ def moves(root):
     base = os.path.join(root, "res", "moves")
     stamp = max((_mtime(os.path.join(base, f, "data.json")) or 0)
                 for f in os.listdir(base))
-    return _moves(root, stamp)
+    # The stub flag follows the effect scripts, so it is part of the key: a
+    # script written while the server runs clears the flag on the next call.
+    return _moves(root, stamp, stub_effects(root))
 
 
 @functools.lru_cache(maxsize=4)
-def _moves(root, stamp):
+def _moves(root, stamp, stubs):
     base = os.path.join(root, "res", "moves")
+    ids = _move_ids(root)
+    effect_ids = _effect_ids(root)
     out = {}
     for folder in sorted(os.listdir(base)):
         if not os.path.isdir(os.path.join(base, folder)):
@@ -234,23 +239,186 @@ def _moves(root, stamp):
         raw = _read(root, f"res/moves/{folder}/data.json")
         if raw is None:
             continue
-        out["MOVE_" + folder.upper()] = {
-            "move": "MOVE_" + folder.upper(),
-            "folder": folder,
-            "name": raw.get("name") or folder.title(),
-            "type": _strip(raw.get("type") or "", "TYPE_"),
-            "class": _strip(raw.get("class") or "", "CLASS_"),
-            "power": raw.get("power"),
-            "accuracy": raw.get("accuracy"),
-            "pp": raw.get("pp"),
-            "priority": raw.get("priority"),
-            "range": _strip(raw.get("range") or "", "RANGE_"),
-            "flags": [_strip(f, "MOVE_FLAG_") for f in (raw.get("flags") or [])],
-            "effect": _strip((raw.get("effect") or {}).get("type") or "",
-                             "BATTLE_EFFECT_"),
-            "effect_chance": (raw.get("effect") or {}).get("chance"),
-            "description": "".join(raw.get("description") or []).strip(),
-        }
+        rec = _move_record(folder, raw)
+        rec["id"] = ids.get(rec["move"])
+        rec["effect_id"] = effect_ids.get(rec["effect"])
+        rec["stub"] = rec["effect"] in stubs
+        out[rec["move"]] = rec
+    return out
+
+
+def _move_record(folder, raw):
+    """One move as the dex wants it, from its data.json. Shared by the working
+    tree and the vanilla baseline, so the two compare field for field."""
+    return {
+        "move": "MOVE_" + folder.upper(),
+        "folder": folder,
+        "name": raw.get("name") or folder.title(),
+        "type": _strip(raw.get("type") or "", "TYPE_"),
+        "class": _strip(raw.get("class") or "", "CLASS_"),
+        "power": raw.get("power"),
+        "accuracy": raw.get("accuracy"),
+        "pp": raw.get("pp"),
+        "priority": raw.get("priority"),
+        "range": _strip(raw.get("range") or "", "RANGE_"),
+        "flags": [_strip(f, "MOVE_FLAG_") for f in (raw.get("flags") or [])],
+        "effect": _strip((raw.get("effect") or {}).get("type") or "",
+                         "BATTLE_EFFECT_"),
+        "effect_chance": (raw.get("effect") or {}).get("chance"),
+        "description": " ".join(l.strip() for l in (raw.get("description") or [])
+                                if l.strip()),
+    }
+
+
+def _lines(root, rel):
+    with open(os.path.join(root, rel), encoding="utf-8") as f:
+        return [l.strip() for l in f if l.strip()]
+
+
+def _move_ids(root):
+    """{MOVE_X: id}. The move enum is positional, one constant a line."""
+    return {n: i for i, n in enumerate(_lines(root, "generated/moves.txt"))
+            if n.startswith("MOVE_")}
+
+
+def _effect_ids(root):
+    """{EFFECT_NAME: id}, prefix stripped, from the positional effect list."""
+    names = _lines(root, "generated/move_battle_effects.txt")
+    return {_strip(n, "BATTLE_EFFECT_"): i for i, n in enumerate(names)}
+
+
+# Platinum's own effects are 0 to 276. Phase 4 element 4 appended hg-engine's
+# 277 to 406 with placeholder scripts, so a move using one does its damage and
+# skips its extra, or says "But nothing happened!" if it is a status move.
+FIRST_DONOR_EFFECT = 277
+EFFECT_SCRIPTS = os.path.join("res", "battle", "scripts", "effects")
+
+
+def stub_effects(root):
+    """The donor effects whose script is still a placeholder.
+
+    A placeholder is a copy of effect 0's script (a plain hit) or of
+    BATTLE_EFFECT_DO_NOTHING's (Splash), which is exactly what element 4
+    wrote into all 130 of them. Read from the scripts rather than listed, so
+    an effect stops being flagged the moment its real script lands."""
+    names = _lines(root, "generated/move_battle_effects.txt")
+    base = os.path.join(root, EFFECT_SCRIPTS)
+    stamp = max((_mtime(os.path.join(base, f)) or 0) for f in os.listdir(base))
+    return _stub_effects(root, tuple(names), stamp)
+
+
+@functools.lru_cache(maxsize=4)
+def _stub_effects(root, names, stamp):
+    def body(i):
+        path = os.path.join(root, EFFECT_SCRIPTS, f"effect_script_{i:04d}.s")
+        try:
+            with open(path, encoding="utf-8") as f:
+                return tuple(tuple(l.split()) for l in f if l.strip())
+        except OSError:
+            return None
+    stubs = {body(0), body(names.index("BATTLE_EFFECT_DO_NOTHING"))}
+    return frozenset(_strip(names[i], "BATTLE_EFFECT_")
+                     for i in range(FIRST_DONOR_EFFECT, len(names))
+                     if body(i) in stubs)
+
+
+def vanilla_moves(root, ref="main"):
+    """{MOVE_X: record} for every move a git ref has, read in one git call.
+
+    One `git show` per move would be 923 processes for the list view, so the
+    blobs are listed with ls-tree and read in a single cat-file batch."""
+    sha = subprocess.run(["git", "-C", root, "rev-parse", "--verify", "-q", ref],
+                         capture_output=True, text=True).stdout.strip()
+    return _vanilla_moves(root, sha) if sha else {}
+
+
+@functools.lru_cache(maxsize=2)
+def _vanilla_moves(root, sha):
+    listing = subprocess.run(
+        ["git", "-C", root, "ls-tree", "-r", sha, "--", "res/moves"],
+        capture_output=True, text=True).stdout
+    blobs = []
+    for line in listing.splitlines():
+        meta, path = line.split("\t", 1)
+        parts = path.split("/")
+        if len(parts) == 4 and parts[3] == "data.json":
+            blobs.append((meta.split()[2], parts[2]))
+    batch = subprocess.run(["git", "-C", root, "cat-file", "--batch"],
+                           input="".join(b + "\n" for b, _ in blobs).encode(),
+                           capture_output=True).stdout
+    out, at = {}, 0
+    for _, folder in blobs:
+        header_end = batch.index(b"\n", at)
+        size = int(batch[at:header_end].split()[2])
+        raw = json.loads(batch[header_end + 1:header_end + 1 + size])
+        at = header_end + 1 + size + 1        # the content, then its newline
+        rec = _move_record(folder, raw)
+        out[rec["move"]] = rec
+    return out
+
+
+MOVE_FIELDS = ("name", "type", "class", "power", "accuracy", "pp", "priority",
+               "range", "effect", "effect_chance", "description")
+
+
+def move_delta(now, was):
+    """What changed in one move: None when nothing did, {"new": True} for one
+    this project added, otherwise {field: {"was", "now"}} and the flags each
+    way. Takes both records so the list can compare 923 without re-reading."""
+    if was is None:
+        return {"new": True}
+    out = {k: {"was": was[k], "now": now[k]} for k in MOVE_FIELDS
+           if now[k] != was[k]}
+    gained = sorted(set(now["flags"]) - set(was["flags"]))
+    lost = sorted(set(was["flags"]) - set(now["flags"]))
+    if gained or lost:
+        out["flags"] = {"gained": gained, "lost": lost}
+    return out or None
+
+
+def machines(root):
+    """{"TM02": MOVE_DRAGON_CLAW, ...}: a species' by_tm list names machines,
+    and each machine's item record says what it teaches."""
+    base = os.path.join(root, "res", "items", "data")
+    out = {}
+    for name in sorted(os.listdir(base)):
+        if not re.fullmatch(r"(tm|hm)\d+\.json", name):
+            continue
+        raw = _read(root, f"res/items/data/{name}") or {}
+        if raw.get("teachesMove"):
+            out[name[:-5].upper()] = raw["teachesMove"]
+    return out
+
+
+LEARN_KINDS = ("level", "machine", "tutor", "egg")
+
+
+def learners(root):
+    """{MOVE_X: [{species, how, level, machine}]}: the reverse of every
+    species' learnset, by level-up, machine, tutor and egg.
+
+    Built from `load`, whose cache follows each species file, so an edited
+    learnset shows here on the next call as it does on the species page."""
+    by_machine = machines(root)
+    out = {}
+
+    def add(move, species, how, level=None, machine=None):
+        out.setdefault(move, []).append(
+            {"species": species, "how": how, "level": level, "machine": machine})
+
+    for species in species_list(root):
+        rec = load(root, species)
+        if rec is None:
+            continue
+        for level, move in rec["learnset"]:
+            add(move, species, "level", level=level)
+        for machine in rec["by_tm"]:
+            if machine in by_machine:
+                add(by_machine[machine], species, "machine", machine=machine)
+        for move in rec["by_tutor"]:
+            add(move, species, "tutor")
+        for move in rec["egg_moves"]:
+            add(move, species, "egg")
     return out
 
 

@@ -23,6 +23,7 @@ static enum_template_t enums[] = {
     include_enum("generated/ai_flags.h",              "enum AIFlag"),
     include_enum("generated/items.h",                 "enum Item"),
     include_enum("generated/moves.h",                 "enum Move"),
+    include_enum("generated/natures.h",               "enum Nature"),
     include_enum("generated/species.h",               "enum Species"),
     include_enum("generated/trainer_classes.h",       "enum TrainerClass"),
     include_enum("generated/trainer_message_types.h", "enum TrainerMessageType"),
@@ -210,8 +211,19 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
             // else: explicit null, meaning "don't care" - already 0
         }
 
+        // nature is an optional override too: absent or null means roll it as
+        // the game always has. It rides in ivScale's unused high byte as n + 1.
+        u16 nature = TRAINER_MON_NATURE_DONT_CARE;
+        if (dp_hasmemb(party_member, "nature")) {
+            datanode_t nature_node = dp_objmemb(party_member, "nature");
+            if (nature_node.type == DATAPROC_T_STRING) {
+                nature = (u16)(dp_u16(dp_lookup(nature_node, "enum Nature")) + 1);
+            }
+        }
+
         trparty.party[i] = (TrainerMonWithMovesAndItem){
-            .ivScale = dp_u16(dp_objmemb(party_member, "iv_scale")),
+            .ivScale = (u16)(dp_u16range(dp_objmemb(party_member, "iv_scale"), 0, MAX_IV_SCALE)
+                | (nature << TRAINER_MON_NATURE_SHIFT)),
             .level   = dp_u16(dp_objmemb(party_member, "level")),
             .species = (u16)(species | (form << TRAINER_MON_FORM_SHIFT)),
             .ability = ability,
