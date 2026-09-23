@@ -411,7 +411,12 @@ lands, and each change is re-scored as it lands.
 5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
-   against B1e's list.
+   against B1e's list. Moving a trainer or adding a sight-line blocker edits
+   map events and sometimes field scripts, which are carry-over files that
+   `checkmap.py` and the bulk tools compare with the base ROM. Each change
+   is registered as an intended divergence (the bulk tools' DIVERGED lists)
+   in the same commit, and the Overseer is told before the pass starts so
+   the gate learns about it at the same time.
 
 Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before
