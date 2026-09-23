@@ -39,6 +39,7 @@ copy() {
 copy "design-doc.md" "Platinum Oxide - Design Doc.md"
 copy "tracker.md" "Platinum Oxide - Tracker.md"
 copy "START-HERE-current-state.md" "notes/START-HERE-current-state.md"
+copy "tracker-archive.md" "notes/tracker-archive.md"
 copy "phase1-hg-engine-survey.md" "notes/phase1-hg-engine-survey.md"
 copy "phase2-approach-breakdown.md" "notes/phase2-approach-breakdown.md"
 copy "phase3-base-rom-inventory.md" "notes/phase3-base-rom-inventory.md"
