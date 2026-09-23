@@ -387,7 +387,7 @@ With every flag in this part at once, Swagger on turn 0 could collect +21 (Setup
 
 ## Apparent bugs
 
-Fixed on 2026-09-22: O1, the Weather flag, and O11, Trick, Switcheroo and Gastro Acid on the partner (both vanilla fixes, approved by Ian), and O19, the ability byte (Oxide). The rest stand as vanilla has them.
+Fixed on 2026-09-22: O1, the Weather flag, and O11, Trick, Switcheroo and Gastro Acid on the partner (both vanilla fixes, approved by Ian), O6, Discharge (battle_edits, vanilla fix approved by Ian on 2026-09-15), and O19, the ability byte (Oxide). The rest stand as vanilla has them.
 
 Every script bug below is present in vanilla Platinum at the same line on `main`, because `script.s` is unchanged. The C bugs are present in vanilla at the same lines of `trainer_ai.c`. One entry is introduced by Oxide. None has been fixed.
 

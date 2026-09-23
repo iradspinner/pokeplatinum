@@ -680,7 +680,7 @@ The comments above each routine in `script.s` were written for the decomp, and l
 
 ## Apparent bugs
 
-Fixed on 2026-09-22 in other parts: the Oxide ability byte (see `basic.md` B11). Nothing in this half has been changed; bug 4, the faster-heal branch, was put to Ian and kept as vanilla has it.
+Fixed on 2026-09-22 in other parts: the Oxide ability byte (see `basic.md` B11). Fixed on 2026-09-22 in this half: bugs 1, 2 and 3 (Thunder, Foresight and Leaf Guard; battle_edits, vanilla fixes approved by Ian on 2026-09-15). Bug 4, the faster-heal branch, was put to Ian and kept as vanilla has it.
 
 Every entry is present in vanilla Platinum: `script.s` is identical to `main`, so the vanilla line is the same number, and the C commands involved are unchanged from `main`. None is introduced by Oxide in this half (Oxide's own problems are in the last section). Fixing any of them changes vanilla behaviour and is Ian's call. Where an entry says a bug is inherited from Gen 3, that is from memory of pokeemerald's AI script and was not re-checked for this file.
 

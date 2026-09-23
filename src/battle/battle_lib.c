@@ -7688,7 +7688,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIVE:
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
-    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: Fire Fang Always Bypasses Wonder Guard (see docs/bugs_and_glitches.md)
+    case BATTLE_EFFECT_SHADOW_FORCE: // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Shadow Force, one before Fire Fang's effect, which was listed by mistake
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }
@@ -8144,13 +8144,25 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
                 if (move && MOVE_DATA(move).power != 1) {
+                    // Oxide, vanilla fix (Ian, 2026-09-22): Weather Ball was
+                    // costed as its listed 50-power Normal move. In weather it
+                    // has double power and the weather's type, which moveType
+                    // already holds (Normal when there is none, or under Cloud
+                    // Nine or Air Lock), as BtlCmd_CalcWeatherBallParams sets it.
+                    int power = 0, type = 0;
+
+                    if (move == MOVE_WEATHER_BALL && moveType != TYPE_NORMAL) {
+                        power = MOVE_DATA(move).power * 2;
+                        type = moveType;
+                    }
+
                     score = BattleSystem_CalcMoveDamage(battleSys,
                         battleCtx,
                         move,
                         battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, defender)],
                         battleCtx->fieldConditionsMask,
-                        0,
-                        0,
+                        power,
+                        type,
                         battler,
                         defender,
                         1);

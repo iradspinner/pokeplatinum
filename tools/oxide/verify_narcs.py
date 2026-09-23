@@ -283,6 +283,11 @@ DIVERGED = {
             "members": KINGS_ROCK_NATIVES,
             "why": "native damaging moves given the King's Rock flag (Ian, 2026-09-22)",
         },
+        {
+            "offsets": (8, 9),  # range
+            "members": {139},
+            "why": "Poison Gas hits both foes, not the partner too (Ian, 2026-09-22)",
+        },
     ],
 }
 
