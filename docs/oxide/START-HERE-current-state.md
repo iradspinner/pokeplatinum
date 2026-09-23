@@ -38,7 +38,7 @@ frozen 2026-09-15. Treat them as background, not current status.
 ## Reading order in the repo
 
 1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
-2. `docs/oxide/tracker.md`: status, next steps, what is waiting on Ian, decisions.
+2. `docs/oxide/tracker.md`: open work, next steps, what is waiting on Ian. Finished work is in `tracker-archive.md`, read when the tracker points there.
 3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-gifts.md`.
 4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
 
@@ -51,7 +51,7 @@ frozen 2026-09-15. Treat them as background, not current status.
 - Ian's earlier base-ROM edits are preserved: overworld events, scripts, text,
   trainers, species stats, move data, encounters, map headers. Where the evidence
   said DSPRE rewrote something rather than Ian editing it, it was not carried over
-  and the evidence is in the tracker.
+  and the evidence is in `tracker-archive.md`, under Phase 3.
 - The base ROM's "Unlocked / Challenge-Adjusted" naming is meaningless history.
 - The species pick-list is an availability list, not a deletion list. All 493
   Platinum natives stay in the tree. Internal ids are dense after Arceus, 494 to
