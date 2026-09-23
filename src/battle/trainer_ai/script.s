@@ -7151,8 +7151,10 @@ TagStrategy_Earthquake:
     //  - Is weak to Earthquake (has Fire, Electric, Poison, or Rock typing), score -10
     //  - Otherwise, score -3
     //
-    // Note that this does not check for if the partner is alive; this means that a solo
-    // battler will score Earthquake and Magnitude an additional -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): with the partner's slot empty for the
+    // rest of the battle there is no one to hit. The checks below read whatever Pokemon
+    // last stood there, so a lone Earthquake user took -3, or -10 after a partner weak to it
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_End
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
@@ -7167,6 +7169,9 @@ TagStrategy_Earthquake:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     GoTo ScoreMinus3
+
+TagStrategy_Earthquake_End:
+    PopOrEnd 
 
 TagStrategy_FutureSight:
     // If the move is Future Sight or Doom Desire:
@@ -7264,6 +7269,9 @@ TagStrategy_SpreadElectricMove:
     // If our partner otherwise has a Ground typing, score +3
     //
     // Else, score -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckElectric_End
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
@@ -7305,6 +7313,9 @@ TagStrategy_SpreadWaterMove:
     // If our partner otherwise has a Ground or Fire typing, score -10
     //
     // Else, score -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
@@ -7338,6 +7349,9 @@ TagStrategy_CheckLavaPlume:
     GoTo TagStrategy_CheckFire_End
 
 TagStrategy_SpreadFireMove:
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckFire_End
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
