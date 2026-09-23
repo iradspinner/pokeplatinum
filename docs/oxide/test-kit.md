@@ -83,6 +83,11 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 15 | Jaw Lock, Stone Axe, Ceaseless Edge, Mortal Spin | same |
 | 16 | Freeze Shock, Ice Burn, Fell Stinger, Double Shock, on Electivire | same; Double Shock needs an Electric user |
 | 17 | Burn Up, Clear Smog, Final Gambit, Chloroblast, on Magmortar | same; Burn Up needs a Fire user |
+| 18 | Draining Kiss, Oblivion Wing, Noble Roar, Tearful Look | 9664a529a |
+| 19 | Toxic, Venom Drench, Heal Pulse, Life Dew | 9664a529a; Venom Drench needs a poisoned target |
+| 20 | Pollen Puff, Strength Sap, Guard Split, Power Split | 9664a529a and a32b5ab7d |
+| 21 | Soak, Thunderbolt, Incinerate, Coaching | same; Coaching needs a double battle, so here it should fail |
+| 22 | Heavy Slam, Heat Crash, Autotomize, Swords Dance, on Metagross | a32b5ab7d; weight-based power needs a heavy user |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and

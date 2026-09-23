@@ -567,6 +567,11 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet15, 14
     AddListMenuEntry TestKit_Text_MenuSet16, 15
     AddListMenuEntry TestKit_Text_MenuSet17, 16
+    AddListMenuEntry TestKit_Text_MenuSet18, 17
+    AddListMenuEntry TestKit_Text_MenuSet19, 18
+    AddListMenuEntry TestKit_Text_MenuSet20, 19
+    AddListMenuEntry TestKit_Text_MenuSet21, 20
+    AddListMenuEntry TestKit_Text_MenuSet22, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -585,6 +590,11 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 14, TestKit_MoveSet15
     GoToIfEq VAR_0x8004, 15, TestKit_MoveSet16
     GoToIfEq VAR_0x8004, 16, TestKit_MoveSet17
+    GoToIfEq VAR_0x8004, 17, TestKit_MoveSet18
+    GoToIfEq VAR_0x8004, 18, TestKit_MoveSet19
+    GoToIfEq VAR_0x8004, 19, TestKit_MoveSet20
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet21
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet22
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -719,6 +729,51 @@ TestKit_MoveSet17:
     SetVar VAR_0x8008, MOVE_FINAL_GAMBIT
     SetVar VAR_0x8009, MOVE_CHLOROBLAST
     SetVar VAR_0x800A, SPECIES_MAGMORTAR
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sets 18 to 22: batches 9664a529a and a32b5ab7d. Coaching and Pollen Puff's
+   ally heal need a double battle, which the kit cannot start, so Coaching is
+   here only to show it fails in a single battle. */
+TestKit_MoveSet18:
+    SetVar VAR_0x8006, MOVE_DRAINING_KISS
+    SetVar VAR_0x8007, MOVE_OBLIVION_WING
+    SetVar VAR_0x8008, MOVE_NOBLE_ROAR
+    SetVar VAR_0x8009, MOVE_TEARFUL_LOOK
+    GoTo TestKit_GiveMew
+
+/* Venom Drench only works on a poisoned target, so Toxic comes first. */
+TestKit_MoveSet19:
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_VENOM_DRENCH
+    SetVar VAR_0x8008, MOVE_HEAL_PULSE
+    SetVar VAR_0x8009, MOVE_LIFE_DEW
+    GoTo TestKit_GiveMew
+
+TestKit_MoveSet20:
+    SetVar VAR_0x8006, MOVE_POLLEN_PUFF
+    SetVar VAR_0x8007, MOVE_STRENGTH_SAP
+    SetVar VAR_0x8008, MOVE_GUARD_SPLIT
+    SetVar VAR_0x8009, MOVE_POWER_SPLIT
+    GoTo TestKit_GiveMew
+
+/* Soak makes the target pure Water, so Thunderbolt should then hit it for
+   double damage. Incinerate burns a held berry only if the target has one. */
+TestKit_MoveSet21:
+    SetVar VAR_0x8006, MOVE_SOAK
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_INCINERATE
+    SetVar VAR_0x8009, MOVE_COACHING
+    GoTo TestKit_GiveMew
+
+/* Heavy Slam and Heat Crash grow with the user's weight against the target's,
+   so they go on Metagross (550 kg); Autotomize lightens it, weakening both.
+   Swords Dance is a two-stage rise, to check it still says "sharply". */
+TestKit_MoveSet22:
+    SetVar VAR_0x8006, MOVE_HEAVY_SLAM
+    SetVar VAR_0x8007, MOVE_HEAT_CRASH
+    SetVar VAR_0x8008, MOVE_AUTOTOMIZE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x800A, SPECIES_METAGROSS
     GoTo TestKit_GivePokemonWithMoves
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in

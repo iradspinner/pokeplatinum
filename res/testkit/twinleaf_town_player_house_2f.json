@@ -160,6 +160,26 @@
             "en_US": "Set 17"
         },
         {
+            "id": "TestKit_Text_MenuSet18",
+            "en_US": "Set 18"
+        },
+        {
+            "id": "TestKit_Text_MenuSet19",
+            "en_US": "Set 19"
+        },
+        {
+            "id": "TestKit_Text_MenuSet20",
+            "en_US": "Set 20"
+        },
+        {
+            "id": "TestKit_Text_MenuSet21",
+            "en_US": "Set 21"
+        },
+        {
+            "id": "TestKit_Text_MenuSet22",
+            "en_US": "Set 22"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",
