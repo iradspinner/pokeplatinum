@@ -7168,7 +7168,15 @@ TagStrategy_Earthquake:
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    GoTo ScoreMinus3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Steel is weak to Earthquake too,
+    // unless a Bug or Grass second type cancels the weakness out (Forretress, Wormadam)
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
+    IfLoadedEqualTo AI_NOT_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_BUG
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
 
 TagStrategy_Earthquake_End:
     PopOrEnd 
@@ -7321,12 +7329,21 @@ TagStrategy_SpreadWaterMove:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
 
-    // BUG: This should also include a similar check for the Rock type
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    AddToMoveScore -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Rock is weak to Surf too, unless
+    // a Water, Grass or Dragon second type cancels the weakness out (Omastar, Cradily)
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
+    IfLoadedEqualTo AI_NOT_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_DRAGON
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
 
 TagStrategy_CheckWater_End:
     PopOrEnd 
