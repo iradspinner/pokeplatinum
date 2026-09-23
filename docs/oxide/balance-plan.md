@@ -17,7 +17,11 @@ for the story path's 33 crossings of maps with trainers (`required.py`,
 `test_b1e` 6 of 6). Its own check waits on Ian: the second open question
 asks for the route trainers he knows he walks around. B1c, Odyssey from its
 ROM, is still open and carries little weight. B3, the player's side and
-pressure, is next, and needs nothing from Ian to start.
+pressure, is built for Oxide's own 28 fights (`pool.py`, `pressure.py`,
+`calc_headless.js`, `test_b3` 8 of 8), and was run a split at a time on the
+degraded CPU without a fault. Its check waits in part on Ian's in-game roll,
+and scoring the reference hacks' bosses against Oxide's side is its next
+step (B3b).
 
 ## The target
 
@@ -297,6 +301,118 @@ first reaches it:
   starts. The report names both per map. Story blockers other than Route
   210's Psyduck are taken as gone.
 
+What B3 found (2026-09-23; `pressure.py --report` prints the table). The
+calculator's engine runs headless in one Node process (`calc_headless.js`).
+It loads the engine files the page loads, in the page's order, under the
+page's own `require` shim, and repeats only the steps of the page's loader
+that touch the engine, lifting the move-merging helper out of
+`initialize.js` itself. It gives D5's five ranges exactly, and Crunch into
+Bronzor comes out 42 to 50, which only this fork's chart gives. All 28
+fights ran in about three minutes over nine one-process runs, the longest
+(the League) 40 seconds.
+
+The player's side (`pool.py`) takes every species caught or received by a
+split's end, from the encounter tables (land, day and night, water once the
+rod or Surf is in hand, honey trees from Gardenia's split) and
+`pokemon-sources.csv`, plus every evolution reached at the cap by the
+encounter tool's own rule. Each is at the cap with IVs of 15, no EVs, a
+neutral nature and its first ability, knows every damaging move its line
+learns by the cap plus the TMs and tutors reachable by then, and holds the
+strongest damage item the split offers.
+
+| Split | Cap | Species | Items held by then |
+|---|---|---|---|
+| Roark | 16 | 92 | 31 |
+| Gardenia | 26 | 140 | 41 |
+| Fantina | 33 | 217 | 47 |
+| Maylene | 39 | 275 | 77 |
+| Wake | 44 | 299 | 87 |
+| Byron | 53 | 316 | 102 |
+| Candice | 56 | 321 | 105 |
+| Volkner | 62 | 323 | 116 |
+| League | 78 | 323 | 120 |
+
+Threat is the share of that side a boss Pokemon knocks out within two
+turns while moving first; answers is the share that does the same to it.
+Each is the mean over the fight's Pokemon, and the last two columns are its
+most threatening Pokemon and its least answered one.
+
+| Fight | Threat | Answers | Worst threat | Fewest answers |
+|---|---|---|---|---|
+| Barry 1 | 0.00 | 0.96 | 0.00 | 0.95 |
+| Barry 2 | 0.01 | 0.64 | 0.01 | 0.50 |
+| Roark | 0.13 | 0.18 | 0.45 | 0.05 |
+| Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
+| Gardenia | 0.68 | 0.05 | 0.91 | 0.01 |
+| Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
+| Fantina | 0.51 | 0.11 | 0.88 | 0.01 |
+| Barry 3 | 0.17 | 0.48 | 0.36 | 0.34 |
+| Maylene | 0.69 | 0.20 | 0.79 | 0.08 |
+| Barry 4 | 0.48 | 0.13 | 0.82 | 0.04 |
+| Wake | 0.74 | 0.07 | 0.98 | 0.00 |
+| Cyrus 1 | 0.38 | 0.35 | 0.59 | 0.23 |
+| Barry 5 | 0.54 | 0.18 | 0.90 | 0.05 |
+| Byron | 0.33 | 0.24 | 0.67 | 0.17 |
+| Saturn 1 | 0.46 | 0.24 | 0.78 | 0.09 |
+| Mars 2 | 0.26 | 0.15 | 0.51 | 0.04 |
+| Candice | 0.73 | 0.14 | 0.97 | 0.00 |
+| Cyrus 2 | 0.38 | 0.18 | 0.81 | 0.04 |
+| Saturn 2 | 0.53 | 0.21 | 0.82 | 0.09 |
+| Mars and Jupiter | 0.33 | 0.26 | 0.68 | 0.06 |
+| Cyrus 3 | 0.69 | 0.11 | 0.97 | 0.03 |
+| Volkner | 0.75 | 0.09 | 0.94 | 0.01 |
+| Barry 6 | 0.54 | 0.20 | 0.91 | 0.05 |
+| Aaron | 0.58 | 0.17 | 0.75 | 0.07 |
+| Bertha | 0.49 | 0.27 | 0.76 | 0.01 |
+| Flint | 0.69 | 0.11 | 0.92 | 0.03 |
+| Lucian | 0.61 | 0.24 | 0.93 | 0.03 |
+| Cynthia | 0.69 | 0.11 | 0.90 | 0.01 |
+
+These are raw scores, not ratings: B5 turns them into a band by scoring
+the reference hacks the same way. What they already show:
+
+- **Gardenia is the largest step in the game.** Roark's fight threatens 13
+  percent of the side and Gardenia's 68, level with Cynthia's 69. Her
+  Roserade alone knocks out 91 percent of the side within two turns while
+  moving first, and 1 percent answers it. The plan wants Gardenia to reach
+  the target and the curve to hold after; whether 0.68 is the target is
+  B5's to say, but nothing later climbs as steeply.
+- **Choice Scarf and rain leave bosses with no answer.** Nothing at the cap
+  outspeeds a scarfed boss, so only priority answers Wake's Poliwrath,
+  Candice's Mamoswine, Volkner's Electivire, Bertha's Gliscor or Cynthia's
+  Lucario (1 percent or less each). Pastoria Gym's rain doubles Floatzel's
+  and Ludicolo's Speed through Swift Swim, and they come out at 1 percent
+  and under.
+- **Byron is soft between two peaks**: 0.33 against Wake's 0.74 and
+  Candice's 0.73. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
+  are light too.
+- **Early fights in a split read too easy**, because the player is scored
+  at the split's cap: Barry 1 is level 5 against a side at 16. B4's natural
+  levels should replace the cap for fights before a split's end.
+- **Five moves get no number from the calculator's Generation 4
+  mechanics**: Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card,
+  which it handles only in its later-generation code. The page runs the same
+  code, so it should show nothing for them either. No boss uses them; the
+  player's copies are dropped and listed per fight in `pressure.json`. A fix
+  belongs to the encounter track, which owns the vendored calculator.
+
+What the scores leave out, so they read as a ceiling for the boss:
+accuracy, secondary effects, status and setup, switching, defensive items
+other than a boss's Focus Sash, and the AI's real choice of move. A
+charging move counts two turns a hit and a recharging one a turn between
+hits. Every species counts once, so the weak unevolved stages early in the
+game pull the answers down. Moves that need a condition first (Dream
+Eater, Fake Out, Counter and the like) and the player's Explosion and
+Hidden Power are left out; `pool.py` lists them.
+
+B3's check, as far as it goes. The headless engine agrees with D5's figures
+for the page, and those agree with a hand calculation of the Generation 4
+formula. The page itself was not driven on this CPU, since a headless
+browser is many processes. The in-game roll is still Ian's (encounter build
+plan, M8), and the calculator's order for a dual type's two factors (Crunch
+into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
+the encounter track's patch lands.
+
 ## What gets measured
 
 Every metric is computed the same way for every hack, from that hack's own
@@ -530,6 +646,13 @@ disagrees with them.
   (species, moves, items) and the pressure scores. The check: damage agrees
   with the calculator's page and with the in-game roll already waiting on Ian
   (encounter build plan, D5).
+  - [x] **B3a, Oxide's side and Oxide's fights** (2026-09-23, `pool.py`,
+    `pressure.py`, `calc_headless.js`, `test_b3`). See "What B3 found". The
+    check holds against D5's figures; the in-game roll waits on Ian.
+  - [ ] **B3b, the reference hacks' bosses against Oxide's side**, as "What
+    gets measured" asks. Each hack changes species stats and moves, so the
+    runner has to take a Pokemon's stats, types and moves per Pokemon
+    rather than from one blob. Run it a split at a time, as B3a was.
 - [ ] **B4, the level curve**: the natural level per split, for Oxide and
   Renegade.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
