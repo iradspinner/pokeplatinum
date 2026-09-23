@@ -100,6 +100,10 @@ HG_STRINGS = {
     1548: "BattleStrings_Text_NeitherPokemonCanRunAway",
     1601: "BattleStrings_Text_PokemonBurnedItselfOut_Ally",
     1604: "BattleStrings_Text_PokemonUsedUpAllItsElectricity_Ally",
+    1324: "BattleStrings_Text_PokemonSharedItsGuardWithTheTarget_Ally",
+    1327: "BattleStrings_Text_PokemonSharedItsPowerWithTheTarget_Ally",
+    1330: "BattleStrings_Text_PokemonTransformedIntoTheWaterType_Ally",
+    1573: "BattleStrings_Text_PokemonsItemWasBurnedUp_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -280,8 +284,32 @@ def supplemented(renames, have=None):
         sys.exit("SUPPLEMENT names identifiers Platinum no longer has: %s" % gone)
     merged = dict(SUPPLEMENT)
     merged.update(subscript_renames())
+    merged.update(ability_renames())
+    merged.update(battler_field_renames())
     merged.update(renames)
     return merged
+
+
+def ability_renames():
+    """hg-engine's ability names that differ from Oxide's at the same id. Element
+    3 imported the donor's abilities contiguously, so the ids agree for good,
+    and 309 of hg-engine's 320 names agree too (2026-09-22). The other ten are
+    names the donor's display text squashed (MEGALAUNCHER for MEGA_LAUNCHER),
+    the two As One forms and two placeholders, matched here by id."""
+    oxide = lines_of(os.path.join(ROOT, "generated", "abilities.txt"))
+    return {name: oxide[value] for name, value in hg_values().items()
+            if name.startswith("ABILITY_") and value < len(oxide) and oxide[value] != name}
+
+
+def battler_field_renames():
+    """hg-engine's BMON_DATA_ names mapped to Platinum's battler fields by
+    number. All 101 of hg-engine's fields name the same field as Platinum's at
+    the same number (checked by eye, 2026-09-22), and the derivation had
+    already found 49 of them independently; this supplies the rest, such as
+    BMON_DATA_SPDEF, which no shared script happens to use."""
+    fields = lines_of(os.path.join(ROOT, "generated", "battle_mon_params.txt"))
+    return {name: fields[value] for name, value in hg_values().items()
+            if name.startswith("BMON_DATA_") and value < len(fields) and fields[value] != name}
 
 
 def lines_of(path):
@@ -407,6 +435,23 @@ FIXES = {
     # nothing prints afterwards in Platinum; it is dropped (None deletes).
     "effect_script_0318_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2.s": [
         ("BufferMessage 0, TAG_NONE", None),
+        # Its second turn plays its own animation before the charge cleanup
+        # sets the effect chance to 1, which is what its animation reads to
+        # tell the turns apart; set it first so the second turn is not drawn
+        # as another charge.
+        ("PlayMoveAnimation BTLSCR_ATTACKER",
+         "UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1\n    PlayMoveAnimation BTLSCR_ATTACKER"),
+    ],
+    # Guard Split and Power Split are status moves, and Platinum runs a status
+    # move's side effect through the direct path, as its own Pain Split does;
+    # hg-engine sets them as indirect, which Platinum only runs after a hit.
+    "effect_script_0278_GUARD_SPLIT.s": [
+        ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_GUARD_SPLIT",
+         "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_GUARD_SPLIT"),
+    ],
+    "effect_script_0279_POWER_SPLIT.s": [
+        ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_POWER_SPLIT",
+         "UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_POWER_SPLIT"),
     ],
     "effect_script_0343_USER_DEF_DOWN_HIT_REMOVE_PROTECT.s": [
         ("UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_HYPERSPACE_FURY",
@@ -438,6 +483,13 @@ C_REVIEWED = {
          "does, with the message set in the move's own script.s, and the effect is on "
          "Move_IsMultiTurn; the rest is Kyurem's form change, and Kyurem is not in Oxide",
     364: "as Freeze Shock",
+    278: "BeforeMove fails the move against a substitute; the Oxide subscript checks the same",
+    279: "as Guard Split",
+    284: "BeforeMove fails the move against pure Water, Multitype or a substitute; the Oxide "
+         "subscript checks the same",
+    292: "CalcBaseDamage works out the same weight ratio that CalcHeavySlamPower now does",
+    378: "BeforeMove fails the move when the target's Attack is at its lowest; the Oxide "
+         "subscript checks the same",
     348: "BeforeMove thaws a frozen user, ported beside Flame Wheel's in battle_controller_player.c",
 }
 
@@ -694,6 +746,27 @@ def unaimed(line):
     return None
 
 
+def oxide_effect_learners():
+    """Effect id to the Oxide species that learn a move using it, from every
+    list in every species' learnset. No trainer party, gift or field script
+    uses a new move (checked 2026-09-22), so a learnset is the only way a
+    player meets one; Metronome aside."""
+    import json
+    effects = lines_of(os.path.join(ROOT, "generated", "move_battle_effects.txt"))
+    effect_of = {}
+    for p in glob.glob(os.path.join(ROOT, "res", "moves", "*", "data.json")):
+        name = json.load(open(p, encoding="utf-8"))["effect"]["type"]
+        if name in effects:
+            effect_of["MOVE_" + os.path.basename(os.path.dirname(p)).upper()] = effects.index(name)
+    out = collections.defaultdict(set)
+    for p in glob.glob(os.path.join(ROOT, "res", "pokemon", "*", "data.json")):
+        learnset = json.dumps(json.load(open(p, encoding="utf-8")).get("learnset", {}))
+        for move in set(re.findall(r"MOVE_\w+", learnset)):
+            if move in effect_of:
+                out[effect_of[move]].add(os.path.basename(os.path.dirname(p)))
+    return out
+
+
 def check_script(text, have):
     """The names a converted script uses that Platinum lacks, and the message
     numbers it still prints. After conversion a bare number in a message
@@ -765,6 +838,7 @@ def audit(ids, renames, have):
 
     strings = battle_strings()
     oxide_users = oxide_effect_users()
+    learners = oxide_effect_learners()
     rows = []
     for e in ids:
         unresolved, messages = check_script(convert(effects[e][1], renames, strings), have)
@@ -779,6 +853,11 @@ def audit(ids, renames, have):
             verdict = "done"
         elif e not in oxide_users:
             verdict = "unused"
+        elif e not in learners:
+            # Ian, 2026-09-22: an effect only Metronome can reach is not
+            # ported. Computed, so one comes back if a later TM or tutor pass
+            # makes one of its moves learnable.
+            verdict = "unreachable"
         elif items:
             verdict = "items"
         elif unresolved:
@@ -842,7 +921,7 @@ def main():
         wanted = sorted({r["effect"] for r in recs[1:923] if r["effect"] >= PLATINUM_EFFECTS})
         rows = audit(a.audit or wanted, renames, have)
         if a.audit is not None:
-            order = ["done", "settled", "unused", "ready", "c", "text", "names", "items"]
+            order = ["done", "settled", "unused", "unreachable", "ready", "c", "text", "names", "items"]
             for v in order:
                 group = [r for r in rows if r["verdict"] == v]
                 if not group:
@@ -851,6 +930,7 @@ def main():
                 for r in group:
                     why = {"done": "", "settled": SETTLED.get(r["id"], ""), "ready": "",
                            "unused": "no Oxide move uses it",
+                           "unreachable": "no Oxide species learns a move that uses it",
                            "c": ("C reviewed: " + C_REVIEWED[r["id"]]) if r["id"] in C_REVIEWED
                                 else "C: " + ", ".join(r["code"]),
                            "text": "messages %s" % r["messages"],

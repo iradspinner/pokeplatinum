@@ -19,6 +19,7 @@ _069:
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_ATTACKER, BATTLEMON_SPEED_STAGE, 12, _moveCanBeUsed
     GoTo SkipAnimation
 _moveCanBeUsed:
+    UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1
     PlayMoveAnimation BTLSCR_ATTACKER
     Wait
 SkipAnimation:

@@ -308,6 +308,9 @@ static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_RefreshMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcBoltBeakPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ReduceWeight(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
@@ -2824,8 +2827,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     // Oxide's three-stage changes (Cotton Guard, Fell Stinger) sit after every
     // vanilla pointer, so they are matched first and by range: the vanilla
     // chain below treats anything past the two-stage drops as one, which for
-    // a later pointer would index past the stat array. The message for three
-    // stages is the two-stage one, "sharply rose", as Platinum has no other.
+    // a later pointer would index past the stat array. Three stages print the
+    // donor's "rose drastically" and "severely fell" lines, added for them.
     if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES
         && battleCtx->sideEffectParam <= MOVE_SUBSCRIPT_PTR_EVASION_DOWN_3_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_3_STAGES;
@@ -2877,7 +2880,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             } else {
                 SetupNicknameStatMsg(battleCtx,
                     stageChange == 1 ? BattleStrings_Text_PokemonsStatRose_Ally : // "{0}'s {1} rose!"
-                        BattleStrings_Text_PokemonsStatSharplyRose_Ally, // "{0}'s {1} sharply rose!"
+                        stageChange == 2 ? BattleStrings_Text_PokemonsStatSharplyRose_Ally : // "{0}'s {1} sharply rose!"
+                        BattleStrings_Text_PokemonsStatRoseDrastically_Ally, // Oxide's three stages: "{0}'s {1} rose drastically!"
                     statOffset);
             }
 
@@ -2978,7 +2982,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         } else {
             SetupNicknameStatMsg(battleCtx,
                 stageChange == -1 ? BattleStrings_Text_PokemonsStatFell_Ally : // "{0}'s {1} fell!"
-                    BattleStrings_Text_PokemonsStatHarshlyFell_Ally, // "{0}'s {1} harshly fell!"
+                    stageChange == -2 ? BattleStrings_Text_PokemonsStatHarshlyFell_Ally : // "{0}'s {1} harshly fell!"
+                    BattleStrings_Text_PokemonsStatSeverelyFell_Ally, // Oxide's three stages: "{0}'s {1} severely fell!"
                 statOffset);
         }
 
@@ -9519,6 +9524,83 @@ static BOOL BtlCmd_CalcBoltBeakPower(BattleSystem *battleSys, BattleContext *bat
     } else {
         battleCtx->movePower = CURRENT_MOVE_DATA.power;
     }
+
+    return FALSE;
+}
+
+/**
+ * @brief Calculates the power for Heavy Slam and Heat Crash.
+ *
+ * The heavier the user is than the target, the stronger the move: the
+ * target's weight as a share of the user's picks 120, 100, 80, 60 or 40
+ * power, at the thresholds hg-engine uses (20, 25, 33.34 and 50 per cent).
+ * Weights are in tenths of a kilogram, as Low Kick reads them.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+
+    int attackerWeight = ATTACKING_MON.weight > 0 ? ATTACKING_MON.weight : 1;
+    u32 ratio = DEFENDING_MON.weight * 10000 / attackerWeight;
+
+    if (ratio <= 2000) {
+        battleCtx->movePower = 120;
+    } else if (ratio <= 2500) {
+        battleCtx->movePower = 100;
+    } else if (ratio <= 3334) {
+        battleCtx->movePower = 80;
+    } else if (ratio <= 5000) {
+        battleCtx->movePower = 60;
+    } else {
+        battleCtx->movePower = 40;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Lightens the attacker, for Autotomize.
+ *
+ * Inputs:
+ * 1. The weight to take off, in tenths of a kilogram.
+ *
+ * The weight never falls below the lightest a battler can be, 0.1 kg. It is
+ * reloaded from the species when the battler next comes in.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_ReduceWeight(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int amount = BattleScript_Read(battleCtx);
+
+    if (ATTACKING_MON.weight > amount) {
+        ATTACKING_MON.weight -= amount;
+    } else {
+        ATTACKING_MON.weight = 1;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Sets the HP Strength Sap restores: the target's Attack stat after
+ * its stat stage, taken before the move lowers it.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    battleCtx->hpCalcTemp = Battler_AttackAfterStage(battleCtx, battleCtx->defender);
 
     return FALSE;
 }

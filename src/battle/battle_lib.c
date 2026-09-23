@@ -8273,3 +8273,11 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
 
     return type;
 }
+
+int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    int stage = mon->statBoosts[BATTLE_STAT_ATTACK];
+
+    return mon->attack * sStatStageBoosts[stage].numerator / sStatStageBoosts[stage].denominator;
+}

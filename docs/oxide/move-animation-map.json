@@ -599,14 +599,16 @@
         "type": "TYPE_ICE",
         "class": "CLASS_SPECIAL",
         "reuse": "ice_beam",
-        "why": "ice special single target beam"
+        "why": "ice special single target beam",
+        "note": "charge part added by hand in anim.s (2026-09-22): the first turn is a glow on the user, branching as Sky Attack does; import_moves.py --force would overwrite it"
     },
     "557": {
         "name": "Ice Burn",
         "type": "TYPE_ICE",
         "class": "CLASS_SPECIAL",
         "reuse": "ice_beam",
-        "why": "ice special single target beam"
+        "why": "ice special single target beam",
+        "note": "charge part added by hand in anim.s (2026-09-22): the first turn is a glow on the user, branching as Sky Attack does; import_moves.py --force would overwrite it"
     },
     "558": {
         "name": "Snarl",
@@ -935,7 +937,8 @@
         "type": "TYPE_FAIRY",
         "class": "CLASS_STATUS",
         "reuse": "cosmic_power",
-        "why": "self multi-stat boost; no fairy anims"
+        "why": "self multi-stat boost; no fairy anims",
+        "note": "charge part added by hand in anim.s (2026-09-22): the first turn is a glow on the user, branching as Sky Attack does; import_moves.py --force would overwrite it"
     },
     "605": {
         "name": "Magnetic Flux",

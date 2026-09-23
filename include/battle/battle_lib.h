@@ -546,6 +546,16 @@ int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx,
 BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move);
 
 /**
+ * @brief A battler's Attack stat after its stat stage, which Oxide's Strength
+ * Sap restores to its user.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return The stat with the stage multiplier applied
+ */
+int Battler_AttackAfterStage(BattleContext *battleCtx, int battler);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

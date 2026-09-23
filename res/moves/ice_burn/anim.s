@@ -1,7 +1,27 @@
 #include "macros/btlanimcmd.inc"
 
+// Oxide: Ice Burn charges on its first turn and acts on its second. The move's
+// effect chance is even on the charge turn and set to 1 for the second by
+// Platinum's charge cleanup, which is how Sky Attack and Solar Beam tell the
+// two turns apart. The charge is a glow on the user; the second turn is
+// Ice Beam's animation, as before.
 L_0:
     LoadParticleResource 0, ice_beam_spa
+    JumpIfEffectChanceOdd L_charge, L_strike
+    End
+
+L_charge:
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_LIGHT_BLUE
+    WaitForAnimTasks
+    PlaySoundEffectL SEQ_SE_DP_SHUSHU_sseq
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_LIGHT_BLUE, 10, 0
+    WaitForAnimTasks
+    UnloadParticleSystem 0
+    Func_FadeBg FADE_BG_TYPE_BASE, 1, 8, 0, BATTLE_COLOR_LIGHT_BLUE
+    WaitForAnimTasks
+    End
+
+L_strike:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 8, BATTLE_COLOR_LIGHT_BLUE
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
