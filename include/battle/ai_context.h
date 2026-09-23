@@ -25,7 +25,7 @@ typedef struct AIContext {
     u8 moveDamageRolls[LEARNED_MOVES_MAX];
 
     u16 battlerMoves[MAX_BATTLERS][LEARNED_MOVES_MAX];
-    u8 battlerAbilities[MAX_BATTLERS];
+    u16 battlerAbilities[MAX_BATTLERS]; // Oxide: u16 like every ability since element 2; as a u8 it remembered abilities above 255 as others
     u16 battlerHeldItems[MAX_BATTLERS];
 
     u16 trainerItems[MAX_OPPONENTS][MAX_TRAINER_ITEMS];

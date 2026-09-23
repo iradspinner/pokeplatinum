@@ -60,7 +60,15 @@ Basic_Main:
     // Score the move according to its damage. If the AI does not know any
     // moves which are eligible for scoring, skip ahead.
     FlagMoveDamageScore USE_MAX_DAMAGE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, Basic_CheckSoundproof
+    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, Basic_CheckForImmunity
+    // Oxide, vanilla fix (Ian, 2026-09-22): no comparison is made for a
+    // damaging move whose power is worked out elsewhere (Solar Beam,
+    // Eruption, Sucker Punch, Head Smash; Oxide's Dragon Energy, Final
+    // Gambit), and those used to skip every immunity check below. A move
+    // with power still gets them; a status move skips them as before.
+    LoadMovePower
+    IfLoadedGreaterThan 0, Basic_CheckForImmunity
+    GoTo Basic_CheckSoundproof
 
 Basic_CheckForImmunity:
     // Check for any immunity to the current move based on move type and what
@@ -5934,14 +5942,17 @@ Expert_Punishment:
 Expert_Punishment_TryScorePlus4:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus3
     AddToMoveScore 4
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus3:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus2
     AddToMoveScore 3
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus2:
     IfRandomLessThan 128, Expert_Punishment_TryScorePlus1
     AddToMoveScore 2
+    GoTo Expert_Punishment_End // Oxide, vanilla fix: stop at the first rung won
 
 Expert_Punishment_TryScorePlus1:
     IfRandomLessThan 128, Expert_Punishment_End
@@ -7619,7 +7630,11 @@ TagStrategy_PartnerSwagger_End:
     PopOrEnd 
 
 TagStrategy_PartnerTrick:
-    PopOrEnd 
+    // Oxide, vanilla fix (Ian, 2026-09-22): this was an empty stub, so Trick
+    // and Switcheroo kept 100 against the partner, passed the doubles
+    // filter and could be used on it. They now take the -30 every other
+    // status move without partner logic takes.
+    GoTo TagStrategy_PartnerScoreMinus30
 
 TagStrategy_PartnerGastroAcid:
     // If our partner's ability is already suppressed, score -30
@@ -7635,7 +7650,10 @@ TagStrategy_PartnerGastroAcid:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SLOW_START
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerGastroAcid_ScorePlus5
 
-    GoTo TagStrategy_PartnerGastroAcid_End
+    // Oxide, vanilla fix (Ian, 2026-09-22): "otherwise" changed nothing, so
+    // Gastro Acid kept 100 against any partner and could be used on it.
+    // Suppressing a partner's Truant or Slow Start (+5 above) is kept.
+    GoTo TagStrategy_PartnerScoreMinus30
 
 TagStrategy_PartnerGastroAcid_ScorePlus5:
     AddToMoveScore 5
@@ -7988,6 +8006,10 @@ Weather_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, Weather_Rain
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, Weather_Sand
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, Weather_Hail
+    // Oxide, vanilla fix (Ian, 2026-09-22): every other move used to fall
+    // through into Weather_Sun, so every move got the same +5 and the flag
+    // changed nothing. Only the weather moves are scored here.
+    GoTo Weather_Terminate
 
 Weather_Sun:
     LoadCurrentWeather 
