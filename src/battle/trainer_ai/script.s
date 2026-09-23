@@ -60,7 +60,15 @@ Basic_Main:
     // Score the move according to its damage. If the AI does not know any
     // moves which are eligible for scoring, skip ahead.
     FlagMoveDamageScore USE_MAX_DAMAGE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, Basic_CheckSoundproof
+    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, Basic_CheckForImmunity
+    // Oxide, vanilla fix (Ian, 2026-09-22): no comparison is made for a
+    // damaging move whose power is worked out elsewhere (Solar Beam,
+    // Eruption, Sucker Punch, Head Smash; Oxide's Dragon Energy, Final
+    // Gambit), and those used to skip every immunity check below. A move
+    // with power still gets them; a status move skips them as before.
+    LoadMovePower
+    IfLoadedGreaterThan 0, Basic_CheckForImmunity
+    GoTo Basic_CheckSoundproof
 
 Basic_CheckForImmunity:
     // Check for any immunity to the current move based on move type and what
