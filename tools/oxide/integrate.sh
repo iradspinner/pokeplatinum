@@ -185,6 +185,53 @@ resolve_tracker() {
     mv "$1.resolved" "$1"
 }
 
+# The design doc conflicts in two routine ways. Both tracks append to the
+# findings log (section 8), and the right answer is to keep both entries in
+# order. Both tracks also bump the version line at the top, and there keeping
+# both would leave two version lines, so the higher version wins. Any other
+# block fails with the block printed. $1 is the conflicted file, $2 the branch.
+resolve_design_doc() {
+    awk -v branch="$2" '
+        # The version on a "Design document, vMAJOR.MINOR (date)" line as one
+        # comparable number, so v0.33 beats v0.4; -1 if the side is anything else.
+        function version(side,   n, i, line, v, num, part) {
+            n = split(side, line, "\n"); v = -1
+            for (i = 1; i <= n; i++) {
+                if (line[i] == "") continue
+                if (line[i] !~ /^Design document, v[0-9]+\.[0-9]+ /) return -1
+                if (v != -1) return -1
+                num = substr(line[i], 19)
+                sub(/ .*/, "", num)
+                split(num, part, ".")
+                v = part[1] * 100000 + part[2]
+            }
+            return v
+        }
+        /^## 8\. / { inlog = 1 }
+        !inblock && /^<<<<<<< / { inblock = 1; side = "ours"; ours = theirs = ""; block = $0 "\n"; next }
+        inblock {
+            block = block $0 "\n"
+            if (substr($0, 1, 8) == "||||||| ") { side = "base"; next }
+            if ($0 == "=======") { side = "theirs"; next }
+            if (/^>>>>>>> /) {
+                inblock = 0
+                vo = version(ours); vt = version(theirs)
+                if (vo >= 0 && vt >= 0) { printf "%s", (vo >= vt ? ours : theirs); next }
+                if (inlog) { printf "%s%s", ours, theirs; next }
+                printf "design-doc.md: a conflict block this script will not resolve, merging %s:\n%s", branch, block > "/dev/stderr"
+                failed = 1
+                next
+            }
+            if (side == "ours") ours = ours $0 "\n"
+            else if (side == "theirs") theirs = theirs $0 "\n"
+            next
+        }
+        { print }
+        END { exit failed }
+    ' "$1" > "$1.resolved" || { rm -f "$1.resolved"; return 1; }
+    mv "$1.resolved" "$1"
+}
+
 say "merge"
 for b in "${TRACK_BRANCHES[@]:-}"; do
     [ -n "$b" ] || continue
@@ -217,9 +264,8 @@ for b in "${TRACK_BRANCHES[@]:-}"; do
                 resolve_tracker "$f" "$b" || { git merge --abort; die "tracker.md conflict in $b needs a hand merge; the block is printed above"; }
                 git add "$f" && resolved+=("$f: took $b's side of the encounter paragraph") ;;
             docs/oxide/design-doc.md)
-                sed -i '/^<<<<<<< /d;/^=======$/d;/^>>>>>>> /d' "$f"
-                grep -q '^<<<<<<<\|^>>>>>>>' "$f" && { git merge --abort; die "design-doc.md conflict in $b is not a plain log append; resolve by hand"; }
-                git add "$f" && resolved+=("$f: kept both sides of the findings log") ;;
+                resolve_design_doc "$f" "$b" || { git merge --abort; die "design-doc.md conflict in $b needs a hand merge; the block is printed above"; }
+                git add "$f" && resolved+=("$f: kept both sides of the findings log, and the higher version") ;;
             *)
                 git merge --abort
                 die "merging $b conflicts in a file this script does not resolve, aborted:"$'\n'"$conflicts" ;;
