@@ -42,7 +42,7 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-142 rows across 41 locations, generated 2026-09-22.
+143 rows across 42 locations, generated 2026-09-25.
 
 ## Rows by method
 
@@ -57,9 +57,9 @@ table, so they compete with it rather than adding to it
 | roamer | 6 |
 | in-game trade | 4 |
 | starter | 3 |
+| egg gift | 3 |
 | honey tree (common) | 3 |
 | honey tree (rare) | 3 |
-| egg gift | 2 |
 | honey tree (uncommon) | 2 |
 | special tile (rod) | 1 |
 | pal park migration | 1 |
@@ -101,7 +101,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Togepi | egg gift | 11 | Egg from the Pokemon Day Care worker outside the city; once only | vanilla | yes | `scripts_eterna_city.s` |
+| Togepi | egg gift | 1 | Egg from Cynthia in Eterna City; once only; hatches at level 1 and counts where it hatches; giver Cynthia | vanilla | yes | `scripts_eterna_city.s` |
 | Charcadet | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Slugma | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Yamask | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
@@ -205,6 +205,12 @@ table, so they compete with it rather than adding to it
 |---|---|---|---|---|---|---|
 | Regice | static battle | 30 | the Snowpoint Temple Regi puzzle, post-game | vanilla | yes | `scripts_iceberg_ruins.s` |
 
+### Iron Island
+
+| Species | Method | Level | Conditions | Origin | On pick-list | Source |
+|---|---|---|---|---|---|---|
+| Riolu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; hatches at level 1 and counts where it hatches; giver Riley | vanilla | yes | `scripts_iron_island_b2f_left_room.s` |
+
 ### Iron Ruins
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
@@ -288,7 +294,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Manaphy | egg gift | 8 | Egg from the Mansion's owner; once only (FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts Reset; vanilla only ever gave this through Mystery Gift | **base-ROM** | yes | `scripts_pokemon_mansion_office.s` |
+| Manaphy | egg gift | 1 | Egg from the Mansion's owner; once only (FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts Reset; vanilla only ever gave this through Mystery Gift; hatches at level 1 and counts where it hatches; giver Distant land | **base-ROM** | yes | `scripts_pokemon_mansion_office.s` |
 
 ### Rock Peak Ruins
 
