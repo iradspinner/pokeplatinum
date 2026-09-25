@@ -94,10 +94,11 @@ section { overflow-y: auto; }
 #mid .meet.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
 #mid .meet.got .spname { font-weight: 600; }
 #mid .meets .bar span { transition: width .35s ease; }
-/* Grass rows are 46px, the 64px icon overhanging into the rows' padding: its
-   sprite sits in the middle of a mostly clear frame, and the shorter rows make
-   the twelve slots about as tall as the odds list beside them. */
-#mid table.slots tbody tr { height: 46px; }
+/* Grass rows are 58px, the 64px icon overhanging them by 3px a side. A party
+   icon draws its Pokemon low in a mostly clear frame, so a shorter row lets the
+   sprite cross the row's rule. 58 is what the rows measured while the species
+   cell was a flex box (before 2026-09-25), which is the look Ian had signed off. */
+#mid table.slots tbody tr { height: 58px; }
 #mid table.slots .ico { margin: -9px 0; }
 /* The water tables in brief, four across, wrapping on a narrow column. */
 #mid .water { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
