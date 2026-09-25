@@ -464,7 +464,7 @@ def fight_metrics(hack, fight, unresolved=None):
 
 CLOSING = {"Roark": "roark", "Gardenia": "gardenia", "Fantina": "fantina",
            "Maylene": "maylene", "Wake": "wake", "Byron": "byron", "Candice": "candice",
-           "Volkner": "volkner", "League": "cynthia"}
+           "Galactic": "cyrus_3", "Volkner": "volkner", "League": "cynthia"}
 
 
 @functools.lru_cache(maxsize=None)
@@ -556,12 +556,13 @@ def late_visits():
     and a story revisit can add trainers (the grunts at Lake Verity). A
     trainer above the cap cannot belong to its split under hard caps, so
     these are left out of the filler numbers until B1e places them by what
-    the player can reach."""
-    rows, _ = all_metrics()
+    the player can reach. The cap is Ian's (fights.json), which since the
+    Galactic split of 2026-09-25 can sit above the closing boss's ace."""
+    caps = data.fights()["caps"]
     ox = data.oxide_trainers()
     out = []
     for split, ids in _placed_filler().items():
-        cap = rows["oxide"][CLOSING[split]]["ace_level"]
+        cap = caps[split]
         out += [(split, i) for i in ids if max(m["level"] for m in ox[i]["party"]) > cap]
     return out
 

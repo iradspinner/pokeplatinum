@@ -20,7 +20,10 @@ NOT_IN_ORDER = {"mean_iv", "nature_fit", "priority", "speed_control", "recovery"
 # Moves no table knows: an Unbound custom move.
 UNKNOWN_MOVES = {"unbound": {"Leech Fang"}}
 # Filler that B1d's map split puts in a split whose cap it is above.
-LATE_VISITS = 18
+# Filler above its split's cap: 18 early-split revisits, plus the Battle
+# Zone's 55 trainers (73 to 78), which sit in the Galactic split (cap 64)
+# from 2026-09-25 until the trainer pass brings them down to it.
+LATE_VISITS = 73
 
 
 def check_coverage(results):
