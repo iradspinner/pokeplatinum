@@ -52,7 +52,8 @@ typedef struct SideConditions {
     u32 spikesLayers : 2;
     u32 toxicSpikesLayers : 2;
     u32 auroraVeilTurns : 3; // Oxide, from the padding, so the struct keeps its size
-    u32 padding04_07 : 25;
+    u32 berryEatenMask : 6; // Oxide, by party slot as knockedOffItemsMask is, for Belch
+    u32 padding04_0D : 19;
 } SideConditions;
 
 typedef struct TurnFlags {

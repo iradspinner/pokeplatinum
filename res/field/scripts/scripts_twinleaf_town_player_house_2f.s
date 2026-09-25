@@ -623,6 +623,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet28, 27
     AddListMenuEntry TestKit_Text_MenuSet29, 28
     AddListMenuEntry TestKit_Text_MenuSet30, 29
+    AddListMenuEntry TestKit_Text_MenuSet31, 30
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -654,6 +655,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 27, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 28, TestKit_MoveSet29
     GoToIfEq VAR_0x8004, 29, TestKit_MoveSet30
+    GoToIfEq VAR_0x8004, 30, TestKit_MoveSet31
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -917,6 +919,18 @@ TestKit_MoveSet30:
     SetVar VAR_0x8007, MOVE_QUICK_GUARD
     SetVar VAR_0x8008, MOVE_MAT_BLOCK
     SetVar VAR_0x8009, MOVE_CRAFTY_SHIELD
+    GoTo TestKit_GiveMew
+
+/* Set 31: Belch is refused at the move menu until Mew has eaten a Berry.
+   Give Mew the Sitrus Berry this puts in the bag; Belly Drum halves its HP,
+   the Berry heals it, and Belch can then be chosen, even after switching
+   out and back. */
+TestKit_MoveSet31:
+    AddItem ITEM_SITRUS_BERRY, 1, VAR_RESULT
+    SetVar VAR_0x8006, MOVE_BELCH
+    SetVar VAR_0x8007, MOVE_BELLY_DRUM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in

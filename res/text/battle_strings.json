@@ -8906,6 +8906,13 @@
         "{STRVAR_1 6, 1, 0} protected\n",
         "the foe’s {STRVAR_1 1, 0, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHasntEatenABerrySoItCantPossiblyBelch",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} hasn’t eaten a Berry,\n",
+        "so it can’t possibly belch!"
+      ]
     }
   ]
 }
