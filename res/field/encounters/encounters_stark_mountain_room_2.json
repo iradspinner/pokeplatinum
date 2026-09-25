@@ -2,8 +2,32 @@
     "land_rate": 10,
     "land_encounters": [
         {
+            "level": 51,
+            "species": "SPECIES_GALARIAN_WEEZING"
+        },
+        {
             "level": 52,
             "species": "SPECIES_TURTONATOR"
+        },
+        {
+            "level": 52,
+            "species": "SPECIES_GALARIAN_WEEZING"
+        },
+        {
+            "level": 52,
+            "species": "SPECIES_MAGCARGO"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_RHYPERIOR"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_SALAZZLE"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_GALARIAN_WEEZING"
         },
         {
             "level": 53,
@@ -11,15 +35,11 @@
         },
         {
             "level": 53,
-            "species": "SPECIES_TURTONATOR"
+            "species": "SPECIES_CERULEDGE"
         },
         {
             "level": 53,
-            "species": "SPECIES_RHYPERIOR"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_LARVESTA"
         },
         {
             "level": 54,
@@ -27,27 +47,7 @@
         },
         {
             "level": 54,
-            "species": "SPECIES_TURTONATOR"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_RHYPERIOR"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_LARVESTA"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_WEEZING"
-        },
-        {
-            "level": 55,
-            "species": "SPECIES_LARVESTA"
-        },
-        {
-            "level": 55,
-            "species": "SPECIES_GALARIAN_WEEZING"
+            "species": "SPECIES_MAGMORTAR"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_MAGMORTAR"
     ],
     "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_STEELIX"
+        "SPECIES_MAGMORTAR",
+        "SPECIES_HOUNDOOM"
     ],
     "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_SALAZZLE"
+        "SPECIES_SALAZZLE",
+        "SPECIES_WEEZING"
     ],
     "radar": [
         "SPECIES_VOLCARONA",

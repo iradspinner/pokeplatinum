@@ -3,6 +3,10 @@
     "land_encounters": [
         {
             "level": 5,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 6,
             "species": "SPECIES_ONIX"
         },
         {
@@ -14,20 +18,20 @@
             "species": "SPECIES_NACLI"
         },
         {
-            "level": 6,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
             "level": 7,
             "species": "SPECIES_GEODUDE"
         },
         {
             "level": 7,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_NOSEPASS"
         },
         {
             "level": 7,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 7,
@@ -35,15 +39,11 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 7,
             "species": "SPECIES_RHYHORN"
         },
         {
             "level": 8,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 8,
@@ -55,11 +55,11 @@
         "SPECIES_LOTAD"
     ],
     "day": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_MAKUHITA"
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE"
     ],
     "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_ONIX",
         "SPECIES_GEODUDE"
     ],
     "radar": [

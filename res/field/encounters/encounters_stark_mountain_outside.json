@@ -7,7 +7,7 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_MAGCARGO"
+            "species": "SPECIES_TURTONATOR"
         },
         {
             "level": 52,
@@ -15,6 +15,10 @@
         },
         {
             "level": 52,
+            "species": "SPECIES_MAGCARGO"
+        },
+        {
+            "level": 53,
             "species": "SPECIES_RHYPERIOR"
         },
         {
@@ -23,31 +27,27 @@
         },
         {
             "level": 53,
-            "species": "SPECIES_CERULEDGE"
-        },
-        {
-            "level": 53,
             "species": "SPECIES_GALARIAN_WEEZING"
         },
         {
             "level": 53,
-            "species": "SPECIES_RHYPERIOR"
+            "species": "SPECIES_MAGCARGO"
         },
         {
             "level": 53,
-            "species": "SPECIES_WEEZING"
+            "species": "SPECIES_CERULEDGE"
         },
         {
             "level": 53,
-            "species": "SPECIES_TURTONATOR"
-        },
-        {
-            "level": 54,
-            "species": "SPECIES_WEEZING"
-        },
-        {
-            "level": 54,
             "species": "SPECIES_LARVESTA"
+        },
+        {
+            "level": 54,
+            "species": "SPECIES_CERULEDGE"
+        },
+        {
+            "level": 54,
+            "species": "SPECIES_MAGMORTAR"
         }
     ],
     "swarms": [

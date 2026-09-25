@@ -7,19 +7,31 @@
         },
         {
             "level": 18,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 18,
             "species": "SPECIES_BRONZOR"
         },
         {
             "level": 18,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 18,
+            "level": 19,
             "species": "SPECIES_ONIX"
         },
         {
             "level": 19,
-            "species": "SPECIES_CARBINK"
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_GIBLE"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 19,
@@ -27,23 +39,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_GIBLE"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 19,
             "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_DWEBBLE"
         },
         {
             "level": 20,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 20,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_NOSEPASS"
     ],
     "night": [
         "SPECIES_ZUBAT",

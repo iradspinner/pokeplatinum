@@ -7,19 +7,19 @@
         },
         {
             "level": 6,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_PHANPY"
+        },
+        {
+            "level": 6,
             "species": "SPECIES_NACLI"
         },
         {
-            "level": 6,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
             "level": 7,
-            "species": "SPECIES_PHANPY"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 7,
@@ -31,11 +31,11 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 7,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 7,
@@ -43,7 +43,7 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 8,

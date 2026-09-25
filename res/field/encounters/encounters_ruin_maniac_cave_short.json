@@ -11,15 +11,15 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_DWEBBLE"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 22,
-            "species": "SPECIES_HIPPOPOTAS"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 23,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 23,
@@ -31,23 +31,23 @@
         },
         {
             "level": 23,
+            "species": "SPECIES_HIPPOPOTAS"
+        },
+        {
+            "level": 23,
             "species": "SPECIES_ONIX"
         },
         {
             "level": 23,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 23,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 24,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_ONIX"
         },
         {
             "level": 24,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_BRONZOR"
         }
     ],
     "swarms": [
@@ -55,8 +55,8 @@
         "SPECIES_SWABLU"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_CARBINK"
+        "SPECIES_CARBINK",
+        "SPECIES_KLEFKI"
     ],
     "night": [
         "SPECIES_GOLBAT",

@@ -11,15 +11,15 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_HAWLUCHA"
-        },
-        {
-            "level": 37,
             "species": "SPECIES_MIENSHAO"
         },
         {
+            "level": 37,
+            "species": "SPECIES_HAWLUCHA"
+        },
+        {
             "level": 38,
-            "species": "SPECIES_ALOLAN_NINETALES"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 38,
@@ -27,11 +27,7 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_HAWLUCHA"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_MIENSHAO"
+            "species": "SPECIES_ALOLAN_NINETALES"
         },
         {
             "level": 38,
@@ -39,15 +35,19 @@
         },
         {
             "level": 38,
+            "species": "SPECIES_SNORUNT"
+        },
+        {
+            "level": 38,
             "species": "SPECIES_ABSOL"
         },
         {
             "level": 39,
-            "species": "SPECIES_PILOSWINE"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 39,
-            "species": "SPECIES_ABSOL"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_HAKAMO_O"
     ],
     "day": [
-        "SPECIES_PILOSWINE",
-        "SPECIES_SNORUNT"
+        "SPECIES_FROSMOTH",
+        "SPECIES_PILOSWINE"
     ],
     "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_ABSOL"
+        "SPECIES_SNORUNT"
     ],
     "radar": [
         "SPECIES_ABOMASNOW",

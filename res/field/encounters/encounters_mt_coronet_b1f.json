@@ -11,11 +11,15 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 33,
-            "species": "SPECIES_NACLSTACK"
+            "species": "SPECIES_MIENFOO"
+        },
+        {
+            "level": 34,
+            "species": "SPECIES_GLIMMET"
         },
         {
             "level": 34,
@@ -23,27 +27,23 @@
         },
         {
             "level": 34,
+            "species": "SPECIES_PROBOPASS"
+        },
+        {
+            "level": 34,
+            "species": "SPECIES_GRAVELER"
+        },
+        {
+            "level": 34,
             "species": "SPECIES_CROBAT"
         },
         {
             "level": 34,
-            "species": "SPECIES_GOOMY"
-        },
-        {
-            "level": 34,
-            "species": "SPECIES_NACLSTACK"
-        },
-        {
-            "level": 34,
             "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 34,
-            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 35,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 35,

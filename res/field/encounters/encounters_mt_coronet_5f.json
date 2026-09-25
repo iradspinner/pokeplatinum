@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 36,
-            "species": "SPECIES_HAKAMO_O"
-        },
-        {
-            "level": 37,
             "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
             "species": "SPECIES_HAKAMO_O"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 37,
@@ -23,11 +23,11 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 38,
-            "species": "SPECIES_HAKAMO_O"
+            "species": "SPECIES_BRONZONG"
         },
         {
             "level": 38,
@@ -35,15 +35,15 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 38,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 39,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 39,

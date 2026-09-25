@@ -3,6 +3,10 @@
     "land_encounters": [
         {
             "level": 17,
+            "species": "SPECIES_GIBLE"
+        },
+        {
+            "level": 18,
             "species": "SPECIES_CARBINK"
         },
         {
@@ -14,7 +18,7 @@
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 18,
+            "level": 19,
             "species": "SPECIES_ONIX"
         },
         {
@@ -23,11 +27,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_GIBLE"
         },
         {
             "level": 19,
-            "species": "SPECIES_CARBINK"
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 19,
@@ -35,19 +39,15 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 20,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 20,
-            "species": "SPECIES_JOLTIK"
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [

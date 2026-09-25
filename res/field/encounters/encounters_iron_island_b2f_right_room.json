@@ -3,19 +3,35 @@
     "land_encounters": [
         {
             "level": 30,
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_METANG"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_LUNATONE"
+        },
+        {
+            "level": 32,
             "species": "SPECIES_SOLROCK"
         },
         {
-            "level": 31,
-            "species": "SPECIES_ONIX"
+            "level": 32,
+            "species": "SPECIES_TOGEDEMARU"
         },
         {
-            "level": 31,
-            "species": "SPECIES_SOLROCK"
+            "level": 32,
+            "species": "SPECIES_STEELIX"
         },
         {
-            "level": 31,
-            "species": "SPECIES_ONIX"
+            "level": 32,
+            "species": "SPECIES_LUNATONE"
         },
         {
             "level": 32,
@@ -23,31 +39,15 @@
         },
         {
             "level": 32,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 32,
-            "species": "SPECIES_SOLROCK"
-        },
-        {
-            "level": 32,
+            "level": 33,
             "species": "SPECIES_NACLSTACK"
         },
         {
-            "level": 32,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
             "level": 33,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [

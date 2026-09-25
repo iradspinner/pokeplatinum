@@ -7,47 +7,47 @@
         },
         {
             "level": 37,
+            "species": "SPECIES_HAKAMO_O"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_BRONZONG"
+        },
+        {
+            "level": 37,
             "species": "SPECIES_NACLSTACK"
         },
         {
-            "level": 37,
+            "level": 38,
             "species": "SPECIES_MIENSHAO"
         },
         {
-            "level": 37,
+            "level": 38,
             "species": "SPECIES_CARBINK"
         },
         {
             "level": 38,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_BRONZONG"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_NACLSTACK"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 38,
             "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 38,
-            "species": "SPECIES_MIENSHAO"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_CROBAT"
-        },
-        {
-            "level": 38,
+            "level": 39,
             "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 39,
-            "species": "SPECIES_CROBAT"
-        },
-        {
-            "level": 39,
-            "species": "SPECIES_GLIMMORA"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [
