@@ -167,7 +167,9 @@ button:disabled { color: var(--faint); cursor: default; }
 /* Left list: a real table so the numbers line up down the column. The name
    has the whole first line to itself, so it is never cut short; the split
    tag, the catch and the numbers share the second, under labelled columns. */
-.colhead, .arow { grid-template-columns: 1fr 104px 76px 56px 48px; }
+/* No best-odds column (Ian, 2026-09-26): its width went to Caught, 156px so
+   the longest name on the list (Galarian Mr Mime) fits beside its icon. */
+.colhead, .arow { grid-template-columns: 1fr 156px 64px 48px; }
 .colhead { display: grid; gap: 4px; margin-top: 8px; font-size: 13px;
            color: var(--dim); align-items: end; line-height: 1.2; }
 .colhead .num { font-family: inherit; white-space: normal; }
@@ -196,6 +198,12 @@ button:disabled { color: var(--faint); cursor: default; }
 .arow.spent { opacity: .22; }
 .arow.spent .chip { filter: grayscale(1); }
 .arow.done .l1 { text-decoration: line-through; }
+/* A one-spot group (the Old Chateau's rooms, the Lost Tower's floors) folds
+   under one row; its tables sit indented beneath it when it is open. */
+.agroup .fold { display: inline-block; width: 16px; color: var(--dim); }
+.agroup .l1 .sub { margin-left: 6px; }
+.arow.member { padding-left: 30px; box-shadow: inset 14px 0 0 var(--sunken); }
+.arow.member.sel { box-shadow: inset 14px 0 0 var(--sunken), inset 17px 0 0 var(--place-ink); }
 .flag { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
         margin-right: 6px; background: transparent; vertical-align: middle; }
 .flag.err { background: var(--error); }
@@ -526,7 +534,6 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <button data-k="level" class="on">Play order</button>
         <button data-k="area">Name</button>
         <button data-k="live_total">Left to catch</button>
-        <button data-k="best_share">Best odds</button>
         <button data-k="warns">Problems</button>
       </div>
       <div class="colhead">
@@ -534,7 +541,6 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <span title="The species recorded as this area's one catch">Caught</span>
         <span class="num" title="Lowest to highest level across the area's tables">Levels</span>
         <span class="num" title="Species you still need, out of every species across the area's tables">Left</span>
-        <span class="num" title="Your best chance of meeting the rarest species you still need here, with the best repel lead">Best odds</span>
       </div>
     </div>
     <div id="rows"></div>
@@ -1203,6 +1209,14 @@ function takenAt() {
   return out;
 }
 
+// Which one-spot groups are unfolded. A per-viewer convenience, so it lives in
+// the browser's storage when that is allowed and is simply forgotten when not.
+let OPEN_GROUPS = new Set();
+try { OPEN_GROUPS = new Set(JSON.parse(localStorage.getItem("oxide.openGroups") || "[]")); } catch (e) {}
+function saveOpenGroups() {
+  try { localStorage.setItem("oxide.openGroups", JSON.stringify([...OPEN_GROUPS])); } catch (e) {}
+}
+
 function drawList() {
   const q = $("#filter").value.trim().toLowerCase();
   let rows = ALL.slice();
@@ -1225,7 +1239,7 @@ function drawList() {
   else rows.sort((a, b) => b[SORT] - a[SORT]);
 
   const taken = takenAt();
-  $("#rows").innerHTML = rows.map(r => {
+  const rowHtml = (r, extra = "") => {
     const flag = r.errors ? "err" : (r.warns ? "wrn" : "");
     const by = r.location && !r.encounter ? taken.get(r.location) : null;
     const gone = r.species_total - r.live_total;
@@ -1235,7 +1249,7 @@ function drawList() {
     const lv = r.level_min === r.level_max ? r.level_min
       : r.level_min + "–" + r.level_max;
     const water = r.kinds.length > 1 ? `<span class="sub">water</span>` : "";
-    return `<div class="arow ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
+    return `<div class="arow ${extra} ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
         title="${esc(by ? r.location + "'s encounter is used: " + by.encounter_label + " in " + by.label
           : r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
@@ -1245,11 +1259,51 @@ function drawList() {
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
       <div class="num">${lv}</div>
       <div class="num">${r.live_total}/${r.species_total}</div>
-      <div class="num">${r.live_total ? pct(r.best_share) : "—"}</div>
     </div>`;
-  }).join("") || `<p class="sub" style="padding:12px">Nothing matches that.</p>`;
-  document.querySelectorAll("#rows .arow").forEach(el =>
+  };
+  // A group's row stands where its first table would, in whatever order the
+  // list is sorted; its tables follow it when it is open. A search opens
+  // every group, so a match is never hidden.
+  const groupHtml = (name, members, open) => {
+    const splits = [...new Set(members.map(m => m.split).filter(Boolean))];
+    const lo = Math.min(...members.map(m => m.level_min));
+    const hi = Math.max(...members.map(m => m.level_max));
+    const got = members.find(m => m.encounter);
+    const loc = members[0].location;
+    const by = !got && loc ? taken.get(loc) : null;
+    const design = { same: "identical", distinct: "distinct" }[members[0].group_design];
+    return `<div class="arow agroup ${by ? "spent" : ""}" data-g="${esc(name)}"
+        title="${esc(by ? loc + "'s encounter is used: " + by.encounter_label + " in " + by.label
+          : (open ? "Fold" : "Unfold") + " the " + members.length + " tables")}">
+      <div class="l1"><span class="fold">${open ? "\u25BE" : "\u25B8"}</span>${esc(name)}<span class="sub">${
+        members.length} tables${design ? ", " + design : ""}</span></div>
+      <div class="l2">${splits.map(sp => splitTag(sp)).join("")}</div>
+      <div class="enc ${got ? "" : "none"}">${got ? icon(got.encounter) : ""}<span class="lbl">${
+        esc(got ? got.encounter_label : "\u2014")}</span></div>
+      <div class="num">${lo === hi ? lo : lo + "\u2013" + hi}</div>
+      <div class="num"></div>
+    </div>`;
+  };
+  const members = new Map();
+  rows.forEach(r => { if (r.group) members.set(r.group, [...(members.get(r.group) || []), r]); });
+  const html = [], shown = new Set();
+  rows.forEach(r => {
+    const m = r.group ? members.get(r.group) : null;
+    if (!m || m.length < 2) { html.push(rowHtml(r)); return; }
+    if (shown.has(r.group)) return;
+    shown.add(r.group);
+    const open = !!q || OPEN_GROUPS.has(r.group);
+    html.push(groupHtml(r.group, m, open));
+    if (open) m.forEach(x => html.push(rowHtml(x, "member")));
+  });
+  $("#rows").innerHTML = html.join("") || `<p class="sub" style="padding:12px">Nothing matches that.</p>`;
+  document.querySelectorAll("#rows .arow:not(.agroup)").forEach(el =>
     el.onclick = () => select(el.dataset.a));
+  document.querySelectorAll("#rows .agroup").forEach(el => el.onclick = () => {
+    const g = el.dataset.g;
+    if (OPEN_GROUPS.has(g)) OPEN_GROUPS.delete(g); else OPEN_GROUPS.add(g);
+    saveOpenGroups(); drawList();
+  });
 }
 
 // ---- combobox -----------------------------------------------------------
@@ -1672,6 +1726,10 @@ async function reloadDetail() {
 async function select(name) {
   if (name !== SEL) { PLAN = null; PLAN_SP = null; }
   SEL = name;
+  // Opening a table from anywhere (a link, the dex, the back button) unfolds
+  // its group, so the selected row is never hidden inside a folded one.
+  const row = ALL.find(r => r.area === name);
+  if (row && row.group && !OPEN_GROUPS.has(row.group)) { OPEN_GROUPS.add(row.group); saveOpenGroups(); }
   try {
     DETAIL = await api(`/api/area/${name}?kind=${KIND}`);
     if (DETAIL.empty && DETAIL.kinds && DETAIL.kinds.length) {

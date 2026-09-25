@@ -79,7 +79,7 @@
       "intent": "The lakefront above Snowpoint: Sneasel's home at 35 with Alolan Ninetales at 20, Absol a 4%.",
       "locked": [],
       "base_level": 32,
-      "order": 99,
+      "order": 101,
       "split": "Candice",
       "cast": [
         "SPECIES_SNEASEL",
@@ -1337,7 +1337,7 @@
       "intent": "Lake Acuity's shore: six cold lines, Galarian Mr. Mime dancing on the ice at 15.",
       "locked": [],
       "base_level": 38,
-      "order": 100,
+      "order": 102,
       "split": "Candice",
       "cast": [
         "SPECIES_SNORUNT",
@@ -1951,7 +1951,8 @@
       "night": [
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES"
-      ]
+      ],
+      "capture_area": "Mt. Coronet North"
     },
     "encounters_mt_coronet_1f_north_room_2": {
       "archetype": "A14",
@@ -1959,8 +1960,8 @@
       "intent": "The second north room: six lines, Glimmet at 15.",
       "locked": [],
       "base_level": 32,
-      "order": 113,
-      "split": "Galactic",
+      "order": 98,
+      "split": "Candice",
       "cast": [
         "SPECIES_BRONZOR",
         "SPECIES_NACLSTACK",
@@ -1976,7 +1977,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
-      ]
+      ],
+      "capture_area": "Mt. Coronet B1F"
     },
     "encounters_mt_coronet_1f_south": {
       "archetype": "A18",
@@ -2127,7 +2129,8 @@
             36
           ]
         ]
-      }
+      },
+      "capture_area": "Mt. Coronet South"
     },
     "encounters_mt_coronet_1f_tunnel_room": {
       "archetype": "A18",
@@ -2135,7 +2138,7 @@
       "intent": "The tunnel room on the climb: eight lines, Larvitar at 10.",
       "locked": [],
       "base_level": 36,
-      "order": 112,
+      "order": 114,
       "split": "Galactic",
       "cast": [
         "SPECIES_BRONZONG",
@@ -2154,7 +2157,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_BRONZONG"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_2f": {
       "archetype": "A16",
@@ -2179,7 +2183,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_BRONZONG"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_3f": {
       "archetype": "A15",
@@ -2206,7 +2211,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_4f_room_3": {
       "archetype": "A14",
@@ -2231,7 +2237,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
       "archetype": "A13",
@@ -2255,7 +2262,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_BRONZONG"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_5f": {
       "archetype": "A17",
@@ -2282,7 +2290,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_BRONZONG"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_6f": {
       "archetype": "A16",
@@ -2307,7 +2316,8 @@
       "night": [
         "SPECIES_CROBAT",
         "SPECIES_KLEFKI"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_b1f": {
       "archetype": "A17",
@@ -2315,8 +2325,8 @@
       "intent": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor.",
       "locked": [],
       "base_level": 32,
-      "order": 114,
-      "split": "Galactic",
+      "order": 97,
+      "split": "Candice",
       "cast": [
         "SPECIES_GOOMY",
         "SPECIES_BRONZONG",
@@ -2458,7 +2468,8 @@
             48
           ]
         ]
-      }
+      },
+      "capture_area": "Mt. Coronet B1F"
     },
     "encounters_mt_coronet_outside_north": {
       "archetype": "A18",
@@ -2485,7 +2496,8 @@
       "night": [
         "SPECIES_SNEASEL",
         "SPECIES_ABSOL"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Mountainside"
     },
     "encounters_mt_coronet_outside_south": {
       "archetype": "A19",
@@ -2516,7 +2528,8 @@
       "night": [
         "SPECIES_SNEASEL",
         "SPECIES_SNORUNT"
-      ]
+      ],
+      "capture_area": "Mt. Coronet Mountainside"
     },
     "encounters_old_chateau": {
       "archetype": "A18",
@@ -2775,7 +2788,7 @@
       "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave.",
       "locked": [],
       "base_level": 6,
-      "order": 9,
+      "order": 14,
       "cast": [
         "SPECIES_GEODUDE",
         "SPECIES_MAKUHITA",
@@ -2794,7 +2807,7 @@
         "SPECIES_ZUBAT",
         "SPECIES_NOSEPASS"
       ],
-      "split": "Roark",
+      "split": "Gardenia",
       "old_rod": {
         "cast": [
           "SPECIES_MAGIKARP",
@@ -2908,7 +2921,7 @@
       "intent": "The mine, Makuhita's home: Nacli beside it, Zubat and Geodude behind, Phanpy and Nosepass small, Rhyhorn a 4% and Magby a 1% tease of the deeper rock, Onix by night.",
       "locked": [],
       "base_level": 5,
-      "order": 11,
+      "order": 10,
       "cast": [
         "SPECIES_MAKUHITA",
         "SPECIES_NACLI",
@@ -2935,7 +2948,7 @@
       "intent": "Deeper, the Onix floor: Onix at 25 with Phanpy at home beside it, the rock lines behind, Rhyhorn and Magby again in the tail, Makuhita by day.",
       "locked": [],
       "base_level": 5,
-      "order": 12,
+      "order": 11,
       "cast": [
         "SPECIES_ONIX",
         "SPECIES_PHANPY",
@@ -2962,7 +2975,7 @@
       "intent": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Lotad in the wet, Nacli and Phanpy by day. Roark split since 2026-09-22, so Wooper moved to the Old Rod only.",
       "locked": [],
       "base_level": 3,
-      "order": 14,
+      "order": 13,
       "cast": [
         "SPECIES_ZUBAT",
         "SPECIES_GEODUDE",
@@ -3421,7 +3434,7 @@
       "intent": "Budew's route, twelve lines: Grubbin and Fletchling at home with it, the Floaroma lines at 4-5% as a preview, Snivy the 1%; the plain half of Route 204, so the north half is the one to wait for.",
       "locked": [],
       "base_level": 3,
-      "order": 13,
+      "order": 12,
       "cast": [
         "SPECIES_BUDEW",
         "SPECIES_GRUBBIN",
@@ -3863,7 +3876,7 @@
       "intent": "The rocky road above Oreburgh, twelve lines: Ponyta and Vulpix at home, the cave lines spilling out, Houndour a 5%, Charmander and Torchic the 1% fire tails, Vulpix and Houndour by night.",
       "locked": [],
       "base_level": 5,
-      "order": 10,
+      "order": 9,
       "cast": [
         "SPECIES_PONYTA",
         "SPECIES_VULPIX",
@@ -5208,7 +5221,7 @@
       "intent": "The first snow route: Snover and Snom at home, the mountain's cold cast, Litten a 1% fire in the snow.",
       "locked": [],
       "base_level": 32,
-      "order": 97,
+      "order": 99,
       "split": "Candice",
       "cast": [
         "SPECIES_SNOVER",
@@ -5239,7 +5252,7 @@
       "intent": "The blizzard route: Swinub and Snorunt at home, Larvitar a 5 by the cap rule (fully evolved by 55), two fire starters as 1%s.",
       "locked": [],
       "base_level": 32,
-      "order": 98,
+      "order": 100,
       "split": "Candice",
       "cast": [
         "SPECIES_SWINUB",
@@ -5869,7 +5882,7 @@
       "intent": "The Battle Zone's first route: the early lines back at post-game levels, none a home, Hawlucha in the hills.",
       "locked": [],
       "base_level": 47,
-      "order": 102,
+      "order": 104,
       "split": "Galactic",
       "cast": [
         "SPECIES_HARIYAMA",
@@ -6024,7 +6037,7 @@
       "intent": "The cliff route above the sea: eight lines, the birds and the beach.",
       "locked": [],
       "base_level": 47,
-      "order": 103,
+      "order": 105,
       "split": "Galactic",
       "cast": [
         "SPECIES_CORVIKNIGHT",
@@ -6175,7 +6188,7 @@
       "intent": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s.",
       "locked": [],
       "base_level": 51,
-      "order": 104,
+      "order": 106,
       "split": "Galactic",
       "cast": [
         "SPECIES_CERULEDGE",
@@ -6330,7 +6343,7 @@
       "intent": "The sandstorm route, Trapinch's home: the desert lines, Beldum at 10, the two pseudo-legendaries as 1%s.",
       "locked": [],
       "base_level": 49,
-      "order": 108,
+      "order": 110,
       "split": "Galactic",
       "cast": [
         "SPECIES_HIPPOWDON",
@@ -6485,7 +6498,7 @@
       "intent": "The tall-grass route to the Resort Area, Heracross's home: the bug and grass lines, two grass starters as 1%s.",
       "locked": [],
       "base_level": 47,
-      "order": 109,
+      "order": 111,
       "split": "Galactic",
       "cast": [
         "SPECIES_HERACROSS",
@@ -6640,7 +6653,7 @@
       "intent": "The last route, by the sea: Galarian Rapidash's home, Togepi at 20.",
       "locked": [],
       "base_level": 47,
-      "order": 111,
+      "order": 113,
       "split": "Galactic",
       "cast": [
         "SPECIES_GALARIAN_RAPIDASH",
@@ -7708,7 +7721,7 @@
       "intent": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes.",
       "locked": [],
       "base_level": 51,
-      "order": 105,
+      "order": 107,
       "split": "Galactic",
       "cast": [
         "SPECIES_GALARIAN_WEEZING",
@@ -7735,7 +7748,7 @@
       "intent": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma.",
       "locked": [],
       "base_level": 51,
-      "order": 106,
+      "order": 108,
       "split": "Galactic",
       "cast": [
         "SPECIES_LARVESTA",
@@ -7762,7 +7775,7 @@
       "intent": "The magma chamber, Turtonator's home at 35: Heatran's room is past it.",
       "locked": [],
       "base_level": 52,
-      "order": 107,
+      "order": 109,
       "split": "Galactic",
       "cast": [
         "SPECIES_TURTONATOR",
@@ -10438,7 +10451,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 110,
+      "order": 112,
       "split": "Galactic",
       "old_rod": {
         "cast": [
@@ -11256,7 +11269,7 @@
       "intent": "A new capture area (the header still needs pointing here): Snowpoint's harbour, fished from Candice's split at Lake Acuity's levels. A draft for Ian.",
       "locked": [],
       "base_level": null,
-      "order": 101,
+      "order": 103,
       "split": "Candice",
       "planned_location": "Snowpoint City",
       "old_rod": {
@@ -11406,6 +11419,244 @@
       "good_rod": "Maylene",
       "super_rod": "Candice",
       "surf": "Byron"
+    }
+  },
+  "groups": {
+    "_comment": "Places whose tables sit in one spot (Ian, 2026-09-26). 'same': every land table in the group is identical, species, shares and levels. 'distinct': each table is themed with a face of its own and shares only a few lines with the others. 'as is': post-game, grouped for the list only. The area list folds each group under one row.",
+    "Solaceon Ruins": {
+      "design": "same",
+      "note": "eighteen rooms the player cannot tell apart",
+      "areas": [
+        "encounters_solaceon_ruins_maniac_tunnel_room",
+        "encounters_solaceon_ruins_room_1_northwest_dead_end",
+        "encounters_solaceon_ruins_room_1_southeast_dead_end",
+        "encounters_solaceon_ruins_room_2",
+        "encounters_solaceon_ruins_room_2_northeast_dead_end",
+        "encounters_solaceon_ruins_room_2_southeast_dead_end",
+        "encounters_solaceon_ruins_room_3",
+        "encounters_solaceon_ruins_room_3_northwest_dead_end",
+        "encounters_solaceon_ruins_room_3_southwest_dead_end",
+        "encounters_solaceon_ruins_room_4",
+        "encounters_solaceon_ruins_room_4_southeast_dead_end",
+        "encounters_solaceon_ruins_room_5",
+        "encounters_solaceon_ruins_room_5_southeast_deadend",
+        "encounters_solaceon_ruins_room_5_southwest_dead_end",
+        "encounters_solaceon_ruins_room_6",
+        "encounters_solaceon_ruins_room_6_northwest_dead_end",
+        "encounters_solaceon_ruins_room_6_southeast_dead_end",
+        "encounters_solaceon_ruins_room_7"
+      ]
+    },
+    "Lake Verity": {
+      "design": "same",
+      "note": "the lake before and after it is drained",
+      "areas": [
+        "encounters_lake_verity",
+        "encounters_lake_verity_low_water"
+      ]
+    },
+    "Old Chateau": {
+      "design": "same",
+      "note": "one haunted house",
+      "areas": [
+        "encounters_old_chateau",
+        "encounters_old_chateau_back_east_room",
+        "encounters_old_chateau_back_middle_east_room",
+        "encounters_old_chateau_back_middle_room",
+        "encounters_old_chateau_back_middle_west_room",
+        "encounters_old_chateau_back_west_room",
+        "encounters_old_chateau_corridor",
+        "encounters_old_chateau_dining_area",
+        "encounters_old_chateau_side_rooms"
+      ]
+    },
+    "Iron Island": {
+      "design": "same",
+      "note": "one mine",
+      "areas": [
+        "encounters_iron_island_1f",
+        "encounters_iron_island_b1f_left_room",
+        "encounters_iron_island_b1f_right_room",
+        "encounters_iron_island_b2f_left_room",
+        "encounters_iron_island_b2f_right_room",
+        "encounters_iron_island_b3f",
+        "encounters_iron_island"
+      ]
+    },
+    "Stark Mountain": {
+      "design": "same",
+      "note": "one volcano",
+      "areas": [
+        "encounters_stark_mountain_outside",
+        "encounters_stark_mountain_room_1",
+        "encounters_stark_mountain_room_2"
+      ]
+    },
+    "Oreburgh Mine": {
+      "design": "same",
+      "note": "one mine",
+      "areas": [
+        "encounters_oreburgh_mine_b1f",
+        "encounters_oreburgh_mine_b2f"
+      ]
+    },
+    "Wayward Cave": {
+      "design": "same",
+      "note": "one cave",
+      "areas": [
+        "encounters_wayward_cave_1f",
+        "encounters_wayward_cave_b1f"
+      ]
+    },
+    "Ruin Maniac Cave": {
+      "design": "same",
+      "note": "one dig",
+      "areas": [
+        "encounters_ruin_maniac_cave_long",
+        "encounters_ruin_maniac_cave_short"
+      ]
+    },
+    "Mt. Coronet B1F": {
+      "design": "same",
+      "note": "the Snowpoint side, one passage",
+      "areas": [
+        "encounters_mt_coronet_b1f",
+        "encounters_mt_coronet_1f_north_room_2"
+      ]
+    },
+    "Mt. Coronet Peak": {
+      "design": "same",
+      "note": "the climb to Spear Pillar",
+      "areas": [
+        "encounters_mt_coronet_1f_tunnel_room",
+        "encounters_mt_coronet_2f",
+        "encounters_mt_coronet_3f",
+        "encounters_mt_coronet_4f_rooms_1_and_2",
+        "encounters_mt_coronet_4f_room_3",
+        "encounters_mt_coronet_5f",
+        "encounters_mt_coronet_6f"
+      ]
+    },
+    "Mt. Coronet Mountainside": {
+      "design": "same",
+      "note": "the two halves of the snowy outside",
+      "areas": [
+        "encounters_mt_coronet_outside_south",
+        "encounters_mt_coronet_outside_north"
+      ]
+    },
+    "Great Marsh": {
+      "design": "distinct",
+      "note": "six areas of a safari",
+      "areas": [
+        "encounters_great_marsh_1",
+        "encounters_great_marsh_2",
+        "encounters_great_marsh_3",
+        "encounters_great_marsh_4",
+        "encounters_great_marsh_5",
+        "encounters_great_marsh_6"
+      ]
+    },
+    "Lost Tower": {
+      "design": "distinct",
+      "note": "five floors",
+      "areas": [
+        "encounters_route_209_lost_tower_1f",
+        "encounters_route_209_lost_tower_2f",
+        "encounters_route_209_lost_tower_3f",
+        "encounters_route_209_lost_tower_4f",
+        "encounters_route_209_lost_tower_5f"
+      ]
+    },
+    "Victory Road": {
+      "design": "distinct",
+      "note": "six sections",
+      "areas": [
+        "encounters_victory_road_1f",
+        "encounters_victory_road_2f",
+        "encounters_victory_road_b1f",
+        "encounters_victory_road_1f_room_1",
+        "encounters_victory_road_1f_room_2",
+        "encounters_victory_road_1f_room_3"
+      ]
+    },
+    "Oreburgh Gate": {
+      "design": "distinct",
+      "note": "two floors opened in two splits",
+      "areas": [
+        "encounters_oreburgh_gate_1f",
+        "encounters_oreburgh_gate_b1f"
+      ]
+    },
+    "Turnback Cave": {
+      "design": "as is",
+      "note": "post-game",
+      "areas": [
+        "encounters_turnback_cave_entrance",
+        "encounters_turnback_cave_pillar_1_room_1",
+        "encounters_turnback_cave_pillar_1_room_2",
+        "encounters_turnback_cave_pillar_1_room_3",
+        "encounters_turnback_cave_pillar_1_room_4",
+        "encounters_turnback_cave_pillar_1_room_5",
+        "encounters_turnback_cave_pillar_1_room_6",
+        "encounters_turnback_cave_pillar_2_room_1",
+        "encounters_turnback_cave_pillar_2_room_2",
+        "encounters_turnback_cave_pillar_2_room_3",
+        "encounters_turnback_cave_pillar_2_room_4",
+        "encounters_turnback_cave_pillar_2_room_5",
+        "encounters_turnback_cave_pillar_2_room_6",
+        "encounters_turnback_cave_pillar_3_room_1",
+        "encounters_turnback_cave_pillar_3_room_2",
+        "encounters_turnback_cave_pillar_3_room_3",
+        "encounters_turnback_cave_pillar_3_room_4",
+        "encounters_turnback_cave_pillar_3_room_5",
+        "encounters_turnback_cave_pillar_3_room_6",
+        "encounters_turnback_cave_pillar_room",
+        "encounters_turnback_cave_giratina_room"
+      ]
+    },
+    "Snowpoint Temple": {
+      "design": "as is",
+      "note": "post-game",
+      "areas": [
+        "encounters_snowpoint_temple_1f",
+        "encounters_snowpoint_temple_b1f",
+        "encounters_snowpoint_temple_b2f",
+        "encounters_snowpoint_temple_b3f",
+        "encounters_snowpoint_temple_b4f",
+        "encounters_snowpoint_temple_b5f"
+      ]
+    },
+    "Unused tables": {
+      "design": "as is",
+      "note": "twenty-five tables no map uses (unknown_533 to 557)",
+      "areas": [
+        "encounters_unknown_533",
+        "encounters_unknown_534",
+        "encounters_unknown_535",
+        "encounters_unknown_536",
+        "encounters_unknown_537",
+        "encounters_unknown_538",
+        "encounters_unknown_539",
+        "encounters_unknown_540",
+        "encounters_unknown_541",
+        "encounters_unknown_542",
+        "encounters_unknown_543",
+        "encounters_unknown_544",
+        "encounters_unknown_545",
+        "encounters_unknown_546",
+        "encounters_unknown_547",
+        "encounters_unknown_548",
+        "encounters_unknown_549",
+        "encounters_unknown_550",
+        "encounters_unknown_551",
+        "encounters_unknown_552",
+        "encounters_unknown_553",
+        "encounters_unknown_554",
+        "encounters_unknown_555",
+        "encounters_unknown_556",
+        "encounters_unknown_557"
+      ]
     }
   }
 }

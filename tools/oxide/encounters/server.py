@@ -78,6 +78,8 @@ class State:
         # {split: position}, so the page can group areas by the game's
         # progression: Roark first, Post last.
         self.split_rank = progression.split_index(self.sidecar)
+        # {area: (group, design)}: the one-spot groups the list folds up.
+        self.group_of = progression.group_of(self.sidecar)
         self.encounters = load_encounters()          # {area: species}
         self.caught = set(self.encounters.values())
         # The dupes clause works on families: a Starly caught on Route 201
@@ -164,6 +166,8 @@ def area_row(a, st, findings_by_area):
         # Ian's capture rule: one capture per location name, so the name and
         # the gym split are what a row is worth, not the file it came from.
         "location": locations.location(a.name),
+        "group": (st.group_of.get(a.name) or (None, None))[0],
+        "group_design": (st.group_of.get(a.name) or (None, None))[1],
         "split": e.get("split"),
         "split_rank": st.split_rank.get(e.get("split")),
         "order": e.get("order"),
@@ -277,6 +281,8 @@ def area_detail(a, st, kind="land"):
         "archetype": e.get("archetype"),
         "intent": e.get("intent", ""),
         "location": locations.location(a.name),
+        "group": (st.group_of.get(a.name) or (None, None))[0],
+        "group_design": (st.group_of.get(a.name) or (None, None))[1],
         "split": e.get("split"),
         "no_capture": bool(e.get("no_capture")),
         "rate": a.kind_rate(kind),

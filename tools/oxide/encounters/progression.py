@@ -378,6 +378,20 @@ def split_of(sidecar):
     return {n: e.get("split") for n, e in areas.items() if e.get("split")}
 
 
+def group_of(sidecar):
+    """{area: (group name, design)} for the one-spot groups in the sidecar's
+    `groups` table (Ian, 2026-09-26): places whose tables sit together, each
+    either 'same' (identical tables), 'distinct' (a face each, little shared)
+    or 'as is' (post-game, grouped for the list only)."""
+    out = {}
+    for name, g in ((sidecar or {}).get("groups") or {}).items():
+        if name.startswith("_"):
+            continue
+        for area in g.get("areas") or []:
+            out[area] = (name, g.get("design"))
+    return out
+
+
 def split_index(sidecar):
     """{split: position}, so that 'no later than Gardenia' is a comparison."""
     order = ((sidecar or {}).get("splits") or {}).get("order") or SPLITS
