@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 26,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_CASTFORM"
         },
         {
-            "level": 26,
+            "level": 27,
+            "species": "SPECIES_STEENEE"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_CASTFORM"
+        },
+        {
+            "level": 27,
+            "species": "SPECIES_DOLLIV"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_DOLLIV"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_BUDEW"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_STEENEE"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_BUDEW"
+        },
+        {
+            "level": 28,
             "species": "SPECIES_WOOPER"
         },
         {
-            "level": 27,
-            "species": "SPECIES_YANMA"
-        },
-        {
-            "level": 27,
+            "level": 28,
             "species": "SPECIES_WOOPER"
         },
         {
-            "level": 27,
-            "species": "SPECIES_CROAGUNK"
+            "level": 29,
+            "species": "SPECIES_WOOPER"
         },
         {
-            "level": 27,
-            "species": "SPECIES_CROAGUNK"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_CROAGUNK"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_LOMBRE"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_LOMBRE"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_BRELOOM"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_LOMBRE"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_BRELOOM"
+            "level": 29,
+            "species": "SPECIES_WOOPER"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_EMOLGA"
     ],
     "day": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_DEWPIDER"
+        "SPECIES_STEENEE",
+        "SPECIES_DOLLIV"
     ],
     "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_CASTFORM",
+        "SPECIES_WOOPER"
     ],
     "radar": [
         "SPECIES_YANMEGA",

@@ -75,6 +75,34 @@ def main():
                         and locations.location(n) == want for n, want in ahead.items()),
                     str({n: locations.location(n) for n in ahead})))
 
+    # -- one-spot groups (Ian, 2026-09-26) ------------------------------------
+    t = lint.thresholds_from(sidecar)
+    live = [(a.name, a.slots, entries.get(a.name), a.data) for a in model.load_all() if a.land_active]
+    results.append(("R15: every same group is identical and every distinct group keeps its "
+                    "faces apart and shares little",
+                    not lint.lint_groups(live, sidecar, t), ""))
+    # Break one Old Chateau room and give a Great Marsh area another's face:
+    # R15 has to notice both.
+    broken = []
+    for name, slots, entry, data in live:
+        if name == "encounters_old_chateau_corridor":
+            slots = [(slots[1][0], slots[0][1])] + list(slots[1:])
+        if name == "encounters_great_marsh_2":
+            slots = [("SPECIES_WOOPER", lv) for _, lv in slots]
+        broken.append((name, slots, entry, data))
+    hits = {f.target for f in lint.lint_groups(broken, sidecar, t)}
+    results.append(("R15 catches a room that differs from its group and a part that copies "
+                    "another's face",
+                    {"encounters_old_chateau_corridor", "encounters_great_marsh_2"} <= hits,
+                    str(sorted(hits))))
+    groups = progression.group_of(sidecar)
+    results.append(("Victory Road's side rooms are post-game and its three floors are not",
+                    all(entries["encounters_victory_road_" + s]["split"] == "Post"
+                        for s in ("1f_room_1", "1f_room_2", "1f_room_3"))
+                    and all(entries["encounters_victory_road_" + s]["split"] == "League"
+                            for s in ("1f", "2f", "b1f"))
+                    and groups["encounters_victory_road_1f"] == ("Victory Road", "distinct"), ""))
+
     # -- splits -------------------------------------------------------------
     sp = progression.split_of(sidecar)
     idx = progression.split_index(sidecar)

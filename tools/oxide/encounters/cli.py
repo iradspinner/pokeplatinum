@@ -229,6 +229,10 @@ def cmd_lint(args):
     areas = [a for a in model.load_all(args.ref) if a.land_active]
     sidecar = model.load_sidecar()
     entries = (sidecar or {}).get("areas") or {}
+    # The one-spot groups (R15) are Oxide's design, which a reference tree
+    # was never laid out from, so `--ref` lints without them.
+    if args.ref and sidecar:
+        sidecar = {k: v for k, v in sidecar.items() if k != "groups"}
     # The band must come from the sidecar where it is declared, falling back
     # to the table's own median level. Passing None here silently disables
     # every band-aware rule, R11 included, without reporting anything.

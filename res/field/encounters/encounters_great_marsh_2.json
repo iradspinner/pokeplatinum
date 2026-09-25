@@ -3,23 +3,27 @@
     "land_encounters": [
         {
             "level": 28,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 29,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_SKORUPI"
         },
         {
             "level": 29,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 29,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_BUDEW"
         },
         {
             "level": 30,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_BUDEW"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_STUNKY"
         },
         {
             "level": 30,
@@ -27,27 +31,23 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_STUNKY"
         },
         {
             "level": 30,
-            "species": "SPECIES_LOTAD"
+            "species": "SPECIES_SALANDIT"
         },
         {
             "level": 30,
-            "species": "SPECIES_DEWPIDER"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SALANDIT"
         },
         {
             "level": 31,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SALANDIT"
         },
         {
             "level": 31,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SALANDIT"
         }
     ],
     "swarms": [
@@ -55,11 +55,11 @@
         "SPECIES_BRELOOM"
     ],
     "day": [
-        "SPECIES_SURSKIT",
-        "SPECIES_LOTAD"
+        "SPECIES_BUDEW",
+        "SPECIES_SALANDIT"
     ],
     "night": [
-        "SPECIES_CROAGUNK",
+        "SPECIES_STUNKY",
         "SPECIES_SKORUPI"
     ],
     "radar": [

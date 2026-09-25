@@ -7,35 +7,35 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_STEELIX"
-        },
-        {
-            "level": 48,
-            "species": "SPECIES_SLIGGOO"
-        },
-        {
-            "level": 48,
-            "species": "SPECIES_GARGANACL"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 49,
             "species": "SPECIES_FERROTHORN"
         },
         {
+            "level": 48,
+            "species": "SPECIES_SLIGGOO"
+        },
+        {
+            "level": 48,
+            "species": "SPECIES_LUNATONE"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_SOLROCK"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_GRAPPLOCT"
+        },
+        {
             "level": 49,
             "species": "SPECIES_SLIGGOO"
         },
         {
             "level": 49,
-            "species": "SPECIES_GARGANACL"
+            "species": "SPECIES_LUNATONE"
         },
         {
             "level": 49,
-            "species": "SPECIES_BRONZONG"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 49,
@@ -43,7 +43,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_BRONZONG"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 50,
@@ -55,12 +55,12 @@
         "SPECIES_GLIMMORA"
     ],
     "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_PROBOPASS"
+        "SPECIES_LUNATONE",
+        "SPECIES_FERROTHORN"
     ],
     "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_SOLROCK",
+        "SPECIES_SLIGGOO"
     ],
     "radar": [
         "SPECIES_GOODRA",

@@ -7,23 +7,23 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_QUAGSIRE"
+            "species": "SPECIES_BRELOOM"
         },
         {
             "level": 28,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_CROAGUNK"
         },
         {
             "level": 28,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_BRELOOM"
         },
         {
             "level": 29,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_FOMANTIS"
         },
         {
             "level": 29,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 29,
@@ -31,23 +31,23 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_QUAGSIRE"
+            "species": "SPECIES_FOMANTIS"
         },
         {
             "level": 29,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SWADLOON"
         },
         {
             "level": 29,
-            "species": "SPECIES_BRELOOM"
+            "species": "SPECIES_SWADLOON"
         },
         {
             "level": 30,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SWADLOON"
         },
         {
             "level": 30,
-            "species": "SPECIES_BRELOOM"
+            "species": "SPECIES_SWADLOON"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SKORUPI"
     ],
     "day": [
-        "SPECIES_YANMA",
-        "SPECIES_LOTAD"
+        "SPECIES_BRELOOM",
+        "SPECIES_SWADLOON"
     ],
     "night": [
         "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_FOMANTIS"
     ],
     "radar": [
         "SPECIES_TOXICROAK",

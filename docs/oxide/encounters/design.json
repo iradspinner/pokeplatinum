@@ -64,7 +64,8 @@
       "preferred": 20.0,
       "filler": 100.0
     },
-    "r11_top_share_max": 0.35
+    "r11_top_share_max": 0.35,
+    "r15_distinct_shared_max": 2
   },
   "budget": {
     "concentrated": 0.18,
@@ -283,30 +284,27 @@
       }
     },
     "encounters_great_marsh_1": {
-      "archetype": "A18",
+      "archetype": "A11",
       "band": "late",
-      "intent": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night.",
+      "intent": "The Great Marsh's mudflats, Wooper's home: the lily pads and the shallow water.",
       "locked": [],
       "base_level": 28,
       "order": 71,
       "split": "Wake",
       "cast": [
         "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
         "SPECIES_LOTAD",
-        "SPECIES_YANMA",
-        "SPECIES_SKORUPI",
-        "SPECIES_DEWPIDER",
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BRELOOM"
+        "SPECIES_SURSKIT",
+        "SPECIES_GASTRODON",
+        "SPECIES_BARBOACH"
       ],
       "day": [
         "SPECIES_LOTAD",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_SURSKIT"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_WOOPER",
+        "SPECIES_BARBOACH"
       ],
       "old_rod": {
         "cast": [
@@ -434,27 +432,26 @@
       }
     },
     "encounters_great_marsh_2": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "late",
-      "intent": "Area two: Croagunk leads, six lines.",
+      "intent": "The Great Marsh's poison reeds: Koffing in the marsh gas, Skorupi, Budew, Stunky and Salandit around it.",
       "locked": [],
       "base_level": 28,
       "order": 72,
       "split": "Wake",
       "cast": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_WOOPER",
-        "SPECIES_YANMA",
-        "SPECIES_LOTAD",
+        "SPECIES_KOFFING",
         "SPECIES_SKORUPI",
-        "SPECIES_DEWPIDER"
+        "SPECIES_BUDEW",
+        "SPECIES_STUNKY",
+        "SPECIES_SALANDIT"
       ],
       "day": [
-        "SPECIES_SURSKIT",
-        "SPECIES_LOTAD"
+        "SPECIES_BUDEW",
+        "SPECIES_SALANDIT"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
+        "SPECIES_STUNKY",
         "SPECIES_SKORUPI"
       ],
       "old_rod": {
@@ -583,28 +580,27 @@
       }
     },
     "encounters_great_marsh_3": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Area three, Croagunk's home: three co-equal in the reeds.",
+      "intent": "The Great Marsh's frogs and fungus, Croagunk's home: Shroomish in the damp, Fomantis and Sewaddle in the leaves.",
       "locked": [],
       "base_level": 27,
       "order": 73,
       "split": "Wake",
       "cast": [
         "SPECIES_CROAGUNK",
-        "SPECIES_QUAGSIRE",
-        "SPECIES_DEWPIDER",
-        "SPECIES_YANMA",
-        "SPECIES_SURSKIT",
-        "SPECIES_BRELOOM"
+        "SPECIES_BRELOOM",
+        "SPECIES_FOMANTIS",
+        "SPECIES_LOTAD",
+        "SPECIES_SWADLOON"
       ],
       "day": [
-        "SPECIES_YANMA",
-        "SPECIES_LOTAD"
+        "SPECIES_BRELOOM",
+        "SPECIES_SWADLOON"
       ],
       "night": [
         "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_FOMANTIS"
       ],
       "old_rod": {
         "cast": [
@@ -732,28 +728,27 @@
       }
     },
     "encounters_great_marsh_4": {
-      "archetype": "A7",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Area four: the spread, nobody over 25.",
+      "intent": "The Great Marsh's tall grass, the hunters: Scyther leads, Gligar overhead, Houndour and Poochyena by night.",
       "locked": [],
       "base_level": 27,
       "order": 74,
       "split": "Wake",
       "cast": [
-        "SPECIES_QUAGSIRE",
-        "SPECIES_DEWPIDER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_YANMA",
-        "SPECIES_BRELOOM",
-        "SPECIES_SKORUPI"
+        "SPECIES_SCYTHER",
+        "SPECIES_GLIGAR",
+        "SPECIES_HOUNDOOM",
+        "SPECIES_MIGHTYENA",
+        "SPECIES_LIEPARD"
       ],
       "day": [
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_SCYTHER",
+        "SPECIES_GLIGAR"
       ],
       "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_HOUNDOOM",
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
@@ -881,30 +876,27 @@
       }
     },
     "encounters_great_marsh_5": {
-      "archetype": "A8",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Area five, Yanma's home: the broad shape, eight lines.",
+      "intent": "The Great Marsh's bog, Yanma's home: the bugs over the water, Dewpider, Joltik and Combee.",
       "locked": [],
       "base_level": 26,
       "order": 75,
       "split": "Wake",
       "cast": [
         "SPECIES_YANMA",
-        "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_LOTAD",
-        "SPECIES_SKORUPI",
         "SPECIES_DEWPIDER",
-        "SPECIES_SURSKIT",
-        "SPECIES_BRELOOM"
+        "SPECIES_JOLTIK",
+        "SPECIES_VESPIQUEN",
+        "SPECIES_SURSKIT"
       ],
       "day": [
-        "SPECIES_LOTAD",
+        "SPECIES_VESPIQUEN",
         "SPECIES_YANMA"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_JOLTIK",
+        "SPECIES_DEWPIDER"
       ],
       "old_rod": {
         "cast": [
@@ -1032,27 +1024,27 @@
       }
     },
     "encounters_great_marsh_6": {
-      "archetype": "A6",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Area six: the marsh shape itself, three co-equal faces.",
+      "intent": "The Great Marsh's far island, the flowers and the rain: Castform leads, Bounsweet, Smoliv and Budew in bloom.",
       "locked": [],
       "base_level": 26,
       "order": 76,
       "split": "Wake",
       "cast": [
-        "SPECIES_YANMA",
-        "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_LOMBRE",
-        "SPECIES_BRELOOM"
+        "SPECIES_CASTFORM",
+        "SPECIES_STEENEE",
+        "SPECIES_DOLLIV",
+        "SPECIES_BUDEW",
+        "SPECIES_WOOPER"
       ],
       "day": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_DEWPIDER"
+        "SPECIES_STEENEE",
+        "SPECIES_DOLLIV"
       ],
       "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_CASTFORM",
+        "SPECIES_WOOPER"
       ],
       "old_rod": {
         "cast": [
@@ -2781,25 +2773,25 @@
       ]
     },
     "encounters_oreburgh_gate_1f": {
-      "archetype": "A18",
+      "archetype": "A15",
       "band": "early",
-      "intent": "The first cave, eight lines: Zubat and Geodude lead, Nacli and Nosepass at home, Makuhita and Phanpy behind, Onix and a Nidoran small.",
+      "intent": "Oreburgh Gate's passage, its own floor (Ian, 2026-09-26): Zubat under the roof, Nacli and Nosepass at home in the salt, Onix and Larvitar as the 4% and 1%.",
       "locked": [],
       "base_level": 5,
       "order": 8,
       "cast": [
         "SPECIES_ZUBAT",
-        "SPECIES_GEODUDE",
         "SPECIES_NACLI",
         "SPECIES_NOSEPASS",
         "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_PURRLOIN",
         "SPECIES_ONIX",
-        "SPECIES_NIDORAN_M"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_MAKUHITA",
+        "SPECIES_NACLI"
       ],
       "night": [
         "SPECIES_ZUBAT",
@@ -2810,27 +2802,27 @@
     "encounters_oreburgh_gate_b1f": {
       "archetype": "A15",
       "band": "early",
-      "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave.",
+      "intent": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%.",
       "locked": [],
       "base_level": 6,
       "order": 14,
       "cast": [
         "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA",
-        "SPECIES_ZUBAT",
-        "SPECIES_NACLI",
-        "SPECIES_NOSEPASS",
         "SPECIES_PHANPY",
-        "SPECIES_ONIX",
-        "SPECIES_GIBLE"
+        "SPECIES_RHYHORN",
+        "SPECIES_DWEBBLE",
+        "SPECIES_GLIMMET",
+        "SPECIES_CARBINK",
+        "SPECIES_GIBLE",
+        "SPECIES_ONIX"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_PHANPY",
+        "SPECIES_RHYHORN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GEODUDE",
+        "SPECIES_DWEBBLE"
       ],
       "split": "Gardenia",
       "old_rod": {
@@ -4239,7 +4231,7 @@
     "encounters_route_209_lost_tower_1f": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts.",
+      "intent": "The Lost Tower's ground floor, where the graves begin: Yamask leads, Zubat and Koffing drift in from outside, Gothita and Vullaby watch.",
       "locked": [],
       "base_level": 17,
       "order": 39,
@@ -4247,118 +4239,113 @@
       "cast": [
         "SPECIES_YAMASK",
         "SPECIES_ZUBAT",
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK",
-        "SPECIES_GOTHITA"
+        "SPECIES_KOFFING",
+        "SPECIES_GOTHITA",
+        "SPECIES_VULLABY"
       ],
       "day": [
         "SPECIES_ZUBAT",
-        "SPECIES_YAMASK"
+        "SPECIES_GOTHITA"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK"
+        "SPECIES_YAMASK",
+        "SPECIES_KOFFING"
       ]
     },
     "encounters_route_209_lost_tower_2f": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Second floor: the same ghosts, wider and flatter.",
+      "intent": "The Lost Tower's second floor, the candles: Litwick leads, Gastly in the smoke, Klefki and Sinistea left on the graves.",
       "locked": [],
       "base_level": 17,
       "order": 40,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_ZUBAT",
-        "SPECIES_DUSKULL",
         "SPECIES_LITWICK",
-        "SPECIES_GOTHITA",
+        "SPECIES_GASTLY",
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT",
         "SPECIES_SINISTEA"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOTHITA"
+        "SPECIES_KLEFKI",
+        "SPECIES_SINISTEA"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_LITWICK",
+        "SPECIES_GASTLY"
       ]
     },
     "encounters_route_209_lost_tower_3f": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Third floor: three ghosts co-equal.",
+      "intent": "The Lost Tower's third floor, Duskull's home: the keepers of the dead, Misdreavus wailing, Sandygast in the grave dirt.",
       "locked": [],
       "base_level": 17,
       "order": 41,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
         "SPECIES_DUSKULL",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_KOFFING",
+        "SPECIES_GASTLY",
+        "SPECIES_SANDYGAST"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_LITWICK"
+        "SPECIES_SANDYGAST",
+        "SPECIES_KOFFING"
       ],
       "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS"
       ]
     },
     "encounters_route_209_lost_tower_4f": {
       "archetype": "A11",
       "band": "mid",
-      "intent": "Fourth floor: candles lead the climb.",
+      "intent": "The Lost Tower's fourth floor, the offerings: Sinistea's cups, Gothita and Klefki among them, Dhelmise's old anchor.",
       "locked": [],
       "base_level": 17,
       "order": 42,
       "split": "Maylene",
       "cast": [
-        "SPECIES_LITWICK",
-        "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA"
       ],
       "night": [
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DHELMISE"
       ]
     },
     "encounters_route_209_lost_tower_5f": {
-      "archetype": "A15",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The top floor: eight lines, Klefki a 4% before the ruins, Dhelmise a 1% anchor far from any sea.",
+      "intent": "The Lost Tower's top floor, below the two old women: Misdreavus leads, Duskull, Yamask and Litwick gathered, Vullaby circling.",
       "locked": [],
       "base_level": 17,
       "order": 43,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT",
-        "SPECIES_GOTHITA",
-        "SPECIES_KLEFKI",
-        "SPECIES_DHELMISE"
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_VULLABY"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_VULLABY",
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_route_210_north": {
@@ -9210,86 +9197,81 @@
       ]
     },
     "encounters_victory_road_1f": {
-      "archetype": "A19",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail.",
+      "intent": "Victory Road's long first floor, Pupitar's home: the rock and fighting lines, Absol and Weavile as the rare finds.",
       "locked": [],
       "base_level": 40,
       "order": 148,
       "split": "League",
       "cast": [
         "SPECIES_PUPITAR",
-        "SPECIES_STEELIX",
-        "SPECIES_RHYHORN",
-        "SPECIES_GABITE",
-        "SPECIES_GARGANACL",
+        "SPECIES_RHYPERIOR",
         "SPECIES_HAWLUCHA",
-        "SPECIES_GLIMMORA",
-        "SPECIES_KLEFKI",
-        "SPECIES_HARIYAMA",
         "SPECIES_GOLEM",
-        "SPECIES_METANG",
-        "SPECIES_HAKAMO_O"
+        "SPECIES_HARIYAMA",
+        "SPECIES_MIENSHAO",
+        "SPECIES_ABSOL",
+        "SPECIES_WEAVILE"
       ],
       "day": [
         "SPECIES_GOLEM",
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_PUPITAR",
+        "SPECIES_ABSOL"
       ]
     },
     "encounters_victory_road_1f_room_1": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "late",
-      "intent": "Side room one: six lines, Larvitar at 15.",
+      "intent": "Victory Road's post-champion first side room, the rock crushers: Garganacl leads, Glimmora, Crustle, Hippowdon and Rhyperior. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 151,
-      "split": "League",
+      "split": "Post",
       "cast": [
-        "SPECIES_STEELIX",
         "SPECIES_GARGANACL",
         "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
-        "SPECIES_GARCHOMP",
+        "SPECIES_CRUSTLE",
+        "SPECIES_HIPPOWDON",
         "SPECIES_RHYPERIOR"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_HARIYAMA"
+        "SPECIES_CRUSTLE",
+        "SPECIES_HIPPOWDON"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_GARGANACL",
+        "SPECIES_GLIMMORA"
       ]
     },
     "encounters_victory_road_1f_room_2": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Side room two, the wet one: Goomy at 35.",
+      "intent": "Victory Road's post-champion wet room: Sliggoo leads, Ferrothorn and the sun and moon pair, Garchomp and Metagross as the 4% and 1%. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 152,
-      "split": "League",
+      "split": "Post",
       "cast": [
         "SPECIES_SLIGGOO",
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_CARBINK",
         "SPECIES_FERROTHORN",
-        "SPECIES_BRONZONG",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
+        "SPECIES_GRAPPLOCT",
+        "SPECIES_KLEFKI",
         "SPECIES_GARCHOMP",
         "SPECIES_METAGROSS"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_PROBOPASS"
+        "SPECIES_LUNATONE",
+        "SPECIES_FERROTHORN"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_SOLROCK",
+        "SPECIES_SLIGGOO"
       ],
       "old_rod": {
         "cast": [
@@ -9417,82 +9399,77 @@
       }
     },
     "encounters_victory_road_1f_room_3": {
-      "archetype": "A15",
+      "archetype": "A13",
       "band": "late",
-      "intent": "Side room three: eight lines, Beldum and Gible in the tail.",
+      "intent": "Victory Road's post-champion last room, the fighters: Kommo-o leads, Hawlucha, Grapploct, Weavile and Scizor. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 153,
-      "split": "League",
+      "split": "Post",
       "cast": [
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
         "SPECIES_KOMMO_O",
         "SPECIES_HAWLUCHA",
-        "SPECIES_METAGROSS",
-        "SPECIES_GARCHOMP"
+        "SPECIES_GRAPPLOCT",
+        "SPECIES_WEAVILE",
+        "SPECIES_SCIZOR"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_HAWLUCHA",
+        "SPECIES_SCIZOR"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_WEAVILE",
+        "SPECIES_KOMMO_O"
       ]
     },
     "encounters_victory_road_2f": {
-      "archetype": "A18",
+      "archetype": "A14",
       "band": "late",
-      "intent": "Second floor: eight lines, Jangmo-o at 15.",
+      "intent": "Victory Road's upper ledges, the dragons: Gabite and Hakamo-o, Skarmory and Gliscor overhead.",
       "locked": [],
       "base_level": 41,
       "order": 149,
       "split": "League",
       "cast": [
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_KLEFKI",
-        "SPECIES_HAKAMO_O",
-        "SPECIES_PUPITAR",
         "SPECIES_GABITE",
-        "SPECIES_CARBINK",
-        "SPECIES_BRONZONG"
+        "SPECIES_HAKAMO_O",
+        "SPECIES_SKARMORY",
+        "SPECIES_GLISCOR",
+        "SPECIES_VIBRAVA",
+        "SPECIES_ABSOL"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_PROBOPASS"
+        "SPECIES_SKARMORY",
+        "SPECIES_GLISCOR"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_GABITE",
+        "SPECIES_HAKAMO_O"
       ]
     },
     "encounters_victory_road_b1f": {
       "archetype": "A16",
       "band": "late",
-      "intent": "The basement with the water: Beldum co-equal with Onix and Nacli.",
+      "intent": "Victory Road's basement, the steel: Steelix, Metang and Bronzong co-equal, Carbink and Probopass in the walls.",
       "locked": [],
       "base_level": 41,
       "order": 150,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
         "SPECIES_METANG",
-        "SPECIES_SLIGGOO",
-        "SPECIES_GABITE",
-        "SPECIES_CROBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CARBINK",
+        "SPECIES_PROBOPASS",
+        "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_CARBINK",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_BRONZONG",
+        "SPECIES_KLEFKI"
       ],
       "old_rod": {
         "cast": [

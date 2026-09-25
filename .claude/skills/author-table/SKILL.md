@@ -104,10 +104,20 @@ to read it.
   and Surf arrives in are the sidecar's `splits` table; Maylene's cap is 38 in
   the tables and 39 in Ian's sheet, waiting on the balance track.
 - A grass table holds eight to sixteen lines with distinct day and night pairs,
-  and nothing over 35%. Room groups (the Old Chateau, Iron Island, Mt. Coronet,
-  Victory Road and the rest) draw on one pool each and rotate shape and order.
-  All eighteen Solaceon Ruins rooms share one cast, because the player cannot
-  tell them apart.
+  and nothing over 35%.
+- A place whose tables sit in one spot is either identical throughout or very
+  different part to part, never one pool rotated (Ian, 2026-09-26). The
+  sidecar's `groups` table says which: "same" (Solaceon Ruins, Lake Verity, the
+  Old Chateau, Iron Island, Stark Mountain, the Oreburgh Mine, Wayward Cave, the
+  Ruin Maniac's dig, and Mt. Coronet's B1F, Peak and Mountainside) is one cast,
+  shape, level and day and night pair on every table; "distinct" (the Great
+  Marsh, the Lost Tower, Victory Road, Oreburgh Gate) gives each part a theme and
+  a face of its own and lets two parts share at most two species. Lint's R15
+  enforces both.
+- Mt. Coronet is five captures, not one: North, South, B1F with North Room 2,
+  the Peak climb and the Mountainside, named by the sidecar's `capture_area`.
+  Only Victory Road's 1F, 2F and B1F come before the Champion; its three side
+  rooms lead to Route 224 and are post-game.
 - Roark's split holds only starter-adjacent lines, lines with a scripted
   source, and 4% or 1% tails. Ravaged Path is in Roark's split.
 - A gate-tier starter is a cameo or a tail, never a home. A delay (a location

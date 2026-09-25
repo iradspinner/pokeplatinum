@@ -190,7 +190,9 @@ Mesprit takes the name of the route it is caught on. Snowpoint City's trade
 wants a Medicham.
 
 The count: 52 wild locations open by the end of the League split, 14 scripted
-ones of their own, and 3 eggs, **69**. It becomes **73** once the four planned
+ones of their own, and 3 eggs, **69**. (Since 2026-09-26 Mt. Coronet counts as
+five capture areas, not one, which makes every figure here four higher: 73,
+77 and, with the Battle Zone before the League, 85.) It becomes **73** once the four planned
 changes exist, all in the tracker's backlog: Verity Lakefront's grass and
 header, Amity Square's grass and header, Snowpoint City's header (its rods; the
 trade then shares the name), and the Pastoria City clown moved into the

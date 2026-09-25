@@ -3,27 +3,19 @@
     "land_encounters": [
         {
             "level": 17,
-            "species": "SPECIES_YAMASK"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 18,
             "species": "SPECIES_DUSKULL"
         },
         {
-            "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "level": 18,
+            "species": "SPECIES_MISDREAVUS"
         },
         {
-            "level": 19,
-            "species": "SPECIES_GOTHITA"
+            "level": 18,
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 19,
@@ -35,19 +27,27 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 19,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_VULLABY"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 20,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 20,
-            "species": "SPECIES_DHELMISE"
+            "species": "SPECIES_VULLABY"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_VULLABY",
+        "SPECIES_LITWICK"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DUSKULL"
     ],
     "radar": [
         "SPECIES_COFAGRIGUS",

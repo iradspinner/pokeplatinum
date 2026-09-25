@@ -7,31 +7,31 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_DEWPIDER"
         },
         {
             "level": 27,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_YANMA"
         },
         {
             "level": 27,
-            "species": "SPECIES_CROAGUNK"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_LOTAD"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_SKORUPI"
-        },
-        {
-            "level": 28,
             "species": "SPECIES_DEWPIDER"
         },
         {
             "level": 28,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_JOLTIK"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_VESPIQUEN"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_YANMA"
+        },
+        {
+            "level": 28,
+            "species": "SPECIES_JOLTIK"
         },
         {
             "level": 28,
@@ -39,7 +39,7 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_BRELOOM"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 29,
@@ -47,7 +47,7 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_BRELOOM"
+            "species": "SPECIES_SURSKIT"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_LOMBRE"
     ],
     "day": [
-        "SPECIES_LOTAD",
+        "SPECIES_VESPIQUEN",
         "SPECIES_YANMA"
     ],
     "night": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_JOLTIK",
+        "SPECIES_DEWPIDER"
     ],
     "radar": [
         "SPECIES_YANMEGA",

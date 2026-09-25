@@ -189,6 +189,16 @@ that stay. None blocks anything.
    starters as 1% tails) is put to Ian rather than changed. Waiting on the
    balance track, whose tool must learn the new split before this merges. The
    whole plan, across the three tracks, is `docs/oxide/battle-zone-plan.md`.
+9. **One-spot groups (Ian, 2026-09-26).** A place whose tables sit in one spot
+   is now identical throughout or very different part to part, as the sidecar's
+   `groups` table says and lint's R15 enforces; the `author-table` skill has the
+   list. Mt. Coronet became five capture areas (`capture_area` in the sidecar),
+   Oreburgh Gate B1F moved to Gardenia's split, Coronet B1F and North Room 2 to
+   Candice's, and Victory Road's three side rooms to post-game. The area list
+   folds each group under one row and files each area under the earliest split
+   it can be caught in (Route 218's Old Rod water sits in Roark's). Captures
+   before the League: 73 today, 77 once the planned maps exist, 85 with the
+   Battle Zone open before the League.
 
 ## Standing rules
 
