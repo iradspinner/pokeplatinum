@@ -8321,3 +8321,8 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
 
     return mon->attack * sStatStageBoosts[stage].numerator / sStatStageBoosts[stage].denominator;
 }
+
+BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler)
+{
+    return BattlerIsGrounded(battleCtx, battler);
+}

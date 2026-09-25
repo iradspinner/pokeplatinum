@@ -312,6 +312,8 @@ static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_ReduceWeight(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static int BattleScript_Read(BattleContext *battleCtx);
@@ -6009,6 +6011,15 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         return FALSE;
     }
 
+    // Oxide: Rapid Spin and Mortal Spin clear Sticky Web too.
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STICKY_WEB) {
+        battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_STICKY_WEB;
+        battleCtx->msgMoveTemp = MOVE_STICKY_WEB;
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
+
+        return FALSE;
+    }
+
     BattleScript_Iter(battleCtx, 1);
 
     return FALSE;
@@ -9656,6 +9667,90 @@ static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleC
         }
     } else if ((battleType & BATTLE_TYPE_DOUBLES) || DEFENDING_MON.level > ATTACKING_MON.level) {
         BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Lays Oxide's Sticky Web on the defending side, as TrySpikes lays
+ * Spikes. It fails if the side already has one.
+ *
+ * Inputs:
+ * 1. The jump distance if it fails.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+    int defendingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) ^ 1;
+
+    if (battleCtx->sideConditionsMask[defendingSide] & SIDE_CONDITION_STICKY_WEB) {
+        battleCtx->selfTurnFlags[battleCtx->attacker].skipPressureCheck = TRUE;
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    } else {
+        battleCtx->sideConditionsMask[defendingSide] |= SIDE_CONDITION_STICKY_WEB;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Checks whether a Pokemon switching in is caught in Oxide's Sticky
+ * Web, and lowers its Speed by one stage if so.
+ *
+ * Inputs:
+ * 1. The battler switching in.
+ * 2. The jump distance if the web does not catch it: there is none on its
+ * side, it fainted to an earlier hazard, or it is not on the ground.
+ *
+ * Otherwise it is caught, and calcTemp says what followed, with the message in
+ * the buffer: 0 when its Speed fell, 1 when Clear Body or White Smoke kept it,
+ * 2 when its Speed was already at the lowest stage. The drop is made here
+ * rather than through ChangeStatStage, whose checks turn on who attacked, and
+ * nothing attacked. As in hg-engine, Magic Guard and Mist do not stop it.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STICKY_WEB) == FALSE
+        || mon->curHP == 0
+        || Battler_IsGrounded(battleCtx, battler) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    battleCtx->sideEffectMon = battler;
+
+    if (Battler_Ability(battleCtx, battler) == ABILITY_CLEAR_BODY
+        || Battler_Ability(battleCtx, battler) == ABILITY_WHITE_SMOKE) {
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY;
+        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        battleCtx->msgBuffer.params[1] = mon->ability;
+        battleCtx->calcTemp = 1;
+    } else if (mon->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE) {
+        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} won't go lower!"
+        battleCtx->calcTemp = 2;
+    } else {
+        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatFell_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} fell!"
+        mon->statBoosts[BATTLE_STAT_SPEED]--;
+        battleCtx->calcTemp = 0;
     }
 
     return FALSE;

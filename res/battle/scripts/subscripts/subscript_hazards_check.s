@@ -48,4 +48,20 @@ _085:
     WaitButtonABTime 30
 
 _105:
+    // Oxide: Sticky Web, which Magic Guard does not stop, so it comes last.
+    CheckStickyWeb BTLSCR_SWITCHED_MON, _end
+    // {0} was caught in a sticky web!
+    PrintMessage BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
+    Wait
+    WaitButtonABTime 30
+    CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 0, _sticky_web_message
+    PlayBattleAnimation BTLSCR_SWITCHED_MON, BATTLE_ANIMATION_STAT_DROP
+    Wait
+
+_sticky_web_message:
+    PrintBufferedMessage
+    Wait
+    WaitButtonABTime 30
+
+_end:
     End 

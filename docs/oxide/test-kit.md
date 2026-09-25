@@ -93,7 +93,8 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 23 | Dragon Tail, Circle Throw, Parting Shot, Roar | 38766c70a; against a wild Pokemon Dragon Tail and Circle Throw end the battle, and Roar checks its reshaped code behaves as before |
 | 24 | Laser Focus, Tackle, Lock-On, Zap Cannon | 7f36c7172; against Shuckle, Tackle lands a critical hit on the turn after Laser Focus and only then, and Zap Cannon still never misses the turn after Lock-On, which counts down beside Laser Focus |
 | 25 | Ingrain, Aqua Ring, Splash, Recover | the vanilla Ingrain fix; against the wild Lugia, Ingrain then Aqua Ring, and Lugia's Whirlwind should fail every turn with "anchored itself with its roots", where vanilla ended the battle once Aqua Ring was up |
-| 26 | Smack Down, Earthquake, Thousand Arrows, Recover | this batch; against the wild Skarmory, Earthquake does nothing until Smack Down prints "fell straight down!", then hits; Thousand Arrows hits it at once, super effective through Steel, and grounds it too |
+| 26 | Smack Down, Earthquake, Thousand Arrows, Recover | fe6cc4437; against the wild Skarmory, Earthquake does nothing until Smack Down prints "fell straight down!", then hits; Thousand Arrows hits it at once, super effective through Steel, and grounds it too |
+| 27 | Sticky Web, Spikes, Stealth Rock, Defog | this batch; Sticky Web prints the foe's-side line and fails a second time, and Defog blows it away with the other two. The switch-in Speed drop needs a trainer battle, so it waits for kit trainers |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and
