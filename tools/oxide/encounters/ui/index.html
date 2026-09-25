@@ -89,8 +89,7 @@ section { overflow-y: auto; }
 #mid .meet.gone { color: var(--faint); }
 #mid .meet.gone .spname { text-decoration: line-through; }
 #mid .meet.gone .ico { opacity: .35; }
-#mid .meet.spent { color: var(--faint); }
-#mid .meet.spent .ico { opacity: .35; }
+#mid .meet.spent { opacity: .35; }
 #mid .meet.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
 #mid .meet.got .spname { font-weight: 600; }
 #mid .meets .bar span { transition: width .35s ease; }
@@ -119,8 +118,7 @@ section { overflow-y: auto; }
 #mid .wrow.gone { color: var(--faint); }
 #mid .wrow.gone .spname { text-decoration: line-through; }
 #mid .wrow.gone .ico { opacity: .35; }
-#mid .wrow.spent { color: var(--faint); }
-#mid .wrow.spent .ico { opacity: .35; }
+#mid .wrow.spent { opacity: .35; }
 #mid .wrow.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
 #mid table.grid tbody tr:hover { background: var(--sunken); }
 #mid td.rate { color: var(--dim); }
@@ -193,6 +191,10 @@ button:disabled { color: var(--faint); cursor: default; }
    partly done rather than as a binary flag */
 .arow.p1 { opacity: .78; } .arow.p2 { opacity: .60; } .arow.p3 { opacity: .45; }
 .arow.done { opacity: .38; }
+/* A location's other tables once its one encounter is used elsewhere: nothing
+   there can be caught any more, so the row all but disappears. */
+.arow.spent { opacity: .22; }
+.arow.spent .chip { filter: grayscale(1); }
 .arow.done .l1 { text-decoration: line-through; }
 .flag { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
         margin-right: 6px; background: transparent; vertical-align: middle; }
@@ -208,8 +210,10 @@ table.grid th { text-align: left; font-weight: 600; font-size: 14px;
   color: var(--dim); padding: 4px 7px; border-bottom: 1px solid var(--rule); }
 table.grid th.num { text-align: right; }
 table.grid td { padding: 2px 7px; border-bottom: 1px solid var(--rule); }
-tr.gone td { color: var(--faint); }
-tr.gone .spname { text-decoration: line-through; }
+/* A slot caught elsewhere fades whole like a spent one, and its name is struck
+   through inside the combobox, which does not inherit the cell's decoration. */
+tr.gone td { opacity: .35; }
+tr.gone .spname, tr.gone .cb input { text-decoration: line-through; }
 input.lv { width: 48px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .ck { cursor: pointer; }
 
@@ -300,9 +304,9 @@ main[hidden] { display: none; }
    rather than on its own line. */
 #mid td.spname > .cell { display: flex; align-items: center; gap: 8px; }
 #mid td.spname .ico { margin-left: -2px; }
-tr.gone .ico { opacity: .35; }
-tr.spent td { color: var(--faint); }
-tr.spent .ico { opacity: .35; }
+/* A spent row fades whole, the name boxes with it, since an input keeps its
+   own text colour and a faint td colour barely shows. */
+tr.spent td { opacity: .35; }
 tr.got td { background: color-mix(in srgb, var(--act) 16%, transparent); }
 tr.got .spname { font-weight: 600; }
 /* In the tables view a species' icon opens its dex page. The editable name
@@ -1190,6 +1194,15 @@ function drawHeader() {
 
 // ---- left ---------------------------------------------------------------
 
+// Ian's capture rule is one encounter per location name, so once any table of
+// a location holds the encounter, the location's other tables are spent.
+// {location: the area row holding its encounter}.
+function takenAt() {
+  const out = new Map();
+  ALL.forEach(r => { if (r.location && r.encounter && !out.has(r.location)) out.set(r.location, r); });
+  return out;
+}
+
 function drawList() {
   const q = $("#filter").value.trim().toLowerCase();
   let rows = ALL.slice();
@@ -1211,17 +1224,20 @@ function drawList() {
   else if (SORT === "live_total") rows.sort((a, b) => b.live_total - a.live_total);
   else rows.sort((a, b) => b[SORT] - a[SORT]);
 
+  const taken = takenAt();
   $("#rows").innerHTML = rows.map(r => {
     const flag = r.errors ? "err" : (r.warns ? "wrn" : "");
+    const by = r.location && !r.encounter ? taken.get(r.location) : null;
     const gone = r.species_total - r.live_total;
     const frac = r.species_total ? gone / r.species_total : 0;
-    const fade = r.live_total === 0 ? "done"
+    const fade = by ? "spent" : r.live_total === 0 ? "done"
       : frac >= .66 ? "p3" : frac >= .34 ? "p2" : frac > 0 ? "p1" : "";
     const lv = r.level_min === r.level_max ? r.level_min
       : r.level_min + "–" + r.level_max;
     const water = r.kinds.length > 1 ? `<span class="sub">water</span>` : "";
     return `<div class="arow ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
-        title="${esc(r.live_total ? (r.target_label
+        title="${esc(by ? r.location + "'s encounter is used: " + by.encounter_label + " in " + by.label
+          : r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
       <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
       <div class="l2">${splitTag(r.split)}${water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
@@ -1321,7 +1337,7 @@ function drawMid() {
   // A row's state: the Pokemon caught in this zone is highlighted, the rest of
   // the zone is spent once something here is caught, and a species caught in
   // another zone stays struck out as a dupe.
-  const caughtHere = !!d.encounter;
+  const caughtHere = !!d.encounter || (!!d.location && takenAt().has(d.location));
   const state = x => x.caught ? "got" : x.duped ? "gone" : caughtHere ? "spent" : "";
 
   // The area's water tables in brief, under the tables being edited, so all
