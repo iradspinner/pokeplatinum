@@ -11,14 +11,10 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_SNEASEL"
-        },
-        {
-            "level": 33,
             "species": "SPECIES_SNOVER"
         },
         {
-            "level": 34,
+            "level": 33,
             "species": "SPECIES_PILOSWINE"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 34,
+            "species": "SPECIES_SNORUNT"
+        },
+        {
+            "level": 34,
             "species": "SPECIES_SNEASEL"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_SNOVER"
         },
         {
-            "level": 34,
-            "species": "SPECIES_SNORUNT"
-        },
-        {
-            "level": 34,
-            "species": "SPECIES_ABSOL"
+            "level": 35,
+            "species": "SPECIES_SNEASEL"
         },
         {
             "level": 35,
-            "species": "SPECIES_SNORUNT"
+            "species": "SPECIES_SNEASEL"
+        },
+        {
+            "level": 35,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 35,

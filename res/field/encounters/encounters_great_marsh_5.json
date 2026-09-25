@@ -11,14 +11,10 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_YANMA"
-        },
-        {
-            "level": 27,
             "species": "SPECIES_DEWPIDER"
         },
         {
-            "level": 28,
+            "level": 27,
             "species": "SPECIES_JOLTIK"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 28,
+            "species": "SPECIES_SURSKIT"
+        },
+        {
+            "level": 28,
             "species": "SPECIES_YANMA"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_JOLTIK"
         },
         {
-            "level": 28,
-            "species": "SPECIES_SURSKIT"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_SURSKIT"
+            "level": 29,
+            "species": "SPECIES_YANMA"
         },
         {
             "level": 29,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_YANMA"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_VESPIQUEN"
         },
         {
             "level": 29,

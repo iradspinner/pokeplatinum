@@ -199,6 +199,15 @@ that stay. None blocks anything.
    it can be caught in (Route 218's Old Rod water sits in Roark's). Captures
    before the League: 73 today, 77 once the planned maps exist, 85 with the
    Battle Zone open before the League.
+10. **The top rung (Ian, 2026-09-26).** Every table from Gardenia's split to
+   the League had a top rung one or two lines wide, so a max-level manip was a
+   guaranteed prize or a coin flip between two. Those 105 tables now lay out in
+   their archetype's top form: a lead at the highest level meets one ordinary
+   line 80% of the time and two others 10% each. A19 casts lost one of their two
+   4% lines to make room; Route 204 North, Wayward Cave and Victory Road's 1F
+   and 2F, whose faces were prizes, now lead with an ordinary line. Lint's R16
+   enforces it; Roark's split, where repels are scarce, and the post-game keep
+   the old shapes.
 
 ## Standing rules
 

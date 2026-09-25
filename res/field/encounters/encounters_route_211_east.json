@@ -27,10 +27,6 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_KIRLIA"
-        },
-        {
-            "level": 29,
             "species": "SPECIES_TORRACAT"
         },
         {
@@ -38,12 +34,16 @@
             "species": "SPECIES_GLIGAR"
         },
         {
-            "level": 29,
-            "species": "SPECIES_GLIGAR"
+            "level": 30,
+            "species": "SPECIES_KIRLIA"
         },
         {
             "level": 30,
-            "species": "SPECIES_GLIGAR"
+            "species": "SPECIES_KIRLIA"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_JANGMO_O"
         },
         {
             "level": 30,

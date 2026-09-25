@@ -27,10 +27,6 @@
         },
         {
             "level": 40,
-            "species": "SPECIES_SNORUNT"
-        },
-        {
-            "level": 40,
             "species": "SPECIES_GALARIAN_MR_MIME"
         },
         {
@@ -38,12 +34,16 @@
             "species": "SPECIES_WEAVILE"
         },
         {
-            "level": 40,
-            "species": "SPECIES_WEAVILE"
+            "level": 41,
+            "species": "SPECIES_SNORUNT"
         },
         {
             "level": 41,
-            "species": "SPECIES_WEAVILE"
+            "species": "SPECIES_SNORUNT"
+        },
+        {
+            "level": 41,
+            "species": "SPECIES_ABOMASNOW"
         },
         {
             "level": 41,

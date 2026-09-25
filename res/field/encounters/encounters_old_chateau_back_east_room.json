@@ -11,14 +11,10 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 15,
             "species": "SPECIES_LITWICK"
         },
         {
-            "level": 16,
+            "level": 15,
             "species": "SPECIES_MISDREAVUS"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 16,
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 16,
             "species": "SPECIES_GASTLY"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_MISDREAVUS"
         },
         {
-            "level": 16,
-            "species": "SPECIES_YAMASK"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_YAMASK"
+            "level": 17,
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 17,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_GASTLY"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 17,

@@ -3,6 +3,10 @@
     "land_encounters": [
         {
             "level": 8,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 9,
             "species": "SPECIES_LITTEN"
         },
         {
@@ -11,11 +15,11 @@
         },
         {
             "level": 9,
-            "species": "SPECIES_SEWADDLE"
+            "species": "SPECIES_TREECKO"
         },
         {
-            "level": 9,
-            "species": "SPECIES_SEWADDLE"
+            "level": 10,
+            "species": "SPECIES_SNIVY"
         },
         {
             "level": 10,
@@ -27,23 +31,19 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_LITTEN"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_BOUNSWEET"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_FLETCHLING"
-        },
-        {
-            "level": 10,
             "species": "SPECIES_FLETCHLING"
         },
         {
             "level": 11,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SEWADDLE"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_BOUNSWEET"
         },
         {
             "level": 11,

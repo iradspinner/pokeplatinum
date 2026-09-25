@@ -34,12 +34,12 @@
             "species": "SPECIES_SWINUB"
         },
         {
-            "level": 15,
+            "level": 16,
             "species": "SPECIES_SNOVER"
         },
         {
-            "level": 15,
-            "species": "SPECIES_GEODUDE"
+            "level": 16,
+            "species": "SPECIES_SNOVER"
         },
         {
             "level": 16,

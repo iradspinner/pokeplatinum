@@ -11,7 +11,7 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_HOUNDOOM"
         },
         {
             "level": 28,
@@ -19,11 +19,11 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_HOUNDOOM"
+            "species": "SPECIES_MIGHTYENA"
         },
         {
             "level": 29,
-            "species": "SPECIES_MIGHTYENA"
+            "species": "SPECIES_LIEPARD"
         },
         {
             "level": 29,
@@ -34,16 +34,16 @@
             "species": "SPECIES_MIGHTYENA"
         },
         {
-            "level": 29,
-            "species": "SPECIES_LIEPARD"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_LIEPARD"
+            "level": 30,
+            "species": "SPECIES_SCYTHER"
         },
         {
             "level": 30,
-            "species": "SPECIES_LIEPARD"
+            "species": "SPECIES_SCYTHER"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_MIGHTYENA"
         },
         {
             "level": 30,

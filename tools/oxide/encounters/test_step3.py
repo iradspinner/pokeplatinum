@@ -103,6 +103,26 @@ def main():
                             for s in ("1f", "2f", "b1f"))
                     and groups["encounters_victory_road_1f"] == ("Victory Road", "distinct"), ""))
 
+    # -- the top rung (Ian, 2026-09-26) ---------------------------------------
+    # Outside Roark's split and the post-game, a max-level lead meets three
+    # lines, one at 80%: never a guaranteed manip.
+    r16 = [f for name, slots, entry, data in live
+           for f in lint.lint_table(name, slots, entry or {}, t, data=data) if f.rule == "R16"]
+    tops = [name for name, _, entry, _ in live if lint.uses_top_form(entry)]
+    results.append(("every table from Gardenia's split to the League keeps a three-line top rung "
+                    "led at 80% (R16)", not r16 and len(tops) > 90, f"{len(tops)} tables, {len(r16)} findings"))
+    e201 = entries["encounters_route_201"]
+    results.append(("Roark's split keeps its old shapes, since repels are scarce there",
+                     not lint.uses_top_form(e201), ""))
+    chateau = next(sl for name, sl, _, _ in live if name == "encounters_old_chateau")
+    top_lv = max(lv for _, lv in chateau)
+    flat = [(sp, lv) for sp, lv in chateau]
+    flat[10] = (flat[8][0], top_lv)
+    flat[11] = (flat[8][0], top_lv)
+    hits = [f for f in lint.lint_table("encounters_old_chateau", flat, entries["encounters_old_chateau"], t)
+            if f.rule == "R16"]
+    results.append(("R16 catches a top rung that one line fills", bool(hits), ""))
+
     # -- splits -------------------------------------------------------------
     sp = progression.split_of(sidecar)
     idx = progression.split_index(sidecar)
@@ -206,10 +226,13 @@ def main():
                                 if r["tier"] == "gate" and r["home"]), ""))
     r204 = entries["encounters_route_204_north"]
     shares = A.merged(model.load_area("encounters_route_204_north").slots)
-    results.append(("Route 204 north is the delay: Litten at home at 25, Treecko 20, Snivy 10, "
-                    "Torchic by day; no Riolu or Eevee",
-                    abs(shares["SPECIES_LITTEN"] - 0.25) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
-                    and abs(shares["SPECIES_SNIVY"] - 0.10) < 1e-9 and "SPECIES_TORCHIC" in r204["day"]
+    # Since the top-rung ruling (2026-09-26) an ordinary line leads, so a
+    # manip meets Sewaddle, not a starter, four times in five.
+    results.append(("Route 204 north is the delay: Sewaddle leads, Litten at home at 20, Treecko 20, "
+                    "Snivy 15, Torchic by day; no Riolu or Eevee",
+                    r204["cast"][0] == "SPECIES_SEWADDLE"
+                    and abs(shares["SPECIES_LITTEN"] - 0.20) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
+                    and abs(shares["SPECIES_SNIVY"] - 0.15) < 1e-9 and "SPECIES_TORCHIC" in r204["day"]
                     and not {"SPECIES_RIOLU", "SPECIES_EEVEE"} & set(r204["cast"] + r204["day"] + r204["night"]),
                     ""))
     widths = {n: len(set(e["cast"]) | set(e.get("day") or []) | set(e.get("night") or []))

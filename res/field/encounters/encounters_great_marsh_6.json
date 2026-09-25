@@ -11,7 +11,7 @@
         },
         {
             "level": 27,
-            "species": "SPECIES_CASTFORM"
+            "species": "SPECIES_DOLLIV"
         },
         {
             "level": 27,
@@ -19,11 +19,11 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_DOLLIV"
+            "species": "SPECIES_BUDEW"
         },
         {
             "level": 28,
-            "species": "SPECIES_BUDEW"
+            "species": "SPECIES_WOOPER"
         },
         {
             "level": 28,
@@ -34,16 +34,16 @@
             "species": "SPECIES_BUDEW"
         },
         {
-            "level": 28,
-            "species": "SPECIES_WOOPER"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_WOOPER"
+            "level": 29,
+            "species": "SPECIES_CASTFORM"
         },
         {
             "level": 29,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_CASTFORM"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_BUDEW"
         },
         {
             "level": 29,

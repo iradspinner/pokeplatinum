@@ -11,14 +11,10 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_CROAGUNK"
-        },
-        {
-            "level": 28,
             "species": "SPECIES_BRELOOM"
         },
         {
-            "level": 29,
+            "level": 28,
             "species": "SPECIES_FOMANTIS"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 29,
+            "species": "SPECIES_SWADLOON"
+        },
+        {
+            "level": 29,
             "species": "SPECIES_CROAGUNK"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_FOMANTIS"
         },
         {
-            "level": 29,
-            "species": "SPECIES_SWADLOON"
-        },
-        {
-            "level": 29,
-            "species": "SPECIES_SWADLOON"
+            "level": 30,
+            "species": "SPECIES_CROAGUNK"
         },
         {
             "level": 30,
-            "species": "SPECIES_SWADLOON"
+            "species": "SPECIES_CROAGUNK"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_LOTAD"
         },
         {
             "level": 30,

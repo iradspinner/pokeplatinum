@@ -11,14 +11,10 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 18,
             "species": "SPECIES_MISDREAVUS"
         },
         {
-            "level": 19,
+            "level": 18,
             "species": "SPECIES_KOFFING"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 19,
+            "species": "SPECIES_SANDYGAST"
+        },
+        {
+            "level": 19,
             "species": "SPECIES_DUSKULL"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_KOFFING"
         },
         {
-            "level": 19,
-            "species": "SPECIES_SANDYGAST"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_SANDYGAST"
+            "level": 20,
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 20,
-            "species": "SPECIES_SANDYGAST"
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 20,

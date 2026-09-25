@@ -27,23 +27,23 @@
         },
         {
             "level": 11,
-            "species": "SPECIES_PAWMI"
+            "species": "SPECIES_SHINX"
         },
         {
             "level": 11,
             "species": "SPECIES_PACHIRISU"
         },
         {
-            "level": 11,
-            "species": "SPECIES_MINCCINO"
-        },
-        {
-            "level": 11,
-            "species": "SPECIES_EMOLGA"
+            "level": 12,
+            "species": "SPECIES_PAWMI"
         },
         {
             "level": 12,
-            "species": "SPECIES_MINCCINO"
+            "species": "SPECIES_PAWMI"
+        },
+        {
+            "level": 12,
+            "species": "SPECIES_EMOLGA"
         },
         {
             "level": 12,
