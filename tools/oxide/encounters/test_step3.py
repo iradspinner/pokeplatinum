@@ -47,12 +47,21 @@ def main():
                     all(v and not v.startswith("LocationNames_") for v in loc.values())
                     and len(by) >= 60, f"{len(loc)} files, {len(by)} locations"))
     results.append(("tables sharing a name are one capture area: Lake Verity, Route 204, "
-                    "Route 205, Oreburgh Gate, Mt. Coronet",
+                    "Route 205, Oreburgh Gate",
                     set(by.get("Lake Verity", [])) == {"encounters_lake_verity", "encounters_lake_verity_low_water"}
                     and set(by.get("Route 204", [])) == {"encounters_route_204_north", "encounters_route_204_south"}
-                    and "encounters_mt_coronet_1f_north_room_1" in by.get("Mt. Coronet", [])
                     and set(by.get("Oreburgh Gate", [])) == {"encounters_oreburgh_gate_1f", "encounters_oreburgh_gate_b1f"},
                     ""))
+    # Mt. Coronet is five captures, not one (Ian, 2026-09-26), by the
+    # sidecar's capture_area over the game's single name.
+    results.append(("Mt. Coronet is five capture areas: North, South, B1F, Peak and Mountainside",
+                    "Mt. Coronet" not in by
+                    and by.get("Mt. Coronet North") == ["encounters_mt_coronet_1f_north_room_1"]
+                    and set(by.get("Mt. Coronet B1F", [])) == {"encounters_mt_coronet_b1f",
+                                                               "encounters_mt_coronet_1f_north_room_2"}
+                    and len(by.get("Mt. Coronet Peak", [])) == 7
+                    and len(by.get("Mt. Coronet Mountainside", [])) == 2,
+                    str(sorted(k for k in by if k.startswith("Mt. Coronet")))))
     # Three tables are built ahead of their maps: no header uses them yet
     # (backlog: the headers, and grass for the two land tables), so each
     # counts as the location its sidecar entry plans for it.
@@ -224,10 +233,11 @@ def main():
                     "encounters_route_207" in rows["Charmander"]["tail"]
                     and "encounters_route_204_north" in rows["Treecko"]["cameo"]
                     and rows["Charmander"]["status"] == "non-wild", ""))
-    results.append(("the caps are Ian's: Roark 16 through League 78",
+    results.append(("the caps are Ian's: Roark 16 through League 78, Galactic 64 and Volkner 68",
                     [progression.cap_of(sidecar, s) for s in ("Roark", "Gardenia", "Fantina", "Maylene",
-                                                              "Wake", "Byron", "Candice", "Volkner", "League")]
-                    == [16, 26, 33, 38, 44, 53, 56, 62, 78], ""))
+                                                              "Wake", "Byron", "Candice", "Galactic",
+                                                              "Volkner", "League")]
+                    == [16, 26, 33, 38, 44, 53, 56, 64, 68, 78], ""))
     results.append(("cap candidates are reported, not gated, name the split and cap, and none "
                     "is for the first two splits (those lines are all placed)",
                     "cap_candidates" in g and all(" cap " in c for c in g["cap_candidates"])

@@ -55,8 +55,13 @@ def check_order(results):
                                   pos("route_209_lost_tower_1f") + 5))
                     and pos("victory_road_1f") < pos("victory_road_2f") < pos("victory_road_b1f"),
                     ""))
-    results.append(("the Battle Zone and the unknown rooms come last",
-                    pos("pokemon_league") < pos("route_225") < pos("route_230")
+    # The Battle Zone opens from Snowpoint in the Galactic split (Ian,
+    # 2026-09-25); Route 224, reached from the League, and the unknown rooms
+    # stay post-game and last.
+    results.append(("the Battle Zone follows Snowpoint, and Route 224 and the unknown rooms come last",
+                    pos("lake_acuity") < pos("snowpoint_city") < pos("route_225")
+                    < pos("route_230") < pos("mt_coronet_1f_tunnel_room")
+                    and pos("victory_road_1f") < pos("route_224")
                     < pos("unknown_533") < pos("unknown_557") == len(names), ""))
     live = [a for a in model.load_all() if a.land_active]
     ordered = progression.sorted_by_order(sidecar, [a.name for a in live])

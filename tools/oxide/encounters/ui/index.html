@@ -89,15 +89,15 @@ section { overflow-y: auto; }
 #mid .meet.gone { color: var(--faint); }
 #mid .meet.gone .spname { text-decoration: line-through; }
 #mid .meet.gone .ico { opacity: .35; }
-#mid .meet.spent { color: var(--faint); }
-#mid .meet.spent .ico { opacity: .35; }
+#mid .meet.spent { opacity: .35; }
 #mid .meet.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
 #mid .meet.got .spname { font-weight: 600; }
 #mid .meets .bar span { transition: width .35s ease; }
-/* Grass rows are 46px, the 64px icon overhanging into the rows' padding: its
-   sprite sits in the middle of a mostly clear frame, and the shorter rows make
-   the twelve slots about as tall as the odds list beside them. */
-#mid table.slots tbody tr { height: 46px; }
+/* Grass rows are 58px, the 64px icon overhanging them by 3px a side. A party
+   icon draws its Pokemon low in a mostly clear frame, so a shorter row lets the
+   sprite cross the row's rule. 58 is what the rows measured while the species
+   cell was a flex box (before 2026-09-25), which is the look Ian had signed off. */
+#mid table.slots tbody tr { height: 58px; }
 #mid table.slots .ico { margin: -9px 0; }
 /* The water tables in brief, four across, wrapping on a narrow column. */
 #mid .water { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -118,8 +118,7 @@ section { overflow-y: auto; }
 #mid .wrow.gone { color: var(--faint); }
 #mid .wrow.gone .spname { text-decoration: line-through; }
 #mid .wrow.gone .ico { opacity: .35; }
-#mid .wrow.spent { color: var(--faint); }
-#mid .wrow.spent .ico { opacity: .35; }
+#mid .wrow.spent { opacity: .35; }
 #mid .wrow.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
 #mid table.grid tbody tr:hover { background: var(--sunken); }
 #mid td.rate { color: var(--dim); }
@@ -168,7 +167,9 @@ button:disabled { color: var(--faint); cursor: default; }
 /* Left list: a real table so the numbers line up down the column. The name
    has the whole first line to itself, so it is never cut short; the split
    tag, the catch and the numbers share the second, under labelled columns. */
-.colhead, .arow { grid-template-columns: 1fr 104px 76px 56px 48px; }
+/* No best-odds column (Ian, 2026-09-26): its width went to Caught, 156px so
+   the longest name on the list (Galarian Mr Mime) fits beside its icon. */
+.colhead, .arow { grid-template-columns: 1fr 156px 64px 48px; }
 .colhead { display: grid; gap: 4px; margin-top: 8px; font-size: 13px;
            color: var(--dim); align-items: end; line-height: 1.2; }
 .colhead .num { font-family: inherit; white-space: normal; }
@@ -192,7 +193,17 @@ button:disabled { color: var(--faint); cursor: default; }
    partly done rather than as a binary flag */
 .arow.p1 { opacity: .78; } .arow.p2 { opacity: .60; } .arow.p3 { opacity: .45; }
 .arow.done { opacity: .38; }
+/* A location's other tables once its one encounter is used elsewhere: nothing
+   there can be caught any more, so the row all but disappears. */
+.arow.spent { opacity: .22; }
+.arow.spent .chip { filter: grayscale(1); }
 .arow.done .l1 { text-decoration: line-through; }
+/* A one-spot group (the Old Chateau's rooms, the Lost Tower's floors) folds
+   under one row; its tables sit indented beneath it when it is open. */
+.agroup .fold { display: inline-block; width: 16px; color: var(--dim); }
+.agroup .l1 .sub { margin-left: 6px; }
+.arow.member { padding-left: 30px; box-shadow: inset 14px 0 0 var(--sunken); }
+.arow.member.sel { box-shadow: inset 14px 0 0 var(--sunken), inset 17px 0 0 var(--place-ink); }
 .flag { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
         margin-right: 6px; background: transparent; vertical-align: middle; }
 .flag.err { background: var(--error); }
@@ -207,8 +218,10 @@ table.grid th { text-align: left; font-weight: 600; font-size: 14px;
   color: var(--dim); padding: 4px 7px; border-bottom: 1px solid var(--rule); }
 table.grid th.num { text-align: right; }
 table.grid td { padding: 2px 7px; border-bottom: 1px solid var(--rule); }
-tr.gone td { color: var(--faint); }
-tr.gone .spname { text-decoration: line-through; }
+/* A slot caught elsewhere fades whole like a spent one, and its name is struck
+   through inside the combobox, which does not inherit the cell's decoration. */
+tr.gone td { opacity: .35; }
+tr.gone .spname, tr.gone .cb input { text-decoration: line-through; }
 input.lv { width: 48px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .ck { cursor: pointer; }
 
@@ -299,9 +312,9 @@ main[hidden] { display: none; }
    rather than on its own line. */
 #mid td.spname > .cell { display: flex; align-items: center; gap: 8px; }
 #mid td.spname .ico { margin-left: -2px; }
-tr.gone .ico { opacity: .35; }
-tr.spent td { color: var(--faint); }
-tr.spent .ico { opacity: .35; }
+/* A spent row fades whole, the name boxes with it, since an input keeps its
+   own text colour and a faint td colour barely shows. */
+tr.spent td { opacity: .35; }
 tr.got td { background: color-mix(in srgb, var(--act) 16%, transparent); }
 tr.got .spname { font-weight: 600; }
 /* In the tables view a species' icon opens its dex page. The editable name
@@ -521,7 +534,6 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <button data-k="level" class="on">Play order</button>
         <button data-k="area">Name</button>
         <button data-k="live_total">Left to catch</button>
-        <button data-k="best_share">Best odds</button>
         <button data-k="warns">Problems</button>
       </div>
       <div class="colhead">
@@ -529,7 +541,6 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <span title="The species recorded as this area's one catch">Caught</span>
         <span class="num" title="Lowest to highest level across the area's tables">Levels</span>
         <span class="num" title="Species you still need, out of every species across the area's tables">Left</span>
-        <span class="num" title="Your best chance of meeting the rarest species you still need here, with the best repel lead">Best odds</span>
       </div>
     </div>
     <div id="rows"></div>
@@ -660,7 +671,7 @@ const typeChip = (t, cls = "", label = tidy(t)) =>
 // League there is no leader, so Post is a plain tag.
 const SPLIT_TYPE = { Roark: "ROCK", Gardenia: "GRASS", Fantina: "GHOST",
   Maylene: "FIGHTING", Wake: "WATER", Byron: "STEEL", Candice: "ICE",
-  Volkner: "ELECTRIC", League: "DRAGON" };
+  Galactic: "DARK", Volkner: "ELECTRIC", League: "DRAGON" };
 const splitTag = (split, suffix = "") => !split ? ""
   : SPLIT_TYPE[split]
     ? `<span class="chip mini" style="--t: var(--type-${SPLIT_TYPE[split].toLowerCase()})">${esc(split + suffix)}</span>`
@@ -1189,6 +1200,23 @@ function drawHeader() {
 
 // ---- left ---------------------------------------------------------------
 
+// Ian's capture rule is one encounter per location name, so once any table of
+// a location holds the encounter, the location's other tables are spent.
+// {location: the area row holding its encounter}.
+function takenAt() {
+  const out = new Map();
+  ALL.forEach(r => { if (r.location && r.encounter && !out.has(r.location)) out.set(r.location, r); });
+  return out;
+}
+
+// Which one-spot groups are unfolded. A per-viewer convenience, so it lives in
+// the browser's storage when that is allowed and is simply forgotten when not.
+let OPEN_GROUPS = new Set();
+try { OPEN_GROUPS = new Set(JSON.parse(localStorage.getItem("oxide.openGroups") || "[]")); } catch (e) {}
+function saveOpenGroups() {
+  try { localStorage.setItem("oxide.openGroups", JSON.stringify([...OPEN_GROUPS])); } catch (e) {}
+}
+
 function drawList() {
   const q = $("#filter").value.trim().toLowerCase();
   let rows = ALL.slice();
@@ -1210,17 +1238,20 @@ function drawList() {
   else if (SORT === "live_total") rows.sort((a, b) => b.live_total - a.live_total);
   else rows.sort((a, b) => b[SORT] - a[SORT]);
 
-  $("#rows").innerHTML = rows.map(r => {
+  const taken = takenAt();
+  const rowHtml = (r, extra = "") => {
     const flag = r.errors ? "err" : (r.warns ? "wrn" : "");
+    const by = r.location && !r.encounter ? taken.get(r.location) : null;
     const gone = r.species_total - r.live_total;
     const frac = r.species_total ? gone / r.species_total : 0;
-    const fade = r.live_total === 0 ? "done"
+    const fade = by ? "spent" : r.live_total === 0 ? "done"
       : frac >= .66 ? "p3" : frac >= .34 ? "p2" : frac > 0 ? "p1" : "";
     const lv = r.level_min === r.level_max ? r.level_min
       : r.level_min + "–" + r.level_max;
     const water = r.kinds.length > 1 ? `<span class="sub">water</span>` : "";
-    return `<div class="arow ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
-        title="${esc(r.live_total ? (r.target_label
+    return `<div class="arow ${extra} ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
+        title="${esc(by ? r.location + "'s encounter is used: " + by.encounter_label + " in " + by.label
+          : r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
       <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
       <div class="l2">${splitTag(r.split)}${water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
@@ -1228,11 +1259,51 @@ function drawList() {
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
       <div class="num">${lv}</div>
       <div class="num">${r.live_total}/${r.species_total}</div>
-      <div class="num">${r.live_total ? pct(r.best_share) : "—"}</div>
     </div>`;
-  }).join("") || `<p class="sub" style="padding:12px">Nothing matches that.</p>`;
-  document.querySelectorAll("#rows .arow").forEach(el =>
+  };
+  // A group's row stands where its first table would, in whatever order the
+  // list is sorted; its tables follow it when it is open. A search opens
+  // every group, so a match is never hidden.
+  const groupHtml = (name, members, open) => {
+    const splits = [...new Set(members.map(m => m.split).filter(Boolean))];
+    const lo = Math.min(...members.map(m => m.level_min));
+    const hi = Math.max(...members.map(m => m.level_max));
+    const got = members.find(m => m.encounter);
+    const loc = members[0].location;
+    const by = !got && loc ? taken.get(loc) : null;
+    const design = { same: "identical", distinct: "distinct" }[members[0].group_design];
+    return `<div class="arow agroup ${by ? "spent" : ""}" data-g="${esc(name)}"
+        title="${esc(by ? loc + "'s encounter is used: " + by.encounter_label + " in " + by.label
+          : (open ? "Fold" : "Unfold") + " the " + members.length + " tables")}">
+      <div class="l1"><span class="fold">${open ? "\u25BE" : "\u25B8"}</span>${esc(name)}<span class="sub">${
+        members.length} tables${design ? ", " + design : ""}</span></div>
+      <div class="l2">${splits.map(sp => splitTag(sp)).join("")}</div>
+      <div class="enc ${got ? "" : "none"}">${got ? icon(got.encounter) : ""}<span class="lbl">${
+        esc(got ? got.encounter_label : "\u2014")}</span></div>
+      <div class="num">${lo === hi ? lo : lo + "\u2013" + hi}</div>
+      <div class="num"></div>
+    </div>`;
+  };
+  const members = new Map();
+  rows.forEach(r => { if (r.group) members.set(r.group, [...(members.get(r.group) || []), r]); });
+  const html = [], shown = new Set();
+  rows.forEach(r => {
+    const m = r.group ? members.get(r.group) : null;
+    if (!m || m.length < 2) { html.push(rowHtml(r)); return; }
+    if (shown.has(r.group)) return;
+    shown.add(r.group);
+    const open = !!q || OPEN_GROUPS.has(r.group);
+    html.push(groupHtml(r.group, m, open));
+    if (open) m.forEach(x => html.push(rowHtml(x, "member")));
+  });
+  $("#rows").innerHTML = html.join("") || `<p class="sub" style="padding:12px">Nothing matches that.</p>`;
+  document.querySelectorAll("#rows .arow:not(.agroup)").forEach(el =>
     el.onclick = () => select(el.dataset.a));
+  document.querySelectorAll("#rows .agroup").forEach(el => el.onclick = () => {
+    const g = el.dataset.g;
+    if (OPEN_GROUPS.has(g)) OPEN_GROUPS.delete(g); else OPEN_GROUPS.add(g);
+    saveOpenGroups(); drawList();
+  });
 }
 
 // ---- combobox -----------------------------------------------------------
@@ -1320,7 +1391,7 @@ function drawMid() {
   // A row's state: the Pokemon caught in this zone is highlighted, the rest of
   // the zone is spent once something here is caught, and a species caught in
   // another zone stays struck out as a dupe.
-  const caughtHere = !!d.encounter;
+  const caughtHere = !!d.encounter || (!!d.location && takenAt().has(d.location));
   const state = x => x.caught ? "got" : x.duped ? "gone" : caughtHere ? "spent" : "";
 
   // The area's water tables in brief, under the tables being edited, so all
@@ -1655,6 +1726,10 @@ async function reloadDetail() {
 async function select(name) {
   if (name !== SEL) { PLAN = null; PLAN_SP = null; }
   SEL = name;
+  // Opening a table from anywhere (a link, the dex, the back button) unfolds
+  // its group, so the selected row is never hidden inside a folded one.
+  const row = ALL.find(r => r.area === name);
+  if (row && row.group && !OPEN_GROUPS.has(row.group)) { OPEN_GROUPS.add(row.group); saveOpenGroups(); }
   try {
     DETAIL = await api(`/api/area/${name}?kind=${KIND}`);
     if (DETAIL.empty && DETAIL.kinds && DETAIL.kinds.length) {

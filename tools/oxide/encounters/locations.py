@@ -66,7 +66,7 @@ def location_of(root=None):
     names (none today) gets them joined with ' / '; a file no header uses
     gets its sidecar `planned_location` if it has one (a table built ahead of
     its map), else None (the Turnback Cave rooms and the twenty-five unknown
-    files)."""
+    files). A sidecar `capture_area` overrides both."""
     root = root or model.repo_root()
     names = label_names(root)
     out = {}
@@ -82,6 +82,12 @@ def location_of(root=None):
         planned = entry.get("planned_location")
         if planned and not out.get(stem):
             out[stem] = planned
+    # Ian's capture areas can be finer than the game's names: Mt. Coronet is
+    # five captures, not one (2026-09-26). A sidecar `capture_area` names the
+    # capture a table counts as, over whatever its header says.
+    for stem, entry in areas.items():
+        if entry.get("capture_area"):
+            out[stem] = entry["capture_area"]
     return out
 
 
