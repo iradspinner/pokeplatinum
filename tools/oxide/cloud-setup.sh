@@ -15,6 +15,18 @@
 # hook then lets builds run, and integrate.sh knows it is in the cloud.
 set -euo pipefail
 
+# The cloud image carries extra package sources (the deadsnakes and ondrej
+# PPAs on ppa.launchpadcontent.net) that the "Trusted" network level blocks
+# with 403, and one unreachable source makes `apt-get update` fail the whole
+# script (exit 100, 2026-09-25). This project needs neither, so they are
+# switched off first; Ubuntu's own archives are reachable.
+for f in /etc/apt/sources.list.d/*; do
+    [ -e "$f" ] || continue
+    if grep -qs "launchpadcontent.net\|ppa.launchpad.net" "$f"; then
+        mv "$f" "$f.disabled"
+    fi
+done
+
 apt-get update -y
 apt-get install -y --no-install-recommends \
     bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config \
