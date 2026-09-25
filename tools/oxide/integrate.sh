@@ -62,6 +62,9 @@ fi
 BASE="$HOME/roms/base.nds"
 VANILLA="$HOME/roms/vanilla.nds"
 ROM="${ROM_GIVEN:-build/pokeplatinum.us.nds}"
+# Test suites that check a built ROM read its path from OXIDE_ROM, so with
+# --rom they check the ROM given, not a stale one left in build/.
+export OXIDE_ROM="$ROM"
 PASS=(); FAIL=(); MERGED=(); WARN=()
 
 say()  { printf '\n== %s ==\n' "$*"; }
