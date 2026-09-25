@@ -1254,7 +1254,8 @@ function drawList() {
           : r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
       <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
-      <div class="l2">${splitTag(r.split)}${water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
+      <div class="l2">${splitTag(r.first_split || r.split)}${r.first_split && r.first_split !== r.split
+        ? `<span class="sub">grass ${esc(r.split)}</span>` : water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
       <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
       <div class="num">${lv}</div>
@@ -1265,7 +1266,7 @@ function drawList() {
   // list is sorted; its tables follow it when it is open. A search opens
   // every group, so a match is never hidden.
   const groupHtml = (name, members, open) => {
-    const splits = [...new Set(members.map(m => m.split).filter(Boolean))];
+    const splits = [...new Set(members.map(m => m.first_split || m.split).filter(Boolean))];
     const lo = Math.min(...members.map(m => m.level_min));
     const hi = Math.max(...members.map(m => m.level_max));
     const got = members.find(m => m.encounter);
