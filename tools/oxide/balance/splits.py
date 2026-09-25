@@ -3,7 +3,10 @@
     PYTHONPATH=. python3 -m tools.oxide.balance.splits
 
 A split is the stretch of the game before a gym, named for its leader
-(Roark to Volkner), then League and Post. A map belongs to the split in
+(Roark to Volkner), then League and Post. One split has no gym: Galactic,
+between Candice and Volkner, holds the Battle Zone and the Galactic fights
+from the Veilstone HQ to the Distortion World (Ian, 2026-09-25;
+docs/oxide/battle-zone-plan.md). A map belongs to the split in
 which the player can first reach it. It is resolved in this order:
 
 1. A map named in MAP_SPLITS, for the few whose name or location misleads
@@ -44,14 +47,14 @@ from ..encounters import locations
 from . import data
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
-          "Volkner", "League", "Post"]
+          "Galactic", "Volkner", "League", "Post"]
 
 # Maps whose location name or position would place them wrong. Checked
 # against the story fights fought on them.
 MAP_SPLITS = {
     "ETERNA_CITY_GALACTIC_BUILDING": "Fantina",   # Jupiter 1, after Gardenia
-    "GALACTIC_HQ": "Volkner",
-    "VEILSTONE_CITY_GALACTIC_WAREHOUSE": "Volkner",
+    "GALACTIC_HQ": "Galactic",
+    "VEILSTONE_CITY_GALACTIC_WAREHOUSE": "Galactic",
     "POKEMON_LEAGUE": "League",
 }
 
@@ -73,10 +76,13 @@ LOCATION_SPLITS = {
     "Celestic Town": "Byron", "Canalave City": "Byron", "Canalave Library": "Byron",
     "Snowpoint City": "Candice", "Valor Cavern": "Candice", "Verity Cavern": "Candice",
     "Acuity Cavern": "Candice",
-    "Galactic HQ": "Volkner", "Spear Pillar": "Volkner", "Distortion World": "Volkner",
+    "Galactic HQ": "Galactic", "Spear Pillar": "Galactic", "Distortion World": "Galactic",
+    # The Battle Zone opens with Snowpoint's ferry, after Candice. The
+    # Battleground's rematches and the Villa stay after the League.
+    "Fight Area": "Galactic", "Survival Area": "Galactic", "Resort Area": "Galactic",
     "Sunyshore City": "Volkner", "Sunyshore Market": "Volkner", "Vista Lighthouse": "Volkner",
     "Pokémon League": "League",
-    "Fight Area": "Post", "Survival Area": "Post", "Resort Area": "Post", "Villa": "Post",
+    "Villa": "Post",
     "Battleground": "Post", "Battle Frontier": "Post", "Battle Tower": "Post",
     "Battle Park": "Post", "Battle Factory": "Post", "Battle Hall": "Post",
     "Battle Castle": "Post", "Battle Arcade": "Post", "Fullmoon Island": "Post",
@@ -351,8 +357,9 @@ def trainer_weather(tr_id):
 
 # A mart's common stock opens in tiers by badge count (scrcmd_shop.c): tier 1
 # with none, 2 with one, 3 with three, 4 with five, 5 with seven, 6 with
-# eight. The split a tier opens in is the split after that many badges.
-MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "Volkner", 6: "League"}
+# eight. The split a tier opens in is the first split with that many badges;
+# seven badges come with Candice's, so tier 5 opens in Galactic.
+MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "Galactic", 6: "League"}
 # Each specialty stock, by the start of its table name, to its city's split.
 MART_TABLE_SPLIT = {
     "Jubilife": "Roark", "Oreburgh": "Roark", "Floaroma": "Gardenia", "Eterna": "Gardenia",

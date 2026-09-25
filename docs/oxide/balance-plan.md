@@ -6,22 +6,19 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-23).** Scoping is done, and the reference data is
-pinned outside the repo. B1a, B1b and B1d are built and tested (`test_b1` 43
-of 43). B2, the structural metrics, is built (`metrics.py`, `test_b2` 7 of
-7), but its check as the plan wrote it does not pass: nine of the fourteen
-metrics put vanilla, Renegade and Kaizo in order, and five do not. The
-check was narrowed to those nine after seeing the data, which is the first
-open question for Ian below. B1e, which trainers cannot be avoided, is built
-for the story path's 33 crossings of maps with trainers (`required.py`,
-`test_b1e` 6 of 6). Its own check waits on Ian: the second open question
-asks for the route trainers he knows he walks around. B1c, Odyssey from its
-ROM, is still open and carries little weight. B3, the player's side and
-pressure, is built for Oxide's own 28 fights (`pool.py`, `pressure.py`,
-`calc_headless.js`, `test_b3` 8 of 8), and was run a split at a time on the
-degraded CPU without a fault. Its check waits in part on Ian's in-game roll,
-and scoring the reference hacks' bosses against Oxide's side is its next
-step (B3b).
+**Where it stands (2026-09-25).** The tool knows the Galactic split Ian
+ruled in on 2026-09-25 (below), on branch `balance-galactic-split`, which
+merges the encounter track's branch so the two land together; every
+balance suite passes there, twice (`test_b1` 43, `test_b1e` 6, `test_b2` 7,
+`test_b3` 8). The pressure scores were recomputed for the new split and for
+the encounter track's recast tables. Done before that: B1a, B1b, B1d, B2,
+B1e (its check waits on Ian's route examples) and B3a. B3b, the reference
+hacks' bosses against Oxide's side, is parked on `wip-balance-b3b` since a
+Node process segfaulted on the degraded CPU with four cores busy on
+2026-09-23, and resumes on the new CPU. The Galactic fights are read against
+the new caps (the tables below), and the Battle Zone's trainers have a
+re-levelling proposal that waits on Ian. Next is B4, the level curve.
+Three questions wait on Ian (below).
 
 ## The target
 
@@ -70,6 +67,37 @@ Ian's rulings, 2026-09-22:
   changed. It is a design pass of its own (trainer placement and sight
   lines), and B1e measures which trainers are avoidable today so the pass
   has a list to work from and a way to check its result.
+
+Ian's rulings, 2026-09-23, after reading B3a:
+
+- **A Choice item is weaker in play than its score, and Choice items should
+  be rare in Oxide.** A Choice item locks its holder into one move, so the
+  player can bait the lock, switch in something that walls that move, and
+  win from there. B3a's finding that Choice Scarf bosses have almost no
+  answers overstates them for that reason. The scores are not expected to
+  model switching in full, but every table and report marks the Choice
+  holders so the reader can discount them, and says that a Choice-locked
+  boss plays weaker than its score. B3b, parked on `wip-balance-b3b`, adds
+  one cheap adjustment (answers counting the lock). For the item pass and
+  the trainer pass: Choice items are to be quite rare in Oxide, on both
+  sides.
+- **The rest of B3a's analysis stands.** Ian's next change to the base
+  ROM's content was already going to be a slight nerf to Gardenia's
+  Roserade. It is recorded here for the trainer design pass, and is not made
+  in the balance tooling.
+
+Ian's ruling, 2026-09-25 (`docs/oxide/battle-zone-plan.md` has the detail):
+
+- **A new split, Galactic, between Candice and Volkner.** It opens straight
+  after Lake Acuity and holds the whole Battle Zone (the Fight Area,
+  Routes 225 to 230, the Survival and Resort Areas, Stark Mountain) and
+  the Galactic fights up to the Distortion World (Veilstone HQ, the Mt.
+  Coronet climb, Spear Pillar). The caps are Candice 56, **Galactic 64**,
+  **Volkner 68** (up from 62) and League 78. Heatran becomes a draw from the
+  legendary pool; the Battleground's rematches are skipped for now and stay
+  after the League. The balance tool now keeps Ian's caps itself
+  (`fights.json`), since Galactic's and Volkner's run ahead of their bosses
+  until the trainer pass.
 
 ## What the first look found
 
@@ -322,15 +350,16 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 92 | 31 |
+| Roark | 16 | 90 | 29 |
 | Gardenia | 26 | 140 | 41 |
 | Fantina | 33 | 217 | 47 |
 | Maylene | 39 | 275 | 77 |
 | Wake | 44 | 299 | 87 |
-| Byron | 53 | 316 | 102 |
-| Candice | 56 | 321 | 105 |
-| Volkner | 62 | 323 | 116 |
-| League | 78 | 323 | 120 |
+| Byron | 53 | 318 | 102 |
+| Candice | 56 | 323 | 108 |
+| Galactic | 64 | 330 | 123 |
+| Volkner | 68 | 330 | 124 |
+| League | 78 | 330 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -339,9 +368,9 @@ most threatening Pokemon and its least answered one.
 
 | Fight | Threat | Answers | Worst threat | Fewest answers |
 |---|---|---|---|---|
-| Barry 1 | 0.00 | 0.96 | 0.00 | 0.95 |
-| Barry 2 | 0.01 | 0.64 | 0.01 | 0.50 |
-| Roark | 0.13 | 0.18 | 0.45 | 0.05 |
+| Barry 1 | 0.00 | 0.96 | 0.00 | 0.94 |
+| Barry 2 | 0.01 | 0.63 | 0.01 | 0.47 |
+| Roark | 0.13 | 0.17 | 0.44 | 0.04 |
 | Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
 | Gardenia | 0.68 | 0.05 | 0.91 | 0.01 |
 | Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
@@ -356,23 +385,29 @@ most threatening Pokemon and its least answered one.
 | Saturn 1 | 0.46 | 0.24 | 0.78 | 0.09 |
 | Mars 2 | 0.26 | 0.15 | 0.51 | 0.04 |
 | Candice | 0.73 | 0.14 | 0.97 | 0.00 |
-| Cyrus 2 | 0.38 | 0.18 | 0.81 | 0.04 |
-| Saturn 2 | 0.53 | 0.21 | 0.82 | 0.09 |
-| Mars and Jupiter | 0.33 | 0.26 | 0.68 | 0.06 |
-| Cyrus 3 | 0.69 | 0.11 | 0.97 | 0.03 |
-| Volkner | 0.75 | 0.09 | 0.94 | 0.01 |
-| Barry 6 | 0.54 | 0.20 | 0.91 | 0.05 |
-| Aaron | 0.58 | 0.17 | 0.75 | 0.07 |
-| Bertha | 0.49 | 0.27 | 0.76 | 0.01 |
-| Flint | 0.69 | 0.11 | 0.92 | 0.03 |
-| Lucian | 0.61 | 0.24 | 0.93 | 0.03 |
-| Cynthia | 0.69 | 0.11 | 0.90 | 0.01 |
+| Cyrus 2 | 0.35 | 0.24 | 0.77 | 0.06 |
+| Saturn 2 | 0.49 | 0.30 | 0.77 | 0.14 |
+| Mars and Jupiter | 0.30 | 0.34 | 0.63 | 0.11 |
+| Cyrus 3 | 0.65 | 0.16 | 0.95 | 0.04 |
+| Volkner | 0.65 | 0.17 | 0.89 | 0.02 |
+| Barry 6 | 0.54 | 0.24 | 0.91 | 0.05 |
+| Aaron | 0.58 | 0.19 | 0.74 | 0.09 |
+| Bertha | 0.49 | 0.30 | 0.76 | 0.01 |
+| Flint | 0.69 | 0.14 | 0.92 | 0.04 |
+| Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
+| Cynthia | 0.68 | 0.14 | 0.90 | 0.02 |
 
-These are raw scores, not ratings: B5 turns them into a band by scoring
-the reference hacks the same way. What they already show:
+Both tables were recomputed on 2026-09-25, for the Galactic split and the
+encounter track's recast tables (Roark's side fell from 92 to 90 species,
+Byron's and Candice's rose by two). The Galactic fights are scored at 64
+and Volkner at 68, so they read softer than before: Volkner's threat fell
+from 0.75 to 0.65, because the player is now scored at 68 against his
+team's 62. That is the gap the trainer pass closes, not a change in his
+fight. These are raw scores, not ratings: B5 turns them into a band by
+scoring the reference hacks the same way. What they already show:
 
 - **Gardenia is the largest step in the game.** Roark's fight threatens 13
-  percent of the side and Gardenia's 68, level with Cynthia's 69. Her
+  percent of the side and Gardenia's 68, level with Cynthia's 68. Her
   Roserade alone knocks out 91 percent of the side within two turns while
   moving first, and 1 percent answers it. The plan wants Gardenia to reach
   the target and the curve to hold after; whether 0.68 is the target is
@@ -380,7 +415,7 @@ the reference hacks the same way. What they already show:
 - **Choice Scarf and rain leave bosses with no answer.** Nothing at the cap
   outspeeds a scarfed boss, so only priority answers Wake's Poliwrath,
   Candice's Mamoswine, Volkner's Electivire, Bertha's Gliscor or Cynthia's
-  Lucario (1 percent or less each). Pastoria Gym's rain doubles Floatzel's
+  Lucario (2 percent or less each). Pastoria Gym's rain doubles Floatzel's
   and Ludicolo's Speed through Swift Swim, and they come out at 1 percent
   and under.
 - **Byron is soft between two peaks**: 0.33 against Wake's 0.74 and
@@ -412,6 +447,31 @@ browser is many processes. The in-game roll is still Ian's (encounter build
 plan, M8), and the calculator's order for a dual type's two factors (Crunch
 into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
 the encounter track's patch lands.
+
+**A re-levelling proposal for the Battle Zone** (2026-09-25, for Ian;
+nothing is changed in `res/trainers/`). The tracker asks for the zone's
+trainers to come down from about 75 to Galactic's cap of 64. Elsewhere a
+split's filler sits a median 4 to 10 levels under its cap (the League 15),
+and the zone sits 9 to 14 over it:
+
+| Where | Trainers | Levels now | With 14 off |
+|---|---|---|---|
+| Routes 225 and 230 | 14 | 73 to 74 | 59 to 60 |
+| Routes 226, 228, 229 | 16 | 73 to 77 | 59 to 63 |
+| Route 227 | 4 | 76 to 78 | 62 to 64 |
+| Stark Mountain, with Mars and Jupiter | 19 | 77 to 78 | 63 to 64 |
+| Buck, the player's partner at Stark Mountain | 1 | 78 | 64 |
+
+The proposal takes 14 off every level of every zone trainer above the cap.
+That puts the strongest at the cap exactly, keeps each party's spread and
+the routes' order, and leaves the one trainer already under it (Dragon
+Tamer Keegan on Route 228, 57) alone. It makes the zone the hardest filler
+before Volkner, at 0 to 5 under the cap, where Candice's split sits at a
+median of 4.5 under. The gentler choice is 18 off (55 to 60), the usual
+filler depth. Volkner and Flint's tag battle at the Fight Area (74 to 75)
+is left out: once the main track gates it behind the Beacon Badge it is a
+League-split fight, where 75 already fits a cap of 78. Until that gate
+lands, `splits.py` still counts it in Galactic.
 
 ## What gets measured
 
@@ -560,14 +620,19 @@ disagrees with them.
 
 ## Open questions for Ian
 
-1. **B2's check was narrowed after the data came in** (2026-09-23). The
+1. **The Battle Zone's re-levelling** (2026-09-25, above "What gets
+   measured"): 14 off, which puts the zone's strongest trainers at the cap
+   of 64, or 18 off, the usual filler depth? The change itself is the
+   trainer pass's, so it waits on this answer and on the Overseer.
+
+2. **B2's check was narrowed after the data came in** (2026-09-23). The
    plan said vanilla, Renegade and Kaizo should come out in order on almost
    every metric; they do on nine of fourteen. The five that do not (IVs,
    natures, priority, speed control, recovery) look like style rather than
    strength, so B2 is marked done with the test pinning the nine, and B5's
    fit is left to weight the five low. Nothing waits on this; if you read
    Kaizo as harder partly because of move choice, say so and B5 keeps them.
-2. **Which route trainers do you know you walk around, and which can you
+3. **Which route trainers do you know you walk around, and which can you
    not?** (2026-09-23.) B1e's check is a handful of your own examples. The
    model says Route 202's three trainers are required and Route 203's five,
    Route 206's nine and Route 218's four are all avoidable; a yes or no on
