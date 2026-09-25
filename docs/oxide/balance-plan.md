@@ -9,16 +9,15 @@ the same day, and his answers are recorded below as decisions.
 **Where it stands (2026-09-25).** The tool knows the Galactic split Ian
 ruled in on 2026-09-25 (below), on branch `balance-galactic-split`, which
 merges the encounter track's branch so the two land together; every
-balance suite passes there, twice (`test_b1` 43, `test_b1e` 6, `test_b2` 7,
+balance suite passes there, twice (`test_b1` 43, `test_b1e` 7, `test_b2` 7,
 `test_b3` 8). The pressure scores were recomputed for the new split and for
-the encounter track's recast tables. Done before that: B1a, B1b, B1d, B2,
-B1e (its check waits on Ian's route examples) and B3a. B3b, the reference
-hacks' bosses against Oxide's side, is parked on `wip-balance-b3b` since a
-Node process segfaulted on the degraded CPU with four cores busy on
-2026-09-23, and resumes on the new CPU. The Galactic fights are read against
-the new caps (the tables below), and the Battle Zone's trainers have a
-re-levelling proposal that waits on Ian. Next is B4, the level curve.
-Three questions wait on Ian (below).
+the encounter track's recast tables. Done: B1a, B1b, B1d, B1e (now checked
+against Ian's routes), B2 and B3a. B3b, the reference hacks' bosses
+against Oxide's side, is parked on `wip-balance-b3b` since a Node process
+segfaulted on the degraded CPU with four cores busy on 2026-09-23, and
+resumes on the new CPU. Ian chose to bring the Battle Zone down 18 levels;
+the edit waits on the Overseer. B4, the level curve, is next. No questions
+are open.
 
 ## The target
 
@@ -98,6 +97,26 @@ Ian's ruling, 2026-09-25 (`docs/oxide/battle-zone-plan.md` has the detail):
   after the League. The balance tool now keeps Ian's caps itself
   (`fights.json`), since Galactic's and Volkner's run ahead of their bosses
   until the trainer pass.
+
+Ian's answers, 2026-09-25, to the three open questions:
+
+- **The Battle Zone comes down 18 levels**, not 14, to 55 to 60. It sits
+  just before what is meant to be **the hardest stretch outside the Elite
+  Four: the Galactic fights and the Mt. Coronet climb**, so the zone may
+  run a little low. That also answers the curve's shape past Gardenia: it
+  holds at the target, with a deliberate peak at the end of the Galactic
+  split.
+- **IVs and natures matter, but they do not separate the ratings.** They
+  make every number harder, and they come close to optimised even in games
+  Ian rates 5 or 6. So B5 treats them as a floor Oxide must meet (it does:
+  IVs near the ceiling, natures read as picked) rather than as a measure
+  that moves a fight up the scale. Priority, speed control and recovery are
+  weighted low, as B2 found.
+- **B1e reads the routes as Ian played them**: Route 202's three trainers
+  cannot be walked around, and Route 203's five, Route 206's nine and
+  Route 218's four all can. He found the base ROM had far too few ordinary
+  fights outside the gyms and bosses, and wants that addressed; the
+  trainer placement pass is where it happens.
 
 ## What the first look found
 
@@ -448,30 +467,29 @@ plan, M8), and the calculator's order for a dual type's two factors (Crunch
 into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
 the encounter track's patch lands.
 
-**A re-levelling proposal for the Battle Zone** (2026-09-25, for Ian;
-nothing is changed in `res/trainers/`). The tracker asks for the zone's
-trainers to come down from about 75 to Galactic's cap of 64. Elsewhere a
-split's filler sits a median 4 to 10 levels under its cap (the League 15),
-and the zone sits 9 to 14 over it:
+**The Battle Zone's re-levelling** (2026-09-25; Ian chose 18 off). The
+tracker asked for the zone's trainers to come down from about 75 to
+Galactic's cap of 64. Elsewhere a split's filler sits a median 4 to 10
+levels under its cap (the League 15), and the zone sat 9 to 14 over it:
 
-| Where | Trainers | Levels now | With 14 off |
+| Where | Trainers | Levels now | With 18 off |
 |---|---|---|---|
-| Routes 225 and 230 | 14 | 73 to 74 | 59 to 60 |
-| Routes 226, 228, 229 | 16 | 73 to 77 | 59 to 63 |
-| Route 227 | 4 | 76 to 78 | 62 to 64 |
-| Stark Mountain, with Mars and Jupiter | 19 | 77 to 78 | 63 to 64 |
-| Buck, the player's partner at Stark Mountain | 1 | 78 | 64 |
+| Routes 225 and 230 | 14 | 73 to 74 | 55 to 56 |
+| Routes 226, 228, 229 | 16 | 73 to 77 | 55 to 59 |
+| Route 227 | 4 | 76 to 78 | 58 to 60 |
+| Stark Mountain, with Mars and Jupiter | 19 | 77 to 78 | 59 to 60 |
+| Buck, the player's partner at Stark Mountain | 1 | 78 | 60 |
 
-The proposal takes 14 off every level of every zone trainer above the cap.
-That puts the strongest at the cap exactly, keeps each party's spread and
-the routes' order, and leaves the one trainer already under it (Dragon
-Tamer Keegan on Route 228, 57) alone. It makes the zone the hardest filler
-before Volkner, at 0 to 5 under the cap, where Candice's split sits at a
-median of 4.5 under. The gentler choice is 18 off (55 to 60), the usual
-filler depth. Volkner and Flint's tag battle at the Fight Area (74 to 75)
-is left out: once the main track gates it behind the Beacon Badge it is a
-League-split fight, where 75 already fits a cap of 78. Until that gate
-lands, `splits.py` still counts it in Galactic.
+Every level of every zone trainer above the cap comes down 18. That keeps
+each party's spread and the routes' order, and puts the zone at the usual
+filler depth, 4 to 9 under the cap, just ahead of the Galactic fights Ian
+means to be the hardest stretch before the League. The one trainer already
+under the cap (Dragon Tamer Keegan on Route 228, 57) stays. So does Volkner
+and Flint's tag battle at the Fight Area (74 to 75): once the main track
+gates it behind the Beacon Badge it is a League-split fight, where 75
+already fits a cap of 78. Until that gate lands, `splits.py` still counts
+it in Galactic. The edit itself is in `res/trainers/`, which the Overseer
+coordinates; it is not made yet.
 
 ## What gets measured
 
@@ -620,25 +638,7 @@ disagrees with them.
 
 ## Open questions for Ian
 
-1. **The Battle Zone's re-levelling** (2026-09-25, above "What gets
-   measured"): 14 off, which puts the zone's strongest trainers at the cap
-   of 64, or 18 off, the usual filler depth? The change itself is the
-   trainer pass's, so it waits on this answer and on the Overseer.
-
-2. **B2's check was narrowed after the data came in** (2026-09-23). The
-   plan said vanilla, Renegade and Kaizo should come out in order on almost
-   every metric; they do on nine of fourteen. The five that do not (IVs,
-   natures, priority, speed control, recovery) look like style rather than
-   strength, so B2 is marked done with the test pinning the nine, and B5's
-   fit is left to weight the five low. Nothing waits on this; if you read
-   Kaizo as harder partly because of move choice, say so and B5 keeps them.
-3. **Which route trainers do you know you walk around, and which can you
-   not?** (2026-09-23.) B1e's check is a handful of your own examples. The
-   model says Route 202's three trainers are required and Route 203's five,
-   Route 206's nine and Route 218's four are all avoidable; a yes or no on
-   those, plus any others you remember either way, is enough. B1e is built
-   and waits only on this; the placement pass should not start until it is
-   checked.
+None. Ian answered the last three on 2026-09-25 (above).
 
 ## Order of work
 
@@ -678,7 +678,7 @@ disagrees with them.
     marts and the Game Corner. The check that matters: 27 of the 28 story
     fights land in the split Ian's sheet gives them from map data alone, and
     the 28th, Mars at Lake Verity, is a return visit to a Roark-split map.
-- [ ] **B1e, required trainers.** For each split, which trainers the player
+- [x] **B1e, required trainers** (checked 2026-09-25 against Ian's own routes, `test_b1e` 7 of 7). For each split, which trainers the player
   cannot avoid. A trainer is unavoidable when no walkable path through its
   map gets from where the player enters to where they must leave without
   stepping into its sight. Everything needed is in the tree: each trainer's

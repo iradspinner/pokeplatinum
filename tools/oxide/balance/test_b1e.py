@@ -60,6 +60,21 @@ def check_route_202(results):
     results.append(("Route 202's three trainers are required", ok, str(got)))
 
 
+def check_ian_examples(results):
+    """Ian's own reading of the base ROM (2026-09-25): Route 203's five,
+    Route 206's nine and Route 218's four trainers can all be walked around,
+    and Route 202's three cannot. This is B1e's check against play."""
+    def verdicts(split, header):
+        row = next(c for c in R.CROSSINGS if c[:2] == (split, header))
+        return [v for _t, v in R.crossing(*row)]
+    got = {h: verdicts(s, h) for s, h in (("Roark", "ROUTE_203"), ("Fantina", "ROUTE_206"),
+                                          ("Byron", "ROUTE_218"))}
+    want = {"ROUTE_203": 5, "ROUTE_206": 9, "ROUTE_218": 4}
+    ok = all(len(got[h]) == n and set(got[h]) == {"avoidable"} for h, n in want.items())
+    results.append(("Ian's avoidable routes come out avoidable", ok,
+                    ", ".join(f"{h} {len(v)} {sorted(set(v))}" for h, v in got.items())))
+
+
 def check_gates(results):
     """Field moves and story gates hold trainers back until their split:
     Route 213's swimmers need Surf, which Wake's split lacks, and the
@@ -112,7 +127,7 @@ def check_totals(results):
 
 def main():
     results = []
-    for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202,
+    for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
                   check_gates, check_late_visits, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
