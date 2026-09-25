@@ -458,6 +458,8 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildShuckle, 9
     AddListMenuEntry TestKit_Text_MenuWildLugia, 10
     AddListMenuEntry TestKit_Text_MenuWildSkarmory, 11
+    AddListMenuEntry TestKit_Text_MenuWildHorsea, 12
+    AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -472,6 +474,8 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 9, TestKit_WildShuckle
     GoToIfEq VAR_0x8004, 10, TestKit_WildLugia
     GoToIfEq VAR_0x8004, 11, TestKit_WildSkarmory
+    GoToIfEq VAR_0x8004, 12, TestKit_WildHorsea
+    GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -556,6 +560,23 @@ TestKit_WildSkarmory:
     StartWildBattle SPECIES_SKARMORY, 50
     GoTo TestKit_AfterBattle
 
+/* At Lv. 1 Horsea knows only Bubble, which hits every foe, and Glameow only
+   Fake Out, which has raised priority: attackers for Wide Guard and Quick
+   Guard (set 30). */
+TestKit_WildHorsea:
+    Message TestKit_Text_WildHorsea
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_HORSEA, 1
+    GoTo TestKit_AfterBattle
+
+TestKit_WildGlameow:
+    Message TestKit_Text_WildGlameow
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_GLAMEOW, 1
+    GoTo TestKit_AfterBattle
+
 TestKit_AfterBattle:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
@@ -601,6 +622,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet27, 26
     AddListMenuEntry TestKit_Text_MenuSet28, 27
     AddListMenuEntry TestKit_Text_MenuSet29, 28
+    AddListMenuEntry TestKit_Text_MenuSet30, 29
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -631,6 +653,7 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet27
     GoToIfEq VAR_0x8004, 27, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 28, TestKit_MoveSet29
+    GoToIfEq VAR_0x8004, 29, TestKit_MoveSet30
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -883,6 +906,17 @@ TestKit_MoveSet29:
     SetVar VAR_0x8007, MOVE_HAIL
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 30: the four side guards, each against the foe it should stop: Wide
+   Guard against the wild Horsea's Bubble, Quick Guard against the wild
+   Glameow's Fake Out, Mat Block against the wild Skarmory on the first turn
+   only, and Crafty Shield against the wild Lugia's Whirlwind. */
+TestKit_MoveSet30:
+    SetVar VAR_0x8006, MOVE_WIDE_GUARD
+    SetVar VAR_0x8007, MOVE_QUICK_GUARD
+    SetVar VAR_0x8008, MOVE_MAT_BLOCK
+    SetVar VAR_0x8009, MOVE_CRAFTY_SHIELD
     GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in

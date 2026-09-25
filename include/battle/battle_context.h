@@ -65,7 +65,8 @@ typedef struct TurnFlags {
     u32 roosting : 1;
     u32 fleeing : 2;
     u32 enduring : 1;
-    u32 padding00_0A : 22;
+    u32 sideGuard : 3; // Oxide, one of SIDE_GUARD_*, from the padding
+    u32 padding00_0D : 19;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

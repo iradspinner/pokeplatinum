@@ -5178,7 +5178,10 @@ static const u16 sProtectSuccessRate[] = {
 };
 
 /**
- * @brief Try to execute the Protect or Endure effects.
+ * @brief Try to execute the Protect or Endure effects, or Oxide's side guards
+ * (Wide Guard, Quick Guard, Mat Block and Crafty Shield), which
+ * BattleControllerPlayer_CheckMoveHitOverrides then applies to the user's
+ * whole side for the rest of the turn.
  *
  * Inputs:
  * 1. The distance to jump if the effect fails to execute.
@@ -5196,9 +5199,13 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
+    // Oxide: Wide Guard and Quick Guard share Protect's run of successes, as
+    // in hg-engine, so either keeps the run going.
     if (battleCtx->moveProtect[battleCtx->attacker] != MOVE_PROTECT
         && battleCtx->moveProtect[battleCtx->attacker] != MOVE_DETECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE) {
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_WIDE_GUARD
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_QUICK_GUARD) {
         battleCtx->battleMons[battleCtx->attacker].moveEffectsData.protectSuccessTurns = 0;
     }
 
@@ -5209,7 +5216,17 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
         moreBattlersThisTurn = TRUE;
     }
 
-    if (sProtectSuccessRate[ATTACKING_MON.moveEffectsData.protectSuccessTurns] >= BattleSystem_RandNext(battleSys)
+    // Oxide: the four side guards never roll against the run, as in
+    // hg-engine, and Mat Block works only on its user's first turn out, which
+    // is Fake Out's test.
+    BOOL sideGuard = CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT_USER_SIDE;
+    if (sideGuard
+        && battleCtx->moveCur == MOVE_MAT_BLOCK
+        && ATTACKING_MON.moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns) {
+        moreBattlersThisTurn = FALSE;
+    }
+
+    if ((sideGuard || sProtectSuccessRate[ATTACKING_MON.moveEffectsData.protectSuccessTurns] >= BattleSystem_RandNext(battleSys))
         && moreBattlersThisTurn) {
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT) {
             ATTACKER_TURN_FLAGS.protecting = TRUE;
@@ -5221,10 +5238,35 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
             battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself_Ally; // "{0} braced itself!"
         }
 
-        battleCtx->msgBuffer.tags = TAG_NICKNAME;
-        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+        if (sideGuard) {
+            switch (battleCtx->moveCur) {
+            case MOVE_WIDE_GUARD:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_WIDE_GUARD;
+                break;
+            case MOVE_QUICK_GUARD:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_QUICK_GUARD;
+                break;
+            case MOVE_MAT_BLOCK:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_MAT_BLOCK;
+                break;
+            default:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_CRAFTY_SHIELD;
+                break;
+            }
 
-        if (ATTACKING_MON.moveEffectsData.protectSuccessTurns < NELEMS(sProtectSuccessRate) - 1) {
+            battleCtx->msgBuffer.id = BattleStrings_Text_MoveProtectedYourTeam; // "{0} protected [your/its] team!"
+            battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+            battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+            battleCtx->msgBuffer.params[1] = battleCtx->attacker;
+        } else {
+            battleCtx->msgBuffer.tags = TAG_NICKNAME;
+            battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+        }
+
+        // Oxide: Mat Block and Crafty Shield do not add to the run.
+        if (ATTACKING_MON.moveEffectsData.protectSuccessTurns < NELEMS(sProtectSuccessRate) - 1
+            && battleCtx->moveCur != MOVE_MAT_BLOCK
+            && battleCtx->moveCur != MOVE_CRAFTY_SHIELD) {
             ATTACKING_MON.moveEffectsData.protectSuccessTurns++;
         }
     } else {
