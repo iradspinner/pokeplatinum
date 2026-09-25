@@ -315,6 +315,7 @@ static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static int BattleScript_Read(BattleContext *battleCtx);
@@ -6611,11 +6612,12 @@ static BOOL BtlCmd_CalcRevengePowerMul(BattleSystem *battleSys, BattleContext *b
 }
 
 /**
- * @brief Try to break Reflect and Light Screen on the defending side.
+ * @brief Try to break Reflect, Light Screen and Oxide's Aurora Veil on the
+ * defending side.
  *
  * Inputs:
- * 1. The distance to jump if neither Reflect nor Light Screen are active on
- * the defending side.
+ * 1. The distance to jump if none of the three is active on the defending
+ * side.
  *
  * @param battleSys
  * @param battleCtx
@@ -6628,11 +6630,14 @@ static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battl
     int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_REFLECT)
-        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)) {
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_AURORA_VEIL)) { // Oxide
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_REFLECT;
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_AURORA_VEIL;
         battleCtx->sideConditions[defending].reflectTurns = 0;
         battleCtx->sideConditions[defending].lightScreenTurns = 0;
+        battleCtx->sideConditions[defending].auroraVeilTurns = 0;
     } else {
         BattleScript_Iter(battleCtx, jumpIfNoScreens);
     }
@@ -9808,6 +9813,51 @@ static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleC
     }
 
     battleCtx->battlerActionOrder[pos] = battler;
+
+    return FALSE;
+}
+
+/**
+ * @brief Try to set Oxide's Aurora Veil for the user's side, as TryReflect
+ * sets Reflect: five turns, eight with Light Clay.
+ *
+ * It fails when the side already has one, and when it is not hailing, which
+ * hg-engine checks before the move and Platinum has no place for. Cloud Nine
+ * and Air Lock count as no hail, as in the games; hg-engine reads the weather
+ * flag alone.
+ *
+ * Inputs:
+ * 1. The jump distance if it fails.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
+
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_AURORA_VEIL)
+        || NO_CLOUD_NINE == FALSE
+        || WEATHER_IS_HAIL == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        BattleScript_Iter(battleCtx, jump);
+    } else {
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_AURORA_VEIL;
+        battleCtx->sideConditions[side].auroraVeilTurns = NUM_SCREEN_TURNS;
+
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].auroraVeilTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
+        }
+
+        battleCtx->msgBuffer.id = BattleStrings_Text_MoveRaisedYourTeamsDefenseAndSpecialDefense; // "{0} raised [your/its] team's Defense and Special Defense!"
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
+    }
 
     return FALSE;
 }

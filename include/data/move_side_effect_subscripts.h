@@ -208,5 +208,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_LASER_FOCUS]                      = subscript_laser_focus,
     [MOVE_SUBSCRIPT_PTR_SMACK_DOWN]                       = subscript_smack_down,
     [MOVE_SUBSCRIPT_PTR_AFTER_YOU]                        = subscript_handle_after_you,
+    [MOVE_SUBSCRIPT_PTR_AURORA_VEIL]                      = subscript_aurora_veil,
 };
 // clang-format on

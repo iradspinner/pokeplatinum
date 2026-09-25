@@ -506,6 +506,9 @@ C_REVIEWED = {
     305: "BeforeMove fails the move when the target has already acted; ChangeExecutionOrderPriority "
          "checks the same, and moves the target's entry in battlerActionOrder where hg-engine flags "
          "it for its speed comparison",
+    377: "BeforeMove fails the move without hail or when the side already has a veil; TryAuroraVeil "
+         "checks the same (and treats Cloud Nine and Air Lock as no hail); the damage halving, the "
+         "countdown, Brick Break and Defog are ported beside Reflect's and Light Screen's",
 }
 
 # Commands whose arguments at these positions are battle script variables, so

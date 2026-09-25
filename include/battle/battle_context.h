@@ -51,7 +51,8 @@ typedef struct SideConditions {
 
     u32 spikesLayers : 2;
     u32 toxicSpikesLayers : 2;
-    u32 padding04_04 : 28;
+    u32 auroraVeilTurns : 3; // Oxide, from the padding, so the struct keeps its size
+    u32 padding04_07 : 25;
 } SideConditions;
 
 typedef struct TurnFlags {
