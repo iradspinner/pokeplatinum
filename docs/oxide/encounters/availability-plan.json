@@ -183,6 +183,12 @@
       "tail": ["SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_MINCCINO", "SPECIES_BUNEARY", "SPECIES_GROVYLE", "SPECIES_SERVINE"],
       "note": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s."
     },
+    "encounters_amity_square": {
+      "home": [],
+      "cameo": ["SPECIES_SKITTY", "SPECIES_SWABLU", "SPECIES_PACHIRISU", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FLABEBE", "SPECIES_MINCCINO", "SPECIES_EMOLGA", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_TOGEPI", "SPECIES_PICHU"],
+      "note": "Hearthome's park, a new capture area waiting on its map: the Trophy Garden's cute lines at very low levels, every one a cameo from its home elsewhere, Togepi and Pichu as the 4% and 1%. A draft for Ian."
+    },
     "encounters_mt_coronet_1f_south": {
       "home": ["SPECIES_GLIMMET"],
       "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_SNOM", "SPECIES_SWINUB", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_SNORUNT"],

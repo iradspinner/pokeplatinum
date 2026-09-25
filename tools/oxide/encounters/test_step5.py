@@ -1,7 +1,7 @@
 """Authoring plan Step 5, the no-leak pass on everything that is not a land
 or water slot: swarms, the Poke Radar, the five dual-slot lists, the honey
 tree tiers, the Great Marsh lookout pools, the Trophy Garden's daily
-visitor, and the twelve land tables the game never rolls.
+visitor, and the thirteen land tables the game never rolls.
 
     PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5
 
@@ -204,11 +204,11 @@ def check_inactive(results):
                 levels.append((a.name, lv))
         for layer in ("day", "night"):
             off += [(a.name, s) for s in (a.data.get(layer) or []) if s not in listed]
-    results.append(("all twelve tables the game never rolls (land_rate 0) hold on-list "
+    results.append(("all thirteen tables the game never rolls (land_rate 0) hold on-list "
                     "species at a real level, day and night included",
-                    len(dead) == 12 and not off and not levels,
+                    len(dead) == 13 and not off and not levels,
                     f"{len(dead)} tables; {len(off)} off-list, {len(levels)} at level 0"))
-    results.append(("they are the twelve the sidecar names inactive",
+    results.append(("they are the thirteen the sidecar names inactive",
                     sorted(a.name for a in dead) == sorted(sidecar["inactive_areas"]), ""))
 
 

@@ -1,0 +1,213 @@
+{
+    "land_rate": 0,
+    "land_encounters": [
+        {
+            "level": 28,
+            "species": "SPECIES_GALARIAN_MR_MIME"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_TOUCANNON"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_QUAGSIRE"
+        },
+        {
+            "level": 29,
+            "species": "SPECIES_ARAQUANID"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_GLAMEOW"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_FLOATZEL"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_QUAGSIRE"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_ARAQUANID"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_SHELLOS"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_LIEPARD"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_SHELLOS"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_LIEPARD"
+        }
+    ],
+    "swarms": [
+        "SPECIES_TOGEDEMARU",
+        "SPECIES_MAGBY"
+    ],
+    "day": [
+        "SPECIES_FLETCHINDER",
+        "SPECIES_MINCCINO"
+    ],
+    "night": [
+        "SPECIES_GLAMEOW",
+        "SPECIES_LIEPARD"
+    ],
+    "radar": [
+        "SPECIES_MR_RIME",
+        "SPECIES_PURUGLY",
+        "SPECIES_TALONFLAME",
+        "SPECIES_CINCCINO"
+    ],
+    "rate_form0": 0,
+    "rate_form1": 0,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_SWAMPERT",
+        "SPECIES_WHISCASH"
+    ],
+    "sapphire": [
+        "SPECIES_SWAMPERT",
+        "SPECIES_WHISCASH"
+    ],
+    "emerald": [
+        "SPECIES_BRELOOM",
+        "SPECIES_TRAPINCH"
+    ],
+    "firered": [
+        "SPECIES_GASTLY",
+        "SPECIES_WARTORTLE"
+    ],
+    "leafgreen": [
+        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_BLASTOISE"
+    ],
+    "surf_rate": 0,
+    "surf_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "old_rod_rate": 25,
+    "old_rod_encounters": [
+        {
+            "level_max": 20,
+            "level_min": 16,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 20,
+            "level_min": 16,
+            "species": "SPECIES_FINNEON"
+        },
+        {
+            "level_max": 21,
+            "level_min": 17,
+            "species": "SPECIES_TENTACOOL"
+        },
+        {
+            "level_max": 21,
+            "level_min": 17,
+            "species": "SPECIES_LUVDISC"
+        },
+        {
+            "level_max": 22,
+            "level_min": 18,
+            "species": "SPECIES_REMORAID"
+        }
+    ],
+    "good_rod_rate": 50,
+    "good_rod_encounters": [
+        {
+            "level_max": 34,
+            "level_min": 28,
+            "species": "SPECIES_FINNEON"
+        },
+        {
+            "level_max": 34,
+            "level_min": 28,
+            "species": "SPECIES_LANTURN"
+        },
+        {
+            "level_max": 36,
+            "level_min": 30,
+            "species": "SPECIES_TENTACOOL"
+        },
+        {
+            "level_max": 36,
+            "level_min": 30,
+            "species": "SPECIES_REMORAID"
+        },
+        {
+            "level_max": 38,
+            "level_min": 32,
+            "species": "SPECIES_MANTYKE"
+        }
+    ],
+    "super_rod_rate": 75,
+    "super_rod_encounters": [
+        {
+            "level_max": 46,
+            "level_min": 38,
+            "species": "SPECIES_LUMINEON"
+        },
+        {
+            "level_max": 46,
+            "level_min": 38,
+            "species": "SPECIES_GYARADOS"
+        },
+        {
+            "level_max": 49,
+            "level_min": 41,
+            "species": "SPECIES_MANTINE"
+        },
+        {
+            "level_max": 49,
+            "level_min": 41,
+            "species": "SPECIES_JELLICENT"
+        },
+        {
+            "level_max": 52,
+            "level_min": 44,
+            "species": "SPECIES_ALOMOMOLA"
+        }
+    ],
+    "map_category": {
+        "map_type": "field",
+        "map_number": 1
+    }
+}

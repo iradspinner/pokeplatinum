@@ -146,6 +146,10 @@ that stay. None blocks anything.
    yet applied or listed in `calc/VENDORED.md`; the four always-critical moves
    shown as placeholders; licence notices for `object_hash` and the ag-grid theme
    CSS; the Z-move twins sharing one calculator name.
+   From the balance track (2026-09-25): the calculator's Generation 4 code gives
+   no damage for Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card,
+   and the dual-type order above is what puts Crunch into Bronzor at 42 to 50
+   where the game says 43 to 51.
 4. **The calculator's menu and emulator icons** are missing, since upstream's
    `img/` was never vendored. Cosmetic.
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
@@ -156,10 +160,24 @@ that stay. None blocks anything.
    lines, which is why `lint` shows 27 errors and the gate is `lint --ignore R12`.
    Verity Lakefront's map header still points at no table and the map has no
    grass, and the starter still needs its own met location; both are in the
-   tracker's backlog. Deleting the four spare fossil items is item and script
+   tracker's backlog. The same holds for the two tables built ahead of their
+   maps on 2026-09-25 (below): Amity Square needs grass and its header, and
+   Snowpoint City's header needs pointing at its rods; and the Pastoria City
+   gift is to move to the Restaurant. All three are in the tracker's backlog. Deleting the four spare fossil items is item and script
    work. The Day Care Floette's white flower needs a form record and art (tracker
    backlog). Fomantis's data has no evolution to Lurantis, so the tree holds them
    as two lines with a home each until element 3's data is fixed.
+7. **Two new capture areas, built ahead of their maps (Ian, 2026-09-25).**
+   `encounters_amity_square.json` (grass, Fantina's split, order 36) is a garden
+   like the Trophy Garden at very low levels, base level 8, because only small
+   Pokemon may walk in with you; `encounters_snowpoint_city.json` (the three rods
+   only, Candice's split, order 101) fishes at Lake Acuity's levels. Both casts
+   are drafts for Ian to change in the tool. Both files are appended to
+   `encounters.order`, so no existing table moves in the NARC, and until a header
+   uses them the sidecar's new `planned_location` key names the capture area
+   they count as (Verity Lakefront's entry now carries it too). With them the
+   count of captures before the League is 69 by location name, 73 once the three
+   maps and the Restaurant move exist (`docs/oxide/encounters/scripted-sources.md` has the working).
 
 ## Standing rules
 

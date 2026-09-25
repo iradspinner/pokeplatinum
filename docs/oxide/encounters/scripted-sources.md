@@ -159,3 +159,47 @@ deliberately disagree with the base ROM, which means three tools had to be told:
 list and now honours the importer's. Without those three the next regeneration
 would quietly put the off-list species back, which is the same trap the water
 tables fell into at Step 6.
+
+## Captures before the League, by location name (2026-09-25)
+
+A scripted Pokemon's met location is the location name of the map it is handed
+over or fought on (`MapHeader_GetMapLabelTextID`, in `ScrCmd_GivePokemon`,
+`ScrCmd_GiveDesignedPokemon` and the in-game trade alike), the same name the
+map popup shows and the same one a wild catch gets. So under Ian's rule a gift
+in a place that also has a table is an alternative to it, not a second
+encounter. An egg is the exception: the game stamps the place it hatches, so an
+egg counts as its own encounter as long as it hatches somewhere with no table
+and no gift (Ian hatches Riley's Riolu at Verity Lakefront). Sixty-two location
+names have no table at all, so a free place is never short.
+
+| Share a location with a wild table | Their own location |
+|---|---|
+| Route 201: the starter | Sandgem Town, Jubilife City, Floaroma Town, Floaroma Meadow, Solaceon Town: the clowns |
+| Eterna City: the condo gift and the Popplio trade | Oreburgh City: the clown and the Vullaby trade, one capture |
+| Valley Windworks: Drifloon | Hearthome City: Eevee and the Fan Club, one capture |
+| Old Chateau: Rotom | Veilstone City: the clown and Elekid, one capture |
+| Route 209: Spiritomb | Mining Museum (fossils), Pokemon Day Care (Floette), Canalave Library |
+| Pastoria City: the clown | Acuity Cavern (Uxie), Valor Cavern (Azelf), Distortion World (Giratina) |
+
+The eggs are Cynthia's Togepi (Eterna City), the Manaphy egg (Pokemon Mansion)
+and Riley's Riolu (Iron Island). `pokemon_sources.py` misses the Riolu egg,
+because it reads `GiveEgg`'s second operand as a level and Riley's is a name
+constant; the "levels" it gives Togepi (11) and Manaphy (8) are those giver ids.
+Mesprit takes the name of the route it is caught on. Snowpoint City's trade
+wants a Medicham.
+
+The count: 52 wild locations open by the end of the League split, 14 scripted
+ones of their own, and 3 eggs, **69**. It becomes **73** once the four planned
+changes exist, all in the tracker's backlog: Verity Lakefront's grass and
+header, Amity Square's grass and header, Snowpoint City's header (its rods; the
+trade then shares the name), and the Pastoria City clown moved into the
+Restaurant on Route 213, which Ian asked for so that Pastoria's water and the
+gift stop sharing one capture. The encounter tool already carries the three
+tables (`planned_location` in the sidecar). The clown keeps its pool of six
+water lines; only its map changes.
+
+Ian's sheet (`My Version RomHack Docs - For Claude.xlsx`, General Encounters)
+has 127 blocks, about 80 once its floors and rooms are folded into location
+names. Most of the difference is the Battle Zone, which the sheet places in
+Candice's split and the game opens only after the Hall of Fame (the Snowpoint
+sailor checks `FLAG_GAME_COMPLETED`).

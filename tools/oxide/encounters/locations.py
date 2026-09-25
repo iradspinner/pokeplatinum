@@ -64,13 +64,24 @@ def label_names(root=None):
 def location_of(root=None):
     """{encounter file stem: location name}. A file used under several
     names (none today) gets them joined with ' / '; a file no header uses
-    (the Turnback Cave rooms and the twenty-five unknown files) gets None."""
+    gets its sidecar `planned_location` if it has one (a table built ahead of
+    its map), else None (the Turnback Cave rooms and the twenty-five unknown
+    files)."""
     root = root or model.repo_root()
     names = label_names(root)
     out = {}
     for stem, uses in header_uses(root).items():
         labels = sorted({names.get(l, l) for _, l in uses if l})
         out[stem] = " / ".join(labels) if labels else None
+    # A table built ahead of its map (Verity Lakefront, Amity Square, Snowpoint
+    # City's water) has no header pointing at it yet. Its sidecar entry names
+    # the location it is planned for, so it counts as that capture area now
+    # rather than under its file name. A header, once it exists, wins.
+    areas = (model.load_sidecar() or {}).get("areas") or {}
+    for stem, entry in areas.items():
+        planned = entry.get("planned_location")
+        if planned and not out.get(stem):
+            out[stem] = planned
     return out
 
 

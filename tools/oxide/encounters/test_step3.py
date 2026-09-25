@@ -53,9 +53,18 @@ def main():
                     and "encounters_mt_coronet_1f_north_room_1" in by.get("Mt. Coronet", [])
                     and set(by.get("Oreburgh Gate", [])) == {"encounters_oreburgh_gate_1f", "encounters_oreburgh_gate_b1f"},
                     ""))
-    results.append(("Verity Lakefront's file exists but no header uses it yet (backlog: header and grass)",
-                    "encounters_verity_lakefront" in model.area_names()
-                    and locations.location("encounters_verity_lakefront") is None, ""))
+    # Three tables are built ahead of their maps: no header uses them yet
+    # (backlog: the headers, and grass for the two land tables), so each
+    # counts as the location its sidecar entry plans for it.
+    ahead = {"encounters_verity_lakefront": "Verity Lakefront",
+             "encounters_amity_square": "Amity Square",
+             "encounters_snowpoint_city": "Snowpoint City"}
+    uses = locations.header_uses(root)
+    results.append(("Verity Lakefront, Amity Square and Snowpoint City exist, no header uses "
+                    "them yet, and each counts as its planned location",
+                    all(n in model.area_names() and n not in uses
+                        and locations.location(n) == want for n, want in ahead.items()),
+                    str({n: locations.location(n) for n in ahead})))
 
     # -- splits -------------------------------------------------------------
     sp = progression.split_of(sidecar)
