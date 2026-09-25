@@ -83,7 +83,8 @@ Basic_CheckForImmunity:
     IfLoadedEqualTo ABILITY_FLASH_FIRE, Basic_CheckFireAbsorption
     IfLoadedEqualTo ABILITY_WONDER_GUARD, Basic_CheckWonderGuard
     IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckGroundAbsorption
-    IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckWaterAbsorption2 // BUG: This line should branch on Dry Skin rather than Levitate
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Dry Skin, not a second Levitate test
+    IfLoadedEqualTo ABILITY_DRY_SKIN, Basic_CheckWaterAbsorption2
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckElectricAbsorption:
@@ -819,8 +820,10 @@ Basic_CheckSunnyDay:
     // If the target's ability is Hydration and they are currently statused, score -10.
     // Why does this consider Hydration? This is clearly a bug, but what was the intention?
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_HYDRATION, Basic_CheckCurrentWeatherIsSun
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): sun would protect a target with Leaf Guard
+    // that has no status yet, so that is the case that scores -10
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Basic_CheckCurrentWeatherIsSun
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
 
 Basic_CheckCurrentWeatherIsSun:
     // If the weather is currently Sun, score -8.
@@ -1724,7 +1727,8 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_ChargeTurnNoInvuln
 
     // BUG: Thunder is not properly scored. This is supposed to check for BATTLE_EFFECT_THUNDER.
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_Thunder
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Thunder's own effect, so its routine is reached
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_THUNDER, Expert_Thunder
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, Expert_ChargeTurnWithInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, Expert_Recovery
@@ -3620,9 +3624,10 @@ Expert_Foresight:
     // If the target's Evasion stat stage is at +3 or higher, 68.75% chance of score +2.
     //
     // Otherwise, score -2.
-    LoadTypeFrom LOAD_ATTACKER_TYPE_1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the target's types, not the user's
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
-    LoadTypeFrom LOAD_ATTACKER_TYPE_2
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
     IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_Foresight_SecondRoll
     AddToMoveScore -2
@@ -3795,7 +3800,8 @@ Expert_SunnyDay:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_FLOWER_GIFT, Expert_SunnyDay_ScorePlus1
     IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Expert_SunnyDay_End
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): sun helps Leaf Guard only while the user has no status
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
     GoTo Expert_SunnyDay_End
 
 Expert_SunnyDay_ScorePlus1:
@@ -4070,7 +4076,9 @@ Expert_ChargeTurnWithInvuln_End:
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln_ScorePlus1:
-    AddToMoveScore 1
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): reached only when the target is immune
+    // or resists, which is a reason not to use the move, so -1 rather than +1
+    AddToMoveScore -1
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln_SandImmuneTypes:
@@ -4128,7 +4136,8 @@ Expert_Hail_End:
 Expert_Facade:
     // If the opponent has a status condition which would boost Facade, score +1.
     // BUG: This should instead check if the attacker has such a status condition.
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the user's status powers Facade
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
     AddToMoveScore 1
 
 Expert_Facade_End:
@@ -4627,11 +4636,12 @@ Expert_WaterSpout:
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, Expert_WaterSpout_SlowerCheckHP
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, Expert_WaterSpout_End
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): the user's HP sets the power, here and below
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, Expert_WaterSpout_End
     GoTo Expert_WaterSpout_ScoreMinus1
 
 Expert_WaterSpout_SlowerCheckHP:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, Expert_WaterSpout_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, Expert_WaterSpout_End
 
 Expert_WaterSpout_ScoreMinus1:
     AddToMoveScore -1
@@ -6746,6 +6756,9 @@ TagStrategy_CheckSpecialScoring:
     LoadTypeFrom LOAD_MOVE_TYPE
     IfMoveEqualTo MOVE_EARTHQUAKE, TagStrategy_Earthquake
     IfMoveEqualTo MOVE_MAGNITUDE, TagStrategy_Earthquake
+    // Oxide, change (doubles review, approved by Ian 2026-09-22): these hit the partner too
+    IfMoveEqualTo MOVE_EXPLOSION, TagStrategy_Explosion
+    IfMoveEqualTo MOVE_SELFDESTRUCT, TagStrategy_Explosion
     IfMoveEqualTo MOVE_FUTURE_SIGHT, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_DOOM_DESIRE, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_RAIN_DANCE, TagStrategy_RainDance
@@ -7058,6 +7071,10 @@ TagStrategy_FollowMe:
     //    - If the partner's HP is between 30% and 50%, 75% chance of score +1
     //    - If the partner's HP is < 30%, 75% chance of score +2
     //  - If the attacker's HP < 30%, 75% chance of score -5
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Follow Me does nothing
+    // with no partner left to protect. The bands below read an empty slot as a
+    // partner at 0% HP, the most urgent case, and gave the move up to +3
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, ScoreMinus10
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TagStrategy_FollowMe_SelfHighHP
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TagStrategy_FollowMe_SelfMediumHP
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TagStrategy_FollowMe_SelfLowHP
@@ -7141,11 +7158,19 @@ TagStrategy_Earthquake:
     //  - Is weak to Earthquake (has Fire, Electric, Poison, or Rock typing), score -10
     //  - Otherwise, score -3
     //
-    // Note that this does not check for if the partner is alive; this means that a solo
-    // battler will score Earthquake and Magnitude an additional -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): with the partner's slot empty for the
+    // rest of the battle there is no one to hit. The checks below read whatever Pokemon
+    // last stood there, so a lone Earthquake user took -3, or -10 after a partner weak to it
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_End
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Earthquake_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
+
+TagStrategy_Earthquake_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, ScorePlus2
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
@@ -7156,7 +7181,37 @@ TagStrategy_Earthquake:
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    GoTo ScoreMinus3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Steel is weak to Earthquake too,
+    // unless a Bug or Grass second type cancels the weakness out (Forretress, Wormadam)
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
+    IfLoadedEqualTo AI_NOT_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_BUG
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
+
+TagStrategy_Earthquake_End:
+    PopOrEnd 
+
+TagStrategy_Explosion:
+    // Oxide, change (doubles review, approved by Ian 2026-09-22).
+    // Explosion and Self-Destruct hit the partner as well as both foes. Vanilla never looked
+    // at the partner for them. If our partner:
+    //  - Is absent (its slot is empty for the rest of the battle) or a Ghost, no change
+    //  - Resists the move (has a Rock or Steel typing), score -3
+    //  - Otherwise, score -10
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Explosion_End
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GHOST
+    IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
+
+TagStrategy_Explosion_End:
+    PopOrEnd 
 
 TagStrategy_FutureSight:
     // If the move is Future Sight or Doom Desire:
@@ -7254,20 +7309,27 @@ TagStrategy_SpreadElectricMove:
     // If our partner otherwise has a Ground typing, score +3
     //
     // Else, score -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckElectric_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadElectricMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadElectricMove_CheckTypes:
+    // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
+    // before the Water and Flying weaknesses a Swampert or a Gliscor also has
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-
-    // BUG: This should be before the checks for all other types; in its present position, the
-    // vanilla trainer AI will never use Discharge if their partner is, e.g., Swampert or Gliscor
-    // (which should be treated as Immune to the move, but are not).
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
     AddToMoveScore -3
 
 TagStrategy_CheckElectric_End:
@@ -7297,17 +7359,35 @@ TagStrategy_SpreadWaterMove:
     // If our partner otherwise has a Ground or Fire typing, score -10
     //
     // Else, score -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadWaterMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
 
-    // BUG: This should also include a similar check for the Rock type
+TagStrategy_SpreadWaterMove_CheckTypes:
+
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    AddToMoveScore -3
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): Rock is weak to Surf too, unless
+    // a Water, Grass or Dragon second type cancels the weakness out (Omastar, Cradily)
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
+    IfLoadedEqualTo AI_NOT_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_DRAGON
+    IfLoadedEqualTo AI_HAVE, ScoreMinus3
+    GoTo ScoreMinus10
 
 TagStrategy_CheckWater_End:
     PopOrEnd 
@@ -7330,10 +7410,19 @@ TagStrategy_CheckLavaPlume:
     GoTo TagStrategy_CheckFire_End
 
 TagStrategy_SpreadFireMove:
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): no one to hit
+    // when the partner's slot is empty for the rest of the battle
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckFire_End
+    // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
+    // gets past the partner's ability, so it gives no protection
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadFireMove_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadFireMove_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL

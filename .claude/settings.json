@@ -21,6 +21,16 @@
             "timeout": 30
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/style_check.py",
+            "timeout": 15
+          }
+        ]
       }
     ]
   }

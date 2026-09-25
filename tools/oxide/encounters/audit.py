@@ -105,7 +105,16 @@ def script_references(root):
     rows = []
     for path in sorted(glob.glob(os.path.join(root, "res", "field", "scripts", "*.s"))):
         with open(path, encoding="utf-8", errors="replace") as f:
+            in_kit = False
             for n, line in enumerate(f, 1):
+                # The test kit's #ifdef OXIDE_TESTKIT blocks are never in the ROM
+                # of record (docs/oxide/test-kit.md), so their gifts and battles
+                # are not sources; skipped by line so the numbers stay right.
+                if line.startswith("#ifdef OXIDE_TESTKIT"):
+                    in_kit = True
+                if in_kit:
+                    in_kit = not line.startswith("#endif")
+                    continue
                 m = _SCRIPT_RE.match(line)
                 if m:
                     rows.append({"script": os.path.basename(path)[:-2],

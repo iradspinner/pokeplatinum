@@ -37,10 +37,11 @@ def check_order(results):
     orders = {n: areas.get(n, {}).get("order") for n in names}
     missing = [n for n, o in orders.items() if o is None]
     values = [o for o in orders.values() if o is not None]
-    # 185 files, 186 with Verity Lakefront's (2026-09-21)
-    results.append(("every one of the 186 areas carries an order",
-                    len(names) == 186 and not missing, f"missing {missing[:4]}"))
-    results.append(("orders are the integers 1..186 with no duplicates",
+    # 185 files, 186 with Verity Lakefront's (2026-09-21), 188 with Amity
+    # Square's and Snowpoint City's (2026-09-25)
+    results.append(("every one of the 188 areas carries an order",
+                    len(names) == 188 and not missing, f"missing {missing[:4]}"))
+    results.append(("orders are the integers 1..188 with no duplicates",
                     sorted(values) == list(range(1, len(names) + 1)), f"{len(set(values))} distinct"))
 
     def pos(stem):

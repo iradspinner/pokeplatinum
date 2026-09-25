@@ -30,6 +30,10 @@
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
 #   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
 #                                           # no fetch, no merge, no push (the QA pass)
+#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM from tools/oxide/fetch-rom,
+#                                         # instead of building one; only the build's small
+#                                         # helper files are made, on two jobs (for while
+#                                         # this CPU cannot take a full build)
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -37,21 +41,27 @@ cd "$REPO"
 
 PY=python3
 
-DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0
-for arg in "$@"; do
-    case "$arg" in
+DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0; ROM_GIVEN=""
+while [ $# -gt 0 ]; do
+    case "$1" in
         --dry-run) DRY_RUN=1 ;;
         --no-build) BUILD=0 ;;
         --no-push) PUSH=0 ;;
         --verify-only) VERIFY_ONLY=1; PUSH=0 ;;
+        --rom) ROM_GIVEN="${2:-}"; shift ;;
+        --rom=*) ROM_GIVEN="${1#--rom=}" ;;
         -h|--help) sed -n '/^set -uo/q;2,$p' "$0"; exit 0 ;;
-        *) echo "integrate: unknown option $arg" >&2; exit 2 ;;
+        *) echo "integrate: unknown option $1" >&2; exit 2 ;;
     esac
+    shift
 done
+if [ -n "$ROM_GIVEN" ] && [ ! -f "$ROM_GIVEN" ]; then
+    echo "integrate: --rom $ROM_GIVEN: no such file" >&2; exit 2
+fi
 
 BASE="$HOME/roms/base.nds"
 VANILLA="$HOME/roms/vanilla.nds"
-ROM="build/pokeplatinum.us.nds"
+ROM="${ROM_GIVEN:-build/pokeplatinum.us.nds}"
 PASS=(); FAIL=(); MERGED=(); WARN=()
 
 say()  { printf '\n== %s ==\n' "$*"; }
@@ -124,8 +134,20 @@ for d in /proc/[0-9]*; do
 done
 fi
 
-[ -f "$BASE" ] || die "$BASE missing (pinned base ROM)"
-[ -f "$VANILLA" ] || die "$VANILLA missing (pinned vanilla ROM)"
+# The pinned base and vanilla ROMs live outside the repo (Nintendo's, never
+# committed). A cloud session does not have them, and Ian ruled on 2026-09-25
+# that cloud sessions skip the checks that need them: each such check is then
+# listed under one warning rather than failing, and the gate still covers the
+# build, the encounter tables against their JSON, and every test suite.
+REFS=1
+if [ ! -f "$BASE" ] || [ ! -f "$VANILLA" ]; then
+    REFS=0
+    [ -n "${OXIDE_CLOUD:-}" ] || echo "integrate: $BASE or $VANILLA missing; the checks that need them are skipped" >&2
+fi
+SKIPPED_REF=()
+refcheck() {
+    if [ $REFS -eq 1 ]; then check "$@"; else SKIPPED_REF+=("$1"); fi
+}
 
 # ---------------------------------------------------------------- 2. fetch and ff
 if [ $VERIFY_ONLY -eq 0 ]; then
@@ -316,8 +338,20 @@ ci_hash() {
     done
     return 1
 }
+# With --rom, the ROM comes from GitHub and only the helpers the checks read
+# from build/ are made: the generated headers, msgenc and enumproc, and the
+# sound archive's index. Two jobs, so this CPU is never loaded on every core.
+make_helpers() {
+    [ -f build/build.ninja ] || make configure || return 1
+    ninja -C build -j2 tools/msgenc/msgenc tools/enumproc/enumproc res/sound/pl_sound_data.naix \
+        $(ninja -C build -t targets all | cut -d: -f1 | grep -E '^generated/[^/]+\.h$')
+}
 if [ $BUILD -eq 1 ]; then
-    check "make rom" make_rom
+    if [ -n "$ROM_GIVEN" ]; then
+        check "build helpers on two jobs (the ROM is $ROM_GIVEN, not built here)" make_helpers
+    else
+        check "make rom" make_rom
+    fi
     if [ -f "$ROM" ]; then
         local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"
         if ci="$(ci_hash)" && remote_sha="${ci%% *}" && [ -n "$remote_sha" ]; then
@@ -332,17 +366,17 @@ if [ $BUILD -eq 1 ]; then
         fi
     fi
     if [ -f "$ROM" ]; then
-        check "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
+        refcheck "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
         # The encounter tables are checked against their source JSON (M7), not
         # the base ROM: once the authoring pass rewrites a table the base ROM
         # stops being its truth. --encounters --ref still exists for the
         # tables that have not been authored yet.
         check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
-        check "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
-        check "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
-        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run
-        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run
-        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run
+        refcheck "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
+        refcheck "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
+        CHECK_EXPECT="would write 0 script files" refcheck "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0 event files" refcheck "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0" refcheck "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run --built "$ROM"
     else
         bad "built ROM missing at $ROM"
     fi
@@ -351,6 +385,7 @@ else
 fi
 
 # The importer must find nothing left to import: every count 0.
+if [ $REFS -eq 1 ]; then
 out="$("$PY" tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
 printf '      %s\n' "$out"
 if printf '%s' "$out" | grep -q "would change" && ! printf '%s' "$out" | grep -Eq "': [1-9]"; then
@@ -359,11 +394,19 @@ else
     bad "import_base_rom --dry-run reports something left to import"
 fi
 git checkout -q tools/oxide/import_report.md 2>/dev/null || true   # the dry run rewrites the report
+else
+    SKIPPED_REF+=("import_base_rom --dry-run")
+fi
 
-CHECK_EXPECT="0 failed" check "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
-CHECK_EXPECT="0 failed" check "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
+CHECK_EXPECT="0 failed" refcheck "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
+CHECK_EXPECT="0 failed" refcheck "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
 
 export PYTHONPATH=.
+# The encounter tools read vanilla data from the `main` branch (git ls-tree and
+# git show main:...). A cloud session's checkout carries only the branch it was
+# given, so fetch main's tip if it is missing (six checks failed without it on
+# the first cloud run, 2026-09-25).
+git rev-parse --verify -q main >/dev/null || git fetch -q --depth=1 origin main:main || warn "could not fetch main; the encounter checks that read vanilla will fail"
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
@@ -385,6 +428,17 @@ fi
 # built for that list and fails it on purpose. It runs on the working tree.
 check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
 
+# The tracker holds open work only and every main-track session reads it in
+# full, so it is kept short: finished blocks move to tracker-archive.md. This
+# warns rather than fails when it passes 6,000 words, so it cannot quietly
+# grow back to the 20,000 it reached before the 2026-09-23 cut.
+tracker_words="$(wc -w < docs/oxide/tracker.md)"
+if [ "$tracker_words" -gt 6000 ]; then
+    warn "tracker.md is $tracker_words words, over 6,000: move finished blocks to docs/oxide/tracker-archive.md"
+else
+    echo "tracker.md is $tracker_words words (warns over 6,000)"
+fi
+
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"
 check "sync-docs" bash tools/oxide/sync-docs.sh
@@ -397,6 +451,7 @@ elif [ $PUSH -eq 1 ]; then
     warn "not pushed: a check failed"
 fi
 
+[ ${#SKIPPED_REF[@]} -eq 0 ] || warn "no pinned base or vanilla ROM here, so skipped: ${SKIPPED_REF[*]}"
 say "summary"
 echo "merged:   ${MERGED[*]:-(nothing new)}"
 echo "passed:   ${#PASS[@]}"

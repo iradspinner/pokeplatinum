@@ -934,6 +934,25 @@ static void AICmd_LoadTurnCount(BattleSystem *battleSys, BattleContext *battleCt
     AI_CONTEXT.calcTemp = battleCtx->totalTurns;
 }
 
+/**
+ * @brief The type the AI script reads for a move.
+ *
+ * Oxide, vanilla fix (Ian, 2026-09-22): the script read every move's listed
+ * type, so Weather Ball in weather read as Normal and, for one, a rain Weather
+ * Ball into Water Absorb was not refused. Weather Ball now reads the type the
+ * weather gives it, as TrainerAI_MoveType works it out (only the field's
+ * weather matters for it, so the battler passed does not). Every other move
+ * keeps its listed type, as in vanilla.
+ */
+static int AI_ScriptMoveType(BattleSystem *battleSys, BattleContext *battleCtx, u16 move)
+{
+    if (move == MOVE_WEATHER_BALL) {
+        return TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, move);
+    }
+
+    return MOVE_DATA(move).type;
+}
+
 static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     AIScript_Iter(battleCtx, 1);
@@ -959,7 +978,7 @@ static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx
         break;
 
     case LOAD_MOVE_TYPE:
-        AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).type;
+        AI_CONTEXT.calcTemp = AI_ScriptMoveType(battleSys, battleCtx, AI_CONTEXT.move);
         break;
 
     case LOAD_ATTACKER_PARTNER_TYPE_1:
@@ -2520,7 +2539,7 @@ static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battle
 static void AICmd_LoadTypeOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     AIScript_Iter(battleCtx, 1);
-    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).type;
+    AI_CONTEXT.calcTemp = AI_ScriptMoveType(battleSys, battleCtx, AI_CONTEXT.calcTemp);
 }
 
 static void AICmd_LoadPowerOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -3694,6 +3713,15 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     }
 
     moveType = MOVE_DATA(battleCtx->moveHit[battler]).type;
+
+    // Oxide, vanilla fix (Ian, 2026-09-22): a Weather Ball that hit us had the
+    // type its weather gave it, which the battle recorded; its listed type is
+    // Normal, so a rain Weather Ball never looked like a reason to bring in a
+    // Water Absorb Pokemon.
+    if (battleCtx->moveHit[battler] == MOVE_WEATHER_BALL) {
+        moveType = battleCtx->moveHitType[battler];
+    }
+
     if (moveType == TYPE_FIRE) {
         checkAbility = ABILITY_FLASH_FIRE;
     } else if (moveType == TYPE_WATER) {

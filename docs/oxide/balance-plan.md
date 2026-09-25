@@ -6,14 +6,22 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-22).** Scoping is done, and the reference data is
-pinned outside the repo. B1, the data layer, is nearly done. B1a, B1b and B1d are
-built and tested (`tools/oxide/balance/`, `test_b1` 43 of 43, run twice).
-Oxide and eight rated references line up fight by fight, and every Oxide map,
-trainer, item and shop has a split. Left in B1 are B1c, Odyssey from its
-ROM, which carries little weight, and B1e, which trainers cannot be avoided,
-which comes after B2 and before the level curve. B2, the structural metrics,
-is next. No questions are open.
+**Where it stands (2026-09-23).** Scoping is done, and the reference data is
+pinned outside the repo. B1a, B1b and B1d are built and tested (`test_b1` 43
+of 43). B2, the structural metrics, is built (`metrics.py`, `test_b2` 7 of
+7), but its check as the plan wrote it does not pass: nine of the fourteen
+metrics put vanilla, Renegade and Kaizo in order, and five do not. The
+check was narrowed to those nine after seeing the data, which is the first
+open question for Ian below. B1e, which trainers cannot be avoided, is built
+for the story path's 33 crossings of maps with trainers (`required.py`,
+`test_b1e` 6 of 6). Its own check waits on Ian: the second open question
+asks for the route trainers he knows he walks around. B1c, Odyssey from its
+ROM, is still open and carries little weight. B3, the player's side and
+pressure, is built for Oxide's own 28 fights (`pool.py`, `pressure.py`,
+`calc_headless.js`, `test_b3` 8 of 8), and was run a split at a time on the
+degraded CPU without a fault. Its check waits in part on Ian's in-game roll,
+and scoring the reference hacks' bosses against Oxide's side is its next
+step (B3b).
 
 ## The target
 
@@ -98,7 +106,7 @@ Roark, set by set:
 | Version | Party | IVs | Held items | Natures | Moves, in short |
 |---|---|---|---|---|---|
 | Vanilla | 3 | low | none | rolled | Rock Throw, Stealth Rock, Headbutt |
-| Oxide now | 4 | about 27 to 30 | all | rolled | Headbutt, Leer, Constrict, Rock Throw |
+| Oxide now | 4 | about 27 to 30 | all | read as picked (B2) | Headbutt, Leer, Constrict, Rock Throw |
 | Renegade | 6 | 29 to 30 | all | chosen | coverage: Fire and Thunder Punch, Zen Headbutt |
 | Kaizo | 6 | 30 | all, Focus Sash included | chosen | Head Smash, Earth Power, Accelerock |
 
@@ -183,6 +191,227 @@ What B1d found:
 - 179 trainers no map fields, and all are rematch copies, tag partners,
   unused rival variants or unused slots. The Pokemon Center visitors come
   from a shared script and are placed after the League, unverified.
+- **18 filler trainers sit in too early a split** (found in B2). A map takes
+  the split in which the player first reaches it, and part of a map can open
+  later: Surf on Route 219, the bike on Route 207, Strength in Oreburgh
+  Gate's basement, Surf on Route 208, and the far side of Route 210 South. A
+  story revisit adds trainers too (the four grunts at Lake Verity). Each is
+  above its split's cap, which a hard cap rules out, so B2 leaves them out
+  and B1e places them by what the player can reach. The gym leaders'
+  rematch copies are also placed, in their gyms' splits, and B2 skips them.
+
+What B2 found, over the 28 story fights and each hack's 13 gym and League
+seats (`metrics.py`; `--order` prints the check, `--filler` the filler):
+
+| Hack | Party | IVs | Nature fit | Items | Evolved | Mean BST | Setup | Hazards | Coverage |
+|---|---|---|---|---|---|---|---|---|---|
+| Oxide | 5.7 | 28.7 | 0.74 | 1.00 | 0.91 | 499 | 0.31 | 0.23 | 15.3 |
+| Vanilla (3) | 4.0 | 22.9 | 0.30 | 0.22 | 0.73 | 468 | 0.38 | 0.15 | 12.5 |
+| Unbound (5.25) | 4.6 | 31.0 | 0.41 | 0.47 | 0.88 | 492 | 0.85 | 0.46 | 13.8 |
+| Renegade (7) | 6.0 | 29.8 | 0.91 | 1.00 | 0.88 | 492 | 0.69 | 0.54 | 14.9 |
+| Redux (8) | 6.0 | 16.3 | 0.87 | 1.00 | 0.86 | 533 | 1.54 | 0.15 | 15.7 |
+| Hardlove (9.5) | 6.0 | 31.0 | 1.00 | 1.00 | 0.90 | 530 | 1.15 | 0.62 | 15.5 |
+| Kaizo (10) | 6.0 | 30.4 | 0.55 | 1.00 | 0.92 | 534 | 1.46 | 1.00 | 15.5 |
+| Null (10) | 6.2 | 30.6 | 0.85 | 1.00 | 0.99 | 548 | 2.00 | 0.85 | 15.7 |
+
+Setup and hazards are moves per party; coverage is how many types the
+party's moves hit super effectively (17 in the Platinum-based hacks, 18
+elsewhere). Nature fit is the share of natures that read as picked: one
+that raises something and lowers neither the attacking stat the Pokemon
+uses nor its Speed (a slow Pokemon may trade Speed), and raises one of
+those or lowers the attacking stat it does not use. Chance gives 8 in 25.
+
+- **Oxide's bosses already match Renegade's on structure.** Every gym and
+  League Pokemon holds an item, IVs are near the ceiling, and base stats,
+  evolution and coverage are level with or just above Renegade's. Oxide is
+  lighter in three places: one Pokemon fewer at Roark (4), Gardenia and
+  Fantina (5 each), and about half Renegade's setup and hazard moves. So the
+  roster alone does not explain a 6 against Renegade's 7. With hard caps and
+  the item ban on top, B3's pressure scores are what should say where the
+  gap to 6 comes from.
+- **Oxide's natures read as picked**: 0.74 at the bosses and 0.6 to 0.8 in
+  filler, against 0.32 for vanilla, whose natures roll. The base ROM varies
+  each Pokemon's IV value (Roark's Nosepass 250, Geodude 245), and in
+  Generation 4 that value feeds the nature, so these were very likely
+  chosen that way. Renegade's filler reads as rolled (0.35); only its bosses
+  are picked.
+- **The structure metrics do not separate a 7 from a 10.** Party size,
+  items, IVs and coverage are at the ceiling from Renegade up; what grows
+  from 7 to 10 is level, base stats, setup and hazards. Unbound's 5.25
+  shows up as smaller parties and half its Pokemon without items.
+- **The plan's check held on nine of fourteen metrics.** Vanilla, Renegade
+  and Kaizo come out in order on party size, ace and mean level, items,
+  evolution, base stats, setup, hazards and coverage. They do not on IVs
+  (Renegade and Kaizo are both at the ceiling, and Kaizo's Barry 1 keeps
+  vanilla's zeros), natures (Kaizo picks less often than Renegade, 0.57
+  against 0.67 over the story fights), and priority, speed control and
+  recovery, which Kaizo's bosses carry less of than Renegade's. Those five
+  measure style, not strength, and B5's fit should weight them low.
+- **Filler compares by id only for vanilla, Renegade and Redux.** Renegade
+  keeps all but one of Platinum's filler ids, Redux loses 81 of 369 to other
+  trainers, and Kaizo reuses 252 of them, some at level 90 to 100, so
+  Kaizo's filler needs its own map before it can be read. Oxide's filler
+  runs one Pokemon smaller than Renegade's (1.3 to 2.4 against 1.8 to 3.3 a
+  trainer) with higher IVs and picked natures.
+- Vanilla's calculator file lists no moves for 487 of its 1,873 sets
+  (default moves); `metrics.py` fills them from vanilla's learnsets the way
+  the game does. One Unbound move, Leech Fang, is in no table.
+
+What B1e found (`required.py`; `world.py` reads the collision maps). The
+model follows the game's own rules for sight (a straight line up to the
+trainer's range, stopped by any solid tile or object), ledges (one way) and
+field moves (Surf from Byron's split, the bike from Fantina's, and so on,
+each dated from where its HM is found and which badge allows it). The story
+path is a hand table of 33 crossings, and a trainer counts where the player
+first reaches it:
+
+| Split | Trainers met | Required | Avoidable |
+|---|---|---|---|
+| Roark | 14 | 3 | 11 |
+| Gardenia | 27 | 7 | 20 |
+| Fantina | 26 | 3 | 23 |
+| Maylene | 22 | 5 | 17 |
+| Wake | 13 | 4 | 9 |
+| Byron | 24 | 4 | 20 |
+| Candice | 21 | 7 | 14 |
+| Volkner | 11 | 1 | 10 |
+| League | 13 | 2 | 11 |
+
+- **About one trainer in five on the story path is required**: 36 of 171.
+  Route 202's three are (traced by hand on its collision map: the ledges
+  funnel the player past each one in turn); Route 203's five, Route 206's
+  nine and Route 218's four are all avoidable. So Ian's sense that most
+  route trainers can be walked around holds, and the placement pass has a
+  list to work from.
+- **228 trainers are outside the model.** 92 are on maps the story does not
+  send the player through (Routes 211, 212 and 219 to 221, the post-game
+  Routes 224 to 230, and a few buildings), 43 are in the seven gyms with moving parts, and 93 are in
+  multi-floor places (Galactic HQ, Victory Road, Mt. Coronet, Iron Island's
+  other rooms, Wayward Cave, the Lost Tower). Only Roark's gym is static
+  enough to read, and it comes out with both trainers avoidable, which the
+  flat model may get wrong (the gym has raised floors).
+- **B1e places 13 of B2's 18 late visits** in the split where the player
+  first reaches them, each under that split's cap: Route 207's six in
+  Fantina's, the Lake Verity grunts in Candice's, the Route 210 South ninja
+  boys in Byron's. The other five sit behind Surf or Rock Climb on routes
+  the story never sends the player back to (Route 219's tubers, Route 208's
+  Cody and Alexander, Oreburgh Gate's basement), so they are optional.
+- The model reads the field flat: bridges are one level, and a trainer that
+  turns or walks is taken to see every way it can face, from where it
+  starts. The report names both per map. Story blockers other than Route
+  210's Psyduck are taken as gone.
+
+What B3 found (2026-09-23; `pressure.py --report` prints the table). The
+calculator's engine runs headless in one Node process (`calc_headless.js`).
+It loads the engine files the page loads, in the page's order, under the
+page's own `require` shim, and repeats only the steps of the page's loader
+that touch the engine, lifting the move-merging helper out of
+`initialize.js` itself. It gives D5's five ranges exactly, and Crunch into
+Bronzor comes out 42 to 50, which only this fork's chart gives. All 28
+fights ran in about three minutes over nine one-process runs, the longest
+(the League) 40 seconds.
+
+The player's side (`pool.py`) takes every species caught or received by a
+split's end, from the encounter tables (land, day and night, water once the
+rod or Surf is in hand, honey trees from Gardenia's split) and
+`pokemon-sources.csv`, plus every evolution reached at the cap by the
+encounter tool's own rule. Each is at the cap with IVs of 15, no EVs, a
+neutral nature and its first ability, knows every damaging move its line
+learns by the cap plus the TMs and tutors reachable by then, and holds the
+strongest damage item the split offers.
+
+| Split | Cap | Species | Items held by then |
+|---|---|---|---|
+| Roark | 16 | 92 | 31 |
+| Gardenia | 26 | 140 | 41 |
+| Fantina | 33 | 217 | 47 |
+| Maylene | 39 | 275 | 77 |
+| Wake | 44 | 299 | 87 |
+| Byron | 53 | 316 | 102 |
+| Candice | 56 | 321 | 105 |
+| Volkner | 62 | 323 | 116 |
+| League | 78 | 323 | 120 |
+
+Threat is the share of that side a boss Pokemon knocks out within two
+turns while moving first; answers is the share that does the same to it.
+Each is the mean over the fight's Pokemon, and the last two columns are its
+most threatening Pokemon and its least answered one.
+
+| Fight | Threat | Answers | Worst threat | Fewest answers |
+|---|---|---|---|---|
+| Barry 1 | 0.00 | 0.96 | 0.00 | 0.95 |
+| Barry 2 | 0.01 | 0.64 | 0.01 | 0.50 |
+| Roark | 0.13 | 0.18 | 0.45 | 0.05 |
+| Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
+| Gardenia | 0.68 | 0.05 | 0.91 | 0.01 |
+| Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
+| Fantina | 0.51 | 0.11 | 0.88 | 0.01 |
+| Barry 3 | 0.17 | 0.48 | 0.36 | 0.34 |
+| Maylene | 0.69 | 0.20 | 0.79 | 0.08 |
+| Barry 4 | 0.48 | 0.13 | 0.82 | 0.04 |
+| Wake | 0.74 | 0.07 | 0.98 | 0.00 |
+| Cyrus 1 | 0.38 | 0.35 | 0.59 | 0.23 |
+| Barry 5 | 0.54 | 0.18 | 0.90 | 0.05 |
+| Byron | 0.33 | 0.24 | 0.67 | 0.17 |
+| Saturn 1 | 0.46 | 0.24 | 0.78 | 0.09 |
+| Mars 2 | 0.26 | 0.15 | 0.51 | 0.04 |
+| Candice | 0.73 | 0.14 | 0.97 | 0.00 |
+| Cyrus 2 | 0.38 | 0.18 | 0.81 | 0.04 |
+| Saturn 2 | 0.53 | 0.21 | 0.82 | 0.09 |
+| Mars and Jupiter | 0.33 | 0.26 | 0.68 | 0.06 |
+| Cyrus 3 | 0.69 | 0.11 | 0.97 | 0.03 |
+| Volkner | 0.75 | 0.09 | 0.94 | 0.01 |
+| Barry 6 | 0.54 | 0.20 | 0.91 | 0.05 |
+| Aaron | 0.58 | 0.17 | 0.75 | 0.07 |
+| Bertha | 0.49 | 0.27 | 0.76 | 0.01 |
+| Flint | 0.69 | 0.11 | 0.92 | 0.03 |
+| Lucian | 0.61 | 0.24 | 0.93 | 0.03 |
+| Cynthia | 0.69 | 0.11 | 0.90 | 0.01 |
+
+These are raw scores, not ratings: B5 turns them into a band by scoring
+the reference hacks the same way. What they already show:
+
+- **Gardenia is the largest step in the game.** Roark's fight threatens 13
+  percent of the side and Gardenia's 68, level with Cynthia's 69. Her
+  Roserade alone knocks out 91 percent of the side within two turns while
+  moving first, and 1 percent answers it. The plan wants Gardenia to reach
+  the target and the curve to hold after; whether 0.68 is the target is
+  B5's to say, but nothing later climbs as steeply.
+- **Choice Scarf and rain leave bosses with no answer.** Nothing at the cap
+  outspeeds a scarfed boss, so only priority answers Wake's Poliwrath,
+  Candice's Mamoswine, Volkner's Electivire, Bertha's Gliscor or Cynthia's
+  Lucario (1 percent or less each). Pastoria Gym's rain doubles Floatzel's
+  and Ludicolo's Speed through Swift Swim, and they come out at 1 percent
+  and under.
+- **Byron is soft between two peaks**: 0.33 against Wake's 0.74 and
+  Candice's 0.73. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
+  are light too.
+- **Early fights in a split read too easy**, because the player is scored
+  at the split's cap: Barry 1 is level 5 against a side at 16. B4's natural
+  levels should replace the cap for fights before a split's end.
+- **Five moves get no number from the calculator's Generation 4
+  mechanics**: Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card,
+  which it handles only in its later-generation code. The page runs the same
+  code, so it should show nothing for them either. No boss uses them; the
+  player's copies are dropped and listed per fight in `pressure.json`. A fix
+  belongs to the encounter track, which owns the vendored calculator.
+
+What the scores leave out, so they read as a ceiling for the boss:
+accuracy, secondary effects, status and setup, switching, defensive items
+other than a boss's Focus Sash, and the AI's real choice of move. A
+charging move counts two turns a hit and a recharging one a turn between
+hits. Every species counts once, so the weak unevolved stages early in the
+game pull the answers down. Moves that need a condition first (Dream
+Eater, Fake Out, Counter and the like) and the player's Explosion and
+Hidden Power are left out; `pool.py` lists them.
+
+B3's check, as far as it goes. The headless engine agrees with D5's figures
+for the page, and those agree with a hand calculation of the Generation 4
+formula. The page itself was not driven on this CPU, since a headless
+browser is many processes. The in-game roll is still Ian's (encounter build
+plan, M8), and the calculator's order for a dual type's two factors (Crunch
+into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
+the encounter track's patch lands.
 
 ## What gets measured
 
@@ -329,6 +558,23 @@ report says so. Ian's playtests remain the final gate. The scores aim the
 changes and catch outliers, and they are recalibrated when Ian's feel
 disagrees with them.
 
+## Open questions for Ian
+
+1. **B2's check was narrowed after the data came in** (2026-09-23). The
+   plan said vanilla, Renegade and Kaizo should come out in order on almost
+   every metric; they do on nine of fourteen. The five that do not (IVs,
+   natures, priority, speed control, recovery) look like style rather than
+   strength, so B2 is marked done with the test pinning the nine, and B5's
+   fit is left to weight the five low. Nothing waits on this; if you read
+   Kaizo as harder partly because of move choice, say so and B5 keeps them.
+2. **Which route trainers do you know you walk around, and which can you
+   not?** (2026-09-23.) B1e's check is a handful of your own examples. The
+   model says Route 202's three trainers are required and Route 203's five,
+   Route 206's nine and Route 218's four are all avoidable; a yes or no on
+   those, plus any others you remember either way, is enough. B1e is built
+   and waits only on this; the placement pass should not start until it is
+   checked.
+
 ## Order of work
 
 - [x] **B0, scoping** (2026-09-22). Ian's answers are in, and the reference
@@ -382,14 +628,31 @@ disagrees with them.
   required, and a handful of route trainers Ian knows to be avoidable come
   out avoidable. It comes after B2, which scores the bosses and needs none
   of it, and before B4, whose natural levels should count only the
-  experience a player cannot skip.
-- [ ] **B2, structural metrics** for every reference and for Oxide as it
-  stands. The check: vanilla, Renegade and Kaizo come out in that order on
-  almost every metric.
+  experience a player cannot skip. The same reachability also gives each
+  trainer the split in which the player can first reach it, which fixes
+  the 18 filler trainers B1d places too early (`metrics.late_visits`).
+  Built 2026-09-23 (`world.py`, `required.py`, `test_b1e`) for the story
+  path's overworld routes and the simple indoor maps; see "What B1e
+  found". Its check waits on Ian's examples (open question 2). Gyms with
+  moving parts and multi-floor dungeons are left for later, if the
+  placement pass needs them.
+- [x] **B2, structural metrics** for every reference and for Oxide as it
+  stands (2026-09-23, `metrics.py`, `test_b2`). The check: vanilla, Renegade
+  and Kaizo come out in that order on almost every metric. It held on nine
+  of fourteen, and the test pins which; see "What B2 found". The percentile
+  of base stats against the player's pool moves to B3, which builds the
+  pool, and the filler report skips Kaizo until its filler has a map.
 - [ ] **B3, the player's side and pressure.** This covers the pool per split
   (species, moves, items) and the pressure scores. The check: damage agrees
   with the calculator's page and with the in-game roll already waiting on Ian
   (encounter build plan, D5).
+  - [x] **B3a, Oxide's side and Oxide's fights** (2026-09-23, `pool.py`,
+    `pressure.py`, `calc_headless.js`, `test_b3`). See "What B3 found". The
+    check holds against D5's figures; the in-game roll waits on Ian.
+  - [ ] **B3b, the reference hacks' bosses against Oxide's side**, as "What
+    gets measured" asks. Each hack changes species stats and moves, so the
+    runner has to take a Pokemon's stats, types and moves per Pokemon
+    rather than from one blob. Run it a split at a time, as B3a was.
 - [ ] **B4, the level curve**: the natural level per split, for Oxide and
   Renegade.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.

@@ -65,7 +65,9 @@ any member of either ROM; `--roundtrip` proves the emitter, and
    ROM's scratch-address poke plus repurposed `Dummy088` (regenerating it would
    bring back the interpreter desync), and `scripts_init_battleground` builds
    the 4-byte equivalent of a terminator plus leftovers. `bulk_scripts.py` skips
-   both; do not "fix" them.
+   both; do not "fix" them. Why each text bank that still differs from the base
+   ROM is DSPRE noise rather than an outstanding edit is recorded under Phase 3
+   in `docs/oxide/tracker-archive.md`.
 6. **Movement blocks must stay 4-aligned.** Vanilla writes `.balign 4, 0` before every
    movement label; the generated files do not, they copy the base ROM's padding. Any
    edit that changes a generated script's length shifts every movement block behind

@@ -79,7 +79,7 @@
       "intent": "The lakefront above Snowpoint: Sneasel's home at 35 with Alolan Ninetales at 20, Absol a 4%.",
       "locked": [],
       "base_level": 32,
-      "order": 98,
+      "order": 99,
       "split": "Candice",
       "cast": [
         "SPECIES_SNEASEL",
@@ -133,7 +133,7 @@
       "intent": "The ironworks' yard: Magby and Joltik at home, and Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), Litten at 10, Charcadet a 4% ember, two fire starters as 1%s.",
       "locked": [],
       "base_level": 28,
-      "order": 82,
+      "order": 83,
       "split": "Byron",
       "cast": [
         "SPECIES_MAGBY",
@@ -288,7 +288,7 @@
       "intent": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night.",
       "locked": [],
       "base_level": 28,
-      "order": 70,
+      "order": 71,
       "split": "Wake",
       "cast": [
         "SPECIES_WOOPER",
@@ -439,7 +439,7 @@
       "intent": "Area two: Croagunk leads, six lines.",
       "locked": [],
       "base_level": 28,
-      "order": 71,
+      "order": 72,
       "split": "Wake",
       "cast": [
         "SPECIES_CROAGUNK",
@@ -588,7 +588,7 @@
       "intent": "Area three, Croagunk's home: three co-equal in the reeds.",
       "locked": [],
       "base_level": 27,
-      "order": 72,
+      "order": 73,
       "split": "Wake",
       "cast": [
         "SPECIES_CROAGUNK",
@@ -737,7 +737,7 @@
       "intent": "Area four: the spread, nobody over 25.",
       "locked": [],
       "base_level": 27,
-      "order": 73,
+      "order": 74,
       "split": "Wake",
       "cast": [
         "SPECIES_QUAGSIRE",
@@ -886,7 +886,7 @@
       "intent": "Area five, Yanma's home: the broad shape, eight lines.",
       "locked": [],
       "base_level": 26,
-      "order": 74,
+      "order": 75,
       "split": "Wake",
       "cast": [
         "SPECIES_YANMA",
@@ -1037,7 +1037,7 @@
       "intent": "Area six: the marsh shape itself, three co-equal faces.",
       "locked": [],
       "base_level": 26,
-      "order": 75,
+      "order": 76,
       "split": "Wake",
       "cast": [
         "SPECIES_YANMA",
@@ -1185,7 +1185,7 @@
       "intent": "Iron Island's first floor, Togedemaru's home: the iron lines, eight deep.",
       "locked": [],
       "base_level": 30,
-      "order": 86,
+      "order": 87,
       "split": "Byron",
       "cast": [
         "SPECIES_TOGEDEMARU",
@@ -1212,7 +1212,7 @@
       "intent": "B1F left: Onix leads, six lines.",
       "locked": [],
       "base_level": 30,
-      "order": 87,
+      "order": 88,
       "split": "Byron",
       "cast": [
         "SPECIES_ONIX",
@@ -1237,7 +1237,7 @@
       "intent": "B1F right: three co-equal, Klefki and Carbink behind.",
       "locked": [],
       "base_level": 30,
-      "order": 88,
+      "order": 89,
       "split": "Byron",
       "cast": [
         "SPECIES_ONIX",
@@ -1262,7 +1262,7 @@
       "intent": "B2F left, Lunatone's home at 35: the moon room.",
       "locked": [],
       "base_level": 30,
-      "order": 90,
+      "order": 91,
       "split": "Byron",
       "cast": [
         "SPECIES_LUNATONE",
@@ -1286,7 +1286,7 @@
       "intent": "B2F right, Solrock's home at 35: the sun room.",
       "locked": [],
       "base_level": 30,
-      "order": 89,
+      "order": 90,
       "split": "Byron",
       "cast": [
         "SPECIES_SOLROCK",
@@ -1310,7 +1310,7 @@
       "intent": "The bottom of Iron Island, Beldum's home at 35: the reason to go down with Riley, Larvitar and Gible in the tail.",
       "locked": [],
       "base_level": 30,
-      "order": 91,
+      "order": 92,
       "split": "Byron",
       "cast": [
         "SPECIES_METANG",
@@ -1337,7 +1337,7 @@
       "intent": "Lake Acuity's shore: six cold lines, Galarian Mr. Mime dancing on the ice at 15.",
       "locked": [],
       "base_level": 38,
-      "order": 99,
+      "order": 100,
       "split": "Candice",
       "cast": [
         "SPECIES_SNORUNT",
@@ -1486,7 +1486,7 @@
       "intent": "The drained lake, Absol's home at 35: disaster's omen at the crater, Gothita and Vullaby watching.",
       "locked": [],
       "base_level": 38,
-      "order": 95,
+      "order": 96,
       "split": "Byron",
       "cast": [
         "SPECIES_ABSOL",
@@ -1903,7 +1903,7 @@
       "intent": "The Ruin Maniac's tunnel: Hippopotas's home in the sand, Ferroseed at 10 by the cap rule.",
       "locked": [],
       "base_level": 21,
-      "order": 64,
+      "order": 65,
       "split": "Wake",
       "cast": [
         "SPECIES_HIPPOPOTAS",
@@ -1959,7 +1959,7 @@
       "intent": "The second north room: six lines, Glimmet at 15.",
       "locked": [],
       "base_level": 32,
-      "order": 101,
+      "order": 103,
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZOR",
@@ -1984,7 +1984,7 @@
       "intent": "Mt. Coronet's south entrance: Glimmet's home in the ore, the mountain's core cast at a fifth each, Snom and Swinub at 5 and Snorunt by night as the ice creeps down.",
       "locked": [],
       "base_level": 17,
-      "order": 36,
+      "order": 37,
       "split": "Fantina",
       "cast": [
         "SPECIES_GLIMMET",
@@ -2135,7 +2135,7 @@
       "intent": "The tunnel room on the climb: eight lines, Larvitar at 10.",
       "locked": [],
       "base_level": 36,
-      "order": 100,
+      "order": 102,
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZONG",
@@ -2162,7 +2162,7 @@
       "intent": "Second floor: three co-equal, Larvitar and Ferroseed behind.",
       "locked": [],
       "base_level": 36,
-      "order": 103,
+      "order": 105,
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZONG",
@@ -2187,7 +2187,7 @@
       "intent": "Third floor: eight lines, the dragons in the tail.",
       "locked": [],
       "base_level": 36,
-      "order": 104,
+      "order": 106,
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZONG",
@@ -2214,7 +2214,7 @@
       "intent": "Fourth floor, room three: Carbink leads, Goomy at 15.",
       "locked": [],
       "base_level": 36,
-      "order": 107,
+      "order": 109,
       "split": "Volkner",
       "cast": [
         "SPECIES_CARBINK",
@@ -2239,7 +2239,7 @@
       "intent": "Fourth floor, the paired rooms: Bronzor at 35, the cap's edge.",
       "locked": [],
       "base_level": 36,
-      "order": 106,
+      "order": 108,
       "split": "Volkner",
       "cast": [
         "SPECIES_BRONZONG",
@@ -2263,7 +2263,7 @@
       "intent": "Fifth floor, Jangmo-o's home at 35: the dragon floor under the summit.",
       "locked": [],
       "base_level": 36,
-      "order": 109,
+      "order": 111,
       "split": "Volkner",
       "cast": [
         "SPECIES_HAKAMO_O",
@@ -2290,7 +2290,7 @@
       "intent": "The last floor before Spear Pillar: Jangmo-o co-equal with the mountain's core.",
       "locked": [],
       "base_level": 36,
-      "order": 110,
+      "order": 112,
       "split": "Volkner",
       "cast": [
         "SPECIES_HAKAMO_O",
@@ -2315,7 +2315,7 @@
       "intent": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor.",
       "locked": [],
       "base_level": 32,
-      "order": 102,
+      "order": 104,
       "split": "Volkner",
       "cast": [
         "SPECIES_GOOMY",
@@ -2466,7 +2466,7 @@
       "intent": "The snowy ledge on the north face: eight cold lines.",
       "locked": [],
       "base_level": 36,
-      "order": 108,
+      "order": 110,
       "split": "Volkner",
       "cast": [
         "SPECIES_SNOVER",
@@ -2493,7 +2493,7 @@
       "intent": "The snowy ledge on the south face: the cold cast, twelve lines, the two dragons as 1%s.",
       "locked": [],
       "base_level": 36,
-      "order": 105,
+      "order": 107,
       "split": "Volkner",
       "cast": [
         "SPECIES_SNOVER",
@@ -4049,7 +4049,7 @@
       "intent": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night.",
       "locked": [],
       "base_level": 17,
-      "order": 37,
+      "order": 38,
       "split": "Maylene",
       "cast": [
         "SPECIES_GOTHITA",
@@ -4204,7 +4204,7 @@
       "intent": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts.",
       "locked": [],
       "base_level": 17,
-      "order": 38,
+      "order": 39,
       "split": "Maylene",
       "cast": [
         "SPECIES_YAMASK",
@@ -4228,7 +4228,7 @@
       "intent": "Second floor: the same ghosts, wider and flatter.",
       "locked": [],
       "base_level": 17,
-      "order": 39,
+      "order": 40,
       "split": "Maylene",
       "cast": [
         "SPECIES_YAMASK",
@@ -4253,7 +4253,7 @@
       "intent": "Third floor: three ghosts co-equal.",
       "locked": [],
       "base_level": 17,
-      "order": 40,
+      "order": 41,
       "split": "Maylene",
       "cast": [
         "SPECIES_YAMASK",
@@ -4278,7 +4278,7 @@
       "intent": "Fourth floor: candles lead the climb.",
       "locked": [],
       "base_level": 17,
-      "order": 41,
+      "order": 42,
       "split": "Maylene",
       "cast": [
         "SPECIES_LITWICK",
@@ -4302,7 +4302,7 @@
       "intent": "The top floor: eight lines, Klefki a 4% before the ruins, Dhelmise a 1% anchor far from any sea.",
       "locked": [],
       "base_level": 17,
-      "order": 42,
+      "order": 43,
       "split": "Maylene",
       "cast": [
         "SPECIES_YAMASK",
@@ -4329,7 +4329,7 @@
       "intent": "Route 210's foggy upper half, the delay: Hawlucha's home, Goomy at 10 in the mist (fully evolved by 50, so here by Byron), Fennekin and Litten at 10 each by day as the prizes.",
       "locked": [],
       "base_level": 27,
-      "order": 79,
+      "order": 80,
       "split": "Byron",
       "cast": [
         "SPECIES_HAWLUCHA",
@@ -4478,7 +4478,7 @@
       "intent": "Route 210's lower half, Scyther's home; the north half is the delay. Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, the fire and grass starters as 1%s.",
       "locked": [],
       "base_level": 18,
-      "order": 61,
+      "order": 62,
       "split": "Maylene",
       "cast": [
         "SPECIES_SCYTHER",
@@ -4509,7 +4509,7 @@
       "intent": "Route 211's Celestic half, the delay: Ralts and Ferroseed at home, Rowlet 20 and Litten 15 the prizes, Jangmo-o at 10 by the cap rule.",
       "locked": [],
       "base_level": 27,
-      "order": 80,
+      "order": 81,
       "split": "Byron",
       "cast": [
         "SPECIES_KIRLIA",
@@ -4561,7 +4561,7 @@
       "intent": "Route 212's garden half, Emolga's home: the flower lines, Galarian Mr. Mime a 4 by the cap rule, the grass starters as 1%s.",
       "locked": [],
       "base_level": 21,
-      "order": 76,
+      "order": 77,
       "split": "Wake",
       "cast": [
         "SPECIES_EMOLGA",
@@ -4716,7 +4716,7 @@
       "intent": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s.",
       "locked": [],
       "base_level": 21,
-      "order": 77,
+      "order": 78,
       "split": "Wake",
       "cast": [
         "SPECIES_KOFFING",
@@ -4871,7 +4871,7 @@
       "intent": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s.",
       "locked": [],
       "base_level": 23,
-      "order": 68,
+      "order": 69,
       "split": "Wake",
       "cast": [
         "SPECIES_SANDYGAST",
@@ -5026,7 +5026,7 @@
       "intent": "The road down to Valor: Rhyhorn and Fennekin at 20, Houndour and Salandit at home behind them, Swinub a 5 by the cap rule, the fire starters as 1%s.",
       "locked": [],
       "base_level": 26,
-      "order": 63,
+      "order": 64,
       "split": "Wake",
       "cast": [
         "SPECIES_RHYHORN",
@@ -5181,7 +5181,7 @@
       "intent": "The rain route: Vullaby's home at 35 with Castform at 20, Yanma and Koffing in the tail by the cap rule, Wooper by day.",
       "locked": [],
       "base_level": 19,
-      "order": 62,
+      "order": 63,
       "split": "Maylene",
       "cast": [
         "SPECIES_VULLABY",
@@ -5208,7 +5208,7 @@
       "intent": "The first snow route: Snover and Snom at home, the mountain's cold cast, Litten a 1% fire in the snow.",
       "locked": [],
       "base_level": 32,
-      "order": 96,
+      "order": 97,
       "split": "Candice",
       "cast": [
         "SPECIES_SNOVER",
@@ -5239,7 +5239,7 @@
       "intent": "The blizzard route: Swinub and Snorunt at home, Larvitar a 5 by the cap rule (fully evolved by 55), two fire starters as 1%s.",
       "locked": [],
       "base_level": 32,
-      "order": 97,
+      "order": 98,
       "split": "Candice",
       "cast": [
         "SPECIES_SWINUB",
@@ -5270,7 +5270,7 @@
       "intent": "The grass by Canalave, reached by Surf: Galarian Mr. Mime's home, the beach lines beside it.",
       "locked": [],
       "base_level": 28,
-      "order": 83,
+      "order": 84,
       "split": "Byron",
       "old_rod": {
         "cast": [
@@ -5404,7 +5404,7 @@
       "intent": "The road to Pal Park: Lurantis's home (a line of its own until Fomantis's data is fixed), Trapinch a 5 by the cap rule, the beach lines small.",
       "locked": [],
       "base_level": 28,
-      "order": 94,
+      "order": 95,
       "split": "Byron",
       "cast": [
         "SPECIES_LURANTIS",
@@ -5559,7 +5559,7 @@
       "intent": "The beach road to Sunyshore, Elekid's home: every electric line at once, the water starters as 1%s.",
       "locked": [],
       "base_level": 38,
-      "order": 133,
+      "order": 135,
       "split": "Volkner",
       "cast": [
         "SPECIES_ELECTIVIRE",
@@ -5714,7 +5714,7 @@
       "intent": "The flower route to Seabreak Path: no line's home, every line a cameo at a new share; Yveltal's static is planned here.",
       "locked": [],
       "base_level": 49,
-      "order": 142,
+      "order": 144,
       "split": "Post",
       "cast": [
         "SPECIES_LURANTIS",
@@ -5869,7 +5869,7 @@
       "intent": "The Battle Zone's first route: the early lines back at post-game levels, none a home, Hawlucha in the hills.",
       "locked": [],
       "base_level": 47,
-      "order": 150,
+      "order": 152,
       "split": "Post",
       "cast": [
         "SPECIES_HARIYAMA",
@@ -6024,7 +6024,7 @@
       "intent": "The cliff route above the sea: eight lines, the birds and the beach.",
       "locked": [],
       "base_level": 47,
-      "order": 151,
+      "order": 153,
       "split": "Post",
       "cast": [
         "SPECIES_CORVIKNIGHT",
@@ -6175,7 +6175,7 @@
       "intent": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s.",
       "locked": [],
       "base_level": 51,
-      "order": 152,
+      "order": 154,
       "split": "Post",
       "cast": [
         "SPECIES_CERULEDGE",
@@ -6330,7 +6330,7 @@
       "intent": "The sandstorm route, Trapinch's home: the desert lines, Beldum at 10, the two pseudo-legendaries as 1%s.",
       "locked": [],
       "base_level": 49,
-      "order": 156,
+      "order": 158,
       "split": "Post",
       "cast": [
         "SPECIES_HIPPOWDON",
@@ -6485,7 +6485,7 @@
       "intent": "The tall-grass route to the Resort Area, Heracross's home: the bug and grass lines, two grass starters as 1%s.",
       "locked": [],
       "base_level": 47,
-      "order": 157,
+      "order": 159,
       "split": "Post",
       "cast": [
         "SPECIES_HERACROSS",
@@ -6640,7 +6640,7 @@
       "intent": "The last route, by the sea: Galarian Rapidash's home, Togepi at 20.",
       "locked": [],
       "base_level": 47,
-      "order": 159,
+      "order": 161,
       "split": "Post",
       "cast": [
         "SPECIES_GALARIAN_RAPIDASH",
@@ -6791,7 +6791,7 @@
       "intent": "The cave dug through to the ruins: three co-equal, Klefki by day where it meets the ruins.",
       "locked": [],
       "base_level": 21,
-      "order": 66,
+      "order": 67,
       "split": "Wake",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -6816,7 +6816,7 @@
       "intent": "The cave before the maniac digs through: Dwebble's home at 35, Hippopotas beside it.",
       "locked": [],
       "base_level": 21,
-      "order": 65,
+      "order": 66,
       "split": "Wake",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -6840,7 +6840,7 @@
       "intent": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk.",
       "locked": [],
       "base_level": 50,
-      "order": 111,
+      "order": 113,
       "split": "League",
       "cast": [
         "SPECIES_GARCHOMP",
@@ -6995,7 +6995,7 @@
       "intent": "Snowpoint Temple, floor 1 of six: the ice lines and the temple's bats, shape A14; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 144,
+      "order": 146,
       "split": "Post",
       "cast": [
         "SPECIES_GLALIE",
@@ -7020,7 +7020,7 @@
       "intent": "Snowpoint Temple, floor 2 of six: the ice lines and the temple's bats, shape A16; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 145,
+      "order": 147,
       "split": "Post",
       "cast": [
         "SPECIES_WEAVILE",
@@ -7045,7 +7045,7 @@
       "intent": "Snowpoint Temple, floor 3 of six: the ice lines and the temple's bats, shape A18; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 146,
+      "order": 148,
       "split": "Post",
       "cast": [
         "SPECIES_ALOLAN_NINETALES",
@@ -7072,7 +7072,7 @@
       "intent": "Snowpoint Temple, floor 4 of six: the ice lines and the temple's bats, shape A13; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 147,
+      "order": 149,
       "split": "Post",
       "cast": [
         "SPECIES_MR_RIME",
@@ -7096,7 +7096,7 @@
       "intent": "Snowpoint Temple, floor 5 of six: the ice lines and the temple's bats, shape A15; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 148,
+      "order": 150,
       "split": "Post",
       "cast": [
         "SPECIES_WEAVILE",
@@ -7123,7 +7123,7 @@
       "intent": "Snowpoint Temple, floor 6 of six: the ice lines and the temple's bats, shape A17; Regigigas waits at the bottom.",
       "locked": [],
       "base_level": 47,
-      "order": 149,
+      "order": 151,
       "split": "Post",
       "cast": [
         "SPECIES_GLALIE",
@@ -7150,7 +7150,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 60,
+      "order": 61,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7181,7 +7181,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 43,
+      "order": 44,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7212,7 +7212,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 44,
+      "order": 45,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7243,7 +7243,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 45,
+      "order": 46,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7274,7 +7274,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 46,
+      "order": 47,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7305,7 +7305,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 47,
+      "order": 48,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7336,7 +7336,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 48,
+      "order": 49,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7367,7 +7367,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 49,
+      "order": 50,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7398,7 +7398,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 50,
+      "order": 51,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7429,7 +7429,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 51,
+      "order": 52,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7460,7 +7460,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 52,
+      "order": 53,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7491,7 +7491,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 53,
+      "order": 54,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7522,7 +7522,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 54,
+      "order": 55,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7553,7 +7553,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 55,
+      "order": 56,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7584,7 +7584,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 56,
+      "order": 57,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7615,7 +7615,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 57,
+      "order": 58,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7646,7 +7646,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 58,
+      "order": 59,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7677,7 +7677,7 @@
       "intent": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast.",
       "locked": [],
       "base_level": 20,
-      "order": 59,
+      "order": 60,
       "split": "Maylene",
       "cast": [
         "SPECIES_DWEBBLE",
@@ -7708,7 +7708,7 @@
       "intent": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes.",
       "locked": [],
       "base_level": 51,
-      "order": 153,
+      "order": 155,
       "split": "Post",
       "cast": [
         "SPECIES_GALARIAN_WEEZING",
@@ -7735,7 +7735,7 @@
       "intent": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma.",
       "locked": [],
       "base_level": 51,
-      "order": 154,
+      "order": 156,
       "split": "Post",
       "cast": [
         "SPECIES_LARVESTA",
@@ -7762,7 +7762,7 @@
       "intent": "The magma chamber, Turtonator's home at 35: Heatran's room is past it.",
       "locked": [],
       "base_level": 52,
-      "order": 155,
+      "order": 157,
       "split": "Post",
       "cast": [
         "SPECIES_TURTONATOR",
@@ -7789,7 +7789,7 @@
       "intent": "The Pokemon Mansion's garden, Pichu's home: the cute lines, Eevee and Togepi at 5 beside their gifts, Galarian Mr. Mime at 5 by the cap rule, the grass starters as 1%s.",
       "locked": [],
       "base_level": 22,
-      "order": 78,
+      "order": 79,
       "split": "Wake",
       "cast": [
         "SPECIES_PICHU",
@@ -7820,7 +7820,7 @@
       "intent": "Turnback Cave, room 1 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 15,
-      "order": 112,
+      "order": 114,
       "split": "Post",
       "cast": [
         "SPECIES_YAMASK",
@@ -7844,7 +7844,7 @@
       "intent": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 35,
-      "order": 132,
+      "order": 134,
       "split": "Post",
       "cast": [
         "SPECIES_CROBAT",
@@ -7869,7 +7869,7 @@
       "intent": "Turnback Cave, room 4 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 15,
-      "order": 113,
+      "order": 115,
       "split": "Post",
       "cast": [
         "SPECIES_BRONZOR",
@@ -7894,7 +7894,7 @@
       "intent": "Turnback Cave, room 5 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 15,
-      "order": 114,
+      "order": 116,
       "split": "Post",
       "cast": [
         "SPECIES_DUSKULL",
@@ -7921,7 +7921,7 @@
       "intent": "Turnback Cave, room 6 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 15,
-      "order": 115,
+      "order": 117,
       "split": "Post",
       "cast": [
         "SPECIES_SINISTEA",
@@ -7945,7 +7945,7 @@
       "intent": "Turnback Cave, room 7 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 15,
-      "order": 116,
+      "order": 118,
       "split": "Post",
       "cast": [
         "SPECIES_GOTHITA",
@@ -7970,7 +7970,7 @@
       "intent": "Turnback Cave, room 8 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 15,
-      "order": 117,
+      "order": 119,
       "split": "Post",
       "cast": [
         "SPECIES_KLEFKI",
@@ -7997,7 +7997,7 @@
       "intent": "Turnback Cave, room 9 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 15,
-      "order": 118,
+      "order": 120,
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
@@ -8024,7 +8024,7 @@
       "intent": "Turnback Cave, room 10 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 25,
-      "order": 119,
+      "order": 121,
       "split": "Post",
       "cast": [
         "SPECIES_NOSEPASS",
@@ -8051,7 +8051,7 @@
       "intent": "Turnback Cave, room 11 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 25,
-      "order": 120,
+      "order": 122,
       "split": "Post",
       "cast": [
         "SPECIES_ONIX",
@@ -8082,7 +8082,7 @@
       "intent": "Turnback Cave, room 12 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 25,
-      "order": 121,
+      "order": 123,
       "split": "Post",
       "cast": [
         "SPECIES_DHELMISE",
@@ -8106,7 +8106,7 @@
       "intent": "Turnback Cave, room 13 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 25,
-      "order": 122,
+      "order": 124,
       "split": "Post",
       "cast": [
         "SPECIES_YAMASK",
@@ -8130,7 +8130,7 @@
       "intent": "Turnback Cave, room 14 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 25,
-      "order": 123,
+      "order": 125,
       "split": "Post",
       "cast": [
         "SPECIES_LITWICK",
@@ -8155,7 +8155,7 @@
       "intent": "Turnback Cave, room 15 of 46 at level 25: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 25,
-      "order": 124,
+      "order": 126,
       "split": "Post",
       "cast": [
         "SPECIES_GOLBAT",
@@ -8180,7 +8180,7 @@
       "intent": "Turnback Cave, room 16 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 35,
-      "order": 125,
+      "order": 127,
       "split": "Post",
       "cast": [
         "SPECIES_BRONZONG",
@@ -8207,7 +8207,7 @@
       "intent": "Turnback Cave, room 17 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 35,
-      "order": 126,
+      "order": 128,
       "split": "Post",
       "cast": [
         "SPECIES_DUSKULL",
@@ -8231,7 +8231,7 @@
       "intent": "Turnback Cave, room 18 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 35,
-      "order": 127,
+      "order": 129,
       "split": "Post",
       "cast": [
         "SPECIES_SINISTCHA",
@@ -8256,7 +8256,7 @@
       "intent": "Turnback Cave, room 19 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 35,
-      "order": 128,
+      "order": 130,
       "split": "Post",
       "cast": [
         "SPECIES_GOTHORITA",
@@ -8283,7 +8283,7 @@
       "intent": "Turnback Cave, room 20 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 35,
-      "order": 129,
+      "order": 131,
       "split": "Post",
       "cast": [
         "SPECIES_KLEFKI",
@@ -8310,7 +8310,7 @@
       "intent": "Turnback Cave, room 21 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 35,
-      "order": 130,
+      "order": 132,
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
@@ -8337,7 +8337,7 @@
       "intent": "Turnback Cave, room 2 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 35,
-      "order": 131,
+      "order": 133,
       "split": "Post",
       "cast": [
         "SPECIES_LITWICK",
@@ -8361,7 +8361,7 @@
       "intent": "Turnback Cave, room 22 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
-      "order": 162,
+      "order": 164,
       "split": "Post",
       "cast": [
         "SPECIES_PROBOPASS",
@@ -8392,7 +8392,7 @@
       "intent": "Turnback Cave, room 23 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
-      "order": 163,
+      "order": 165,
       "split": "Post",
       "cast": [
         "SPECIES_STEELIX",
@@ -8416,7 +8416,7 @@
       "intent": "Turnback Cave, room 24 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
-      "order": 164,
+      "order": 166,
       "split": "Post",
       "cast": [
         "SPECIES_DHELMISE",
@@ -8440,7 +8440,7 @@
       "intent": "Turnback Cave, room 25 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 45,
-      "order": 165,
+      "order": 167,
       "split": "Post",
       "cast": [
         "SPECIES_COFAGRIGUS",
@@ -8465,7 +8465,7 @@
       "intent": "Turnback Cave, room 26 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 45,
-      "order": 166,
+      "order": 168,
       "split": "Post",
       "cast": [
         "SPECIES_CHANDELURE",
@@ -8490,7 +8490,7 @@
       "intent": "Turnback Cave, room 27 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 45,
-      "order": 167,
+      "order": 169,
       "split": "Post",
       "cast": [
         "SPECIES_CROBAT",
@@ -8517,7 +8517,7 @@
       "intent": "Turnback Cave, room 28 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 45,
-      "order": 168,
+      "order": 170,
       "split": "Post",
       "cast": [
         "SPECIES_BRONZONG",
@@ -8541,7 +8541,7 @@
       "intent": "Turnback Cave, room 29 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 45,
-      "order": 169,
+      "order": 171,
       "split": "Post",
       "cast": [
         "SPECIES_DUSKNOIR",
@@ -8566,7 +8566,7 @@
       "intent": "Turnback Cave, room 30 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 45,
-      "order": 170,
+      "order": 172,
       "split": "Post",
       "cast": [
         "SPECIES_SINISTCHA",
@@ -8593,7 +8593,7 @@
       "intent": "Turnback Cave, room 31 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 45,
-      "order": 171,
+      "order": 173,
       "split": "Post",
       "cast": [
         "SPECIES_GOTHITELLE",
@@ -8620,7 +8620,7 @@
       "intent": "Turnback Cave, room 32 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 45,
-      "order": 172,
+      "order": 174,
       "split": "Post",
       "cast": [
         "SPECIES_KLEFKI",
@@ -8647,7 +8647,7 @@
       "intent": "Turnback Cave, room 33 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
-      "order": 173,
+      "order": 175,
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
@@ -8678,7 +8678,7 @@
       "intent": "Turnback Cave, room 34 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
-      "order": 174,
+      "order": 176,
       "split": "Post",
       "cast": [
         "SPECIES_PROBOPASS",
@@ -8702,7 +8702,7 @@
       "intent": "Turnback Cave, room 35 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
-      "order": 175,
+      "order": 177,
       "split": "Post",
       "cast": [
         "SPECIES_STEELIX",
@@ -8726,7 +8726,7 @@
       "intent": "Turnback Cave, room 36 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14.",
       "locked": [],
       "base_level": 45,
-      "order": 176,
+      "order": 178,
       "split": "Post",
       "cast": [
         "SPECIES_DHELMISE",
@@ -8751,7 +8751,7 @@
       "intent": "Turnback Cave, room 37 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A16.",
       "locked": [],
       "base_level": 45,
-      "order": 177,
+      "order": 179,
       "split": "Post",
       "cast": [
         "SPECIES_COFAGRIGUS",
@@ -8776,7 +8776,7 @@
       "intent": "Turnback Cave, room 38 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18.",
       "locked": [],
       "base_level": 45,
-      "order": 178,
+      "order": 180,
       "split": "Post",
       "cast": [
         "SPECIES_CHANDELURE",
@@ -8803,7 +8803,7 @@
       "intent": "Turnback Cave, room 39 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A6.",
       "locked": [],
       "base_level": 45,
-      "order": 179,
+      "order": 181,
       "split": "Post",
       "cast": [
         "SPECIES_CROBAT",
@@ -8827,7 +8827,7 @@
       "intent": "Turnback Cave, room 40 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7.",
       "locked": [],
       "base_level": 45,
-      "order": 180,
+      "order": 182,
       "split": "Post",
       "cast": [
         "SPECIES_BRONZONG",
@@ -8852,7 +8852,7 @@
       "intent": "Turnback Cave, room 41 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
       "base_level": 45,
-      "order": 181,
+      "order": 183,
       "split": "Post",
       "cast": [
         "SPECIES_DUSKNOIR",
@@ -8879,7 +8879,7 @@
       "intent": "Turnback Cave, room 42 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15.",
       "locked": [],
       "base_level": 45,
-      "order": 182,
+      "order": 184,
       "split": "Post",
       "cast": [
         "SPECIES_SINISTCHA",
@@ -8906,7 +8906,7 @@
       "intent": "Turnback Cave, room 43 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17.",
       "locked": [],
       "base_level": 45,
-      "order": 183,
+      "order": 185,
       "split": "Post",
       "cast": [
         "SPECIES_GOTHITELLE",
@@ -8933,7 +8933,7 @@
       "intent": "Turnback Cave, room 44 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A19.",
       "locked": [],
       "base_level": 45,
-      "order": 184,
+      "order": 186,
       "split": "Post",
       "cast": [
         "SPECIES_KLEFKI",
@@ -8964,7 +8964,7 @@
       "intent": "Turnback Cave, room 45 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A11.",
       "locked": [],
       "base_level": 45,
-      "order": 185,
+      "order": 187,
       "split": "Post",
       "cast": [
         "SPECIES_CARBINK",
@@ -8988,7 +8988,7 @@
       "intent": "Turnback Cave, room 46 of 46 at level 45: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13.",
       "locked": [],
       "base_level": 45,
-      "order": 186,
+      "order": 188,
       "split": "Post",
       "cast": [
         "SPECIES_PROBOPASS",
@@ -9145,7 +9145,7 @@
       "intent": "The hotel grounds above Lake Valor: Swablu's home, Absol at 10 and by night, the cute lines from Floaroma back at other shares, two starters as 1%s.",
       "locked": [],
       "base_level": 25,
-      "order": 67,
+      "order": 68,
       "split": "Wake",
       "cast": [
         "SPECIES_SWABLU",
@@ -9176,7 +9176,7 @@
       "intent": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail.",
       "locked": [],
       "base_level": 40,
-      "order": 136,
+      "order": 138,
       "split": "League",
       "cast": [
         "SPECIES_PUPITAR",
@@ -9207,7 +9207,7 @@
       "intent": "Side room one: six lines, Larvitar at 15.",
       "locked": [],
       "base_level": 47,
-      "order": 139,
+      "order": 141,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
@@ -9232,7 +9232,7 @@
       "intent": "Side room two, the wet one: Goomy at 35.",
       "locked": [],
       "base_level": 47,
-      "order": 140,
+      "order": 142,
       "split": "League",
       "cast": [
         "SPECIES_SLIGGOO",
@@ -9383,7 +9383,7 @@
       "intent": "Side room three: eight lines, Beldum and Gible in the tail.",
       "locked": [],
       "base_level": 47,
-      "order": 141,
+      "order": 143,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
@@ -9410,7 +9410,7 @@
       "intent": "Second floor: eight lines, Jangmo-o at 15.",
       "locked": [],
       "base_level": 41,
-      "order": 137,
+      "order": 139,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
@@ -9437,7 +9437,7 @@
       "intent": "The basement with the water: Beldum co-equal with Onix and Nacli.",
       "locked": [],
       "base_level": 41,
-      "order": 138,
+      "order": 140,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
@@ -9640,7 +9640,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 84,
+      "order": 85,
       "split": "Byron",
       "old_rod": {
         "cast": [
@@ -9773,7 +9773,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 81,
+      "order": 82,
       "split": "Byron",
       "old_rod": {
         "cast": [
@@ -10021,7 +10021,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 161,
+      "order": 163,
       "split": "Post"
     },
     "encounters_honey_tree": {
@@ -10030,7 +10030,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 160,
+      "order": 162,
       "split": "Post"
     },
     "encounters_iron_island": {
@@ -10039,7 +10039,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 85,
+      "order": 86,
       "split": "Byron",
       "old_rod": {
         "cast": [
@@ -10172,7 +10172,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 69,
+      "order": 70,
       "split": "Wake",
       "old_rod": {
         "cast": [
@@ -10305,7 +10305,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 143,
+      "order": 145,
       "split": "League",
       "old_rod": {
         "cast": [
@@ -10438,7 +10438,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 158,
+      "order": 160,
       "split": "Post",
       "old_rod": {
         "cast": [
@@ -10571,7 +10571,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 92,
+      "order": 93,
       "split": "Roark",
       "old_rod": {
         "cast": [
@@ -10686,7 +10686,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 93,
+      "order": 94,
       "split": "Byron",
       "old_rod": {
         "cast": [
@@ -10819,7 +10819,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 135,
+      "order": 137,
       "split": "League",
       "old_rod": {
         "cast": [
@@ -10952,7 +10952,7 @@
       "intent": "",
       "locked": [],
       "base_level": null,
-      "order": 134,
+      "order": 136,
       "split": "Volkner",
       "old_rod": {
         "cast": [
@@ -11219,7 +11219,139 @@
       "night": [
         "SPECIES_PURRLOIN",
         "SPECIES_POOCHYENA"
+      ],
+      "planned_location": "Verity Lakefront"
+    },
+    "encounters_amity_square": {
+      "archetype": "A15",
+      "band": "early",
+      "intent": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian.",
+      "locked": [],
+      "base_level": 8,
+      "order": 36,
+      "split": "Fantina",
+      "planned_location": "Amity Square",
+      "cast": [
+        "SPECIES_SKITTY",
+        "SPECIES_SWABLU",
+        "SPECIES_PACHIRISU",
+        "SPECIES_BUNEARY",
+        "SPECIES_GLAMEOW",
+        "SPECIES_FLABEBE",
+        "SPECIES_TOGEPI",
+        "SPECIES_PICHU"
+      ],
+      "day": [
+        "SPECIES_MINCCINO",
+        "SPECIES_EMOLGA"
+      ],
+      "night": [
+        "SPECIES_GLAMEOW",
+        "SPECIES_PURRLOIN"
       ]
+    },
+    "encounters_snowpoint_city": {
+      "archetype": null,
+      "band": null,
+      "intent": "A new capture area (the header still needs pointing here): Snowpoint's harbour, fished from Candice's split at Lake Acuity's levels. A draft for Ian.",
+      "locked": [],
+      "base_level": null,
+      "order": 101,
+      "split": "Candice",
+      "planned_location": "Snowpoint City",
+      "old_rod": {
+        "cast": [
+          "SPECIES_MAGIKARP",
+          "SPECIES_FINNEON",
+          "SPECIES_TENTACOOL",
+          "SPECIES_LUVDISC",
+          "SPECIES_REMORAID"
+        ],
+        "levels": [
+          [
+            16,
+            20
+          ],
+          [
+            16,
+            20
+          ],
+          [
+            17,
+            21
+          ],
+          [
+            17,
+            21
+          ],
+          [
+            18,
+            22
+          ]
+        ]
+      },
+      "good_rod": {
+        "cast": [
+          "SPECIES_FINNEON",
+          "SPECIES_LANTURN",
+          "SPECIES_TENTACOOL",
+          "SPECIES_REMORAID",
+          "SPECIES_MANTYKE"
+        ],
+        "levels": [
+          [
+            28,
+            34
+          ],
+          [
+            28,
+            34
+          ],
+          [
+            30,
+            36
+          ],
+          [
+            30,
+            36
+          ],
+          [
+            32,
+            38
+          ]
+        ]
+      },
+      "super_rod": {
+        "cast": [
+          "SPECIES_LUMINEON",
+          "SPECIES_GYARADOS",
+          "SPECIES_MANTINE",
+          "SPECIES_JELLICENT",
+          "SPECIES_ALOMOMOLA"
+        ],
+        "levels": [
+          [
+            38,
+            46
+          ],
+          [
+            38,
+            46
+          ],
+          [
+            41,
+            49
+          ],
+          [
+            41,
+            49
+          ],
+          [
+            44,
+            52
+          ]
+        ]
+      }
     }
   },
   "inactive_areas": [
@@ -11233,6 +11365,7 @@
     "encounters_route_219",
     "encounters_route_220",
     "encounters_route_223",
+    "encounters_snowpoint_city",
     "encounters_sunyshore_city",
     "encounters_twinleaf_town"
   ],

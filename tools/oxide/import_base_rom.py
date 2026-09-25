@@ -456,6 +456,18 @@ def decode_encounter(b):
 # rate_form2..4 are unused by the game and move with the other two.
 ENCOUNTER_SKIP_KEYS = ("unown_table", "rate_form0", "rate_form1", "rate_form2", "rate_form3", "rate_form4")
 
+# Move fields the base ROM changed that a later ruling of Ian's changed again,
+# so the base ROM is no longer their truth and the importer must leave them
+# alone. Keyed by move directory, then field (as flatten() names it), with the
+# reason; the dry run reports each as "diverged, left alone" and does not count
+# it. The same idea as verify_narcs.py's DIVERGED, which covers the built NARC.
+MOVES_DIVERGED = {
+    "poison_gas": {
+        "range": "the base ROM made it hit everything around the user; Ian ruled "
+                 "on 2026-09-22 (element 6, doubles) that it hits both foes only",
+    },
+}
+
 # Encounter files the authoring pass has rewritten from the species pick-list
 # (docs/oxide/encounter-authoring-plan.md). The base ROM's table is no longer
 # the truth for these, so the importer must not carry it back over them; the
@@ -1348,7 +1360,13 @@ def main():
         if d is None:
             log.append((f"move index {i}", ["record differs but has no data.json; skipped"]))
             continue
-        if apply_diff(os.path.join(d, "data.json"), decode_move(bm[i]), decode_move(vm[i]), a.dry_run, log):
+        new, old = decode_move(bm[i]), decode_move(vm[i])
+        for field, why in MOVES_DIVERGED.get(os.path.basename(d), {}).items():
+            new.pop(field, None)
+            old.pop(field, None)
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"{field}: diverged, left alone ({why})"]))
+        if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["moves"] = n
 

@@ -1,10 +1,10 @@
 # How Platinum's trainer AI chooses a move
 
-Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here is read from the code in this tree, with line numbers, and was checked against vanilla on `main` where the two could differ. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
+Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes have since shifted lines in the branch (by up to 22 in `script.s` and 31 in `trainer_ai.c`); find a routine by its label, not its number. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
 
 The AI lives in two files. `src/battle/trainer_ai/trainer_ai.c` is the interpreter: it sets up the scores, runs the script, picks the move, and holds the switching and item logic, which are plain C. `src/battle/trainer_ai/script.s` is the script itself, about 8,100 lines of commands such as "if the target is asleep, add minus 10", one routine per AI flag. The commands are the `AICmd_*` functions in the C file. The game asks for a move from `src/battle/battle_display.c` line 3590, through `TrainerAI_Main`, but only for a trainer's Pokemon, a roaming legendary, the tutorial battle, or a partner on the player's side (lines 3586 to 3589). **Every other wild Pokemon picks a usable move at random** (lines 3600 to 3612) and never reaches anything described here. That includes both Pokemon in a wild double battle, so Oxide's wild doubles do not run the AI unless element 8 changes that line; whether they should is a decision for then.
 
-A trainer's turn is decided in the order switch, then item, then move (`TrainerAI_PickCommand`, `trainer_ai.c` lines 3989 to 4040, in `switching-and-items.md`), and the move scoring below never runs on a turn the AI switches. Oxide's trainers never use items, since Phase 3 stopped giving them any, so in practice it is switch or move.
+A trainer's turn is decided in the order switch, then item, then move (`TrainerAI_PickCommand`, `trainer_ai.c` lines 3989 to 4040, in `switching-and-items.md`), and the move scoring below never runs on a turn the AI switches. Oxide's trainers never use items: 40 trainer files still list some, but Phase 3 made `BattleControllerPlayer_InitAI` stop loading them (`battle_controller_player.c`), so in practice it is switch or move.
 
 ## The scoring engine
 
@@ -63,12 +63,12 @@ The base ROM changed the flags of 362 trainers, nearly all towards more: the com
 
 ## What the write-up found
 
-About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists its own with the vanilla line on `main`; `script.s` is byte-identical to `main`, so every script bug is vanilla at the same line. The headline items, the ones that change what Oxide's trainers actually do:
+About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists its own with the vanilla line on `main`; `script.s` was byte-identical to `main` when they were written, so every script bug is vanilla at the line given. The headline items, the ones that change what Oxide's trainers actually do:
 
 | Finding | Origin | Where | What it does in play |
 |---|---|---|---|
 | Revealed abilities above 255 are remembered as another ability | Oxide | `ai_context.h` line 28 | Quark Drive reads as Levitate and Protosynthesis as Wonder Guard, Hospitality as Soundproof. Element 2 widened abilities to u16 and missed this one byte |
-| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch and gets the same +5 on the first turn. 17 Oxide trainers carry the flag, gym leaders and Elite Four among them |
+| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch, so on the first turn every move gets the same +5 (or, with the sun already up, nothing). 17 Oxide trainers carry the flag, gym leaders and Elite Four among them |
 | A faster Pokemon almost never heals | vanilla | `expert-1.md` bug 4 | Under Expert (559 trainers), Recover, Roost, Synthesis and the rest get -8 whenever the user is not slower |
 | Some moves skip every immunity check | vanilla | `basic.md` B6 | Moves whose power is worked out elsewhere (Solar Beam, Eruption, Sucker Punch and others) keep a full score into an immune target; Oxide's Dragon Energy into a Fairy is one |
 | Punishment adds every rung of its ladder | vanilla | `expert-2.md` bug 2 | Up to +10 where one rung was meant |
@@ -76,25 +76,49 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 | The bench damage check uses the active Pokemon's stats and types | vanilla | `expert-2.md` bug 10, `switching-and-items.md` | Skews U-turn, Healing Wish and switching |
 | Status moves count as super-effective in the bench checks | vanilla | `switching-and-items.md` | Skews when and to what the AI switches |
 
-The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. The guide they come from was not read for this write-up, so each is located from the code; two (the "Sunny Day check", most likely `basic.md` B2, and the "charge-turn scoring fix", most likely `expert-2.md` bug 3) need the guide's wording confirmed before they are applied.
+The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
 
 What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step.
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix and six vanilla fixes, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix, twenty-four vanilla fixes and one change Ian asked for, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
 | The AI's remembered ability is u16 (`ai_context.h`) | Oxide | Quark Drive, Protosynthesis, Hospitality and the rest are remembered as themselves |
 | Weather flag (O1) | vanilla | Only a weather move that would set new weather gets the +5 on the first turn |
-| Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | Water Spout into Water Absorb, Dragon Energy into a Fairy and the like are now refused |
+| Immunity checks for damaging moves outside the damage comparison (B6) | vanilla | 52 moves now go through the checks (every damaging move the comparison leaves out: the recharge moves, Explosion, Dream Eater, Focus Punch, Solar Beam, and the power-1 moves such as Counter, Flail and Fling among them), so Water Spout into Water Absorb, Dragon Energy into a Fairy, Explosion or Counter into a Ghost are now refused |
 | Punishment's ladder (expert-2 bug 2) | vanilla | 50% +4, 25% +3, 12.5% +2, 6.25% +1 against +7 boosts or more, as its comment says, instead of summing up to +10 |
 | Trick, Switcheroo and Gastro Acid on the partner (O11) | vanilla | Refused (-30), except Gastro Acid on a partner with Truant or Slow Start (+5, as before) |
-| Weather Ball's type in clear weather (switching bug 1) | vanilla | All three type helpers start from Normal. Read from the compiled code, they had returned a pointer: the engine's redirection check was right by luck, but the AI's effectiveness check saw Weather Ball as Normal only if the heap put the battle system at an address ending in 00, and otherwise as neutral against everything, Ghost types included |
+| Weather Ball's type in clear weather (switching bug 1) | vanilla | All three type helpers start from Normal. Read from the compiled code, they had returned a pointer: the engine's redirection check was right by luck, but the AI's effectiveness check took the low byte of the battle system's address as the type. `Heap_Alloc` aligns to 4, so that read as Normal, Ground, Steel, Grass or Dragon for a byte of 00 to 10, and as neutral against everything above. The fix also changes AI switching, through `Move_CalcVariableType`'s callers in the switching checks and the post-knockout pick |
 | Weather Ball in the AI's damage estimate (found after the write-up, from Ian's pokemow reference) | vanilla | In weather the AI now estimates the doubled power and the weather's type, as the battle sets them, instead of always a 50-power Normal move |
+| Weather Ball's weather type where the AI read the listed type (QA pass before the integration) | vanilla | Basic's absorb and Levitate checks, Tag Strategy's type dispatch and the absorb-ability switch now see a rain Weather Ball as Water and a sun one as Fire. Hidden Power, Natural Gift and Judgment still read their listed type |
+| Weather Ball in the post-knockout pick (same QA pass) | vanilla | A bench Weather Ball in weather is costed at double power and the weather's type, not as a 50-power Normal move |
+| Trainer form Pokemon use their form's stats (pret's `docs/bugs_and_glitches.md`; a party-building fix in `trainer_data.c`, not an AI one) | vanilla | The party builder set the form after the stats were worked out, so a trainer's form Pokemon had its base form's stats. Six in Oxide change: Volkner's Rotom-Mow in both battles, Fantina's rematch Rotom-Wash, Beauty Devon's two Wormadam and Worker Jackson's |
+| A lone Pokemon's spread moves read its fainted partner (`doubles.md` 1) | vanilla | Earthquake, Magnitude, Surf, Discharge and Lava Plume make no partner check once the partner's slot is empty for the rest of the battle, instead of -3, or -10 after a partner weak to them |
+| Steel missing from Earthquake's partner check, Rock from Surf's (`doubles.md` 2, O7) | vanilla | -10 beside a partner weak to the move, except where a second type cancels the weakness (Bug or Grass for Earthquake, Water, Grass or Dragon for Surf) |
+| Mold Breaker ignored beside an ability that protects the partner (`doubles.md` 3) | vanilla | With Mold Breaker, a partner's Levitate, Volt Absorb, Motor Drive, Water Absorb, Dry Skin or Flash Fire no longer earns the spread move a bonus |
+| Follow Me with no partner (`doubles.md` 6, O9) | vanilla | -10 once the partner's slot is empty, instead of up to +3 |
+| Explosion and Self-Destruct beside a partner (`doubles.md` 4) | change | -10 beside a partner, -3 beside a Rock or Steel one, nothing beside a Ghost or an empty slot |
 
-Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes are approved but not yet applied: two of their locations need the guide's wording confirmed first.
+Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes (approved by Ian on 2026-09-15) are applied as eleven more commits, each titled "VANILLA FIX (battle_edits)":
+
+| battle_edits fix | Where | In Ian's base ROM | What changes in play |
+|---|---|---|---|
+| Water immunity vs Dry Skin | `basic.md` B1 | yes | A Water move into a known Dry Skin Pokemon takes -12 |
+| Sunny Day check | `basic.md` B2 | yes | Sunny Day takes -10 against a target with Leaf Guard and no status, not one with Hydration and a status |
+| Foresight and Odor Sleuth Ghost check | `expert-1.md` bug 2 | yes | They are rewarded against a Ghost target, not for a Ghost user |
+| Leaf Guard Sunny Day logic | `expert-1.md` bug 3 | yes | Sunny Day is rewarded for a Leaf Guard user without a status, not with one |
+| Charge-turn scoring | `expert-2.md` bug 3 | yes | Fly, Dig, Dive, Bounce and Shadow Force take -1, not +1, into a target that resists or is immune |
+| Facade status check | `expert-2.md` bug 7 | yes | Facade's +1 follows the user's status |
+| Water Spout and Eruption HP check | `expert-2.md` bug 8 | yes | Both follow the user's HP, not the target's |
+| Thunder scoring | `expert-1.md` bug 1 | no | Thunder reaches its weather routine |
+| Discharge in doubles | `other-flags.md` O6 | no | A Ground partner is checked first, so a Swampert or Gliscor partner no longer stops Discharge |
+| Fire Fang vs Wonder Guard | battle engine | no | Fire Fang no longer hits a Wonder Guard Pokemon regardless of type |
+| Rage glitch | battle engine | no | Choosing another move after Rage clears only Rage, not every other volatile status |
+
+The first seven are the ones Ian played with: the base ROM's overlay 14 carries exactly their thirteen bytes, and the source edits assembled reproduce that overlay with no byte different. Phase 3 rebuilt the game from source, so they had been missing from Oxide until now. The last four are new behaviour.
 
 ## The parts
 
@@ -105,5 +129,6 @@ Put to Ian and kept as vanilla has them: the faster Pokemon that almost never he
 | `expert-2.md` | the Expert flag, second half |
 | `other-flags.md` | every other flag, and the double-battle driver |
 | `switching-and-items.md` | the damage the AI calculates, switching, replacements and item use |
+| `doubles.md` | the doubles review: which of the double-battle faults Oxide's own double battles reach, and the fixes proposed for them |
 
 Each part ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide, then the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.

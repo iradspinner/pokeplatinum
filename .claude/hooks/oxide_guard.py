@@ -16,6 +16,15 @@ blocks the command and shows the reason to the agent):
   blocks for good; a session lost two shells that way. Only these commands pay
   for the /proc scan. Delete this rule, and `wedge_status.sh` beside it, when
   the new chip is in.
+- A full local build (`make`, `make rom`, `make testkit`, `ninja` without a
+  small -j, `meson compile`, or `integrate.sh` without --rom, --no-build or
+  --dry-run), from 2026-09-23 until the replacement CPU is in: builds load every
+  core, and that is where this chip crashes and wedges. Build on GitHub instead
+  (push, then tools/oxide/fetch-rom) and check the downloaded ROM, for instance
+  with `integrate.sh --rom PATH`. `ninja -j1` or `-j2` for a few targets is
+  allowed. Prefix the command with OXIDE_LOCAL_BUILD_OK=1 when Ian has said a
+  local build is wanted anyway. A cloud session (OXIDE_CLOUD=1 in its
+  environment) is not affected. Delete this rule when the new chip is in.
 
 Anything it cannot parse it lets through; this is a guard rail, not a sandbox.
 """
@@ -60,6 +69,41 @@ def wedged(proc_root="/proc"):
             continue
         found.append((os.path.basename(d), name))
     return sorted(found, key=lambda p: int(p[0]) if p[0].isdigit() else 0)
+
+
+# make targets that run the full build; anything else (clean, format) is let by.
+MAKE_BUILD_TARGETS = {"", "all", "rom", "testkit", "debug", "release", "check", "target"}
+
+
+def full_build(raw_words, ws):
+    """Why this command would run a full local build, or None."""
+    if any(w.startswith("OXIDE_LOCAL_BUILD_OK=1") for w in raw_words):
+        return None
+    # A cloud session runs on a healthy machine: Ian's cloud environment sets
+    # OXIDE_CLOUD=1, and the rule is only about this box's CPU.
+    if os.environ.get("OXIDE_CLOUD") == "1":
+        return None
+    prog = os.path.basename(ws[0])
+    args = ws[1:]
+    if prog == "make":
+        targets = [a for a in args if not a.startswith("-") and "=" not in a]
+        if not targets or any(t in MAKE_BUILD_TARGETS for t in targets):
+            return "`make %s`" % " ".join(targets or ["(default)"])
+    if prog == "ninja":
+        jobs = None
+        for i, a in enumerate(args):
+            if a == "-j" and i + 1 < len(args):
+                jobs = args[i + 1]
+            elif a.startswith("-j"):
+                jobs = a[2:]
+        if not (jobs and jobs.isdigit() and 0 < int(jobs) <= 2) and "-n" not in args and "-t" not in args:
+            return "`ninja` on every core"
+    if prog in ("meson", "meson.py") and args[:1] == ["compile"]:
+        return "`meson compile`"
+    if prog == "integrate.sh" or (prog == "bash" and args and os.path.basename(args[0]) == "integrate.sh"):
+        if not any(a in ("--no-build", "--dry-run") or a.startswith("--rom") for a in args):
+            return "`integrate.sh`, which runs `make rom`"
+    return None
 
 
 def segments(command):
@@ -122,11 +166,27 @@ def added_lines(repo, commit_all):
     return found
 
 
+# A heredoc body (a commit message, a file being written) is data, not commands,
+# so it is removed before the command line is split and checked.
+HEREDOC_RE = re.compile(r"<<-?\s*(['\"]?)(\w+)\1[^\n]*\n.*?\n\s*\2[ \t]*(?=\n|$)", re.S)
+
+
 def check(command, cwd, proc_root="/proc"):
+    command = HEREDOC_RE.sub("<<heredoc", command)
     for seg in segments(command):
-        ws = strip_env(words(seg))
+        raw = words(seg)
+        ws = strip_env(raw)
         if not ws:
             continue
+        why = full_build(raw, ws)
+        if why:
+            return ("Refused: %s is a full local build, and until the replacement CPU "
+                    "is in, builds crash or wedge on this chip. Push and build on "
+                    "GitHub instead: tools/oxide/fetch-rom <commit> downloads the ROM, "
+                    "and `bash tools/oxide/integrate.sh --verify-only --rom <that ROM>` "
+                    "checks it. `ninja -C build -j2 <targets>` is allowed for a few "
+                    "targets. If Ian has asked for a local build anyway, prefix the "
+                    "command with OXIDE_LOCAL_BUILD_OK=1." % why)
         if is_emulator(ws[0]):
             return ("Refused: this launches an emulator. Agents never run their own "
                     "melonDS; attach to Ian's over its GDB stub while Ian drives the "

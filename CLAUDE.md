@@ -7,8 +7,9 @@ HeartGold hack) into Pokemon Platinum by editing this decomp directly.
 Start every session by reading, in order:
 
 1. `docs/oxide/design-doc.md`   what the project is, ground truth, scope, working rules
-2. `docs/oxide/tracker.md`      what is done, what is next, decisions made
-3. The `docs/oxide/phase*.md` notes only as the tracker points you to them
+2. `docs/oxide/tracker.md`      open work, what is next, what waits on Ian
+3. The `docs/oxide/phase*.md` notes and `docs/oxide/tracker-archive.md`
+   (finished work) only as the tracker points you to them
 
 Then say in one or two sentences what this session will do, and do it.
 
@@ -26,7 +27,8 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
-- Update `docs/oxide/tracker.md` at the end of every session and commit it.
+- Update `docs/oxide/tracker.md` at the end of every session and commit it;
+  a finished block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
   drive, which a separate chat surface works from.
@@ -36,7 +38,7 @@ Then say in one or two sentences what this session will do, and do it.
   Phase 3 might need re-checking.
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
-  them; do not "fix" a mismatch the tracker says is intended.
+  them; do not "fix" a mismatch the tracker or its archive says is intended.
 - Stage files by name when committing, never `git add -A` or `git add .`;
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
@@ -88,11 +90,55 @@ repo never uploads the ROM. **Ian's playtest ROMs come from
 `tools/oxide/fetch-rom`**, which builds a pushed commit in the private repo
 `iradspinner/oxide-rom-builder`, keeps the ROM there as a private artifact for
 three days, and downloads it to `~/oxide-playtest` after checking its SHA-1.
-Hand Ian that ROM, not one built on this CPU. Retry a local build that crashes,
-and rerun a failed test before believing it. The `Makefile` puts the 3.13
+Hand Ian that ROM, not one built on this CPU.
+
+**No local builds until the new CPU is in (Ian, 2026-09-23).** Fresh paste
+and a verified cooler did not help: builds still crash or wedge within
+seconds at 60 to 73 °C, so the fault is the chip. Build on GitHub instead:
+push your branch, run `tools/oxide/fetch-rom <commit>` (or `--testkit`), and
+check the downloaded ROM, with `bash tools/oxide/integrate.sh --verify-only
+--rom <path>` for the whole gate. The guard hook refuses `make rom`, `make
+testkit`, a full `ninja` and `integrate.sh` without `--rom`; `ninja -C build
+-j2 <targets>` for a few helper files is allowed. Run one test suite at a
+time across all sessions, since several at once is all-core load again.
+Rerun a failed test before believing it. The `Makefile` puts the 3.13
 venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.
 `tools/oxide/python_flake_repro.py` is the check.
+
+## Cloud sessions
+
+A Claude Code cloud session (claude.ai/code, set up on 2026-09-25) works on a
+fresh Ubuntu VM with four healthy cores, so it can build and run heavy
+analysis that this box cannot. Its environment runs
+`tools/oxide/cloud-setup.sh` and sets `OXIDE_CLOUD=1`; with that set, the guard
+hook allows builds, and `make rom` fetches the compiler itself on first use.
+
+Its checkout carries only its own branch, and the encounter tools read vanilla
+data from `main`, so run `git fetch --depth=1 origin main:main` before their
+tests (`integrate.sh` does it itself). Its environment must also allow
+`wrapdb.mesonbuild.com`, where meson fetches two subproject patches. Two
+harmless oddities: a first build spends about a minute on retries, because
+the session may reach only this repo on GitHub and two subproject downloads
+fall back to mirrors; and the gate always warns that it found no GitHub build
+to compare the ROM with, because the VM has no `gh`. The Overseer compares
+the hash after the merge instead. The environment passed its smoke test on
+2026-09-25: a clean build matched GitHub's SHA-1, and the gate had no failures.
+
+It has no `~/.claude/`, so Ian's writing rules and the rulings kept in memory
+are in `.claude/rules/` instead, and a repo copy of his style hook runs there.
+It has none of the files outside the repo either: no base ROM, no vanilla
+ROM, no donor ROM, no balance reference data. Ian ruled (2026-09-25) that
+cloud sessions skip those checks. `integrate.sh` lists what it skipped under
+one warning, and still checks the build, the encounter tables against their
+JSON, and every test suite that needs no reference file. Anything that needs
+the base ROM is checked locally after the work merges.
+
+A cloud session works on its own branch, named `cloud/<track>-<topic>`, and
+never pushes to `oxide`. It cannot message the Overseer, so it reports
+through the branch: its last commit message says what was done and checked,
+failures first, and anything waiting on Ian. The Overseer, a local session,
+reviews the branch, runs the base-ROM checks, and merges it.
 
 ## Tools
 

@@ -25,8 +25,10 @@ def check_inventory(results):
     is 0. Conflating those two categories is how a loader quietly drops
     files, so they are asserted apart."""
     # The working tree gained encounters_verity_lakefront.json on 2026-09-21
-    # (a live land table); vanilla on main still has 185.
-    for ref, label, want in ((None, "working tree", (186, 184, 172)),
+    # (a live land table), and encounters_amity_square.json (live land) and
+    # encounters_snowpoint_city.json (rods only, land at rate 0) on
+    # 2026-09-25; vanilla on main still has 185.
+    for ref, label, want in ((None, "working tree", (188, 186, 173)),
                              ("main", "main", (185, 183, 171))):
         n, land, active = _counts(model.load_all(ref))
         results.append((f"inventory [{label}]",
