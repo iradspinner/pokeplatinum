@@ -114,6 +114,11 @@ analysis that this box cannot. Its environment runs
 `tools/oxide/cloud-setup.sh` and sets `OXIDE_CLOUD=1`; with that set, the guard
 hook allows builds, and `make rom` fetches the compiler itself on first use.
 
+Its checkout carries only its own branch, and the encounter tools read vanilla
+data from `main`, so run `git fetch --depth=1 origin main:main` before their
+tests (`integrate.sh` does it itself). Its environment must also allow
+`wrapdb.mesonbuild.com`, where meson fetches two subproject patches.
+
 It has no `~/.claude/`, so Ian's writing rules and the rulings kept in memory
 are in `.claude/rules/` instead, and a repo copy of his style hook runs there.
 It has none of the files outside the repo either: no base ROM, no vanilla

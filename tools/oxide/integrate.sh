@@ -402,6 +402,11 @@ CHECK_EXPECT="0 failed" refcheck "scriptdis --verify (vanilla)" "$PY" tools/oxid
 CHECK_EXPECT="0 failed" refcheck "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
 
 export PYTHONPATH=.
+# The encounter tools read vanilla data from the `main` branch (git ls-tree and
+# git show main:...). A cloud session's checkout carries only the branch it was
+# given, so fetch main's tip if it is missing (six checks failed without it on
+# the first cloud run, 2026-09-25).
+git rev-parse --verify -q main >/dev/null || git fetch -q --depth=1 origin main:main || warn "could not fetch main; the encounter checks that read vanilla will fail"
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
