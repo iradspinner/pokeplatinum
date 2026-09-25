@@ -134,8 +134,20 @@ for d in /proc/[0-9]*; do
 done
 fi
 
-[ -f "$BASE" ] || die "$BASE missing (pinned base ROM)"
-[ -f "$VANILLA" ] || die "$VANILLA missing (pinned vanilla ROM)"
+# The pinned base and vanilla ROMs live outside the repo (Nintendo's, never
+# committed). A cloud session does not have them, and Ian ruled on 2026-09-25
+# that cloud sessions skip the checks that need them: each such check is then
+# listed under one warning rather than failing, and the gate still covers the
+# build, the encounter tables against their JSON, and every test suite.
+REFS=1
+if [ ! -f "$BASE" ] || [ ! -f "$VANILLA" ]; then
+    REFS=0
+    [ -n "${OXIDE_CLOUD:-}" ] || echo "integrate: $BASE or $VANILLA missing; the checks that need them are skipped" >&2
+fi
+SKIPPED_REF=()
+refcheck() {
+    if [ $REFS -eq 1 ]; then check "$@"; else SKIPPED_REF+=("$1"); fi
+}
 
 # ---------------------------------------------------------------- 2. fetch and ff
 if [ $VERIFY_ONLY -eq 0 ]; then
@@ -354,17 +366,17 @@ if [ $BUILD -eq 1 ]; then
         fi
     fi
     if [ -f "$ROM" ]; then
-        check "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
+        refcheck "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
         # The encounter tables are checked against their source JSON (M7), not
         # the base ROM: once the authoring pass rewrites a table the base ROM
         # stops being its truth. --encounters --ref still exists for the
         # tables that have not been authored yet.
         check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
-        check "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
-        check "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
-        CHECK_EXPECT="would write 0 script files" check "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run --built "$ROM"
-        CHECK_EXPECT="would write 0 event files" check "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run --built "$ROM"
-        CHECK_EXPECT="would write 0" check "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run --built "$ROM"
+        refcheck "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
+        refcheck "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
+        CHECK_EXPECT="would write 0 script files" refcheck "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0 event files" refcheck "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run --built "$ROM"
+        CHECK_EXPECT="would write 0" refcheck "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run --built "$ROM"
     else
         bad "built ROM missing at $ROM"
     fi
@@ -373,6 +385,7 @@ else
 fi
 
 # The importer must find nothing left to import: every count 0.
+if [ $REFS -eq 1 ]; then
 out="$("$PY" tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
 printf '      %s\n' "$out"
 if printf '%s' "$out" | grep -q "would change" && ! printf '%s' "$out" | grep -Eq "': [1-9]"; then
@@ -381,9 +394,12 @@ else
     bad "import_base_rom --dry-run reports something left to import"
 fi
 git checkout -q tools/oxide/import_report.md 2>/dev/null || true   # the dry run rewrites the report
+else
+    SKIPPED_REF+=("import_base_rom --dry-run")
+fi
 
-CHECK_EXPECT="0 failed" check "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
-CHECK_EXPECT="0 failed" check "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
+CHECK_EXPECT="0 failed" refcheck "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
+CHECK_EXPECT="0 failed" refcheck "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
 
 export PYTHONPATH=.
 for t in tools/oxide/encounters/test_*.py; do
@@ -430,6 +446,7 @@ elif [ $PUSH -eq 1 ]; then
     warn "not pushed: a check failed"
 fi
 
+[ ${#SKIPPED_REF[@]} -eq 0 ] || warn "no pinned base or vanilla ROM here, so skipped: ${SKIPPED_REF[*]}"
 say "summary"
 echo "merged:   ${MERGED[*]:-(nothing new)}"
 echo "passed:   ${#PASS[@]}"
