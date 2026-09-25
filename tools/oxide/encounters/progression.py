@@ -238,12 +238,16 @@ def sorted_by_order(sidecar, names):
 # rest are this module's reading of the route sequence and are provisional
 # until he corrects them in the sidecar. The caps are his.
 
+# Galactic is Ian's split between Lake Acuity and Volkner (2026-09-25): the
+# Battle Zone, opened before the League, and the Galactic fights up to the
+# Distortion World.
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
-          "Candice", "Volkner", "League", "Post"]
-# Ian's hard level caps per split (2026-09-21); post-game has none.
+          "Candice", "Galactic", "Volkner", "League", "Post"]
+# Ian's hard level caps per split (2026-09-21, Galactic and Volkner's 68 on
+# 2026-09-25); post-game has none.
 DEFAULT_CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 38,
-                "Wake": 44, "Byron": 53, "Candice": 56, "Volkner": 62,
-                "League": 78, "Post": None}
+                "Wake": 44, "Byron": 53, "Candice": 56, "Galactic": 64,
+                "Volkner": 68, "League": 78, "Post": None}
 RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice",
         # Surf is the HM from Celestic Town, after Wake
         "surf": "Byron"}
@@ -303,13 +307,18 @@ _SPLIT_STEMS = {
         "iron_island_b2f_left_room", "iron_island_b3f", "route_220", "route_221",
         "lake_valor",
     ],
-    "Candice": ["route_216", "route_217", "acuity_lakefront", "lake_acuity"],
-    "Volkner": [
+    "Candice": ["route_216", "route_217", "acuity_lakefront", "lake_acuity",
+                "snowpoint_city"],
+    "Galactic": [
+        "route_225", "route_226", "route_227", "stark_mountain_outside",
+        "stark_mountain_room_1", "stark_mountain_room_2", "route_228", "route_229",
+        "resort_area", "route_230",
         "mt_coronet_1f_tunnel_room", "mt_coronet_1f_north_room_2", "mt_coronet_b1f",
         "mt_coronet_2f", "mt_coronet_3f", "mt_coronet_outside_south",
         "mt_coronet_4f_rooms_1_and_2", "mt_coronet_4f_room_3", "mt_coronet_outside_north",
-        "mt_coronet_5f", "mt_coronet_6f", "route_222", "sunyshore_city",
+        "mt_coronet_5f", "mt_coronet_6f",
     ],
+    "Volkner": ["route_222", "sunyshore_city"],
     "League": [
         "route_223", "victory_road_1f", "victory_road_2f", "victory_road_b1f",
         "victory_road_1f_room_1", "victory_road_1f_room_2", "victory_road_1f_room_3",

@@ -3,9 +3,20 @@
 Scoping note, 2026-09-25, from the encounter track at Ian's request. Ian wants
 the Battle Zone (the Fight Area, Routes 225 to 230, the Survival Area, the
 Resort Area and Stark Mountain) open before the League, as Platinum Kaizo has
-it, for the fights and the captures it adds. Nothing here is built yet. The
-one decision that shapes all the rest is which split it opens in, and that is
-Ian's.
+it, for the fights and the captures it adds. Ian ruled on the three open
+questions the same day (below); the encounter track's first step is done,
+and the rest waits on the main and balance tracks.
+
+## Ian's rulings (2026-09-25)
+
+1. **A new split, Galactic, straight after Lake Acuity.** It holds the whole
+   Battle Zone and the Galactic fights up to the Distortion World (the Veilstone
+   HQ, the Mt. Coronet climb, Spear Pillar), which spreads those fights out. Its
+   cap is **64**; Candice's stays **56** and Volkner's rises from 62 to **68**.
+   The League stays 78.
+2. **Heatran becomes a random legendary encounter**, as Uxie and Azelf are:
+   Stark Mountain's last room joins the legendary pool's statics.
+3. **The Battleground rematches are skipped for now**, to come back to.
 
 ## What gates it today
 
@@ -56,6 +67,11 @@ the League are post-game content and can stay.
 
 ## The placement decision
 
+Kept for the record. Ian took neither option as it stands: the zone opens in a
+new Galactic split straight after Lake Acuity, cap 64, with Volkner's raised to
+68 (Ian's rulings, above). At 64 the trainers still come down, by about 11
+levels rather than 20.
+
 The trainers and the wild tables were levelled for different moments. The
 trainers sit at the League split's cap (78). The wild tables sit at Candice's
 (56). Whichever split the zone opens in, one of the two has to move.
@@ -79,29 +95,39 @@ sheet had in mind. Either works with the tools as they are.
 
 Main track (scripts and text):
 
-1. Replace the ferry's two `FLAG_GAME_COMPLETED` checks with the chosen badge.
-2. Decide Stark Mountain's Heatran event: keep it post-game, or drop its check.
-3. Reword the Fight Area arrival lines and the sailor's line, and, at
-   Candice's split, gate the Volkner and Flint tag battle behind the Beacon
-   Badge.
-4. Level caps: the zone joins a split, so its cap applies there
-   (the script-driven cap mechanism is Phase 4 element 8).
+1. The ferry opens when the Lake Acuity event is done instead of after the Hall
+   of Fame: its two `FLAG_GAME_COMPLETED` checks in `scripts_snowpoint_city.s`
+   become that check. `VAR_LAKE_ACUITY_STATE` reaching 2, which
+   `scripts_lake_acuity.s` sets as Jupiter's scene ends, looks like the marker;
+   confirm it. Rock Climb needs the Icicle Badge, which comes before that.
+2. Stark Mountain's last room: drop its Hall of Fame and National Dex checks and
+   make its Heatran a draw from the legendary pool, with the lake caverns
+   (the pool's scripting is already in the tracker's backlog).
+3. Reword the Fight Area's arrival lines and the sailor's line, and gate the
+   Volkner and Flint tag battle behind the Beacon Badge, since Volkner is now
+   met at the Fight Area before his Gym.
+4. The script-driven level caps (Phase 4 element 8) take the new split and the
+   new caps.
 
-Balance track: the trainers, if Candice's split; a check that the Battleground
-rematches still read as optional post-split fights either way.
+Balance track:
+
+1. The caps: Galactic 64 and Volkner 68, in the level cap design.
+2. The zone's 52 route trainers and its scripted fights (Buck, Mars and Jupiter
+   at Stark Mountain) from about 75 down to the Galactic cap, and the Galactic
+   fights up to Spear Pillar re-read against 64 rather than 62.
+3. Volkner and the split after him re-read against 68.
+4. The Battleground rematches: skipped for now (ruling 3).
 
 Encounter track (this one):
 
-1. Move the eight capture areas from "Post" to the chosen split in the sidecar.
-2. At the League split, raise the ten tables' levels and run `cli evolve`; at
-   Candice's split, leave them.
-3. Recast the tables to the design rules, since they are still the base ROM's
-   (they were out of scope as post-game); this is the part that takes time.
-4. Recount captures before the League (73 planned, 81 with the zone).
-
-## Open questions for Ian
-
-1. Candice's split or the League split?
-2. The Heatran event: in the zone's split, or kept post-game?
-3. The Battleground rematches at 80 to 90: leave them as the zone's
-   post-split challenge, or level them with the rest?
+1. **Done 2026-09-25.** The sidecar's split table gains Galactic (cap 64) and
+   Volkner's cap is 68. The ten Battle Zone tables move from Post to Galactic,
+   and so do the eleven Mt. Coronet tables of the climb to Spear Pillar; Route 222
+   and Sunyshore stay Volkner's. In progression order the Battle Zone now follows
+   Snowpoint City, where its ferry leaves. Route 224 stays post-game.
+2. Recast the ten tables to the design rules; they are still the base ROM's,
+   since they were out of scope as post-game. Their levels (land 47 to 55) sit
+   above both neighbours (Lake Acuity 38, the Mt. Coronet climb 36 to 39), so
+   the recast sets them by the progression ladder rather than keeping them.
+3. The capture count before the League: 73 planned, 81 with the zone's eight
+   capture areas, once the ferry opens.
