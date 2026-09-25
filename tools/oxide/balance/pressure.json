@@ -6,12 +6,12 @@
    "label": "Barry 1",
    "split": "Roark",
    "cap": 16,
-   "pool": 90,
+   "pool": 91,
    "weather": null,
    "threat": 0.0,
    "answers": 0.963,
    "max_threat": 0.0,
-   "min_answers": 0.944,
+   "min_answers": 0.945,
    "mons": [
     {
      "variant": 0,
@@ -29,7 +29,7 @@
      "item": null,
      "weather": null,
      "threat": 0.0,
-     "answers": 0.944
+     "answers": 0.945
     },
     {
      "variant": 2,
@@ -41,22 +41,22 @@
      "answers": 0.989
     }
    ],
-   "calcs": 1320,
+   "calcs": 1335,
    "errors": [],
-   "node_seconds": 0.4,
-   "wall_seconds": 0.46
+   "node_seconds": 0.41,
+   "wall_seconds": 0.48
   },
   "barry_2": {
    "key": "barry_2",
    "label": "Barry 2",
    "split": "Roark",
    "cap": 16,
-   "pool": 90,
+   "pool": 91,
    "weather": null,
    "threat": 0.006,
-   "answers": 0.626,
+   "answers": 0.628,
    "max_threat": 0.011,
-   "min_answers": 0.467,
+   "min_answers": 0.473,
    "mons": [
     {
      "variant": 0,
@@ -65,7 +65,7 @@
      "item": null,
      "weather": null,
      "threat": 0.011,
-     "answers": 0.711
+     "answers": 0.714
     },
     {
      "variant": 0,
@@ -74,7 +74,7 @@
      "item": null,
      "weather": null,
      "threat": 0.0,
-     "answers": 0.467
+     "answers": 0.473
     },
     {
      "variant": 1,
@@ -83,7 +83,7 @@
      "item": null,
      "weather": null,
      "threat": 0.0,
-     "answers": 0.778
+     "answers": 0.78
     },
     {
      "variant": 1,
@@ -92,7 +92,7 @@
      "item": null,
      "weather": null,
      "threat": 0.0,
-     "answers": 0.589
+     "answers": 0.582
     },
     {
      "variant": 2,
@@ -101,7 +101,7 @@
      "item": null,
      "weather": null,
      "threat": 0.011,
-     "answers": 0.733
+     "answers": 0.736
     },
     {
      "variant": 2,
@@ -110,24 +110,24 @@
      "item": null,
      "weather": null,
      "threat": 0.011,
-     "answers": 0.478
+     "answers": 0.484
     }
    ],
-   "calcs": 3180,
+   "calcs": 3216,
    "errors": [],
-   "node_seconds": 0.7,
-   "wall_seconds": 0.77
+   "node_seconds": 0.74,
+   "wall_seconds": 0.81
   },
   "roark": {
    "key": "roark",
    "label": "Roark",
    "split": "Roark",
    "cap": 16,
-   "pool": 90,
+   "pool": 91,
    "weather": "Sand",
-   "threat": 0.131,
-   "answers": 0.166,
-   "max_threat": 0.444,
+   "threat": 0.129,
+   "answers": 0.165,
+   "max_threat": 0.44,
    "min_answers": 0.044,
    "mons": [
     {
@@ -146,7 +146,7 @@
      "item": "Passho Berry",
      "weather": "Sand",
      "threat": 0.011,
-     "answers": 0.433
+     "answers": 0.429
     },
     {
      "variant": 0,
@@ -154,7 +154,7 @@
      "level": 15,
      "item": "Big Root",
      "weather": "Sand",
-     "threat": 0.056,
+     "threat": 0.055,
      "answers": 0.044
     },
     {
@@ -163,13 +163,13 @@
      "level": 16,
      "item": "Sitrus Berry",
      "weather": "Sand",
-     "threat": 0.444,
-     "answers": 0.144
+     "threat": 0.44,
+     "answers": 0.143
     }
    ],
-   "calcs": 2300,
+   "calcs": 2326,
    "errors": [],
-   "node_seconds": 0.64,
+   "node_seconds": 0.63,
    "wall_seconds": 0.7
   },
   "mars_1": {
@@ -177,12 +177,12 @@
    "label": "Mars 1",
    "split": "Gardenia",
    "cap": 26,
-   "pool": 140,
+   "pool": 142,
    "weather": null,
    "threat": 0.011,
    "answers": 0.35,
    "max_threat": 0.014,
-   "min_answers": 0.086,
+   "min_answers": 0.085,
    "mons": [
     {
      "variant": 0,
@@ -191,7 +191,7 @@
      "item": null,
      "weather": null,
      "threat": 0.014,
-     "answers": 0.257
+     "answers": 0.254
     },
     {
      "variant": 0,
@@ -200,7 +200,7 @@
      "item": null,
      "weather": null,
      "threat": 0.014,
-     "answers": 0.686
+     "answers": 0.69
     },
     {
      "variant": 0,
@@ -209,7 +209,7 @@
      "item": "Sitrus Berry",
      "weather": null,
      "threat": 0.0,
-     "answers": 0.371
+     "answers": 0.373
     },
     {
      "variant": 0,
@@ -218,26 +218,26 @@
      "item": "Oran Berry",
      "weather": null,
      "threat": 0.014,
-     "answers": 0.086
+     "answers": 0.085
     }
    ],
-   "calcs": 4508,
+   "calcs": 4572,
    "errors": [
-    "p30 Electro Ball: damage is not a number"
+    "p31 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 0.88,
-   "wall_seconds": 0.94
+   "node_seconds": 0.91,
+   "wall_seconds": 0.98
   },
   "gardenia": {
    "key": "gardenia",
    "label": "Gardenia",
    "split": "Gardenia",
    "cap": 26,
-   "pool": 140,
+   "pool": 142,
    "weather": null,
-   "threat": 0.678,
+   "threat": 0.683,
    "answers": 0.051,
-   "max_threat": 0.914,
+   "max_threat": 0.915,
    "min_answers": 0.014,
    "mons": [
     {
@@ -246,8 +246,8 @@
      "level": 25,
      "item": "Heat Rock",
      "weather": null,
-     "threat": 0.393,
-     "answers": 0.05
+     "threat": 0.401,
+     "answers": 0.049
     },
     {
      "variant": 0,
@@ -255,7 +255,7 @@
      "level": 25,
      "item": "Watmel Berry",
      "weather": null,
-     "threat": 0.571,
+     "threat": 0.577,
      "answers": 0.021
     },
     {
@@ -264,8 +264,8 @@
      "level": 25,
      "item": "Occa Berry",
      "weather": null,
-     "threat": 0.643,
-     "answers": 0.05
+     "threat": 0.648,
+     "answers": 0.049
     },
     {
      "variant": 0,
@@ -273,8 +273,8 @@
      "level": 25,
      "item": "Lum Berry",
      "weather": null,
-     "threat": 0.871,
-     "answers": 0.121
+     "threat": 0.873,
+     "answers": 0.12
     },
     {
      "variant": 0,
@@ -282,16 +282,16 @@
      "level": 26,
      "item": "Poison Barb",
      "weather": null,
-     "threat": 0.914,
+     "threat": 0.915,
      "answers": 0.014
     }
    ],
-   "calcs": 6055,
+   "calcs": 6141,
    "errors": [
-    "p30 Electro Ball: damage is not a number"
+    "p31 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 1.08,
-   "wall_seconds": 1.15
+   "node_seconds": 1.11,
+   "wall_seconds": 1.18
   },
   "jupiter_1": {
    "key": "jupiter_1",
