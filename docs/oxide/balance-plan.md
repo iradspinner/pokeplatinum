@@ -15,10 +15,10 @@ the encounter track's recast tables. Done before that: B1a, B1b, B1d, B2,
 B1e (its check waits on Ian's route examples) and B3a. B3b, the reference
 hacks' bosses against Oxide's side, is parked on `wip-balance-b3b` since a
 Node process segfaulted on the degraded CPU with four cores busy on
-2026-09-23, and resumes on the new CPU. Next on this track: the zone's
-trainers and the Galactic fights, read against the new caps (the second
-of the tracker's two Galactic items), then B4. Two questions wait on Ian
-(below).
+2026-09-23, and resumes on the new CPU. The Galactic fights are read against
+the new caps (the tables below), and the Battle Zone's trainers have a
+re-levelling proposal that waits on Ian. Next is B4, the level curve.
+Three questions wait on Ian (below).
 
 ## The target
 
@@ -448,6 +448,31 @@ plan, M8), and the calculator's order for a dual type's two factors (Crunch
 into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
 the encounter track's patch lands.
 
+**A re-levelling proposal for the Battle Zone** (2026-09-25, for Ian;
+nothing is changed in `res/trainers/`). The tracker asks for the zone's
+trainers to come down from about 75 to Galactic's cap of 64. Elsewhere a
+split's filler sits a median 4 to 10 levels under its cap (the League 15),
+and the zone sits 9 to 14 over it:
+
+| Where | Trainers | Levels now | With 14 off |
+|---|---|---|---|
+| Routes 225 and 230 | 14 | 73 to 74 | 59 to 60 |
+| Routes 226, 228, 229 | 16 | 73 to 77 | 59 to 63 |
+| Route 227 | 4 | 76 to 78 | 62 to 64 |
+| Stark Mountain, with Mars and Jupiter | 19 | 77 to 78 | 63 to 64 |
+| Buck, the player's partner at Stark Mountain | 1 | 78 | 64 |
+
+The proposal takes 14 off every level of every zone trainer above the cap.
+That puts the strongest at the cap exactly, keeps each party's spread and
+the routes' order, and leaves the one trainer already under it (Dragon
+Tamer Keegan on Route 228, 57) alone. It makes the zone the hardest filler
+before Volkner, at 0 to 5 under the cap, where Candice's split sits at a
+median of 4.5 under. The gentler choice is 18 off (55 to 60), the usual
+filler depth. Volkner and Flint's tag battle at the Fight Area (74 to 75)
+is left out: once the main track gates it behind the Beacon Badge it is a
+League-split fight, where 75 already fits a cap of 78. Until that gate
+lands, `splits.py` still counts it in Galactic.
+
 ## What gets measured
 
 Every metric is computed the same way for every hack, from that hack's own
@@ -595,14 +620,19 @@ disagrees with them.
 
 ## Open questions for Ian
 
-1. **B2's check was narrowed after the data came in** (2026-09-23). The
+1. **The Battle Zone's re-levelling** (2026-09-25, above "What gets
+   measured"): 14 off, which puts the zone's strongest trainers at the cap
+   of 64, or 18 off, the usual filler depth? The change itself is the
+   trainer pass's, so it waits on this answer and on the Overseer.
+
+2. **B2's check was narrowed after the data came in** (2026-09-23). The
    plan said vanilla, Renegade and Kaizo should come out in order on almost
    every metric; they do on nine of fourteen. The five that do not (IVs,
    natures, priority, speed control, recovery) look like style rather than
    strength, so B2 is marked done with the test pinning the nine, and B5's
    fit is left to weight the five low. Nothing waits on this; if you read
    Kaizo as harder partly because of move choice, say so and B5 keeps them.
-2. **Which route trainers do you know you walk around, and which can you
+3. **Which route trainers do you know you walk around, and which can you
    not?** (2026-09-23.) B1e's check is a handful of your own examples. The
    model says Route 202's three trainers are required and Route 203's five,
    Route 206's nine and Route 218's four are all avoidable; a yes or no on
