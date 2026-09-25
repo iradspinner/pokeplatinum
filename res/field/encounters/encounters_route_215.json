@@ -11,14 +11,10 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_VULLABY"
-        },
-        {
-            "level": 20,
             "species": "SPECIES_SCYTHER"
         },
         {
-            "level": 21,
+            "level": 20,
             "species": "SPECIES_MIENFOO"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 21,
+            "species": "SPECIES_CROAGUNK"
+        },
+        {
+            "level": 21,
             "species": "SPECIES_VULLABY"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_SCYTHER"
         },
         {
-            "level": 21,
-            "species": "SPECIES_CROAGUNK"
-        },
-        {
-            "level": 21,
-            "species": "SPECIES_YANMA"
+            "level": 22,
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 22,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_VULLABY"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_YANMA"
         },
         {
             "level": 22,

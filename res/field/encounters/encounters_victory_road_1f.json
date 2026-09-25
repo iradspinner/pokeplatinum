@@ -3,10 +3,6 @@
     "land_encounters": [
         {
             "level": 40,
-            "species": "SPECIES_PUPITAR"
-        },
-        {
-            "level": 41,
             "species": "SPECIES_RHYPERIOR"
         },
         {
@@ -18,7 +14,7 @@
             "species": "SPECIES_HAWLUCHA"
         },
         {
-            "level": 42,
+            "level": 41,
             "species": "SPECIES_GOLEM"
         },
         {
@@ -27,23 +23,27 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_MIENSHAO"
+        },
+        {
+            "level": 42,
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 42,
             "species": "SPECIES_HAWLUCHA"
         },
         {
-            "level": 42,
-            "species": "SPECIES_MIENSHAO"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_ABSOL"
+            "level": 43,
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 43,
-            "species": "SPECIES_MIENSHAO"
+            "species": "SPECIES_RHYPERIOR"
+        },
+        {
+            "level": 43,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 43,

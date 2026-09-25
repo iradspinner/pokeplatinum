@@ -46,6 +46,10 @@ DEFAULT_LADDERS = {
     3: (0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2),
     4: (0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3),
 }
+# A top-form table's ladder (Ian, 2026-09-26): the top rung is the last four
+# slots, the face's two 4%s and the two 1% singles, so a max-level lead meets
+# the face 80% of the time and each single 10%. See lint.TOP_FORMS.
+TOP_FORM_LADDER = (0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3)
 
 
 class LayoutError(ValueError):
@@ -183,11 +187,20 @@ def layout(entry, rates=LAND_RATES):
                           f"{', '.join(lint.ARCHETYPES)}")
     if not isinstance(base, int):
         raise LayoutError(f"base_level must be an integer, got {base!r}")
-    signature = lint.ARCHETYPES[archetype]["signature"]
-    if len(cast) != len(signature):
-        raise LayoutError(f"{archetype} has {len(signature)} shares "
-                          f"{list(signature)} but the cast lists {len(cast)} species")
-    ladder = ladder_for(archetype, entry.get("ladder"))
+    if lint.uses_top_form(entry):
+        # Outside Roark's split and the post-game, the archetype's top form.
+        try:
+            signature = lint.top_form_shares(archetype, len(cast))
+        except ValueError as e:
+            raise LayoutError(str(e))
+        ladder = tuple(entry["ladder"]) if entry.get("ladder") else TOP_FORM_LADDER
+        ladder = ladder_for(archetype, ladder)
+    else:
+        signature = lint.ARCHETYPES[archetype]["signature"]
+        if len(cast) != len(signature):
+            raise LayoutError(f"{archetype} has {len(signature)} shares "
+                              f"{list(signature)} but the cast lists {len(cast)} species")
+        ladder = ladder_for(archetype, entry.get("ladder"))
     rungs = rung_index(ladder)
     pins = {k: rung for k, (_, rung) in enumerate(cast) if rung is not None}
     taken = assign_slots(signature, rates, pins, rungs)

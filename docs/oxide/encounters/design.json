@@ -146,7 +146,6 @@
         "SPECIES_RHYHORN",
         "SPECIES_SALAZZLE",
         "SPECIES_CERULEDGE",
-        "SPECIES_NACLSTACK",
         "SPECIES_CHARMELEON",
         "SPECIES_COMBUSKEN"
       ],
@@ -1942,7 +1941,6 @@
         "SPECIES_NOSEPASS",
         "SPECIES_SWINUB",
         "SPECIES_SNOVER",
-        "SPECIES_GEODUDE",
         "SPECIES_MAKUHITA",
         "SPECIES_PHANPY"
       ],
@@ -1974,7 +1972,6 @@
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI",
         "SPECIES_PUPITAR",
         "SPECIES_HAKAMO_O"
       ],
@@ -2354,7 +2351,6 @@
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI",
         "SPECIES_PUPITAR",
         "SPECIES_HAKAMO_O"
       ],
@@ -2510,7 +2506,6 @@
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT",
-        "SPECIES_ABSOL",
         "SPECIES_PUPITAR",
         "SPECIES_GABITE"
       ],
@@ -2542,7 +2537,6 @@
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT",
-        "SPECIES_ABSOL",
         "SPECIES_PUPITAR",
         "SPECIES_GABITE"
       ],
@@ -3322,11 +3316,11 @@
       "base_level": 8,
       "order": 15,
       "cast": [
+        "SPECIES_SEWADDLE",
         "SPECIES_LITTEN",
         "SPECIES_TREECKO",
-        "SPECIES_SEWADDLE",
-        "SPECIES_BOUNSWEET",
         "SPECIES_SNIVY",
+        "SPECIES_BOUNSWEET",
         "SPECIES_FLETCHLING"
       ],
       "day": [
@@ -3599,7 +3593,6 @@
         "SPECIES_PACHIRISU",
         "SPECIES_DEWPIDER",
         "SPECIES_BUIZEL",
-        "SPECIES_GRUBBIN",
         "SPECIES_FROAKIE",
         "SPECIES_POPPLIO"
       ],
@@ -3736,7 +3729,6 @@
         "SPECIES_BOUNSWEET",
         "SPECIES_SEWADDLE",
         "SPECIES_PAWMI",
-        "SPECIES_SHINX",
         "SPECIES_COMBEE",
         "SPECIES_PICHU"
       ],
@@ -3874,7 +3866,6 @@
         "SPECIES_SALANDIT",
         "SPECIES_JOLTIK",
         "SPECIES_NACLI",
-        "SPECIES_CORVISQUIRE",
         "SPECIES_CHARMELEON",
         "SPECIES_FROGADIER"
       ],
@@ -3936,7 +3927,6 @@
         "SPECIES_SMOLIV",
         "SPECIES_COMBEE",
         "SPECIES_MINCCINO",
-        "SPECIES_BUNEARY",
         "SPECIES_GROVYLE",
         "SPECIES_SERVINE"
       ],
@@ -4091,7 +4081,6 @@
         "SPECIES_KOFFING",
         "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
-        "SPECIES_COMBEE",
         "SPECIES_DUSKULL",
         "SPECIES_COMBUSKEN"
       ],
@@ -4515,7 +4504,6 @@
         "SPECIES_SMOLIV",
         "SPECIES_SNEASEL",
         "SPECIES_SLUGMA",
-        "SPECIES_COMBEE",
         "SPECIES_COMBUSKEN",
         "SPECIES_FLORAGATO"
       ],
@@ -4598,7 +4586,6 @@
         "SPECIES_MINCCINO",
         "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
-        "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_DARTRIX",
         "SPECIES_SERVINE"
       ],
@@ -4753,7 +4740,6 @@
         "SPECIES_ARAQUANID",
         "SPECIES_YANMA",
         "SPECIES_BRELOOM",
-        "SPECIES_SKORUPI",
         "SPECIES_MARSHTOMP",
         "SPECIES_SQUIRTLE"
       ],
@@ -4908,7 +4894,6 @@
         "SPECIES_SHELLOS",
         "SPECIES_BUIZEL",
         "SPECIES_DOLLIV",
-        "SPECIES_STEENEE",
         "SPECIES_POPPLIO",
         "SPECIES_WARTORTLE"
       ],
@@ -5063,7 +5048,6 @@
         "SPECIES_SWINUB",
         "SPECIES_GRAVELER",
         "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN",
         "SPECIES_CHARMELEON",
         "SPECIES_TORRACAT"
       ],
@@ -5245,7 +5229,6 @@
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_CROBAT",
         "SPECIES_BRONZONG",
-        "SPECIES_NACLSTACK",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_TORRACAT"
       ],
@@ -5276,7 +5259,6 @@
         "SPECIES_PUPITAR",
         "SPECIES_MIENFOO",
         "SPECIES_GALARIAN_MR_MIME",
-        "SPECIES_CROBAT",
         "SPECIES_COMBUSKEN",
         "SPECIES_CHARMELEON"
       ],
@@ -5441,7 +5423,6 @@
         "SPECIES_TRAPINCH",
         "SPECIES_SANDYGAST",
         "SPECIES_SHELLOS",
-        "SPECIES_FLOATZEL",
         "SPECIES_FLORAGATO",
         "SPECIES_BRIONNE"
       ],
@@ -5596,7 +5577,6 @@
         "SPECIES_EMOLGA",
         "SPECIES_PAWMOT",
         "SPECIES_FLOATZEL",
-        "SPECIES_SHELLOS",
         "SPECIES_PRIMARINA",
         "SPECIES_WARTORTLE"
       ],
@@ -5906,7 +5886,6 @@
         "SPECIES_GOLEM",
         "SPECIES_DONPHAN",
         "SPECIES_NINETALES",
-        "SPECIES_RAPIDASH",
         "SPECIES_BLAZIKEN",
         "SPECIES_INCINEROAR"
       ],
@@ -6212,7 +6191,6 @@
         "SPECIES_MAGCARGO",
         "SPECIES_HOUNDOOM",
         "SPECIES_GARGANACL",
-        "SPECIES_MAGMORTAR",
         "SPECIES_CHARIZARD",
         "SPECIES_INCINEROAR"
       ],
@@ -6367,7 +6345,6 @@
         "SPECIES_GLIMMORA",
         "SPECIES_RHYPERIOR",
         "SPECIES_GARGANACL",
-        "SPECIES_STEELIX",
         "SPECIES_GARCHOMP",
         "SPECIES_PUPITAR"
       ],
@@ -6522,7 +6499,6 @@
         "SPECIES_VESPIQUEN",
         "SPECIES_TSAREENA",
         "SPECIES_VIKAVOLT",
-        "SPECIES_FOMANTIS",
         "SPECIES_SERPERIOR",
         "SPECIES_MEOWSCARADA"
       ],
@@ -6878,7 +6854,6 @@
         "SPECIES_ABSOL",
         "SPECIES_WEAVILE",
         "SPECIES_SCIZOR",
-        "SPECIES_GARDEVOIR",
         "SPECIES_HERACROSS",
         "SPECIES_ELECTIVIRE"
       ],
@@ -7188,7 +7163,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7219,7 +7193,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7250,7 +7223,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7281,7 +7253,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7312,7 +7283,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7343,7 +7313,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7374,7 +7343,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7405,7 +7373,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7436,7 +7403,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7467,7 +7433,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7498,7 +7463,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7529,7 +7493,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7560,7 +7523,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7591,7 +7553,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7622,7 +7583,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7653,7 +7613,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7684,7 +7643,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7715,7 +7673,6 @@
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
-        "SPECIES_GOTHITA",
         "SPECIES_SINISTEA",
         "SPECIES_LARVITAR"
       ],
@@ -7827,7 +7784,6 @@
         "SPECIES_EEVEE",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_PACHIRISU",
-        "SPECIES_VESPIQUEN",
         "SPECIES_FLORAGATO",
         "SPECIES_DARTRIX"
       ],
@@ -9183,7 +9139,6 @@
         "SPECIES_SKITTY",
         "SPECIES_BUNEARY",
         "SPECIES_PACHIRISU",
-        "SPECIES_EMOLGA",
         "SPECIES_TORRACAT",
         "SPECIES_FLORAGATO"
       ],
@@ -9199,14 +9154,14 @@
     "encounters_victory_road_1f": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Victory Road's long first floor, Pupitar's home: the rock and fighting lines, Absol and Weavile as the rare finds.",
+      "intent": "Victory Road's long first floor: Rhyperior leads, Pupitar's home at 20%, the rock and fighting lines, Absol and Weavile on the top rung.",
       "locked": [],
       "base_level": 40,
       "order": 148,
       "split": "League",
       "cast": [
-        "SPECIES_PUPITAR",
         "SPECIES_RHYPERIOR",
+        "SPECIES_PUPITAR",
         "SPECIES_HAWLUCHA",
         "SPECIES_GOLEM",
         "SPECIES_HARIYAMA",
@@ -9425,15 +9380,15 @@
     "encounters_victory_road_2f": {
       "archetype": "A14",
       "band": "late",
-      "intent": "Victory Road's upper ledges, the dragons: Gabite and Hakamo-o, Skarmory and Gliscor overhead.",
+      "intent": "Victory Road's upper ledges: Skarmory overhead, the dragons Gabite and Hakamo-o beneath, Gliscor, Vibrava and Absol.",
       "locked": [],
       "base_level": 41,
       "order": 149,
       "split": "League",
       "cast": [
+        "SPECIES_SKARMORY",
         "SPECIES_GABITE",
         "SPECIES_HAKAMO_O",
-        "SPECIES_SKARMORY",
         "SPECIES_GLISCOR",
         "SPECIES_VIBRAVA",
         "SPECIES_ABSOL"
@@ -9599,16 +9554,16 @@
     "encounters_wayward_cave_1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%.",
+      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung.",
       "locked": [],
       "base_level": 17,
       "order": 33,
       "split": "Fantina",
       "cast": [
-        "SPECIES_GIBLE",
         "SPECIES_CARBINK",
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT",
+        "SPECIES_GIBLE",
         "SPECIES_ONIX",
         "SPECIES_DWEBBLE",
         "SPECIES_NACLI",
@@ -9626,16 +9581,16 @@
     "encounters_wayward_cave_b1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%.",
+      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung.",
       "locked": [],
       "base_level": 17,
       "order": 34,
       "split": "Fantina",
       "cast": [
-        "SPECIES_GIBLE",
         "SPECIES_CARBINK",
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT",
+        "SPECIES_GIBLE",
         "SPECIES_ONIX",
         "SPECIES_DWEBBLE",
         "SPECIES_NACLI",

@@ -27,10 +27,6 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_HAWLUCHA"
-        },
-        {
-            "level": 29,
             "species": "SPECIES_MIENFOO"
         },
         {
@@ -38,12 +34,16 @@
             "species": "SPECIES_BRONZOR"
         },
         {
-            "level": 29,
-            "species": "SPECIES_BRONZOR"
+            "level": 30,
+            "species": "SPECIES_HAWLUCHA"
         },
         {
             "level": 30,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_HAWLUCHA"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_GOOMY"
         },
         {
             "level": 30,

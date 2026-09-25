@@ -107,6 +107,74 @@ DESCRIPTIVE = {"R1b", "R2", "R6", "R8", "R9", "R11", "R14"}
 ASPIRATIONAL = {"R3", "R5", "R11b", "R13"}
 
 
+# The top rung, from Gardenia's split on (Ian, 2026-09-26). A repel manip
+# with a lead at a table's highest level meets only its top rung, and when
+# that rung was the two 1% slots the manip was a guaranteed prize, a
+# non-choice. So outside Roark's split, where repels are scarce, and the
+# post-game, the top rung is the last four slots (4, 4, 1, 1): the face on
+# both 4% slots and two other lines on the 1%s, so a manip meets the face 80%
+# of the time and each of the others 10%. The others need not be prizes; a
+# flat route puts two of its own lines there. Each shape keeps its head, the
+# face becomes 28 or 33 (20 + 4 + 4, or 20 + 5 + 4 + 4, the only totals that
+# reach both 4% slots), and the two 1% singles close it.
+TOP_FORMS = {
+    "A11": (28, 25, 20, 15, 10, 1, 1),
+    "A12": (33, 25, 20, 10, 10, 1, 1),
+    "A13": (33, 30, 15, 10, 10, 1, 1),
+    "A14": (28, 20, 20, 15, 10, 5, 1, 1),
+    "A15": (28, 25, 15, 10, 10, 10, 1, 1),
+    "A16": (28, 25, 25, 10, 10, 1, 1),
+    "A17": (33, 20, 15, 10, 10, 10, 1, 1),
+    "A18": (28, 20, 15, 15, 10, 10, 1, 1),
+    # A19 stays flat: its first 4% line takes both 4% slots as the anchor,
+    # and the face keeps its 20. A 28 face everywhere left no flat shape,
+    # and R8's spread fell to 1.58x.
+    "A19": (20, 20, 10, 10, 10, 10, 5, 5, 8, 1, 1),
+}
+NO_TOP_FORM_SPLITS = ("Roark", "Post")
+
+
+def uses_top_form(entry):
+    """Does this sidecar entry lay out in its archetype's top form?"""
+    entry = entry or {}
+    # A table with no split yet keeps its archetype's plain shape.
+    return (entry.get("archetype") in TOP_FORMS
+            and entry.get("split") is not None
+            and entry.get("split") not in NO_TOP_FORM_SPLITS)
+
+
+def top_form_shares(archetype, n_cast):
+    """The top form's shares for a cast of n_cast lines, in cast order. The
+    form's head comes first; the last two cast entries take the 1% slots as
+    new lines when the cast is two longer than the head, and a cast only as
+    long as the head (a flat route) puts its last two lines on them too,
+    each gaining one point. One longer: the last is a new single and the
+    one before it doubles."""
+    form = TOP_FORMS[archetype]
+    head = list(form[:-2])
+    if n_cast == len(head) + 2:
+        return head + [1, 1]
+    if n_cast == len(head) + 1:
+        head[-1] += 1
+        return head + [1]
+    if n_cast == len(head):
+        head[-1] += 1
+        head[-2] += 1
+        return head
+    raise ValueError(f"{archetype}'s top form {list(form)} takes a cast of "
+                     f"{len(head)} to {len(head) + 2} lines, not {n_cast}")
+
+
+def expected_signature(archetype, entry, n_cast=None):
+    """The shares a table of this archetype is laid out to, largest first."""
+    if uses_top_form(entry) and n_cast is not None:
+        try:
+            return tuple(sorted(top_form_shares(archetype, n_cast), reverse=True))
+        except ValueError:
+            return TOP_FORMS[archetype]
+    return ARCHETYPES[archetype]["signature"]
+
+
 def thresholds_from(sidecar):
     t = dict(DEFAULT_THRESHOLDS)
     if sidecar:
@@ -182,8 +250,8 @@ def lint_table(name, slots, entry, t, rates=A.LAND_RATES, data=None):
 
     # R4 (warn) -- archetype fit
     if archetype in ARCHETYPES:
-        want = ARCHETYPES[archetype]["signature"]
         got = m["signature"]
+        want = expected_signature(archetype, entry, len(got))
         if len(got) != len(want):
             out.append(Finding(
                 "R4", "warn", "table", name,
@@ -217,6 +285,26 @@ def lint_table(name, slots, entry, t, rates=A.LAND_RATES, data=None):
             "R6", "warn", "table", name,
             f"{m['singleton_rungs']} rungs collapse to a single species "
             f"(max {t['r6_max_singleton_rungs']})"))
+
+    # R16 (error) -- the top rung is a small pool with one likeliest line,
+    # never a guaranteed manip (Ian, 2026-09-26): outside Roark's split and
+    # the post-game, a lead at the table's highest level meets three lines,
+    # one of them at least three times in four.
+    if uses_top_form(entry) and slots:
+        top = max(lv for _, lv in slots)
+        pool = collections.Counter()
+        for i, (sp, lv) in enumerate(slots):
+            if lv == top:
+                pool[sp] += A.LAND_RATES[i]
+        total = sum(pool.values())
+        lead = max(pool.values()) / total if total else 0
+        if len(pool) != 3 or lead < 0.75:
+            out.append(Finding(
+                "R16", "error", "table", name,
+                f"a max-level lead meets {len(pool)} line(s) "
+                + ", ".join(f"{sp.replace('SPECIES_', '')} {100 * v / total:.0f}%"
+                            for sp, v in pool.most_common())
+                + "; the top rung wants three, one at 75% or more"))
 
     # R7 (error) -- day/night legality. The format stores two species that
     # stand in for slots 2 and 3, so anything else is malformed data.

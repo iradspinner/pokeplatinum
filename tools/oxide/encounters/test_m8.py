@@ -137,8 +137,8 @@ def check_captures(results):
                     litten["area"] == "encounters_route_204_north"
                     and litten["location"] == "Route 204"
                     and litten["split"] == "Gardenia"
-                    and abs(litten["share"] - 0.25) < 1e-9
-                    and litten["level_min"] == 8, str(litten)))
+                    and abs(litten["share"] - 0.20) < 1e-9
+                    and litten["level_min"] == 9, str(litten)))
     rods = [r for rows in caught.values() for r in rows if r["kind"] != "land"]
     results.append(("water tables are cross-linked too, with their level ranges",
                     rods and all(r["level_min"] is not None for r in rods),

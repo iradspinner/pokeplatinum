@@ -114,6 +114,15 @@ to read it.
   Marsh, the Lost Tower, Victory Road, Oreburgh Gate) gives each part a theme and
   a face of its own and lets two parts share at most two species. Lint's R15
   enforces both.
+- A max-level repel manip is never a guaranteed result (Ian, 2026-09-26).
+  Outside Roark's split and the post-game, a table lays out in its archetype's
+  top form (`lint.TOP_FORMS`): the top rung is the last four slots, one
+  ordinary line on both 4%s and two other lines on the 1%s, so a manip meets
+  the ordinary line 80% of the time and each of the others 10%. The ordinary
+  line is the face (28 or 33%), or for A19 its first 4% line at 8%, so the face
+  must not be a prize: a pseudo-legendary or a starter goes second or lower.
+  The 1% lines may be prizes or, on a flat route, two of its own lines. R16
+  enforces the three-line top rung.
 - Mt. Coronet is five captures, not one: North, South, B1F with North Room 2,
   the Peak climb and the Mountainside, named by the sidecar's `capture_area`.
   Only Victory Road's 1F, 2F and B1F come before the Champion; its three side

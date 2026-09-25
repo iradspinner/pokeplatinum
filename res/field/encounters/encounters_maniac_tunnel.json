@@ -27,10 +27,6 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_HIPPOPOTAS"
-        },
-        {
-            "level": 23,
             "species": "SPECIES_NACLI"
         },
         {
@@ -38,12 +34,16 @@
             "species": "SPECIES_ONIX"
         },
         {
-            "level": 23,
-            "species": "SPECIES_ONIX"
+            "level": 24,
+            "species": "SPECIES_HIPPOPOTAS"
         },
         {
             "level": 24,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_HIPPOPOTAS"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_FERROSEED"
         },
         {
             "level": 24,

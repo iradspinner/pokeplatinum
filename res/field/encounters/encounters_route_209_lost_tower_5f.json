@@ -11,14 +11,10 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_MISDREAVUS"
-        },
-        {
-            "level": 18,
             "species": "SPECIES_DUSKULL"
         },
         {
-            "level": 19,
+            "level": 18,
             "species": "SPECIES_YAMASK"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 19,
+            "species": "SPECIES_VULLABY"
+        },
+        {
+            "level": 19,
             "species": "SPECIES_MISDREAVUS"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_YAMASK"
         },
         {
-            "level": 19,
-            "species": "SPECIES_VULLABY"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_VULLABY"
+            "level": 20,
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 20,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_MISDREAVUS"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 20,

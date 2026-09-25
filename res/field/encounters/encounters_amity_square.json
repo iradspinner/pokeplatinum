@@ -27,23 +27,23 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_SWABLU"
         },
         {
             "level": 10,
             "species": "SPECIES_PACHIRISU"
         },
         {
-            "level": 10,
-            "species": "SPECIES_BUNEARY"
-        },
-        {
-            "level": 10,
-            "species": "SPECIES_TOGEPI"
+            "level": 11,
+            "species": "SPECIES_SKITTY"
         },
         {
             "level": 11,
-            "species": "SPECIES_BUNEARY"
+            "species": "SPECIES_SKITTY"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_TOGEPI"
         },
         {
             "level": 11,

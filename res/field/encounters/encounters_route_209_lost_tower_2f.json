@@ -11,7 +11,7 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 18,
@@ -19,11 +19,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_SINISTEA"
         },
         {
             "level": 19,
@@ -34,16 +34,16 @@
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 19,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_SINISTEA"
+            "level": 20,
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 20,
-            "species": "SPECIES_SINISTEA"
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 20,

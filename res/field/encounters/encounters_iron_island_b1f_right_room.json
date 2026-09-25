@@ -11,14 +11,10 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_STEELIX"
-        },
-        {
-            "level": 31,
             "species": "SPECIES_LUNATONE"
         },
         {
-            "level": 32,
+            "level": 31,
             "species": "SPECIES_SOLROCK"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 32,
+            "species": "SPECIES_NACLSTACK"
+        },
+        {
+            "level": 32,
             "species": "SPECIES_STEELIX"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_LUNATONE"
         },
         {
-            "level": 32,
-            "species": "SPECIES_NACLSTACK"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_KLEFKI"
+            "level": 33,
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 33,
-            "species": "SPECIES_NACLSTACK"
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 33,

@@ -11,14 +11,10 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_ABSOL"
-        },
-        {
-            "level": 39,
             "species": "SPECIES_VULLABY"
         },
         {
-            "level": 40,
+            "level": 39,
             "species": "SPECIES_HAWLUCHA"
         },
         {
@@ -27,6 +23,10 @@
         },
         {
             "level": 40,
+            "species": "SPECIES_PURUGLY"
+        },
+        {
+            "level": 40,
             "species": "SPECIES_ABSOL"
         },
         {
@@ -34,16 +34,16 @@
             "species": "SPECIES_VULLABY"
         },
         {
-            "level": 40,
-            "species": "SPECIES_PURUGLY"
-        },
-        {
-            "level": 40,
-            "species": "SPECIES_WEAVILE"
+            "level": 41,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 41,
-            "species": "SPECIES_PURUGLY"
+            "species": "SPECIES_ABSOL"
+        },
+        {
+            "level": 41,
+            "species": "SPECIES_WEAVILE"
         },
         {
             "level": 41,

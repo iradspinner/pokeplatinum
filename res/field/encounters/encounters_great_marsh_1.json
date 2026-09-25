@@ -11,7 +11,7 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level": 29,
@@ -19,11 +19,11 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_GASTRODON"
         },
         {
             "level": 30,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_BARBOACH"
         },
         {
             "level": 30,
@@ -34,16 +34,16 @@
             "species": "SPECIES_GASTRODON"
         },
         {
-            "level": 30,
-            "species": "SPECIES_BARBOACH"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_BARBOACH"
+            "level": 31,
+            "species": "SPECIES_WOOPER"
         },
         {
             "level": 31,
-            "species": "SPECIES_BARBOACH"
+            "species": "SPECIES_WOOPER"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_GASTRODON"
         },
         {
             "level": 31,

@@ -27,23 +27,23 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 8,
             "species": "SPECIES_RHYHORN"
         },
         {
-            "level": 8,
-            "species": "SPECIES_DWEBBLE"
-        },
-        {
-            "level": 8,
-            "species": "SPECIES_GIBLE"
+            "level": 9,
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 9,
-            "species": "SPECIES_DWEBBLE"
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_GIBLE"
         },
         {
             "level": 9,
