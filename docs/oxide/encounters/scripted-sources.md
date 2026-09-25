@@ -182,9 +182,10 @@ names have no table at all, so a free place is never short.
 | Pastoria City: the clown | Acuity Cavern (Uxie), Valor Cavern (Azelf), Distortion World (Giratina) |
 
 The eggs are Cynthia's Togepi (Eterna City), the Manaphy egg (Pokemon Mansion)
-and Riley's Riolu (Iron Island). `pokemon_sources.py` misses the Riolu egg,
-because it reads `GiveEgg`'s second operand as a level and Riley's is a name
-constant; the "levels" it gives Togepi (11) and Manaphy (8) are those giver ids.
+and Riley's Riolu (Iron Island). `pokemon_sources.py` lists all three, at
+level 1 with the giver named; until 2026-09-25 it read `GiveEgg`'s second
+operand, the giver, as a level, which dropped Riley's egg and put Togepi at 11
+and Manaphy at 8.
 Mesprit takes the name of the route it is caught on. Snowpoint City's trade
 wants a Medicham.
 

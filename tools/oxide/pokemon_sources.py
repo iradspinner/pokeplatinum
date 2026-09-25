@@ -235,9 +235,14 @@ BATTLE_RE = re.compile(
     r"^\s*(StartWildBattle|StartLegendaryBattle|StartFatefulEncounter"
     r"|StartGiratinaOriginBattle)\s+(SPECIES_[A-Z0-9_]+),\s*(\d+)")
 GIVE_RE = re.compile(
-    r"^\s*(GivePokemon|GiveEgg|GivePokemonWithMoves|GiveDesignedPokemon)"
+    r"^\s*(GivePokemon|GivePokemonWithMoves|GiveDesignedPokemon)"
     r"\s+(SPECIES_[A-Z0-9_]+),\s*(\d+)"
     r"(?:,\s*([A-Za-z0-9_]+))?")
+# GiveEgg's second operand is not a level: it is the egg's giver, an index into
+# the special met-location names (Riley by name, Cynthia and the Mansion's
+# "Distant land" by number), which the hatched Pokemon's summary shows.
+EGG_RE = re.compile(r"^\s*(GiveEgg)\s+(SPECIES_[A-Z0-9_]+),\s*([A-Za-z0-9_]+)")
+EGG_LEVEL = 1
 
 
 def script_commands(regex):
@@ -251,18 +256,39 @@ def script_commands(regex):
         if not hits:
             continue
         van = vanilla_text(os.path.join(SCRIPT_DIR, name + ".s")) or ""
-        van_hits = {(m.group(1), m.group(2), m.group(3))
-                    for m in (regex.match(l) for l in van.split("\n")) if m}
+        # An egg's giver is spelled as a constant on main and as its index in
+        # the scripts generated from the base ROM, so eggs compare by name.
+        def keyof(m):
+            third = egg_giver(m.group(3)) if regex is EGG_RE else m.group(3)
+            return (m.group(1), m.group(2), third)
+        van_hits = {keyof(m) for m in (regex.match(l) for l in van.split("\n")) if m}
         seen = set()
         for m in hits:
-            key = (m.group(1), m.group(2), m.group(3))
+            key = keyof(m)
             if key in seen:
                 continue
             seen.add(key)
-            rows.append((name, m.group(1), m.group(2), int(m.group(3)),
-                         m.group(4) if regex is GIVE_RE else None,
+            if regex is EGG_RE:
+                level, extra = EGG_LEVEL, m.group(3)
+            else:
+                level = int(m.group(3))
+                extra = m.group(4) if regex is GIVE_RE else None
+            rows.append((name, m.group(1), m.group(2), level, extra,
                          key in van_hits))
     return rows
+
+
+def egg_giver(operand):
+    """GiveEgg's giver operand as its English name: a SPECIAL_METLOC_NAME_
+    constant or its index in the special met-location names bank."""
+    path = os.path.join(ROOT, "res", "text", "special_met_location_names.json")
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    entries = data.get("messages") if isinstance(data, dict) else data
+    for i, e in enumerate(entries or []):
+        if operand in (e.get("id"), str(i)):
+            return e.get("en_US") or operand
+    return operand
 
 
 def trade_hookups():
@@ -360,13 +386,18 @@ def build():
         with open(gifts_csv, encoding="utf-8", newline="") as f:
             for r in csv.DictReader(f):
                 gift_status[(r["map"], r["species"], r["level"])] = r["status"]
-    for script, cmd, sp, level, item, in_van in script_commands(GIVE_RE):
+    for script, cmd, sp, level, item, in_van in (script_commands(GIVE_RE)
+                                                 + script_commands(EGG_RE)):
         mapname = script[len("scripts_"):]
         status = gift_status.get((mapname, sp, str(level)))
         origin = "vanilla" if (in_van or status == "vanilla") else "base-rom"
         method = "egg gift" if cmd == "GiveEgg" else "gift"
         note = GIFT_NOTES.get(mapname, "NPC gift")
-        if item and item not in ("0", "ITEM_NONE"):
+        if cmd == "GiveEgg":
+            # item is the giver here; the met location is wherever it hatches
+            note += (f"; hatches at level {EGG_LEVEL} and counts where it hatches; "
+                     f"giver {egg_giver(item)}")
+        elif item and item not in ("0", "ITEM_NONE"):
             note += f"; holds {item}"
         add(loc.script(script), script + ".s", sp, method, level, note, origin)
 
@@ -561,8 +592,7 @@ GIFT_NOTES = {
         "(GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT)",
     "eterna_city_condominiums_1f": "clown gift, one of three rolled at random; "
         "once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT)",
-    "eterna_city": "Egg from the Pokemon Day Care worker outside the city; "
-        "once only",
+    "eterna_city": "Egg from Cynthia in Eterna City; once only",
     "floaroma_meadow_house": "clown gift, one of three rolled at random; "
         "once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT)",
     "floaroma_town_middle_house": "clown gift, one of four rolled at random; "
