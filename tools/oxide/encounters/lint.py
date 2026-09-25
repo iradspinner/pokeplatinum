@@ -67,6 +67,9 @@ ARCHETYPES = {
 }
 
 DEFAULT_THRESHOLDS = {
+    # R15: species two parts of a "distinct" one-spot group may share (Ian,
+    # 2026-09-26: "some small amount of overlap").
+    "r15_distinct_shared_max": 2,
     "r1b_spearman_min": 0.5,
     "r2_rungs_min": 3,
     "r2_rungs_max": 4,
@@ -369,6 +372,50 @@ def lint_game(areas, t, availability=None):
     return out
 
 
+def lint_groups(areas, sidecar, t):
+    """R15 (error): Ian's one-spot groups (2026-09-26). A 'same' group's live
+    land tables are identical, species, levels and the day and night pairs.
+    A 'distinct' group's tables each have a face no other part leads with,
+    and any two parts share at most r15_distinct_shared_max species, the day
+    and night pairs counted."""
+    out = []
+    live = {name: (slots, data or {}) for name, slots, _, data in areas}
+    limit = t.get("r15_distinct_shared_max", 2)
+    for group, spec in ((sidecar or {}).get("groups") or {}).items():
+        if group.startswith("_"):
+            continue
+        members = [n for n in spec.get("areas") or [] if n in live]
+        if len(members) < 2:
+            continue
+        design = spec.get("design")
+        if design == "same":
+            sigs = {n: (tuple(live[n][0]), tuple(live[n][1].get("day") or []),
+                        tuple(live[n][1].get("night") or [])) for n in members}
+            first = sigs[members[0]]
+            for n in members[1:]:
+                if sigs[n] != first:
+                    out.append(Finding("R15", "error", "table", n,
+                        f"{group} is one table throughout, and this one differs from {members[0]}"))
+        elif design == "distinct":
+            faces, lines = {}, {}
+            for n in members:
+                shares = A.merged(live[n][0])
+                faces[n] = max(shares, key=lambda sp: (shares[sp], -list(shares).index(sp)))
+                lines[n] = set(shares) | set(live[n][1].get("day") or []) \
+                    | set(live[n][1].get("night") or [])
+            for i, n in enumerate(members):
+                for m in members[i + 1:]:
+                    if faces[n] == faces[m]:
+                        out.append(Finding("R15", "error", "table", m,
+                            f"{group}: leads with {faces[m]}, as {n} does; each part needs a face of its own"))
+                    shared = lines[n] & lines[m]
+                    if len(shared) > limit:
+                        out.append(Finding("R15", "error", "table", m,
+                            f"{group}: shares {len(shared)} species with {n}, over {limit}: "
+                            + ", ".join(sorted(sp.replace('SPECIES_', '') for sp in shared))))
+    return out
+
+
 def lint_all(areas, sidecar, availability=None):
     t = thresholds_from(sidecar)
     entries = (sidecar or {}).get("areas") or {}
@@ -376,6 +423,7 @@ def lint_all(areas, sidecar, availability=None):
     for name, slots, entry, data in areas:
         out += lint_table(name, slots, entry or entries.get(name), t, data=data)
     out += lint_game(areas, t, availability)
+    out += lint_groups(areas, sidecar, t)
     return out
 
 

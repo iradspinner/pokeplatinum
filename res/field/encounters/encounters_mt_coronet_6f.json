@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 36,
+            "species": "SPECIES_BRONZONG"
+        },
+        {
+            "level": 37,
             "species": "SPECIES_HAKAMO_O"
         },
         {
             "level": 37,
             "species": "SPECIES_BRONZONG"
-        },
-        {
-            "level": 37,
-            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 37,
@@ -23,11 +23,7 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_HAKAMO_O"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 38,
@@ -39,15 +35,19 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_GLIMMORA"
+        },
+        {
+            "level": 38,
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 39,
-            "species": "SPECIES_NACLSTACK"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 39,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_PROBOPASS"
+        "SPECIES_HARIYAMA"
     ],
     "night": [
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZONG"
     ],
     "radar": [
         "SPECIES_KOMMO_O",

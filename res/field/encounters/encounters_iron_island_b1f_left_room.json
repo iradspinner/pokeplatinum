@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 30,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 31,
+            "species": "SPECIES_METANG"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 31,
+            "species": "SPECIES_LUNATONE"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_SOLROCK"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_TOGEDEMARU"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_LUNATONE"
+        },
+        {
+            "level": 32,
             "species": "SPECIES_NACLSTACK"
         },
         {
-            "level": 31,
-            "species": "SPECIES_TOGEDEMARU"
-        },
-        {
-            "level": 31,
-            "species": "SPECIES_TOGEDEMARU"
-        },
-        {
             "level": 32,
-            "species": "SPECIES_FERROSEED"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_HARIYAMA"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_FERROSEED"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 33,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 33,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_NOSEPASS"
+        "SPECIES_HARIYAMA"
     ],
     "night": [
         "SPECIES_GOLBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZOR"
     ],
     "radar": [
         "SPECIES_STEELIX",

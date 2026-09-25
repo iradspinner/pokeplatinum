@@ -3,10 +3,6 @@
     "land_encounters": [
         {
             "level": 14,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 15,
             "species": "SPECIES_GASTLY"
         },
         {
@@ -18,36 +14,40 @@
             "species": "SPECIES_GASTLY"
         },
         {
-            "level": 16,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 16,
+            "level": 15,
             "species": "SPECIES_LITWICK"
         },
         {
             "level": 16,
+            "species": "SPECIES_MISDREAVUS"
+        },
+        {
+            "level": 16,
             "species": "SPECIES_SINISTEA"
         },
         {
             "level": 16,
-            "species": "SPECIES_MISDREAVUS"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 16,
             "species": "SPECIES_MISDREAVUS"
         },
         {
-            "level": 17,
-            "species": "SPECIES_MISDREAVUS"
+            "level": 16,
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 17,
-            "species": "SPECIES_MISDREAVUS"
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_YAMASK"
         }
     ],
     "swarms": [

@@ -7,14 +7,30 @@
         },
         {
             "level": 6,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 6,
             "species": "SPECIES_NACLI"
         },
         {
             "level": 6,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_NIDORAN_M"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 7,
             "species": "SPECIES_NOSEPASS"
         },
         {
@@ -23,31 +39,15 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_PHANPY"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NIDORAN_M"
-        },
-        {
-            "level": 8,
             "species": "SPECIES_ONIX"
         },
         {
             "level": 8,
-            "species": "SPECIES_NIDORAN_M"
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_LARVITAR"
         }
     ],
     "swarms": [
@@ -55,8 +55,8 @@
         "SPECIES_ROOKIDEE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_MAKUHITA",
+        "SPECIES_NACLI"
     ],
     "night": [
         "SPECIES_ZUBAT",

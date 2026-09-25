@@ -3,19 +3,27 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_KOMMO_O"
         },
         {
             "level": 48,
-            "species": "SPECIES_GARGANACL"
+            "species": "SPECIES_HAWLUCHA"
         },
         {
             "level": 48,
-            "species": "SPECIES_GLIMMORA"
+            "species": "SPECIES_KOMMO_O"
         },
         {
             "level": 48,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_HAWLUCHA"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_GRAPPLOCT"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_WEAVILE"
         },
         {
             "level": 49,
@@ -23,31 +31,23 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_HAWLUCHA"
+            "species": "SPECIES_GRAPPLOCT"
         },
         {
             "level": 49,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_SCIZOR"
         },
         {
             "level": 49,
-            "species": "SPECIES_GLIMMORA"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_PUPITAR"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_SCIZOR"
         },
         {
             "level": 50,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_SCIZOR"
         },
         {
             "level": 50,
-            "species": "SPECIES_GARCHOMP"
+            "species": "SPECIES_SCIZOR"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_SLIGGOO"
     ],
     "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_HAWLUCHA",
+        "SPECIES_SCIZOR"
     ],
     "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_WEAVILE",
+        "SPECIES_KOMMO_O"
     ],
     "radar": [
         "SPECIES_TYRANITAR",

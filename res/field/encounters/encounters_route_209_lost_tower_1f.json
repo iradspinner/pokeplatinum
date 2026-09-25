@@ -19,11 +19,11 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 19,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_GOTHITA"
         },
         {
             "level": 19,
@@ -31,23 +31,23 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 19,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 19,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 20,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_VULLABY"
         },
         {
             "level": 20,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_VULLABY"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_ZUBAT",
-        "SPECIES_YAMASK"
+        "SPECIES_GOTHITA"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK"
+        "SPECIES_YAMASK",
+        "SPECIES_KOFFING"
     ],
     "radar": [
         "SPECIES_COFAGRIGUS",

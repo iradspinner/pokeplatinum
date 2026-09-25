@@ -27,15 +27,15 @@
         },
         {
             "level": 38,
+            "species": "SPECIES_ALOLAN_NINETALES"
+        },
+        {
+            "level": 38,
             "species": "SPECIES_PILOSWINE"
         },
         {
             "level": 38,
             "species": "SPECIES_SNORUNT"
-        },
-        {
-            "level": 38,
-            "species": "SPECIES_ALOLAN_NINETALES"
         },
         {
             "level": 38,

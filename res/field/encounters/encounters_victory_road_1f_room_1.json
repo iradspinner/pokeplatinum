@@ -3,10 +3,6 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_STEELIX"
-        },
-        {
-            "level": 48,
             "species": "SPECIES_GARGANACL"
         },
         {
@@ -15,23 +11,27 @@
         },
         {
             "level": 48,
+            "species": "SPECIES_GARGANACL"
+        },
+        {
+            "level": 48,
+            "species": "SPECIES_CRUSTLE"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_CRUSTLE"
+        },
+        {
+            "level": 49,
+            "species": "SPECIES_HIPPOWDON"
+        },
+        {
+            "level": 49,
             "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 49,
-            "species": "SPECIES_PUPITAR"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_GARCHOMP"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_STEELIX"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_HIPPOWDON"
         },
         {
             "level": 49,
@@ -55,12 +55,12 @@
         "SPECIES_METANG"
     ],
     "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_HARIYAMA"
+        "SPECIES_CRUSTLE",
+        "SPECIES_HIPPOWDON"
     ],
     "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_GARGANACL",
+        "SPECIES_GLIMMORA"
     ],
     "radar": [
         "SPECIES_TYRANITAR",

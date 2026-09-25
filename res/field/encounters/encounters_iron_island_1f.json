@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 30,
-            "species": "SPECIES_TOGEDEMARU"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 31,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_METANG"
         },
         {
             "level": 31,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 31,
-            "species": "SPECIES_NACLSTACK"
+            "species": "SPECIES_LUNATONE"
         },
         {
             "level": 32,
-            "species": "SPECIES_FERROSEED"
+            "species": "SPECIES_SOLROCK"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_TOGEDEMARU"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_STEELIX"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_LUNATONE"
+        },
+        {
+            "level": 32,
+            "species": "SPECIES_NACLSTACK"
         },
         {
             "level": 32,
             "species": "SPECIES_KLEFKI"
         },
         {
-            "level": 32,
-            "species": "SPECIES_BRONZOR"
-        },
-        {
-            "level": 32,
+            "level": 33,
             "species": "SPECIES_NACLSTACK"
         },
         {
-            "level": 32,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_HARIYAMA"
-        },
-        {
             "level": 33,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_HARIYAMA"
+            "species": "SPECIES_GABITE"
         }
     ],
     "swarms": [

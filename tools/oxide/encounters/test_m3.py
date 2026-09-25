@@ -26,6 +26,10 @@ def _corpus(ref="main"):
     areas = [a for a in model.load_all(ref) if a.land_active]
     sidecar = model.load_sidecar()
     entries = (sidecar or {}).get("areas") or {}
+    # The one-spot groups are Oxide's design too (R15), so a reference tree is
+    # linted without them, as it is without its archetypes.
+    if ref is not None:
+        sidecar = {k: v for k, v in sidecar.items() if k != "groups"}
     # Vanilla was never laid out from the sidecar, so its archetype must not
     # mark a table as authored (R1 and R4 would judge vanilla's slots against
     # Oxide's design); `cli lint --ref` drops it the same way.

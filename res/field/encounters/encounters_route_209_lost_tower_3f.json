@@ -3,7 +3,11 @@
     "land_encounters": [
         {
             "level": 17,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 18,
@@ -11,23 +15,15 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_MISDREAVUS"
         },
         {
             "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 19,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 19,
@@ -35,19 +31,23 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_KOFFING"
         },
         {
             "level": 19,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_SANDYGAST"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_SANDYGAST"
         },
         {
             "level": 20,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_SANDYGAST"
         },
         {
             "level": 20,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_SANDYGAST"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_DWEBBLE"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_LITWICK"
+        "SPECIES_SANDYGAST",
+        "SPECIES_KOFFING"
     ],
     "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS"
     ],
     "radar": [
         "SPECIES_COFAGRIGUS",

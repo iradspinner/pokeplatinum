@@ -7,31 +7,19 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_STEELIX"
+            "species": "SPECIES_RHYPERIOR"
         },
         {
             "level": 41,
-            "species": "SPECIES_RHYHORN"
+            "species": "SPECIES_PUPITAR"
         },
         {
             "level": 41,
-            "species": "SPECIES_GABITE"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_GARGANACL"
-        },
-        {
-            "level": 42,
             "species": "SPECIES_HAWLUCHA"
         },
         {
             "level": 42,
-            "species": "SPECIES_GLIMMORA"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_GOLEM"
         },
         {
             "level": 42,
@@ -39,15 +27,27 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_GOLEM"
+            "species": "SPECIES_PUPITAR"
+        },
+        {
+            "level": 42,
+            "species": "SPECIES_HAWLUCHA"
+        },
+        {
+            "level": 42,
+            "species": "SPECIES_MIENSHAO"
+        },
+        {
+            "level": 42,
+            "species": "SPECIES_ABSOL"
         },
         {
             "level": 43,
-            "species": "SPECIES_METANG"
+            "species": "SPECIES_MIENSHAO"
         },
         {
             "level": 43,
-            "species": "SPECIES_HAKAMO_O"
+            "species": "SPECIES_WEAVILE"
         }
     ],
     "swarms": [
@@ -59,8 +59,8 @@
         "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_PUPITAR",
+        "SPECIES_ABSOL"
     ],
     "radar": [
         "SPECIES_TYRANITAR",

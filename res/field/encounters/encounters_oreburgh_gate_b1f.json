@@ -7,23 +7,23 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_MAKUHITA"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 8,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 8,
             "species": "SPECIES_PHANPY"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_RHYHORN"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_GLIMMET"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 8,
@@ -31,23 +31,23 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_RHYHORN"
         },
         {
             "level": 8,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_DWEBBLE"
         },
         {
             "level": 8,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 9,
-            "species": "SPECIES_NACLI"
-        },
-        {
-            "level": 9,
             "species": "SPECIES_GIBLE"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_DWEBBLE"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_ONIX"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_NIDORAN_M"
     ],
     "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_PHANPY",
+        "SPECIES_RHYHORN"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GEODUDE",
+        "SPECIES_DWEBBLE"
     ],
     "radar": [
         "SPECIES_GRAVELER",

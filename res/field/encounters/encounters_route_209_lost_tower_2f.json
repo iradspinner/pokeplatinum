@@ -3,35 +3,35 @@
     "land_encounters": [
         {
             "level": 17,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 18,
+            "species": "SPECIES_GASTLY"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 19,
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 18,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_DUSKULL"
+            "level": 19,
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 19,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_GOTHITA"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_YAMASK"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_LITWICK"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 19,
@@ -55,12 +55,12 @@
         "SPECIES_KLEFKI"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOTHITA"
+        "SPECIES_KLEFKI",
+        "SPECIES_SINISTEA"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_LITWICK",
+        "SPECIES_GASTLY"
     ],
     "radar": [
         "SPECIES_COFAGRIGUS",

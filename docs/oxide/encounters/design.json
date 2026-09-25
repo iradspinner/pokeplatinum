@@ -64,7 +64,8 @@
       "preferred": 20.0,
       "filler": 100.0
     },
-    "r11_top_share_max": 0.35
+    "r11_top_share_max": 0.35,
+    "r15_distinct_shared_max": 2
   },
   "budget": {
     "concentrated": 0.18,
@@ -283,30 +284,27 @@
       }
     },
     "encounters_great_marsh_1": {
-      "archetype": "A18",
+      "archetype": "A11",
       "band": "late",
-      "intent": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night.",
+      "intent": "The Great Marsh's mudflats, Wooper's home: the lily pads and the shallow water.",
       "locked": [],
       "base_level": 28,
       "order": 71,
       "split": "Wake",
       "cast": [
         "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
         "SPECIES_LOTAD",
-        "SPECIES_YANMA",
-        "SPECIES_SKORUPI",
-        "SPECIES_DEWPIDER",
-        "SPECIES_MASQUERAIN",
-        "SPECIES_BRELOOM"
+        "SPECIES_SURSKIT",
+        "SPECIES_GASTRODON",
+        "SPECIES_BARBOACH"
       ],
       "day": [
         "SPECIES_LOTAD",
-        "SPECIES_MASQUERAIN"
+        "SPECIES_SURSKIT"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_WOOPER",
+        "SPECIES_BARBOACH"
       ],
       "old_rod": {
         "cast": [
@@ -434,27 +432,26 @@
       }
     },
     "encounters_great_marsh_2": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "late",
-      "intent": "Area two: Croagunk leads, six lines.",
+      "intent": "The Great Marsh's poison reeds: Koffing in the marsh gas, Skorupi, Budew, Stunky and Salandit around it.",
       "locked": [],
       "base_level": 28,
       "order": 72,
       "split": "Wake",
       "cast": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_WOOPER",
-        "SPECIES_YANMA",
-        "SPECIES_LOTAD",
+        "SPECIES_KOFFING",
         "SPECIES_SKORUPI",
-        "SPECIES_DEWPIDER"
+        "SPECIES_BUDEW",
+        "SPECIES_STUNKY",
+        "SPECIES_SALANDIT"
       ],
       "day": [
-        "SPECIES_SURSKIT",
-        "SPECIES_LOTAD"
+        "SPECIES_BUDEW",
+        "SPECIES_SALANDIT"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
+        "SPECIES_STUNKY",
         "SPECIES_SKORUPI"
       ],
       "old_rod": {
@@ -583,28 +580,27 @@
       }
     },
     "encounters_great_marsh_3": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Area three, Croagunk's home: three co-equal in the reeds.",
+      "intent": "The Great Marsh's frogs and fungus, Croagunk's home: Shroomish in the damp, Fomantis and Sewaddle in the leaves.",
       "locked": [],
       "base_level": 27,
       "order": 73,
       "split": "Wake",
       "cast": [
         "SPECIES_CROAGUNK",
-        "SPECIES_QUAGSIRE",
-        "SPECIES_DEWPIDER",
-        "SPECIES_YANMA",
-        "SPECIES_SURSKIT",
-        "SPECIES_BRELOOM"
+        "SPECIES_BRELOOM",
+        "SPECIES_FOMANTIS",
+        "SPECIES_LOTAD",
+        "SPECIES_SWADLOON"
       ],
       "day": [
-        "SPECIES_YANMA",
-        "SPECIES_LOTAD"
+        "SPECIES_BRELOOM",
+        "SPECIES_SWADLOON"
       ],
       "night": [
         "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_FOMANTIS"
       ],
       "old_rod": {
         "cast": [
@@ -732,28 +728,27 @@
       }
     },
     "encounters_great_marsh_4": {
-      "archetype": "A7",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Area four: the spread, nobody over 25.",
+      "intent": "The Great Marsh's tall grass, the hunters: Scyther leads, Gligar overhead, Houndour and Poochyena by night.",
       "locked": [],
       "base_level": 27,
       "order": 74,
       "split": "Wake",
       "cast": [
-        "SPECIES_QUAGSIRE",
-        "SPECIES_DEWPIDER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_YANMA",
-        "SPECIES_BRELOOM",
-        "SPECIES_SKORUPI"
+        "SPECIES_SCYTHER",
+        "SPECIES_GLIGAR",
+        "SPECIES_HOUNDOOM",
+        "SPECIES_MIGHTYENA",
+        "SPECIES_LIEPARD"
       ],
       "day": [
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_SCYTHER",
+        "SPECIES_GLIGAR"
       ],
       "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_HOUNDOOM",
+        "SPECIES_MIGHTYENA"
       ],
       "old_rod": {
         "cast": [
@@ -881,30 +876,27 @@
       }
     },
     "encounters_great_marsh_5": {
-      "archetype": "A8",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Area five, Yanma's home: the broad shape, eight lines.",
+      "intent": "The Great Marsh's bog, Yanma's home: the bugs over the water, Dewpider, Joltik and Combee.",
       "locked": [],
       "base_level": 26,
       "order": 75,
       "split": "Wake",
       "cast": [
         "SPECIES_YANMA",
-        "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_LOTAD",
-        "SPECIES_SKORUPI",
         "SPECIES_DEWPIDER",
-        "SPECIES_SURSKIT",
-        "SPECIES_BRELOOM"
+        "SPECIES_JOLTIK",
+        "SPECIES_VESPIQUEN",
+        "SPECIES_SURSKIT"
       ],
       "day": [
-        "SPECIES_LOTAD",
+        "SPECIES_VESPIQUEN",
         "SPECIES_YANMA"
       ],
       "night": [
-        "SPECIES_CROAGUNK",
-        "SPECIES_KOFFING"
+        "SPECIES_JOLTIK",
+        "SPECIES_DEWPIDER"
       ],
       "old_rod": {
         "cast": [
@@ -1032,27 +1024,27 @@
       }
     },
     "encounters_great_marsh_6": {
-      "archetype": "A6",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Area six: the marsh shape itself, three co-equal faces.",
+      "intent": "The Great Marsh's far island, the flowers and the rain: Castform leads, Bounsweet, Smoliv and Budew in bloom.",
       "locked": [],
       "base_level": 26,
       "order": 76,
       "split": "Wake",
       "cast": [
-        "SPECIES_YANMA",
-        "SPECIES_WOOPER",
-        "SPECIES_CROAGUNK",
-        "SPECIES_LOMBRE",
-        "SPECIES_BRELOOM"
+        "SPECIES_CASTFORM",
+        "SPECIES_STEENEE",
+        "SPECIES_DOLLIV",
+        "SPECIES_BUDEW",
+        "SPECIES_WOOPER"
       ],
       "day": [
-        "SPECIES_MASQUERAIN",
-        "SPECIES_DEWPIDER"
+        "SPECIES_STEENEE",
+        "SPECIES_DOLLIV"
       ],
       "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_CASTFORM",
+        "SPECIES_WOOPER"
       ],
       "old_rod": {
         "cast": [
@@ -1180,22 +1172,22 @@
       }
     },
     "encounters_iron_island_1f": {
-      "archetype": "A18",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Iron Island's first floor, Togedemaru's home: the iron lines, eight deep.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 87,
       "split": "Byron",
       "cast": [
+        "SPECIES_STEELIX",
+        "SPECIES_METANG",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
         "SPECIES_TOGEDEMARU",
-        "SPECIES_ONIX",
-        "SPECIES_BRONZOR",
         "SPECIES_NACLSTACK",
-        "SPECIES_FERROSEED",
         "SPECIES_KLEFKI",
-        "SPECIES_GRAVELER",
-        "SPECIES_HARIYAMA"
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1207,93 +1199,103 @@
       ]
     },
     "encounters_iron_island_b1f_left_room": {
-      "archetype": "A14",
+      "archetype": "A17",
       "band": "late",
-      "intent": "B1F left: Onix leads, six lines.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 88,
       "split": "Byron",
       "cast": [
-        "SPECIES_ONIX",
-        "SPECIES_NACLSTACK",
+        "SPECIES_STEELIX",
+        "SPECIES_METANG",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
         "SPECIES_TOGEDEMARU",
-        "SPECIES_FERROSEED",
-        "SPECIES_HARIYAMA",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NACLSTACK",
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_NOSEPASS"
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_GOLBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZOR"
       ]
     },
     "encounters_iron_island_b1f_right_room": {
-      "archetype": "A16",
+      "archetype": "A17",
       "band": "late",
-      "intent": "B1F right: three co-equal, Klefki and Carbink behind.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 89,
       "split": "Byron",
       "cast": [
-        "SPECIES_ONIX",
+        "SPECIES_STEELIX",
+        "SPECIES_METANG",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
+        "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
-        "SPECIES_BRONZOR",
         "SPECIES_KLEFKI",
-        "SPECIES_CARBINK",
-        "SPECIES_GOLBAT"
+        "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_GOLBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_BRONZOR"
       ]
     },
     "encounters_iron_island_b2f_left_room": {
-      "archetype": "A13",
+      "archetype": "A17",
       "band": "late",
-      "intent": "B2F left, Lunatone's home at 35: the moon room.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 91,
       "split": "Byron",
       "cast": [
+        "SPECIES_STEELIX",
+        "SPECIES_METANG",
         "SPECIES_LUNATONE",
-        "SPECIES_ONIX",
+        "SPECIES_SOLROCK",
+        "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
-        "SPECIES_BRONZOR",
-        "SPECIES_CARBINK"
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_NOSEPASS"
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_GOLBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZOR"
       ]
     },
     "encounters_iron_island_b2f_right_room": {
-      "archetype": "A13",
+      "archetype": "A17",
       "band": "late",
-      "intent": "B2F right, Solrock's home at 35: the sun room.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 90,
       "split": "Byron",
       "cast": [
+        "SPECIES_STEELIX",
+        "SPECIES_METANG",
+        "SPECIES_LUNATONE",
         "SPECIES_SOLROCK",
-        "SPECIES_ONIX",
+        "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
-        "SPECIES_BRONZOR",
-        "SPECIES_KLEFKI"
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1307,28 +1309,28 @@
     "encounters_iron_island_b3f": {
       "archetype": "A17",
       "band": "late",
-      "intent": "The bottom of Iron Island, Beldum's home at 35: the reason to go down with Riley, Larvitar and Gible in the tail.",
+      "intent": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%.",
       "locked": [],
       "base_level": 30,
       "order": 92,
       "split": "Byron",
       "cast": [
+        "SPECIES_STEELIX",
         "SPECIES_METANG",
-        "SPECIES_ONIX",
-        "SPECIES_NACLSTACK",
-        "SPECIES_FERROSEED",
-        "SPECIES_KLEFKI",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
         "SPECIES_TOGEDEMARU",
-        "SPECIES_PUPITAR",
+        "SPECIES_NACLSTACK",
+        "SPECIES_KLEFKI",
         "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_GRAVELER",
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_GOLBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_BRONZOR"
       ]
     },
     "encounters_lake_acuity": {
@@ -1955,28 +1957,34 @@
       "capture_area": "Mt. Coronet North"
     },
     "encounters_mt_coronet_1f_north_room_2": {
-      "archetype": "A14",
+      "archetype": "A19",
       "band": "late",
-      "intent": "The second north room: six lines, Glimmet at 15.",
+      "intent": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s.",
       "locked": [],
       "base_level": 32,
       "order": 98,
       "split": "Candice",
       "cast": [
-        "SPECIES_BRONZOR",
+        "SPECIES_GOOMY",
+        "SPECIES_BRONZONG",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENFOO",
         "SPECIES_GLIMMET",
+        "SPECIES_CARBINK",
         "SPECIES_PROBOPASS",
-        "SPECIES_GRAVELER"
+        "SPECIES_GRAVELER",
+        "SPECIES_CROBAT",
+        "SPECIES_KLEFKI",
+        "SPECIES_PUPITAR",
+        "SPECIES_HAKAMO_O"
       ],
       "day": [
-        "SPECIES_GRAVELER",
-        "SPECIES_PROBOPASS"
+        "SPECIES_HARIYAMA",
+        "SPECIES_DONPHAN"
       ],
       "night": [
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_CARBINK"
       ],
       "capture_area": "Mt. Coronet B1F"
     },
@@ -2133,22 +2141,22 @@
       "capture_area": "Mt. Coronet South"
     },
     "encounters_mt_coronet_1f_tunnel_room": {
-      "archetype": "A18",
+      "archetype": "A17",
       "band": "late",
-      "intent": "The tunnel room on the climb: eight lines, Larvitar at 10.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 114,
       "split": "Galactic",
       "cast": [
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
         "SPECIES_CARBINK",
-        "SPECIES_PUPITAR",
+        "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_CROBAT",
-        "SPECIES_GLIMMORA"
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2161,20 +2169,22 @@
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_2f": {
-      "archetype": "A16",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Second floor: three co-equal, Larvitar and Ferroseed behind.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 115,
       "split": "Galactic",
       "cast": [
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
+        "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
-        "SPECIES_FERROSEED"
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2187,73 +2197,78 @@
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_3f": {
-      "archetype": "A15",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Third floor: eight lines, the dragons in the tail.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 116,
       "split": "Galactic",
       "cast": [
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
         "SPECIES_CARBINK",
-        "SPECIES_KLEFKI",
         "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
-        "SPECIES_HAKAMO_O"
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_PROBOPASS"
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_4f_room_3": {
-      "archetype": "A14",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Fourth floor, room three: Carbink leads, Goomy at 15.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 119,
       "split": "Galactic",
       "cast": [
-        "SPECIES_CARBINK",
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
-        "SPECIES_GOOMY",
         "SPECIES_MIENSHAO",
-        "SPECIES_KLEFKI"
+        "SPECIES_CARBINK",
+        "SPECIES_GLIMMORA",
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_PROBOPASS"
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
-      "archetype": "A13",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Fourth floor, the paired rooms: Bronzor at 35, the cap's edge.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 118,
       "split": "Galactic",
       "cast": [
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
+        "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
-        "SPECIES_FERROSEED"
+        "SPECIES_KLEFKI",
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2268,19 +2283,19 @@
     "encounters_mt_coronet_5f": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Fifth floor, Jangmo-o's home at 35: the dragon floor under the summit.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 121,
       "split": "Galactic",
       "cast": [
-        "SPECIES_HAKAMO_O",
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
-        "SPECIES_PUPITAR",
+        "SPECIES_CARBINK",
+        "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GOOMY",
         "SPECIES_GABITE"
       ],
       "day": [
@@ -2294,35 +2309,37 @@
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_6f": {
-      "archetype": "A16",
+      "archetype": "A17",
       "band": "late",
-      "intent": "The last floor before Spear Pillar: Jangmo-o co-equal with the mountain's core.",
+      "intent": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%.",
       "locked": [],
       "base_level": 36,
       "order": 122,
       "split": "Galactic",
       "cast": [
-        "SPECIES_HAKAMO_O",
         "SPECIES_BRONZONG",
+        "SPECIES_HAKAMO_O",
         "SPECIES_NACLSTACK",
         "SPECIES_MIENSHAO",
+        "SPECIES_CARBINK",
+        "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_PUPITAR"
+        "SPECIES_GABITE"
       ],
       "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_PROBOPASS"
+        "SPECIES_HARIYAMA"
       ],
       "night": [
         "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
     },
     "encounters_mt_coronet_b1f": {
-      "archetype": "A17",
+      "archetype": "A19",
       "band": "late",
-      "intent": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor.",
+      "intent": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s.",
       "locked": [],
       "base_level": 32,
       "order": 97,
@@ -2331,7 +2348,11 @@
         "SPECIES_GOOMY",
         "SPECIES_BRONZONG",
         "SPECIES_NACLSTACK",
+        "SPECIES_MIENFOO",
+        "SPECIES_GLIMMET",
         "SPECIES_CARBINK",
+        "SPECIES_PROBOPASS",
+        "SPECIES_GRAVELER",
         "SPECIES_CROBAT",
         "SPECIES_KLEFKI",
         "SPECIES_PUPITAR",
@@ -2472,9 +2493,9 @@
       "capture_area": "Mt. Coronet B1F"
     },
     "encounters_mt_coronet_outside_north": {
-      "archetype": "A18",
+      "archetype": "A19",
       "band": "late",
-      "intent": "The snowy ledge on the north face: eight cold lines.",
+      "intent": "Mt. Coronet's snowy outside, both halves one table (Ian, 2026-09-26): Snover and Frosmoth lead the cold lines, Absol and the mountain's dragons as the rare finds.",
       "locked": [],
       "base_level": 36,
       "order": 120,
@@ -2482,27 +2503,31 @@
       "cast": [
         "SPECIES_SNOVER",
         "SPECIES_FROSMOTH",
-        "SPECIES_HAWLUCHA",
         "SPECIES_MIENSHAO",
-        "SPECIES_ALOLAN_NINETALES",
+        "SPECIES_HAWLUCHA",
+        "SPECIES_GARGANACL",
         "SPECIES_SNEASEL",
+        "SPECIES_ALOLAN_NINETALES",
         "SPECIES_PILOSWINE",
-        "SPECIES_ABSOL"
+        "SPECIES_SNORUNT",
+        "SPECIES_ABSOL",
+        "SPECIES_PUPITAR",
+        "SPECIES_GABITE"
       ],
       "day": [
-        "SPECIES_PILOSWINE",
-        "SPECIES_SNORUNT"
+        "SPECIES_FROSMOTH",
+        "SPECIES_PILOSWINE"
       ],
       "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_ABSOL"
+        "SPECIES_SNORUNT"
       ],
       "capture_area": "Mt. Coronet Mountainside"
     },
     "encounters_mt_coronet_outside_south": {
       "archetype": "A19",
       "band": "late",
-      "intent": "The snowy ledge on the south face: the cold cast, twelve lines, the two dragons as 1%s.",
+      "intent": "Mt. Coronet's snowy outside, both halves one table (Ian, 2026-09-26): Snover and Frosmoth lead the cold lines, Absol and the mountain's dragons as the rare finds.",
       "locked": [],
       "base_level": 36,
       "order": 117,
@@ -2514,9 +2539,9 @@
         "SPECIES_HAWLUCHA",
         "SPECIES_GARGANACL",
         "SPECIES_SNEASEL",
+        "SPECIES_ALOLAN_NINETALES",
         "SPECIES_PILOSWINE",
         "SPECIES_SNORUNT",
-        "SPECIES_ALOLAN_NINETALES",
         "SPECIES_ABSOL",
         "SPECIES_PUPITAR",
         "SPECIES_GABITE"
@@ -2532,22 +2557,19 @@
       "capture_area": "Mt. Coronet Mountainside"
     },
     "encounters_old_chateau": {
-      "archetype": "A18",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 20,
       "split": "Fantina",
       "cast": [
-        "SPECIES_SINISTEA",
         "SPECIES_GASTLY",
         "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_PURRLOIN",
-        "SPECIES_ZUBAT"
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
@@ -2559,69 +2581,67 @@
       ]
     },
     "encounters_old_chateau_back_east_room": {
-      "archetype": "A14",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The back east room: the gas leads, the banshee answers.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 28,
       "split": "Fantina",
       "cast": [
         "SPECIES_GASTLY",
-        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
-        "SPECIES_YAMASK",
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_SINISTEA",
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_MISDREAVUS"
+        "SPECIES_LITWICK"
       ],
       "night": [
         "SPECIES_GASTLY",
-        "SPECIES_YAMASK"
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_back_middle_east_room": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Back middle east: three ghosts co-equal.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 27,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
-        "SPECIES_GASTLY",
-        "SPECIES_DUSKULL",
         "SPECIES_SINISTEA",
-        "SPECIES_ZUBAT"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL"
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_MISDREAVUS",
-        "SPECIES_LITWICK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_back_middle_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The middle room with the television, Litwick’s home.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 26,
       "split": "Fantina",
       "cast": [
-        "SPECIES_LITWICK",
         "SPECIES_GASTLY",
+        "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_MISDREAVUS"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
@@ -2633,15 +2653,14 @@
       ]
     },
     "encounters_old_chateau_back_middle_west_room": {
-      "archetype": "A14",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Back middle west: Duskull leads for once.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 25,
       "split": "Fantina",
       "cast": [
-        "SPECIES_DUSKULL",
         "SPECIES_GASTLY",
         "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
@@ -2649,42 +2668,42 @@
         "SPECIES_YAMASK"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_back_west_room": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The back west room: Yamask’s corner.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 24,
       "split": "Fantina",
       "cast": [
-        "SPECIES_YAMASK",
+        "SPECIES_GASTLY",
+        "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_GASTLY",
-        "SPECIES_DUSKULL"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_MISDREAVUS"
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_YAMASK",
+        "SPECIES_GASTLY",
         "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_corridor": {
-      "archetype": "A11",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The corridor, Gastly’s home: the gas fills it end to end.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 23,
@@ -2694,87 +2713,85 @@
         "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
-        "SPECIES_ZUBAT"
+        "SPECIES_YAMASK"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
       ],
       "night": [
         "SPECIES_GASTLY",
-        "SPECIES_MISDREAVUS"
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_dining_area": {
-      "archetype": "A14",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The dining room: candles on the table, six lines, none over 25.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 21,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GASTLY",
         "SPECIES_LITWICK",
         "SPECIES_MISDREAVUS",
-        "SPECIES_GASTLY",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_PURRLOIN"
+        "SPECIES_YAMASK"
       ],
       "day": [
         "SPECIES_SINISTEA",
-        "SPECIES_PURRLOIN"
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_MISDREAVUS",
-        "SPECIES_GASTLY"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_old_chateau_side_rooms": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The side rooms, Misdreavus’s home: three ghosts co-equal.",
+      "intent": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night.",
       "locked": [],
       "base_level": 14,
       "order": 22,
       "split": "Fantina",
       "cast": [
-        "SPECIES_MISDREAVUS",
         "SPECIES_GASTLY",
-        "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK",
-        "SPECIES_ZUBAT"
-      ],
-      "day": [
+        "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_SINISTEA",
         "SPECIES_YAMASK"
       ],
+      "day": [
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
+      ],
       "night": [
-        "SPECIES_MISDREAVUS",
-        "SPECIES_GASTLY"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_oreburgh_gate_1f": {
-      "archetype": "A18",
+      "archetype": "A15",
       "band": "early",
-      "intent": "The first cave, eight lines: Zubat and Geodude lead, Nacli and Nosepass at home, Makuhita and Phanpy behind, Onix and a Nidoran small.",
+      "intent": "Oreburgh Gate's passage, its own floor (Ian, 2026-09-26): Zubat under the roof, Nacli and Nosepass at home in the salt, Onix and Larvitar as the 4% and 1%.",
       "locked": [],
       "base_level": 5,
       "order": 8,
       "cast": [
         "SPECIES_ZUBAT",
-        "SPECIES_GEODUDE",
         "SPECIES_NACLI",
         "SPECIES_NOSEPASS",
         "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY",
+        "SPECIES_NIDORAN_M",
+        "SPECIES_PURRLOIN",
         "SPECIES_ONIX",
-        "SPECIES_NIDORAN_M"
+        "SPECIES_LARVITAR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_MAKUHITA",
+        "SPECIES_NACLI"
       ],
       "night": [
         "SPECIES_ZUBAT",
@@ -2785,27 +2802,27 @@
     "encounters_oreburgh_gate_b1f": {
       "archetype": "A15",
       "band": "early",
-      "intent": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave.",
+      "intent": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%.",
       "locked": [],
       "base_level": 6,
       "order": 14,
       "cast": [
         "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA",
-        "SPECIES_ZUBAT",
-        "SPECIES_NACLI",
-        "SPECIES_NOSEPASS",
         "SPECIES_PHANPY",
-        "SPECIES_ONIX",
-        "SPECIES_GIBLE"
+        "SPECIES_RHYHORN",
+        "SPECIES_DWEBBLE",
+        "SPECIES_GLIMMET",
+        "SPECIES_CARBINK",
+        "SPECIES_GIBLE",
+        "SPECIES_ONIX"
       ],
       "day": [
-        "SPECIES_MAKUHITA",
-        "SPECIES_PHANPY"
+        "SPECIES_PHANPY",
+        "SPECIES_RHYHORN"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_NOSEPASS"
+        "SPECIES_GEODUDE",
+        "SPECIES_DWEBBLE"
       ],
       "split": "Gardenia",
       "old_rod": {
@@ -2918,16 +2935,16 @@
     "encounters_oreburgh_mine_b1f": {
       "archetype": "A15",
       "band": "early",
-      "intent": "The mine, Makuhita's home: Nacli beside it, Zubat and Geodude behind, Phanpy and Nosepass small, Rhyhorn a 4% and Magby a 1% tease of the deeper rock, Onix by night.",
+      "intent": "The Oreburgh Mine, both floors one table (Ian, 2026-09-26): Makuhita, Onix and Phanpy at home, the miners' rock lines around them, Rhyhorn and Magby as the 4% and 1%.",
       "locked": [],
       "base_level": 5,
       "order": 10,
       "cast": [
         "SPECIES_MAKUHITA",
-        "SPECIES_NACLI",
-        "SPECIES_ZUBAT",
-        "SPECIES_GEODUDE",
+        "SPECIES_ONIX",
         "SPECIES_PHANPY",
+        "SPECIES_NACLI",
+        "SPECIES_GEODUDE",
         "SPECIES_NOSEPASS",
         "SPECIES_RHYHORN",
         "SPECIES_MAGBY"
@@ -2945,26 +2962,26 @@
     "encounters_oreburgh_mine_b2f": {
       "archetype": "A15",
       "band": "early",
-      "intent": "Deeper, the Onix floor: Onix at 25 with Phanpy at home beside it, the rock lines behind, Rhyhorn and Magby again in the tail, Makuhita by day.",
+      "intent": "The Oreburgh Mine, both floors one table (Ian, 2026-09-26): Makuhita, Onix and Phanpy at home, the miners' rock lines around them, Rhyhorn and Magby as the 4% and 1%.",
       "locked": [],
       "base_level": 5,
       "order": 11,
       "cast": [
+        "SPECIES_MAKUHITA",
         "SPECIES_ONIX",
         "SPECIES_PHANPY",
         "SPECIES_NACLI",
-        "SPECIES_NOSEPASS",
         "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT",
+        "SPECIES_NOSEPASS",
         "SPECIES_RHYHORN",
         "SPECIES_MAGBY"
       ],
       "day": [
-        "SPECIES_NOSEPASS",
-        "SPECIES_MAKUHITA"
+        "SPECIES_ZUBAT",
+        "SPECIES_GEODUDE"
       ],
       "night": [
-        "SPECIES_ZUBAT",
+        "SPECIES_ONIX",
         "SPECIES_GEODUDE"
       ],
       "split": "Roark"
@@ -4214,7 +4231,7 @@
     "encounters_route_209_lost_tower_1f": {
       "archetype": "A13",
       "band": "mid",
-      "intent": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts.",
+      "intent": "The Lost Tower's ground floor, where the graves begin: Yamask leads, Zubat and Koffing drift in from outside, Gothita and Vullaby watch.",
       "locked": [],
       "base_level": 17,
       "order": 39,
@@ -4222,118 +4239,113 @@
       "cast": [
         "SPECIES_YAMASK",
         "SPECIES_ZUBAT",
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK",
-        "SPECIES_GOTHITA"
+        "SPECIES_KOFFING",
+        "SPECIES_GOTHITA",
+        "SPECIES_VULLABY"
       ],
       "day": [
         "SPECIES_ZUBAT",
-        "SPECIES_YAMASK"
+        "SPECIES_GOTHITA"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_LITWICK"
+        "SPECIES_YAMASK",
+        "SPECIES_KOFFING"
       ]
     },
     "encounters_route_209_lost_tower_2f": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "mid",
-      "intent": "Second floor: the same ghosts, wider and flatter.",
+      "intent": "The Lost Tower's second floor, the candles: Litwick leads, Gastly in the smoke, Klefki and Sinistea left on the graves.",
       "locked": [],
       "base_level": 17,
       "order": 40,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_ZUBAT",
-        "SPECIES_DUSKULL",
         "SPECIES_LITWICK",
-        "SPECIES_GOTHITA",
+        "SPECIES_GASTLY",
+        "SPECIES_KLEFKI",
+        "SPECIES_ZUBAT",
         "SPECIES_SINISTEA"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_GOTHITA"
+        "SPECIES_KLEFKI",
+        "SPECIES_SINISTEA"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_SINISTEA"
+        "SPECIES_LITWICK",
+        "SPECIES_GASTLY"
       ]
     },
     "encounters_route_209_lost_tower_3f": {
-      "archetype": "A16",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "Third floor: three ghosts co-equal.",
+      "intent": "The Lost Tower's third floor, Duskull's home: the keepers of the dead, Misdreavus wailing, Sandygast in the grave dirt.",
       "locked": [],
       "base_level": 17,
       "order": 41,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
         "SPECIES_DUSKULL",
-        "SPECIES_LITWICK",
-        "SPECIES_ZUBAT",
-        "SPECIES_SINISTEA",
-        "SPECIES_GOTHITA"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_KOFFING",
+        "SPECIES_GASTLY",
+        "SPECIES_SANDYGAST"
       ],
       "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_LITWICK"
+        "SPECIES_SANDYGAST",
+        "SPECIES_KOFFING"
       ],
       "night": [
         "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS"
       ]
     },
     "encounters_route_209_lost_tower_4f": {
       "archetype": "A11",
       "band": "mid",
-      "intent": "Fourth floor: candles lead the climb.",
+      "intent": "The Lost Tower's fourth floor, the offerings: Sinistea's cups, Gothita and Klefki among them, Dhelmise's old anchor.",
       "locked": [],
       "base_level": 17,
       "order": 42,
       "split": "Maylene",
       "cast": [
-        "SPECIES_LITWICK",
-        "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT"
+        "SPECIES_GOTHITA",
+        "SPECIES_KLEFKI",
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DHELMISE"
       ],
       "day": [
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_GOTHITA"
       ],
       "night": [
-        "SPECIES_LITWICK",
-        "SPECIES_DUSKULL"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DHELMISE"
       ]
     },
     "encounters_route_209_lost_tower_5f": {
-      "archetype": "A15",
+      "archetype": "A13",
       "band": "mid",
-      "intent": "The top floor: eight lines, Klefki a 4% before the ruins, Dhelmise a 1% anchor far from any sea.",
+      "intent": "The Lost Tower's top floor, below the two old women: Misdreavus leads, Duskull, Yamask and Litwick gathered, Vullaby circling.",
       "locked": [],
       "base_level": 17,
       "order": 43,
       "split": "Maylene",
       "cast": [
-        "SPECIES_YAMASK",
-        "SPECIES_SINISTEA",
-        "SPECIES_LITWICK",
+        "SPECIES_MISDREAVUS",
         "SPECIES_DUSKULL",
-        "SPECIES_ZUBAT",
-        "SPECIES_GOTHITA",
-        "SPECIES_KLEFKI",
-        "SPECIES_DHELMISE"
+        "SPECIES_YAMASK",
+        "SPECIES_LITWICK",
+        "SPECIES_VULLABY"
       ],
       "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_VULLABY",
+        "SPECIES_LITWICK"
       ],
       "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_MISDREAVUS",
+        "SPECIES_DUSKULL"
       ]
     },
     "encounters_route_210_north": {
@@ -6801,7 +6813,7 @@
     "encounters_ruin_maniac_cave_long": {
       "archetype": "A16",
       "band": "mid",
-      "intent": "The cave dug through to the ruins: three co-equal, Klefki by day where it meets the ruins.",
+      "intent": "The Ruin Maniac's dig, both lengths one table (Ian, 2026-09-26): Dwebble's home, Hippopotas and Onix in the sand beside it.",
       "locked": [],
       "base_level": 21,
       "order": 67,
@@ -6810,8 +6822,8 @@
         "SPECIES_DWEBBLE",
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
-        "SPECIES_GOLBAT",
         "SPECIES_NACLI",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ],
       "day": [
@@ -6824,9 +6836,9 @@
       ]
     },
     "encounters_ruin_maniac_cave_short": {
-      "archetype": "A13",
+      "archetype": "A16",
       "band": "mid",
-      "intent": "The cave before the maniac digs through: Dwebble's home at 35, Hippopotas beside it.",
+      "intent": "The Ruin Maniac's dig, both lengths one table (Ian, 2026-09-26): Dwebble's home, Hippopotas and Onix in the sand beside it.",
       "locked": [],
       "base_level": 21,
       "order": 66,
@@ -6835,12 +6847,13 @@
         "SPECIES_DWEBBLE",
         "SPECIES_HIPPOPOTAS",
         "SPECIES_ONIX",
+        "SPECIES_NACLI",
         "SPECIES_GOLBAT",
-        "SPECIES_NACLI"
+        "SPECIES_BRONZOR"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_CARBINK"
+        "SPECIES_CARBINK",
+        "SPECIES_KLEFKI"
       ],
       "night": [
         "SPECIES_GOLBAT",
@@ -7718,20 +7731,20 @@
     "encounters_stark_mountain_outside": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes.",
+      "intent": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds.",
       "locked": [],
       "base_level": 51,
       "order": 107,
       "split": "Galactic",
       "cast": [
         "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_TURTONATOR",
         "SPECIES_MAGCARGO",
         "SPECIES_RHYPERIOR",
         "SPECIES_SALAZZLE",
         "SPECIES_CERULEDGE",
-        "SPECIES_WEEZING",
-        "SPECIES_TURTONATOR",
-        "SPECIES_LARVESTA"
+        "SPECIES_LARVESTA",
+        "SPECIES_MAGMORTAR"
       ],
       "day": [
         "SPECIES_MAGMORTAR",
@@ -7745,55 +7758,55 @@
     "encounters_stark_mountain_room_1": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma.",
+      "intent": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds.",
       "locked": [],
       "base_level": 51,
       "order": 108,
       "split": "Galactic",
       "cast": [
-        "SPECIES_LARVESTA",
+        "SPECIES_GALARIAN_WEEZING",
+        "SPECIES_TURTONATOR",
         "SPECIES_MAGCARGO",
         "SPECIES_RHYPERIOR",
-        "SPECIES_CROBAT",
-        "SPECIES_WEEZING",
         "SPECIES_SALAZZLE",
-        "SPECIES_MAGMORTAR",
-        "SPECIES_CERULEDGE"
+        "SPECIES_CERULEDGE",
+        "SPECIES_LARVESTA",
+        "SPECIES_MAGMORTAR"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_HARIYAMA"
+        "SPECIES_MAGMORTAR",
+        "SPECIES_HOUNDOOM"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_SALAZZLE"
+        "SPECIES_SALAZZLE",
+        "SPECIES_WEEZING"
       ]
     },
     "encounters_stark_mountain_room_2": {
       "archetype": "A17",
       "band": "late",
-      "intent": "The magma chamber, Turtonator's home at 35: Heatran's room is past it.",
+      "intent": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds.",
       "locked": [],
-      "base_level": 52,
+      "base_level": 51,
       "order": 109,
       "split": "Galactic",
       "cast": [
+        "SPECIES_GALARIAN_WEEZING",
         "SPECIES_TURTONATOR",
         "SPECIES_MAGCARGO",
         "SPECIES_RHYPERIOR",
-        "SPECIES_CROBAT",
+        "SPECIES_SALAZZLE",
         "SPECIES_CERULEDGE",
         "SPECIES_LARVESTA",
-        "SPECIES_WEEZING",
-        "SPECIES_GALARIAN_WEEZING"
+        "SPECIES_MAGMORTAR"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_STEELIX"
+        "SPECIES_MAGMORTAR",
+        "SPECIES_HOUNDOOM"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_SALAZZLE"
+        "SPECIES_SALAZZLE",
+        "SPECIES_WEEZING"
       ]
     },
     "encounters_trophy_garden": {
@@ -9184,86 +9197,81 @@
       ]
     },
     "encounters_victory_road_1f": {
-      "archetype": "A19",
+      "archetype": "A17",
       "band": "late",
-      "intent": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail.",
+      "intent": "Victory Road's long first floor, Pupitar's home: the rock and fighting lines, Absol and Weavile as the rare finds.",
       "locked": [],
       "base_level": 40,
       "order": 148,
       "split": "League",
       "cast": [
         "SPECIES_PUPITAR",
-        "SPECIES_STEELIX",
-        "SPECIES_RHYHORN",
-        "SPECIES_GABITE",
-        "SPECIES_GARGANACL",
+        "SPECIES_RHYPERIOR",
         "SPECIES_HAWLUCHA",
-        "SPECIES_GLIMMORA",
-        "SPECIES_KLEFKI",
-        "SPECIES_HARIYAMA",
         "SPECIES_GOLEM",
-        "SPECIES_METANG",
-        "SPECIES_HAKAMO_O"
+        "SPECIES_HARIYAMA",
+        "SPECIES_MIENSHAO",
+        "SPECIES_ABSOL",
+        "SPECIES_WEAVILE"
       ],
       "day": [
         "SPECIES_GOLEM",
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_PUPITAR",
+        "SPECIES_ABSOL"
       ]
     },
     "encounters_victory_road_1f_room_1": {
-      "archetype": "A14",
+      "archetype": "A11",
       "band": "late",
-      "intent": "Side room one: six lines, Larvitar at 15.",
+      "intent": "Victory Road's post-champion first side room, the rock crushers: Garganacl leads, Glimmora, Crustle, Hippowdon and Rhyperior. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 151,
-      "split": "League",
+      "split": "Post",
       "cast": [
-        "SPECIES_STEELIX",
         "SPECIES_GARGANACL",
         "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
-        "SPECIES_GARCHOMP",
+        "SPECIES_CRUSTLE",
+        "SPECIES_HIPPOWDON",
         "SPECIES_RHYPERIOR"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_HARIYAMA"
+        "SPECIES_CRUSTLE",
+        "SPECIES_HIPPOWDON"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_BRONZONG"
+        "SPECIES_GARGANACL",
+        "SPECIES_GLIMMORA"
       ]
     },
     "encounters_victory_road_1f_room_2": {
       "archetype": "A17",
       "band": "late",
-      "intent": "Side room two, the wet one: Goomy at 35.",
+      "intent": "Victory Road's post-champion wet room: Sliggoo leads, Ferrothorn and the sun and moon pair, Garchomp and Metagross as the 4% and 1%. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 152,
-      "split": "League",
+      "split": "Post",
       "cast": [
         "SPECIES_SLIGGOO",
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_CARBINK",
         "SPECIES_FERROTHORN",
-        "SPECIES_BRONZONG",
+        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
+        "SPECIES_GRAPPLOCT",
+        "SPECIES_KLEFKI",
         "SPECIES_GARCHOMP",
         "SPECIES_METAGROSS"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_PROBOPASS"
+        "SPECIES_LUNATONE",
+        "SPECIES_FERROTHORN"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_SOLROCK",
+        "SPECIES_SLIGGOO"
       ],
       "old_rod": {
         "cast": [
@@ -9391,82 +9399,77 @@
       }
     },
     "encounters_victory_road_1f_room_3": {
-      "archetype": "A15",
+      "archetype": "A13",
       "band": "late",
-      "intent": "Side room three: eight lines, Beldum and Gible in the tail.",
+      "intent": "Victory Road's post-champion last room, the fighters: Kommo-o leads, Hawlucha, Grapploct, Weavile and Scizor. Reached only on the way to Route 224.",
       "locked": [],
       "base_level": 47,
       "order": 153,
-      "split": "League",
+      "split": "Post",
       "cast": [
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_GLIMMORA",
-        "SPECIES_PUPITAR",
         "SPECIES_KOMMO_O",
         "SPECIES_HAWLUCHA",
-        "SPECIES_METAGROSS",
-        "SPECIES_GARCHOMP"
+        "SPECIES_GRAPPLOCT",
+        "SPECIES_WEAVILE",
+        "SPECIES_SCIZOR"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_HAWLUCHA",
+        "SPECIES_SCIZOR"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_WEAVILE",
+        "SPECIES_KOMMO_O"
       ]
     },
     "encounters_victory_road_2f": {
-      "archetype": "A18",
+      "archetype": "A14",
       "band": "late",
-      "intent": "Second floor: eight lines, Jangmo-o at 15.",
+      "intent": "Victory Road's upper ledges, the dragons: Gabite and Hakamo-o, Skarmory and Gliscor overhead.",
       "locked": [],
       "base_level": 41,
       "order": 149,
       "split": "League",
       "cast": [
-        "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
-        "SPECIES_KLEFKI",
-        "SPECIES_HAKAMO_O",
-        "SPECIES_PUPITAR",
         "SPECIES_GABITE",
-        "SPECIES_CARBINK",
-        "SPECIES_BRONZONG"
+        "SPECIES_HAKAMO_O",
+        "SPECIES_SKARMORY",
+        "SPECIES_GLISCOR",
+        "SPECIES_VIBRAVA",
+        "SPECIES_ABSOL"
       ],
       "day": [
-        "SPECIES_GOLEM",
-        "SPECIES_PROBOPASS"
+        "SPECIES_SKARMORY",
+        "SPECIES_GLISCOR"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_KLEFKI"
+        "SPECIES_GABITE",
+        "SPECIES_HAKAMO_O"
       ]
     },
     "encounters_victory_road_b1f": {
       "archetype": "A16",
       "band": "late",
-      "intent": "The basement with the water: Beldum co-equal with Onix and Nacli.",
+      "intent": "Victory Road's basement, the steel: Steelix, Metang and Bronzong co-equal, Carbink and Probopass in the walls.",
       "locked": [],
       "base_level": 41,
       "order": 150,
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
-        "SPECIES_GARGANACL",
         "SPECIES_METANG",
-        "SPECIES_SLIGGOO",
-        "SPECIES_GABITE",
-        "SPECIES_CROBAT"
+        "SPECIES_BRONZONG",
+        "SPECIES_CARBINK",
+        "SPECIES_PROBOPASS",
+        "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_HARIYAMA",
-        "SPECIES_DONPHAN"
+        "SPECIES_CARBINK",
+        "SPECIES_PROBOPASS"
       ],
       "night": [
-        "SPECIES_CROBAT",
-        "SPECIES_CARBINK"
+        "SPECIES_BRONZONG",
+        "SPECIES_KLEFKI"
       ],
       "old_rod": {
         "cast": [
@@ -9596,20 +9599,20 @@
     "encounters_wayward_cave_1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave's upper floor: Carbink's home, Bronzor and the rock lines, Gible a 4% before its own floor, Joltik the 1%.",
+      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%.",
       "locked": [],
       "base_level": 17,
       "order": 33,
       "split": "Fantina",
       "cast": [
+        "SPECIES_GIBLE",
         "SPECIES_CARBINK",
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT",
         "SPECIES_ONIX",
         "SPECIES_DWEBBLE",
         "SPECIES_NACLI",
-        "SPECIES_GIBLE",
-        "SPECIES_JOLTIK"
+        "SPECIES_LARVITAR"
       ],
       "day": [
         "SPECIES_GEODUDE",
@@ -9621,26 +9624,26 @@
       ]
     },
     "encounters_wayward_cave_b1f": {
-      "archetype": "A17",
+      "archetype": "A15",
       "band": "mid",
-      "intent": "The hidden floor under Cycling Road is Gible's, at 35, the cap's edge: the reason to bring Flash. Larvitar a 1% tease of Victory Road.",
+      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%.",
       "locked": [],
       "base_level": 17,
       "order": 34,
       "split": "Fantina",
       "cast": [
         "SPECIES_GIBLE",
-        "SPECIES_BRONZOR",
-        "SPECIES_ONIX",
         "SPECIES_CARBINK",
+        "SPECIES_BRONZOR",
         "SPECIES_ZUBAT",
-        "SPECIES_NACLI",
+        "SPECIES_ONIX",
         "SPECIES_DWEBBLE",
+        "SPECIES_NACLI",
         "SPECIES_LARVITAR"
       ],
       "day": [
         "SPECIES_GEODUDE",
-        "SPECIES_MAKUHITA"
+        "SPECIES_NOSEPASS"
       ],
       "night": [
         "SPECIES_ZUBAT",

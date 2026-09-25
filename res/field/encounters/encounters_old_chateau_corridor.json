@@ -15,39 +15,39 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_MISDREAVUS"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_MISDREAVUS"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_SINISTEA"
-        },
-        {
-            "level": 16,
             "species": "SPECIES_LITWICK"
         },
         {
             "level": 16,
+            "species": "SPECIES_MISDREAVUS"
+        },
+        {
+            "level": 16,
             "species": "SPECIES_SINISTEA"
         },
         {
             "level": 16,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 16,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_MISDREAVUS"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 17,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 17,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_YAMASK"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_YAMASK"
     ],
     "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
     ],
     "night": [
         "SPECIES_GASTLY",
-        "SPECIES_MISDREAVUS"
+        "SPECIES_DUSKULL"
     ],
     "radar": [
         "SPECIES_HAUNTER",

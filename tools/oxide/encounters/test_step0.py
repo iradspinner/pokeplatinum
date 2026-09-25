@@ -428,7 +428,9 @@ def check_importer(results):
 
 
 def check_verify_source(results):
-    rom = os.path.join(model.repo_root(), "build", "pokeplatinum.us.nds")
+    # The gate exports the ROM it is checking (a GitHub build while local
+    # builds wait for the new CPU); a plain run checks this checkout's build.
+    rom = os.environ.get("OXIDE_ROM") or os.path.join(model.repo_root(), "build", "pokeplatinum.us.nds")
     if not os.path.exists(rom):
         results.append(("verify_narcs --source (no build in this checkout, not run)",
                         True, "M7's own gate ran it; integrate.sh runs it after make rom"))

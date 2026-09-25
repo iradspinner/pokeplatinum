@@ -3,51 +3,51 @@
     "land_encounters": [
         {
             "level": 27,
-            "species": "SPECIES_QUAGSIRE"
-        },
-        {
-            "level": 27,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_SCYTHER"
         },
         {
             "level": 28,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 28,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_SCYTHER"
         },
         {
             "level": 28,
-            "species": "SPECIES_BRELOOM"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_SKORUPI"
+            "species": "SPECIES_HOUNDOOM"
         },
         {
             "level": 29,
-            "species": "SPECIES_QUAGSIRE"
+            "species": "SPECIES_HOUNDOOM"
         },
         {
             "level": 29,
-            "species": "SPECIES_DEWPIDER"
+            "species": "SPECIES_MIGHTYENA"
         },
         {
             "level": 29,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_GLIGAR"
         },
         {
             "level": 29,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_MIGHTYENA"
         },
         {
             "level": 29,
-            "species": "SPECIES_CROAGUNK"
+            "species": "SPECIES_LIEPARD"
         },
         {
             "level": 29,
-            "species": "SPECIES_YANMA"
+            "species": "SPECIES_LIEPARD"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_LIEPARD"
+        },
+        {
+            "level": 30,
+            "species": "SPECIES_LIEPARD"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_EMOLGA"
     ],
     "day": [
-        "SPECIES_LOTAD",
-        "SPECIES_SURSKIT"
+        "SPECIES_SCYTHER",
+        "SPECIES_GLIGAR"
     ],
     "night": [
-        "SPECIES_SKORUPI",
-        "SPECIES_KOFFING"
+        "SPECIES_HOUNDOOM",
+        "SPECIES_MIGHTYENA"
     ],
     "radar": [
         "SPECIES_TOXICROAK",

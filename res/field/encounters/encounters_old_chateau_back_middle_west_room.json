@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 14,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 15,
             "species": "SPECIES_GASTLY"
         },
         {
             "level": 15,
             "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 15,
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 15,
@@ -27,7 +27,7 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_GASTLY"
         },
         {
             "level": 16,
@@ -55,12 +55,12 @@
         "SPECIES_PURRLOIN"
     ],
     "day": [
-        "SPECIES_LITWICK",
-        "SPECIES_SINISTEA"
+        "SPECIES_SINISTEA",
+        "SPECIES_LITWICK"
     ],
     "night": [
-        "SPECIES_DUSKULL",
-        "SPECIES_YAMASK"
+        "SPECIES_GASTLY",
+        "SPECIES_DUSKULL"
     ],
     "radar": [
         "SPECIES_DUSCLOPS",

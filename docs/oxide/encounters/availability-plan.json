@@ -37,14 +37,15 @@
     },
     "encounters_oreburgh_gate_1f": {
       "home": ["SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_NOSEPASS"],
-      "cameo": ["SPECIES_GEODUDE", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_ONIX", "SPECIES_NIDORAN_M"],
-      "note": "The first cave, eight lines: Zubat and Geodude lead, Nacli and Nosepass at home, Makuhita and Phanpy behind, Onix and a Nidoran small."
+      "cameo": ["SPECIES_MAKUHITA", "SPECIES_NIDORAN_M", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_ONIX", "SPECIES_LARVITAR"],
+      "note": "Oreburgh Gate's passage, its own floor (Ian, 2026-09-26): Zubat under the roof, Nacli and Nosepass at home in the salt, Onix and Larvitar as the 4% and 1%."
     },
     "encounters_oreburgh_gate_b1f": {
       "home": ["SPECIES_GEODUDE"],
-      "cameo": ["SPECIES_MAKUHITA", "SPECIES_ZUBAT", "SPECIES_NACLI", "SPECIES_NOSEPASS", "SPECIES_PHANPY"],
-      "tail": ["SPECIES_ONIX", "SPECIES_GIBLE"],
-      "note": "The Rock Smash floor, the same location as 1F so the same capture: Geodude's home, Makuhita beside it, Onix a 4% and Gible a 1% tease of Wayward Cave."
+      "cameo": ["SPECIES_PHANPY", "SPECIES_RHYHORN", "SPECIES_DWEBBLE", "SPECIES_GLIMMET", "SPECIES_CARBINK"],
+      "tail": ["SPECIES_GIBLE", "SPECIES_ONIX"],
+      "note": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%."
     },
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX"],
@@ -54,15 +55,15 @@
     },
     "encounters_oreburgh_mine_b1f": {
       "home": ["SPECIES_MAKUHITA"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_PHANPY", "SPECIES_NOSEPASS", "SPECIES_ONIX"],
+      "cameo": ["SPECIES_ONIX", "SPECIES_PHANPY", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
       "tail": ["SPECIES_RHYHORN", "SPECIES_MAGBY"],
-      "note": "The mine, Makuhita's home: Nacli beside it, Zubat and Geodude behind, Phanpy and Nosepass small, Rhyhorn a 4% and Magby a 1% tease of the deeper rock, Onix by night."
+      "note": "The Oreburgh Mine, both floors one table (Ian, 2026-09-26): Makuhita, Onix and Phanpy at home, the miners' rock lines around them, Rhyhorn and Magby as the 4% and 1%."
     },
     "encounters_oreburgh_mine_b2f": {
       "home": ["SPECIES_ONIX", "SPECIES_PHANPY"],
-      "cameo": ["SPECIES_NACLI", "SPECIES_NOSEPASS", "SPECIES_GEODUDE", "SPECIES_ZUBAT", "SPECIES_MAKUHITA"],
+      "cameo": ["SPECIES_MAKUHITA", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_NOSEPASS", "SPECIES_ZUBAT"],
       "tail": ["SPECIES_RHYHORN", "SPECIES_MAGBY"],
-      "note": "Deeper, the Onix floor: Onix at 25 with Phanpy at home beside it, the rock lines behind, Rhyhorn and Magby again in the tail, Makuhita by day."
+      "note": "The Oreburgh Mine, both floors one table (Ian, 2026-09-26): Makuhita, Onix and Phanpy at home, the miners' rock lines around them, Rhyhorn and Magby as the 4% and 1%."
     },
     "encounters_route_204_south": {
       "home": ["SPECIES_BUDEW", "SPECIES_GRUBBIN", "SPECIES_FLETCHLING"],
@@ -105,48 +106,57 @@
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
-      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_PURRLOIN", "SPECIES_ZUBAT"],
-      "note": "The haunted house's hall: teacups and candles, and the gas that drifts through the walls at night."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_dining_area": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The dining room: candles on the table, six lines, none over 25."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_side_rooms": {
       "home": ["SPECIES_MISDREAVUS"],
-      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_ZUBAT"],
-      "note": "The side rooms, Misdreavus’s home: three ghosts co-equal."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_corridor": {
       "home": ["SPECIES_GASTLY"],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
-      "note": "The corridor, Gastly’s home: the gas fills it end to end."
+      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_back_west_room": {
       "home": ["SPECIES_YAMASK"],
-      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_GASTLY", "SPECIES_DUSKULL"],
-      "note": "The back west room: Yamask’s corner."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_back_middle_west_room": {
       "home": [],
-      "cameo": ["SPECIES_DUSKULL", "SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK"],
-      "note": "Back middle west: Duskull leads for once."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_back_middle_room": {
       "home": ["SPECIES_LITWICK"],
-      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_MISDREAVUS"],
-      "note": "The middle room with the television, Litwick’s home."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_back_middle_east_room": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_GASTLY", "SPECIES_DUSKULL", "SPECIES_SINISTEA", "SPECIES_ZUBAT"],
-      "note": "Back middle east: three ghosts co-equal."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_old_chateau_back_east_room": {
       "home": [],
-      "cameo": ["SPECIES_GASTLY", "SPECIES_SINISTEA", "SPECIES_MISDREAVUS", "SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_PURRLOIN"],
-      "note": "The back east room: the gas leads, the banshee answers."
+      "cameo": ["SPECIES_GASTLY", "SPECIES_LITWICK", "SPECIES_MISDREAVUS", "SPECIES_SINISTEA", "SPECIES_YAMASK", "SPECIES_DUSKULL"],
+      "tail": [],
+      "note": "One of the Old Chateau's nine rooms, all one table (Ian, 2026-09-26): Gastly fills the house and Litwick lights it, Misdreavus, Sinistea and Yamask at home in it, Duskull by night."
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO"],
@@ -167,15 +177,15 @@
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_NOSEPASS"],
-      "tail": ["SPECIES_GIBLE", "SPECIES_JOLTIK"],
-      "note": "Wayward Cave's upper floor: Carbink's home, Bronzor and the rock lines, Gible a 4% before its own floor, Joltik the 1%."
+      "cameo": ["SPECIES_GIBLE", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_NOSEPASS"],
+      "tail": ["SPECIES_NACLI", "SPECIES_LARVITAR"],
+      "note": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%."
     },
     "encounters_wayward_cave_b1f": {
       "home": ["SPECIES_GIBLE"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_ONIX", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_MAKUHITA"],
-      "tail": ["SPECIES_NACLI", "SPECIES_DWEBBLE", "SPECIES_LARVITAR"],
-      "note": "The hidden floor under Cycling Road is Gible's, at 35, the cap's edge: the reason to bring Flash. Larvitar a 1% tease of Victory Road."
+      "cameo": ["SPECIES_CARBINK", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_NOSEPASS"],
+      "tail": ["SPECIES_NACLI", "SPECIES_LARVITAR"],
+      "note": "Wayward Cave, both floors one table (Ian, 2026-09-26): Gible's home, and Carbink's, in the dark with the cave's rock lines, Larvitar as the 1%."
     },
     "encounters_route_208": {
       "home": ["SPECIES_FOMANTIS", "SPECIES_FLABEBE"],
@@ -202,29 +212,33 @@
     },
     "encounters_route_209_lost_tower_1f": {
       "home": [],
-      "cameo": ["SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA", "SPECIES_YAMASK"],
-      "note": "The Lost Tower's ground floor, Yamask's home: bats and the graveyard ghosts."
+      "cameo": ["SPECIES_YAMASK", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GOTHITA", "SPECIES_VULLABY"],
+      "tail": [],
+      "note": "The Lost Tower's ground floor, where the graves begin: Yamask leads, Zubat and Koffing drift in from outside, Gothita and Vullaby watch."
     },
     "encounters_route_209_lost_tower_2f": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_ZUBAT", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_GOTHITA", "SPECIES_SINISTEA"],
-      "note": "Second floor: the same ghosts, wider and flatter."
+      "cameo": ["SPECIES_LITWICK", "SPECIES_GASTLY", "SPECIES_KLEFKI", "SPECIES_ZUBAT", "SPECIES_SINISTEA"],
+      "tail": [],
+      "note": "The Lost Tower's second floor, the candles: Litwick leads, Gastly in the smoke, Klefki and Sinistea left on the graves."
     },
     "encounters_route_209_lost_tower_3f": {
-      "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_DUSKULL", "SPECIES_LITWICK", "SPECIES_ZUBAT", "SPECIES_SINISTEA", "SPECIES_GOTHITA"],
-      "note": "Third floor: three ghosts co-equal."
+      "home": ["SPECIES_DUSKULL"],
+      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_KOFFING", "SPECIES_GASTLY", "SPECIES_SANDYGAST"],
+      "tail": [],
+      "note": "The Lost Tower's third floor, Duskull's home: the keepers of the dead, Misdreavus wailing, Sandygast in the grave dirt."
     },
     "encounters_route_209_lost_tower_4f": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_DUSKULL", "SPECIES_ZUBAT"],
-      "note": "Fourth floor: candles lead the climb."
+      "cameo": ["SPECIES_SINISTEA", "SPECIES_GOTHITA", "SPECIES_KLEFKI", "SPECIES_MISDREAVUS", "SPECIES_DHELMISE"],
+      "tail": [],
+      "note": "The Lost Tower's fourth floor, the offerings: Sinistea's cups, Gothita and Klefki among them, Dhelmise's old anchor."
     },
     "encounters_route_209_lost_tower_5f": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_SINISTEA", "SPECIES_LITWICK", "SPECIES_DUSKULL", "SPECIES_ZUBAT", "SPECIES_GOTHITA"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_DHELMISE"],
-      "note": "The top floor: eight lines, Klefki a 4% before the ruins, Dhelmise a 1% anchor far from any sea."
+      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_VULLABY"],
+      "tail": [],
+      "note": "The Lost Tower's top floor, below the two old women: Misdreavus leads, Duskull, Yamask and Litwick gathered, Vullaby circling."
     },
     "encounters_solaceon_ruins_room_1_northwest_dead_end": {
       "home": [],
@@ -359,13 +373,15 @@
     },
     "encounters_ruin_maniac_cave_short": {
       "home": ["SPECIES_DWEBBLE"],
-      "cameo": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_GOLBAT", "SPECIES_NACLI", "SPECIES_GEODUDE", "SPECIES_CARBINK", "SPECIES_FERROSEED"],
-      "note": "The cave before the maniac digs through: Dwebble's home at 35, Hippopotas beside it."
+      "cameo": ["SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_FERROSEED"],
+      "tail": [],
+      "note": "The Ruin Maniac's dig, both lengths one table (Ian, 2026-09-26): Dwebble's home, Hippopotas and Onix in the sand beside it."
     },
     "encounters_ruin_maniac_cave_long": {
       "home": [],
-      "cameo": ["SPECIES_DWEBBLE", "SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_GOLBAT", "SPECIES_NACLI", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_FERROSEED"],
-      "note": "The cave dug through to the ruins: three co-equal, Klefki by day where it meets the ruins."
+      "cameo": ["SPECIES_DWEBBLE", "SPECIES_HIPPOPOTAS", "SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_GOLBAT", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_FERROSEED"],
+      "tail": [],
+      "note": "The Ruin Maniac's dig, both lengths one table (Ian, 2026-09-26): Dwebble's home, Hippopotas and Onix in the sand beside it."
     },
     "encounters_valor_lakefront": {
       "home": ["SPECIES_SWABLU"],
@@ -381,33 +397,39 @@
     },
     "encounters_great_marsh_1": {
       "home": ["SPECIES_WOOPER"],
-      "cameo": ["SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_YANMA", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_MASQUERAIN", "SPECIES_BRELOOM", "SPECIES_KOFFING"],
-      "note": "The Great Marsh's first area, Wooper's home: the marsh cast at a fifth and less, Koffing in the fog at night."
+      "cameo": ["SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_GASTRODON", "SPECIES_BARBOACH"],
+      "tail": [],
+      "note": "The Great Marsh's mudflats, Wooper's home: the lily pads and the shallow water."
     },
     "encounters_great_marsh_2": {
       "home": [],
-      "cameo": ["SPECIES_CROAGUNK", "SPECIES_WOOPER", "SPECIES_YANMA", "SPECIES_LOTAD", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_SURSKIT"],
-      "note": "Area two: Croagunk leads, six lines."
+      "cameo": ["SPECIES_KOFFING", "SPECIES_SKORUPI", "SPECIES_BUDEW", "SPECIES_STUNKY", "SPECIES_SALANDIT"],
+      "tail": [],
+      "note": "The Great Marsh's poison reeds: Koffing in the marsh gas, Skorupi, Budew, Stunky and Salandit around it."
     },
     "encounters_great_marsh_3": {
       "home": ["SPECIES_CROAGUNK"],
-      "cameo": ["SPECIES_QUAGSIRE", "SPECIES_DEWPIDER", "SPECIES_YANMA", "SPECIES_SURSKIT", "SPECIES_BRELOOM", "SPECIES_LOTAD", "SPECIES_KOFFING"],
-      "note": "Area three, Croagunk's home: three co-equal in the reeds."
+      "cameo": ["SPECIES_BRELOOM", "SPECIES_FOMANTIS", "SPECIES_LOTAD", "SPECIES_SWADLOON"],
+      "tail": [],
+      "note": "The Great Marsh's frogs and fungus, Croagunk's home: Shroomish in the damp, Fomantis and Sewaddle in the leaves."
     },
     "encounters_great_marsh_4": {
       "home": [],
-      "cameo": ["SPECIES_QUAGSIRE", "SPECIES_DEWPIDER", "SPECIES_CROAGUNK", "SPECIES_YANMA", "SPECIES_BRELOOM", "SPECIES_SKORUPI", "SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_KOFFING"],
-      "note": "Area four: the spread, nobody over 25."
+      "cameo": ["SPECIES_SCYTHER", "SPECIES_GLIGAR", "SPECIES_HOUNDOOM", "SPECIES_MIGHTYENA", "SPECIES_LIEPARD"],
+      "tail": [],
+      "note": "The Great Marsh's tall grass, the hunters: Scyther leads, Gligar overhead, Houndour and Poochyena by night."
     },
     "encounters_great_marsh_5": {
       "home": ["SPECIES_YANMA"],
-      "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOTAD", "SPECIES_SKORUPI", "SPECIES_DEWPIDER", "SPECIES_SURSKIT", "SPECIES_BRELOOM", "SPECIES_KOFFING"],
-      "note": "Area five, Yanma's home: the broad shape, eight lines."
+      "cameo": ["SPECIES_DEWPIDER", "SPECIES_JOLTIK", "SPECIES_VESPIQUEN", "SPECIES_SURSKIT"],
+      "tail": [],
+      "note": "The Great Marsh's bog, Yanma's home: the bugs over the water, Dewpider, Joltik and Combee."
     },
     "encounters_great_marsh_6": {
       "home": [],
-      "cameo": ["SPECIES_YANMA", "SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOMBRE", "SPECIES_BRELOOM", "SPECIES_MASQUERAIN", "SPECIES_DEWPIDER", "SPECIES_SKORUPI", "SPECIES_KOFFING"],
-      "note": "Area six: the marsh shape itself, three co-equal faces."
+      "cameo": ["SPECIES_CASTFORM", "SPECIES_STEENEE", "SPECIES_DOLLIV", "SPECIES_BUDEW", "SPECIES_WOOPER"],
+      "tail": [],
+      "note": "The Great Marsh's far island, the flowers and the rain: Castform leads, Bounsweet, Smoliv and Budew in bloom."
     },
     "encounters_route_212_north": {
       "home": ["SPECIES_EMOLGA"],
@@ -450,34 +472,39 @@
     },
     "encounters_iron_island_1f": {
       "home": ["SPECIES_TOGEDEMARU"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_BRONZOR", "SPECIES_NACLSTACK", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
-      "note": "Iron Island's first floor, Togedemaru's home: the iron lines, eight deep."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_LUNATONE", "SPECIES_SOLROCK", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_iron_island_b1f_left_room": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_TOGEDEMARU", "SPECIES_FERROSEED", "SPECIES_HARIYAMA", "SPECIES_NOSEPASS", "SPECIES_GRAVELER", "SPECIES_GOLBAT", "SPECIES_KLEFKI"],
-      "note": "B1F left: Onix leads, six lines."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_LUNATONE", "SPECIES_SOLROCK", "SPECIES_TOGEDEMARU", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_iron_island_b1f_right_room": {
       "home": [],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_GOLBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
-      "note": "B1F right: three co-equal, Klefki and Carbink behind."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_LUNATONE", "SPECIES_SOLROCK", "SPECIES_TOGEDEMARU", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_iron_island_b2f_right_room": {
       "home": ["SPECIES_SOLROCK"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
-      "note": "B2F right, Solrock's home at 35: the sun room."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_LUNATONE", "SPECIES_TOGEDEMARU", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_iron_island_b2f_left_room": {
       "home": ["SPECIES_LUNATONE"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_BRONZOR", "SPECIES_CARBINK", "SPECIES_GRAVELER", "SPECIES_NOSEPASS", "SPECIES_GOLBAT", "SPECIES_KLEFKI"],
-      "note": "B2F left, Lunatone's home at 35: the moon room."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_SOLROCK", "SPECIES_TOGEDEMARU", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_iron_island_b3f": {
       "home": ["SPECIES_METANG"],
-      "cameo": ["SPECIES_ONIX", "SPECIES_NACLSTACK", "SPECIES_FERROSEED", "SPECIES_KLEFKI", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_GOLBAT", "SPECIES_CARBINK"],
-      "tail": ["SPECIES_TOGEDEMARU", "SPECIES_PUPITAR", "SPECIES_GABITE"],
-      "note": "The bottom of Iron Island, Beldum's home at 35: the reason to go down with Riley, Larvitar and Gible in the tail."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_LUNATONE", "SPECIES_SOLROCK", "SPECIES_TOGEDEMARU", "SPECIES_NACLSTACK", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT", "SPECIES_BRONZOR"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_route_221": {
       "home": ["SPECIES_LURANTIS"],
@@ -516,62 +543,69 @@
     },
     "encounters_mt_coronet_1f_tunnel_room": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_PUPITAR", "SPECIES_KLEFKI", "SPECIES_CROBAT", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA"],
-      "note": "The tunnel room on the climb: eight lines, Larvitar at 10."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_1f_north_room_2": {
       "home": [],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_CROBAT", "SPECIES_KLEFKI"],
-      "note": "The second north room: six lines, Glimmet at 15."
+      "cameo": ["SPECIES_GOOMY", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
+      "tail": ["SPECIES_CROBAT", "SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
+      "note": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s."
     },
     "encounters_mt_coronet_b1f": {
       "home": ["SPECIES_GOOMY"],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_CARBINK", "SPECIES_CROBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
-      "note": "The wet basement with the Feebas water, Goomy's home at 35: Jangmo-o a 1% before its own floor."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
+      "tail": ["SPECIES_CROBAT", "SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
+      "note": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s."
     },
     "encounters_mt_coronet_2f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_FERROSEED", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
-      "note": "Second floor: three co-equal, Larvitar and Ferroseed behind."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_3f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_KLEFKI", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
-      "tail": ["SPECIES_PUPITAR", "SPECIES_HAKAMO_O"],
-      "note": "Third floor: eight lines, the dragons in the tail."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_outside_south": {
       "home": [],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_MIENSHAO", "SPECIES_HAWLUCHA", "SPECIES_GARGANACL", "SPECIES_SNEASEL"],
-      "tail": ["SPECIES_PILOSWINE", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES", "SPECIES_ABSOL", "SPECIES_PUPITAR", "SPECIES_GABITE"],
-      "note": "The snowy ledge on the south face: the cold cast, twelve lines, the two dragons as 1%s."
+      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_MIENSHAO", "SPECIES_HAWLUCHA", "SPECIES_GARGANACL", "SPECIES_SNEASEL", "SPECIES_ALOLAN_NINETALES", "SPECIES_PILOSWINE"],
+      "tail": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_PUPITAR", "SPECIES_GABITE"],
+      "note": "Mt. Coronet's snowy outside, both halves one table (Ian, 2026-09-26): Snover and Frosmoth lead the cold lines, Absol and the mountain's dragons as the rare finds."
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_GLIMMORA", "SPECIES_FERROSEED", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
-      "note": "Fourth floor, the paired rooms: Bronzor at 35, the cap's edge."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_4f_room_3": {
       "home": [],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_GOOMY", "SPECIES_MIENSHAO", "SPECIES_KLEFKI", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
-      "note": "Fourth floor, room three: Carbink leads, Goomy at 15."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_outside_north": {
       "home": [],
-      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_HAWLUCHA", "SPECIES_MIENSHAO", "SPECIES_ALOLAN_NINETALES", "SPECIES_SNEASEL", "SPECIES_PILOSWINE", "SPECIES_ABSOL", "SPECIES_SNORUNT"],
-      "note": "The snowy ledge on the north face: eight cold lines."
+      "cameo": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_MIENSHAO", "SPECIES_HAWLUCHA", "SPECIES_GARGANACL", "SPECIES_SNEASEL", "SPECIES_ALOLAN_NINETALES", "SPECIES_PILOSWINE"],
+      "tail": ["SPECIES_SNORUNT", "SPECIES_ABSOL", "SPECIES_PUPITAR", "SPECIES_GABITE"],
+      "note": "Mt. Coronet's snowy outside, both halves one table (Ian, 2026-09-26): Snover and Frosmoth lead the cold lines, Absol and the mountain's dragons as the rare finds."
     },
     "encounters_mt_coronet_5f": {
       "home": ["SPECIES_HAKAMO_O"],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_PUPITAR", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_GOOMY", "SPECIES_GABITE"],
-      "note": "Fifth floor, Jangmo-o's home at 35: the dragon floor under the summit."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_6f": {
       "home": [],
-      "cameo": ["SPECIES_HAKAMO_O", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_KLEFKI", "SPECIES_PUPITAR", "SPECIES_GRAVELER", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
-      "note": "The last floor before Spear Pillar: Jangmo-o co-equal with the mountain's core."
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_HAKAMO_O", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_GABITE"],
+      "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_sendoff_spring": {
       "home": ["SPECIES_DHELMISE"],
@@ -697,36 +731,39 @@
     },
     "encounters_victory_road_1f": {
       "home": ["SPECIES_PUPITAR"],
-      "cameo": ["SPECIES_STEELIX", "SPECIES_RHYHORN", "SPECIES_GABITE", "SPECIES_GARGANACL", "SPECIES_HAWLUCHA", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
-      "tail": ["SPECIES_GLIMMORA", "SPECIES_KLEFKI", "SPECIES_HARIYAMA", "SPECIES_GOLEM", "SPECIES_METANG", "SPECIES_HAKAMO_O"],
-      "note": "Victory Road's entrance floor, Larvitar's home: twelve lines, the pseudo-legendaries in the tail."
+      "cameo": ["SPECIES_RHYPERIOR", "SPECIES_HAWLUCHA", "SPECIES_GOLEM", "SPECIES_HARIYAMA", "SPECIES_MIENSHAO"],
+      "tail": ["SPECIES_ABSOL", "SPECIES_WEAVILE"],
+      "note": "Victory Road's long first floor, Pupitar's home: the rock and fighting lines, Absol and Weavile as the rare finds."
     },
     "encounters_victory_road_2f": {
       "home": [],
-      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_KLEFKI", "SPECIES_HAKAMO_O", "SPECIES_PUPITAR", "SPECIES_GABITE", "SPECIES_CARBINK", "SPECIES_BRONZONG", "SPECIES_GOLEM", "SPECIES_PROBOPASS", "SPECIES_CROBAT"],
-      "note": "Second floor: eight lines, Jangmo-o at 15."
+      "cameo": ["SPECIES_GABITE", "SPECIES_HAKAMO_O", "SPECIES_SKARMORY", "SPECIES_GLISCOR", "SPECIES_VIBRAVA", "SPECIES_ABSOL"],
+      "tail": [],
+      "note": "Victory Road's upper ledges, the dragons: Gabite and Hakamo-o, Skarmory and Gliscor overhead."
     },
     "encounters_victory_road_b1f": {
       "home": [],
-      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_METANG", "SPECIES_SLIGGOO", "SPECIES_GABITE", "SPECIES_CROBAT", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_CARBINK"],
-      "note": "The basement with the water: Beldum co-equal with Onix and Nacli."
+      "cameo": ["SPECIES_STEELIX", "SPECIES_METANG", "SPECIES_BRONZONG", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_KLEFKI"],
+      "tail": [],
+      "note": "Victory Road's basement, the steel: Steelix, Metang and Bronzong co-equal, Carbink and Probopass in the walls."
     },
     "encounters_victory_road_1f_room_1": {
       "home": [],
-      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_GARCHOMP", "SPECIES_RHYPERIOR", "SPECIES_GOLEM", "SPECIES_HARIYAMA", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
-      "note": "Side room one: six lines, Larvitar at 15."
+      "cameo": ["SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_CRUSTLE", "SPECIES_HIPPOWDON", "SPECIES_RHYPERIOR"],
+      "tail": [],
+      "note": "Victory Road's first side room, the rock crushers: Garganacl leads, Glimmora, Crustle, Hippowdon and Rhyperior."
     },
     "encounters_victory_road_1f_room_2": {
       "home": [],
-      "cameo": ["SPECIES_SLIGGOO", "SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_CARBINK", "SPECIES_FERROTHORN", "SPECIES_GOLEM", "SPECIES_PROBOPASS", "SPECIES_CROBAT", "SPECIES_KLEFKI"],
-      "tail": ["SPECIES_BRONZONG", "SPECIES_GARCHOMP", "SPECIES_METAGROSS"],
-      "note": "Side room two, the wet one: Goomy at 35."
+      "cameo": ["SPECIES_SLIGGOO", "SPECIES_FERROTHORN", "SPECIES_LUNATONE", "SPECIES_SOLROCK", "SPECIES_GRAPPLOCT", "SPECIES_KLEFKI"],
+      "tail": ["SPECIES_GARCHOMP", "SPECIES_METAGROSS"],
+      "note": "Victory Road's wet room: Sliggoo leads, Ferrothorn and the sun and moon pair, Garchomp and Metagross as the 4% and 1%."
     },
     "encounters_victory_road_1f_room_3": {
       "home": [],
-      "cameo": ["SPECIES_STEELIX", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_PUPITAR", "SPECIES_KOMMO_O", "SPECIES_HAWLUCHA", "SPECIES_HARIYAMA", "SPECIES_DONPHAN", "SPECIES_CROBAT", "SPECIES_CARBINK"],
-      "tail": ["SPECIES_METAGROSS", "SPECIES_GARCHOMP"],
-      "note": "Side room three: eight lines, Beldum and Gible in the tail."
+      "cameo": ["SPECIES_KOMMO_O", "SPECIES_HAWLUCHA", "SPECIES_GRAPPLOCT", "SPECIES_WEAVILE", "SPECIES_SCIZOR"],
+      "tail": [],
+      "note": "Victory Road's last room, the fighters: Kommo-o leads, Hawlucha, Grapploct, Weavile and Scizor."
     },
     "encounters_route_224": {
       "home": [],
@@ -785,21 +822,21 @@
     },
     "encounters_stark_mountain_outside": {
       "home": ["SPECIES_GALARIAN_WEEZING"],
-      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_MAGMORTAR", "SPECIES_HOUNDOOM"],
-      "tail": ["SPECIES_WEEZING", "SPECIES_TURTONATOR", "SPECIES_LARVESTA"],
-      "note": "Stark Mountain's slope, Galarian Weezing's home at 35 in the fumes."
+      "cameo": ["SPECIES_TURTONATOR", "SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_HOUNDOOM", "SPECIES_WEEZING"],
+      "tail": ["SPECIES_LARVESTA", "SPECIES_MAGMORTAR"],
+      "note": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds."
     },
     "encounters_stark_mountain_room_1": {
       "home": [],
-      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_CROBAT", "SPECIES_WEEZING", "SPECIES_GOLEM", "SPECIES_HARIYAMA", "SPECIES_LARVESTA"],
-      "tail": ["SPECIES_SALAZZLE", "SPECIES_MAGMORTAR", "SPECIES_CERULEDGE"],
-      "note": "Inside the volcano, Larvesta's home at 35: the sun larva in the magma."
+      "cameo": ["SPECIES_GALARIAN_WEEZING", "SPECIES_TURTONATOR", "SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_HOUNDOOM", "SPECIES_WEEZING"],
+      "tail": ["SPECIES_LARVESTA", "SPECIES_MAGMORTAR"],
+      "note": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds."
     },
     "encounters_stark_mountain_room_2": {
       "home": ["SPECIES_TURTONATOR"],
-      "cameo": ["SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_CROBAT", "SPECIES_CERULEDGE", "SPECIES_GOLEM", "SPECIES_STEELIX", "SPECIES_SALAZZLE"],
-      "tail": ["SPECIES_LARVESTA", "SPECIES_WEEZING", "SPECIES_GALARIAN_WEEZING"],
-      "note": "The magma chamber, Turtonator's home at 35: Heatran's room is past it."
+      "cameo": ["SPECIES_GALARIAN_WEEZING", "SPECIES_MAGCARGO", "SPECIES_RHYPERIOR", "SPECIES_SALAZZLE", "SPECIES_CERULEDGE", "SPECIES_HOUNDOOM", "SPECIES_WEEZING"],
+      "tail": ["SPECIES_LARVESTA", "SPECIES_MAGMORTAR"],
+      "note": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds."
     },
     "encounters_route_228": {
       "home": ["SPECIES_FLYGON"],

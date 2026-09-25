@@ -131,6 +131,12 @@ def _species_view(species, st, area=None):
     }
 
 
+def _first_split(e, st):
+    """The earlier of an area's split and its water_split, by the game's order."""
+    splits = [s for s in (e.get("split"), e.get("water_split")) if s]
+    return min(splits, key=lambda s: st.split_rank.get(s, 99)) if splits else None
+
+
 def area_row(a, st, findings_by_area):
     e = st.entry(a.name)
     f = findings_by_area.get(a.name, [])
@@ -169,7 +175,11 @@ def area_row(a, st, findings_by_area):
         "group": (st.group_of.get(a.name) or (None, None))[0],
         "group_design": (st.group_of.get(a.name) or (None, None))[1],
         "split": e.get("split"),
-        "split_rank": st.split_rank.get(e.get("split")),
+        # The list files an area under the earliest split anything in it can
+        # be caught, so Route 218, fished with the Old Rod from Roark's split,
+        # sits there rather than with its Byron grass (Ian, 2026-09-26).
+        "first_split": _first_split(e, st),
+        "split_rank": st.split_rank.get(_first_split(e, st)),
         "order": e.get("order"),
         "no_capture": bool(e.get("no_capture")),
         "species": m["n_species"],
