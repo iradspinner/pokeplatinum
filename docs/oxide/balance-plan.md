@@ -369,8 +369,8 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 90 | 29 |
-| Gardenia | 26 | 140 | 41 |
+| Roark | 16 | 91 | 29 |
+| Gardenia | 26 | 142 | 41 |
 | Fantina | 33 | 217 | 47 |
 | Maylene | 39 | 275 | 77 |
 | Wake | 44 | 299 | 87 |
@@ -417,8 +417,9 @@ most threatening Pokemon and its least answered one.
 | Cynthia | 0.68 | 0.14 | 0.90 | 0.02 |
 
 Both tables were recomputed on 2026-09-25, for the Galactic split and the
-encounter track's recast tables (Roark's side fell from 92 to 90 species,
-Byron's and Candice's rose by two). The Galactic fights are scored at 64
+encounter track's recast tables (Roark's side went from 92 to 91 species
+and Gardenia's from 140 to 142 after its one-spot fold, and Byron's and
+Candice's rose by two). The Galactic fights are scored at 64
 and Volkner at 68, so they read softer than before: Volkner's threat fell
 from 0.75 to 0.65, because the player is now scored at 68 against his
 team's 62. That is the gap the trainer pass closes, not a change in his
