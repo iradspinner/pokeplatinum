@@ -8836,6 +8836,41 @@
         "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
         "in a sticky web!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsDefenseAndSpecialDefense",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} raised your team’s\n",
+        "Defense and Special Defense!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheFoesMoveRaisedItsTeamsDefenseAndSpecialDefense",
+      "en_US": [
+        "The foe’s {STRVAR_1 6, 0, 0} raised its\n",
+        "team’s Defense and Special Defense!"
+      ]
     }
   ]
 }

@@ -40,4 +40,12 @@
 #define WEATHER_EFFECT_HYDRATION   1
 #define WEATHER_EFFECT_SOLAR_POWER 2
 
+// Oxide: the orders ChangeExecutionOrderPriority can give a battler, with
+// hg-engine's names and values so its scripts convert as they are. Only After
+// You's is implemented, since no Oxide species learns Quash (Ian's rule of
+// 2026-09-22 leaves an effect only Metronome reaches unported).
+#define EXECUTION_ORDER_NORMAL    0
+#define EXECUTION_ORDER_AFTER_YOU 1
+#define EXECUTION_ORDER_QUASH     2
+
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

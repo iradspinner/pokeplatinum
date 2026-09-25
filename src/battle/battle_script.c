@@ -314,6 +314,8 @@ static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static int BattleScript_Read(BattleContext *battleCtx);
@@ -6610,11 +6612,12 @@ static BOOL BtlCmd_CalcRevengePowerMul(BattleSystem *battleSys, BattleContext *b
 }
 
 /**
- * @brief Try to break Reflect and Light Screen on the defending side.
+ * @brief Try to break Reflect, Light Screen and Oxide's Aurora Veil on the
+ * defending side.
  *
  * Inputs:
- * 1. The distance to jump if neither Reflect nor Light Screen are active on
- * the defending side.
+ * 1. The distance to jump if none of the three is active on the defending
+ * side.
  *
  * @param battleSys
  * @param battleCtx
@@ -6627,11 +6630,14 @@ static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battl
     int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_REFLECT)
-        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)) {
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_AURORA_VEIL)) { // Oxide
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_REFLECT;
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_AURORA_VEIL;
         battleCtx->sideConditions[defending].reflectTurns = 0;
         battleCtx->sideConditions[defending].lightScreenTurns = 0;
+        battleCtx->sideConditions[defending].auroraVeilTurns = 0;
     } else {
         BattleScript_Iter(battleCtx, jumpIfNoScreens);
     }
@@ -9751,6 +9757,106 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatFell_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} fell!"
         mon->statBoosts[BATTLE_STAT_SPEED]--;
         battleCtx->calcTemp = 0;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Changes when a battler acts this turn, for Oxide's After You, with
+ * hg-engine's name and inputs so its script converts as it is.
+ *
+ * Platinum fixes the turn's order in battlerActionOrder when the turn starts
+ * and walks it with turnOrderCounter, so After You moves the battler's entry
+ * to just after the one acting now, and the battlers in between each act one
+ * place later. Trick Room re-sorts the whole order when it goes up, so on a
+ * turn with both, Trick Room's order wins.
+ *
+ * Inputs:
+ * 1. The battler whose turn moves.
+ * 2. The order to give it; only EXECUTION_ORDER_AFTER_YOU is implemented,
+ * and any other jumps as a failure.
+ * 3. The jump distance if it fails: the battler has already acted this turn,
+ * or is not in the order at all.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int order = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int pos;
+
+    for (pos = 0; pos < maxBattlers; pos++) {
+        if (battleCtx->battlerActionOrder[pos] == battler) {
+            break;
+        }
+    }
+
+    if (order != EXECUTION_ORDER_AFTER_YOU
+        || pos == maxBattlers
+        || pos <= battleCtx->turnOrderCounter
+        || battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
+    }
+
+    for (; pos > battleCtx->turnOrderCounter + 1; pos--) {
+        battleCtx->battlerActionOrder[pos] = battleCtx->battlerActionOrder[pos - 1];
+    }
+
+    battleCtx->battlerActionOrder[pos] = battler;
+
+    return FALSE;
+}
+
+/**
+ * @brief Try to set Oxide's Aurora Veil for the user's side, as TryReflect
+ * sets Reflect: five turns, eight with Light Clay.
+ *
+ * It fails when the side already has one, and when it is not hailing, which
+ * hg-engine checks before the move and Platinum has no place for. Cloud Nine
+ * and Air Lock count as no hail, as in the games; hg-engine reads the weather
+ * flag alone.
+ *
+ * Inputs:
+ * 1. The jump distance if it fails.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
+
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_AURORA_VEIL)
+        || NO_CLOUD_NINE == FALSE
+        || WEATHER_IS_HAIL == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        BattleScript_Iter(battleCtx, jump);
+    } else {
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_AURORA_VEIL;
+        battleCtx->sideConditions[side].auroraVeilTurns = NUM_SCREEN_TURNS;
+
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].auroraVeilTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
+        }
+
+        battleCtx->msgBuffer.id = BattleStrings_Text_MoveRaisedYourTeamsDefenseAndSpecialDefense; // "{0} raised [your/its] team's Defense and Special Defense!"
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
     }
 
     return FALSE;

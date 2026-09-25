@@ -899,6 +899,7 @@ enum FieldCondCheckState {
 
     FIELD_COND_CHECK_STATE_REFLECT = FIELD_COND_CHECK_START,
     FIELD_COND_CHECK_STATE_LIGHT_SCREEN,
+    FIELD_COND_CHECK_STATE_AURORA_VEIL, // Oxide
     FIELD_COND_CHECK_STATE_MIST,
     FIELD_COND_CHECK_STATE_SAFEGUARD,
     FIELD_COND_CHECK_STATE_TAILWIND,
@@ -975,6 +976,31 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                     && --battleCtx->sideConditions[side].lightScreenTurns == 0) {
                     battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_LIGHT_SCREEN;
                     battleCtx->msgMoveTemp = MOVE_LIGHT_SCREEN;
+
+                    PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
+                }
+
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
+                    break;
+                }
+            }
+
+            StepFieldConditionCheck(battleCtx, state);
+            break;
+
+        // Oxide: Aurora Veil runs down after Light Screen, as in the later
+        // games, and says it wore off as the screens do.
+        case FIELD_COND_CHECK_STATE_AURORA_VEIL:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_AURORA_VEIL
+                    && --battleCtx->sideConditions[side].auroraVeilTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_AURORA_VEIL;
+                    battleCtx->msgMoveTemp = MOVE_AURORA_VEIL;
 
                     PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
                     battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);

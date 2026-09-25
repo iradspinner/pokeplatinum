@@ -599,6 +599,8 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet25, 24
     AddListMenuEntry TestKit_Text_MenuSet26, 25
     AddListMenuEntry TestKit_Text_MenuSet27, 26
+    AddListMenuEntry TestKit_Text_MenuSet28, 27
+    AddListMenuEntry TestKit_Text_MenuSet29, 28
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -627,6 +629,8 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet25
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet26
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet27
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet28
+    GoToIfEq VAR_0x8004, 28, TestKit_MoveSet29
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -860,6 +864,25 @@ TestKit_MoveSet27:
     SetVar VAR_0x8007, MOVE_SPIKES
     SetVar VAR_0x8008, MOVE_STEALTH_ROCK
     SetVar VAR_0x8009, MOVE_DEFOG
+    GoTo TestKit_GiveMew
+
+/* Set 28: After You on the wild Shuckle, which is slower than Mew, takes the
+   kind offer; once Trick Room is up Shuckle moves first, so After You fails.
+   Moving an ally's turn needs a double battle, which the kit does not have. */
+TestKit_MoveSet28:
+    SetVar VAR_0x8006, MOVE_AFTER_YOU
+    SetVar VAR_0x8007, MOVE_TRICK_ROOM
+    SetVar VAR_0x8008, MOVE_TACKLE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 29: Aurora Veil fails without hail, goes up under Hail, fails a second
+   time while up, and wears off after five turns. */
+TestKit_MoveSet29:
+    SetVar VAR_0x8006, MOVE_AURORA_VEIL
+    SetVar VAR_0x8007, MOVE_HAIL
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in

@@ -1271,6 +1271,18 @@
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
+    .macro ChangeExecutionOrderPriority battler, order, jump_on_fail
+    .long BTLCMD_CHANGEEXECUTIONORDERPRIORITY
+    .long \battler
+    .long \order
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
+    .macro TryAuroraVeil jump_on_fail
+    .long BTLCMD_TRYAURORAVEIL
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

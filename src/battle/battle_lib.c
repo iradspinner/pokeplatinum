@@ -7019,7 +7019,9 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             damage /= 2;
         }
 
-        if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
+        // Oxide: Aurora Veil halves physical damage as Reflect does, and the
+        // two do not stack.
+        if ((sideConditions & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
@@ -7060,7 +7062,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage /= stageDivisor;
         damage /= 50;
 
-        if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
+        if ((sideConditions & (SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
