@@ -106,6 +106,29 @@ venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.
 `tools/oxide/python_flake_repro.py` is the check.
 
+## Cloud sessions
+
+A Claude Code cloud session (claude.ai/code, set up on 2026-09-25) works on a
+fresh Ubuntu VM with four healthy cores, so it can build and run heavy
+analysis that this box cannot. Its environment runs
+`tools/oxide/cloud-setup.sh` and sets `OXIDE_CLOUD=1`; with that set, the guard
+hook allows builds, and `make rom` fetches the compiler itself on first use.
+
+It has no `~/.claude/`, so Ian's writing rules and the rulings kept in memory
+are in `.claude/rules/` instead, and a repo copy of his style hook runs there.
+It has none of the files outside the repo either: no base ROM, no vanilla
+ROM, no donor ROM, no balance reference data. Ian ruled (2026-09-25) that
+cloud sessions skip those checks. `integrate.sh` lists what it skipped under
+one warning, and still checks the build, the encounter tables against their
+JSON, and every test suite that needs no reference file. Anything that needs
+the base ROM is checked locally after the work merges.
+
+A cloud session works on its own branch, named `cloud/<track>-<topic>`, and
+never pushes to `oxide`. It cannot message the Overseer, so it reports
+through the branch: its last commit message says what was done and checked,
+failures first, and anything waiting on Ian. The Overseer, a local session,
+reviews the branch, runs the base-ROM checks, and merges it.
+
 ## Tools
 
 `tools/oxide/import_base_rom.py` carries edits from Ian's earlier DSPRE-edited
