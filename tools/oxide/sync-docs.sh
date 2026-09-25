@@ -65,6 +65,7 @@ copy "qa-review-2026-09-22-encounter-d4d5.md" "notes/qa-review-2026-09-22-encoun
 copy "agent-brief-element4-effects.md" "notes/agent-brief-element4-effects.md"
 copy "test-kit.md" "notes/test-kit.md"
 copy "balance-plan.md" "notes/balance-plan.md"
+copy "battle-zone-plan.md" "notes/battle-zone-plan.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
 copy "pokemon-sources.md" "notes/pokemon-sources.md"
