@@ -422,10 +422,17 @@ b1_missing=""
 for p in "$HOME/roms/balance-refs" "$HOME/roms/hardlove.nds" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
     [ -e "$p" ] || b1_missing="$b1_missing $p"
 done
+# All four balance suites run, because a change elsewhere can stale their
+# saved results: on 2026-09-26 the encounter track's table fold changed
+# Roark's and Gardenia's player pools, and test_b3 failed on oxide while the
+# gate, which then ran test_b1 alone, passed. test_b3 runs the calculator in
+# one Node process for about 20 seconds.
 if [ -z "$b1_missing" ]; then
-    CHECK_EXPECT="passed" check "balance test_b1" "$PY" -m tools.oxide.balance.test_b1
+    for t in test_b1 test_b1e test_b2 test_b3; do
+        CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
+    done
 else
-    warn "balance test_b1 skipped, missing:$b1_missing"
+    warn "balance suites skipped, missing:$b1_missing"
 fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
