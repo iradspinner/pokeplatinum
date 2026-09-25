@@ -125,9 +125,15 @@ Encounter track (this one):
    and so do the eleven Mt. Coronet tables of the climb to Spear Pillar; Route 222
    and Sunyshore stay Volkner's. In progression order the Battle Zone now follows
    Snowpoint City, where its ferry leaves. Route 224 stays post-game.
-2. Recast the ten tables to the design rules; they are still the base ROM's,
-   since they were out of scope as post-game. Their levels (land 47 to 55) sit
-   above both neighbours (Lake Acuity 38, the Mt. Coronet climb 36 to 39), so
-   the recast sets them by the progression ladder rather than keeping them.
+2. **Reviewed 2026-09-26.** The ten tables are not the base ROM's, as this note
+   first said: authoring Step 4 cast them on 2026-09-21 as post-game content. In
+   the Galactic split they pass every lint rule, R12 included, and the
+   availability gate, with no cap candidates, so nothing has to change. Their
+   levels (land 47 to 55) are vanilla's and stay, as the authoring rules keep
+   the level curve; they sit above the Mt. Coronet climb (36 to 39) the way
+   vanilla's Battle Zone sits above it. Two things they now offer before Volkner
+   are Ian's call: Metagross at 10% on Route 228, and the fully evolved starters
+   as 1% tails (Blaziken, Incineroar, Charizard, Serperior and Meowscarada on
+   land; Greninja, Primarina, Blastoise and Swampert on the Super Rod).
 3. The capture count before the League: 73 planned, 81 with the zone's eight
    capture areas, once the ferry opens.

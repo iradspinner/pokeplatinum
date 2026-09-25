@@ -175,15 +175,20 @@ that stay. None blocks anything.
    are drafts for Ian to change in the tool. Both files are appended to
    `encounters.order`, so no existing table moves in the NARC, and until a header
    uses them the sidecar's new `planned_location` key names the capture area
-   they count as (Verity Lakefront's entry now carries it too).
+   they count as (Verity Lakefront's entry now carries it too). With them the
+   count of captures before the League is 69 by location name, 73 once the three
+   maps and the Restaurant move exist (`docs/oxide/encounters/scripted-sources.md`
+   has the working).
 8. **The Galactic split and the Battle Zone (Ian, 2026-09-25).** The split table
    gains Galactic between Candice and Volkner, cap 64, and Volkner's cap is 68.
    The ten Battle Zone tables and the eleven tables of the Mt. Coronet climb are
    in it, and the Battle Zone follows Snowpoint in progression order. The ten
-   tables are still the base ROM's and are next to recast. The whole plan,
-   across the three tracks, is `docs/oxide/battle-zone-plan.md`. With them the
-   count of captures before the League is 69 by location name, 73 once the three
-   maps and the Restaurant move exist (`docs/oxide/encounters/scripted-sources.md` has the working).
+   tables were authored in Step 4 as post-game content, and in their new split
+   they pass every lint rule and the availability gate unchanged; what they
+   offer before Volkner (Metagross at 10% on Route 228, the fully evolved
+   starters as 1% tails) is put to Ian rather than changed. Waiting on the
+   balance track, whose tool must learn the new split before this merges. The
+   whole plan, across the three tracks, is `docs/oxide/battle-zone-plan.md`.
 
 ## Standing rules
 
