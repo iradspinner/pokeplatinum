@@ -48,7 +48,6 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
 
-- **Create the cloud environment** (2026-09-25, the repo side is done): at claude.ai/code, make an environment for `iradspinner/pokeplatinum` with the "Trusted" network level, paste `tools/oxide/cloud-setup.sh` as its setup script, and set the variable `OXIDE_CLOUD=1`. If the first build cannot reach `wrapdb.mesonbuild.com`, add that domain. CLAUDE.md's "Cloud sessions" section says how a cloud session works and reports; the gate skips the base-ROM checks there, and a run with no reference files on this machine passed everything else.
 
 - **Element 6 QA questions** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`): should a trainer's form Pokemon also get its form's ability, as it now gets its form's stats? And is Snow Cloak on Wormadam's Sandy and Trash forms intended? It looks like a base-ROM slip, and it means Beauty Devon's two and Worker Jackson's Wormadam fight with Anticipation. Also for the record, one more VANILLA FIX landed: 45ad243a6, Weather Ball in fog after a knockout.
 - **Balance: which route trainers can Ian walk around?** (`docs/oxide/balance-plan.md`, open question 2): examples of trainers he knows are avoidable and ones he cannot get past, to check B1e's required-trainer model. It blocks that check and the trainer placement pass. Question 1 there, the narrowed B2 check, blocks nothing.

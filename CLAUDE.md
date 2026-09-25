@@ -117,7 +117,13 @@ hook allows builds, and `make rom` fetches the compiler itself on first use.
 Its checkout carries only its own branch, and the encounter tools read vanilla
 data from `main`, so run `git fetch --depth=1 origin main:main` before their
 tests (`integrate.sh` does it itself). Its environment must also allow
-`wrapdb.mesonbuild.com`, where meson fetches two subproject patches.
+`wrapdb.mesonbuild.com`, where meson fetches two subproject patches. Two
+harmless oddities: a first build spends about a minute on retries, because
+the session may reach only this repo on GitHub and two subproject downloads
+fall back to mirrors; and the gate always warns that it found no GitHub build
+to compare the ROM with, because the VM has no `gh`. The Overseer compares
+the hash after the merge instead. The environment passed its smoke test on
+2026-09-25: a clean build matched GitHub's SHA-1, and the gate had no failures.
 
 It has no `~/.claude/`, so Ian's writing rules and the rulings kept in memory
 are in `.claude/rules/` instead, and a repo copy of his style hook runs there.
