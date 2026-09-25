@@ -73,6 +73,13 @@ def main():
         for cmd, refused in builds.items():
             got = oxide_guard.check(cmd, "/", proc_root=clean) is not None
             expect("%r %s" % (cmd, "refused" if refused else "allowed"), got == refused)
+        # In a cloud session the build rule stands down entirely.
+        os.environ["OXIDE_CLOUD"] = "1"
+        try:
+            expect("make rom allowed in a cloud session",
+                   oxide_guard.check("make rom", "/", proc_root=clean) is None)
+        finally:
+            del os.environ["OXIDE_CLOUD"]
 
         status = os.path.join(HERE, "wedge_status.sh")
         out = subprocess.run(["sh", status, stuck], input="{}", capture_output=True, text=True).stdout

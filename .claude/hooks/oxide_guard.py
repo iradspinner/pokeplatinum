@@ -23,7 +23,8 @@ blocks the command and shows the reason to the agent):
   (push, then tools/oxide/fetch-rom) and check the downloaded ROM, for instance
   with `integrate.sh --rom PATH`. `ninja -j1` or `-j2` for a few targets is
   allowed. Prefix the command with OXIDE_LOCAL_BUILD_OK=1 when Ian has said a
-  local build is wanted anyway. Delete this rule when the new chip is in.
+  local build is wanted anyway. A cloud session (OXIDE_CLOUD=1 in its
+  environment) is not affected. Delete this rule when the new chip is in.
 
 Anything it cannot parse it lets through; this is a guard rail, not a sandbox.
 """
@@ -77,6 +78,10 @@ MAKE_BUILD_TARGETS = {"", "all", "rom", "testkit", "debug", "release", "check", 
 def full_build(raw_words, ws):
     """Why this command would run a full local build, or None."""
     if any(w.startswith("OXIDE_LOCAL_BUILD_OK=1") for w in raw_words):
+        return None
+    # A cloud session runs on a healthy machine: Ian's cloud environment sets
+    # OXIDE_CLOUD=1, and the rule is only about this box's CPU.
+    if os.environ.get("OXIDE_CLOUD") == "1":
         return None
     prog = os.path.basename(ws[0])
     args = ws[1:]
