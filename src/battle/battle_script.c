@@ -314,6 +314,7 @@ static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static int BattleScript_Read(BattleContext *battleCtx);
@@ -9752,6 +9753,61 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         mon->statBoosts[BATTLE_STAT_SPEED]--;
         battleCtx->calcTemp = 0;
     }
+
+    return FALSE;
+}
+
+/**
+ * @brief Changes when a battler acts this turn, for Oxide's After You, with
+ * hg-engine's name and inputs so its script converts as it is.
+ *
+ * Platinum fixes the turn's order in battlerActionOrder when the turn starts
+ * and walks it with turnOrderCounter, so After You moves the battler's entry
+ * to just after the one acting now, and the battlers in between each act one
+ * place later. Trick Room re-sorts the whole order when it goes up, so on a
+ * turn with both, Trick Room's order wins.
+ *
+ * Inputs:
+ * 1. The battler whose turn moves.
+ * 2. The order to give it; only EXECUTION_ORDER_AFTER_YOU is implemented,
+ * and any other jumps as a failure.
+ * 3. The jump distance if it fails: the battler has already acted this turn,
+ * or is not in the order at all.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int order = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int pos;
+
+    for (pos = 0; pos < maxBattlers; pos++) {
+        if (battleCtx->battlerActionOrder[pos] == battler) {
+            break;
+        }
+    }
+
+    if (order != EXECUTION_ORDER_AFTER_YOU
+        || pos == maxBattlers
+        || pos <= battleCtx->turnOrderCounter
+        || battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
+    }
+
+    for (; pos > battleCtx->turnOrderCounter + 1; pos--) {
+        battleCtx->battlerActionOrder[pos] = battleCtx->battlerActionOrder[pos - 1];
+    }
+
+    battleCtx->battlerActionOrder[pos] = battler;
 
     return FALSE;
 }
