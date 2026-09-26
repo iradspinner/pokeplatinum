@@ -2623,9 +2623,10 @@ static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battl
     int inBattler = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (battleCtx->moveProtect[battler] != MOVE_PROTECT
-        && battleCtx->moveProtect[battler] != MOVE_DETECT
-        && battleCtx->moveProtect[battler] != MOVE_ENDURE) {
+    // Oxide: the engine's own test (Move_KeepsProtectRun), so the run the AI
+    // sees is the one the battle rolls against: Wide Guard, Quick Guard and
+    // the protecting moves element 4 added keep it going too.
+    if (Move_KeepsProtectRun(battleCtx, battleCtx->moveProtect[battler]) == FALSE) {
         AI_CONTEXT.calcTemp = 0;
     } else {
         AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].moveEffectsData.protectSuccessTurns;
