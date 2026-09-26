@@ -766,6 +766,20 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     for field, why in diverged.items():
         if field != "name":
             log.append((rel, [f"{field}: diverged, left alone ({why})"]))
+    # A member that names a nature keeps Oxide's nature and IV scale, and the
+    # importer neither compares nor writes them (see _has_nature). Name each
+    # one here, as every other divergence is named, so the skip is not silent.
+    # Report text only: it counts as no change.
+    if "party" not in diverged:
+        try:
+            members = len(jsonstyle.get_value(text, ["party"]))
+        except KeyError:
+            members = 0
+        tuned = [f"party[{i}].iv_scale: names {jsonstyle.get_value(text, ['party', i, 'nature'])}, "
+                 "left alone (Oxide re-tuned this member's nature and IV scale)"
+                 for i in range(members) if _has_nature(text, i)]
+        if tuned:
+            log.append((rel, tuned))
     if changed:
         log.append((rel, changed))
         if not dry_run:
