@@ -1995,6 +1995,8 @@ TestKit_AbilityNeutralizingGas:
    Spin. Each entry is built as an ability entry is, with a foe where it needs
    one. */
 TestKit_Staples:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     Message TestKit_Text_WhichRule
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
