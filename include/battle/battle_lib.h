@@ -587,6 +587,32 @@ BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, in
  */
 void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
+// Oxide: the hits Rage Fist counts, 50 power each on top of its 50, to 350.
+#define RAGE_FIST_MAX_HITS 6
+
+/**
+ * @brief Oxide: how many times the Pokemon in this battler's party slot has
+ * been hit by an attack this battle, up to RAGE_FIST_MAX_HITS, which Rage Fist
+ * needs. It is kept by party slot, as Belch's Berry is, so it lasts through
+ * switching out and fainting.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @return The number of hits
+ */
+int Battler_RageFistHits(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Oxide: count one more hit taken by the Pokemon in this battler's
+ * party slot, up to RAGE_FIST_MAX_HITS.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void Battler_AddRageFistHit(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
 /**
  * @brief Oxide: the priority of a move as the battler uses it, after the
  * abilities that raise it: Prankster gives status moves +1, and Gale Wings

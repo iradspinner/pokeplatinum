@@ -687,6 +687,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet45, 17
     AddListMenuEntry TestKit_Text_MenuSet46, 18
     AddListMenuEntry TestKit_Text_MenuSet47, 19
+    AddListMenuEntry TestKit_Text_MenuSet48, 20
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -708,6 +709,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 17, TestKit_MoveSet45
     GoToIfEq VAR_0x8004, 18, TestKit_MoveSet46
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet47
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1211,6 +1213,21 @@ TestKit_MoveSet47:
     SetVar VAR_0x8002, MOVE_SPLASH
     SetVar VAR_0x8006, MOVE_FLYING_PRESS
     SetVar VAR_0x8007, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 48: Rage Fist gains 50 power for each hit Mew takes from an attack
+   this battle, to 350. Against a wild Registeel that knows only Double
+   Kick, which hits twice: Rage Fist used turn after turn does 50, 150, 250
+   and then 350, hits on Mew's Substitute add nothing, and switching Mew out
+   and back in keeps the count. */
+TestKit_MoveSet48:
+    SetVar VAR_0x8000, SPECIES_REGISTEEL
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DOUBLE_KICK
+    SetVar VAR_0x8006, MOVE_RAGE_FIST
+    SetVar VAR_0x8007, MOVE_SUBSTITUTE
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew

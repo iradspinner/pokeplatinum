@@ -3651,6 +3651,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             battleCtx->battleMons[battleCtx->defender].timesDamaged++;
         }
 
+        // Oxide: Rage Fist counts every hit its user takes from an attack,
+        // each hit of a multi-hit move included, for the rest of the battle.
+        // A hit on a Substitute has already left above.
+        Battler_AddRageFistHit(battleSys, battleCtx, battleCtx->defender);
+
         if (CURRENT_MOVE_DATA.class == CLASS_PHYSICAL) {
             DEFENDER_TURN_FLAGS.physicalDamageTakenFrom[battleCtx->attacker] = battleCtx->damage;
             DEFENDER_TURN_FLAGS.physicalDamageLastAttacker = battleCtx->attacker;

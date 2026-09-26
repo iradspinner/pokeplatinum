@@ -9432,3 +9432,41 @@ void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, in
     int side = BattleSystem_GetBattlerSide(battleSys, battler);
     battleCtx->sideConditions[side].berryEatenMask |= FlagIndex(battleCtx->selectedPartySlot[battler]);
 }
+
+// Oxide: Rage Fist's count for party slots 0 to 4 sits in rageFistHits, three
+// bits a slot, and slot 5's in rageFistHitsSlot5, where the side conditions
+// had room.
+#define RAGE_FIST_HITS_BITS 3
+#define RAGE_FIST_HITS_MASK ((1 << RAGE_FIST_HITS_BITS) - 1)
+
+int Battler_RageFistHits(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    SideConditions *side = &battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)];
+    int slot = battleCtx->selectedPartySlot[battler];
+
+    if (slot == MAX_PARTY_SIZE - 1) {
+        return side->rageFistHitsSlot5;
+    }
+
+    return (side->rageFistHits >> (slot * RAGE_FIST_HITS_BITS)) & RAGE_FIST_HITS_MASK;
+}
+
+void Battler_AddRageFistHit(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    SideConditions *side = &battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)];
+    int slot = battleCtx->selectedPartySlot[battler];
+    int hits = Battler_RageFistHits(battleSys, battleCtx, battler);
+
+    if (hits >= RAGE_FIST_MAX_HITS) {
+        return;
+    }
+
+    hits++;
+
+    if (slot == MAX_PARTY_SIZE - 1) {
+        side->rageFistHitsSlot5 = hits;
+    } else {
+        side->rageFistHits &= ~(RAGE_FIST_HITS_MASK << (slot * RAGE_FIST_HITS_BITS));
+        side->rageFistHits |= hits << (slot * RAGE_FIST_HITS_BITS);
+    }
+}
