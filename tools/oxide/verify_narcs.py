@@ -286,6 +286,9 @@ MODERN_PP_NATIVES = {
     22, 26, 37, 66, 80, 128, 130, 136, 141, 168, 200, 248, 317, 326, 343, 403,
     409,
 }
+# Barrier and Tailwind cut to 1 PP like the base ROM's other setup moves
+# (Ian, 2026-09-26, answering the native-moves report).
+SETUP_PP_NATIVES = {112, 366}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -326,6 +329,11 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": MODERN_PP_NATIVES,
             "why": "native moves given their modern PP (Ian, 2026-09-26)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": SETUP_PP_NATIVES,
+            "why": "Barrier and Tailwind cut to 1 PP as setup moves (Ian, 2026-09-26)",
         },
     ],
 }
