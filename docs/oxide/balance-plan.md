@@ -1292,7 +1292,11 @@ lands, and each change is re-scored as it lands.
    Galarian Weezing's hidden Misty Surge, and seven obtainable lines that
    learn a dead move by level (Galarian Mr. Mime and Mr. Rime, Sylveon,
    Togedemaru, Dhelmise, the Smoliv line); no TM, tutor or egg list
-   teaches one yet, and the TM pass keeps it that way.
+   teaches one yet, and the TM pass keeps it that way. Mesprit's roamer
+   becomes a once-per-save draw that includes Tapu Koko and Xurkitree (the
+   main track's scripts), so Tapu Koko's Electric Surge and both lines'
+   Electric Terrain join the list; the other Tapus and Xerneas stay out of
+   reach.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
