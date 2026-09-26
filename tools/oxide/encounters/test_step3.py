@@ -284,11 +284,12 @@ def main():
                     "encounters_route_207" in rows["Charmander"]["tail"]
                     and "encounters_route_204_north" in rows["Treecko"]["cameo"]
                     and rows["Charmander"]["status"] == "non-wild", ""))
-    results.append(("the caps are Ian's: Roark 16 through League 78, Galactic 64 and Volkner 68",
+    results.append(("the caps are Ian's: Roark 16 through League 78, HQ 60, Galactic 65 and "
+                    "Volkner 68",
                     [progression.cap_of(sidecar, s) for s in ("Roark", "Gardenia", "Fantina", "Maylene",
-                                                              "Wake", "Byron", "Candice", "Galactic",
-                                                              "Volkner", "League")]
-                    == [16, 26, 33, 38, 44, 53, 56, 64, 68, 78], ""))
+                                                              "Wake", "Byron", "Candice", "HQ",
+                                                              "Galactic", "Volkner", "League")]
+                    == [16, 26, 33, 38, 44, 53, 56, 60, 65, 68, 78], ""))
     results.append(("cap candidates are reported, not gated, name the split and cap, and none "
                     "is for the first two splits (those lines are all placed)",
                     "cap_candidates" in g and all(" cap " in c for c in g["cap_candidates"])

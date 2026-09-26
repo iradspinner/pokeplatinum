@@ -727,7 +727,7 @@ const typeChip = (t, cls = "", label = tidy(t)) =>
 // League there is no leader, so Post is a plain tag.
 const SPLIT_TYPE = { Roark: "ROCK", Gardenia: "GRASS", Fantina: "GHOST",
   Maylene: "FIGHTING", Wake: "WATER", Byron: "STEEL", Candice: "ICE",
-  Galactic: "DARK", Volkner: "ELECTRIC", League: "DRAGON" };
+  HQ: "POISON", Galactic: "DARK", Volkner: "ELECTRIC", League: "DRAGON" };
 const splitTag = (split, suffix = "") => !split ? ""
   : SPLIT_TYPE[split]
     ? `<span class="chip mini" style="--t: var(--type-${SPLIT_TYPE[split].toLowerCase()})">${esc(split + suffix)}</span>`

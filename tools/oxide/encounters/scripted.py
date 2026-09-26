@@ -163,7 +163,8 @@ def honey_table_for(split, split_rank, tables=None):
     """The honey table a tree shaken in `split` reads: the one for the
     badges the player holds then. A split is named for the gym that ends it,
     so the player holds as many badges as there are gym splits before it;
-    Galactic sits between Candice and Volkner without a gym of its own."""
+    HQ and Galactic sit between Candice and Volkner without a gym of their
+    own, so both read the seven-badge table."""
     tables = tables if tables is not None else model.honey_tree_tables()
     gyms = ("Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
             "Candice", "Volkner", "League")

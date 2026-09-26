@@ -4894,7 +4894,7 @@
         "SPECIES_SHELLOS",
         "SPECIES_BUIZEL",
         "SPECIES_DOLLIV",
-        "SPECIES_WOOPER",
+        "SPECIES_QUAGSIRE",
         "SPECIES_WARTORTLE"
       ],
       "day": [
@@ -11354,6 +11354,7 @@
       "Wake",
       "Byron",
       "Candice",
+      "HQ",
       "Galactic",
       "Volkner",
       "League",
@@ -11367,7 +11368,8 @@
       "Wake": 44,
       "Byron": 53,
       "Candice": 56,
-      "Galactic": 64,
+      "HQ": 60,
+      "Galactic": 65,
       "Volkner": 68,
       "League": 78,
       "Post": null

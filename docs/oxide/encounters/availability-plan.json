@@ -397,7 +397,7 @@
     "encounters_route_213": {
       "home": ["SPECIES_SANDYGAST", "SPECIES_CLOBBOPUS", "SPECIES_DEWPIDER"],
       "cameo": ["SPECIES_TRUMBEAK", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_DOLLIV", "SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
-      "tail": ["SPECIES_WOOPER", "SPECIES_WARTORTLE"],
+      "tail": ["SPECIES_QUAGSIRE", "SPECIES_WARTORTLE"],
       "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s."
     },
     "encounters_great_marsh_1": {
