@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_LUVDISC"
         }
     ],
     "good_rod_rate": 50,
@@ -198,7 +198,7 @@
         {
             "level_max": 47,
             "level_min": 39,
-            "species": "SPECIES_CLOYSTER"
+            "species": "SPECIES_JELLICENT"
         },
         {
             "level_max": 50,

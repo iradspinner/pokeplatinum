@@ -47,7 +47,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_SERVINE"
+            "species": "SPECIES_CARNIVINE"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_MAREANIE"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_MAREANIE"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_TOXAPEX"
         }
     ],
     "map_category": {

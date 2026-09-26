@@ -43,11 +43,11 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_HIPPOWDON"
+            "species": "SPECIES_SANDYGAST"
         },
         {
             "level": 35,
-            "species": "SPECIES_HAKAMO_O"
+            "species": "SPECIES_MEDITITE"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 48,
             "level_min": 42,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_KINGDRA"
         }
     ],
     "old_rod_rate": 25,
@@ -142,7 +142,7 @@
         {
             "level_max": 23,
             "level_min": 19,
-            "species": "SPECIES_SPHEAL"
+            "species": "SPECIES_CROCONAW"
         },
         {
             "level_max": 24,
@@ -175,7 +175,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_DEWGONG"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 54,
             "level_min": 46,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_PELIPPER"
         }
     ],
     "elusive_rod_encounter": {

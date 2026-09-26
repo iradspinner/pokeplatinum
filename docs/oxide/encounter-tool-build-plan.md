@@ -317,6 +317,46 @@ that stay. None blocks anything.
    more. The tier from 75 to 85 still lands a median of 29 per box, and 28
    of its lines land in over half of runs; trimming it waits on Ian's
    super-wanted list.
+
+   Ian's super-wanted list came next. It is recorded in `values.json`
+   (`wanted`): Vulpix, Ponyta, Koffing (both forms, regional preferred),
+   Eevee, Togepi, Articuno (Kanto only), Suicune, Ralts, Skitty, Roselia,
+   Swablu, Milotic, Froslass, Buneary, Drapion, Cresselia, Florges,
+   Primarina, Tsareena, Pheromosa, Cinderace, Corviknight and Meloetta. A
+   majority should land in a run, they are never trimmed, and their
+   legendaries are the ones kept. The simulator now plays towards them: a
+   bonus on its choices, never on the reported worth.
+
+   The trim cut fifteen prize-kind lines to their planned home, or to their
+   rarest place: the scattered starter tails, Kommo-o, Goodra, Flygon,
+   Scizor, Hippowdon, Slowbro, Walrein and Cloyster.
+   - Their other slots went to wild lines of a shared type worth under 75,
+     never a scripted-only one.
+   - The early Old Rods keep their starter tails.
+   - Torchic keeps Route 204 north's day slot, the delay.
+   - Froakie keeps its extra slots, as Ian asked.
+   - The zone staples (Zubat, Bronzor, Gligar, Sneasel, Rhyhorn, Gastly,
+     Duskull) stay: trimming them would strip the caves.
+
+   Over 30 League runs, non-wanted lines worth 75 or more fall from a median
+   of 26 per box to 18, and a median of 15 of the 23 wanted lines land. The
+   five that never do are out of the simulator's reach: Articuno and
+   Cresselia are post-game, Meloetta is not in the tree, Pheromosa sits in
+   the roamer's third, and Suicune needs a planned Snover. Still in over
+   half of runs: the staples, the homes of Hippowdon, Cloyster, Walrein and
+   Flygon, Froakie's Greninja, and the Veilstone Elekid, the Elekid line's
+   only source.
+19. **The damage calculator learns element 5's abilities (Ian, 2026-09-26,
+   through the Overseer).** The vendored calculator's Generation 4 branch
+   applies only Generation 4 abilities, so element 5's damage-changing ones
+   count nowhere: not in the tool's calculator, not in the balance scores.
+   Among them are Water Bubble, Fluffy, Purifying Salt, Steelworker, Sap
+   Sipper, Pixilate, Sheer Force, the auras, and Sharpness with
+   hg-engine's longer slicing list including the five claw moves. The
+   reference is element 5 on oxide (`git log 2f8d27c3^..a51b0af3`) and its
+   report on `cloud/element5-abilities`. It sits beside the three
+   calculator defects already held, closes before the trainer pass, and the
+   balance track rescores after it.
 17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
    Overseer).** The three are turned off and never go in a table. This
    track empties the lists in all 186 tables and makes lint fail on any

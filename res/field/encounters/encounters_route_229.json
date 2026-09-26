@@ -43,11 +43,11 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_SERPERIOR"
+            "species": "SPECIES_CHERRIM"
         },
         {
             "level": 50,
-            "species": "SPECIES_MEOWSCARADA"
+            "species": "SPECIES_JUMPLUFF"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 55,
             "level_min": 46,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_WHISCASH"
         }
     ],
     "old_rod_rate": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 30,
             "level_min": 26,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_MASQUERAIN"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 45,
             "level_min": 39,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_LUDICOLO"
         }
     ],
     "super_rod_rate": 75,

@@ -43,11 +43,11 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_BLAZIKEN"
+            "species": "SPECIES_GRAPPLOCT"
         },
         {
             "level": 50,
-            "species": "SPECIES_INCINEROAR"
+            "species": "SPECIES_HONCHKROW"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 55,
             "level_min": 46,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_SEAKING"
         }
     ],
     "old_rod_rate": 25,
@@ -127,7 +127,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_SLOWPOKE"
+            "species": "SPECIES_GOLDEEN"
         },
         {
             "level_max": 26,
@@ -147,7 +147,7 @@
         {
             "level_max": 30,
             "level_min": 26,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_TENTACOOL"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 45,
             "level_min": 39,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_SHARPEDO"
         }
     ],
     "super_rod_rate": 75,

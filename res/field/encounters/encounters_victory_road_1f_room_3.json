@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 47,
-            "species": "SPECIES_KOMMO_O"
+            "species": "SPECIES_TOXICROAK"
         },
         {
             "level": 48,
@@ -11,7 +11,7 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_KOMMO_O"
+            "species": "SPECIES_TOXICROAK"
         },
         {
             "level": 48,
@@ -27,7 +27,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_KOMMO_O"
+            "species": "SPECIES_TOXICROAK"
         },
         {
             "level": 49,
@@ -35,19 +35,19 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_WORMADAM"
         },
         {
             "level": 49,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_WORMADAM"
         },
         {
             "level": 50,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_WORMADAM"
         },
         {
             "level": 50,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_WORMADAM"
         }
     ],
     "swarms": [
@@ -56,11 +56,11 @@
     ],
     "day": [
         "SPECIES_HAWLUCHA",
-        "SPECIES_SCIZOR"
+        "SPECIES_KRICKETUNE"
     ],
     "night": [
         "SPECIES_WEAVILE",
-        "SPECIES_KOMMO_O"
+        "SPECIES_GRAPPLOCT"
     ],
     "radar": [
         "SPECIES_WEAVILE",

@@ -55,7 +55,7 @@
         "SPECIES_BRONZONG"
     ],
     "day": [
-        "SPECIES_SEALEO",
+        "SPECIES_JYNX",
         "SPECIES_ALOLAN_NINETALES"
     ],
     "night": [
@@ -170,7 +170,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_SPHEAL"
+            "species": "SPECIES_WAILMER"
         },
         {
             "level_max": 38,
@@ -203,7 +203,7 @@
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_GOREBYSS"
         }
     ],
     "map_category": {

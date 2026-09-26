@@ -43,11 +43,11 @@
         },
         {
             "level": 54,
-            "species": "SPECIES_CHARIZARD"
+            "species": "SPECIES_CHATOT"
         },
         {
             "level": 54,
-            "species": "SPECIES_INCINEROAR"
+            "species": "SPECIES_HONCHKROW"
         }
     ],
     "swarms": [
@@ -132,7 +132,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_SLOWPOKE"
+            "species": "SPECIES_TENTACOOL"
         },
         {
             "level_max": 28,
@@ -203,7 +203,7 @@
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_SHARPEDO"
         }
     ],
     "map_category": {

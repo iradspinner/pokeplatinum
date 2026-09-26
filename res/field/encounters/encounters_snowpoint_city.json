@@ -137,7 +137,7 @@
         {
             "level_max": 21,
             "level_min": 17,
-            "species": "SPECIES_SHELLDER"
+            "species": "SPECIES_SEEL"
         },
         {
             "level_max": 21,
@@ -165,7 +165,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_CLOYSTER"
+            "species": "SPECIES_SEEL"
         },
         {
             "level_max": 36,
@@ -193,7 +193,7 @@
         {
             "level_max": 49,
             "level_min": 41,
-            "species": "SPECIES_CLOYSTER"
+            "species": "SPECIES_DEWGONG"
         },
         {
             "level_max": 49,

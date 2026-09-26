@@ -27,7 +27,7 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_SPHEAL"
+            "species": "SPECIES_SMOOCHUM"
         },
         {
             "level": 28,
@@ -43,11 +43,11 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_CHARMELEON"
+            "species": "SPECIES_CHARCADET"
         },
         {
             "level": 29,
-            "species": "SPECIES_TORRACAT"
+            "species": "SPECIES_SLUGMA"
         }
     ],
     "swarms": [
@@ -203,7 +203,7 @@
         {
             "level_max": 48,
             "level_min": 41,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_MANTINE"
         }
     ],
     "map_category": {
