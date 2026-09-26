@@ -321,6 +321,10 @@ MAP_HEADERS_DIVERGED = {
     "MAP_HEADER_SNOWPOINT_CITY": (range(14, 16), "fishing in Snowpoint City reads "
                                   "encounters_snowpoint_city, the encounter track's rods "
                                   "table (Ian, 2026-09-25)"),
+    "MAP_HEADER_AMITY_SQUARE": (range(14, 16), "Amity Square's new grass reads "
+                                "encounters_amity_square (Ian, 2026-09-27)"),
+    "MAP_HEADER_VERITY_LAKEFRONT": (range(14, 16), "Verity Lakefront's new grass reads "
+                                    "encounters_verity_lakefront (Ian, 2026-09-27)"),
 }
 
 
