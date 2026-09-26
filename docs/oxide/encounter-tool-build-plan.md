@@ -55,7 +55,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 94/94, the d
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
@@ -562,6 +562,35 @@ that stay. None blocks anything.
    step3 35/35, step5 19/19, sim 11/11 (their counts and the clown checks
    brought up to date); test_m4 and test_step0, which rewrite shared
    files, were left to the gate while Ian has the server open.
+27. **R12 reads Oxide's sources; the classic starters and Surskit (Ian,
+   2026-09-27, through the Overseer).** On branch `encounter-r12-sources`,
+   after 316afcc01. R12 and the availability gate now read gifts from the
+   tree's scripts, the runtime picks from `scripted.json`'s live sources and
+   the pool draws from the new-game script, where they read the base ROM's
+   survey of 2026-09-20; R12 falls from 35 errors to 30, all real. That
+   exposed three things. Ian ruled that the classic starters leave the gate
+   tier and become ordinary wild lines; their placements are proposed in
+   `docs/oxide/encounters/classic-starters.md` and wait on him (Charmander
+   on Route 211 west, Squirtle on Route 205 north, Torchic on Route 205
+   south, Mudkip on Oreburgh Gate B1F, Treecko staying on Route 204 north).
+   Surskit is retiered to starter-adjacent, so its Lake Verity home stands
+   in Roark's split. And Verity Lakefront's night slot, which held
+   Poochyena on the strength of the Floaroma clown, is Kricketot. Until the
+   starters go in, the gate's one complaint is Squirtle and Mudkip without
+   a source, so three suites fail on this branch; it merges after the
+   placements, as a small incremental rescore. **Ian approved the rarer
+   shapes on 2026-09-27, and they are in**: the fifteen rows leave the gate
+   tier for preferred; Charmander is a 5% slot on Route 211 west, Mudkip a
+   5% slot on Oreburgh Gate B1F, Treecko one morning slot on Route 204
+   north (Budew has the other), Squirtle by day on Route 205 north, Torchic
+   by day on Route 204 north as before. A single slot inside a line's share
+   is not something an archetype can express, so the sidecar gains
+   `slot_species` (slot index to species, set after the layout at the
+   ladder's level), tested in test_step3. Route 212's Shellos and Gastrodon
+   are the West Sea form (Ian, the same day). The gate passes; R12 shows 27
+   errors, every one either a pool line drawn nowhere, a proposal, a baby
+   now standing as its next stage, or a slot its land-only cost model does
+   not price (Squirtle's and Torchic's day finds among them).
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

@@ -208,6 +208,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] Route 212 (north and south): a wild Shellos or Gastrodon is the pink West
+  Sea form.
+- [ ] The classic starters as rare finds: Squirtle by day on Route 205 north,
+  Charmander in the grass of Route 211 west (a 5% slot), Mudkip on Oreburgh
+  Gate B1F (a 5% slot), Treecko in the morning and Torchic by day on Route 204
+  north.
 - [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
   Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
   30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in

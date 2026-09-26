@@ -91,9 +91,13 @@ def check_tiers(results):
     results.append(("every pick-list row has one of the four tiers",
                     len(rows) == 498 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
-    results.append(("legendaries, starters, fossils and static battles are gate",
-                    by["Articuno"] == by["Charmander"] == by["Cranidos"]
-                    == by["Dialga"] == by["Rotom"] == "gate", ""))
+    # The classic starters left the gate tier on 2026-09-27 (Ian); the
+    # briefcase's three are still gate.
+    results.append(("legendaries, the briefcase's starters, fossils and static battles are gate; "
+                    "the classic starters are ordinary wild lines",
+                    by["Articuno"] == by["Turtwig"] == by["Cranidos"]
+                    == by["Dialga"] == by["Rotom"] == "gate"
+                    and by["Charmander"] == by["Mudkip"] == "preferred", ""))
     results.append(("a native line shares one tier across its stages",
                     by["Zubat"] == by["Golbat"] == by["Crobat"]
                     and by["Pichu"] == by["Pikachu"] == by["Raichu"], ""))
@@ -134,10 +138,12 @@ def check_r12(results):
                     and all(f.target != "*" for f in r12), f"{len(r12)} findings"))
     errors = {f.target for f in r12 if f.severity == "error"}
     # Snivy used to be here; it is wild on Route 204 since Ian's review.
-    results.append(("the roamers pass R12 through their vanilla mechanism; new gate lines "
-                    "with no script fail it",
-                    not {"Articuno", "Mesprit", "Cresselia"} & errors
-                    and {"Nihilego", "Xurkitree"} <= errors and "Snivy" not in errors, ""))
+    # Xurkitree was the second example until the roamer's draw named it
+    # (2026-09-27); Guzzlord's third is drawn nowhere.
+    results.append(("the roamers pass R12 through their vanilla mechanism or the pool's draw; "
+                    "new gate lines drawn nowhere fail it",
+                    not {"Articuno", "Mesprit", "Cresselia", "Xurkitree"} & errors
+                    and {"Nihilego", "Guzzlord"} <= errors and "Snivy" not in errors, ""))
     skipped = lint.lint_all(payload, sidecar, None)
     results.append(("without availability rows R12 still reports itself skipped",
                     any(f.rule == "R12" and f.severity == "skip" for f in skipped), ""))

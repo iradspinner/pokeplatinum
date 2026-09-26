@@ -178,6 +178,18 @@ def main():
     results.append(("an A12 lays out with its 4% and 1% as real tails on the top rungs",
                     abs(merged["SPECIES_S5"] - 0.04) < 1e-9 and abs(merged["SPECIES_S6"] - 0.01) < 1e-9
                     and max(merged.values()) <= 0.30 + 1e-9, ""))
+    # A hand-placed slot (2026-09-27, the classic starters' rare finds): the
+    # species replaces the layout's at that slot and keeps the ladder's
+    # level; a slot out of range or a non-species is refused.
+    entry = {"archetype": "A12", "base_level": 10, "cast": [f"SPECIES_S{k}" for k in range(7)]}
+    plain = layout.layout(entry)
+    placed = layout.layout(dict(entry, slot_species={"6": "SPECIES_X"}))
+    results.append(("`slot_species` places one slot by hand at the ladder's level, and refuses "
+                    "a bad slot",
+                    placed[6] == ("SPECIES_X", plain[6][1])
+                    and placed[:6] == plain[:6] and placed[7:] == plain[7:]
+                    and _raises(lambda: layout.layout(dict(entry, slot_species={"12": "SPECIES_X"})))
+                    and _raises(lambda: layout.layout(dict(entry, slot_species={"6": "X"}))), ""))
 
     # -- rod tables through apply -------------------------------------------
     rows = layout.water("old_rod", {"cast": ["SPECIES_A"] * 5, "levels": [3, 7]})
@@ -237,10 +249,12 @@ def main():
     shares = A.merged(model.load_area("encounters_route_204_north").slots)
     # Since the top-rung ruling (2026-09-26) an ordinary line leads, so a
     # manip meets Sewaddle, not a starter, four times in five.
-    results.append(("Route 204 north is the delay: Sewaddle leads, Litten at home at 20, Treecko 20, "
+    # Treecko went from both morning slots to one on 2026-09-27 (Ian: the
+    # classic starters are rarer finds).
+    results.append(("Route 204 north is the delay: Sewaddle leads, Litten at home at 20, Treecko 10, "
                     "Snivy 15, Torchic by day; no Riolu or Eevee",
                     r204["cast"][0] == "SPECIES_SEWADDLE"
-                    and abs(shares["SPECIES_LITTEN"] - 0.20) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.20) < 1e-9
+                    and abs(shares["SPECIES_LITTEN"] - 0.20) < 1e-9 and abs(shares["SPECIES_TREECKO"] - 0.10) < 1e-9
                     and abs(shares["SPECIES_SNIVY"] - 0.15) < 1e-9 and "SPECIES_TORCHIC" in r204["day"]
                     and not {"SPECIES_RIOLU", "SPECIES_EEVEE"} & set(r204["cast"] + r204["day"] + r204["night"]),
                     ""))
@@ -289,10 +303,14 @@ def main():
                     and rows["Litten"]["first_split"] == "Gardenia"
                     and ("Gardenia", "Route 204") in rows["Litten"]["captures"]
                     and rows["Squirtle"]["first_split"] == "Roark", ""))
-    results.append(("a gate-tier starter appears as a tail or cameo and keeps its scripted source",
-                    "encounters_route_207" in rows["Charmander"]["tail"]
-                    and "encounters_route_204_north" in rows["Treecko"]["cameo"]
-                    and rows["Charmander"]["status"] == "non-wild", ""))
+    # Ian, 2026-09-27: the classic starters are ordinary wild lines with rare
+    # finds (classic-starters.md), not gate lines with a scripted source.
+    results.append(("the classic starters are rare wild finds: Charmander on Route 211 west, "
+                    "Mudkip on Oreburgh Gate B1F, Squirtle by day, Treecko on Route 204 north",
+                    "encounters_route_211_west" in rows["Charmander"]["cameo"]
+                    and "encounters_oreburgh_gate_b1f" in rows["Mudkip"]["cameo"]
+                    and "encounters_route_205_north" in rows["Squirtle"]["cameo"]
+                    and "encounters_route_204_north" in rows["Treecko"]["cameo"], ""))
     results.append(("the caps are Ian's: Roark 16 through League 78, HQ 60, Galactic 65 and "
                     "Volkner 68",
                     [progression.cap_of(sidecar, s) for s in ("Roark", "Gardenia", "Fantina", "Maylene",

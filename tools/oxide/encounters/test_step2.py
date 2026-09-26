@@ -94,7 +94,9 @@ def main():
                     all(r["status"] in ("pool", "proposed") for r in rows
                         if r["tier"] == "gate" and not r["non_wild"])
                     and sorted(proposed) == ["Xerneas", "Yveltal"]
-                    and "Nihilego" in pool and "Tapu Koko" in pool,
+                    and "Nihilego" in pool and "Guzzlord" in pool
+                    # a line the roamer's draw names is sourced (2026-09-27)
+                    and next(r for r in rows if r["name"] == "Tapu Koko")["non_wild"],
                     f"{len(pool)} in the pool, {len(proposed)} proposed"))
     # Scorbunny replaced Chimchar in Rowan's briefcase on 2026-09-21 (Ian), so it
     # is gate tier and out of the wild; Litten took over its home on Route 204
