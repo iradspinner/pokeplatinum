@@ -45,6 +45,7 @@
             [ 22, "MOVE_ROAR" ],
             [ 27, "MOVE_SWAGGER" ],
             [ 32, "MOVE_ASSURANCE" ],
+            [ 34, "MOVE_CRUNCH" ],
             [ 37, "MOVE_SCARY_FACE" ],
             [ 42, "MOVE_TAUNT" ],
             [ 47, "MOVE_EMBARGO" ],

@@ -67,7 +67,11 @@ are the house style.
   mask, not in a new field: Oxide has taken bits 19 and 20 (Laser Focus's
   countdown) and bit 31 (Smack Down's grounding). Growing `MoveEffectsData`
   moves every later field of the battle context and changes the trainer AI
-  overlay in ways `romdiff.py` cannot explain.
+  overlay in ways `romdiff.py` cannot explain. The same rule holds for other
+  state: a side takes bits 11 and 15 of its conditions mask (Sticky Web,
+  Aurora Veil) and fields from `SideConditions`' padding (Aurora Veil's turns,
+  Belch's per-party-slot berry record); a one-turn state goes in `TurnFlags`'
+  padding, which clears every turn (the side guards).
 - A new battle script command is appended after `End`, so no opcode moves. New
   subscripts and side-effect pointers are appended only once implemented, and a
   stat-stage pointer only once `ChangeStatStage` names its range.

@@ -899,6 +899,7 @@ enum FieldCondCheckState {
 
     FIELD_COND_CHECK_STATE_REFLECT = FIELD_COND_CHECK_START,
     FIELD_COND_CHECK_STATE_LIGHT_SCREEN,
+    FIELD_COND_CHECK_STATE_AURORA_VEIL, // Oxide
     FIELD_COND_CHECK_STATE_MIST,
     FIELD_COND_CHECK_STATE_SAFEGUARD,
     FIELD_COND_CHECK_STATE_TAILWIND,
@@ -975,6 +976,31 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                     && --battleCtx->sideConditions[side].lightScreenTurns == 0) {
                     battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_LIGHT_SCREEN;
                     battleCtx->msgMoveTemp = MOVE_LIGHT_SCREEN;
+
+                    PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
+                }
+
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
+                    break;
+                }
+            }
+
+            StepFieldConditionCheck(battleCtx, state);
+            break;
+
+        // Oxide: Aurora Veil runs down after Light Screen, as in the later
+        // games, and says it wore off as the screens do.
+        case FIELD_COND_CHECK_STATE_AURORA_VEIL:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_AURORA_VEIL
+                    && --battleCtx->sideConditions[side].auroraVeilTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_AURORA_VEIL;
+                    battleCtx->msgMoveTemp = MOVE_AURORA_VEIL;
 
                     PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
                     battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
@@ -3024,18 +3050,69 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
  * @param move      The attacker's move
  * @return Always 0.
  */
+/**
+ * @brief Oxide: the side guard, if any, that keeps a move from reaching the
+ * defender this turn, raised by the defender itself or by its partner. Wide
+ * Guard stops moves that hit more than one target, Quick Guard moves of raised
+ * priority, Mat Block damaging moves, and Crafty Shield status moves aimed at
+ * someone other than their user. Only a move Protect could stop is checked
+ * here, so Feint and the like pass every guard.
+ *
+ * @return The guard's move, or MOVE_NONE.
+ */
+static int BattleControllerPlayer_SideGuardAgainst(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
+{
+    int guarded[2] = { defender, BattleSystem_GetPartner(battleSys, defender) };
+
+    for (int i = 0; i < 2; i++) {
+        switch (battleCtx->turnFlags[guarded[i]].sideGuard) {
+        case SIDE_GUARD_WIDE_GUARD:
+            if (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT) {
+                return MOVE_WIDE_GUARD;
+            }
+            break;
+
+        case SIDE_GUARD_QUICK_GUARD:
+            if (MOVE_DATA(move).priority > 0) {
+                return MOVE_QUICK_GUARD;
+            }
+            break;
+
+        case SIDE_GUARD_MAT_BLOCK:
+            if (MOVE_DATA(move).class != CLASS_STATUS) {
+                return MOVE_MAT_BLOCK;
+            }
+            break;
+
+        case SIDE_GUARD_CRAFTY_SHIELD:
+            if (MOVE_DATA(move).class == CLASS_STATUS && attacker != defender) {
+                return MOVE_CRAFTY_SHIELD;
+            }
+            break;
+        }
+    }
+
+    return MOVE_NONE;
+}
+
 static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
         return 0;
     }
 
-    if (battleCtx->turnFlags[defender].protecting
+    int sideGuard = BattleControllerPlayer_SideGuardAgainst(battleSys, battleCtx, attacker, defender, move); // Oxide
+
+    if ((battleCtx->turnFlags[defender].protecting || sideGuard != MOVE_NONE)
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
         && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
         && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
         Battler_UnlockMoveChoice(battleSys, battleCtx, attacker);
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+
+        // Oxide: the missed subscript names a side guard; MOVE_NONE there
+        // means the defender's own Protect or Detect.
+        battleCtx->msgMoveTemp = battleCtx->turnFlags[defender].protecting ? MOVE_NONE : sideGuard;
         return 0;
     }
 

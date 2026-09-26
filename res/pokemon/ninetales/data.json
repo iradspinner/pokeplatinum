@@ -38,7 +38,8 @@
             [ 1, "MOVE_EMBER" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_SAFEGUARD" ]
+            [ 1, "MOVE_SAFEGUARD" ],
+            [ 40, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM04",

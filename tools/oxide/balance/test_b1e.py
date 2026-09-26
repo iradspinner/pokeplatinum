@@ -15,9 +15,12 @@ from . import data
 from . import metrics
 from . import required as R
 
-# Totals at each trainer's first crossing, as found on 2026-09-23. Pinned so
-# that a change to the maps, the table or the model shows up here.
-TOTALS = {"required": 36, "avoidable": 135, "never reached": 12}
+# Totals at each trainer's first crossing, pinned so that a change to the
+# maps, the table or the model shows up here. 36 required on 2026-09-23; 40
+# since Test.nds became the base ROM (2026-09-25), whose moved trainers make
+# one more required in Gardenia's split (the Valley Windworks building) and
+# three more in Wake's (Routes 214 and 215).
+TOTALS = {"required": 40, "avoidable": 131, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -58,6 +61,21 @@ def check_route_202(results):
                                                  "JUBILIFE_CITY")}
     ok = set(got.values()) == {"required"} and len(got) == 3
     results.append(("Route 202's three trainers are required", ok, str(got)))
+
+
+def check_ian_examples(results):
+    """Ian's own reading of the base ROM (2026-09-25): Route 203's five,
+    Route 206's nine and Route 218's four trainers can all be walked around,
+    and Route 202's three cannot. This is B1e's check against play."""
+    def verdicts(split, header):
+        row = next(c for c in R.CROSSINGS if c[:2] == (split, header))
+        return [v for _t, v in R.crossing(*row)]
+    got = {h: verdicts(s, h) for s, h in (("Roark", "ROUTE_203"), ("Fantina", "ROUTE_206"),
+                                          ("Byron", "ROUTE_218"))}
+    want = {"ROUTE_203": 5, "ROUTE_206": 9, "ROUTE_218": 4}
+    ok = all(len(got[h]) == n and set(got[h]) == {"avoidable"} for h, n in want.items())
+    results.append(("Ian's avoidable routes come out avoidable", ok,
+                    ", ".join(f"{h} {len(v)} {sorted(set(v))}" for h, v in got.items())))
 
 
 def check_gates(results):
@@ -112,7 +130,7 @@ def check_totals(results):
 
 def main():
     results = []
-    for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202,
+    for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
                   check_gates, check_late_visits, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)

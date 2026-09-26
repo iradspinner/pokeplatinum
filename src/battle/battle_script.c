@@ -314,8 +314,12 @@ static BOOL BtlCmd_CalcStrengthSap(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
+static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
 static void BattleScript_Jump(BattleContext *battleCtx, enum NarcID narcID, int file);
@@ -5176,7 +5180,10 @@ static const u16 sProtectSuccessRate[] = {
 };
 
 /**
- * @brief Try to execute the Protect or Endure effects.
+ * @brief Try to execute the Protect or Endure effects, or Oxide's side guards
+ * (Wide Guard, Quick Guard, Mat Block and Crafty Shield), which
+ * BattleControllerPlayer_CheckMoveHitOverrides then applies to the user's
+ * whole side for the rest of the turn.
  *
  * Inputs:
  * 1. The distance to jump if the effect fails to execute.
@@ -5194,9 +5201,13 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
+    // Oxide: Wide Guard and Quick Guard share Protect's run of successes, as
+    // in hg-engine, so either keeps the run going.
     if (battleCtx->moveProtect[battleCtx->attacker] != MOVE_PROTECT
         && battleCtx->moveProtect[battleCtx->attacker] != MOVE_DETECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE) {
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_WIDE_GUARD
+        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_QUICK_GUARD) {
         battleCtx->battleMons[battleCtx->attacker].moveEffectsData.protectSuccessTurns = 0;
     }
 
@@ -5207,7 +5218,17 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
         moreBattlersThisTurn = TRUE;
     }
 
-    if (sProtectSuccessRate[ATTACKING_MON.moveEffectsData.protectSuccessTurns] >= BattleSystem_RandNext(battleSys)
+    // Oxide: the four side guards never roll against the run, as in
+    // hg-engine, and Mat Block works only on its user's first turn out, which
+    // is Fake Out's test.
+    BOOL sideGuard = CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT_USER_SIDE;
+    if (sideGuard
+        && battleCtx->moveCur == MOVE_MAT_BLOCK
+        && ATTACKING_MON.moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns) {
+        moreBattlersThisTurn = FALSE;
+    }
+
+    if ((sideGuard || sProtectSuccessRate[ATTACKING_MON.moveEffectsData.protectSuccessTurns] >= BattleSystem_RandNext(battleSys))
         && moreBattlersThisTurn) {
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT) {
             ATTACKER_TURN_FLAGS.protecting = TRUE;
@@ -5219,10 +5240,35 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
             battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself_Ally; // "{0} braced itself!"
         }
 
-        battleCtx->msgBuffer.tags = TAG_NICKNAME;
-        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+        if (sideGuard) {
+            switch (battleCtx->moveCur) {
+            case MOVE_WIDE_GUARD:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_WIDE_GUARD;
+                break;
+            case MOVE_QUICK_GUARD:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_QUICK_GUARD;
+                break;
+            case MOVE_MAT_BLOCK:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_MAT_BLOCK;
+                break;
+            default:
+                ATTACKER_TURN_FLAGS.sideGuard = SIDE_GUARD_CRAFTY_SHIELD;
+                break;
+            }
 
-        if (ATTACKING_MON.moveEffectsData.protectSuccessTurns < NELEMS(sProtectSuccessRate) - 1) {
+            battleCtx->msgBuffer.id = BattleStrings_Text_MoveProtectedYourTeam; // "{0} protected [your/its] team!"
+            battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+            battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+            battleCtx->msgBuffer.params[1] = battleCtx->attacker;
+        } else {
+            battleCtx->msgBuffer.tags = TAG_NICKNAME;
+            battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+        }
+
+        // Oxide: Mat Block and Crafty Shield do not add to the run.
+        if (ATTACKING_MON.moveEffectsData.protectSuccessTurns < NELEMS(sProtectSuccessRate) - 1
+            && battleCtx->moveCur != MOVE_MAT_BLOCK
+            && battleCtx->moveCur != MOVE_CRAFTY_SHIELD) {
             ATTACKING_MON.moveEffectsData.protectSuccessTurns++;
         }
     } else {
@@ -6610,11 +6656,12 @@ static BOOL BtlCmd_CalcRevengePowerMul(BattleSystem *battleSys, BattleContext *b
 }
 
 /**
- * @brief Try to break Reflect and Light Screen on the defending side.
+ * @brief Try to break Reflect, Light Screen and Oxide's Aurora Veil on the
+ * defending side.
  *
  * Inputs:
- * 1. The distance to jump if neither Reflect nor Light Screen are active on
- * the defending side.
+ * 1. The distance to jump if none of the three is active on the defending
+ * side.
  *
  * @param battleSys
  * @param battleCtx
@@ -6627,11 +6674,14 @@ static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battl
     int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_REFLECT)
-        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)) {
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_AURORA_VEIL)) { // Oxide
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_REFLECT;
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_AURORA_VEIL;
         battleCtx->sideConditions[defending].reflectTurns = 0;
         battleCtx->sideConditions[defending].lightScreenTurns = 0;
+        battleCtx->sideConditions[defending].auroraVeilTurns = 0;
     } else {
         BattleScript_Iter(battleCtx, jumpIfNoScreens);
     }
@@ -9049,6 +9099,7 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleScript_RecordBerryEaten(battleSys, battleCtx, battler, battleCtx->battleMons[battler].heldItem); // Oxide
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
     battleCtx->battleMons[battler].heldItem = ITEM_NONE;
 
@@ -9754,6 +9805,164 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
     }
 
     return FALSE;
+}
+
+/**
+ * @brief Changes when a battler acts this turn, for Oxide's After You, with
+ * hg-engine's name and inputs so its script converts as it is.
+ *
+ * Platinum fixes the turn's order in battlerActionOrder when the turn starts
+ * and walks it with turnOrderCounter, so After You moves the battler's entry
+ * to just after the one acting now, and the battlers in between each act one
+ * place later. Trick Room re-sorts the whole order when it goes up, so on a
+ * turn with both, Trick Room's order wins.
+ *
+ * Inputs:
+ * 1. The battler whose turn moves.
+ * 2. The order to give it; only EXECUTION_ORDER_AFTER_YOU is implemented,
+ * and any other jumps as a failure.
+ * 3. The jump distance if it fails: the battler has already acted this turn,
+ * or is not in the order at all.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int order = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int pos;
+
+    for (pos = 0; pos < maxBattlers; pos++) {
+        if (battleCtx->battlerActionOrder[pos] == battler) {
+            break;
+        }
+    }
+
+    if (order != EXECUTION_ORDER_AFTER_YOU
+        || pos == maxBattlers
+        || pos <= battleCtx->turnOrderCounter
+        || battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
+    }
+
+    for (; pos > battleCtx->turnOrderCounter + 1; pos--) {
+        battleCtx->battlerActionOrder[pos] = battleCtx->battlerActionOrder[pos - 1];
+    }
+
+    battleCtx->battlerActionOrder[pos] = battler;
+
+    return FALSE;
+}
+
+/**
+ * @brief Try to set Oxide's Aurora Veil for the user's side, as TryReflect
+ * sets Reflect: five turns, eight with Light Clay.
+ *
+ * It fails when the side already has one, and when it is not hailing, which
+ * hg-engine checks before the move and Platinum has no place for. Cloud Nine
+ * and Air Lock count as no hail, as in the games; hg-engine reads the weather
+ * flag alone.
+ *
+ * Inputs:
+ * 1. The jump distance if it fails.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
+
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_AURORA_VEIL)
+        || NO_CLOUD_NINE == FALSE
+        || WEATHER_IS_HAIL == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        BattleScript_Iter(battleCtx, jump);
+    } else {
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_AURORA_VEIL;
+        battleCtx->sideConditions[side].auroraVeilTurns = NUM_SCREEN_TURNS;
+
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].auroraVeilTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
+        }
+
+        battleCtx->msgBuffer.id = BattleStrings_Text_MoveRaisedYourTeamsDefenseAndSpecialDefense; // "{0} raised [your/its] team's Defense and Special Defense!"
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Checks that the attacker may use Oxide's Belch, which needs its user
+ * to have eaten a Berry this battle. The move menu already refuses it before
+ * then; this catches Belch called some other way, such as by Metronome or
+ * Sleep Talk.
+ *
+ * Inputs:
+ * 1. The jump distance if it has not eaten one.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    if (Battler_HasEatenBerry(battleSys, battleCtx, battleCtx->attacker) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: record who ate a Berry that RemoveItem is about to take, for
+ * Belch. Every Berry used up in battle leaves through RemoveItem: its holder's
+ * own, after its effect, and Pluck, Bug Bite and Fling's too. Those three set
+ * SELF_TURN_FLAG_PLUCK_BERRY on the attacker, and there the eater is the other
+ * of attacker and target from the one losing the item: Pluck's attacker eats
+ * the target's Berry, and Fling's target eats the one thrown at it. Natural
+ * Gift spends its user's Berry without eating it, as in the later games, and
+ * a Berry Fling throws that has no effect on its target is not eaten either.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler   The battler losing the item
+ * @param item      The item it loses
+ */
+static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item)
+{
+    if (Item_IsBerry(item) == FALSE) {
+        return;
+    }
+
+    int eater = battler;
+
+    if (ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_PLUCK_BERRY) {
+        eater = battler == battleCtx->attacker ? battleCtx->defender : battleCtx->attacker;
+    } else if (battler == battleCtx->attacker
+        && (battleCtx->moveCur == MOVE_FLING || battleCtx->moveCur == MOVE_NATURAL_GIFT)) {
+        return;
+    }
+
+    Battler_SetBerryEaten(battleSys, battleCtx, eater);
 }
 
 /**

@@ -108,6 +108,9 @@ HG_STRINGS = {
     1784: "BattleStrings_Text_PokemonFellStraightDown_Ally",
     1514: "BattleStrings_Text_AStickyWebHasBeenLaidOutOnYourSide",
     1516: "BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Ally",
+    1430: "BattleStrings_Text_PokemonTookTheKindOffer_Ally",
+    1565: "BattleStrings_Text_MoveProtectedYourTeam",
+    1567: "BattleStrings_Text_MoveProtectedPokemon_Ally",
 }
 
 # The message commands and which argument is the message.
@@ -502,6 +505,16 @@ C_REVIEWED = {
     378: "BeforeMove fails the move when the target's Attack is at its lowest; the Oxide "
          "subscript checks the same",
     348: "BeforeMove thaws a frozen user, ported beside Flame Wheel's in battle_controller_player.c",
+    305: "BeforeMove fails the move when the target has already acted; ChangeExecutionOrderPriority "
+         "checks the same, and moves the target's entry in battlerActionOrder where hg-engine flags "
+         "it for its speed comparison",
+    377: "BeforeMove fails the move without hail or when the side already has a veil; TryAuroraVeil "
+         "checks the same (and treats Cloud Nine and Air Lock as no hail); the damage halving, the "
+         "countdown, Brick Break and Defog are ported beside Reflect's and Light Screen's",
+    371: "the C is the four guards' protection: TryProtection raises a one-turn guard in the "
+         "user's TurnFlags (no roll, Mat Block only on the first turn out, Mat Block and Crafty "
+         "Shield outside Protect's run), and CheckMoveHitOverrides applies it to the side as "
+         "hg-engine's CheckProtectedBySelf and CheckProtectedByAlly do",
 }
 
 # Commands whose arguments at these positions are battle script variables, so

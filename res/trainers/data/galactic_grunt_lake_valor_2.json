@@ -1,11 +1,13 @@
 {
-    "name": "Grunt",
+    "name": "Officer Hisperid",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_BATON_PASS",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
@@ -13,16 +15,80 @@
             "species": "SPECIES_WEEZING",
             "form": 0,
             "level": 50,
-            "item": null,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_FIRE_BLAST",
+                "MOVE_PAYBACK",
                 "MOVE_THUNDER",
-                "MOVE_WILL_O_WISP",
+                "MOVE_EXPLOSION",
                 "MOVE_SLUDGE_BOMB"
             ],
-            "iv_scale": 229,
+            "iv_scale": 219,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_PETAYA_BERRY",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_PURSUIT",
+                "MOVE_LEAF_STORM",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_STARF_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_AGILITY",
+                "MOVE_BATON_PASS",
+                "MOVE_CHARGE_BEAM"
+            ],
+            "iv_scale": 185,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SUDOWOODO",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_BRIGHTPOWDER",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_EXPLOSION",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FOCUS_PUNCH"
+            ],
+            "iv_scale": 246,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_CHOICE_SPECS",
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_HEAT_WAVE",
+                "MOVE_CHATTER",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         }
     ],

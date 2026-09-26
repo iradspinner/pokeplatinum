@@ -1,5 +1,5 @@
 {
-    "bg_events": [],
+    "bg_events": [  ],
     "object_events": [
         {
             "id": "LOCALID_GALACTIC_GRUNT_1",
@@ -9,9 +9,7 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1",
             "initial_dir": 3,
-            "data": [
-                6
-            ],
+            "data": [ 6 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 43,
@@ -26,13 +24,11 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3",
             "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "data": [ 7 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 48,
-            "z": 43,
+            "x": 46,
+            "z": 44,
             "y": 0
         },
         {
@@ -43,9 +39,7 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2",
             "initial_dir": 2,
-            "data": [
-                6
-            ],
+            "data": [ 6 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 50,
@@ -60,13 +54,11 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4",
             "initial_dir": 2,
-            "data": [
-                4
-            ],
+            "data": [ 7 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 53,
-            "z": 43,
+            "z": 44,
             "y": 0
         },
         {
@@ -77,7 +69,7 @@
             "hidden_flag": "FLAG_OBTAINED_LAKE_VERITY_TM38",
             "script": 7365,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 25,
@@ -92,7 +84,7 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_PROF_ROWAN",
             "script": 3,
             "initial_dir": 3,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 53,
@@ -107,7 +99,7 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_COUNTERPART",
             "script": 4,
             "initial_dir": 3,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 54,
@@ -122,7 +114,7 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": 6,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 55,
@@ -137,11 +129,41 @@
             "hidden_flag": "FLAG_HIDE_LAKE_VERITY_TEAM_GALACTIC",
             "script": 7,
             "initial_dir": 2,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 47,
             "z": 51,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_9",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 53,
+            "z": 45,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_10",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 46,
+            "z": 45,
             "y": 0
         }
     ],
@@ -165,5 +187,5 @@
             "dest_warp_id": 3
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

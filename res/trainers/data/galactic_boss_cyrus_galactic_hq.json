@@ -59,19 +59,20 @@
             "gender": null
         },
         {
-            "species": "SPECIES_MANTINE",
+            "species": "SPECIES_SUICUNE",
             "form": 0,
             "level": 57,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_WHIRLPOOL",
-                "MOVE_REST",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_MUD_SLAP"
+                "MOVE_AQUA_RING",
+                "MOVE_CURSE",
+                "MOVE_WATERFALL",
+                "MOVE_AVALANCHE"
             ],
             "iv_scale": 253,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": null
         },
         {

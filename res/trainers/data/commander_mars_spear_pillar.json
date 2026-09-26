@@ -6,7 +6,8 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_TAG_STRATEGY"
     ],
     "double_battle": false,
     "party": [
@@ -21,7 +22,7 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 253,
+            "iv_scale": 254,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -37,25 +38,25 @@
                 "MOVE_LAST_RESORT",
                 "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 248,
             "ball_seal": 0,
             "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_PERSIAN",
+            "species": "SPECIES_LUXRAY",
             "form": 0,
             "level": 58,
-            "item": "ITEM_FOCUS_SASH",
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_U_TURN",
-                "MOVE_FAKE_OUT"
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_FANG",
+                "MOVE_CHARGE",
+                "MOVE_MAGNET_RISE"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": null
         },
         {
@@ -69,7 +70,7 @@
                 "MOVE_ZEN_HEADBUTT",
                 "MOVE_RECYCLE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 243,
             "ball_seal": 0,
             "ability": 2,
             "gender": null
@@ -85,7 +86,7 @@
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 224,
+            "iv_scale": 254,
             "ball_seal": 0,
             "ability": 1,
             "gender": null

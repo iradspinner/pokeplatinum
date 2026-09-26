@@ -1,55 +1,78 @@
 {
-    "name": "Grunt",
+    "name": "Officer Moira",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
         "AI_FLAG_PRIORITIZE_EXTREMES"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_SNOVER",
             "form": 0,
             "level": 24,
-            "item": null,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_KNOCK_OFF",
-                "MOVE_PIN_MISSILE",
-                "MOVE_ACUPRESSURE",
-                "MOVE_SCARY_FACE"
+                "MOVE_SWAGGER",
+                "MOVE_GRASS_WHISTLE",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_AVALANCHE"
+            ],
+            "iv_scale": 116,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SLOWPOKE",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_REST",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_BLIZZARD",
+                "MOVE_SLEEP_TALK"
             ],
             "iv_scale": 197,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_SEVIPER",
+            "species": "SPECIES_SWINUB",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 26,
+            "item": "ITEM_SALAC_BERRY",
             "moves": [
-                "MOVE_LICK",
-                "MOVE_BITE",
-                "MOVE_POISON_TAIL",
-                "MOVE_SCREECH"
+                "MOVE_ICE_SHARD",
+                "MOVE_SUPERPOWER",
+                "MOVE_DIG",
+                "MOVE_ENDURE"
             ],
-            "iv_scale": 205,
-            "ball_seal": 0
+            "iv_scale": 141,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_BEEDRILL",
+            "species": "SPECIES_KIRLIA",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_TWINEEDLE",
-                "MOVE_RAGE",
-                "MOVE_PURSUIT"
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_CALM_MIND",
+                "MOVE_ICY_WIND",
+                "MOVE_PSYCHIC"
             ],
-            "iv_scale": 169,
-            "ball_seal": 0
+            "iv_scale": 202,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

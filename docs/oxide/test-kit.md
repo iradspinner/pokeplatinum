@@ -53,6 +53,8 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Shuckle | a wild Shuckle, Lv. 50 | a target for physical moves: Chansey faints before an extra like Sappy Seed's seed, Axe Kick's confusion or a flinch can show, and Shuckle is slower than Mew |
 | Wild Lugia | a wild Lugia, Lv. 2, which knows only Whirlwind | an attacker that uses Whirlwind every turn, for the Roar and Whirlwind Ingrain fix (set 25) |
 | Wild Skarmory | a wild Skarmory, Lv. 50 | a Flying target bulky enough to survive Smack Down and Thousand Arrows (set 26) |
+| Wild Horsea | a wild Horsea, Lv. 1, which knows only Bubble | a spread move every turn, for Wide Guard (set 30) |
+| Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
@@ -94,7 +96,11 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 24 | Laser Focus, Tackle, Lock-On, Zap Cannon | 7f36c7172; against Shuckle, Tackle lands a critical hit on the turn after Laser Focus and only then, and Zap Cannon still never misses the turn after Lock-On, which counts down beside Laser Focus |
 | 25 | Ingrain, Aqua Ring, Splash, Recover | the vanilla Ingrain fix; against the wild Lugia, Ingrain then Aqua Ring, and Lugia's Whirlwind should fail every turn with "anchored itself with its roots", where vanilla ended the battle once Aqua Ring was up |
 | 26 | Smack Down, Earthquake, Thousand Arrows, Recover | fe6cc4437; against the wild Skarmory, Earthquake does nothing until Smack Down prints "fell straight down!", then hits; Thousand Arrows hits it at once, super effective through Steel, and grounds it too |
-| 27 | Sticky Web, Spikes, Stealth Rock, Defog | this batch; Sticky Web prints the foe's-side line and fails a second time, and Defog blows it away with the other two. The switch-in Speed drop needs a trainer battle, so it waits for kit trainers |
+| 27 | Sticky Web, Spikes, Stealth Rock, Defog | a3b9dc1c; Sticky Web prints the foe's-side line and fails a second time, and Defog blows it away with the other two. The switch-in Speed drop needs a trainer battle, so it waits for kit trainers |
+| 28 | After You, Trick Room, Tackle, Recover | e55fd3cf; against the wild Shuckle, After You prints "took the kind offer!" and Shuckle moves next; with Trick Room up, Shuckle moves first and After You fails. Moving an ally's turn needs a double battle |
+| 29 | Aurora Veil, Hail, Recover, Splash | 256a4d8b; Aurora Veil fails before Hail, then goes up with "raised your team's Defense and Special Defense!", fails a second time, and wears off five turns later. Brick Break and Defog clearing it need a foe that sets one, which the kit does not have |
+| 30 | Wide Guard, Quick Guard, Mat Block, Crafty Shield | 43043ccb; each guard prints "protected your team!" and then "protected MEW!" against its foe: Wide Guard against the wild Horsea's Bubble, Quick Guard against the wild Glameow's Fake Out, Mat Block against the wild Skarmory on the first turn only (it fails after that), and Crafty Shield against the wild Lugia's Whirlwind. Each guard lets the other kinds through. Guarding an ally needs a double battle |
+| 31 | Belch, Belly Drum, Recover, Splash | 7b704a8c; the set also puts a Sitrus Berry in the bag, for Ian to give to Mew. Before Mew has eaten it, choosing Belch prints "hasn't eaten a Berry, so it can't possibly belch!" and Belch cannot be picked; Belly Drum halves Mew's HP, the Berry heals it, and from then Belch can be chosen, still after switching out and back |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and

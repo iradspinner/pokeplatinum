@@ -342,4 +342,6 @@ subscript_files = files(
     'subscript_parting_shot.s',
     'subscript_laser_focus.s',
     'subscript_smack_down.s',
+    'subscript_handle_after_you.s',
+    'subscript_aurora_veil.s',
 )

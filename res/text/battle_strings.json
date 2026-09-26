@@ -8836,6 +8836,83 @@
         "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
         "in a sticky web!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookTheKindOffer_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "took the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsDefenseAndSpecialDefense",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} raised your team’s\n",
+        "Defense and Special Defense!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheFoesMoveRaisedItsTeamsDefenseAndSpecialDefense",
+      "en_US": [
+        "The foe’s {STRVAR_1 6, 0, 0} raised its\n",
+        "team’s Defense and Special Defense!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveProtectedYourTeam",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} protected\n",
+        "your team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheFoesMoveProtectedItsTeam",
+      "en_US": [
+        "The foe’s {STRVAR_1 6, 0, 0}\n",
+        "protected its team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveProtectedPokemon_Ally",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "{STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveProtectedPokemon_Wild",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MoveProtectedPokemon_Foe",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHasntEatenABerrySoItCantPossiblyBelch",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} hasn’t eaten a Berry,\n",
+        "so it can’t possibly belch!"
+      ]
     }
   ]
 }

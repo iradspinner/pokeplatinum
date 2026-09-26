@@ -5,15 +5,48 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUGTRIO",
+            "species": "SPECIES_FERALIGATR",
             "form": 0,
             "level": 35,
-            "item": null,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_SUPERPOWER",
+                "MOVE_OUTRAGE",
+                "MOVE_AQUA_TAIL"
+            ],
+            "iv_scale": 212,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DRIFBLIM",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SELFDESTRUCT",
+                "MOVE_PAYBACK",
+                "MOVE_TAILWIND",
+                "MOVE_SHADOW_BALL"
+            ],
+            "iv_scale": 218,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DUGTRIO",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_NIGHT_SLASH",
                 "MOVE_DIG",
@@ -21,7 +54,41 @@
                 "MOVE_STONE_EDGE"
             ],
             "iv_scale": 246,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CHIMECHO",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_COLBUR_BERRY",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND",
+                "MOVE_ATTRACT",
+                "MOVE_CHARGE_BEAM"
+            ],
+            "iv_scale": 212,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_URSARING",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_FACADE",
+                "MOVE_SUPERPOWER",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_SHADOW_CLAW"
+            ],
+            "iv_scale": 216,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

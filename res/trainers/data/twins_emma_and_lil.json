@@ -5,37 +5,107 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_SUDOWOODO",
+            "species": "SPECIES_MAGNETON",
             "form": 0,
-            "level": 30,
+            "level": 29,
             "item": null,
             "moves": [
-                "MOVE_MIMIC",
-                "MOVE_BLOCK",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_ROCK_TOMB"
-            ],
-            "iv_scale": 213,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MR_MIME",
-            "form": 0,
-            "level": 30,
-            "item": null,
-            "moves": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT",
-                "MOVE_PSYBEAM",
-                "MOVE_SUBSTITUTE"
+                "MOVE_SCREECH",
+                "MOVE_METAL_SOUND",
+                "MOVE_MIRROR_SHOT",
+                "MOVE_PSYCH_UP"
             ],
             "iv_scale": 200,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VIBRAVA",
+            "form": 0,
+            "level": 29,
+            "item": null,
+            "moves": [
+                "MOVE_MUD_SHOT",
+                "MOVE_SANDSTORM",
+                "MOVE_SILVER_WIND",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 213,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CACTURNE",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_COTTON_SPORE",
+                "MOVE_NASTY_PLOT",
+                "MOVE_TEETER_DANCE"
+            ],
+            "iv_scale": 153,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SHUCKLE",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_ENCORE",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_BUG_BITE",
+                "MOVE_SAND_TOMB"
+            ],
+            "iv_scale": 169,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 29,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCH_UP",
+                "MOVE_OVERHEAT",
+                "MOVE_SWIFT",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 189,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_OMASTAR",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_BRINE",
+                "MOVE_ICY_WIND",
+                "MOVE_ROCK_POLISH",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 158,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

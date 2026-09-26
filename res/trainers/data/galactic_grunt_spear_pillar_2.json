@@ -1,41 +1,64 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
+    "name": "Grunt Hermes",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_TAG_STRATEGY",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FORRETRESS",
+            "species": "SPECIES_ELECTRODE",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 55,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_TOXIC_SPIKES",
                 "MOVE_EXPLOSION",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_GYRO_BALL"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_THUNDER",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_NIDOQUEEN",
+            "species": "SPECIES_SHIFTRY",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 55,
+            "item": "ITEM_TANGA_BERRY",
             "moves": [
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_FLAMETHROWER",
-                "MOVE_SURF",
-                "MOVE_EARTH_POWER"
+                "MOVE_EXPLOSION",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_LEAF_STORM"
             ],
-            "iv_scale": 235,
-            "ball_seal": 0
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DODRIO",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_SALAC_BERRY",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_ENDURE",
+                "MOVE_FLAIL"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

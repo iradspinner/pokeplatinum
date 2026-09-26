@@ -6,8 +6,7 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN",
-        "AI_FLAG_HARRASSMENT"
+        "AI_FLAG_SETUP_FIRST_TURN"
     ],
     "double_battle": false,
     "party": [
@@ -22,7 +21,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 246,
+            "iv_scale": 226,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -30,15 +29,15 @@
         {
             "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 53,
+            "level": 52,
             "item": "ITEM_TOXIC_ORB",
             "moves": [
                 "MOVE_TOXIC",
                 "MOVE_SUBSTITUTE",
-                "MOVE_HYPER_BEAM",
-                "MOVE_DISABLE"
+                "MOVE_SLAM",
+                "MOVE_SHADOW_BALL"
             ],
-            "iv_scale": 252,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -78,7 +77,7 @@
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 53,
+            "level": 52,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_POISON_JAB",
@@ -87,6 +86,22 @@
                 "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 250,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_AZELF",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_U_TURN",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_PSYCHIC",
+                "MOVE_PAYBACK"
+            ],
+            "iv_scale": 253,
             "ball_seal": 0,
             "ability": 1,
             "gender": null

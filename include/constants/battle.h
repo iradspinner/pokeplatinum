@@ -128,6 +128,7 @@
 #define CHECK_INVALID_HEAL_BLOCK  (1 << 7)
 #define CHECK_INVALID_ENCORE      (1 << 8) // this one is only implicit
 #define CHECK_INVALID_CHOICE_ITEM (1 << 9)
+#define CHECK_INVALID_BELCH       (1 << 10) // Oxide
 #define CHECK_INVALID_ALL         ~0
 
 #define STRUGGLING_MOVE_1 (1 << 0)

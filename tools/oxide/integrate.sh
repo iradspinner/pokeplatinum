@@ -91,7 +91,9 @@ check() {
 # ---------------------------------------------------------------- 1. preconditions
 say "preconditions"
 branch="$(git rev-parse --abbrev-ref HEAD)"
-[ "$branch" = "oxide" ] || die "on branch $branch, not oxide"
+# Merging happens only on oxide. A verify-only run checks whatever branch it
+# is on, which is how a cloud session gates its own cloud/<track> branch.
+[ "$branch" = "oxide" ] || [ $VERIFY_ONLY -eq 1 ] || die "on branch $branch, not oxide"
 if [ -n "$(git status --porcelain)" ]; then
     git status --short >&2
     die "main checkout has uncommitted changes; commit or discard them first"
@@ -422,10 +424,17 @@ b1_missing=""
 for p in "$HOME/roms/balance-refs" "$HOME/roms/hardlove.nds" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
     [ -e "$p" ] || b1_missing="$b1_missing $p"
 done
+# All four balance suites run, because a change elsewhere can stale their
+# saved results: on 2026-09-26 the encounter track's table fold changed
+# Roark's and Gardenia's player pools, and test_b3 failed on oxide while the
+# gate, which then ran test_b1 alone, passed. test_b3 runs the calculator in
+# one Node process for about 20 seconds.
 if [ -z "$b1_missing" ]; then
-    CHECK_EXPECT="passed" check "balance test_b1" "$PY" -m tools.oxide.balance.test_b1
+    for t in test_b1 test_b1e test_b2 test_b3 test_b4; do
+        CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
+    done
 else
-    warn "balance test_b1 skipped, missing:$b1_missing"
+    warn "balance suites skipped, missing:$b1_missing"
 fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.

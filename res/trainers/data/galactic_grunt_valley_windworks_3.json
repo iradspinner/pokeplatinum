@@ -1,41 +1,79 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Officer Somnu",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WEEDLE",
+            "species": "SPECIES_PINECO",
             "form": 0,
-            "level": 15,
+            "level": 16,
             "item": null,
             "moves": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_PAIN_SPLIT",
                 "MOVE_BUG_BITE",
-                "MOVE_NONE"
+                "MOVE_STRING_SHOT"
             ],
-            "iv_scale": 122,
-            "ball_seal": 0
+            "iv_scale": 113,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_CATERPIE",
+            "species": "SPECIES_BARBOACH",
             "form": 0,
-            "level": 15,
+            "level": 18,
             "item": null,
             "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_BUG_BITE",
-                "MOVE_NONE"
+                "MOVE_SPARK",
+                "MOVE_WATER_GUN",
+                "MOVE_MUD_BOMB",
+                "MOVE_AMNESIA"
             ],
-            "iv_scale": 105,
-            "ball_seal": 0
+            "iv_scale": 90,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_EEVEE",
+            "form": 0,
+            "level": 16,
+            "item": null,
+            "moves": [
+                "MOVE_MUD_SLAP",
+                "MOVE_REST",
+                "MOVE_SNORE",
+                "MOVE_FAKE_TEARS"
+            ],
+            "iv_scale": 86,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GULPIN",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": [
+                "MOVE_AMNESIA",
+                "MOVE_SLUDGE",
+                "MOVE_YAWN",
+                "MOVE_DREAM_EATER"
+            ],
+            "iv_scale": 96,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

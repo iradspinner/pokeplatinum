@@ -46,7 +46,8 @@ SPLITS = [s for s in splits.SPLITS if s != "Post"]   # post-game has no cap
 AVERAGE_IV = 15
 CLOSING = {"Roark": "roark", "Gardenia": "gardenia", "Fantina": "fantina",
            "Maylene": "maylene", "Wake": "wake", "Byron": "byron",
-           "Candice": "candice", "Volkner": "volkner", "League": "cynthia"}
+           "Candice": "candice", "Galactic": "cyrus_3", "Volkner": "volkner",
+           "League": "cynthia"}
 LAND_KEYS = ("land_encounters", "day", "night")
 HONEY_SPLIT = "Gardenia"
 SOURCES = os.path.join(data.ROOT, "docs", "oxide", "pokemon-sources.csv")
@@ -83,7 +84,14 @@ def later(*names):
 
 @functools.lru_cache(maxsize=None)
 def caps():
-    """{split: cap}: each split's closing boss's ace in the tree."""
+    """{split: cap}, Ian's caps as fights.json records them. They were each
+    split's closing boss's ace until the Galactic split (2026-09-25) set
+    Galactic at 64 and raised Volkner to 68 ahead of the trainers."""
+    return {s: c for s, c in data.fights()["caps"].items() if not s.startswith("_")}
+
+
+def closing_aces():
+    """{split: the ace level of its closing boss in the tree}."""
     by_key = {f["key"]: f for f in data.fights()["fights"]}
     out = {}
     for split, key in CLOSING.items():

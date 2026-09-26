@@ -24,8 +24,10 @@ D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
       ("Machamp", "Bronzor", "Crunch", (42, 50)),
       ("Machamp", "Bronzor", "Cross Chop", (81, 96)),
       ("Machamp", "Clefairy", "Cross Chop", (63, 74))]
+# Ian's caps: the Level Caps sheet, with Galactic 64 and Volkner 68 from his
+# Battle Zone ruling of 2026-09-25.
 CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
-        "Byron": 53, "Candice": 56, "Volkner": 62, "League": 78}
+        "Byron": 53, "Candice": 56, "Galactic": 64, "Volkner": 68, "League": 78}
 # Moves the calculator's Generation 4 mechanics give no number for (they are
 # handled only in its later-generation code); each is reported, not scored.
 UNMODELLED = {"Electro Ball", "Heavy Slam", "Psywave", "Super Fang", "Trump Card"}
@@ -81,8 +83,14 @@ def check_engine(results):
 
 def check_pool(results, blob):
     """The player's side grows split by split, at each split's cap."""
-    ok_caps = pool.caps() == CAPS
-    results.append(("each split's cap is its closing boss's ace", ok_caps, str(pool.caps())))
+    # The caps are Ian's, and no closing boss may sit above its split's cap.
+    # Galactic's (Cyrus 3) and Volkner's aces are below theirs until the
+    # trainer pass raises them.
+    aces = pool.closing_aces()
+    over = {s: aces[s] for s in CAPS if aces[s] > CAPS[s]}
+    ok_caps = pool.caps() == CAPS and not over
+    results.append(("the caps are Ian's, and no closing boss is above its cap", ok_caps,
+                    f"closing aces {aces}" + (f"; over: {over}" if over else "")))
     sizes, grows, bad = {}, True, []
     before = set()
     for split in pool.SPLITS:

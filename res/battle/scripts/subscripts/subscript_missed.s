@@ -27,8 +27,16 @@ _058:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED, _097
 
 _063:
+    // Oxide: a side guard names itself; the C leaves MOVE_NONE here when the
+    // defender's own Protect stopped the move.
+    CompareVarToValue OPCODE_NEQ, BTLVAR_MSG_MOVE_TEMP, MOVE_NONE, _side_guard
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    GoTo _179
+
+_side_guard:
+    // {1} protected {0}!
+    PrintMessage BattleStrings_Text_MoveProtectedPokemon_Ally, TAG_NICKNAME_MOVE, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
     GoTo _179
 
 _069:
