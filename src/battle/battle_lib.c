@@ -3710,6 +3710,23 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_absorb_and_attack_up_1_stage;
     }
 
+    // Oxide: Lightning Rod and Storm Drain take the moves they draw and raise
+    // Sp. Atk, as in Generation 5 and hg-engine; in Platinum they only drew
+    // the moves in.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LIGHTNING_ROD) == TRUE
+        && moveType == TYPE_ELECTRIC
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && attacker != defender) {
+        subscript = subscript_absorb_and_sp_attack_up_1_stage;
+    }
+
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_STORM_DRAIN) == TRUE
+        && moveType == TYPE_WATER
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && attacker != defender) {
+        subscript = subscript_absorb_and_sp_attack_up_1_stage;
+    }
+
     // Oxide: Bulletproof stops ball and bomb moves, and Overcoat powder moves,
     // with Soundproof's message.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE

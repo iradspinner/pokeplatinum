@@ -1827,8 +1827,12 @@ TestKit_Staples:
     Message TestKit_Text_WhichRule
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
+    AddListMenuEntry TestKit_Text_MenuStapleLightningRod, 1
+    AddListMenuEntry TestKit_Text_MenuStapleStormDrain, 2
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
+    GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
+    GoToIfEq VAR_0x8004, 2, TestKit_StapleStormDrain
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1841,6 +1845,34 @@ TestKit_StapleSturdy:
     SetVar VAR_0x8007, MOVE_ROCK_SLIDE
     SetVar VAR_0x8008, MOVE_DEFENSE_CURL
     SetVar VAR_0x8009, MOVE_MAGNITUDE
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SURF
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Lightning Rod: a Raichu given Lightning Rod, against a wild Jolteon that
+   knows only Thunderbolt. */
+TestKit_StapleLightningRod:
+    SetVar VAR_0x800A, SPECIES_RAICHU
+    SetVar VAR_0x800B, ABILITY_LIGHTNING_ROD
+    SetVar VAR_0x8006, MOVE_THUNDERBOLT
+    SetVar VAR_0x8007, MOVE_NASTY_PLOT
+    SetVar VAR_0x8008, MOVE_SURF
+    SetVar VAR_0x8009, MOVE_FOCUS_BLAST
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDERBOLT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Storm Drain: a Gastrodon given Storm Drain, against a wild Vaporeon that
+   knows only Surf. */
+TestKit_StapleStormDrain:
+    SetVar VAR_0x800A, SPECIES_GASTRODON
+    SetVar VAR_0x800B, ABILITY_STORM_DRAIN
+    SetVar VAR_0x8006, MOVE_EARTH_POWER
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TOXIC
     SetVar VAR_0x8000, SPECIES_VAPOREON
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SURF

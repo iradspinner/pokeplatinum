@@ -266,6 +266,14 @@
             "en_US": "Sturdy"
         },
         {
+            "id": "TestKit_Text_MenuStapleLightningRod",
+            "en_US": "Lightning Rod"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleStormDrain",
+            "en_US": "Storm Drain"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
