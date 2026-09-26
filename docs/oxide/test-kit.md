@@ -207,6 +207,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Electric and paralysis | Luxray: Spark, Crunch, Roar, Charge; foe a wild Arbok that knows Glare and Thunder Wave | Glare and Thunder Wave: "It doesn't affect LUXRAY...", and Luxray is never paralysed. Luxray's Spark can still paralyse Arbok | ELECTRIC |
 | Ghosts and trapping | Mismagius: Shadow Ball, Mystical Fire, Protect, Teleport; foe a wild Umbreon that knows Mean Look and Fire Spin | Switch Mismagius in on the first turn. Mean Look: "It doesn't affect MISMAGIUS..."; Fire Spin still hurts it each turn, but Mismagius can switch out, Run gets away and Teleport works | GHOST |
 | Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | CRITICAL |
+| Defog, both sides | Mew: Defog, Stealth Rock, Reflect, Recover; foe a wild Skarmory that knows Spikes and Toxic Spikes | Let Skarmory lay Spikes and Toxic Spikes on your side, and lay Stealth Rock on its side and Reflect on yours. Defog blows away Stealth Rock, Spikes and Toxic Spikes, each named once, and your Reflect stays: Defog clears screens only on the target's side. It still clears fog | DEFOG |
 
 ## Not built yet
 

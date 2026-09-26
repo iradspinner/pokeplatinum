@@ -330,6 +330,10 @@
             "en_US": "Critical hits"
         },
         {
+            "id": "TestKit_Text_MenuStapleDefog",
+            "en_US": "Defog, both sides"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
