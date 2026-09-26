@@ -36,6 +36,7 @@ OreburghCityGym_Entry0:
     WaitFanfare
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON
     SetTrainerFlag TRAINER_YOUNGSTER_DARIUS
+    RaiseLevelCap LEVEL_CAP_SPLIT_GARDENIA
     GiveBadge 0
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON

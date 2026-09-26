@@ -92,6 +92,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   learn and confirm the right move at the right level (a wrong widening would
   be wrong for all 667 learnsets). A Rotom in a form, or a Giratina holding the
   Griseous Orb, shows its form's stats.
+- [ ] **Element 8, the level caps** (the Level caps menu, `docs/oxide/test-kit.md`
+  has the detail): at a new game's cap of 16, Rare Candies stop at Lv. 16 and
+  the next one has no effect and is kept; a Lv. 50 Pokemon wins with no Exp.
+  message; a Pokemon one level under the cap stops at it however much it
+  earns, and is still at it after a trip into the PC; a higher split lets it
+  grow again.
 - [ ] **One calculator roll** (the encounter tool, M8): in a battle, note an
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
@@ -110,7 +116,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   PC, Oak's PC, Healing Waves and Misc., with the Hall of Fame in Misc. only
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
-- [ ] Rare Candy chaining works.
+- [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
+  after beating him the badge message plays as before and Lv. 26 is the new
+  ceiling. The Day Care man's level and price stop at the cap too.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
 - [ ] Shinx's ability is always Rivalry, never Intimidate; Bidoof and Starly
@@ -159,12 +168,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   cleared, Route 225 is open from the first arrival at the Fight Area, and the
   Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
   (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
+- [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
+  Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
 ## 5. The ordinary ROM, after the League
 
 On a save with the National Dex and the game beaten:
+
+- [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
+  and takes Rare Candies again.
 
 - [ ] Acuity Lakefront's grass and the Poke Radar there give no Weavile,
   Abomasnow, Mamoswine or Glalie, and radar chains still build on the area's

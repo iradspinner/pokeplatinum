@@ -28,6 +28,7 @@
 #include "savedata.h"
 #include "string_gf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
 #include "unk_020559DC.h"
@@ -218,12 +219,26 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 
     BoxPokemon_Copy(boxMon, boxMonRef);
 
+    // Platinum Oxide: the Pokemon comes out of the Day Care no higher than
+    // the level cap (Pokemon_ShouldLevelUp holds it there on collection), so
+    // the level shown, the levels grown and the price all stop there too.
+    // One already above the cap stays at its own level.
+    int capLevel = LevelCap_Get();
+
+    if (BoxPokemon_GetLevel(boxMonRef) > capLevel) {
+        capLevel = BoxPokemon_GetLevel(boxMonRef);
+    }
+
     exp = BoxPokemon_GetValue(boxMonRef, MON_DATA_EXPERIENCE, NULL);
     exp += givenExp;
 
     BoxPokemon_SetValue(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
     level = BoxPokemon_GetLevel(boxMonRef);
     Heap_Free(mon);
+
+    if (level > capLevel) {
+        level = capLevel;
+    }
 
     return level;
 }

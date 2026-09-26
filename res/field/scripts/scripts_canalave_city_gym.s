@@ -40,6 +40,7 @@ CanalaveCityGym_Entry1:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_CANDICE
     GiveBadge 5
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_BLACK_BELT_DAVID

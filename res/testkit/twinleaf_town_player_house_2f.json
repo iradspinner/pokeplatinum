@@ -258,6 +258,70 @@
             "en_US": "Modern rules"
         },
         {
+            "id": "TestKit_Text_MenuLevelCaps",
+            "en_US": "Level caps"
+        },
+        {
+            "id": "TestKit_Text_WhichCap",
+            "en_US": "Which split?"
+        },
+        {
+            "id": "TestKit_Text_MenuCapRoark",
+            "en_US": "Roark, Lv. 16"
+        },
+        {
+            "id": "TestKit_Text_MenuCapGardenia",
+            "en_US": "Gardenia, Lv. 26"
+        },
+        {
+            "id": "TestKit_Text_MenuCapFantina",
+            "en_US": "Fantina, Lv. 33"
+        },
+        {
+            "id": "TestKit_Text_MenuCapMaylene",
+            "en_US": "Maylene, Lv. 39"
+        },
+        {
+            "id": "TestKit_Text_MenuCapWake",
+            "en_US": "Wake, Lv. 44"
+        },
+        {
+            "id": "TestKit_Text_MenuCapByron",
+            "en_US": "Byron, Lv. 53"
+        },
+        {
+            "id": "TestKit_Text_MenuCapCandice",
+            "en_US": "Candice, Lv. 56"
+        },
+        {
+            "id": "TestKit_Text_MenuCapHQ",
+            "en_US": "Galactic HQ, Lv. 60"
+        },
+        {
+            "id": "TestKit_Text_MenuCapGalactic",
+            "en_US": "Galactic, Lv. 65"
+        },
+        {
+            "id": "TestKit_Text_MenuCapVolkner",
+            "en_US": "Volkner, Lv. 68"
+        },
+        {
+            "id": "TestKit_Text_MenuCapLeague",
+            "en_US": "League, Lv. 78"
+        },
+        {
+            "id": "TestKit_Text_MenuCapNone",
+            "en_US": "No cap"
+        },
+        {
+            "id": "TestKit_Text_LevelCapSet",
+            "en_US": [
+                "The level cap is set.\n",
+                "A Pokémon at the cap gains no\r",
+                "Exp. and takes no Rare Candy."
+            ]
+        },
+        {
             "id": "TestKit_Text_WhichRule",
             "en_US": "Which rule?"
         },

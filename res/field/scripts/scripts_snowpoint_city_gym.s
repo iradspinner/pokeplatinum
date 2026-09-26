@@ -41,6 +41,7 @@ SnowpointCityGym_Entry1:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_HQ
     GiveBadge 6
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_ACE_TRAINER_SERGIO

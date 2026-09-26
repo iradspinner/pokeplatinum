@@ -48,6 +48,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
+#include "system_vars.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
@@ -3498,20 +3499,43 @@ BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon)
     return &mon->box;
 }
 
+// Platinum Oxide: the highest level experience can carry this Pokemon to under
+// the level cap. That is the cap itself, or the Pokemon's own level when it is
+// already above the cap (a gift, a trade, or a cap design that moved down).
+u8 Pokemon_GetLevelCapLevel(Pokemon *mon)
+{
+    u8 cap = LevelCap_Get();
+    u8 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+
+    return level > cap ? level : cap;
+}
+
+// Platinum Oxide: the most experience this Pokemon may hold under the level
+// cap, which is exactly the amount for Pokemon_GetLevelCapLevel's level. A
+// Pokemon's stored level is recalculated from its experience whenever it
+// goes into a box, so holding more would let it past the cap there.
+u32 Pokemon_GetLevelCapExp(Pokemon *mon)
+{
+    return Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetLevelCapLevel(mon));
+}
+
 BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
 {
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 monExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
     int monExpRate = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE);
-    u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, MAX_POKEMON_LEVEL);
+    // Platinum Oxide: stop at the level cap, as hg-engine's Pokemon_TryLevelUp
+    // does, rather than at level 100. With no cap in force this is level 100.
+    u8 maxLevel = Pokemon_GetLevelCapLevel(mon);
+    u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, maxLevel);
 
     if (monExp > maxExp) {
         monExp = maxExp;
         Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &monExp);
     }
 
-    if (monNextLevel > MAX_POKEMON_LEVEL) {
+    if (monNextLevel > maxLevel) {
         return FALSE;
     }
 
