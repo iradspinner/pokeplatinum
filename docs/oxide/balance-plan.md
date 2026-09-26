@@ -387,16 +387,16 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 91 | 29 |
-| Gardenia | 26 | 142 | 41 |
-| Fantina | 33 | 217 | 47 |
-| Maylene | 39 | 275 | 77 |
-| Wake | 44 | 299 | 87 |
-| Byron | 53 | 318 | 102 |
-| Candice | 56 | 323 | 108 |
-| Galactic | 64 | 330 | 123 |
-| Volkner | 68 | 330 | 124 |
-| League | 78 | 330 | 128 |
+| Roark | 16 | 91 | 30 |
+| Gardenia | 26 | 140 | 42 |
+| Fantina | 33 | 215 | 48 |
+| Maylene | 39 | 274 | 78 |
+| Wake | 44 | 298 | 88 |
+| Byron | 53 | 317 | 103 |
+| Candice | 56 | 322 | 109 |
+| Galactic | 64 | 329 | 124 |
+| Volkner | 68 | 329 | 125 |
+| League | 78 | 329 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -434,7 +434,10 @@ most threatening Pokemon and its least answered one.
 | Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
 | Cynthia | 0.68 | 0.14 | 0.90 | 0.02 |
 
-Both tables were recomputed on 2026-09-25, for Ian's baseline teams from
+Both tables were recomputed on 2026-09-25 again once honey trees became one
+table per badge count, each opening in its own split (the encounter track's
+change; a split's side moves by one or two species). Before that they were
+recomputed for Ian's baseline teams from
 Test.nds and his sheet (which move Saturn 1, Mars 2, Candice and the four
 Galactic fights), for the Galactic split and the
 encounter track's recast tables (Roark's side went from 92 to 91 species

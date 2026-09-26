@@ -12,8 +12,9 @@ Where each piece comes from:
 
 - Species. The encounter tables, each counted from its own split (the
   encounter design's), for land, the day and night slots, and water, which
-  also waits for the rod or for Surf. Honey trees count from Gardenia's
-  split, where the first Honey is. The scripted sources are
+  also waits for the rod or for Surf. Honey trees have one table per badge
+  count, and each table's species count from its own split (Gardenia's,
+  where the first Honey is, for the first). The scripted sources are
   docs/oxide/pokemon-sources.csv (starters, gifts, trades, statics, fossils,
   roamers), each at its location's split, and left out when its level is
   above that split's cap. Swarms, the Poke Radar, the GBA slots and the
@@ -140,9 +141,14 @@ def caught():
             arrives = later(water, progression.rod_split(sidecar, kind))
             for sp in ref.get(kind + "_encounters") or []:
                 offer(sp, arrives, kind)
-    for key, vals in model.honey_tree_species().items():
-        for sp in vals:
-            offer(sp, HONEY_SPLIT, "honey")
+    # Honey trees: one table per badge count, each opening in the split the
+    # encounter design gives it. A table from before the split tables (the
+    # vanilla format) has no split and opens with the first Honey, in
+    # Gardenia's.
+    for table in model.honey_tree_tables():
+        for key in (*model.HONEY_TREE_KEYS, "rare"):
+            for sp in table.get(key) or []:
+                offer(sp, table.get("split") or HONEY_SPLIT, "honey")
     locs = _location_splits()
     cap = caps()
     with open(SOURCES, encoding="utf-8") as f:
