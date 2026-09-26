@@ -207,7 +207,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
     // Oxide patch: damage a profile's moves set outright (Psywave, Super Fang).
     fixedDamage = (0, romhack_helpers_1.applyValueHooks)(profile, "fixedDamage", ctx, fixedDamage);
     if (fixedDamage) {
-        result.damage = fixedDamage;
+        result.damage = (0, romhack_helpers_1.applyValueHooks)(profile, "firstHitDamage", ctx, fixedDamage);
         return result;
     }
 
@@ -433,7 +433,10 @@ function calculateDPP(gen, attacker, defender, move, field) {
         if (defender.hasAbility('Unaware')) {
             desc.defenderAbility = defender.ability;
         }
-        else if (attacker.hasAbility('Simple')) {
+        // Oxide patch: a profile whose Simple doubles stat changes as they
+        // are made (Platinum Oxide) reads the stages as they stand.
+        else if (attacker.hasAbility('Simple') &&
+            (0, romhack_helpers_1.applyValueHooks)(profile, "simpleAtCalc", ctx, true)) {
             attack = getSimpleModifiedStat(attack, attackBoost);
             desc.attackerAbility = attacker.ability;
             desc.attackBoost = attackBoost;
@@ -501,7 +504,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
         if (attacker.hasAbility('Unaware')) {
             desc.attackerAbility = attacker.ability;
         }
-        else if (defender.hasAbility('Simple')) {
+        else if (defender.hasAbility('Simple') &&
+            (0, romhack_helpers_1.applyValueHooks)(profile, "simpleAtCalc", ctx, true)) {
             defense = getSimpleModifiedStat(defense, defenseBoost);
             desc.defenderAbility = defender.ability;
             desc.defenseBoost = defenseBoost;
@@ -582,7 +586,18 @@ function calculateDPP(gen, attacker, defender, move, field) {
         // (Fluffy, Ice Scales).
         baseDamage = (0, romhack_helpers_1.applyValueHooks)(profile, "beforeFinalDamage", ctx, baseDamage);
         baseDamage += 2;
-        if (isCritical) {
+        // Oxide patch: a profile's critical hit multiplier (Platinum Oxide's
+        // is 1.5x, and 2.25x for a Sniper); it returns the damage, or leaves
+        // it undefined for upstream's.
+        ctx.state.baseDamage = baseDamage;
+        var critDamage = isCritical
+            ? (0, romhack_helpers_1.applyValueHooks)(profile, "criticalDamage", ctx, undefined)
+            : undefined;
+        if (critDamage !== undefined) {
+            baseDamage = critDamage;
+            desc.isCritical = isCritical;
+        }
+        else if (isCritical) {
             var criticalHitMultiplier = (0, util_1.getCriticalHitMultiplier)(gen);
             if (attacker.hasAbility('Sniper')) {
                 baseDamage = Math.floor(baseDamage * criticalHitMultiplier * 1.5);
@@ -681,7 +696,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
     if (!hitResult) {
         return result;
     }
-    var damage = hitResult.damage;
+    // Oxide patch: a profile's limit on the first hit (Sturdy from full HP).
+    var damage = (0, romhack_helpers_1.applyValueHooks)(profile, "firstHitDamage", ctx, hitResult.damage);
     var attackStat = hitResult.attackStat;
     result.damage = damage;
     desc.attackBoost =

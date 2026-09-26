@@ -360,6 +360,11 @@ function checkIntimidate(gen, source, target) {
     if (TITLE.includes("Cascade") && target.hasAbility("Scrappy")) {
         blocked = true;
     } 
+    // Oxide patch: Platinum Oxide takes the later games' four Intimidate
+    // blockers (staples survey).
+    if (TITLE === "Platinum Oxide" && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) {
+        blocked = true;
+    }
 
     if (source.hasAbility('Intimidate') && source.abilityOn && !blocked) {
         // Oxide patch: in Platinum Oxide, Mirror Armor turns the drop back on

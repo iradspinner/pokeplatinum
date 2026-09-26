@@ -20,7 +20,10 @@ var HOOK_NAMES = [
     "powerAfterTechnician",
     "defenderPowerMods",
     "attackStat",
-    "typeFactorOrder"
+    "typeFactorOrder",
+    "simpleAtCalc",
+    "criticalDamage",
+    "firstHitDamage"
 ];
 exports.HOOK_NAMES = HOOK_NAMES;
 

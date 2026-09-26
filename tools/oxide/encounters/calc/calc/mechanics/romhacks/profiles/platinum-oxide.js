@@ -7,7 +7,10 @@ exports.__esModule = true;
 // rounding. Element 5's abilities that change damage or a stat stage (Ian's
 // ruling), the moves whose power or damage Oxide works out in code, the
 // always-critical moves, and a dual type's two factors applied in the type
-// chart's row order. The move lists come from platinum-oxide-data.js, which
+// chart's row order. Since the staples rulings (2026-09-26) also: critical
+// hits at 1.5x, Simple doubling a stat change when it is made, Normalize's
+// fifth, Lightning Rod and Storm Drain taking their type, Grass types immune
+// to powder moves, and Sturdy surviving any hit from full HP. The move lists come from platinum-oxide-data.js, which
 // make_calc_mechanics.py generates from the engine, so they are Oxide's and
 // not Showdown's.
 
@@ -60,16 +63,23 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                 }
             }
         ],
-        // Sap Sipper takes Grass moves, Bulletproof ball and bomb moves and
-        // Overcoat powder moves. Mold Breaker has already cleared the
-        // defender's ability by the time this runs.
+        // Sap Sipper takes Grass moves, Lightning Rod Electric ones, Storm
+        // Drain Water ones, Bulletproof ball and bomb moves and Overcoat
+        // powder moves. Mold Breaker has already cleared the defender's
+        // ability by the time this runs. A Grass type is immune to powder
+        // moves whatever its ability.
         moveImmunity: [
             function (ctx, immune) {
                 var move = ctx.move, def = ctx.defender;
                 if ((def.hasAbility("Sap Sipper") && move.hasType("Grass")) ||
+                    (def.hasAbility("Lightning Rod") && move.hasType("Electric")) ||
+                    (def.hasAbility("Storm Drain") && move.hasType("Water")) ||
                     (def.hasAbility("Bulletproof") && inList("bullet", move)) ||
                     (def.hasAbility("Overcoat") && inList("powder", move))) {
                     ctx.desc.defenderAbility = def.ability;
+                    return true;
+                }
+                if (def.hasType("Grass") && inList("powder", move)) {
                     return true;
                 }
                 return immune;
@@ -139,7 +149,7 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
             }
         ],
         // After Technician, in the engine's order: Sharpness, Pixilate, Sheer
-        // Force, the auras, Battery.
+        // Force, Normalize, the auras, Battery.
         powerAfterTechnician: [
             function (ctx, basePower) {
                 var move = ctx.move, att = ctx.attacker, desc = ctx.desc;
@@ -152,6 +162,11 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                 }
                 if (att.hasAbility("Sheer Force") && inList("sheerForce", move)) {
                     basePower = Math.floor(basePower * 13 / 10);
+                    desc.attackerAbility = att.ability;
+                }
+                // Normalize raises every move it makes Normal, Struggle aside.
+                if (att.hasAbility("Normalize") && !move.named("Struggle")) {
+                    basePower = Math.floor(basePower * 12 / 10);
                     desc.attackerAbility = att.ability;
                 }
                 if ((move.hasType("Dark") && anyAbility(ctx, "Dark Aura")) ||
@@ -217,6 +232,42 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                     ctx.desc.defenderAbility = def.ability;
                 }
                 return baseDamage;
+            }
+        ],
+        // Simple doubles a stat change as it is made (ChangeStatStage), so the
+        // stages the calculator is given are already doubled.
+        simpleAtCalc: [
+            function () {
+                return false;
+            }
+        ],
+        // A critical hit multiplies the damage, after the formula's +2, by
+        // 3/2, or by 9/4 for a Sniper (ApplyCriticalMul in battle_script.c).
+        criticalDamage: [
+            function (ctx) {
+                var damage = ctx.state.baseDamage;
+                if (ctx.attacker.hasAbility("Sniper")) {
+                    ctx.desc.attackerAbility = ctx.attacker.ability;
+                    return Math.floor(damage * 9 / 4);
+                }
+                return Math.floor(damage * 3 / 2);
+            }
+        ],
+        // Sturdy leaves its holder 1 HP from any hit taken at full HP. Only
+        // the first hit of a multi-hit move meets it at full HP.
+        firstHitDamage: [
+            function (ctx, damage) {
+                var def = ctx.defender;
+                if (!def.hasAbility("Sturdy") || def.curHP() !== def.maxHP()) {
+                    return damage;
+                }
+                var cap = def.maxHP() - 1;
+                var capped = typeof damage === "number" ? Math.min(damage, cap)
+                    : damage.map(function (d) { return Math.min(d, cap); });
+                if (String(capped) !== String(damage)) {
+                    ctx.desc.defenderAbility = def.ability;
+                }
+                return capped;
             }
         ],
         // A dual type's factors in the chart's row order (Ian, 2026-09-22):

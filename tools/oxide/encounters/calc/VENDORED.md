@@ -95,17 +95,23 @@ calculator checks fail if the offline ones are lost.
    before `romhacks/index.js`, which lists the profile, and
    `romhacks/helpers.js` gains six hook names: `moveImmunity`, `fixedDamage`,
    `powerAfterTechnician`, `defenderPowerMods`, `attackStat` and
-   `typeFactorOrder`.
+   `typeFactorOrder`. Since the staples rulings (2026-09-26) it also has
+   critical hits at 1.5x (2.25x for a Sniper), Simple doubling a stat change
+   when it is made rather than in the formula, Normalize's fifth, Lightning
+   Rod and Storm Drain taking their type, Grass immune to powder moves, and
+   Sturdy surviving any hit from full HP, through three more hook names:
+   `simpleAtCalc`, `criticalDamage` and `firstHitDamage`.
 
 10. **`calc/mechanics/gen4.js`, the hooks the profile needs.** Each is marked
     "Oxide patch" and does nothing for a profile without that hook: the
     `criticalHit`, `afterMoveType` and `beforeFinalDamage` calls upstream's
-    other generations already make, and calls for the six new names above.
+    other generations already make, and calls for the nine new names above.
     The damage loop takes the two type factors from `typeFactorOrder`.
 
 11. **`calc/mechanics/util.js`, Mirror Armor.** Under the "Platinum Oxide"
     title, `checkIntimidate` lowers the Intimidate user's Attack when the
-    target has Mirror Armor, as element 5 does.
+    target has Mirror Armor, as element 5 does, and Inner Focus, Own Tempo,
+    Oblivious and Scrappy block it, as the staples rulings have it.
 
 12. **`js/vendor/oxide/LICENSES.md`** lists every vendored library's licence,
     and the two files that came without a notice (object-hash and the ag-grid

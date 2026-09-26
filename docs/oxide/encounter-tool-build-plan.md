@@ -364,8 +364,13 @@ that stay. None blocks anything.
    Neutralizing Gas is a battle state, not a matchup, so it is not modelled;
    blank the ability by hand to see it. The balance track's rescore is
    pending, and its `test_b3` pins the two Bronzor ranges at the old numbers.
-   Later, once the engine has them (Ian's staples-survey answers,
-   `docs/oxide/staples-survey.md`), it also needs:
+   The staples rulings that change damage followed on 2026-09-26, once the
+   engine had them: critical hits at 1.5x, Simple, Normalize, Lightning Rod
+   and Storm Drain, Grass against powder moves, Sturdy, and the four new
+   Intimidate blockers. Native moves take their numbers from `res/`, so
+   they needed nothing. The calculator shows damage, not odds, so the new
+   critical hit rates and Keen Eye's accuracy are left to the balance
+   track's models. The list as it stood before:
    - critical hits at 1.5x and the modern rates
    - the Gen 6 type immunities: Grass against powder moves, Electric
      against paralysis

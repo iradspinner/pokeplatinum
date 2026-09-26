@@ -703,6 +703,14 @@ def check_calc_mechanics(results):
         "ball": ("Pikachu", "Static", "Gyarados", "", "Electro Ball"),
         "order": ("Tyranitar", "Sand Stream", "Bronzor", "", "Crunch"),
         "order2": ("Machamp", "Guts", "Bronzor", "", "Cross Chop"),
+        "sniper": ("Frosmoth", "Sniper", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
+        "normalize": ("Delcatty", "Normalize", "Blissey", "", "Tackle"),
+        "tackle": ("Delcatty", "Cute Charm", "Blissey", "", "Tackle"),
+        "rod": ("Pikachu", "Static", "Rhydon", "Lightning Rod", "Thunderbolt"),
+        "drain": ("Vaporeon", "Water Absorb", "Gastrodon", "Storm Drain", "Surf"),
+        "sturdy": ("Garchomp", "Rough Skin", "Geodude", "Sturdy", "Earthquake"),
+        "focus": ("Lucario", "Inner Focus", "Gyarados", "Intimidate", "Close Combat"),
+        "fast": ("Lucario", "Steadfast", "Gyarados", "Intimidate", "Close Combat"),
     }
     jobs = {"pokemon": {}, "pairs": []}
     for key, (att, ability, dfn, dability, move) in cases.items():
@@ -735,17 +743,29 @@ def check_calc_mechanics(results):
                     f"Psywave {rolls['psywave'][0]} to {rolls['psywave'][-1]}, "
                     f"Electro Ball at most {rolls['ball'][-1]}"))
     # Frost Breath always lands a critical hit unless the target has Shell
-    # Armor. Crunch into Bronzor applies Psychic's double before Steel's half,
+    # Armor, and Oxide's critical hit is 1.5x, 2.25x for a Sniper (staples
+    # survey). Crunch into Bronzor applies Psychic's double before Steel's half,
     # as the chart's rows come; the other way round every roll would be even.
     # Fighting's rows put Psychic's half first, so Cross Chop's rolls all are.
     results.append(("the always-critical moves crit, and a dual type's factors "
                     "come in chart order",
-                    rolls["crit"][0] > rolls["armor"][-1] * 3 // 2
+                    rolls["armor"][-1] * 14 // 10 <= rolls["crit"][-1] <= rolls["armor"][-1] * 16 // 10
+                    and rolls["armor"][-1] * 21 // 10 <= rolls["sniper"][-1] <= rolls["armor"][-1] * 24 // 10
                     and any(r % 2 for r in rolls["order"])
                     and not any(r % 2 for r in rolls["order2"]),
                     f"Frost Breath {rolls['armor'][-1]} to {rolls['crit'][-1]}, "
                     f"Crunch {rolls['order'][0]} to {rolls['order'][-1]}, "
                     f"Cross Chop {rolls['order2'][0]} to {rolls['order2'][-1]}"))
+    # The staples rulings (2026-09-26) that change damage.
+    geodude = out["pokemon"]["dsturdy"]["hp"]
+    results.append(("the staples rulings: Normalize's fifth, Lightning Rod and Storm "
+                    "Drain, Sturdy, and Inner Focus against Intimidate",
+                    rolls["normalize"][-1] >= rolls["tackle"][-1] * 115 // 100
+                    and set(rolls["rod"]) == {0} and set(rolls["drain"]) == {0}
+                    and set(rolls["sturdy"]) == {geodude - 1}
+                    and rolls["focus"][0] > rolls["fast"][-1],
+                    f"Tackle {rolls['tackle'][-1]} to {rolls['normalize'][-1]}, "
+                    f"Earthquake into Sturdy {rolls['sturdy'][-1]} of {geodude}"))
 
 
 def check_trainer_sets(results):
