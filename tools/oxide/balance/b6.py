@@ -37,6 +37,7 @@ recomputed only when their inputs change, and verified by a second run.
 """
 import argparse
 import collections
+import csv
 import functools
 import json
 import os
@@ -543,11 +544,37 @@ DEAD_MOVES = {"MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN", "MOVE_MISTY_TERRAI
 DEAD_ABILITIES = {"ELECTRIC_SURGE", "GRASSY_SURGE", "MISTY_SURGE", "PSYCHIC_SURGE", "SEED_SOWER"}
 
 
+def obtainable():
+    """Every species the player can come to own at all: the player's side at
+    the League; every scripted source, whatever its level (the side leaves
+    out one above its location's cap, such as a roamer); and the drawn
+    thirds of the legendary pool (availability-plan.json: not the reserve,
+    and not a third whose cavern is kept empty); with what each evolves
+    into."""
+    out = set(pool.species_by_split()[SPLITS[-1]])
+    with open(pool.SOURCES, encoding="utf-8") as f:
+        out |= {row["species"] for row in csv.DictReader(f)}
+    path = os.path.join(data.ROOT, "docs", "oxide", "encounters", "availability-plan.json")
+    with open(path, encoding="utf-8") as f:
+        drawn = json.load(f).get("pool", {})
+    empty = " ".join(drawn.get("empty") or []).lower()
+    for third, species in (drawn.get("thirds") or {}).items():
+        if third != "reserve" and third not in empty:
+            out |= set(species)
+    todo = list(out)
+    while todo:
+        for _need, target in evolve.evolutions(data.ROOT, todo.pop()):
+            if target not in out:
+                out.add(target)
+                todo.append(target)
+    return out
+
+
 def dead_weight():
     """{"species": [(constant, obtainable, [what is dead])], "tms": [(machine,
     move)], "tutors": [(location, move)]}: everything that carries a move
     or ability Ian's terrain ruling left doing nothing."""
-    owned = set(pool.species_by_split()[SPLITS[-1]])
+    owned = obtainable()
     machines = pokedex.machines(data.ROOT)
     rows = []
     with open(os.path.join(data.ROOT, "generated", "species.txt"), encoding="utf-8") as f:
