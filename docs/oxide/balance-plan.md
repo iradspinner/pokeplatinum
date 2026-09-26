@@ -6,18 +6,15 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-25).** The tool knows the Galactic split Ian
-ruled in on 2026-09-25 (below), on branch `balance-galactic-split`, which
-merges the encounter track's branch so the two land together; every
-balance suite passes there, twice (`test_b1` 43, `test_b1e` 7, `test_b2` 7,
-`test_b3` 8). The pressure scores were recomputed for the new split and for
-the encounter track's recast tables. Done: B1a, B1b, B1d, B1e (now checked
-against Ian's routes), B2 and B3a. B3b, the reference hacks' bosses
-against Oxide's side, is parked on `wip-balance-b3b` since a Node process
-segfaulted on the degraded CPU with four cores busy on 2026-09-23, and
-resumes on the new CPU. Ian chose to bring the Battle Zone down 18 levels;
-the edit waits on the Overseer. B4, the level curve, is next. No questions
-are open.
+**Where it stands (2026-09-25).** Test.nds is now Oxide's base ROM, with
+Ian's late boss updates and his sheet's testing teams as the baseline
+(Ian's rulings below); the carry-over is on branch `base-rom-2026-08-31`,
+checked clean (the importer and all three bulk tools at 0 against it, every
+balance suite passing) and waiting for the Overseer to swap the base ROM's
+pin and merge. Ian chose two Galactic splits (HQ 60, Galactic 65); the tool
+learns them after that merge. The Battle Zone's 18-level drop stays parked
+until then. Done before that: B1a, B1b, B1d, B1e, B2, B3a and B4's tools.
+B3b is parked for the new CPU. No questions are open.
 
 ## The target
 
@@ -119,6 +116,25 @@ Ian's answers, 2026-09-25, to the three open questions:
   Route 218's four all can. He found the base ROM had far too few ordinary
   fights outside the gyms and bosses, and wants that addressed; the
   trainer placement pass is where it happens.
+
+Ian's rulings, 2026-09-25, on the Galactic stretch and the base ROM:
+
+- **Two Galactic splits: HQ at 60, then Galactic (the Battle Zone, the
+  climb, Spear Pillar, the Distortion World) at 65**, with Volkner at 68.
+  The tool learns the new split once the base ROM change below has merged.
+- **The "[TESTING CHANGES]" teams in Ian's Boss Documentation sheet are
+  Oxide's baseline.**
+- **Test.nds is the base ROM.** The ROM Phase 3 carried over from was
+  exported on 2026-08-11; Ian's work from 14 to 31 August (37 trainers, nine
+  maps' events, six scripts, seven learnsets, Beautifly's record, the
+  trainer names) was only in his DSPRE folder and in Test.nds, exported
+  2026-08-31. The switch was carried over on branch
+  `base-rom-2026-08-31`. Cyrus 2 and Cyrus 3's testing teams are in no ROM
+  and were entered from the sheet. The six gift-house scripts Test.nds
+  changed keep Oxide's versions, since Test.nds only reordered their gifts
+  or made Sandgem roll, which Oxide already does. Two former dummy slots
+  are now real trainers on the map (Officer Argo, Krystal), and the moved
+  trainers make four more of them required (40, from 36).
 
 ## What the first look found
 
@@ -392,8 +408,8 @@ most threatening Pokemon and its least answered one.
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.94 |
 | Barry 2 | 0.01 | 0.63 | 0.01 | 0.47 |
 | Roark | 0.13 | 0.17 | 0.44 | 0.04 |
-| Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
-| Gardenia | 0.68 | 0.05 | 0.91 | 0.01 |
+| Mars 1 | 0.01 | 0.35 | 0.01 | 0.08 |
+| Gardenia | 0.68 | 0.05 | 0.92 | 0.01 |
 | Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
 | Fantina | 0.51 | 0.11 | 0.88 | 0.01 |
 | Barry 3 | 0.17 | 0.48 | 0.36 | 0.34 |
@@ -401,15 +417,15 @@ most threatening Pokemon and its least answered one.
 | Barry 4 | 0.48 | 0.13 | 0.82 | 0.04 |
 | Wake | 0.74 | 0.07 | 0.98 | 0.00 |
 | Cyrus 1 | 0.38 | 0.35 | 0.59 | 0.23 |
-| Barry 5 | 0.54 | 0.18 | 0.90 | 0.05 |
-| Byron | 0.33 | 0.24 | 0.67 | 0.17 |
-| Saturn 1 | 0.46 | 0.24 | 0.78 | 0.09 |
-| Mars 2 | 0.26 | 0.15 | 0.51 | 0.04 |
-| Candice | 0.73 | 0.14 | 0.97 | 0.00 |
-| Cyrus 2 | 0.35 | 0.24 | 0.77 | 0.06 |
-| Saturn 2 | 0.49 | 0.30 | 0.77 | 0.14 |
-| Mars and Jupiter | 0.30 | 0.34 | 0.63 | 0.11 |
-| Cyrus 3 | 0.65 | 0.16 | 0.95 | 0.04 |
+| Barry 5 | 0.54 | 0.18 | 0.90 | 0.04 |
+| Byron | 0.33 | 0.21 | 0.57 | 0.15 |
+| Saturn 1 | 0.52 | 0.24 | 0.80 | 0.09 |
+| Mars 2 | 0.37 | 0.14 | 0.84 | 0.05 |
+| Candice | 0.67 | 0.14 | 0.93 | 0.04 |
+| Cyrus 2 | 0.38 | 0.21 | 0.77 | 0.06 |
+| Saturn 2 | 0.25 | 0.32 | 0.77 | 0.16 |
+| Mars and Jupiter | 0.32 | 0.32 | 0.68 | 0.06 |
+| Cyrus 3 | 0.53 | 0.21 | 0.83 | 0.11 |
 | Volkner | 0.65 | 0.17 | 0.89 | 0.02 |
 | Barry 6 | 0.54 | 0.24 | 0.91 | 0.05 |
 | Aaron | 0.58 | 0.19 | 0.74 | 0.09 |
@@ -418,7 +434,9 @@ most threatening Pokemon and its least answered one.
 | Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
 | Cynthia | 0.68 | 0.14 | 0.90 | 0.02 |
 
-Both tables were recomputed on 2026-09-25, for the Galactic split and the
+Both tables were recomputed on 2026-09-25, for Ian's baseline teams from
+Test.nds and his sheet (which move Saturn 1, Mars 2, Candice and the four
+Galactic fights), for the Galactic split and the
 encounter track's recast tables (Roark's side went from 92 to 91 species
 and Gardenia's from 140 to 142 after its one-spot fold, and Byron's and
 Candice's rose by two). The Galactic fights are scored at 64
@@ -441,7 +459,7 @@ scoring the reference hacks the same way. What they already show:
   and Ludicolo's Speed through Swift Swim, and they come out at 1 percent
   and under.
 - **Byron is soft between two peaks**: 0.33 against Wake's 0.74 and
-  Candice's 0.73. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
+  Candice's 0.67. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
   are light too.
 - **Early fights in a split read too easy**, because the player is scored
   at the split's cap: Barry 1 is level 5 against a side at 16. B4's natural
@@ -507,7 +525,7 @@ rest) and answers counting a Choice lock.
 
 **Levels move a fight only a little; the roster sets its range.** Each
 level of gap is worth about 0.02 of threat. The bands below are anchored
-on Oxide's own fights: very hard is Wake and Candice and above (threat
+on Oxide's own fights: very hard is Wake's fight and above (threat
 0.73 or more, answers 0.12 or fewer), hard is the other gym leaders
 (threat 0.60 to 0.72, answers 0.20 or fewer), medium hard is Saturn 1,
 Barry 5 and Bertha (threat 0.40 to 0.55, answers 0.20 to 0.30). For
@@ -517,12 +535,19 @@ under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ) | 0.60, 0.17 | 0.65, 0.14 |
-| Cyrus 2 (HQ) | 0.45, 0.12 | 0.48, 0.11 |
+| Saturn 2 (HQ), Ian's Trick Room team | 0.32, 0.17 | 0.35, 0.14 |
+| Cyrus 2 (HQ), with Suicune | 0.49, 0.10 | 0.53, 0.09 |
 | Mars and Jupiter, Stark Mountain | 0.47, 0.18 | 0.50, 0.16 |
-| Mars and Jupiter, Spear Pillar | 0.37, 0.26 | 0.39, 0.23 |
-| Cyrus 3 | 0.73, 0.12 | 0.75, 0.10 |
+| Mars and Jupiter, Spear Pillar, with Luxray | 0.40, 0.24 | 0.42, 0.21 |
+| Cyrus 3, Ian's new team | 0.63, 0.14 | 0.65, 0.11 |
 | Volkner | 0.75, 0.18 | 0.77, 0.16 |
+
+These are Ian's baseline teams (the table was first run on the base ROM's
+older teams). **Two of them lean on what the scores cannot see.** Saturn 2's
+team is built for Trick Room, under which the slowest move first, and the
+scores assume normal Speed order; and Cyrus 3 and Saturn 2 carry Curse,
+Explosion, Swagger and Aqua Ring, which the scores leave out with every
+status and setup move. So both read softer here than they will play.
 
 The zone's 52 route and Stark Mountain trainers read 0.35 and 0.38 at 10
 under the cap, 0.40 and 0.33 at 7 under, 0.45 and 0.28 at 4 under: medium
@@ -558,12 +583,14 @@ recommendation:
 | Volkner | 62 | 68, at the cap | 0.75 and 0.18 with his Choice lock counted |
 
 So the parked 18-level drop fits this shape as it stands (the zone at 5 to
-10 under a cap of 65). Two fights miss their target on levels alone and
-belong to the trainer pass: Cyrus 2 at the HQ and Mars and Jupiter at Spear
-Pillar, whose rosters top out below hard. Both tag battles are scored
+10 under a cap of 65). On levels alone, Cyrus 2 reads hard (answers 0.10),
+Cyrus 3 reads hard rather than very hard, and Spear Pillar's Mars and
+Jupiter stay under hard; whether Ian's teams reach his targets through the
+Trick Room and setup the scores leave out is for his playtest, and if they
+fall short the trainer pass adjusts rosters rather than levels, since
+levels move a fight about 0.02 a level. Both tag battles are scored
 without the player's partner, which flatters the bosses. The Volkner split
-keeps 68: Volkner at the cap reads between hard and very hard once his
-Choice item is counted, as Wake and Candice do.
+keeps 68.
 
 ## What gets measured
 
@@ -823,7 +850,12 @@ lands, and each change is re-scored as it lands.
 5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
-   against B1e's list. Moving a trainer or adding a sight-line blocker edits
+   against B1e's list. Also the **level 71 Lucas and Dawn fight** (trainer
+   slots 779 to 784, one per starter): Ian designed it for the start of
+   Victory Road, but the only script that starts it is the Battleground's,
+   post-game content as in vanilla. Moving it is script and event work.
+   Its level 9 and 30 counterparts (787 to 792 on Route 202, 793 to 802 on
+   Route 207) are already where the story passes. Moving a trainer or adding a sight-line blocker edits
    map events and sometimes field scripts, which are carry-over files that
    `checkmap.py` and the bulk tools compare with the base ROM. Each change
    is registered as an intended divergence (the bulk tools' DIVERGED lists)

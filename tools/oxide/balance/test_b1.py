@@ -191,6 +191,9 @@ def check_milestones_resolve(results):
 # rematch copy, a tag partner or unused rival variant, or an unused slot.
 UNPLACED_OK = re.compile(r"rematch|_\d+$|^rival_|^lucas_|^dawn_|^cheryl_|^mira_|^riley_"
                          r"|^marley_|^buck_|_unused$")
+# First-run trainers the base ROM itself took off the map: Test.nds (the base
+# ROM since 2026-09-25) puts Beauty Devon where Collector Brady stood.
+REMOVED_BY_BASE = {"collector_brady"}
 
 
 def check_split_map(results):
@@ -215,7 +218,7 @@ def check_split_map(results):
                     + (f"; wrong: {bad}" if bad else "")))
     ox = data.oxide_trainers()
     stray = [ox[t]["stem"] for t in ox if splits.trainer_split(t) is None
-             and not UNPLACED_OK.search(ox[t]["stem"])]
+             and not UNPLACED_OK.search(ox[t]["stem"]) and ox[t]["stem"] not in REMOVED_BY_BASE]
     placed = sum(1 for t in ox if splits.trainer_split(t))
     results.append(("no first-run trainer is left without a split", not stray,
                     f"{placed} placed" + (f"; stray: {stray[:5]}" if stray else "")))
