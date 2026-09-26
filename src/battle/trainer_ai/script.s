@@ -411,6 +411,11 @@ Basic_ScoreMoveEffectByEffect:
     // target's Attack is already at -6.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Basic_CheckCanRecoverHP
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
+    // Oxide: Sticky Web fails when the target's side already has one, and is
+    // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
+    // and while it is up, as Reflect does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Basic_CheckStickyWeb
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Basic_CheckAuroraVeil
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -1283,6 +1288,18 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
+Basic_CheckStickyWeb:
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, ScoreMinus10
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckAuroraVeil:
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_AURORA_VEIL, ScoreMinus8
+    LoadCurrentWeather 
+    IfLoadedNotEqualTo AI_WEATHER_HAILING, ScoreMinus10
+    PopOrEnd 
+
 Basic_CheckStrengthSap:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, ScoreMinus10
     PopOrEnd 
@@ -2115,6 +2132,10 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POISON_HIT_DOUBLE_POWER_ON_POISONED, Expert_Venoshock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_DAMAGE_WITHOUT_ITEM, Expert_Acrobatics
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_FASTER, Expert_BoltBeak
+    // Oxide, change (Ian, 2026-09-27): Sticky Web as Spikes; Aurora Veil as
+    // Reflect and Light Screen together.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Expert_Spikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Expert_AuroraVeil
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -3243,6 +3264,27 @@ Expert_Reflect_PreSplitPhysicalTypes:
     TableEntry TYPE_GHOST
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
+
+Expert_AuroraVeil:
+    // Oxide, change (Ian, 2026-09-27). Aurora Veil halves both kinds of damage, so it is
+    // scored as Reflect is, with the last move's check taking either class.
+    //
+    // If the attacker's HP is < 50%, score -2.
+    //
+    // If the attacker's HP is >= 90%, 50% chance of additional score +1.
+    //
+    // If the opponent's last-used move was a Physical or Special move, 75% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, Expert_Reflect_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, Expert_AuroraVeil_CheckLastUsedMove
+    IfRandomLessThan 128, Expert_AuroraVeil_CheckLastUsedMove
+    AddToMoveScore 1
+
+Expert_AuroraVeil_CheckLastUsedMove:
+    LoadDefenderLastUsedMoveClass 
+    IfLoadedEqualTo CLASS_STATUS, Expert_Reflect_End
+    IfRandomLessThan 64, Expert_Reflect_End
+    AddToMoveScore 1
+    PopOrEnd 
 
 Expert_StatusPoison:
     // If the attacker's HP is < 50% or the defender's HP is <= 50%, score -1.
