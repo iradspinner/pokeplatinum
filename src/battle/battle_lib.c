@@ -7692,6 +7692,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         defenseStat = defenseStat / 2;
     }
 
+    // Oxide: Psyshock, Psystrike and Secret Sword are special moves that hit
+    // the target's Defense, with its Defense stages and the modifiers to its
+    // Defense, in place of its Sp. Def (hg-engine's CalcBaseDamage, step 4.3,
+    // which keeps the Sp. Def stages; the later games take the Defense ones).
+    if (move == MOVE_PSYSHOCK || move == MOVE_PSYSTRIKE || move == MOVE_SECRET_SWORD) {
+        spDefenseStat = defenseStat;
+        spDefenseStage = defenseStage;
+    }
+
     if (moveClass == CLASS_PHYSICAL) {
         if (criticalMul > 1) {
             if (attackStage > DEFAULT_STAT_STAGE) {
