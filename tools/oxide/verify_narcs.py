@@ -32,6 +32,9 @@ DEFAULT = [
     # The base ROM's visual overhaul (Ian, 2026-09-27; the inventory's
     # corrections list every member). These compare byte for byte.
     "poketool/trgra/trfgra.narc",
+    "battle/graphic/pl_batt_bg.narc",
+    "battle/graphic/pl_batt_obj.narc",
+    "itemtool/itemdata/item_icon.narc",
 ]
 
 
@@ -42,6 +45,52 @@ def walk(folder, prefix=""):
     for sub, f in folder.folders:
         out.update(walk(f, prefix + sub + "/"))
     return out
+
+
+def load_editcheck():
+    """The re-save rules live in editcheck.py, loaded by path like the importer."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "editcheck.py")
+    spec = importlib.util.spec_from_file_location("editcheck", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def check_by_content(b, r, path):
+    """Member by member for an archive in CONTENT_ARCHIVES or APPENDED: a member
+    passes when its bytes match, or, in a content archive, when it differs only
+    as a DSPRE re-save would. Appended members are counted, not compared."""
+    extra, extra_why = APPENDED.get(path, (0, None))
+    if len(b) != len(r) + extra:
+        print(f"{path}: member count {len(b)} vs {len(r)}"
+              f"{f' plus {extra} appended' if extra else ''}")
+        return False
+    ec = None
+    if path in CONTENT_ARCHIVES:
+        ec = load_editcheck()
+        ec.ENCRYPTED = "pokegra/" in path
+    same = resaved = 0
+    bad = []
+    for i in range(len(r)):
+        if b[i] == r[i]:
+            same += 1
+            continue
+        kind = ec.classify(b[i], r[i]) if ec else "bytes differ"
+        if ec and not ec.is_edit(kind):
+            resaved += 1
+        else:
+            bad.append((i, kind))
+    note = f"; {extra} appended, {extra_why}" if extra else ""
+    if bad:
+        print(f"{path}: {len(bad)} members differ: {[i for i, _ in bad[:20]]}{note}")
+        print(f"   first: member {bad[0][0]}, {bad[0][1]}")
+        return False
+    if resaved:
+        print(f"{path}: {same} members identical and {resaved} matching in content "
+              f"(differing only as a DSPRE re-save does){note}")
+    else:
+        print(f"{path}: identical ({same} members){note}")
+    return True
 
 
 def load_importer():
@@ -388,6 +437,22 @@ DIVERGED_MEMBERS = {
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
 
+# Archives the base ROM carries as DSPRE saved them. DSPRE re-saves whatever it
+# touches (file version, sizes, palette bit 15, sprite encryption, zero-tile
+# padding, the optional PCMP block, LZ recompression), so a member rebuilt from
+# the same pixels and colours never matches its copy byte for byte. Members of
+# these archives compare by content under tools/oxide/editcheck.py's rules;
+# every other archive, and every archive that already matched, compares bytes.
+CONTENT_ARCHIVES = {
+    "battle/graphic/pl_batt_obj.narc": "the base ROM's battle platforms, HP box "
+                                      "palette and one misc sprite (visual overhaul)",
+    "itemtool/itemdata/item_icon.narc": "the Pocket PC's icon, member 441",
+}
+# Members Oxide appended after the reference's last; the rest still compare.
+APPENDED = {
+    "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
+}
+
 
 def reference_to_built(i, n_built, n_ref):
     """Where reference member i lives in the built archive."""
@@ -618,6 +683,9 @@ def main():
             continue
         if p == WAZA:
             ok = check_move_table(b, r, p) and ok
+            continue
+        if p in CONTENT_ARCHIVES or p in APPENDED:
+            ok = check_by_content(b, r, p) and ok
             continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False

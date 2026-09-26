@@ -17,9 +17,11 @@ Also says whether the Oxide build carries the base ROM's version.
 
 Written 2026-09-26 when the inventory's "tool side effect" archives turned out
 to be edits. A DSPRE re-save writes file version 0x0100, a wrong file size, a
-CHAR block size of 0, palette colours with bit 15 cleared, and Pokemon sprites
-re-encrypted under a new seed; none of that changes what the game draws, so
-each is compared away before a member is called an edit.
+CHAR block size of 0, palette colours with bit 15 cleared, Pokemon sprites
+re-encrypted under a new seed, tile data padded with zero tiles, and palettes
+without their optional PCMP block; none of that changes what the game draws,
+so each is compared away before a member is called an edit. verify_narcs.py
+applies the same rules to the archives it lists in CONTENT_ARCHIVES.
 """
 import struct
 import sys
@@ -100,9 +102,15 @@ def classify(base, van):
             return f"raw data, size {len(dv)} to {len(db)}"
         n = sum(1 for x, y in zip(db, dv) if x != y)
         return f"raw data, {n} of {len(db)} bytes"
+    parts = []
+    # PCMP is an optional index of the palettes a file holds, and DSPRE drops it
+    # on save; the colours are in PLTT either way, so only PLTT is compared.
+    if any(m == b"PMCP" for m, _, _ in bb) != any(m == b"PMCP" for m, _, _ in bv):
+        parts.append("PCMP block only on one side")
+    bb = [x for x in bb if x[0] != b"PMCP"]
+    bv = [x for x in bv if x[0] != b"PMCP"]
     if [m for m, _, _ in bb] != [m for m, _, _ in bv]:
         return f"blocks differ: {[m[::-1].decode() for m, _, _ in bv]} to {[m[::-1].decode() for m, _, _ in bb]}"
-    parts = []
     for (m, hb, cb), (_, hv, cv) in zip(bb, bv):
         name = m[::-1].decode()
         if m == b"TTLP" and len(cb) == len(cv) and cb != cv:
@@ -122,6 +130,9 @@ def classify(base, van):
             elif m == b"RAHC" and len(cb) == len(cv) and ENCRYPTED:
                 n = sum(1 for x, y in zip(decrypt(cb), decrypt(cv)) if x != y)
                 parts.append(f"{name} content {n} of {len(cb)} bytes once decrypted")
+            elif m == b"RAHC" and not ENCRYPTED and cb.rstrip(b"\0") == cv.rstrip(b"\0"):
+                # DSPRE pads tile data with zero tiles, which draw as nothing
+                parts.append(f"{name} zero tiles appended only")
             elif len(cb) != len(cv):
                 parts.append(f"{name} content {len(cv)} to {len(cb)} bytes")
             else:
@@ -164,4 +175,5 @@ def main():
             print(line)
 
 
-main()
+if __name__ == "__main__":
+    main()
