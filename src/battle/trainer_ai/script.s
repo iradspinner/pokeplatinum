@@ -461,6 +461,7 @@ Basic_CheckHighStatStage_Evasion:
     //   - If the target is already at -6, score -10.
     //   - If the target has White Smoke or Clear Body, score -10.
     //   - If reducing Attack -> -10 if the target has Hyper Cutter
+    //   - Oxide: if reducing Defense -> -10 if the target has Big Pecks
     //   - If reducing Speed -> -10 if Trick Room is currently active
     //   - If reducing Speed -> -10 if the target has Speed Boost
     //   - If reducing Accuracy or Evasion -> -10 if either battler has No Guard
@@ -474,6 +475,10 @@ Basic_CheckLowStatStage_Attack:
 
 Basic_CheckLowStatStage_Defense:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, ScoreMinus10
+    // Oxide: Big Pecks keeps Defense from being lowered (element 5), as Hyper
+    // Cutter keeps Attack.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_BIG_PECKS, ScoreMinus10
     GoTo Basic_CheckClearBodyEffect
 
 Basic_CheckLowStatStage_Speed:
