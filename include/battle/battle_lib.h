@@ -566,6 +566,28 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler);
 BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler);
 
 /**
+ * @brief Oxide: whether the Pokemon in this battler's party slot has eaten a
+ * Berry this battle, which Belch needs. It is kept by party slot, as Knock
+ * Off's lost items are, so it lasts through switching out.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if it has eaten one
+ */
+BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Oxide: record that the Pokemon in this battler's party slot has eaten
+ * a Berry this battle.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

@@ -239,6 +239,7 @@ ScriptCommand(BTLCMD_TRYSTICKYWEB,                BtlCmd_TryStickyWeb)
 ScriptCommand(BTLCMD_CHECKSTICKYWEB,              BtlCmd_CheckStickyWeb)
 ScriptCommand(BTLCMD_CHANGEEXECUTIONORDERPRIORITY, BtlCmd_ChangeExecutionOrderPriority)
 ScriptCommand(BTLCMD_TRYAURORAVEIL,               BtlCmd_TryAuroraVeil)
+ScriptCommand(BTLCMD_TRYBELCH,                    BtlCmd_TryBelch)
 
 // clang-format on
 

@@ -2299,6 +2299,15 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Oxide: Belch cannot be chosen until its user has eaten a Berry.
+        // CHECK_INVALID_ALL carries this flag, so the move menu, the struggle
+        // check and the trainer AI all see it.
+        if (battleCtx->battleMons[battler].moves[i] == MOVE_BELCH
+            && (opMask & CHECK_INVALID_BELCH)
+            && Battler_HasEatenBerry(battleSys, battleCtx, battler) == FALSE) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if (battleCtx->battleMons[battler].moveEffectsData.encoredMove
             && battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[i]) {
             invalidMoves |= FlagIndex(i);
@@ -2357,6 +2366,11 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = MOVE_HEAL_BLOCK;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_BELCH) & FlagIndex(moveSlot)) { // Oxide
+        msgOut->tags = TAG_NICKNAME;
+        msgOut->id = BattleStrings_Text_PokemonHasntEatenABerrySoItCantPossiblyBelch; // "{0} hasn't eaten a Berry, so it can't possibly belch!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_ITEM_MOVE;
@@ -8327,4 +8341,16 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
 BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler)
 {
     return BattlerIsGrounded(battleCtx, battler);
+}
+
+BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
+    return (battleCtx->sideConditions[side].berryEatenMask & FlagIndex(battleCtx->selectedPartySlot[battler])) != FALSE;
+}
+
+void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
+    battleCtx->sideConditions[side].berryEatenMask |= FlagIndex(battleCtx->selectedPartySlot[battler]);
 }

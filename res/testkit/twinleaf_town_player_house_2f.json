@@ -46,6 +46,14 @@
             "en_US": "Wild Skarmory"
         },
         {
+            "id": "TestKit_Text_MenuWildHorsea",
+            "en_US": "Wild Horsea"
+        },
+        {
+            "id": "TestKit_Text_MenuWildGlameow",
+            "en_US": "Wild Glameow"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -216,6 +224,14 @@
             "en_US": "Set 29"
         },
         {
+            "id": "TestKit_Text_MenuSet30",
+            "en_US": "Set 30"
+        },
+        {
+            "id": "TestKit_Text_MenuSet31",
+            "en_US": "Set 31"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",
@@ -251,6 +267,20 @@
             "en_US": [
                 "A wild Skarmory, Lv. 50, to be\n",
                 "brought down."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WildHorsea",
+            "en_US": [
+                "A wild Horsea, Lv. 1, that knows\n",
+                "only Bubble."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WildGlameow",
+            "en_US": [
+                "A wild Glameow, Lv. 1, that knows\n",
+                "only Fake Out."
             ]
         },
         {
