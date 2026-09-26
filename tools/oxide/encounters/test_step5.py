@@ -74,14 +74,18 @@ def raises(fn, *args, exc=Exception):
 
 
 def check_writers(results):
+    # Each case names how to read its slot back out of the reloaded file.
     cases = [
-        (model.HONEY_TREE, "set_honey_tier", ("rare", 2, "SPECIES_ABRA")),
+        (model.HONEY_TREE, "set_honey_tier", (8, "uncommon", 2, "SPECIES_ABRA"),
+         lambda d: d["tables"][7]["uncommon"][2]),
         (model.GREAT_MARSH_LOOKOUT, "set_marsh_lookout",
-         ("after_national_dex", 31, "SPECIES_ABRA")),
-        (model.TROPHY_GARDEN, "set_daily", (15, "SPECIES_ABRA")),
+         ("after_national_dex", 31, "SPECIES_ABRA"),
+         lambda d: d["after_national_dex"][31]),
+        (model.TROPHY_GARDEN, "set_daily", (15, "SPECIES_ABRA"),
+         lambda d: d[model.DAILY_KEY][15]),
     ]
     landed, read_back = [], []
-    for name, writer, args in cases:
+    for name, writer, args, slot in cases:
         a = model.load_area(name)
         before = a.text
         try:
@@ -89,10 +93,7 @@ def check_writers(results):
             a.save()
             add, rem = changed_lines(before, a.path)
             landed.append((writer, len(add), len(rem)))
-            back = model.load_area(name)
-            key = args[0] if isinstance(args[0], str) else model.DAILY_KEY
-            index = args[1] if isinstance(args[0], str) else args[0]
-            read_back.append(back.data[key][index] == "SPECIES_ABRA")
+            read_back.append(slot(model.load_area(name).data) == "SPECIES_ABRA")
         finally:
             restore(a, before)
     results.append(("the honey tier, marsh lookout and daily writers each land on exactly one line",
@@ -101,15 +102,17 @@ def check_writers(results):
     results.append(("what they wrote reads back, and the file is exactly as it was afterwards",
                     all(read_back)
                     and not any(model.load_area(n).text != t for n, t in
-                                [(n, model.load_area(n).text) for n, _, _ in cases]),
+                                [(n, model.load_area(n).text) for n, _, _, _ in cases]),
                     ""))
 
     honey = model.load_area(model.HONEY_TREE)
     marsh = model.load_area(model.GREAT_MARSH_LOOKOUT)
     garden = model.load_area(model.TROPHY_GARDEN)
     refused = [
-        raises(honey.set_honey_tier, "rare", 6, "SPECIES_ABRA", exc=IndexError),
-        raises(honey.set_honey_tier, "legendary", 0, "SPECIES_ABRA", exc=ValueError),
+        raises(honey.set_honey_tier, 1, "common", 6, "SPECIES_ABRA", exc=IndexError),
+        raises(honey.set_honey_tier, 9, "common", 0, "SPECIES_ABRA", exc=IndexError),
+        raises(honey.set_honey_tier, 1, "rare", 0, "SPECIES_ABRA", exc=ValueError),
+        raises(honey.set_honey_levels, 1, 20, 10, exc=ValueError),
         raises(marsh.set_marsh_lookout, "after_national_dex", 32, "SPECIES_ABRA",
                exc=IndexError),
         raises(marsh.set_marsh_lookout, "sometime", 0, "SPECIES_ABRA", exc=ValueError),
@@ -117,10 +120,10 @@ def check_writers(results):
         raises(garden.set_daily, -1, "SPECIES_ABRA", exc=IndexError),
     ]
     results.append(("an index past the end of a tier, a pool or the daily list is refused, "
-                    "and so is a tier or pool that does not exist",
+                    "and so is a tier, table, pool or level range that does not exist",
                     all(refused), str(refused)))
     results.append(("the list sizes are declared, not guessed: 6, 32 and 16",
-                    model.LIST_KEY_SIZES["rare"] == 6
+                    model.HONEY_TIER_SIZE == 6
                     and model.LIST_KEY_SIZES["before_national_dex"] == 32
                     and model.LIST_KEY_SIZES[model.DAILY_KEY] == 16, ""))
 
@@ -219,15 +222,23 @@ def check_species_only(results):
                            "availability-plan.json"), encoding="utf-8") as f:
         plan = json.load(f)
     honey_plan = plan["honey"]
-    honey = model.honey_tree_species()
-    results.append(("the honey tree tiers are the availability plan's, six slots each: "
-                    "the grass starters rare, Combee and Heracross uncommon",
-                    all(len(honey[t]) == 6 for t in model.HONEY_TREE_KEYS)
-                    and all(set(honey[t]) == set(honey_plan[t])
-                            for t in model.HONEY_TREE_KEYS)
-                    and set(honey["rare"]) == {"SPECIES_ROWLET", "SPECIES_SNIVY",
-                                               "SPECIES_SPRIGATITO"},
-                    ", ".join(f"{t} {len(set(honey[t]))} line(s)"
+    tables = model.honey_tree_tables()
+    honey = model.honey_tree_species(badges=None)
+    results.append(("the honey trees have a table per badge count, 1 to 8, six slots a "
+                    "tier and levels that never fall from one table to the next",
+                    [t["badges"] for t in tables] == list(range(1, model.HONEY_TABLES + 1))
+                    and all(len(t[k]) == model.HONEY_TIER_SIZE
+                            for t in tables for k in model.HONEY_TREE_KEYS)
+                    and all(a["level_min"] <= b["level_min"] and a["level_max"] <= b["level_max"]
+                            for a, b in zip(tables, tables[1:])),
+                    ", ".join(f'{t["level_min"]}-{t["level_max"]}' for t in tables)))
+    results.append(("the honey tiers are the availability plan's, and the grass starters "
+                    "are out of them (Ian, 2026-09-26)",
+                    all(set(honey[t]) == set(honey_plan[t]) for t in model.HONEY_TREE_KEYS)
+                    and "rare" not in honey_plan
+                    and not {"SPECIES_ROWLET", "SPECIES_SNIVY", "SPECIES_SPRIGATITO"}
+                    & set(honey["common"] + honey["uncommon"]),
+                    ", ".join(f"{t} {len(set(honey[t]))} species"
                               for t in model.HONEY_TREE_KEYS)))
 
     marsh_lines = set()

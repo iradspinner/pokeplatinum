@@ -208,6 +208,19 @@ that stay. None blocks anything.
    and 2F, whose faces were prizes, now lead with an ordinary line. Lint's R16
    enforces it; Roark's split, where repels are scarce, and the post-game keep
    the old shapes.
+11. **Honey trees by split (Ian, 2026-09-26).** The trees read one table per
+   badge count, 1 to 8, each with a common and an uncommon tier of six and its
+   own level range (10-14 at one badge up to 45-50 at eight), picked when the
+   tree is shaken. Every tree rolls nothing 10%, common 70%, uncommon 20%: the
+   four Munchlax trees and their rare tier are gone. This track made the engine
+   change in `src/overlay005/honey_tree.c` and `src/overlay006/wild_encounters.c`
+   with Ian's say-so. Rowlet, Snivy and Sprigatito left the trees for land homes
+   at 10% (Eterna Forest by day, Route 204 north, and Route 210 south, where
+   Floragato took Swablu's 10 and Smoliv dropped to a 1%). The eight tables are
+   a first draft for Ian: bugs and tree dwellers, Heracross climbing from a 1%
+   to the head of the uncommon tier. Waiting on a GitHub build and a shake in
+   game. Next: honey in the tool's area list, the scripted encounters there,
+   and the box simulator tab.
 
 ## Standing rules
 

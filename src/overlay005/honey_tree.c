@@ -28,7 +28,7 @@
 #define TREE_GROUP_B            2
 #define TREE_GROUP_C            3
 
-static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *param1);
+static void GetTreeEncounterGroup(u8 *group);
 static void GetTreeEncounterSlot(u8 *slot);
 static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *param1, const int param2);
 static u8 GetTreeIDFromMapHeaderID(const enum MapHeaderID mapHeaderID);
@@ -36,7 +36,6 @@ static const int GetEncounterTableFromGroup(const u8 param0);
 static const int GetShakesFromGroup(const u8 param0);
 static const BOOL GetShakingValue(const int numShakes, u8 *value);
 static const BOOL SixHoursSinceSlathered(const int param0);
-static BOOL IsMunchlaxTree(const u32 param0, const u8 param1);
 
 static const int sHoneyTreeMapHeaderIDs[NUM_HONEY_TREES] = {
     MAP_HEADER_ROUTE_205_SOUTH,
@@ -67,13 +66,6 @@ static const int sEncounterTableIndexes_DPt[] = {
     0x2,
     0x3,
     0x4
-};
-
-// These IDs ultimately point to the same encounters.
-static const int sEncounterTableIndexes_P_Unused[] = {
-    0x5,
-    0x6,
-    0x7
 };
 
 HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
@@ -142,9 +134,6 @@ void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
 
     tree->minutesRemaining = (24 * 60); // slathering lasts for one day
 
-    TrainerInfo *trainer = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    BOOL munchlaxTree = IsMunchlaxTree(TrainerInfo_ID(trainer), treeId);
-
     // Slathering the same tree twice in succession has a 90% chance to give the same group again.
     if (SpecialEncounter_GetLastSlatheredTreeId(treeDat) == treeId) {
         if ((LCRNG_RandMod(100)) < 90) {
@@ -154,7 +143,7 @@ void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
         }
     }
 
-    GetTreeEncounterGroup(munchlaxTree, &tree->encounterGroup);
+    GetTreeEncounterGroup(&tree->encounterGroup);
 
     if (tree->encounterGroup != TREE_GROUP_NO_ENCOUNTER) {
         GetTreeEncounterSlot(&tree->encounterSlot);
@@ -194,31 +183,22 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
     }
 }
 
-// Group 0 is no encounter. Group 3 is Munchlax.
-// For munchlax trees the rates are 9/20/70/1.
-// For normal trees the rates are 10/70/20/0.
-static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group)
+// Group 0 is no encounter. The rates are 10/70/20: nothing, A, B.
+// Platinum Oxide (Ian, 2026-09-26): vanilla also had four Munchlax trees per
+// save, picked from the trainer ID, which rolled 9/20/70/1 and alone could
+// reach group C. Oxide drops them and the rare group with them, so every
+// tree rolls alike; group C is never set, and a save that already holds it
+// reads the uncommon table (GetEncounterTableFromGroup).
+static void GetTreeEncounterGroup(u8 *group)
 {
     int roll = LCRNG_RandMod(100);
 
-    if (isMunchlaxTree) {
-        if (roll < 1) {
-            *group = TREE_GROUP_C;
-        } else if (roll < 10) {
-            *group = TREE_GROUP_NO_ENCOUNTER;
-        } else if (roll < 30) {
-            *group = TREE_GROUP_A;
-        } else {
-            *group = TREE_GROUP_B;
-        }
+    if (roll < 10) {
+        *group = TREE_GROUP_NO_ENCOUNTER;
+    } else if (roll < 30) {
+        *group = TREE_GROUP_B;
     } else {
-        if (roll < 10) {
-            *group = TREE_GROUP_NO_ENCOUNTER;
-        } else if (roll < 30) {
-            *group = TREE_GROUP_B;
-        } else {
-            *group = TREE_GROUP_A;
-        }
+        *group = TREE_GROUP_A;
     }
 }
 
@@ -247,9 +227,7 @@ static const int GetEncounterTableFromGroup(const u8 group)
 {
     int table;
 
-    if (group == TREE_GROUP_C) {
-        table = 2;
-    } else if (group == TREE_GROUP_B) {
+    if (group == TREE_GROUP_B || group == TREE_GROUP_C) {
         table = 1;
     } else {
         table = 0;
@@ -381,41 +359,34 @@ static const BOOL SixHoursSinceSlathered(const int minutesLeft)
     }
 }
 
-static BOOL IsMunchlaxTree(const u32 trainerId, const u8 treeId)
+// Platinum Oxide (Ian, 2026-09-26): the honey trees have one table per gym
+// split, chosen by the player's badges when the tree is shaken, and each
+// table carries its own level range. encdata_ex member 2 holds all of them
+// (tools/jsoncnv/encdata_ex_honey_trees.py packs it); members 3 and 4, once
+// vanilla's uncommon and rare tables, are padding so nothing after moves.
+#define HONEY_TREE_TABLES     8
+#define HONEY_TREE_TABLE_SLOT 6
+
+typedef struct HoneyTreeTable {
+    u32 common[HONEY_TREE_TABLE_SLOT];
+    u32 uncommon[HONEY_TREE_TABLE_SLOT];
+    u32 levelMin;
+    u32 levelMax;
+} HoneyTreeTable;
+
+// Badges 0 and 1 read the first table (honey is sold only from Floaroma, so a
+// tree is first shaken with one badge); eight badges read the last.
+static const HoneyTreeTable *LoadHoneyTreeTable(FieldSystem *fieldSystem, void **narcData)
 {
-    u8 i, j;
-    u8 munchlaxTreeIds[4];
+    int badges = TrainerInfo_BadgeCount(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    int index = badges <= 1 ? 0 : badges - 1;
 
-    munchlaxTreeIds[0] = (trainerId >> 24) & 0xff;
-    munchlaxTreeIds[1] = (trainerId >> 16) & 0xff;
-    munchlaxTreeIds[2] = (trainerId >> 8) & 0xff;
-    munchlaxTreeIds[3] = trainerId & 0xff;
-
-    munchlaxTreeIds[0] %= NUM_HONEY_TREES;
-    munchlaxTreeIds[1] %= NUM_HONEY_TREES;
-    munchlaxTreeIds[2] %= NUM_HONEY_TREES;
-    munchlaxTreeIds[3] %= NUM_HONEY_TREES;
-
-    // Increments tree IDs if they are equal, so the player will always have 4 possible Munchlax trees.
-    for (i = 1; i < 4; i++) {
-        for (j = 0; j < i; j++) {
-            if (munchlaxTreeIds[j] == munchlaxTreeIds[i]) {
-                munchlaxTreeIds[i]++;
-
-                if (munchlaxTreeIds[i] >= NUM_HONEY_TREES) {
-                    munchlaxTreeIds[i] = 0;
-                }
-            }
-        }
+    if (index >= HONEY_TREE_TABLES) {
+        index = HONEY_TREE_TABLES - 1;
     }
 
-    for (i = 0; i < 4; i++) {
-        if (treeId == munchlaxTreeIds[i]) {
-            return TRUE;
-        }
-    }
-
-    return FALSE;
+    *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[0], HEAP_ID_FIELD1);
+    return (const HoneyTreeTable *)*narcData + index;
 }
 
 int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
@@ -423,20 +394,26 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     u8 treeId = GetTreeIDFromMapHeaderID(fieldSystem->location->mapHeaderID);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    int *narcData;
+    void *narcData;
     PlayerHoneyTreeStates *treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     HoneyTree *tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
+    const HoneyTreeTable *table = LoadHoneyTreeTable(fieldSystem, &narcData);
 
-    if ((GAME_VERSION == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD1);
-    } else {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD1);
-    }
-
-    int species = narcData[tree->encounterSlot];
+    int species = tree->encounterTableIndex == 0 ? table->common[tree->encounterSlot]
+                                                 : table->uncommon[tree->encounterSlot];
     Heap_Free(narcData);
 
     return species;
+}
+
+void HoneyTree_GetLevelRange(FieldSystem *fieldSystem, u8 *levelMin, u8 *levelMax)
+{
+    void *narcData;
+    const HoneyTreeTable *table = LoadHoneyTreeTable(fieldSystem, &narcData);
+
+    *levelMin = table->levelMin;
+    *levelMax = table->levelMax;
+    Heap_Free(narcData);
 }
 
 void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager)

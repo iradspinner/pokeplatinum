@@ -440,8 +440,8 @@ def lint_game(areas, t, availability=None):
                         "gate line with no scripted source (no gift, trade, "
                         "static battle, starter or fossil script names it)"))
             elif row["non_wild"] or row.get("honey"):
-                # a scripted source, or a honey-tree tier (the plan's home for
-                # the grass starters), which the cost model cannot price
+                # a scripted source, or a honey-tree tier, which the cost
+                # model cannot price
                 continue
             elif row["cost"] is None:
                 out.append(Finding(

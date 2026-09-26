@@ -307,14 +307,11 @@ for file in args.src_files:
         continue
 
     if (file == args.honey_file):
-        for species in enc_data['common']:
-            for map_num in honey_tree_dungeons:
-                dungeon_special[Species[species].value].add(map_num)
-                dungeon_special_natdex[Species[species].value].add(map_num)
-            for map_num in honey_tree_fields:
-                field_special[Species[species].value].add(map_num)
-                field_special_natdex[Species[species].value].add(map_num)
-        for species in enc_data['uncommon']:
+        # Platinum Oxide: one honey table per badge count; the dex shows every
+        # species any of them can give at every tree.
+        honey_species = [species for table in enc_data['tables']
+                         for species in table['common'] + table['uncommon']]
+        for species in honey_species:
             for map_num in honey_tree_dungeons:
                 dungeon_special[Species[species].value].add(map_num)
                 dungeon_special_natdex[Species[species].value].add(map_num)

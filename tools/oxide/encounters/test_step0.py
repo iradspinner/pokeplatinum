@@ -173,8 +173,8 @@ def check_model(results):
     honey = model.honey_tree_species()
     marsh = model.great_marsh_lookout_species()
     daily = model.trophy_garden_daily_species()
-    results.append(("readers: honey tree 3x6, marsh lookout 2x32, garden dailies 16",
-                    [len(v) for v in honey.values()] == [6, 6, 6]
+    results.append(("readers: honey tree 2x6 a table, marsh lookout 2x32, garden dailies 16",
+                    [len(v) for v in honey.values()] == [6, 6]
                     and [len(v) for v in marsh.values()] == [32, 32]
                     and len(daily) == 16
                     and all(s.startswith("SPECIES_") for s in daily), ""))

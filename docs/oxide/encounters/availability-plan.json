@@ -77,10 +77,10 @@
       "note": "The Rock Smash cave, eight lines: Zubat, Geodude and Makuhita co-equal, Lotad in the wet, Nacli and Phanpy by day. Roark split since 2026-09-22, so Wooper moved to the Old Rod only."
     },
     "encounters_route_204_north": {
-      "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET"],
-      "cameo": ["SPECIES_TREECKO", "SPECIES_SNIVY", "SPECIES_FLETCHLING", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
+      "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET", "SPECIES_SNIVY"],
+      "cameo": ["SPECIES_TREECKO", "SPECIES_FLETCHLING", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
       "tail": [],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too."
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Snivy's home since the honey trees gave it up (2026-09-26)."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO"],
@@ -101,10 +101,10 @@
       "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night."
     },
     "encounters_eterna_forest": {
-      "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY"],
-      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_DOTTLER", "SPECIES_GRUBBIN", "SPECIES_ROWLET", "SPECIES_BUDEW", "SPECIES_PURRLOIN"],
+      "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY", "SPECIES_ROWLET"],
+      "cameo": ["SPECIES_SEWADDLE", "SPECIES_SEEDOT", "SPECIES_DOTTLER", "SPECIES_GRUBBIN", "SPECIES_BUDEW", "SPECIES_PURRLOIN"],
       "tail": ["SPECIES_COMBEE", "SPECIES_STEENEE"],
-      "note": "The forest, eight lines: Shroomish and Buneary at home, Sewaddle and Seedot under the trees, Combee in the canopy, Rowlet by day at 10, Seedot and Purrloin by night."
+      "note": "The forest, eight lines: Shroomish and Buneary at home, Sewaddle and Seedot under the trees, Combee in the canopy, Rowlet by day at 10, its home since the honey trees gave it up, Seedot and Purrloin by night."
     },
     "encounters_old_chateau": {
       "home": ["SPECIES_SINISTEA"],
@@ -353,10 +353,10 @@
       "note": "The ruins, one table for every room: you cannot tell the rooms apart in game, so they are one capture area with one cast."
     },
     "encounters_route_210_south": {
-      "home": ["SPECIES_SCYTHER"],
-      "cameo": ["SPECIES_PONYTA", "SPECIES_STEENEE", "SPECIES_CORVISQUIRE", "SPECIES_SWABLU", "SPECIES_BRAIXEN", "SPECIES_SLUGMA", "SPECIES_SMOLIV", "SPECIES_SNEASEL", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_COMBUSKEN", "SPECIES_FLORAGATO"],
-      "note": "Route 210's lower half, Scyther's home; the north half is the delay. Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, the fire and grass starters as 1%s."
+      "home": ["SPECIES_SCYTHER", "SPECIES_FLORAGATO"],
+      "cameo": ["SPECIES_PONYTA", "SPECIES_STEENEE", "SPECIES_CORVISQUIRE", "SPECIES_BRAIXEN", "SPECIES_SLUGMA", "SPECIES_SWABLU", "SPECIES_SNEASEL", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
+      "tail": ["SPECIES_COMBUSKEN", "SPECIES_SMOLIV"],
+      "note": "Route 210's lower half, Scyther's home; the north half is the delay. Sprigatito at 10, its home since the honey trees gave it up (2026-09-26), Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, Torchic a 1%."
     },
     "encounters_route_215": {
       "home": ["SPECIES_VULLABY", "SPECIES_CASTFORM"],
@@ -1006,10 +1006,9 @@
     "candidates": ["SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT", "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES", "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE", "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI", "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE", "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA", "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"]
   },
   "honey": {
-    "_comment": ["The honey trees, designed from Step 5 on rather than only de-leaked: 21", "trees from Route 205 onward, three rarity tiers of six slots, today all", "off-list bar Combee and Heracross. The rare tier (Munchlax's six slots in", "vanilla) carries the three grass starters, reachable early and rare."],
-    "rare": ["SPECIES_ROWLET", "SPECIES_SNIVY", "SPECIES_SPRIGATITO"],
-    "uncommon": ["SPECIES_COMBEE", "SPECIES_HERACROSS"],
-    "common": ["SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN"]
+    "_comment": ["The honey trees (Ian, 2026-09-26): 21 trees from Route 205 onward, one table", "per badge count (1 to 8) with its own levels, a common and an uncommon tier", "of six slots each; the Munchlax trees and their rare tier are gone, and the", "grass starters with them (their homes are Eterna Forest, Route 204 north and", "Route 210 south). Listed here per tier across all eight tables; the tables", "themselves are in encounters_honey_tree.json."],
+    "common": ["SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PIKIPEK", "SPECIES_DOTTLER", "SPECIES_PACHIRISU", "SPECIES_TRUMBEAK", "SPECIES_JOLTIK", "SPECIES_FOMANTIS", "SPECIES_VESPIQUEN", "SPECIES_SWADLOON", "SPECIES_CHARJABUG", "SPECIES_YANMA", "SPECIES_EMOLGA", "SPECIES_LEAVANNY", "SPECIES_VIKAVOLT", "SPECIES_GALVANTULA", "SPECIES_FROSMOTH", "SPECIES_YANMEGA", "SPECIES_SCIZOR"],
+    "uncommon": ["SPECIES_SEEDOT", "SPECIES_SHROOMISH", "SPECIES_BOUNSWEET", "SPECIES_BUDEW", "SPECIES_EMOLGA", "SPECIES_HERACROSS", "SPECIES_NUZLEAF", "SPECIES_STEENEE", "SPECIES_FOMANTIS", "SPECIES_YANMA", "SPECIES_SCYTHER", "SPECIES_TRUMBEAK", "SPECIES_SNOM", "SPECIES_TOUCANNON", "SPECIES_LARVESTA", "SPECIES_SCIZOR", "SPECIES_SHIFTRY", "SPECIES_SKARMORY", "SPECIES_FROSMOTH"]
   },
   "proposals": {
     "_comment": ["The two box legendaries, the only new statics, both post-League by Ian's", "rule. Script work outside this track; counted as sourced on paper."],
