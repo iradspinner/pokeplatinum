@@ -59,7 +59,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_HAPPINESS_NIGHT",
+            "EVO_LEVEL_ICE_ROCK",
             "SPECIES_FROSMOTH"
         ]
     ],

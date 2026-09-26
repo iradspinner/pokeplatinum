@@ -393,10 +393,16 @@ DIVERGED_MEMBERS = {
                "longer learn it by level (Ian, 2026-09-26)",
     },
     "poketool/personal/evo.narc": {
-        "members": {57, 123, 130, 133, 194, 370, 428},
+        "members": {57, 123, 130, 133, 194, 370, 428,
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447},
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
-               "Phase 4 element 3)",
+               "Phase 4 element 3), and no evolution is by friendship any more "
+               "(Ian, 2026-09-27; docs/oxide/encounters/friendship-evolutions.md): "
+               "Golbat, Chansey, Pichu, Cleffa, Igglybuff, Togepi, Azurill, "
+               "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
+               "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
+               "Moon Stone",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has

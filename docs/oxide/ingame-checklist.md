@@ -130,6 +130,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   talked to again he only says "See ya!". Pastoria City's north house has no
   clown.
 - [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
+  Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
+  30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
+  Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
+  Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
 - [ ] Snowpoint City: fishing gives the species of
   `res/field/encounters/encounters_snowpoint_city.json` for each rod.
 - [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
