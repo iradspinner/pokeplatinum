@@ -941,6 +941,12 @@ TestKit_MoveSet31:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
+/* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
+   a menu has been answered), for an entry that needs a held item. */
+TestKit_GivePokemonWithItem:
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    GoTo TestKit_GivePokemonSetMoves
+
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in
    slot VAR_0x8005, holding the four moves in VAR_0x8006 to VAR_0x8009, and
    names them. */
@@ -948,6 +954,7 @@ TestKit_GiveMew:
     SetVar VAR_0x800A, SPECIES_MEW
 TestKit_GivePokemonWithMoves:
     GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+TestKit_GivePokemonSetMoves:
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, VAR_0x8006
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
@@ -1117,6 +1124,12 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityUnnerve, 10
     AddListMenuEntry TestKit_Text_MenuAbilityScreenCleaner, 11
     AddListMenuEntry TestKit_Text_MenuAbilityRegenerator, 12
+    AddListMenuEntry TestKit_Text_MenuAbilityPastelVeil, 13
+    AddListMenuEntry TestKit_Text_MenuAbilitySweetVeil, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityHarvest, 15
+    AddListMenuEntry TestKit_Text_MenuAbilityProtean, 16
+    AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
+    AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1131,6 +1144,12 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 10, TestKit_AbilityUnnerve
     GoToIfEq VAR_0x8004, 11, TestKit_AbilityScreenCleaner
     GoToIfEq VAR_0x8004, 12, TestKit_AbilityRegenerator
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilityPastelVeil
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilitySweetVeil
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityHarvest
+    GoToIfEq VAR_0x8004, 16, TestKit_AbilityProtean
+    GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
+    GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1694,6 +1713,90 @@ TestKit_AbilityRegenerator:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Pastel Veil: a wild Grimer that knows only Toxic, which Pastel Veil stops. */
+TestKit_AbilityPastelVeil:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_RAPIDASH
+    SetVar VAR_0x800B, ABILITY_PASTEL_VEIL
+    SetVar VAR_0x8006, MOVE_PLAY_ROUGH
+    SetVar VAR_0x8007, MOVE_HIGH_HORSEPOWER
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8000, SPECIES_GRIMER
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sweet Veil: a wild Jigglypuff that knows only Sing, which Sweet Veil keeps
+   from putting Tsareena to sleep. */
+TestKit_AbilitySweetVeil:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_SWEET_VEIL
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_TRIPLE_AXEL
+    SetVar VAR_0x8009, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8000, SPECIES_JIGGLYPUFF
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SING
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Harvest: holding a Sitrus Berry; Substitute twice takes Arboliva below
+   half its HP, it eats the Berry, and Harvest then grows it back half the
+   time at the end of a turn. */
+TestKit_AbilityHarvest:
+    SetVar VAR_0x800A, SPECIES_ARBOLIVA
+    SetVar VAR_0x800B, ABILITY_HARVEST
+    SetVar VAR_0x8006, MOVE_SUBSTITUTE
+    SetVar VAR_0x8007, MOVE_HYPER_VOICE
+    SetVar VAR_0x8008, MOVE_LEECH_SEED
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    SetVar VAR_0x8004, ITEM_SITRUS_BERRY
+    GoTo TestKit_GivePokemonWithItem
+
+/* Protean: any foe; Greninja's first move gives it that move's type, and no
+   later one does until it switches out and back in. */
+TestKit_AbilityProtean:
+    SetVar VAR_0x800A, SPECIES_GRENINJA
+    SetVar VAR_0x800B, ABILITY_PROTEAN
+    SetVar VAR_0x8006, MOVE_SURF
+    SetVar VAR_0x8007, MOVE_DARK_PULSE
+    SetVar VAR_0x8008, MOVE_ICE_BEAM
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Libero: as Protean, for Cinderace. */
+TestKit_AbilityLibero:
+    SetVar VAR_0x800A, SPECIES_CINDERACE
+    SetVar VAR_0x800B, ABILITY_LIBERO
+    SetVar VAR_0x8006, MOVE_PYRO_BALL
+    SetVar VAR_0x8007, MOVE_COURT_CHANGE
+    SetVar VAR_0x8008, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator: a wild Chansey that knows only Mist; Fake Tears still lowers
+   its Sp. Def through the Mist. */
+TestKit_AbilityInfiltrator:
+    SetVar VAR_0x800A, SPECIES_CHANDELURE
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_FAKE_TEARS
+    SetVar VAR_0x8009, MOVE_ENERGY_BALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MIST
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

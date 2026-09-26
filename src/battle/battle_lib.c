@@ -113,6 +113,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
+    battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -3757,6 +3758,54 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
             result = TRUE;
         }
         break;
+
+    // Oxide, element 5: after hg-engine's end-of-turn ability checks.
+    case ABILITY_HEALER: {
+        // Three times in ten, its partner's status is cured, as Shed Skin
+        // cures its own.
+        int partner = BattleSystem_GetPartner(battleSys, battler);
+        u32 status = battleCtx->battleMons[partner].status;
+
+        if (partner != battler
+            && battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[partner].curHP
+            && (status & MON_CONDITION_ANY)
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            if (status & MON_CONDITION_SLEEP) {
+                battleCtx->msgTemp = MSGCOND_SLEEP;
+            } else if (status & MON_CONDITION_ANY_POISON) {
+                battleCtx->msgTemp = MSGCOND_POISON;
+            } else if (status & MON_CONDITION_BURN) {
+                battleCtx->msgTemp = MSGCOND_BURN;
+            } else if (status & MON_CONDITION_PARALYSIS) {
+                battleCtx->msgTemp = MSGCOND_PARALYSIS;
+            } else {
+                battleCtx->msgTemp = MSGCOND_FREEZE;
+            }
+
+            battleCtx->msgBattlerTemp = partner;
+            battleCtx->abilityMon = battler;
+            subscript = subscript_healer;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_HARVEST:
+        // A Berry it used grows back, every turn in sunshine and half the time
+        // otherwise, if it holds nothing.
+        if (battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[battler].heldItem == ITEM_NONE
+            && Item_IsBerry(battleCtx->recycleItem[battler])
+            && ((NO_CLOUD_NINE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY))
+                || BattleSystem_RandNext(battleSys) % 2 == 0)) {
+            battleCtx->msgItemTemp = battleCtx->recycleItem[battler];
+            battleCtx->recycleItem[battler] = ITEM_NONE;
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_harvest;
+            result = TRUE;
+        }
+        break;
     }
 
     if (result == TRUE) {
@@ -4754,6 +4803,22 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+    }
+
+    // Oxide: Magician takes the target's item after a damaging move, if its
+    // holder has none, when nothing above has run. TryStealItem, Thief's
+    // command, makes the rest of the checks in its subscript.
+    if (result == FALSE
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MAGICIAN
+        && ATTACKING_MON.curHP
+        && ATTACKING_MON.heldItem == ITEM_NONE
+        && DEFENDING_MON.heldItem
+        && battleCtx->attacker != battleCtx->defender
+        && CURRENT_MOVE_DATA.class != CLASS_STATUS
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+        *subscript = subscript_magician;
+        result = TRUE;
     }
 
     return result;
@@ -7521,6 +7586,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         // two do not stack.
         if ((sideConditions & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Oxide
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7562,6 +7628,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & (SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Oxide
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {

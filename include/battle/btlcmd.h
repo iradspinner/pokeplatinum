@@ -10,6 +10,8 @@
 
 #define CHECK_HAVE     0
 #define CHECK_NOT_HAVE 1
+// Oxide: the battler or its partner has it, for Pastel Veil and Sweet Veil.
+#define CHECK_HAVE_ON_SIDE 2
 
 #define MSGCOND_SLEEP       0
 #define MSGCOND_POISON      1

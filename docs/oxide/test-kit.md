@@ -167,18 +167,26 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Pixilate | Sylveon: Hyper Voice, Quick Attack, Calm Mind, Wish; foe a wild Misdreavus, a Ghost type, that knows only Growl | Hyper Voice and Quick Attack hit Misdreavus, where a Normal move would bring "It doesn't affect..." | 9b681d08 |
 | Liquid Voice | Primarina: Hyper Voice, Moonblast, Calm Mind, Sparkling Aria; foe a wild Vaporeon with Water Absorb that knows only Growl | Hyper Voice does no damage: Vaporeon's Water Absorb takes it, as it takes Sparkling Aria | 9b681d08 |
 | Sheer Force | Toucannon: Flame Charge, Brave Bird, Bullet Seed, Roost; foe a wild Chansey that knows only Growl | Flame Charge never brings "TOUCANNON's Speed rose!"; Brave Bird's recoil, not a secondary effect, stays | 9b681d08 |
-| Auras | Xerneas with Fairy Aura: Moonblast, Geomancy, Psyshock, Focus Blast; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "The wild YVELTAL is radiating a dark aura!" as the battle starts, and "XERNEAS is radiating a fairy aura!" when Xerneas comes in | this batch |
-| Aura Break | Zygarde (50% Forme) with Aura Break: Thousand Arrows, Dragon Dance, Coil, Rest; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "ZYGARDE reversed all other Pokémon's auras!" when Zygarde comes in; from then on Dark Aura weakens Dark moves by a quarter in place of raising them, which has no message | this batch |
-| Unnerve | Galvantula: Thunder, Bug Buzz, Energy Ball, Sticky Web; foe a wild Rattata that knows only Growl | "The foe's team is too nervous to eat Berries!" when Galvantula comes in. The wild foe holds no Berry, so the Berry block itself does not show here | this batch |
-| Screen Cleaner | Mr. Rime: Freeze-Dry, Psychic, Rapid Spin, Slack Off; foe a wild Chansey that knows Reflect and Light Screen | Once Chansey has a screen up, switch Mr. Rime in: "All screens on the field were cleansed!", and Freeze-Dry's damage goes back up | this batch |
-| Regenerator | Toxapex: Scald, Toxic, Haze, Recover; foe a wild Rattata that knows only Tackle | Let Tackle hurt Toxapex, switch it out, and bring it back: it has a third of its HP back, with no message | this batch |
+| Auras | Xerneas with Fairy Aura: Moonblast, Geomancy, Psyshock, Focus Blast; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "The wild YVELTAL is radiating a dark aura!" as the battle starts, and "XERNEAS is radiating a fairy aura!" when Xerneas comes in | 71bfc90f |
+| Aura Break | Zygarde (50% Forme) with Aura Break: Thousand Arrows, Dragon Dance, Coil, Rest; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "ZYGARDE reversed all other Pokémon's auras!" when Zygarde comes in; from then on Dark Aura weakens Dark moves by a quarter in place of raising them, which has no message | 71bfc90f |
+| Unnerve | Galvantula: Thunder, Bug Buzz, Energy Ball, Sticky Web; foe a wild Rattata that knows only Growl | "The foe's team is too nervous to eat Berries!" when Galvantula comes in. The wild foe holds no Berry, so the Berry block itself does not show here | 71bfc90f |
+| Screen Cleaner | Mr. Rime: Freeze-Dry, Psychic, Rapid Spin, Slack Off; foe a wild Chansey that knows Reflect and Light Screen | Once Chansey has a screen up, switch Mr. Rime in: "All screens on the field were cleansed!", and Freeze-Dry's damage goes back up | 71bfc90f |
+| Regenerator | Toxapex: Scald, Toxic, Haze, Recover; foe a wild Rattata that knows only Tackle | Let Tackle hurt Toxapex, switch it out, and bring it back: it has a third of its HP back, with no message | 71bfc90f |
+| Pastel Veil | Galarian Rapidash: Play Rough, High Horsepower, Morning Sun, Quick Attack; foe a wild Grimer that knows only Toxic | "RAPIDASH's Pastel Veil prevents poisoning!" every time | this batch |
+| Sweet Veil | Tsareena with Sweet Veil: Trop Kick, Power Whip, Triple Axel, Quick Attack; foe a wild Jigglypuff that knows only Sing | "TSAREENA stayed awake because of its Sweet Veil!" whenever Sing hits | this batch |
+| Harvest | Arboliva holding a Sitrus Berry: Substitute, Hyper Voice, Leech Seed, Protect; foe a wild Rattata that knows only Growl | Use Substitute twice: below half HP Arboliva eats the Sitrus Berry, and at the end of later turns, about one in two, "ARBOLIVA harvested one Sitrus Berry!" (every turn in sunshine) | this batch |
+| Protean | Greninja: Surf, Dark Pulse, Ice Beam, U-turn; foe a wild Rattata that knows only Growl | The first move brings "GRENINJA's Protean made it the Water type!" (or the move's type); later moves bring nothing until Greninja switches out and back in | this batch |
+| Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | this batch |
+| Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | this batch |
 
 ## Not built yet
 
 Steelworker, Sharpness and Battery change only a move's power, with no
 message, and the kit's Pokemon have random IVs and natures, so there is no
 fixed number to look for; they have no entry. Battery also needs a double
-battle, as does Hospitality, which has no entry either.
+battle, as do Hospitality, Healer and Telepathy, which have no entry either.
+Magician needs a foe holding an item, which the kit's wild battles cannot
+give, so it has no entry.
 
 Kit-only trainers whose teams use the new moves, so the AI's side gets seen too.
 Ian chose move sets first; trainers are the next step when he wants them.

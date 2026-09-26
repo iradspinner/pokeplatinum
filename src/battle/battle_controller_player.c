@@ -2834,7 +2834,8 @@ enum ImmunityAbilityState {
  * of raised priority aimed at them, with Damp's "{0}'s {1} prevents {2} from
  * using {3}!"; and a Dark-type target is not affected by a status move that
  * Prankster raised, as in the later games. Both are from hg-engine, which
- * makes them before the move; here they run with the immunity abilities.
+ * makes them before the move; here they run with the immunity abilities, as
+ * does Telepathy, which keeps its holder safe from its partner's attacks.
  *
  * @return The subscript to run, or NULL.
  */
@@ -2842,6 +2843,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
 {
     int attacker = battleCtx->attacker;
     int defender = battleCtx->defender;
+
+    // Telepathy: its holder takes no damaging move from its partner.
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)
+        && MOVE_DATA(battleCtx->moveCur).power
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_TELEPATHY) == TRUE) {
+        return subscript_telepathy;
+    }
 
     if (defender == BATTLER_NONE
         || BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)) {
@@ -3292,6 +3302,7 @@ enum BeforeMoveState {
     BEFORE_MOVE_STATE_DECREMENT_PP,
     BEFORE_MOVE_STATE_CHECK_TARGET_EXISTS,
     BEFORE_MOVE_STATE_CHECK_STOLEN,
+    BEFORE_MOVE_STATE_PROTEAN, // Oxide
     BEFORE_MOVE_STATE_REDIRECT_TARGET,
 
     BEFORE_MOVE_END,
@@ -3364,10 +3375,31 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
 
         battleCtx->beforeMoveCheckState++;
 
-    case BEFORE_MOVE_STATE_REDIRECT_TARGET:
+    case BEFORE_MOVE_STATE_PROTEAN: {
         // Oxide: Pixilate and Liquid Voice set the move's type before
-        // anything reads it.
+        // anything reads it. Then Protean and Libero give their holder the
+        // move's type, once per switch-in (the later games' rule, which
+        // hg-engine follows), with Color Change's message.
         BattleSystem_SetMoveTypeByAbility(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+        battleCtx->beforeMoveCheckState++;
+
+        int ability = Battler_Ability(battleCtx, battleCtx->attacker);
+        int type = CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+
+        if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
+            && ATTACKING_MON.proteanUsed == FALSE
+            && battleCtx->moveCur != MOVE_STRUGGLE
+            && (ATTACKING_MON.type1 != type || ATTACKING_MON.type2 != type)) {
+            ATTACKING_MON.proteanUsed = TRUE;
+            battleCtx->msgTemp = type;
+            LOAD_SUBSEQ(subscript_protean);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
+
+    case BEFORE_MOVE_STATE_REDIRECT_TARGET:
         BattleSystem_CheckRedirectionAbilities(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }

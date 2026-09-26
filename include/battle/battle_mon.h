@@ -95,7 +95,7 @@ typedef struct BattleMon {
     u32 moldBreakerAnnounced : 1;
     u32 pressureAnnounced : 1;
     u32 oxideAbilityAnnounced : 1; // Oxide: the switch-in abilities element 5 adds, from the padding
-    u32 padding0028_0C : 1;
+    u32 proteanUsed : 1; // Oxide: Protean and Libero act once per switch-in, from the padding
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

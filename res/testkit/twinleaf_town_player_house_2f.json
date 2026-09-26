@@ -226,6 +226,30 @@
             "en_US": "Regenerator"
         },
         {
+            "id": "TestKit_Text_MenuAbilityPastelVeil",
+            "en_US": "Pastel Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySweetVeil",
+            "en_US": "Sweet Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityHarvest",
+            "en_US": "Harvest"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityProtean",
+            "en_US": "Protean"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLibero",
+            "en_US": "Libero"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityInfiltrator",
+            "en_US": "Infiltrator"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

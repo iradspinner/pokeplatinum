@@ -359,4 +359,9 @@ subscript_files = files(
     'subscript_aura.s',
     'subscript_screen_cleaner.s',
     'subscript_hospitality.s',
+    'subscript_healer.s',
+    'subscript_harvest.s',
+    'subscript_telepathy.s',
+    'subscript_protean.s',
+    'subscript_magician.s',
 )

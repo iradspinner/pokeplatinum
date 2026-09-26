@@ -9109,6 +9109,72 @@
         "The foe’s {STRVAR_1 1, 0, 0} drank down all\n",
         "the matcha the foe’s {STRVAR_1 1, 1, 0} made!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was cured of its\n",
+        "{STRVAR_1 17, 2, 0} status by its ally’s\f",
+        "{STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was cured\n",
+        "of its {STRVAR_1 17, 2, 0} status\f",
+        "by its ally’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was cured\n",
+        "of its {STRVAR_1 17, 2, 0} status\f",
+        "by its ally’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} avoids attacks\n",
+        "by its ally Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} avoids\n",
+        "attacks by its ally Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} avoids\n",
+        "attacks by its ally Pokémon!"
+      ]
     }
   ]
 }

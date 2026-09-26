@@ -2940,7 +2940,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
             if (battleCtx->attacker != battleCtx->sideEffectMon) {
-                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns) {
+                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns
+                    && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INFILTRATOR) { // Oxide: Infiltrator passes Mist
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
@@ -3254,7 +3255,21 @@ static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCt
     } else {
         battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-        if (op == CHECK_HAVE) {
+        // Oxide: CHECK_HAVE_ON_SIDE also finds the ability on the battler's
+        // living partner, and abilityMon is whichever has it.
+        if (op == CHECK_HAVE_ON_SIDE) {
+            int partner = BattleSystem_GetPartner(battleSys, battler);
+
+            if (Battler_Ability(battleCtx, battler) == ability) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = battler;
+            } else if (partner != battler
+                && battleCtx->battleMons[partner].curHP
+                && Battler_Ability(battleCtx, partner) == ability) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = partner;
+            }
+        } else if (op == CHECK_HAVE) {
             if (Battler_Ability(battleCtx, battler) == ability) {
                 BattleScript_Iter(battleCtx, jump);
                 battleCtx->abilityMon = battler;
@@ -5524,6 +5539,7 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     ATTACKING_MON.moldBreakerAnnounced = FALSE;
     ATTACKING_MON.pressureAnnounced = FALSE;
     ATTACKING_MON.oxideAbilityAnnounced = FALSE;
+    ATTACKING_MON.proteanUsed = FALSE;
     ATTACKING_MON.moveEffectsData.truant = battleCtx->totalTurns & 1;
     ATTACKING_MON.moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
     ATTACKING_MON.slowStartAnnounced = FALSE;
@@ -7885,7 +7901,22 @@ static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext 
     } else {
         battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-        if (op == CHECK_HAVE) {
+        // Oxide: as in BtlCmd_CheckAbility, CHECK_HAVE_ON_SIDE also finds the
+        // ability on the battler's living partner.
+        if (op == CHECK_HAVE_ON_SIDE) {
+            int partner = BattleSystem_GetPartner(battleSys, battler);
+
+            if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ability) == TRUE
+                && battleCtx->battleMons[battler].curHP) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = battler;
+            } else if (partner != battler
+                && battleCtx->battleMons[partner].curHP
+                && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ability) == TRUE) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = partner;
+            }
+        } else if (op == CHECK_HAVE) {
             if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ability) == TRUE
                 && battleCtx->battleMons[battler].curHP) {
                 BattleScript_Iter(battleCtx, jump);
