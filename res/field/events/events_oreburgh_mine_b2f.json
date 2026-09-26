@@ -262,7 +262,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
             "hidden_flag": "FLAG_UNK_0x0A8D",
-            "script": 7103,
+            "script": 7229,
             "initial_dir": 1,
             "data": [  ],
             "movement_range_x": 0,

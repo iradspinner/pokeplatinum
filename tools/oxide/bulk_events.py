@@ -84,6 +84,25 @@ DIVERGED.update({
 # B2F loses the nine stone balls appended to the end of its object list.
 DIVERGED["events_galactic_hq_b2f"] = (
     "the nine evolution stone balls the base ROM added removed (Ian, 2026-09-27)")
+# Ian's approved stone plan (2026-09-27, from the balance track's stone census):
+# thirteen stone finds go, and the Oreburgh Mine B2F ball the base ROM added
+# holds an Everstone rather than an Old Amber.
+for _m, _why in (
+    ("fuego_ironworks_building", "its Fire Stone ball removed"),
+    ("stark_mountain_room_2", "its hidden Fire Stone removed"),
+    ("route_230", "its hidden Water Stone removed"),
+    ("resort_area", "its copy of Route 229's hidden Thunder Stone removed"),
+    ("route_229", "its hidden Thunder Stone removed"),
+    ("great_marsh_3", "its hidden Leaf Stone removed"),
+    ("route_225", "its hidden Leaf Stone and its Dawn Stone ball removed"),
+    ("route_211_west", "its copy of Eterna City's hidden Moon Stone removed"),
+    ("mt_coronet_4f_rooms_1_and_2", "its hidden Sun Stone removed"),
+    ("route_210_north", "its hidden Shiny Stone removed"),
+    ("oreburgh_mine_b2f", "the base ROM's Old Amber ball holds an Everstone"),
+):
+    _why += " (Ian's stone plan, 2026-09-27)"
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 
 def render(record, existing, index):

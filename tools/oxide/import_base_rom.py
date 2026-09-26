@@ -962,6 +962,14 @@ def events_to_scripts(van_arm9):
     return pairs
 
 
+def events_diverged():
+    """The events files that deliberately differ from the base ROM, from
+    bulk_events.py. Imported here rather than at the top, since bulk_events
+    imports this module."""
+    import bulk_events
+    return bulk_events.DIVERGED
+
+
 def import_events(base, van, dry_run, log):
     """Carry over the event edits that stand on their own.
 
@@ -991,6 +999,12 @@ def import_events(base, van, dry_run, log):
             continue
         path = events_json(i)
         name = os.path.basename(path) if path else f"events member {i}"
+        # A map whose events deliberately differ from the base ROM is left
+        # alone. This matters most where an event was cut from the middle of
+        # an array: the edits below go by position, so they would land on
+        # the wrong records. bulk_events.py holds the one list of such maps.
+        if path and name[:-len(".json")] in events_diverged():
+            deferred.append(f"{name}: deliberately diverged, left alone"); continue
         scripts = ev2scr.get(i, set())
         if not scripts:
             deferred.append(f"{name}: no map header points at it"); continue
