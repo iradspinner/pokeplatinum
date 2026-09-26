@@ -25,7 +25,7 @@ python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/ro
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7: built NARC vs res/ JSON
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --text
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
-python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 16 skipped, the deliberate divergences
+python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 15 skipped, the deliberate divergences
 python3 tools/oxide/bulk_events.py --dry-run    # would write 0
 python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 8 skipped
 python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
