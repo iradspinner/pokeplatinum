@@ -7753,6 +7753,10 @@ TagStrategy_Earthquake:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Earthquake_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage from its partner's
+    // moves (element 5), so it is as safe as a Levitate one
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_Earthquake_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
@@ -7783,11 +7787,20 @@ TagStrategy_Explosion:
     // Explosion and Self-Destruct hit the partner as well as both foes. Vanilla never looked
     // at the partner for them. If our partner:
     //  - Is absent (its slot is empty for the rest of the battle) or a Ghost, no change
+    //    (Oxide: or has Telepathy, below)
     //  - Resists the move (has a Rock or Steel typing), score -3
     //  - Otherwise, score -10
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Explosion_End
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GHOST
     IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, as a Ghost one,
+    // unless the user's Mold Breaker gets past it
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Explosion_CheckTypes
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+
+TagStrategy_Explosion_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
@@ -7909,6 +7922,9 @@ TagStrategy_SpreadElectricMove:
     // Oxide: a Lightning Rod partner now takes the move as Volt Absorb does
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner is as safe as a Ground one
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadElectricMove_CheckTypes:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
@@ -7968,6 +7984,10 @@ TagStrategy_SpreadWaterMove:
     // Oxide: a Storm Drain partner now takes the move as Water Absorb does
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, so score +2, as
+    // Earthquake beside a partner immune to it
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_SpreadWaterMove_CheckTypes:
 
@@ -8019,6 +8039,9 @@ TagStrategy_SpreadFireMove:
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, as for Surf
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_SpreadFireMove_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
