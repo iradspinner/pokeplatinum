@@ -10,46 +10,52 @@ tails and Old Rod slots. In the same ruling Surskit was retiered from filler
 to starter-adjacent, so its Lake Verity home stands in Roark's split; that is
 done on `encounter-r12-sources`.
 
+## Ian's answer, and the revised shapes
+
+Ian, 2026-09-27, relayed by the Overseer: rarer than the first proposal,
+which put four of them on always-on 10% slots. They stay real finds rather
+than 1% tails, but on smaller shapes: a 4 or 5% slot, a time-of-day slot, or
+a place that costs a choice to reach. The places are kept.
+
 ## Where each would live
 
-Each starter's first stage evolves at 16, so a home that holds the first stage
-sits below level 16. That is Gardenia's split: Roark's split takes only
-starter-adjacent lines at real shares. Every slot below is one of a table's
-two always-on 10% slots (the other two 10% slots give way to the day and
-night lists), and every line that gives way keeps a home elsewhere.
+Each starter's first stage evolves at 16, so each sits below level 16, in
+Gardenia's split, where Roark's rule does not reach. Every line that gives
+way keeps its home.
 
-| Line | Table | Slot, level | Gives way | Why there |
+| Line | Table | Shape | Gives way | Why there |
 |---|---|---|---|---|
-| Charmander | Route 211 west, the mountain's foot | 10%, level 15 | Snover (six homes) | a fire lizard among the rocks below Mt. Coronet |
-| Squirtle | Route 205 north, the damp side | 10%, level 14 | Wooper, which stays there by night | a turtle in the wet grass by the river |
-| Treecko | Route 204 north, the delay | 20% already | nothing | its home already; unchanged |
-| Torchic | Route 205 south, Floaroma's meadow | 10%, level 11 | Fletchling (three homes) | a chick in the meadow, where it is seen by day today |
-| Mudkip | Oreburgh Gate B1F, the deep floor | 10%, level 8 | Carbink (fifty homes) | a mud fish on the damp cave floor, above the Old Rod water it fishes from today |
+| Charmander | Route 211 west, the mountain's foot | a 5% slot, level 15 | the second Bronzor slot (Bronzor keeps its 10%) | a fire lizard among the rocks below Mt. Coronet |
+| Squirtle | Route 205 north, the damp side | 10% by day | Smoliv's day slot (Smoliv's home is Route 205 south) | a turtle sunning on the riverbank |
+| Treecko | Route 204 north, the delay | 10% in the morning, down from both morning slots | Budew takes the other morning slot, beside its day slot | its home already, now half the share |
+| Torchic | Route 204 north, the delay | 10% by day, as today | nothing | already a time-of-day find |
+| Mudkip | Oreburgh Gate B1F, the deep floor | a 5% slot, level 8 | the second Phanpy slot (Phanpy keeps its 20%) | the damp cave floor, open only once Rock Smash is |
 
 The lines keep their present tails and rods as second appearances. All five
 are fully evolved by 36, inside Maylene's cap, so none becomes a cap
-candidate. None of the tables changes shape or level.
+candidate. No table changes shape or level.
 
 ## What it does to the box simulator
 
 Measured over 100 best-play League runs for each of two starts, today's game
-against the same game with these placements and tiers (in memory, no file
-changed):
+against the same game with these shapes and the five lines retiered (in
+memory, no file changed):
 
-| | Today | Proposed |
+| | Today | Revised |
 |---|---|---|
 | Pokemon worth 85 or more per box | 4.05 | 4.05 |
-| Worth 75 to 85 per box | 21.2 | 21.6 |
-| Ian's wanted lines per box | 18.3 | 18.1 |
-| Blaziken in a box | 10 runs | 34 runs |
-| Swampert in a box | 4 runs | 21 runs |
-| Sceptile in a box | 8 runs | 6 runs |
+| Worth 75 to 85 per box | 21.2 | 21.1 |
+| Ian's wanted lines per box | 18.3 | 18.3 |
+| Blaziken, Sceptile, Swampert in a box | 10, 8, 4 runs | 10, 8, 4 runs |
 | Charizard, Blastoise | never | never |
 
-Charmander and Squirtle are placed but rarely taken, because their places'
-captures hold better choices (Alolan Ninetales and Mienfoo on Route 211 west,
-Lotad and Cherubi on Route 205 north). Torchic and Mudkip are taken often,
-since their places offer less. If Ian wants the Kanto pair to land more, the
-lever is a thinner table around them, not a bigger share. The small fall in
-wanted lines comes from Torchic taking Route 205 south's capture, where
-Bounsweet is a 5%.
+At these shapes the simulator's greedy player never spends a capture on
+them: each is a small share of its place, so the place's capture goes to a
+likelier line. They are finds for a player who looks for them (the right
+time of day, a repel ladder, a trip to the deep floor), which is what Ian
+asked for, and they do not move the box. The first proposal, with
+always-on 10% slots, had put Blaziken in 34 boxes and Swampert in 21.
+
+One tool note: R12, which the gate sets aside, prices land slots only, so
+it will call Torchic sourceless and price Squirtle by its Old Rod slot.
+That is the cost model's limit, not a gap in the game.
