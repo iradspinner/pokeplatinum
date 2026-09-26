@@ -57,6 +57,7 @@ DistortionWorldB7F_Cyrus:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
     SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE
+    RaiseLevelCap LEVEL_CAP_SPLIT_VOLKNER
     Message DistortionWorldB7F_Text_YoullDestroyThisWorld
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

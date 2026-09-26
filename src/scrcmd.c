@@ -441,6 +441,7 @@ static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 #ifdef OXIDE_TESTKIT
 static BOOL ScrCmd_TestKitStartWildBattle(ScriptContext *ctx);
 #endif
+static BOOL ScrCmd_RaiseLevelCap(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
@@ -7153,5 +7154,16 @@ static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx)
         }
     }
 
+    return FALSE;
+}
+
+// Platinum Oxide: move the player into a later level-cap split, one of the
+// LEVEL_CAP_SPLIT_ constants, when a split's closing fight is won. It never
+// moves the split back, so a script that runs twice cannot lower the cap.
+static BOOL ScrCmd_RaiseLevelCap(ScriptContext *ctx)
+{
+    u16 split = ScriptContext_GetVar(ctx);
+
+    SystemVars_RaiseLevelCapSplit(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), split);
     return FALSE;
 }
