@@ -35,6 +35,12 @@ DEFAULT = [
     "battle/graphic/pl_batt_bg.narc",
     "battle/graphic/pl_batt_obj.narc",
     "itemtool/itemdata/item_icon.narc",
+    "demo/title/titledemo.narc",
+    "graphic/box.narc",
+    "graphic/pl_plist_gra.narc",
+    "battle/graphic/pl_b_plist_gra.narc",
+    "battle/graphic/batt_obj.narc",
+    "wazaeffect/effectdata/waza_particle.narc",
 ]
 
 
