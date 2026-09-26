@@ -2244,6 +2244,14 @@ void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->sideConditions[side].faintedThisTurn = FALSE;
     }
 
+    // Oxide: the same roll-over for Echoed Voice's run.
+    if (battleCtx->fieldConditionsMask & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) {
+        battleCtx->fieldConditionsMask |= FIELD_CONDITION_ECHOED_VOICE_LAST_TURN;
+    } else {
+        battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_LAST_TURN;
+    }
+    battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_THIS_TURN;
+
     for (int i = 0; i < MAX_BATTLERS; i++) {
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
         MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));

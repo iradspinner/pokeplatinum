@@ -1370,6 +1370,29 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         return sElectroBallPower[ratio];
     }
 
+    case MOVE_ECHOED_VOICE: {
+        // 40, and 40 more for each turn in a row that any battler has used
+        // it, up to 200. The first use in a turn moves the run on and later
+        // ones that turn share its power, as in the later games; a turn
+        // without it starts the run again.
+        u32 *field = &battleCtx->fieldConditionsMask;
+        int run = (*field & FIELD_CONDITION_ECHOED_VOICE) >> FIELD_CONDITION_ECHOED_VOICE_SHIFT;
+
+        if ((*field & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) == FALSE) {
+            if (*field & FIELD_CONDITION_ECHOED_VOICE_LAST_TURN) {
+                if (run < 4) {
+                    run++;
+                }
+            } else {
+                run = 0;
+            }
+
+            *field &= ~FIELD_CONDITION_ECHOED_VOICE;
+            *field |= (run << FIELD_CONDITION_ECHOED_VOICE_SHIFT) | FIELD_CONDITION_ECHOED_VOICE_THIS_TURN;
+        }
+        return 40 * (run + 1);
+    }
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {

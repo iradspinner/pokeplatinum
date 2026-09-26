@@ -674,6 +674,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet32, 4
     AddListMenuEntry TestKit_Text_MenuSet33, 5
     AddListMenuEntry TestKit_Text_MenuSet34, 6
+    AddListMenuEntry TestKit_Text_MenuSet35, 7
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -682,6 +683,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet32
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet33
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet34
+    GoToIfEq VAR_0x8004, 7, TestKit_MoveSet35
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1000,6 +1002,16 @@ TestKit_MoveSet34:
     SetVar VAR_0x8007, MOVE_SPLASH
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 35: Echoed Voice gains 40 power each turn in a row it is
+   used, up to 200, and starts again at 40 after a turn without it. Against
+   the wild Chansey, the third use in a row (120) passes Hyper Voice (90). */
+TestKit_MoveSet35:
+    SetVar VAR_0x8006, MOVE_ECHOED_VOICE
+    SetVar VAR_0x8007, MOVE_HYPER_VOICE
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
