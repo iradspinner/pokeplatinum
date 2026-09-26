@@ -116,7 +116,7 @@ def check_moves_and_sprites(results):
                     f"{len(moves)} moves of {len(folders)} folders"))
     flamethrower = moves["MOVE_FLAMETHROWER"]
     results.append(("a move carries what a damage formula needs",
-                    flamethrower["type"] == "FIRE" and flamethrower["power"] == 95
+                    flamethrower["type"] == "FIRE" and flamethrower["power"] == 90
                     and flamethrower["class"] == "SPECIAL"
                     and flamethrower["accuracy"] == 100
                     and flamethrower["priority"] == 0, ""))
@@ -424,10 +424,12 @@ def check_moves_view(results):
     # King's Rock flag.
     results.append(("a move reports what changed from vanilla, field by field",
                     d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"}}
-                    and d("MOVE_TACKLE") == {"accuracy": {"was": 95, "now": 100}}
+                    and d("MOVE_TACKLE") == {"power": {"was": 35, "now": 40},
+                                             "accuracy": {"was": 95, "now": 100}}
                     and d("MOVE_ATTACK_ORDER")["effect"]["now"] == "POISON_HIT"
                     and d("MOVE_FLAMETHROWER")
-                    == {"flags": {"gained": ["TRIGGERS_KINGS_ROCK"], "lost": []}}
+                    == {"power": {"was": 95, "now": 90},
+                        "flags": {"gained": ["TRIGGERS_KINGS_ROCK"], "lost": []}}
                     and d("MOVE_POUND") is None
                     and d("MOVE_MOONBLAST") == {"new": True}, ""))
 
