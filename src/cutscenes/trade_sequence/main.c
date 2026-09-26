@@ -521,7 +521,10 @@ void TradeSequence_LoadPokemonBGTiles(TradeSequenceData *sequenceData, int pokem
     }
 
     paletteBank = (bgLayer >= 4) ? 4 : 0;
-    Graphics_LoadPalette(template.narcID, template.palette, paletteBank, paletteSlot * 0x20, 0x20, HEAP_ID_TRADE_SEQUENCE);
+
+    // Platinum Oxide: the same colour variation the send and receive phases
+    // show, so the Pokemon keeps its colours through the wormhole.
+    Graphics_LoadPaletteWithHueShift(template.narcID, template.palette, paletteBank, paletteSlot * 0x20, 0x20, HEAP_ID_TRADE_SEQUENCE, template.personality);
 }
 
 void TradeSequence_LoadPokemonPlatform(TradeSequenceData *sequenceData, int pokemonIndex, u32 bgLayer, u32 paletteIdx, u32 tilemapX, u32 tilemapY)
