@@ -6,6 +6,10 @@ A block that mixed finished and open items is kept whole, so each finished item 
 
 ## From the top of the tracker
 
+Answered by Ian on 2026-09-27 and done on `main-forms`: a trainer's form Pokemon now takes its form's ability as well as its stats, and Wormadam's Sandy and Trash forms take Anticipation back from the base ROM's Snow Cloak. The entry as it stood:
+
+- **Element 6 QA questions** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`): should a trainer's form Pokemon also get its form's ability, as it now gets its form's stats? And is Snow Cloak on Wormadam's Sandy and Trash forms intended? It looks like a base-ROM slip, and it means Beauty Devon's two and Worker Jackson's Wormadam fight with Anticipation. Also for the record, one more VANILLA FIX landed: 45ad243a6, Weather Ball in fog after a knockout.
+
 The Phase 3 summary:
 
 **Done in Phase 3, all verified against the base ROM:** species/move/evolution/learnset import; the trainer carry-over (all 928, ability/gender fields, 0 field mismatches, emulator-confirmed); all four synthetic-overlay routines (no items in trainer battles, Rare Candy chaining, uncapped battle frame rate, EV/IV viewer); encounters (125 tables); both in-game trades; map headers (58); the small constant edits; and the scripts, events and text: events 158 of 158, scripts 89 of 91 matching, with `scripts_common` and `scripts_init_battleground` intentionally diverged, text banks 72 of 78, with every mismatch explained under Phase 3 and none of them an outstanding edit. Three sets of base-ROM changes were deliberately *not* carried over, as DSPRE noise rather than edits, each with its evidence recorded: sprite heights, the six vitamin item records, and the encounter `unown_table`/`rate_form` fields.

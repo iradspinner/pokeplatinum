@@ -1418,6 +1418,15 @@ def main():
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
     }
 
+    # Records whose abilities Oxide has changed on purpose since the base ROM.
+    # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave
+    # Snow Cloak, a slip: every official game gives all three forms
+    # Anticipation, as the Plant form here has (Ian, 2026-09-27).
+    ABILITIES_DIVERGED = {
+        499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+    }
+
     # species: personal + learnset + evolutions live in one data.json
     bp, vp = base.narc("poketool/personal/pl_personal.narc"), van.narc("poketool/personal/pl_personal.narc")
     bl, vl = base.narc("poketool/personal/wotbl.narc"), van.narc("poketool/personal/wotbl.narc")
@@ -1446,6 +1455,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in ABILITIES_DIVERGED:
+            new.pop("abilities")
+            old.pop("abilities")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"abilities: diverged, left alone ({ABILITIES_DIVERGED[i]})"]))
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n

@@ -481,6 +481,13 @@ PERSONAL_NEW_SIZE = 48
 PERSONAL_ABILITIES_AT = 0x16
 PERSONAL_BASE_EXP_AT = 0x09
 
+# Species records whose two regular abilities differ from the reference on
+# purpose, by reference member, with the ability ids they must now hold.
+PERSONAL_ABILITIES_DIVERGED = {
+    499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+}
+
 
 def personal_fields(member):
     """(head, abilities, base exp, tail) for a species record of either size.
@@ -518,7 +525,13 @@ def check_personal(b, r, path):
             continue
         bh, ba, bx, bt = personal_fields(b[j])
         rh, ra, rx, rt = personal_fields(r[i])
-        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2] or bx != rx:
+        abilities_ok = tuple(ba[:2]) == tuple(ra[:2])
+        if not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED:
+            abilities_ok = tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0]
+            if abilities_ok and bh == rh:
+                intended.append(i)
+                continue
+        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or not abilities_ok or bx != rx:
             bad.append(i)
             continue
         if bh == rh:
