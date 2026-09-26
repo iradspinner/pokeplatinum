@@ -198,12 +198,12 @@
         {
             "level_max": 57,
             "level_min": 48,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_GOREBYSS"
         },
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_TENTACRUEL"
+            "species": "SPECIES_KINGDRA"
         }
     ],
     "map_category": {

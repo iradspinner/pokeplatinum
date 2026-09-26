@@ -247,23 +247,28 @@ that stay. None blocks anything.
    always have also sitting in tables. Riley's egg is one of eight lines at
    random. Mindy trades a shiny Suicune (Serious, 15 across) for a Snover.
    The legendary pool is dealt into three thirds, one each for Acuity
-   Cavern, Valor Cavern and the roamer. Open, waiting on Ian:
-   - **Water lines for the pick-list.** The Popplio line's 57 water slots in
-     39 areas went to a neighbour in their own table, because the on-list
-     water pool cannot fill them without flooding Alomomola and Finneon.
-     About six new water lines would give them variety. The tree already has
-     twenty off-list water lines to choose from: Clamperl, Corsola, Horsea,
-     Krabby, Lapras, Poliwag, Psyduck, Qwilfish, Relicanth, Seel, Shellder,
-     Slowpoke, Spheal, Staryu, Totodile, Wailmer, Wingull, and the fossils
-     and Kyogre.
-   - **Snowpoint City's ice fishing** needs ice-water lines, and none are on
-     the list. Spheal, Seel, Shellder and Lapras are in the tree; its rods
-     stay as drafted until Ian picks.
-   - **The Route 226 trade's Magikarp** still breaks the rule that a line
-     the player can always have is in no table. The trade is to change.
-   - **Six starters lost their only full source** with the Fan Club:
-     Charmander, Squirtle, Treecko, Torchic, Mudkip and Froakie are tails or
-     cameos now, Froakie only a cameo on Route 212 south.
+   Cavern, Valor Cavern and the roamer.
+15. **Seventeen water lines (Ian, 2026-09-26).** Clamperl, Corsola, Horsea,
+   Krabby, Lapras, Poliwag, Psyduck, Qwilfish, Relicanth, Seel, Shellder,
+   Slowpoke, Spheal, Staryu, Totodile, Wailmer and Wingull are on the
+   pick-list. Their 37 rows are appended at its end, so no existing dex
+   position moved; where they sit in the regional dex is Ian's call. The
+   57 water slots the Popplio strip left waiting went to them, by the water
+   they are in (sea, lake, the cold north) and by the slot's size. Each line
+   has a home at a real share and a second appearance. Toxapex is back from
+   Byron's split on, since it is too strong only earlier. Snowpoint's harbour
+   is iced over: Spheal and Seel at home, Shellder, Lapras the prize, and
+   Snorunt, Swinub and Froslass up through the fishing holes. That is the
+   first fishing table with lines that are not Water type where the theme
+   calls for it, which Ian wants more of. Froakie has two 4% slots beside
+   its Old Rod tails. In Ian's sample boxes Route 223 and the Pokemon League
+   came up empty, every line there already in the box. Route 223 was empty
+   in 31 of 40 simulated League runs before these lines and in none after;
+   `test_sim` now fails if an area goes dead.
+   - **The Route 226 trade is to become Meloetta** (Ian): it needs work
+     later, since Meloetta is not in the species tree. Until then the trade
+     stays as it is, and its Magikarp still breaks the rule that a line the
+     player can always have is in no table.
 
 ## Standing rules
 

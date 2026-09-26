@@ -114,12 +114,12 @@
         {
             "level_max": 43,
             "level_min": 37,
-            "species": "SPECIES_FRILLISH"
+            "species": "SPECIES_DEWGONG"
         },
         {
             "level_max": 46,
             "level_min": 40,
-            "species": "SPECIES_FRILLISH"
+            "species": "SPECIES_LAPRAS"
         }
     ],
     "old_rod_rate": 25,
@@ -170,12 +170,12 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_CHINCHOU"
+            "species": "SPECIES_SPHEAL"
         },
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_CHINCHOU"
+            "species": "SPECIES_LAPRAS"
         }
     ],
     "super_rod_rate": 75,

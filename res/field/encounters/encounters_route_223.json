@@ -114,12 +114,12 @@
         {
             "level_max": 49,
             "level_min": 41,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_KINGDRA"
         },
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_TOXAPEX"
         }
     ],
     "old_rod_rate": 100,
@@ -155,7 +155,7 @@
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_GOREBYSS"
         },
         {
             "level_max": 38,
@@ -175,7 +175,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_MAREANIE"
+            "species": "SPECIES_WAILMER"
         }
     ],
     "super_rod_rate": 75,

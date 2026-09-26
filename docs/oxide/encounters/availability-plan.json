@@ -1039,7 +1039,24 @@
     "SPECIES_REMORAID": ["encounters_route_218"],
     "SPECIES_BUIZEL": ["encounters_route_205_south", "encounters_valley_windworks_outside"],
     "SPECIES_SHELLOS": ["encounters_eterna_city", "encounters_oreburgh_gate_b1f"],
-    "SPECIES_MANTYKE": ["encounters_route_219", "encounters_route_223"]
+    "SPECIES_MANTYKE": ["encounters_route_219", "encounters_route_223"],
+    "SPECIES_CLAMPERL": ["encounters_route_223"],
+    "SPECIES_CORSOLA": ["encounters_route_230"],
+    "SPECIES_HORSEA": ["encounters_route_220"],
+    "SPECIES_KRABBY": ["encounters_route_218"],
+    "SPECIES_LAPRAS": ["encounters_snowpoint_city"],
+    "SPECIES_POLIWAG": ["encounters_route_208"],
+    "SPECIES_PSYDUCK": ["encounters_route_205_south"],
+    "SPECIES_QWILFISH": ["encounters_route_213"],
+    "SPECIES_RELICANTH": ["encounters_route_226"],
+    "SPECIES_SEEL": ["encounters_snowpoint_city"],
+    "SPECIES_SHELLDER": ["encounters_iron_island", "encounters_snowpoint_city"],
+    "SPECIES_SLOWPOKE": ["encounters_great_marsh_6"],
+    "SPECIES_SPHEAL": ["encounters_snowpoint_city"],
+    "SPECIES_STARYU": ["encounters_route_219"],
+    "SPECIES_TOTODILE": ["encounters_sendoff_spring"],
+    "SPECIES_WAILMER": ["encounters_route_220"],
+    "SPECIES_WINGULL": ["encounters_route_219"]
   },
   "corridor_splits": ["Roark", "Gardenia"]
 }

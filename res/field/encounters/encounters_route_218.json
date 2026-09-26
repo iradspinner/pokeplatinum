@@ -132,7 +132,7 @@
         {
             "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_LUVDISC"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level_max": 9,
@@ -147,7 +147,7 @@
         {
             "level_max": 9,
             "level_min": 5,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_CORSOLA"
         }
     ],
     "good_rod_rate": 50,

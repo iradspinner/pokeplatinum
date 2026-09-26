@@ -127,27 +127,27 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SPHEAL"
         },
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_SEEL"
         },
         {
             "level_max": 21,
             "level_min": 17,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_SHELLDER"
         },
         {
             "level_max": 21,
             "level_min": 17,
-            "species": "SPECIES_LUVDISC"
+            "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 22,
             "level_min": 18,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_SNORUNT"
         }
     ],
     "good_rod_rate": 50,
@@ -155,27 +155,27 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_SPHEAL"
         },
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_LANTURN"
+            "species": "SPECIES_SEEL"
         },
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_REMORAID"
+            "species": "SPECIES_SWINUB"
         },
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_LAPRAS"
         }
     ],
     "super_rod_rate": 75,
@@ -183,27 +183,27 @@
         {
             "level_max": 46,
             "level_min": 38,
-            "species": "SPECIES_LUMINEON"
+            "species": "SPECIES_SEALEO"
         },
         {
             "level_max": 46,
             "level_min": 38,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_DEWGONG"
         },
         {
             "level_max": 49,
             "level_min": 41,
-            "species": "SPECIES_MANTINE"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 49,
             "level_min": 41,
-            "species": "SPECIES_JELLICENT"
+            "species": "SPECIES_FROSLASS"
         },
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_ALOMOMOLA"
+            "species": "SPECIES_LAPRAS"
         }
     ],
     "map_category": {

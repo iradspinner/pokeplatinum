@@ -114,12 +114,12 @@
         {
             "level_max": 52,
             "level_min": 43,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_PELIPPER"
         },
         {
             "level_max": 55,
             "level_min": 46,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "old_rod_rate": 25,
@@ -165,7 +165,7 @@
         {
             "level_max": 43,
             "level_min": 37,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 43,
@@ -175,7 +175,7 @@
         {
             "level_max": 45,
             "level_min": 39,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_WAILMER"
         }
     ],
     "super_rod_rate": 75,

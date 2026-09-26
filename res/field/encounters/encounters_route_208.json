@@ -132,7 +132,7 @@
         {
             "level_max": 13,
             "level_min": 8,
-            "species": "SPECIES_GOLDEEN"
+            "species": "SPECIES_POLIWAG"
         },
         {
             "level_max": 14,
@@ -147,7 +147,7 @@
         {
             "level_max": 15,
             "level_min": 10,
-            "species": "SPECIES_FEEBAS"
+            "species": "SPECIES_FROAKIE"
         }
     ],
     "good_rod_rate": 50,

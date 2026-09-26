@@ -99,7 +99,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_WAILMER"
         },
         {
             "level_max": 36,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_CLAMPERL"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_TENTACOOL"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 30,
