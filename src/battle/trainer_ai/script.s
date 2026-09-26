@@ -7680,6 +7680,7 @@ TagStrategy_Partner:
     IfLoadedEqualTo TYPE_FIRE, TagStrategy_CheckPartnerFireAbsorption
     IfLoadedEqualTo TYPE_ELECTRIC, TagStrategy_CheckPartnerElectricAbsorption
     IfLoadedEqualTo TYPE_WATER, TagStrategy_CheckPartnerWaterAbsorption
+    IfLoadedEqualTo TYPE_GRASS, TagStrategy_CheckPartnerGrassAbsorption // Oxide
     IfMoveEqualTo MOVE_FLING, TagStrategy_PartnerTrick
 
 TagStrategy_ScoreMinus30:
@@ -7709,11 +7710,23 @@ TagStrategy_CheckPartnerElectricAbsorption:
     //  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
     //  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
     //  - Else, 75% chance of score +3, 25% chance of no change
+    //
+    // Oxide, change (Ian, 2026-09-27): if our partner has Lightning Rod, which now takes the
+    // move and raises Sp. Atk, score it as for Motor Drive, reading Sp. Atk for Speed.
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerMotorDrive
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerVoltAbsorb
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerSpAttackBoost
     GoTo TagStrategy_ScoreMinus30
+
+TagStrategy_CheckPartnerSpAttackBoost:
+    // Oxide: shared by Lightning Rod and Storm Drain. 62.5% chance of no score change; else
+    // score -30 if our partner's Sp. Atk is already at +6, and +3 if not.
+    IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 12, TagStrategy_ScoreMinus30
+    GoTo ScorePlus3
 
 TagStrategy_CheckPartnerMotorDrive:
     IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
@@ -7749,11 +7762,26 @@ TagStrategy_CheckPartnerWaterAbsorption:
     //  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
     //  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
     //  - Else, 75% chance of score +3, 25% chance of no change
+    //
+    // Oxide, change (Ian, 2026-09-27): if our partner has Storm Drain, which now takes the
+    // move and raises Sp. Atk, score it as for Lightning Rod.
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerWaterAbsorb
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerWaterAbsorb
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerSpAttackBoost
     GoTo TagStrategy_ScoreMinus30
+
+TagStrategy_CheckPartnerGrassAbsorption:
+    // Oxide, change (Ian, 2026-09-27): if our partner has Sap Sipper, which takes Grass moves
+    // and raises Attack (element 5), score as for Motor Drive, reading Attack for Speed.
+    // Otherwise, score -30. Grass status moves come here too, from the status move checks.
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SAP_SIPPER
+    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_ScoreMinus30
+    IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TagStrategy_ScoreMinus30
+    GoTo ScorePlus3
 
 TagStrategy_PartnerWaterAbsorb:
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, ScoreMinus10
@@ -7778,6 +7806,10 @@ TagStrategy_CheckWaterAbsorption_End:
     PopOrEnd 
 
 TagStrategy_PartnerStatusMove:
+    // Oxide, change (Ian, 2026-09-27): a Grass status move at a Sap Sipper partner raises its
+    // Attack, as a Grass attack does.
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfLoadedEqualTo TYPE_GRASS, TagStrategy_CheckPartnerGrassAbsorption
     IfMoveEqualTo MOVE_SKILL_SWAP, TagStrategy_PartnerSkillSwap
     IfMoveEqualTo MOVE_WILL_O_WISP, TagStrategy_PartnerWillOWisp
     IfMoveEqualTo MOVE_THUNDER_WAVE, TagStrategy_PartnerThunderWave
@@ -7890,6 +7922,10 @@ TagStrategy_PartnerThunderWave:
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
 
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
+
+    // Oxide, change (Ian, 2026-09-27): Lightning Rod takes Thunder Wave too
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
 
     GoTo TagStrategy_PartnerScoreMinus30
