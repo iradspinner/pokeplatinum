@@ -7846,7 +7846,9 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     attackerSpecies = battleCtx->battleMons[attacker].species;
     attackerVolStatus = battleCtx->battleMons[attacker].statusVolatile;
     defenderMoveEffects = battleCtx->battleMons[defender].moveEffectsMask;
-    attackerAbility = battleCtx->battleMons[attacker].ability;
+    // VANILLA FIX: through Battler_Ability, as every other ability check is,
+    // so that Gastro Acid (and Oxide's Neutralizing Gas) stops Super Luck.
+    attackerAbility = Battler_Ability(battleCtx, attacker);
     effectiveCritStage = (((attackerVolStatus & VOLATILE_CONDITION_FOCUS_ENERGY) != FALSE) * 2)
         + (itemEffect == HOLD_EFFECT_CRITRATE_UP)
         + criticalStage
