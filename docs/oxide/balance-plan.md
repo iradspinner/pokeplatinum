@@ -1038,10 +1038,34 @@ lands, and each change is re-scored as it lands.
    `cli evolve` against the new caps. That is coordinated through the
    Overseer and not done from here.
 2. **Item access and TMs.** Which held items, marts and TMs each split
-   offers, and how many TMs there are.
+   offers, and how many TMs there are. Ian's standing rule (2026-09-25,
+   staples survey): the player can never set, change or end weather, so
+   TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
+   become other moves. The one Ability Patch in the game (for a hidden
+   ability) is the only exception, and Defog still clears fog.
 3. **Species, abilities and learnsets**, including the base ROM's 228
-   duplicated second ability slots.
-4. **Weather** on routes and in gyms.
+   duplicated second ability slots. From the same answers: no weather move
+   in any player learnset, tutor or egg list, and no ability that sets or
+   cancels weather (Sand Stream, Snow Warning, Cloud Nine and the rest) in
+   an obtainable Pokemon's regular slots; Drizzle Pelipper and Drought
+   Torkoal are weighed for trainers only. Alakazam, Ampharos, Dugtrio,
+   Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
+   modern stat buffs, Chimecho and Staraptor go to their modern totals, and
+   Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.
+4. **Weather** on routes and in gyms. Weather from an ability stays for
+   the whole battle, and trainers keep theirs.
+
+Engine changes Ian has decided on, each needing every score rerun when it
+lands (staples survey, 2026-09-25): native moves take their full modern
+values (the Generation 5 to 7 buffs and the Generation 6 cuts), except the
+base ROM's deliberate values, and Thunder Wave, Dark Void and Swagger keep
+their Generation 4 accuracy; critical hits become 1.5 times at modern
+rates, which the scores leave out as they leave out every critical hit;
+the Generation 6 type immunities; and modern behaviour for native
+abilities. Status stays as Generation 4 has it, and Hidden Power keeps its
+IV formula. The calculator keeps Generation 4's formula and chart, so each
+of these reaches the scores through the move data or the calculator's
+Generation 4 branch, as element 5's abilities will.
 5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
