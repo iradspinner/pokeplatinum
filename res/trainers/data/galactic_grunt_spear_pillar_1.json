@@ -1,41 +1,64 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Grunt Tyche",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_TAG_STRATEGY",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GOLEM",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 55,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_EXPLOSION",
-                "MOVE_DOUBLE_EDGE",
-                "MOVE_STONE_EDGE"
+                "MOVE_PROTECT",
+                "MOVE_LEECH_LIFE",
+                "MOVE_POISON_FANG",
+                "MOVE_BRAVE_BIRD"
             ],
             "iv_scale": 205,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_NIDOKING",
+            "species": "SPECIES_TENTACRUEL",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 55,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_POISON_JAB",
-                "MOVE_STONE_EDGE",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_PROTECT",
+                "MOVE_BLIZZARD",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_MUDDY_WATER"
             ],
-            "iv_scale": 247,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GENGAR",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_PSYCHIC",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

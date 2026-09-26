@@ -46,6 +46,7 @@
             [ 31, "MOVE_PAYBACK" ],
             [ 34, "MOVE_FIRE_SPIN" ],
             [ 37, "MOVE_CAPTIVATE" ],
+            [ 40, "MOVE_FLARE_BLITZ" ],
             [ 41, "MOVE_GRUDGE" ],
             [ 44, "MOVE_EXTRASENSORY" ],
             [ 47, "MOVE_FIRE_BLAST" ]

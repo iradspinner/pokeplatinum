@@ -5,7 +5,8 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
@@ -15,14 +16,14 @@
             "level": 52,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_GYRO_BALL",
+                "MOVE_BUG_BITE",
                 "MOVE_TOXIC_SPIKES",
-                "MOVE_SELFDESTRUCT",
-                "MOVE_STEALTH_ROCK"
+                "MOVE_EXPLOSION",
+                "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 235,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
@@ -36,21 +37,21 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_SANDSTORM"
             ],
-            "iv_scale": 249,
+            "iv_scale": 237,
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
             "level": 52,
-            "item": "ITEM_SHUCA_BERRY",
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_FLASH_CANNON",
+                "MOVE_MIRROR_COAT",
                 "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_METAL_SOUND"
+                "MOVE_FLASH_CANNON",
+                "MOVE_REFLECT"
             ],
             "iv_scale": 235,
             "ball_seal": 0,
@@ -58,19 +59,19 @@
             "gender": null
         },
         {
-            "species": "SPECIES_AGGRON",
+            "species": "SPECIES_METAGROSS",
             "form": 0,
             "level": 52,
-            "item": "ITEM_CHOICE_SCARF",
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_IRON_HEAD",
-                "MOVE_STONE_EDGE",
-                "MOVE_AQUA_TAIL",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_AGILITY",
+                "MOVE_METEOR_MASH",
+                "MOVE_HAMMER_ARM"
             ],
             "iv_scale": 249,
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": null
         },
         {
@@ -79,14 +80,14 @@
             "level": 52,
             "item": "ITEM_CHOPLE_BERRY",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_FLASH_CANNON",
-                "MOVE_ICE_BEAM",
-                "MOVE_YAWN"
+                "MOVE_AQUA_TAIL",
+                "MOVE_IRON_HEAD",
+                "MOVE_DRILL_PECK",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 249,
+            "iv_scale": 254,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
@@ -98,11 +99,11 @@
                 "MOVE_METAL_BURST",
                 "MOVE_STONE_EDGE",
                 "MOVE_IRON_HEAD",
-                "MOVE_OUTRAGE"
+                "MOVE_AVALANCHE"
             ],
             "iv_scale": 250,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         }
     ],

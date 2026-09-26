@@ -38,7 +38,7 @@
             ],
             "iv_scale": 202,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
@@ -70,7 +70,7 @@
             ],
             "iv_scale": 242,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         }
     ],

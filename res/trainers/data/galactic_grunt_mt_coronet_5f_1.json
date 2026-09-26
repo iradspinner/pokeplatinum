@@ -1,41 +1,113 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Officer Moira",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_PRIORITIZE_EXTREMES",
+        "AI_FLAG_CHECK_HP",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MIGHTYENA",
+            "species": "SPECIES_ABOMASNOW",
             "form": 0,
             "level": 54,
-            "item": null,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_THUNDER_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_SUPER_FANG"
+                "MOVE_SWAGGER",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AVALANCHE",
+                "MOVE_ENDEAVOR"
             ],
-            "iv_scale": 228,
-            "ball_seal": 0
+            "iv_scale": 247,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_ELECTRODE",
+            "species": "SPECIES_SLOWKING",
             "form": 0,
             "level": 54,
-            "item": null,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_MAGNET_RISE",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_EXPLOSION"
+                "MOVE_CALM_MIND",
+                "MOVE_BLIZZARD",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_SURF"
             ],
-            "iv_scale": 229,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAMOSWINE",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SUPERPOWER",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 232,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CELEBI",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_LEAF_STORM",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ABSOL",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_FOCUS_BAND",
+            "moves": [
+                "MOVE_PURSUIT",
+                "MOVE_PERISH_SONG",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_DETECT"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

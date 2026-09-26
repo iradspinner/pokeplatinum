@@ -10,32 +10,84 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_HIPPOWDON",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_YAWN",
+                "MOVE_FIRE_FANG",
+                "MOVE_SAND_TOMB"
+            ],
+            "iv_scale": 248,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CORSOLA",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_ZOOM_LENS",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_ROLLOUT"
+            ],
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_STEELIX",
+            "form": 0,
+            "level": 34,
+            "item": "ITEM_IRON_PLATE",
+            "moves": [
+                "MOVE_IRON_TAIL",
+                "MOVE_SCREECH",
+                "MOVE_THUNDER_FANG",
+                "MOVE_SLAM"
+            ],
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
             "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_AERIAL_ACE",
                 "MOVE_STONE_EDGE",
                 "MOVE_THUNDER_FANG",
                 "MOVE_TAILWIND"
             ],
-            "iv_scale": 251,
-            "ball_seal": 0
+            "iv_scale": 225,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_RAMPARDOS",
+            "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_SHELL_BELL",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_STONE_EDGE",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_X_SCISSOR",
+                "MOVE_ROAR",
+                "MOVE_LEAF_BLADE",
+                "MOVE_IRON_TAIL"
             ],
-            "iv_scale": 245,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

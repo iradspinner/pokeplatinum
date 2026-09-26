@@ -13,39 +13,55 @@
             "species": "SPECIES_LOPUNNY",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
                 "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_POUND"
+                "MOVE_MIRROR_COAT"
             ],
             "iv_scale": 159,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_ROAR",
                 "MOVE_THUNDER_WAVE",
+                "MOVE_MAGNET_RISE",
+                "MOVE_SHOCK_WAVE",
                 "MOVE_FAKE_TEARS"
             ],
             "iv_scale": 158,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_JYNX",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_ICICLE_PLATE",
+            "moves": [
+                "MOVE_ICY_WIND",
+                "MOVE_REFLECT",
+                "MOVE_LOVELY_KISS",
+                "MOVE_COPYCAT"
+            ],
+            "iv_scale": 162,
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MONFERNO",
             "form": 0,
             "level": 30,
-            "item": null,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_MACH_PUNCH",
                 "MOVE_FLAME_WHEEL",
@@ -54,7 +70,7 @@
             ],
             "iv_scale": 163,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         }
     ],

@@ -20,7 +20,9 @@
                 "MOVE_LEECH_SEED"
             ],
             "iv_scale": 212,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_GARDEVOIR",
@@ -34,7 +36,9 @@
                 "MOVE_THUNDERBOLT"
             ],
             "iv_scale": 196,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_LICKITUNG",
@@ -48,7 +52,9 @@
                 "MOVE_THUNDER_PUNCH"
             ],
             "iv_scale": 238,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

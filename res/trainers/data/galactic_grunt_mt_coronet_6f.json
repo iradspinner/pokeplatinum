@@ -1,44 +1,110 @@
 {
-    "name": "Grunt",
+    "name": "Officer Hesperid",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUTTERFREE",
+            "species": "SPECIES_WEEZING",
             "form": 0,
             "level": 55,
-            "item": null,
+            "item": "ITEM_POISON_BARB",
             "moves": [
-                "MOVE_TAILWIND",
-                "MOVE_WHIRLWIND",
-                "MOVE_PSYCHIC",
-                "MOVE_BUG_BUZZ"
+                "MOVE_PAYBACK",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_EXPLOSION",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 251,
+            "iv_scale": 248,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_BEEDRILL",
+            "species": "SPECIES_SCEPTILE",
             "form": 0,
-            "level": 55,
-            "item": null,
+            "level": 54,
+            "item": "ITEM_PETAYA_BERRY",
             "moves": [
-                "MOVE_KNOCK_OFF",
-                "MOVE_X_SCISSOR",
-                "MOVE_POISON_JAB",
-                "MOVE_ENDEAVOR"
+                "MOVE_ROCK_SLIDE",
+                "MOVE_PURSUIT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_LEAF_STORM"
             ],
-            "iv_scale": 236,
+            "iv_scale": 255,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_STARF_BERRY",
+            "moves": [
+                "MOVE_AGILITY",
+                "MOVE_BATON_PASS",
+                "MOVE_EARTHQUAKE",
+                "MOVE_THUNDER"
+            ],
+            "iv_scale": 244,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_RAMPARDOS",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_PURSUIT",
+                "MOVE_ROCK_POLISH",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 237,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DRIFBLIM",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_EXPLOSION",
+                "MOVE_OMINOUS_WIND",
+                "MOVE_CURSE",
+                "MOVE_DESTINY_BOND"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CAMERUPT",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_OVERHEAT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_EXPLOSION",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 216,
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         }
     ],

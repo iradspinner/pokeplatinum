@@ -1,28 +1,61 @@
 {
-    "name": "Grunt",
+    "name": "Officer Moira",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DRAPION",
+            "species": "SPECIES_ABOMASNOW",
             "form": 0,
             "level": 50,
-            "item": null,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_AQUA_TAIL",
-                "MOVE_X_SCISSOR",
-                "MOVE_POISON_JAB"
+                "MOVE_AVALANCHE",
+                "MOVE_PROTECT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_WOOD_HAMMER"
             ],
             "iv_scale": 237,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SLOWKING",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_NASTY_PLOT",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_ICY_WIND",
+                "MOVE_WATER_PULSE"
+            ],
+            "iv_scale": 234,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         }
     ],

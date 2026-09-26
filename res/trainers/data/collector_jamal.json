@@ -12,8 +12,8 @@
         {
             "species": "SPECIES_PORYGON2",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
                 "MOVE_RECOVER",
                 "MOVE_THUNDERBOLT",
@@ -21,7 +21,57 @@
                 "MOVE_RECYCLE"
             ],
             "iv_scale": 248,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_POWER_HERB",
+            "moves": [
+                "MOVE_SKY_ATTACK",
+                "MOVE_RECYCLE",
+                "MOVE_TAILWIND",
+                "MOVE_HEAT_WAVE"
+            ],
+            "iv_scale": 234,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GRUMPIG",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_CALM_MIND",
+                "MOVE_PAYBACK",
+                "MOVE_PSYCHIC",
+                "MOVE_RECYCLE"
+            ],
+            "iv_scale": 206,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DELIBIRD",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_THICK_CLUB",
+            "moves": [
+                "MOVE_FLING",
+                "MOVE_AVALANCHE",
+                "MOVE_RECYCLE",
+                "MOVE_GUNK_SHOT"
+            ],
+            "iv_scale": 189,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

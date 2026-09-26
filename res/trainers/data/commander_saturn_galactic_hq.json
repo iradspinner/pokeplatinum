@@ -5,22 +5,23 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLAYDOL",
+            "species": "SPECIES_UXIE",
             "form": 0,
             "level": 57,
-            "item": "ITEM_LIGHT_CLAY",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT",
-                "MOVE_PSYCHIC",
-                "MOVE_EARTH_POWER"
+                "MOVE_TRICK_ROOM",
+                "MOVE_HYPNOSIS",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_U_TURN"
             ],
-            "iv_scale": 253,
+            "iv_scale": 238,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -34,7 +35,7 @@
                 "MOVE_SLAM",
                 "MOVE_CURSE",
                 "MOVE_GYRO_BALL",
-                "MOVE_PROTECT"
+                "MOVE_THUNDER_PUNCH"
             ],
             "iv_scale": 252,
             "ball_seal": 0,
@@ -42,17 +43,17 @@
             "gender": null
         },
         {
-            "species": "SPECIES_SLAKING",
+            "species": "SPECIES_WAILORD",
             "form": 0,
             "level": 57,
-            "item": "ITEM_WHITE_HERB",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_GIGA_IMPACT",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_SLACK_OFF"
+                "MOVE_WATER_SPOUT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AQUA_RING",
+                "MOVE_AVALANCHE"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -65,10 +66,26 @@
             "moves": [
                 "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE",
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_AQUA_TAIL",
                 "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 250,
+            "iv_scale": 239,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CRESSELIA",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_MOONLIGHT",
+                "MOVE_CHARGE_BEAM",
+                "MOVE_CALM_MIND",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 253,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -82,7 +99,7 @@
                 "MOVE_GUNK_SHOT",
                 "MOVE_CROSS_CHOP",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_FIRE_PUNCH"
             ],
             "iv_scale": 253,
             "ball_seal": 0,
