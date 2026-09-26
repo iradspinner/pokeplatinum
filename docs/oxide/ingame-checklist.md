@@ -130,6 +130,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
   Route 213, have no clown; everyone else in them talks as before, and
   Veilstone's Elekid gift still gives Elekid.
+- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care rustle but give nothing until their tables are in. Walking the Verity Lakefront lawn before the starter gives no encounter.
 - [ ] Fomantis evolves into Lurantis at level 34.
 - [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
   Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
