@@ -8,6 +8,7 @@ families, one repel before Gardenia's split, the deaths asked for, nothing
 from past the target split, and the same run again from the same seed.
 """
 import collections
+import os
 import sys
 
 from . import dex
@@ -71,17 +72,25 @@ def check_scarcity(results):
     """Ian (2026-09-26): no Pokemon worth about 85 or more should be better
     than even odds with best play, a box going into the Elite Four holding
     one to three of them, not a party. The two eggs he accepted as they are."""
+    # The two eggs, and Ian's super-wanted lines, which may stay near-guaranteed
+    # (values.json, `wanted`); the check compares final stages.
+    import json as _json
+    wanted = _json.load(open(os.path.join(model.repo_root(), "docs", "oxide", "encounters",
+                                          "values.json")))["wanted"]
+    root = model.repo_root()
+    wanted_lines = {dex.line_of(root, w) for w in wanted
+                    if os.path.isdir(os.path.join(root, "res", "pokemon", w[8:].lower()))}
     exempt = {"SPECIES_MANAPHY", "SPECIES_TOGEKISS"}
     n = 20
     got, per_box = collections.Counter(), []
     for seed in range(n):
         r = simulate.run("League", deaths=0, seed=5000 + seed)
         strong = {m["stage"] for m in r["box"] if m["value"] >= 85}
-        got.update(strong - exempt)
+        got.update(sp for sp in strong - exempt if dex.line_of(root, sp) not in wanted_lines)
         per_box.append(len(strong))
     worst = got.most_common(3)
     results.append(("with best play no line worth 85 or more lands in over half of 20 League "
-                    "runs (bar the two eggs)",
+                    "runs (bar the two eggs and Ian's super-wanted lines)",
                     all(c * 2 <= n for _, c in worst),
                     ", ".join(f"{sp[8:].title()} {c}/{n}" for sp, c in worst)
                     + f"; per box median {sorted(per_box)[n // 2]}"))

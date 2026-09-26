@@ -365,6 +365,21 @@ that stay. None blocks anything.
    - modern behaviour for native abilities (Sturdy, and Lightning Rod and
      Storm Drain first)
    - native moves at their full modern numbers after the data pass
+21. **The missing super-wanted lines (Ian, 2026-09-26).** Five of Ian's 23
+   never landed in a best-play run. Ian took this, with Mindy asking for a
+   Snover ("four strong is fine"). Measured over 30 to 40 League runs:
+   - Acuity Cavern returns, drawing one of Ian's three most-wanted
+     legendaries at random: Articuno, Cresselia or Pheromosa. Valor Cavern
+     stays off. The lines Acuity drew before wait in the pool's `reserve`.
+   - The simulator plans for a trade whose gift is wanted. It values the
+     species asked for (Mindy's Snover) as if it were wanted, and treats a
+     member caught for the trade as its price, not a loss.
+
+   A median of 17 of the 23 land and only Meloetta never does. The price is
+   a median of four Pokemon worth 85 or more per box, up from three,
+   because Suicune lands in 97% of runs. If Mindy asks for a rarer line
+   (Delibird was tried) Suicune all but vanishes and the median stays
+   three. Meloetta needs porting before it can be placed.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

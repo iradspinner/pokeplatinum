@@ -291,8 +291,7 @@
       "pick": "legendary_pool",
       "pool_key": "acuity",
       "level": 50,
-      "simulate": false,
-      "note": "Turned off for now (Ian, 2026-09-26): with the two eggs, a legendary from each cavern alone put four Pokemon worth 85 or more in every box. Uxie's cavern would draw one from its own third of the legendary pool (availability plan, `pool`)."
+      "note": "Ian, 2026-09-26: one of his three most-wanted legendaries at random, Articuno, Cresselia or Pheromosa (availability plan, `pool`). The two caverns were turned off because their random legendaries put four Pokemon worth 85 or more in every box."
     },
     {
       "id": "valor_cavern",

@@ -1005,13 +1005,14 @@
     }
   },
   "pool": {
-    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands."],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands.", "Ian, 2026-09-26: Acuity Cavern returns drawing one of Ian's three most-wanted legendaries (Articuno, Cresselia, Pheromosa); Valor Cavern stays off with its old draw; the lines Acuity drew before wait in `reserve`, drawn nowhere."],
     "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
     "roamer": "Mesprit's roamer, released at Lake Verity",
     "thirds": {
-      "acuity": ["SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"],
-      "valor": ["SPECIES_AZELF", "SPECIES_MAGEARNA", "SPECIES_BLACEPHALON", "SPECIES_GALARIAN_MOLTRES", "SPECIES_PHEROMOSA", "SPECIES_TAPU_FINI", "SPECIES_DIANCIE", "SPECIES_GUZZLORD"],
-      "roamer": ["SPECIES_MESPRIT", "SPECIES_TAPU_KOKO", "SPECIES_BUZZWOLE", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_POIPOLE", "SPECIES_XURKITREE", "SPECIES_GALARIAN_ARTICUNO"]
+      "acuity": ["SPECIES_ARTICUNO", "SPECIES_CRESSELIA", "SPECIES_PHEROMOSA"],
+      "valor": ["SPECIES_AZELF", "SPECIES_MAGEARNA", "SPECIES_BLACEPHALON", "SPECIES_GALARIAN_MOLTRES", "SPECIES_TAPU_FINI", "SPECIES_DIANCIE", "SPECIES_GUZZLORD"],
+      "roamer": ["SPECIES_MESPRIT", "SPECIES_TAPU_KOKO", "SPECIES_BUZZWOLE", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_POIPOLE", "SPECIES_XURKITREE", "SPECIES_GALARIAN_ARTICUNO"],
+      "reserve": ["SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"]
     }
   },
   "honey": {

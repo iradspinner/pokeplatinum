@@ -94,6 +94,10 @@ class Values:
         self.wanted = {dex.line_of(root, sp) for sp in data.get("wanted") or []
                        if os.path.isdir(os.path.join(root, "res", "pokemon", pokedex.folder_of(sp)))}
         self.on_list = audit.on_list(root)
+        # Lines a trade for a wanted Pokemon asks for (Mindy's Snover for
+        # Suicune): Ian would catch one with the trade in mind, so it counts
+        # as wanted until then. `run` fills this from scripted.json.
+        self.plan_lines = set()
         self.pick_tier = {}
         for row in dex.pick_list(root):
             if row.get("constant"):
@@ -128,7 +132,8 @@ class Values:
         """What the player chases: the value, plus Ian's bonus for a
         super-wanted line. Choices use this; reports and the scarcity rule
         use `of`, the Pokemon's own worth."""
-        bonus = WANTED_BONUS if dex.line_of(self.root, species) in self.wanted else 0.0
+        line = dex.line_of(self.root, species)
+        bonus = WANTED_BONUS if line in self.wanted or line in self.plan_lines else 0.0
         return self.of(species) + bonus
 
 
@@ -338,7 +343,11 @@ def expected_gain(option, box, drawn=()):
             return 0.0
         rest = list(alive)
         rest.remove(box.values.pref(pay["species"]))
-        return sum(p * (box_value(rest + [box.values.pref(sp)]) - box_value(alive))
+        # A member caught with this trade in mind (Ian's Snover for Suicune)
+        # was the trade's price from the start, so handing it over costs
+        # nothing further; any other member is a real loss to the box.
+        base = rest if dex.line_of(box.root, pay["species"]) in box.values.plan_lines else alive
+        return sum(p * (box_value(rest + [box.values.pref(sp)]) - box_value(base))
                    for sp, p in live.items())
     if option.kind == "choice":
         return max(gain(box.values.pref(sp), alive) for sp in live)
@@ -369,6 +378,9 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
         raise ValueError(f"no such split: {target}")
     rng = random.Random(seed)
     values = Values(root, target, sidecar)
+    values.plan_lines = {dex.line_of(root, src["requires"]) for src in scripted.load(root)
+                         if src.get("requires") and src.get("simulate", True)
+                         and any(dex.line_of(root, sp) in values.wanted for sp in src["pool"])}
     box = Box(root, values)
     areas = world(target, root)
     starters = next(s["pool"] for s in scripted.load(root) if s["kind"] == "starter")
