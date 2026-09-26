@@ -695,6 +695,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet50, 22
     AddListMenuEntry TestKit_Text_MenuSet51, 23
     AddListMenuEntry TestKit_Text_MenuSet52, 24
+    AddListMenuEntry TestKit_Text_MenuSet53, 25
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -721,6 +722,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet50
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet51
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet52
+    GoToIfEq VAR_0x8004, 25, TestKit_MoveSet53
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1304,6 +1306,21 @@ TestKit_MoveSet52:
     SetVar VAR_0x8007, MOVE_POWER_GEM
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 53: Electro Shot charges for a turn, raising Sp. Atk one stage, and
+   attacks on the next, but in rain it raises Sp. Atk and attacks in the
+   same turn. Against a wild Chansey that knows only Splash: out of rain the
+   first turn prints "absorbed electricity!" and "Sp. Atk rose!" and the
+   second hits; after Rain Dance both happen in one turn. */
+TestKit_MoveSet53:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_ELECTRO_SHOT
+    SetVar VAR_0x8007, MOVE_RAIN_DANCE
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
