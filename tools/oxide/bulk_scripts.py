@@ -153,6 +153,14 @@ for _stem in ("scripts_sandgem_town_house", "scripts_jubilife_city_south_house_1
 DIVERGED["scripts_route_201"] = (
     "the starter's met location is set to Rowan's Briefcase after it is given")
 
+# The Underground is closed (Ian, 2026-09-27): the Explorer Kit is never
+# given, and whatever waited on it goes. These three match vanilla in the base
+# ROM, so the regenerator would skip them anyway; they are listed as a record.
+DIVERGED["scripts_eterna_city_underground_man_house"] = (
+    "the Underground Man no longer gives the Explorer Kit")
+DIVERGED["scripts_cycle_shop"] = (
+    "the Bicycle no longer raises Eterna's exit blockade, which waited for the Explorer Kit")
+
 # The clown's gift moved to the Restaurant on Route 213 (Ian, 2026-09-25).
 DIVERGED["scripts_pastoria_city_north_house"] += (
     "; the clown's gift then moved to the Restaurant, so it is gone from here")

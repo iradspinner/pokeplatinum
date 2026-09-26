@@ -19,7 +19,9 @@ CycleShop_PokefanM:
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_BICYCLE
-    SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 1
+    @ Vanilla set VAR_ETERNA_CITY_BLOCK_EXITS_STATE here, so a woman blocked
+    @ Eterna's south and west exits until the player held the Explorer Kit.
+    @ Oxide never gives the kit (the Underground is closed), so the exits stay open.
     SetBlackOutWarpId 9
     GoTo CycleShop_IllReadOperatingManual
     End

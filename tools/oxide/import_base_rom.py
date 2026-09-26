@@ -1227,6 +1227,10 @@ TEXT_BANKS_SKIPPED = {
          "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
     141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
          "and the pick menu's orphaned species names went with the move",
+    105: "the Underground is closed (Ian, 2026-09-27), so the Underground Man has a "
+         "line saying so in place of the Explorer Kit gift",
+    85: "the Underground is closed (Ian, 2026-09-27), so the woman who sent the "
+        "player to the Underground Man for the Explorer Kit says the tunnels are sealed",
 }
 # The gift clowns are gone (Ian, 2026-09-27; the encounter track's
 # clown-replacements.md): each house's bank loses the giver's lines and the
