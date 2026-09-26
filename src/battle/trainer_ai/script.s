@@ -407,6 +407,10 @@ Basic_ScoreMoveEffectByEffect:
     // Oxide: Parting Shot fails, and its user stays in, when the target's
     // Attack and Sp. Atk are both at -6.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Basic_CheckPartingShot
+    // Oxide: Life Dew heals as Recover does; Strength Sap fails when the
+    // target's Attack is already at -6.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -1279,6 +1283,10 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
+Basic_CheckStrengthSap:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, ScoreMinus10
+    PopOrEnd 
+
 Basic_CheckPartingShot:
     IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, Basic_CheckPartingShot_End
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, ScoreMinus10
@@ -2095,6 +2103,9 @@ Expert_Main:
     // Oxide, change (Ian, 2026-09-27): Volt Switch and Flip Turn share U-turn's
     // effect, so its routine above already scores them; Parting Shot has its own.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Expert_PartingShot
+    // Oxide, change (Ian, 2026-09-27): the new recovery moves, as Recover.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
 
     // All other moves have no additional logic.
     PopOrEnd 
