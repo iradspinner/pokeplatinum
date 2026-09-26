@@ -736,9 +736,11 @@ TestKit_MoveSets3:
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuSet55, 0
     AddListMenuEntry TestKit_Text_MenuSet56, 1
+    AddListMenuEntry TestKit_Text_MenuSet57, 2
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
+    GoToIfEq VAR_0x8004, 2, TestKit_MoveSet57
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1372,6 +1374,21 @@ TestKit_MoveSet56:
     SetVar VAR_0x8002, MOVE_TACKLE
     SetVar VAR_0x8003, MOVE_SWIFT
     SetVar VAR_0x8006, MOVE_SPIKY_SHIELD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 57: Baneful Bunker protects its user and poisons an attacker that
+   makes contact with it. Against a wild Rattata that knows Tackle and
+   Swift: the first Tackle into the bunker brings "The wild RATTATA was
+   poisoned!", a Swift only "MEW protected itself!". */
+TestKit_MoveSet57:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_BANEFUL_BUNKER
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
