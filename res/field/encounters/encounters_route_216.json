@@ -11,11 +11,11 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_SNEASEL"
+            "species": "SPECIES_DELIBIRD"
         },
         {
             "level": 33,
-            "species": "SPECIES_PILOSWINE"
+            "species": "SPECIES_SNEASEL"
         },
         {
             "level": 34,
@@ -47,7 +47,7 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_TORRACAT"
+            "species": "SPECIES_SLUGMA"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_PILOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_SNORUNT"
     ],
     "night": [

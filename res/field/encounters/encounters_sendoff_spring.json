@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 50,
-            "species": "SPECIES_GARCHOMP"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 51,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 51,
@@ -15,15 +15,15 @@
         },
         {
             "level": 51,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_CRUSTLE"
         },
         {
             "level": 52,
-            "species": "SPECIES_GOODRA"
+            "species": "SPECIES_CRUSTLE"
         },
         {
             "level": 52,
-            "species": "SPECIES_KOMMO_O"
+            "species": "SPECIES_GRAPPLOCT"
         },
         {
             "level": 52,
@@ -35,11 +35,11 @@
         },
         {
             "level": 53,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_KRICKETUNE"
         },
         {
             "level": 53,
-            "species": "SPECIES_SCIZOR"
+            "species": "SPECIES_KRICKETUNE"
         },
         {
             "level": 53,
@@ -55,7 +55,7 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_SCIZOR",
+        "SPECIES_BEAUTIFLY",
         "SPECIES_HERACROSS"
     ],
     "night": [
@@ -193,7 +193,7 @@
         {
             "level_max": 57,
             "level_min": 48,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_LUDICOLO"
         },
         {
             "level_max": 57,
@@ -203,7 +203,7 @@
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_JELLICENT"
         }
     ],
     "map_category": {

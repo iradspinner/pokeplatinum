@@ -15,7 +15,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_PILOSWINE"
+            "species": "SPECIES_DELIBIRD"
         },
         {
             "level": 34,
@@ -47,7 +47,7 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_GALARIAN_MR_MIME"
+            "species": "SPECIES_JYNX"
         }
     ],
     "swarms": [
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_SEEL"
     ],
     "night": [
         "SPECIES_SNEASEL",

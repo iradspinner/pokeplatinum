@@ -7,7 +7,7 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_METANG"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 42,
@@ -27,7 +27,7 @@
         },
         {
             "level": 43,
-            "species": "SPECIES_METANG"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 43,
@@ -119,7 +119,7 @@
         {
             "level_max": 52,
             "level_min": 44,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_JELLICENT"
         }
     ],
     "old_rod_rate": 25,
@@ -137,7 +137,7 @@
         {
             "level_max": 25,
             "level_min": 21,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FINNEON"
         },
         {
             "level_max": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_SLOWPOKE"
+            "species": "SPECIES_GOLDEEN"
         }
     ],
     "good_rod_rate": 55,
@@ -155,7 +155,7 @@
         {
             "level_max": 38,
             "level_min": 32,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_LUMINEON"
         },
         {
             "level_max": 38,
@@ -175,7 +175,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_FEEBAS"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 56,
             "level_min": 48,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_CRAWDAUNT"
         }
     ],
     "map_category": {

@@ -137,7 +137,7 @@
         {
             "level_max": 23,
             "level_min": 19,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 23,
@@ -147,7 +147,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_SHELLOS"
         }
     ],
     "good_rod_rate": 50,
@@ -188,7 +188,7 @@
         {
             "level_max": 48,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level_max": 51,

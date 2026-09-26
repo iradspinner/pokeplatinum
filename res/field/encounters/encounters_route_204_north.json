@@ -31,7 +31,7 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_SNUBBULL"
         },
         {
             "level": 11,
@@ -47,7 +47,7 @@
         },
         {
             "level": 11,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_SNUBBULL"
         }
     ],
     "swarms": [
@@ -175,7 +175,7 @@
         {
             "level_max": 24,
             "level_min": 19,
-            "species": "SPECIES_SLOWPOKE"
+            "species": "SPECIES_SEEL"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_POLIWRATH"
         }
     ],
     "map_category": {

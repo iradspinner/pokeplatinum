@@ -37,22 +37,27 @@ def main():
                     not out["problems"], "; ".join(out["problems"][:3])))
     # 177 lines, 180 with Ian's three cave additions, 187 with his seven
     # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21),
-    # 206 with the seventeen water lines (2026-09-26)
-    results.append(("every one of the 206 lines has a row",
-                    len(rows) == 206, f"{len(rows)} rows"))
+    # 206 with the seventeen water lines, 205 with the Magikarp line cut
+    # and 239 with the 34 lines of the Platinum-size pick-list (all 2026-09-26)
+    results.append(("every one of the 239 lines has a row",
+                    len(rows) == 239, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
-    tails = {"Litten", "Froakie"}   # Ian's call: tails a dupe-out plan pays off, no home
-    results.append(("every non-gate line has exactly one planned home or a non-wild, water or "
-                    "honey source, bar the two deliberate tails",
-                    all(len(r["home"]) == 1 or r["non_wild"] or r["status"] in ("water", "honey")
-                        or r["name"] in tails
+    # Every line is somewhere. A home is the one table designed around a line
+    # and a line has at most one; since Ian's scarcity ruling and the larger
+    # pick-list (2026-09-26) a line may also live only as cameos or tails,
+    # below the 10% a home needs (Larvitar beside Gible, Kricketot, Abra...).
+    sourced = ("water", "honey", "cameo-only", "tail-only")
+    results.append(("every non-gate line has one planned home, a non-wild, water or honey "
+                    "source, or a place as a cameo or tail; none has two homes",
+                    all((len(r["home"]) == 1 or r["non_wild"] or r["status"] in sourced)
+                        and len(r["home"]) <= 1
                         for r in rows if r["tier"] != "gate"),
                     ", ".join(r["name"] for r in rows
-                              if r["tier"] != "gate" and not (len(r["home"]) == 1 or r["non_wild"]
-                                                              or r["status"] in ("water", "honey")
-                                                              or r["name"] in tails))[:120]))
+                              if r["tier"] != "gate" and not ((len(r["home"]) == 1 or r["non_wild"]
+                                                               or r["status"] in sourced)
+                                                              and len(r["home"]) <= 1))[:120]))
     # A gate-tier starter may be a cameo or a tail (Ian: starters are the reason
     # to take a delay), never a home; a legendary is neither.
     results.append(("no gate line is planned as a wild home, and no legendary is planned wild at all",

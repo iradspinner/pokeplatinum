@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_FRILLISH"
         }
     ],
     "old_rod_rate": 25,
@@ -147,7 +147,7 @@
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_CARVANHA"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_ARAQUANID"
         }
     ],
     "super_rod_rate": 75,

@@ -60,6 +60,9 @@ PICK_SCORE = {"gate": 100, "preferred": 90, "starter-adjacent": 55, "filler": 50
 # The value mix: how much of a Pokemon's worth is raw stats, how much the
 # nuzlocke rating of its line, and how much the pick-list tier.
 W_BST, W_TIER, W_PICK = 0.45, 0.40, 0.15
+# Ian's super-wanted lines (values.json, `wanted`) are worth this much more to
+# him than their stats say, so best play goes after them the way he would.
+WANTED_BONUS = 10.0
 BST_FLOOR, BST_CEIL = 250, 600
 # Ian: "I'd rather have 10 decent Pokemon than only 6 great ones", so the
 # best six add a small bonus on top of the sum of everything alive.
@@ -86,8 +89,15 @@ class Values:
         self.cap = (progression.cap_of(sidecar, split)
                     or progression.DEFAULT_CAPS.get(split) or 100)
         with open(os.path.join(root, VALUES), encoding="utf-8") as f:
-            self.rating = json.load(f)["lines"]
+            data = json.load(f)
+        self.rating = data["lines"]
+        self.wanted = {dex.line_of(root, sp) for sp in data.get("wanted") or []
+                       if os.path.isdir(os.path.join(root, "res", "pokemon", pokedex.folder_of(sp)))}
         self.on_list = audit.on_list(root)
+        # Lines a trade for a wanted Pokemon asks for (Mindy's Snover for
+        # Suicune): Ian would catch one with the trade in mind, so it counts
+        # as wanted until then. `run` fills this from scripted.json.
+        self.plan_lines = set()
         self.pick_tier = {}
         for row in dex.pick_list(root):
             if row.get("constant"):
@@ -117,6 +127,14 @@ class Values:
         tier *= min(1.0, bst / final) if final else 1.0
         pick = PICK_SCORE.get(self.pick_tier.get(line), 40)
         return round(W_BST * bst_score + W_TIER * tier + W_PICK * pick, 1)
+
+    def pref(self, species):
+        """What the player chases: the value, plus Ian's bonus for a
+        super-wanted line. Choices use this; reports and the scarcity rule
+        use `of`, the Pokemon's own worth."""
+        line = dex.line_of(self.root, species)
+        bonus = WANTED_BONUS if line in self.wanted or line in self.plan_lines else 0.0
+        return self.of(species) + bonus
 
 
 def box_value(values):
@@ -288,6 +306,9 @@ class Box:
     def alive_values(self):
         return [m["value"] for m in self.members if m["alive"]]
 
+    def alive_prefs(self):
+        return [self.values.pref(m["species"]) for m in self.members if m["alive"]]
+
     def payment(self, requires):
         """The least valuable living member a trade asking for `requires`
         could take, or None."""
@@ -312,7 +333,7 @@ def _live(shares, box, drawn=()):
 
 
 def expected_gain(option, box, drawn=()):
-    alive = box.alive_values()
+    alive = box.alive_prefs()
     live = _live(option.shares, box, drawn)
     if not live:
         return 0.0
@@ -321,12 +342,16 @@ def expected_gain(option, box, drawn=()):
         if pay is None:
             return 0.0
         rest = list(alive)
-        rest.remove(pay["value"])
-        return sum(p * (box_value(rest + [box.values.of(sp)]) - box_value(alive))
+        rest.remove(box.values.pref(pay["species"]))
+        # A member caught with this trade in mind (Ian's Snover for Suicune)
+        # was the trade's price from the start, so handing it over costs
+        # nothing further; any other member is a real loss to the box.
+        base = rest if dex.line_of(box.root, pay["species"]) in box.values.plan_lines else alive
+        return sum(p * (box_value(rest + [box.values.pref(sp)]) - box_value(base))
                    for sp, p in live.items())
     if option.kind == "choice":
-        return max(gain(box.values.of(sp), alive) for sp in live)
-    return sum(p * gain(box.values.of(sp), alive) for sp, p in live.items())
+        return max(gain(box.values.pref(sp), alive) for sp in live)
+    return sum(p * gain(box.values.pref(sp), alive) for sp, p in live.items())
 
 
 def _roll(option, box, rng, drawn=()):
@@ -334,7 +359,7 @@ def _roll(option, box, rng, drawn=()):
     if not live:
         return None
     if option.kind == "choice":
-        return max(live, key=box.values.of)
+        return max(live, key=box.values.pref)
     r, acc = rng.random(), 0.0
     for sp, p in sorted(live.items()):
         acc += p
@@ -353,6 +378,9 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
         raise ValueError(f"no such split: {target}")
     rng = random.Random(seed)
     values = Values(root, target, sidecar)
+    values.plan_lines = {dex.line_of(root, src["requires"]) for src in scripted.load(root)
+                         if src.get("requires") and src.get("simulate", True)
+                         and any(dex.line_of(root, sp) in values.wanted for sp in src["pool"])}
     box = Box(root, values)
     areas = world(target, root)
     starters = next(s["pool"] for s in scripted.load(root) if s["kind"] == "starter")

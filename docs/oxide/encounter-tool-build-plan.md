@@ -269,6 +269,129 @@ that stay. None blocks anything.
      later, since Meloetta is not in the species tree. Until then the trade
      stays as it is, and its Magikarp still breaks the rule that a line the
      player can always have is in no table.
+16. **Strong Pokemon made scarce, step 1 (Ian, 2026-09-26).** No Pokemon
+   worth about 85 or more (the simulator's value) should be better than even
+   odds with best play; a box entering the Elite Four should hold one to
+   three, not a party. Best play used to end the League with a median of
+   nine: Giratina, the two eggs and Gyarados in every run, Garchomp and
+   Tyranitar in 98%, Metagross in 85%, Mamoswine in 80%. Step 1:
+   - Giratina in the Distortion World is not a legal catch.
+   - Gible, Beldum and Swinub keep one or two capture areas each (Wayward
+     Cave, Iron Island, Route 217 and Mt. Coronet North). Larvitar is a 1%
+     beside Gible at Wayward Cave, so one capture yields at most one of the
+     two. Magikarp keeps one 4% or 1% Old Rod slot on Lake Verity, Route 203
+     and Route 212 south.
+   - Everywhere else each gave way to a line of the same kind the table
+     lacked, never one worth 80 or more, and no line took more than four
+     slots.
+   - The Route 226 trade leaves the simulator until it becomes Meloetta.
+
+   Over 40 League runs the median is now four, and no line passes half:
+   Garchomp 32%, Mamoswine 18%, Tyranitar 12%, Metagross 5%, Gyarados
+   never. The four are the two eggs, which Ian accepts, and one legendary
+   from each lake cavern. `test_sim` pins the rule over 20 runs.
+
+   What the simulator showed along the way: late in a run the dupes clause
+   inflates any prize whose table's other lines the box already owns. A 1%
+   Pupitar beside a Crobat anchor became a coin flip by Candice's split,
+   since nearly every box has a Zubat. So scarcity comes from fewer
+   appearances and from prizes that compete in one capture, not from
+   smaller slots. The tier just below, 75 to 85, still lands a median of
+   29 per box, a dozen lines in every run. Next: Ian's call on step 2.
+18. **Step 2 of the scarcity work (Ian, 2026-09-26).**
+   - The two lake caverns give no legendary for now.
+   - The Magikarp line is cut from the pick-list (`cut`, so no id moves).
+   - The pick-list is at Platinum's size: 493 species in 239 lines, up
+     from 420 in 205. Ian's criteria were cute lines, a type spread across
+     the game, zone themes and vanilla Platinum staples. The 34 new lines:
+     Starly, Bidoof, Kricketot, Wurmple, Abra, Machop, Burmy, Cherubi,
+     Chatot, Chingling, Hoothoot, Murkrow, Aipom, Munchlax, Magnemite,
+     Cleffa, Azurill, Happiny, Mime Jr., Bonsly, Lickitung, Tangela,
+     Meditite, Girafarig, Carnivine, Tropius, Snubbull, Mawile, Plusle,
+     Minun, Delibird, Smoochum, Mareep and Hoppip.
+   - Each new line took the slot of a widespread line in a table that
+     suits it, and the honey trees took the vanilla honey lines.
+   - A line may now live only as cameos or tails below the 10% a home needs.
+
+   Best play ends the League with a median of three Pokemon worth 85 or
+   more. The tier from 75 to 85 still lands a median of 29 per box, and 28
+   of its lines land in over half of runs; trimming it waits on Ian's
+   super-wanted list.
+
+   Ian's super-wanted list came next. It is recorded in `values.json`
+   (`wanted`): Vulpix, Ponyta, Koffing (both forms, regional preferred),
+   Eevee, Togepi, Articuno (Kanto only), Suicune, Ralts, Skitty, Roselia,
+   Swablu, Milotic, Froslass, Buneary, Drapion, Cresselia, Florges,
+   Primarina, Tsareena, Pheromosa, Cinderace, Corviknight and Meloetta. A
+   majority should land in a run, they are never trimmed, and their
+   legendaries are the ones kept. The simulator now plays towards them: a
+   bonus on its choices, never on the reported worth.
+
+   The trim cut fifteen prize-kind lines to their planned home, or to their
+   rarest place: the scattered starter tails, Kommo-o, Goodra, Flygon,
+   Scizor, Hippowdon, Slowbro, Walrein and Cloyster.
+   - Their other slots went to wild lines of a shared type worth under 75,
+     never a scripted-only one.
+   - The early Old Rods keep their starter tails.
+   - Torchic keeps Route 204 north's day slot, the delay.
+   - Froakie keeps its extra slots, as Ian asked.
+   - The zone staples (Zubat, Bronzor, Gligar, Sneasel, Rhyhorn, Gastly,
+     Duskull) stay: trimming them would strip the caves.
+
+   Over 30 League runs, non-wanted lines worth 75 or more fall from a median
+   of 26 per box to 18, and a median of 15 of the 23 wanted lines land. The
+   five that never do are out of the simulator's reach: Articuno and
+   Cresselia are post-game, Meloetta is not in the tree, Pheromosa sits in
+   the roamer's third, and Suicune needs a planned Snover. Still in over
+   half of runs: the staples, the homes of Hippowdon, Cloyster, Walrein and
+   Flygon, Froakie's Greninja, and the Veilstone Elekid, the Elekid line's
+   only source.
+19. **The damage calculator learns element 5's abilities (Ian, 2026-09-26,
+   through the Overseer).** The vendored calculator's Generation 4 branch
+   applies only Generation 4 abilities, so element 5's damage-changing ones
+   count nowhere: not in the tool's calculator, not in the balance scores.
+   Among them are Water Bubble, Fluffy, Purifying Salt, Steelworker, Sap
+   Sipper, Pixilate, Sheer Force, the auras, and Sharpness with
+   hg-engine's longer slicing list including the five claw moves. The
+   reference is element 5 on oxide (`git log 2f8d27c3^..a51b0af3`) and its
+   report on `cloud/element5-abilities`. It sits beside the three
+   calculator defects already held, closes before the trainer pass, and the
+   balance track rescores after it.
+   Later, once the engine has them (Ian's staples-survey answers,
+   `docs/oxide/staples-survey.md`), it also needs:
+   - critical hits at 1.5x and the modern rates
+   - the Gen 6 type immunities: Grass against powder moves, Electric
+     against paralysis
+   - modern behaviour for native abilities (Sturdy, and Lightning Rod and
+     Storm Drain first)
+   - native moves at their full modern numbers after the data pass
+21. **The missing super-wanted lines (Ian, 2026-09-26).** Five of Ian's 23
+   never landed in a best-play run. Ian took this, with Mindy asking for a
+   Snover ("four strong is fine"). Measured over 30 to 40 League runs:
+   - Acuity Cavern returns, drawing one of Ian's three most-wanted
+     legendaries at random: Articuno, Cresselia or Pheromosa. Valor Cavern
+     stays off. The lines Acuity drew before wait in the pool's `reserve`.
+   - The simulator plans for a trade whose gift is wanted. It values the
+     species asked for (Mindy's Snover) as if it were wanted, and treats a
+     member caught for the trade as its price, not a loss.
+
+   A median of 17 of the 23 land and only Meloetta never does. The price is
+   a median of four Pokemon worth 85 or more per box, up from three,
+   because Suicune lands in 97% of runs. If Mindy asks for a rarer line
+   (Delibird was tried) Suicune all but vanishes and the median stays
+   three. Meloetta needs porting before it can be placed.
+20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
+   standing rule: the player never sets, changes or ends weather, so no
+   obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
+   Sand Spit, Cloud Nine or Air Lock in a regular slot. The main track's
+   ability pass is the fix and the species stay in the pool. Until it
+   lands, the tool's dex and sources views should flag them.
+17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
+   Overseer).** The three are turned off and never go in a table. This
+   track empties the lists in all 186 tables and makes lint fail on any
+   species there. It must land in the same merge as the main track's
+   engine change, which stops the substitutions; before that, an emptied
+   slot would be read as species 0.
 
 ## Standing rules
 

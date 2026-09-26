@@ -69,7 +69,7 @@ def pool_candidates(plan):
     """Every legendary in the pool: the three thirds the lake caverns and the
     roamer draw from (Ian, 2026-09-26), in that order."""
     thirds = (plan.get("pool") or {}).get("thirds") or {}
-    return [sp for key in ("acuity", "valor", "roamer") for sp in thirds.get(key) or []]
+    return [sp for key in ("acuity", "valor", "roamer", "reserve") for sp in thirds.get(key) or []]
 
 
 def load_plan():

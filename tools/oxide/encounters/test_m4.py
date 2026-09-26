@@ -177,22 +177,26 @@ def check_caught_is_global(results):
     results.append(("a second tick on the same area replaces the first",
                     payload["encounters"] == {"encounters_route_201":
                                               "SPECIES_SHINX"}, ""))
+    # Fletchling: a Route 201 line that sits in other tables' top rungs, so
+    # owning it lifts a rarer line's odds there (Wooloo did, until the pick-list
+    # grew on 2026-09-26 and the Starly and Bidoof lines took its slots).
     post("/api/caught", {"area": "encounters_route_201",
-                         "species": "SPECIES_WOOLOO"})
+                         "species": "SPECIES_FLETCHLING"})
     after = {r["area"]: r for r in get("/api/areas")["rows"]}
     moved = [a for a in before
              if before[a]["live_species"] != after[a]["live_species"]]
     results.append(("one tick moves every table holding it",
                     len(moved) > 1, f"{len(moved)} tables"))
-    improved = [a for a in moved
-                if after[a]["best_share"] > before[a]["best_share"]]
+    # tables only: a scripted source's row has no rung to improve
+    improved = [a for a in moved if not a.startswith("scripted:")
+                and after[a]["best_share"] > before[a]["best_share"]]
     results.append(("removing owned mass lifts the odds elsewhere",
                     bool(improved),
                     f"{len(improved)} tables, e.g. "
                     f"{improved[0] if improved else '-'}"))
 
     d = get(f"/api/area/encounters_route_201")
-    bidoof = [s for s in d["slots"] if s["species"] == "SPECIES_WOOLOO"]
+    bidoof = [s for s in d["slots"] if s["species"] == "SPECIES_FLETCHLING"]
     results.append(("slots report caught state",
                     bidoof and all(s["caught"] for s in bidoof), ""))
     pool = d["rungs"][0]["pool"]
@@ -313,18 +317,19 @@ def check_lines_dupe_out(results):
                     abs(sum(s["odds"] for s in d["slots"]) - 1.0) < 1e-9, ""))
 
     # Every authored land table holds first stages only, so the evolved line
-    # member to find is on a Super Rod table: Gyarados in Twinleaf's water,
-    # duped out by a Magikarp caught on Lake Verity's Old Rod.
-    post("/api/caught", {"area": "encounters_lake_verity", "species": "SPECIES_MAGIKARP"})
-    n = get("/api/area/encounters_twinleaf_town?kind=super_rod")
-    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_GYARADOS"]
+    # member to find is on a Super Rod table: Crawdaunt on Ravaged Path,
+    # duped out by a Corphish caught on Route 203's Old Rod. (Gyarados in
+    # Twinleaf's water until Magikarp was made scarce, 2026-09-26.)
+    post("/api/caught", {"area": "encounters_route_203", "species": "SPECIES_CORPHISH"})
+    n = get("/api/area/encounters_ravaged_path?kind=super_rod")
+    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_CRAWDAUNT"]
     results.append(("an uncaught line member reads as duped",
                     bool(staravia) and staravia[0]["duped"]
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
-                    bool(staravia) and staravia[0]["caught_at"] == "Lake Verity"
-                    and staravia[0]["via"] == "Magikarp",
+                    bool(staravia) and staravia[0]["caught_at"] == "Route 203"
+                    and staravia[0]["via"] == "Corphish",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))
     d201 = get("/api/area/encounters_route_201?kind=land")

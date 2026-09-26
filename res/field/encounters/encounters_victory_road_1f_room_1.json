@@ -23,7 +23,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_HIPPOWDON"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 49,
@@ -31,7 +31,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_HIPPOWDON"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 49,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_CRUSTLE",
-        "SPECIES_HIPPOWDON"
+        "SPECIES_STEELIX"
     ],
     "night": [
         "SPECIES_GARGANACL",

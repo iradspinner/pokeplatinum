@@ -9,16 +9,16 @@
                 "SPECIES_COMBEE",
                 "SPECIES_SEWADDLE",
                 "SPECIES_GRUBBIN",
-                "SPECIES_PIKIPEK",
+                "SPECIES_AIPOM",
                 "SPECIES_DOTTLER",
-                "SPECIES_PACHIRISU"
+                "SPECIES_BURMY"
             ],
             "uncommon": [
                 "SPECIES_SEEDOT",
                 "SPECIES_SHROOMISH",
                 "SPECIES_BOUNSWEET",
-                "SPECIES_BUDEW",
-                "SPECIES_EMOLGA",
+                "SPECIES_CHERUBI",
+                "SPECIES_MUNCHLAX",
                 "SPECIES_HERACROSS"
             ]
         },
@@ -31,15 +31,15 @@
                 "SPECIES_COMBEE",
                 "SPECIES_SEWADDLE",
                 "SPECIES_GRUBBIN",
-                "SPECIES_TRUMBEAK",
+                "SPECIES_AIPOM",
                 "SPECIES_JOLTIK",
-                "SPECIES_PACHIRISU"
+                "SPECIES_BURMY"
             ],
             "uncommon": [
                 "SPECIES_NUZLEAF",
                 "SPECIES_SHROOMISH",
                 "SPECIES_STEENEE",
-                "SPECIES_EMOLGA",
+                "SPECIES_MUNCHLAX",
                 "SPECIES_FOMANTIS",
                 "SPECIES_HERACROSS"
             ]
@@ -54,13 +54,13 @@
                 "SPECIES_SEWADDLE",
                 "SPECIES_GRUBBIN",
                 "SPECIES_JOLTIK",
-                "SPECIES_TRUMBEAK",
+                "SPECIES_AIPOM",
                 "SPECIES_FOMANTIS"
             ],
             "uncommon": [
                 "SPECIES_YANMA",
                 "SPECIES_NUZLEAF",
-                "SPECIES_EMOLGA",
+                "SPECIES_MUNCHLAX",
                 "SPECIES_STEENEE",
                 "SPECIES_SCYTHER",
                 "SPECIES_HERACROSS"
@@ -80,7 +80,7 @@
                 "SPECIES_FOMANTIS"
             ],
             "uncommon": [
-                "SPECIES_EMOLGA",
+                "SPECIES_MUNCHLAX",
                 "SPECIES_NUZLEAF",
                 "SPECIES_SCYTHER",
                 "SPECIES_TRUMBEAK",
@@ -125,7 +125,7 @@
             ],
             "uncommon": [
                 "SPECIES_SCIZOR",
-                "SPECIES_EMOLGA",
+                "SPECIES_SNORLAX",
                 "SPECIES_SHIFTRY",
                 "SPECIES_TOUCANNON",
                 "SPECIES_LARVESTA",
@@ -148,7 +148,7 @@
             "uncommon": [
                 "SPECIES_HERACROSS",
                 "SPECIES_SCIZOR",
-                "SPECIES_EMOLGA",
+                "SPECIES_SNORLAX",
                 "SPECIES_TOUCANNON",
                 "SPECIES_LARVESTA",
                 "SPECIES_SKARMORY"
@@ -170,7 +170,7 @@
             "uncommon": [
                 "SPECIES_HERACROSS",
                 "SPECIES_LARVESTA",
-                "SPECIES_EMOLGA",
+                "SPECIES_SNORLAX",
                 "SPECIES_TOUCANNON",
                 "SPECIES_FROSMOTH",
                 "SPECIES_SKARMORY"

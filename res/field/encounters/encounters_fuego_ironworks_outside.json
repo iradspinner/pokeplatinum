@@ -7,7 +7,7 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_JOLTIK"
+            "species": "SPECIES_MAGNEMITE"
         },
         {
             "level": 29,
@@ -23,7 +23,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_TORRACAT"
+            "species": "SPECIES_BRAIXEN"
         },
         {
             "level": 30,
@@ -43,11 +43,11 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_CHARMELEON"
+            "species": "SPECIES_TURTONATOR"
         },
         {
             "level": 31,
-            "species": "SPECIES_COMBUSKEN"
+            "species": "SPECIES_MACHOKE"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "old_rod_rate": 25,
@@ -142,7 +142,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level_max": 20,
@@ -175,7 +175,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_WARTORTLE"
+            "species": "SPECIES_QWILFISH"
         }
     ],
     "super_rod_rate": 75,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_SWAMPERT"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "map_category": {

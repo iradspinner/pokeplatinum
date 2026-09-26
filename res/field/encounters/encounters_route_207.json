@@ -11,7 +11,7 @@
         },
         {
             "level": 6,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_MACHOP"
         },
         {
             "level": 6,
@@ -47,7 +47,7 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_TORCHIC"
+            "species": "SPECIES_FENNEKIN"
         }
     ],
     "swarms": [
