@@ -13,9 +13,10 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 1. **Balance Agent**: the full rescore on the encounter track's item 22, then B6.
 2. **Encounter Tool Builder**: its build plan's open items, and item 23 (the calculator follows `cloud/element4-stat-choice`) once that merges.
 3. **Main Production Agent** (`main-scripts`): the Battle Zone's main-track sub-items, then the legendary pool's draws, then the headers and gifts the encounter plan's item 6 waits on.
-4. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) is running.
-5. **Ian**: the in-game checks, all at once when the new CPU is in, and the terrain decision.
-6. **No owner yet**: element 6's AI catch-up, elements 7 and 8 (items; hidden abilities, the level-cap mechanism, field moves by badge), and the bug track, which needs Ian live.
+4. **Carry-over Agent** (`carry-over`): the Phase 3 backlog that needs the base ROM: the six overworld sprites, then the portable PC with infinite Rare Candies and no relearner.
+5. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) and `cloud/element8-level-caps` (the level-cap mechanism) are running; element 6's AI catch-up follows the first.
+6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in, and the terrain decision.
+7. **No owner yet**: element 7 (items), the rest of element 8 (hidden abilities, field moves by badge and the smaller changes), and the bug track, which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
 
