@@ -267,6 +267,11 @@ Two finished sub-items of the tracker's "The Battle Zone before the Elite Four" 
   - [x] Balance track, first (done 2026-09-26, branch `balance-galactic-split`): teach `tools/oxide/balance/` the Galactic split (its split lists in `splits.py` and `required.py`, the boss per split in `pool.py` and `metrics.py`, and the caps `test_b3` pins, now Galactic 64 and Volkner 68), on a branch that merges `worktree-encounter-step0`, so both merge together with the gate green
   - [x] **18 levels off the Battle Zone** (Ian, 2026-09-26; done the same day, 761130d51): 139 levels in 54 trainer files, now 55 to 60, each registered in `import_base_rom.py`'s `TRAINERS_DIVERGED`. The Volkner and Flint tag battle and Keegan are unchanged.
 
+Two finished sub-items of the tracker's "Saturn 2 fights under permanent Trick Room" entry, moved out on 2026-09-26; the entry itself is still open:
+
+  - [x] Main track (done 2026-09-26 on `cloud/main-saturn-trick-room`, 7657103c): field condition bit 19, `FIELD_CONDITION_TRICK_ROOM_PERM`, set at battle start for the trainers in `sPermanentTrickRoomTrainers` (`battle_lib.c`) beside the Arcade's own subscript and five-turn counter; the countdown skips it, the move fails under it, and the AI scores the move 10 down under it, since Saturn's Uxie knows Trick Room. The Arcade's room is unchanged. Checked by build, `romdiff.py` and the gate; Ian's in-game check is under "Waiting on Ian"
+  - [x] Balance track (done 2026-09-26, ed2fa4c64): `fights.json` marks Saturn 2 `trick_room` and the pressure model reverses the Speed test for it on every turn, priority still first; Saturn 2's threat rises from 0.29 to 0.41 and its answers fall from 0.20 to 0.18, and no other fight moves
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)

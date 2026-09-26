@@ -22,7 +22,9 @@ read, so they are written here too. Each is a standing instruction.
   exact change instead.
 - Wild encounter tables follow the `author-table` skill: nuzlocke capture areas
   by location name, gym splits with Ian's level caps, a top share of about a
-  third, and a question to Ian before padding a thin table.
+  third, and a question to Ian before padding a thin table. Swarm, Poke Radar
+  and GBA dual-slot encounters are turned off and never go in a table (Ian,
+  2026-09-26).
 - Choice items are rarer in Oxide than in the base ROM, and a Choice-locked boss
   is weaker in play than its score, because the lock can be baited (Ian,
   2026-09-23; the balance plan has the detail).
