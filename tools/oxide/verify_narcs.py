@@ -335,6 +335,11 @@ DIVERGED = {
             "members": SETUP_PP_NATIVES,
             "why": "Barrier and Tailwind cut to 1 PP as setup moves (Ian, 2026-09-26)",
         },
+        {
+            "offsets": (3,),  # power
+            "members": {141},
+            "why": "Leech Life at its modern 80 power, over the base ROM's 65 (Ian, 2026-09-26)",
+        },
     ],
 }
 

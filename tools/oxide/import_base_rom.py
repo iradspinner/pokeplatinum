@@ -466,6 +466,10 @@ MOVES_DIVERGED = {
         "range": "the base ROM made it hit everything around the user; Ian ruled "
                  "on 2026-09-22 (element 6, doubles) that it hits both foes only",
     },
+    "leech_life": {
+        "power": "the base ROM set 65; Ian ruled on 2026-09-26 that it takes "
+                 "its modern 80",
+    },
 }
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
