@@ -13,9 +13,9 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 1. **Balance Agent**: the full rescore on the encounter track's item 22, then B6.
 2. **Encounter Tool Builder**: its build plan's open items, and item 23 (the calculator follows `cloud/element4-stat-choice`) once that merges.
 3. **Main Production Agent** (`main-scripts`): the Battle Zone's main-track sub-items, then the legendary pool's draws, then the headers and gifts the encounter plan's item 6 waits on.
-4. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) is running.
+4. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) is running; `cloud/element8-level-caps` has reported and waits on review and merge.
 5. **Ian**: the in-game checks, all at once when the new CPU is in, and the terrain decision.
-6. **No owner yet**: element 6's AI catch-up, elements 7 and 8 (items; hidden abilities, the level-cap mechanism, field moves by badge), and the bug track, which needs Ian live.
+6. **No owner yet**: element 6's AI catch-up, elements 7 and 8 (items; hidden abilities, field moves by badge), and the bug track, which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
 
@@ -48,6 +48,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
+
+- **Level caps, three calls made without you** (element 8, 2026-09-27; the report on `cloud/element8-level-caps` has the detail). Say if any should change. **After Cynthia there is no cap**: fights.json ends at the League split, so the last step lifts the cap to 100. **The Day Care stops at the cap**, which hg-engine does not do; without it a Pokemon left there could come back past the cap. **A Pokemon at the cap still gains effort values**, as in hg-engine, though Gen 4 gives none at level 100.
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); the new-CPU cleanup list opens it. Add new in-game checks there, not here.
 
@@ -102,7 +104,7 @@ Each element gets a checklist here when it starts, with the emulator test that p
   - [ ] Keep fixes and changes separate: a fix restores what the code plainly intended, a change makes the AI play differently and is Ian's call
   - [ ] Teach it everything Phase 4 changed (2026-09-26 list): the new moves and abilities, Neutralizing Gas, the held items that change a decision (Eviolite, Assault Vest, Air Balloon, Rocky Helmet, Weakness Policy, the seeds), the staples rules (the stale spots are in `cloud/element5-staples`'s report: Simple, the trapping copies in `trainer_ai.c`, Illuminate, 2x critical hits), and Saturn 2's permanent Trick Room, since it guesses who moves first from raw Speed in places; and the computed powers, read at table power in `trainer_ai.c`
 - [ ] **7. Items, a curated subset**, after the move expansion. New items go into Platinum's free slots, not Hardlove's 2,687-record table; the in and out lists are in the answers file. **The TM count must not be hard-capped at 92.** A Pixie Plate is needed for Arceus's Fairy form, since Multitype reads the held item
-- [ ] **8. The remaining engine changes**, one at a time: hidden abilities (third slot, the script flag, Ability Patch; element 2 added `GiveHiddenAbility`, which nothing calls yet); strip the 17 dead trade evolution entries (the nine slots are done); 30 PC boxes; always-set battle mode; 60 fps outside battle (drop it without asking if it misbehaves); wild double battles; single-use items restored after battle; always national dex; script-driven level caps (the mechanism only); a lowered friendship evolution threshold
+- [ ] **8. The remaining engine changes**, one at a time: hidden abilities (third slot, the script flag, Ability Patch; element 2 added `GiveHiddenAbility`, which nothing calls yet); strip the 17 dead trade evolution entries (the nine slots are done); 30 PC boxes; always-set battle mode; 60 fps outside battle (drop it without asking if it misbehaves); wild double battles; single-use items restored after battle; always national dex; a lowered friendship evolution threshold. The script-driven level caps are done (2026-09-27, `cloud/element8-level-caps`, its last commit the report) and in the archive
 
 ## Phase 5: design passes raised while answering Phase 4
 
@@ -114,8 +116,7 @@ None is Phase 4 work; all of them shape the finished game.
   - [ ] Main track: reword the Fight Area arrival lines and the sailor's line
   - [ ] Main track: **the level 71 Lucas and Dawn fight at the start of Victory Road.** Ian designed it there (trainer slots 779 to 784, one per starter, six Pokemon each, in the new base ROM), but its only trigger is `scripts_battleground.s`, post-game as in vanilla. It needs a script and an event on Victory Road; it is on the balance plan's trainer-pass list. The level 9 set (787 to 792, Route 202) and the level 30 set (793 to 802, Route 207) are already on the story path.
   - [ ] Main track: gate the Volkner and Flint tag battle behind the Beacon Badge, since the player now reaches the Fight Area before Volkner's Gym
-  - [ ] Main track: the script-driven level caps (element 8) take the new split
-  - Two finished sub-items, the balance tool's Galactic split and the Battle Zone's 18-level cut, are in the archive.
+  - Three finished sub-items, the balance tool's Galactic split, the Battle Zone's 18-level cut and the level caps taking the new split, are in the archive.
   - [ ] Balance track: add the caps to the level-cap design; bring the zone's 52 route trainers, plus Buck, Mars and Jupiter at Stark Mountain, down from about 75 to 64; re-read the Galactic fights up to Spear Pillar against 64, and Volkner onward against 68
 - [ ] **Saturn 2 fights under permanent Trick Room** (Ian, 2026-09-26): the Galactic HQ fight (`TRAINER_COMMANDER_SATURN_GALACTIC_HQ`) opens with Trick Room that lasts the whole battle. Ian's rulings: a Trick Room used by either side during the fight **fails**, so the room cannot be cancelled; the opening message is **the standard one**; and it is **Saturn 2 only** for now. His Saturn 2 team is already built for it (`balance-plan.md`).
   - The engine side (7657103c9) and the balance tool's speed-order flag (ed2fa4c64) are done; their sub-items are in the archive.
