@@ -745,6 +745,8 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
     PokemonSpriteTemplate v0;
 
     Pokemon_BuildSpriteTemplate(&v0, param1, 2);
+    v0.keepStandardColors = TRUE; // Platinum Oxide: the Pokedex shows standard colours
+
     return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 

@@ -2845,8 +2845,10 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
     spriteTemplate->spindaSpots = 0;
-    spriteTemplate->dummy = 0;
-    spriteTemplate->personality = 0;
+    spriteTemplate->keepStandardColors = FALSE;
+    // Platinum Oxide: kept for every sprite, not only Spinda's front, for the
+    // personality's colour variation (HueShiftPokemonPalette).
+    spriteTemplate->personality = personality;
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {
@@ -2941,7 +2943,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
             spriteTemplate->spindaSpots = SPECIES_SPINDA;
-            spriteTemplate->dummy = 0;
+            spriteTemplate->keepStandardColors = FALSE;
             spriteTemplate->personality = personality;
         }
     }
@@ -3041,8 +3043,10 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
 static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
     spriteTemplate->spindaSpots = 0;
-    spriteTemplate->dummy = 0;
-    spriteTemplate->personality = 0;
+    spriteTemplate->keepStandardColors = FALSE;
+    // Platinum Oxide: kept for every sprite, not only Spinda's front, for the
+    // personality's colour variation (HueShiftPokemonPalette).
+    spriteTemplate->personality = personality;
 
     form = Pokemon_SanitizeFormId(species, form);
 
@@ -3156,7 +3160,7 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
 
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
             spriteTemplate->spindaSpots = SPECIES_SPINDA;
-            spriteTemplate->dummy = 0;
+            spriteTemplate->keepStandardColors = FALSE;
             spriteTemplate->personality = personality;
         }
 
@@ -3396,7 +3400,7 @@ void SpriteSystem_SetTrainerFrontSpriteTemplate(PokemonSpriteTemplate *spriteTem
     spriteTemplate->character = param1 * 2;
     spriteTemplate->palette = param1 * 2 + 1;
     spriteTemplate->spindaSpots = 0;
-    spriteTemplate->dummy = 0;
+    spriteTemplate->keepStandardColors = FALSE;
     spriteTemplate->personality = 0;
 }
 

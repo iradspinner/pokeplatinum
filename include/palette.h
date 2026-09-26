@@ -90,6 +90,9 @@ void LoadPaletteFromFile(enum NarcID narcID, u32 narcMemberIdx, enum HeapID heap
 void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target);
 void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target);
 void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB);
+// Platinum Oxide: the base ROM's per-Pokemon colour variation, keyed on the
+// personality, on the 15 visible colours of a 16-colour palette.
+void HueShiftPokemonPalette(u16 *palette, u32 personality);
 
 PaletteData *PaletteData_New(enum HeapID heapID);
 void PaletteData_Free(PaletteData *paletteData);

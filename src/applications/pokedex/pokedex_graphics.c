@@ -148,6 +148,7 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
     }
 
     BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);
+    spriteTemplate.keepStandardColors = TRUE; // Platinum Oxide: the Pokedex shows standard colours
 
     if (face == 0) {
         yOffset = LoadPokemonSpriteYOffset(species, gender, face, form, personality);

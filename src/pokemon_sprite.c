@@ -1443,6 +1443,14 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
             monSpriteMan->plttData.fmt = plttData->fmt;
             rawPlttData = plttData->pRawData;
 
+            // Platinum Oxide: the personality's colour variation, as the base
+            // ROM gave every Pokemon sprite. A trainer's template carries no
+            // personality, and the Pokedex asks for standard colours.
+            if (!monSpriteMan->sprites[i].template.keepStandardColors
+                && monSpriteMan->sprites[i].template.personality != 0) {
+                HueShiftPokemonPalette(rawPlttData, monSpriteMan->sprites[i].template.personality);
+            }
+
             for (j = 0; j < PALETTE_SIZE; j++) {
                 monSpriteMan->plttRawData[j + PALETTE_SIZE * i] = rawPlttData[j];
                 monSpriteMan->plttRawDataUnfaded[j + PALETTE_SIZE * i] = rawPlttData[j];

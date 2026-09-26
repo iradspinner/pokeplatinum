@@ -168,7 +168,7 @@ void ov12_02238390(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID)
     v0.narcID = 117;
     v0.palette = 250;
     v0.spindaSpots = 0;
-    v0.dummy = 0;
+    v0.keepStandardColors = FALSE;
     v0.personality = 0;
 
     if (battlerSpriteCtx->types[battlerSpriteCtx->targetBattler] & 0x1) {
