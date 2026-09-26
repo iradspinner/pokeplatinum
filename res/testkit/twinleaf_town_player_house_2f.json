@@ -114,6 +114,18 @@
             "en_US": "Mirror Armor"
         },
         {
+            "id": "TestKit_Text_MenuAbilityPrankster",
+            "en_US": "Prankster"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityGaleWings",
+            "en_US": "Gale Wings"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityQueenlyMajesty",
+            "en_US": "Queenly Majesty"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

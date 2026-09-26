@@ -588,6 +588,18 @@ BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, in
 void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
+ * @brief Oxide: the priority of a move as the battler uses it, after the
+ * abilities that raise it: Prankster gives status moves +1, and Gale Wings
+ * gives Flying moves +1 while its holder is at full HP (the later games' rule).
+ *
+ * @param battleCtx
+ * @param battler
+ * @param move
+ * @return The move's priority for this battler
+ */
+int Battler_MovePriority(BattleContext *battleCtx, int battler, int move);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

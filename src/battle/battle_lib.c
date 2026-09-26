@@ -1394,8 +1394,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
             }
         }
 
-        battler1Priority = MOVE_DATA(battler1Move).priority;
-        battler2Priority = MOVE_DATA(battler2Move).priority;
+        battler1Priority = Battler_MovePriority(battleCtx, battler1, battler1Move); // Oxide
+        battler2Priority = Battler_MovePriority(battleCtx, battler2, battler2Move);
     }
 
     if (battler1Priority == battler2Priority) {
@@ -8451,6 +8451,24 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
 BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler)
 {
     return BattlerIsGrounded(battleCtx, battler);
+}
+
+int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)
+{
+    int priority = MOVE_DATA(move).priority;
+    int ability = Battler_Ability(battleCtx, battler);
+
+    if (ability == ABILITY_PRANKSTER && MOVE_DATA(move).class == CLASS_STATUS) {
+        priority++;
+    }
+
+    if (ability == ABILITY_GALE_WINGS
+        && MOVE_DATA(move).type == TYPE_FLYING
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        priority++;
+    }
+
+    return priority;
 }
 
 BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)

@@ -345,4 +345,6 @@ subscript_files = files(
     'subscript_handle_after_you.s',
     'subscript_aurora_veil.s',
     'subscript_absorb_and_attack_up_1_stage.s',
+    'subscript_blocked_by_queenly_majesty.s',
+    'subscript_prankster_dark_immunity.s',
 )

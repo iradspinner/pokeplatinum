@@ -1052,6 +1052,9 @@ TestKit_Abilities:
     AddListMenuEntry TestKit_Text_MenuAbilityFlowerVeil, 10
     AddListMenuEntry TestKit_Text_MenuAbilityContrary, 11
     AddListMenuEntry TestKit_Text_MenuAbilityMirrorArmor, 12
+    AddListMenuEntry TestKit_Text_MenuAbilityPrankster, 13
+    AddListMenuEntry TestKit_Text_MenuAbilityGaleWings, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityQueenlyMajesty, 15
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
@@ -1066,6 +1069,9 @@ TestKit_Abilities:
     GoToIfEq VAR_0x8004, 10, TestKit_AbilityFlowerVeil
     GoToIfEq VAR_0x8004, 11, TestKit_AbilityContrary
     GoToIfEq VAR_0x8004, 12, TestKit_AbilityMirrorArmor
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilityPrankster
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilityGaleWings
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityQueenlyMajesty
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1242,6 +1248,49 @@ TestKit_AbilityMirrorArmor:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Prankster: a wild Weavile, faster than Klefki and a Dark type. Klefki's
+   status moves go first; Thunder Wave and Swagger do not affect Weavile,
+   while Spikes, aimed at its side, still works. */
+TestKit_AbilityPrankster:
+    SetVar VAR_0x800A, SPECIES_KLEFKI
+    SetVar VAR_0x800B, ABILITY_PRANKSTER
+    SetVar VAR_0x8006, MOVE_THUNDER_WAVE
+    SetVar VAR_0x8007, MOVE_SPIKES
+    SetVar VAR_0x8008, MOVE_SWAGGER
+    SetVar VAR_0x8009, MOVE_FOUL_PLAY
+    SetVar VAR_0x8000, SPECIES_WEAVILE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Gale Wings: a wild Jolteon, faster than Talonflame. At full HP Brave Bird
+   goes first; once Talonflame has taken damage it does not. */
+TestKit_AbilityGaleWings:
+    SetVar VAR_0x800A, SPECIES_TALONFLAME
+    SetVar VAR_0x800B, ABILITY_GALE_WINGS
+    SetVar VAR_0x8006, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8007, MOVE_FLARE_BLITZ
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Queenly Majesty: a wild Rattata that knows only Quick Attack, which
+   Tsareena's Queenly Majesty stops every time. */
+TestKit_AbilityQueenlyMajesty:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_QUEENLY_MAJESTY
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_KNOCK_OFF
+    SetVar VAR_0x8009, MOVE_TRAILBLAZE
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_QUICK_ATTACK
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

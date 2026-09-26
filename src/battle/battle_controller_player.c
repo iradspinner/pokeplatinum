@@ -2828,6 +2828,55 @@ enum ImmunityAbilityState {
  * @return TRUE if there is an interjecting subroutine to execute instead of
  * the rest of the user's move.
  */
+/**
+ * @brief Oxide, element 5: the two abilities that stop a priority move from
+ * the other side. Queenly Majesty on the target or its partner stops any move
+ * of raised priority aimed at them, with Damp's "{0}'s {1} prevents {2} from
+ * using {3}!"; and a Dark-type target is not affected by a status move that
+ * Prankster raised, as in the later games. Both are from hg-engine, which
+ * makes them before the move; here they run with the immunity abilities.
+ *
+ * @return The subscript to run, or NULL.
+ */
+static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int attacker = battleCtx->attacker;
+    int defender = battleCtx->defender;
+
+    if (defender == BATTLER_NONE
+        || BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)) {
+        return NULL;
+    }
+
+    int priority = Battler_MovePriority(battleCtx, attacker, battleCtx->moveCur);
+
+    if (priority > 0) {
+        int partner = BattleSystem_GetPartner(battleSys, defender);
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_QUEENLY_MAJESTY) == TRUE) {
+            battleCtx->abilityMon = defender;
+            return subscript_blocked_by_queenly_majesty;
+        }
+
+        if (partner != defender
+            && battleCtx->battleMons[partner].curHP
+            && Battler_IgnorableAbility(battleCtx, attacker, partner, ABILITY_QUEENLY_MAJESTY) == TRUE) {
+            battleCtx->abilityMon = partner;
+            return subscript_blocked_by_queenly_majesty;
+        }
+    }
+
+    if (priority > MOVE_DATA(battleCtx->moveCur).priority
+        && Battler_Ability(battleCtx, attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(battleCtx->moveCur).class == CLASS_STATUS
+        && MOVE_DATA(battleCtx->moveCur).range != RANGE_OPPONENT_SIDE
+        && MON_HAS_TYPE(defender, TYPE_DARK)) {
+        return subscript_prankster_dark_immunity;
+    }
+
+    return NULL;
+}
+
 static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int result = STATE_PROCESSING;
@@ -2836,6 +2885,10 @@ static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battle
         switch (battleCtx->abilityCheckState) {
         case IMMUNITY_ABILITY_STATE_CHECK:
             int nextSeq = BattleSystem_TriggerImmunityAbility(battleCtx, battleCtx->attacker, battleCtx->defender);
+
+            if (nextSeq == NULL) {
+                nextSeq = BattleControllerPlayer_PriorityBlock(battleSys, battleCtx); // Oxide
+            }
 
             if ((nextSeq && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE)
                 || nextSeq == subscript_blocked_by_soundproof) {
@@ -3073,7 +3126,7 @@ static int BattleControllerPlayer_SideGuardAgainst(BattleSystem *battleSys, Batt
             break;
 
         case SIDE_GUARD_QUICK_GUARD:
-            if (MOVE_DATA(move).priority > 0) {
+            if (Battler_MovePriority(battleCtx, attacker, move) > 0) { // element 5: Prankster and Gale Wings count
                 return MOVE_QUICK_GUARD;
             }
             break;
