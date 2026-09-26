@@ -891,9 +891,11 @@ disagrees with them.
    tactics and predictability do, since every hack's bosses score about
    the same on those. Your ratings of about a dozen fights you have played
    in the base ROM, on your 1 to 10 scale or just in order from hardest,
-   would fix both. Most useful: Roark, Gardenia, Fantina, Maylene, Wake,
-   Byron, Candice, Saturn 1, Officer Hesperid at Lake Valor, Mars 2,
-   Volkner, and the Elite Four and Cynthia.
+   would fix both. Most useful: Roark, Gardenia, Fantina, Maylene, Barry 4,
+   Wake, Cyrus 1, Byron, Saturn 1, Officer Hesperid at Lake Valor, Mars 2,
+   Candice and Volkner. The Elite Four and Cynthia are left out, since Ian
+   has fought them only blind (2026-09-25). The scores are kept out of the
+   question so they do not anchor the ratings.
 
 ## Order of work
 
