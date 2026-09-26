@@ -1567,6 +1567,32 @@ static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *
     }
 }
 
+/**
+ * @brief Oxide: cap a damage estimate at what the defender can take, when
+ * Sturdy will leave it on 1 HP.
+ *
+ * Sturdy now survives any hit from full HP (the staples rulings), unless Mold
+ * Breaker ignores it, so a hit the estimate says would knock out a Sturdy
+ * Pokemon at full HP does not. The defender's own ability is read, as the
+ * AI's other C checks read it.
+ *
+ * @param battleCtx
+ * @param damage    The estimate
+ * @return The estimate, or the defender's HP less 1
+ */
+static u32 AI_SturdySurvives(BattleContext *battleCtx, u32 damage)
+{
+    BattleMon *defender = &battleCtx->battleMons[AI_CONTEXT.defender];
+
+    if (defender->curHP == defender->maxHP
+        && damage >= defender->curHP
+        && Battler_IgnorableAbility(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.defender, ABILITY_STURDY) == TRUE) {
+        return defender->curHP - 1;
+    }
+
+    return damage;
+}
+
 static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     AIScript_Iter(battleCtx, 1);
@@ -1612,6 +1638,8 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
             Battler_Ability(battleCtx, AI_CONTEXT.attacker),
             battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
             roll);
+
+        damage = AI_SturdySurvives(battleCtx, damage); // Oxide
 
         if (battleCtx->battleMons[AI_CONTEXT.defender].curHP <= damage) {
             AIScript_Iter(battleCtx, jump);
@@ -1664,6 +1692,8 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
             Battler_Ability(battleCtx, AI_CONTEXT.attacker),
             battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
             roll);
+
+        damage = AI_SturdySurvives(battleCtx, damage); // Oxide
 
         if (battleCtx->battleMons[AI_CONTEXT.defender].curHP > damage) {
             AIScript_Iter(battleCtx, jump);
