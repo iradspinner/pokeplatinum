@@ -44,6 +44,11 @@ Waiting on Ian as it stood on 2026-09-23, before the cut. The fifty-eight-effect
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
 - **The test kit, first run** (2026-09-22, Ian approved it the same day): `docs/oxide/test-kit.md`. Get the ROM with `tools/oxide/fetch-rom --testkit`, start a new game, and try each entry of the menu the scientist in the bedroom's corner offers; its table says what each should show, and between them they reach most of the checks above (the form fix, Sylveon, the widened learnset, Fairy, Rare Candy chaining, the Sandgem crash, the new moves). Each later batch of effect scripts adds its move set to the kit in the same commit.
 
+Next steps 1 and 7 as they stood on 2026-09-26, both finished and moved out that day:
+
+1. **The QA pass over element 6's last merge is done** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`, over `git log 10782dd04^1..10782dd04^2`). It found one defect, fixed as a VANILLA FIX (45ad243a6: after a knockout the AI now also doubles a bench Weather Ball in fog), two questions now under "Waiting on Ian", and two nits under element 6. Merged into `oxide` with the encounter branch's docs split the same day, the gate checking a ROM built on GitHub since the CPU cannot build (26 of 26).
+7. **Workflow improvements, the agent side** (Ian, 2026-09-22): done, the last item being this cut (2026-09-23). The encounter agent's half is its own brief.
+
 ## Phase 0: Setup
 
 - [x] Working folder created, both ROMs and both DSPRE extractions in place
@@ -256,6 +261,11 @@ shape the finished game.
 - [ ] **Delete the Old Amber, Helix Fossil, Dome Fossil and Claw Fossil** (Ian, 2026-09-21): they revive off-list species, and his call is to remove the items rather than repoint the museum. Take them out of the Underground's dig pools and any route or NPC that hands them out; the museum's four revive branches then become unreachable, which is fine. Item and script work, outside the encounter track
 - [ ] **Floette's flower forms** (from the encounter track, 2026-09-21): the Day Care now gives a shiny Floette, and Ian asked for the white-flowered one. The tree has a single Floette with one sprite and one palette, so a white flower is new art and a form record, not a number in a script. Flabébé, Floette and Florges all have the same gap. The shiny Floette stands until then
 - [ ] Optional, not scheduled: a ROM-specific PKHeX/PKHaX build. Depends on the save layout being documented as it changes, so keep a `docs/oxide/save-layout.md` listing every block that moved and why
+
+Two finished sub-items of the tracker's "The Battle Zone before the Elite Four" entry, moved out on 2026-09-26; the entry itself is still open:
+
+  - [x] Balance track, first (done 2026-09-26, branch `balance-galactic-split`): teach `tools/oxide/balance/` the Galactic split (its split lists in `splits.py` and `required.py`, the boss per split in `pool.py` and `metrics.py`, and the caps `test_b3` pins, now Galactic 64 and Volkner 68), on a branch that merges `worktree-encounter-step0`, so both merge together with the gate green
+  - [x] **18 levels off the Battle Zone** (Ian, 2026-09-26; done the same day, 761130d51): 139 levels in 54 trainer files, now 55 to 60, each registered in `import_base_rom.py`'s `TRAINERS_DIVERGED`. The Volkner and Flint tag battle and Keegan are unchanged.
 
 ## Phase 5: Verify
 
