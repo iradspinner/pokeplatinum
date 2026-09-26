@@ -135,7 +135,7 @@ Basic_NoImmunityAbility:
 Basic_CheckSoundproof:
     // Check for immunity to sound-based moves
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, Basic_ScoreMoveEffect
+    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, Basic_CheckBulletproof
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
     IfMoveEqualTo MOVE_GROWL, ScoreMinus10
@@ -149,6 +149,40 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_GRASS_WHISTLE, ScoreMinus10
     IfMoveEqualTo MOVE_BUG_BUZZ, ScoreMinus10
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
+
+Basic_CheckBulletproof:
+    // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
+    // Breaker ignores it. The list is the engine's sBallAndBombMoves.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_ScoreMoveEffect
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
+    IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
+    IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
+    IfMoveEqualTo MOVE_BEAK_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_BULLET_SEED, ScoreMinus10
+    IfMoveEqualTo MOVE_EGG_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_ELECTRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ENERGY_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_FOCUS_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_GYRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ICE_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_MAGNET_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_MIST_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_MUD_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_OCTAZOOKA, ScoreMinus10
+    IfMoveEqualTo MOVE_POLLEN_PUFF, ScoreMinus10
+    IfMoveEqualTo MOVE_PYRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ROCK_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_ROCK_WRECKER, ScoreMinus10
+    IfMoveEqualTo MOVE_SEARING_SHOT, ScoreMinus10
+    IfMoveEqualTo MOVE_SEED_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_SHADOW_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_SLUDGE_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_SYRUP_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_WEATHER_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ZAP_CANNON, ScoreMinus10
 
 Basic_ScoreMoveEffect:
     // Oxide: the powder moves the engine keeps as sPowderMoves, less Rage
