@@ -110,7 +110,7 @@ already exist in Platinum; no new evolution stones are introduced.
 | Polteageist | Sinistea + Dusk Stone (method 7) |
 | Runerigus | Yamask, level up holding Reaper Cloth (methods 18/19) |
 | Salazzle | Salandit, level 33 female (method 23) - direct port |
-| Sinistcha | Polteageist + Dusk Stone (method 7) |
+| Sinistcha | none; Polteageist does not evolve (Ian, 2026-09-27). Its real line is Poltchageist with the Unremarkable Teacup, and Oxide has neither, so Sinistcha comes from the wild tables |
 | Sylveon | Eevee, level up knowing a Fairy move (method 20) |
 | Tsareena | Steenee, level up knowing Stomp (method 20) - direct port |
 | Vikavolt | Charjabug, magnetic field (method 24) - direct port |

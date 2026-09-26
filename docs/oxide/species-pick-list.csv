@@ -339,7 +339,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 342,Grapploct,new,853,species,903,yes,Fighting,Fighting,"Clobbopus, level up knowing Taunt (method 20) - direct port",filler
 343,Sinistea,new,854,species,904,yes,Ghost,Ghost,,filler
 344,Polteageist,new,855,species,905,yes,Ghost,Ghost,Sinistea + Dusk Stone (method 7),filler
-345,Sinistcha,new,1013,species,1063,yes,Grass,Ghost,Polteageist + Dusk Stone (method 7),filler
+345,Sinistcha,new,1013,species,1063,yes,Grass,Ghost,none (Poltchageist and the Unremarkable Teacup are not in Oxide),filler
 346,Snom,new,872,species,922,yes,Ice,Bug,,filler
 347,Frosmoth,new,873,species,923,yes,Ice,Bug,"Snom, high friendship at night (method 3) - direct port",filler
 348,Sprigatito,new,906,species,956,yes,Grass,Grass,,preferred

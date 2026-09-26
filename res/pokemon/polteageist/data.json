@@ -109,13 +109,7 @@
         "by_tutor": [],
         "egg_moves": []
     },
-    "evolutions": [
-        [
-            "EVO_USE_ITEM",
-            "ITEM_DUSK_STONE",
-            "SPECIES_SINISTCHA"
-        ]
-    ],
+    "evolutions": [],
     "offspring": "SPECIES_SINISTEA",
     "footprint": {
         "has": false,

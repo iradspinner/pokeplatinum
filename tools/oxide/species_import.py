@@ -71,7 +71,10 @@ EVOLUTION_OVERRIDES = {
                           ("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_CERULEDGE")],
     "SPECIES_PAWMO": [("EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_PAWMOT")],
     "SPECIES_SINISTEA": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_POLTEAGEIST")],
-    "SPECIES_POLTEAGEIST": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_SINISTCHA")],
+    # Polteageist does not evolve. Sinistcha comes from Poltchageist with the
+    # Unremarkable Teacup, and Oxide has neither; the Dusk Stone route the
+    # pick-list first gave it was wrong (Ian, 2026-09-27).
+    "SPECIES_POLTEAGEIST": [],
     "SPECIES_YAMASK": [("EVO_LEVEL", 34, "SPECIES_COFAGRIGUS"),
                        ("EVO_LEVEL_WITH_HELD_ITEM_DAY", "ITEM_REAPER_CLOTH", "SPECIES_RUNERIGUS"),
                        ("EVO_LEVEL_WITH_HELD_ITEM_NIGHT", "ITEM_REAPER_CLOTH", "SPECIES_RUNERIGUS")],
