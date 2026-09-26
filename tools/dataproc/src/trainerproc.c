@@ -13,6 +13,7 @@
 #include "constants/battle.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
+#include "generated/natures.h"
 #include "generated/trainers.h"
 #include "generated/trainer_classes.h"
 #include "generated/vars_flags.h"
@@ -213,11 +214,23 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
 
         // nature is an optional override too: absent or null means roll it as
         // the game always has. It rides in ivScale's unused high byte as n + 1.
+        // Only the 25 real natures pass: the game steps the personality until
+        // it lands on the named one, so NATURE_COUNT would loop forever.
+        // The range is checked here and reported on the string, because a
+        // looked-up node has lost its source position, and the library's own
+        // range error (dp_u16range) crashes reading it.
         u16 nature = TRAINER_MON_NATURE_DONT_CARE;
         if (dp_hasmemb(party_member, "nature")) {
             datanode_t nature_node = dp_objmemb(party_member, "nature");
             if (nature_node.type == DATAPROC_T_STRING) {
-                nature = (u16)(dp_u16(dp_lookup(nature_node, "enum Nature")) + 1);
+                u16 named = dp_u16(dp_lookup(nature_node, "enum Nature"));
+                if (named >= NATURE_COUNT) {
+                    dp_error(&nature_node, "expected a nature from NATURE_HARDY to NATURE_QUIRKY");
+                } else {
+                    nature = (u16)(named + 1);
+                }
+            } else if (nature_node.type != DATAPROC_T_NULL) {
+                dp_error(&nature_node, "expected nature to be a NATURE_* name or null");
             }
         }
 

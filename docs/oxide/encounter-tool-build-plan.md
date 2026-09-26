@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 82/82, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 83/83, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
@@ -140,17 +140,36 @@ that stay. None blocks anything.
    wait for the balance track's final caps, then `cli evolve` is re-run once
    (section below).
 2. **Ian's one damage roll** in melonDS against the calculator (M8, below).
-3. **From the QA pass on D4 and D5** (M8, below): a range check on a trainer's
-   `nature` in `trainerproc.c` before Phase 5 names one, and the Z-move twins
-   sharing one calculator name. The rest closed on 2026-09-26: the calculator
-   applies a dual type's factors in chart order (Crunch into Bronzor now reads
-   the game's 43 to 51, and Cross Chop into Bronzor 80 to 96, not 81), gives
-   Heavy Slam, Trump Card, Psywave and Super Fang the engine's damage, crits
-   with the always-critical moves, which the dex no longer lists as
-   placeholders, and the vendored libraries carry their licence notices
-   (`calc/VENDORED.md`, patches 9 to 12). Electro Ball hits at power 1,
-   because Oxide's engine has no power code for it yet; the main track has
-   that gap.
+3. **From the QA pass on D4 and D5** (M8, below). One item is open: the
+   importer skips the IV scale of a member that names a nature without
+   saying so, and since Cyrus's teams name natures, a line per member in its
+   report ("left alone", as it logs every other divergence) would keep that
+   visible. The importer is shared tooling, so it waits on the Overseer's
+   word on who takes it. The rest is closed. On 2026-09-26 the calculator
+   took the chart order (Crunch into Bronzor now reads the game's 43 to 51,
+   and Cross Chop into Bronzor 80 to 96, not 81), the engine's damage for
+   Heavy Slam, Trump Card, Psywave and Super Fang, and the always-critical
+   moves, which the dex no longer lists as placeholders; the vendored
+   libraries got their licence notices (`calc/VENDORED.md`, patches 9 to
+   12). Electro Ball's power is item 22's. Later the same day, on branch
+   `encounter-item3`:
+   - The trainer packer refuses a `nature` that is not one of the 25:
+     `NATURE_COUNT`, which would have hung the game building the party, an
+     unknown name, a number and `true` each fail the build at the line, and
+     null still means roll it. The packer's seven outputs for the whole tree
+     are byte-identical to the unchecked packer's. dataproc's own range
+     check (`dp_u16range`) cannot be used on a looked-up name: the node's
+     source position and the looked-up value share one field, so the error
+     report reads the value as a pointer and crashes. The packer compares
+     the value itself, and `itemproc.c` has the same pattern for a TM's
+     type, which never fails today.
+   - The calculator's data holds all 919 moves. Each of the 18 Z-moves is a
+     physical and a special twin in Oxide and one entry in the calculator;
+     the physical keeps the calculator's name and the special is exported
+     as "Breakneck Blitz (Special)" and so on. `calc_export.move_keys` is
+     the one place that names a move, and the mechanics lists use it too.
+   - Two stale comments from the same QA: species weight is in pounds, and
+     the calculator's images come from `res/pokemon/`.
 4. **The calculator's menu and emulator icons.** Done 2026-09-26: the menu icon
    is the tool's own, and the DeSmuME link is hidden under Oxide (patch 13).
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
@@ -182,6 +201,8 @@ that stay. None blocks anything.
    has the working).
 8. **The Galactic split and the Battle Zone (Ian, 2026-09-25).** The split table
    gains Galactic between Candice and Volkner, cap 64, and Volkner's cap is 68.
+   Superseded on 2026-09-26: the Galactic fights are two splits, HQ at cap 60
+   and then Galactic at 65, and the split table has had them since.
    The ten Battle Zone tables and the eleven tables of the Mt. Coronet climb are
    in it, and the Battle Zone follows Snowpoint in progression order. The ten
    tables were authored in Step 4 as post-game content, and in their new split
@@ -450,9 +471,9 @@ itself.
   8765; the header names the checkout it reads, and `--port` runs a second one.
 - A trainer Pokemon names its nature with `"nature": "NATURE_ADAMANT"` (any of
   the 25), which frees its IV scale to go to 255; a member without the field
-  rolls exactly as before. Do not name `NATURE_COUNT`: until the range check in
-  item 3 lands, the game loops forever building that party. How it works and how
-  it was checked are in the archive under M8.
+  rolls exactly as before. The packer fails the build on anything else, since
+  the game would loop forever building a party with a 26th nature (item 3).
+  How it works and how it was checked are in the archive under M8.
 - The vendored calculator is a clean upstream copy plus the patches listed in
   `calc/VENDORED.md`; after an update, re-apply them and rerun
   `make_calc_skin.py`, and `test_m8` fails until both are done.
@@ -509,21 +530,15 @@ Done except for what follows. The survey, D1 to D5, the trainer teams in the cal
 
 ### What is open in M8
 
-**Open from the QA pass before the merge** (2026-09-22,
+**The QA pass before the merge** (2026-09-22,
 `docs/oxide/qa-review-2026-09-22-encounter-d4d5.md`; none of it blocked the
-merge). The trainer packer accepts `"nature": "NATURE_COUNT"`, and the game
-then loops forever building that party, because no personality lands on a
-26th nature; a numeric or `true` nature is dropped without a word. It needs a
-range check in `trainerproc.c` before Phase 5 names a nature. The calculator
-applies a dual type's two factors in the defender's type order where the game
-uses chart order, so Crunch into Bronzor reads 42 to 50 against the game's 43
-to 51; this is upstream's behaviour, and **Ian ruled (2026-09-22) that the
-calculator follow the game's chart order**, which it does since 2026-09-26
-(`VENDORED.md`, patch 9). The always-critical moves were listed as
-placeholders, because element 4 did their effect in C and left the script a
-plain hit; the dex now knows that effect is done in C. The licence notices are
-in (patch 12). Still open, and small: the Z-move twins share one calculator
-name, so one overwrites the other.
+merge) is closed but for the importer's report line in item 3. The packer
+refused no nature until 2026-09-26 and now refuses all but the 25. The
+calculator took the game's chart order for a dual type (**Ian's ruling of
+2026-09-22**, `VENDORED.md` patch 9); Crunch into Bronzor had read 42 to 50
+against the game's 43 to 51. The dex knows the always-critical effect is done
+in C, the licence notices are in (patch 12), and the Z-move twins have a
+calculator entry each.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a

@@ -16,9 +16,8 @@ Taken: `index.html`, `calc/`, `css/` and `js/`. That is what the page loads.
 Left behind, and why, from a 649 MB clone:
 
 - `img/`, 319 MB of Pokemon, trainer and item sprites. Oxide's own sprites are
-  in `res/pokemon/`, which is the only place they are right for this fork, so
-  the plan is to serve those instead. Until that is wired up the calculator
-  shows broken images, which costs nothing but looks untidy.
+  in `res/pokemon/`, which is the only place they are right for this fork, and
+  the server answers the calculator's image requests from there (below).
 - `backups/`, 132 MB, and `cypress/`, `lua/`, `scripts/`, `tools/`,
   `agent_notes/` and the loose `.md` notes: upstream's own working material.
 - `js/mastersheet/`, 4.8 MB, which only `mastersheet.html` loads, and that page
