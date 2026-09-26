@@ -165,6 +165,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   turn properly when talked to. Later in the game, May at the Resort Area,
   Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
   north and south slopes draw as themselves.
+- [ ] Once `carry-over-hue` merges, **the colour variation** (the base ROM's
+  hue shift): each Pokemon's colours are turned a little, up to about 20
+  degrees of hue either way, by its personality. Several Starly or Bidoof on
+  Route 201 differ slightly from one another, as the foe's front sprite and as
+  your own back sprite. One caught Pokemon shows the same colours in battle,
+  in move animations that draw a copy of it, on its summary, in the PC's
+  preview, through its evolution scene, in the Rock Smash and Cut cut-ins, and
+  in the Hearthome contest. The Pokedex, the party and box icons, the starter
+  choice, Rowan's introduction and the Great Marsh binoculars keep standard
+  colours, and so does a Substitute doll (the base ROM tinted the doll).
 
 ## 4. The ordinary ROM, mid-game
 
@@ -178,6 +188,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   own rules (healing mid-challenge, losing Safari Balls).
 - [ ] Iron Island: Riley's egg hatches as a random species, one of eight lines.
 - [ ] Snowpoint City: Mindy takes a Snover and gives a Suicune, which is shiny.
+- [ ] With `carry-over-hue` merged: Riley's egg (or any Day Care egg) is
+  tinted like the Pokemon inside it while it hatches, and the hatched Pokemon
+  shows the same colours on its summary. In Mindy's trade the Snover and the
+  Suicune each keep their colours from the send screen, through the wormhole
+  (where Oxide goes one step past the base ROM), to the arrival.
 - [ ] **(live)** Worker Jackson's Wormadam-Trash (level 49, Relaxed, every IV 27)
   shows 131 HP, 85 Attack, 122 Defense, 85 Sp. Atk, 111 Sp. Def and 47 Speed.
 - [ ] Galactic HQ, Saturn: the battle opens with "The dimensions became
@@ -248,6 +263,8 @@ On a save with the National Dex and the game beaten:
 
 - [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
   and takes Rare Candies again.
+- [ ] With `carry-over-hue` merged: the Hall of Fame shows each Pokemon in the
+  same colours as its summary, and so does the PC's Hall of Fame viewer.
 
 - [ ] Acuity Lakefront's grass and the Poke Radar there give no Weavile,
   Abomasnow, Mamoswine or Glalie, and radar chains still build on the area's
