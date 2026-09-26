@@ -87,7 +87,7 @@ conflict table is for.
 
 | Member | What | Shape | How it was identified |
 |---|---|---|---|
-| 7 | hidden abilities | u16 x 1476 | Bulbasaur 34 Chlorophyll, Charmander 94 Solar Power, Butterfree 110 Tinted Lens |
+| 7 | hidden abilities | u16 x 1476 | Bulbasaur 34 Chlorophyll, Charmander 94 Solar Power, Butterfree 110 Tinted Lens. The natives' (index = dex number, 1 to 493) are imported by `import_donor.py hidden-abilities` (2026-09-27): 451 have one, 42 have 0 |
 | 8 | base experience | u16 x 1476 | Charmander 62, Charmeleon 142, Charizard 267, the Generation 7 values |
 | 9 | icon palette | u8 x 1476 | values only ever 0, 1, 2, which is Platinum's icon palette range |
 | 10 | unidentified | u16 x 1076 | only 26 non-zero, values in an index space past 1476; see below |

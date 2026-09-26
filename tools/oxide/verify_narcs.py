@@ -646,6 +646,7 @@ def check_personal(b, r, path):
     has no room for."""
     rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
     bad, intended, extra = [], [], max(0, len(b) - len(r))
+    hidden = 0
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
@@ -653,6 +654,9 @@ def check_personal(b, r, path):
             continue
         bh, ba, bx, bt = personal_fields(b[j])
         rh, ra, rx, rt = personal_fields(r[i])
+        # A hidden ability is intended wherever it is: the reference has no slot
+        # for one. The natives' came from the donor (2026-09-27, element 8).
+        hidden += bool(ba[2])
         abilities_ok = tuple(ba[:2]) == tuple(ra[:2])
         if not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED:
             abilities_ok = tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0]
@@ -671,7 +675,9 @@ def check_personal(b, r, path):
             bad.append(i)
     print(f"{path}: {len(b)} members against the reference's {len(r)}; "
           f"{len(bad)} disagree, {len(intended)} differ only at the intended bytes"
-          + (f", {extra} are new species" if extra else ""))
+          + (f", {extra} are new species" if extra else "")
+          + (f"; {hidden} of the shared records carry a hidden ability, which the "
+             f"reference has no slot for" if hidden else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))
