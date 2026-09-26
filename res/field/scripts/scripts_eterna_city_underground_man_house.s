@@ -19,20 +19,13 @@ EternaCityUndergroundManHouse_UndergroundMan:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfGe VAR_CURRENT_UNDERGROUND_MISSION, 9, EternaCityUndergroundManHouse_YouAreSpelunkingMaster
-    GoToIfSet FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR, EternaCityUndergroundManHouse_GoToCurrentMission
-    GoToIfSet FLAG_RECEIVED_EXPLORER_KIT, EternaCityUndergroundManHouse_LetMeMentorYou
-    Message EternaCityUndergroundManHouse_Text_CallMeUndergroundMan
-    SetVar VAR_0x8004, ITEM_EXPLORER_KIT
-    SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_EXPLORER_KIT
-    ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
-    Message EternaCityUndergroundManHouse_Text_MentorYouBecomingSpelunker
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, EternaCityUndergroundManHouse_CantForceAcceptProposal
-    SetFlag FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR
-    GoTo EternaCityUndergroundManHouse_GoToCurrentMission
+    @ The Underground is closed in Oxide (Ian, 2026-09-27): he no longer gives
+    @ the Explorer Kit, so his mentorship and missions below are never reached.
+    Message EternaCityUndergroundManHouse_Text_TunnelsSealedOff
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
 
 EternaCityUndergroundManHouse_LetMeMentorYou:
     Message EternaCityUndergroundManHouse_Text_MentorYouBecomeSpelunker

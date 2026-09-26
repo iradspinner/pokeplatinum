@@ -543,6 +543,18 @@ def check_calculator(results):
                     and moves["Attack Order"]["basePower"] == 120
                     and moves["Dragon Breath"]["type"] == "Dragon"
                     and "basePower" not in moves["Grass Knot"], f"{len(moves)} moves"))
+    # The D4 and D5 QA (2026-09-22), finding 5: each Z-move is a physical and
+    # a special twin in Oxide and one entry in the calculator, and the special
+    # used to replace the physical. Every move now has an entry of its own.
+    named = sum(1 for m in pokedex.moves(root).values()
+                if m["move"] != "MOVE_NONE" and m["name"] not in ("-", ""))
+    results.append(("every move has its own entry, a Z-move's special twin under "
+                    "a name of its own",
+                    len(moves) == named
+                    and moves["Breakneck Blitz"]["category"] == "Physical"
+                    and moves["Breakneck Blitz (Special)"]["category"] == "Special"
+                    and moves["Breakneck Blitz (Special)"]["basePower"] == 0,
+                    f"{len(moves)} of {named}"))
 
     # The chart is the reason the data travels at all: Generation 4 with
     # Fairy, Steel keeping its resistances to Ghost and Dark (Ian, 2026-09-22).
@@ -720,11 +732,36 @@ def check_calc_mechanics(results):
         "icebeam": ("Lapras", "Water Absorb", "Vaporeon", "", "Ice Beam"),
         "press": ("Hawlucha", "Limber", "Abomasnow", "", "Flying Press"),
         "cc": ("Hawlucha", "Limber", "Abomasnow", "", "Close Combat"),
+        # Item 23 (2026-09-27): the engine's stat choosers.
+        "foulweak": ("Chansey", "Natural Cure", "Machamp", "Guts", "Foul Play"),
+        "foulstrong": ("Machamp", "Guts", "Machamp", "Guts", "Foul Play"),
+        "foulboost": ("Chansey", "Natural Cure", "Machamp", "Guts", "Foul Play"),
+        "bodypress": ("Bastiodon", "Soundproof", "Snorlax", "Thick Fat", "Body Press"),
+        "pressatk": ("Bastiodon", "Soundproof", "Snorlax", "Thick Fat", "Body Press"),
+        "pressdef": ("Bastiodon", "Soundproof", "Snorlax", "Thick Fat", "Body Press"),
+        "psyshock": ("Alakazam", "Synchronize", "Blissey", "Natural Cure", "Psyshock"),
+        "psychic": ("Alakazam", "Synchronize", "Blissey", "Natural Cure", "Psychic"),
+        "sword": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Sacred Sword"),
+        "swordwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Sacred Sword"),
+        "lariat": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Darkest Lariat"),
+        "lariatwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Darkest Lariat"),
+        "breakwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
+        "breakplain": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
     }
+    # The target's own stages: Foul Play reads them, and Sacred Sword,
+    # Darkest Lariat and Brick Break meet a Bastiodon at +6 Defense.
+    boosted = {"foulboost": {"atk": 2}, "swordwall": {"def": 6}, "lariatwall": {"def": 6},
+               "breakwall": {"def": 6}}
+    # The user's own stages: Body Press ignores its Attack and reads its Defense.
+    att_boosted = {"pressatk": {"atk": 6}, "pressdef": {"def": 2}}
     jobs = {"pokemon": {}, "pairs": []}
     for key, (att, ability, dfn, dability, move) in cases.items():
         jobs["pokemon"]["a" + key] = {"species": att, "ability": ability, "level": 50}
+        if key in att_boosted:
+            jobs["pokemon"]["a" + key]["boosts"] = att_boosted[key]
         jobs["pokemon"]["d" + key] = {"species": dfn, "ability": dability or None, "level": 50}
+        if key in boosted:
+            jobs["pokemon"]["d" + key]["boosts"] = boosted[key]
         jobs["pairs"].append(["a" + key, "d" + key, [move], None])
     with tempfile.TemporaryDirectory() as tmp:
         paths = [os.path.join(tmp, n) for n in ("blob.json", "jobs.json", "out.json")]
@@ -759,15 +796,47 @@ def check_calc_mechanics(results):
                     and rolls["hardpress"][0] > 0 and 0 < rolls["stored"][-1],
                     f"Psywave {rolls['psywave'][0]} to {rolls['psywave'][-1]}, Electro Ball "
                     f"{rolls['slowball'][-1]} slower, {rolls['fastball'][-1]} at twice the Speed"))
-    # Oxide's engine hits with Freeze-Dry and Flying Press as plain moves:
-    # Freeze-Dry is resisted by Water, so it does less than a stronger Ice
-    # Beam, and Flying Press is only Fighting, so it does less than Close
-    # Combat.
-    results.append(("Freeze-Dry and Flying Press hit as plain moves, as Oxide's engine does",
-                    rolls["freezedry"][-1] < rolls["icebeam"][-1]
-                    and rolls["press"][-1] < rolls["cc"][-1],
+    # Item 23 (2026-09-27): Oxide's engine gives Freeze-Dry and Flying Press
+    # their type rules (cloud/element4-stat-choice). Freeze-Dry is super
+    # effective on Vaporeon where Ice Beam is resisted, and Flying Press into
+    # Abomasnow is four times effective where Close Combat is twice.
+    results.append(("Freeze-Dry is super effective on Water and Flying Press is "
+                    "Fighting and Flying at once, as Oxide's engine has them",
+                    rolls["freezedry"][-1] > 2 * rolls["icebeam"][-1]
+                    and rolls["press"][-1] > rolls["cc"][-1],
                     f"Freeze-Dry {rolls['freezedry'][-1]}, Ice Beam {rolls['icebeam'][-1]}; "
                     f"Flying Press {rolls['press'][-1]}, Close Combat {rolls['cc'][-1]}"))
+    # Foul Play hits with the target's Attack: from Chansey or from Machamp
+    # into the same Machamp it rolls the same, and the target's +2 raises
+    # it. Body Press hits with the user's Defense: +6 Attack leaves it
+    # alone and +2 Defense raises it. Psyshock hits Blissey's Defense, not
+    # her Sp. Def, far past Psychic.
+    results.append(("Foul Play, Body Press and Psyshock take the stat Oxide's engine "
+                    "gives them",
+                    rolls["foulweak"] == rolls["foulstrong"]
+                    and rolls["foulboost"][-1] > rolls["foulweak"][-1]
+                    and rolls["pressatk"] == rolls["bodypress"]
+                    and rolls["pressdef"][-1] > rolls["bodypress"][-1]
+                    and rolls["psyshock"][-1] > 3 * rolls["psychic"][-1],
+                    f"Foul Play {rolls['foulweak'][-1]} and {rolls['foulstrong'][-1]}, "
+                    f"{rolls['foulboost'][-1]} at +2; Body Press {rolls['bodypress'][-1]}, "
+                    f"{rolls['pressatk'][-1]} at +6 Attack, {rolls['pressdef'][-1]} at +2 Defense; "
+                    f"Psyshock {rolls['psyshock'][-1]}, "
+                    f"Psychic {rolls['psychic'][-1]}"))
+    # Sacred Sword and Darkest Lariat ignore the target's +6 Defense, where
+    # Brick Break meets it.
+    results.append(("Sacred Sword and Darkest Lariat ignore the target's stat stages",
+                    rolls["swordwall"] == rolls["sword"] and rolls["lariatwall"] == rolls["lariat"]
+                    and rolls["breakwall"][-1] < rolls["breakplain"][-1],
+                    f"Sacred Sword {rolls['sword'][-1]} and {rolls['swordwall'][-1]} at +6; "
+                    f"Brick Break {rolls['breakplain'][-1]} and {rolls['breakwall'][-1]}"))
+    # Rage Fist is 50 plus 50 per hit its user has taken, to 350; the
+    # calculator knows no hits taken, so it shows the engine's power before
+    # the first, 50, from Oxide's record.
+    blob_moves = calc_export.build()["moves"]
+    results.append(("Rage Fist carries Oxide's power before any hit, 50",
+                    blob_moves.get("Rage Fist", {}).get("basePower") == 50,
+                    str(blob_moves.get("Rage Fist"))))
     # Frost Breath always lands a critical hit unless the target has Shell
     # Armor, and Oxide's critical hit is 1.5x, 2.25x for a Sniper (staples
     # survey). Crunch into Bronzor applies Psychic's double before Steel's half,

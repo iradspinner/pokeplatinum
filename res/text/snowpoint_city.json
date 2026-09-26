@@ -116,12 +116,12 @@
       ]
     },
     {
-      "id": "SnowpointCity_Text_ILookForwardToAGreatTrainer",
+      "id": "SnowpointCity_Text_NotWhileTeamGalactic",
       "en_US": [
-        "A great Trainer recognized by\n",
-        "the Pokémon League...\r",
-        "I look forward to carrying someone\n",
-        "like that on this ship!"
+        "The Battle Zone? Not while Team\n",
+        "Galactic has the whole region on edge!\r",
+        "Put a stop to them at their base in\n",
+        "Veilstone City, and I’ll sail you there!"
       ]
     },
     {
@@ -141,35 +141,30 @@
       ]
     },
     {
-      "id": "SnowpointCity_Text_GoodThatOurWorldChanges",
+      "id": "SnowpointCity_Text_CyrusHasHisRedChain",
       "en_US": [
-        "Cynthia: I think it’s good that our\n",
-        "world is constantly changing.\r",
-        "Of course, I don’t want it to become\n",
-        "what only one person wants.\r",
-        "A world like Cyrus envisions...\n",
-        "No one would want that.\r",
-        "The kind of world I want to see is where\n",
+        "Cynthia: Cyrus has his Red Chain now.\n",
+        "He will make for Mt. Coronet soon.\r",
+        "He wants a world that answers to him\n",
+        "alone. No one would want that.\r",
+        "The world I want to see is one where\n",
         "everyone can share their joy.\r",
         "Where Pokémon and the people around\n",
         "them can be happy for each other.\r",
-        "I want the world to become a place\n",
-        "where everyone is smiling.\r",
-        "The world could be so much better\n",
-        "if we all tried to make it that way.\r"
+        "When Cyrus makes his move, we will\n",
+        "need to be ready to stop him.\r"
       ]
     },
     {
-      "id": "SnowpointCity_Text_TravelToFarOffPlaces",
+      "id": "SnowpointCity_Text_GrowStrongerInBattleZone",
       "en_US": [
-        "I want you to keep traveling to many\n",
-        "far-off places.\r",
-        "I want you to keep meeting all kinds of\n",
-        "people and Pokémon.\r",
+        "So I want you to grow even stronger.\r",
+        "The Battle Zone is full of tough\n",
+        "Trainers. It’s the best place to train.\r",
         "I came all the way here just so I could\n",
         "say that to you.\r",
         "Your horizons will expand again if you\n",
-        "visit the Fight Area as well.\r",
+        "visit the Fight Area.\r",
         "I hope our paths cross again!\r"
       ]
     },

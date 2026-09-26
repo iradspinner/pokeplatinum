@@ -62,6 +62,43 @@
     {
       "id": "VictoryRoad1F_Text_Dummy12",
       "garbage": 11
+    },
+    {
+      "id": "VictoryRoad1F_Text_DawnGetPastMeFirst",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}! I knew you’d come\n",
+        "through here.\r",
+        "You’re going to take on the\n",
+        "Pokémon League, aren’t you?\r",
+        "Then you’ll have to get past me first!\n",
+        "I’ve been training hard for this!\r"
+      ]
+    },
+    {
+      "id": "VictoryRoad1F_Text_LucasLetsSeeIfYoureReady",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}! I knew you’d come\n",
+        "through here.\r",
+        "You’re off to the Pokémon League,\n",
+        "right? Let’s see if you’re ready!\r",
+        "I’ve been training hard for this!\r"
+      ]
+    },
+    {
+      "id": "VictoryRoad1F_Text_DawnYouReallyAreReady",
+      "en_US": [
+        "Dawn: Wow... You really are ready.\r",
+        "Go show the Elite Four your stuff!\n",
+        "I’ll be cheering for you!"
+      ]
+    },
+    {
+      "id": "VictoryRoad1F_Text_LucasYoureReadyAllRight",
+      "en_US": [
+        "Lucas: Yeah, you’re ready, all right.\r",
+        "Go take on the Elite Four!\n",
+        "I’ll be rooting for you!"
+      ]
     }
   ]
 }

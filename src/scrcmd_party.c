@@ -21,10 +21,12 @@
 #include "pokemon.h"
 #include "ribbon.h"
 #include "save_player.h"
+#include "system_flags.h"
 #include "tv_segment.h"
 #include "unk_02017038.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
+#include "vars_flags.h"
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
@@ -64,9 +66,11 @@ BOOL ScrCmd_GiveDesignedPokemon(ScriptContext *ctx)
     return FALSE;
 }
 
-// Platinum Oxide: switch a party Pokemon to its hidden ability. Writes 1 to the
-// destination variable when the species has one and 0 when it does not, so a
-// gift script can fall back rather than silently hand out the ordinary ability.
+// Platinum Oxide: switch a party Pokemon to its hidden ability, for good: it
+// keeps the hidden slot through evolution. Writes 1 to the destination variable
+// when its species has one now and 0 when it does not, so a gift script can
+// fall back rather than silently hand out the ordinary ability. A static or an
+// egg, which is not in the party yet, takes FLAG_NEXT_MON_HIDDEN_ABILITY.
 BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -75,6 +79,22 @@ BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx)
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), *partySlot);
     *success = Pokemon_TryGiveHiddenAbility(mon);
+
+    return FALSE;
+}
+
+// Platinum Oxide: overwrite a party Pokemon's met location, which a gift
+// otherwise takes from the map it is given on. The starter uses it to get a
+// location of its own, so that Route 201 stays a nuzlocke capture area.
+// `location` indexes the location names like a map label does.
+BOOL ScrCmd_SetPartyMonMetLocation(ScriptContext *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 location = ScriptContext_GetVar(ctx);
+
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
+    Pokemon_SetValue(mon, MON_DATA_MET_LOCATION, &location);
 
     return FALSE;
 }
@@ -132,6 +152,12 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
 
         int specialMetLoc = SpecialMetLoc_GetId(1, eggGiver);
         Egg_CreateEgg(egg, species, 1, trainer, 3, specialMetLoc);
+
+        // Platinum Oxide: an egg the script chose to hatch with its hidden
+        // ability; hatching carries the bit over.
+        if (SystemFlag_TakeNextMonHiddenAbility(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+            Pokemon_TryGiveHiddenAbility(egg);
+        }
 
         Party_AddPokemon(party, egg);
         Heap_Free(egg);

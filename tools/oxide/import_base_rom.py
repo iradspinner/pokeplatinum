@@ -766,6 +766,20 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     for field, why in diverged.items():
         if field != "name":
             log.append((rel, [f"{field}: diverged, left alone ({why})"]))
+    # A member that names a nature keeps Oxide's nature and IV scale, and the
+    # importer neither compares nor writes them (see _has_nature). Name each
+    # one here, as every other divergence is named, so the skip is not silent.
+    # Report text only: it counts as no change.
+    if "party" not in diverged:
+        try:
+            members = len(jsonstyle.get_value(text, ["party"]))
+        except KeyError:
+            members = 0
+        tuned = [f"party[{i}].iv_scale: names {jsonstyle.get_value(text, ['party', i, 'nature'])}, "
+                 "left alone (Oxide re-tuned this member's nature and IV scale)"
+                 for i in range(members) if _has_nature(text, i)]
+        if tuned:
+            log.append((rel, tuned))
     if changed:
         log.append((rel, changed))
         if not dry_run:
@@ -948,6 +962,14 @@ def events_to_scripts(van_arm9):
     return pairs
 
 
+def events_diverged():
+    """The events files that deliberately differ from the base ROM, from
+    bulk_events.py. Imported here rather than at the top, since bulk_events
+    imports this module."""
+    import bulk_events
+    return bulk_events.DIVERGED
+
+
 def import_events(base, van, dry_run, log):
     """Carry over the event edits that stand on their own.
 
@@ -977,6 +999,12 @@ def import_events(base, van, dry_run, log):
             continue
         path = events_json(i)
         name = os.path.basename(path) if path else f"events member {i}"
+        # A map whose events deliberately differ from the base ROM is left
+        # alone. This matters most where an event was cut from the middle of
+        # an array: the edits below go by position, so they would land on
+        # the wrong records. bulk_events.py holds the one list of such maps.
+        if path and name[:-len(".json")] in events_diverged():
+            deferred.append(f"{name}: deliberately diverged, left alone"); continue
         scripts = ev2scr.get(i, set())
         if not scripts:
             deferred.append(f"{name}: no map header points at it"); continue
@@ -1203,7 +1231,30 @@ TEXT_BANKS_SKIPPED = {
          "(Ian, 2026-09-21), and his line names it",
     180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
          "Medicham (Ian, 2026-09-26), and her lines name both",
+    176: "the Snowpoint ferry sailor's refusal names Team Galactic, not the Pokemon "
+         "League, now that the Battle Zone opens after Galactic HQ (battle-zone-plan.md)",
+    192: "the Fight Area's arrival lines no longer assume the League or Spear Pillar, "
+         "and four lines are added for the Beacon Badge gate (battle-zone-plan.md)",
+    299: "Uxie's cavern holds the legendary pool's Acuity draw, so its line names the "
+         "drawn species rather than UXIE (Ian, 2026-09-26)",
+    293: "Mesprit's roamer is the legendary pool's roamer draw, so the scene's lines "
+         "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
+    141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
+         "and the pick menu's orphaned species names went with the move",
+    105: "the Underground is closed (Ian, 2026-09-27), so the Underground Man has a "
+         "line saying so in place of the Explorer Kit gift",
+    85: "the Underground is closed (Ian, 2026-09-27), so the woman who sent the "
+        "player to the Underground Man for the Explorer Kit says the tunnels are sealed",
+    477: "the Route 207 woman's search for Mira no longer ends in all nine evolution "
+         "stones (Ian, 2026-09-27), so her two lines drop the promise",
 }
+# The gift clowns are gone (Ian, 2026-09-27; the encounter track's
+# clown-replacements.md): each house's bank loses the giver's lines and the
+# orphaned pick-menu names at its end. Sandgem's house (568) is listed above.
+TEXT_BANKS_SKIPPED.update({
+    i: "the gift clown and its lines removed (Ian, 2026-09-27)"
+    for i in (38, 78, 574, 256, 97, 579, 159, 59)
+})
 
 
 def text_bank_names():
@@ -1400,6 +1451,16 @@ def main():
         428: "Lopunny gains Lopunny M",
     }
 
+    # Species whose trade evolutions element 8 stripped, since the base ROM's
+    # level-up routes to the same species made them unreachable. Re-importing
+    # the base ROM's list would put the trade entries back.
+    TRADE_EVOLUTIONS_STRIPPED = {
+        61: "Poliwhirl", 64: "Kadabra", 67: "Machoke", 75: "Graveler",
+        79: "Slowpoke", 93: "Haunter", 95: "Onix", 112: "Rhydon",
+        117: "Seadra", 123: "Scyther", 125: "Electabuzz", 126: "Magmar",
+        137: "Porygon", 233: "Porygon2", 356: "Dusclops", 366: "Clamperl",
+    }
+
     # Species whose level-up learnset Oxide has changed on purpose since the
     # base ROM, so re-importing the base ROM's list would undo it. The rest of
     # the record is still carried over. Same idea as MOVES_DIVERGED.
@@ -1407,6 +1468,15 @@ def main():
         215: "Sneasel loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         228: "Houndour loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
+    }
+
+    # Records whose abilities Oxide has changed on purpose since the base ROM.
+    # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave
+    # Snow Cloak, a slip: every official game gives all three forms
+    # Anticipation, as the Plant form here has (Ian, 2026-09-27).
+    ABILITIES_DIVERGED = {
+        499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
     }
 
     # species: personal + learnset + evolutions live in one data.json
@@ -1426,6 +1496,9 @@ def main():
         if i in EVOLUTIONS_EXTENDED:
             log.append((d, [f"evolutions not carried over, {EVOLUTIONS_EXTENDED[i]} "
                             f"(Phase 4 element 3); the rest of the record still is"]))
+        elif i in TRADE_EVOLUTIONS_STRIPPED:
+            log.append((d, [f"evolutions not carried over, {TRADE_EVOLUTIONS_STRIPPED[i]}'s "
+                            f"trade entries were stripped (element 8); the rest of the record still is"]))
         else:
             new["evolutions"] = decode_evolutions(be[i]); old["evolutions"] = decode_evolutions(ve[i])
         # nested keys expressed with dots need to become real nesting for flatten()
@@ -1437,6 +1510,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in ABILITIES_DIVERGED:
+            new.pop("abilities")
+            old.pop("abilities")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"abilities: diverged, left alone ({ABILITIES_DIVERGED[i]})"]))
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n

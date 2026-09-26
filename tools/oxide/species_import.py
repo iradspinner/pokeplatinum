@@ -71,7 +71,10 @@ EVOLUTION_OVERRIDES = {
                           ("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_CERULEDGE")],
     "SPECIES_PAWMO": [("EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_PAWMOT")],
     "SPECIES_SINISTEA": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_POLTEAGEIST")],
-    "SPECIES_POLTEAGEIST": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_SINISTCHA")],
+    # Polteageist does not evolve. Sinistcha comes from Poltchageist with the
+    # Unremarkable Teacup, and Oxide has neither; the Dusk Stone route the
+    # pick-list first gave it was wrong (Ian, 2026-09-27).
+    "SPECIES_POLTEAGEIST": [],
     "SPECIES_YAMASK": [("EVO_LEVEL", 34, "SPECIES_COFAGRIGUS"),
                        ("EVO_LEVEL_WITH_HELD_ITEM_DAY", "ITEM_REAPER_CLOTH", "SPECIES_RUNERIGUS"),
                        ("EVO_LEVEL_WITH_HELD_ITEM_NIGHT", "ITEM_REAPER_CLOTH", "SPECIES_RUNERIGUS")],
@@ -81,6 +84,12 @@ EVOLUTION_OVERRIDES = {
     # The donor points Hisuian Sliggoo at 2804, past the end of its own table.
     "SPECIES_HISUIAN_SLIGGOO": [("EVO_LEVEL", 50, "SPECIES_HISUIAN_GOODRA")],
     "SPECIES_SLIGGOO": [("EVO_LEVEL", 50, "SPECIES_GOODRA")],
+    # The donor's level-up-by-day (method 27) has no Generation 4 equivalent,
+    # and the importer used to drop it, leaving Fomantis with no evolution.
+    "SPECIES_FOMANTIS": [("EVO_LEVEL", 34, "SPECIES_LURANTIS")],
+    # No friendship evolutions in Oxide (Ian, 2026-09-27): the donor's
+    # friendship at night becomes a level-up at the Ice Rock on Route 217.
+    "SPECIES_SNOM": [("EVO_LEVEL_ICE_ROCK", None, "SPECIES_FROSMOTH")],
     # The donor's second branch is Hisuian Decidueye, which is not in the
     # pick-list, so the personality split collapses to a plain level 36.
     "SPECIES_DARTRIX": [("EVO_LEVEL", 36, "SPECIES_DECIDUEYE")],

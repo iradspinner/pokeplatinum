@@ -19,30 +19,6 @@
         "not to let their Pokémon faint from\f",
         "losing HP."
       ]
-    },
-    {
-      "id": "SandgemTownHouse_Text_WouldYouLikeOneOfThesePokemon",
-      "en_US": "Would you like one of these Pokémon?"
-    },
-    {
-      "id": "SandgemTownHouse_Text_Pichu",
-      "en_US": "Pichu"
-    },
-    {
-      "id": "SandgemTownHouse_Text_Grubbin",
-      "en_US": "Grubbin"
-    },
-    {
-      "id": "SandgemTownHouse_Text_Fletchling",
-      "en_US": "Fletchling"
-    },
-    {
-      "id": "SandgemTownHouse_Text_YourPartyIsFull",
-      "en_US": "Your party is full..."
-    },
-    {
-      "id": "SandgemTownHouse_Text_SeeYa",
-      "en_US": "See ya!\r"
     }
   ]
 }

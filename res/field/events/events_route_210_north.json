@@ -1,14 +1,6 @@
 {
     "bg_events": [
         {
-            "script": 8045,
-            "type": 2,
-            "x": 547,
-            "z": 525,
-            "y": 0,
-            "player_facing_dir": "BG_EVENT_DIR_ALL"
-        },
-        {
             "script": 8044,
             "type": 2,
             "x": 526,

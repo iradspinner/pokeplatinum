@@ -596,6 +596,17 @@
         "Dig around all over and find\n",
         "Treasure!\r"
       ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_TunnelsSealedOff",
+      "en_US": [
+        "You can call me the Underground Man.\n",
+        "Everyone else does.\r",
+        "I dug tunnels all under Sinnoh, but\n",
+        "they’ve been sealed off for good.\r",
+        "Sigh...\n",
+        "I get so lonely sometimes..."
+      ]
     }
   ]
 }

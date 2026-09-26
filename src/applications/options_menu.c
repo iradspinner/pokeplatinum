@@ -887,7 +887,9 @@ static void ProcessMainInput(OptionsMenuData *menuData)
 {
     OptionsMenuEntry *entry = &menuData->entries.asArray[menuData->cursor];
 
-    if (menuData->cursor != ENTRY_CLOSE) {
+    // Platinum Oxide: the battle style is always Set, so its entry shows SET
+    // and does not move.
+    if (menuData->cursor != ENTRY_CLOSE && menuData->cursor != ENTRY_BATTLE_STYLE) {
         if (JOY_NEW(PAD_KEY_RIGHT)) {
             entry->selected = (entry->selected + 1) % entry->numChoices;
             PrintEntryChoices(menuData, menuData->cursor);

@@ -21,7 +21,7 @@
             "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "0",
+            "hidden_flag": "FLAG_HIDE_TELEPORT_ABRA",
             "script": 3,
             "initial_dir": 1,
             "data": [  ],

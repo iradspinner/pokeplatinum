@@ -21,9 +21,8 @@
         "my face about it.\r",
         "Like, they’re saying they want to test\n",
         "me if I’m good enough and all that.\r",
-        "Like, as if I need to prove anything.\n",
-        "So, let’s team up.\r",
-        "Like we did at the Spear Pillar.\n",
+        "Like, as if I need to prove anything.\r",
+        "So, let’s team up, you and me.\n",
         "Let’s show those guys how good we are!\r"
       ]
     },
@@ -94,8 +93,8 @@
       "en_US": [
         "Volkner: I don’t know how I managed to\n",
         "get myself into this, but...\r",
-        "Show me the skills that got you through\n",
-        "the Pokémon League!\r"
+        "Show me the skills that won you\n",
+        "my Beacon Badge!\r"
       ]
     },
     {
@@ -510,6 +509,47 @@
     {
       "id": "FightArea_Text_57",
       "en_US": "Stark Mountain"
+    },
+    {
+      "id": "FightArea_Text_EarnMyBeaconBadgeFirst",
+      "en_US": [
+        "Volkner: Hold on, Flint.\n",
+        "This Trainer hasn’t been to my Gym.\r",
+        "Come to Sunyshore City and win my\n",
+        "Beacon Badge first.\r",
+        "Then Flint and I will take you both on.\r"
+      ]
+    },
+    {
+      "id": "FightArea_Text_GoGetThatBadge",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What? Seriously?!\r",
+        "{STRVAR_1 3, 1, 0}, go get that Badge,\n",
+        "and get it fast!\r",
+        "I’ll wait right here. If you’re late,\n",
+        "I’m fining you $100 million!"
+      ]
+    },
+    {
+      "id": "FightArea_Text_StillNoBeaconBadge",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: You still don’t have\n",
+        "Volkner’s Badge?\r",
+        "Go to Sunyshore City and win it!\r",
+        "I’m not getting into the Frontier\n",
+        "till you do!"
+      ]
+    },
+    {
+      "id": "FightArea_Text_BuckHowdyTrainer",
+      "en_US": [
+        "Hey, hey. Howdy, Trainer.\n",
+        "The name’s Buck.\r",
+        "I’m usually training at the Survival\n",
+        "Area or Stark Mountain.\r",
+        "You should come up there.\n",
+        "You’ll get toughened up for sure!\r"
+      ]
     }
   ]
 }

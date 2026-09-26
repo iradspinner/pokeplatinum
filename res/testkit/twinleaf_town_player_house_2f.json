@@ -406,6 +406,18 @@
             "en_US": "Protect in a row"
         },
         {
+            "id": "TestKit_Text_MenuStapleHiddenGift",
+            "en_US": "Hidden ability gift"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleHiddenWild",
+            "en_US": "Hidden ability wild"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleItemsRestored",
+            "en_US": "Items restored"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -683,6 +695,22 @@
                 "{STRVAR_1 6, 1, 0},\n",
                 "{STRVAR_1 6, 2, 0}\r",
                 "and {STRVAR_1 6, 3, 0}."
+            ]
+        },
+        {
+            "id": "TestKit_Text_HiddenGift",
+            "en_US": [
+                "This Litten has its hidden\n",
+                "ability, Intimidate. One Rare\r",
+                "Candy should make a Torracat\n",
+                "that keeps it."
+            ]
+        },
+        {
+            "id": "TestKit_Text_HiddenWild",
+            "en_US": [
+                "A wild Litten, Lv. 15, with its\n",
+                "hidden ability, Intimidate."
             ]
         },
         {

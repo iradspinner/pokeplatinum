@@ -504,6 +504,14 @@
     {
       "id": "LocationNames_Text_RockPeakRuins",
       "en_US": "Rock Peak Ruins"
+    },
+    {
+      "id": "LocationNames_Text_RowansBriefcase",
+      "en_US": "Rowan’s Briefcase"
+    },
+    {
+      "id": "LocationNames_Text_IronworksHall",
+      "en_US": "Ironworks Hall"
     }
   ]
 }

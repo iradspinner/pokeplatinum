@@ -143,33 +143,6 @@ Route207_01DD:
     Message 15
     WaitButton
     CloseMessage
-    SetVarFromValue VAR_0x8004, 80
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 81
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 82
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 83
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 84
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 85
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 107
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 108
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    SetVarFromValue VAR_0x8004, 109
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
     SetFlag FLAG_UNK_0x0A8C
     GoTo Route207_01D2
 Route207_027E:

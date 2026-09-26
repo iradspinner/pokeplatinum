@@ -123,4 +123,61 @@ InitNewGame:
     SetFlag FLAG_HIDE_FIGHT_AREA_PALMER
     SetFlag FLAG_HIDE_VILLA_DELIVERY_GUY
     SetFlag FLAG_HIDE_VILLA_BOOK
+    @ Oxide: the teleporting Abra are gone (Ian, 2026-09-27)
+    SetFlag FLAG_HIDE_TELEPORT_ABRA
+    Call InitNewGame_DrawLegendaryPool
     End
+
+@ Oxide: the legendary pool's draws (Ian, 2026-09-21 and 2026-09-26), rolled
+@ once per save here so that no soft reset can change them. The candidates
+@ are docs/oxide/encounters/availability-plan.json's pool.thirds and must be
+@ changed with it. Azelf's cavern and Stark Mountain draw nothing for now
+@ (Ian, 2026-09-27).
+InitNewGame_DrawLegendaryPool:
+    @ Uxie's cavern: one of Ian's three most wanted.
+    GetRandom VAR_RESULT, 3
+    SetVar VAR_LEGENDARY_POOL_ACUITY_SPECIES, SPECIES_ARTICUNO
+    CallIfEq VAR_RESULT, 1, InitNewGame_AcuityDrawsCresselia
+    CallIfEq VAR_RESULT, 2, InitNewGame_AcuityDrawsPheromosa
+    @ The roamer released at Verity Cavern, which takes Mesprit's slot.
+    GetRandom VAR_RESULT, 7
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_MESPRIT
+    CallIfEq VAR_RESULT, 1, InitNewGame_RoamerDrawsTapuKoko
+    CallIfEq VAR_RESULT, 2, InitNewGame_RoamerDrawsBuzzwole
+    CallIfEq VAR_RESULT, 3, InitNewGame_RoamerDrawsGalarianZapdos
+    CallIfEq VAR_RESULT, 4, InitNewGame_RoamerDrawsPoipole
+    CallIfEq VAR_RESULT, 5, InitNewGame_RoamerDrawsXurkitree
+    CallIfEq VAR_RESULT, 6, InitNewGame_RoamerDrawsGalarianArticuno
+    Return
+
+InitNewGame_AcuityDrawsCresselia:
+    SetVar VAR_LEGENDARY_POOL_ACUITY_SPECIES, SPECIES_CRESSELIA
+    Return
+
+InitNewGame_AcuityDrawsPheromosa:
+    SetVar VAR_LEGENDARY_POOL_ACUITY_SPECIES, SPECIES_PHEROMOSA
+    Return
+
+InitNewGame_RoamerDrawsTapuKoko:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_TAPU_KOKO
+    Return
+
+InitNewGame_RoamerDrawsBuzzwole:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_BUZZWOLE
+    Return
+
+InitNewGame_RoamerDrawsGalarianZapdos:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_GALARIAN_ZAPDOS
+    Return
+
+InitNewGame_RoamerDrawsPoipole:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_POIPOLE
+    Return
+
+InitNewGame_RoamerDrawsXurkitree:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_XURKITREE
+    Return
+
+InitNewGame_RoamerDrawsGalarianArticuno:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_GALARIAN_ARTICUNO
+    Return
