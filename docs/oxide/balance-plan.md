@@ -31,6 +31,21 @@ Ian's scale runs from 1 to 10:
 | 9.5 | Hardlove Gold |
 | 10 | Platinum Kaizo, Run & Bun, Pokemon Null 1.2 |
 
+**Ian's goals for reaching it** (2026-09-26). Oxide's peak fights are about
+right: he is happy with the hardest fights B5 ranks, except perhaps Flint
+and Byron. So the 6 is not reached by lowering the peak. The goals are:
+
+1. curb the hyper-offense;
+2. more fights in the middle of his fight scale (3 to 6 or 7) and fewer at
+   the bottom (0 to 2);
+3. bring in the added Pokemon, moves and abilities;
+4. a balance pass over everything, so that nothing is comically untuned
+   or unfun.
+
+His fight scale is a second scale, separate from the one above: how hard
+he can make a fight when he designs one. His ratings of sixteen fights
+("What Ian's ratings showed") are on it.
+
 Ian named three more comparison points without a number: **Pokemon Odyssey**
 as a good match for the target, though it is all double battles with many
 type and move changes, and **Pokemon Unbound** and **Pokemon Insurgence** as
@@ -590,8 +605,10 @@ rating = 5.7 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
 
 On the first, Oxide's gyms and League sit at about 7.5, and a 6 needs safe
 switch-ins at about 0.56 against Oxide's 0.37; on the second, at about
-7.3. Either way Oxide sits a point or more over the 6, level with
-Renegade. The damage line read Unbound 1.6 too hard; the safe line reads
+7.3. Either way Oxide's gyms and League sit a point or more over the 6,
+level with Renegade. Since Ian is happy with the peak fights (2026-09-26),
+that gap is closed by the rest of the game, the middle and the floor, not
+by softening the peak. The damage line read Unbound 1.6 too hard; the safe line reads
 it within 0.3, since Unbound's teams leave far more room to switch.
 Hardlove still reads 1.7 soft, most likely because the calculator does not
 give its bosses' newer abilities to Pokemon from another game.
@@ -619,7 +636,10 @@ Flint, Lucian and Cynthia, and more at Roark, Byron, Candice, Volkner,
 Aaron and Bertha. Against Unbound, Oxide is tighter at every seat.
 
 What Ian's ratings showed. Ian rated sixteen fights he has played in the
-base ROM, on his 1 to 10 scale, on 2026-09-25 (`calibrate.py`,
+base ROM on 2026-09-25, on his fight scale: how hard he can make a fight
+when he designs one, not the scale he rates whole games on (he set the two
+apart on 2026-09-26). The fits below translate the readings onto that
+fight scale; the game scale's 6 is the question above (`calibrate.py`,
 IAN_RATINGS); he fought the Elite Four and Cynthia only blind, so they are
 left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 
@@ -688,9 +708,10 @@ reading, with Ian's rating where he has one:
 | Saturn 2 | 0.36 | 0.35 | 8.5 |
 
 So the trainer pass reads safe switch-ins first, with answers (baiting
-counted) and the tactics list beside it, and Ian's ratings as the target
-scale; for the gyms and the League together, a 6 is about 0.56 on safe
-switch-ins.
+counted) and the tactics list beside it, translated onto Ian's fight scale
+by the line above (about 9.3 minus 7.2 times safe switch-ins): a fight at
+safe switch-ins of 0.95 or more sits at 2 or under, one at 0.45 to 0.85
+between 3 and 6.
 
 **Ian's explanations** (2026-09-25), for the fights where his rating and
 the scores parted. They are the design reasoning the trainer pass works
@@ -1121,13 +1142,23 @@ are in "What Ian's ratings showed".
   that came baited Choice locks, setup branches and safe switch-ins, and
   safe switch-ins read both his hack ratings (R squared 0.91) and his
   fight ratings (minus 0.59) best ("What B3b and B5 found", "What Ian's
-  ratings showed"). The target: a 6 is about 0.56 on safe switch-ins over
-  the gyms and the League, against Oxide's 0.37. Left: the double battle,
+  ratings showed"). Ian's fight scale is his own design scale, separate
+  from the game scale (2026-09-26); the line above translates the readings
+  onto it. Left: the double battle,
   which the tool cannot score, and the stage, which Ian's scale carries.
   The engine's new variable-power moves reach the scores when the
   encounter track teaches its calculator them, with one more rescore.
-- [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
-  on the player's side ranked by what it moves.
+- [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
+  target"). Every Oxide fight placed on his fight scale, the required
+  ordinary trainers included (they are not scored yet, and they are most of
+  the 0 to 2 fights); the fights whose difficulty is all damage (high
+  threat, few tactics, easy to read: Wake, Maylene, Cynthia and Volkner on
+  today's scores) marked as the hyper-offense to curb; the fights sitting
+  at 0 to 2 listed as the ones to raise into 3 to 6 or 7; Flint and Byron
+  checked for what makes them too hard; and every lever on the player's
+  side (a species' stats, a TM or item one split earlier, route weather, a
+  cap) ranked by how far it moves the scores, with any lever or species
+  that moves them absurdly far or not at all flagged for the balance pass.
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
