@@ -1340,6 +1340,128 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
+// Oxide: Electro Ball's power by how many times over the user's Speed is the
+// target's, from under once to four times or more.
+static const u8 sElectroBallPower[] = { 40, 60, 80, 120, 150 };
+
+/**
+ * @brief Work out the power of a move whose power depends on the battle.
+ *
+ * Oxide: the moves element 4 added whose power the later games compute, where
+ * the move's effect is a plain hit and so has no script to set it. Keyed on
+ * the move, as hg-engine's CalcBaseDamage keys it.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return The move's power, or 0 for a move that hits at its table power
+ */
+static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    switch (battleCtx->moveCur) {
+    case MOVE_ELECTRO_BALL: {
+        // The Speeds are the ones the turn order was worked out from, as
+        // Gyro Ball reads them, so stat stages, paralysis and items count.
+        u32 defenderSpeed = battleCtx->monSpeedValues[battleCtx->defender];
+        u32 ratio = defenderSpeed ? battleCtx->monSpeedValues[battleCtx->attacker] / defenderSpeed : 0;
+
+        if (ratio >= NELEMS(sElectroBallPower)) {
+            ratio = NELEMS(sElectroBallPower) - 1;
+        }
+        return sElectroBallPower[ratio];
+    }
+
+    case MOVE_ECHOED_VOICE: {
+        // 40, and 40 more for each turn in a row that any battler has used
+        // it, up to 200. The first use in a turn moves the run on and later
+        // ones that turn share its power, as in the later games; a turn
+        // without it starts the run again.
+        u32 *field = &battleCtx->fieldConditionsMask;
+        int run = (*field & FIELD_CONDITION_ECHOED_VOICE) >> FIELD_CONDITION_ECHOED_VOICE_SHIFT;
+
+        if ((*field & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) == FALSE) {
+            if (*field & FIELD_CONDITION_ECHOED_VOICE_LAST_TURN) {
+                if (run < 4) {
+                    run++;
+                }
+            } else {
+                run = 0;
+            }
+
+            *field &= ~FIELD_CONDITION_ECHOED_VOICE;
+            *field |= (run << FIELD_CONDITION_ECHOED_VOICE_SHIFT) | FIELD_CONDITION_ECHOED_VOICE_THIS_TURN;
+        }
+        return 40 * (run + 1);
+    }
+
+    case MOVE_STOMPING_TANTRUM:
+    case MOVE_TEMPER_FLARE:
+        // Doubles when the user's move the turn before missed or failed.
+        if (ATTACKING_MON.moveFailedLastTurn) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
+    case MOVE_LAST_RESPECTS: {
+        // 50, and 50 more for each Pokemon in the user's party that has
+        // fainted.
+        int i, fainted = 0;
+        for (i = 0; i < BattleSystem_GetPartyCount(battleSys, battleCtx->attacker); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                fainted++;
+            }
+        }
+        return 50 + 50 * fainted;
+    }
+
+    case MOVE_HARD_PRESS: {
+        // Up to 100 by the share of its HP the target has left, at least 1.
+        int power = 100 * DEFENDING_MON.curHP / DEFENDING_MON.maxHP;
+        return power > 0 ? power : 1;
+    }
+
+    case MOVE_LASH_OUT:
+        // Doubles when one of the user's stats fell earlier this turn, by
+        // any hand, as hg-engine's anyStatLoweredThisTurn has it.
+        if (battleCtx->turnFlags[battleCtx->attacker].statLowered) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
+    case MOVE_GRAV_APPLE:
+        // Half as strong again while Gravity is in force.
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+            return CURRENT_MOVE_DATA.power * 15 / 10;
+        }
+        return 0;
+
+    case MOVE_RETALIATE:
+        // Doubles when a battler on the user's side fainted the turn before.
+        if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
+    case MOVE_STORED_POWER:
+    case MOVE_POWER_TRIP: {
+        // 20, and 20 more for every stage the user has raised a stat,
+        // counted over every stat as Punishment counts the target's.
+        int i, sumBoosts = 0;
+        for (i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
+            if (ATTACKING_MON.statBoosts[i] > DEFAULT_STAT_STAGE) {
+                sumBoosts += ATTACKING_MON.statBoosts[i] - DEFAULT_STAT_STAGE;
+            }
+        }
+        return 20 + 20 * sumBoosts;
+    }
+    }
+
+    return 0;
+}
+
 /**
  * @brief Calculate the damage for the current move and store the result in
  * the BattleContext struct.
@@ -1356,6 +1478,15 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveType;
+
+    // Oxide: a move whose power no effect script has set may still be one the
+    // later games work out from the battle; keep it local, since a spread
+    // move comes back here once for each target.
+    int power = battleCtx->movePower;
+    if (power == 0) {
+        power = BattleScript_ComputedMovePower(battleSys, battleCtx);
+    }
+
     if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
         moveType = TYPE_NORMAL;
     } else if (battleCtx->moveType) {
@@ -1369,7 +1500,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->moveCur,
         battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)],
         battleCtx->fieldConditionsMask,
-        battleCtx->movePower,
+        power,
         moveType,
         battleCtx->attacker,
         battleCtx->defender,
@@ -1803,6 +1934,7 @@ static BOOL BtlCmd_TryFaintMon(BattleSystem *battleSys, BattleContext *battleCtx
         battleCtx->faintedMon = battler;
         battleCtx->battleStatusMask |= (FlagIndex(battler) << SYSCTL_MON_FAINTED_SHIFT);
         battleCtx->totalFainted[battler]++;
+        battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)].faintedThisTurn = TRUE; // Oxide, for Retaliate
 
         BattleScript_UpdateFriendship(battleSys, battleCtx, battler);
     }
@@ -3085,6 +3217,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
+        battleCtx->turnFlags[battleCtx->sideEffectMon].statLowered = TRUE; // Oxide, for Lash Out
 
         // Oxide: a stat lowered by a battler of the other side is answered by
         // Defiant or Competitive, once per stat, after the drop's message
@@ -9980,6 +10113,7 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
     } else {
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatFell_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} fell!"
         mon->statBoosts[BATTLE_STAT_SPEED]--;
+        battleCtx->turnFlags[battler].statLowered = TRUE; // Oxide, for Lash Out
         battleCtx->calcTemp = 0;
         battleCtx->selfTurnFlags[battler].defiantPending = TRUE; // Oxide, element 5: the web was laid by the other side
     }
@@ -10337,6 +10471,9 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
     }
 
     mon->statBoosts[stat] = stage;
+    if (stages < 0) {
+        battleCtx->turnFlags[target].statLowered = TRUE; // Oxide, for Lash Out
+    }
     battleCtx->scriptTemp = stages > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
     battleCtx->msgBattlerTemp = target;
     battleCtx->sideEffectMon = target;

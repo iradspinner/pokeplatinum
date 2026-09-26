@@ -630,10 +630,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet25, 24
     AddListMenuEntry TestKit_Text_MenuSet26, 25
     AddListMenuEntry TestKit_Text_MenuSet27, 26
-    AddListMenuEntry TestKit_Text_MenuSet28, 27
-    AddListMenuEntry TestKit_Text_MenuSet29, 28
-    AddListMenuEntry TestKit_Text_MenuSet30, 29
-    AddListMenuEntry TestKit_Text_MenuSet31, 30
+    AddListMenuEntry TestKit_Text_MenuSetMore, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -662,10 +659,43 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet25
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet26
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet27
-    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet28
-    GoToIfEq VAR_0x8004, 28, TestKit_MoveSet29
-    GoToIfEq VAR_0x8004, 29, TestKit_MoveSet30
-    GoToIfEq VAR_0x8004, 30, TestKit_MoveSet31
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSets2
+    GoTo TestKit_Close
+
+/* The field menu holds 28 entries (FIELD_MENU_ENTRIES_MAX), so the sets go on
+   over a second page, as the abilities do. */
+TestKit_MoveSets2:
+    Message TestKit_Text_WhichSet
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuSet28, 0
+    AddListMenuEntry TestKit_Text_MenuSet29, 1
+    AddListMenuEntry TestKit_Text_MenuSet30, 2
+    AddListMenuEntry TestKit_Text_MenuSet31, 3
+    AddListMenuEntry TestKit_Text_MenuSet32, 4
+    AddListMenuEntry TestKit_Text_MenuSet33, 5
+    AddListMenuEntry TestKit_Text_MenuSet34, 6
+    AddListMenuEntry TestKit_Text_MenuSet35, 7
+    AddListMenuEntry TestKit_Text_MenuSet36, 8
+    AddListMenuEntry TestKit_Text_MenuSet37, 9
+    AddListMenuEntry TestKit_Text_MenuSet38, 10
+    AddListMenuEntry TestKit_Text_MenuSet39, 11
+    AddListMenuEntry TestKit_Text_MenuSet40, 12
+    AddListMenuEntry TestKit_Text_MenuSet41, 13
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
+    GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
+    GoToIfEq VAR_0x8004, 2, TestKit_MoveSet30
+    GoToIfEq VAR_0x8004, 3, TestKit_MoveSet31
+    GoToIfEq VAR_0x8004, 4, TestKit_MoveSet32
+    GoToIfEq VAR_0x8004, 5, TestKit_MoveSet33
+    GoToIfEq VAR_0x8004, 6, TestKit_MoveSet34
+    GoToIfEq VAR_0x8004, 7, TestKit_MoveSet35
+    GoToIfEq VAR_0x8004, 8, TestKit_MoveSet36
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet37
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet38
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
+    GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
+    GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -941,6 +971,147 @@ TestKit_MoveSet31:
     SetVar VAR_0x8007, MOVE_BELLY_DRUM
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 32: Electro Ball's power from the Speed ratio. Mew is over four times
+   as fast as the wild Shuckle, so Electro Ball (150) hits it harder than
+   Thunderbolt (90); against the wild Chansey it is one to two times as fast,
+   so Electro Ball (60 or 80) hits softer, until Agility doubles Mew's Speed. */
+TestKit_MoveSet32:
+    SetVar VAR_0x8006, MOVE_ELECTRO_BALL
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_AGILITY
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 33: Stored Power and Power Trip gain 20 power for each stage
+   Mew has raised a stat. One Agility triples Stored Power's damage (20 to
+   60) without touching Mew's Sp. Atk, and one Iron Defense triples Power
+   Trip's the same way. Against the wild Chansey or Shuckle. */
+TestKit_MoveSet33:
+    SetVar VAR_0x8006, MOVE_STORED_POWER
+    SetVar VAR_0x8007, MOVE_POWER_TRIP
+    SetVar VAR_0x8008, MOVE_AGILITY
+    SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    GoTo TestKit_GiveMew
+
+/* Set 34: Retaliate doubles the turn after a battler on its side
+   faints. Two Pokemon, then a wild Chansey that knows only Splash: switch
+   the Jirachi in and use Memento, send Mew out, and its first Retaliate
+   does about twice what the second does. Needs two free party slots. */
+TestKit_MoveSet34:
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_JIRACHI, 50, ITEM_NONE, VAR_RESULT
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_MEMENTO
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, MOVE_HEALING_WISH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, MOVE_SPLASH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, MOVE_RECOVER
+    AddVar VAR_0x8005, 1
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_RETALIATE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 35: Echoed Voice gains 40 power each turn in a row it is
+   used, up to 200, and starts again at 40 after a turn without it. Against
+   the wild Chansey, the third use in a row (120) passes Hyper Voice (90). */
+TestKit_MoveSet35:
+    SetVar VAR_0x8006, MOVE_ECHOED_VOICE
+    SetVar VAR_0x8007, MOVE_HYPER_VOICE
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 36: Stomping Tantrum and Temper Flare double the turn after
+   Mew's move misses or fails. Against a wild Chansey that knows only
+   Splash: Snore while awake says "But it failed!", and the Stomping
+   Tantrum or Temper Flare after it does about twice what one after
+   Recover does. */
+TestKit_MoveSet36:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_STOMPING_TANTRUM
+    SetVar VAR_0x8007, MOVE_TEMPER_FLARE
+    SetVar VAR_0x8008, MOVE_SNORE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 37: Last Respects gains 50 power for each fainted Pokemon in
+   Mew's party. Two Pokemon, then a wild Chansey that knows only Splash:
+   switch Mew in and use Last Respects, switch the Jirachi in and use
+   Memento, send Mew out again, and Last Respects now does about twice what
+   it did (100, from 50). Start with no fainted Pokemon in the party. */
+TestKit_MoveSet37:
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_JIRACHI, 50, ITEM_NONE, VAR_RESULT
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_MEMENTO
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, MOVE_HEALING_WISH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, MOVE_SPLASH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, MOVE_RECOVER
+    AddVar VAR_0x8005, 1
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_LAST_RESPECTS
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 38: Hard Press is stronger the more HP the target has left:
+   100 at full HP, falling with the target's share. Against the wild
+   Chansey, the first Hard Press does a little more than Body Slam (85);
+   once Chansey is below about 85% of its HP, it does less. */
+TestKit_MoveSet38:
+    SetVar VAR_0x8006, MOVE_HARD_PRESS
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 39: Pika Papow and Veevee Volley now carry power 1, as Return
+   does, so the type chart reads them as attacks: against the wild Skarmory
+   Pika Papow is "super effective", and against the wild Shuckle Veevee
+   Volley is "not very effective". */
+TestKit_MoveSet39:
+    SetVar VAR_0x8006, MOVE_PIKA_PAPOW
+    SetVar VAR_0x8007, MOVE_VEEVEE_VOLLEY
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 40: Lash Out doubles when one of Mew's stats fell earlier in
+   the turn. Against a wild Klefki with Prankster that knows only Tail
+   Whip, which therefore always goes first: while Tail Whip lowers Mew's
+   Defense, Lash Out (150) does about twice what Crunch (80) does; once
+   Mew's Defense is at its lowest and Tail Whip fails, less. */
+TestKit_MoveSet40:
+    SetVar VAR_0x8000, SPECIES_KLEFKI
+    SetVar VAR_0x8001, ABILITY_PRANKSTER
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_LASH_OUT
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 41: Grav Apple is half as strong again under Gravity. Against
+   a wild Chansey given Clear Body, so Grav Apple cannot lower its Defense,
+   that knows only Splash: Grav Apple (90) does a little more than Seed Bomb
+   (80), and after Gravity (135) about two thirds more. */
+TestKit_MoveSet41:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_CLEAR_BODY
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_GRAV_APPLE
+    SetVar VAR_0x8007, MOVE_SEED_BOMB
+    SetVar VAR_0x8008, MOVE_GRAVITY
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

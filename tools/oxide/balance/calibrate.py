@@ -46,8 +46,9 @@ EXTRA = [("TRAINER_GALACTIC_GRUNT_LAKE_VALOR_2", "Candice", "hesperid_valor",
 BELLWETHERS = ["maylene", "hesperid_valor", "volkner"]
 # Each reading, and whether a higher value reads harder.
 READINGS = [("threat", True), ("threat_chance", True), ("answers", False),
-            ("answers_duel", False), ("broad", False), ("unseen_count", True),
-            ("predictable", False)]
+            ("answers_duel", False), ("answers_bait", False), ("answers_branch", False),
+            ("safe", False), ("broad", False),
+            ("unseen_count", True), ("predictable", False)]
 # Ian's ratings, 2026-09-25, on his 1 to 10 scale. His "Mars/Jupiter
 # Double" is read as the Spear Pillar tag battle.
 IAN_RATINGS = {"mars_jupiter": 9, "cyrus_3": 8.5, "saturn_2": 8.5, "candice": 8.5, "wake": 8,

@@ -4,416 +4,416 @@
   "climb": {
    "cyrus_3": {
     "-2": {
-     "answers": 0.172,
-     "answers_lock": 0.172,
+     "answers": 0.168,
+     "answers_lock": 0.168,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.886,
+     "max_threat": 0.882,
      "min_answers": 0.084,
      "min_answers_lock": 0.084,
      "pool": 439,
-     "threat": 0.59
+     "threat": 0.584
     },
     "-4": {
-     "answers": 0.193,
-     "answers_lock": 0.193,
+     "answers": 0.192,
+     "answers_lock": 0.192,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.843,
+     "max_threat": 0.838,
      "min_answers": 0.089,
      "min_answers_lock": 0.089,
      "pool": 439,
-     "threat": 0.565
+     "threat": 0.561
     },
     "-6": {
-     "answers": 0.229,
-     "answers_lock": 0.229,
+     "answers": 0.226,
+     "answers_lock": 0.226,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.829,
+     "max_threat": 0.822,
      "min_answers": 0.116,
      "min_answers_lock": 0.116,
      "pool": 439,
-     "threat": 0.527
+     "threat": 0.521
     },
     "-8": {
-     "answers": 0.268,
-     "answers_lock": 0.268,
+     "answers": 0.263,
+     "answers_lock": 0.263,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.779,
-     "min_answers": 0.159,
-     "min_answers_lock": 0.159,
+     "max_threat": 0.774,
+     "min_answers": 0.162,
+     "min_answers_lock": 0.162,
      "pool": 439,
-     "threat": 0.484
+     "threat": 0.478
     },
     "0": {
-     "answers": 0.14,
-     "answers_lock": 0.14,
+     "answers": 0.142,
+     "answers_lock": 0.142,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.918,
-     "min_answers": 0.057,
-     "min_answers_lock": 0.057,
+     "max_threat": 0.913,
+     "min_answers": 0.062,
+     "min_answers_lock": 0.062,
      "pool": 439,
-     "threat": 0.643
+     "threat": 0.638
     },
     "2": {
-     "answers": 0.113,
-     "answers_lock": 0.113,
+     "answers": 0.112,
+     "answers_lock": 0.112,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.938,
-     "min_answers": 0.041,
-     "min_answers_lock": 0.041,
+     "max_threat": 0.934,
+     "min_answers": 0.046,
+     "min_answers_lock": 0.046,
      "pool": 439,
-     "threat": 0.662
+     "threat": 0.656
     }
    },
    "mars_jupiter": {
     "-2": {
-     "answers": 0.266,
-     "answers_lock": 0.275,
+     "answers": 0.26,
+     "answers_lock": 0.269,
      "cap": 65,
      "choice_mons": 1,
-     "max_threat": 0.795,
-     "min_answers": 0.036,
-     "min_answers_lock": 0.036,
+     "max_threat": 0.793,
+     "min_answers": 0.03,
+     "min_answers_lock": 0.03,
      "pool": 439,
-     "threat": 0.372
+     "threat": 0.37
     },
     "-4": {
-     "answers": 0.293,
-     "answers_lock": 0.304,
+     "answers": 0.288,
+     "answers_lock": 0.299,
      "cap": 65,
      "choice_mons": 1,
-     "max_threat": 0.745,
-     "min_answers": 0.05,
-     "min_answers_lock": 0.05,
+     "max_threat": 0.743,
+     "min_answers": 0.043,
+     "min_answers_lock": 0.043,
      "pool": 439,
-     "threat": 0.346
+     "threat": 0.344
     },
     "-6": {
-     "answers": 0.333,
-     "answers_lock": 0.345,
+     "answers": 0.328,
+     "answers_lock": 0.34,
      "cap": 65,
      "choice_mons": 1,
-     "max_threat": 0.697,
-     "min_answers": 0.059,
-     "min_answers_lock": 0.059,
+     "max_threat": 0.695,
+     "min_answers": 0.055,
+     "min_answers_lock": 0.055,
      "pool": 439,
-     "threat": 0.316
+     "threat": 0.313
     },
     "-8": {
-     "answers": 0.374,
-     "answers_lock": 0.39,
+     "answers": 0.37,
+     "answers_lock": 0.386,
      "cap": 65,
      "choice_mons": 1,
      "max_threat": 0.642,
-     "min_answers": 0.082,
-     "min_answers_lock": 0.082,
+     "min_answers": 0.077,
+     "min_answers_lock": 0.077,
      "pool": 439,
-     "threat": 0.286
+     "threat": 0.284
     },
     "0": {
-     "answers": 0.237,
-     "answers_lock": 0.243,
+     "answers": 0.23,
+     "answers_lock": 0.237,
      "cap": 65,
      "choice_mons": 1,
-     "max_threat": 0.834,
-     "min_answers": 0.027,
-     "min_answers_lock": 0.027,
+     "max_threat": 0.831,
+     "min_answers": 0.018,
+     "min_answers_lock": 0.018,
      "pool": 439,
-     "threat": 0.408
+     "threat": 0.406
     },
     "2": {
-     "answers": 0.213,
-     "answers_lock": 0.22,
+     "answers": 0.206,
+     "answers_lock": 0.212,
      "cap": 65,
      "choice_mons": 1,
-     "max_threat": 0.87,
-     "min_answers": 0.025,
-     "min_answers_lock": 0.025,
+     "max_threat": 0.868,
+     "min_answers": 0.014,
+     "min_answers_lock": 0.014,
      "pool": 439,
-     "threat": 0.425
+     "threat": 0.423
     }
    }
   },
   "hq": {
    "cyrus_2": {
     "-2": {
-     "answers": 0.124,
-     "answers_lock": 0.124,
+     "answers": 0.12,
+     "answers_lock": 0.12,
      "cap": 60,
      "choice_mons": 0,
-     "max_threat": 0.811,
+     "max_threat": 0.808,
      "min_answers": 0.037,
      "min_answers_lock": 0.037,
      "pool": 433,
-     "threat": 0.455
+     "threat": 0.452
     },
     "-4": {
-     "answers": 0.165,
-     "answers_lock": 0.165,
+     "answers": 0.159,
+     "answers_lock": 0.159,
      "cap": 60,
      "choice_mons": 0,
-     "max_threat": 0.781,
+     "max_threat": 0.778,
      "min_answers": 0.046,
      "min_answers_lock": 0.046,
      "pool": 433,
-     "threat": 0.423
+     "threat": 0.42
     },
     "-6": {
-     "answers": 0.191,
-     "answers_lock": 0.191,
+     "answers": 0.185,
+     "answers_lock": 0.185,
      "cap": 60,
      "choice_mons": 0,
      "max_threat": 0.744,
      "min_answers": 0.058,
      "min_answers_lock": 0.058,
      "pool": 433,
-     "threat": 0.382
+     "threat": 0.379
     },
     "-8": {
-     "answers": 0.225,
-     "answers_lock": 0.225,
+     "answers": 0.222,
+     "answers_lock": 0.222,
      "cap": 60,
      "choice_mons": 0,
      "max_threat": 0.693,
      "min_answers": 0.085,
      "min_answers_lock": 0.085,
      "pool": 433,
-     "threat": 0.347
+     "threat": 0.345
     },
     "0": {
-     "answers": 0.106,
-     "answers_lock": 0.106,
+     "answers": 0.103,
+     "answers_lock": 0.103,
      "cap": 60,
      "choice_mons": 0,
-     "max_threat": 0.845,
+     "max_threat": 0.843,
      "min_answers": 0.032,
      "min_answers_lock": 0.032,
      "pool": 433,
-     "threat": 0.485
+     "threat": 0.482
     },
     "2": {
-     "answers": 0.089,
-     "answers_lock": 0.089,
+     "answers": 0.087,
+     "answers_lock": 0.087,
      "cap": 60,
      "choice_mons": 0,
-     "max_threat": 0.857,
+     "max_threat": 0.855,
      "min_answers": 0.025,
      "min_answers_lock": 0.025,
      "pool": 433,
-     "threat": 0.52
+     "threat": 0.518
     }
    },
    "saturn_2": {
     "-2": {
-     "answers": 0.194,
-     "answers_lock": 0.201,
+     "answers": 0.192,
+     "answers_lock": 0.199,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.831,
      "min_answers": 0.0,
      "min_answers_lock": 0.0,
      "pool": 433,
-     "threat": 0.405
+     "threat": 0.395
     },
     "-4": {
-     "answers": 0.196,
-     "answers_lock": 0.206,
+     "answers": 0.193,
+     "answers_lock": 0.203,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.82,
      "min_answers": 0.0,
      "min_answers_lock": 0.0,
      "pool": 433,
-     "threat": 0.411
+     "threat": 0.4
     },
     "-6": {
-     "answers": 0.203,
-     "answers_lock": 0.214,
+     "answers": 0.199,
+     "answers_lock": 0.21,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.783,
      "min_answers": 0.0,
      "min_answers_lock": 0.0,
      "pool": 433,
-     "threat": 0.397
+     "threat": 0.387
     },
     "-8": {
      "answers": 0.203,
-     "answers_lock": 0.217,
+     "answers_lock": 0.216,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.76,
      "min_answers": 0.0,
      "min_answers_lock": 0.0,
      "pool": 433,
-     "threat": 0.383
+     "threat": 0.37
     },
     "0": {
-     "answers": 0.189,
-     "answers_lock": 0.194,
+     "answers": 0.187,
+     "answers_lock": 0.193,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.841,
      "min_answers": 0.0,
      "min_answers_lock": 0.0,
      "pool": 433,
-     "threat": 0.404
+     "threat": 0.395
     },
     "2": {
-     "answers": 0.183,
-     "answers_lock": 0.188,
+     "answers": 0.18,
+     "answers_lock": 0.185,
      "cap": 60,
      "choice_mons": 1,
      "max_threat": 0.871,
      "min_answers": 0.002,
      "min_answers_lock": 0.002,
      "pool": 433,
-     "threat": 0.408
+     "threat": 0.397
     }
    }
   },
   "volkner": {
    "volkner": {
     "-2": {
-     "answers": 0.133,
-     "answers_lock": 0.183,
+     "answers": 0.127,
+     "answers_lock": 0.178,
      "cap": 68,
      "choice_mons": 3,
-     "max_threat": 0.938,
-     "min_answers": 0.023,
-     "min_answers_lock": 0.036,
-     "pool": 439,
-     "threat": 0.735
-    },
-    "-4": {
-     "answers": 0.154,
-     "answers_lock": 0.208,
-     "cap": 68,
-     "choice_mons": 3,
-     "max_threat": 0.92,
-     "min_answers": 0.023,
-     "min_answers_lock": 0.052,
-     "pool": 439,
-     "threat": 0.7
-    },
-    "-6": {
-     "answers": 0.169,
-     "answers_lock": 0.232,
-     "cap": 68,
-     "choice_mons": 3,
-     "max_threat": 0.902,
-     "min_answers": 0.025,
-     "min_answers_lock": 0.057,
-     "pool": 439,
-     "threat": 0.669
-    },
-    "-8": {
-     "answers": 0.206,
-     "answers_lock": 0.275,
-     "cap": 68,
-     "choice_mons": 3,
-     "max_threat": 0.891,
-     "min_answers": 0.034,
-     "min_answers_lock": 0.068,
-     "pool": 439,
-     "threat": 0.625
-    },
-    "0": {
-     "answers": 0.109,
-     "answers_lock": 0.157,
-     "cap": 68,
-     "choice_mons": 3,
-     "max_threat": 0.954,
-     "min_answers": 0.016,
-     "min_answers_lock": 0.025,
-     "pool": 439,
-     "threat": 0.762
-    },
-    "2": {
-     "answers": 0.099,
-     "answers_lock": 0.141,
-     "cap": 68,
-     "choice_mons": 3,
-     "max_threat": 0.966,
+     "max_threat": 0.936,
      "min_answers": 0.016,
      "min_answers_lock": 0.023,
      "pool": 439,
-     "threat": 0.778
+     "threat": 0.723
+    },
+    "-4": {
+     "answers": 0.147,
+     "answers_lock": 0.202,
+     "cap": 68,
+     "choice_mons": 3,
+     "max_threat": 0.918,
+     "min_answers": 0.018,
+     "min_answers_lock": 0.027,
+     "pool": 439,
+     "threat": 0.685
+    },
+    "-6": {
+     "answers": 0.164,
+     "answers_lock": 0.226,
+     "cap": 68,
+     "choice_mons": 3,
+     "max_threat": 0.9,
+     "min_answers": 0.023,
+     "min_answers_lock": 0.039,
+     "pool": 439,
+     "threat": 0.653
+    },
+    "-8": {
+     "answers": 0.203,
+     "answers_lock": 0.274,
+     "cap": 68,
+     "choice_mons": 3,
+     "max_threat": 0.888,
+     "min_answers": 0.023,
+     "min_answers_lock": 0.059,
+     "pool": 439,
+     "threat": 0.611
+    },
+    "0": {
+     "answers": 0.107,
+     "answers_lock": 0.155,
+     "cap": 68,
+     "choice_mons": 3,
+     "max_threat": 0.952,
+     "min_answers": 0.011,
+     "min_answers_lock": 0.023,
+     "pool": 439,
+     "threat": 0.749
+    },
+    "2": {
+     "answers": 0.098,
+     "answers_lock": 0.14,
+     "cap": 68,
+     "choice_mons": 3,
+     "max_threat": 0.964,
+     "min_answers": 0.007,
+     "min_answers_lock": 0.018,
+     "pool": 439,
+     "threat": 0.766
     }
    }
   },
   "zone": {
    "mars_jupiter_stark": {
     "-2": {
-     "answers": 0.189,
-     "answers_lock": 0.189,
+     "answers": 0.184,
+     "answers_lock": 0.184,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.513,
+     "max_threat": 0.508,
+     "min_answers": 0.052,
+     "min_answers_lock": 0.052,
+     "pool": 439,
+     "threat": 0.424
+    },
+    "-4": {
+     "answers": 0.22,
+     "answers_lock": 0.22,
+     "cap": 65,
+     "choice_mons": 0,
+     "max_threat": 0.456,
      "min_answers": 0.059,
      "min_answers_lock": 0.059,
      "pool": 439,
-     "threat": 0.431
-    },
-    "-4": {
-     "answers": 0.227,
-     "answers_lock": 0.227,
-     "cap": 65,
-     "choice_mons": 0,
-     "max_threat": 0.462,
-     "min_answers": 0.068,
-     "min_answers_lock": 0.068,
-     "pool": 439,
-     "threat": 0.402
+     "threat": 0.394
     },
     "-6": {
-     "answers": 0.247,
-     "answers_lock": 0.247,
+     "answers": 0.241,
+     "answers_lock": 0.241,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.431,
-     "min_answers": 0.093,
-     "min_answers_lock": 0.093,
+     "max_threat": 0.426,
+     "min_answers": 0.089,
+     "min_answers_lock": 0.089,
      "pool": 439,
-     "threat": 0.351
+     "threat": 0.347
     },
     "-8": {
-     "answers": 0.285,
-     "answers_lock": 0.285,
+     "answers": 0.281,
+     "answers_lock": 0.281,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.376,
-     "min_answers": 0.123,
-     "min_answers_lock": 0.123,
+     "max_threat": 0.362,
+     "min_answers": 0.118,
+     "min_answers_lock": 0.118,
      "pool": 439,
-     "threat": 0.314
+     "threat": 0.306
     },
     "0": {
-     "answers": 0.167,
-     "answers_lock": 0.167,
+     "answers": 0.164,
+     "answers_lock": 0.164,
      "cap": 65,
      "choice_mons": 0,
-     "max_threat": 0.558,
-     "min_answers": 0.034,
-     "min_answers_lock": 0.034,
+     "max_threat": 0.554,
+     "min_answers": 0.03,
+     "min_answers_lock": 0.03,
      "pool": 439,
-     "threat": 0.48
+     "threat": 0.476
     },
     "2": {
-     "answers": 0.137,
-     "answers_lock": 0.137,
+     "answers": 0.132,
+     "answers_lock": 0.132,
      "cap": 65,
      "choice_mons": 0,
      "max_threat": 0.59,
-     "min_answers": 0.021,
-     "min_answers_lock": 0.021,
+     "min_answers": 0.016,
+     "min_answers_lock": 0.016,
      "pool": 439,
-     "threat": 0.521
+     "threat": 0.515
     }
    }
   }

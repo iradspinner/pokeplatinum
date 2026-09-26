@@ -117,6 +117,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].friskFoesFound = 0;
+    battleCtx->battleMons[battler].moveFailedThisTurn = FALSE;
+    battleCtx->battleMons[battler].moveFailedLastTurn = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -2236,6 +2238,28 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 
 void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
+    // Oxide: what fainted this turn is what fainted last turn from now on,
+    // for Retaliate. A faint at the end of a turn, from poison or a
+    // replacement's hazards, counts for the turn it ended.
+    for (int side = 0; side < NUM_BATTLE_SIDES; side++) {
+        battleCtx->sideConditions[side].faintedLastTurn = battleCtx->sideConditions[side].faintedThisTurn;
+        battleCtx->sideConditions[side].faintedThisTurn = FALSE;
+    }
+
+    // Oxide: the same roll-over for Echoed Voice's run.
+    if (battleCtx->fieldConditionsMask & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) {
+        battleCtx->fieldConditionsMask |= FIELD_CONDITION_ECHOED_VOICE_LAST_TURN;
+    } else {
+        battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_LAST_TURN;
+    }
+    battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_THIS_TURN;
+
+    // Oxide: and for Stomping Tantrum's record of a failed move.
+    for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+        battleCtx->battleMons[battler].moveFailedLastTurn = battleCtx->battleMons[battler].moveFailedThisTurn;
+        battleCtx->battleMons[battler].moveFailedThisTurn = FALSE;
+    }
+
     for (int i = 0; i < MAX_BATTLERS; i++) {
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
         MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));

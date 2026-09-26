@@ -11,9 +11,10 @@ late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
 permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
-tools. B5 has its readings, a fit to the references, and Ian's own ratings
-of sixteen fights ("What B3b and B5 found", "What Ian's ratings showed").
-No questions are open.
+tools. B5 has its readings, fits to the references and to Ian's own
+ratings of sixteen fights, and his explanations of the fights the scores
+misread: safe switch-ins read both best ("What B3b and B5 found", "What
+Ian's ratings showed"). No questions are open.
 
 ## The target
 
@@ -29,6 +30,21 @@ Ian's scale runs from 1 to 10:
 | 8.5 | Platinum Redux, hardcore mode |
 | 9.5 | Hardlove Gold |
 | 10 | Platinum Kaizo, Run & Bun, Pokemon Null 1.2 |
+
+**Ian's goals for reaching it** (2026-09-26). Oxide's peak fights are about
+right: he is happy with the hardest fights B5 ranks, except perhaps Flint
+and Byron. So the 6 is not reached by lowering the peak. The goals are:
+
+1. curb the hyper-offense;
+2. more fights in the middle of his fight scale (3 to 6 or 7) and fewer at
+   the bottom (0 to 2);
+3. bring in the added Pokemon, moves and abilities;
+4. a balance pass over everything, so that nothing is comically untuned
+   or unfun.
+
+His fight scale is a second scale, separate from the one above: how hard
+he can make a fight when he designs one. His ratings of sixteen fights
+("What Ian's ratings showed") are on it.
 
 Ian named three more comparison points without a number: **Pokemon Odyssey**
 as a good match for the target, though it is all double battles with many
@@ -410,35 +426,37 @@ most threatening Pokemon and its least answered one.
 | Fight | Threat | Answers | Worst threat | Fewest answers |
 |---|---|---|---|---|
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.92 |
-| Barry 2 | 0.01 | 0.63 | 0.03 | 0.49 |
+| Barry 2 | 0.01 | 0.63 | 0.03 | 0.51 |
 | Roark | 0.14 | 0.15 | 0.43 | 0.04 |
-| Mars 1 | 0.01 | 0.34 | 0.03 | 0.09 |
-| Gardenia | 0.68 | 0.05 | 0.91 | 0.02 |
-| Jupiter 1 | 0.12 | 0.23 | 0.19 | 0.11 |
-| Fantina | 0.51 | 0.09 | 0.87 | 0.01 |
-| Barry 3 | 0.18 | 0.47 | 0.38 | 0.32 |
-| Maylene | 0.71 | 0.20 | 0.82 | 0.08 |
-| Barry 4 | 0.49 | 0.13 | 0.83 | 0.04 |
+| Mars 1 | 0.01 | 0.35 | 0.03 | 0.09 |
+| Gardenia | 0.69 | 0.05 | 0.91 | 0.02 |
+| Jupiter 1 | 0.12 | 0.24 | 0.19 | 0.11 |
+| Fantina | 0.51 | 0.10 | 0.87 | 0.00 |
+| Barry 3 | 0.18 | 0.46 | 0.38 | 0.32 |
+| Maylene | 0.69 | 0.20 | 0.81 | 0.07 |
+| Barry 4 | 0.48 | 0.13 | 0.83 | 0.03 |
 | Wake | 0.74 | 0.07 | 0.98 | 0.00 |
-| Cyrus 1 | 0.39 | 0.35 | 0.59 | 0.23 |
-| Barry 5 | 0.56 | 0.18 | 0.91 | 0.04 |
-| Byron | 0.34 | 0.21 | 0.58 | 0.14 |
-| Saturn 1 | 0.53 | 0.24 | 0.82 | 0.09 |
-| Mars 2 | 0.38 | 0.14 | 0.85 | 0.04 |
-| Candice | 0.67 | 0.13 | 0.94 | 0.04 |
-| Cyrus 2 | 0.46 | 0.12 | 0.81 | 0.04 |
-| Saturn 2 | 0.41 | 0.19 | 0.83 | 0.00 |
-| Mars and Jupiter | 0.32 | 0.33 | 0.70 | 0.06 |
-| Cyrus 3 | 0.53 | 0.23 | 0.83 | 0.12 |
-| Volkner | 0.67 | 0.17 | 0.90 | 0.03 |
-| Barry 6 | 0.55 | 0.24 | 0.92 | 0.05 |
-| Aaron | 0.59 | 0.18 | 0.76 | 0.08 |
-| Bertha | 0.50 | 0.31 | 0.76 | 0.02 |
-| Flint | 0.70 | 0.14 | 0.92 | 0.04 |
-| Lucian | 0.62 | 0.27 | 0.93 | 0.04 |
-| Cynthia | 0.69 | 0.14 | 0.90 | 0.01 |
+| Cyrus 1 | 0.38 | 0.35 | 0.56 | 0.23 |
+| Barry 5 | 0.55 | 0.19 | 0.91 | 0.04 |
+| Byron | 0.34 | 0.21 | 0.56 | 0.15 |
+| Saturn 1 | 0.52 | 0.24 | 0.80 | 0.08 |
+| Mars 2 | 0.37 | 0.14 | 0.84 | 0.04 |
+| Candice | 0.66 | 0.12 | 0.93 | 0.03 |
+| Cyrus 2 | 0.45 | 0.12 | 0.81 | 0.04 |
+| Saturn 2 | 0.40 | 0.19 | 0.83 | 0.00 |
+| Mars and Jupiter | 0.31 | 0.33 | 0.69 | 0.06 |
+| Cyrus 3 | 0.52 | 0.23 | 0.82 | 0.12 |
+| Volkner | 0.65 | 0.16 | 0.90 | 0.02 |
+| Barry 6 | 0.54 | 0.23 | 0.92 | 0.05 |
+| Aaron | 0.59 | 0.18 | 0.76 | 0.07 |
+| Bertha | 0.49 | 0.31 | 0.76 | 0.02 |
+| Flint | 0.69 | 0.14 | 0.92 | 0.04 |
+| Lucian | 0.62 | 0.27 | 0.94 | 0.03 |
+| Cynthia | 0.68 | 0.13 | 0.90 | 0.01 |
 
-Both tables were recomputed on 2026-09-25 for the encounter track's scarcity
+Both tables were recomputed on 2026-09-26 for the modern move values, the
+calculator's Oxide profile (element 5's damage abilities, the staples
+rulings, the dual-type order) and B5's item moves; before that on 2026-09-25 for the encounter track's scarcity
 pass (strong lines made scarce and the pick list at 493 species, which
 grows every side, Roark's from 90 to 105 species and the League's from 364
 to 439, and moves no fight by more than 0.03); before that for Ian's water ruling (seventeen
@@ -479,12 +497,11 @@ scoring the reference hacks the same way. What they already show:
 - **Early fights in a split read too easy**, because the player is scored
   at the split's cap: Barry 1 is level 5 against a side at 16. B4's natural
   levels should replace the cap for fights before a split's end.
-- **Five moves get no number from the calculator's Generation 4
-  mechanics**: Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card,
-  which it handles only in its later-generation code. The page runs the same
-  code, so it should show nothing for them either. No boss uses them; the
-  player's copies are dropped and listed per fight in `pressure.json`. A fix
-  belongs to the encounter track, which owns the vendored calculator.
+- **Five moves got no number from the calculator's Generation 4
+  mechanics** until the encounter track's Oxide profile (2026-09-26):
+  Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card. All five are
+  scored now; Electro Ball at power 1, as the game plays it until the
+  engine's variable-power work reaches the calculator.
 
 What the scores leave out, so they read as a ceiling for the boss:
 accuracy, secondary effects, status and setup, switching, defensive items
@@ -498,10 +515,9 @@ Hidden Power are left out; `pool.py` lists them.
 B3's check, as far as it goes. The headless engine agrees with D5's figures
 for the page, and those agree with a hand calculation of the Generation 4
 formula. The page itself was not driven on this CPU, since a headless
-browser is many processes. The in-game roll is still Ian's (encounter build
-plan, M8), and the calculator's order for a dual type's two factors (Crunch
-into Bronzor 42 to 50, where the game gives 43 to 51) carries into B3 until
-the encounter track's patch lands.
+browser is many processes. The calculator now applies a dual type's two
+factors in the game's order, so Crunch into Bronzor comes out 43 to 51, as
+the game gives (2026-09-26).
 
 **The Battle Zone's re-levelling** (2026-09-25; Ian chose 18 off). The
 tracker asked for the zone's trainers to come down from about 75 to
@@ -531,200 +547,233 @@ reports the 54 as diverged; with their entries removed it would carry all
 54 back, 16 through its party-rewrite path. At Galactic's cap of 65 the
 zone sits 5 to 10 under, medium hard.
 
-What B3b and B5 found (2026-09-25; `refpressure.py`, `calibrate.py
---report`). The figures in this section and the next were worked out just
-before the scarcity pass, which moves none of them by more than 0.03; they
-are refreshed with B5's next readings. Every reference hack's bosses were scored against Oxide's side
-in the same seats, each Pokemon with its own game's stats and moves; two
-runs agree exactly. B5 adds five readings to B3's, in columns of their own
-so B3's stay as they were (`pressure.py` says how each is worked out):
-threat counted by the chance each hit lands, one-on-one answers from a free
-switch-in over three turns, "broad" (the share of the side that surely
-answers half the team or more, high when a team shares a weakness), a
-tally of the tactics no damage score sees (setup, Baton Pass, hazards,
-Explosion, status, evasion, recovery, pinch berries), and "predictable",
-Ian's point that a fight whose every turn can be foreseen is easy to plan
-against. That last is estimated from how Platinum's AI picks: every Oxide
-boss carries Evaluate Attack, which makes the strongest attack into the
-target the pick, and each status or setup move is a live alternative.
+What B3b and B5 found. Every reference hack's bosses are scored against
+Oxide's side in the same seats, each Pokemon with its own game's stats and
+moves (`refpressure.py`), and `calibrate.py --report` sets the readings
+beside Ian's ratings of the hacks and of Oxide's own fights. The figures
+here are from 2026-09-26, after the scarcity pass, the modern move values
+and the calculator's Oxide profile; two runs agree exactly.
+
+B5 adds readings beside B3's, whose own numbers stay as they were
+(`pressure.py` says how each is worked out):
+
+- threat by chance: threat counted by each hit's chance to land, with
+  self-lowering moves hitting softer after the first use;
+- answers, baiting counted: the share of the side that beats a boss
+  Pokemon one on one from a free switch-in, and for a Choice holder also
+  after baiting its lock, since the AI's pick against a given lead is
+  fixed (Volkner); an "after setup" variant keeps only answers that also
+  beat it after one use of its setup move (Byron's Metagross);
+- safe switch-ins ("safe"): the share of the side that at most one boss
+  Pokemon knocks out in one hit, low when a team doubles up its coverage
+  so that baiting one Pokemon draws in another with the same answer
+  (Saturn 2, Cyrus 3), high when it shares a weakness (Mars 2);
+- tactics: a tally of what no damage score sees (setup, Baton Pass,
+  hazards, Explosion, status, evasion, recovery, pinch berries).
+
+Bosses holding an item also keep Natural Gift and Fling, as one hit each.
+A "predictable" reading, from how the AI picks moves, ran backwards
+against Ian's ratings: it measured how much of a team's time goes to
+attacking. It stays in `pressure.json` but is not read as difficulty.
+Critical hits, and so the new rates and Keen Eye, are left out of every
+score, as are all chance effects.
 
 Over the thirteen seats every hack fills (the gyms, the Elite Four and the
 Champion):
 
-| Hack | Ian's rating | Threat by chance | One-on-one answers | Broad | Tactics | Predictable |
-|---|---|---|---|---|---|---|
-| Oxide today | | 0.56 | 0.26 | 0.27 | 4.4 | 0.69 |
-| Vanilla | 3 | 0.14 | 0.81 | 0.84 | 2.8 | 0.67 |
-| Unbound, difficult | 5.25 | 0.50 | 0.29 | 0.26 | 4.4 | 0.67 |
-| Renegade | 7 | 0.53 | 0.29 | 0.33 | 6.5 | 0.64 |
-| Redux | 8 | 0.68 | 0.10 | 0.07 | 4.8 | 0.72 |
-| Redux hardcore | 8.5 | 0.73 | 0.07 | 0.03 | 4.7 | 0.72 |
-| Hardlove | 9.5 | 0.67 | 0.18 | 0.16 | 6.0 | 0.62 |
-| Kaizo | 10 | 0.76 | 0.03 | 0.01 | 6.6 | 0.65 |
-| Null | 10 | 0.92 | 0.01 | 0.00 | 5.7 | 0.63 |
-| Run & Bun | 10 | 0.83 | 0.04 | 0.02 | 4.9 | 0.70 |
+| Hack | Ian's rating | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
+|---|---|---|---|---|---|
+| Oxide today |  | 0.57 | 0.31 | 0.37 | 4.4 |
+| Vanilla | 3 | 0.14 | 0.80 | 0.93 | 2.8 |
+| Unbound, difficult | 5.25 | 0.51 | 0.28 | 0.62 | 4.4 |
+| Renegade | 7 | 0.54 | 0.31 | 0.34 | 6.5 |
+| Redux | 8 | 0.69 | 0.09 | 0.26 | 4.8 |
+| Redux hardcore | 8.5 | 0.74 | 0.06 | 0.23 | 4.7 |
+| Hardlove | 9.5 | 0.68 | 0.18 | 0.34 | 6.0 |
+| Kaizo | 10 | 0.76 | 0.03 | 0.07 | 6.6 |
+| Null | 10 | 0.92 | 0.01 | 0.01 | 5.7 |
+| Run & Bun | 10 | 0.84 | 0.04 | 0.13 | 4.9 |
 
-**The damage readings order the hacks as Ian does**, with rank
-correlations of 0.93 for threat by chance and minus 0.92 for one-on-one
-answers and for broad. One line fits the ratings well enough to use:
+**Safe switch-ins read Ian's ratings best.** Its rank correlation with
+the hacks' ratings is minus 0.93, level with the damage readings, and one
+line fits them better than any damage line does:
 
 ```
-rating = 5.8 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
+rating = 10.6 - 8.1 x safe switch-ins, R squared 0.91
+rating = 5.7 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
 ```
 
-On it Oxide's gyms and League sit at about 7.3 today, level with Renegade
-(6.9 on the same line). A 6 needs the difference at about +0.04, against
-Oxide's +0.30. The two misfits show what the yardstick leaves out. Unbound
-reads 1.6 harder than Ian's 5.25, most likely because every hack is scored
-against Oxide's side, so Unbound's own side and AI are not in its score.
-Hardlove reads 1.3 softer, most likely because the calculator's Generation
-4 mechanics drop its bosses' newer abilities. So the 6 is a band about a point wide either way
-until Ian's playtest reads the ramp directly, as "Calibration" says.
+On the first, Oxide's gyms and League sit at about 7.5, and a 6 needs safe
+switch-ins at about 0.56 against Oxide's 0.37; on the second, at about
+7.3. Either way Oxide's gyms and League sit a point or more over the 6,
+level with Renegade. Since Ian is happy with the peak fights (2026-09-26),
+that gap is closed by the rest of the game, the middle and the floor, not
+by softening the peak. The damage line read Unbound 1.6 too hard; the safe line reads
+it within 0.3, since Unbound's teams leave far more room to switch.
+Hardlove still reads 1.7 soft, most likely because the calculator does not
+give its bosses' newer abilities to Pokemon from another game.
 
-Seat by seat, the same difference against the two references nearest a 6:
+Seat by seat, safe switch-ins against the two references nearest a 6:
 
 | Seat | Oxide | Unbound (5.25) | Renegade (7) |
 |---|---|---|---|
-| Roark | -0.11 | 0.33 | -0.17 |
-| Gardenia | 0.54 | 0.21 | 0.28 |
-| Fantina | 0.24 | 0.47 | 0.34 |
-| Maylene | 0.47 | 0.00 | 0.53 |
-| Wake | 0.62 | 0.34 | 0.41 |
-| Byron | 0.14 | 0.23 | -0.18 |
-| Candice | 0.48 | 0.20 | 0.47 |
-| Volkner | 0.26 | -0.23 | 0.26 |
-| Aaron | 0.09 | 0.15 | 0.11 |
-| Bertha | 0.11 | 0.13 | -0.12 |
-| Flint | 0.38 | 0.19 | 0.50 |
-| Lucian | 0.26 | 0.40 | 0.27 |
-| Cynthia | 0.46 | 0.28 | 0.35 |
+| Roark | 0.81 | 0.83 | 0.63 |
+| Gardenia | 0.35 | 0.95 | 0.46 |
+| Fantina | 0.63 | 0.73 | 0.61 |
+| Maylene | 0.30 | 0.93 | 0.30 |
+| Wake | 0.32 | 0.48 | 0.48 |
+| Byron | 0.24 | 0.51 | 0.11 |
+| Candice | 0.35 | 0.59 | 0.24 |
+| Volkner | 0.35 | 0.70 | 0.27 |
+| Aaron | 0.48 | 0.55 | 0.33 |
+| Bertha | 0.39 | 0.47 | 0.17 |
+| Flint | 0.22 | 0.50 | 0.27 |
+| Lucian | 0.22 | 0.44 | 0.31 |
+| Cynthia | 0.19 | 0.40 | 0.22 |
 
-Oxide is harder than Renegade at Gardenia, Wake, Byron, Bertha and
-Cynthia, and softer at Fantina and Flint. Gardenia and Wake are the two
-seats furthest over a 6.
+Oxide leaves fewer safe switch-ins than Renegade at Gardenia, Wake,
+Flint, Lucian and Cynthia, and more at Roark, Byron, Candice, Volkner,
+Aaron and Bertha. Against Unbound, Oxide is tighter at every seat.
 
-**Tactics and predictability do not calibrate from the references.**
-Every hack's bosses sit close together on both (rank correlations 0.63
-and minus 0.21), so the references cannot say how much either is worth.
-Ian's three bellwethers say they matter. Ranked among Oxide's 28 story
-fights and the two Hesperid fights, 1 the hardest:
+What Ian's ratings showed. Ian rated sixteen fights he has played in the
+base ROM on 2026-09-25, on his fight scale: how hard he can make a fight
+when he designs one, not the scale he rates whole games on (he set the two
+apart on 2026-09-26). The fits below translate the readings onto that
+fight scale; the game scale's 6 is the question above (`calibrate.py`,
+IAN_RATINGS); he fought the Elite Four and Cynthia only blind, so they are
+left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 
-| Reading | Maylene | Hesperid, Lake Valor | Volkner |
-|---|---|---|---|
-| Threat (B3) | 0.69, 3rd | 0.47, 17th | 0.66, 6th |
-| Threat by chance | 0.68, 3rd | 0.44, 17th | 0.59, 8th |
-| One-on-one answers | 0.21, 6th | 0.47, 22nd | 0.33, 13th |
-| Broad | 0.22, 7th | 0.50, 21st | 0.38, 16th |
-| Tactics | 2, 27th | 8, 5th | 4, 22nd |
-| Predictable | 0.86, 30th | 0.76, 26th | 0.72, 23rd |
-
-- **Maylene** keeps her place on damage. Her team has real coverage
-  (Rock Slide, Aerial Ace, Ice Punch, the elemental punches, Flash Cannon),
-  so B3 does not overrate her by accident. What sets her apart is that she
-  is the most predictable fight of the 30, and ties with Wake for the fewest
-  tactics outside the first two rival fights:
-  if she plays easier than her damage, it is because a player can call
-  every turn, which is Ian's point.
-- **Volkner** comes down. Thunder's 70 percent takes his threat from 0.66
-  to 0.59, the one-on-one answers nearly double B3's (0.18 to 0.33), and
-  38 percent of the side answers half his team, his Ground weakness. He
-  still ranks seventh of 28 on the difference, level with Lucian, so
-  "boring" is not reached by damage alone.
-- **Hesperid** reads as middling on damage and fifth on tactics: two
-  Explosions, Agility passed by Baton Pass into a Choice Specs Chatot,
-  Stealth Rock, Bright Powder and two pinch berries. The predictability
-  estimate misses her (0.76), because her danger is which Pokemon receives
-  the pass and when the Explosions come, not which move one Pokemon picks.
-
-On damage alone (the difference above), the hardest fights today are
-these. The order is provisional until open question 1 weighs the last two
-columns:
-
-| Fight | Difference | Tactics | Predictable |
-|---|---|---|---|
-| Wake | 0.62 | 2 | 0.83 |
-| Gardenia | 0.54 | 5 | 0.57 |
-| Candice | 0.48 | 9 | 0.60 |
-| Maylene | 0.47 | 2 | 0.86 |
-| Cynthia | 0.46 | 3 | 0.83 |
-| Flint | 0.38 | 4 | 0.67 |
-| Volkner | 0.26 | 4 | 0.72 |
-| Lucian | 0.26 | 4 | 0.72 |
-| Fantina | 0.24 | 5 | 0.52 |
-| Cyrus 3 | 0.21 | 5 | 0.74 |
-
-Candice is the one near the top on all three. Wake, Maylene and Cynthia
-are fights of pure damage that a player can read turn by turn. Four of the
-references' boss moves get no number, of the same kinds as B3's five
-(Nature's Madness, Redux's Cyclone and Acidic Payback, and a Pain Split
-that Null's table lists as physical); each is reported, not scored.
-
-What Ian's ratings showed (2026-09-25; `calibrate.py --report`, whose
-IAN_RATINGS holds them). Ian rated sixteen fights he has played in the base
-ROM, on his 1 to 10 scale; he fought the Elite Four and Cynthia only blind,
-so they are left out. His "Mars/Jupiter Double" is read as the Spear
-Pillar tag battle.
-
-| Fight | Ian | Threat by chance | One-on-one answers | Tactics | Predictable |
+| Fight | Ian | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
 |---|---|---|---|---|---|
-| Mars and Jupiter, Spear Pillar | 9 | 0.30 | 0.58 | 12 | 0.48 |
-| Cyrus 3 | 8.5 | 0.47 | 0.26 | 5 | 0.74 |
-| Saturn 2 | 8.5 | 0.40 | 0.31 | 7 | 0.58 |
-| Candice | 8.5 | 0.65 | 0.17 | 9 | 0.60 |
-| Wake | 8 | 0.73 | 0.11 | 2 | 0.83 |
-| Maylene | 8 | 0.68 | 0.21 | 2 | 0.86 |
-| Officer Hesperid, Lake Valor | 7 | 0.44 | 0.47 | 8 | 0.76 |
-| Byron | 7 | 0.32 | 0.18 | 5 | 0.66 |
-| Saturn 1 | 6.5 | 0.51 | 0.34 | 6 | 0.67 |
-| Fantina | 6 | 0.51 | 0.27 | 5 | 0.52 |
-| Barry 4 | 6 | 0.48 | 0.32 | 7 | 0.47 |
-| Cyrus 1 | 5 | 0.37 | 0.54 | 5 | 0.72 |
-| Mars 2 | 5 | 0.36 | 0.38 | 10 | 0.45 |
-| Gardenia | 5 | 0.69 | 0.15 | 5 | 0.57 |
-| Volkner | 3 | 0.59 | 0.33 | 4 | 0.72 |
-| Roark | 2 | 0.12 | 0.24 | 4 | 0.44 |
+| Mars and Jupiter, Spear Pillar | 9 | 0.31 | 0.59 | 0.50 | 12 |
+| Cyrus 3 | 8.5 | 0.48 | 0.26 | 0.25 | 5 |
+| Saturn 2 | 8.5 | 0.39 | 0.35 | 0.36 | 7 |
+| Candice | 8.5 | 0.65 | 0.18 | 0.35 | 9 |
+| Wake | 8 | 0.74 | 0.19 | 0.32 | 2 |
+| Maylene | 8 | 0.69 | 0.21 | 0.30 | 2 |
+| Officer Hesperid, Lake Valor | 7 | 0.44 | 0.43 | 0.20 | 8 |
+| Byron | 7 | 0.34 | 0.17 | 0.24 | 5 |
+| Saturn 1 | 6.5 | 0.52 | 0.33 | 0.43 | 6 |
+| Fantina | 6 | 0.51 | 0.27 | 0.63 | 5 |
+| Barry 4 | 6 | 0.48 | 0.33 | 0.62 | 7 |
+| Cyrus 1 | 5 | 0.38 | 0.54 | 0.60 | 5 |
+| Mars 2 | 5 | 0.37 | 0.37 | 0.60 | 10 |
+| Gardenia | 5 | 0.69 | 0.14 | 0.35 | 5 |
+| Volkner | 3 | 0.58 | 0.51 | 0.35 | 4 |
+| Roark | 2 | 0.14 | 0.22 | 0.81 | 4 |
 
-**No reading orders Ian's fights well.** The damage difference that fits
-the references so closely correlates with his ratings at only +0.12 over
-all sixteen. The best three-reading fit (broad, tactics and predictable)
-misses a fight it has not seen by 1.4 to 1.7 points, against a spread of 2
-in his ratings. Four things show why.
+Over the fifteen single battles, safe switch-ins correlate with his
+ratings at minus 0.59 (minus 0.66 before the Galactic finales); the
+damage readings sit between 0.27 and 0.35 either way, and the tactics
+tally at 0.17. Safe switch-ins alone predict a rating it was not fitted on to
+within 1.7 points, against a spread of 1.9 in his ratings, and no pair or
+triple of readings does better on a fight held out. The line is about
+9.3 minus 7.2 times safe switch-ins. Its misses say what is still
+outside:
 
-- **The Galactic finales are hard in ways no damage score sees.** Ian
-  rates Mars and Jupiter 9 and Cyrus 3 and Saturn 2 8.5, the three hardest
-  fights he has played, and the scores put them mid-table or lower. The
-  tag battle is a double battle scored as singles without Barry. Saturn 2
-  is scored under Trick Room, but Hypnosis, Future Sight and Curse are not;
-  Cyrus 3 has Curse, Explosion, Swagger and Will-O-Wisp. For these three,
-  Ian's ratings are the measure until the tool can score a double battle
-  and setup.
-- **Before the finales, damage does track him, with answers counting
-  double.** Over the other thirteen fights, threat by chance less twice
-  the one-on-one answers correlates at +0.47, and threat alone at +0.43.
-  The misses are Gardenia (5) and Volkner (3), both far harder in the
-  scores than in play, and Byron (7), softer in the scores. Byron's team
-  walls rather than hits, so its threat is low while its answers are among
-  the fewest, and Metal Burst, Mirror Coat, Explosion and Toxic Spikes go
-  unscored. Volkner's three Choice holders can be baited, which only the
-  lock-counting answers see. Gardenia's sun team spends turns setting up
-  Sunny Day for Chlorophyll and Solar Beam.
-- **"Predictable" runs backwards.** The two fights it calls the most
-  predictable, Maylene and Wake, are rated 8, and over the thirteen it
-  correlates with Ian's ratings at +0.52, the wrong way. It counts every
-  status move as an unpredictable turn, but in these teams a status move
-  is mostly a turn not spent attacking, so it measures how much of a
-  team's time goes to attacks. It stays in `pressure.json` under that
-  reading and is not used as difficulty. What Ian meant (which Pokemon
-  receives a Baton Pass, when an Explosion comes, when the AI switches)
-  needs the AI's switching and its scripts, which the tool does not run.
-- **His scale rises through the game.** Later fights rate higher (the cap
-  correlates at +0.42), as the ramp he asked for should; the scores are
-  relative to the side at each split by design, so a rating is the stage
-  plus the fight's difficulty within it.
+- **Volkner** reads 6.8 against Ian's 3. Baiting his three Choice locks
+  shows in the answers (0.51, among the most of any fight), but not in
+  safe switch-ins.
+- **Gardenia** reads 6.8 against 5, the stage: Ian's scale rises through
+  the game (later fights rate higher, correlation 0.42), and the scores
+  are relative to each split's side by design.
+- **Candice and Saturn 2** read 6.8 against 8.5, and Spear Pillar cannot
+  be read at all, since the tool plays a double battle as singles without
+  the partner. For those three, Ian's ratings are the measure.
 
-So the tool's part in the trainer pass is the damage side, with answers
-weighted over threat, and a flag wherever a fight's score and Ian's feel
-part company. The target for each fight is Ian's rating scale, not a score.
+The bellwethers now sit where Ian put them. Officer Hesperid at Lake
+Valor leaves the second fewest safe switch-ins of all thirty fights,
+where every damage reading had her in the bottom half. Volkner has the
+eighth most answers once baiting counts. Maylene stays near the top on
+damage and eighth on safe switch-ins: her fight is hard, but a player can
+read it turn by turn.
+
+The fights that leave the fewest safe switch-ins, so the hardest by this
+reading, with Ian's rating where he has one:
+
+| Fight | Safe switch-ins | Answers, baiting counted | Ian |
+|---|---|---|---|
+| Cynthia | 0.19 | 0.31 | not rated |
+| Officer Hesperid, Lake Valor | 0.20 | 0.43 | 7 |
+| Officer Hesperid, Mt. Coronet | 0.21 | 0.45 | not rated |
+| Lucian | 0.22 | 0.48 | not rated |
+| Flint | 0.22 | 0.42 | not rated |
+| Byron | 0.24 | 0.17 | 7 |
+| Cyrus 3 | 0.25 | 0.26 | 8.5 |
+| Maylene | 0.30 | 0.21 | 8 |
+| Wake | 0.32 | 0.19 | 8 |
+| Gardenia | 0.35 | 0.14 | 5 |
+| Candice | 0.35 | 0.18 | 8.5 |
+| Volkner | 0.35 | 0.51 | 3 |
+| Saturn 2 | 0.36 | 0.35 | 8.5 |
+
+So the trainer pass reads safe switch-ins first, with answers (baiting
+counted) and the tactics list beside it, translated onto Ian's fight scale
+by the line above (about 9.3 minus 7.2 times safe switch-ins): a fight at
+safe switch-ins of 0.95 or more sits at 2 or under, one at 0.45 to 0.85
+between 3 and 6.
+
+**Ian's explanations** (2026-09-25), for the fights where his rating and
+the scores parted. They are the design reasoning the trainer pass works
+from, so they are kept here in brief.
+
+- **Gardenia (5)** is hard for a second gym, and the scores agree once the
+  stage is counted. Whatever leads into Cherrim is countered by Lumineon,
+  which nothing answers yet: Aqua Tail hits hard even in sun, it outspeeds
+  almost everything, Swagger has no cure because no Persim Berry is in
+  reach, Silver Wind can raise every stat, and Natural Gift is a boosted
+  Fire move into its counters. Breloom's Rock Tomb has to be baited,
+  Roserade hits hard, and Shiftry's sun Solar Beam, Natural Gift and Feint
+  Attack punish its answers. "It's the lack of good answers, and
+  everything is awkward."
+- **Volkner (3)** is easy for three reasons. Magnezone, Luxray and
+  Electivire hold Choice items, so each can be baited into a move
+  something takes for free (an Electric move into a Ground type, Tri
+  Attack or Cross Chop into a Ghost, Giga Impact into Protect). Jolteon
+  and Rotom share Electric and Ghost coverage, and Rotom's Leaf Storm
+  weakens itself. Lanturn, sash and all, has Lanturn's stats: Ian's
+  Empoleon came in on Ice Beam and Earthquaked through Thunder. This fight
+  is why Choice items are now to be nearly entirely gone.
+- **Mars and Jupiter at Spear Pillar (9)** cannot be planned past the first
+  turn or two, because Barry's moves are not the player's. Both leads
+  resist everything Barry's Snorlax does, and Solrock and Lunatone can
+  screen, flinch, raise every stat or crit on turn one. A locked Skuntank
+  that the player walls simply beats on the partner instead. Spiritomb's
+  Pursuit punishes switches, Toxic Spikes and Fake Out change every switch,
+  and the Curse Bronzong stalls behind them: more than the sum of its
+  parts. Ian lost four Pokemon both times he played it.
+- **Saturn 2 (8.5)** is built to resist baiting: most attacking types sit
+  on two Pokemon, so baiting one draws another with the same answer
+  (Earthquake on Rhyperior and Wailord, Rhyperior's Aqua Tail). Every
+  Pokemon hits hard and none holds a Choice item; Wailord's Water Spout
+  kills any switch-in; Cresselia (Moonlight, Calm Mind, Charge Beam) and
+  Wailord (Aqua Ring, Leftovers) stall. It needs slow Pokemon the player
+  may not have kept. Uxie and Toxicroak are the weak part; the Wailord,
+  Cresselia and Rhyperior core is the fight.
+- **Cyrus 3 (8.5)** is Saturn 2 turned up. Four Pokemon carry Rock and
+  Ground, near-perfect coverage together, so almost anything can be
+  baited in; Gyarados' four moves are resisted by nothing in the game.
+  Each Pokemon has its own threat: a fast Swagger Salamence with a King's
+  Rock and three flinching moves, a Curse and Explosion Regirock with Stone
+  Edge, a fast Life Orb Flygon with U-turn and Draco Meteor, Heatran's
+  Magma Storm trap and Ancient Power, and Oxide's buffed Dusknoir, slow
+  enough that Payback hits hard, with Will-O-Wisp, a Lum Berry and
+  Levitate. Ice is its weakness, and every Pokemon in the back carries a
+  Rock move for it.
+- **Byron (7)** is where Ian named the principle. A fight is hard when
+  the plan cannot be sure of its outcome. Against Empoleon, a player who
+  knows which of its moves hurts most knows it will use it. Metagross may
+  use Agility at any point, and if nothing in the box beats a +2 Speed
+  Metagross, the whole fight becomes never letting it. The same goes for
+  Forretress's Explosion, Bastiodon's Metal Burst (it must be knocked out
+  in one hit), Magnezone's Mirror Coat behind a Focus Sash, and Sandstorm
+  and Toxic Spikes changing the knockout sums.
+- **Mars 2 (5)** fails on coverage. Purugly hurts only with Slash, Sucker
+  Punch and Fake Out, so a Ghost walls it; Mesprit has only Psychic and
+  U-turn; Bronzong's Heatproof set leaves Earthquake good against both it
+  and Luxray, the team's only Ground-weak pair with no Levitate or Flying
+  cover; Delcatty and Umbreon hit weakly. "A box check": it needs specific
+  answers, but it has no awkward baiting and little setup that matters.
 
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
@@ -749,12 +798,12 @@ under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ, cap 60), under Trick Room | 0.41, 0.19 | 0.41, 0.18 |
-| Cyrus 2 (HQ, cap 60), with Suicune | 0.47, 0.11 | 0.50, 0.10 |
-| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.17 | 0.50, 0.14 |
-| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.39, 0.25 | 0.41, 0.23 |
-| Cyrus 3 (Galactic, 65), Ian's new team | 0.63, 0.14 | 0.65, 0.12 |
-| Volkner (68) | 0.76, 0.17 | 0.77, 0.15 |
+| Saturn 2 (HQ, cap 60), under Trick Room | 0.40, 0.19 | 0.40, 0.18 |
+| Cyrus 2 (HQ, cap 60), with Suicune | 0.48, 0.10 | 0.52, 0.09 |
+| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.48, 0.16 | 0.52, 0.13 |
+| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.41, 0.24 | 0.42, 0.21 |
+| Cyrus 3 (Galactic, 65), Ian's new team | 0.64, 0.14 | 0.66, 0.11 |
+| Volkner (68) | 0.75, 0.15 | 0.77, 0.14 |
 
 These are Ian's baseline teams (the table was first run on the base ROM's
 older teams). Saturn 2 is scored under Trick Room since Ian's ruling of
@@ -1088,16 +1137,28 @@ are in "What Ian's ratings showed".
   trusting the ranking; if it holds, threat is weighted down or tempered by
   answers.
 
-  Started 2026-09-25 (`pressure.py`'s B5 columns, `calibrate.py`): the
-  readings, the bellwethers and a first fit are in "What B3b and B5
-  found". The damage part is fitted to the references; against Ian's own
-  ratings (2026-09-25) it holds only before the Galactic finales, with
-  answers counting double, and "predictable" runs backwards, so it is not
-  used as difficulty ("What Ian's ratings showed"). Every score is rerun when the
-  encounter track teaches the calculator element 5's abilities (Ian,
-  2026-09-25), since until then none of the 52 counts on either side.
-- [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
-  on the player's side ranked by what it moves.
+  Started 2026-09-25 (`pressure.py`'s B5 columns, `calibrate.py`). Ian
+  rated sixteen fights and explained the ones the scores misread; from
+  that came baited Choice locks, setup branches and safe switch-ins, and
+  safe switch-ins read both his hack ratings (R squared 0.91) and his
+  fight ratings (minus 0.59) best ("What B3b and B5 found", "What Ian's
+  ratings showed"). Ian's fight scale is his own design scale, separate
+  from the game scale (2026-09-26); the line above translates the readings
+  onto it. Left: the double battle,
+  which the tool cannot score, and the stage, which Ian's scale carries.
+  The engine's new variable-power moves reach the scores when the
+  encounter track teaches its calculator them, with one more rescore.
+- [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
+  target"). Every Oxide fight placed on his fight scale, the required
+  ordinary trainers included (they are not scored yet, and they are most of
+  the 0 to 2 fights); the fights whose difficulty is all damage (high
+  threat, few tactics, easy to read: Wake, Maylene, Cynthia and Volkner on
+  today's scores) marked as the hyper-offense to curb; the fights sitting
+  at 0 to 2 listed as the ones to raise into 3 to 6 or 7; Flint and Byron
+  checked for what makes them too hard; and every lever on the player's
+  side (a species' stats, a TM or item one split earlier, route weather, a
+  cap) ranked by how far it moves the scores, with any lever or species
+  that moves them absurdly far or not at all flagged for the balance pass.
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
@@ -1111,7 +1172,10 @@ lands, and each change is re-scored as it lands.
    staples survey): the player can never set, change or end weather, so
    TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
    become other moves. The one Ability Patch in the game (for a hidden
-   ability) is the only exception, and Defog still clears fog.
+   ability) is the only exception, and Defog still clears fog. Choice
+   items are to be nearly entirely gone from the game (Ian, 2026-09-25,
+   after Volkner), up from "quite rare". When a confusion cure is first in
+   reach decides how Swagger plays: at Gardenia no Persim Berry is.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or
@@ -1135,7 +1199,8 @@ abilities. Status stays as Generation 4 has it, and Hidden Power keeps its
 IV formula. The calculator keeps Generation 4's formula and chart, so each
 of these reaches the scores through the move data or the calculator's
 Generation 4 branch, as element 5's abilities will.
-5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
+5. **Trainers**, with the bosses first, Choice items coming off them (Ian,
+   2026-09-25): Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
    against B1e's list. Also the **level 71 Lucas and Dawn fight** (trainer
