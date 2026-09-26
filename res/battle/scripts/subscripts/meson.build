@@ -355,4 +355,8 @@ subscript_files = files(
     'subscript_toxic_debris.s',
     'subscript_mummy.s',
     'subscript_wandering_spirit.s',
+    'subscript_unnerve.s',
+    'subscript_aura.s',
+    'subscript_screen_cleaner.s',
+    'subscript_hospitality.s',
 )

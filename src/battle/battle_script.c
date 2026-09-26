@@ -5523,6 +5523,7 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     ATTACKING_MON.friskAnnounced = FALSE;
     ATTACKING_MON.moldBreakerAnnounced = FALSE;
     ATTACKING_MON.pressureAnnounced = FALSE;
+    ATTACKING_MON.oxideAbilityAnnounced = FALSE;
     ATTACKING_MON.moveEffectsData.truant = battleCtx->totalTurns & 1;
     ATTACKING_MON.moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
     ATTACKING_MON.slowStartAnnounced = FALSE;
@@ -9335,6 +9336,21 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
         if (battleCtx->battleMons[battler].ability != ABILITY_NATURAL_CURE
             && Ability_ForbidsStatus(battleCtx, ability, status) == FALSE) {
             BattleScript_Iter(battleCtx, jumpNoStatusRestore);
+        }
+
+        // Oxide: Regenerator restores a third of the battler's HP as it
+        // leaves, silently, as in hg-engine, which reads the ability from the
+        // party data (so Gastro Acid does not stop it) and also heals when a
+        // battle ends.
+        if (ability == ABILITY_REGENERATOR) {
+            int hp = battleCtx->battleMons[battler].curHP + battleCtx->battleMons[battler].maxHP / 3;
+
+            if (hp > battleCtx->battleMons[battler].maxHP) {
+                hp = battleCtx->battleMons[battler].maxHP;
+            }
+
+            battleCtx->battleMons[battler].curHP = hp;
+            Pokemon_SetValue(mon, MON_DATA_HP, &hp);
         }
     } else {
         BattleScript_Iter(battleCtx, jumpNoStatusRestore);

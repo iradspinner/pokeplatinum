@@ -206,6 +206,26 @@
             "en_US": "Sheer Force"
         },
         {
+            "id": "TestKit_Text_MenuAbilityAuras",
+            "en_US": "Auras"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityAuraBreak",
+            "en_US": "Aura Break"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityUnnerve",
+            "en_US": "Unnerve"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityScreenCleaner",
+            "en_US": "Screen Cleaner"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityRegenerator",
+            "en_US": "Regenerator"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

@@ -64,6 +64,7 @@ static void BattleAI_ClearKnownItem(BattleContext *battleCtx, u8 battler);
 static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, int defender1, int defender2);
 static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move);
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move);
+static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 static const Fraction sStatStageBoosts[];
 
@@ -111,6 +112,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].friskAnnounced = FALSE;
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
+    battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -1285,7 +1287,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
-    if (battler1ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+    if (battler1ItemEffect == HOLD_EFFECT_PINCH_PRIORITY
+        && BerryBlockedByUnnerve(battleSys, battleCtx, battler1) == FALSE) { // Oxide: Unnerve
         if (Battler_Ability(battleCtx, battler1) == ABILITY_GLUTTONY) {
             battler1ItemParam /= 2;
         }
@@ -1351,7 +1354,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
-    if (battler2ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+    if (battler2ItemEffect == HOLD_EFFECT_PINCH_PRIORITY
+        && BerryBlockedByUnnerve(battleSys, battleCtx, battler2) == FALSE) { // Oxide: Unnerve
         if (Battler_Ability(battleCtx, battler2) == ABILITY_GLUTTONY) {
             battler2ItemParam /= 2;
         }
@@ -3800,6 +3804,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SLOW_START,
     SWITCH_IN_CHECK_STATE_MOLD_BREAKER,
     SWITCH_IN_CHECK_STATE_PRESSURE,
+    SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES,
     SWITCH_IN_CHECK_STATE_FORM_CHANGE,
     SWITCH_IN_CHECK_STATE_AMULET_COIN,
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
@@ -4270,6 +4275,76 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->battleMons[battler].pressureAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_pressure;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        // Oxide, element 5: the later games' switch-in abilities, after
+        // hg-engine's SwitchInAbilityCheck, each announced once per switch-in
+        // as Pressure is.
+        case SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES:
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].oxideAbilityAnnounced || battleCtx->battleMons[battler].curHP == 0) {
+                    continue;
+                }
+
+                switch (Battler_Ability(battleCtx, battler)) {
+                case ABILITY_UNNERVE:
+                    subscript = subscript_unnerve;
+                    break;
+
+                case ABILITY_DARK_AURA:
+                case ABILITY_FAIRY_AURA:
+                case ABILITY_AURA_BREAK:
+                    battleCtx->msgTemp = Battler_Ability(battleCtx, battler);
+                    subscript = subscript_aura;
+                    break;
+
+                case ABILITY_SCREEN_CLEANER:
+                    // Reflect, Light Screen and Aurora Veil end on both sides.
+                    // With none up it says nothing.
+                    if ((battleCtx->sideConditionsMask[0] | battleCtx->sideConditionsMask[1])
+                        & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL)) {
+                        for (int side = 0; side < 2; side++) {
+                            battleCtx->sideConditionsMask[side] &= ~(SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL);
+                            battleCtx->sideConditions[side].reflectTurns = 0;
+                            battleCtx->sideConditions[side].lightScreenTurns = 0;
+                            battleCtx->sideConditions[side].auroraVeilTurns = 0;
+                        }
+
+                        subscript = subscript_screen_cleaner;
+                    }
+                    break;
+
+                case ABILITY_HOSPITALITY: {
+                    // In a double battle its partner, if hurt, gets back a
+                    // quarter of its HP.
+                    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+                    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                        && partner != battler
+                        && battleCtx->battleMons[partner].curHP
+                        && battleCtx->battleMons[partner].curHP < battleCtx->battleMons[partner].maxHP) {
+                        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[partner].maxHP, 4);
+                        battleCtx->sideEffectMon = partner;
+                        subscript = subscript_hospitality;
+                    }
+                    break;
+                }
+                }
+
+                battleCtx->battleMons[battler].oxideAbilityAnnounced = TRUE;
+
+                if (subscript != NULL) {
+                    battleCtx->msgBattlerTemp = battler;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4910,12 +4985,24 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
+// Oxide: a battler facing an Unnerve holder cannot eat its Berry, after
+// hg-engine's GetBattleMonItem.
+static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    return Item_IsBerry(Battler_HeldItem(battleCtx, battler))
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_UNNERVE);
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
     int subscript;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battler)) {
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5306,6 +5393,10 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
     BOOL result = FALSE;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battler)) {
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5719,6 +5810,10 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battleCtx->defender)) {
+        return result;
+    }
 
     switch (itemEffect) {
     case HOLD_EFFECT_DMG_USER_CONTACT_XFR:

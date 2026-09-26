@@ -1112,6 +1112,11 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityPixilate, 5
     AddListMenuEntry TestKit_Text_MenuAbilityLiquidVoice, 6
     AddListMenuEntry TestKit_Text_MenuAbilitySheerForce, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityAuras, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityAuraBreak, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityUnnerve, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityScreenCleaner, 11
+    AddListMenuEntry TestKit_Text_MenuAbilityRegenerator, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1121,6 +1126,11 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 5, TestKit_AbilityPixilate
     GoToIfEq VAR_0x8004, 6, TestKit_AbilityLiquidVoice
     GoToIfEq VAR_0x8004, 7, TestKit_AbilitySheerForce
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityAuras
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityAuraBreak
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityUnnerve
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityScreenCleaner
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilityRegenerator
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1613,6 +1623,77 @@ TestKit_AbilitySheerForce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Auras: a wild Yveltal with Dark Aura that knows only Dark Pulse; both
+   announce their auras, Yveltal as the battle starts and Xerneas as it comes
+   in. */
+TestKit_AbilityAuras:
+    SetVar VAR_0x800A, SPECIES_XERNEAS
+    SetVar VAR_0x800B, ABILITY_FAIRY_AURA
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_GEOMANCY
+    SetVar VAR_0x8008, MOVE_PSYSHOCK
+    SetVar VAR_0x8009, MOVE_FOCUS_BLAST
+    SetVar VAR_0x8000, SPECIES_YVELTAL
+    SetVar VAR_0x8001, ABILITY_DARK_AURA
+    SetVar VAR_0x8002, MOVE_DARK_PULSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Aura Break: a wild Yveltal with Dark Aura that knows only Dark Pulse;
+   Zygarde announces Aura Break as it comes in. */
+TestKit_AbilityAuraBreak:
+    SetVar VAR_0x800A, SPECIES_ZYGARDE_50
+    SetVar VAR_0x800B, ABILITY_AURA_BREAK
+    SetVar VAR_0x8006, MOVE_THOUSAND_ARROWS
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_COIL
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_YVELTAL
+    SetVar VAR_0x8001, ABILITY_DARK_AURA
+    SetVar VAR_0x8002, MOVE_DARK_PULSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Unnerve: any foe; Galvantula announces Unnerve as it comes in. */
+TestKit_AbilityUnnerve:
+    SetVar VAR_0x800A, SPECIES_GALVANTULA
+    SetVar VAR_0x800B, ABILITY_UNNERVE
+    SetVar VAR_0x8006, MOVE_THUNDER
+    SetVar VAR_0x8007, MOVE_BUG_BUZZ
+    SetVar VAR_0x8008, MOVE_ENERGY_BALL
+    SetVar VAR_0x8009, MOVE_STICKY_WEB
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Screen Cleaner: a wild Chansey that knows Reflect and Light Screen; once a
+   screen is up, switch Mr. Rime in and it ends them. */
+TestKit_AbilityScreenCleaner:
+    SetVar VAR_0x800A, SPECIES_MR_RIME
+    SetVar VAR_0x800B, ABILITY_SCREEN_CLEANER
+    SetVar VAR_0x8006, MOVE_FREEZE_DRY
+    SetVar VAR_0x8007, MOVE_PSYCHIC
+    SetVar VAR_0x8008, MOVE_RAPID_SPIN
+    SetVar VAR_0x8009, MOVE_SLACK_OFF
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_REFLECT
+    SetVar VAR_0x8003, MOVE_LIGHT_SCREEN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Regenerator: a wild Rattata that knows only Tackle; switch the hurt
+   Toxapex out and back, and it has a third of its HP back. */
+TestKit_AbilityRegenerator:
+    SetVar VAR_0x800A, SPECIES_TOXAPEX
+    SetVar VAR_0x800B, ABILITY_REGENERATOR
+    SetVar VAR_0x8006, MOVE_SCALD
+    SetVar VAR_0x8007, MOVE_TOXIC
+    SetVar VAR_0x8008, MOVE_HAZE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

@@ -164,17 +164,21 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Water Bubble | Araquanid: Liquidation, Leech Life, Protect, Mirror Coat; foe a wild Gengar that knows only Will-O-Wisp | "ARAQUANID's Water Bubble prevents burns!" every time | 6510658b |
 | Merciless | Toxapex: Toxic, Scald, Recover, Protect; foe a wild Rattata that knows only Growl | Once Toxic has poisoned Rattata, every Scald is "A critical hit!" | 6510658b |
 | Long Reach | Decidueye: Leaf Blade, Shadow Sneak, Swords Dance, Roost; foe a wild Ferrothorn with Iron Barbs that knows only Iron Defense | Leaf Blade brings no Iron Barbs message and costs Decidueye nothing | 6510658b |
-| Pixilate | Sylveon: Hyper Voice, Quick Attack, Calm Mind, Wish; foe a wild Misdreavus, a Ghost type, that knows only Growl | Hyper Voice and Quick Attack hit Misdreavus, where a Normal move would bring "It doesn't affect..." | this batch |
-| Liquid Voice | Primarina: Hyper Voice, Moonblast, Calm Mind, Sparkling Aria; foe a wild Vaporeon with Water Absorb that knows only Growl | Hyper Voice does no damage: Vaporeon's Water Absorb takes it, as it takes Sparkling Aria | this batch |
-| Sheer Force | Toucannon: Flame Charge, Brave Bird, Bullet Seed, Roost; foe a wild Chansey that knows only Growl | Flame Charge never brings "TOUCANNON's Speed rose!"; Brave Bird's recoil, not a secondary effect, stays | this batch |
+| Pixilate | Sylveon: Hyper Voice, Quick Attack, Calm Mind, Wish; foe a wild Misdreavus, a Ghost type, that knows only Growl | Hyper Voice and Quick Attack hit Misdreavus, where a Normal move would bring "It doesn't affect..." | 9b681d08 |
+| Liquid Voice | Primarina: Hyper Voice, Moonblast, Calm Mind, Sparkling Aria; foe a wild Vaporeon with Water Absorb that knows only Growl | Hyper Voice does no damage: Vaporeon's Water Absorb takes it, as it takes Sparkling Aria | 9b681d08 |
+| Sheer Force | Toucannon: Flame Charge, Brave Bird, Bullet Seed, Roost; foe a wild Chansey that knows only Growl | Flame Charge never brings "TOUCANNON's Speed rose!"; Brave Bird's recoil, not a secondary effect, stays | 9b681d08 |
+| Auras | Xerneas with Fairy Aura: Moonblast, Geomancy, Psyshock, Focus Blast; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "The wild YVELTAL is radiating a dark aura!" as the battle starts, and "XERNEAS is radiating a fairy aura!" when Xerneas comes in | this batch |
+| Aura Break | Zygarde (50% Forme) with Aura Break: Thousand Arrows, Dragon Dance, Coil, Rest; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "ZYGARDE reversed all other Pokémon's auras!" when Zygarde comes in; from then on Dark Aura weakens Dark moves by a quarter in place of raising them, which has no message | this batch |
+| Unnerve | Galvantula: Thunder, Bug Buzz, Energy Ball, Sticky Web; foe a wild Rattata that knows only Growl | "The foe's team is too nervous to eat Berries!" when Galvantula comes in. The wild foe holds no Berry, so the Berry block itself does not show here | this batch |
+| Screen Cleaner | Mr. Rime: Freeze-Dry, Psychic, Rapid Spin, Slack Off; foe a wild Chansey that knows Reflect and Light Screen | Once Chansey has a screen up, switch Mr. Rime in: "All screens on the field were cleansed!", and Freeze-Dry's damage goes back up | this batch |
+| Regenerator | Toxapex: Scald, Toxic, Haze, Recover; foe a wild Rattata that knows only Tackle | Let Tackle hurt Toxapex, switch it out, and bring it back: it has a third of its HP back, with no message | this batch |
 
 ## Not built yet
 
 Steelworker, Sharpness and Battery change only a move's power, with no
 message, and the kit's Pokemon have random IVs and natures, so there is no
 fixed number to look for; they have no entry. Battery also needs a double
-battle. Dark Aura, Fairy Aura and Aura Break get entries with their switch-in
-messages.
+battle, as does Hospitality, which has no entry either.
 
 Kit-only trainers whose teams use the new moves, so the AI's side gets seen too.
 Ian chose move sets first; trainers are the next step when he wants them.
