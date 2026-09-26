@@ -24,10 +24,10 @@ D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
       ("Machamp", "Bronzor", "Crunch", (42, 50)),
       ("Machamp", "Bronzor", "Cross Chop", (81, 96)),
       ("Machamp", "Clefairy", "Cross Chop", (63, 74))]
-# Ian's caps: the Level Caps sheet, with Galactic 64 and Volkner 68 from his
-# Battle Zone ruling of 2026-09-25.
+# Ian's caps: the Level Caps sheet, with HQ 60, Galactic 65 and Volkner 68
+# from his Battle Zone rulings of 2026-09-25.
 CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
-        "Byron": 53, "Candice": 56, "Galactic": 64, "Volkner": 68, "League": 78}
+        "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78}
 # Moves the calculator's Generation 4 mechanics give no number for (they are
 # handled only in its later-generation code); each is reported, not scored.
 UNMODELLED = {"Electro Ball", "Heavy Slam", "Psywave", "Super Fang", "Trump Card"}

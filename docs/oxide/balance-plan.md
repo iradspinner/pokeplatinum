@@ -6,15 +6,14 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-25).** Test.nds is now Oxide's base ROM, with
-Ian's late boss updates and his sheet's testing teams as the baseline
-(Ian's rulings below); the carry-over is on branch `base-rom-2026-08-31`,
-checked clean (the importer and all three bulk tools at 0 against it, every
-balance suite passing) and waiting for the Overseer to swap the base ROM's
-pin and merge. Ian chose two Galactic splits (HQ 60, Galactic 65); the tool
-learns them after that merge. The Battle Zone's 18-level drop stays parked
-until then. Done before that: B1a, B1b, B1d, B1e, B2, B3a and B4's tools.
-B3b is parked for the new CPU. No questions are open.
+**Where it stands (2026-09-25).** Test.nds is Oxide's base ROM, with Ian's
+late boss updates and his sheet's testing teams as the baseline, merged.
+Honey trees now have one table per badge count, each opening in its own
+split. The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), on a
+branch stacked on the honey-tree one. The Battle Zone's 18-level drop is
+parked and fits that shape unchanged; it lands next. Done: B1a, B1b, B1d,
+B1e, B2, B3a and B4's tools. B3b is parked for the new CPU. No questions
+are open.
 
 ## The target
 
@@ -121,7 +120,11 @@ Ian's rulings, 2026-09-25, on the Galactic stretch and the base ROM:
 
 - **Two Galactic splits: HQ at 60, then Galactic (the Battle Zone, the
   climb, Spear Pillar, the Distortion World) at 65**, with Volkner at 68.
-  The tool learns the new split once the base ROM change below has merged.
+  The tool knows both (2026-09-25, branch `balance-two-galactic-splits-v2`):
+  the Warehouse and the HQ are the HQ split, closing on Cyrus 2; the Battle
+  Zone, the climb, Spear Pillar and the Distortion World are Galactic,
+  closing on Cyrus 3. The encounter design's split table still has one
+  Galactic split at 64, which is the encounter track's to change.
 - **The "[TESTING CHANGES]" teams in Ian's Boss Documentation sheet are
   Oxide's baseline.**
 - **Test.nds is the base ROM.** The ROM Phase 3 carried over from was
@@ -533,17 +536,17 @@ on Oxide's own fights: very hard is Wake's fight and above (threat
 (threat 0.60 to 0.72, answers 0.20 or fewer), medium hard is Saturn 1,
 Barry 5 and Bertha (threat 0.40 to 0.55, answers 0.20 to 0.30). For
 ordinary trainers, medium hard sits between Wake's split's filler (threat
-0.20, answers 0.51, 10 under the cap) and Candice's (0.42 and 0.27, 4
+0.21, answers 0.50, 10 under the cap) and Candice's (0.42 and 0.27, 4
 under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ), Ian's Trick Room team | 0.32, 0.17 | 0.35, 0.14 |
-| Cyrus 2 (HQ), with Suicune | 0.49, 0.10 | 0.53, 0.09 |
-| Mars and Jupiter, Stark Mountain | 0.47, 0.18 | 0.50, 0.16 |
-| Mars and Jupiter, Spear Pillar, with Luxray | 0.40, 0.24 | 0.42, 0.21 |
-| Cyrus 3, Ian's new team | 0.63, 0.14 | 0.65, 0.11 |
-| Volkner | 0.75, 0.18 | 0.77, 0.16 |
+| Saturn 2 (HQ, cap 60), Ian's Trick Room team | 0.33, 0.17 | 0.35, 0.14 |
+| Cyrus 2 (HQ, cap 60), with Suicune | 0.49, 0.11 | 0.52, 0.09 |
+| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.18 | 0.50, 0.16 |
+| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.40, 0.25 | 0.42, 0.22 |
+| Cyrus 3 (Galactic, 65), Ian's new team | 0.63, 0.14 | 0.65, 0.12 |
+| Volkner (68) | 0.75, 0.17 | 0.77, 0.16 |
 
 These are Ian's baseline teams (the table was first run on the base ROM's
 older teams). **Two of them lean on what the scores cannot see.** Saturn 2's

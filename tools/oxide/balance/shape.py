@@ -48,10 +48,10 @@ GROUPS = {
 ZONE_BOSS = ("TRAINER_COMMANDER_MARS_STARK_MOUNTAIN", "TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN")
 # Which side the player has: before the zone's captures (Candice's species)
 # or after them (the Galactic split's, which holds the zone and the climb).
-SIDE_OF = {"hq": "Candice", "zone": "Galactic", "climb": "Galactic", "volkner": "Galactic"}
+SIDE_OF = {"hq": "HQ", "zone": "Galactic", "climb": "Galactic", "volkner": "Volkner"}
 DELTAS = (-8, -6, -4, -2, 0, 2)
 FILLER_DELTAS = (-10, -7, -4)
-REFERENCE_CAP = {"hq": 62, "zone": 66, "climb": 66, "volkner": 70}
+REFERENCE_CAP = {"hq": 60, "zone": 65, "climb": 65, "volkner": 68}   # Ian's caps since 2026-09-25
 
 
 def _clear_pool_caches():

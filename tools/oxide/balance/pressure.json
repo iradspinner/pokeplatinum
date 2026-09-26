@@ -1938,16 +1938,16 @@
   "cyrus_2": {
    "key": "cyrus_2",
    "label": "Cyrus 2",
-   "split": "Galactic",
-   "cap": 64,
-   "pool": 329,
+   "split": "HQ",
+   "cap": 60,
+   "pool": 323,
    "weather": null,
-   "threat": 0.381,
-   "answers": 0.214,
-   "answers_lock": 0.214,
-   "max_threat": 0.766,
-   "min_answers": 0.061,
-   "min_answers_lock": 0.061,
+   "threat": 0.458,
+   "answers": 0.13,
+   "answers_lock": 0.13,
+   "max_threat": 0.83,
+   "min_answers": 0.034,
+   "min_answers_lock": 0.034,
    "choice_mons": 0,
    "mons": [
     {
@@ -1958,9 +1958,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.237,
-     "answers": 0.267,
-     "answers_lock": 0.267
+     "threat": 0.316,
+     "answers": 0.164,
+     "answers_lock": 0.164
     },
     {
      "variant": 0,
@@ -1970,9 +1970,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.091,
-     "answers": 0.24,
-     "answers_lock": 0.24
+     "threat": 0.155,
+     "answers": 0.133,
+     "answers_lock": 0.133
     },
     {
      "variant": 0,
@@ -1982,9 +1982,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.653,
-     "answers": 0.24,
-     "answers_lock": 0.24
+     "threat": 0.759,
+     "answers": 0.13,
+     "answers_lock": 0.13
     },
     {
      "variant": 0,
@@ -1994,9 +1994,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.179,
-     "answers": 0.179,
-     "answers_lock": 0.179
+     "threat": 0.245,
+     "answers": 0.105,
+     "answers_lock": 0.105
     },
     {
      "variant": 0,
@@ -2006,9 +2006,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.359,
-     "answers": 0.298,
-     "answers_lock": 0.298
+     "threat": 0.44,
+     "answers": 0.214,
+     "answers_lock": 0.214
     },
     {
      "variant": 0,
@@ -2018,32 +2018,32 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.766,
-     "answers": 0.061,
-     "answers_lock": 0.061
+     "threat": 0.83,
+     "answers": 0.034,
+     "answers_lock": 0.034
     }
    ],
-   "calcs": 36154,
+   "calcs": 32542,
    "errors": [
-    "p105 Trump Card: damage is not a number",
-    "p140 Trump Card: damage is not a number",
-    "p151 Trump Card: damage is not a number",
-    "p162 Psywave: damage is not a number",
-    "p190 Psywave: damage is not a number",
-    "p191 Psywave: damage is not a number",
-    "p194 Heavy Slam: damage is not a number",
-    "p195 Heavy Slam: damage is not a number",
+    "p102 Trump Card: damage is not a number",
+    "p136 Trump Card: damage is not a number",
+    "p147 Trump Card: damage is not a number",
+    "p158 Psywave: damage is not a number",
+    "p186 Psywave: damage is not a number",
+    "p187 Psywave: damage is not a number",
+    "p190 Heavy Slam: damage is not a number",
+    "p191 Heavy Slam: damage is not a number",
+    "p204 Super Fang: damage is not a number",
+    "p206 Super Fang: damage is not a number",
+    "p207 Super Fang: damage is not a number",
     "p208 Super Fang: damage is not a number",
-    "p210 Super Fang: damage is not a number",
-    "p211 Super Fang: damage is not a number",
-    "p212 Super Fang: damage is not a number",
-    "p231 Super Fang: damage is not a number",
-    "p250 Super Fang: damage is not a number",
-    "p277 Psywave: damage is not a number",
-    "p288 Trump Card: damage is not a number",
-    "p292 Super Fang: damage is not a number",
-    "p309 Trump Card: damage is not a number",
-    "p312 Trump Card: damage is not a number",
+    "p227 Super Fang: damage is not a number",
+    "p246 Super Fang: damage is not a number",
+    "p272 Psywave: damage is not a number",
+    "p283 Trump Card: damage is not a number",
+    "p287 Super Fang: damage is not a number",
+    "p303 Trump Card: damage is not a number",
+    "p306 Trump Card: damage is not a number",
     "p36 Super Fang: damage is not a number",
     "p47 Heavy Slam: damage is not a number",
     "p53 Heavy Slam: damage is not a number",
@@ -2051,24 +2051,24 @@
     "p69 Electro Ball: damage is not a number",
     "p71 Trump Card: damage is not a number",
     "p77 Trump Card: damage is not a number",
-    "p98 Heavy Slam: damage is not a number"
+    "p96 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.39,
-   "wall_seconds": 4.51
+   "node_seconds": 4.03,
+   "wall_seconds": 4.14
   },
   "saturn_2": {
    "key": "saturn_2",
    "label": "Saturn 2",
-   "split": "Galactic",
-   "cap": 64,
-   "pool": 329,
+   "split": "HQ",
+   "cap": 60,
+   "pool": 323,
    "weather": null,
-   "threat": 0.249,
-   "answers": 0.315,
-   "answers_lock": 0.325,
-   "max_threat": 0.769,
-   "min_answers": 0.158,
-   "min_answers_lock": 0.158,
+   "threat": 0.292,
+   "answers": 0.203,
+   "answers_lock": 0.214,
+   "max_threat": 0.827,
+   "min_answers": 0.062,
+   "min_answers_lock": 0.062,
    "choice_mons": 1,
    "mons": [
     {
@@ -2079,9 +2079,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.061,
-     "answers": 0.158,
-     "answers_lock": 0.158
+     "threat": 0.08,
+     "answers": 0.068,
+     "answers_lock": 0.068
     },
     {
      "variant": 0,
@@ -2091,9 +2091,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.103,
-     "answers": 0.401,
-     "answers_lock": 0.401
+     "threat": 0.136,
+     "answers": 0.251,
+     "answers_lock": 0.251
     },
     {
      "variant": 0,
@@ -2104,8 +2104,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.0,
-     "answers": 0.395,
-     "answers_lock": 0.395
+     "answers": 0.251,
+     "answers_lock": 0.251
     },
     {
      "variant": 0,
@@ -2115,9 +2115,9 @@
      "weather": null,
      "choice": true,
      "locked_move": "Stone Edge",
-     "threat": 0.356,
-     "answers": 0.486,
-     "answers_lock": 0.55
+     "threat": 0.452,
+     "answers": 0.368,
+     "answers_lock": 0.43
     },
     {
      "variant": 0,
@@ -2127,9 +2127,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.207,
-     "answers": 0.167,
-     "answers_lock": 0.167
+     "threat": 0.26,
+     "answers": 0.062,
+     "answers_lock": 0.062
     },
     {
      "variant": 0,
@@ -2139,32 +2139,32 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.769,
-     "answers": 0.28,
-     "answers_lock": 0.28
+     "threat": 0.827,
+     "answers": 0.22,
+     "answers_lock": 0.22
     }
    ],
-   "calcs": 37141,
+   "calcs": 33511,
    "errors": [
-    "p105 Trump Card: damage is not a number",
-    "p140 Trump Card: damage is not a number",
-    "p151 Trump Card: damage is not a number",
-    "p162 Psywave: damage is not a number",
-    "p190 Psywave: damage is not a number",
-    "p191 Psywave: damage is not a number",
-    "p194 Heavy Slam: damage is not a number",
-    "p195 Heavy Slam: damage is not a number",
+    "p102 Trump Card: damage is not a number",
+    "p136 Trump Card: damage is not a number",
+    "p147 Trump Card: damage is not a number",
+    "p158 Psywave: damage is not a number",
+    "p186 Psywave: damage is not a number",
+    "p187 Psywave: damage is not a number",
+    "p190 Heavy Slam: damage is not a number",
+    "p191 Heavy Slam: damage is not a number",
+    "p204 Super Fang: damage is not a number",
+    "p206 Super Fang: damage is not a number",
+    "p207 Super Fang: damage is not a number",
     "p208 Super Fang: damage is not a number",
-    "p210 Super Fang: damage is not a number",
-    "p211 Super Fang: damage is not a number",
-    "p212 Super Fang: damage is not a number",
-    "p231 Super Fang: damage is not a number",
-    "p250 Super Fang: damage is not a number",
-    "p277 Psywave: damage is not a number",
-    "p288 Trump Card: damage is not a number",
-    "p292 Super Fang: damage is not a number",
-    "p309 Trump Card: damage is not a number",
-    "p312 Trump Card: damage is not a number",
+    "p227 Super Fang: damage is not a number",
+    "p246 Super Fang: damage is not a number",
+    "p272 Psywave: damage is not a number",
+    "p283 Trump Card: damage is not a number",
+    "p287 Super Fang: damage is not a number",
+    "p303 Trump Card: damage is not a number",
+    "p306 Trump Card: damage is not a number",
     "p36 Super Fang: damage is not a number",
     "p47 Heavy Slam: damage is not a number",
     "p53 Heavy Slam: damage is not a number",
@@ -2172,24 +2172,24 @@
     "p69 Electro Ball: damage is not a number",
     "p71 Trump Card: damage is not a number",
     "p77 Trump Card: damage is not a number",
-    "p98 Heavy Slam: damage is not a number"
+    "p96 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.55,
-   "wall_seconds": 4.67
+   "node_seconds": 4.19,
+   "wall_seconds": 4.31
   },
   "mars_jupiter": {
    "key": "mars_jupiter",
    "label": "Mars and Jupiter",
    "split": "Galactic",
-   "cap": 64,
+   "cap": 65,
    "pool": 329,
    "weather": null,
-   "threat": 0.32,
-   "answers": 0.318,
-   "answers_lock": 0.33,
-   "max_threat": 0.678,
-   "min_answers": 0.061,
-   "min_answers_lock": 0.061,
+   "threat": 0.309,
+   "answers": 0.342,
+   "answers_lock": 0.354,
+   "max_threat": 0.653,
+   "min_answers": 0.067,
+   "min_answers_lock": 0.067,
    "choice_mons": 1,
    "mons": [
     {
@@ -2200,9 +2200,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.359,
-     "answers": 0.438,
-     "answers_lock": 0.438
+     "threat": 0.347,
+     "answers": 0.453,
+     "answers_lock": 0.453
     },
     {
      "variant": 0,
@@ -2213,8 +2213,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.0,
-     "answers": 0.061,
-     "answers_lock": 0.061
+     "answers": 0.067,
+     "answers_lock": 0.067
     },
     {
      "variant": 0,
@@ -2224,9 +2224,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.678,
-     "answers": 0.188,
-     "answers_lock": 0.188
+     "threat": 0.653,
+     "answers": 0.207,
+     "answers_lock": 0.207
     },
     {
      "variant": 0,
@@ -2237,8 +2237,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.033,
-     "answers": 0.389,
-     "answers_lock": 0.389
+     "answers": 0.426,
+     "answers_lock": 0.426
     },
     {
      "variant": 0,
@@ -2248,9 +2248,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.477,
-     "answers": 0.155,
-     "answers_lock": 0.155
+     "threat": 0.453,
+     "answers": 0.167,
+     "answers_lock": 0.167
     },
     {
      "variant": 0,
@@ -2260,9 +2260,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.395,
-     "answers": 0.435,
-     "answers_lock": 0.435
+     "threat": 0.389,
+     "answers": 0.438,
+     "answers_lock": 0.438
     },
     {
      "variant": 0,
@@ -2272,9 +2272,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.477,
-     "answers": 0.164,
-     "answers_lock": 0.164
+     "threat": 0.462,
+     "answers": 0.195,
+     "answers_lock": 0.195
     },
     {
      "variant": 0,
@@ -2285,8 +2285,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.003,
-     "answers": 0.608,
-     "answers_lock": 0.608
+     "answers": 0.653,
+     "answers_lock": 0.653
     },
     {
      "variant": 0,
@@ -2296,9 +2296,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.155,
-     "answers": 0.486,
-     "answers_lock": 0.486
+     "threat": 0.149,
+     "answers": 0.532,
+     "answers_lock": 0.532
     },
     {
      "variant": 0,
@@ -2308,12 +2308,12 @@
      "weather": null,
      "choice": true,
      "locked_move": "Dark Pulse",
-     "threat": 0.626,
-     "answers": 0.258,
-     "answers_lock": 0.371
+     "threat": 0.602,
+     "answers": 0.277,
+     "answers_lock": 0.401
     }
    ],
-   "calcs": 59818,
+   "calcs": 59838,
    "errors": [
     "p105 Trump Card: damage is not a number",
     "p140 Trump Card: damage is not a number",
@@ -2340,25 +2340,26 @@
     "p65 Trump Card: damage is not a number",
     "p69 Electro Ball: damage is not a number",
     "p71 Trump Card: damage is not a number",
+    "p74 Heavy Slam: damage is not a number",
     "p77 Trump Card: damage is not a number",
     "p98 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 7.03,
-   "wall_seconds": 7.18
+   "node_seconds": 7.08,
+   "wall_seconds": 7.25
   },
   "cyrus_3": {
    "key": "cyrus_3",
    "label": "Cyrus 3",
    "split": "Galactic",
-   "cap": 64,
+   "cap": 65,
    "pool": 329,
    "weather": null,
-   "threat": 0.529,
-   "answers": 0.21,
-   "answers_lock": 0.21,
-   "max_threat": 0.833,
-   "min_answers": 0.112,
-   "min_answers_lock": 0.112,
+   "threat": 0.52,
+   "answers": 0.229,
+   "answers_lock": 0.229,
+   "max_threat": 0.821,
+   "min_answers": 0.119,
+   "min_answers_lock": 0.119,
    "choice_mons": 0,
    "mons": [
     {
@@ -2369,9 +2370,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.195,
-     "answers": 0.255,
-     "answers_lock": 0.255
+     "threat": 0.191,
+     "answers": 0.271,
+     "answers_lock": 0.271
     },
     {
      "variant": 0,
@@ -2382,8 +2383,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.514,
-     "answers": 0.185,
-     "answers_lock": 0.185
+     "answers": 0.225,
+     "answers_lock": 0.225
     },
     {
      "variant": 0,
@@ -2393,9 +2394,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.663,
-     "answers": 0.143,
-     "answers_lock": 0.143
+     "threat": 0.65,
+     "answers": 0.17,
+     "answers_lock": 0.17
     },
     {
      "variant": 0,
@@ -2405,9 +2406,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.833,
-     "answers": 0.155,
-     "answers_lock": 0.155
+     "threat": 0.821,
+     "answers": 0.158,
+     "answers_lock": 0.158
     },
     {
      "variant": 0,
@@ -2417,9 +2418,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.21,
-     "answers": 0.41,
-     "answers_lock": 0.41
+     "threat": 0.207,
+     "answers": 0.432,
+     "answers_lock": 0.432
     },
     {
      "variant": 0,
@@ -2429,12 +2430,12 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.757,
-     "answers": 0.112,
-     "answers_lock": 0.112
+     "threat": 0.739,
+     "answers": 0.119,
+     "answers_lock": 0.119
     }
    ],
-   "calcs": 38457,
+   "calcs": 38469,
    "errors": [
     "p105 Trump Card: damage is not a number",
     "p140 Trump Card: damage is not a number",
@@ -2461,11 +2462,12 @@
     "p65 Trump Card: damage is not a number",
     "p69 Electro Ball: damage is not a number",
     "p71 Trump Card: damage is not a number",
+    "p74 Heavy Slam: damage is not a number",
     "p77 Trump Card: damage is not a number",
     "p98 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.65,
-   "wall_seconds": 4.77
+   "node_seconds": 4.69,
+   "wall_seconds": 4.81
   },
   "volkner": {
    "key": "volkner",

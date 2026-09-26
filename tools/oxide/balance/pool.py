@@ -47,7 +47,7 @@ SPLITS = [s for s in splits.SPLITS if s != "Post"]   # post-game has no cap
 AVERAGE_IV = 15
 CLOSING = {"Roark": "roark", "Gardenia": "gardenia", "Fantina": "fantina",
            "Maylene": "maylene", "Wake": "wake", "Byron": "byron",
-           "Candice": "candice", "Galactic": "cyrus_3", "Volkner": "volkner",
+           "Candice": "candice", "HQ": "cyrus_2", "Galactic": "cyrus_3", "Volkner": "volkner",
            "League": "cynthia"}
 LAND_KEYS = ("land_encounters", "day", "night")
 HONEY_SPLIT = "Gardenia"
