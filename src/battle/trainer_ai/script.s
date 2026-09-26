@@ -7976,10 +7976,13 @@ TagStrategy_CheckElectricMove:
     // takes the move and raises its Sp. Atk, so the move is lost and helps the foe. Only a
     // move that can be drawn in counts: one aimed at a single target, used without Mold
     // Breaker or Normalize, at a foe whose partner is still standing.
+    // Oxide, vanilla fix (Ian, 2026-09-27): the same holds for the attacker's own partner.
+    // Vanilla gave the second case -10 for any Electric move, spread moves included, which
+    // are never drawn in; a move that cannot be drawn in now skips both checks.
     IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
     IfMoveEqualTo MOVE_PARABOLIC_CHARGE, TagStrategy_SpreadElectricMove // Oxide
     IfMoveCanBeDrawnIn TagStrategy_CheckTargetLightningRod
-    GoTo TagStrategy_PartnerHasLightningRod
+    GoTo TagStrategy_CheckElectric_End
 
 TagStrategy_CheckTargetLightningRod:
     IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_PartnerHasLightningRod
@@ -8039,10 +8042,12 @@ TagStrategy_CheckWaterMove:
     //  - The attacker's partner has Storm Drain, score -10
     // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1. Now the holder takes
     // the move and raises its Sp. Atk, as for Lightning Rod above, with the same test.
+    // Oxide, vanilla fix (Ian, 2026-09-27): the second case too, as for Lightning Rod above.
+    // Vanilla gave Muddy Water -10 beside a Storm Drain partner, which never draws it in.
     IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
     IfMoveEqualTo MOVE_SPARKLING_ARIA, TagStrategy_SparklingAria // Oxide
     IfMoveCanBeDrawnIn TagStrategy_CheckTargetStormDrain
-    GoTo TagStrategy_CheckPartnerStormDrain
+    GoTo TagStrategy_CheckWater_End
 
 TagStrategy_CheckTargetStormDrain:
     IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_CheckPartnerStormDrain
