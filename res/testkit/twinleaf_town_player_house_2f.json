@@ -516,6 +516,10 @@
             "en_US": "Set 31"
         },
         {
+            "id": "TestKit_Text_MenuSetMore",
+            "en_US": "More sets"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",

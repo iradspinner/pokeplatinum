@@ -105,8 +105,12 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 31 | Belch, Belly Drum, Recover, Splash | 7b704a8c; the set also puts a Sitrus Berry in the bag, for Ian to give to Mew. Before Mew has eaten it, choosing Belch prints "hasn't eaten a Berry, so it can't possibly belch!" and Belch cannot be picked; Belly Drum halves Mew's HP, the Berry heals it, and from then Belch can be chosen, still after switching out and back |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
-`TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets`, and
+`TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and
 a `TestKit_Text_MenuSetN` message in `res/testkit/twinleaf_town_player_house_2f.json`.
+Sets 1 to 27 fill the first page, whose last entry, "More sets", opens the
+second: a field menu holds 28 entries (`FIELD_MENU_ENTRIES_MAX`), and a
+29th is written past the end of the menu's arrays. Sets 28 to 31 were
+added that way on 2026-09-25 and moved to the second page on 2026-09-26.
 Pair a move that needs a condition with the move that sets it up, as sets 3, 5,
 8 and 9 do.
 

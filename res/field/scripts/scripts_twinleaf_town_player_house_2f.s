@@ -630,10 +630,7 @@ TestKit_MoveSets:
     AddListMenuEntry TestKit_Text_MenuSet25, 24
     AddListMenuEntry TestKit_Text_MenuSet26, 25
     AddListMenuEntry TestKit_Text_MenuSet27, 26
-    AddListMenuEntry TestKit_Text_MenuSet28, 27
-    AddListMenuEntry TestKit_Text_MenuSet29, 28
-    AddListMenuEntry TestKit_Text_MenuSet30, 29
-    AddListMenuEntry TestKit_Text_MenuSet31, 30
+    AddListMenuEntry TestKit_Text_MenuSetMore, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet1
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet2
@@ -662,10 +659,23 @@ TestKit_MoveSets:
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet25
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet26
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet27
-    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet28
-    GoToIfEq VAR_0x8004, 28, TestKit_MoveSet29
-    GoToIfEq VAR_0x8004, 29, TestKit_MoveSet30
-    GoToIfEq VAR_0x8004, 30, TestKit_MoveSet31
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSets2
+    GoTo TestKit_Close
+
+/* The field menu holds 28 entries (FIELD_MENU_ENTRIES_MAX), so the sets go on
+   over a second page, as the abilities do. */
+TestKit_MoveSets2:
+    Message TestKit_Text_WhichSet
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuSet28, 0
+    AddListMenuEntry TestKit_Text_MenuSet29, 1
+    AddListMenuEntry TestKit_Text_MenuSet30, 2
+    AddListMenuEntry TestKit_Text_MenuSet31, 3
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
+    GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
+    GoToIfEq VAR_0x8004, 2, TestKit_MoveSet30
+    GoToIfEq VAR_0x8004, 3, TestKit_MoveSet31
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
