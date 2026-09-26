@@ -32,10 +32,12 @@ Then say in one or two sentences what this session will do, and do it.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
   drive, which a separate chat surface works from.
-- Never delete, move, or overwrite the base ROM in the project folder
-  (`Platinum Unlocked - Challenge - Adjusted v1.1.nds`). It is what every
-  verify tool compares the build against, and the only source for anything
-  Phase 3 might need re-checking.
+- Never delete, move, or overwrite a base ROM in the project folder. Since
+  2026-09-26 the base ROM is Ian's `Test.nds` of 2026-08-31, copied there as
+  `Platinum Oxide base ROM 2026-08-31 (from Example ROM Test.nds).nds`; the
+  earlier `Platinum Unlocked - Challenge - Adjusted v1.1.nds` stays as the
+  record of 2026-08-11. The base ROM is what every verify tool compares the
+  build against (design doc, rule 3).
 - A few files deliberately no longer match the base ROM, `scripts_common`
   first among them. The `bulk_*` tools keep their own list of these and skip
   them; do not "fix" a mismatch the tracker or its archive says is intended.
@@ -154,7 +156,9 @@ its own tests and CLI (see its build plan). `tools/oxide/live_watch.py` attaches
 to Ian's melonDS on Windows over its GDB stub while Ian drives the game; never
 launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b, and the
 `debug-live` skill). The base ROM itself lives outside the repo (see the design
-doc for its path on Ian's machine); a copy is pinned at `~/roms/base.nds`. A
+doc for its path on Ian's machine); a copy is pinned at `~/roms/base.nds`,
+with dated pins `~/roms/base-2026-08-31.nds` (the same file) and
+`~/roms/base-2026-08-11.nds` (the base until 2026-09-26). A
 byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
 `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.

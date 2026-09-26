@@ -7,7 +7,6 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 **Second track: the encounter tool.** A browser and command-line tool for designing Oxide's wild encounter tables, with a dex, a move list and a damage calculator on Oxide's own data; it owns `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/` and the `encounter-*.md` docs. The authoring pass is done: every wild, water and scripted source is designed from the pick-list, and the tree builds with all 184 tables matching their JSON. Two things are live: Maylene's split waits on the balance track's final level caps before `cli evolve` is re-run, and Ian owes one damage roll in melonDS against the calculator. Everything open, and how to resume cold, is in `docs/oxide/encounter-tool-build-plan.md`, with the finished milestones in its archive; this paragraph is the tool's whole footprint in this file.
 
 
-**In progress (2026-09-26): the base ROM becomes `Test.nds`.** The pinned `~/roms/base.nds` (DSPRE export of 2026-08-11) is stale: Ian's work of 14 to 31 August, 37 trainers with the bosses among them, 9 maps' events, 6 scripts, 2 text banks, Beautifly's record and 7 learnsets, is only in `G:\PokeROMs\Rokemon RomHack Creation Hub\Example ROM\Test.nds` (SHA-1 375c2cf4). Ian chose to make it the base ROM and rerun the carry-over against it. It is pinned as `~/roms/base-2026-08-31.nds`, with the old base kept as `~/roms/base-2026-08-11.nds` (865a7c9a) and a named copy in the project folder; the original in the project folder is untouched. The balance session carries the carry-over on branch `base-rom-2026-08-31`, passing that path explicitly. **Until it merges, `~/roms/base.nds` stays the old base** so every other gate keeps passing; at the merge the Overseer swaps the pin and updates the design doc's rule 3, section 2 and CLAUDE.md.
 
 **Next steps, in order:**
 
@@ -50,6 +49,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
+
+- **Two likely typos in the new base ROM** (2026-09-26, carried over from `Test.nds` as it has them): the Celestic Town grunt is named "Officert Argo", and both "Officer Hisperid" and "Officer Hesperid" exist. Fix or keep?
 
 
 - **Element 6 QA questions** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`): should a trainer's form Pokemon also get its form's ability, as it now gets its form's stats? And is Snow Cloak on Wormadam's Sandy and Trash forms intended? It looks like a base-ROM slip, and it means Beauty Devon's two and Worker Jackson's Wormadam fight with Anticipation. Also for the record, one more VANILLA FIX landed: 45ad243a6, Weather Ball in fog after a knockout.
@@ -119,6 +120,7 @@ None is Phase 4 work; all of them shape the finished game.
   - [ ] Main track: the ferry gate in `scripts_snowpoint_city.s`, its two `FLAG_GAME_COMPLETED` checks replaced by **"Galactic HQ cleared"** (changed 2026-09-26 from Lake Acuity; find the flag or var set when Cyrus and Saturn are beaten at Veilstone, and confirm it)
   - [ ] Main track: Stark Mountain room 3 drops its Hall of Fame and National Dex checks, and Heatran becomes a draw from the legendary pool
   - [ ] Main track: reword the Fight Area arrival lines and the sailor's line
+  - [ ] Main track: **the level 71 Lucas and Dawn fight at the start of Victory Road.** Ian designed it there (trainer slots 779 to 784, one per starter, six Pokemon each, in the new base ROM), but its only trigger is `scripts_battleground.s`, post-game as in vanilla. It needs a script and an event on Victory Road; it is on the balance plan's trainer-pass list. The level 9 set (787 to 792, Route 202) and the level 30 set (793 to 802, Route 207) are already on the story path.
   - [ ] Main track: gate the Volkner and Flint tag battle behind the Beacon Badge, since the player now reaches the Fight Area before Volkner's Gym
   - [ ] Main track: the script-driven level caps (element 8) take the new split
   - [x] Balance track, first (done 2026-09-26, branch `balance-galactic-split`): teach `tools/oxide/balance/` the Galactic split (its split lists in `splits.py` and `required.py`, the boss per split in `pool.py` and `metrics.py`, and the caps `test_b3` pins, now Galactic 64 and Volkner 68), on a branch that merges `worktree-encounter-step0`, so both merge together with the gate green
