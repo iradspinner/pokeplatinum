@@ -7503,19 +7503,21 @@ TagStrategy_SkillSwap:
 TagStrategy_CheckElectricMove:
     // If the move is Discharge, handle it similarly to Earthquake. Otherwise, apply all of the
     // following which are met:
-    //  - The target's partner would redirect the move with Lightning Rod, score -1; additional
-    //    score -8 if the target's partner is also a Ground type
+    //  - The target's partner would draw the move in with Lightning Rod, score -10
     //  - The attacker's partner has Lightning Rod, score -10
+    // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1, and -8 more beside a
+    // Ground partner, since in Platinum Lightning Rod only drew the move in. Now the holder
+    // takes the move and raises its Sp. Atk, so the move is lost and helps the foe. Only a
+    // move that can be drawn in counts: one aimed at a single target, used without Mold
+    // Breaker or Normalize, at a foe whose partner is still standing.
     IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
-    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
-    IfLoadedEqualTo AI_HAVE, TagStrategy_TargetProtectedByLightningRod
+    IfMoveCanBeDrawnIn TagStrategy_CheckTargetLightningRod
     GoTo TagStrategy_PartnerHasLightningRod
 
-TagStrategy_TargetProtectedByLightningRod:
-    AddToMoveScore -1
-    FlagBattlerIsType AI_BATTLER_DEFENDER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_PartnerHasLightningRod
-    AddToMoveScore -8
+TagStrategy_CheckTargetLightningRod:
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_PartnerHasLightningRod
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 TagStrategy_PartnerHasLightningRod:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
@@ -7563,12 +7565,18 @@ TagStrategy_CheckElectric_End:
 TagStrategy_CheckWaterMove:
     // If the move is Surf, handle it similarly to Earthquake. Otherwise, apply all of the
     // following which are met:
-    //  - The target's partner would redirect the move with Storm Drain, score -1
+    //  - The target's partner would draw the move in with Storm Drain, score -10
     //  - The attacker's partner has Storm Drain, score -10
+    // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1. Now the holder takes
+    // the move and raises its Sp. Atk, as for Lightning Rod above, with the same test.
     IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
+    IfMoveCanBeDrawnIn TagStrategy_CheckTargetStormDrain
+    GoTo TagStrategy_CheckPartnerStormDrain
+
+TagStrategy_CheckTargetStormDrain:
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_CheckPartnerStormDrain
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_STORM_DRAIN
-    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_CheckPartnerStormDrain
-    AddToMoveScore -1
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 TagStrategy_CheckPartnerStormDrain:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN

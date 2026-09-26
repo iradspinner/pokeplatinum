@@ -199,6 +199,7 @@ static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battl
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2759,6 +2760,31 @@ static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext
 
     if (Battler_MovePriority(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move) > 0
         && (MOVE_DATA(AI_CONTEXT.move).range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if Lightning Rod or Storm Drain could draw the move being
+ * scored away from its target.
+ *
+ * The same test as BattleSystem_CheckRedirectionAbilities: a move aimed at one
+ * target or a random foe, used without Normalize or Mold Breaker. A spread move
+ * such as Muddy Water or Electroweb is never drawn in.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int ability = Battler_Ability(battleCtx, AI_CONTEXT.attacker);
+
+    if ((MOVE_DATA(AI_CONTEXT.move).range == RANGE_SINGLE_TARGET || MOVE_DATA(AI_CONTEXT.move).range == RANGE_RANDOM_OPPONENT)
+        && ability != ABILITY_NORMALIZE
+        && ability != ABILITY_MOLD_BREAKER) {
         AIScript_Iter(battleCtx, jump);
     }
 }
