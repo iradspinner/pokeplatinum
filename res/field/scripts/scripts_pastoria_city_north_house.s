@@ -7,8 +7,11 @@
     ScriptEntry PastoriaCityNorthHouse_Entry0
     ScriptEntry PastoriaCityNorthHouse_Entry1
     ScriptEntry PastoriaCityNorthHouse_Entry2
-    ScriptEntry PastoriaCityNorthHouse_Entry3
     ScriptEntryEnd
+
+@ Oxide: the clown's gift that stood here moved to the Restaurant on Route
+@ 213 (Ian, 2026-09-25), so that it counts as the Restaurant's capture and not
+@ Pastoria City's. Its script, flag and pool went with it (scripts_restaurant.s).
 
 PastoriaCityNorthHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -39,121 +42,4 @@ PastoriaCityNorthHouse_Entry2:
     WaitButton
     CloseMessage
     ReleaseAll
-    End
-PastoriaCityNorthHouse_Entry3:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT, PastoriaCityNorthHouse_018E
-    Message 3
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, PastoriaCityNorthHouse_01A4
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, PastoriaCityNorthHouse_018E
-    GoTo PastoriaCityNorthHouse_018E
-PastoriaCityNorthHouse_0086:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_OCTILLERY, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_00B2:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_MANTINE, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_00DE:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_CRAWDAUNT, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_010A:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_SHARPEDO, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_0136:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_LANTURN, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_0162:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PastoriaCityNorthHouse_0199
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_WHISCASH, 45, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message 4
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_018E:
-    Message 4
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_0199:
-    Message 5
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-PastoriaCityNorthHouse_01A4:
-    GetRandom VAR_0x800C, 6
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, PastoriaCityNorthHouse_0086
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, PastoriaCityNorthHouse_00B2
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, PastoriaCityNorthHouse_00DE
-    CompareVarToValue VAR_0x800C, 3
-    GoToIf 1, PastoriaCityNorthHouse_010A
-    CompareVarToValue VAR_0x800C, 4
-    GoToIf 1, PastoriaCityNorthHouse_0136
-    CompareVarToValue VAR_0x800C, 5
-    GoToIf 1, PastoriaCityNorthHouse_0162
     End

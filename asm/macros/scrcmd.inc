@@ -5221,6 +5221,14 @@
     .short \successVar
     .endm
 
+    /* Platinum Oxide: overwrite the met location of the party Pokemon in
+       \partySlot with \location, an index into the location names. */
+    .macro SetPartyMonMetLocation partySlot, location
+    .short SCRCMD_SETPARTYMONMETLOCATION
+    .short \partySlot
+    .short \location
+    .endm
+
 #ifdef OXIDE_TESTKIT
     /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
        \partySlot into \form. Rotom takes the game's own form change, which

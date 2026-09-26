@@ -239,16 +239,36 @@ def check_map_headers(built, ref):
                 if line.startswith("    [MAP_HEADER_"))
     size = count * imp.MAP_HEADER_SIZE
     oa, ob = imp.find_map_header_table(a, count), imp.find_map_header_table(b, count)
-    bad = [i for i in range(count)
-           if a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
-           != b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]]
+    maps = imp.load_enum("map_headers")
+    bad, intended = [], []
+    for i in range(count):
+        ha = a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
+        hb = b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]
+        if ha == hb:
+            continue
+        allowed = MAP_HEADERS_DIVERGED.get(maps.get(i), ((), ""))[0]
+        if allowed and all(ha[k] == hb[k] for k in range(imp.MAP_HEADER_SIZE) if k not in allowed):
+            intended.append(maps.get(i))
+        else:
+            bad.append(i)
     if bad:
-        maps = imp.load_enum("map_headers")
         print(f"sMapHeaders: {len(bad)} of {count} headers differ: "
               f"{[maps.get(i, i) for i in bad[:6]]}")
     else:
-        print(f"sMapHeaders: all {count} headers identical to the reference")
+        print(f"sMapHeaders: all {count} headers identical to the reference"
+              + (f", apart from {len(intended)} changed on purpose ({', '.join(intended)})"
+                 if intended else ""))
     return not bad
+
+
+# Map headers that no longer match the base ROM on purpose, each with the byte
+# offsets allowed to differ and why. Offsets are into the 24-byte MapHeader
+# (include/map_header.h): 14 and 15 are wildEncountersArchiveID.
+MAP_HEADERS_DIVERGED = {
+    "MAP_HEADER_SNOWPOINT_CITY": (range(14, 16), "fishing in Snowpoint City reads "
+                                  "encounters_snowpoint_city, the encounter track's rods "
+                                  "table (Ian, 2026-09-25)"),
+}
 
 
 # Members that no longer match the base ROM on purpose. Phase 4 changes the game

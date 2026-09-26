@@ -103,6 +103,7 @@ already exist in Platinum; no new evolution stones are introduced.
 | Hisuian Sliggoo | Goomy, level up holding Metal Coat (methods 18/19) |
 | Kleavor | Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route |
 | Lopunny M | alt evolution of Lopunny, Normal/Fighting offensive; level up holding Fist Plate (methods 18/19), `phase4-engine-change-answers.md` Q4 |
+| Lurantis | Fomantis, level 34 (method 4); the donor's daytime condition (hg-engine method 27) has no Gen 4 equivalent, as Goodra's rain has none |
 | Mr. Rime | Galarian Mr. Mime, level 42 (method 4) |
 | Naganadel | Poipole, level up knowing Dragon Pulse (method 20) - direct port |
 | Pawmot | Pawmo + Thunder Stone (method 7) |

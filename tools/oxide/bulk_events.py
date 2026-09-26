@@ -33,6 +33,8 @@ DIVERGED = {
     "events_victory_road_1f": "the level 71 Lucas and Dawn fight at the start of "
                               "Victory Road adds the counterpart and a trigger "
                               "(docs/oxide/battle-zone-plan.md)",
+    "events_pastoria_city_north_house": "the clown the base ROM added moved to the "
+                                        "Restaurant with its gift (Ian, 2026-09-25)",
 }
 
 

@@ -2,6 +2,7 @@
 @ Byte-exact but machine-shaped: labels are offsets and operands are mostly
 @ numbers. Rewrite in the repo's idiom when this map gets proper attention.
 #include "macros/scrcmd.inc"
+#include "res/text/bank/location_names.h"
 
 
     ScriptEntry Route201_Entry0
@@ -164,6 +165,9 @@ Route201_Entry12:
     WaitFadeScreen
     GetPlayerStarterSpecies SCRIPT_LOCAL_VARS_START
     GivePokemon 32768, 5, 0, VAR_0x800C
+    @ Oxide: the starter gets a met location of its own (Ian, 2026-09-21), so
+    @ that it does not use up Route 201 as a nuzlocke capture area.
+    SetPartyMonMetLocation 0, LocationNames_Text_RowansBriefcase
     ApplyMovement 5, Route201_Movement_0C92
     ApplyMovement 2, Route201_Movement_0C9A
     ApplyMovement LOCALID_PLAYER, Route201_Movement_0CA2
@@ -439,6 +443,11 @@ Route201_0680:
     WaitFadeScreen
     GetPlayerStarterSpecies SCRIPT_LOCAL_VARS_START
     GivePokemon 32768, 5, 0, VAR_0x800C
+    @ Oxide: the post-game briefcase's starter takes the same met location as
+    @ the first. It joins the end of the party, which had a free slot.
+    GetPartyCount VAR_0x8004
+    SubVar VAR_0x8004, 1
+    SetPartyMonMetLocation VAR_0x8004, LocationNames_Text_RowansBriefcase
     Message 69
     CloseMessage
     WaitButton

@@ -1211,6 +1211,8 @@ TEXT_BANKS_SKIPPED = {
          "drawn species rather than UXIE (Ian, 2026-09-26)",
     293: "Mesprit's roamer is the legendary pool's roamer draw, so the scene's lines "
          "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
+    141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
+         "and the pick menu's orphaned species names went with the move",
 }
 
 
