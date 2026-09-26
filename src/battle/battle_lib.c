@@ -1174,23 +1174,6 @@ static const u8 sSpeedHalvingItemEffects[] = {
     HOLD_EFFECT_LVLUP_SPDEF_EV_UP
 };
 
-static inline int CompareSpeed_ApplySimple(BattleContext *battleCtx, int battler, int stage)
-{
-    if (Battler_Ability(battleCtx, battler) == ABILITY_SIMPLE) {
-        stage = DEFAULT_STAT_STAGE + ((stage - DEFAULT_STAT_STAGE) * 2);
-
-        if (stage > MAX_STAT_STAGE) {
-            stage = MAX_STAT_STAGE;
-        }
-
-        if (stage < MIN_STAT_STAGE) {
-            stage = MIN_STAT_STAGE;
-        }
-    }
-
-    return stage;
-}
-
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw)
 {
     u8 result = COMPARE_SPEED_FASTER;
@@ -1225,8 +1208,6 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     battler1SpeedStage = battleCtx->battleMons[battler1].statBoosts[BATTLE_STAT_SPEED];
     battler2SpeedStage = battleCtx->battleMons[battler2].statBoosts[BATTLE_STAT_SPEED];
 
-    battler1SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler1, battler1SpeedStage);
-    battler2SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler2, battler2SpeedStage);
 
     battler1Speed = battleCtx->battleMons[battler1].speed * sStatStageBoosts[battler1SpeedStage].numerator / sStatStageBoosts[battler1SpeedStage].denominator;
     battler2Speed = battleCtx->battleMons[battler2].speed * sStatStageBoosts[battler2SpeedStage].numerator / sStatStageBoosts[battler2SpeedStage].denominator;
@@ -7591,42 +7572,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 125 / 100;
     }
 
-    if (attackerParams.ability == ABILITY_SIMPLE) {
-        attackStage *= 2;
-        if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (attackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spAttackStage *= 2;
-        if (spAttackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spAttackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
-
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
-        defenseStage *= 2;
-        if (defenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (defenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spDefenseStage *= 2;
-        if (spDefenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spDefenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
-
+    // Oxide: Simple doubles a stage change when it is made (ChangeStatStage),
+    // not the stages here (Generation 5).
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         attackStage = 0;
         spAttackStage = 0;

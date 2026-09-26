@@ -1838,6 +1838,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleWaterAbsorb, 9
     AddListMenuEntry TestKit_Text_MenuStapleMagicGuard, 10
     AddListMenuEntry TestKit_Text_MenuStapleLiquidOoze, 11
+    AddListMenuEntry TestKit_Text_MenuStapleSimple, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1851,6 +1852,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 9, TestKit_StapleWaterAbsorb
     GoToIfEq VAR_0x8004, 10, TestKit_StapleMagicGuard
     GoToIfEq VAR_0x8004, 11, TestKit_StapleLiquidOoze
+    GoToIfEq VAR_0x8004, 12, TestKit_StapleSimple
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2023,6 +2025,20 @@ TestKit_StapleLiquidOoze:
     SetVar VAR_0x8000, SPECIES_TENTACRUEL
     SetVar VAR_0x8001, ABILITY_LIQUID_OOZE
     SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Simple: a Bibarel given Simple, against a wild Chansey that knows only
+   Growl. */
+TestKit_StapleSimple:
+    SetVar VAR_0x800A, SPECIES_BIBAREL
+    SetVar VAR_0x800B, ABILITY_SIMPLE
+    SetVar VAR_0x8006, MOVE_DEFENSE_CURL
+    SetVar VAR_0x8007, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8008, MOVE_RETURN
+    SetVar VAR_0x8009, MOVE_WATERFALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

@@ -310,6 +310,10 @@
             "en_US": "Liquid Ooze, Dream Eater"
         },
         {
+            "id": "TestKit_Text_MenuStapleSimple",
+            "en_US": "Simple"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

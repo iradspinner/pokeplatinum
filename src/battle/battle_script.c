@@ -2883,6 +2883,13 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Oxide: Simple doubles each stage change as it is made (Generation 5;
+    // hg-engine's statbuffchange), where Platinum doubled the stages when
+    // they were read. Mold Breaker ignores it.
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SIMPLE) == TRUE) {
+        stageChange *= 2;
+    }
+
     // Oxide: Contrary turns every rise into a fall and every fall into a
     // rise, from any source, as hg-engine does; Mold Breaker ignores it.
     if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CONTRARY) == TRUE) {
