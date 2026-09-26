@@ -34,9 +34,8 @@ CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
 # the encounter track's Oxide profile (2026-09-26) it scores Electro Ball,
 # Heavy Slam, Psywave, Super Fang and Trump Card, which its Generation 4
 # mechanics had left out, so none remain and any new failure fails here.
-# Electro Ball comes out at power 1 on purpose: Oxide's engine has no power
-# code for it yet (the tracker, element 4), and the calculator plays it as
-# the game does.
+# Since item 22 (2026-09-26) the calculator takes Electro Ball's power from
+# the Speed ratio, as the engine's computed powers do.
 UNMODELLED = set()
 # The reference bosses add four of the same kind, each reported, not
 # scored: Nature's Madness (Super Fang's Fairy twin), Redux's Cyclone and

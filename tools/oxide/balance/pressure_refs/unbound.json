@@ -104,8 +104,8 @@
    "left_out": {},
    "calcs": 2130,
    "errors": [],
-   "node_seconds": 0.58,
-   "wall_seconds": 0.65
+   "node_seconds": 0.62,
+   "wall_seconds": 0.68
   },
   "gardenia": {
    "key": "gardenia",
@@ -208,8 +208,8 @@
    "left_out": {},
    "calcs": 4931,
    "errors": [],
-   "node_seconds": 1.0,
-   "wall_seconds": 1.08
+   "node_seconds": 1.03,
+   "wall_seconds": 1.11
   },
   "fantina": {
    "key": "fantina",
@@ -333,7 +333,7 @@
    "left_out": {},
    "calcs": 12299,
    "errors": [],
-   "node_seconds": 2.14,
+   "node_seconds": 2.15,
    "wall_seconds": 2.24
   },
   "maylene": {
@@ -461,8 +461,8 @@
    "left_out": {},
    "calcs": 20165,
    "errors": [],
-   "node_seconds": 2.95,
-   "wall_seconds": 3.05
+   "node_seconds": 2.99,
+   "wall_seconds": 3.1
   },
   "wake": {
    "key": "wake",
@@ -606,8 +606,8 @@
    "left_out": {},
    "calcs": 34193,
    "errors": [],
-   "node_seconds": 4.6,
-   "wall_seconds": 4.73
+   "node_seconds": 4.63,
+   "wall_seconds": 4.76
   },
   "byron": {
    "key": "byron",
@@ -624,9 +624,9 @@
    "answers": 0.173,
    "answers_lock": 0.173,
    "threat_chance": 0.522,
-   "answers_duel": 0.26,
-   "answers_sure": 0.245,
-   "answers_bait": 0.26,
+   "answers_duel": 0.259,
+   "answers_sure": 0.244,
+   "answers_bait": 0.259,
    "answers_branch": 0.229,
    "safe": 0.511,
    "cover": 1.0,
@@ -666,7 +666,7 @@
      "answers_sure": 0.319,
      "answers_bait": 0.331,
      "forced": [],
-     "answers_branch": 0.18,
+     "answers_branch": 0.178,
      "branches": [
       "Bulk Up"
      ]
@@ -718,14 +718,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.283,
-     "answers": 0.23,
-     "answers_lock": 0.23,
+     "answers": 0.228,
+     "answers_lock": 0.228,
      "threat_chance": 0.283,
-     "answers_duel": 0.297,
-     "answers_sure": 0.288,
-     "answers_bait": 0.297,
+     "answers_duel": 0.295,
+     "answers_sure": 0.285,
+     "answers_bait": 0.295,
      "forced": [],
-     "answers_branch": 0.297,
+     "answers_branch": 0.295,
      "branches": []
     },
     {
@@ -754,8 +754,8 @@
    "left_out": {},
    "calcs": 45249,
    "errors": [],
-   "node_seconds": 5.88,
-   "wall_seconds": 6.02
+   "node_seconds": 5.85,
+   "wall_seconds": 6.0
   },
   "candice": {
    "key": "candice",
@@ -772,14 +772,14 @@
    "answers": 0.151,
    "answers_lock": 0.151,
    "threat_chance": 0.442,
-   "answers_duel": 0.226,
-   "answers_sure": 0.219,
-   "answers_bait": 0.226,
-   "answers_branch": 0.199,
+   "answers_duel": 0.225,
+   "answers_sure": 0.218,
+   "answers_bait": 0.225,
+   "answers_branch": 0.197,
    "safe": 0.595,
    "cover": 1.0,
    "best_one": 1.0,
-   "broad": 0.164,
+   "broad": 0.16,
    "unanswered": [],
    "max_threat": 0.678,
    "min_answers": 0.06,
@@ -856,7 +856,7 @@
      "answers_sure": 0.16,
      "answers_bait": 0.16,
      "forced": [],
-     "answers_branch": 0.11,
+     "answers_branch": 0.107,
      "branches": [
       "Agility"
      ]
@@ -870,14 +870,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.525,
-     "answers": 0.167,
-     "answers_lock": 0.167,
+     "answers": 0.164,
+     "answers_lock": 0.164,
      "threat_chance": 0.525,
-     "answers_duel": 0.325,
-     "answers_sure": 0.317,
-     "answers_bait": 0.325,
+     "answers_duel": 0.32,
+     "answers_sure": 0.312,
+     "answers_bait": 0.32,
      "forced": [],
-     "answers_branch": 0.325,
+     "answers_branch": 0.32,
      "branches": []
     },
     {
@@ -908,8 +908,8 @@
    "left_out": {},
    "calcs": 54072,
    "errors": [],
-   "node_seconds": 6.44,
-   "wall_seconds": 6.59
+   "node_seconds": 6.53,
+   "wall_seconds": 6.69
   },
   "volkner": {
    "key": "volkner",
@@ -923,17 +923,17 @@
    ],
    "ace": 62,
    "threat": 0.343,
-   "answers": 0.253,
-   "answers_lock": 0.253,
+   "answers": 0.252,
+   "answers_lock": 0.252,
    "threat_chance": 0.343,
-   "answers_duel": 0.484,
-   "answers_sure": 0.477,
-   "answers_bait": 0.484,
-   "answers_branch": 0.413,
+   "answers_duel": 0.483,
+   "answers_sure": 0.476,
+   "answers_bait": 0.483,
+   "answers_branch": 0.412,
    "safe": 0.704,
    "cover": 1.0,
    "best_one": 1.0,
-   "broad": 0.494,
+   "broad": 0.492,
    "unanswered": [],
    "max_threat": 0.642,
    "min_answers": 0.071,
@@ -966,14 +966,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.146,
-     "answers": 0.312,
-     "answers_lock": 0.312,
+     "answers": 0.308,
+     "answers_lock": 0.308,
      "threat_chance": 0.146,
-     "answers_duel": 0.356,
-     "answers_sure": 0.346,
-     "answers_bait": 0.356,
+     "answers_duel": 0.352,
+     "answers_sure": 0.342,
+     "answers_bait": 0.352,
      "forced": [],
-     "answers_branch": 0.356,
+     "answers_branch": 0.352,
      "branches": []
     },
     {
@@ -1069,8 +1069,8 @@
    },
    "calcs": 67934,
    "errors": [],
-   "node_seconds": 8.64,
-   "wall_seconds": 8.83
+   "node_seconds": 8.6,
+   "wall_seconds": 8.8
   },
   "aaron": {
    "key": "aaron",
@@ -1084,8 +1084,8 @@
    ],
    "ace": 76,
    "threat": 0.558,
-   "answers": 0.175,
-   "answers_lock": 0.175,
+   "answers": 0.174,
+   "answers_lock": 0.174,
    "threat_chance": 0.552,
    "answers_duel": 0.382,
    "answers_sure": 0.376,
@@ -1205,8 +1205,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.084,
-     "answers": 0.36,
-     "answers_lock": 0.36,
+     "answers": 0.355,
+     "answers_lock": 0.355,
      "threat_chance": 0.084,
      "answers_duel": 0.529,
      "answers_sure": 0.524,
@@ -1226,8 +1226,8 @@
    },
    "calcs": 43527,
    "errors": [],
-   "node_seconds": 5.47,
-   "wall_seconds": 5.61
+   "node_seconds": 5.36,
+   "wall_seconds": 5.5
   },
   "bertha": {
    "key": "bertha",
@@ -1382,8 +1382,8 @@
    "left_out": {},
    "calcs": 69731,
    "errors": [],
-   "node_seconds": 8.22,
-   "wall_seconds": 8.4
+   "node_seconds": 8.1,
+   "wall_seconds": 8.28
   },
   "flint": {
    "key": "flint",
@@ -1397,17 +1397,17 @@
    ],
    "ace": 76,
    "threat": 0.485,
-   "answers": 0.206,
-   "answers_lock": 0.206,
+   "answers": 0.205,
+   "answers_lock": 0.205,
    "threat_chance": 0.484,
-   "answers_duel": 0.26,
+   "answers_duel": 0.259,
    "answers_sure": 0.25,
-   "answers_bait": 0.26,
-   "answers_branch": 0.217,
+   "answers_bait": 0.259,
+   "answers_branch": 0.216,
    "safe": 0.503,
    "cover": 1.0,
    "best_one": 1.0,
-   "broad": 0.216,
+   "broad": 0.214,
    "unanswered": [],
    "max_threat": 0.72,
    "min_answers": 0.0,
@@ -1441,14 +1441,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.344,
-     "answers": 0.216,
-     "answers_lock": 0.216,
+     "answers": 0.214,
+     "answers_lock": 0.214,
      "threat_chance": 0.342,
-     "answers_duel": 0.206,
-     "answers_sure": 0.194,
-     "answers_bait": 0.206,
+     "answers_duel": 0.204,
+     "answers_sure": 0.191,
+     "answers_bait": 0.204,
      "forced": [],
-     "answers_branch": 0.206,
+     "answers_branch": 0.204,
      "branches": []
     },
     {
@@ -1538,8 +1538,8 @@
    "left_out": {},
    "calcs": 61728,
    "errors": [],
-   "node_seconds": 7.48,
-   "wall_seconds": 7.65
+   "node_seconds": 7.58,
+   "wall_seconds": 7.77
   },
   "lucian": {
    "key": "lucian",
@@ -1683,8 +1683,8 @@
    "left_out": {},
    "calcs": 45283,
    "errors": [],
-   "node_seconds": 5.84,
-   "wall_seconds": 5.98
+   "node_seconds": 5.9,
+   "wall_seconds": 6.06
   },
   "cynthia": {
    "key": "cynthia",
@@ -1698,8 +1698,8 @@
    ],
    "ace": 76,
    "threat": 0.601,
-   "answers": 0.128,
-   "answers_lock": 0.128,
+   "answers": 0.127,
+   "answers_lock": 0.127,
    "threat_chance": 0.598,
    "answers_duel": 0.267,
    "answers_sure": 0.255,
@@ -1794,8 +1794,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.169,
-     "answers": 0.187,
-     "answers_lock": 0.187,
+     "answers": 0.182,
+     "answers_lock": 0.182,
      "threat_chance": 0.168,
      "answers_duel": 0.297,
      "answers_sure": 0.294,
@@ -1849,8 +1849,8 @@
    "left_out": {},
    "calcs": 52847,
    "errors": [],
-   "node_seconds": 6.78,
-   "wall_seconds": 6.94
+   "node_seconds": 6.63,
+   "wall_seconds": 6.79
   }
  }
 }
