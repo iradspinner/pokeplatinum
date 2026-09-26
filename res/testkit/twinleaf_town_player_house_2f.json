@@ -298,6 +298,10 @@
             "en_US": "Stench"
         },
         {
+            "id": "TestKit_Text_MenuStapleWaterAbsorb",
+            "en_US": "Water Absorb and Soak"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
