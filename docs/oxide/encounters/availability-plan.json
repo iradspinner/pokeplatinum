@@ -176,9 +176,9 @@
     },
     "encounters_route_206": {
       "home": ["SPECIES_GLIGAR", "SPECIES_BONSLY"],
-      "cameo": ["SPECIES_PONYTA", "SPECIES_STUNKY", "SPECIES_DWEBBLE", "SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
-      "tail": ["SPECIES_CHARCADET", "SPECIES_FROGADIER"],
-      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s."
+      "cameo": ["SPECIES_CHARCADET", "SPECIES_PONYTA", "SPECIES_STUNKY", "SPECIES_ONIX", "SPECIES_NACLI", "SPECIES_SALANDIT", "SPECIES_JOLTIK", "SPECIES_FLETCHINDER", "SPECIES_HOUNDOUR"],
+      "tail": ["SPECIES_DWEBBLE", "SPECIES_FROGADIER"],
+      "note": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Bonsly at 10 and Charcadet at 10 beside its Fuego Ironworks home (Ian, 2026-09-27), Salandit and Joltik at 5, Dwebble and Frogadier the 1%s."
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
@@ -469,10 +469,10 @@
       "note": "Route 211's Celestic half, the delay: Ralts and Ferroseed at home, Rowlet 20 and Litten 15 the prizes, Jangmo-o at 10 by the cap rule."
     },
     "encounters_fuego_ironworks_outside": {
-      "home": ["SPECIES_MAGBY", "SPECIES_MAGNEMITE", "SPECIES_LARVESTA"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_SLUGMA", "SPECIES_BRAIXEN", "SPECIES_CERULEDGE", "SPECIES_RHYHORN", "SPECIES_SALAZZLE", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOOM", "SPECIES_LITWICK"],
+      "home": ["SPECIES_MAGBY", "SPECIES_MAGNEMITE", "SPECIES_LARVESTA", "SPECIES_CHARCADET"],
+      "cameo": ["SPECIES_SLUGMA", "SPECIES_BRAIXEN", "SPECIES_RHYHORN", "SPECIES_SALAZZLE", "SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_HOUNDOOM", "SPECIES_LITWICK"],
       "tail": ["SPECIES_TURTONATOR", "SPECIES_MACHOKE"],
-      "note": "The ironworks' yard: Magby and Joltik at home, and Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), Litten at 10, Charcadet a 4% ember, two fire starters as 1%s."
+      "note": "The ironworks' yard: Magby and Magnemite at home, Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), and Charcadet at 10 below its stone's level with Ceruledge the top rung (Ian, 2026-09-27); Turtonator and Machoke the 1%s."
     },
     "encounters_route_218": {
       "home": ["SPECIES_GALARIAN_MR_MIME", "SPECIES_CHATOT"],
@@ -830,10 +830,10 @@
       "note": "The cliff route above the sea: eight lines, the birds and the beach."
     },
     "encounters_route_227": {
-      "home": ["SPECIES_CERULEDGE", "SPECIES_SKARMORY"],
-      "cameo": ["SPECIES_RHYPERIOR", "SPECIES_WEEZING", "SPECIES_SALAZZLE", "SPECIES_TURTONATOR", "SPECIES_GARGANACL", "SPECIES_MAGCARGO", "SPECIES_HOUNDOOM", "SPECIES_RAPIDASH", "SPECIES_NINETALES"],
+      "home": ["SPECIES_SKARMORY"],
+      "cameo": ["SPECIES_CERULEDGE", "SPECIES_RHYPERIOR", "SPECIES_WEEZING", "SPECIES_SALAZZLE", "SPECIES_TURTONATOR", "SPECIES_GARGANACL", "SPECIES_MAGCARGO", "SPECIES_HOUNDOOM", "SPECIES_RAPIDASH", "SPECIES_NINETALES"],
       "tail": ["SPECIES_CHATOT", "SPECIES_HONCHKROW"],
-      "note": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s."
+      "note": "The road up Stark Mountain: Skarmory at home, Ceruledge among the fire lines (Charcadet's home is Fuego Ironworks since 2026-09-27), two fire starters as 1%s."
     },
     "encounters_stark_mountain_outside": {
       "home": ["SPECIES_GALARIAN_WEEZING"],
@@ -1005,8 +1005,10 @@
     }
   },
   "pool": {
-    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands.", "Ian, 2026-09-26: Acuity Cavern returns drawing one of Ian's three most-wanted legendaries (Articuno, Cresselia, Pheromosa); Valor Cavern stays off with its old draw; the lines Acuity drew before wait in `reserve`, drawn nowhere."],
-    "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands.", "Ian, 2026-09-26: Acuity Cavern returns drawing one of Ian's three most-wanted legendaries (Articuno, Cresselia, Pheromosa); Valor Cavern stays off with its old draw; the lines Acuity drew before wait in `reserve`, drawn nowhere.", "Ian, 2026-09-27, relayed by the Overseer: Valor Cavern holds no legendary at all, Azelf included, and Stark Mountain's last room is empty (no Heatran, no draw), both until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The `valor` third stays as a record, drawn nowhere. Acuity Cavern stays a once-per-save draw of Articuno, Cresselia or Pheromosa, shown with Uxie's sprite for now."],
+    "statics": ["Uxie's cavern (Acuity Cavern), once per save"],
+    "empty": ["Azelf's cavern (Valor Cavern)", "Stark Mountain's last room, Heatran's"],
+    "empty_until": "the difficulty is high enough that more legendary-tier encounters would not inflate box quality (Ian, 2026-09-27)",
     "roamer": "Mesprit's roamer, released at Lake Verity",
     "thirds": {
       "acuity": ["SPECIES_ARTICUNO", "SPECIES_CRESSELIA", "SPECIES_PHEROMOSA"],

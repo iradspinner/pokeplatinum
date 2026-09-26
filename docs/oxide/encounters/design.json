@@ -131,7 +131,7 @@
     "encounters_fuego_ironworks_outside": {
       "archetype": "A19",
       "band": "late",
-      "intent": "The ironworks' yard: Magby and Joltik at home, and Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), Litten at 10, Charcadet a 4% ember, two fire starters as 1%s.",
+      "intent": "The ironworks' yard: Magby and Magnemite at home, Larvesta's home moved here from Stark Mountain at 10 (Ian: earlier is harmless), and Charcadet at 10 below its stone's level with Ceruledge the top rung (Ian, 2026-09-27); Turtonator and Machoke the 1%s.",
       "locked": [],
       "base_level": 28,
       "order": 83,
@@ -140,7 +140,7 @@
         "SPECIES_MAGBY",
         "SPECIES_MAGNEMITE",
         "SPECIES_LARVESTA",
-        "SPECIES_TOGEDEMARU",
+        "SPECIES_CHARCADET",
         "SPECIES_SLUGMA",
         "SPECIES_BRAIXEN",
         "SPECIES_RHYHORN",
@@ -3851,7 +3851,7 @@
     "encounters_route_206": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Salandit and Joltik at 5 (both fully evolved by 33), Charmander and Froakie the 1%s.",
+      "intent": "Cycling Road's foot, twelve lines: Gligar's home with Ponyta, Stunky under the road, Bonsly at 10 and Charcadet at 10 beside its Fuego Ironworks home (Ian, 2026-09-27), Salandit and Joltik at 5, Dwebble and Frogadier the 1%s.",
       "locked": [],
       "base_level": 16,
       "order": 32,
@@ -3860,13 +3860,13 @@
         "SPECIES_GLIGAR",
         "SPECIES_PONYTA",
         "SPECIES_STUNKY",
-        "SPECIES_DWEBBLE",
+        "SPECIES_CHARCADET",
         "SPECIES_ONIX",
         "SPECIES_BONSLY",
         "SPECIES_SALANDIT",
         "SPECIES_JOLTIK",
         "SPECIES_NACLI",
-        "SPECIES_CHARCADET",
+        "SPECIES_DWEBBLE",
         "SPECIES_FROGADIER"
       ],
       "day": [
@@ -6176,7 +6176,7 @@
     "encounters_route_227": {
       "archetype": "A19",
       "band": "late",
-      "intent": "The road up Stark Mountain: Charcadet and Skarmory at home, the fire lines, two fire starters as 1%s.",
+      "intent": "The road up Stark Mountain: Skarmory at home, Ceruledge among the fire lines (Charcadet's home is Fuego Ironworks since 2026-09-27), two fire starters as 1%s.",
       "locked": [],
       "base_level": 51,
       "order": 106,

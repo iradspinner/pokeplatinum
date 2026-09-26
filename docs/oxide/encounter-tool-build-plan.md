@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 83/83, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 90/90, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
@@ -175,8 +175,9 @@ that stay. None blocks anything.
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
    How to name one is under "Standing rules".
 6. **Other tracks' work this track depends on.** The legendary pool's scripting
-   (the two lake caverns as two statics and Mesprit's roamer as a random roamer,
-   drawn from one pool of 23) is script work; until it exists R12 reports those
+   (Acuity Cavern's once-per-save draw and Mesprit's roamer; since 2026-09-27
+   Valor Cavern and Stark Mountain's last room are empty, item 21) is script
+   work the main track has started; until it exists R12 reports those
    lines, which is why `lint` shows 27 errors and the gate is `lint --ignore R12`.
    Verity Lakefront's map header still points at no table and the map has no
    grass, and the starter still needs its own met location; both are in the
@@ -418,6 +419,16 @@ that stay. None blocks anything.
    because Suicune lands in 97% of runs. If Mindy asks for a rarer line
    (Delibird was tried) Suicune all but vanishes and the median stays
    three. Meloetta needs porting before it can be placed.
+
+   **Ian, 2026-09-27, relayed by the Overseer:** Valor Cavern holds no
+   legendary at all, Azelf included, and Stark Mountain's last room is empty
+   (no Heatran, no draw), both until the difficulty is high enough that more
+   legendary-tier encounters would not inflate box quality. Acuity Cavern
+   stays a once-per-save draw of the three, shown with Uxie's sprite for
+   now. `scripted.json` marks both places empty and out of the simulator,
+   the pool's comment in `availability-plan.json` carries the condition,
+   and `availability.md` now says a run meets two pool legendaries before
+   the League. The main track is scripting Acuity's draw and the roamer's.
 22. **The calculator follows element 4's variable powers (Ian's Overseer,
    2026-09-26), queued until the balance track's running rescore merges,
    so the next rescore takes it in one go.** oxide 48596e2bd computes
@@ -484,8 +495,11 @@ that stay. None blocks anything.
    capture levels end at about 60, which the tables already do (land tops
    out at 54, the Super Rods at 60; only the post-game Dialga and Palkia,
    at 70, are higher). The main track does the maps and scripts; this
-   track writes the four tables and the two Charcadet slots once the
-   grass exists.
+   track writes the four tables once the grass exists. Charcadet's two
+   slots needed no grass and are in the tables (2026-09-27): Route 206's
+   10% (Dwebble to the 1%) and the Fuego yard's at 29 (Togedemaru out),
+   with the Fuego yard as the line's planned home and Ceruledge on Route
+   227 a cameo.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

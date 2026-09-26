@@ -35,6 +35,11 @@ Ian, 2026-09-27, relayed by the Overseer:
   Thorton's prize is 40, Acuity Cavern's draw is 50 and the eight-badge
   honey tree 50. The one thing above 60 is post-game: Dialga and Palkia at
   Spear Pillar are level 70.
+- **Later the same day:** Dialga and Palkia stay at 70, as post-game
+  encounters outside the ceiling of about 60. Two lines competing for one
+  stone (Espeon and Armarouge for the single fixed Sun Stone) is intended,
+  and is a standing rule. Charcadet's homes on Route 206 and in Fuego
+  Ironworks' yard stand as proposed.
 - **Grass is tile behaviour first**, on patches that already look distinct
   (lawns, flower beds), with the tall-grass look later. The Main Production
   Agent picks the tiles, so the rough sizes below stand as a guide only.

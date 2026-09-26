@@ -295,7 +295,7 @@
     },
     {
       "id": "valor_cavern",
-      "label": "Valor Cavern, the pool legendary",
+      "label": "Valor Cavern, empty for now",
       "kind": "static",
       "capture_area": "Valor Cavern",
       "split": "Volkner",
@@ -304,7 +304,7 @@
       "pool_key": "valor",
       "level": 50,
       "simulate": false,
-      "note": "Turned off for now (Ian, 2026-09-26), like Acuity Cavern. Azelf's cavern would draw one from its own third of the legendary pool."
+      "note": "No legendary at all, Azelf included (Ian, 2026-09-27, relayed by the Overseer), until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. Its third of the pool is drawn nowhere until then. Off since 2026-09-26."
     },
     {
       "id": "spear_pillar_dialga",
@@ -328,13 +328,14 @@
     },
     {
       "id": "stark_mountain_heatran",
-      "label": "Stark Mountain, Heatran",
+      "label": "Stark Mountain, empty for now",
       "kind": "static",
       "capture_area": "Stark Mountain",
       "split": "Post",
       "from": {"file": "scripts_stark_mountain_room_3.s"},
       "pick": "random",
-      "note": "After Buck's post-game event."
+      "simulate": false,
+      "note": "The last room holds no Heatran and no draw (Ian, 2026-09-27, relayed by the Overseer), until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The script still gives Heatran after Buck's post-game event until the main track changes it."
     },
     {
       "id": "turnback_cave_giratina",
