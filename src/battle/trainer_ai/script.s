@@ -404,6 +404,9 @@ Basic_ScoreMoveEffectByEffect:
     // included); Take Heart as Calm Mind is, unless it has a status to cure.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AUTOTOMIZE, Basic_CheckHighStatStage_Speed
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAKE_HEART, Basic_CheckTakeHeart
+    // Oxide: Parting Shot fails, and its user stays in, when the target's
+    // Attack and Sp. Atk are both at -6.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Basic_CheckPartingShot
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -1276,6 +1279,13 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
+Basic_CheckPartingShot:
+    IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, Basic_CheckPartingShot_End
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, ScoreMinus10
+
+Basic_CheckPartingShot_End:
+    PopOrEnd 
+
 Basic_CheckTakeHeart:
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckTakeHeart_End
     GoTo Basic_CheckCalmMind
@@ -2082,6 +2092,9 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2, Expert_DragonDance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Expert_DragonDance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Expert_DragonDance
+    // Oxide, change (Ian, 2026-09-27): Volt Switch and Flip Turn share U-turn's
+    // effect, so its routine above already scores them; Parting Shot has its own.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Expert_PartingShot
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -5425,6 +5438,20 @@ Expert_UTurn_ScorePlus1:
 
 Expert_UTurn_End:
     PopOrEnd 
+
+Expert_PartingShot:
+    // Oxide, change (Ian, 2026-09-27). Parting Shot lowers the target's Attack and Sp. Atk,
+    // then its user switches out, as U-turn does after its hit.
+    //
+    // If the attacker is the last living party member, it only lowers the stats: score it as
+    // Growl is scored.
+    //
+    // Otherwise, score it as U-turn, leaving out U-turn's check that the target resists, which
+    // a status move does not meet.
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_StatusAttackDown
+    IfHasSuperEffectiveMove Expert_UTurn_TryScoreMinus2
+    GoTo Expert_UTurn_CheckPartyDamage
 
 Expert_CloseCombat:
     // If the opponent resists or is immune to the move, score -1.
