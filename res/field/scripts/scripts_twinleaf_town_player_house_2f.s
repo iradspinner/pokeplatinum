@@ -1833,6 +1833,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleOblivious, 4
     AddListMenuEntry TestKit_Text_MenuStapleIlluminate, 5
     AddListMenuEntry TestKit_Text_MenuStapleSynchronize, 6
+    AddListMenuEntry TestKit_Text_MenuStapleLeafGuard, 7
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1841,6 +1842,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 4, TestKit_StapleOblivious
     GoToIfEq VAR_0x8004, 5, TestKit_StapleIlluminate
     GoToIfEq VAR_0x8004, 6, TestKit_StapleSynchronize
+    GoToIfEq VAR_0x8004, 7, TestKit_StapleLeafGuard
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1942,6 +1944,20 @@ TestKit_StapleSynchronize:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Leaf Guard and Rest: a Leafeon given Leaf Guard, against a wild Rattata
+   that knows only Tackle. */
+TestKit_StapleLeafGuard:
+    SetVar VAR_0x800A, SPECIES_LEAFEON
+    SetVar VAR_0x800B, ABILITY_LEAF_GUARD
+    SetVar VAR_0x8006, MOVE_SUNNY_DAY
+    SetVar VAR_0x8007, MOVE_REST
+    SetVar VAR_0x8008, MOVE_LEAF_BLADE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

@@ -290,6 +290,10 @@
             "en_US": "Synchronize"
         },
         {
+            "id": "TestKit_Text_MenuStapleLeafGuard",
+            "en_US": "Leaf Guard and Rest"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
