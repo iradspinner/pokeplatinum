@@ -1406,8 +1406,9 @@ lands, and each change is re-scored as it lands.
      keeps its weakness with the Tackle it now learns at 15. Abra's is the
      one that changes play: it can fight before it evolves, where Teleport
      left it none. Magikarp has the same gap (Splash alone until Tackle at
-     15) though the ruling named six; this track's pick is Tackle at 1,
-     like Feebas's, for Ian to confirm. Every other Splash or Teleport
+     15) and falls under the same ruling, so it takes Tackle at 1, like
+     Feebas; it is off the pick-list, so this reaches only trainers'
+     default moves. Every other Splash or Teleport
      carrier (Buneary, Ralts, the Abra and Hoppip lines' evolutions,
      Delphox, and the egg lists) has another move beside it, and simply
      loses it; `b6.py --report` lists them.
