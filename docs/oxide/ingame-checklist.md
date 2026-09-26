@@ -159,6 +159,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   cleared, Route 225 is open from the first arrival at the Fight Area, and the
   Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
   (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
+- [ ] **(live)** Element 6's Phase 4 catch-up (`docs/oxide/battle-ai/README.md`),
+  in Volkner's battle: lead with a Lightning Rod Pokemon (Electrike's line or
+  Rhyhorn's), break at the end of `TrainerAI_MainSingles` and read
+  `moveScore`. Every Electric attack reads 12 or more below its score against
+  another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
+  recorded the ability the AI guesses between the species' two, so the drop
+  shows on about half the turns; take several turns before calling it.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
