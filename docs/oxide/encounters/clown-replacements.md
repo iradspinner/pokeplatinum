@@ -18,6 +18,27 @@ player can always have from a gift (Togepi, Flabebe, Vullaby, Popplio, Eevee,
 Elekid and the fossils; Ian, 2026-09-26). Shares below are rough; the tool
 lays out the exact slots once Ian agrees the casts.
 
+## Rulings
+
+Ian, 2026-09-27, relayed by the Overseer:
+
+- **The proposal is accepted as written.** The Canalave Library's gift goes
+  too, and Mankey takes Wooloo's place in Solaceon Town's cast as its home.
+  Captures before the League come to 75 once the planned maps exist.
+- **Charcadet gets a home at Fuego Ironworks, and more than one.** The
+  proposal for that is the last section below.
+- **Capture levels scale to about 60 by the end of the game.** The tables
+  already do: the highest land level is 54 (Stark Mountain, the Galactic
+  split) and 53 (Sendoff Spring, the League split), and the Super Rods reach
+  60 on Route 230, at Sendoff Spring and on Route 224, which is where the
+  curve ends. Nothing planned goes past 60: the new grass tops out at 24,
+  Thorton's prize is 40, Acuity Cavern's draw is 50 and the eight-badge
+  honey tree 50. The one thing above 60 is post-game: Dialga and Palkia at
+  Spear Pillar are level 70.
+- **Grass is tile behaviour first**, on patches that already look distinct
+  (lawns, flower beds), with the tall-grass look later. The Main Production
+  Agent picks the tiles, so the rough sizes below stand as a guide only.
+
 ## Every clown, and the gifts of the same kind
 
 | Source | Split | Its capture area also has | Proposal |
@@ -54,7 +75,7 @@ quarter of the grass. The tool lays out the exact slots from the cast.
 | Sandgem Town | Roark, 3 to 5, a strip between the lab and the beach path | Kricketot (no home today), Bidoof, Starly, Wurmple, Blipbug | Pikipek, Purrloin | Wingull 4%, Poochyena 1% |
 | Jubilife City | Roark, 4 to 7, a lawn by the Trainers' School | Abra (no home today), Machop, Minccino, Rookidee, Shinx | Pawmi, Purrloin | Glameow and Poochyena 4%, Skitty and Murkrow 1% |
 | Floaroma Town | Gardenia, 10 to 14, the flower beds | Combee (no home today), Cherubi, Hoppip, Pachirisu, Tropius (no home today), Bounsweet | Budew, Murkrow | Combee on both 4%s, Chingling and Skitty on the 1%s |
-| Solaceon Town | Maylene, 19 to 24, the fields around the Day Care | Mareep, Happiny (no home today), Girafarig and Lickitung (neither has a home today), Trapinch, Poochyena, Wooloo (Mankey in its place if the library's gift goes) | Chatot, Murkrow | Mareep on both 4%s, Smoochum and Tropius on the 1%s |
+| Solaceon Town | Maylene, 19 to 24, the fields around the Day Care | Mareep, Happiny (no home today), Girafarig and Lickitung (neither has a home today), Trapinch, Poochyena, Mankey (Wooloo was proposed; Mankey took its place, ruled 2026-09-27) | Chatot, Murkrow | Mareep on both 4%s, Smoochum and Tropius on the 1%s |
 
 The lines a player remembers each by: Kricketot singing behind Rowan's lab,
 Abra teleporting in and out of the school's practice field, Combee working the
@@ -92,3 +113,29 @@ The Restaurant's six water lines keep their water tables.
 3. **Grass that cannot be placed.** If the main track finds a town where
    grass cannot go, that town's clown simply goes and its table's lines fall
    back to where they are today.
+
+Questions 1 and 2 were answered on 2026-09-27 (Rulings, above).
+
+## Charcadet, more available
+
+Charcadet evolves by stone, the Sun Stone into Armarouge and the Dusk Stone
+into Ceruledge, and the tables put a wild stage by its level, reading a stone
+as level 30. So a home for Charcadet itself has to sit below level 30, in
+Fantina's split through Byron's; later, the line appears as Ceruledge.
+
+| Where | Split | Now | Proposed |
+|---|---|---|---|
+| Route 206, Cycling Road's foot | Fantina | Charcadet a 1% | Charcadet takes Dwebble's 10% slot, Dwebble drops to the 1% (it has homes in the caves) |
+| Fuego Ironworks' yard | Byron | Ceruledge on the two 4% top-rung slots at 31 | Charcadet takes Togedemaru's 10% slot at 29 (Togedemaru's home is Route 222 at 20%); Ceruledge stays the top-rung line |
+| Route 227 and Stark Mountain | Galactic | Ceruledge | unchanged |
+
+That gives the line a 10% home in two splits, its evolved stage as the
+yard's repel-manip line, and real shares in a third split. No level ladder
+changes. Fuego
+Ironworks is one capture with Thorton's prize, so a player who wants both
+Charcadet and the prize takes Charcadet on Route 206.
+
+One thing for the balance track's stone census: Armarouge needs the Sun
+Stone, and the game will have one fixed Sun Stone find, which Espeon also
+needs. Ceruledge's Dusk Stone has fixed finds already (the Galactic
+Warehouse and Victory Road).

@@ -477,9 +477,15 @@ that stay. None blocks anything.
    thinly sourced lines (Kricketot, Abra, Combee, Tropius, Happiny,
    Girafarig, Lickitung) and the two clown-only ones (Poochyena, Trapinch);
    the Oreburgh, Floaroma Meadow, Veilstone and Restaurant clowns and the
-   Eterna condominium gift simply go; the Canalave Library gift and
-   Charcadet's home are questions for Ian. Waiting on Ian; the main track
-   does the maps and scripts.
+   Eterna condominium gift simply go. **Ian accepted it on 2026-09-27**:
+   the Canalave Library gift goes too, with Mankey homed in Solaceon's
+   grass; Charcadet gets a 10% home on Route 206 and in Fuego Ironworks'
+   yard (the doc's last section); grass is tile behaviour first; and
+   capture levels end at about 60, which the tables already do (land tops
+   out at 54, the Super Rods at 60; only the post-game Dialga and Palkia,
+   at 70, are higher). The main track does the maps and scripts; this
+   track writes the four tables and the two Charcadet slots once the
+   grass exists.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
