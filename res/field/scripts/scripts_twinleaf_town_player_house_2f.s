@@ -1513,6 +1513,7 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
     AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
     AddListMenuEntry TestKit_Text_MenuAbilityNeutralizingGas, 19
+    AddListMenuEntry TestKit_Text_MenuAbilityMore, 20
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1534,6 +1535,47 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
     GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
     GoToIfEq VAR_0x8004, 19, TestKit_AbilityNeutralizingGas
+    GoToIfEq VAR_0x8004, 20, TestKit_Abilities3
+    GoTo TestKit_Close
+
+/* The third page: the hidden abilities the natives carry, which element 5
+   left for a follow-up. */
+TestKit_Abilities3:
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
+    AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
+    AddListMenuEntry TestKit_Text_MenuAbilityHeavyMetal, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityJustified, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityLightMetal, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityMagicBounce, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityMoody, 6
+    AddListMenuEntry TestKit_Text_MenuAbilityMoxie, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityMultiscale, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityPickpocket, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityPoisonTouch, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityRattled, 11
+    AddListMenuEntry TestKit_Text_MenuAbilitySandForce, 12
+    AddListMenuEntry TestKit_Text_MenuAbilitySandRush, 13
+    AddListMenuEntry TestKit_Text_MenuAbilityToxicBoost, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityWonderSkin, 15
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilityHeavyMetal
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityJustified
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityLightMetal
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityMagicBounce
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityMoody
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilityMoxie
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityMultiscale
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityPickpocket
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityPoisonTouch
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityRattled
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilitySandForce
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilitySandRush
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilityToxicBoost
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityWonderSkin
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2196,6 +2238,258 @@ TestKit_AbilityNeutralizingGas:
     SetVar VAR_0x8009, MOVE_PROTECT
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_PRESSURE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Analytic: the player's Snorlax (its own ability) and a
+   wild Magnezone given Analytic that knows only Thunderbolt. Magnezone is
+   always faster, so its Thunderbolt hits a third harder on the turns Snorlax
+   uses Quick Attack, and moves first, than on the turns it uses Splash. */
+TestKit_AbilityAnalytic:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_MAGNEZONE
+    SetVar VAR_0x8001, ABILITY_ANALYTIC
+    SetVar VAR_0x8002, MOVE_THUNDERBOLT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Flare Boost: the player's Snorlax (its own ability) and a
+   wild Drifblim given Flare Boost that knows only Swift. Once Will-O-Wisp
+   has burned Drifblim, its Swift takes about half again as much of Snorlax's
+   HP as before. */
+TestKit_AbilityFlareBoost:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_WILL_O_WISP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_DRIFBLIM
+    SetVar VAR_0x8001, ABILITY_FLARE_BOOST
+    SetVar VAR_0x8002, MOVE_SWIFT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Heavy Metal: the player's Machamp (its own ability) and a
+   wild Aggron given Heavy Metal that knows Heavy Slam and Iron Head.
+   Doubled to 720 kg, Aggron is over five times Machamp's 130 kg, so Heavy
+   Slam hits at 120 and does about half again what Iron Head (80) does;
+   without Heavy Metal it would hit at 60, below Iron Head. */
+TestKit_AbilityHeavyMetal:
+    SetVar VAR_0x800A, SPECIES_MACHAMP
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_KARATE_CHOP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_AGGRON
+    SetVar VAR_0x8001, ABILITY_HEAVY_METAL
+    SetVar VAR_0x8002, MOVE_HEAVY_SLAM
+    SetVar VAR_0x8003, MOVE_IRON_HEAD
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Justified: a wild Poochyena that knows only Bite. Each Bite
+   that hits raises Lucario's Attack a stage, with a message; at +6 nothing
+   more is said. */
+TestKit_AbilityJustified:
+    SetVar VAR_0x800A, SPECIES_LUCARIO
+    SetVar VAR_0x800B, ABILITY_JUSTIFIED
+    SetVar VAR_0x8006, MOVE_AURA_SPHERE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_FLASH_CANNON
+    SetVar VAR_0x8000, SPECIES_POOCHYENA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_BITE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Light Metal: the player's Garchomp (its own ability) and a
+   wild Metagross given Light Metal that knows Heavy Slam and Iron Head.
+   Halved to 275 kg, Metagross is under three times Garchomp's 95 kg, so
+   Heavy Slam hits at 60 and does less than Iron Head (80); without Light
+   Metal it would hit at 120. */
+TestKit_AbilityLightMetal:
+    SetVar VAR_0x800A, SPECIES_GARCHOMP
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_DRAGON_CLAW
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_METAGROSS
+    SetVar VAR_0x8001, ABILITY_LIGHT_METAL
+    SetVar VAR_0x8002, MOVE_HEAVY_SLAM
+    SetVar VAR_0x8003, MOVE_IRON_HEAD
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Magic Bounce: a wild Chansey that knows only Toxic. Once Espeon
+   is in, each Toxic is turned back with a message, and Chansey is badly
+   poisoned in Espeon's place. */
+TestKit_AbilityMagicBounce:
+    SetVar VAR_0x800A, SPECIES_ESPEON
+    SetVar VAR_0x800B, ABILITY_MAGIC_BOUNCE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Moody: a wild Chansey that knows only Splash. At the
+   end of each turn with Bibarel in, one of its stats sharply rises and a
+   different one falls, each with a message; accuracy and evasion never
+   move. */
+TestKit_AbilityMoody:
+    SetVar VAR_0x800A, SPECIES_BIBAREL
+    SetVar VAR_0x800B, ABILITY_MOODY
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_PROTECT
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_WATERFALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Moxie: knock out any wild Pokemon; straight after the
+   faint message Honchkrow's Attack rises a stage, with a message. */
+TestKit_AbilityMoxie:
+    SetVar VAR_0x800A, SPECIES_HONCHKROW
+    SetVar VAR_0x800B, ABILITY_MOXIE
+    SetVar VAR_0x8006, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8009, MOVE_ROOST
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Multiscale: a wild Graveler that knows only Rock Throw.
+   The first Rock Throw, at full HP, takes about half what the next one
+   does; Roost back to full HP and the next is halved again. */
+TestKit_AbilityMultiscale:
+    SetVar VAR_0x800A, SPECIES_DRAGONITE
+    SetVar VAR_0x800B, ABILITY_MULTISCALE
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_EXTREME_SPEED
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_GRAVELER
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_ROCK_THROW
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Pickpocket: the player's Snorlax (its own ability) holding
+   Leftovers, and a wild Sneasel given Pickpocket that knows only Splash.
+   Snorlax's first Tackle brings "The wild SNEASEL stole SNORLAX's
+   Leftovers!"; Snorlax has them back after the battle. */
+TestKit_AbilityPickpocket:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TACKLE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_SNEASEL
+    SetVar VAR_0x8001, ABILITY_PICKPOCKET
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8004, ITEM_LEFTOVERS
+    GoTo TestKit_GivePokemonWithItem
+
+/* Poison Touch: a wild Chansey that knows only Tackle. About one Drain
+   Punch or Sucker Punch in three poisons Chansey, with a message naming
+   Poison Touch; Vacuum Wave, which makes no contact, never does it. */
+TestKit_AbilityPoisonTouch:
+    SetVar VAR_0x800A, SPECIES_TOXICROAK
+    SetVar VAR_0x800B, ABILITY_POISON_TOUCH
+    SetVar VAR_0x8006, MOVE_DRAIN_PUNCH
+    SetVar VAR_0x8007, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8008, MOVE_VACUUM_WAVE
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Rattled: a wild Poochyena that knows only Bite. Each
+   Bite that hits raises Dunsparce's Speed a stage, with a message. Its
+   answer to Intimidate needs the Intimidate holder to come in against it,
+   which the kit's wild battle cannot arrange. */
+TestKit_AbilityRattled:
+    SetVar VAR_0x800A, SPECIES_DUNSPARCE
+    SetVar VAR_0x800B, ABILITY_RATTLED
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_BODY_SLAM
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_POOCHYENA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_BITE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sand Force: a wild Chansey that knows only Splash. With
+   Sandstorm up, Chansey is buffeted at the end of each turn and Shellos,
+   a Water type, is not. Earth Power's 30% rise in the sand has no
+   message. */
+TestKit_AbilitySandForce:
+    SetVar VAR_0x800A, SPECIES_SHELLOS
+    SetVar VAR_0x800B, ABILITY_SAND_FORCE
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_EARTH_POWER
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sand Rush: a wild Charizard that knows only Growl, faster than
+   Sandslash. Before Sandstorm, Charizard moves first; once it is up,
+   Sandslash does, until the sand dies down (only a rare pairing of
+   natures and IVs keeps Charizard ahead). Sandslash, a Ground type, takes
+   no sand damage either way. */
+TestKit_AbilitySandRush:
+    SetVar VAR_0x800A, SPECIES_SANDSLASH
+    SetVar VAR_0x800B, ABILITY_SAND_RUSH
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_EARTHQUAKE
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHARIZARD
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Toxic Boost: the player's Snorlax (its own ability) and a
+   wild Zangoose given Toxic Boost that knows only Mega Punch. Once Toxic
+   has poisoned Zangoose, its Mega Punch takes about half again as much of
+   Snorlax's HP as before. */
+TestKit_AbilityToxicBoost:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_ZANGOOSE
+    SetVar VAR_0x8001, ABILITY_TOXIC_BOOST
+    SetVar VAR_0x8002, MOVE_MEGA_PUNCH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Wonder Skin: a wild Chansey that knows only Growl. Once
+   Delcatty is in, about one Growl in two misses, where it never would
+   without Wonder Skin. */
+TestKit_AbilityWonderSkin:
+    SetVar VAR_0x800A, SPECIES_DELCATTY
+    SetVar VAR_0x800B, ABILITY_WONDER_SKIN
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 

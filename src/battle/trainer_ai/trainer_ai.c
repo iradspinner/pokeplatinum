@@ -3402,7 +3402,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         int i;
 
         for (i = 0; sWeightToPower[i][0] != 0xFFFF; i++) {
-            if (sWeightToPower[i][0] >= battleCtx->battleMons[AI_CONTEXT.defender].weight) {
+            if (sWeightToPower[i][0] >= Battler_Weight(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.defender)) { // Oxide
                 break;
             }
         }

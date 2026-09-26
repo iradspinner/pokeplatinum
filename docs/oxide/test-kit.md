@@ -55,7 +55,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Skarmory | a wild Skarmory, Lv. 50 | a Flying target bulky enough to survive Smack Down and Thousand Arrows (set 26) |
 | Wild Horsea | a wild Horsea, Lv. 1, which knows only Bubble | a spread move every turn, for Wide Guard (set 30) |
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
-| Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves (entries below) | element 5's ability effects |
+| Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves, over three pages, the third for the natives' hidden abilities (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
 | Level caps | puts the player in any of the twelve level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
@@ -230,6 +230,39 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | a51b0af3 |
 | Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | a51b0af3 |
 | Neutralizing Gas | Galarian Weezing: Sludge Bomb, Strange Steam, Will-O-Wisp, Protect; foe a wild Chansey given Pressure that knows only Growl | "The wild CHANSEY is exerting its Pressure!" as the battle starts. Switch Weezing in: "Neutralizing gas filled the area!", and each of its moves aimed at Chansey now costs 1 PP, not 2. Switch Weezing out: after "Go!", "The effects of the neutralizing gas wore off!", then Chansey's Pressure message again, and moves cost 2 PP once more | 0eb1b2e9 |
+
+## The hidden-ability entries
+
+The seventeen abilities the natives carry as hidden abilities, which element 5
+left for a follow-up (`cloud/element5-hidden-abilities`), are on a third page
+of the Abilities menu, reached from "More abilities" at the end of the second.
+They are built as the entries above are. Where an ability changes the damage
+a foe does, the foe carries it and the new Pokemon is a Snorlax or another
+Pokemon with its own ability, so the HP it loses can be read off its own
+health box. As before, switch the new Pokemon in on the first turn.
+
+| Entry | Pokemon and moves | What to look for | Commit |
+|---|---|---|---|
+| Analytic | Snorlax: Quick Attack, Splash, Rest, Protect; foe a wild Magnezone given Analytic that knows only Thunderbolt | Magnezone is always faster, so Thunderbolt does about a third more on the turns Snorlax uses Quick Attack (Magnezone moves last) than on the turns it uses Splash | 8cc670a3 |
+| Flare Boost | Snorlax: Will-O-Wisp, Splash, Rest, Protect; foe a wild Drifblim given Flare Boost that knows only Swift | Once Will-O-Wisp burns Drifblim, Swift takes about half again as much of Snorlax's HP | 8f4316b4 |
+| Heavy Metal | Machamp: Karate Chop, Splash, Rest, Protect; foe a wild Aggron given Heavy Metal that knows Heavy Slam and Iron Head | Heavy Slam does about half again what Iron Head does (power 120 against 80); without Heavy Metal it would be 60 | 1e08badc |
+| Justified | Lucario: Aura Sphere, Splash, Calm Mind, Flash Cannon; foe a wild Poochyena that knows only Bite | Each Bite brings "LUCARIO's Justified raised its Attack!"; nothing at +6 | 82f44582 |
+| Light Metal | Garchomp: Dragon Claw, Splash, Rest, Protect; foe a wild Metagross given Light Metal that knows Heavy Slam and Iron Head | Heavy Slam does less than Iron Head (power 60 against 80); without Light Metal it would be 120 | 734e4583 |
+| Magic Bounce | Espeon: Psychic, Calm Mind, Morning Sun, Protect; foe a wild Chansey that knows only Toxic | Each Toxic brings "ESPEON bounced the Toxic back!", and Chansey is badly poisoned | a766752f |
+| Moody | Bibarel: Splash, Protect, Rest, Waterfall; foe a wild Chansey that knows only Splash | At the end of each turn, "BIBAREL's Moody sharply raised its {stat}!" and "BIBAREL's Moody lowered its {another stat}!"; never accuracy or evasion | 3eebbfc9 |
+| Moxie | Honchkrow: Night Slash, Brave Bird, Sucker Punch, Roost; any wild Pokemon | Knock it out: straight after "fainted!", "HONCHKROW's Moxie raised its Attack!" | 9763435f |
+| Multiscale | Dragonite: Roost, Dragon Dance, Extreme Speed, Protect; foe a wild Graveler that knows only Rock Throw | The first Rock Throw, at full HP, takes about half what the next does; Roost back to full and the next is halved again | fc8e6233 |
+| Pickpocket | Snorlax holding Leftovers: Tackle, Splash, Rest, Protect; foe a wild Sneasel given Pickpocket that knows only Splash | The first Tackle brings "The wild SNEASEL stole SNORLAX's Leftovers!"; after the battle Snorlax holds its Leftovers again | 025b933c |
+| Poison Touch | Toxicroak: Drain Punch, Sucker Punch, Vacuum Wave, Protect; foe a wild Chansey that knows only Tackle | About one Drain Punch or Sucker Punch in three poisons Chansey, with a message naming Poison Touch; Vacuum Wave, which makes no contact, never does | 37392948 |
+| Rattled | Dunsparce: Splash, Roost, Body Slam, Protect; foe a wild Poochyena that knows only Bite | Each Bite brings "DUNSPARCE's Rattled raised its Speed!" | 5164626f |
+| Sand Force | Shellos, a Water type: Sandstorm, Earth Power, Recover, Protect; foe a wild Chansey that knows only Splash | With Sandstorm up, Chansey is buffeted at the end of each turn and Shellos is not. The power rise has no message | a7048f51 |
+| Sand Rush | Sandslash: Sandstorm, Splash, Earthquake, Protect; foe a wild Charizard that knows only Growl | Charizard moves first until Sandstorm is up, and Sandslash first while it lasts (only a rare pairing of natures and IVs keeps Charizard ahead) | 336364da |
+| Toxic Boost | Snorlax: Toxic, Splash, Rest, Protect; foe a wild Zangoose given Toxic Boost that knows only Mega Punch | Once Toxic poisons Zangoose, Mega Punch takes about half again as much of Snorlax's HP | d2359a88 |
+| Wonder Skin | Delcatty: Splash, Body Slam, Rest, Protect; foe a wild Chansey that knows only Growl | Once Delcatty is in, about one Growl in two misses | 9b00e08f |
+
+Friend Guard has no entry, since it works only in a double battle. Rattled's
+answer to Intimidate has none either: it needs the Intimidate holder to come
+in against the Rattled Pokemon, which a wild battle cannot arrange.
 
 ## The modern rules entries
 

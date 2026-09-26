@@ -290,6 +290,10 @@ Element 4's Wonder Room and the three effect gaps, and element 6's Phase 4 catch
   - [x] **Shore Up, Meteor Beam and Electro Shot** (2026-09-27, `cloud/element4-effect-gaps`, its last commit the report; test kit sets 51 to 53). Shore Up healed as Synthesis does and now heals half, or two thirds in a sandstorm, with no other weather changing it (hg-engine's quarter in rain, sun or hail is not followed). Meteor Beam and Electro Shot were stubs that hit at once; each now charges a turn with a Sp. Atk raise, a Power Herb skips the wait, and Electro Shot attacks at once in rain. Both join `Move_IsMultiTurn` and `MoveIsOnDamagingTurn`.
   - [x] Teach it everything Phase 4 changed done as 23 Oxide fixes on `cloud/element6-catch-up`, merged 2026-09-27; the README's "Phase 4 catch-up" section has the table, what was checked and found already right (Trick Room, 1.5x critical hits, the stat and type choosers), and the held items, which wait for element 7
 
+Element 8's item on the natives' 17 hidden abilities, finished on `cloud/element5-hidden-abilities` on 2026-09-27 (its last commit is the report):
+
+  - [x] **17 of those hidden abilities have no effect in Oxide yet** (element 5 did the new species' abilities only): Analytic, Flare Boost, Friend Guard, Heavy Metal, Justified, Light Metal, Magic Bounce, Moody, Moxie, Multiscale, Pickpocket, Poison Touch, Rattled, Sand Force, Sand Rush, Toxic Boost and Wonder Skin, on 91 natives. Until written they do nothing, which the ability pass may also want to weigh. **Done 2026-09-27 on `cloud/element5-hidden-abilities`**, one commit each, its last commit the report; test kit Abilities page 3
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them

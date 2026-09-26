@@ -1216,12 +1216,14 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
 
     if (NO_CLOUD_NINE) {
         if ((battler1Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler1Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)) { // Oxide: Sand Rush
             battler1Speed *= 2;
         }
 
         if ((battler2Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler2Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)) { // Oxide: Sand Rush
             battler2Speed *= 2;
         }
     }
@@ -3948,6 +3950,59 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         break;
     }
 
+    case ABILITY_MOODY: {
+        // One of the five stats other than accuracy and evasion that is below
+        // +6 rises two stages, and a different one above -6 falls one, both
+        // drawn at random (Generation 8 on; hg-engine's
+        // ServerFieldConditionCheck). BATTLE_STAT_HP marks a change there is
+        // no room for, which AbilityStatChangeFromVar skips.
+        BattleMon *mon = &battleCtx->battleMons[battler];
+        int up = BATTLE_STAT_HP, down = BATTLE_STAT_HP;
+        int count = 0, stat;
+
+        if (mon->curHP == 0) {
+            break;
+        }
+
+        for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+            count += mon->statBoosts[stat] < MAX_STAT_STAGE;
+        }
+
+        if (count) {
+            count = BattleSystem_RandNext(battleSys) % count;
+
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (mon->statBoosts[stat] < MAX_STAT_STAGE && count-- == 0) {
+                    up = stat;
+                    break;
+                }
+            }
+        }
+
+        count = 0;
+        for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+            count += stat != up && mon->statBoosts[stat] > MIN_STAT_STAGE;
+        }
+
+        if (count) {
+            count = BattleSystem_RandNext(battleSys) % count;
+
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (stat != up && mon->statBoosts[stat] > MIN_STAT_STAGE && count-- == 0) {
+                    down = stat;
+                    break;
+                }
+            }
+        }
+
+        battleCtx->calcTemp = up;
+        battleCtx->msgTemp = down;
+        battleCtx->msgBattlerTemp = battler;
+        subscript = subscript_moody;
+        result = TRUE;
+        break;
+    }
+
     case ABILITY_HARVEST:
         // A Berry it used grows back, every turn in sunshine and half the time
         // otherwise, if it holds nothing.
@@ -4767,6 +4822,20 @@ int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCt
     return chosen;
 }
 
+// Oxide: the type of the move being used, as the abilities that answer a
+// hit's type read it: Normal under Normalize, else the type the move was
+// given this turn, else its listed type.
+static u8 CurrentMoveType(BattleContext *battleCtx)
+{
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+        return TYPE_NORMAL;
+    } else if (battleCtx->moveType) {
+        return battleCtx->moveType;
+    }
+
+    return CURRENT_MOVE_DATA.type;
+}
+
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -4981,6 +5050,34 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         break;
     }
 
+    // Oxide: Justified raises its holder's Attack after a Dark-type hit
+    // (hg-engine's MoveHitDefenderAbilityCheck).
+    case ABILITY_JUSTIFIED:
+        if (DEFENDING_MON.curHP
+            && CurrentMoveType(battleCtx) == TYPE_DARK
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_justified;
+            result = TRUE;
+        }
+        break;
+
+    // Oxide: Rattled raises its holder's Speed after a Bug, Ghost or Dark hit
+    // (hg-engine's MoveHitDefenderAbilityCheck); the Intimidate subscript
+    // raises it too.
+    case ABILITY_RATTLED: {
+        u8 moveType = CurrentMoveType(battleCtx);
+
+        if (DEFENDING_MON.curHP
+            && (moveType == TYPE_BUG || moveType == TYPE_GHOST || moveType == TYPE_DARK)
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_rattled;
+            result = TRUE;
+        }
+        break;
+    }
+
     case ABILITY_BERSERK: {
         // The damage taken is stored as a negative number, so the HP before
         // this hit is the HP now less it.
@@ -5055,6 +5152,24 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         break;
     }
 
+    // Oxide: Pickpocket takes the attacker's item after a contact move, if
+    // its holder has none (hg-engine's Activate_Pickpocket); TryPickpocket
+    // makes the item checks in its subscript. A move Sheer Force
+    // strengthened does not set it off.
+    case ABILITY_PICKPOCKET:
+        if (DEFENDING_MON.curHP
+            && DEFENDING_MON.heldItem == ITEM_NONE
+            && ATTACKING_MON.heldItem
+            && battleCtx->attacker != battleCtx->defender
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            *subscript = subscript_pickpocket;
+            result = TRUE;
+        }
+        break;
+
     // Mummy passes itself on and Wandering Spirit swaps, both on contact,
     // unless the attacker's ability refuses (hg-engine's failsSuppress and
     // failsSwap), after hg-engine's MoveHitDefenderAbilityCheck.
@@ -5085,6 +5200,29 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+    }
+
+    // Oxide: Poison Touch poisons the target three times in ten when its
+    // holder's contact move hits, as Poison Point does its holder's attacker
+    // (hg-engine's MoveHitAttackerAbilityCheck), when nothing above has run.
+    // The poison subscript makes Poison Point's checks (a Poison or Steel
+    // type, Immunity, Pastel Veil) and names the ability.
+    if (result == FALSE
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_POISON_TOUCH
+        && DEFENDING_MON.curHP
+        && DEFENDING_MON.status == MON_CONDITION_NONE
+        && battleCtx->attacker != battleCtx->defender
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+        && BattleSystem_RandNext(battleSys) % 10 < 3) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+        battleCtx->sideEffectMon = battleCtx->defender;
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+
+        *subscript = subscript_poison;
+        result = TRUE;
     }
 
     // Oxide: Magician takes the target's item after a damaging move, if its
@@ -7557,6 +7695,52 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Analytic raises a move by 30% when every other battler still up has
+    // already acted this turn, so its holder moves last. Future Sight and
+    // Doom Desire, whose damage is worked out when they are used, are left
+    // alone, as in hg-engine and the later games.
+    if (attackerParams.ability == ABILITY_ANALYTIC
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_HIT_IN_3_TURNS) {
+        for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+            if (i != attacker
+                && battleCtx->battleMons[i].curHP
+                && Battler_MovedThisTurn(battleCtx, i) == FALSE) {
+                break;
+            }
+        }
+
+        if (i == BattleSystem_GetMaxBattlers(battleSys)) {
+            movePower = movePower * 13 / 10;
+        }
+    }
+
+    // Sand Force raises Ground, Rock and Steel moves by 30% in a sandstorm
+    // (hg-engine's CalcBaseDamage); its holder takes no sandstorm damage
+    // (BtlCmd_EndOfTurnWeatherEffect).
+    if (attackerParams.ability == ABILITY_SAND_FORCE
+        && NO_CLOUD_NINE
+        && (fieldConditions & FIELD_CONDITION_SANDSTORM)
+        && (moveType == TYPE_GROUND || moveType == TYPE_ROCK || moveType == TYPE_STEEL)) {
+        movePower = movePower * 13 / 10;
+    }
+
+    // Flare Boost raises special moves by half while its holder is burned.
+    // hg-engine raises every move; the later games raise only special ones.
+    if (attackerParams.ability == ABILITY_FLARE_BOOST
+        && (attackerParams.statusMask & MON_CONDITION_BURN)
+        && MOVE_DATA(move).class == CLASS_SPECIAL) {
+        movePower = movePower * 15 / 10;
+    }
+
+    // Toxic Boost raises physical moves by half while its holder is poisoned
+    // or badly poisoned. hg-engine raises every move; the later games raise
+    // only physical ones.
+    if (attackerParams.ability == ABILITY_TOXIC_BOOST
+        && (attackerParams.statusMask & MON_CONDITION_ANY_POISON)
+        && MOVE_DATA(move).class == CLASS_PHYSICAL) {
+        movePower = movePower * 15 / 10;
+    }
+
     // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
     // Force raises the moves whose secondary effects it strips by 30%.
     if (attackerParams.ability == ABILITY_PIXILATE
@@ -7998,6 +8182,23 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_ICE_SCALES) == TRUE
         && moveClass == CLASS_SPECIAL) {
         damage /= 2;
+    }
+
+    // Oxide: Multiscale halves the damage its holder takes at full HP
+    // (hg-engine's CalcBaseDamage, 6.9.5). Mold Breaker ignores it.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MULTISCALE) == TRUE
+        && defenderParams.curHP == defenderParams.maxHP) {
+        damage /= 2;
+    }
+
+    // Oxide: Friend Guard cuts the damage its holder's partner takes by a
+    // quarter, in a double battle, while the holder is up (hg-engine's
+    // CalcBaseDamage, 6.9.7). Mold Breaker ignores it.
+    i = BattleSystem_GetPartner(battleSys, defender);
+    if (i != defender
+        && battleCtx->battleMons[i].curHP
+        && Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_FRIEND_GUARD) == TRUE) {
+        damage = damage * 3 / 4;
     }
 
     return damage + 2;
@@ -9452,6 +9653,21 @@ BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move)
 {
     return Battler_SheerForceStrips(battleCtx, attacker, move)
         || (Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE && MoveKeepsEffectUnderSheerForce(move));
+}
+
+int Battler_Weight(BattleContext *battleCtx, int attacker, int battler)
+{
+    int weight = battleCtx->battleMons[battler].weight;
+
+    // When the attacker is the battler, as for Heavy Slam's user, this reads
+    // its own ability plainly, so one test covers the user and the target.
+    if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_HEAVY_METAL) == TRUE) {
+        weight *= 2;
+    } else if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_LIGHT_METAL) == TRUE) {
+        weight /= 2;
+    }
+
+    return weight > 0 ? weight : 1;
 }
 
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)

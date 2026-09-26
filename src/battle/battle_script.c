@@ -323,6 +323,9 @@ static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -5938,6 +5941,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && battleCtx->battleMons[battler].curHP
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_VEIL
             && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
+            && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Oxide
+            && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH // Oxide
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -7202,7 +7207,7 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
     BattleScript_Iter(battleCtx, 1);
 
     int i = 0;
-    int monWeight = DEFENDING_MON.weight;
+    int monWeight = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->defender); // Oxide: Heavy Metal
 
     for (; sWeightToPower[i][0] != 0xFFFF; i++) {
         if (sWeightToPower[i][0] >= monWeight) {
@@ -9948,8 +9953,9 @@ static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *ba
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int attackerWeight = ATTACKING_MON.weight > 0 ? ATTACKING_MON.weight : 1;
-    u32 ratio = DEFENDING_MON.weight * 10000 / attackerWeight;
+    // Oxide: through Battler_Weight, for Heavy Metal on either side.
+    int attackerWeight = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->attacker);
+    u32 ratio = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->defender) * 10000 / attackerWeight;
 
     if (ratio <= 2000) {
         battleCtx->movePower = 120;
@@ -10274,6 +10280,9 @@ static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx)
  * knockout counts when the fainted battler took the attacker's damage in this
  * move. The raise goes through the stat-stage subscript as Speed Boost's does.
  *
+ * Moxie shares it (Oxide, element 5's hidden abilities): the same knockout
+ * raises the attacker's Attack by one stage.
+ *
  * Inputs:
  * 1. The jump distance if nothing happens.
  *
@@ -10298,7 +10307,8 @@ static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleC
         || fainted == BATTLER_NONE
         || attacker == fainted
         || mon->curHP == 0
-        || Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+        || (Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+            && Battler_Ability(battleCtx, attacker) != ABILITY_MOXIE)
         || ((battleCtx->selfTurnFlags[fainted].physicalDamageTaken == 0
                 || battleCtx->selfTurnFlags[fainted].physicalDamageLastAttacker != attacker)
             && (battleCtx->selfTurnFlags[fainted].specialDamageTaken == 0
@@ -10315,6 +10325,10 @@ static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleC
         if (values[i] > values[best]) {
             best = i;
         }
+    }
+
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_MOXIE) {
+        best = 0;
     }
 
     if (mon->statBoosts[order[best]] == MAX_STAT_STAGE) {
@@ -10469,6 +10483,92 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
     int stages = BattleScript_Read(battleCtx);
     int jumpNoEffect = BattleScript_Read(battleCtx);
 
+    if (AbilityStatChange(battleSys, battleCtx, holder, target, stat, stages) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: AbilityStatChange with the stat read from a script variable,
+ * for Moody, whose stats are drawn at random. A value outside Attack to
+ * evasion changes nothing.
+ *
+ * Inputs:
+ * 1. The ability's holder.
+ * 2. The battler whose stat changes.
+ * 3. The variable that holds the stat, a BATTLE_STAT_ value.
+ * 4. The number of stages, negative to lower it.
+ * 5. The jump distance if nothing changes.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int holder = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int target = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int *stat = BattleScript_VarAddress(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int stages = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    if (*stat < BATTLE_STAT_ATTACK
+        || *stat > BATTLE_STAT_EVASION
+        || AbilityStatChange(battleSys, battleCtx, holder, target, *stat, stages) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Pickpocket: check whether the defender, which holds nothing
+ * and has Pickpocket, may take the attacker's item after a contact move.
+ *
+ * TryStealItem's checks with the two battlers' parts swapped: the item is
+ * not taken while a Knock Off keeps either battler's item from use, from or
+ * by a Multitype holder, when it is a Griseous Orb or Mail, when the
+ * attacker spent a Custap Berry or a Quick Claw's turn, or when the
+ * attacker has Sticky Hold. Unlike Thief, a battler on the enemy side may
+ * take the item, as in the later games; the player's Pokemon gets it back
+ * after the battle, as it does any item it lost.
+ *
+ * Inputs:
+ * 1. The jump distance if the item cannot be taken.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int holderSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
+
+    if (DEFENDING_MON.heldItem
+        || (battleCtx->sideConditions[holderSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->defender]))
+        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE
+        || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_MULTITYPE
+        || ATTACKING_MON.heldItem == ITEM_GRISEOUS_ORB
+        || ATTACKING_MON.moveEffectsData.custapBerry
+        || ATTACKING_MON.moveEffectsData.quickClaw
+        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STICKY_HOLD
+        || BattleSystem_CanStealItem(battleSys, battleCtx, battleCtx->attacker) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+// The change AbilityStatChange and AbilityStatChangeFromVar make; TRUE if the
+// stat changed.
+static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages)
+{
     BattleMon *mon = &battleCtx->battleMons[target];
     int stage = mon->statBoosts[stat] + stages;
 
@@ -10484,7 +10584,6 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
             && target != holder
             && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
                 || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
-        BattleScript_Iter(battleCtx, jumpNoEffect);
         return FALSE;
     }
 
@@ -10516,7 +10615,7 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
         }
     }
 
-    return FALSE;
+    return TRUE;
 }
 
 /**

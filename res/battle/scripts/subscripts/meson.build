@@ -371,4 +371,9 @@ subscript_files = files(
     'subscript_permanent_wonder_room.s',
     'subscript_power_herb_meteor_beam.s',
     'subscript_sp_atk_up_rain_skip.s',
+    'subscript_justified.s',
+    'subscript_magic_bounce.s',
+    'subscript_moody.s',
+    'subscript_pickpocket.s',
+    'subscript_rattled.s',
 )

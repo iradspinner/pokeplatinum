@@ -668,6 +668,19 @@ BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
  * @return TRUE if it does
  */
 BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: a battler's weight as a move that reads it sees it, in tenths
+ * of a kilogram: doubled by Heavy Metal and halved by Light Metal, which the
+ * attacker's Mold Breaker ignores when the battler is its target.
+ *
+ * @param battleCtx
+ * @param attacker  The battler whose move reads the weight
+ * @param battler   The battler whose weight it is (the attacker itself for
+ *                  Heavy Slam's user)
+ * @return The weight, at least 1
+ */
+int Battler_Weight(BattleContext *battleCtx, int attacker, int battler);
 BOOL Move_IsPowder(int move);
 
 /**
