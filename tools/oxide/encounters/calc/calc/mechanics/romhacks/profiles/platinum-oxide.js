@@ -123,9 +123,11 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
         ],
         // Powers Oxide works out in code (battle_script.c): Heavy Slam from
         // the weight ratio at hg-engine's thresholds, Trump Card from the PP
-        // left (the calculator cannot know it, so full PP: 40). Electro Ball
-        // has no power code in the engine yet, so the game hits with its
-        // data's power of 1, and so does this.
+        // left (the calculator cannot know it, so full PP: 40), and the ones
+        // BattleScript_ComputedMovePower works out from the battle. Those
+        // that depend on an earlier turn (Retaliate, Echoed Voice, Stomping
+        // Tantrum, Temper Flare, Lash Out) keep their table power, which is
+        // what the engine uses when the condition is not met.
         moveBasePower: [
             function (ctx, basePower) {
                 var move = ctx.move;
@@ -143,8 +145,41 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                     return 40;
                 }
                 if (move.named("Electro Ball")) {
-                    ctx.desc.moveBP = 1;
-                    return 1;
+                    // The user's Speed over the target's, whole times, from the
+                    // Speeds the turn order used: 40, 60, 80, 120, 150.
+                    var side = ctx.field.attackerSide, other = ctx.field.defenderSide;
+                    var mine = ctx.util.getFinalSpeed(ctx.gen, ctx.attacker, ctx.field, side);
+                    var theirs = ctx.util.getFinalSpeed(ctx.gen, ctx.defender, ctx.field, other);
+                    var ratio = theirs ? Math.min(4, Math.floor(mine / theirs)) : 0;
+                    basePower = [40, 60, 80, 120, 150][ratio];
+                    ctx.desc.moveBP = basePower;
+                    return basePower;
+                }
+                if (move.named("Stored Power", "Power Trip")) {
+                    basePower = 20 + 20 * ctx.util.countBoosts(ctx.gen, ctx.attacker.boosts);
+                    ctx.desc.moveBP = basePower;
+                    return basePower;
+                }
+                if (move.named("Hard Press")) {
+                    basePower = Math.max(1, Math.floor(100 * ctx.defender.curHP() / ctx.defender.maxHP()));
+                    ctx.desc.moveBP = basePower;
+                    return basePower;
+                }
+                if (move.named("Last Respects")) {
+                    basePower = 50 + 50 * (ctx.attacker.alliesFainted || 0);
+                    ctx.desc.moveBP = basePower;
+                    return basePower;
+                }
+                if (move.named("Grav Apple") && ctx.field.isGravity) {
+                    basePower = Math.floor(basePower * 15 / 10);
+                    ctx.desc.moveBP = basePower;
+                    return basePower;
+                }
+                // Pika Papow and Veevee Volley take Return's effect, and the
+                // calculator gives Return full friendship's 102.
+                if (move.named("Pika Papow", "Veevee Volley")) {
+                    ctx.desc.moveBP = 102;
+                    return 102;
                 }
             }
         ],

@@ -44,11 +44,13 @@ Then say in one or two sentences what this session will do, and do it.
 - Stage files by name when committing, never `git add -A` or `git add .`;
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
-- Two sessions may run in parallel. Each edits only its own status home: the
-  tracker for Phases 0 to 5, `docs/oxide/encounter-tool-build-plan.md` for the
-  encounter tool (plus its one paragraph at the top of the tracker). A second
-  track works on its own branch or worktree and merges into `oxide` when its
-  tests are green.
+- Several sessions run in parallel: the Oxide Overseer, the main track, the
+  encounter track and the balance track, plus cloud sessions. Each edits only
+  its own status home: the tracker for the main track and the Overseer,
+  `docs/oxide/encounter-tool-build-plan.md` for the encounter tool (plus its
+  one paragraph at the top of the tracker), `docs/oxide/balance-plan.md` for
+  the balance track. Every track works on its own branch or worktree; the
+  Overseer merges each into `oxide` with `tools/oxide/merge-branch.sh`.
 - Do not "improve" a carried-over map, script or table while a faithful
   carry-over is being verified; `checkmap.py` compares against the base ROM.
   Cleanups (re-humanising generated scripts, unifying the clown gifts) are
@@ -62,7 +64,10 @@ facts. Use them by name: `oxide-session` (start and end of every session),
 table work), `carry-over-map` (scripts, events and text for one map),
 `read-donor` (anything from the Hardlove ROM), `oxide-spreadsheets` (Ian's
 design sheets on G:, with the synced `xlsx` skill for the mechanics),
-`debug-live` (any in-game bug, with Ian driving melonDS). In
+`debug-live` (any in-game bug, with Ian driving melonDS), `cloud-job` (writing,
+running or merging a cloud session's job), `ruling` (recording any decision of
+Ian's everywhere it must be read) and `playtest-day` (a session of in-game
+checks from `docs/oxide/ingame-checklist.md`). In
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
@@ -141,7 +146,8 @@ never pushes to `oxide`. It gates that branch with `bash tools/oxide/integrate.s
 --verify-only`, which checks any branch; `sync-docs.sh` stays the Overseer's. It cannot message the Overseer, so it reports
 through the branch: its last commit message says what was done and checked,
 failures first, and anything waiting on Ian. The Overseer, a local session,
-reviews the branch, runs the base-ROM checks, and merges it.
+reviews the branch, runs the base-ROM checks, and merges it. The `cloud-job`
+skill holds the rules of a job from both ends, so a prompt can be short.
 
 ## Tools
 
@@ -162,6 +168,8 @@ with dated pins `~/roms/base-2026-08-31.nds` (the same file) and
 byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
 `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
+`tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a GitHub build
+of the merged tree, the gate on that ROM, and a push only on a pass.
 `tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
 complains about any file it has no mapping for. The full restart check-list
 is at the top of the tracker.

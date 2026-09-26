@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 90/90, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 91/91, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
@@ -447,6 +447,15 @@ that stay. None blocks anything.
    into Abomasnow at 268 to 316, about four times and 1.6 times what the
    game does. Foul Play, Body Press, Psyshock, Sacred Sword and Darkest
    Lariat already hit as plain moves in the calculator's Generation 4 code.
+   **Done 2026-09-26, and merged on 2026-09-27 with the balance track's
+   rescore** (68eebf653), from branch `encounter-calc-item22`.
+   Electro Ball, Stored Power, Power Trip, Hard Press, Last Respects (from
+   the calculator's fainted-allies field), Grav Apple under Gravity, and
+   Pika Papow and Veevee Volley at Return's 102 follow the engine; the five
+   that depend on an earlier turn keep their table power, which is the
+   engine's when the condition is not met. Freeze-Dry and Flying Press hit
+   as plain moves, and `test_m8` pins both. When the main track gives them
+   their type rules, the `util.js` patch (`VENDORED.md`, 11) comes out.
 23. **The calculator follows the engine's stat and type choices (Ian's
    Overseer, 2026-09-26), queued until `cloud/element4-stat-choice`
    merges**: Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat,
