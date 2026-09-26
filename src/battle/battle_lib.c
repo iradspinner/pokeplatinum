@@ -4346,7 +4346,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4390,7 +4390,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 8);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -4406,7 +4406,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -4436,7 +4436,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4454,7 +4454,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4472,7 +4472,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && DEFENDING_MON.curHP
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
@@ -4491,7 +4491,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && ATTACKING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -4558,7 +4558,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_gooey;
             result = TRUE;
         }
@@ -4618,7 +4618,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_mummy;
             result = TRUE;
         }
@@ -4632,7 +4632,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_wandering_spirit;
             result = TRUE;
         }
@@ -4677,6 +4677,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Oxide
         if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
             battleCtx->msgTemp = MSGCOND_BURN;
             result = TRUE;
@@ -4763,6 +4764,7 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Oxide
         if (status & MON_CONDITION_BURN) {
             result = TRUE;
         }
@@ -5684,7 +5686,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
             && battleCtx->moveCur != MOVE_KNOCK_OFF
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_transfer_sticky_barb;
             result = TRUE;
         }
@@ -6857,6 +6859,43 @@ static const Fraction sStatStageBoosts[] = {
     { 40, 10 }, // +6
 };
 
+// Oxide: the moves Sharpness strengthens, hg-engine's SlicingMoveTable. It
+// has five claw moves (Crush Claw, Dire Claw, Dragon Claw, Metal Claw and
+// Shadow Claw) that the later games do not count as slicing.
+static const u16 sSlicingMoves[] = {
+    MOVE_AERIAL_ACE,
+    MOVE_AIR_CUTTER,
+    MOVE_AIR_SLASH,
+    MOVE_AQUA_CUTTER,
+    MOVE_BEHEMOTH_BLADE,
+    MOVE_BITTER_BLADE,
+    MOVE_CEASELESS_EDGE,
+    MOVE_CROSS_POISON,
+    MOVE_CRUSH_CLAW,
+    MOVE_CUT,
+    MOVE_DIRE_CLAW,
+    MOVE_DRAGON_CLAW,
+    MOVE_FURY_CUTTER,
+    MOVE_KOWTOW_CLEAVE,
+    MOVE_LEAF_BLADE,
+    MOVE_METAL_CLAW,
+    MOVE_MIGHTY_CLEAVE,
+    MOVE_NIGHT_SLASH,
+    MOVE_POPULATION_BOMB,
+    MOVE_PSYBLADE,
+    MOVE_PSYCHO_CUT,
+    MOVE_RAZOR_LEAF,
+    MOVE_RAZOR_SHELL,
+    MOVE_SACRED_SWORD,
+    MOVE_SECRET_SWORD,
+    MOVE_SHADOW_CLAW,
+    MOVE_SLASH,
+    MOVE_SOLAR_BLADE,
+    MOVE_STONE_AXE,
+    MOVE_TACHYON_CUTTER,
+    MOVE_X_SCISSOR,
+};
+
 static const u16 sPunchingMoves[] = {
     MOVE_ICE_PUNCH,
     MOVE_FIRE_PUNCH,
@@ -6995,6 +7034,38 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 15 / 10;
     }
 
+    // Oxide, element 5: the later games' power modifiers, after hg-engine's
+    // CalcBaseDamage. Its 4096ths are rounded to hundredths here, as
+    // Platinum's own modifiers are.
+    if (attackerParams.ability == ABILITY_SHARPNESS) {
+        for (i = 0; i < NELEMS(sSlicingMoves); i++) {
+            if (sSlicingMoves[i] == move) {
+                movePower = movePower * 15 / 10;
+                break;
+            }
+        }
+    }
+
+    // Dark Aura and Fairy Aura on any battler raise their type's moves by a
+    // third, or lower them by a quarter when Aura Break is also out.
+    if ((moveType == TYPE_DARK
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_DARK_AURA))
+        || (moveType == TYPE_FAIRY
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_FAIRY_AURA))) {
+        if (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AURA_BREAK)) {
+            movePower = movePower * 75 / 100;
+        } else {
+            movePower = movePower * 133 / 100;
+        }
+    }
+
+    // Battery raises its partner's special moves, not its own.
+    if (MOVE_DATA(move).class == CLASS_SPECIAL
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_BATTERY)
+            > (attackerParams.ability == ABILITY_BATTERY)) {
+        movePower = movePower * 130 / 100;
+    }
+
     moveClass = MOVE_DATA(move).class;
 
     if (attackerParams.ability == ABILITY_HUGE_POWER || attackerParams.ability == ABILITY_PURE_POWER) {
@@ -7087,6 +7158,22 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     // cases.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_PURIFYING_SALT) == TRUE
         && moveType == TYPE_GHOST) {
+        movePower /= 2;
+    }
+
+    // Oxide: Steelworker raises the attacking stat of Steel moves by half, and
+    // Water Bubble doubles it for Water moves and halves Fire moves against
+    // its holder, as Heatproof does.
+    if (attackerParams.ability == ABILITY_STEELWORKER && moveType == TYPE_STEEL) {
+        attackStat = attackStat * 150 / 100;
+        spAttackStat = spAttackStat * 150 / 100;
+    }
+    if (attackerParams.ability == ABILITY_WATER_BUBBLE && moveType == TYPE_WATER) {
+        attackStat = attackStat * 2;
+        spAttackStat = spAttackStat * 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_BUBBLE) == TRUE
+        && moveType == TYPE_FIRE) {
         movePower /= 2;
     }
 
@@ -7380,6 +7467,21 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage = damage * 15 / 10;
     }
 
+    // Oxide: Fluffy halves contact moves and doubles Fire moves (a Fire
+    // contact move is both), and Ice Scales halves special moves.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLUFFY) == TRUE) {
+        if (Battler_MoveMakesContact(battleCtx, attacker, move)) {
+            damage /= 2;
+        }
+        if (moveType == TYPE_FIRE) {
+            damage *= 2;
+        }
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_ICE_SCALES) == TRUE
+        && moveClass == CLASS_SPECIAL) {
+        damage /= 2;
+    }
+
     return damage + 2;
 }
 
@@ -7443,7 +7545,10 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     if ((BattleSystem_RandNext(battleSys) % sCriticalStageRates[effectiveCritStage] == 0
             || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_ALWAYS_CRITICAL
             || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL
-            || (battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS))
+            || (battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS)
+            // Oxide: Merciless makes every hit on a poisoned target critical.
+            || (Battler_Ability(battleCtx, attacker) == ABILITY_MERCILESS
+                && (battleCtx->battleMons[defender].status & MON_CONDITION_ANY_POISON)))
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BATTLE_ARMOR) == FALSE
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SHELL_ARMOR) == FALSE
         && (sideConditions & SIDE_CONDITION_LUCKY_CHANT) == FALSE
@@ -7735,7 +7840,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
         && ATTACKING_MON.heldItem == ITEM_NONE
         && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
         *subscript = subscript_transfer_sticky_barb;
         result = TRUE;
     }
@@ -8641,6 +8746,12 @@ BOOL Ability_ChangeFails(int ability, u8 flags)
     }
 
     return FALSE;
+}
+
+BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
+{
+    return (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)
+        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH;
 }
 
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)

@@ -170,6 +170,30 @@
             "en_US": "Ability list"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMore",
+            "en_US": "More abilities"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityFluffy",
+            "en_US": "Fluffy"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityIceScales",
+            "en_US": "Ice Scales"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWaterBubble",
+            "en_US": "Water Bubble"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMerciless",
+            "en_US": "Merciless"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLongReach",
+            "en_US": "Long Reach"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

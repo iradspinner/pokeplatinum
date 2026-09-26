@@ -118,12 +118,14 @@ species' other ability, and four moves chosen to show it. Each entry is a
 `TestKit_Ability<Name>` block that sets the species in `VAR_0x800A`, the
 ability in `VAR_0x800B` and the moves in `VAR_0x8006` to `VAR_0x8009`, then
 jumps to `TestKit_GivePokemonWithMoves`, with an `AddListMenuEntry` line in
-`TestKit_Abilities` and a `TestKit_Text_MenuAbility<Name>` message.
+`TestKit_Abilities2` (the field menu holds 28 entries, so the first page is
+full) and a `TestKit_Text_MenuAbility<Name>` message.
 
 An entry for an ability that works when its holder is hit also names a foe,
 in `VAR_0x8000` (species), `VAR_0x8001` (its ability, `ABILITY_NONE` to keep
 the rolled one) and `VAR_0x8002` (one move, which it then uses every turn, or
-`MOVE_NONE` to keep its own). The kit fights it straight after the gift, a
+`MOVE_NONE` to keep its own), and, for a foe that should show a contrast,
+`VAR_0x8003` (a second move). The kit fights it straight after the gift, a
 wild Lv. 50 battle through `TestKitStartWildBattle`, a kit-only command that
 sets the foe's ability and moves after `Encounter_NewVsSpeciesAtLevel`'s steps.
 The new Pokemon is not in the lead, so switch it in on the first turn.
@@ -153,12 +155,23 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Toxic Debris | Glimmora: Power Gem, Sludge Wave, Mortal Spin, Earth Power; foe a wild Rattata that knows only Tackle | After each of the first two Tackles, "Poison spikes were scattered all around the enemy team's feet!"; the third brings no message, since two layers is the most | 2eb320f4 |
 | Berserk | Galarian Moltres: Fiery Wrath, Nasty Plot, Air Slash, Roost; foe a wild Rhydon that knows only Rock Slide | On the Rock Slide that takes Moltres from above half its HP to half or less, "MOLTRES's Berserk raised its Sp. Atk!"; a later hit below half brings nothing until Roost takes it back above | 2eb320f4 |
 | Gooey | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Rattata that knows only Tackle | After each Tackle, "GOODRA's Gooey cuts the wild RATTATA's Speed!" | 2eb320f4 |
-| Mummy | Cofagrigus: Shadow Ball, Will-O-Wisp, Protect, Nasty Plot; foe a wild Rattata that knows only Tackle | After the first Tackle, "The wild RATTATA acquired Mummy!"; nothing after later ones | this batch |
-| Wandering Spirit | Runerigus: Earthquake, Shadow Claw, Protect, Stealth Rock; foe a wild Rattata with Guts that knows only Tackle | After the first Tackle, "RUNERIGUS swapped abilities with its target!": Runerigus now has Guts and Rattata Wandering Spirit, so later Tackles bring nothing | this batch |
-| Entrainment | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Worry Seed; foe a wild Rattata with Guts that knows only Tackle | Entrainment: "The wild RATTATA acquired Swarm!"; used again, it fails, since both now have Swarm. Skill Swap, Role Play and Worry Seed work as before | this batch |
-| Ability list | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Gastro Acid; foe a wild Rattata given Disguise that knows only Tackle | All four moves fail ("But it failed!"), since Disguise is on the list of abilities that cannot be passed, copied, swapped or suppressed. Before this batch Skill Swap, Role Play and Gastro Acid worked on it | this batch |
+| Mummy | Cofagrigus: Shadow Ball, Will-O-Wisp, Protect, Nasty Plot; foe a wild Rattata that knows only Tackle | After the first Tackle, "The wild RATTATA acquired Mummy!"; nothing after later ones | 711bb8df |
+| Wandering Spirit | Runerigus: Earthquake, Shadow Claw, Protect, Stealth Rock; foe a wild Rattata with Guts that knows only Tackle | After the first Tackle, "RUNERIGUS swapped abilities with its target!": Runerigus now has Guts and Rattata Wandering Spirit, so later Tackles bring nothing | 711bb8df |
+| Entrainment | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Worry Seed; foe a wild Rattata with Guts that knows only Tackle | Entrainment: "The wild RATTATA acquired Swarm!"; used again, it fails, since both now have Swarm. Skill Swap, Role Play and Worry Seed work as before | 711bb8df |
+| Ability list | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Gastro Acid; foe a wild Rattata given Disguise that knows only Tackle | All four moves fail ("But it failed!"), since Disguise is on the list of abilities that cannot be passed, copied, swapped or suppressed. Before this batch Skill Swap, Role Play and Gastro Acid worked on it | 711bb8df |
+| Fluffy (second page, as are all below) | Dubwool: Cotton Guard, Body Press, Wild Charge, Swords Dance; foe a wild Eevee that knows Tackle and Ember | Ember hits around twice as hard as Tackle; without Fluffy it would hit about half as hard | this batch |
+| Ice Scales | Frosmoth: Quiver Dance, Ice Beam, Bug Buzz, Giga Drain; foe a wild Porygon that knows Tackle and Swift | Swift does less than Tackle; without Ice Scales it would do more | this batch |
+| Water Bubble | Araquanid: Liquidation, Leech Life, Protect, Mirror Coat; foe a wild Gengar that knows only Will-O-Wisp | "ARAQUANID's Water Bubble prevents burns!" every time | this batch |
+| Merciless | Toxapex: Toxic, Scald, Recover, Protect; foe a wild Rattata that knows only Growl | Once Toxic has poisoned Rattata, every Scald is "A critical hit!" | this batch |
+| Long Reach | Decidueye: Leaf Blade, Shadow Sneak, Swords Dance, Roost; foe a wild Ferrothorn with Iron Barbs that knows only Iron Defense | Leaf Blade brings no Iron Barbs message and costs Decidueye nothing | this batch |
 
 ## Not built yet
+
+Steelworker, Sharpness and Battery change only a move's power, with no
+message, and the kit's Pokemon have random IVs and natures, so there is no
+fixed number to look for; they have no entry. Battery also needs a double
+battle. Dark Aura, Fairy Aura and Aura Break get entries with their switch-in
+messages.
 
 Kit-only trainers whose teams use the new moves, so the AI's side gets seen too.
 Ian chose move sets first; trainers are the next step when he wants them.

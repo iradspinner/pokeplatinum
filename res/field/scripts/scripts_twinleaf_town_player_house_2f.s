@@ -451,6 +451,7 @@ TestKit_Helper:
     FacePlayer
     SetVar VAR_0x800B, ABILITY_NONE
     SetVar VAR_0x8000, SPECIES_NONE
+    SetVar VAR_0x8003, MOVE_NONE
     Message TestKit_Text_WhatDoYouNeed
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuRareCandies, 0
@@ -962,12 +963,13 @@ TestKit_GivePokemonWithMoves:
 
 /* An ability entry that names a foe fights it straight after the gift: a wild
    Lv. 50 VAR_0x8000 with the ability VAR_0x8001 and, unless VAR_0x8002 is
-   MOVE_NONE, that one move, which it then uses every turn. The new Pokemon is
+   MOVE_NONE, that one move (with VAR_0x8003 as a second, if set) in place of
+   its own. The new Pokemon is
    not in the lead, so switch it in on the first turn. */
 TestKit_AbilityFoe:
     WaitButton
     CloseMessage
-    TestKitStartWildBattle VAR_0x8000, 50, VAR_0x8001, VAR_0x8002, MOVE_NONE, MOVE_NONE, MOVE_NONE
+    TestKitStartWildBattle VAR_0x8000, 50, VAR_0x8001, VAR_0x8002, VAR_0x8003, MOVE_NONE, MOVE_NONE
     GoTo TestKit_AfterBattle
 
 /* Towns land on their fly points (src/spawn_locations.c); the Pokemon Center
@@ -1066,6 +1068,7 @@ TestKit_Abilities:
     AddListMenuEntry TestKit_Text_MenuAbilityWanderingSpirit, 24
     AddListMenuEntry TestKit_Text_MenuAbilityEntrainment, 25
     AddListMenuEntry TestKit_Text_MenuAbilityAbilityList, 26
+    AddListMenuEntry TestKit_Text_MenuAbilityMore, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
@@ -1094,6 +1097,24 @@ TestKit_Abilities:
     GoToIfEq VAR_0x8004, 24, TestKit_AbilityWanderingSpirit
     GoToIfEq VAR_0x8004, 25, TestKit_AbilityEntrainment
     GoToIfEq VAR_0x8004, 26, TestKit_AbilityAbilityList
+    GoToIfEq VAR_0x8004, 27, TestKit_Abilities2
+    GoTo TestKit_Close
+
+/* The field menu holds 28 entries, so the abilities go on over a second page. */
+TestKit_Abilities2:
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityFluffy, 0
+    AddListMenuEntry TestKit_Text_MenuAbilityIceScales, 1
+    AddListMenuEntry TestKit_Text_MenuAbilityWaterBubble, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityMerciless, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityLongReach, 4
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilityWaterBubble
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityMerciless
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityLongReach
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1468,6 +1489,80 @@ TestKit_AbilityAbilityList:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_DISGUISE
     SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Fluffy: a wild Eevee that knows Tackle and Ember; Fluffy halves the
+   contact Tackle and doubles the Fire-type Ember, so Ember hits around twice
+   as hard as Tackle, where without Fluffy it would hit about half as hard. */
+TestKit_AbilityFluffy:
+    SetVar VAR_0x800A, SPECIES_DUBWOOL
+    SetVar VAR_0x800B, ABILITY_FLUFFY
+    SetVar VAR_0x8006, MOVE_COTTON_GUARD
+    SetVar VAR_0x8007, MOVE_BODY_PRESS
+    SetVar VAR_0x8008, MOVE_WILD_CHARGE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_EEVEE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_EMBER
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ice Scales: a wild Porygon that knows Tackle and Swift; Ice Scales halves
+   the special Swift, which then does less than Tackle, where without it
+   Swift would do more. */
+TestKit_AbilityIceScales:
+    SetVar VAR_0x800A, SPECIES_FROSMOTH
+    SetVar VAR_0x800B, ABILITY_ICE_SCALES
+    SetVar VAR_0x8006, MOVE_QUIVER_DANCE
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_BUG_BUZZ
+    SetVar VAR_0x8009, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8000, SPECIES_PORYGON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Water Bubble: a wild Gengar that knows only Will-O-Wisp, which Water
+   Bubble stops as Water Veil does. */
+TestKit_AbilityWaterBubble:
+    SetVar VAR_0x800A, SPECIES_ARAQUANID
+    SetVar VAR_0x800B, ABILITY_WATER_BUBBLE
+    SetVar VAR_0x8006, MOVE_LIQUIDATION
+    SetVar VAR_0x8007, MOVE_LEECH_LIFE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_MIRROR_COAT
+    SetVar VAR_0x8000, SPECIES_GENGAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WILL_O_WISP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Merciless: a wild Rattata that knows only Growl; once Toxic has poisoned
+   it, every Scald is a critical hit. */
+TestKit_AbilityMerciless:
+    SetVar VAR_0x800A, SPECIES_TOXAPEX
+    SetVar VAR_0x800B, ABILITY_MERCILESS
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_SCALD
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Long Reach: a wild Ferrothorn with Iron Barbs that knows only Iron
+   Defense; Leaf Blade makes no contact, so Iron Barbs never hurts Decidueye. */
+TestKit_AbilityLongReach:
+    SetVar VAR_0x800A, SPECIES_DECIDUEYE
+    SetVar VAR_0x800B, ABILITY_LONG_REACH
+    SetVar VAR_0x8006, MOVE_LEAF_BLADE
+    SetVar VAR_0x8007, MOVE_SHADOW_SNEAK
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_FERROTHORN
+    SetVar VAR_0x8001, ABILITY_IRON_BARBS
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

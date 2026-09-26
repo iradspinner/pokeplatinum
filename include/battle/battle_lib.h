@@ -599,6 +599,17 @@ void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, in
  */
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move);
 
+/**
+ * @brief Oxide: whether a move makes contact as the battler uses it: moves
+ * with the contact flag do, except under Long Reach.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if the move makes contact
+ */
+BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move);
+
 // Oxide: what an ability refuses, after hg-engine's ability flags.
 #define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
 #define ABILITY_FAILS_ROLE_PLAY   (1 << 1) // Role Play cannot copy it
