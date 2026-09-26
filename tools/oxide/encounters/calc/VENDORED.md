@@ -79,6 +79,38 @@ calculator checks fail if the offline ones are lost.
    so every other set of that species is in view and typing replaces it
    (Ian, 2026-09-22). Upstream opens the search empty.
 
+9. **The Platinum Oxide romhack profile** (2026-09-26, build plan items 3 and
+   19). `calc/mechanics/romhacks/profiles/platinum-oxide.js` holds Oxide's
+   own damage rules as the engine applies them in `BattleSystem_CalcMoveDamage`:
+   element 5's abilities that change damage (Sharpness, Pixilate, Liquid Voice,
+   Sheer Force, the auras and Aura Break, Battery, Sap Sipper, Bulletproof,
+   Overcoat, Purifying Salt, Water Bubble, Steelworker, Fluffy, Ice Scales,
+   Merciless, Long Reach), the powers Oxide works out in code (Heavy Slam,
+   Trump Card at full PP, Electro Ball at the power 1 the game uses), Psywave
+   and Super Fang, the always-critical moves, and a dual type's two factors
+   in the chart's row order. Its move lists are in
+   `profiles/platinum-oxide-data.js`, which `make_calc_mechanics.py` generates
+   from `src/battle/battle_lib.c`; **after an engine change to those lists,
+   rerun it**, and `test_m8` fails while it is stale. `index.html` loads both
+   before `romhacks/index.js`, which lists the profile, and
+   `romhacks/helpers.js` gains six hook names: `moveImmunity`, `fixedDamage`,
+   `powerAfterTechnician`, `defenderPowerMods`, `attackStat` and
+   `typeFactorOrder`.
+
+10. **`calc/mechanics/gen4.js`, the hooks the profile needs.** Each is marked
+    "Oxide patch" and does nothing for a profile without that hook: the
+    `criticalHit`, `afterMoveType` and `beforeFinalDamage` calls upstream's
+    other generations already make, and calls for the six new names above.
+    The damage loop takes the two type factors from `typeFactorOrder`.
+
+11. **`calc/mechanics/util.js`, Mirror Armor.** Under the "Platinum Oxide"
+    title, `checkIntimidate` lowers the Intimidate user's Attack when the
+    target has Mirror Armor, as element 5 does.
+
+12. **`js/vendor/oxide/LICENSES.md`** lists every vendored library's licence,
+    and the two files that came without a notice (object-hash and the ag-grid
+    theme) carry one in a header comment.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

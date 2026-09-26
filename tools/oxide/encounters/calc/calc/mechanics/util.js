@@ -362,6 +362,12 @@ function checkIntimidate(gen, source, target) {
     } 
 
     if (source.hasAbility('Intimidate') && source.abilityOn && !blocked) {
+        // Oxide patch: in Platinum Oxide, Mirror Armor turns the drop back on
+        // the Intimidate user (element 5).
+        if (TITLE === "Platinum Oxide" && target.hasAbility('Mirror Armor')) {
+            source.boosts.atk = Math.max(-6, source.boosts.atk - 1);
+            return;
+        }
         if (target.hasAbility('Contrary', 'Defiant', 'Guard Dog')) {
             target.boosts.atk = Math.min(6, target.boosts.atk + 1);
         }

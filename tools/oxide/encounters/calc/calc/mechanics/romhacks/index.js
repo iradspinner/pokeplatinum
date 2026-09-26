@@ -7,12 +7,15 @@ var little_emerald_1 = require("./profiles/little-emerald");
 var platinum_kaizo_1 = require("./profiles/platinum-kaizo");
 var platinum_redux_1 = require("./profiles/platinum-redux");
 var unbound_1 = require("./profiles/unbound");
+// Oxide patch: Platinum Oxide's own rules (profiles/platinum-oxide.js)
+var platinum_oxide_1 = require("./profiles/platinum-oxide");
 
 var profiles = [
     cascade_white_1.cascadeWhiteProfile,
     little_emerald_1.littleEmeraldProfile,
     platinum_kaizo_1.platinumKaizoProfile,
     platinum_redux_1.platinumReduxProfile,
+    platinum_oxide_1.platinumOxideProfile,
     unbound_1.unboundProfile
 ];
 
