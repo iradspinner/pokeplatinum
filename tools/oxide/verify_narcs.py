@@ -41,6 +41,10 @@ DEFAULT = [
     "battle/graphic/pl_b_plist_gra.narc",
     "battle/graphic/batt_obj.narc",
     "wazaeffect/effectdata/waza_particle.narc",
+    "poketool/pokegra/pl_pokegra.narc",
+    "poketool/pokegra/pl_otherpoke.narc",
+    "poketool/pokegra/height.narc",
+    "poketool/poke_edit/pl_poke_data.narc",
 ]
 
 
@@ -63,9 +67,11 @@ def load_editcheck():
 
 
 def check_by_content(b, r, path):
-    """Member by member for an archive in CONTENT_ARCHIVES or APPENDED: a member
-    passes when its bytes match, or, in a content archive, when it differs only
-    as a DSPRE re-save would. Appended members are counted, not compared."""
+    """Member by member for an archive in CONTENT_ARCHIVES, APPENDED or GROWN: a
+    member passes when its bytes match, when it differs only in zero padding,
+    in a GROWN archive when it begins with the reference's member, or, in a
+    content archive, when it differs only as a DSPRE re-save would. Appended
+    members are counted, not compared."""
     extra, extra_why = APPENDED.get(path, (0, None))
     if len(b) != len(r) + extra:
         print(f"{path}: member count {len(b)} vs {len(r)}"
@@ -75,11 +81,18 @@ def check_by_content(b, r, path):
     if path in CONTENT_ARCHIVES:
         ec = load_editcheck()
         ec.ENCRYPTED = "pokegra/" in path
-    same = resaved = 0
+    same = resaved = padded = grown = 0
     bad = []
     for i in range(len(r)):
         if b[i] == r[i]:
             same += 1
+            continue
+        # DSPRE pads some members with zero bytes, as the byte path allows too
+        if bytes(b[i]).rstrip(b"\0") == bytes(r[i]).rstrip(b"\0"):
+            padded += 1
+            continue
+        if path in GROWN and len(b[i]) > len(r[i]) and bytes(b[i][:len(r[i])]) == bytes(r[i]):
+            grown += 1
             continue
         kind = ec.classify(b[i], r[i]) if ec else "bytes differ"
         if ec and not ec.is_edit(kind):
@@ -87,6 +100,10 @@ def check_by_content(b, r, path):
         else:
             bad.append((i, kind))
     note = f"; {extra} appended, {extra_why}" if extra else ""
+    if padded:
+        note += f"; {padded} differing only in zero padding"
+    if grown:
+        note += f"; {grown} grown by appended records, {GROWN[path]}"
     if bad:
         print(f"{path}: {len(bad)} members differ: {[i for i, _ in bad[:20]]}{note}")
         print(f"   first: member {bad[0][0]}, {bad[0][1]}")
@@ -453,10 +470,20 @@ CONTENT_ARCHIVES = {
     "battle/graphic/pl_batt_obj.narc": "the base ROM's battle platforms, HP box "
                                       "palette and one misc sprite (visual overhaul)",
     "itemtool/itemdata/item_icon.narc": "the Pocket PC's icon, member 441",
+    "poketool/pokegra/pl_pokegra.narc": "the base ROM's Pokemon sprite set",
+    "poketool/pokegra/pl_otherpoke.narc": "the forms' shiny palettes",
 }
 # Members Oxide appended after the reference's last; the rest still compare.
 APPENDED = {
     "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
+    "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
+    "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+}
+# Single-member tables whose member Oxide grew by appending records: the built
+# member must begin with the reference's.
+GROWN = {
+    "poketool/poke_edit/pl_poke_data.narc": "each species' 89-byte sprite record, "
+                                            "the 159 new species' after the base ROM's 494",
 }
 
 
@@ -690,7 +717,7 @@ def main():
         if p == WAZA:
             ok = check_move_table(b, r, p) and ok
             continue
-        if p in CONTENT_ARCHIVES or p in APPENDED:
+        if p in CONTENT_ARCHIVES or p in APPENDED or p in GROWN:
             ok = check_by_content(b, r, p) and ok
             continue
         if len(b) != len(r):
