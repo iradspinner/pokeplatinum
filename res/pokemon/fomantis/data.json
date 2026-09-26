@@ -101,7 +101,13 @@
         "by_tutor": [],
         "egg_moves": []
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            34,
+            "SPECIES_LURANTIS"
+        ]
+    ],
     "offspring": "SPECIES_FOMANTIS",
     "footprint": {
         "has": false,

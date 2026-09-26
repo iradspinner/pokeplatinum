@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
-    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
+    "abilities": [
+        "ABILITY_ROCK_HEAD",
+        "ABILITY_STURDY",
+        "ABILITY_WEAK_ARMOR"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
@@ -112,11 +116,6 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE_WITH_HELD_ITEM",
-            "ITEM_METAL_COAT",
-            "SPECIES_STEELIX"
-        ],
         [
             "EVO_LEVEL_WITH_HELD_ITEM_DAY",
             "ITEM_METAL_COAT",

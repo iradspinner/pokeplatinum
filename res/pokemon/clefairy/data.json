@@ -27,7 +27,11 @@
     "base_friendship": 140,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
-    "abilities": [ "ABILITY_MAGIC_GUARD", "ABILITY_MAGIC_GUARD" ],
+    "abilities": [
+        "ABILITY_MAGIC_GUARD",
+        "ABILITY_MAGIC_GUARD",
+        "ABILITY_FRIEND_GUARD"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,

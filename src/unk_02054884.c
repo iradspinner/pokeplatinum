@@ -16,8 +16,18 @@
 #include "save_catchrecords.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
+#include "vars_flags.h"
+
+// Platinum Oxide: a gift the script chose to hand out its hidden ability.
+static void GiveHiddenAbilityIfFlagged(SaveData *saveData, Pokemon *mon)
+{
+    if (SystemFlag_TakeNextMonHiddenAbility(SaveData_GetVarsFlags(saveData))) {
+        Pokemon_TryGiveHiddenAbility(mon);
+    }
+}
 
 BOOL Pokemon_CanBattle(Pokemon *mon)
 {
@@ -43,6 +53,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapID heapID, SaveData *saveData, u16 speci
     Pokemon_Init(mon);
     Pokemon_InitWith(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
+    GiveHiddenAbilityIfFlagged(saveData, mon);
 
     item = heldItem;
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
@@ -116,6 +127,7 @@ BOOL Pokemon_GiveDesignedMonFromScript(enum HeapID heapID, SaveData *saveData, u
     Pokemon_CalcLevelAndStats(mon);
 
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
+    GiveHiddenAbilityIfFlagged(saveData, mon);
 
     item = heldItem;
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);

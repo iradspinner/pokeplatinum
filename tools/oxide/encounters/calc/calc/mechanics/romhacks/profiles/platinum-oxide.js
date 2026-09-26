@@ -232,6 +232,33 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                 return basePower;
             }
         ],
+        // The moves that attack with another stat (battle_lib.c, from
+        // cloud/element4-stat-choice): Foul Play with the target's Attack and
+        // its stages, which the target's Unaware does not hide, and Body Press
+        // with the user's Defense and its stages, which it does.
+        attackSource: [
+            function (ctx) {
+                if (ctx.move.named("Foul Play")) {
+                    return { mon: ctx.defender, stat: "atk", pastUnaware: true };
+                }
+                if (ctx.move.named("Body Press")) {
+                    return { mon: ctx.attacker, stat: "def" };
+                }
+            }
+        ],
+        // Psyshock, Psystrike and Secret Sword hit the target's Defense with
+        // its Defense stages and modifiers; Sacred Sword, Darkest Lariat and
+        // Chip Away ignore the target's stages.
+        defenseSource: [
+            function (ctx) {
+                if (ctx.move.named("Psyshock", "Psystrike", "Secret Sword")) {
+                    return { againstDefense: true };
+                }
+                if (ctx.move.named("Sacred Sword", "Darkest Lariat", "Chip Away")) {
+                    return { ignoreStages: true };
+                }
+            }
+        ],
         // Steelworker raises the attacking stat of Steel moves by half, and
         // Water Bubble doubles it for Water moves.
         attackStat: [

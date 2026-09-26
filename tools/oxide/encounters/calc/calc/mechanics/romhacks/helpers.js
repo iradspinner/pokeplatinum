@@ -23,7 +23,9 @@ var HOOK_NAMES = [
     "typeFactorOrder",
     "simpleAtCalc",
     "criticalDamage",
-    "firstHitDamage"
+    "firstHitDamage",
+    "attackSource",
+    "defenseSource"
 ];
 exports.HOOK_NAMES = HOOK_NAMES;
 

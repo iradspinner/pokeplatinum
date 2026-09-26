@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
-    "abilities": [ "ABILITY_TRACE", "ABILITY_DOWNLOAD" ],
+    "abilities": [
+        "ABILITY_TRACE",
+        "ABILITY_DOWNLOAD",
+        "ABILITY_ANALYTIC"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
@@ -99,11 +103,6 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE_WITH_HELD_ITEM",
-            "ITEM_UPGRADE",
-            "SPECIES_PORYGON2"
-        ],
         [
             "EVO_LEVEL_WITH_HELD_ITEM_DAY",
             "ITEM_UPGRADE",

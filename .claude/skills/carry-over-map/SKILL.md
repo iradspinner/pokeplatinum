@@ -40,6 +40,21 @@ by command: message ids are allowed to renumber when orphaned names are removed,
 as long as every occurrence remaps the same way and the text it points at reads
 the same. A map is done when `checkmap.py` is clean.
 
+A fresh worktree has no `build/`, and `mapdiff.py` needs three things from one:
+the enum headers (copy `build/generated/` from the main checkout), `msgenc`
+(copy `build/tools/msgenc/msgenc`) and the library it loads (copy
+`build/subprojects/yyjson-0.12.0/libyyjson.so*`). Copy them rather than
+symlinking `build/`, so nothing run in the worktree writes into the shared
+build. With those, one script can be assembled without a full build, which the
+degraded CPU forbids: regenerate `build/generated/vars_flags.h` with
+`subprojects/metang/metang.py` if you renamed a var or flag, generate the map's
+text and events headers with `msgenc -H` and `build/tools/datagen/datagen-events`,
+then run `tools/scripts/make_script_bin.sh` from `build/` with the include and
+tool paths `ninja -t commands` prints for that script. Disassembling the output
+with `scriptdis.emit_source` and diffing it against the base ROM's member shows
+every change command by command, and catches a movement block pushed off
+alignment before GitHub builds the ROM.
+
 For a script you cannot read, `python3 tools/oxide/scriptdis.py` disassembles
 any member of either ROM; `--roundtrip` proves the emitter, and
 `tools/oxide/bulk_scripts.py --dry-run` must keep reporting "would write 0".

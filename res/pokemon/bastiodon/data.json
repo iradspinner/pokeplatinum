@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
-    "abilities": [ "ABILITY_SOLID_ROCK", "ABILITY_BATTLE_ARMOR" ],
+    "abilities": [
+        "ABILITY_SOLID_ROCK",
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_SOUNDPROOF"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

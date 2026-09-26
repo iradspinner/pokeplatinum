@@ -66,6 +66,7 @@ u16 SystemVars_GetArceusEventState(VarsFlags *varsFlags);
 void SystemVars_SetArceusEventState(VarsFlags *varsFlags, u16 state);
 u16 SystemVars_GetShayminEventState(VarsFlags *varsFlags);
 void SystemVars_SetShayminEventState(VarsFlags *varsFlags, u16 state);
+u16 SystemVars_GetLegendaryPoolRoamerSpecies(VarsFlags *varsFlags);
 void SystemVars_SetRoamingSpeciesState(VarsFlags *varsFlags, u16 species, u16 state);
 u16 SystemVars_GetDistortionWorldCyrusApperanceState(VarsFlags *varsFlags);
 void SystemVars_SetDistortionWorldCyrusApperanceState(VarsFlags *varsFlags, u16 state);

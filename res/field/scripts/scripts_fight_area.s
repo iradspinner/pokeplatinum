@@ -52,6 +52,12 @@ FightArea_Entry0:
     SetVarFromValue VAR_FIGHT_AREA_STATE, 1
     ScrCmd_32E
     Message 1
+    @ Oxide: the zone now opens before Volkner's Gym, so Volkner and Flint
+    @ battle only a player who holds the Beacon Badge. Without it the scene
+    @ ends here and the rival waits by the Frontier gate (state 1).
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
+    CompareVarToValue VAR_0x800C, 0
+    GoToIf 1, FightArea_NoBeaconBadgeOnArrival
     ShowYesNoMenu VAR_0x800C
     CompareVarToValue VAR_0x800C, 1
     GoToIf 1, FightArea_0491
@@ -183,6 +189,10 @@ FightArea_Entry13:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Oxide: no tag battle before the Beacon Badge (see Entry0).
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_0x800C
+    CompareVarToValue VAR_0x800C, 0
+    GoToIf 1, FightArea_RivalWaitsForBeaconBadge
     ApplyMovement 7, FightArea_Movement_08E0
     WaitMovement
     GetPlayerDir VAR_0x8004
@@ -206,6 +216,10 @@ FightArea_Entry13:
     ReleaseAll
     End
 FightArea_Entry14:
+    @ Oxide: Route 225 is open from the first arrival. The two trainers who
+    @ blocked it until the tag battle never appear, because the tag battle
+    @ now waits for the Beacon Badge and the zone must not.
+    SetFlag FLAG_HIDE_FIGHT_AREA_BLOCKADE
     CompareVarToValue VAR_FIGHT_AREA_STATE, 1
     GoToIf 1, FightArea_06D2
     CompareVarToValue VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
@@ -452,6 +466,10 @@ FightArea_04F9:
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_09A8
     WaitMovement
     RemoveObject 7
+    @ Oxide: a player who arrived without the Beacon Badge met Buck then
+    @ (FightArea_NoBeaconBadgeOnArrival), and he has already left.
+    CheckFlag FLAG_HIDE_FIGHT_AREA_BUCK
+    GoToIf 1, FightArea_BuckAlreadyLeft
     ApplyMovement 8, FightArea_Movement_09B0
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_09BC
     WaitMovement
@@ -461,6 +479,7 @@ FightArea_04F9:
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_09D0
     WaitMovement
     RemoveObject 8
+FightArea_BuckAlreadyLeft:
     GetSetNationalDexEnabled 2, VAR_0x800C
     CompareVarToValue VAR_0x800C, 1
     CallIf 1, FightArea_0823
@@ -598,8 +617,7 @@ FightArea_07F1:
     SetVarFromValue VAR_0x8004, 923
     Return
 FightArea_0823:
-    RemoveObject 22
-    RemoveObject 23
+    @ Oxide: the blockade is never loaded now (Entry14); only the flag stays.
     SetFlag FLAG_HIDE_FIGHT_AREA_BLOCKADE
     Return
 FightArea_0831:
@@ -632,6 +650,40 @@ FightArea_087F:
     Return
 FightArea_0899:
     Return
+@ Oxide: the arrival scene without the Beacon Badge. Volkner turns the
+@ challenge down until the player has beaten his Gym, and the rival waits.
+@ Buck introduces himself here instead of after the battle and leaves,
+@ because Route 227, where his story goes on, is open from now.
+FightArea_NoBeaconBadgeOnArrival:
+    ApplyMovement 24, FightArea_Movement_0920
+    WaitMovement
+    Message 58
+    CloseMessage
+    ApplyMovement 7, FightArea_Movement_0900
+    WaitMovement
+    BufferRivalName 0
+    BufferPlayerName 1
+    Message 59
+    WaitButton
+    CloseMessage
+    ApplyMovement 8, FightArea_Movement_08F8
+    WaitMovement
+    Message 61
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    RemoveObject 8
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
+    End
+FightArea_RivalWaitsForBeaconBadge:
+    BufferRivalName 0
+    Message 60
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
     .balign 4, 0
 
 FightArea_Movement_089C:

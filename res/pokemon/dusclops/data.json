@@ -27,7 +27,11 @@
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE",
+        "ABILITY_FRISK"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
@@ -118,11 +122,6 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_TRADE_WITH_HELD_ITEM",
-            "ITEM_REAPER_CLOTH",
-            "SPECIES_DUSKNOIR"
-        ],
         [
             "EVO_LEVEL_WITH_HELD_ITEM_DAY",
             "ITEM_REAPER_CLOTH",

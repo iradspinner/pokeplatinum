@@ -62,17 +62,22 @@ def main():
                     and len(by.get("Mt. Coronet Peak", [])) == 7
                     and len(by.get("Mt. Coronet Mountainside", [])) == 2,
                     str(sorted(k for k in by if k.startswith("Mt. Coronet")))))
-    # Three tables are built ahead of their maps: no header uses them yet
-    # (backlog: the headers, and grass for the two land tables), so each
-    # counts as the location its sidecar entry plans for it.
+    # Tables built ahead of their maps: until a header uses one it counts as
+    # the location its sidecar entry plans for it, and once the main track
+    # points the header at it, it reads that location from the header. Either
+    # way it is the planned place (the four towns' grass, 2026-09-27, joined
+    # Verity Lakefront, Amity Square and Snowpoint City).
     ahead = {"encounters_verity_lakefront": "Verity Lakefront",
              "encounters_amity_square": "Amity Square",
-             "encounters_snowpoint_city": "Snowpoint City"}
-    uses = locations.header_uses(root)
-    results.append(("Verity Lakefront, Amity Square and Snowpoint City exist, no header uses "
-                    "them yet, and each counts as its planned location",
-                    all(n in model.area_names() and n not in uses
-                        and locations.location(n) == want for n, want in ahead.items()),
+             "encounters_snowpoint_city": "Snowpoint City",
+             "encounters_sandgem_town": "Sandgem Town",
+             "encounters_jubilife_city": "Jubilife City",
+             "encounters_floaroma_town": "Floaroma Town",
+             "encounters_solaceon_town": "Solaceon Town"}
+    results.append(("the tables built ahead of their maps exist and each counts as its "
+                    "planned location",
+                    all(n in model.area_names() and locations.location(n) == want
+                        for n, want in ahead.items()),
                     str({n: locations.location(n) for n in ahead})))
 
     # -- one-spot groups (Ian, 2026-09-26) ------------------------------------
@@ -191,8 +196,10 @@ def main():
     # -- the regenerated splits ---------------------------------------------
     designed = [n for n, e in entries.items() if e.get("cast")]
     first_two = [n for n in designed if sp.get(n) in ("Roark", "Gardenia")]
-    results.append(("every land table in the first two splits is designed (20) and Route 201 counts",
-                    len(first_two) == 20 and "encounters_route_201" in first_two
+    # 20 until 2026-09-27, 23 with Sandgem Town, Jubilife City and Floaroma
+    # Town's grass, which replaced their gift clowns.
+    results.append(("every land table in the first two splits is designed (23) and Route 201 counts",
+                    len(first_two) == 23 and "encounters_route_201" in first_two
                     and not entries["encounters_route_201"].get("no_capture"), f"{len(first_two)}"))
     tops = {}
     for n in designed:

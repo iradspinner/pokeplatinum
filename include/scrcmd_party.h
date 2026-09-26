@@ -6,6 +6,7 @@
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx);
 BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx);
 BOOL ScrCmd_GiveDesignedPokemon(ScriptContext *ctx);
+BOOL ScrCmd_SetPartyMonMetLocation(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx);
 BOOL ScrCmd_CheckIsPartyMonOutsider(ScriptContext *ctx);
 BOOL ScrCmd_GiveEgg(ScriptContext *ctx);

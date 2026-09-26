@@ -77,7 +77,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
-- [ ] **The staples rulings, the Modern rules menu** (18 entries): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (22 entries): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -105,6 +105,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
   in its range.
+- [ ] **Element 8, hidden abilities and restored items** (the last three
+  Modern rules entries):
+  "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
+  Intimidate, not Blaze; one Rare Candy makes a Torracat that still reads
+  Intimidate. "Hidden ability wild" opens with the wild Litten's Intimidate
+  lowering your lead's Attack; the flag clears itself after that one use.
+  "Items restored": Mew eats its Sitrus Berry after Belly Drum, and has it
+  back in its summary after the battle.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -125,6 +133,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   ceiling. The Day Care man's level and price stop at the cap too.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
+- [ ] Held items come back after battle (element 8): give a Pokemon an Oran or
+  Sitrus Berry, let a trainer's Pokemon bring it below half so it eats the
+  Berry, and after the battle its summary shows the Berry again. The same for
+  a Focus Sash that saved it. The kit's "Items restored" entry shows it first.
+- [ ] Battle style is always Set (element 8): the options menu shows SET
+  highlighted and left and right do not move it, and when a trainer's Pokemon
+  faints the game sends the next one out without asking whether you want to
+  switch.
 - [ ] Shinx's ability is always Rivalry, never Intimidate; Bidoof and Starly
   hatch in about 255 steps, down from about 3,825.
 - [ ] Answering yes to "use another Repel?" works (the one carried-over thing
@@ -142,12 +158,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Munchlax trees are gone.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
-- [ ] Once `carry-over` merges, the base ROM's overworld sprites: the teleporting
-  Abra outside Sandgem's Pokemon Center is an Abra, not a placeholder, and
-  faces and turns properly when talked to (the same Abra stands in 30 other
-  towns, gyms and routes). Later in the game, May at the Resort Area, Steven in
-  Stark Mountain's first room, and Ethan and Red on Mt. Coronet's north and
-  south slopes draw as themselves.
+- [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
+- [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
+  sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
+  Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
+  Coronet or Stark Mountain, or in Turnback Cave. The gym shortcut Abra still
+  stand at the entrance and by the leader of the Canalave, Pastoria,
+  Snowpoint, Veilstone and Sunyshore gyms, draw as an Abra, and face and
+  turn properly when talked to. Later in the game, May at the Resort Area,
+  Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
+  north and south slopes draw as themselves.
 
 ## 4. The ordinary ROM, mid-game
 
@@ -167,10 +187,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
   Saturn's AI never chooses it.
-- [ ] Once `main-scripts` merges: the Snowpoint ferry opens after Galactic HQ is
-  cleared, Route 225 is open from the first arrival at the Fight Area, and the
-  Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
-  (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
   at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
@@ -181,6 +197,51 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
   recorded the ability the AI guesses between the species' two, so the drop
   shows on about half the turns; take several turns before calling it.
+- [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
+  Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
+  Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
+  house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
+  Route 213, have no clown; everyone else in them talks as before, and
+  Veilstone's Elekid gift still gives Elekid.
+- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
+- [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
+  Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
+- [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
+  Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
+  30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
+  Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
+  Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
+- [ ] Snowpoint City: fishing gives the species of
+  `res/field/encounters/encounters_snowpoint_city.json` for each rod.
+- [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
+  about Team Galactic. After HQ it sails, and the first voyage plays Cynthia's
+  scene.
+- [ ] Fight Area without the Beacon Badge: the rival walks you to Volkner and
+  Flint, Volkner turns the challenge down, the rival says he will wait, Buck
+  introduces himself and leaves in a fade. Route 225 is open. Talking to the
+  rival by the Frontier gate gives his "still don't have Volkner's Badge"
+  line. Buck is on Route 227, and not also at the Fight Area.
+- [ ] Fight Area with the Beacon Badge: talking to the rival starts the tag
+  battle, and afterwards the Palmer scene plays, without Buck's part if you
+  first arrived without the badge. Arriving with the badge the first time
+  plays vanilla's whole scene, Buck included.
+- [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
+  is empty after Galactic HQ.
+- [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one
+  of Articuno, Cresselia or Pheromosa, and running or fainting it prints that
+  name in "disappeared deep into its cavern". A new game can draw a different
+  one; a soft reset cannot.
+- [ ] Verity Cavern: Mesprit's sprite, but the preview, the cry and the names
+  in "flew off" and in Rowan's two lines are the roamer draw (one of Mesprit,
+  Tapu Koko, Buzzwole, Galarian Zapdos, Poipole, Xurkitree or Galarian
+  Articuno). That species then roams at level 50, the Marking Map shows it with
+  Mesprit's icon (known), and after defeating it Verity Cavern brings it back.
+- [ ] Victory Road, the first step north inside the south entrance: Dawn (or
+  Lucas, for a female player) notices you, you are walked in front of her, and
+  the level 71 fight uses the team for your starter (trainers 779 to 784).
+  Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 

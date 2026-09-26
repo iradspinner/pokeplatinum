@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
-    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_NONE",
+        "ABILITY_HYDRATION"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
@@ -94,7 +98,8 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_HAPPINESS",
+            "EVO_LEVEL",
+            30,
             "SPECIES_ALOMOMOLA"
         ]
     ],

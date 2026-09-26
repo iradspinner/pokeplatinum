@@ -6,8 +6,12 @@
 
     ScriptEntry OreburghCityMiddleHouse_Entry0
     ScriptEntry OreburghCityMiddleHouse_Entry1
-    ScriptEntry OreburghCityMiddleHouse_Entry2
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 OreburghCityMiddleHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -23,78 +27,6 @@ OreburghCityMiddleHouse_Entry1:
     LockAll
     FacePlayer
     Message 1
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-OreburghCityMiddleHouse_Entry2:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT, OreburghCityMiddleHouse_0092
-    Message 2
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, OreburghCityMiddleHouse_0063
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, OreburghCityMiddleHouse_0092
-    GoTo OreburghCityMiddleHouse_0092
-OreburghCityMiddleHouse_0063:
-    GetRandom VAR_0x800C, 3
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, OreburghCityMiddleHouse_009D
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, OreburghCityMiddleHouse_00C9
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, OreburghCityMiddleHouse_00F5
-    End
-OreburghCityMiddleHouse_0092:
-    Message 6
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-OreburghCityMiddleHouse_009D:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, OreburghCityMiddleHouse_0121
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_DWEBBLE, 15, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-OreburghCityMiddleHouse_00C9:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, OreburghCityMiddleHouse_0121
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_NOSEPASS, 15, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-OreburghCityMiddleHouse_00F5:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, OreburghCityMiddleHouse_0121
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_CARBINK, 15, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-OreburghCityMiddleHouse_0121:
-    Message 7
     WaitButton
     CloseMessage
     ReleaseAll
