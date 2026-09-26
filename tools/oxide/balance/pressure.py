@@ -662,15 +662,17 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
     return score_jobs(out, ctx, blob, time.time() - t0)
 
 
-def fight_jobs(fight, blob, side=None, parties=None, cap=None):
+def fight_jobs(fight, blob, side=None, parties=None, cap=None, weather="map"):
     """The job file for one fight, and what scoring its results takes
-    besides: (jobs, ctx). rescore.py fingerprints both."""
+    besides: (jobs, ctx). rescore.py fingerprints both. The field starts in
+    its trainers' map weather, or in `weather` (None for none) when a
+    what-if names one; a boss Pokemon's own weather ability still wins."""
     split = fight["split"]
     if side is None:
         side = pool.pool(split, blob)
     own_parties, tr_ids = boss_parties(fight) if fight.get("trainers") else ([], fight.get("tr_ids", []))
     parties = own_parties if parties is None else parties
-    weather = fight_weather(tr_ids)
+    weather = fight_weather(tr_ids) if weather == "map" else weather
     jobs = {"pokemon": {}, "pairs": []}
     for i, p in enumerate(side):
         jobs["pokemon"][f"p{i}"] = p

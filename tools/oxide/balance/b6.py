@@ -42,8 +42,9 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 
-from ..encounters import calc_export, calc_trainers, canon, pokedex
+from ..encounters import calc_export, calc_trainers, canon, evolve, pokedex
 from . import calibrate, data, metrics, pool, pressure, required
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -471,9 +472,8 @@ def lever_record(fight, parties, jobs, ctx, inputs, blob, blob_path):
             per_mon = score_all(st, rows=rows, info=info)
         record(label, "item" if _item is None else "item one split earlier", per_mon, len(changed))
     if ctx["weather"]:
-        jobs2, ctx2 = pressure.fight_jobs(dict(fight, trainers=None, tr_ids=[]), blob, side=side,
-                                          parties=parties, cap=ctx["cap"])
-        st2 = run_state(jobs2, dict(ctx2, trick_room=ctx["trick_room"]), side, blob_path)
+        jobs2, ctx2 = pressure.fight_jobs(fight, blob, side=side, parties=parties, weather=None)
+        st2 = run_state(jobs2, ctx2, side, blob_path)
         record(f"{fight['label']}'s {ctx['weather']} gone", "weather", score_all(st2), len(side))
     for d, cside in inputs["capped"].items():
         jobs2, ctx2 = pressure.fight_jobs(fight, blob, side=cside, parties=parties)
@@ -571,57 +571,201 @@ def species_table(results):
     return tot
 
 
-def report(results, out=sys.stdout):
+# Goal 1's test for a fight whose difficulty is all damage: it threatens at
+# least Renegade's gym mean (0.54, "What B3b and B5 found") by chance, shows
+# few tactics, and spends most of its turns on moves a player can call.
+HYPER = {"threat_chance": 0.55, "tactics": 4, "called": 0.65}
+# The fights Ian named as perhaps too hard (2026-09-26).
+TOO_HARD = ("flint", "byron")
+
+
+def hyper_offense(r):
+    return (r["threat_chance"] >= HYPER["threat_chance"] and r["unseen_count"] <= HYPER["tactics"]
+            and (r.get("predictable") or 0) >= HYPER["called"])
+
+
+def fully_evolved(constant):
+    return not evolve.evolutions(data.ROOT, constant)
+
+
+def _changes(rec, key, n=3, sign=1):
+    """The n boss-side changes that move `key` most in the direction `sign`."""
+    rows = [(lab, d) for lab, d in rec["changes"] if d.get(key) is not None]
+    return sorted(rows, key=lambda c: -sign * c[1][key])[:n]
+
+
+def report(results, content=None, out=sys.stdout):
     line = scale_line()
-    print(f"Ian's fight scale from safe switch-ins: {line[0]:.1f} {line[1]:+.1f} x safe", file=out)
+    say = functools.partial(print, file=out)
+    say(f"Ian's fight scale from safe switch-ins: {line[0]:.1f} {line[1]:+.1f} x safe "
+        f"(the bottom band, 0 to 2, is safe {(2.5 - line[0]) / line[1]:.2f} or more)")
     story = story_scores()
-    print(f"\nStory fights and Hesperid ({len(story)}):", file=out)
-    print(f"{'fight':22}{'split':10}{'safe':>6}{'scale':>7}{'chance':>8}{'bait':>6}"
-          f"{'tactics':>9}{'called':>8}", file=out)
-    for r in story.values():
-        print(f"{r['label'][:21]:22}{r['split']:10}{_fmt(r['safe'])}"
-              f"{_fmt(on_scale(r['safe'], line), 7, 1)}{_fmt(r['threat_chance'], 8)}"
-              f"{_fmt(r['answers_bait'])}{_fmt(r['unseen_count'], 9, 1)}"
-              f"{_fmt(r.get('predictable'), 8)}", file=out)
+    fights = results.get("fights", {})
+
+    say(f"\nGoal 2, the story fights on the scale ({len(story)}):")
+    say(f"{'fight':22}{'split':10}{'safe':>6}{'scale':>7}{'chance':>8}{'bait':>6}"
+        f"{'tactics':>9}{'called':>8}  band, marks")
+    for k, r in story.items():
+        rating = on_scale(r["safe"], line)
+        marks = [band(rating)] + (["hyper-offense"] if hyper_offense(r) else []) \
+            + (["Ian: perhaps too hard"] if k in TOO_HARD else [])
+        say(f"{r['label'][:21]:22}{r['split']:10}{_fmt(r['safe'])}{_fmt(rating, 7, 1)}"
+            f"{_fmt(r['threat_chance'], 8)}{_fmt(r['answers_bait'])}{_fmt(r['unseen_count'], 9, 1)}"
+            f"{_fmt(r.get('predictable'), 8)}  {', '.join(marks)}")
+
     trainers = results.get("trainers", {})
     if trainers:
-        print("\nOrdinary trainers by band, all placed / required only:", file=out)
-        print(f"{'split':10}" + "".join(f"{n:>16}" for n, _t in BANDS), file=out)
+        say("\nGoal 2, ordinary trainers by band (all placed / required on the story path):")
+        say(f"{'split':10}" + "".join(f"{n:>14}" for n, _t in BANDS) + f"{'mean threat':>14}")
         for split in SPLITS:
             rs = [r for r in trainers.values() if r["split"] == split]
             cells = []
             for name, _top in BANDS:
                 a = sum(band(on_scale(r["safe"], line)) == name for r in rs)
-                q = sum(band(on_scale(r["safe"], line)) == name for r in rs
-                        if r["how"] == "required")
-                cells.append(f"{a:>10} / {q:<3}")
-            print(f"{split:10}" + "".join(f"{c:>16}" for c in cells), file=out)
-    for rec in results.get("fights", {}).values():
-        best = sorted(rec["changes"], key=lambda c: -abs(c[1].get("safe") or 0)
-                      - abs(c[1].get("threat_chance") or 0))[:3]
-        print(f"\n{rec['label']}: " + "; ".join(
-            f"{lab}: safe {d['safe']:+.2f}, threat {d['threat_chance']:+.2f}" for lab, d in best),
-            file=out)
-    rows = lever_table(results)
-    if rows:
-        print("\nPlayer levers, mean change over the fights each touches "
-              "(answers baiting counted, safe switch-ins):", file=out)
+                q = sum(band(on_scale(r["safe"], line)) == name for r in rs if r["how"] == "required")
+                cells.append(f"{a:>8} / {q:<3}")
+            mean = sum(r["threat_chance"] for r in rs) / len(rs) if rs else None
+            say(f"{split:10}" + "".join(f"{c:>14}" for c in cells) + _fmt(mean, 14))
+        req = [r for r in trainers.values() if r["how"] == "required"]
+        say(f"Required ordinary trainers in the middle band or above: "
+            f"{sum(band(on_scale(r['safe'], line)) != BANDS[0][0] for r in req)} of {len(req)}")
+        by_size = collections.defaultdict(list)
+        for r in trainers.values():
+            by_size[min(r["size"], 4)].append(r)
+        say("By party size (4 means four or more): " + "; ".join(
+            f"{s}: {len(rs)} trainers, {sum(band(on_scale(r['safe'], line)) == BANDS[0][0] for r in rs)}"
+            f" at the bottom" for s, rs in sorted(by_size.items())))
+
+    if fights:
+        say("\nGoal 1, hyper-offense: the fights whose difficulty is damage, and the boss-side "
+            "changes that cut their threat most (with what each does to safe switch-ins):")
+        for k, r in story.items():
+            if not hyper_offense(r) or k not in fights:
+                continue
+            rec = fights[k]
+            top = max(rec["mons"], key=lambda m: m["threat_chance"])
+            say(f"{r['label']}: threat {r['threat_chance']:.2f}, most from {top['species']} "
+                f"({top['threat_chance']:.2f}, {top['item']})")
+            for lab, d in _changes(rec, "threat_chance", sign=-1):
+                say(f"    {lab}: threat {d['threat_chance']:+.3f}, safe {d['safe']:+.3f}")
+
+        say("\nFlint and Byron, what makes them hard: the pairs that double up on one-hit "
+            "knockouts, and the changes that give back the most safe switch-ins:")
+        for k in TOO_HARD:
+            if k not in fights:
+                continue
+            rec = fights[k]
+            say(f"{rec['label']}: safe {rec['base']['safe']:.2f}; overlaps "
+                + ", ".join(f"{p} ({n})" for p, n in rec["overlaps"][:4]))
+            say("    fewest answers: " + ", ".join(
+                f"{m['species']} {m['answers_bait']:.2f}"
+                for m in sorted(rec["mons"], key=lambda m: m["answers_bait"])[:3]))
+            for lab, d in _changes(rec, "safe", sign=1):
+                say(f"    {lab}: safe {d['safe']:+.3f}, threat {d['threat_chance']:+.3f}")
+
+        rows = lever_table(results)
+        say("\nGoal 4, the player's levers, mean change over the story fights each touches "
+            "(answers baiting counted, safe switch-ins, fights):")
         for size, label, _kind, ab, sf, n in rows:
-            flag = "far" if size >= FAR else ("none" if size == 0 else "")
-            print(f"{label[:52]:53}{_fmt(ab, 7, 3)}{_fmt(sf, 7, 3)}{n:>4} {flag}", file=out)
+            flag = "FAR" if size >= FAR else ("none" if size == 0 else "")
+            say(f"  {label[:56]:57}{_fmt(ab, 7, 3)}{_fmt(sf, 7, 3)}{n:>4}  {flag}")
+
+        tot = species_table(results)
+        carriers = sorted((sp for sp, t in tot.items() if t["fights"] >= MIN_FIGHTS
+                           and t["answered"] >= CARRIES * t["faced"]),
+                          key=lambda sp: -tot[sp]["answered"] / tot[sp]["faced"])
+        say(f"\nGoal 4, species that surely answer half or more of the boss Pokemon they meet "
+            f"(over {MIN_FIGHTS} story fights or more): " + (", ".join(
+                f"{canon.showdown_name(sp)} {tot[sp]['answered'] / tot[sp]['faced']:.2f}"
+                for sp in carriers) or "none"))
+        alone = sorted((sp for sp, t in tot.items() if t["alone"]), key=lambda sp: -tot[sp]["alone"])
+        say("Species that are the only sure answer to some boss Pokemon: " + ", ".join(
+            f"{canon.showdown_name(sp)} {tot[sp]['alone']}" for sp in alone[:20]))
+        idle = sorted(sp for sp, t in tot.items() if t["fights"] >= MIN_FIGHTS
+                      and not t["answered"] and fully_evolved(sp))
+        say(f"Fully evolved species that surely answer nothing in {MIN_FIGHTS} or more story "
+            f"fights ({len(idle)}): " + ", ".join(canon.showdown_name(sp) for sp in idle))
+
+    if content:
+        say("\nGoal 3, what vanilla Platinum lacks, per split: on the player's side, new species "
+            "and species with a new move; on the trainers there, new species, moves, abilities:")
+        for split, c in content.items():
+            say(f"  {split:10} side {c['side_new_species']:>3} / {c['side_with_new_move']:>3} of "
+                f"{c['side']:>3}; trainers {c['foe_new_species']:>3} of {c['foe_mons']:>3} Pokemon, "
+                f"{c['foe_new_moves']:>3} of {c['foe_moves']:>4} moves, "
+                f"{c['foe_new_abilities']:>3} abilities")
+
+
+def _draft_party(what):
+    """A drafted team: a trainer constant already in the tree, or a JSON
+    file holding a list of party members in the trainer data's shape
+    (species, level, item, ability, nature, ivs, evs, moves; a missing IV
+    is 31 and a missing EV 0)."""
+    if what.startswith("TRAINER_"):
+        t = next(t for t in data.oxide_trainers().values() if t["constant"] == what)
+        return t["name"], t["party"], [t["tr_id"]]
+    with open(what, encoding="utf-8") as f:
+        party = json.load(f)
+    for m in party:
+        m["ivs"] = {k: (m.get("ivs") or {}).get(k, 31) for k in metrics.STATS}
+        m["evs"] = {k: (m.get("evs") or {}).get(k, 0) for k in metrics.STATS}
+    return os.path.basename(what), party, []
+
+
+def score_draft(what, split, weather=None, out=sys.stdout):
+    """One drafted team (Ian's Frontier Brains, 2026-09-27) scored as a
+    story fight in `split`, and placed on his fight scale. A trainer in the
+    tree fights in its map's weather, a drafted file in `weather` (Rain,
+    Sun, Sand or Hail) or in none. Nothing is stored; a draft that becomes a
+    trainer is scored with the rest."""
+    say = functools.partial(print, file=out)
+    label, party, tr_ids = _draft_party(what)
+    blob = calc_export.build()
+    side = pool.pool(split, blob)
+    fight = {"key": "draft", "label": label, "split": split, "tr_ids": tr_ids}
+    with tempfile.TemporaryDirectory(prefix="oxide-b6-draft-") as tmp:
+        path = os.path.join(tmp, "blob.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(blob, f)
+        jobs, ctx = pressure.fight_jobs(fight, blob, side=side, parties=[party],
+                                        weather="map" if tr_ids else weather)
+        st = run_state(jobs, ctx, side, path)
+    per_mon = score_all(st)
+    r = roll(per_mon)
+    line = scale_line()
+    rating = on_scale(r["safe"], line)
+    tactics = pressure.unseen([party])
+    say(f"{label} in {split}'s split (cap {pool.caps()[split]}, {len(side)} species on the "
+        f"side, weather {ctx['weather'] or 'none'}):")
+    say(f"  safe switch-ins {r['safe']:.2f}, so about {rating:.1f} on Ian's fight scale "
+        f"({band(rating)}); threat by chance {r['threat_chance']:.2f}, answers baiting counted "
+        f"{r['answers_bait']:.2f}, tactics {tactics['unseen_count']}")
+    for m in per_mon:
+        say(f"  {m['species']:14}{m['level']:>4} {str(m['item']):16} threat {m['threat_chance']:.2f}"
+            f", answers {m['answers_bait']:.2f}, knocks out {len(m['_hits'])} in one hit")
+    overlaps = safe_overlaps(per_mon)
+    if overlaps:
+        say("  doubled-up knockouts: " + ", ".join(f"{p} ({n})" for p, n in overlaps))
+    for kind, things in tactics["unseen"].items():
+        say(f"  {kind}: {', '.join(things)}")
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true")
-    ap.add_argument("--content", action="store_true", help="count the new species, moves and abilities")
+    ap.add_argument("--draft", help="a trainer constant, or a JSON file of a drafted party")
+    ap.add_argument("--split", help="the split a --draft is fought in")
+    ap.add_argument("--weather", choices=sorted(pressure.CALC_WEATHER),
+                    help="the map weather a drafted file is fought in")
+    ap.add_argument("--content", action="store_true",
+                    help="also count the new species, moves and abilities (about half a minute)")
     args = ap.parse_args(argv)
-    results = load()
-    if args.content:
-        for split, c in new_content(calc_export.build()).items():
-            print(split, c)
+    if args.draft:
+        if args.split not in SPLITS:
+            ap.error(f"--draft needs --split, one of {', '.join(SPLITS)}")
+        score_draft(args.draft, args.split, args.weather)
         return 0
-    report(results)
+    report(load(), new_content(calc_export.build()) if args.content else None)
     return 0
 
 
