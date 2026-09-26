@@ -4152,6 +4152,22 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
 
 static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx)
 {
+    // Oxide: Mind Blown's user pays half its maximum HP here, once, after
+    // every target has been tried, whether the move hit, missed or was
+    // blocked, as hg-engine charges it after the move. The subscript is
+    // Chloroblast's, which Magic Guard skips. This state is entered again
+    // afterwards, for Explosion's faint.
+    if (ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_MIND_BLOWN) {
+        ATTACKER_SELF_TURN_FLAGS.statusFlags &= ~SELF_TURN_FLAG_MIND_BLOWN;
+
+        if (ATTACKING_MON.curHP) {
+            LOAD_SUBSEQ(subscript_recoil_half_max_hp);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT;
+            return;
+        }
+    }
+
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;

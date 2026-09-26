@@ -70,6 +70,7 @@ LAST_EFFECT = 406        # the donor's highest effect id
 # one, so the converter never numbers a script past 406.
 OXIDE_EFFECTS = [
     ("BATTLE_EFFECT_WONDER_ROOM", ["MOVE_WONDER_ROOM"]),   # 407, 2026-09-27
+    ("BATTLE_EFFECT_MIND_BLOWN", ["MOVE_MIND_BLOWN"]),   # 408, 2026-09-27
 ]
 
 

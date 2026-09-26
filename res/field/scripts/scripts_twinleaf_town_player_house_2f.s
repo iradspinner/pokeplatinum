@@ -693,6 +693,8 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet48, 20
     AddListMenuEntry TestKit_Text_MenuSet49, 21
     AddListMenuEntry TestKit_Text_MenuSet50, 22
+    AddListMenuEntry TestKit_Text_MenuSet51, 23
+    AddListMenuEntry TestKit_Text_MenuSet52, 24
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -717,6 +719,8 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet50
+    GoToIfEq VAR_0x8004, 23, TestKit_MoveSet51
+    GoToIfEq VAR_0x8004, 24, TestKit_MoveSet52
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1267,6 +1271,33 @@ TestKit_MoveSet50:
     SetVar VAR_0x8006, MOVE_WONDER_ROOM
     SetVar VAR_0x8007, MOVE_TACKLE
     SetVar VAR_0x8008, MOVE_SWIFT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 51: Mind Blown costs its user half its maximum HP once the move is
+   over, hit or miss. Against a wild Chansey that knows Protect and Splash:
+   each Mind Blown takes half Mew's HP ("MEW is hit with recoil!"), even when
+   Chansey protects itself, and Flamethrower costs nothing. */
+TestKit_MoveSet51:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_PROTECT
+    SetVar VAR_0x8003, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_MIND_BLOWN
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 52: Damp stops Mind Blown before it starts, and then it costs nothing.
+   Against a wild Politoed given Damp that knows only Splash. */
+TestKit_MoveSet52:
+    SetVar VAR_0x8000, SPECIES_POLITOED
+    SetVar VAR_0x8001, ABILITY_DAMP
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_MIND_BLOWN
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
