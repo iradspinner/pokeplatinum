@@ -1503,6 +1503,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityPoisonTouch, 10
     AddListMenuEntry TestKit_Text_MenuAbilityRattled, 11
     AddListMenuEntry TestKit_Text_MenuAbilitySandForce, 12
+    AddListMenuEntry TestKit_Text_MenuAbilitySandRush, 13
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1517,6 +1518,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 10, TestKit_AbilityPoisonTouch
     GoToIfEq VAR_0x8004, 11, TestKit_AbilityRattled
     GoToIfEq VAR_0x8004, 12, TestKit_AbilitySandForce
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilitySandRush
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2384,6 +2386,23 @@ TestKit_AbilitySandForce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sand Rush: a wild Charizard that knows only Growl, faster than
+   Sandslash. Before Sandstorm, Charizard moves first; once it is up,
+   Sandslash does, until the sand dies down (only a rare pairing of
+   natures and IVs keeps Charizard ahead). Sandslash, a Ground type, takes
+   no sand damage either way. */
+TestKit_AbilitySandRush:
+    SetVar VAR_0x800A, SPECIES_SANDSLASH
+    SetVar VAR_0x800B, ABILITY_SAND_RUSH
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_EARTHQUAKE
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHARIZARD
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

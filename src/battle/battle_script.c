@@ -5943,6 +5943,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_VEIL
             && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Oxide
+            && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH // Oxide
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
