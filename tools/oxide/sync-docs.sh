@@ -88,6 +88,8 @@ copy "encounters/design.json" "Claude outputs/encounters/design.json"
 copy "encounters/availability-plan.json" "Claude outputs/encounters/availability-plan.json"
 copy "encounters/availability.md" "Claude outputs/encounters/availability.md"
 copy "encounters/scripted-sources.md" "Claude outputs/encounters/scripted-sources.md"
+copy "encounters/scripted.json" "Claude outputs/encounters/scripted.json"
+copy "encounters/values.json" "Claude outputs/encounters/values.json"
 
 # Anything under docs/oxide that the list above does not name. caught.json is
 # per-playthrough state and gitignored, so it is not a doc and is not mirrored.
