@@ -3898,7 +3898,9 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
  * Vanilla named one ability per type: Flash Fire, Water Absorb and Volt
  * Absorb. Oxide's Lightning Rod and Storm Drain now take the moves they draw
  * (the staples rulings) and Sap Sipper takes Grass moves (element 5), so they
- * join (Ian, 2026-09-27).
+ * join (Ian, 2026-09-27). Motor Drive and Dry Skin, which Platinum's engine
+ * already had taking Electric and Water moves, were left out of vanilla's
+ * list (Oxide, vanilla fix, Ian, 2026-09-27).
  *
  * @param ability
  * @param moveType
@@ -3911,10 +3913,10 @@ static BOOL AI_AbilityAbsorbsType(u16 ability, u8 moveType)
         return ability == ABILITY_FLASH_FIRE;
 
     case TYPE_WATER:
-        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_STORM_DRAIN;
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_STORM_DRAIN || ability == ABILITY_DRY_SKIN;
 
     case TYPE_ELECTRIC:
-        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_LIGHTNING_ROD;
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_LIGHTNING_ROD || ability == ABILITY_MOTOR_DRIVE;
 
     case TYPE_GRASS:
         return ability == ABILITY_SAP_SIPPER;
