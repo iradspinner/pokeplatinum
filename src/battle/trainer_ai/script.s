@@ -2639,12 +2639,21 @@ Expert_SpeedDownOnHit:
     // If the target is immune to or would resist the move, do not apply any further modifiers.
     //
     // Treat the exact moves Icy Wind, Rock Tomb, and Mud Shot as Speed-reducing status moves.
+    // Oxide: and the six below.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_SpeedDownOnHit_End
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_SpeedDownOnHit_End
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_SpeedDownOnHit_End
     IfMoveEqualTo MOVE_ICY_WIND, Expert_StatusSpeedDown
     IfMoveEqualTo MOVE_ROCK_TOMB, Expert_StatusSpeedDown
     IfMoveEqualTo MOVE_MUD_SHOT, Expert_StatusSpeedDown
+    // Oxide, change (Ian, 2026-09-27): the attacks element 4 added that always lower Speed
+    // (Max Strike aside, which no trainer can use).
+    IfMoveEqualTo MOVE_LOW_SWEEP, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_BULLDOZE, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_ELECTROWEB, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_GLACIATE, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_DRUM_BEATING, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_POUNCE, Expert_StatusSpeedDown
     PopOrEnd 
 
 Expert_SpeedDownOnHit_End:
