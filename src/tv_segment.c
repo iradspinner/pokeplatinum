@@ -2250,10 +2250,12 @@ static int TVSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem, String
     return TVProgramSinnohNow_Text_SwarmNewsFlash;
 }
 
+// Platinum Oxide (Ian, 2026-09-26): swarms are gone, so the news flash never
+// airs, whatever the save's swarm flag says. Vanilla aired it once the flag was
+// set, naming the table's first swarm species, which every table leaves empty.
 static BOOL TVSegment_IsEligible_SwarmNewsFlash(FieldSystem *fieldSystem, TVEpisode *episode)
 {
-    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-    return SpecialEncounter_IsSwarmEnabled(speEnc);
+    return FALSE;
 }
 
 // Leftover from DP

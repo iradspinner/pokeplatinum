@@ -183,8 +183,9 @@ def check_model(results):
                     and all(s.startswith("SPECIES_") for s in daily), ""))
     refs = model.load_area("encounters_route_201").reference_species()
     results.append(("reference_species lists every key with a species, no SPECIES_NONE",
-                    {"land_encounters", "swarms", "day", "night", "radar", "ruby",
-                     "leafgreen"} <= set(refs)
+                    # the swarm, radar and GBA lists are empty since 2026-09-26
+                    {"land_encounters", "day", "night"} <= set(refs)
+                    and not {"swarms", "radar", "ruby", "leafgreen"} & set(refs)
                     and "surf_encounters" not in refs
                     and not any("SPECIES_NONE" in v for v in refs.values()),
                     ", ".join(sorted(refs))))

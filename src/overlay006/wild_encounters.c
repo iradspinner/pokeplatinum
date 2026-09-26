@@ -19,11 +19,9 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/honey_tree.h"
-#include "overlay006/dual_slot_encounters.h"
 #include "overlay006/feebas_fishing.h"
 #include "overlay006/great_marsh_daily_encounters.h"
 #include "overlay006/special_dates.h"
-#include "overlay006/swarm.h"
 #include "overlay006/wild_encounters.h"
 
 #include "encounter.h"
@@ -192,20 +190,6 @@ void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, 
     }
 }
 
-static void WildEncounters_ReplaceSwarmEncounters(FieldSystem *fieldSystem, const WildEncounters *encounterData, int *radarSlot1, int *radarSlot2)
-{
-    SpecialEncounter *specialEncounter = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-
-    if (SpecialEncounter_IsSwarmEnabled(specialEncounter)) {
-        u32 swarmId = SpecialEncounter_GetDailyMon(specialEncounter, DAILY_SWARM);
-
-        if (fieldSystem->location->mapHeaderID == Swarm_GetMapId(swarmId)) {
-            *radarSlot1 = encounterData->swarmEncounters[0];
-            *radarSlot2 = encounterData->swarmEncounters[1];
-        }
-    }
-}
-
 static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSystem, const BOOL nationalDexObtained, int *trophySlot1, int *trophySlot2)
 {
     if (MapHeader_IsTrophyGarden(fieldSystem->location->mapHeaderID)) {
@@ -331,10 +315,11 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
+        // Platinum Oxide (Ian, 2026-09-26): no swarm and no GBA dual-slot list
+        // replaces a slot here. Their lists are empty in every table, so the
+        // area's own grass slots 0, 1, 8 and 9 always stand.
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
-        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
-        WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -518,10 +503,11 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
 
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
+        // Platinum Oxide (Ian, 2026-09-26): no swarm and no GBA dual-slot list
+        // replaces a slot here. Their lists are empty in every table, so the
+        // area's own grass slots 0, 1, 8 and 9 always stand.
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
-        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
-        WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -648,10 +634,11 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
         BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
+        // Platinum Oxide (Ian, 2026-09-26): no swarm and no GBA dual-slot list
+        // replaces a slot here. Their lists are empty in every table, so the
+        // area's own grass slots 0, 1, 8 and 9 always stand.
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
-        WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
-        WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -692,13 +679,9 @@ static BOOL TryGenerateGrassEncounter_WithRadar(FieldSystem *fieldSystem, Pokemo
     if (radarData->isRadarEncounter) {
         int species, level;
 
-        if (radarData->shakeType == 1) {
-            encounterTable[4].species = encounterData->radarEncounters[0];
-            encounterTable[5].species = encounterData->radarEncounters[1];
-            encounterTable[10].species = encounterData->radarEncounters[2];
-            encounterTable[11].species = encounterData->radarEncounters[3];
-        }
-
+        // Platinum Oxide (Ian, 2026-09-26): vanilla put the table's four radar
+        // species into slots 4, 5, 10 and 11 when a patch shook this way. The
+        // radar now finds only the area's ordinary grass slots.
         GetRadarMon(fieldSystem->chain, &species, &level);
 
         if (radarData->preserveChain == 1) {

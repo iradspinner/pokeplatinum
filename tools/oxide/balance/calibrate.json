@@ -1,0 +1,326 @@
+{
+ "_comment": "B5: Ian's bellwether fights, and each reading against the reference hacks.",
+ "fights": {
+  "hesperid_valor": {
+   "key": "hesperid_valor",
+   "label": "Hesperid, Valor",
+   "split": "Candice",
+   "cap": 56,
+   "pool": 358,
+   "weather": null,
+   "trick_room": false,
+   "threat": 0.473,
+   "answers": 0.329,
+   "answers_lock": 0.348,
+   "threat_chance": 0.436,
+   "answers_duel": 0.468,
+   "answers_sure": 0.463,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.497,
+   "unanswered": [],
+   "max_threat": 0.827,
+   "min_answers": 0.067,
+   "min_answers_lock": 0.067,
+   "choice_mons": 1,
+   "unseen": {
+    "sacrifice": [
+     "Weezing Explosion",
+     "Sudowoodo Explosion"
+    ],
+    "pinch items": [
+     "Sceptile Petaya Berry",
+     "Girafarig Starf Berry"
+    ],
+    "setup": [
+     "Girafarig Agility"
+    ],
+    "passing": [
+     "Girafarig Baton Pass"
+    ],
+    "hazards": [
+     "Sudowoodo Stealth Rock"
+    ],
+    "evasion": [
+     "Sudowoodo Bright Powder"
+    ]
+   },
+   "unseen_count": 8.0,
+   "predictable": 0.758,
+   "mons": [
+    {
+     "variant": 0,
+     "species": "Weezing",
+     "level": 50,
+     "item": "Black Sludge",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.274,
+     "answers": 0.439,
+     "answers_lock": 0.439,
+     "threat_chance": 0.272,
+     "answers_duel": 0.288,
+     "answers_sure": 0.282
+    },
+    {
+     "variant": 0,
+     "species": "Sceptile",
+     "level": 49,
+     "item": "Petaya Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.729,
+     "answers": 0.067,
+     "answers_lock": 0.067,
+     "threat_chance": 0.551,
+     "answers_duel": 0.525,
+     "answers_sure": 0.525
+    },
+    {
+     "variant": 0,
+     "species": "Girafarig",
+     "level": 50,
+     "item": "Starf Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.285,
+     "answers": 0.291,
+     "answers_lock": 0.291,
+     "threat_chance": 0.285,
+     "answers_duel": 0.683,
+     "answers_sure": 0.682
+    },
+    {
+     "variant": 0,
+     "species": "Sudowoodo",
+     "level": 50,
+     "item": "Bright Powder",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.251,
+     "answers": 0.729,
+     "answers_lock": 0.729,
+     "threat_chance": 0.251,
+     "answers_duel": 0.417,
+     "answers_sure": 0.411
+    },
+    {
+     "variant": 0,
+     "species": "Chatot",
+     "level": 52,
+     "item": "Choice Specs",
+     "weather": null,
+     "choice": true,
+     "locked_move": "Hyper Voice",
+     "threat": 0.827,
+     "answers": 0.12,
+     "answers_lock": 0.212,
+     "threat_chance": 0.822,
+     "answers_duel": 0.426,
+     "answers_sure": 0.416
+    }
+   ],
+   "calcs": 31685,
+   "errors": [
+    "p101 Heavy Slam: damage is not a number",
+    "p171 Psywave: damage is not a number",
+    "p199 Psywave: damage is not a number",
+    "p200 Psywave: damage is not a number",
+    "p203 Heavy Slam: damage is not a number",
+    "p204 Heavy Slam: damage is not a number",
+    "p217 Super Fang: damage is not a number",
+    "p219 Super Fang: damage is not a number",
+    "p220 Super Fang: damage is not a number",
+    "p221 Super Fang: damage is not a number",
+    "p247 Super Fang: damage is not a number",
+    "p267 Super Fang: damage is not a number",
+    "p300 Psywave: damage is not a number",
+    "p319 Super Fang: damage is not a number",
+    "p35 Super Fang: damage is not a number",
+    "p50 Heavy Slam: damage is not a number",
+    "p57 Heavy Slam: damage is not a number",
+    "p73 Electro Ball: damage is not a number"
+   ],
+   "node_seconds": 3.93,
+   "wall_seconds": 4.05
+  },
+  "hesperid_coronet": {
+   "key": "hesperid_coronet",
+   "label": "Hesperid, Coronet",
+   "split": "Galactic",
+   "cap": 65,
+   "pool": 364,
+   "weather": null,
+   "trick_room": false,
+   "threat": 0.407,
+   "answers": 0.417,
+   "answers_lock": 0.417,
+   "threat_chance": 0.361,
+   "answers_duel": 0.464,
+   "answers_sure": 0.458,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.544,
+   "unanswered": [],
+   "max_threat": 0.863,
+   "min_answers": 0.118,
+   "min_answers_lock": 0.118,
+   "choice_mons": 0,
+   "unseen": {
+    "sacrifice": [
+     "Weezing Explosion",
+     "Drifblim Destiny Bond",
+     "Drifblim Explosion",
+     "Camerupt Explosion"
+    ],
+    "status": [
+     "Weezing Will-O-Wisp",
+     "Camerupt Will-O-Wisp"
+    ],
+    "pinch items": [
+     "Sceptile Petaya Berry",
+     "Girafarig Starf Berry"
+    ],
+    "setup": [
+     "Girafarig Agility",
+     "Rampardos Rock Polish",
+     "Drifblim Curse"
+    ],
+    "passing": [
+     "Girafarig Baton Pass"
+    ]
+   },
+   "unseen_count": 12.0,
+   "predictable": 0.509,
+   "mons": [
+    {
+     "variant": 0,
+     "species": "Weezing",
+     "level": 55,
+     "item": "Poison Barb",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.217,
+     "answers": 0.574,
+     "answers_lock": 0.574,
+     "threat_chance": 0.217,
+     "answers_duel": 0.407,
+     "answers_sure": 0.401
+    },
+    {
+     "variant": 0,
+     "species": "Sceptile",
+     "level": 54,
+     "item": "Petaya Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.676,
+     "answers": 0.129,
+     "answers_lock": 0.129,
+     "threat_chance": 0.517,
+     "answers_duel": 0.622,
+     "answers_sure": 0.618
+    },
+    {
+     "variant": 0,
+     "species": "Girafarig",
+     "level": 52,
+     "item": "Starf Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.31,
+     "answers": 0.396,
+     "answers_lock": 0.396,
+     "threat_chance": 0.231,
+     "answers_duel": 0.757,
+     "answers_sure": 0.753
+    },
+    {
+     "variant": 0,
+     "species": "Rampardos",
+     "level": 53,
+     "item": "Lum Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.28,
+     "answers": 0.629,
+     "answers_lock": 0.629,
+     "threat_chance": 0.246,
+     "answers_duel": 0.548,
+     "answers_sure": 0.527
+    },
+    {
+     "variant": 0,
+     "species": "Drifblim",
+     "level": 54,
+     "item": "Focus Sash",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.863,
+     "answers": 0.118,
+     "answers_lock": 0.118,
+     "threat_chance": 0.863,
+     "answers_duel": 0.172,
+     "answers_sure": 0.173
+    },
+    {
+     "variant": 0,
+     "species": "Camerupt",
+     "level": 56,
+     "item": "Passho Berry",
+     "weather": null,
+     "choice": false,
+     "locked_move": null,
+     "threat": 0.096,
+     "answers": 0.657,
+     "answers_lock": 0.657,
+     "threat_chance": 0.092,
+     "answers_duel": 0.276,
+     "answers_sure": 0.275
+    }
+   ],
+   "calcs": 42116,
+   "errors": [
+    "p103 Heavy Slam: damage is not a number",
+    "p110 Trump Card: damage is not a number",
+    "p149 Trump Card: damage is not a number",
+    "p164 Trump Card: damage is not a number",
+    "p175 Psywave: damage is not a number",
+    "p203 Psywave: damage is not a number",
+    "p204 Psywave: damage is not a number",
+    "p207 Heavy Slam: damage is not a number",
+    "p208 Heavy Slam: damage is not a number",
+    "p221 Super Fang: damage is not a number",
+    "p223 Super Fang: damage is not a number",
+    "p224 Super Fang: damage is not a number",
+    "p225 Super Fang: damage is not a number",
+    "p251 Super Fang: damage is not a number",
+    "p271 Super Fang: damage is not a number",
+    "p304 Psywave: damage is not a number",
+    "p319 Trump Card: damage is not a number",
+    "p323 Super Fang: damage is not a number",
+    "p340 Trump Card: damage is not a number",
+    "p343 Trump Card: damage is not a number",
+    "p35 Super Fang: damage is not a number",
+    "p50 Heavy Slam: damage is not a number",
+    "p57 Heavy Slam: damage is not a number",
+    "p69 Trump Card: damage is not a number",
+    "p73 Electro Ball: damage is not a number",
+    "p75 Trump Card: damage is not a number",
+    "p79 Heavy Slam: damage is not a number",
+    "p81 Trump Card: damage is not a number"
+   ],
+   "node_seconds": 4.92,
+   "wall_seconds": 5.07
+  }
+ }
+}

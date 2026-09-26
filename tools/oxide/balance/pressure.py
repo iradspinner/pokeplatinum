@@ -33,11 +33,31 @@ move (it assumes the boss's best move; element 6 documents how Platinum's AI
 actually picks). Each boss Pokemon starts the fight in its map's battle
 weather, or in its own ability's weather. Doubles are scored as singles.
 
+B5 adds columns beside these, which leave the B3 columns as they were:
+
+- threat_chance: threat counted by the chance the knockout lands, from
+  each move's accuracy, with a move that lowers its user's attack hitting
+  softer after the first use;
+- answers_duel: the share of the side that beats the boss Pokemon one on
+  one from a free switch-in, knocking it out within three turns before it
+  is knocked out, counted by the chance its own hits land; answers_sure,
+  the share whose chance is at least 0.8;
+- broad: the share of the side that surely answers at least half the
+  team, high when a team shares a weakness; best_one and cover, the most
+  of the team one player Pokemon surely answers, and the fewest that
+  answer all of it;
+- unseen: the tactics in the team that no damage score sees (setup,
+  Baton Pass, hazards, Explosion, status, evasion, recovery, pinch
+  berries), listed by kind and counted, not scored;
+- predictable: how far a player can call the team's moves in advance,
+  from how Platinum's AI picks (predictability()).
+
 The runs are staged and kept small, one split at a time, because this CPU
 fails under load: every calculation is one process, run one after another.
 Results go to pressure.json beside this file, one entry per fight.
 """
 import argparse
+import functools
 import json
 import os
 import subprocess
@@ -46,7 +66,7 @@ import tempfile
 import time
 
 from ..encounters import calc_export
-from . import data, pool, splits
+from . import data, metrics, pool, splits
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RUNNER = os.path.join(HERE, "calc_headless.js")
@@ -61,6 +81,62 @@ RECHARGE = {"Hyper Beam", "Giga Impact", "Blast Burn", "Frenzy Plant", "Hydro Ca
 ABILITY_WEATHER = {"Drizzle": "Rain", "Drought": "Sun", "Sand Stream": "Sand",
                    "Snow Warning": "Hail"}
 CALC_WEATHER = {"Rain": "Rain", "Sun": "Sun", "Sand": "Sand", "Hail": "Hail"}   # fog: none
+
+# B5's readings (2026-09-25), in columns of their own beside B3's so B3's
+# numbers stay comparable. Ian's bellwethers asked for them: Maylene and
+# Volkner, fast attacking teams that B3's threat ranks among the hardest
+# fights though a player plans around them, and Officer Hesperid at Lake
+# Valor, whose danger is in moves no damage score sees (the plan, "B5").
+MOVES_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "..", "res", "moves"))
+# Oxide's move data keeps Generation 4 spellings of a few names.
+MOVE_SPELLING = {"High Jump Kick": "Hi Jump Kick", "Feint Attack": "Faint Attack",
+                 "Smelling Salts": "SmellingSalt", "Vise Grip": "ViceGrip"}
+# A move that lowers its user's attacking stat hits softer each use after
+# the first; the stages each use costs.
+SELF_DROP = {"Leaf Storm": 2, "Draco Meteor": 2, "Overheat": 2, "Psycho Boost": 2,
+             "Fleur Cannon": 2, "Superpower": 1}
+# A one-on-one answer may take three turns, one more than B3's answers.
+DUEL_TURNS = 3
+# A sure answer lands every hit it needs with at least this chance: a 90
+# percent move twice (0.81) is sure, an 80 percent move twice (0.64) is not.
+SURE = 0.8
+# Tactics no damage score sees, by kind, as a boss team's moves, items and
+# abilities name them. They are listed per fight, not scored: Officer
+# Hesperid's Agility passed into a Choice Specs Chatot, beside two
+# Explosions, is what makes her fight hard to plan for.
+UNSEEN = {
+    "setup": {"Swords Dance", "Dragon Dance", "Nasty Plot", "Calm Mind", "Bulk Up", "Agility",
+              "Rock Polish", "Curse", "Quiver Dance", "Shell Smash", "Belly Drum", "Coil",
+              "Work Up", "Growth", "Hone Claws", "Tail Glow", "Cosmic Power", "Iron Defense",
+              "Amnesia", "Autotomize", "Shift Gear", "Acid Armor", "Barrier", "Howl",
+              "Meditate", "Sharpen", "Charge", "Stockpile", "Victory Dance", "Geomancy",
+              "Defend Order"},
+    "passing": {"Baton Pass"},
+    "hazards": {"Stealth Rock", "Spikes", "Toxic Spikes", "Sticky Web"},
+    "sacrifice": {"Explosion", "Self-Destruct", "Selfdestruct", "Memento", "Destiny Bond",
+                  "Healing Wish", "Lunar Dance", "Final Gambit", "Perish Song"},
+    "speed control": {"Trick Room", "Tailwind", "Thunder Wave", "Glare", "Stun Spore"},
+    "status": {"Will-O-Wisp", "Toxic", "Spore", "Sleep Powder", "Hypnosis", "Yawn",
+               "Lovely Kiss", "Sing", "Grass Whistle", "Dark Void", "Confuse Ray", "Swagger",
+               "Attract", "Poison Powder", "Supersonic", "Flatter", "Teeter Dance"},
+    "evasion": {"Double Team", "Minimize", "Bright Powder", "BrightPowder", "Lax Incense",
+                "Sand Veil", "Snow Cloak"},
+    "recovery": {"Recover", "Roost", "Slack Off", "Soft-Boiled", "Milk Drink", "Moonlight",
+                 "Morning Sun", "Synthesis", "Wish", "Rest", "Aqua Ring", "Ingrain",
+                 "Leech Seed", "Heal Order", "Shore Up", "Strength Sap"},
+    "disruption": {"Encore", "Taunt", "Trick", "Switcheroo", "Roar", "Whirlwind", "Haze",
+                   "Disable", "Torment", "Protect", "Detect", "Substitute", "Reflect",
+                   "Light Screen", "Safeguard", "Knock Off", "Fake Out", "U-turn", "Volt Switch"},
+    "pinch items": {"Petaya Berry", "Liechi Berry", "Salac Berry", "Ganlon Berry",
+                    "Apicot Berry", "Starf Berry", "Lansat Berry", "Micle Berry",
+                    "Custap Berry", "Quick Claw", "White Herb"},
+    "weather moves": {"Rain Dance", "Sunny Day", "Sandstorm", "Hail"},
+}
+# Moves Evaluate Attack neither calls strongest nor counts as killing, and
+# marks down four times in five (docs/oxide/battle-ai/other-flags.md): each
+# is a live choice about one turn in five.
+GAMBLES = {"Explosion", "Self-Destruct", "Selfdestruct", "Focus Punch", "Sucker Punch"}
+GAMBLE_WEIGHT = 0.2
 
 
 def hits_to_ko(rolls, hp):
@@ -164,17 +240,203 @@ def lock_answer(up, down, locked, player_info, boss_info, weather, sash, trick_r
     return False
 
 
+@functools.lru_cache(maxsize=None)
+def accuracies():
+    """{compact move name: accuracy in percent, None for a move that never
+    misses} from Oxide's move data. The reference hacks' tables carry no
+    accuracy, so their moves are read here as well."""
+    out = {}
+    for d in os.listdir(MOVES_DIR):
+        path = os.path.join(MOVES_DIR, d, "data.json")
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as f:
+                rec = json.load(f)
+            out[metrics._compact(rec["name"])] = rec["accuracy"] or None
+    return out
+
+
+def hit_chance(move, att, dfn, weather, category=None):
+    """The chance one use of `move` lands: its accuracy, Thunder and Blizzard
+    in their weather, and the modifiers a trainer's set commonly carries (No
+    Guard, Compound Eyes, Hustle, Wide Lens, Bright Powder, Sand Veil and
+    Snow Cloak). `att` and `dfn` are the engine's records of the two."""
+    if "No Guard" in (att.get("ability"), dfn.get("ability")):
+        return 1.0
+    if (move, weather) in (("Thunder", "Rain"), ("Blizzard", "Hail")):
+        return 1.0
+    acc = accuracies().get(metrics._compact(MOVE_SPELLING.get(move, move)), 100)
+    if acc is None:
+        return 1.0
+    if (move, weather) == ("Thunder", "Sun"):
+        acc = 50
+    p = acc / 100
+    if att.get("ability") == "Compound Eyes":
+        p *= 1.3
+    if att.get("ability") == "Hustle" and category == "Physical":
+        p *= 0.8
+    if att.get("item") == "Wide Lens":
+        p *= 1.1
+    if dfn.get("item") in ("Bright Powder", "BrightPowder"):
+        p *= 0.9
+    if (dfn.get("ability"), weather) in (("Sand Veil", "Sand"), ("Snow Cloak", "Hail")):
+        p *= 0.8
+    return min(1.0, p)
+
+
+def hits_needed(move, rolls, hp):
+    """hits_to_ko, with a move that lowers its user's attack hitting softer
+    each use after the first: at two stages down half as hard, at four a
+    third."""
+    n = hits_to_ko(rolls, hp)
+    drop = SELF_DROP.get(move)
+    if n is None or n == 1 or not drop:
+        return n
+    mid = rolls[len(rolls) // 2]
+    dealt, down, hits = 0.0, 0, 0
+    while dealt < hp:
+        if hits == 6:
+            return None
+        dealt += mid * 2 / (2 + down)
+        down, hits = min(6, down + drop), hits + 1
+    return hits
+
+
+def threat_chance(down, player, boss, weather, trick_room=False):
+    """B3's threat for one pair, counted by chance: the boss's likeliest
+    knockout within two turns while moving first, each hit landing with its
+    accuracy, and a self-lowering move hitting softer after the first."""
+    best = 0.0
+    for move, r in down["moves"].items():
+        if "error" in r:
+            continue
+        n = hits_needed(move, r["rolls"], player["hp"])
+        if n is None or turns(move, n, weather) > 2:
+            continue
+        if moves_first(r["priority"], down["speeds"], trick_room):
+            best = max(best, hit_chance(move, boss, player, weather, r.get("category")) ** n)
+    return best
+
+
+def duel(up, down, player, boss, weather, sash, trick_room=False):
+    """The chance a player Pokemon beats a boss Pokemon one on one, coming in
+    free after a faint: its knockout, within three turns, lands before the
+    boss's quickest knockout of it. The boss's hits are taken to land, as a
+    plan must assume; the player's must all land, so a win counts by that
+    chance. Priority is compared move against move, then Speed."""
+    k, k_pr = None, 0
+    for move, r in down["moves"].items():
+        if "error" in r:
+            continue
+        n = hits_needed(move, r["rolls"], player["hp"])
+        if n is None:
+            continue
+        t = turns(move, n, weather)
+        if k is None or t < k or (t == k and r["priority"] > k_pr):
+            k, k_pr = t, r["priority"]
+    best = 0.0
+    for move, r in up["moves"].items():
+        if "error" in r:
+            continue
+        n = hits_needed(move, r["rolls"], boss["hp"])
+        if n is None:
+            continue
+        if sash and n == 1:
+            n = 2
+        t = turns(move, n, weather)
+        if t > DUEL_TURNS:
+            continue
+        first = moves_first(r["priority"] - k_pr, up["speeds"], trick_room)
+        if k is None or (t <= k if first else t < k):
+            best = max(best, hit_chance(move, player, boss, weather, r.get("category")) ** n)
+    return best
+
+
+def cover(sets):
+    """The fewest player Pokemon that between them hold a sure one-on-one
+    answer to every boss Pokemon, or None when some boss Pokemon has none in
+    the whole side. `sets` holds each boss Pokemon's sure answers."""
+    if not sets or any(not s for s in sets):
+        return None
+    masks = {}
+    for i, s in enumerate(sets):
+        for pk in s:
+            masks[pk] = masks.get(pk, 0) | (1 << i)
+    distinct, full, reach = set(masks.values()), (1 << len(sets)) - 1, {0}
+    for size in range(1, len(sets) + 1):
+        reach = {m | d for m in reach for d in distinct}
+        if full in reach:
+            return size
+    return None
+
+
+def unseen(parties):
+    """The tactics in the boss parties that the scores leave out: {kind:
+    ["Species thing"]} over every variant, and their count, the mean over
+    variants (a rival's three starters are three variants)."""
+    kinds, counts = {}, []
+    for party in parties:
+        n = 0
+        for m in party:
+            things = set(m.get("moves") or []) | {m.get("item"), m.get("ability")}
+            for kind, names in UNSEEN.items():
+                for t in sorted(things & names):
+                    n += 1
+                    entry = f"{m['species']} {t}"
+                    if entry not in kinds.setdefault(kind, []):
+                        kinds[kind].append(entry)
+        counts.append(n)
+    return {"unseen": kinds, "unseen_count": round(sum(counts) / max(1, len(counts)), 2)}
+
+
+def predictability(parties, category):
+    """How far a player can call a boss team's moves in advance (Ian,
+    2026-09-25: a fight whose every turn can be foreseen is easy to plan
+    against). Every boss in Oxide carries Evaluate Attack, and every
+    reference is taken to: under it the strongest attack into the target,
+    or a killing one, is the pick, and the player can work that out. A
+    status or setup move starts level with it and ties go at random, so
+    each is a live choice; a gamble (GAMBLES) counts a fifth. Per Pokemon,
+    one over its live choices; a Choice holder is called from its second
+    turn on, so counts 1. The mean over the team, then over variants.
+    `category(move)` gives a move's category, None if unknown."""
+    means = []
+    for party in parties:
+        calls = []
+        for m in party:
+            if m.get("item") in CHOICE:
+                calls.append(1.0)
+                continue
+            moves = m.get("moves") or []
+            status = sum(category(mv) == "Status" for mv in moves if mv not in GAMBLES)
+            gambles = sum(mv in GAMBLES for mv in moves)
+            attacks = len(moves) - status - gambles
+            live = (1 if attacks else 0) + status + GAMBLE_WEIGHT * gambles
+            calls.append(1 / max(1.0, live))
+        if calls:
+            means.append(sum(calls) / len(calls))
+    return round(sum(means) / len(means), 3) if means else None
+
+
 def score_mons(bosses, side_keys, rows, info, trick_room=False):
     """Per boss Pokemon: threat, answers, and for a Choice holder the answers
-    counting the lock (answers_lock; equal to answers for anyone else)."""
+    counting the lock (answers_lock; equal to answers for anyone else); and
+    B5's threat by chance, one-on-one answers, and sure answers, whose set
+    (_sure) roll_up takes for the fight's cover."""
     per_mon = []
     for v, key, mon, w in bosses:
         sash = mon.get("item") == "Focus Sash"
         choice = mon.get("item") in CHOICE
         locked = locked_move(rows, key, side_keys, info, w) if choice else None
         threat = answer = lock = 0
+        chance = duels = 0.0
+        sure = set()
         for pk in side_keys:
             down, up = rows[(key, pk)], rows[(pk, key)]
+            chance += threat_chance(down, info[pk], info[key], w, trick_room)
+            d = duel(up, down, info[pk], info[key], w, sash, trick_room)
+            duels += d
+            if d >= SURE:
+                sure.add(pk)
             if wins(down, info[pk], down["speeds"], w, trick_room=trick_room):
                 threat += 1
             if wins(up, info[key], up["speeds"], w, sash=sash, trick_room=trick_room):
@@ -188,16 +450,36 @@ def score_mons(bosses, side_keys, rows, info, trick_room=False):
                         "item": mon.get("item"), "weather": w, "choice": choice,
                         "locked_move": locked,
                         "threat": round(threat / n, 3), "answers": round(answer / n, 3),
-                        "answers_lock": round(lock / n, 3)})
+                        "answers_lock": round(lock / n, 3),
+                        "threat_chance": round(chance / n, 3), "answers_duel": round(duels / n, 3),
+                        "answers_sure": round(len(sure) / n, 3), "_sure": sure, "_side": n})
     return per_mon
 
 
 def roll_up(per_mon):
     """A fight's scores from its Pokemon's: the mean over each variant's
-    Pokemon, then over the variants."""
+    Pokemon, then over the variants. Takes each Pokemon's set of sure
+    answers out of its record for the cover: the fewest player Pokemon that
+    answer the whole team (the mean over variants, None if any has a
+    Pokemon nothing surely answers), the most of the team one player
+    Pokemon surely answers, and "broad", the share of the side that surely
+    answers at least half the team, which is high when the team shares a
+    weakness."""
     by_variant = {}
     for m in per_mon:
         by_variant.setdefault(m["variant"], []).append(m)
+    covers, best_one, broad = [], [], []
+    for ms in by_variant.values():
+        sets = [m.pop("_sure", set()) for m in ms]
+        side = max(m.pop("_side", 1) for m in ms)
+        covers.append(cover(sets))
+        counts = {}
+        for s in sets:
+            for pk in s:
+                counts[pk] = counts.get(pk, 0) + 1
+        best_one.append(max(counts.values(), default=0) / len(ms))
+        broad.append(sum(c * 2 >= len(ms) for c in counts.values()) / side)
+    unanswered = sorted({m["species"] for m in per_mon if m["answers_sure"] == 0})
 
     def mean(k):
         return round(sum(sum(m[k] for m in ms) / len(ms) for ms in by_variant.values())
@@ -205,6 +487,11 @@ def roll_up(per_mon):
 
     return {"threat": mean("threat"), "answers": mean("answers"),
             "answers_lock": mean("answers_lock"),
+            "threat_chance": mean("threat_chance"), "answers_duel": mean("answers_duel"),
+            "answers_sure": mean("answers_sure"),
+            "cover": None if None in covers else round(sum(covers) / len(covers), 2),
+            "best_one": round(sum(best_one) / len(best_one), 3),
+            "broad": round(sum(broad) / len(broad), 3), "unanswered": unanswered,
             "max_threat": max(m["threat"] for m in per_mon),
             "min_answers": min(m["answers"] for m in per_mon),
             "min_answers_lock": min(m["answers_lock"] for m in per_mon),
@@ -282,7 +569,8 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
         "key": fight["key"], "label": fight["label"], "split": split,
         "cap": cap if cap is not None else pool.caps()[split], "pool": len(side), "weather": weather,
         "trick_room": trick_room,
-        **roll_up(per_mon),
+        **roll_up(per_mon), **unseen(parties),
+        "predictable": predictability(parties, lambda mv: blob["moves"].get(mv, {}).get("category")),
         "mons": per_mon, "calcs": sum(len(r["moves"]) for r in out["results"]),
         "errors": errors, "node_seconds": round(out.get("seconds", 0), 2),
         "wall_seconds": round(seconds, 2),
@@ -306,10 +594,15 @@ def save(results):
 
 def report(results, out=sys.stdout):
     print(f"{'fight':18}{'split':10}{'cap':>4}{'pool':>6}{'threat':>8}{'answers':>9}"
-          f"{'worst mon':>11}{'fewest':>8}", file=out)
+          f"{'worst mon':>11}{'fewest':>8}{'chance':>8}{'duel':>6}{'broad':>7}{'unseen':>8}"
+          f"{'called':>8}",
+          file=out)
     for r in results["fights"].values():
         print(f"{r['label']:18}{r['split']:10}{r['cap']:>4}{r['pool']:>6}{r['threat']:>8.2f}"
-              f"{r['answers']:>9.2f}{r['max_threat']:>11.2f}{r['min_answers']:>8.2f}", file=out)
+              f"{r['answers']:>9.2f}{r['max_threat']:>11.2f}{r['min_answers']:>8.2f}"
+              f"{r.get('threat_chance', 0):>8.2f}{r.get('answers_duel', 0):>6.2f}"
+              f"{r.get('broad', 0):>7.2f}{r.get('unseen_count', 0):>8}"
+              f"{r.get('predictable') or 0:>8.2f}", file=out)
 
 
 def main(argv=None):

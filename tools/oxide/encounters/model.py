@@ -310,8 +310,11 @@ class Area:
         for key in (SWARM_KEY, "day", "night", RADAR_KEY, *DUAL_SLOT_KEYS,
                     *GREAT_MARSH_KEYS, DAILY_KEY):
             vals = self.data.get(key)
-            if isinstance(vals, list) and vals:
-                out[key] = list(vals)
+            # SPECIES_NONE is an empty entry, not a reference: the swarm,
+            # radar and GBA lists are all empty since Oxide turned them off.
+            vals = [v for v in vals or [] if v != "SPECIES_NONE"] if isinstance(vals, list) else []
+            if vals:
+                out[key] = vals
         # The honey tables are read per tier across every badge count, which
         # is what the audit asks: can the game roll this species at all.
         for table in self.data.get("tables") or []:

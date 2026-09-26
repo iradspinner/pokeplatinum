@@ -306,6 +306,19 @@ def lint_table(name, slots, entry, t, rates=A.LAND_RATES, data=None):
                             for sp, v in pool.most_common())
                 + "; the top rung wants three, one at 75% or more"))
 
+    # R17 (error) -- swarms, the Poke Radar and the GBA dual slots are turned
+    # off in Oxide (Ian, 2026-09-26) and never go in a table: every entry of
+    # those lists is SPECIES_NONE. Only a table this project authored is
+    # held to it, so vanilla, linted as a reference, keeps its lists.
+    if authored and data:
+        held = [f"{key} {sp.replace('SPECIES_', '')}"
+                for key in ("swarms", "radar", "ruby", "sapphire", "emerald", "firered", "leafgreen")
+                for sp in data.get(key) or [] if sp != "SPECIES_NONE"]
+        if held:
+            out.append(Finding(
+                "R17", "error", "table", name,
+                f"{len(held)} species in lists Oxide turned off: " + ", ".join(held[:4])))
+
     # R7 (error) -- day/night legality. The format stores two species that
     # stand in for slots 2 and 3, so anything else is malformed data.
     if data:

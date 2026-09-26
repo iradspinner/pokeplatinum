@@ -140,11 +140,12 @@ def check_audit(results):
                     f"{s['references']} references in {s['files']} files, "
                     f"{s['off_list_references']} off-list"
                     + (f"; leaking: {leaking}" if leaking else "")))
-    expected = {"land_encounters", "swarms", "day", "night", "radar",
-                *model.DUAL_SLOT_KEYS, "surf_encounters", "old_rod_encounters",
+    # The swarm, radar and GBA lists hold nothing since they were turned off
+    # (2026-09-26), so they are no longer among the keys the audit reaches.
+    expected = {"land_encounters", "day", "night", "surf_encounters", "old_rod_encounters",
                 "good_rod_encounters", "super_rod_encounters",
                 *model.HONEY_TREE_KEYS, *model.GREAT_MARSH_KEYS, model.DAILY_KEY}
-    results.append(("the audit still reaches all twenty-one keys, so nothing went 0 by "
+    results.append(("the audit still reaches every live key, so nothing went 0 by "
                     "disappearing",
                     expected <= set(s["by_key"]),
                     ", ".join(sorted(expected - set(s["by_key"])))))
@@ -164,7 +165,10 @@ def check_per_area(results):
     root = model.repo_root()
     listed = audit.on_list(root)
     areas = [a for a in model.load_all() if a.has_land]
-    bad_size, off, radar_dupes, game_dupes = [], [], [], []
+    # Swarms, the Poke Radar and the GBA dual slots are turned off in Oxide
+    # (Ian, 2026-09-26): the lists keep their shape, since the format and
+    # the engine read fixed counts, and every entry is SPECIES_NONE.
+    bad_size, held = [], []
     for a in areas:
         for key, size in ((model.SWARM_KEY, 2), (model.RADAR_KEY, 4),
                           *((g, 2) for g in model.DUAL_SLOT_KEYS)):
@@ -172,25 +176,12 @@ def check_per_area(results):
             if not isinstance(vals, list) or len(vals) != size:
                 bad_size.append((a.name, key))
                 continue
-            off += [(a.name, key, s) for s in vals if s not in listed]
-            if key == model.RADAR_KEY and len(set(vals)) < 4:
-                radar_dupes.append(a.name)
-            if key in model.DUAL_SLOT_KEYS and len(set(vals)) < 2:
-                game_dupes.append((a.name, key))
-    results.append(("every land file carries two swarms, four radar species and two per "
-                    "dual-slot game, all on the pick-list",
-                    not bad_size and not off,
-                    f"{len(areas)} files; {len(bad_size)} misshapen, {len(off)} off-list "
-                    + ", ".join(f"{n} {k} {s}" for n, k, s in off[:3])))
-    results.append(("the four radar species are distinct, and no dual-slot game lists the "
-                    "same species twice",
-                    not radar_dupes and not game_dupes,
-                    ", ".join(radar_dupes[:3] + [f"{n} {k}" for n, k in game_dupes[:3]])))
-    shared = [a.name for a in areas
-              if len({tuple(a.data[g]) for g in model.DUAL_SLOT_KEYS}) < 3]
-    results.append(("the five dual-slot lists are not all the same: at least three distinct "
-                    "pairs per area (Ruby and Sapphire may share)",
-                    not shared, ", ".join(shared[:5])))
+            held += [(a.name, key, s) for s in vals if s != "SPECIES_NONE"]
+    results.append(("every land file keeps two swarm, four radar and two entries per "
+                    "dual-slot game, and every one is empty",
+                    not bad_size and not held,
+                    f"{len(areas)} files; {len(bad_size)} misshapen, {len(held)} held "
+                    + ", ".join(f"{n} {k} {s}" for n, k, s in held[:3])))
 
 
 def check_inactive(results):
