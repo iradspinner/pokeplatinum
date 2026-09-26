@@ -92,8 +92,9 @@ def main():
     # is gate tier and out of the wild; Litten took over its home on Route 204
     # north, which is what made that half of the route worth delaying for.
     results.append(("the starters are wild: Fennekin and Litten at home (Litten on Route "
-                    "204 north, the delay), Popplio on water, the grass three in the honey "
-                    "trees, none gate but Scorbunny, which is the starter now",
+                    "204 north, the delay), Popplio on water, the grass three at home on land "
+                    "since the honey trees lost their rare tier, none gate but Scorbunny, "
+                    "which is the starter now",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
                     and by["Litten"]["home"] == ["encounters_route_204_north"]
                     # Popplio is still homed on water; it reads as non-wild now
@@ -101,7 +102,9 @@ def main():
                     and by["Popplio"]["water"]
                     and by["Scorbunny"]["tier"] == "gate"
                     and by["Scorbunny"]["non_wild"]
-                    and all(by[n]["status"] == "honey" for n in ("Rowlet", "Snivy", "Sprigatito"))
+                    and by["Rowlet"]["home"] == ["encounters_eterna_forest"]
+                    and by["Snivy"]["home"] == ["encounters_route_204_north"]
+                    and by["Sprigatito"]["home"] == ["encounters_route_210_south"]
                     and all(by[n]["tier"] == "preferred" for n in
                             ("Fennekin", "Popplio", "Rowlet", "Litten", "Froakie")),
                     ""))

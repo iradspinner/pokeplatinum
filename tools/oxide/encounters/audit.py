@@ -241,10 +241,9 @@ def availability(ref=None):
                        default=None)
         # A honey-tree placement is a source the cost model cannot price (a
         # tree is slathered, waited on, and rolled by rarity tier), so it is
-        # carried as its own flag; the plan uses the rare tier for the grass
-        # starters and R12 accepts it.
+        # carried as its own flag, which R12 accepts.
         honey = sorted({key for _, key, _ in line["other"]
-                        if key in model.HONEY_TREE_KEYS})
+                        if key in (*model.HONEY_TREE_KEYS, "rare")})
         out.append({
             "name": line["name"], "line": line["line"], "tier": line["tier"],
             "non_wild": bool(line["gifts"] or line["trades"] or line["static"]
@@ -282,7 +281,7 @@ def coverage(ref=None):
                 continue
             for sp in set(vals):
                 other[sp].append((a.name, key))
-    for name, reader in ((model.HONEY_TREE, model.honey_tree_species),
+    for name, reader in ((model.HONEY_TREE, lambda r: model.honey_tree_species(r, badges=None)),
                          (model.GREAT_MARSH_LOOKOUT, model.great_marsh_lookout_species)):
         for key, vals in reader(ref).items():
             for sp in set(vals):

@@ -41,11 +41,16 @@ DUAL_SLOT_KEYS = ("ruby", "sapphire", "emerald", "firered", "leafgreen")
 
 # Species-only sources outside the land format. Their lists are fixed-length
 # too, so the same index-checked writer serves them (authoring plan Step 5).
-HONEY_TREE = "encounters_honey_tree"          # common / uncommon / rare
+HONEY_TREE = "encounters_honey_tree"          # a common and uncommon tier per badge count
 GREAT_MARSH_LOOKOUT = "encounters_great_marsh_lookout"  # binocular pools
 TROPHY_GARDEN = "encounters_trophy_garden"    # daily_encounters, 16 species
-HONEY_TREE_KEYS = ("common", "uncommon", "rare")
+HONEY_TREE_KEYS = ("common", "uncommon")
 HONEY_TIER_SIZE = 6
+# One honey table per badge count, 1 to 8 (Ian, 2026-09-26): the engine picks
+# the table from the player's badges when a tree is shaken, and each table
+# carries its own level range. Vanilla had one table and a Munchlax-only rare
+# tier; Oxide has neither.
+HONEY_TABLES = 8
 GREAT_MARSH_KEYS = ("before_national_dex", "after_national_dex")
 GREAT_MARSH_SIZE = 32
 DAILY_KEY = "daily_encounters"
@@ -53,7 +58,6 @@ DAILY_SIZE = 16
 
 LIST_KEY_SIZES = {SWARM_KEY: 2, "day": 2, "night": 2, RADAR_KEY: 4,
                   **{k: 2 for k in DUAL_SLOT_KEYS},
-                  **{k: HONEY_TIER_SIZE for k in HONEY_TREE_KEYS},
                   **{k: GREAT_MARSH_SIZE for k in GREAT_MARSH_KEYS},
                   DAILY_KEY: DAILY_SIZE}
 
@@ -253,12 +257,32 @@ class Area:
             raise ValueError(f"not a dual-slot game: {game}")
         self._set_list_species(game, index, species)
 
-    def set_honey_tier(self, tier, index, species):
-        """One slot of one honey tree rarity tier (common, uncommon, rare),
-        six slots each. Only the honey tree file carries them."""
+    def set_honey_tier(self, badges, tier, index, species):
+        """One slot of one tier (common, uncommon) of the honey table for
+        `badges` badges (1 to 8), six slots each. Only the honey tree file
+        carries them."""
+        self._honey_table(badges)
         if tier not in HONEY_TREE_KEYS:
             raise ValueError(f"not a honey tree tier: {tier}")
-        self._set_list_species(tier, index, species)
+        if not 0 <= index < HONEY_TIER_SIZE:
+            raise IndexError(f"{tier} has {HONEY_TIER_SIZE} entries, not {index + 1}")
+        self._replace(["tables", badges - 1, tier, index], species)
+
+    def set_honey_levels(self, badges, level_min, level_max):
+        """The level range of the honey table for `badges` badges."""
+        self._honey_table(badges)
+        if not 1 <= level_min <= level_max <= 100:
+            raise ValueError(f"not a level range: {level_min}-{level_max}")
+        self._replace(["tables", badges - 1, "level_min"], level_min)
+        self._replace(["tables", badges - 1, "level_max"], level_max)
+
+    def _honey_table(self, badges):
+        tables = self.data.get("tables")
+        if not isinstance(tables, list):
+            raise KeyError(f"{self.name} has no honey tables")
+        if not 1 <= badges <= len(tables):
+            raise IndexError(f"there are honey tables for 1 to {len(tables)} badges, not {badges}")
+        return tables[badges - 1]
 
     def set_marsh_lookout(self, key, index, species):
         """One slot of a Great Marsh lookout pool, 32 slots each: what the
@@ -284,10 +308,15 @@ class Area:
                 if vals:
                     out[key] = vals
         for key in (SWARM_KEY, "day", "night", RADAR_KEY, *DUAL_SLOT_KEYS,
-                    *HONEY_TREE_KEYS, *GREAT_MARSH_KEYS, DAILY_KEY):
+                    *GREAT_MARSH_KEYS, DAILY_KEY):
             vals = self.data.get(key)
             if isinstance(vals, list) and vals:
                 out[key] = list(vals)
+        # The honey tables are read per tier across every badge count, which
+        # is what the audit asks: can the game roll this species at all.
+        for table in self.data.get("tables") or []:
+            for key in HONEY_TREE_KEYS:
+                out.setdefault(key, []).extend(table.get(key) or [])
         return out
 
     def _replace(self, path, value):
@@ -355,10 +384,30 @@ def load_all(ref=None, land_only=False, active_only=False):
 # set_marsh_lookout and set_daily on the file's own Area.
 
 
-def honey_tree_species(ref=None):
-    """{common|uncommon|rare: [six species]}."""
-    d = load_area(HONEY_TREE, ref).data
-    return {k: list(d[k]) for k in HONEY_TREE_KEYS}
+def honey_tree_tables(ref=None):
+    """The eight honey tables in badge order, each {badges, split,
+    level_min, level_max, common: [six species], uncommon: [six species]}.
+    A ref from before the split tables (vanilla, `main`) reads as one table
+    for every badge count at vanilla's levels, its Munchlax-only `rare` tier
+    kept."""
+    data = load_area(HONEY_TREE, ref).data
+    if "tables" in data:
+        return [dict(t) for t in data["tables"]]
+    one = {k: list(data[k]) for k in (*HONEY_TREE_KEYS, "rare") if k in data}
+    return [dict(one, badges=b, split=None, level_min=5, level_max=15)
+            for b in range(1, HONEY_TABLES + 1)]
+
+
+def honey_tree_species(ref=None, badges=1):
+    """{tier: [six species]} for one badge count, the first table by
+    default: what a tree gives from the moment Honey can be bought
+    (Floaroma, one badge). The balance pool reads it that way. `badges=None`
+    gives every table's species per tier, in badge order."""
+    tables = honey_tree_tables(ref)
+    if badges is not None:
+        tables = [tables[badges - 1]]
+    tiers = [k for k in (*HONEY_TREE_KEYS, "rare") if k in tables[0]]
+    return {k: [sp for t in tables for sp in t[k]] for k in tiers}
 
 
 def great_marsh_lookout_species(ref=None):

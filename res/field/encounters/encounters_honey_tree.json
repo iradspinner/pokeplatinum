@@ -1,26 +1,180 @@
 {
-    "common": [
-        "SPECIES_COMBEE",
-        "SPECIES_SEWADDLE",
-        "SPECIES_GRUBBIN",
-        "SPECIES_COMBEE",
-        "SPECIES_SEWADDLE",
-        "SPECIES_GRUBBIN"
-    ],
-    "uncommon": [
-        "SPECIES_COMBEE",
-        "SPECIES_HERACROSS",
-        "SPECIES_COMBEE",
-        "SPECIES_HERACROSS",
-        "SPECIES_COMBEE",
-        "SPECIES_HERACROSS"
-    ],
-    "rare": [
-        "SPECIES_ROWLET",
-        "SPECIES_SNIVY",
-        "SPECIES_SPRIGATITO",
-        "SPECIES_ROWLET",
-        "SPECIES_SNIVY",
-        "SPECIES_SPRIGATITO"
+    "tables": [
+        {
+            "badges": 1,
+            "split": "Gardenia",
+            "level_min": 10,
+            "level_max": 14,
+            "common": [
+                "SPECIES_COMBEE",
+                "SPECIES_SEWADDLE",
+                "SPECIES_GRUBBIN",
+                "SPECIES_PIKIPEK",
+                "SPECIES_DOTTLER",
+                "SPECIES_PACHIRISU"
+            ],
+            "uncommon": [
+                "SPECIES_SEEDOT",
+                "SPECIES_SHROOMISH",
+                "SPECIES_BOUNSWEET",
+                "SPECIES_BUDEW",
+                "SPECIES_EMOLGA",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 2,
+            "split": "Fantina",
+            "level_min": 14,
+            "level_max": 18,
+            "common": [
+                "SPECIES_COMBEE",
+                "SPECIES_SEWADDLE",
+                "SPECIES_GRUBBIN",
+                "SPECIES_TRUMBEAK",
+                "SPECIES_JOLTIK",
+                "SPECIES_PACHIRISU"
+            ],
+            "uncommon": [
+                "SPECIES_NUZLEAF",
+                "SPECIES_SHROOMISH",
+                "SPECIES_STEENEE",
+                "SPECIES_EMOLGA",
+                "SPECIES_FOMANTIS",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 3,
+            "split": "Maylene",
+            "level_min": 19,
+            "level_max": 23,
+            "common": [
+                "SPECIES_COMBEE",
+                "SPECIES_SEWADDLE",
+                "SPECIES_GRUBBIN",
+                "SPECIES_JOLTIK",
+                "SPECIES_TRUMBEAK",
+                "SPECIES_FOMANTIS"
+            ],
+            "uncommon": [
+                "SPECIES_YANMA",
+                "SPECIES_NUZLEAF",
+                "SPECIES_EMOLGA",
+                "SPECIES_STEENEE",
+                "SPECIES_SCYTHER",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 4,
+            "split": "Wake",
+            "level_min": 23,
+            "level_max": 27,
+            "common": [
+                "SPECIES_VESPIQUEN",
+                "SPECIES_SWADLOON",
+                "SPECIES_CHARJABUG",
+                "SPECIES_JOLTIK",
+                "SPECIES_YANMA",
+                "SPECIES_FOMANTIS"
+            ],
+            "uncommon": [
+                "SPECIES_EMOLGA",
+                "SPECIES_NUZLEAF",
+                "SPECIES_SCYTHER",
+                "SPECIES_TRUMBEAK",
+                "SPECIES_SNOM",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 5,
+            "split": "Byron",
+            "level_min": 28,
+            "level_max": 32,
+            "common": [
+                "SPECIES_VESPIQUEN",
+                "SPECIES_SWADLOON",
+                "SPECIES_CHARJABUG",
+                "SPECIES_JOLTIK",
+                "SPECIES_YANMA",
+                "SPECIES_EMOLGA"
+            ],
+            "uncommon": [
+                "SPECIES_SCYTHER",
+                "SPECIES_NUZLEAF",
+                "SPECIES_TOUCANNON",
+                "SPECIES_SNOM",
+                "SPECIES_LARVESTA",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 6,
+            "split": "Candice",
+            "level_min": 32,
+            "level_max": 36,
+            "common": [
+                "SPECIES_VESPIQUEN",
+                "SPECIES_LEAVANNY",
+                "SPECIES_VIKAVOLT",
+                "SPECIES_GALVANTULA",
+                "SPECIES_YANMA",
+                "SPECIES_FROSMOTH"
+            ],
+            "uncommon": [
+                "SPECIES_SCIZOR",
+                "SPECIES_EMOLGA",
+                "SPECIES_SHIFTRY",
+                "SPECIES_TOUCANNON",
+                "SPECIES_LARVESTA",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "badges": 7,
+            "split": "Galactic",
+            "level_min": 40,
+            "level_max": 45,
+            "common": [
+                "SPECIES_VESPIQUEN",
+                "SPECIES_LEAVANNY",
+                "SPECIES_VIKAVOLT",
+                "SPECIES_GALVANTULA",
+                "SPECIES_YANMEGA",
+                "SPECIES_FROSMOTH"
+            ],
+            "uncommon": [
+                "SPECIES_HERACROSS",
+                "SPECIES_SCIZOR",
+                "SPECIES_EMOLGA",
+                "SPECIES_TOUCANNON",
+                "SPECIES_LARVESTA",
+                "SPECIES_SKARMORY"
+            ]
+        },
+        {
+            "badges": 8,
+            "split": "League",
+            "level_min": 45,
+            "level_max": 50,
+            "common": [
+                "SPECIES_VESPIQUEN",
+                "SPECIES_LEAVANNY",
+                "SPECIES_VIKAVOLT",
+                "SPECIES_GALVANTULA",
+                "SPECIES_YANMEGA",
+                "SPECIES_SCIZOR"
+            ],
+            "uncommon": [
+                "SPECIES_HERACROSS",
+                "SPECIES_LARVESTA",
+                "SPECIES_EMOLGA",
+                "SPECIES_TOUCANNON",
+                "SPECIES_FROSMOTH",
+                "SPECIES_SKARMORY"
+            ]
+        }
     ]
 }

@@ -526,28 +526,34 @@ def build():
                 slot_levels(cur, (0,)), note,
                 "vanilla" if (van or {}).get("unown_table") == ut else "base-rom")
 
-    # 9. Honey trees.
+    # 9. Honey trees. Platinum Oxide has one table per badge count, each with
+    # its own levels (Ian, 2026-09-26); vanilla had one table at 5-15 and a
+    # rare tier only four Munchlax trees could roll, which Oxide dropped.
     rel = os.path.join(ENC_DIR, HONEY_TREE + ".json")
     cur = json.load(open(os.path.join(ROOT, rel), encoding="utf-8"))
     van = vanilla_json(rel) or {}
+    van_species = {sp for k in ("common", "uncommon", "rare") for sp in van.get(k) or []}
     tier_note = {
-        "common": "group A, 70% of a shaking tree (20% on a Munchlax tree)",
-        "uncommon": "group B, 20% of a shaking tree (70% on a Munchlax tree)",
-        "rare": "group C, only on the four Munchlax trees, 1%",
+        "common": "group A, 70% of a shaking tree",
+        "uncommon": "group B, 20% of a shaking tree",
     }
-    for key in ("common", "uncommon", "rare"):
-        seen = set()
-        for i, sp in enumerate(cur[key]):
-            if sp in seen:
-                continue
-            seen.add(sp)
-            add("Honey trees (21 routes)", HONEY_TREE + ".json", sp,
-                f"honey tree ({key})", "5-15",
-                tier_note[key] + "; slather with Honey, wait 6 hours, 24-hour "
-                "window; the four Munchlax trees are picked from the trainer "
-                "ID; slot rates 40/20/20/10/5/5 "
-                "(src/overlay005/honey_tree.c)",
-                "vanilla" if (van.get(key) or [])[i:i + 1] == [sp] else "base-rom")
+    for table in cur["tables"]:
+        for key in ("common", "uncommon"):
+            seen = set()
+            for sp in table[key]:
+                if sp in seen:
+                    continue
+                seen.add(sp)
+                add("Honey trees (21 routes)", HONEY_TREE + ".json", sp,
+                    f"honey tree ({key}, {table['badges']} badge"
+                    f"{'' if table['badges'] == 1 else 's'})",
+                    f"{table['level_min']}-{table['level_max']}",
+                    tier_note[key] + f"; the table for {table['badges']} badge"
+                    f"{'' if table['badges'] == 1 else 's'} ({table['split']} split), "
+                    "read when the tree is shaken; slather with Honey, wait "
+                    "6 hours, 24-hour window; slot rates 40/20/20/10/5/5 "
+                    "(src/overlay005/honey_tree.c)",
+                    "vanilla" if sp in van_species else "base-rom")
 
     # 10. Great Marsh daily rotation.
     rel = os.path.join(ENC_DIR, MARSH_POOL + ".json")

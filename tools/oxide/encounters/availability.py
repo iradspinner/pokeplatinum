@@ -414,8 +414,9 @@ def render(out):
                  "call, moved from Route 206, which needs the bike); Fennekin (Route 214) and "
                  "Popplio (the surf on Routes 219 and 220, with a 1% Old Rod appearance on 219 "
                  "in the Roark split) sit at a real share; Litten (Fuego Ironworks) and Froakie "
-                 "(Route 212 south) are tails a dupe-out plan pays off; Rowlet, Snivy and "
-                 "Sprigatito are the honey trees' rare tier. The classic starters on the list "
+                 "(Route 212 south) are tails a dupe-out plan pays off; Rowlet (Eterna Forest by "
+                 "day), Snivy (Route 204 north) and Sprigatito (Route 210 south) are at home at 10, "
+                 "moved out of the honey trees when their rare tier went. The classic starters on the list "
                  "(Charmander, Squirtle, Treecko, Torchic, Mudkip) keep their scripted sources "
                  "and appear once each as a 1% tail in the first two splits, the one-off tail "
                  "move.")

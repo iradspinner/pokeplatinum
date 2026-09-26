@@ -1,0 +1,402 @@
+{
+  "_comment": [
+    "Every scripted capture the area list shows and the box simulator counts:",
+    "the starter, gifts, trades, statics, fossils and eggs (Ian, 2026-09-26).",
+    "Species and levels come from docs/oxide/pokemon-sources.csv, matched by",
+    "`from` (the script or trade file, and a level when one file holds two",
+    "sources); `pool` names them outright where there is no row to match.",
+    "`capture_area` is the location name the Pokemon's met location takes,",
+    "so a source that shares a name with a wild table is an alternative to",
+    "it (scripted-sources.md, 'Captures before the League'). An egg counts",
+    "where it hatches, which the player picks, so it has no capture area of",
+    "its own. `order` places a source with a location of its own in play",
+    "order; one that shares a table's location takes that table's order.",
+    "`pick` is how the player ends up with one member of the pool: random",
+    "(even odds), choice, or legendary_pool (the lake caverns draw without",
+    "replacement from the availability plan's pool). `simulate: false` keeps",
+    "a source out of the box simulator. Left out on purpose: the roamers",
+    "(they take the name of the route they are caught on), the Great Marsh",
+    "and Trophy Garden dailies, the Unown rooms, and the event legendaries."
+  ],
+  "sources": [
+    {
+      "id": "starter",
+      "label": "The starter",
+      "kind": "starter",
+      "capture_area": "Route 201",
+      "split": "Roark",
+      "from": {"file": "scripts_route_201.s"},
+      "pick": "choice"
+    },
+    {
+      "id": "sandgem_clown",
+      "label": "Sandgem Town, the house",
+      "kind": "gift",
+      "capture_area": "Sandgem Town",
+      "split": "Roark",
+      "order": 5,
+      "from": {"file": "scripts_sandgem_town_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "jubilife_clown",
+      "label": "Jubilife City, south house",
+      "kind": "gift",
+      "capture_area": "Jubilife City",
+      "split": "Roark",
+      "order": 6.5,
+      "from": {"file": "scripts_jubilife_city_south_house_1f.s"},
+      "pick": "random"
+    },
+    {
+      "id": "oreburgh_clown",
+      "label": "Oreburgh City, middle house",
+      "kind": "gift",
+      "capture_area": "Oreburgh City",
+      "split": "Roark",
+      "order": 9.5,
+      "from": {"file": "scripts_oreburgh_city_middle_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "oreburgh_trade",
+      "label": "Oreburgh City, Kazza's trade",
+      "kind": "trade",
+      "capture_area": "Oreburgh City",
+      "split": "Roark",
+      "order": 9.6,
+      "from": {"file": "res/npc_trades/kazza_abra.json"},
+      "level": 10,
+      "pick": "random",
+      "note": "Takes any Pokemon; a shiny Vullaby, Hardy."
+    },
+    {
+      "id": "floaroma_clown",
+      "label": "Floaroma Town, middle house",
+      "kind": "gift",
+      "capture_area": "Floaroma Town",
+      "split": "Gardenia",
+      "order": 15.5,
+      "from": {"file": "scripts_floaroma_town_middle_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "floaroma_meadow_clown",
+      "label": "Floaroma Meadow, the house",
+      "kind": "gift",
+      "capture_area": "Floaroma Meadow",
+      "split": "Gardenia",
+      "order": 15.6,
+      "from": {"file": "scripts_floaroma_meadow_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "windworks_drifloon",
+      "label": "Valley Windworks, the balloon",
+      "kind": "static",
+      "capture_area": "Valley Windworks",
+      "split": "Gardenia",
+      "from": {"file": "scripts_valley_windworks_outside.s"},
+      "pick": "random",
+      "note": "Fridays only, after the Windworks is cleared."
+    },
+    {
+      "id": "eterna_condo",
+      "label": "Eterna City, condominiums",
+      "kind": "gift",
+      "capture_area": "Eterna City",
+      "split": "Gardenia",
+      "from": {"file": "scripts_eterna_city_condominiums_1f.s"},
+      "pick": "random"
+    },
+    {
+      "id": "eterna_trade",
+      "label": "Eterna City, Charap's trade",
+      "kind": "trade",
+      "capture_area": "Eterna City",
+      "split": "Gardenia",
+      "from": {"file": "res/npc_trades/charap_chatot.json"},
+      "level": 20,
+      "pick": "random",
+      "note": "Takes any Pokemon; a shiny Popplio, Bold."
+    },
+    {
+      "id": "togepi_egg",
+      "label": "Cynthia's egg (Togepi)",
+      "kind": "egg",
+      "capture_area": null,
+      "split": "Fantina",
+      "order": 29.5,
+      "from": {"file": "scripts_eterna_city.s"},
+      "pick": "random",
+      "note": "Given in Eterna City after the Galactic building; hatch it somewhere with no table, such as the Cycle Shop."
+    },
+    {
+      "id": "old_chateau_rotom",
+      "label": "Old Chateau, the TV",
+      "kind": "static",
+      "capture_area": "Old Chateau",
+      "split": "Fantina",
+      "from": {"file": "scripts_old_chateau_back_middle_west_room.s"},
+      "pick": "random"
+    },
+    {
+      "id": "mining_museum_fossil",
+      "label": "Mining Museum, a revived fossil",
+      "kind": "fossil",
+      "capture_area": "Mining Museum",
+      "split": "Fantina",
+      "order": 32.5,
+      "pool": ["SPECIES_CRANIDOS", "SPECIES_SHIELDON", "SPECIES_LILEEP"],
+      "level": 20,
+      "pick": "choice",
+      "note": "The fossil comes from the Underground (Explorer Kit, Eterna City). The other four fossil items are to be deleted (tracker backlog)."
+    },
+    {
+      "id": "hearthome_eevee",
+      "label": "Hearthome City, Bebe's Eevee",
+      "kind": "gift",
+      "capture_area": "Hearthome City",
+      "split": "Fantina",
+      "order": 35.5,
+      "from": {"file": "scripts_hearthome_city_northwest_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "hearthome_fan_club",
+      "label": "Hearthome City, the Fan Club",
+      "kind": "gift",
+      "capture_area": "Hearthome City",
+      "split": "Fantina",
+      "order": 35.6,
+      "from": {"file": "scripts_hearthome_city_pokemon_fan_club.s"},
+      "pick": "random"
+    },
+    {
+      "id": "route_209_spiritomb",
+      "label": "Route 209, the Hallowed Tower",
+      "kind": "static",
+      "capture_area": "Route 209",
+      "split": "Maylene",
+      "from": {"file": "scripts_route_209.s"},
+      "pick": "random",
+      "simulate": false,
+      "note": "Needs an Odd Keystone and 32 Underground players talked to, out of reach in an ordinary run."
+    },
+    {
+      "id": "solaceon_clown",
+      "label": "Solaceon Town, northeast house",
+      "kind": "gift",
+      "capture_area": "Solaceon Town",
+      "split": "Maylene",
+      "order": 43.5,
+      "from": {"file": "scripts_solaceon_town_northeast_house.s"},
+      "pick": "random"
+    },
+    {
+      "id": "day_care_floette",
+      "label": "Pokemon Day Care, the shiny Floette",
+      "kind": "gift",
+      "capture_area": "Pokémon Day Care",
+      "split": "Maylene",
+      "order": 43.6,
+      "from": {"file": "scripts_pokemon_day_care.s"},
+      "pick": "random"
+    },
+    {
+      "id": "veilstone_clown",
+      "label": "Veilstone City, northeast house",
+      "kind": "gift",
+      "capture_area": "Veilstone City",
+      "split": "Maylene",
+      "order": 63.5,
+      "from": {"file": "scripts_veilstone_city_northeast_house.s", "level": "40"},
+      "pick": "random"
+    },
+    {
+      "id": "veilstone_elekid",
+      "label": "Veilstone City, the Elekid gift",
+      "kind": "gift",
+      "capture_area": "Veilstone City",
+      "split": "Maylene",
+      "order": 63.6,
+      "from": {"file": "scripts_veilstone_city_northeast_house.s", "level": "25"},
+      "pick": "random"
+    },
+    {
+      "id": "restaurant_clown",
+      "label": "The Restaurant, Pastoria's clown moved in",
+      "kind": "gift",
+      "capture_area": "Restaurant",
+      "planned": true,
+      "split": "Wake",
+      "order": 69.5,
+      "from": {"file": "scripts_pastoria_city_north_house.s"},
+      "pick": "random",
+      "note": "Planned: the clown moves from Pastoria City's north house into the Restaurant, so Pastoria's water and the gift stop sharing a capture (tracker backlog)."
+    },
+    {
+      "id": "manaphy_egg",
+      "label": "Pokemon Mansion, the owner's egg (Manaphy)",
+      "kind": "egg",
+      "capture_area": null,
+      "split": "Wake",
+      "order": 77.5,
+      "from": {"file": "scripts_pokemon_mansion_office.s"},
+      "pick": "random"
+    },
+    {
+      "id": "canalave_library",
+      "label": "Canalave Library, 2F",
+      "kind": "gift",
+      "capture_area": "Canalave Library",
+      "split": "Byron",
+      "order": 85.5,
+      "from": {"file": "scripts_canalave_library_2f.s"},
+      "pick": "random"
+    },
+    {
+      "id": "riolu_egg",
+      "label": "Riley's egg (Riolu)",
+      "kind": "egg",
+      "capture_area": null,
+      "split": "Byron",
+      "order": 86.5,
+      "from": {"file": "scripts_iron_island_b2f_left_room.s"},
+      "pick": "random",
+      "note": "Given where Iron Island's tables are, so hatch it somewhere with none, such as Verity Lakefront."
+    },
+    {
+      "id": "snowpoint_trade",
+      "label": "Snowpoint City, Mindy's trade",
+      "kind": "trade",
+      "capture_area": "Snowpoint City",
+      "split": "Candice",
+      "from": {"file": "res/npc_trades/gaspar_haunter.json"},
+      "pick": "random",
+      "requires": "SPECIES_MEDICHAM",
+      "note": "Wants a Medicham, which is not on the pick-list, so it cannot be met in Oxide as it stands."
+    },
+    {
+      "id": "route_226_trade",
+      "label": "Route 226, Meister's trade",
+      "kind": "trade",
+      "capture_area": "Route 226",
+      "split": "Galactic",
+      "from": {"file": "res/npc_trades/foppa_magikarp.json"},
+      "pick": "random",
+      "requires": "SPECIES_FINNEON"
+    },
+    {
+      "id": "distortion_world_giratina",
+      "label": "Distortion World, Giratina",
+      "kind": "static",
+      "capture_area": "Distortion World",
+      "split": "Galactic",
+      "order": 116,
+      "from": {"file": "scripts_distortion_world_giratina_room.s"},
+      "pick": "random"
+    },
+    {
+      "id": "acuity_cavern",
+      "label": "Acuity Cavern, the pool legendary",
+      "kind": "static",
+      "capture_area": "Acuity Cavern",
+      "split": "Volkner",
+      "order": 118,
+      "pick": "legendary_pool",
+      "level": 50,
+      "note": "Uxie's cavern draws one of the legendary pool, without replacement against Valor Cavern (availability plan, `pool`)."
+    },
+    {
+      "id": "valor_cavern",
+      "label": "Valor Cavern, the pool legendary",
+      "kind": "static",
+      "capture_area": "Valor Cavern",
+      "split": "Volkner",
+      "order": 119,
+      "pick": "legendary_pool",
+      "level": 50,
+      "note": "Azelf's cavern, the second draw from the legendary pool."
+    },
+    {
+      "id": "spear_pillar_dialga",
+      "label": "Spear Pillar, Dialga",
+      "kind": "static",
+      "capture_area": "Spear Pillar",
+      "split": "Post",
+      "order": 157,
+      "from": {"file": "scripts_spear_pillar_dialga.s"},
+      "pick": "random"
+    },
+    {
+      "id": "spear_pillar_palkia",
+      "label": "Spear Pillar, Palkia",
+      "kind": "static",
+      "capture_area": "Spear Pillar",
+      "split": "Post",
+      "order": 157.1,
+      "from": {"file": "scripts_spear_pillar_palkia.s"},
+      "pick": "random"
+    },
+    {
+      "id": "stark_mountain_heatran",
+      "label": "Stark Mountain, Heatran",
+      "kind": "static",
+      "capture_area": "Stark Mountain",
+      "split": "Post",
+      "from": {"file": "scripts_stark_mountain_room_3.s"},
+      "pick": "random",
+      "note": "After Buck's post-game event."
+    },
+    {
+      "id": "turnback_cave_giratina",
+      "label": "Turnback Cave, Giratina",
+      "kind": "static",
+      "capture_area": "Turnback Cave",
+      "split": "Post",
+      "from": {"file": "scripts_turnback_cave_giratina_room.s"},
+      "pick": "random",
+      "note": "Only if the Distortion World's Giratina was not caught."
+    },
+    {
+      "id": "snowpoint_temple_regigigas",
+      "label": "Snowpoint Temple, Regigigas",
+      "kind": "static",
+      "capture_area": "Snowpoint Temple",
+      "split": "Post",
+      "from": {"file": "scripts_snowpoint_temple_b5f.s"},
+      "pick": "random"
+    },
+    {
+      "id": "rock_peak_regirock",
+      "label": "Rock Peak Ruins, Regirock",
+      "kind": "static",
+      "capture_area": "Rock Peak Ruins",
+      "split": "Post",
+      "order": 158,
+      "from": {"file": "scripts_rock_peak_ruins.s"},
+      "pick": "random"
+    },
+    {
+      "id": "iceberg_regice",
+      "label": "Iceberg Ruins, Regice",
+      "kind": "static",
+      "capture_area": "Iceberg Ruins",
+      "split": "Post",
+      "order": 158.1,
+      "from": {"file": "scripts_iceberg_ruins.s"},
+      "pick": "random"
+    },
+    {
+      "id": "iron_ruins_registeel",
+      "label": "Iron Ruins, Registeel",
+      "kind": "static",
+      "capture_area": "Iron Ruins",
+      "split": "Post",
+      "order": 158.2,
+      "from": {"file": "scripts_iron_ruins.s"},
+      "pick": "random"
+    }
+  ]
+}

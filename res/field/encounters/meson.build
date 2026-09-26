@@ -224,9 +224,9 @@ enc_ex_ht_bin_gen = generator(
     encdata_ex_honey_trees_py,
     arguments: [ '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', '@OUTPUT2@', ],
     output: [
-        '@BASENAME@_common.bin',
-        '@BASENAME@_uncommon.bin',
-        '@BASENAME@_rare.bin',
+        '@BASENAME@_tables.bin',
+        '@BASENAME@_unused_1.bin',
+        '@BASENAME@_unused_2.bin',
     ],
     depends: [ py_consts_generators ],
 )

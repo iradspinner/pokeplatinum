@@ -1205,15 +1205,20 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *battlePar
     WildEncounters_FieldParams encounterFieldParams;
     InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
 
-    u8 levelVariance = 15 - 5 + 1;
+    // Platinum Oxide: the level range is the current split's honey table's
+    // (vanilla's was 5 to 15 all game).
+    u8 levelMin, levelMax;
+    HoneyTree_GetLevelRange(fieldSystem, &levelMin, &levelMax);
 
-    u8 level = 5 + LCRNG_RandMod(levelVariance);
+    u8 levelVariance = levelMax - levelMin + 1;
+
+    u8 level = levelMin + LCRNG_RandMod(levelVariance);
 
     if (!encounterFieldParams.isFirstMonEgg && (encounterFieldParams.firstMonAbility == ABILITY_HUSTLE || encounterFieldParams.firstMonAbility == ABILITY_VITAL_SPIRIT || encounterFieldParams.firstMonAbility == ABILITY_PRESSURE)) {
         if (LCRNG_RandMod(2) == 0) {
             (void)0;
         } else {
-            level = 15;
+            level = levelMax;
         }
     }
 

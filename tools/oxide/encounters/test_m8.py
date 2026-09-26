@@ -326,7 +326,8 @@ def check_page(results):
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    bool(hides) and views == 4 and toggled == views,
+                    # Five since the box simulator's tab (2026-09-26).
+                    bool(hides) and views == 5 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
     # Ian's notes after D4: a species in a table opens its dex page, and Back
