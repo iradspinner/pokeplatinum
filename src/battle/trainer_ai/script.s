@@ -149,6 +149,23 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_GRASS_WHISTLE, ScoreMinus10
     IfMoveEqualTo MOVE_BUG_BUZZ, ScoreMinus10
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
+    // Oxide: the sound moves element 4 added, from the engine's sSoundMoves.
+    IfMoveEqualTo MOVE_ALLURING_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_BOOMBURST, ScoreMinus10
+    IfMoveEqualTo MOVE_CLANGING_SCALES, ScoreMinus10
+    IfMoveEqualTo MOVE_CONFIDE, ScoreMinus10
+    IfMoveEqualTo MOVE_DISARMING_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_ECHOED_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_EERIE_SPELL, ScoreMinus10
+    IfMoveEqualTo MOVE_NOBLE_ROAR, ScoreMinus10
+    IfMoveEqualTo MOVE_OVERDRIVE, ScoreMinus10
+    IfMoveEqualTo MOVE_PARTING_SHOT, ScoreMinus10
+    IfMoveEqualTo MOVE_PSYCHIC_NOISE, ScoreMinus10
+    IfMoveEqualTo MOVE_RELIC_SONG, ScoreMinus10
+    IfMoveEqualTo MOVE_ROUND, ScoreMinus10
+    IfMoveEqualTo MOVE_SNARL, ScoreMinus10
+    IfMoveEqualTo MOVE_SPARKLING_ARIA, ScoreMinus10
+    IfMoveEqualTo MOVE_TORCH_SONG, ScoreMinus10
 
 Basic_CheckBulletproof:
     // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
