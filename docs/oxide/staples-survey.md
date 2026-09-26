@@ -138,7 +138,7 @@ Every row below was checked in Oxide's battle code. Oxide's battle-code changes 
 
 Ian answered all ten questions on 2026-09-26, and the answers replace the recommendations above wherever they differ.
 
-1. Native moves take the full modern set: the Generation 5 to 7 buffs and the Generation 6 cuts to power, and the modern accuracy and PP too, so old and new moves share one scale. Every number the base ROM set on purpose stays (Knock Off 70 and the rest of the "own value" rows), and **no setup move's PP changes**: they are very low on purpose, so that setting up is not the strategy for every fight.
+1. Native moves take the full modern set: the Generation 5 to 7 buffs and the Generation 6 cuts to power, and the modern accuracy and PP too, so old and new moves share one scale. Every number the base ROM set on purpose stays (Knock Off 70 and the rest of the "own value" rows), and **no setup move's PP changes**: they are very low on purpose, so that setting up is not the strategy for every fight. Extended on 2026-09-27 by the Kaizo comparison (`kaizo-comparison.md`, "Ian's answers"): answer 1 covers priority too, the setup moves still at vanilla or modern PP join the low band, and the stat-lowering status moves take low PP as well.
 2. Thunder Wave, Dark Void and Swagger keep their Generation 4 accuracy.
 3. Hidden Power keeps the IV formula.
 4. Every native ability gets its modern behaviour, Sturdy, Lightning Rod and Storm Drain first.

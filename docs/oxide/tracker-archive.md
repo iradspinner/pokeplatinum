@@ -58,6 +58,10 @@ Next steps 3 and 4 as they stood on 2026-09-26, both merged and moved out that d
 3. **Phase 4 element 4**: every reachable battle effect is written, from the cloud branch `cloud/element4-effects`, merged on 2026-09-25 (7b6ece777): the parked Sticky Web work, verified, then After You, Aurora Veil, the Wide Guard set and Belch, one commit each. What is left is held back: terrain for Ian's decision, and Entrainment, which element 5 has done.
 4. **Phase 4 element 5**: the abilities the new species carry are written, from the cloud branch `cloud/element5-abilities`, merged on 2026-09-26, in ten commits: 52 of the 59, and Entrainment with the shared list of abilities that refuse a change. What is left is under element 5 below and under "Waiting on Ian".
 
+The answered part of the tracker's Waiting on Ian entry "Drafts from `main-scripts`", moved out on 2026-09-27; the drafts themselves still wait:
+
+- Approved (Ian, 2026-09-27): "Ironworks Hall", the Fuego Ironworks building's own location name, a capture apart from the yard. Ian's answers to the four questions (2026-09-27): Rowan's Verity Cavern lines stay as they are; the post-game briefcase's second starter sharing "Rowan's Briefcase" is fine; and the Pastoria gift's Restaurant hours are moot, since the gift clowns are gone (2026-09-27).
+
 ## Phase 0: Setup
 
 - [x] Working folder created, both ROMs and both DSPRE extractions in place

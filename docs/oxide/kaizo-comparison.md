@@ -208,6 +208,17 @@ For learnsets, the ideas worth the balance track's learnset pass, in order:
 7. Should strong moves sit at level 1 on evolved stages, as Kaizo does, now that each costs a Heart Scale at Pastoria and Heart Scales are scarcer?
 8. Is there a ceiling on coverage power per split? Kaizo's lists would put 95-power punches and 90-power Earth Power and Ice Beam in Gardenia's split, where the cap is 26.
 
+## Ian's answers (2026-09-27)
+
+1. Only the moves short list above comes in as exceptions to answer 1's modern scale. The very large buffs stay out.
+2. Every setup move goes to the 1 to 3 PP band: Bulk Up, Cosmic Power, Stockpile, Focus Energy and Defend Order, and the new moves' setup (Quiver Dance, Coil, Shell Smash, Hone Claws, Work Up, Shift Gear and the rest).
+3. The stat-lowering status moves take Kaizo's low PP: Screech, Metal Sound, Fake Tears, Charm, Feather Dance, Tickle and Captivate at 3 to 6, and Sweet Scent at 2.
+4. Answer 1 covers priority: every Generation 4 move whose priority changed in later games takes the modern value, Fake Out +3 and Extreme Speed +2 among them, each checked against hg-engine.
+5. Sleep moves and powders keep their accuracy, the same stance as answer 2.
+6. Kaizo's level-up lists are the line-by-line template for the learnset pass, adjusted to Oxide's rulings and splits.
+7. Strong moves may sit at level 1 on evolved stages, as Kaizo has them, which makes each a Heart Scale's worth at the Move Relearner.
+8. No split has a ceiling on coverage power; the rescore judges each move.
+
 ## Appendix A: every Kaizo move line
 
 One row per line of `kaizo-move-changes.md`, in its order. "Kaizo" gives the values Kaizo sets, "Oxide now" the same fields in Oxide's tree, and "Detail" each field's verdict. A ruling named "base ROM" means Oxide's value differs from vanilla and from every ruling list, so it is taken to be the base ROM's own. A "chance" change on a move whose effect reads no chance (Seed Bomb, Wake-Up Slap, Bulk Up) would do nothing in battle unless Kaizo also changed the effect.

@@ -53,3 +53,10 @@ read, so they are written here too. Each is a standing instruction.
   the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
   different Eeveelution). Do not add stones just to settle a contest; the
   balance track's stone census is where the counts are set.
+- Move numbers follow the later games (Ian, 2026-09-26, the staples survey's
+  answer 1), priority included (2026-09-27), and the base ROM's own values
+  stay. Setup stays expensive: every stat-raising setup move is at 1 to 3 PP,
+  and the stat-lowering status moves at 3 to 6 (Sweet Scent 2), which applies
+  to any move added later too. Sleep moves, powders, Thunder Wave, Dark Void
+  and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
+  as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
