@@ -94,7 +94,8 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_HAPPINESS",
+            "EVO_LEVEL",
+            30,
             "SPECIES_ALOMOMOLA"
         ]
     ],

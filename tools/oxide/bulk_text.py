@@ -79,6 +79,14 @@ def main():
             mine = imp.decode_text_bank(a.msgenc, a.charmap, built_banks[i], a.tmp, f"bc{i}")
             if [imp.message_body(x) for x in mine] == [imp.message_body(x) for x in decoded]:
                 continue
+            # A bank Oxide appended to is done when the messages it shares with
+            # the base ROM match, the same rule verify_narcs --text applies.
+            # The Pocket PC's texts (2026-09-27) grew the common scripts' bank
+            # and the menu entries this way.
+            if len(mine) > len(decoded) and (
+                    [imp.message_body(x) for x in mine[:len(decoded)]]
+                    == [imp.message_body(x) for x in decoded]):
+                continue
         prefix = bank_prefix(names[i])
         out = {"key": current["key"], "messages": []}
         for n, msg in enumerate(decoded):

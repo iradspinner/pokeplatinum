@@ -45,6 +45,7 @@
 #include "constants/honey_tree.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
+#include "constants/level_caps.h"
 #include "constants/map_object.h"
 #include "constants/moves.h"
 #include "constants/overworld_weather.h"
@@ -5219,6 +5220,32 @@
     .short \ivs
     .short \shiny
     .short \successVar
+    .endm
+
+    /* Platinum Oxide: write the power of Hidden Power for the Pokemon in
+       \partySlot, 30 to 70, to \destVar. The Pocket PC's Hidden Power APP
+       tells it beside the type. */
+    .macro CalcHiddenPowerPower partySlot, destVar
+    .short SCRCMD_CALCHIDDENPOWERPOWER
+    .short \partySlot
+    .short \destVar
+    .endm
+
+    /* Platinum Oxide: move the player into the level-cap split \split, one
+       of the LEVEL_CAP_SPLIT_ constants, once the fight that closes the
+       split before it is won. The cap never goes down, so running this
+       again, or for an earlier split, does nothing. */
+    .macro RaiseLevelCap split
+    .short SCRCMD_RAISELEVELCAP
+    .short \split
+    .endm
+
+    /* Platinum Oxide: overwrite the met location of the party Pokemon in
+       \partySlot with \location, an index into the location names. */
+    .macro SetPartyMonMetLocation partySlot, location
+    .short SCRCMD_SETPARTYMONMETLOCATION
+    .short \partySlot
+    .short \location
     .endm
 
 #ifdef OXIDE_TESTKIT

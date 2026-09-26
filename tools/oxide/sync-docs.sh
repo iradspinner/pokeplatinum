@@ -67,6 +67,7 @@ copy "test-kit.md" "notes/test-kit.md"
 copy "ingame-checklist.md" "notes/ingame-checklist.md"
 copy "balance-plan.md" "notes/balance-plan.md"
 copy "battle-zone-plan.md" "notes/battle-zone-plan.md"
+copy "pocket-pc.md" "notes/pocket-pc.md"
 copy "staples-survey.md" "notes/staples-survey.md"
 copy "pokemon-gifts.md" "notes/pokemon-gifts.md"
 copy "pokemon-gifts.csv" "notes/pokemon-gifts.csv"
@@ -91,6 +92,9 @@ copy "encounters/availability.md" "Claude outputs/encounters/availability.md"
 copy "encounters/scripted-sources.md" "Claude outputs/encounters/scripted-sources.md"
 copy "encounters/scripted.json" "Claude outputs/encounters/scripted.json"
 copy "encounters/values.json" "Claude outputs/encounters/values.json"
+copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship-evolutions.md"
+copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
+copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replacements.md"
 
 # Anything under docs/oxide that the list above does not name. caught.json is
 # per-playthrough state and gitignored, so it is not a doc and is not mirrored.

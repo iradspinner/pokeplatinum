@@ -60,6 +60,27 @@ static const u16 sAltPowerMoveEffects[] = {
     0xFFFF
 };
 
+// Oxide: plain hits whose power the battle works out, listed at power 1 (the
+// type chart reads a power of 0 as a status move). The power check that lets
+// a move into the damage comparison would otherwise leave them out, as it
+// leaves out a status move.
+static const u16 sComputedPowerHits[] = {
+    MOVE_ELECTRO_BALL,
+    MOVE_HARD_PRESS,
+    0xFFFF
+};
+
+static BOOL AI_IsComputedPowerHit(u16 move)
+{
+    for (int i = 0; sComputedPowerHits[i] != 0xFFFF; i++) {
+        if (sComputedPowerHits[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 typedef void (*AICommandFunc)(BattleSystem *, BattleContext *);
 
 enum AIEvalStep {
@@ -177,6 +198,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
 static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -1052,6 +1074,7 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         for (i = 0; i < STAT_MAX; i++) {
             ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
@@ -1193,7 +1216,10 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
     int inBattler = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+    // Oxide: Neutralizing Gas suppresses an ability as Gastro Acid does, and
+    // announces itself, so the AI knows it is out.
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+        || BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
         AI_CONTEXT.calcTemp = ABILITY_NONE;
     } else if (AI_CONTEXT.attacker != battler && inBattler != AI_BATTLER_ATTACKER_PARTNER) {
         // If we already know an opponent's ability, load that ability
@@ -1237,7 +1263,8 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
     u8 battler = AIScript_Battler(battleCtx, inBattler);
     int tmpAbility;
 
-    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+        || BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) { // Oxide
         tmpAbility = ABILITY_NONE;
     } else if (inBattler == AI_BATTLER_DEFENDER || inBattler == AI_BATTLER_DEFENDER_PARTNER) {
         // If we already know an opponent's ability, load that ability
@@ -1541,6 +1568,32 @@ static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *
     }
 }
 
+/**
+ * @brief Oxide: cap a damage estimate at what the defender can take, when
+ * Sturdy will leave it on 1 HP.
+ *
+ * Sturdy now survives any hit from full HP (the staples rulings), unless Mold
+ * Breaker ignores it, so a hit the estimate says would knock out a Sturdy
+ * Pokemon at full HP does not. The defender's own ability is read, as the
+ * AI's other C checks read it.
+ *
+ * @param battleCtx
+ * @param damage    The estimate
+ * @return The estimate, or the defender's HP less 1
+ */
+static u32 AI_SturdySurvives(BattleContext *battleCtx, u32 damage)
+{
+    BattleMon *defender = &battleCtx->battleMons[AI_CONTEXT.defender];
+
+    if (defender->curHP == defender->maxHP
+        && damage >= defender->curHP
+        && Battler_IgnorableAbility(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.defender, ABILITY_STURDY) == TRUE) {
+        return defender->curHP - 1;
+    }
+
+    return damage;
+}
+
 static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     AIScript_Iter(battleCtx, 1);
@@ -1570,6 +1623,7 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
@@ -1585,6 +1639,8 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
             Battler_Ability(battleCtx, AI_CONTEXT.attacker),
             battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
             roll);
+
+        damage = AI_SturdySurvives(battleCtx, damage); // Oxide
 
         if (battleCtx->battleMons[AI_CONTEXT.defender].curHP <= damage) {
             AIScript_Iter(battleCtx, jump);
@@ -1621,6 +1677,7 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
@@ -1636,6 +1693,8 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
             Battler_Ability(battleCtx, AI_CONTEXT.attacker),
             battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
             roll);
+
+        damage = AI_SturdySurvives(battleCtx, damage); // Oxide
 
         if (battleCtx->battleMons[AI_CONTEXT.defender].curHP > damage) {
             AIScript_Iter(battleCtx, jump);
@@ -2410,6 +2469,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
     }
 
     if (sAltPowerMoveEffects[k] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[j] == 0xFFFF)) {
         battler = AI_CONTEXT.attacker;
 
@@ -2681,6 +2741,29 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 }
 
 /**
+ * @brief Oxide: jump if the move being scored will be used with raised
+ * priority at a battler on the other side.
+ *
+ * Queenly Majesty stops such a move (element 5), as the controller's priority
+ * block does: any priority above 0, from the move or from Prankster and the
+ * like, and any move not aimed at the user's own side or the whole field.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+
+    if (Battler_MovePriority(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move) > 0
+        && (MOVE_DATA(AI_CONTEXT.move).range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
  * @brief Push an address for the AI script onto the cursor stack.
  *
  * @param battleSys
@@ -2844,6 +2927,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+            || AI_IsComputedPowerHit(moves[i]) // Oxide
             || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && MOVE_DATA(moves[i]).power > 1)) {
             if (varyDamage == TRUE) {
                 damageRoll = AI_CONTEXT.moveDamageRolls[i];
@@ -2868,6 +2952,109 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
 }
 
 #include "data/battle/weight_to_power.h"
+
+/**
+ * @brief Oxide: the power a move will have when the battle works it out, as
+ * BattleScript_ComputedMovePower does, for the AI's damage estimate.
+ *
+ * The estimate is made before the turn, so each case reads the state the
+ * battle will read when the move is used. Lash Out is left at its table
+ * power: it doubles on a stat drop earlier in the same turn, which the AI
+ * cannot know in advance.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param move
+ * @param attacker
+ * @return The move's power, or 0 for its table power
+ */
+static int TrainerAI_ComputedMovePower(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, int attacker)
+{
+    int i, count;
+
+    switch (move) {
+    case MOVE_ELECTRO_BALL: {
+        // 40, 60, 80, 120 or 150 by how many times over the target's Speed
+        // is the user's.
+        static const u8 sElectroBallPower[] = { 40, 60, 80, 120, 150 };
+        u32 defenderSpeed = battleCtx->monSpeedValues[AI_CONTEXT.defender];
+        u32 ratio = defenderSpeed ? battleCtx->monSpeedValues[attacker] / defenderSpeed : 0;
+
+        if (ratio >= NELEMS(sElectroBallPower)) {
+            ratio = NELEMS(sElectroBallPower) - 1;
+        }
+        return sElectroBallPower[ratio];
+    }
+
+    case MOVE_ECHOED_VOICE: {
+        // 40 more for each turn in a row it has been used, to 200. The run
+        // goes on only if it was used the turn before, or already this turn.
+        u32 field = battleCtx->fieldConditionsMask;
+        int run = (field & FIELD_CONDITION_ECHOED_VOICE) >> FIELD_CONDITION_ECHOED_VOICE_SHIFT;
+
+        if ((field & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) == FALSE) {
+            if (field & FIELD_CONDITION_ECHOED_VOICE_LAST_TURN) {
+                if (run < 4) {
+                    run++;
+                }
+            } else {
+                run = 0;
+            }
+        }
+        return 40 * (run + 1);
+    }
+
+    case MOVE_STOMPING_TANTRUM:
+    case MOVE_TEMPER_FLARE:
+        if (battleCtx->battleMons[attacker].moveFailedLastTurn) {
+            return MOVE_DATA(move).power * 2;
+        }
+        return 0;
+
+    case MOVE_LAST_RESPECTS:
+        for (i = 0, count = 0; i < BattleSystem_GetPartyCount(battleSys, attacker); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, attacker, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                count++;
+            }
+        }
+        return 50 + 50 * count;
+
+    case MOVE_HARD_PRESS: {
+        int power = 100 * battleCtx->battleMons[AI_CONTEXT.defender].curHP / battleCtx->battleMons[AI_CONTEXT.defender].maxHP;
+        return power > 0 ? power : 1;
+    }
+
+    case MOVE_GRAV_APPLE:
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+            return MOVE_DATA(move).power * 15 / 10;
+        }
+        return 0;
+
+    case MOVE_RETALIATE:
+        if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, attacker)].faintedLastTurn) {
+            return MOVE_DATA(move).power * 2;
+        }
+        return 0;
+
+    case MOVE_STORED_POWER:
+    case MOVE_POWER_TRIP:
+        for (i = BATTLE_STAT_HP, count = 0; i < BATTLE_STAT_MAX; i++) {
+            if (battleCtx->battleMons[attacker].statBoosts[i] > 6) {
+                count += battleCtx->battleMons[attacker].statBoosts[i] - 6;
+            }
+        }
+        return 20 + 20 * count;
+
+    case MOVE_RAGE_FIST:
+        return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, attacker);
+    }
+
+    return 0;
+}
 
 /**
  * @brief Damage calculation routine visible to the AI.
@@ -3035,6 +3222,8 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case MOVE_RETURN:
+    case MOVE_PIKA_PAPOW: // Oxide: both are Return by another name
+    case MOVE_VEEVEE_VOLLEY:
         power = battleCtx->battleMons[attacker].friendship * 10 / 25;
         type = TYPE_NORMAL;
         break;
@@ -3120,8 +3309,9 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
     }
 
     default:
-        // Move has no special calculation logic; default to the basic calc
-        power = 0;
+        // Oxide: the powers BattleScript_ComputedMovePower works out in
+        // battle, read here without changing any of the state it keeps.
+        power = TrainerAI_ComputedMovePower(battleSys, battleCtx, move, attacker);
         type = TYPE_NORMAL;
         break;
     }
@@ -3345,7 +3535,9 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
         return FALSE;
     }
 
-    if (battleCtx->battleMons[BATTLER_OPP(battler)].ability == ABILITY_WONDER_GUARD) {
+    // Oxide: a Wonder Guard under Neutralizing Gas guards nothing.
+    if (battleCtx->battleMons[BATTLER_OPP(battler)].ability == ABILITY_WONDER_GUARD
+        && BattleSystem_NeutralizingGasSuppresses(battleCtx, ABILITY_WONDER_GUARD) == FALSE) {
         // Check if we have a super-effective move against the opponent
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             move = battleCtx->battleMons[battler].moves[i];
@@ -3962,12 +4154,14 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
     // This definition is naive: the AI does not consider itself immune to Magnet Pull from an ally,
     // Shadow Tag if it also has Shadow Tag, Arena Trap if it is a Flying-type, or always able to switch
     // if it is holding a Shed Shell.
-    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
-        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
-        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_THEIR_SIDE, battler, ABILITY_SHADOW_TAG)
-        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_THEIR_SIDE, battler, ABILITY_ARENA_TRAP)
-        || (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_EXCEPT_ME, battler, ABILITY_MAGNET_PULL)
-            && MON_HAS_TYPE(battler, TYPE_STEEL))) {
+    // Oxide: nothing traps a Ghost type (Generation 6), as Battler_IsTrapped has it.
+    if (MON_IS_NOT_TYPE(battler, TYPE_GHOST)
+        && ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
+            || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+            || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_THEIR_SIDE, battler, ABILITY_SHADOW_TAG)
+            || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_THEIR_SIDE, battler, ABILITY_ARENA_TRAP)
+            || (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS_EXCEPT_ME, battler, ABILITY_MAGNET_PULL)
+                && MON_HAS_TYPE(battler, TYPE_STEEL)))) {
         return FALSE;
     }
 

@@ -669,6 +669,22 @@ BOOL ScrCmd_CalcHiddenPowerType(ScriptContext *ctx)
     return FALSE;
 }
 
+// Platinum Oxide: the Pocket PC's Hidden Power APP tells the power as well as
+// the type (Ian, 2026-09-27). It is the IV formula the battle uses, 30 to 70.
+BOOL ScrCmd_CalcHiddenPowerPower(ScriptContext *ctx)
+{
+    int power;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
+    CalcHiddenPowerTypeAndPower(mon, &power, NULL);
+    *destVar = power;
+
+    return FALSE;
+}
+
 static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outType)
 {
     int hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);

@@ -93,7 +93,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_ROSELIA" ]
+        [ "EVO_LEVEL_MOSS_ROCK", "SPECIES_ROSELIA" ]
     ],
     "offspring": "SPECIES_BUDEW",
     "footprint": {

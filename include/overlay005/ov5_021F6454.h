@@ -11,6 +11,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0);
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx);
 BOOL ScrCmd_SetRotomForm(ScriptContext *ctx);
 BOOL ScrCmd_CalcHiddenPowerType(ScriptContext *ctx);
+BOOL ScrCmd_CalcHiddenPowerPower(ScriptContext *ctx);
 BOOL ScrCmd_SetFavoriteMon(ScriptContext *ctx);
 BOOL ScrCmd_GetFavoriteMon(ScriptContext *ctx);
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx);

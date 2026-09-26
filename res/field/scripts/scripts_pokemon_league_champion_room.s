@@ -30,6 +30,7 @@ PokemonLeagueChampionRoom_Entry1:
     GoToIf 1, PokemonLeagueChampionRoom_0110
     Message 1
     SetFlag FLAG_DEFEATED_CYNTHIA
+    RaiseLevelCap LEVEL_CAP_SPLIT_NONE
     CheckFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
     CallIf 0, PokemonLeagueChampionRoom_011A
     CheckFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN

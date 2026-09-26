@@ -10,8 +10,12 @@
     ScriptEntry CanalaveLibrary2f_Entry3
     ScriptEntry CanalaveLibrary2f_Entry4
     ScriptEntry CanalaveLibrary2f_Entry5
-    ScriptEntry CanalaveLibrary2f_Entry6
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 CanalaveLibrary2f_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -63,18 +67,6 @@ CanalaveLibrary2f_Entry5:
     CompareVarToValue VAR_0x800C, 1
     GoToIf 1, CanalaveLibrary2f_0142
     End
-CanalaveLibrary2f_Entry6:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT, CanalaveLibrary2f_02D0
-    Message 14
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, CanalaveLibrary2f_0165
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, CanalaveLibrary2f_02D0
-    GoTo CanalaveLibrary2f_02D0
 CanalaveLibrary2f_00EB:
     Message 1
     WaitButton
@@ -113,107 +105,6 @@ CanalaveLibrary2f_0142:
     CompareVarToValue VAR_0x800C, 1
     GoToIf 1, CanalaveLibrary2f_0142
     End
-CanalaveLibrary2f_0165:
-    GetRandom VAR_0x800C, 7
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, CanalaveLibrary2f_01C8
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, CanalaveLibrary2f_01F4
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, CanalaveLibrary2f_0220
-    CompareVarToValue VAR_0x800C, 3
-    GoToIf 1, CanalaveLibrary2f_024C
-    CompareVarToValue VAR_0x800C, 4
-    GoToIf 1, CanalaveLibrary2f_0278
-    CompareVarToValue VAR_0x800C, 5
-    GoToIf 1, CanalaveLibrary2f_02A4
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_034C
-    End
-CanalaveLibrary2f_01C8:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_FLYGON, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_01F4:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_COFAGRIGUS, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_0220:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_HARIYAMA, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_024C:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_KLEFKI, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_0278:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_DRAPION, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_02A4:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_DUSCLOPS, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_02D0:
-    Message 15
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 CanalaveLibrary2f_02DB:
     Message 10
     CloseMessage
@@ -239,25 +130,6 @@ CanalaveLibrary2f_031E:
     GoToIf 1, CanalaveLibrary2f_02DB
     CompareVarToValue VAR_0x800C, 1
     GoToIf 1, CanalaveLibrary2f_031E
-    End
-CanalaveLibrary2f_0341:
-    Message 16
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-CanalaveLibrary2f_034C:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, CanalaveLibrary2f_0341
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_PRIMEAPE, 50, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
-    Message 15
-    CloseMessage
-    ReleaseAll
     End
 CanalaveLibrary2f_Movement_0378:
     WalkOnSpotNormalEast 1

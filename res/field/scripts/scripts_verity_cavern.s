@@ -9,16 +9,28 @@
 
 VerityCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VERITY_CAVERN
+    @ Oxide: a save from before the legendary pool has no draw; its roamer
+    @ is the vanilla Mesprit.
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_NONE, VerityCavern_DrawMesprit
     End
 
+VerityCavern_DrawMesprit:
+    SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_MESPRIT
+    Return
+
+@ Oxide: the roamer released here is the legendary pool's roamer draw, rolled
+@ once per save by InitNewGame (Ian, 2026-09-26), and RoamingPokemon_ActivateSlot
+@ gives Mesprit's slot that species. The object keeps Mesprit's sprite, since
+@ the drawn species have none (Ian, 2026-09-27); the preview, the cry and the
+@ name are the drawn species.
 VerityCavern_Mesprit:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    DrawPokemonPreview SPECIES_MESPRIT, GENDER_MALE
+    DrawPokemonPreview VAR_LEGENDARY_POOL_ROAMER_SPECIES, GENDER_MALE
     WaitABPress
     RemovePokemonPreview
-    PlayCry SPECIES_MESPRIT
+    PlayCry VAR_LEGENDARY_POOL_ROAMER_SPECIES
     Message VerityCavern_Text_MespritCry
     CloseMessage
     SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
@@ -42,6 +54,7 @@ VerityCavern_Mesprit:
     SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     RemoveObject LOCALID_MESPRIT
     ActivateRoamingPokemon ROAMING_SLOT_MESPRIT
+    BufferSpeciesNameFromVar 0, VAR_LEGENDARY_POOL_ROAMER_SPECIES, 0, 0
     Message VerityCavern_Text_MespritFlewOff
     CloseMessage
     GoToIfEq VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_RESET, VerityCavern_ResetRoamingMespritState
@@ -81,11 +94,13 @@ VerityCavern_EnterProfRowan:
     ApplyMovement LOCALID_PLAYER, VerityCavern_Movement_PlayerFaceSouth
     WaitMovement
     BufferPlayerName 0
+    BufferSpeciesNameFromVar 1, VAR_LEGENDARY_POOL_ROAMER_SPECIES, 0, 0
     Message VerityCavern_Text_RowanThatWasMesprit
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, VerityCavern_Movement_ProfRowanWalkOnSpotSouthNorth
     WaitMovement
     BufferPlayerName 0
+    BufferSpeciesNameFromVar 1, VAR_LEGENDARY_POOL_ROAMER_SPECIES, 0, 0
     Message VerityCavern_Text_RowanChaseAfterMesprit
     CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, VerityCavern_ProfRowanNoMarkingMap

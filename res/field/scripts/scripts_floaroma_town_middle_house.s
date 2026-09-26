@@ -7,8 +7,12 @@
     ScriptEntry FloaromaTownMiddleHouse_Entry0
     ScriptEntry FloaromaTownMiddleHouse_Entry1
     ScriptEntry FloaromaTownMiddleHouse_Entry2
-    ScriptEntry FloaromaTownMiddleHouse_Entry3
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 FloaromaTownMiddleHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -44,18 +48,6 @@ FloaromaTownMiddleHouse_Entry2:
     CloseMessage
     ReleaseAll
     End
-FloaromaTownMiddleHouse_Entry3:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT, FloaromaTownMiddleHouse_012D
-    Message 6
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, FloaromaTownMiddleHouse_00F1
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, FloaromaTownMiddleHouse_012D
-    GoTo FloaromaTownMiddleHouse_012D
 FloaromaTownMiddleHouse_00A9:
     Message 4
     WaitButton
@@ -80,85 +72,8 @@ FloaromaTownMiddleHouse_00E6:
     CloseMessage
     ReleaseAll
     End
-FloaromaTownMiddleHouse_00F1:
-    GetRandom VAR_0x800C, 4
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, FloaromaTownMiddleHouse_0142
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, FloaromaTownMiddleHouse_016E
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, FloaromaTownMiddleHouse_019A
-    CompareVarToValue VAR_0x800C, 3
-    GoToIf 1, FloaromaTownMiddleHouse_01C6
-    End
-FloaromaTownMiddleHouse_012D:
-    Message 11
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 FloaromaTownMiddleHouse_0138:
     CallCommonScript 2017
     CloseMessage
     ReleaseAll
     End
-FloaromaTownMiddleHouse_0142:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaTownMiddleHouse_01F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_SWABLU, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT
-    Message 11
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaTownMiddleHouse_016E:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaTownMiddleHouse_01F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_POOCHYENA, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT
-    Message 11
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaTownMiddleHouse_019A:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaTownMiddleHouse_01F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_SEEDOT, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT
-    Message 11
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaTownMiddleHouse_01C6:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaTownMiddleHouse_01F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_STUNKY, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT
-    Message 11
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaTownMiddleHouse_01F2:
-    Message 12
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-    .byte 0
-

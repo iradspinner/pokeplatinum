@@ -1217,7 +1217,24 @@ TEXT_BANKS_SKIPPED = {
          "(Ian, 2026-09-21), and his line names it",
     180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
          "Medicham (Ian, 2026-09-26), and her lines name both",
+    176: "the Snowpoint ferry sailor's refusal names Team Galactic, not the Pokemon "
+         "League, now that the Battle Zone opens after Galactic HQ (battle-zone-plan.md)",
+    192: "the Fight Area's arrival lines no longer assume the League or Spear Pillar, "
+         "and four lines are added for the Beacon Badge gate (battle-zone-plan.md)",
+    299: "Uxie's cavern holds the legendary pool's Acuity draw, so its line names the "
+         "drawn species rather than UXIE (Ian, 2026-09-26)",
+    293: "Mesprit's roamer is the legendary pool's roamer draw, so the scene's lines "
+         "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
+    141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
+         "and the pick menu's orphaned species names went with the move",
 }
+# The gift clowns are gone (Ian, 2026-09-27; the encounter track's
+# clown-replacements.md): each house's bank loses the giver's lines and the
+# orphaned pick-menu names at its end. Sandgem's house (568) is listed above.
+TEXT_BANKS_SKIPPED.update({
+    i: "the gift clown and its lines removed (Ian, 2026-09-27)"
+    for i in (38, 78, 574, 256, 97, 579, 159, 59)
+})
 
 
 def text_bank_names():
@@ -1324,40 +1341,48 @@ def import_text(base, van, msgenc, charmap, tmpdir, dry_run, log):
     return len(touched)
 
 
-def report_skipped_heights(base, van, log):
-    """Sprite Y-offsets are deliberately not carried over; this only writes the
-    evidence into the report so a later run re-confirms it rather than
-    re-deciding it.
+HEIGHT_SLOTS = (("back", "female"), ("back", "male"), ("front", "female"), ("front", "male"))
+
+
+def import_heights(base, van, dry_run, log):
+    """Sprite Y-offsets from height.narc into each species' sprite_data.json.
 
     height.narc holds four members per species (back female, back male, front
-    female, front male, empty where that gender has no sprite). 298 of them
-    differ, but the pattern says DSPRE re-saved the table rather than Ian
-    editing it: 164 of the differences are a zero byte written where vanilla has
-    an empty member, and of the 116 species where vanilla had male and female
-    offsets equal, every single one has only the male offset changed. A hand
-    edit to a shared sprite's offset would move both. See the inventory's note
-    that 2,788 of 2,964 pl_pokegra files also differ by a few header bytes
-    each."""
-    b, v = base.narc("poketool/pokegra/height.narc"), van.narc("poketool/pokegra/height.narc")
-    differ = [i for i in range(len(b)) if b[i] != v[i]]
-    wrote_into_empty = sum(1 for i in differ if not v[i] and b[i])
-    broke_symmetry = 0
-    for sp in sorted({i // 4 for i in differ}):
-        vals_v = [v[4 * sp + k] for k in range(4)]
-        vals_b = [b[4 * sp + k] for k in range(4)]
-        if all(x for x in vals_v) and vals_v[0] == vals_v[1] and vals_v[2] == vals_v[3]:
-            if vals_b[0] != vals_b[1] or vals_b[2] != vals_b[3]:
-                broke_symmetry += 1
-    log.append(("height.narc (not imported)", [
-        f"{len(differ)} of {len(b)} members differ",
-        f"{wrote_into_empty} of them write a byte where vanilla has an empty member "
-        f"(a gender the species does not have; the decomp derives this from the gender ratio "
-        f"and cannot express it as an edit)",
-        f"{broke_symmetry} species had male == female in vanilla and have only the male "
-        f"offset changed in the base ROM, which a hand edit would not do",
-        "reading this as a DSPRE re-save, not an edit; skipped pending Ian",
-    ]))
-    return 0
+    female, front male), empty where the species has no such gender. The base
+    ROM changes 298 of them. 134 are real: they come with its new sprite set
+    (the visual overhaul, which Ian ruled on 2026-09-27 comes over whole), and
+    they mostly move the male offset alone because the new set replaced mostly
+    male sprites. The other 164 are DSPRE writing a zero byte where the species
+    has no such gender; the decomp derives those empty members from the gender
+    ratio, and verify_narcs reads a lone zero byte as padding.
+
+    This was a report of what was skipped until 2026-09-27, when the male-only
+    pattern was taken for a sign of a re-save; it was a sign of new sprites."""
+    b = base.narc("poketool/pokegra/height.narc")
+    v = van.narc("poketool/pokegra/height.narc")
+    written = 0
+    for sp in range(1, 494):
+        folder = species_dir(sp)
+        path = os.path.join(folder, "sprite_data.json")
+        text = open(path, encoding="utf-8").read()
+        changes = []
+        for k, (face, gender) in enumerate(HEIGHT_SLOTS):
+            nb, nv = bytes(b[4 * sp + k]), bytes(v[4 * sp + k])
+            if nb == nv or not nv or not nb:
+                continue  # unchanged, or a gender this species does not have
+            key = [face, "y_offset", gender]
+            old = jsonstyle.get_value(text, key)
+            if old == nb[0]:
+                continue
+            changes.append(f"{face} {gender} y_offset {old} -> {nb[0]}")
+            text = jsonstyle.replace_value(text, key, nb[0])
+        if changes:
+            written += len(changes)
+            log.append((f"{os.path.basename(folder)}/sprite_data.json", changes))
+            if not dry_run:
+                with open(path, "w", encoding="utf-8", newline="\n") as f:
+                    f.write(text)
+    return written
 
 
 def report_skipped_items(base, van, log):
@@ -1406,6 +1431,16 @@ def main():
         428: "Lopunny gains Lopunny M",
     }
 
+    # Species whose trade evolutions element 8 stripped, since the base ROM's
+    # level-up routes to the same species made them unreachable. Re-importing
+    # the base ROM's list would put the trade entries back.
+    TRADE_EVOLUTIONS_STRIPPED = {
+        61: "Poliwhirl", 64: "Kadabra", 67: "Machoke", 75: "Graveler",
+        79: "Slowpoke", 93: "Haunter", 95: "Onix", 112: "Rhydon",
+        117: "Seadra", 123: "Scyther", 125: "Electabuzz", 126: "Magmar",
+        137: "Porygon", 233: "Porygon2", 356: "Dusclops", 366: "Clamperl",
+    }
+
     # Species whose level-up learnset Oxide has changed on purpose since the
     # base ROM, so re-importing the base ROM's list would undo it. The rest of
     # the record is still carried over. Same idea as MOVES_DIVERGED.
@@ -1413,6 +1448,15 @@ def main():
         215: "Sneasel loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         228: "Houndour loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
+    }
+
+    # Records whose abilities Oxide has changed on purpose since the base ROM.
+    # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave
+    # Snow Cloak, a slip: every official game gives all three forms
+    # Anticipation, as the Plant form here has (Ian, 2026-09-27).
+    ABILITIES_DIVERGED = {
+        499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
     }
 
     # species: personal + learnset + evolutions live in one data.json
@@ -1432,6 +1476,9 @@ def main():
         if i in EVOLUTIONS_EXTENDED:
             log.append((d, [f"evolutions not carried over, {EVOLUTIONS_EXTENDED[i]} "
                             f"(Phase 4 element 3); the rest of the record still is"]))
+        elif i in TRADE_EVOLUTIONS_STRIPPED:
+            log.append((d, [f"evolutions not carried over, {TRADE_EVOLUTIONS_STRIPPED[i]}'s "
+                            f"trade entries were stripped (element 8); the rest of the record still is"]))
         else:
             new["evolutions"] = decode_evolutions(be[i]); old["evolutions"] = decode_evolutions(ve[i])
         # nested keys expressed with dots need to become real nesting for flatten()
@@ -1443,6 +1490,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in ABILITIES_DIVERGED:
+            new.pop("abilities")
+            old.pop("abilities")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"abilities: diverged, left alone ({ABILITIES_DIVERGED[i]})"]))
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n
@@ -1551,7 +1603,7 @@ def main():
     counts["map_headers"] = import_map_headers(base.arm9, van.arm9, a.dry_run, log)
     counts["events"] = import_events(base, van, a.dry_run, log)
 
-    counts["heights"] = report_skipped_heights(base, van, log)
+    counts["heights"] = import_heights(base, van, a.dry_run, log)
     counts["items"] = report_skipped_items(base, van, log)
 
     with open(a.report, "w", encoding="utf-8") as f:

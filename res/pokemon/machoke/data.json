@@ -98,7 +98,6 @@
         ]
     },
     "evolutions": [
-        [ "EVO_TRADE", "SPECIES_MACHAMP" ],
         [
             "EVO_LEVEL",
             40,

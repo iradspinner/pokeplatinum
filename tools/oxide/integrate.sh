@@ -379,6 +379,7 @@ if [ $BUILD -eq 1 ]; then
         check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
         refcheck "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
         refcheck "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
+        refcheck "verify_narcs --land-data" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --land-data
         CHECK_EXPECT="would write 0 script files" refcheck "bulk_scripts --dry-run" "$PY" tools/oxide/bulk_scripts.py --dry-run --built "$ROM"
         CHECK_EXPECT="would write 0 event files" refcheck "bulk_events --dry-run" "$PY" tools/oxide/bulk_events.py --dry-run --built "$ROM"
         CHECK_EXPECT="would write 0" refcheck "bulk_text --dry-run" "$PY" tools/oxide/bulk_text.py --dry-run --built "$ROM"
@@ -405,6 +406,8 @@ fi
 
 CHECK_EXPECT="0 failed" refcheck "scriptdis --verify (vanilla)" "$PY" tools/oxide/scriptdis.py --rom "$VANILLA" --verify
 CHECK_EXPECT="0 failed" refcheck "scriptdis --verify --base-rom" "$PY" tools/oxide/scriptdis.py --rom "$BASE" --verify --base-rom
+# The land data check's own test: an unregistered map edit must fail it.
+CHECK_EXPECT="0 failed" refcheck "verify_narcs --land-data, its own test" "$PY" tools/oxide/test_land_data.py --base "$BASE"
 
 export PYTHONPATH=.
 # The encounter tools read vanilla data from the `main` branch (git ls-tree and
@@ -412,6 +415,9 @@ export PYTHONPATH=.
 # given, so fetch main's tip if it is missing (six checks failed without it on
 # the first cloud run, 2026-09-25).
 git rev-parse --verify -q main >/dev/null || git fetch -q --depth=1 origin main:main || warn "could not fetch main; the encounter checks that read vanilla will fail"
+# The engine's level caps (element 8) against the balance track's fights.json,
+# so a cap moved in one and not the other fails here.
+CHECK_EXPECT="passed" check "level caps: engine table, fights.json and closing scripts agree" "$PY" tools/oxide/test_level_caps.py
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"

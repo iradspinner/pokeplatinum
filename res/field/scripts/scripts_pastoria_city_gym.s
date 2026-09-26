@@ -64,6 +64,7 @@ PastoriaCityGym_Entry4:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_BYRON
     GiveBadge 3
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_FISHERMAN_ERICK

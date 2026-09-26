@@ -108,7 +108,6 @@
         ]
     },
     "evolutions": [
-        [ "EVO_TRADE", "SPECIES_GENGAR" ],
         [
             "EVO_LEVEL",
             40,

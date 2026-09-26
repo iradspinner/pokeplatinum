@@ -28,6 +28,7 @@
 #include "savedata.h"
 #include "string_gf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
 #include "unk_020559DC.h"
@@ -218,12 +219,26 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 
     BoxPokemon_Copy(boxMon, boxMonRef);
 
+    // Platinum Oxide: the Pokemon comes out of the Day Care no higher than
+    // the level cap (Pokemon_ShouldLevelUp holds it there on collection), so
+    // the level shown, the levels grown and the price all stop there too.
+    // One already above the cap stays at its own level.
+    int capLevel = LevelCap_Get();
+
+    if (BoxPokemon_GetLevel(boxMonRef) > capLevel) {
+        capLevel = BoxPokemon_GetLevel(boxMonRef);
+    }
+
     exp = BoxPokemon_GetValue(boxMonRef, MON_DATA_EXPERIENCE, NULL);
     exp += givenExp;
 
     BoxPokemon_SetValue(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
     level = BoxPokemon_GetLevel(boxMonRef);
     Heap_Free(mon);
+
+    if (level > capLevel) {
+        level = capLevel;
+    }
 
     return level;
 }
@@ -1096,7 +1111,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     u8 movesPP[LEARNED_MOVES_MAX];
     u32 personality, otID;
     u8 ivs[STAT_MAX], pokerus;
-    u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender;
+    u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender, hasHiddenAbility;
     String *string = String_Init(7 + 1, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
@@ -1118,6 +1133,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     marks = Pokemon_GetValue(egg, MON_DATA_MARKINGS, NULL);
     pokerus = Pokemon_GetValue(egg, MON_DATA_POKERUS, NULL);
     fatefulEncounter = Pokemon_GetValue(egg, MON_DATA_FATEFUL_ENCOUNTER, NULL);
+    hasHiddenAbility = Pokemon_GetValue(egg, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
 
     Pokemon_GetValue(egg, MON_DATA_OT_NAME_STRING, string);
 
@@ -1157,6 +1173,13 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &gender);
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &otID);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+
+    // Platinum Oxide: hatching builds a new Pokemon from the egg, so an egg
+    // given its hidden ability (FLAG_NEXT_MON_HIDDEN_ABILITY on GiveEgg) has
+    // to pass the bit on and take the ability again.
+    if (hasHiddenAbility) {
+        Pokemon_TryGiveHiddenAbility(mon);
+    }
 
     u16 location = Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL);
     u8 year = Pokemon_GetValue(egg, MON_DATA_EGG_YEAR, NULL);

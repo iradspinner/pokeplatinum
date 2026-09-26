@@ -168,6 +168,12 @@ StarkMountainRoom3_02AB:
     SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     Return
 StarkMountainRoom3_02B1:
+    @ Oxide: the room holds no legendary for now (Ian, 2026-09-27), neither
+    @ Heatran nor a draw from the legendary pool, until the difficulty is high
+    @ enough that another legendary-tier capture would not inflate the box.
+    @ Heatran stays hidden whatever else has happened; the base ROM's checks
+    @ below are kept as they were, unreachable.
+    GoTo StarkMountainRoom3_0336
     CheckFlag FLAG_CAUGHT_HEATRAN
     GoToIf 1, StarkMountainRoom3_0336
     CheckGameCompleted VARS_START
@@ -211,6 +217,9 @@ StarkMountainRoom3_032E:
 StarkMountainRoom3_0336:
     SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
+    @ Oxide: this file no longer keeps the base ROM's length, so the movement
+    @ blocks are aligned explicitly (carry-over-map skill, gotcha 6).
+    .balign 4, 0
 StarkMountainRoom3_Movement_033C:
     Delay8 1
     WalkNormalNorth 2

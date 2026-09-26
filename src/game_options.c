@@ -100,9 +100,13 @@ void Options_SetBattleScene(Options *options, enum OptionsBattleScene scene)
     options->battleScene = scene;
 }
 
+// Platinum Oxide: battles are always played in Set style (Ian, 2026-09-20),
+// so the player is never offered a free switch when a foe faints. The stored
+// value is left alone and simply not read, which also covers a save made
+// with Shift chosen.
 int Options_BattleStyle(const Options *options)
 {
-    return options->battleStyle;
+    return OPTIONS_BATTLE_STYLE_SET;
 }
 
 void Options_SetBattleStyle(Options *options, enum OptionsBattleStyle style)

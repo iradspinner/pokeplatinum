@@ -2,7 +2,7 @@
     "front": {
         "y_offset": {
             "female": 6,
-            "male": 6
+            "male": 13
         },
         "addl_y_offset": 9,
         "animation": 3,
@@ -144,6 +144,6 @@
     },
     "shadow": {
         "x_offset": 0,
-        "size": "SHADOW_SIZE_SMALL"
+        "size": "SHADOW_SIZE_MEDIUM"
     }
 }

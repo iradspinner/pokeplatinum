@@ -85,6 +85,12 @@ Basic_CheckForImmunity:
     IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckGroundAbsorption
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Dry Skin, not a second Levitate test
     IfLoadedEqualTo ABILITY_DRY_SKIN, Basic_CheckWaterAbsorption2
+    // Oxide: Lightning Rod and Storm Drain take the moves they draw (the
+    // staples rulings), as Volt Absorb and Water Absorb do.
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, Basic_CheckElectricAbsorption
+    IfLoadedEqualTo ABILITY_STORM_DRAIN, Basic_CheckWaterAbsorption
+    // Oxide: Sap Sipper takes Grass moves (element 5).
+    IfLoadedEqualTo ABILITY_SAP_SIPPER, Basic_CheckGrassAbsorption
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckElectricAbsorption:
@@ -100,6 +106,11 @@ Basic_CheckWaterAbsorption:
 Basic_CheckFireAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
     IfTempEqualTo TYPE_FIRE, ScoreMinus12
+    GoTo Basic_NoImmunityAbility
+
+Basic_CheckGrassAbsorption:
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfTempEqualTo TYPE_GRASS, ScoreMinus12
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckWonderGuard:
@@ -124,7 +135,7 @@ Basic_NoImmunityAbility:
 Basic_CheckSoundproof:
     // Check for immunity to sound-based moves
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, Basic_ScoreMoveEffect
+    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, Basic_CheckBulletproof
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
     IfMoveEqualTo MOVE_GROWL, ScoreMinus10
@@ -138,8 +149,92 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_GRASS_WHISTLE, ScoreMinus10
     IfMoveEqualTo MOVE_BUG_BUZZ, ScoreMinus10
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
+    // Oxide: the sound moves element 4 added, from the engine's sSoundMoves.
+    IfMoveEqualTo MOVE_ALLURING_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_BOOMBURST, ScoreMinus10
+    IfMoveEqualTo MOVE_CLANGING_SCALES, ScoreMinus10
+    IfMoveEqualTo MOVE_CONFIDE, ScoreMinus10
+    IfMoveEqualTo MOVE_DISARMING_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_ECHOED_VOICE, ScoreMinus10
+    IfMoveEqualTo MOVE_EERIE_SPELL, ScoreMinus10
+    IfMoveEqualTo MOVE_NOBLE_ROAR, ScoreMinus10
+    IfMoveEqualTo MOVE_OVERDRIVE, ScoreMinus10
+    IfMoveEqualTo MOVE_PARTING_SHOT, ScoreMinus10
+    IfMoveEqualTo MOVE_PSYCHIC_NOISE, ScoreMinus10
+    IfMoveEqualTo MOVE_RELIC_SONG, ScoreMinus10
+    IfMoveEqualTo MOVE_ROUND, ScoreMinus10
+    IfMoveEqualTo MOVE_SNARL, ScoreMinus10
+    IfMoveEqualTo MOVE_SPARKLING_ARIA, ScoreMinus10
+    IfMoveEqualTo MOVE_TORCH_SONG, ScoreMinus10
+
+Basic_CheckBulletproof:
+    // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
+    // Breaker ignores it. The list is the engine's sBallAndBombMoves.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckQueenlyMajesty
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckQueenlyMajesty
+    IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
+    IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
+    IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
+    IfMoveEqualTo MOVE_BEAK_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_BULLET_SEED, ScoreMinus10
+    IfMoveEqualTo MOVE_EGG_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_ELECTRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ENERGY_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_FOCUS_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_GYRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ICE_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_MAGNET_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_MIST_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_MUD_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_OCTAZOOKA, ScoreMinus10
+    IfMoveEqualTo MOVE_POLLEN_PUFF, ScoreMinus10
+    IfMoveEqualTo MOVE_PYRO_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ROCK_BLAST, ScoreMinus10
+    IfMoveEqualTo MOVE_ROCK_WRECKER, ScoreMinus10
+    IfMoveEqualTo MOVE_SEARING_SHOT, ScoreMinus10
+    IfMoveEqualTo MOVE_SEED_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_SHADOW_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_SLUDGE_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_SYRUP_BOMB, ScoreMinus10
+    IfMoveEqualTo MOVE_WEATHER_BALL, ScoreMinus10
+    IfMoveEqualTo MOVE_ZAP_CANNON, ScoreMinus10
+
+Basic_CheckQueenlyMajesty:
+    // Oxide: Queenly Majesty stops a move of raised priority aimed at its
+    // holder or the holder's partner (element 5), unless Mold Breaker ignores
+    // it, so score -10.
+    IfMoveHasRaisedPriority Basic_CheckQueenlyMajesty_Priority
+    GoTo Basic_ScoreMoveEffect
+
+Basic_CheckQueenlyMajesty_Priority:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_QUEENLY_MAJESTY, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_ScoreMoveEffect
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_ScoreMoveEffect
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_QUEENLY_MAJESTY
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 Basic_ScoreMoveEffect:
+    // Oxide: the powder moves the engine keeps as sPowderMoves, less Rage
+    // Powder, which is aimed at its user.
+    IfMoveEqualTo MOVE_COTTON_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_POISON_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_SLEEP_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_STUN_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_MAGIC_POWDER, Basic_CheckPowderImmunity
+    // Oxide: the Grass status moves aimed at the foe that are not powders.
+    IfMoveEqualTo MOVE_LEECH_SEED, Basic_CheckSapSipper
+    IfMoveEqualTo MOVE_GRASS_WHISTLE, Basic_CheckSapSipper
+    IfMoveEqualTo MOVE_WORRY_SEED, Basic_CheckSapSipper
+
+Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, Basic_CheckCannotSleep
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, Basic_CheckCannotExplode
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, Basic_CheckDreamEater
@@ -292,7 +387,69 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
+    // Oxide: the stat raising moves element 4 added (Cotton Guard is a
+    // single-stat raise and takes the Defense check).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_ACC_UP, Basic_CheckHoneClaws
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP, Basic_CheckQuiverDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_ACC_UP, Basic_CheckCoil
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2_ATK_UP, Basic_CheckShiftGear
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN, Basic_CheckShellSmash
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_UP, Basic_CheckWorkUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP, Basic_CheckFilletAway
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2, Basic_CheckGeomancy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Basic_CheckVictoryDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Basic_CheckClangorousSoul
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Basic_CheckHighStatStage_Defense
+    // Oxide: status moves element 4 added whose effect is not written yet.
+    // They say "But nothing happened!" or do nothing at all, so score -10.
+    // The stubs' effects are named here; the rest sit on the plain hit effect
+    // at power 0. Remove a line when its effect is written (the four
+    // terrain moves wait on Ian's terrain decision).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT, Basic_CheckUnwrittenStatusMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ADD_THIRD_TYPE_GHOST, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ADD_THIRD_TYPE_GRASS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_APPLY_TERRAINS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHANGE_TO_PSYCHIC_TYPE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DECORATE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ION_DELUGE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWDER, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_QUASH, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_SIMPLE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHED_TAIL, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STUFF_CHEEKS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TIDY_UP, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_THREAD, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SNOW, ScoreMinus10
     PopOrEnd 
+
+Basic_CheckUnwrittenStatusMove:
+    LoadMovePower 
+    IfLoadedEqualTo 0, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckPowderImmunity:
+    // Oxide: a Grass type is immune to powder moves (the staples rulings), so
+    // score -10. Otherwise score the move by its effect as usual.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    // Oxide: so is Overcoat (element 5), unless Mold Breaker ignores it.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_OVERCOAT, ScoreMinus10
+
+Basic_CheckSapSipper:
+    // Oxide: Sap Sipper takes a Grass status move aimed at it, as it takes a
+    // Grass attack (element 5), unless Mold Breaker ignores it.
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfTempNotEqualTo TYPE_GRASS, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_SAP_SIPPER, ScoreMinus10
+    GoTo Basic_ScoreMoveEffectByEffect
 
 Basic_CheckCannotSleep:
     // If the target cannot be put to sleep for any reason, score -10.
@@ -301,6 +458,21 @@ Basic_CheckCannotSleep:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
+    // Oxide: Purifying Salt keeps off every status (element 5), unless Mold
+    // Breaker ignores it.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotSleep_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    // Oxide: Sweet Veil keeps sleep off its holder and its partner.
+    IfLoadedEqualTo ABILITY_SWEET_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckCannotSleep_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckCannotSleep_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_SWEET_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckCannotSleep_End:
     PopOrEnd 
 
 Basic_CheckCannotExplode:
@@ -346,57 +518,29 @@ Basic_CheckBellyDrum:
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
 
     // General comments on stat-boosting Status moves below:
-    //   - If the attacker has Simple and is already at +2, score -10.
     //   - If the attacker is already at +6, score -10.
+    //   - Oxide: Simple now doubles a stat change as it is made (the staples
+    //     rulings), so a Simple attacker's stages are its real ones and the
+    //     +6 test covers it. The Gen 4 branches that stopped at +2 are gone.
     //   - Special cases for Speed (Trick Room active -> -10) and Accuracy/Evasion (attacker has No Guard -> -10)
 Basic_CheckHighStatStage_Attack:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Attack_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Attack_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_Defense:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Defense_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Defense_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_Speed:
     IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Speed_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Speed_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_SpAttack:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_SpAttack_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_SpAttack_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_SpDefense:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_SpDefense_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_SpDefense_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus10
     PopOrEnd 
 
@@ -405,24 +549,18 @@ Basic_CheckHighStatStage_Accuracy:
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Accuracy_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Accuracy_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_Evasion:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
+    // Oxide: Keen Eye and Illuminate ignore evasion (the staples rulings),
+    // so raising it against either does nothing.
+    IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Evasion_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Evasion_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, ScoreMinus10
     PopOrEnd 
 
@@ -430,10 +568,12 @@ Basic_CheckHighStatStage_Evasion_NoSimple:
     //   - If the target is already at -6, score -10.
     //   - If the target has White Smoke or Clear Body, score -10.
     //   - If reducing Attack -> -10 if the target has Hyper Cutter
+    //   - Oxide: if reducing Defense -> -10 if the target has Big Pecks
     //   - If reducing Speed -> -10 if Trick Room is currently active
     //   - If reducing Speed -> -10 if the target has Speed Boost
     //   - If reducing Accuracy or Evasion -> -10 if either battler has No Guard
-    //   - If reducing Accuracy -> -10 if the target has Keen Eye
+    //   - If reducing Accuracy -> -10 if the target has Keen Eye (Oxide: or Illuminate)
+    //   - Oxide: if reducing Evasion -> -10 if the attacker has Keen Eye or Illuminate
 Basic_CheckLowStatStage_Attack:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
@@ -442,6 +582,10 @@ Basic_CheckLowStatStage_Attack:
 
 Basic_CheckLowStatStage_Defense:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, ScoreMinus10
+    // Oxide: Big Pecks keeps Defense from being lowered (element 5), as Hyper
+    // Cutter keeps Attack.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_BIG_PECKS, ScoreMinus10
     GoTo Basic_CheckClearBodyEffect
 
 Basic_CheckLowStatStage_Speed:
@@ -465,6 +609,7 @@ Basic_CheckLowStatStage_Accuracy:
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10 // Oxide: it stops accuracy drops too
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     GoTo Basic_CheckClearBodyEffect
 
@@ -472,6 +617,8 @@ Basic_CheckLowStatStage_Evasion:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
+    IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10 // Oxide: it ignores evasion anyway
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
 
@@ -479,6 +626,33 @@ Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    // Oxide: Mirror Armor turns the drop back on the user (element 5), unless
+    // Mold Breaker ignores it, so score -10.
+    IfLoadedNotEqualTo ABILITY_MIRROR_ARMOR, Basic_CheckClearBodyEffect_FlowerVeil
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_MOLD_BREAKER, ScoreMinus10
+
+Basic_CheckClearBodyEffect_FlowerVeil:
+    // Oxide: Flower Veil keeps stat drops off a Grass type that holds it or
+    // stands beside its holder (element 5), unless Mold Breaker ignores it.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GRASS, Basic_CheckFlowerVeil
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GRASS, Basic_CheckFlowerVeil
+    PopOrEnd 
+
+Basic_CheckFlowerVeil:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckFlowerVeil_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_FLOWER_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckFlowerVeil_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckFlowerVeil_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_FLOWER_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckFlowerVeil_End:
     PopOrEnd 
 
 Basic_CheckStatStageImbalance:
@@ -553,6 +727,20 @@ Basic_CheckCannotPoison_Hydration:
 Basic_CheckCannotPoison_StatusOrSafeguard:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotPoison_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    // Oxide: Pastel Veil keeps poison off its holder and its partner.
+    IfLoadedEqualTo ABILITY_PASTEL_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckCannotPoison_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckCannotPoison_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_PASTEL_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckCannotPoison_End:
     PopOrEnd 
 
 Basic_CheckAlreadyUnderLightScreen:
@@ -621,11 +809,21 @@ Basic_CheckAlreadyUnderReflect:
 Basic_CheckCannotParalyze:
     // If the target cannot be paralyzed for any reason, score -10.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
+    // Oxide: an Electric type cannot be paralysed by anything (the staples
+    // rulings), Glare and Stun Spore included.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_ELECTRIC, ScoreMinus10
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_ELECTRIC, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus10
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
+    // Oxide: Magic Guard no longer stops full paralysis (the staples
+    // rulings), so paralysing its holder is worth doing again.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotParalyze_ImmuneToStatus
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
     IfMoveEqualTo MOVE_THUNDER_WAVE, Basic_CheckCannotParalyze_ThunderWave
     GoTo Basic_CheckCannotParalyze_ImmuneToStatus
 
@@ -633,6 +831,7 @@ Basic_CheckCannotParalyze_ThunderWave:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_MOTOR_DRIVE, ScoreMinus10
     IfLoadedEqualTo ABILITY_VOLT_ABSORB, ScoreMinus10
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, ScoreMinus10 // Oxide: it takes Thunder Wave too
 
 Basic_CheckCannotParalyze_ImmuneToStatus:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
@@ -683,6 +882,12 @@ Basic_CheckLockOn:
 Basic_CheckMeanLook:
     // If the target is already under the effect of Mean Look, score -10.
     IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_MEAN_LOOK, ScoreMinus10
+    // Oxide: nothing traps a Ghost type, and Mean Look, Block and Spider Web
+    // fail against one, so score -10.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GHOST, ScoreMinus10
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GHOST, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckCurse:
@@ -692,16 +897,7 @@ Basic_CheckCurse:
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
     IfLoadedEqualTo TYPE_GHOST, Basic_CheckCurse_GhostType
 
-    // If the attacker has Simple, treat it like a boosting move for both Attack and Defense.
-    // That is, if either Attack or Defense are already +2, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCurse_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCurse_NoSimple:
-    // If the attacker does not have Simple and either Attack or Defense are already +6, score -10.
+    // If either Attack or Defense are already +6, score -10/-8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
@@ -898,6 +1094,14 @@ Basic_CheckCannotBurn:
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotBurn_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus10 // Oxide: it keeps burns off
+
+Basic_CheckCannotBurn_End:
     PopOrEnd 
 
 Basic_CheckHelpingHand:
@@ -958,15 +1162,6 @@ Basic_CheckTickle_CheckStatStages:
     PopOrEnd 
 
 Basic_CheckCosmicPower:
-    // If the attacker's ability is Simple and either Defense or SpDefense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCosmicPower_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCosmicPower_NoSimple:
     // If the attacker's Defense is already at +6, score -10.
     // If the attacker's SpDefense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
@@ -974,15 +1169,6 @@ Basic_CheckCosmicPower_NoSimple:
     PopOrEnd 
 
 Basic_CheckBulkUp:
-    // If the attacker's ability is Simple and either Attack or Defense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckBulkUp_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckBulkUp_NoSimple:
     // If the attacker's Attack is already at +6, score -10.
     // If the attacker's Defense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
@@ -995,15 +1181,6 @@ Basic_CheckWaterSport:
     PopOrEnd 
 
 Basic_CheckCalmMind:
-    // If the attacker's ability is Simple and either SpAttack or SpDefense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCalmMind_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCalmMind_NoSimple:
     // If the attacker's SpAttack is already at +6, score -10.
     // If the attacker's SpDefense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
@@ -1014,19 +1191,75 @@ Basic_CheckDragonDance:
     // If Trick Room is in effect, score -10.
     IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
 
-    // If the attacker's ability is Simple and either Attack or Speed are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckDragonDance_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckDragonDance_NoSimple:
     // If the attacker's Attack is already at +6, score -10.
     // If the attacker's Speed is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+    // Oxide: the stat raising moves element 4 added, checked as Dragon Dance
+    // is: if the first stat they raise is already at +6, score -10; if any of
+    // the others is, score -8. The two that cost HP fail at or below that
+    // share, so score -10 there first, as for Belly Drum.
+Basic_CheckHoneClaws:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckQuiverDance:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckCoil:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckShiftGear:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckShellSmash:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckWorkUp:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckFilletAway:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckGeomancy:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckVictoryDance:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckClangorousSoul:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 34, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckCamouflage:
@@ -1144,9 +1377,6 @@ Basic_CheckTailwind:
     PopOrEnd 
 
 Basic_CheckAcupressure:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SIMPLE, Basic_CheckAcupressure_Simple
-
     // If any of the attacker's stat stages are already at +6, score -10.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
@@ -1155,17 +1385,6 @@ Basic_CheckAcupressure:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckAcupressure_Simple:
-    // If the attacker's ability is Simple and any stat stage is already at +3, score -10.
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckMetalBurst:
@@ -7323,6 +7542,9 @@ TagStrategy_SpreadElectricMove:
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide: a Lightning Rod partner now takes the move as Volt Absorb does
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadElectricMove_CheckTypes:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
@@ -7372,6 +7594,9 @@ TagStrategy_SpreadWaterMove:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide: a Storm Drain partner now takes the move as Water Absorb does
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadWaterMove_CheckTypes:
@@ -7754,17 +7979,13 @@ TagStrategy_PartnerGastroAcid_End:
     PopOrEnd 
 
 TagStrategy_PartnerAcupressure:
-    // If our partner has Simple and any stat at +3 stages, score -10
-    //
-    // Else if our partner has any stat at +6 stages, score -30
+    // If our partner has any stat at +6 stages, score -30
     //
     // Else if our partner's HP is 50% or lower, score -1
     //
     // Else if our partner's HP is 91% or higher, 68.75% chance of score +2, 31.25% chance of no score change
     //
     // Else 31.25% chance of score +2, 68.75% chance of no score change
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SIMPLE
-    IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerAcupressureSimple
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, TagStrategy_PartnerScoreMinus30
@@ -7773,15 +7994,6 @@ TagStrategy_PartnerAcupressure:
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 12, TagStrategy_PartnerScoreMinus30
     GoTo TagStrategy_PartnerAcupressure_CheckHP
-
-TagStrategy_PartnerAcupressureSimple:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
 
 TagStrategy_PartnerAcupressure_CheckHP:
     IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 51, TagStrategy_PartnerAcupressure_ScoreMinus1
@@ -8187,6 +8399,11 @@ Harrassment_Effects:
 RoamingPokemon_Main:
     // If the Roamer is trapped, break from this routine
     // Otherwise, override all other possible moves and Escape
+    // Oxide: nothing traps a Ghost type, so a Ghost roamer always escapes.
+    LoadTypeFrom LOAD_ATTACKER_TYPE_1
+    IfLoadedEqualTo TYPE_GHOST, RoamingPokemon_NotTrapped
+    LoadTypeFrom LOAD_ATTACKER_TYPE_2
+    IfLoadedEqualTo TYPE_GHOST, RoamingPokemon_NotTrapped
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, RoamingPokemon_Trapped
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_MEAN_LOOK, RoamingPokemon_Trapped
     LoadAbility AI_BATTLER_DEFENDER

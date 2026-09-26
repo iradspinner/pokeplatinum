@@ -38,6 +38,16 @@ replacement is on the way. When the new chip is in, and before any playtest:
   (element 2 moved the field) and is no valid test bed.
 - [ ] Known crash to avoid until the bug track fixes it: UNLOCK FPS set to
   ALWAYS hard-crashes on entering Sandgem Town (tracker, Phase 5).
+- [ ] Once `carry-over` merges, **the base ROM's visual overhaul**, compared
+  with Ian's own base ROM where anything looks off: the title screen's logo;
+  the new Pokemon sprites front and back in battle, sitting at the right
+  height on their platforms (the heights came with the sprites); a shiny with
+  a custom palette where one turns up (the test kit can make one); the new
+  battle backgrounds and platforms on grass, in a cave and indoors; the HP
+  box's colours; the party menu's colours; the four new box wallpapers; and,
+  post-game, May, Steven, Red and Gold showing their own battle sprites.
+  Shadow Force's animation carries one changed byte nobody has explained;
+  note anything odd about it.
 
 ## 2. The test kit ROM
 
@@ -64,7 +74,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
-- [ ] **The staples rulings, the Modern rules menu** (18 entries): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (22 entries): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -82,16 +92,52 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   learn and confirm the right move at the right level (a wrong widening would
   be wrong for all 667 learnsets). A Rotom in a form, or a Giratina holding the
   Griseous Orb, shows its form's stats.
+- [ ] **Element 8, the level caps** (the Level caps menu, `docs/oxide/test-kit.md`
+  has the detail): at a new game's cap of 16, Rare Candies stop at Lv. 16 and
+  the next one has no effect and is kept; a Lv. 50 Pokemon wins with no Exp.
+  message; a Pokemon one level under the cap stops at it however much it
+  earns, and is still at it after a trip into the PC; a higher split lets it
+  grow again.
 - [ ] **One calculator roll** (the encounter tool, M8): in a battle, note an
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
   in its range.
+- [ ] **Element 8, hidden abilities and restored items** (the last three
+  Modern rules entries):
+  "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
+  Intimidate, not Blaze; one Rare Candy makes a Torracat that still reads
+  Intimidate. "Hidden ability wild" opens with the wild Litten's Intimidate
+  lowering your lead's Attack; the flag clears itself after that one use.
+  "Items restored": Mew eats its Sitrus Berry after Belly Drum, and has it
+  back in its summary after the battle.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
-- [ ] Rare Candy chaining works.
+- [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
+  rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
+  button, outdoors, in a building and in a cave, it opens a PC with Pokemon
+  Storage, Healing Waves, Rare Candy and Misc. (Name Rater APP, Hidden Power
+  APP) and nothing else. Rare Candy fills the stack to 999 from any count,
+  including 0 and 999. The Hidden Power APP names a type and a power between
+  30 and 70. Storage deposits, withdraws and backs out cleanly (the box hang
+  in Phase 5 is on this path). A Pokemon Center PC shows Storage, the player's
+  PC, Oak's PC, Healing Waves and Misc., with the Hall of Fame in Misc. only
+  after the League, and no tutors, Teleport System, Online Shop or resets. No
+  trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
+- [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
+  after beating him the badge message plays as before and Lv. 26 is the new
+  ceiling. The Day Care man's level and price stop at the cap too.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
+- [ ] Held items come back after battle (element 8): give a Pokemon an Oran or
+  Sitrus Berry, let a trainer's Pokemon bring it below half so it eats the
+  Berry, and after the battle its summary shows the Berry again. The same for
+  a Focus Sash that saved it. The kit's "Items restored" entry shows it first.
+- [ ] Battle style is always Set (element 8): the options menu shows SET
+  highlighted and left and right do not move it, and when a trainer's Pokemon
+  faints the game sends the next one out without asking whether you want to
+  switch.
 - [ ] Shinx's ability is always Rivalry, never Intimidate; Bidoof and Starly
   hatch in about 255 steps, down from about 3,825.
 - [ ] Answering yes to "use another Repel?" works (the one carried-over thing
@@ -109,15 +155,27 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Munchlax trees are gone.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
-- [ ] After the overworld-sprite carry-over lands (tracker, Phase 3): the NPC
-  outside Sandgem's Pokemon Center draws correctly, and so do the Clown-type
-  NPCs on the other 34 maps that share that sprite slot.
+- [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
+- [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
+  sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
+  Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
+  Coronet or Stark Mountain, or in Turnback Cave. The gym shortcut Abra still
+  stand at the entrance and by the leader of the Canalave, Pastoria,
+  Snowpoint, Veilstone and Sunyshore gyms, draw as an Abra, and face and
+  turn properly when talked to. Later in the game, May at the Resort Area,
+  Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
+  north and south slopes draw as themselves.
 
 ## 4. The ordinary ROM, mid-game
 
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
+  works everywhere but a gauntlet: the Great Marsh, the Underground, the
+  Distortion World, and the Battle Frontier's lobbies. Each should either open
+  the PC and return cleanly or refuse; note anything that breaks the area's
+  own rules (healing mid-challenge, losing Safari Balls).
 - [ ] Iron Island: Riley's egg hatches as a random species, one of eight lines.
 - [ ] Snowpoint City: Mindy takes a Snover and gives a Suicune, which is shiny.
 - [ ] **(live)** Worker Jackson's Wormadam-Trash (level 49, Relaxed, every IV 27)
@@ -126,16 +184,70 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
   Saturn's AI never chooses it.
-- [ ] Once `main-scripts` merges: the Snowpoint ferry opens after Galactic HQ is
-  cleared, Route 225 is open from the first arrival at the Fight Area, and the
-  Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
-  (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
+- [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
+  Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
+- [ ] **(live)** Element 6's Phase 4 catch-up (`docs/oxide/battle-ai/README.md`),
+  in Volkner's battle: lead with a Lightning Rod Pokemon (Electrike's line or
+  Rhyhorn's), break at the end of `TrainerAI_MainSingles` and read
+  `moveScore`. Every Electric attack reads 12 or more below its score against
+  another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
+  recorded the ability the AI guesses between the species' two, so the drop
+  shows on about half the turns; take several turns before calling it.
+- [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
+  Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
+  Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
+  house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
+  Route 213, have no clown; everyone else in them talks as before, and
+  Veilstone's Elekid gift still gives Elekid.
+- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
+- [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
+  Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
+- [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
+  Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
+  30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
+  Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
+  Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
+- [ ] Snowpoint City: fishing gives the species of
+  `res/field/encounters/encounters_snowpoint_city.json` for each rod.
+- [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
+  about Team Galactic. After HQ it sails, and the first voyage plays Cynthia's
+  scene.
+- [ ] Fight Area without the Beacon Badge: the rival walks you to Volkner and
+  Flint, Volkner turns the challenge down, the rival says he will wait, Buck
+  introduces himself and leaves in a fade. Route 225 is open. Talking to the
+  rival by the Frontier gate gives his "still don't have Volkner's Badge"
+  line. Buck is on Route 227, and not also at the Fight Area.
+- [ ] Fight Area with the Beacon Badge: talking to the rival starts the tag
+  battle, and afterwards the Palmer scene plays, without Buck's part if you
+  first arrived without the badge. Arriving with the badge the first time
+  plays vanilla's whole scene, Buck included.
+- [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
+  is empty after Galactic HQ.
+- [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one
+  of Articuno, Cresselia or Pheromosa, and running or fainting it prints that
+  name in "disappeared deep into its cavern". A new game can draw a different
+  one; a soft reset cannot.
+- [ ] Verity Cavern: Mesprit's sprite, but the preview, the cry and the names
+  in "flew off" and in Rowan's two lines are the roamer draw (one of Mesprit,
+  Tapu Koko, Buzzwole, Galarian Zapdos, Poipole, Xurkitree or Galarian
+  Articuno). That species then roams at level 50, the Marking Map shows it with
+  Mesprit's icon (known), and after defeating it Verity Cavern brings it back.
+- [ ] Victory Road, the first step north inside the south entrance: Dawn (or
+  Lucas, for a female player) notices you, you are walked in front of her, and
+  the level 71 fight uses the team for your starter (trainers 779 to 784).
+  Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
 ## 5. The ordinary ROM, after the League
 
 On a save with the National Dex and the game beaten:
+
+- [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
+  and takes Rare Candies again.
 
 - [ ] Acuity Lakefront's grass and the Poke Radar there give no Weavile,
   Abomasnow, Mamoswine or Glalie, and radar chains still build on the area's
