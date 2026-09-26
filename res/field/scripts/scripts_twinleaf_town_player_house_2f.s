@@ -1130,6 +1130,7 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityProtean, 16
     AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
     AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
+    AddListMenuEntry TestKit_Text_MenuAbilityNeutralizingGas, 19
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1150,6 +1151,7 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 16, TestKit_AbilityProtean
     GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
     GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
+    GoToIfEq VAR_0x8004, 19, TestKit_AbilityNeutralizingGas
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1797,6 +1799,22 @@ TestKit_AbilityInfiltrator:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_MIST
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Neutralizing Gas: a wild Chansey given Pressure that knows only Growl.
+   Pressure announces itself and doubles the PP Weezing's moves cost, so it
+   shows the gas arriving, the suppression, and the gas leaving, after which
+   Pressure announces itself again. */
+TestKit_AbilityNeutralizingGas:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_WEEZING
+    SetVar VAR_0x800B, ABILITY_NEUTRALIZING_GAS
+    SetVar VAR_0x8006, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8007, MOVE_STRANGE_STEAM
+    SetVar VAR_0x8008, MOVE_WILL_O_WISP
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_PRESSURE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

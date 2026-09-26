@@ -115,6 +115,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
     battleCtx->battleMons[battler].proteanUsed = FALSE;
+    battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -3163,6 +3164,11 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
         return ABILITY_NONE;
     }
 
+    // Oxide: while Neutralizing Gas is on the field every other ability is off.
+    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
+        return ABILITY_NONE;
+    }
+
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
         return ABILITY_NONE;
@@ -3844,6 +3850,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
+    SWITCH_IN_CHECK_STATE_NEUTRALIZING_GAS, // Oxide
     SWITCH_IN_CHECK_STATE_TRACE,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
@@ -3970,6 +3977,63 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
 
             battleCtx->switchInCheckState++;
+            break;
+
+        // Oxide (Ian, 2026-09-26): Neutralizing Gas, first so that it speaks
+        // before any ability it turns off. The suppression itself is in
+        // Battler_Ability; this step only gives the two messages. When the gas
+        // is gone, every battler's switch-in abilities are made to announce
+        // again, and the steps after this one set them off in speed order, as
+        // the later games do. Slow Start starts its five turns over.
+        case SWITCH_IN_CHECK_STATE_NEUTRALIZING_GAS:
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_NEUTRALIZING_GAS)
+                && BattleSystem_NeutralizingGasActive(battleCtx) == FALSE) {
+                battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_NEUTRALIZING_GAS;
+
+                for (i = 0; i < maxBattlers; i++) {
+                    BattleMon *mon = &battleCtx->battleMons[i];
+
+                    mon->weatherAbilityAnnounced = FALSE;
+                    mon->intimidateAnnounced = FALSE;
+                    mon->traceAnnounced = FALSE;
+                    mon->downloadAnnounced = FALSE;
+                    mon->anticipationAnnounced = FALSE;
+                    mon->forewarnAnnounced = FALSE;
+                    mon->friskAnnounced = FALSE;
+                    mon->moldBreakerAnnounced = FALSE;
+                    mon->pressureAnnounced = FALSE;
+                    mon->oxideAbilityAnnounced = FALSE;
+
+                    if (mon->ability == ABILITY_SLOW_START) {
+                        mon->slowStartAnnounced = FALSE;
+                        mon->slowStartFinished = FALSE;
+                        mon->moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
+                    }
+                }
+
+                subscript = subscript_neutralizing_gas_end;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                break;
+            }
+
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].neutralizingGasAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) == ABILITY_NEUTRALIZING_GAS) {
+                    battleCtx->battleMons[battler].neutralizingGasAnnounced = TRUE;
+                    battleCtx->fieldConditionsMask |= FIELD_CONDITION_NEUTRALIZING_GAS;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_neutralizing_gas;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
             break;
 
         case SWITCH_IN_CHECK_STATE_TRACE:
@@ -9006,6 +9070,38 @@ BOOL Ability_ChangeFails(int ability, u8 flags)
     }
 
     return FALSE;
+}
+
+// Oxide (Ian, 2026-09-26): Neutralizing Gas under the later games' rule. It
+// is worked out afresh from the battlers on the field at every read, so it
+// starts and ends with its holder's arrival, fainting or switching out, and
+// with Gastro Acid on the holder. The ability field is read directly because
+// Battler_Ability calls this. In a single battle the two unused battler slots
+// were zeroed with the battle context, so their HP is 0.
+BOOL BattleSystem_NeutralizingGasActive(BattleContext *battleCtx)
+{
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (battleCtx->battleMons[i].curHP
+            && battleCtx->battleMons[i].ability == ABILITY_NEUTRALIZING_GAS
+            && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) == FALSE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// The gas leaves alone another holder's gas and the abilities Generation 9
+// marks as impossible to suppress, which are exactly the ones the list above
+// gives ABILITY_FAILS_SUPPRESS: Multitype, Zen Mode, Stance Change, Shields
+// Down, Schooling, Disguise, Battle Bond, Power Construct, Comatose, RKS
+// System, Gulp Missile, Ice Face, both As One, Zero to Hero and Tera Shift.
+BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int ability)
+{
+    return ability != ABILITY_NONE
+        && ability != ABILITY_NEUTRALIZING_GAS
+        && BattleSystem_NeutralizingGasActive(battleCtx)
+        && Ability_ChangeFails(ability, ABILITY_FAILS_SUPPRESS) == FALSE;
 }
 
 BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
