@@ -39,6 +39,7 @@ from . import model
 from . import pokedex
 from . import progression
 from . import scripted
+from . import simulate
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -877,6 +878,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send(out, 404 if "error" in out else 200)
             if parts[1] == "sprite":
                 return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
+            if parts[1] == "simulate":
+                # One simulated run (the Simulator tab). The seed makes a box
+                # reproducible; the page sends a fresh one to regenerate.
+                split = (q.get("split") or ["League"])[0]
+                deaths = int((q.get("deaths") or ["0"])[0] or 0)
+                starter = (q.get("starter") or [None])[0] or None
+                seed = (q.get("seed") or [None])[0]
+                seed = int(seed) if seed not in (None, "") else None
+                out = simulate.run(split, max(0, min(deaths, 60)), starter, seed)
+                out["splits"] = [sp for sp in progression.SPLITS if sp != "Post"]
+                out["starters"] = [{"value": sp, "label": dex.display_name(sp)} for sp in
+                                   next(src["pool"] for src in st.scripted
+                                        if src["kind"] == "starter")]
+                return self._send(out)
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,

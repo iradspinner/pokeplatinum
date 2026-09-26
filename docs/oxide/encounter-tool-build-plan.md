@@ -228,8 +228,19 @@ that stay. None blocks anything.
    in the list, in play order, markable as caught, and it spends or shares
    its place's capture like a table does. An egg is a capture of its own,
    since it counts where it hatches. A table whose map has a honey tree shows
-   the tree's table for its split, with boxes to tick the catch. Next: the box
-   simulator tab.
+   the tree's table for its split, with boxes to tick the catch.
+13. **The box simulator (Ian, 2026-09-26).** The Box sim tab plays one run to
+   the end of a chosen split, with a number of deaths and a starter, and
+   shows it area by area with the box it ends with; Regenerate plays another.
+   `simulate.py` holds the rules and the per-area analysis (`--areas SPLIT`).
+   A Pokemon's worth mixes the BST of the stage it reaches by the cap, a
+   nuzlocke rating per line and its pick-list tier. The ratings are
+   `docs/oxide/encounters/values.json`, a first draft for Ian to correct; the
+   balance track has no per-Pokemon value to borrow, since its pressure
+   scores are per fight. The player is greedy and adaptive, and it waits
+   for a later table when that is worth more. It also places the one early
+   repel where it gains most. A random gift is read as declinable under the
+   dupes clause. `test_sim.py` pins the rules.
 
 ## Standing rules
 
