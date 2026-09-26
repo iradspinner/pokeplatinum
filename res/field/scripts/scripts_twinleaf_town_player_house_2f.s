@@ -450,6 +450,7 @@ TestKit_Helper:
     LockAll
     FacePlayer
     SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8000, SPECIES_NONE
     Message TestKit_Text_WhatDoYouNeed
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuRareCandies, 0
@@ -956,7 +957,18 @@ TestKit_GivePokemonWithMoves:
     BufferMoveName 2, VAR_0x8008
     BufferMoveName 3, VAR_0x8009
     Message TestKit_Text_MoveSet
+    GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
     GoTo TestKit_WaitAndClose
+
+/* An ability entry that names a foe fights it straight after the gift: a wild
+   Lv. 50 VAR_0x8000 with the ability VAR_0x8001 and, unless VAR_0x8002 is
+   MOVE_NONE, that one move, which it then uses every turn. The new Pokemon is
+   not in the lead, so switch it in on the first turn. */
+TestKit_AbilityFoe:
+    WaitButton
+    CloseMessage
+    TestKitStartWildBattle VAR_0x8000, 50, VAR_0x8001, VAR_0x8002, MOVE_NONE, MOVE_NONE, MOVE_NONE
+    GoTo TestKit_AfterBattle
 
 /* Towns land on their fly points (src/spawn_locations.c); the Pokemon Center
    lands in front of the counter, where a whiteout does. */
@@ -1029,9 +1041,19 @@ TestKit_Abilities:
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityBeastBoost, 0
     AddListMenuEntry TestKit_Text_MenuAbilitySoulHeart, 1
+    AddListMenuEntry TestKit_Text_MenuAbilitySapSipper, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityBulletproof, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityOvercoat, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityPurifyingSalt, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityCorrosion, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilitySapSipper
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityBulletproof
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityOvercoat
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityPurifyingSalt
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityCorrosion
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1054,6 +1076,78 @@ TestKit_AbilitySoulHeart:
     SetVar VAR_0x8007, MOVE_FLASH_CANNON
     SetVar VAR_0x8008, MOVE_DAZZLING_GLEAM
     SetVar VAR_0x8009, MOVE_CALM_MIND
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sap Sipper: a wild Bellsprout that knows only Vine Whip. Goodra takes no
+   damage and its Attack rises instead, until it is at +6. */
+TestKit_AbilitySapSipper:
+    SetVar VAR_0x800A, SPECIES_GOODRA
+    SetVar VAR_0x800B, ABILITY_SAP_SIPPER
+    SetVar VAR_0x8006, MOVE_DRAGON_PULSE
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_BELLSPROUT
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_VINE_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Bulletproof: a wild Chansey that knows only Egg Bomb, which Kommo-o's
+   Bulletproof blocks every time. */
+TestKit_AbilityBulletproof:
+    SetVar VAR_0x800A, SPECIES_KOMMO_O
+    SetVar VAR_0x800B, ABILITY_BULLETPROOF
+    SetVar VAR_0x8006, MOVE_CLANGING_SCALES
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EGG_BOMB
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Overcoat: a wild Paras that knows only Spore, which Overcoat blocks; once
+   Mandibuzz sets up Sandstorm, Paras takes the sand damage and Mandibuzz
+   does not. */
+TestKit_AbilityOvercoat:
+    SetVar VAR_0x800A, SPECIES_MANDIBUZZ
+    SetVar VAR_0x800B, ABILITY_OVERCOAT
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_FOUL_PLAY
+    SetVar VAR_0x8009, MOVE_TOXIC
+    SetVar VAR_0x8000, SPECIES_PARAS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPORE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Purifying Salt: a wild Gengar that knows only Will-O-Wisp, which fails
+   against Garganacl; Garganacl's own Rest fails too, since it cannot fall
+   asleep. */
+TestKit_AbilityPurifyingSalt:
+    SetVar VAR_0x800A, SPECIES_GARGANACL
+    SetVar VAR_0x800B, ABILITY_PURIFYING_SALT
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_SALT_CURE
+    SetVar VAR_0x8008, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_GENGAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WILL_O_WISP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Corrosion: a wild Skarmory, a Steel type, which Salazzle's Toxic and
+   Poison Gas poison all the same. */
+TestKit_AbilityCorrosion:
+    SetVar VAR_0x800A, SPECIES_SALAZZLE
+    SetVar VAR_0x800B, ABILITY_CORROSION
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_POISON_GAS
+    SetVar VAR_0x8008, MOVE_FLAMETHROWER
+    SetVar VAR_0x8009, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

@@ -70,6 +70,26 @@
             "en_US": "Soul Heart"
         },
         {
+            "id": "TestKit_Text_MenuAbilitySapSipper",
+            "en_US": "Sap Sipper"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBulletproof",
+            "en_US": "Bulletproof"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityOvercoat",
+            "en_US": "Overcoat"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityPurifyingSalt",
+            "en_US": "Purifying Salt"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityCorrosion",
+            "en_US": "Corrosion"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

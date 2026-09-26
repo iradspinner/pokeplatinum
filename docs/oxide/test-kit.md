@@ -35,7 +35,7 @@ With the option on:
 |---|---|
 | The NPC's script, at the end of `scripts_twinleaf_town_player_house_2f.s` | an `#ifdef OXIDE_TESTKIT` block; field scripts run through the C preprocessor, and `make_script_bin.sh --define` passes the symbol |
 | The NPC's object event and its text | fragments in `res/testkit/`, appended to the bedroom's real events file and text bank at build time by `tools/oxide/testkit_merge.py`, so the kit never keeps a copy that could drift |
-| `TestKitSetPartyMonForm` and `TestKitSetPartyMonAbility`, the kit's two script commands | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h`, `src/scrcmd_party.c` and `asm/macros/scrcmd.inc`, so no existing opcode moves |
+| `TestKitSetPartyMonForm`, `TestKitSetPartyMonAbility` and `TestKitStartWildBattle`, the kit's three script commands | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h` and `asm/macros/scrcmd.inc`, and in `src/scrcmd_party.c`, `src/scrcmd.c`, `src/encounter.c` and `include/encounter.h`, so no existing opcode moves |
 
 ## What the NPC hands out
 
@@ -120,10 +120,23 @@ ability in `VAR_0x800B` and the moves in `VAR_0x8006` to `VAR_0x8009`, then
 jumps to `TestKit_GivePokemonWithMoves`, with an `AddListMenuEntry` line in
 `TestKit_Abilities` and a `TestKit_Text_MenuAbility<Name>` message.
 
+An entry for an ability that works when its holder is hit also names a foe,
+in `VAR_0x8000` (species), `VAR_0x8001` (its ability, `ABILITY_NONE` to keep
+the rolled one) and `VAR_0x8002` (one move, which it then uses every turn, or
+`MOVE_NONE` to keep its own). The kit fights it straight after the gift, a
+wild Lv. 50 battle through `TestKitStartWildBattle`, a kit-only command that
+sets the foe's ability and moves after `Encounter_NewVsSpeciesAtLevel`'s steps.
+The new Pokemon is not in the lead, so switch it in on the first turn.
+
 | Entry | Pokemon and moves | What to look for | Batch |
 |---|---|---|---|
-| Beast Boost | Kartana: Leaf Blade, Sacred Sword, Swords Dance, Night Slash | Knock out any wild Pokemon: straight after "fainted!", "KARTANA's Beast Boost raised its Attack!" (Attack is Kartana's highest stat). Nothing on a turn it does not knock anything out | this batch |
-| Soul Heart | Magearna: Fleur Cannon, Flash Cannon, Dazzling Gleam, Calm Mind | When the wild Pokemon faints, "MAGEARNA's Soul Heart raised its Sp. Atk!"; it also fires when one of your own Pokemon faints with Magearna on the field, which needs a double battle | this batch |
+| Beast Boost | Kartana: Leaf Blade, Sacred Sword, Swords Dance, Night Slash | Knock out any wild Pokemon: straight after "fainted!", "KARTANA's Beast Boost raised its Attack!" (Attack is Kartana's highest stat). Nothing on a turn it does not knock anything out | 2f8d27c3 |
+| Soul Heart | Magearna: Fleur Cannon, Flash Cannon, Dazzling Gleam, Calm Mind | When the wild Pokemon faints, "MAGEARNA's Soul Heart raised its Sp. Atk!"; it also fires when one of your own Pokemon faints with Magearna on the field, which needs a double battle | 2f8d27c3 |
+| Sap Sipper | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Bellsprout that knows only Vine Whip | Vine Whip does no damage: "GOODRA's Sap Sipper raised its Attack!", and at +6 "made Vine Whip useless!" | this batch |
+| Bulletproof | Kommo-o: Clanging Scales, Dragon Dance, Close Combat, Iron Defense; foe a wild Chansey that knows only Egg Bomb | "KOMMO-O's Bulletproof blocks Egg Bomb!" every turn | this batch |
+| Overcoat | Mandibuzz: Sandstorm, Roost, Foul Play, Toxic; foe a wild Paras that knows only Spore | "MANDIBUZZ's Overcoat blocks Spore!"; with Sandstorm up, Paras is buffeted by the sandstorm at the end of each turn and Mandibuzz is not | this batch |
+| Purifying Salt | Garganacl: Rest, Salt Cure, Stealth Rock, Recover; foe a wild Gengar that knows only Will-O-Wisp | Will-O-Wisp fails with "GARGANACL's Purifying Salt prevents burns!"; Garganacl's own Rest fails with "stayed awake because of its Purifying Salt!". Its halving of Ghost damage does not show here | this batch |
+| Corrosion | Salazzle: Toxic, Poison Gas, Flamethrower, Sludge Bomb; foe a wild Skarmory with its own moves | Toxic and Poison Gas poison the Steel-type Skarmory, where without Corrosion they would not affect it | this batch |
 
 ## Not built yet
 

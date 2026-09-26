@@ -3538,6 +3538,60 @@ static u16 sSoundMoves[] = {
     MOVE_CHATTER,
 };
 
+// Oxide: the moves Bulletproof stops, hg-engine's BallAndBombMoveList less the
+// ones Oxide does not have.
+static const u16 sBallAndBombMoves[] = {
+    MOVE_ACID_SPRAY,
+    MOVE_AURA_SPHERE,
+    MOVE_BARRAGE,
+    MOVE_BEAK_BLAST,
+    MOVE_BULLET_SEED,
+    MOVE_EGG_BOMB,
+    MOVE_ELECTRO_BALL,
+    MOVE_ENERGY_BALL,
+    MOVE_FOCUS_BLAST,
+    MOVE_GYRO_BALL,
+    MOVE_ICE_BALL,
+    MOVE_MAGNET_BOMB,
+    MOVE_MIST_BALL,
+    MOVE_MUD_BOMB,
+    MOVE_OCTAZOOKA,
+    MOVE_POLLEN_PUFF,
+    MOVE_PYRO_BALL,
+    MOVE_ROCK_BLAST,
+    MOVE_ROCK_WRECKER,
+    MOVE_SEARING_SHOT,
+    MOVE_SEED_BOMB,
+    MOVE_SHADOW_BALL,
+    MOVE_SLUDGE_BOMB,
+    MOVE_SYRUP_BOMB,
+    MOVE_WEATHER_BALL,
+    MOVE_ZAP_CANNON,
+};
+
+// Oxide: the powder moves Overcoat stops, hg-engine's PowderMoveList.
+static const u16 sPowderMoves[] = {
+    MOVE_COTTON_SPORE,
+    MOVE_POISON_POWDER,
+    MOVE_SLEEP_POWDER,
+    MOVE_STUN_SPORE,
+    MOVE_SPORE,
+    MOVE_POWDER,
+    MOVE_RAGE_POWDER,
+    MOVE_MAGIC_POWDER,
+};
+
+static BOOL MoveInList(const u16 *list, int count, int move)
+{
+    for (int i = 0; i < count; i++) {
+        if (list[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
     int subscript = NULL, moveType;
@@ -3594,6 +3648,27 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         && CURRENT_MOVE_DATA.power) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
         subscript = subscript_ability_restores_hp;
+    }
+
+    // Oxide: Sap Sipper takes Grass moves and raises Attack, as Motor Drive
+    // takes Electric moves and raises Speed.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SAP_SIPPER) == TRUE
+        && moveType == TYPE_GRASS
+        && attacker != defender) {
+        subscript = subscript_absorb_and_attack_up_1_stage;
+    }
+
+    // Oxide: Bulletproof stops ball and bomb moves, and Overcoat powder moves,
+    // with Soundproof's message.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
+        && MoveInList(sBallAndBombMoves, NELEMS(sBallAndBombMoves), battleCtx->moveCur)) {
+        subscript = subscript_blocked_by_soundproof;
+    }
+
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_OVERCOAT) == TRUE
+        && MoveInList(sPowderMoves, NELEMS(sPowderMoves), battleCtx->moveCur)
+        && attacker != defender) {
+        subscript = subscript_blocked_by_soundproof;
     }
 
     return subscript;
@@ -4488,6 +4563,26 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
             battleCtx->battleMons[battler].moveEffectsData.canUnburden = TRUE;
         }
         break;
+
+    // Oxide: Purifying Salt allows no status at all, so it cures whichever
+    // one its holder has, named as Shed Skin names it.
+    case ABILITY_PURIFYING_SALT:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY) {
+            if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                battleCtx->msgTemp = MSGCOND_SLEEP;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
+                battleCtx->msgTemp = MSGCOND_POISON;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+                battleCtx->msgTemp = MSGCOND_BURN;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+                battleCtx->msgTemp = MSGCOND_PARALYSIS;
+            } else {
+                battleCtx->msgTemp = MSGCOND_FREEZE;
+            }
+
+            result = TRUE;
+        }
+        break;
     }
 
     if (result == TRUE) {
@@ -4536,6 +4631,12 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 
     case ABILITY_MAGMA_ARMOR:
         if (status & MON_CONDITION_FREEZE) {
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_PURIFYING_SALT: // Oxide
+        if (status & MON_CONDITION_ANY) {
             result = TRUE;
         }
         break;
@@ -6838,6 +6939,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_THICK_FAT) == TRUE
         && (moveType == TYPE_FIRE || moveType == TYPE_ICE)) {
+        movePower /= 2;
+    }
+
+    // Oxide: Purifying Salt halves Ghost moves, as Thick Fat halves Fire and
+    // Ice ones. hg-engine halves the attack stat rather than the power, which
+    // comes to the same after the damage formula's rounding in all but a few
+    // cases.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_PURIFYING_SALT) == TRUE
+        && moveType == TYPE_GHOST) {
         movePower /= 2;
     }
 

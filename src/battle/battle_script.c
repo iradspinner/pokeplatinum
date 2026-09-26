@@ -5689,6 +5689,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && type1 != TYPE_GROUND && type2 != TYPE_GROUND
             && battleCtx->battleMons[battler].curHP
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_VEIL
+            && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -5716,7 +5717,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
                 }
             } else if (type1 != TYPE_ICE
                 && type2 != TYPE_ICE
-                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK) {
+                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK
+                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT) { // Oxide
                 battleCtx->msgMoveTemp = MOVE_HAIL;
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }

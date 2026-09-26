@@ -344,4 +344,5 @@ subscript_files = files(
     'subscript_smack_down.s',
     'subscript_handle_after_you.s',
     'subscript_aurora_veil.s',
+    'subscript_absorb_and_attack_up_1_stage.s',
 )

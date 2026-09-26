@@ -5,6 +5,10 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
+#ifdef OXIDE_TESTKIT
+#include "generated/abilities.h"
+#include "generated/moves.h"
+#endif
 #include "generated/game_records.h"
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
@@ -564,6 +568,39 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
+
+#ifdef OXIDE_TESTKIT
+/* Platinum Oxide test kit only (make testkit, docs/oxide/test-kit.md): a wild
+   battle like Encounter_NewVsSpeciesAtLevel's, whose foe is then given the
+   ability `ability` (ABILITY_NONE keeps the one it rolled) and, when the first
+   of `moves` is not MOVE_NONE, exactly those four moves, MOVE_NONE emptying a
+   slot. A foe with one move uses it every turn, so an ability's kit entry can
+   meet the move that shows it. */
+void Encounter_TestKitNewVsSpecies(FieldTask *task, u16 species, u8 level, u16 ability, const u16 *moves, int *resultMaskPtr)
+{
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    RadarChain_Clear(fieldSystem->chain);
+
+    FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_WILD_MON);
+    FieldBattleDTO_Init(dto, fieldSystem);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
+
+    Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
+
+    if (ability != ABILITY_NONE) {
+        Pokemon_SetValue(wildMon, MON_DATA_ABILITY, &ability);
+    }
+
+    if (moves[0] != MOVE_NONE) {
+        for (u8 i = 0; i < LEARNED_MOVES_MAX; i++) {
+            Pokemon_ResetMoveSlot(wildMon, moves[i], i);
+        }
+    }
+
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
+    StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
+}
+#endif
 
 void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary)
 {
