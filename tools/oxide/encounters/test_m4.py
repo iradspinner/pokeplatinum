@@ -91,8 +91,15 @@ def check_endpoints(results):
     # Less the unknown_5xx rooms, parked out of the browser tool (Ian, 2026-09-22).
     want = sum(1 for a in model.load_all()
                if (a.land_active or a.kinds_present()) and not srv.parked(a.name))
-    results.append(("GET /api/areas returns every area with a table of any kind",
-                    len(areas["rows"]) == want, f"{len(areas['rows'])} rows, want {want}"))
+    # The scripted sources are rows of their own since 2026-09-26, keyed
+    # "scripted:<id>", one per entry in scripted.json.
+    from . import scripted
+    tables = [r for r in areas["rows"] if not r["area"].startswith(scripted.KEY_PREFIX)]
+    sources = len(areas["rows"]) - len(tables)
+    results.append(("GET /api/areas returns every area with a table of any kind, and "
+                    "every scripted source",
+                    len(tables) == want and sources == len(scripted.load()),
+                    f"{len(tables)} table rows, want {want}; {sources} scripted"))
     results.append(("areas carries game metrics and lint",
                     "game" in areas and "game_findings" in areas
                     and "thresholds" in areas, ""))
