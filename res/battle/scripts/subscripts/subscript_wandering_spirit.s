@@ -1,18 +1,17 @@
 #include "macros/btlcmd.inc"
 
 
-// Oxide: Entrainment gives the target the user's ability. The checks and
-// the Truant and Slow Start upkeep are Worry Seed's and Role Play's; the
-// abilities it cannot pass on or replace are Ability_ChangeFails' list.
+// Oxide: Wandering Spirit. A contact move swaps the holder's ability with the
+// attacker's, as Skill Swap swaps them, with Skill Swap's message for the
+// holder.
 _000:
-    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MISSED|MOVE_STATUS_SEMI_INVULNERABLE, _fail
-    CheckSubstitute BTLSCR_DEFENDER, _fail
-    CheckAbilityChange ABILITY_CHANGE_ENTRAINMENT, _fail
-    Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     UpdateVarFromVar OPCODE_SET, BTLVAR_SCRIPT_TEMP, BTLVAR_TOTAL_TURNS
     UpdateVar OPCODE_BITWISE_AND, BTLVAR_SCRIPT_TEMP, 1
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_TRUANT, BTLVAR_SCRIPT_TEMP
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_TRUANT, BTLVAR_SCRIPT_TEMP
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_ABILITY, BTLVAR_CALC_TEMP
+    UpdateMonDataFromVar OPCODE_GET, BTLSCR_DEFENDER, BATTLEMON_ABILITY, BTLVAR_SCRIPT_TEMP
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_ABILITY, BTLVAR_SCRIPT_TEMP
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_ABILITY, BTLVAR_CALC_TEMP
     CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, ABILITY_SLOW_START, _message
     UpdateVarFromVar OPCODE_SET, BTLVAR_SCRIPT_TEMP, BTLVAR_TOTAL_TURNS
@@ -22,12 +21,8 @@ _000:
     UpdateMonData OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_SLOW_START_FINISHED, 0
 
 _message:
-    // {0} acquired {1}!
-    PrintMessage BattleStrings_Text_PokemonAcquiredAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    // {0} swapped abilities with its target!
+    PrintMessage BattleStrings_Text_PokemonSwappedAbilitiesWithItsTarget_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
-    End 
-
-_fail:
-    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
     End 

@@ -8913,6 +8913,268 @@
         "{STRVAR_1 1, 0, 0} hasn’t eaten a Berry,\n",
         "so it can’t possibly belch!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} surrounded itself\n",
+        "with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} surrounded\n",
+        "itself with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} surrounded\n",
+        "itself with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "lowered its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} lowered its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} lowered its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheFoesTeamIsTooNervousToEatBerries",
+      "en_US": [
+        "The foe’s team is too nervous\n",
+        "to eat Berries!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_YourTeamIsTooNervousToEatBerries",
+      "en_US": [
+        "Your team is too nervous\n",
+        "to eat Berries!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingADarkAura_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is radiating\n",
+        "a dark aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingADarkAura_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "radiating a dark aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingADarkAura_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "radiating a dark aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingAFairyAura_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is radiating\n",
+        "a fairy aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingAFairyAura_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "radiating a fairy aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsRadiatingAFairyAura_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "radiating a fairy aura!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonReversedAllOtherPokemonsAuras_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} reversed all\n",
+        "other Pokémon’s auras!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonReversedAllOtherPokemonsAuras_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} reversed\n",
+        "all other Pokémon’s auras!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonReversedAllOtherPokemonsAuras_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} reversed\n",
+        "all other Pokémon’s auras!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_AllScreensOnTheFieldWereCleansed",
+      "en_US": [
+        "All screens on the field\n",
+        "were cleansed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down all\n",
+        "the matcha {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down all the\n",
+        "matcha the wild {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down all the\n",
+        "matcha the foe’s {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} drank down all\n",
+        "the matcha the wild {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonDrankDownAllTheMatchaPokemonMade_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} drank down all\n",
+        "the matcha the foe’s {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was cured of its\n",
+        "{STRVAR_1 17, 2, 0} status by its ally’s\f",
+        "{STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was cured\n",
+        "of its {STRVAR_1 17, 2, 0} status\f",
+        "by its ally’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsStatusByItsAllysAbility_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was cured\n",
+        "of its {STRVAR_1 17, 2, 0} status\f",
+        "by its ally’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHarvestedOneItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} avoids attacks\n",
+        "by its ally Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} avoids\n",
+        "attacks by its ally Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAvoidsAttacksByItsAllyPokemon_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} avoids\n",
+        "attacks by its ally Pokémon!"
+      ]
     }
   ]
 }

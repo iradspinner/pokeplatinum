@@ -317,6 +317,11 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -2128,6 +2133,7 @@ static BOOL BtlCmd_GoToMoveScript(BattleSystem *battleSys, BattleContext *battle
     battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
     battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
     battleCtx->moveCur = battleCtx->msgMoveTemp;
+    BattleSystem_SetMoveTypeByAbility(battleCtx, battleCtx->attacker, battleCtx->moveCur); // Oxide: Pixilate, Liquid Voice
 
     if (targetIsSet == FALSE) {
         battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp, TRUE, 0);
@@ -2770,6 +2776,18 @@ static inline BOOL AbilityBlocksSpecificStatReduction(BattleContext *battleCtx, 
         && BATTLE_STAT_ATTACK + statOffset == stat;
 }
 
+// Oxide: whether the battler's partner, still up, has Flower Veil (and it is
+// not ignored by the attacker's Mold Breaker). In a single battle the battler
+// is its own partner, which the holder's own check already covers.
+static BOOL PartnerHasFlowerVeil(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+    return partner != battler
+        && battleCtx->battleMons[partner].curHP
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_FLOWER_VEIL) == TRUE;
+}
+
 static inline void SetupNicknameStatMsg(BattleContext *battleCtx, int msgID, int statOffset)
 {
     battleCtx->msgBuffer.id = msgID;
@@ -2865,6 +2883,13 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Oxide: Contrary turns every rise into a fall and every fall into a
+    // rise, from any source, as hg-engine does; Mold Breaker ignores it.
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CONTRARY) == TRUE) {
+        stageChange = -stageChange;
+        battleCtx->scriptTemp = stageChange > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    }
+
     if (stageChange > 0) {
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
@@ -2900,10 +2925,34 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             }
         }
     } else {
+        // Oxide: Mirror Armor turns a lowering from the other side back on the
+        // battler that caused it, which then takes it as its own; hg-engine has
+        // no Mirror Armor, and the games name the ability in a message first,
+        // which this leaves out. Mold Breaker ignores it.
+        if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE
+            && battleCtx->attacker != battleCtx->sideEffectMon
+            && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
+            && battleCtx->battleMons[battleCtx->attacker].curHP
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_MIRROR_ARMOR) == TRUE) {
+            battleCtx->sideEffectMon = battleCtx->attacker;
+            mon = &battleCtx->battleMons[battleCtx->sideEffectMon];
+        }
+
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
             if (battleCtx->attacker != battleCtx->sideEffectMon) {
-                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns) {
+                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns
+                    && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INFILTRATOR) { // Oxide: Infiltrator passes Mist
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+
+                    result = 1;
+                } else if (MON_HAS_TYPE(battleCtx->sideEffectMon, TYPE_GRASS)
+                    && (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_FLOWER_VEIL) == TRUE
+                        || PartnerHasFlowerVeil(battleSys, battleCtx, battleCtx->sideEffectMon))) {
+                    // Oxide: Flower Veil keeps other battlers from lowering the stats
+                    // of a Grass-type holder or of its Grass-type partner.
+                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Ally; // "{0} surrounded itself with a veil of petals!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
 
@@ -2921,7 +2970,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                     result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
-                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_BIG_PECKS, BATTLE_STAT_DEFENSE)) { // Oxide: Big Pecks
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
@@ -2999,6 +3049,14 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
+        }
+
+        // Oxide: a stat lowered by a battler of the other side is answered by
+        // Defiant or Competitive, once per stat, after the drop's message
+        // (TryDefiant in the stat-stage subscript).
+        if (battleCtx->attacker != battleCtx->sideEffectMon
+            && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)) {
+            battleCtx->selfTurnFlags[battleCtx->sideEffectMon].defiantPending = TRUE;
         }
     }
 
@@ -3197,7 +3255,21 @@ static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCt
     } else {
         battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-        if (op == CHECK_HAVE) {
+        // Oxide: CHECK_HAVE_ON_SIDE also finds the ability on the battler's
+        // living partner, and abilityMon is whichever has it.
+        if (op == CHECK_HAVE_ON_SIDE) {
+            int partner = BattleSystem_GetPartner(battleSys, battler);
+
+            if (Battler_Ability(battleCtx, battler) == ability) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = battler;
+            } else if (partner != battler
+                && battleCtx->battleMons[partner].curHP
+                && Battler_Ability(battleCtx, partner) == ability) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = partner;
+            }
+        } else if (op == CHECK_HAVE) {
             if (Battler_Ability(battleCtx, battler) == ability) {
                 BattleScript_Iter(battleCtx, jump);
                 battleCtx->abilityMon = battler;
@@ -5466,6 +5538,8 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     ATTACKING_MON.friskAnnounced = FALSE;
     ATTACKING_MON.moldBreakerAnnounced = FALSE;
     ATTACKING_MON.pressureAnnounced = FALSE;
+    ATTACKING_MON.oxideAbilityAnnounced = FALSE;
+    ATTACKING_MON.proteanUsed = FALSE;
     ATTACKING_MON.moveEffectsData.truant = battleCtx->totalTurns & 1;
     ATTACKING_MON.moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
     ATTACKING_MON.slowStartAnnounced = FALSE;
@@ -5687,6 +5761,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && type1 != TYPE_GROUND && type2 != TYPE_GROUND
             && battleCtx->battleMons[battler].curHP
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_VEIL
+            && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -5714,7 +5789,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
                 }
             } else if (type1 != TYPE_ICE
                 && type2 != TYPE_ICE
-                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK) {
+                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK
+                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT) { // Oxide
                 battleCtx->msgMoveTemp = MOVE_HAIL;
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }
@@ -7825,7 +7901,22 @@ static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext 
     } else {
         battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-        if (op == CHECK_HAVE) {
+        // Oxide: as in BtlCmd_CheckAbility, CHECK_HAVE_ON_SIDE also finds the
+        // ability on the battler's living partner.
+        if (op == CHECK_HAVE_ON_SIDE) {
+            int partner = BattleSystem_GetPartner(battleSys, battler);
+
+            if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ability) == TRUE
+                && battleCtx->battleMons[battler].curHP) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = battler;
+            } else if (partner != battler
+                && battleCtx->battleMons[partner].curHP
+                && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ability) == TRUE) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = partner;
+            }
+        } else if (op == CHECK_HAVE) {
             if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ability) == TRUE
                 && battleCtx->battleMons[battler].curHP) {
                 BattleScript_Iter(battleCtx, jump);
@@ -9277,6 +9368,21 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
             && Ability_ForbidsStatus(battleCtx, ability, status) == FALSE) {
             BattleScript_Iter(battleCtx, jumpNoStatusRestore);
         }
+
+        // Oxide: Regenerator restores a third of the battler's HP as it
+        // leaves, silently, as in hg-engine, which reads the ability from the
+        // party data (so Gastro Acid does not stop it) and also heals when a
+        // battle ends.
+        if (ability == ABILITY_REGENERATOR) {
+            int hp = battleCtx->battleMons[battler].curHP + battleCtx->battleMons[battler].maxHP / 3;
+
+            if (hp > battleCtx->battleMons[battler].maxHP) {
+                hp = battleCtx->battleMons[battler].maxHP;
+            }
+
+            battleCtx->battleMons[battler].curHP = hp;
+            Pokemon_SetValue(mon, MON_DATA_HP, &hp);
+        }
     } else {
         BattleScript_Iter(battleCtx, jumpNoStatusRestore);
     }
@@ -9761,7 +9867,8 @@ static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCt
  *
  * Otherwise it is caught, and calcTemp says what followed, with the message in
  * the buffer: 0 when its Speed fell, 1 when Clear Body or White Smoke kept it,
- * 2 when its Speed was already at the lowest stage. The drop is made here
+ * 2 when its Speed was already at the lowest stage, or with Contrary already
+ * at the highest, and 3 when Contrary raised it instead (element 5). The drop is made here
  * rather than through ChangeStatStage, whose checks turn on who attacked, and
  * nothing attacked. As in hg-engine, Magic Guard and Mist do not stop it.
  *
@@ -9795,6 +9902,16 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         battleCtx->msgBuffer.params[1] = mon->ability;
         battleCtx->calcTemp = 1;
+    } else if (Battler_Ability(battleCtx, battler) == ABILITY_CONTRARY) {
+        // Oxide, element 5: Contrary turns the web's drop into a rise.
+        if (mon->statBoosts[BATTLE_STAT_SPEED] == MAX_STAT_STAGE) {
+            SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} won't go higher!"
+            battleCtx->calcTemp = 2;
+        } else {
+            SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatRose_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} rose!"
+            mon->statBoosts[BATTLE_STAT_SPEED]++;
+            battleCtx->calcTemp = 3;
+        }
     } else if (mon->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE) {
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} won't go lower!"
         battleCtx->calcTemp = 2;
@@ -9802,6 +9919,7 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatFell_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} fell!"
         mon->statBoosts[BATTLE_STAT_SPEED]--;
         battleCtx->calcTemp = 0;
+        battleCtx->selfTurnFlags[battler].defiantPending = TRUE; // Oxide, element 5: the web was laid by the other side
     }
 
     return FALSE;
@@ -9927,6 +10045,325 @@ static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (Battler_HasEatenBerry(battleSys, battleCtx, battleCtx->attacker) == FALSE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Beast Boost: after the attacker's move knocks out the fainted
+ * battler, raises the attacker's highest stat by one stage.
+ *
+ * The stat is picked from the battler's stats without their stages, as in the
+ * games and hg-engine, with ties going to the first of Attack, Defense, Sp.
+ * Atk, Sp. Def and Speed, the games' order (hg-engine's puts Speed third). The
+ * knockout counts when the fainted battler took the attacker's damage in this
+ * move. The raise goes through the stat-stage subscript as Speed Boost's does.
+ *
+ * Inputs:
+ * 1. The jump distance if nothing happens.
+ *
+ * Side effects, when it does:
+ * - sideEffectParam, sideEffectType and sideEffectMon are set for the
+ * stat-stage subscript, and msgBattlerTemp to the attacker.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int attacker = battleCtx->attacker;
+    int fainted = battleCtx->faintedMon;
+    BattleMon *mon = &battleCtx->battleMons[attacker];
+
+    if (attacker == BATTLER_NONE
+        || fainted == BATTLER_NONE
+        || attacker == fainted
+        || mon->curHP == 0
+        || Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+        || ((battleCtx->selfTurnFlags[fainted].physicalDamageTaken == 0
+                || battleCtx->selfTurnFlags[fainted].physicalDamageLastAttacker != attacker)
+            && (battleCtx->selfTurnFlags[fainted].specialDamageTaken == 0
+                || battleCtx->selfTurnFlags[fainted].specialDamageLastAttacker != attacker))) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    const u8 order[] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+    const u16 values[] = { mon->attack, mon->defense, mon->spAttack, mon->spDefense, mon->speed };
+    int best = 0;
+
+    for (int i = 1; i < NELEMS(order); i++) {
+        if (values[i] > values[best]) {
+            best = i;
+        }
+    }
+
+    if (mon->statBoosts[order[best]] == MAX_STAT_STAGE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + order[best] - BATTLE_STAT_ATTACK;
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+    battleCtx->sideEffectMon = attacker;
+    battleCtx->msgBattlerTemp = attacker;
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Soul Heart: when a battler faints, the first other battler
+ * in speed order that has Soul Heart and is still up gains one stage of Sp.
+ * Atk. hg-engine has no Soul Heart; this is the games' rule, except that with
+ * two Soul Heart holders on the field only the faster one gains, because the
+ * faint subscript is reached from inside other speed-order loops and cannot
+ * run one of its own. Magearna is the only Oxide species that carries it.
+ *
+ * Inputs:
+ * 1. The jump distance if nothing happens.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = 0; i < maxBattlers; i++) {
+        int battler = battleCtx->monSpeedOrder[i];
+
+        if (battler != battleCtx->faintedMon
+            && battleCtx->battleMons[battler].curHP
+            && Battler_Ability(battleCtx, battler) == ABILITY_SOUL_HEART
+            && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+            battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SP_ATTACK_UP_1_STAGE;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battler;
+            battleCtx->msgBattlerTemp = battler;
+            return FALSE;
+        }
+    }
+
+    BattleScript_Iter(battleCtx, jumpNoEffect);
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Defiant and Competitive: when another side's battler has
+ * just lowered one of the side-effect battler's stats (ChangeStatStage marks
+ * it), raises its Attack (Defiant) or Sp. Atk (Competitive) two stages.
+ *
+ * The raise is made here rather than through the stat-stage subscript, which
+ * this runs from: a two-stat move such as Tickle calls that subscript twice
+ * with the same side-effect fields, and a nested call would change them under
+ * it. So Defiant answers each lowered stat, as in the games, and the message
+ * is the donor's "sharply raised". A Sticky Web drop counts too.
+ *
+ * Inputs:
+ * 1. The jump distance if nothing happens.
+ *
+ * Side effects, when it does:
+ * - The prepared message buffer holds the raise's message.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int battler = battleCtx->sideEffectMon;
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    BOOL pending = battleCtx->selfTurnFlags[battler].defiantPending;
+    int stat = BATTLE_STAT_HP;
+
+    battleCtx->selfTurnFlags[battler].defiantPending = FALSE;
+
+    if (Battler_Ability(battleCtx, battler) == ABILITY_DEFIANT) {
+        stat = BATTLE_STAT_ATTACK;
+    } else if (Battler_Ability(battleCtx, battler) == ABILITY_COMPETITIVE) {
+        stat = BATTLE_STAT_SP_ATTACK;
+    }
+
+    if (pending == FALSE
+        || stat == BATTLE_STAT_HP
+        || mon->curHP == 0
+        || mon->statBoosts[stat] == MAX_STAT_STAGE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    mon->statBoosts[stat] += 2;
+
+    if (mon->statBoosts[stat] > MAX_STAT_STAGE) {
+        mon->statBoosts[stat] = MAX_STAT_STAGE;
+    }
+
+    SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally, stat - BATTLE_STAT_ATTACK); // "{0}'s {1} sharply raised its {2}!"
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide, element 5: a stat change made by an ability that is not the
+ * target's own ChangeStatStage case, for Weak Armor, Water Compaction,
+ * Berserk and Gooey.
+ *
+ * ChangeStatStage's ability messages name battleCtx->attacker as the
+ * ability's holder, which suits Intimidate and nothing that fires when its
+ * holder is hit, so this takes the holder and the target as inputs, makes the
+ * change, and buffers the matching message: "{0}'s {1} raised its {2}!" (or
+ * "sharply raised" for two stages) or the new "lowered its" for a holder's own
+ * stat, and Intimidate's "{0}'s {1} cuts {2}'s {3}!" for another battler's.
+ * A target with Clear Body or White Smoke keeps a stat another battler would
+ * lower, without a message; Contrary and Mirror Armor are not applied here.
+ *
+ * Inputs:
+ * 1. The ability's holder.
+ * 2. The battler whose stat changes.
+ * 3. The stat, a BATTLE_STAT_ value.
+ * 4. The number of stages, negative to lower it.
+ * 5. The jump distance if nothing changes.
+ *
+ * Side effects, when it changes:
+ * - msgBattlerTemp and sideEffectMon are the target, scriptTemp the stat
+ * animation, and the prepared message buffer holds the message.
+ * - A stat the other side lowered is marked for TryDefiant.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int holder = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int target = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int stat = BattleScript_Read(battleCtx);
+    int stages = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    BattleMon *mon = &battleCtx->battleMons[target];
+    int stage = mon->statBoosts[stat] + stages;
+
+    if (stage > MAX_STAT_STAGE) {
+        stage = MAX_STAT_STAGE;
+    } else if (stage < MIN_STAT_STAGE) {
+        stage = MIN_STAT_STAGE;
+    }
+
+    if (mon->curHP == 0
+        || stage == mon->statBoosts[stat]
+        || (stages < 0
+            && target != holder
+            && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
+                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    mon->statBoosts[stat] = stage;
+    battleCtx->scriptTemp = stages > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    battleCtx->msgBattlerTemp = target;
+    battleCtx->sideEffectMon = target;
+
+    if (target == holder) {
+        SetupNicknameAbilityStatMsg(battleCtx,
+            stages >= 2 ? BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally : // "{0}'s {1} sharply raised its {2}!"
+                stages > 0 ? BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally : // "{0}'s {1} raised its {2}!"
+                BattleStrings_Text_PokemonsAbilityLoweredItsStat_Ally, // "{0}'s {1} lowered its {2}!"
+            stat - BATTLE_STAT_ATTACK);
+    } else {
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat_AllyAlly; // "{0}'s {1} cuts {2}'s {3}!"
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
+        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, holder);
+        battleCtx->msgBuffer.params[1] = battleCtx->battleMons[holder].ability;
+        battleCtx->msgBuffer.params[2] = BattleSystem_NicknameTag(battleCtx, target);
+        battleCtx->msgBuffer.params[3] = stat;
+
+        if (stages < 0
+            && BattleSystem_GetBattlerSide(battleSys, holder) != BattleSystem_GetBattlerSide(battleSys, target)) {
+            battleCtx->selfTurnFlags[target].defiantPending = TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide, element 5: check whether a move that changes abilities may
+ * change these, by the rules of hg-engine's ability flags.
+ *
+ * Inputs:
+ * 1. The move's kind of change, an ABILITY_CHANGE_ value.
+ * 2. The jump distance if the move fails.
+ *
+ * The kinds test the attacker's and the defender's abilities:
+ * - SWAP (Skill Swap): either one refuses a swap.
+ * - COPY (Role Play): the defender's refuses to be copied, or the
+ * attacker's cannot be replaced.
+ * - SUPPRESS (Gastro Acid): the defender's cannot be suppressed.
+ * - OVERWRITE (Worry Seed): the defender's cannot be replaced, or is Truant.
+ * - ENTRAINMENT: the attacker's refuses to be passed on, the defender's
+ * cannot be replaced or is Truant, or the two are the same.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int kind = BattleScript_Read(battleCtx);
+    int jumpFail = BattleScript_Read(battleCtx);
+
+    int attacking = ATTACKING_MON.ability;
+    int defending = DEFENDING_MON.ability;
+    BOOL fails;
+
+    switch (kind) {
+    case ABILITY_CHANGE_SWAP:
+        fails = Ability_ChangeFails(attacking, ABILITY_FAILS_SWAP)
+            || Ability_ChangeFails(defending, ABILITY_FAILS_SWAP);
+        break;
+
+    case ABILITY_CHANGE_COPY:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_ROLE_PLAY)
+            || Ability_ChangeFails(attacking, ABILITY_FAILS_SUPPRESS);
+        break;
+
+    case ABILITY_CHANGE_SUPPRESS:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS);
+        break;
+
+    case ABILITY_CHANGE_OVERWRITE:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS)
+            || defending == ABILITY_TRUANT;
+        break;
+
+    case ABILITY_CHANGE_ENTRAINMENT:
+    default:
+        fails = Ability_ChangeFails(attacking, ABILITY_FAILS_ENTRAINMENT)
+            || Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS)
+            || defending == ABILITY_TRUANT
+            || defending == attacking;
+        break;
+    }
+
+    if (fails) {
+        BattleScript_Iter(battleCtx, jumpFail);
     }
 
     return FALSE;

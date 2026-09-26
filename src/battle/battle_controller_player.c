@@ -2831,6 +2831,65 @@ enum ImmunityAbilityState {
  * @return TRUE if there is an interjecting subroutine to execute instead of
  * the rest of the user's move.
  */
+/**
+ * @brief Oxide, element 5: the two abilities that stop a priority move from
+ * the other side. Queenly Majesty on the target or its partner stops any move
+ * of raised priority aimed at them, with Damp's "{0}'s {1} prevents {2} from
+ * using {3}!"; and a Dark-type target is not affected by a status move that
+ * Prankster raised, as in the later games. Both are from hg-engine, which
+ * makes them before the move; here they run with the immunity abilities, as
+ * does Telepathy, which keeps its holder safe from its partner's attacks.
+ *
+ * @return The subscript to run, or NULL.
+ */
+static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int attacker = battleCtx->attacker;
+    int defender = battleCtx->defender;
+
+    // Telepathy: its holder takes no damaging move from its partner.
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)
+        && MOVE_DATA(battleCtx->moveCur).power
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_TELEPATHY) == TRUE) {
+        return subscript_telepathy;
+    }
+
+    if (defender == BATTLER_NONE
+        || BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)) {
+        return NULL;
+    }
+
+    int priority = Battler_MovePriority(battleCtx, attacker, battleCtx->moveCur);
+
+    if (priority > 0) {
+        int partner = BattleSystem_GetPartner(battleSys, defender);
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_QUEENLY_MAJESTY) == TRUE) {
+            battleCtx->abilityMon = defender;
+            return subscript_blocked_by_queenly_majesty;
+        }
+
+        if (partner != defender
+            && battleCtx->battleMons[partner].curHP
+            && Battler_IgnorableAbility(battleCtx, attacker, partner, ABILITY_QUEENLY_MAJESTY) == TRUE) {
+            battleCtx->abilityMon = partner;
+            return subscript_blocked_by_queenly_majesty;
+        }
+    }
+
+    if (priority > MOVE_DATA(battleCtx->moveCur).priority
+        && Battler_Ability(battleCtx, attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(battleCtx->moveCur).class == CLASS_STATUS
+        && MOVE_DATA(battleCtx->moveCur).range != RANGE_OPPONENT_SIDE
+        && MON_HAS_TYPE(defender, TYPE_DARK)) {
+        return subscript_prankster_dark_immunity;
+    }
+
+    return NULL;
+}
+
 static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int result = STATE_PROCESSING;
@@ -2839,6 +2898,10 @@ static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battle
         switch (battleCtx->abilityCheckState) {
         case IMMUNITY_ABILITY_STATE_CHECK:
             int nextSeq = BattleSystem_TriggerImmunityAbility(battleCtx, battleCtx->attacker, battleCtx->defender);
+
+            if (nextSeq == NULL) {
+                nextSeq = BattleControllerPlayer_PriorityBlock(battleSys, battleCtx); // Oxide
+            }
 
             if ((nextSeq && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE)
                 || nextSeq == subscript_blocked_by_soundproof) {
@@ -3076,7 +3139,7 @@ static int BattleControllerPlayer_SideGuardAgainst(BattleSystem *battleSys, Batt
             break;
 
         case SIDE_GUARD_QUICK_GUARD:
-            if (MOVE_DATA(move).priority > 0) {
+            if (Battler_MovePriority(battleCtx, attacker, move) > 0) { // element 5: Prankster and Gale Wings count
                 return MOVE_QUICK_GUARD;
             }
             break;
@@ -3242,6 +3305,7 @@ enum BeforeMoveState {
     BEFORE_MOVE_STATE_DECREMENT_PP,
     BEFORE_MOVE_STATE_CHECK_TARGET_EXISTS,
     BEFORE_MOVE_STATE_CHECK_STOLEN,
+    BEFORE_MOVE_STATE_PROTEAN, // Oxide
     BEFORE_MOVE_STATE_REDIRECT_TARGET,
 
     BEFORE_MOVE_END,
@@ -3313,6 +3377,30 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         }
 
         battleCtx->beforeMoveCheckState++;
+
+    case BEFORE_MOVE_STATE_PROTEAN: {
+        // Oxide: Pixilate and Liquid Voice set the move's type before
+        // anything reads it. Then Protean and Libero give their holder the
+        // move's type, once per switch-in (the later games' rule, which
+        // hg-engine follows), with Color Change's message.
+        BattleSystem_SetMoveTypeByAbility(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+        battleCtx->beforeMoveCheckState++;
+
+        int ability = Battler_Ability(battleCtx, battleCtx->attacker);
+        int type = CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+
+        if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
+            && ATTACKING_MON.proteanUsed == FALSE
+            && battleCtx->moveCur != MOVE_STRUGGLE
+            && (ATTACKING_MON.type1 != type || ATTACKING_MON.type2 != type)) {
+            ATTACKING_MON.proteanUsed = TRUE;
+            battleCtx->msgTemp = type;
+            LOAD_SUBSEQ(subscript_protean);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
 
     case BEFORE_MOVE_STATE_REDIRECT_TARGET:
         BattleSystem_CheckRedirectionAbilities(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);

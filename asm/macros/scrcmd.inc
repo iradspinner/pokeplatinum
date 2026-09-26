@@ -5231,6 +5231,30 @@
     .short \partySlot
     .short \form
     .endm
+
+    /* Platinum Oxide test kit only (make testkit): gives the Pokemon in
+       \partySlot the ability \ability, whatever its species' slots say, so
+       an ability's kit entry does not depend on the personality roll. */
+    .macro TestKitSetPartyMonAbility partySlot, ability
+    .short SCRCMD_TESTKITSETPARTYMONABILITY
+    .short \partySlot
+    .short \ability
+    .endm
+
+    /* Platinum Oxide test kit only (make testkit): a wild battle against
+       \species at \level with the ability \ability (ABILITY_NONE keeps the
+       rolled one) and, unless \move1 is MOVE_NONE, exactly the four moves
+       given, so the foe uses the one move an entry needs every turn. */
+    .macro TestKitStartWildBattle species, level, ability, move1, move2, move3, move4
+    .short SCRCMD_TESTKITSTARTWILDBATTLE
+    .short \species
+    .short \level
+    .short \ability
+    .short \move1
+    .short \move2
+    .short \move3
+    .short \move4
+    .endm
 #endif
 
     .macro NPCMessage messageID

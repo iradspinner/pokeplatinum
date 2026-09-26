@@ -35,7 +35,7 @@ With the option on:
 |---|---|
 | The NPC's script, at the end of `scripts_twinleaf_town_player_house_2f.s` | an `#ifdef OXIDE_TESTKIT` block; field scripts run through the C preprocessor, and `make_script_bin.sh --define` passes the symbol |
 | The NPC's object event and its text | fragments in `res/testkit/`, appended to the bedroom's real events file and text bank at build time by `tools/oxide/testkit_merge.py`, so the kit never keeps a copy that could drift |
-| `TestKitSetPartyMonForm`, the kit's one script command | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h`, `src/scrcmd_party.c` and `asm/macros/scrcmd.inc`, so no existing opcode moves |
+| `TestKitSetPartyMonForm`, `TestKitSetPartyMonAbility` and `TestKitStartWildBattle`, the kit's three script commands | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h` and `asm/macros/scrcmd.inc`, and in `src/scrcmd_party.c`, `src/scrcmd.c`, `src/encounter.c` and `include/encounter.h`, so no existing opcode moves |
 
 ## What the NPC hands out
 
@@ -55,6 +55,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Skarmory | a wild Skarmory, Lv. 50 | a Flying target bulky enough to survive Smack Down and Thousand Arrows (set 26) |
 | Wild Horsea | a wild Horsea, Lv. 1, which knows only Bubble | a spread move every turn, for Wide Guard (set 30) |
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
+| Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves (entries below) | element 5's ability effects |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
@@ -108,7 +109,84 @@ a `TestKit_Text_MenuSetN` message in `res/testkit/twinleaf_town_player_house_2f.
 Pair a move that needs a condition with the move that sets it up, as sets 3, 5,
 8 and 9 do.
 
+## The ability entries
+
+One entry per new ability (element 5), under "Abilities". Each gives a Lv. 50
+Pokemon of a species that carries the ability, with the ability set by the
+kit's `TestKitSetPartyMonAbility` so the personality roll cannot give it the
+species' other ability, and four moves chosen to show it. Each entry is a
+`TestKit_Ability<Name>` block that sets the species in `VAR_0x800A`, the
+ability in `VAR_0x800B` and the moves in `VAR_0x8006` to `VAR_0x8009`, then
+jumps to `TestKit_GivePokemonWithMoves`, with an `AddListMenuEntry` line in
+`TestKit_Abilities2` (the field menu holds 28 entries, so the first page is
+full) and a `TestKit_Text_MenuAbility<Name>` message.
+
+An entry for an ability that works when its holder is hit also names a foe,
+in `VAR_0x8000` (species), `VAR_0x8001` (its ability, `ABILITY_NONE` to keep
+the rolled one) and `VAR_0x8002` (one move, which it then uses every turn, or
+`MOVE_NONE` to keep its own), and, for a foe that should show a contrast,
+`VAR_0x8003` (a second move). The kit fights it straight after the gift, a
+wild Lv. 50 battle through `TestKitStartWildBattle`, a kit-only command that
+sets the foe's ability and moves after `Encounter_NewVsSpeciesAtLevel`'s steps.
+The new Pokemon is not in the lead, so switch it in on the first turn.
+
+| Entry | Pokemon and moves | What to look for | Batch |
+|---|---|---|---|
+| Beast Boost | Kartana: Leaf Blade, Sacred Sword, Swords Dance, Night Slash | Knock out any wild Pokemon: straight after "fainted!", "KARTANA's Beast Boost raised its Attack!" (Attack is Kartana's highest stat). Nothing on a turn it does not knock anything out | 2f8d27c3 |
+| Soul Heart | Magearna: Fleur Cannon, Flash Cannon, Dazzling Gleam, Calm Mind | When the wild Pokemon faints, "MAGEARNA's Soul Heart raised its Sp. Atk!"; it also fires when one of your own Pokemon faints with Magearna on the field, which needs a double battle | 2f8d27c3 |
+| Sap Sipper | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Bellsprout that knows only Vine Whip | Vine Whip does no damage: "GOODRA's Sap Sipper raised its Attack!", and at +6 "made Vine Whip useless!" | 78628e1e |
+| Bulletproof | Kommo-o: Clanging Scales, Dragon Dance, Close Combat, Iron Defense; foe a wild Chansey that knows only Egg Bomb | "KOMMO-O's Bulletproof blocks Egg Bomb!" every turn | 78628e1e |
+| Overcoat | Mandibuzz: Sandstorm, Roost, Foul Play, Toxic; foe a wild Paras that knows only Spore | "MANDIBUZZ's Overcoat blocks Spore!"; with Sandstorm up, Paras is buffeted by the sandstorm at the end of each turn and Mandibuzz is not | 78628e1e |
+| Purifying Salt | Garganacl: Rest, Salt Cure, Stealth Rock, Recover; foe a wild Gengar that knows only Will-O-Wisp | Will-O-Wisp fails with "GARGANACL's Purifying Salt prevents burns!"; Garganacl's own Rest fails with "stayed awake because of its Purifying Salt!". Its halving of Ghost damage does not show here | 78628e1e |
+| Corrosion | Salazzle: Toxic, Poison Gas, Flamethrower, Sludge Bomb; foe a wild Skarmory with its own moves | Toxic and Poison Gas poison the Steel-type Skarmory, where without Corrosion they would not affect it | 78628e1e |
+| Competitive | Gothitelle: Psychic, Calm Mind, Thunderbolt, Thunder Wave; foe a wild Chansey that knows only Growl | After "GOTHITELLE's Attack fell!", "GOTHITELLE's Competitive sharply raised its Sp. Atk!" every time | 6c408f31 |
+| Defiant | Galarian Zapdos: Thunderous Kick, Brave Bird, Bulk Up, Close Combat; foe a wild Chansey that knows only Tail Whip | After its Defense falls, "ZAPDOS's Defiant sharply raised its Attack!"; its own Close Combat lowering its stats does not set it off | 6c408f31 |
+| Big Pecks | Mandibuzz: Foul Play, Roost, Toxic, Brave Bird; foe a wild Chansey that knows only Tail Whip | "MANDIBUZZ's Big Pecks prevents Defense loss!" every time | 6c408f31 |
+| Flower Veil | Tsareena, given Flower Veil because none of its carriers is Grass: Trop Kick, Power Whip, Knock Off, Trailblaze; foe a wild Chansey that knows only Growl | "TSAREENA surrounded itself with a veil of petals!" and its Attack stays. A Florges's Flower Veil guarding a Grass-type partner needs a double battle | 6c408f31 |
+| Contrary | Serperior: Leaf Storm, Giga Drain, Coil, Glare; any foe | Leaf Storm: "SERPERIOR's Sp. Atk sharply rose!"; Coil: its Attack, Defense and accuracy each fall | 6c408f31 |
+| Mirror Armor | Corviknight: Iron Defense, Body Press, Roost, Iron Head; foe a wild Chansey that knows only Growl | Each Growl lowers the wild Chansey's own Attack, and Corviknight's stays | 6c408f31 |
+| Prankster | Klefki: Thunder Wave, Spikes, Swagger, Foul Play; foe a wild Weavile, faster than Klefki and a Dark type | Klefki's status moves go before Weavile. Thunder Wave and Swagger print "It doesn't affect the wild WEAVILE..."; Spikes, aimed at its side, still works; Foul Play is not raised and goes second | ab20c71e |
+| Gale Wings | Talonflame: Brave Bird, Flare Blitz, Roost, Swords Dance; foe a wild Jolteon, faster than Talonflame | At full HP Brave Bird goes before Jolteon; after Brave Bird's recoil, or any damage, it goes second, and Flare Blitz always does | ab20c71e |
+| Queenly Majesty | Tsareena: Trop Kick, Power Whip, Knock Off, Trailblaze; foe a wild Rattata that knows only Quick Attack | "TSAREENA's Queenly Majesty prevents the wild RATTATA from using Quick Attack!" every time | ab20c71e |
+| Iron Barbs | Ferrothorn: Iron Defense, Leech Seed, Gyro Ball, Spikes; foe a wild Rattata that knows only Tackle | After each Tackle, "FERROTHORN's Iron Barbs hurt the wild RATTATA!" and Rattata loses an eighth of its HP | 2eb320f4 |
+| Weak Armor | Crustle: Shell Smash, Rock Slide, X-Scissor, Stealth Rock; foe a wild Rattata that knows only Tackle | After each Tackle, "CRUSTLE's Weak Armor lowered its Defense!" then "CRUSTLE's Weak Armor sharply raised its Speed!"; at -6 Defense only the Speed message shows | 2eb320f4 |
+| Cursed Body | Jellicent: Scald, Recover, Will-O-Wisp, Shadow Ball; foe a wild Rattata that knows only Tackle | About one Tackle in three is followed by "The wild RATTATA's Tackle was disabled!", and Rattata struggles for the next three turns | 2eb320f4 |
+| Water Compaction | Palossand: Shore Up, Shadow Ball, Earth Power, Iron Defense; foe a wild Psyduck that knows only Water Gun | After each Water Gun, "PALOSSAND's Water Compaction sharply raised its Defense!" | 2eb320f4 |
+| Toxic Debris | Glimmora: Power Gem, Sludge Wave, Mortal Spin, Earth Power; foe a wild Rattata that knows only Tackle | After each of the first two Tackles, "Poison spikes were scattered all around the enemy team's feet!"; the third brings no message, since two layers is the most | 2eb320f4 |
+| Berserk | Galarian Moltres: Fiery Wrath, Nasty Plot, Air Slash, Roost; foe a wild Rhydon that knows only Rock Slide | On the Rock Slide that takes Moltres from above half its HP to half or less, "MOLTRES's Berserk raised its Sp. Atk!"; a later hit below half brings nothing until Roost takes it back above | 2eb320f4 |
+| Gooey | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Rattata that knows only Tackle | After each Tackle, "GOODRA's Gooey cuts the wild RATTATA's Speed!" | 2eb320f4 |
+| Mummy | Cofagrigus: Shadow Ball, Will-O-Wisp, Protect, Nasty Plot; foe a wild Rattata that knows only Tackle | After the first Tackle, "The wild RATTATA acquired Mummy!"; nothing after later ones | 711bb8df |
+| Wandering Spirit | Runerigus: Earthquake, Shadow Claw, Protect, Stealth Rock; foe a wild Rattata with Guts that knows only Tackle | After the first Tackle, "RUNERIGUS swapped abilities with its target!": Runerigus now has Guts and Rattata Wandering Spirit, so later Tackles bring nothing | 711bb8df |
+| Entrainment | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Worry Seed; foe a wild Rattata with Guts that knows only Tackle | Entrainment: "The wild RATTATA acquired Swarm!"; used again, it fails, since both now have Swarm. Skill Swap, Role Play and Worry Seed work as before | 711bb8df |
+| Ability list | Leavanny with Swarm: Entrainment, Skill Swap, Role Play, Gastro Acid; foe a wild Rattata given Disguise that knows only Tackle | All four moves fail ("But it failed!"), since Disguise is on the list of abilities that cannot be passed, copied, swapped or suppressed. Before this batch Skill Swap, Role Play and Gastro Acid worked on it | 711bb8df |
+| Fluffy (second page, as are all below) | Dubwool: Cotton Guard, Body Press, Wild Charge, Swords Dance; foe a wild Eevee that knows Tackle and Ember | Ember hits around twice as hard as Tackle; without Fluffy it would hit about half as hard | 6510658b |
+| Ice Scales | Frosmoth: Quiver Dance, Ice Beam, Bug Buzz, Giga Drain; foe a wild Porygon that knows Tackle and Swift | Swift does less than Tackle; without Ice Scales it would do more | 6510658b |
+| Water Bubble | Araquanid: Liquidation, Leech Life, Protect, Mirror Coat; foe a wild Gengar that knows only Will-O-Wisp | "ARAQUANID's Water Bubble prevents burns!" every time | 6510658b |
+| Merciless | Toxapex: Toxic, Scald, Recover, Protect; foe a wild Rattata that knows only Growl | Once Toxic has poisoned Rattata, every Scald is "A critical hit!" | 6510658b |
+| Long Reach | Decidueye: Leaf Blade, Shadow Sneak, Swords Dance, Roost; foe a wild Ferrothorn with Iron Barbs that knows only Iron Defense | Leaf Blade brings no Iron Barbs message and costs Decidueye nothing | 6510658b |
+| Pixilate | Sylveon: Hyper Voice, Quick Attack, Calm Mind, Wish; foe a wild Misdreavus, a Ghost type, that knows only Growl | Hyper Voice and Quick Attack hit Misdreavus, where a Normal move would bring "It doesn't affect..." | 9b681d08 |
+| Liquid Voice | Primarina: Hyper Voice, Moonblast, Calm Mind, Sparkling Aria; foe a wild Vaporeon with Water Absorb that knows only Growl | Hyper Voice does no damage: Vaporeon's Water Absorb takes it, as it takes Sparkling Aria | 9b681d08 |
+| Sheer Force | Toucannon: Flame Charge, Brave Bird, Bullet Seed, Roost; foe a wild Chansey that knows only Growl | Flame Charge never brings "TOUCANNON's Speed rose!"; Brave Bird's recoil, not a secondary effect, stays | 9b681d08 |
+| Auras | Xerneas with Fairy Aura: Moonblast, Geomancy, Psyshock, Focus Blast; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "The wild YVELTAL is radiating a dark aura!" as the battle starts, and "XERNEAS is radiating a fairy aura!" when Xerneas comes in | 71bfc90f |
+| Aura Break | Zygarde (50% Forme) with Aura Break: Thousand Arrows, Dragon Dance, Coil, Rest; foe a wild Yveltal with Dark Aura that knows only Dark Pulse | "ZYGARDE reversed all other Pokémon's auras!" when Zygarde comes in; from then on Dark Aura weakens Dark moves by a quarter in place of raising them, which has no message | 71bfc90f |
+| Unnerve | Galvantula: Thunder, Bug Buzz, Energy Ball, Sticky Web; foe a wild Rattata that knows only Growl | "The foe's team is too nervous to eat Berries!" when Galvantula comes in. The wild foe holds no Berry, so the Berry block itself does not show here | 71bfc90f |
+| Screen Cleaner | Mr. Rime: Freeze-Dry, Psychic, Rapid Spin, Slack Off; foe a wild Chansey that knows Reflect and Light Screen | Once Chansey has a screen up, switch Mr. Rime in: "All screens on the field were cleansed!", and Freeze-Dry's damage goes back up | 71bfc90f |
+| Regenerator | Toxapex: Scald, Toxic, Haze, Recover; foe a wild Rattata that knows only Tackle | Let Tackle hurt Toxapex, switch it out, and bring it back: it has a third of its HP back, with no message | 71bfc90f |
+| Pastel Veil | Galarian Rapidash: Play Rough, High Horsepower, Morning Sun, Quick Attack; foe a wild Grimer that knows only Toxic | "RAPIDASH's Pastel Veil prevents poisoning!" every time | a51b0af3 |
+| Sweet Veil | Tsareena with Sweet Veil: Trop Kick, Power Whip, Triple Axel, Quick Attack; foe a wild Jigglypuff that knows only Sing | "TSAREENA stayed awake because of its Sweet Veil!" whenever Sing hits | a51b0af3 |
+| Harvest | Arboliva holding a Sitrus Berry: Substitute, Hyper Voice, Leech Seed, Protect; foe a wild Rattata that knows only Growl | Use Substitute twice: below half HP Arboliva eats the Sitrus Berry, and at the end of later turns, about one in two, "ARBOLIVA harvested one Sitrus Berry!" (every turn in sunshine) | a51b0af3 |
+| Protean | Greninja: Surf, Dark Pulse, Ice Beam, U-turn; foe a wild Rattata that knows only Growl | The first move brings "GRENINJA's Protean made it the Water type!" (or the move's type); later moves bring nothing until Greninja switches out and back in | a51b0af3 |
+| Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | a51b0af3 |
+| Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | a51b0af3 |
+
 ## Not built yet
+
+Steelworker, Sharpness and Battery change only a move's power, with no
+message, and the kit's Pokemon have random IVs and natures, so there is no
+fixed number to look for; they have no entry. Battery also needs a double
+battle, as do Hospitality, Healer and Telepathy, which have no entry either.
+Magician needs a foe holding an item, which the kit's wild battles cannot
+give, so it has no entry.
 
 Kit-only trainers whose teams use the new moves, so the AI's side gets seen too.
 Ian chose move sets first; trainers are the next step when he wants them.

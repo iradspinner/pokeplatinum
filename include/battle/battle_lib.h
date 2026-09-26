@@ -588,6 +588,79 @@ BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, in
 void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
+ * @brief Oxide: the priority of a move as the battler uses it, after the
+ * abilities that raise it: Prankster gives status moves +1, and Gale Wings
+ * gives Flying moves +1 while its holder is at full HP (the later games' rule).
+ *
+ * @param battleCtx
+ * @param battler
+ * @param move
+ * @return The move's priority for this battler
+ */
+int Battler_MovePriority(BattleContext *battleCtx, int battler, int move);
+
+/**
+ * @brief Oxide: whether a move makes contact as the battler uses it: moves
+ * with the contact flag do, except under Long Reach.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if the move makes contact
+ */
+BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: give a move the type its user's ability makes it: Fairy for a
+ * Normal move under Pixilate (not Hidden Power and the like, whose type comes
+ * from elsewhere), and Water for a sound move under Liquid Voice. Only moves
+ * with power are changed. Sets battleCtx->moveType; leaves it alone otherwise.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ */
+void BattleSystem_SetMoveTypeByAbility(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: whether Sheer Force strips this move's secondary effect for
+ * the battler.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if it does
+ */
+BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: whether Sheer Force strengthens this move for the battler.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if it does
+ */
+BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
+
+// Oxide: what an ability refuses, after hg-engine's ability flags.
+#define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
+#define ABILITY_FAILS_ROLE_PLAY   (1 << 1) // Role Play cannot copy it
+#define ABILITY_FAILS_SWAP        (1 << 2) // Skill Swap and Wandering Spirit cannot take it
+#define ABILITY_FAILS_SUPPRESS    (1 << 3) // it cannot be suppressed or replaced
+#define ABILITY_FAILS_ENTRAINMENT (1 << 4) // Entrainment cannot pass it on
+
+/**
+ * @brief Oxide: whether an ability refuses a change, from hg-engine's
+ * AbilityFlags table, cut to the abilities Platinum's list has.
+ *
+ * @param ability
+ * @param flags   ABILITY_FAILS_ values
+ * @return TRUE if the ability has any of the flags
+ */
+BOOL Ability_ChangeFails(int ability, u8 flags);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

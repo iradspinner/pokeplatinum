@@ -854,6 +854,8 @@ ScriptCommand(SCRCMD_GIVEDESIGNEDPOKEMON,                                  ScrCm
 #ifdef OXIDE_TESTKIT
 // The test kit's own commands, built only by `make testkit` (docs/oxide/test-kit.md).
 ScriptCommand(SCRCMD_TESTKITSETPARTYMONFORM,                               ScrCmd_TestKitSetPartyMonForm)
+ScriptCommand(SCRCMD_TESTKITSETPARTYMONABILITY,                            ScrCmd_TestKitSetPartyMonAbility)
+ScriptCommand(SCRCMD_TESTKITSTARTWILDBATTLE,                               ScrCmd_TestKitStartWildBattle)
 #endif
 
 // clang-format on
