@@ -134,6 +134,21 @@ Every row below was checked in Oxide's battle code. Oxide's battle-code changes 
 9. Pelipper with Drizzle, Torkoal with Drought, and Magic Guard on the Abra line: consider them in the ability pass?
 10. Field moves without HMs, and a free Move Relearner (where, and at what cost)?
 
+## Ian's answers (2026-09-26)
+
+Ian answered all ten questions on 2026-09-26, and the answers replace the recommendations above wherever they differ.
+
+1. Native moves take the full modern set: the Generation 5 to 7 buffs and the Generation 6 cuts, so old and new moves share one scale. Every number the base ROM set on purpose stays (the 1 to 3 PP setup moves, Knock Off 70 and the rest of the "own value" rows).
+2. Thunder Wave, Dark Void and Swagger keep their Generation 4 accuracy.
+3. Hidden Power keeps the IV formula.
+4. Every native ability gets its modern behaviour, Sturdy, Lightning Rod and Storm Drain first.
+5. The Generation 6 type immunities are taken: Grass is immune to powder, Electric cannot be paralysed, and Ghosts can escape trapping. Critical hits go to 1.5x at the modern rates. Paralysis, burn, sleep, confusion and the multi-hit spread stay Generation 4.
+6. Weather from abilities stays permanent, and **the player has no way to set, change or end weather for the whole game**. There are two exceptions: the game's single Ability Patch (there is to be exactly one), which can give a Pokemon a weather ability as its hidden ability, and Defog, which keeps clearing fog in battle and on the field. Trainers keep their weather. So no weather move (Rain Dance, Sunny Day, Sandstorm, Hail and the newer ones) may be learnable by the player's Pokemon by level, TM, tutor or egg, and no Pokemon the player can obtain may have a weather-setting or weather-cancelling ability (Drizzle, Drought, Sand Stream, Snow Warning, Sand Spit, Cloud Nine, Air Lock and the like) in a regular slot.
+7. Defog clears hazards from both sides and Rapid Spin raises Speed. Knock Off stays a flat 70.
+8. The nine species without their modern stat buffs get them, and Chimecho and Staraptor are raised to their modern totals. Cresselia is not cut.
+9. The ability pass considers Magic Guard on the Abra line, and Drizzle on Pelipper and Drought on Torkoal for trainers' Pokemon only.
+10. A field move works once its badge is earned, with no Pokemon needed to know or learn it. The Move Relearner stays in Pastoria City at one Heart Scale per move, and the portable PC does not carry the relearner the base ROM gave it.
+
 ## Appendix A: native moves still at their Generation 4 power that four or more references modernise
 
 "References" counts the hacks with data for that move that use the modern value. The last column names the Platinum hacks among them. Accuracy and PP are left out here because only four references carry accuracy and five carry PP. The accuracy and PP rows in the moves table name the ones that matter.

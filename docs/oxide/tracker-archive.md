@@ -49,6 +49,11 @@ Next steps 1 and 7 as they stood on 2026-09-26, both finished and moved out that
 1. **The QA pass over element 6's last merge is done** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`, over `git log 10782dd04^1..10782dd04^2`). It found one defect, fixed as a VANILLA FIX (45ad243a6: after a knockout the AI now also doubles a bench Weather Ball in fog), two questions now under "Waiting on Ian", and two nits under element 6. Merged into `oxide` with the encounter branch's docs split the same day, the gate checking a ROM built on GitHub since the CPU cannot build (26 of 26).
 7. **Workflow improvements, the agent side** (Ian, 2026-09-22): done, the last item being this cut (2026-09-23). The encounter agent's half is its own brief.
 
+Next steps 3 and 4 as they stood on 2026-09-26, both merged and moved out that day:
+
+3. **Phase 4 element 4**: every reachable battle effect is written, from the cloud branch `cloud/element4-effects`, merged on 2026-09-25 (7b6ece777): the parked Sticky Web work, verified, then After You, Aurora Veil, the Wide Guard set and Belch, one commit each. What is left is held back: terrain for Ian's decision, and Entrainment, which element 5 has done.
+4. **Phase 4 element 5**: the abilities the new species carry are written, from the cloud branch `cloud/element5-abilities`, merged on 2026-09-26, in ten commits: 52 of the 59, and Entrainment with the shared list of abilities that refuse a change. What is left is under element 5 below and under "Waiting on Ian".
+
 ## Phase 0: Setup
 
 - [x] Working folder created, both ROMs and both DSPRE extractions in place

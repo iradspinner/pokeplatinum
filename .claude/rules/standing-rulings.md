@@ -33,3 +33,12 @@ read, so they are written here too. Each is a standing instruction.
   `oxide`, merges, and in-game testing. A local session messages it with
   `SendMessage`. A cloud session cannot, so it reports through its branch
   instead (CLAUDE.md, "Cloud sessions").
+- The player has no way to set, change or end weather for the whole game (Ian,
+  2026-09-26): no weather move in any player learnset, TM, tutor or egg list,
+  and no weather-setting or weather-cancelling ability in an obtainable
+  Pokemon's regular slots. The exceptions are the game's single Ability Patch
+  (exactly one exists), which may give a weather ability as a hidden ability,
+  and Defog, which still clears fog. Trainers keep their weather.
+- Ian's super-wanted lines (the `wanted` list in
+  `docs/oxide/encounters/values.json`) are never trimmed from the encounter
+  tables, and a majority of them should be obtainable in a best-play run.
