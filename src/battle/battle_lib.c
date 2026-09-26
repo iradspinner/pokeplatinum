@@ -7630,10 +7630,11 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         spAttackStage = 0;
     }
 
-    // Oxide: Sacred Sword and Chip Away ignore the target's stat stages, as
-    // Unaware does (hg-engine's CalcBaseDamage, step 4.2).
+    // Oxide: Sacred Sword, Darkest Lariat and Chip Away ignore the target's
+    // stat stages, as Unaware does (hg-engine's CalcBaseDamage, step 4.2).
     if (attackerParams.ability == ABILITY_UNAWARE
         || move == MOVE_SACRED_SWORD
+        || move == MOVE_DARKEST_LARIAT
         || move == MOVE_CHIP_AWAY) {
         defenseStage = 0;
         spDefenseStage = 0;

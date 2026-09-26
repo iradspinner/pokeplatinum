@@ -1166,10 +1166,11 @@ TestKit_MoveSet44:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 45: Sacred Sword ignores the target's stat stages, Defense and
-   evasion alike. Against a wild Skarmory that knows only Iron Defense and
-   Double Team: once it has used them, Brick Break does less and sometimes
-   misses, and Sacred Sword does what it did at first and never misses. */
+/* Set 45: Sacred Sword and Darkest Lariat ignore the target's stat stages,
+   Defense and evasion alike. Against a wild Skarmory that knows only Iron
+   Defense and Double Team: once it has used them, Brick Break and Crunch do
+   less and sometimes miss, and Sacred Sword and Darkest Lariat do what they
+   did at first and never miss. */
 TestKit_MoveSet45:
     SetVar VAR_0x8000, SPECIES_SKARMORY
     SetVar VAR_0x8001, ABILITY_NONE
@@ -1177,8 +1178,8 @@ TestKit_MoveSet45:
     SetVar VAR_0x8003, MOVE_DOUBLE_TEAM
     SetVar VAR_0x8006, MOVE_SACRED_SWORD
     SetVar VAR_0x8007, MOVE_BRICK_BREAK
-    SetVar VAR_0x8008, MOVE_RECOVER
-    SetVar VAR_0x8009, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_DARKEST_LARIAT
+    SetVar VAR_0x8009, MOVE_CRUNCH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

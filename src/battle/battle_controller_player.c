@@ -3016,11 +3016,12 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         accStages = 0;
     }
-    // Oxide: Sacred Sword and Chip Away ignore the target's evasion stages,
-    // raised or lowered, as they ignore its defensive ones (hg-engine's
-    // accuracy calculation).
+    // Oxide: Sacred Sword, Darkest Lariat and Chip Away ignore the target's
+    // evasion stages, raised or lowered, as they ignore its defensive ones
+    // (hg-engine's accuracy calculation).
     if (Battler_Ability(battleCtx, attacker) == ABILITY_UNAWARE
         || move == MOVE_SACRED_SWORD
+        || move == MOVE_DARKEST_LARIAT
         || move == MOVE_CHIP_AWAY) {
         evaStages = 0;
     }
