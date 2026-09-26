@@ -47,11 +47,7 @@ def build(root=None):
     with open(os.path.join(root, BATTLE_LIB), encoding="utf-8") as f:
         src = f.read()
     moves = pokedex.moves(root)
-    name_of = {}
-    for rec in moves.values():
-        if rec["move"] == "MOVE_NONE" or rec["name"] in ("-", ""):
-            continue
-        name_of[rec["move"]] = calc_export.move_name(rec) or rec["name"]
+    name_of = calc_export.move_keys(root)
 
     def names(array):
         return sorted({name_of[m] for m in _array(src, array) if m in name_of})

@@ -16,9 +16,8 @@ Taken: `index.html`, `calc/`, `css/` and `js/`. That is what the page loads.
 Left behind, and why, from a 649 MB clone:
 
 - `img/`, 319 MB of Pokemon, trainer and item sprites. Oxide's own sprites are
-  in `res/pokemon/`, which is the only place they are right for this fork, so
-  the plan is to serve those instead. Until that is wired up the calculator
-  shows broken images, which costs nothing but looks untidy.
+  in `res/pokemon/`, which is the only place they are right for this fork, and
+  the server answers the calculator's image requests from there (below).
 - `backups/`, 132 MB, and `cypress/`, `lua/`, `scripts/`, `tools/`,
   `agent_notes/` and the loose `.md` notes: upstream's own working material.
 - `js/mastersheet/`, 4.8 MB, which only `mastersheet.html` loads, and that page
@@ -86,7 +85,9 @@ calculator checks fail if the offline ones are lost.
    Sheer Force, the auras and Aura Break, Battery, Sap Sipper, Bulletproof,
    Overcoat, Purifying Salt, Water Bubble, Steelworker, Fluffy, Ice Scales,
    Merciless, Long Reach), the powers Oxide works out in code (Heavy Slam,
-   Trump Card at full PP, Electro Ball at the power 1 the game uses), Psywave
+   Trump Card at full PP, and since 2026-09-26 element 4's computed powers:
+   Electro Ball by the Speed ratio, Stored Power, Power Trip, Hard Press,
+   Last Respects, Grav Apple, and Pika Papow and Veevee Volley as Return), Psywave
    and Super Fang, the always-critical moves, and a dual type's two factors
    in the chart's row order. Its move lists are in
    `profiles/platinum-oxide-data.js`, which `make_calc_mechanics.py` generates
@@ -108,7 +109,10 @@ calculator checks fail if the offline ones are lost.
     other generations already make, and calls for the nine new names above.
     The damage loop takes the two type factors from `typeFactorOrder`.
 
-11. **`calc/mechanics/util.js`, Mirror Armor.** Under the "Platinum Oxide"
+11. **`calc/mechanics/util.js`, Mirror Armor, Freeze-Dry and Flying Press.**
+    Freeze-Dry and Flying Press keep their plain type chart under the
+    "Platinum Oxide" title, as Oxide's engine hits with them, until the main
+    track gives them their type rules. Under the "Platinum Oxide"
     title, `checkIntimidate` lowers the Intimidate user's Attack when the
     target has Mirror Armor, as element 5 does, and Inner Focus, Own Tempo,
     Oblivious and Scrappy block it, as the staples rulings have it.

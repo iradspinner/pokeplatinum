@@ -123,6 +123,25 @@ def move_name(rec):
     return hit[0] if hit else None
 
 
+def move_keys(root=None):
+    """{move constant: its name in the exported data}, a different name for
+    every move. A move goes by the calculator's name for it, or its own. Oxide
+    keeps each of its 18 Z-moves as a physical and a special twin under one
+    name, where the calculator has a single entry, so the second twin to come
+    (the special, in id order) has its class added to the name: the blob keeps
+    both, where before the special silently replaced the physical."""
+    out, taken = {}, set()
+    for rec in pokedex.moves(root or model.repo_root()).values():
+        if rec["move"] == "MOVE_NONE" or rec["name"] in ("-", ""):
+            continue
+        name = move_name(rec) or rec["name"]
+        if name in taken:
+            name = f"{name} ({rec['class'].title()})"
+        taken.add(name)
+        out[rec["move"]] = name
+    return out
+
+
 # The alternate forms the game has, picked by hand, since the calculator knows
 # every form of every species and most of those are not in Oxide. Picked:
 # the twelve forms with a record of their own, whose numbers are Oxide's
@@ -216,7 +235,7 @@ def species_entry(rec):
         abilities["H"] = ability_name(a) or a.replace("_", " ").title()
     out = {"bs": stats, "types": [type_name(t) for t in rec["types"]],
            "abilities": abilities}
-    # Stored as tenths of a pound; Grass Knot and Low Kick read kilograms.
+    # Stored in pounds (Bulbasaur 15.2); Grass Knot and Low Kick read kilograms.
     if rec.get("weight_pounds"):
         out["weightkg"] = round(rec["weight_pounds"] * 0.45359237, 1)
     gender = GENDERS.get(rec.get("gender_ratio"))
@@ -264,11 +283,14 @@ def build(root=None):
     for name, rec in forms(root).items():
         poks[name] = species_entry(rec)
     moves = {}
+    keys = move_keys(root)
     for rec in pokedex.moves(root).values():
-        if rec["move"] == "MOVE_NONE" or rec["name"] in ("-", ""):
+        key = keys.get(rec["move"])
+        if key is None:
             continue
-        known = move_name(rec)
-        moves[known or rec["name"]] = move_entry(rec, bool(known))
+        # A renamed twin is a move the calculator has no entry for, so it
+        # carries all of its own numbers.
+        moves[key] = move_entry(rec, key == move_name(rec))
     chart = pokedex.type_chart(root)
     types = sorted({a for a, _ in chart} | {d for _, d in chart})
     type_chart = {type_name(a): {type_name(d): chart.get((a, d), 1.0) for d in types}

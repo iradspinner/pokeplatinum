@@ -52,7 +52,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   now reaches safely; and sets 32 to 41 on the "More sets" page (Electro Ball
   by Speed ratio, Stored Power, Retaliate, Echoed Voice, Stomping Tantrum,
   Last Respects, Hard Press, Pika Papow and Veevee Volley, Lash Out, Grav
-  Apple). A stub effect does its damage and skips its extra, or says "But
+  Apple). Sets 42 to 49 on the same page: Foul Play, Body Press, Psyshock
+  (with Psystrike and Secret Sword), Sacred Sword and Darkest Lariat, Freeze-Dry,
+  Flying Press, Rage Fist (50 plus 50 per hit taken, kept through switches) and
+  Transform copying the whole ability. A stub effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
 - [ ] **Element 5, the Abilities menu** (two pages, Neutralizing Gas last): one
@@ -130,7 +133,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
   Route 213, have no clown; everyone else in them talks as before, and
   Veilstone's Elekid gift still gives Elekid.
-- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care rustle but give nothing until their tables are in. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.

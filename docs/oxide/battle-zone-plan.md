@@ -17,8 +17,11 @@ check, not two (the other two guard Snowpoint Temple, which stays post-game),
 and it is to test Galactic HQ being cleared. The Fight Area's block on Route
 225 lifted only after the Volkner and Flint tag battle; since that battle now
 waits for the Beacon Badge, Route 225 is open from the player's first arrival
-and the ferry is the only gate. The main track is carrying this out on
-`main-scripts`.
+and the ferry is the only gate. Ruling 2 below is replaced too: Stark
+Mountain's last room holds **no legendary** for now, Heatran included, and no
+draw (Ian, 2026-09-27), until the difficulty is high enough that more
+legendary-tier encounters would not inflate box quality. The main track is
+carrying all this out on `main-scripts`.
 
 ## Ian's rulings (2026-09-25)
 
