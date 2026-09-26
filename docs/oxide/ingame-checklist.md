@@ -106,9 +106,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Munchlax trees are gone.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
-- [ ] After the overworld-sprite carry-over lands (tracker, Phase 3): the NPC
-  outside Sandgem's Pokemon Center draws correctly, and so do the Clown-type
-  NPCs on the other 34 maps that share that sprite slot.
+- [ ] Once `carry-over` merges, the base ROM's overworld sprites: the teleporting
+  Abra outside Sandgem's Pokemon Center is an Abra, not a placeholder, and
+  faces and turns properly when talked to (the same Abra stands in 30 other
+  towns, gyms and routes). Later in the game, May at the Resort Area, Steven in
+  Stark Mountain's first room, and Ethan and Red on Mt. Coronet's north and
+  south slopes draw as themselves.
 
 ## 4. The ordinary ROM, mid-game
 

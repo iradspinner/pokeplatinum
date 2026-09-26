@@ -6,7 +6,8 @@ rebuilds to exactly the bytes the reference ROM carries.
 Usage:
     python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref BASE.nds [PATH ...]
 
-With no PATH arguments, checks the tables the importer handles byte-for-byte.
+With no PATH arguments, checks the tables the importer handles byte-for-byte,
+and the overworld sprite archive.
 With --encounters, checks pl_enc_data.narc field by field instead, which is what
 that table needs: a few fields are deliberately not imported, so its bytes are
 not expected to match.
@@ -25,6 +26,9 @@ DEFAULT = [
     "poketool/personal/wotbl.narc",
     "poketool/personal/evo.narc",
     "poketool/waza/pl_waza_tbl.narc",
+    # The base ROM's six overworld sprites in vanilla's dummy slots; nothing
+    # checked this archive until they were found missing in play (2026-09-20).
+    "data/mmodel/mmodel.narc",
 ]
 
 
