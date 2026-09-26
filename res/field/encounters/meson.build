@@ -192,6 +192,10 @@ pl_enc_data_srcs = files(
     'encounters_verity_lakefront.json',
     'encounters_amity_square.json',
     'encounters_snowpoint_city.json',
+    'encounters_sandgem_town.json',
+    'encounters_jubilife_city.json',
+    'encounters_floaroma_town.json',
+    'encounters_solaceon_town.json',
 )
 
 pl_enc_tbl_narc = custom_target('pl_enc_data.narc',

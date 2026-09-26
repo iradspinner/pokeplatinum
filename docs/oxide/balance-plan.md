@@ -6,7 +6,7 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-25).** Test.nds is Oxide's base ROM, with Ian's
+**Where it stands (2026-09-26).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
@@ -14,7 +14,9 @@ permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
 tools. B5 has its readings, fits to the references and to Ian's own
 ratings of sixteen fights, and his explanations of the fights the scores
 misread: safe switch-ins read both best ("What B3b and B5 found", "What
-Ian's ratings showed"). No questions are open.
+Ian's ratings showed"). Every score follows the calculator's computed
+powers (the encounter track's item 22). Next: incremental rescores (Ian,
+2026-09-27), then B6. No questions are open.
 
 ## The target
 
@@ -45,6 +47,12 @@ and Byron. So the 6 is not reached by lowering the peak. The goals are:
 His fight scale is a second scale, separate from the one above: how hard
 he can make a fight when he designs one. His ratings of sixteen fights
 ("What Ian's ratings showed") are on it.
+
+**These goals gate two legendary encounters** (Ian, 2026-09-27). Valor
+Cavern and Stark Mountain hold no legendary until the difficulty has risen
+enough that more legendary-tier encounters would not inflate the quality
+of the player's box. When B6 or a later rescore shows the difficulty where
+Ian wants it, this track says so, and the question goes back to him.
 
 Ian named three more comparison points without a number: **Pokemon Odyssey**
 as a good match for the target, though it is all double battles with many
@@ -97,7 +105,9 @@ Ian's rulings, 2026-09-23, after reading B3a:
   Roserade. It is recorded here for the trainer design pass, and is not made
   in the balance tooling.
 
-Ian's ruling, 2026-09-25 (`docs/oxide/battle-zone-plan.md` has the detail):
+Ian's ruling, 2026-09-25 (`docs/oxide/battle-zone-plan.md` has the detail).
+**Superseded** by the two Galactic splits below, HQ at 60 and then Galactic
+at 65; the single Galactic split at 64 is kept here as the record.
 
 - **A new split, Galactic, between Candice and Volkner.** It opens straight
   after Lake Acuity and holds the whole Battle Zone (the Fight Area,
@@ -154,6 +164,32 @@ Ian's rulings, 2026-09-25, on the Galactic stretch and the base ROM:
   or made Sandgem roll, which Oxide already does. Two former dummy slots
   are now real trainers on the map (Officer Argo, Krystal), and the moved
   trainers make four more of them required (40, from 36).
+
+Ian's rulings, 2026-09-27, on the Pocket PC:
+
+- **Attrition lives in gauntlets.** The Pocket PC heals the party and works
+  everywhere except in gauntlets: one-way areas the player must clear,
+  beating a set number of trainers in a row, before leaving to heal. So
+  outside a gauntlet every fight is scored from a healed party, as the
+  scores already are, and any proposal that relies on attrition goes in a
+  gauntlet. **This track proposes which areas become gauntlets and how
+  many trainers each holds**, for Ian (the tracker's Phase 5 "Gauntlets").
+- **Every PC loses its extras**: the free Move Reminder, the Online Shop,
+  the Teleport System, Happiness Up, the PC move tutors (the shard tutors,
+  Blast Burn and its kin and Draco Meteor from five badges) and the
+  post-game resets. The tutors out in the world stay as in vanilla, and
+  the TM and tutor pass works from them. The player's side reads the three
+  shard-tutor houses (38 moves) but not the world's Draco Meteor or
+  starter-move tutors, a gap that the tutor pass closes.
+- Friendship evolutions move to methods that cannot be ground as easily;
+  the encounter track proposes one per line.
+
+Ian's ruling, 2026-09-27: **the five Frontier Brains become optional
+bosses**, Dahlia at the Veilstone Game Corner (Maylene's split), Darach at
+the Pokemon Mansion (Wake's), Thorton at Fuego Ironworks (Byron's), and
+tentatively Argenta at Pal Park (Byron's) and Palmer at the Resort Area's
+entrance (Galactic's). Ian builds the teams, and this track scores each
+draft as it comes, so he sees where it lands on his fight scale.
 
 ## What the first look found
 
@@ -454,7 +490,10 @@ most threatening Pokemon and its least answered one.
 | Lucian | 0.62 | 0.27 | 0.94 | 0.03 |
 | Cynthia | 0.68 | 0.13 | 0.90 | 0.01 |
 
-Both tables were recomputed on 2026-09-26 for the modern move values, the
+Both tables were recomputed on 2026-09-26 for the calculator following the
+engine's computed powers (the encounter track's item 22), which moves no
+Oxide fight by more than 0.002 and leaves both tables as they were; before
+that the same day for the modern move values, the
 calculator's Oxide profile (element 5's damage abilities, the staples
 rulings, the dual-type order) and B5's item moves; before that on 2026-09-25 for the encounter track's scarcity
 pass (strong lines made scarce and the pick list at 493 species, which
@@ -500,8 +539,14 @@ scoring the reference hacks the same way. What they already show:
 - **Five moves got no number from the calculator's Generation 4
   mechanics** until the encounter track's Oxide profile (2026-09-26):
   Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card. All five are
-  scored now; Electro Ball at power 1, as the game plays it until the
-  engine's variable-power work reaches the calculator.
+  scored now. Since the encounter track's item 22 the calculator also
+  follows the engine's computed powers (Electro Ball from the Speed ratio,
+  Stored Power, Power Trip, Hard Press, Last Respects, Grav Apple under
+  Gravity, Pika Papow and Veevee Volley), and hits with Freeze-Dry and
+  Flying Press as plain moves, as the engine does until the main track
+  gives them their type rules. Rescored for it, no fight moved by more than
+  0.003 on any reading, except two reference Volkners that carry Flying
+  Press or Freeze-Dry.
 
 What the scores leave out, so they read as a ceiling for the boss:
 accuracy, secondary effects, status and setup, switching, defensive items
@@ -551,8 +596,9 @@ What B3b and B5 found. Every reference hack's bosses are scored against
 Oxide's side in the same seats, each Pokemon with its own game's stats and
 moves (`refpressure.py`), and `calibrate.py --report` sets the readings
 beside Ian's ratings of the hacks and of Oxide's own fights. The figures
-here are from 2026-09-26, after the scarcity pass, the modern move values
-and the calculator's Oxide profile; two runs agree exactly.
+here are from 2026-09-26, after the scarcity pass, the modern move values,
+the calculator's Oxide profile and its computed powers (item 22); two runs
+agree exactly.
 
 B5 adds readings beside B3's, whose own numbers stay as they were
 (`pressure.py` says how each is worked out):
@@ -793,7 +839,7 @@ on Oxide's own fights: very hard is Wake's fight and above (threat
 (threat 0.60 to 0.72, answers 0.20 or fewer), medium hard is Saturn 1,
 Barry 5 and Bertha (threat 0.40 to 0.55, answers 0.20 to 0.30). For
 ordinary trainers, medium hard sits between Wake's split's filler (threat
-0.21, answers 0.50, 10 under the cap) and Candice's (0.42 and 0.27, 4
+0.21, answers 0.49, 10 under the cap) and Candice's (0.44 and 0.26, 4
 under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
@@ -818,9 +864,12 @@ scores cannot see:** Curse, Explosion, Swagger and Aqua Ring, which the
 scores leave out with every status and setup move. So both read softer
 here than they will play.
 
-The zone's 52 route and Stark Mountain trainers read 0.35 and 0.38 at 10
-under the cap, 0.40 and 0.33 at 7 under, 0.45 and 0.28 at 4 under: medium
-hard at about 7 under.
+The zone's 52 route and Stark Mountain trainers read 0.34 and 0.39 at 10
+under the cap, 0.39 and 0.34 at 7 under, 0.45 and 0.29 at 4 under: medium
+hard at about 7 under. (These ordinary-trainer figures were last scored
+before the scarcity pass, on a side of 322 species at Candice's split,
+and were rescored on 2026-09-26 against today's 432; the means moved by
+0.02 at most.)
 
 **Two shapes work, since a cap has to rise at a story event every player
 reaches and the zone is optional, so it cannot close a split of its own.**
@@ -1146,8 +1195,23 @@ are in "What Ian's ratings showed".
   from the game scale (2026-09-26); the line above translates the readings
   onto it. Left: the double battle,
   which the tool cannot score, and the stage, which Ian's scale carries.
-  The engine's new variable-power moves reach the scores when the
-  encounter track teaches its calculator them, with one more rescore.
+  The engine's computed powers reached the scores on 2026-09-26 (the
+  encounter track's item 22). The seven moves that pick another stat or
+  type (Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat,
+  Freeze-Dry, Flying Press) and Rage Fist follow when a cloud session's
+  engine work merges and the encounter track's item 23 teaches the
+  calculator, with a smaller rescore.
+- [ ] **Incremental rescores** (Ian, 2026-09-27), before B6's runs. A full
+  rescore costs about 45 minutes a run on this CPU and two runs must agree,
+  even when a change touches a few fights. Each stored score gets a
+  fingerprint of its inputs (the exact job the calculator runs, the slices
+  of the calculator's data it reads, the engine files, the scorer's code)
+  and a verified mark; a rescore recomputes only the scores whose
+  fingerprint changed and stores them unverified, and a second pass
+  recomputes the unverified ones and marks them verified when they agree.
+  test_b3 checks that every fingerprint matches its inputs and nothing is
+  left unverified, and each rescore reports how many scores it recomputed
+  and how many it reused.
 - [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
   target"). Every Oxide fight placed on his fight scale, the required
   ordinary trainers included (they are not scored yet, and they are most of
@@ -1168,7 +1232,7 @@ lands, and each change is re-scored as it lands.
    `cli evolve` against the new caps. That is coordinated through the
    Overseer and not done from here.
 2. **Item access and TMs.** Which held items, marts and TMs each split
-   offers, and how many TMs there are. Ian's standing rule (2026-09-25,
+   offers, and how many TMs there are. Ian's standing rule (2026-09-26,
    staples survey): the player can never set, change or end weather, so
    TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
    become other moves. The one Ability Patch in the game (for a hidden
@@ -1176,6 +1240,20 @@ lands, and each change is re-scored as it lands.
    items are to be nearly entirely gone from the game (Ian, 2026-09-25,
    after Volkner), up from "quite rare". When a confusion cure is first in
    reach decides how Swagger plays: at Gardenia no Persim Berry is.
+   **Evolution stones are a scarcity lever** (Ian, 2026-09-27): the pass
+   starts with a census of every stone the player can get, where and when
+   (item balls, hidden items, the Underground's dig pool, gifts, marts), and
+   places one fixed Sun Stone and one fixed Moon Stone, since Espeon and
+   Umbreon now evolve by those stones. **Competition for a scarce stone is
+   intended** (Ian, 2026-09-27): a player with an Eevee and a Charcadet
+   and one Sun Stone has to choose, which weakens the box and makes a
+   decision, so the census sets the counts as a lever and never adds a
+   stone just to settle a contest. The census lists each stone's
+   claimants: the Sun Stone's are Espeon and Armarouge (Charcadet lives on
+   Route 206 from Fantina's split and at Fuego Ironworks from Byron's), and
+   Ceruledge's Dusk Stone has fixed finds in the Galactic Warehouse and on
+   Victory Road. Dahlia now gates the Veilstone Game Corner (the Frontier
+   Brains ruling, above), so its prize list is reviewed beside the census.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or
@@ -1203,7 +1281,9 @@ Generation 4 branch, as element 5's abilities will.
    2026-09-25): Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
-   against B1e's list. Also the **level 71 Lucas and Dawn fight** (trainer
+   against B1e's list, and **the gauntlets** (Ian, 2026-09-27): which
+   one-way areas the Pocket PC refuses to work in, and how many trainers
+   each holds in a row, proposed to Ian first. Also the **level 71 Lucas and Dawn fight** (trainer
    slots 779 to 784, one per starter): Ian designed it for the start of
    Victory Road, but the only script that starts it is the Battleground's,
    post-game content as in vanilla. Moving it is script and event work.

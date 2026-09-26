@@ -52,7 +52,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   now reaches safely; and sets 32 to 41 on the "More sets" page (Electro Ball
   by Speed ratio, Stored Power, Retaliate, Echoed Voice, Stomping Tantrum,
   Last Respects, Hard Press, Pika Papow and Veevee Volley, Lash Out, Grav
-  Apple). A stub effect does its damage and skips its extra, or says "But
+  Apple). Sets 42 to 49 on the same page: Foul Play, Body Press, Psyshock
+  (with Psystrike and Secret Sword), Sacred Sword and Darkest Lariat, Freeze-Dry,
+  Flying Press, Rage Fist (50 plus 50 per hit taken, kept through switches) and
+  Transform copying the whole ability. A stub effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
 - [ ] **Element 5, the Abilities menu** (two pages, Neutralizing Gas last): one

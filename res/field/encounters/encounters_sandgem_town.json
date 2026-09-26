@@ -2,52 +2,52 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 16,
-            "species": "SPECIES_GLIGAR"
+            "level": 3,
+            "species": "SPECIES_KRICKETOT"
         },
         {
-            "level": 17,
-            "species": "SPECIES_PONYTA"
+            "level": 4,
+            "species": "SPECIES_BIDOOF"
         },
         {
-            "level": 17,
-            "species": "SPECIES_STUNKY"
+            "level": 4,
+            "species": "SPECIES_STARLY"
         },
         {
-            "level": 17,
-            "species": "SPECIES_CHARCADET"
+            "level": 4,
+            "species": "SPECIES_WURMPLE"
         },
         {
-            "level": 18,
-            "species": "SPECIES_ONIX"
+            "level": 5,
+            "species": "SPECIES_BLIPBUG"
         },
         {
-            "level": 18,
-            "species": "SPECIES_BONSLY"
+            "level": 5,
+            "species": "SPECIES_WOOLOO"
         },
         {
-            "level": 18,
-            "species": "SPECIES_SALANDIT"
+            "level": 5,
+            "species": "SPECIES_SENTRET"
         },
         {
-            "level": 18,
-            "species": "SPECIES_JOLTIK"
+            "level": 5,
+            "species": "SPECIES_ROOKIDEE"
         },
         {
-            "level": 19,
-            "species": "SPECIES_NACLI"
+            "level": 5,
+            "species": "SPECIES_WINGULL"
         },
         {
-            "level": 19,
-            "species": "SPECIES_NACLI"
+            "level": 5,
+            "species": "SPECIES_PIKIPEK"
         },
         {
-            "level": 19,
-            "species": "SPECIES_DWEBBLE"
+            "level": 6,
+            "species": "SPECIES_POOCHYENA"
         },
         {
-            "level": 19,
-            "species": "SPECIES_FROGADIER"
+            "level": 6,
+            "species": "SPECIES_ABRA"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_FLETCHINDER",
-        "SPECIES_STUNKY"
+        "SPECIES_PIKIPEK",
+        "SPECIES_WURMPLE"
     ],
     "night": [
-        "SPECIES_STUNKY",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_PURRLOIN",
+        "SPECIES_KRICKETOT"
     ],
     "radar": [
         "SPECIES_NONE",
@@ -208,6 +208,6 @@
     ],
     "map_category": {
         "map_type": "field",
-        "map_number": 19
+        "map_number": 12
     }
 }

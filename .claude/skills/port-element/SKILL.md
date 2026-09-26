@@ -106,8 +106,13 @@ are the house style.
   `BattleScript_ComputedMovePower` in `battle_script.c`. A move whose
   power is computed carries power 1 in its record, never 0: the type chart
   reads 0 as a status move and sets no effectiveness flags. Moves that pick
-  a different stat or type (Foul Play, Body Press, Psyshock, Freeze-Dry,
-  Flying Press, Sacred Sword) are the same blind spot, still open.
+  a different stat or type are the same blind spot: the stat choosers (Foul
+  Play, Body Press, Psyshock, Sacred Sword and their kin) are keyed on the
+  move in `BattleSystem_CalcMoveDamage`, and the type choosers (Freeze-Dry,
+  Flying Press) in `MoveChartMultiplier` and `MoveReadsChartEntry`, which
+  both type chart walks read. A move that reads more than two chart
+  entries needs its effectiveness flags set from the net result
+  (`SetNetEffectiveness`), because Platinum's running toggle misreads four.
 
 ## Before calling it done
 
