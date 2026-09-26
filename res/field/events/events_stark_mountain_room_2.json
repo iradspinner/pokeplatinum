@@ -516,7 +516,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_OBJECT_32",
+            "id": "LOCALID_OBJECT_31",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
@@ -531,52 +531,7 @@
             "y": 0
         },
         {
-            "id": "LOCALID_OBJECT_33",
-            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_DAILY_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL",
-            "script": 7100,
-            "initial_dir": 1,
-            "data": [  ],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 3,
-            "z": 23,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_OBJECT_34",
-            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY",
-            "script": 7101,
-            "initial_dir": 1,
-            "data": [  ],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 9,
-            "z": 30,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_OBJECT_35",
-            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_UNK_0x0A9F",
-            "script": 7102,
-            "initial_dir": 1,
-            "data": [  ],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 3,
-            "z": 3,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_OBJECT_36",
+            "id": "LOCALID_OBJECT_32",
             "graphics_id": "OBJ_EVENT_GFX_DUMMY_075",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

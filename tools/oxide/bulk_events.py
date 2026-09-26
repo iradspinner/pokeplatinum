@@ -111,6 +111,11 @@ DIVERGED["events_galactic_hq_b2f"] += (
     "; then the Secret Key ball given a one-time flag of its own in place of a daily one")
 DIVERGED["events_stark_mountain_room_2"] += (
     "; then the base ROM's Old Amber ball removed (Ian deleted the Old Amber, 2026-09-21)")
+# The base ROM's Helix, Dome and Claw Fossil balls go too, under the same
+# ruling (Ian, 2026-09-21: those fossils and anything that hands them out).
+for _m in ("oreburgh_mine_b2f", "stark_mountain_room_2"):
+    DIVERGED[f"events_{_m}"] += (
+        "; then the base ROM's Helix, Dome and Claw Fossil balls removed (Ian, 2026-09-21)")
 
 
 def render(record, existing, index):
