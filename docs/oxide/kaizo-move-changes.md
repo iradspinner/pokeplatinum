@@ -9,6 +9,10 @@ edits; the useful part is the rest. A line naming a move "replaced" by another
 (Comet Punch to Water Ball, for example) is Kaizo's way round a Platinum hack's
 fixed move count, which Oxide does not have, since element 4 added real moves.
 
+Ian added Kaizo's level-up learnsets the same day: `docs/oxide/kaizo-learnsets.tsv`, one species a row
+(Kaizo's numbering and names, moves as `Move@level` in Kaizo's order). Kaizo's learnsets use its
+renamed moves (Water Ball, the Hidden Power types, Aqua Cutter and the rest from the list below).
+
 ```
 DoubleSlap (Hits twice): 15 bp -> 30 bp, 85 acc -> 90 acc
 Comet Punch -> Water Ball (No Effect, Special): 18 bp -> 100 bp, Normal type -> Water type, 85 acc -> 100 acc
