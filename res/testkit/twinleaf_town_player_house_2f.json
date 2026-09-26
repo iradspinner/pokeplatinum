@@ -298,6 +298,10 @@
             "en_US": "Poison Touch"
         },
         {
+            "id": "TestKit_Text_MenuAbilityRattled",
+            "en_US": "Rattled"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

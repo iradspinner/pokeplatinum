@@ -5042,6 +5042,22 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Oxide: Rattled raises its holder's Speed after a Bug, Ghost or Dark hit
+    // (hg-engine's MoveHitDefenderAbilityCheck); the Intimidate subscript
+    // raises it too.
+    case ABILITY_RATTLED: {
+        u8 moveType = CurrentMoveType(battleCtx);
+
+        if (DEFENDING_MON.curHP
+            && (moveType == TYPE_BUG || moveType == TYPE_GHOST || moveType == TYPE_DARK)
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_rattled;
+            result = TRUE;
+        }
+        break;
+    }
+
     case ABILITY_BERSERK: {
         // The damage taken is stored as a negative number, so the HP before
         // this hit is the HP now less it.

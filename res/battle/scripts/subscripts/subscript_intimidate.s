@@ -15,6 +15,15 @@ _013:
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY
     Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+    // Oxide: Rattled answers Intimidate by raising its holder's Speed a stage
+    // (Generation 8 on), whether or not its Attack fell.
+    CheckAbility CHECK_NOT_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_RATTLED, _038
+    AbilityStatChange BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON, BATTLE_STAT_SPEED, 1, _038
+    PlayBattleAnimationFromVar BTLSCR_SIDE_EFFECT_MON, BTLVAR_SCRIPT_TEMP
+    Wait
+    PrintBufferedMessage
+    Wait
+    WaitButtonABTime 30
 
 _038:
     UpdateVar OPCODE_ADD, BTLVAR_BATTLER_SPEED_TEMP, 1

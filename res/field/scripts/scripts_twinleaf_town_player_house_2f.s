@@ -1501,6 +1501,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityMultiscale, 8
     AddListMenuEntry TestKit_Text_MenuAbilityPickpocket, 9
     AddListMenuEntry TestKit_Text_MenuAbilityPoisonTouch, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityRattled, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1513,6 +1514,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 8, TestKit_AbilityMultiscale
     GoToIfEq VAR_0x8004, 9, TestKit_AbilityPickpocket
     GoToIfEq VAR_0x8004, 10, TestKit_AbilityPoisonTouch
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityRattled
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2348,6 +2350,22 @@ TestKit_AbilityPoisonTouch:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Rattled: a wild Poochyena that knows only Bite. Each
+   Bite that hits raises Dunsparce's Speed a stage, with a message. Its
+   answer to Intimidate needs the Intimidate holder to come in against it,
+   which the kit's wild battle cannot arrange. */
+TestKit_AbilityRattled:
+    SetVar VAR_0x800A, SPECIES_DUNSPARCE
+    SetVar VAR_0x800B, ABILITY_RATTLED
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_BODY_SLAM
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_POOCHYENA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_BITE
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

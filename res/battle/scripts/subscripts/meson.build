@@ -373,4 +373,5 @@ subscript_files = files(
     'subscript_magic_bounce.s',
     'subscript_moody.s',
     'subscript_pickpocket.s',
+    'subscript_rattled.s',
 )
