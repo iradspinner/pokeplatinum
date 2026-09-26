@@ -521,3 +521,17 @@ BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags)
 {
     return HandleFlag(varsFlags, HANDLE_FLAG_CHECK, FLAG_DISTORTION_WORLD_STEPPING_STONES);
 }
+
+// Platinum Oxide: a script sets FLAG_NEXT_MON_HIDDEN_ABILITY just before a
+// scripted wild battle, a gift or an egg to hand that Pokemon its hidden
+// ability. The code that makes the Pokemon calls this, which answers once and
+// clears the flag, so a flag left set cannot leak into later encounters.
+BOOL SystemFlag_TakeNextMonHiddenAbility(VarsFlags *varsFlags)
+{
+    if (CheckFlag(varsFlags, FLAG_NEXT_MON_HIDDEN_ABILITY)) {
+        ClearFlag(varsFlags, FLAG_NEXT_MON_HIDDEN_ABILITY);
+        return TRUE;
+    }
+
+    return FALSE;
+}

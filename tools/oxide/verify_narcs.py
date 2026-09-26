@@ -533,6 +533,14 @@ SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
                     "poketool/personal/evo.narc",
                     "poketool/personal/wotbl.narc")
 
+# The sixteen natives whose trade evolutions (methods 5 and 6) element 8
+# stripped: the base ROM had already given each a level-up route to the same
+# species, so the trade entry was unreachable in single player. Scyther (123)
+# is also one of element 3's seven.
+TRADE_EVOLUTIONS_STRIPPED = {
+    61, 64, 67, 75, 79, 93, 95, 112, 117, 123, 125, 126, 137, 233, 356, 366,
+}
+
 # Whole members of a species archive that no longer match the reference on
 # purpose, where the difference is not confined to a few byte offsets the way
 # DIVERGED's entries are. Keyed by the reference's member index.
@@ -544,15 +552,17 @@ DIVERGED_MEMBERS = {
     },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
-                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447},
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447}
+                   | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
-               "Phase 4 element 3), and no evolution is by friendship any more "
+               "Phase 4 element 3); no evolution is by friendship any more "
                "(Ian, 2026-09-27; docs/oxide/encounters/friendship-evolutions.md): "
                "Golbat, Chansey, Pichu, Cleffa, Igglybuff, Togepi, Azurill, "
                "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
                "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
-               "Moon Stone",
+               "Moon Stone; and sixteen lose the trade entries the base ROM left "
+               "beside its level-up routes (element 8)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has

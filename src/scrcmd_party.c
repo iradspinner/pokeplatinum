@@ -21,10 +21,12 @@
 #include "pokemon.h"
 #include "ribbon.h"
 #include "save_player.h"
+#include "system_flags.h"
 #include "tv_segment.h"
 #include "unk_02017038.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
+#include "vars_flags.h"
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
@@ -64,9 +66,11 @@ BOOL ScrCmd_GiveDesignedPokemon(ScriptContext *ctx)
     return FALSE;
 }
 
-// Platinum Oxide: switch a party Pokemon to its hidden ability. Writes 1 to the
-// destination variable when the species has one and 0 when it does not, so a
-// gift script can fall back rather than silently hand out the ordinary ability.
+// Platinum Oxide: switch a party Pokemon to its hidden ability, for good: it
+// keeps the hidden slot through evolution. Writes 1 to the destination variable
+// when its species has one now and 0 when it does not, so a gift script can
+// fall back rather than silently hand out the ordinary ability. A static or an
+// egg, which is not in the party yet, takes FLAG_NEXT_MON_HIDDEN_ABILITY.
 BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -148,6 +152,12 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
 
         int specialMetLoc = SpecialMetLoc_GetId(1, eggGiver);
         Egg_CreateEgg(egg, species, 1, trainer, 3, specialMetLoc);
+
+        // Platinum Oxide: an egg the script chose to hatch with its hidden
+        // ability; hatching carries the bit over.
+        if (SystemFlag_TakeNextMonHiddenAbility(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+            Pokemon_TryGiveHiddenAbility(egg);
+        }
 
         Party_AddPokemon(party, egg);
         Heap_Free(egg);

@@ -850,6 +850,10 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->ability;
         break;
 
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        result = monDataBlockA->hasHiddenAbility;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1394,6 +1398,10 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     case MON_DATA_ABILITY:
         monDataBlockB->ability = *u16Value;
+        break;
+
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        monDataBlockA->hasHiddenAbility = *u8Value;
         break;
 
     case MON_DATA_MARKINGS:
@@ -2122,6 +2130,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
+    case MON_DATA_HAS_HIDDEN_ABILITY:
     default:
         GF_ASSERT(FALSE);
         break;
@@ -4770,28 +4779,31 @@ void Pokemon_CalcAbility(Pokemon *mon)
     BoxPokemon_CalcAbility(&mon->box);
 }
 
-// Platinum Oxide: give a Pokemon its species' hidden ability, the third slot
-// in the species record. Returns FALSE and changes nothing when the species has
-// no hidden ability, which is most of them today.
+// Platinum Oxide: give a Pokemon its hidden ability, the third slot in the
+// species record. This sets the Pokemon's hidden ability bit and recomputes its
+// ability, so the choice outlives an evolution or a form change: whichever
+// species it becomes, it takes that species' hidden ability when there is one
+// and its ordinary slot when there is not. Returns whether the species it is
+// now has a hidden ability, so a gift script can tell the player.
 //
 // Nothing calls this on its own. Which encounters and gifts hand out hidden
-// abilities is a balance question rather than an engine one, so the mechanism
-// lives here and the policy is a script's decision, through GiveHiddenAbility.
+// abilities is a design question rather than an engine one, so the mechanism
+// lives here and the policy is a script's, through GiveHiddenAbility or
+// FLAG_NEXT_MON_HIDDEN_ABILITY.
 BOOL BoxPokemon_TryGiveHiddenAbility(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    u16 hiddenAbility = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
-    BOOL gaveIt = FALSE;
+    u8 hasHiddenAbility = TRUE;
 
-    if (hiddenAbility != ABILITY_NONE) {
-        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &hiddenAbility);
-        gaveIt = TRUE;
-    }
+    BoxPokemon_SetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+    BoxPokemon_CalcAbility(boxMon);
+
+    BOOL speciesHasOne = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN) != ABILITY_NONE;
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-    return gaveIt;
+    return speciesHasOne;
 }
 
 BOOL Pokemon_TryGiveHiddenAbility(Pokemon *mon)
@@ -4807,8 +4819,13 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     int monAbility1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
     int monAbility2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
+    // Platinum Oxide: a Pokemon given its hidden ability keeps it through
+    // evolutions and form changes, all of which come back here.
+    int monAbilityHidden = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
 
-    if (monAbility2 != ABILITY_NONE) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monAbilityHidden != ABILITY_NONE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbilityHidden);
+    } else if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {

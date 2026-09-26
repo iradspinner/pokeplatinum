@@ -1221,6 +1221,12 @@ void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 species, u8 level, Fie
     InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
 
     CreateWildMon(species, level, 1, &encounterFieldParams, firstPartyMon, battleParams);
+
+    // Platinum Oxide: a static the script chose to hand out its hidden ability.
+    if (SystemFlag_TakeNextMonHiddenAbility(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        Pokemon_TryGiveHiddenAbility(Party_GetPokemonBySlotIndex(battleParams->parties[BATTLER_ENEMY_1], 0));
+    }
+
     return;
 }
 

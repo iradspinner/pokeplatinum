@@ -73,5 +73,6 @@ void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags);
 BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim);
 BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op);
 BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags);
+BOOL SystemFlag_TakeNextMonHiddenAbility(VarsFlags *varsFlags);
 
 #endif // POKEPLATINUM_SYSTEM_FLAGS_H

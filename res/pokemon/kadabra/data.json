@@ -111,8 +111,7 @@
             "EVO_LEVEL",
             40,
             "SPECIES_ALAKAZAM"
-        ],
-        [ "EVO_TRADE", "SPECIES_ALAKAZAM" ]
+        ]
     ],
     "offspring": "SPECIES_ABRA",
     "footprint": {

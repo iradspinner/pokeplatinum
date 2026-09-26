@@ -74,7 +74,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
-- [ ] **The staples rulings, the Modern rules menu** (18 entries): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (22 entries): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -102,6 +102,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
   in its range.
+- [ ] **Element 8, hidden abilities and restored items** (the last three
+  Modern rules entries):
+  "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
+  Intimidate, not Blaze; one Rare Candy makes a Torracat that still reads
+  Intimidate. "Hidden ability wild" opens with the wild Litten's Intimidate
+  lowering your lead's Attack; the flag clears itself after that one use.
+  "Items restored": Mew eats its Sitrus Berry after Belly Drum, and has it
+  back in its summary after the battle.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -122,6 +130,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   ceiling. The Day Care man's level and price stop at the cap too.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
+- [ ] Held items come back after battle (element 8): give a Pokemon an Oran or
+  Sitrus Berry, let a trainer's Pokemon bring it below half so it eats the
+  Berry, and after the battle its summary shows the Berry again. The same for
+  a Focus Sash that saved it. The kit's "Items restored" entry shows it first.
+- [ ] Battle style is always Set (element 8): the options menu shows SET
+  highlighted and left and right do not move it, and when a trainer's Pokemon
+  faints the game sends the next one out without asking whether you want to
+  switch.
 - [ ] Shinx's ability is always Rivalry, never Intimidate; Bidoof and Starly
   hatch in about 255 steps, down from about 3,825.
 - [ ] Answering yes to "use another Repel?" works (the one carried-over thing

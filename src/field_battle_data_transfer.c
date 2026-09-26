@@ -412,6 +412,60 @@ void FieldBattleDTO_InitWithPartyOrderFromSave(FieldBattleDTO *dto, const FieldS
     FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, SaveData_GetParty(fieldSystem->saveData), partyOrder);
 }
 
+// Platinum Oxide: held items restored after every battle (Ian, 2026-09-20).
+// The save's party still holds each Pokemon as it went into battle until
+// the battle's party is copied over it, so the items are read from there
+// first. A Pokemon that comes out of battle holding nothing, having gone in
+// with an item, gets that item back: a Berry it ate, a Focus Sash, a Weakness
+// Policy or a seed it spent, and an item it lost to Knock Off, Thief, Covet,
+// Bug Bite, Pluck, Fling or a Trick onto a foe holding nothing. A Pokemon that
+// comes out holding a different item (a Trick or Switcheroo swap, Thief into
+// an empty hand, Pickup) keeps what it has, as before. Each Pokemon is matched
+// by its personality, not its slot.
+typedef struct HeldItemsBeforeBattle {
+    int count;
+    u32 personality[MAX_PARTY_SIZE];
+    u16 heldItem[MAX_PARTY_SIZE];
+} HeldItemsBeforeBattle;
+
+static void RememberHeldItems(Party *party, HeldItemsBeforeBattle *before)
+{
+    before->count = Party_GetCurrentCount(party);
+
+    for (int i = 0; i < before->count; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+        before->personality[i] = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+        before->heldItem[i] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    }
+}
+
+static void RestoreSpentHeldItems(Party *party, const HeldItemsBeforeBattle *before)
+{
+    int count = Party_GetCurrentCount(party);
+
+    for (int i = 0; i < count; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+        if (Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) != ITEM_NONE) {
+            continue;
+        }
+
+        u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+
+        for (int j = 0; j < before->count; j++) {
+            if (before->personality[j] == personality) {
+                if (before->heldItem[j] != ITEM_NONE) {
+                    u16 item = before->heldItem[j];
+                    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+                }
+
+                break;
+            }
+        }
+    }
+}
+
 void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
@@ -419,9 +473,13 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
     u16 *fieldSysSafariBalls = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    HeldItemsBeforeBattle heldItemsBefore;
+
+    RememberHeldItems(party, &heldItemsBefore);
 
     TrainerInfo_Copy(dto->trainerInfo[BATTLER_PLAYER_1], trainerInfo);
     Party_Copy(dto->parties[BATTLER_PLAYER_1], party);
+    RestoreSpentHeldItems(party, &heldItemsBefore);
     Bag_Copy(dto->bag, bag);
     Pokedex_Copy(dto->pokedex, pokedex);
 

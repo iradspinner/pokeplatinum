@@ -1431,6 +1431,16 @@ def main():
         428: "Lopunny gains Lopunny M",
     }
 
+    # Species whose trade evolutions element 8 stripped, since the base ROM's
+    # level-up routes to the same species made them unreachable. Re-importing
+    # the base ROM's list would put the trade entries back.
+    TRADE_EVOLUTIONS_STRIPPED = {
+        61: "Poliwhirl", 64: "Kadabra", 67: "Machoke", 75: "Graveler",
+        79: "Slowpoke", 93: "Haunter", 95: "Onix", 112: "Rhydon",
+        117: "Seadra", 123: "Scyther", 125: "Electabuzz", 126: "Magmar",
+        137: "Porygon", 233: "Porygon2", 356: "Dusclops", 366: "Clamperl",
+    }
+
     # Species whose level-up learnset Oxide has changed on purpose since the
     # base ROM, so re-importing the base ROM's list would undo it. The rest of
     # the record is still carried over. Same idea as MOVES_DIVERGED.
@@ -1466,6 +1476,9 @@ def main():
         if i in EVOLUTIONS_EXTENDED:
             log.append((d, [f"evolutions not carried over, {EVOLUTIONS_EXTENDED[i]} "
                             f"(Phase 4 element 3); the rest of the record still is"]))
+        elif i in TRADE_EVOLUTIONS_STRIPPED:
+            log.append((d, [f"evolutions not carried over, {TRADE_EVOLUTIONS_STRIPPED[i]}'s "
+                            f"trade entries were stripped (element 8); the rest of the record still is"]))
         else:
             new["evolutions"] = decode_evolutions(be[i]); old["evolutions"] = decode_evolutions(ve[i])
         # nested keys expressed with dots need to become real nesting for flatten()

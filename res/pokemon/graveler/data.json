@@ -100,7 +100,6 @@
         ]
     },
     "evolutions": [
-        [ "EVO_TRADE", "SPECIES_GOLEM" ],
         [
             "EVO_LEVEL",
             40,

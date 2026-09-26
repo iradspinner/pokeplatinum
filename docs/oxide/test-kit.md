@@ -256,6 +256,9 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | dc60da30 |
 | Defog, both sides | Mew: Defog, Stealth Rock, Reflect, Recover; foe a wild Skarmory that knows Spikes and Toxic Spikes | Let Skarmory lay Spikes and Toxic Spikes on your side, and lay Stealth Rock on its side and Reflect on yours. Defog blows away Stealth Rock, Spikes and Toxic Spikes, each named once, and your Reflect stays: Defog clears screens only on the target's side. It still clears fog | 72252c48 |
 | Rapid Spin | Starmie: Rapid Spin, Surf, Thunderbolt, Recover; foe a wild Skarmory that knows only Spikes | Each Rapid Spin ends with "STARMIE's Speed rose!", after "STARMIE blew away Spikes!" when Skarmory has laid some; at +6 it says nothing more | 349e0f45 |
+| Hidden ability gift | Litten, Lv. 15, given with `FLAG_NEXT_MON_HIDDEN_ABILITY` set (element 8) | Its summary reads Intimidate, its hidden ability, where both ordinary slots are Blaze. One Rare Candy evolves it into a Torracat that still reads Intimidate | element 8, hidden abilities |
+| Hidden ability wild | a wild Litten, Lv. 15, fought with the flag set | "The wild LITTEN's Intimidate cuts ...'s Attack!" as the battle starts. The flag clears itself, so the next scripted wild Pokemon rolls as usual | element 8, hidden abilities |
+| Items restored | Mew holding a Sitrus Berry: Belly Drum, Tackle, Recover, Splash; foe a wild Chansey that knows only Splash | Belly Drum halves Mew's HP and it eats the Sitrus Berry. After the battle, won or run from, Mew's summary shows the Sitrus Berry again | element 8, held items restored |
 
 ## Not built yet
 
