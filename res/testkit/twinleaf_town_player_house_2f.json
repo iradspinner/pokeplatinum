@@ -266,6 +266,10 @@
             "en_US": "Heavy Metal"
         },
         {
+            "id": "TestKit_Text_MenuAbilityJustified",
+            "en_US": "Justified"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

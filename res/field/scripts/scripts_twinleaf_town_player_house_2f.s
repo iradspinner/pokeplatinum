@@ -1493,10 +1493,12 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
     AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
     AddListMenuEntry TestKit_Text_MenuAbilityHeavyMetal, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityJustified, 3
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
     GoToIfEq VAR_0x8004, 2, TestKit_AbilityHeavyMetal
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityJustified
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2210,6 +2212,21 @@ TestKit_AbilityHeavyMetal:
     SetVar VAR_0x8001, ABILITY_HEAVY_METAL
     SetVar VAR_0x8002, MOVE_HEAVY_SLAM
     SetVar VAR_0x8003, MOVE_IRON_HEAD
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Justified: a wild Poochyena that knows only Bite. Each Bite
+   that hits raises Lucario's Attack a stage, with a message; at +6 nothing
+   more is said. */
+TestKit_AbilityJustified:
+    SetVar VAR_0x800A, SPECIES_LUCARIO
+    SetVar VAR_0x800B, ABILITY_JUSTIFIED
+    SetVar VAR_0x8006, MOVE_AURA_SPHERE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_FLASH_CANNON
+    SetVar VAR_0x8000, SPECIES_POOCHYENA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_BITE
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

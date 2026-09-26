@@ -4749,6 +4749,20 @@ int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCt
     return chosen;
 }
 
+// Oxide: the type of the move being used, as the abilities that answer a
+// hit's type read it: Normal under Normalize, else the type the move was
+// given this turn, else its listed type.
+static u8 CurrentMoveType(BattleContext *battleCtx)
+{
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+        return TYPE_NORMAL;
+    } else if (battleCtx->moveType) {
+        return battleCtx->moveType;
+    }
+
+    return CURRENT_MOVE_DATA.type;
+}
+
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -4962,6 +4976,18 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
     }
+
+    // Oxide: Justified raises its holder's Attack after a Dark-type hit
+    // (hg-engine's MoveHitDefenderAbilityCheck).
+    case ABILITY_JUSTIFIED:
+        if (DEFENDING_MON.curHP
+            && CurrentMoveType(battleCtx) == TYPE_DARK
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_justified;
+            result = TRUE;
+        }
+        break;
 
     case ABILITY_BERSERK: {
         // The damage taken is stored as a negative number, so the HP before
