@@ -71,12 +71,44 @@ def underground_split():
     return min(got, key=pool.split_index) if got else None
 
 
+def hidden_items():
+    """[(split, maps, item)], one per hidden item. A hidden item on the
+    border of two maps is listed in both maps' events under one script,
+    and so one flag: it is one item, found from whichever map the player
+    reaches first (Route 211 west's Moon Stone is Eterna City's)."""
+    flags = dict(splits._FLAG.findall(splits._read("build", "generated", "vars_flags.h")))
+    start = int(flags["HIDDEN_ITEM_FLAGS_START"])
+    hidden = {int(flags[flag]) - start: item for item, flag in
+              splits._HIDDEN.findall(splits._read("include", "data", "field", "hidden_items.h"))}
+    by_script = {}
+    for header, fields in splits.headers().items():
+        events = fields.get("eventsArchiveID")
+        path = os.path.join(data.ROOT, "res", "field", "events", f"{events}.json") if events else None
+        if not path or not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            ev = json.load(f)
+        split = splits.map_split(header)[0]
+        for bg in ev.get("bg_events", []):
+            script = bg.get("script")
+            if bg.get("type") == splits.BG_HIDDEN_ITEM and isinstance(script, int):
+                row = by_script.setdefault(script, [None, [], hidden.get(script - splits.HIDDEN_ITEM_SCRIPT)])
+                row[1].append(header)
+                if split in pool.SPLITS and (row[0] is None
+                                             or pool.split_index(split) < pool.split_index(row[0])):
+                    row[0] = split
+    return [(s, sorted(set(maps)), item) for s, maps, item in by_script.values()]
+
+
 def sources():
-    """{stone: [(split, where, how)]}, earliest first."""
+    """{stone: [(split, where, how)]}, earliest first, each item once."""
     out = collections.defaultdict(list)
     for split, header, item, how in splits.items():
-        if item in STONES:
+        if item in STONES and how != "hidden":
             out[item].append((split, header, how))
+    for split, maps, item in hidden_items():
+        if item in STONES:
+            out[item].append((split, " and ".join(maps), "hidden"))
     for split, header, item in splits.gifts():
         if item in STONES:
             gate = GIFT_GATES.get(header)
@@ -137,7 +169,8 @@ def elsewhere():
     source but the Underground and the two bulk stone sets Ian removed."""
     wanted = set(underground_items())
     out = {item: [] for item in underground_items()}
-    rows = ([(s, h, it, how) for s, h, it, how in splits.items()]
+    rows = ([(s, h, it, how) for s, h, it, how in splits.items() if how != "hidden"]
+            + [(s, " and ".join(maps), it, "hidden") for s, maps, it in hidden_items()]
             + [(s, h, it, "gift") for s, h, it in splits.gifts()]
             + [(s, t, it, "Game Corner" if t == "GameCornerPrizes" else "mart")
                for s, t, it in splits.marts()])
@@ -177,7 +210,10 @@ def main(argv=None):
     for stone in STONES:
         if not src.get(stone) and not want.get(stone) and stone not in shares:
             continue
-        print(f"{stone.replace('ITEM_', '').replace('_', ' ').title()}")
+        kept = [r for r in src.get(stone, []) if r[0] in pool.SPLITS
+                and not any(r[1].startswith(m) and r[2] == how for m, how in REMOVED)]
+        print(f"{stone.replace('ITEM_', '').replace('_', ' ').title()}: {len(kept)} before the "
+              f"League once the Underground and the bulk sets are gone")
         for split, where, how in src.get(stone, []):
             print(f"    {str(split):10} {how:12} {where}")
         if stone in shares and any(shares[stone]):

@@ -1291,14 +1291,21 @@ lands, and each change is re-scored as it lands.
    |---|---|---|
    | Fire | 5, from Fantina's split | Ninetales (Roark's), Flareon (Fantina's) |
    | Water | 5, from Fantina's | Ludicolo (Roark's), Poliwrath (Gardenia's), Vaporeon, Starmie, Cloyster |
-   | Thunder | 6, from Fantina's | Vikavolt, Pawmot, Raichu (Gardenia's), Jolteon |
+   | Thunder | 5, from Fantina's | Vikavolt, Pawmot, Raichu (Gardenia's), Jolteon |
    | Leaf | 5, from Gardenia's | Shiftry (Roark's) |
-   | Moon | 5, from Gardenia's | Nidoqueen, Nidoking, Delcatty (Roark's), Clefable, Umbreon |
+   | Moon | 4, from Gardenia's | Nidoqueen, Nidoking, Delcatty (Roark's), Clefable, Umbreon |
    | Sun | 4, from Fantina's | Espeon and Armarouge (both Fantina's) |
    | Shiny | 5, from Fantina's | Cinccino (Roark's), Togekiss, Roserade, Florges |
    | Dusk | 4, from Fantina's | Honchkrow (Roark's), Ceruledge, Mismagius, Polteageist, Chandelure |
    | Dawn | 5, from Fantina's | Froslass (Gardenia's), Gallade |
    | Oval | 1, the Lost Tower (Maylene's); not dug | Chansey (Fantina's) |
+
+   **Corrected** (2026-09-26, found by the main track): the first count
+   took a hidden item on the border of two maps twice, since both maps'
+   events list it under one flag. Route 211 west's Moon Stone is Eterna
+   City's, and the Resort Area's and Route 229's Thunder Stone is one
+   item; `stones.py` now counts each hidden item once, and the figures
+   here are recounted.
 
    The census also turned up a data error, which the main track fixes:
    Polteageist evolves into Sinistcha by Dusk Stone here, where the later
@@ -1316,17 +1323,17 @@ lands, and each change is re-scored as it lands.
    lines that want it, the first copy about a split after the first
    claimant can be owned, so every stone is a decision; every find below
    is one the tree already has, so nothing new is placed. With the
-   Underground and the two sets gone, the tree has 27 stones before the
-   League, 2 to 4 of each but the Oval Stone; this keeps 16. The main
+   Underground and the two sets gone, the tree has 25 stones before the
+   League, 2 or 3 of each but the Oval Stone; this keeps 16. The main
    track makes the changes.
 
    | Stone | Keep | Take out | Lines that want it |
    |---|---|---|---|
    | Fire | Solaceon Ruins (Maylene's) | Fuego Ironworks, Stark Mountain | Ninetales, Flareon |
    | Water | Solaceon Ruins (Maylene's), Route 213 (Wake's) | Route 230 | Ludicolo, Poliwrath, Vaporeon, Starmie, Cloyster |
-   | Thunder | Solaceon Ruins (Maylene's), Sunyshore (Volkner's) | Resort Area, Route 229 | Raichu, Vikavolt, Pawmot (all from Gardenia's), Jolteon |
+   | Thunder | Solaceon Ruins (Maylene's), Sunyshore (Volkner's) | the one on the Resort Area's border with Route 229 | Raichu, Vikavolt, Pawmot (all from Gardenia's), Jolteon |
    | Leaf | Floaroma Meadow (Gardenia's) | Great Marsh, Route 225 | Shiftry, the one line that can use it |
-   | Moon | Eterna City (Gardenia's), Mt. Coronet outside north (Galactic's) | Route 211 west | Nidoqueen, Nidoking, Delcatty, Clefable, Umbreon |
+   | Moon | Eterna City (Gardenia's; it is also Route 211 west's, on their border), Mt. Coronet outside north (Galactic's) | none | Nidoqueen, Nidoking, Delcatty, Clefable, Umbreon |
    | Sun | Valor Lakefront (Wake's), the one Ian asked for | Mt. Coronet 4F | Espeon, Armarouge |
    | Shiny | Route 212 south (Wake's), where the hidden Dawn Stone becomes a Shiny Stone; Iron Island B3F (Byron's); Route 228 (Galactic's) | Route 210 north | Cinccino, Togekiss, Roserade, Florges |
    | Dusk | Wayward Cave (Fantina's), the Galactic Warehouse (HQ's) | none; Victory Road's is after the League | Honchkrow, Ceruledge, Mismagius, Polteageist, Chandelure |
@@ -1369,19 +1376,45 @@ lands, and each change is re-scored as it lands.
    Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.
    **Terrain is not ported** (Ian, 2026-09-27), so nothing the player can
    get may be dead weight: the four Terrain moves (which say "But nothing
-   happened!") and Steel Roller (which always fails) leave every learnset,
-   TM and tutor list, and the four Surge abilities and Seed Sower are
-   replaced wherever a species carries them. The moves that only read
-   terrain (Ice Spinner, Terrain Pulse and the rest) are plain hits and
-   stay. `b6.py --report` lists the worklist: Arboliva's Seed Sower,
-   Galarian Weezing's hidden Misty Surge, and seven obtainable lines that
-   learn a dead move by level (Galarian Mr. Mime and Mr. Rime, Sylveon,
-   Togedemaru, Dhelmise, the Smoliv line); no TM, tutor or egg list
-   teaches one yet, and the TM pass keeps it that way. Mesprit's roamer
-   becomes a once-per-save draw that includes Tapu Koko and Xurkitree (the
-   main track's scripts), so Tapu Koko's Electric Surge and both lines'
-   Electric Terrain join the list; the other Tapus and Xerneas stay out of
+   happened!") leave every learnset, TM and tutor list, and the four Surge
+   abilities and Seed Sower are replaced wherever a species carries them.
+   Steel Roller was on the list until the move survey's ruling below kept
+   it, with its effect to be written. The moves that only read terrain (Ice
+   Spinner, Terrain Pulse and the rest) are plain hits and stay. `b6.py
+   --report` lists the worklist: Arboliva's Seed Sower, Galarian Weezing's
+   hidden Misty Surge, and the obtainable lines that learn a Terrain move
+   by level (Galarian Mr. Mime and Mr. Rime, Sylveon, the Smoliv line, and
+   Tapu Koko and Xurkitree, whom Mesprit's roamer now draws; Tapu Koko's
+   Electric Surge goes too); no TM, tutor or egg list teaches one yet, and
+   the TM pass keeps it that way. The other Tapus and Xerneas stay out of
    reach.
+
+   **The move-pool survey** (Ian, 2026-09-27; `docs/oxide/move-pool-survey.md`),
+   applied in the learnset pass after B6:
+
+   - Twelve moves leave every learnset now: Telekinesis, Ally Switch,
+     Topsy-Turvy, Flower Shield, Fairy Lock, Aromatic Mist, Magnetic
+     Flux, Speed Swap and the four Terrain moves.
+   - Magic Room, Teatime, Octolock, Sky Drop, Salt Cure and Steel Roller
+     stay; their missing effects are written in a cloud job, with the
+     survey's 22 partly working moves (Mind Blown first). The doubles
+     moves that work stay.
+   - Splash and Teleport go, and each of their six species gets a real
+     level-1 move, this track's pick: Azurill Pound, Bounsweet Leafage,
+     Feebas Tackle, Hoppip Absorb, Wailmer Water Gun and Abra Confusion.
+     Each is a weak attack, of the species' own type but for Feebas, which
+     keeps its weakness with the Tackle it now learns at 15. Abra's is the
+     one that changes play: it can fight before it evolves, where Teleport
+     left it none. Magikarp has the same gap (Splash alone until Tackle at
+     15) though the ruling named six; this track's pick is Tackle at 1,
+     like Feebas's, for Ian to confirm. Every other Splash or Teleport
+     carrier (Buneary, Ralts, the Abra and Hoppip lines' evolutions,
+     Delphox, and the egg lists) has another move beside it, and simply
+     loses it; `b6.py --report` lists them.
+   - Cut, Rock Smash and Flash leave learnsets where they were there only
+     as HMs, and their TM slots become other moves in the TM pass.
+   - Type-flavoured near-duplicates stay, as do Land's Wrath, Flame Burst
+     and Sludge. The rest of the cull waits for the TM pass.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

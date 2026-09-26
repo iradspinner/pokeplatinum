@@ -534,13 +534,17 @@ def new_content(blob):
 
 # ---- dead weight (goal 4) ----------------------------------------------------
 
-# Ian's ruling of 2026-09-27: terrain is not ported. The four Terrain moves
-# say "But nothing happened!", Steel Roller always fails, and the four
-# Surge abilities and Seed Sower do nothing; the passes take them out of
-# everything the player can get. The moves that only read terrain (Ice
-# Spinner, Terrain Pulse and the rest) are plain hits and stay.
+# Ian's rulings of 2026-09-27. Terrain is not ported: the four Terrain moves
+# say "But nothing happened!" and the four Surge abilities and Seed Sower do
+# nothing, so the passes take them out of everything the player can get
+# (the moves that only read terrain, Ice Spinner, Terrain Pulse and the
+# rest, are plain hits and stay). The move-pool survey cuts eight more from
+# every learnset, and Splash and Teleport, whose species get a real move;
+# Steel Roller stays, its effect to be written.
 DEAD_MOVES = {"MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN", "MOVE_MISTY_TERRAIN",
-              "MOVE_PSYCHIC_TERRAIN", "MOVE_STEEL_ROLLER"}
+              "MOVE_PSYCHIC_TERRAIN", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
+              "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
+              "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_SPLASH", "MOVE_TELEPORT"}
 DEAD_ABILITIES = {"ELECTRIC_SURGE", "GRASSY_SURGE", "MISTY_SURGE", "PSYCHIC_SURGE", "SEED_SOWER"}
 
 
@@ -757,7 +761,7 @@ def report(results, content=None, out=sys.stdout):
             f"fights ({len(idle)}): " + ", ".join(canon.showdown_name(sp) for sp in idle))
 
     dead = dead_weight()
-    say("\nGoal 4, dead weight since terrain is not ported (Ian, 2026-09-27): "
+    say("\nGoal 4, what Ian's rulings of 2026-09-27 cut (terrain, the move survey): "
         f"{len(dead['tms'])} TMs and {len(dead['tutors'])} tutor moves teach a dead move; "
         f"{sum(o for _s, o, _d in dead['species'])} obtainable species carry one:")
     for sp, owned, things in dead["species"]:
