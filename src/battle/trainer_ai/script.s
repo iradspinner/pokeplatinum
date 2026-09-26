@@ -416,6 +416,10 @@ Basic_ScoreMoveEffectByEffect:
     // and while it is up, as Reflect does.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Basic_CheckStickyWeb
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Basic_CheckAuroraVeil
+    // Oxide: First Impression fails after its user's first turn out, as Fake
+    // Out does; Poltergeist fails against a target holding no item.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FIRST_TURN_ONLY, Basic_CheckFirstTurnInBattle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POLTERGEIST, Basic_CheckPoltergeist
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -1288,6 +1292,11 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
+Basic_CheckPoltergeist:
+    LoadHeldItem AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ITEM_NONE, ScoreMinus10
+    PopOrEnd 
+
 Basic_CheckStickyWeb:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, ScoreMinus10
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
@@ -2153,6 +2162,8 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT_REMOVE_PROTECT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_SPEED_DOWN_2_HIT, Expert_HammerArm
+    // First Impression, which works only on its user's first turn out, as Fake Out.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FIRST_TURN_ONLY, Expert_FakeOut
     // The moves that always land a critical hit, as the high critical moves.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_CRITICAL, Expert_HighCritical
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
