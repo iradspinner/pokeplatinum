@@ -412,6 +412,9 @@ export PYTHONPATH=.
 # given, so fetch main's tip if it is missing (six checks failed without it on
 # the first cloud run, 2026-09-25).
 git rev-parse --verify -q main >/dev/null || git fetch -q --depth=1 origin main:main || warn "could not fetch main; the encounter checks that read vanilla will fail"
+# The engine's level caps (element 8) against the balance track's fights.json,
+# so a cap moved in one and not the other fails here.
+CHECK_EXPECT="passed" check "level caps: engine table, fights.json and closing scripts agree" "$PY" tools/oxide/test_level_caps.py
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
