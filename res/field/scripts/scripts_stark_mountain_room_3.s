@@ -168,11 +168,20 @@ StarkMountainRoom3_02AB:
     SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     Return
 StarkMountainRoom3_02B1:
+    @ Oxide: the room holds no legendary for now (Ian, 2026-09-27), neither
+    @ Heatran nor a draw from the legendary pool, until the difficulty is high
+    @ enough that another legendary-tier capture would not inflate the box.
+    @ Heatran stays hidden whatever else has happened; the base ROM's checks
+    @ below are kept as they were, unreachable.
+    GoTo StarkMountainRoom3_0336
     CheckFlag FLAG_CAUGHT_HEATRAN
     GoToIf 1, StarkMountainRoom3_0336
-    @ Oxide: no Hall of Fame or National Dex check here any more. The Battle
-    @ Zone opens after Galactic HQ, so Heatran waits only on Buck and the
-    @ Charon scene (docs/oxide/battle-zone-plan.md).
+    CheckGameCompleted VARS_START
+    CompareVarToValue VARS_START, 0
+    GoToIf 1, StarkMountainRoom3_0336
+    GetSetNationalDexEnabled 2, VARS_START
+    CompareVarToValue VARS_START, 0
+    GoToIf 1, StarkMountainRoom3_0336
     CheckFlag FLAG_TALKED_TO_BATTLEGROUND_BUCK
     GoToIf 0, StarkMountainRoom3_0336
     CompareVarToValue VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1

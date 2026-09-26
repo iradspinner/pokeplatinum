@@ -1207,6 +1207,10 @@ TEXT_BANKS_SKIPPED = {
          "League, now that the Battle Zone opens after Galactic HQ (battle-zone-plan.md)",
     192: "the Fight Area's arrival lines no longer assume the League or Spear Pillar, "
          "and four lines are added for the Beacon Badge gate (battle-zone-plan.md)",
+    299: "Uxie's cavern holds the legendary pool's Acuity draw, so its line names the "
+         "drawn species rather than UXIE (Ian, 2026-09-26)",
+    293: "Mesprit's roamer is the legendary pool's roamer draw, so the scene's lines "
+         "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
 }
 
 
