@@ -44,7 +44,6 @@
             [ 24, "MOVE_AGILITY" ],
             [ 28, "MOVE_ICY_WIND" ],
             [ 35, "MOVE_SLASH" ],
-            [ 38, "MOVE_BEAT_UP" ],
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_ICE_SHARD" ]
         ],

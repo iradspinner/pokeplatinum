@@ -5877,7 +5877,10 @@ static BOOL BtlCmd_CalcRolloutPower(BattleSystem *battleSys, BattleContext *batt
 /**
  * @brief Calculate the base power for Fury Cutter.
  *
- * Compute the following: furyCutterBasePower * 2^(min(pastFuryCutterTurns, 5))
+ * Compute the following: furyCutterBasePower * 2^(min(pastFuryCutterTurns, 5)),
+ * doubling no further once the power reaches 160. Oxide gives Fury Cutter its
+ * modern 40 power, so the cap keeps the modern 40, 80, 160 sequence; with
+ * vanilla's 10 power it never binds.
  *
  * @param battleSys
  * @param battleCtx
@@ -5894,6 +5897,10 @@ static BOOL BtlCmd_CalcFuryCutterPower(BattleSystem *battleSys, BattleContext *b
     battleCtx->movePower = CURRENT_MOVE_DATA.power;
 
     for (int i = 1; i < ATTACKING_MON.moveEffectsData.furyCutterCount; i++) {
+        if (battleCtx->movePower >= 160) {
+            break;
+        }
+
         battleCtx->movePower *= 2;
     }
 
