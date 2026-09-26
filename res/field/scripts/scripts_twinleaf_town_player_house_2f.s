@@ -680,6 +680,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet38, 10
     AddListMenuEntry TestKit_Text_MenuSet39, 11
     AddListMenuEntry TestKit_Text_MenuSet40, 12
+    AddListMenuEntry TestKit_Text_MenuSet41, 13
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -694,6 +695,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet38
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
+    GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1096,6 +1098,20 @@ TestKit_MoveSet40:
     SetVar VAR_0x8007, MOVE_CRUNCH
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 41: Grav Apple is half as strong again under Gravity. Against
+   a wild Chansey given Clear Body, so Grav Apple cannot lower its Defense,
+   that knows only Splash: Grav Apple (90) does a little more than Seed Bomb
+   (80), and after Gravity (135) about two thirds more. */
+TestKit_MoveSet41:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_CLEAR_BODY
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_GRAV_APPLE
+    SetVar VAR_0x8007, MOVE_SEED_BOMB
+    SetVar VAR_0x8008, MOVE_GRAVITY
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

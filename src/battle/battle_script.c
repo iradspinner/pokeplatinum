@@ -1431,6 +1431,13 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         }
         return 0;
 
+    case MOVE_GRAV_APPLE:
+        // Half as strong again while Gravity is in force.
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+            return CURRENT_MOVE_DATA.power * 15 / 10;
+        }
+        return 0;
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
