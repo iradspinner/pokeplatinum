@@ -116,6 +116,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
+    battleCtx->battleMons[battler].friskFoesFound = 0;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -4017,6 +4018,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     mon->anticipationAnnounced = FALSE;
                     mon->forewarnAnnounced = FALSE;
                     mon->friskAnnounced = FALSE;
+                    mon->friskFoesFound = 0;
                     mon->moldBreakerAnnounced = FALSE;
                     mon->pressureAnnounced = FALSE;
                     mon->oxideAbilityAnnounced = FALSE;
@@ -4343,32 +4345,36 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 if (battleCtx->battleMons[battler].friskAnnounced == FALSE
                     && battleCtx->battleMons[battler].curHP
                     && Battler_Ability(battleCtx, battler) == ABILITY_FRISK) {
-                    battleCtx->battleMons[battler].friskAnnounced = TRUE;
-
                     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                        // Oxide: Frisk names every foe's item (Generation 6), one
+                        // message per foe, where Platinum named one at random. The
+                        // step runs again after each message until none is left.
                         int enemies[] = {
                             BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_RIGHT),
                             BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_LEFT),
                         };
 
-                        if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem
-                            && battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[BattleSystem_RandNext(battleSys) & 1]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[0]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[1]].heldItem;
+                        for (int j = 0; j < NELEMS(enemies); j++) {
+                            if ((battleCtx->battleMons[battler].friskFoesFound & FlagIndex(j)) == FALSE
+                                && battleCtx->battleMons[enemies[j]].curHP
+                                && battleCtx->battleMons[enemies[j]].heldItem) {
+                                battleCtx->battleMons[battler].friskFoesFound |= FlagIndex(j);
+                                battleCtx->msgItemTemp = battleCtx->battleMons[enemies[j]].heldItem;
+                                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                                break;
+                            }
+                        }
+
+                        if (result != SWITCH_IN_CHECK_RESULT_BREAK) {
+                            battleCtx->battleMons[battler].friskAnnounced = TRUE;
+                        }
+                    } else {
+                        battleCtx->battleMons[battler].friskAnnounced = TRUE;
+
+                        if (battleCtx->battleMons[battler ^ 1].curHP && battleCtx->battleMons[battler ^ 1].heldItem) {
+                            battleCtx->msgItemTemp = battleCtx->battleMons[battler ^ 1].heldItem;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
-                    } else if (battleCtx->battleMons[battler ^ 1].curHP && battleCtx->battleMons[battler ^ 1].heldItem) {
-                        battleCtx->msgItemTemp = battleCtx->battleMons[battler ^ 1].heldItem;
-                        result = SWITCH_IN_CHECK_RESULT_BREAK;
                     }
                 }
 
