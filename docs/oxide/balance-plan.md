@@ -840,7 +840,34 @@ disagrees with them.
   30 Rare Candies are placed before the League against 250 to 440 needed,
   and Ian's ruling that the portable PC gives infinite Rare Candies closes
   that gap, so the budget reads as how much of each cap the trainers pay
-  for. The per-split tables wait on the Galactic shape.
+  for.
+
+  Entering each split at the last cap, as candy-to-the-cap means, a team
+  of six (medium slow) reaches this from trainers alone before candies
+  close the rest (2026-09-25, on the settled split shape):
+
+  | Split | Cap | Every placed trainer | Only unavoidable ones |
+  |---|---|---|---|
+  | Roark | 16 | 12 | 9 |
+  | Gardenia | 26 | 21 | 18 |
+  | Fantina | 33 | 29 | 26 |
+  | Maylene | 39 | 37 | 34 |
+  | Wake | 44 | 44 | 40 |
+  | Byron | 53 | 49 | 45 |
+  | Candice | 56 | 55 | 54 |
+  | HQ | 60 | 57 | 56 |
+  | Galactic | 65 | 65 | 60 |
+  | Volkner | 68 | 65 | 65 |
+  | League | 78 | 70 | 69 |
+
+  Two splits pay for their whole cap when every trainer is fought: Wake's,
+  whose 75 placed trainers are the most in the game, and Galactic's, now
+  that the Battle Zone's re-levelled trainers count there. The League's
+  pays least, 8 levels short even fighting everything, because Victory Road
+  and Route 223 are short for a 10-level rise. Counting only the trainers
+  the story path cannot avoid, every split falls 2 to 9 levels short. That
+  gap is what Ian's placement change (more required ordinary trainers)
+  narrows, and B1e's list says where.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
   One check comes first, from Ian (2026-09-25): **the threat score may
   overrate hyper-offense**. It counts what a boss knocks out while moving
