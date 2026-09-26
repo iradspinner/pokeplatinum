@@ -208,6 +208,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Ghosts and trapping | Mismagius: Shadow Ball, Mystical Fire, Protect, Teleport; foe a wild Umbreon that knows Mean Look and Fire Spin | Switch Mismagius in on the first turn. Mean Look: "It doesn't affect MISMAGIUS..."; Fire Spin still hurts it each turn, but Mismagius can switch out, Run gets away and Teleport works | GHOST |
 | Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | CRITICAL |
 | Defog, both sides | Mew: Defog, Stealth Rock, Reflect, Recover; foe a wild Skarmory that knows Spikes and Toxic Spikes | Let Skarmory lay Spikes and Toxic Spikes on your side, and lay Stealth Rock on its side and Reflect on yours. Defog blows away Stealth Rock, Spikes and Toxic Spikes, each named once, and your Reflect stays: Defog clears screens only on the target's side. It still clears fog | DEFOG |
+| Rapid Spin | Starmie: Rapid Spin, Surf, Thunderbolt, Recover; foe a wild Skarmory that knows only Spikes | Each Rapid Spin ends with "STARMIE's Speed rose!", after "STARMIE blew away Spikes!" when Skarmory has laid some; at +6 it says nothing more | RAPIDSPIN |
 
 ## Not built yet
 

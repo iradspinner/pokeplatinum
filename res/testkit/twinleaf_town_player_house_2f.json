@@ -334,6 +334,10 @@
             "en_US": "Defog, both sides"
         },
         {
+            "id": "TestKit_Text_MenuStapleRapidSpin",
+            "en_US": "Rapid Spin"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

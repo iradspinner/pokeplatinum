@@ -1844,6 +1844,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleGhostTrap, 15
     AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
     AddListMenuEntry TestKit_Text_MenuStapleDefog, 17
+    AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1863,6 +1864,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 15, TestKit_StapleGhostTrap
     GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
     GoToIfEq VAR_0x8004, 17, TestKit_StapleDefog
+    GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2122,6 +2124,20 @@ TestKit_StapleDefog:
     SetVar VAR_0x8002, MOVE_SPIKES
     SetVar VAR_0x8003, MOVE_TOXIC_SPIKES
     SetVar VAR_0x800A, SPECIES_MEW
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Rapid Spin: a Starmie with Rapid Spin, against a wild Skarmory that knows
+   only Spikes. */
+TestKit_StapleRapidSpin:
+    SetVar VAR_0x800A, SPECIES_STARMIE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_RAPID_SPIN
+    SetVar VAR_0x8007, MOVE_SURF
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPIKES
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
