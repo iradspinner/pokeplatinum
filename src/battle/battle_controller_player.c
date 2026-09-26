@@ -2862,6 +2862,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         return subscript_telepathy;
     }
 
+    // Oxide: Grass types are immune to powder and spore moves (Generation 6;
+    // hg-engine's CheckTypeBasedMoveConditionImmunities1).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && Move_IsPowder(battleCtx->moveCur)
+        && MON_HAS_TYPE(defender, TYPE_GRASS)) {
+        return subscript_prankster_dark_immunity;
+    }
+
     if (defender == BATTLER_NONE
         || BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)) {
         return NULL;

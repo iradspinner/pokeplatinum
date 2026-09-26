@@ -1,7 +1,8 @@
 #include "macros/btlcmd.inc"
 
 
-// Oxide: a Dark-type target is not affected by a status move Prankster raised.
+// Oxide: a type immunity of the later games: a Dark-type target is not
+// affected by a status move Prankster raised, a Grass type by a powder move.
 _000:
     PrintAttackMessage
     Wait

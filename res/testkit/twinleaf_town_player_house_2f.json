@@ -314,6 +314,10 @@
             "en_US": "Simple"
         },
         {
+            "id": "TestKit_Text_MenuStapleGrassPowder",
+            "en_US": "Grass and powder"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

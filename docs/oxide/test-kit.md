@@ -203,6 +203,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Magic Guard, paralysis | Clefable with Magic Guard: Moonblast, Calm Mind, Soft-Boiled, Flamethrower; foe a wild Jolteon that knows only Thunder Wave | Once paralysed, Clefable is sometimes "fully paralyzed!" (about one turn in four), where before Magic Guard kept it moving | MAGICGUARD |
 | Liquid Ooze, Dream Eater | Gengar: Hypnosis, Dream Eater, Shadow Ball, Giga Drain; foe a wild Tentacruel given Liquid Ooze that knows only Splash | Once Hypnosis lands, Dream Eater hurts Gengar with "It sucked up the liquid ooze!", as Giga Drain does, where before it healed Gengar | LIQUIDOOZE |
 | Simple | Bibarel with Simple: Defense Curl, Swords Dance, Return, Waterfall; foe a wild Chansey that knows only Growl | Defense Curl: "BIBAREL's Defense sharply rose!" (two stages); Swords Dance: "rose drastically!" (four); Growl: "BIBAREL's Attack harshly fell!" (two). Two Swords Dances reach +6 | SIMPLE |
+| Grass and powder | Venusaur: Giga Drain, Sludge Bomb, Body Slam, Synthesis; foe a wild Parasect given Effect Spore that knows Spore and Stun Spore | Spore and Stun Spore: "It doesn't affect VENUSAUR..."; and Body Slam, a contact move, never sets off Effect Spore | GRASSPOWDER |
 
 ## Not built yet
 

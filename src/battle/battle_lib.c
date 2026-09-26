@@ -3626,6 +3626,12 @@ static BOOL MoveInList(const u16 *list, int count, int move)
     return FALSE;
 }
 
+// Oxide: for the Grass type's immunity to powder moves, in the controller.
+BOOL Move_IsPowder(int move)
+{
+    return MoveInList(sPowderMoves, NELEMS(sPowderMoves), move);
+}
+
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
     int subscript = NULL, moveType;
@@ -4686,6 +4692,10 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            // Oxide: its spores are a powder, which misses Grass types and
+            // Overcoat (Generation 6).
+            && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GRASS)
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_OVERCOAT
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:

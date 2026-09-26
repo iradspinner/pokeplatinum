@@ -1839,6 +1839,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleMagicGuard, 10
     AddListMenuEntry TestKit_Text_MenuStapleLiquidOoze, 11
     AddListMenuEntry TestKit_Text_MenuStapleSimple, 12
+    AddListMenuEntry TestKit_Text_MenuStapleGrassPowder, 13
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1853,6 +1854,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 10, TestKit_StapleMagicGuard
     GoToIfEq VAR_0x8004, 11, TestKit_StapleLiquidOoze
     GoToIfEq VAR_0x8004, 12, TestKit_StapleSimple
+    GoToIfEq VAR_0x8004, 13, TestKit_StapleGrassPowder
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2039,6 +2041,21 @@ TestKit_StapleSimple:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Grass and powder: a Venusaur, against a wild Parasect given Effect Spore
+   that knows Spore and Stun Spore. */
+TestKit_StapleGrassPowder:
+    SetVar VAR_0x800A, SPECIES_VENUSAUR
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_BODY_SLAM
+    SetVar VAR_0x8009, MOVE_SYNTHESIS
+    SetVar VAR_0x8000, SPECIES_PARASECT
+    SetVar VAR_0x8001, ABILITY_EFFECT_SPORE
+    SetVar VAR_0x8002, MOVE_SPORE
+    SetVar VAR_0x8003, MOVE_STUN_SPORE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
