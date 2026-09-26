@@ -140,6 +140,17 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
 
 Basic_ScoreMoveEffect:
+    // Oxide: the powder moves the engine keeps as sPowderMoves, less Rage
+    // Powder, which is aimed at its user.
+    IfMoveEqualTo MOVE_COTTON_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_POISON_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_SLEEP_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_STUN_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_SPORE, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_POWDER, Basic_CheckPowderImmunity
+    IfMoveEqualTo MOVE_MAGIC_POWDER, Basic_CheckPowderImmunity
+
+Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, Basic_CheckCannotSleep
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, Basic_CheckCannotExplode
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, Basic_CheckDreamEater
@@ -293,6 +304,15 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
     PopOrEnd 
+
+Basic_CheckPowderImmunity:
+    // Oxide: a Grass type is immune to powder moves (the staples rulings), so
+    // score -10. Otherwise score the move by its effect as usual.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    GoTo Basic_ScoreMoveEffectByEffect
 
 Basic_CheckCannotSleep:
     // If the target cannot be put to sleep for any reason, score -10.
