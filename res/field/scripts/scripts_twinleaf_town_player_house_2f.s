@@ -2204,7 +2204,7 @@ TestKit_AbilityAnalytic:
     SetVar VAR_0x8002, MOVE_THUNDERBOLT
     GoTo TestKit_GivePokemonWithMoves
 
-/* FlareBoost: the player's Snorlax (its own ability) and a
+/* Flare Boost: the player's Snorlax (its own ability) and a
    wild Drifblim given Flare Boost that knows only Swift. Once Will-O-Wisp
    has burned Drifblim, its Swift takes about half again as much of Snorlax's
    HP as before. */
@@ -2220,7 +2220,7 @@ TestKit_AbilityFlareBoost:
     SetVar VAR_0x8002, MOVE_SWIFT
     GoTo TestKit_GivePokemonWithMoves
 
-/* HeavyMetal: the player's Machamp (its own ability) and a
+/* Heavy Metal: the player's Machamp (its own ability) and a
    wild Aggron given Heavy Metal that knows Heavy Slam and Iron Head.
    Doubled to 720 kg, Aggron is over five times Machamp's 130 kg, so Heavy
    Slam hits at 120 and does about half again what Iron Head (80) does;
@@ -2253,7 +2253,7 @@ TestKit_AbilityJustified:
     SetVar VAR_0x8002, MOVE_BITE
     GoTo TestKit_GivePokemonWithMoves
 
-/* LightMetal: the player's Garchomp (its own ability) and a
+/* Light Metal: the player's Garchomp (its own ability) and a
    wild Metagross given Light Metal that knows Heavy Slam and Iron Head.
    Halved to 275 kg, Metagross is under three times Garchomp's 95 kg, so
    Heavy Slam hits at 60 and does less than Iron Head (80); without Light
@@ -2271,7 +2271,7 @@ TestKit_AbilityLightMetal:
     SetVar VAR_0x8003, MOVE_IRON_HEAD
     GoTo TestKit_GivePokemonWithMoves
 
-/* MagicBounce: a wild Chansey that knows only Toxic. Once Espeon
+/* Magic Bounce: a wild Chansey that knows only Toxic. Once Espeon
    is in, each Toxic is turned back with a message, and Chansey is badly
    poisoned in Espeon's place. */
 TestKit_AbilityMagicBounce:
