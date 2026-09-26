@@ -463,8 +463,23 @@ that stay. None blocks anything.
    Cinderace static at the heart of Fuego Ironworks, sharing the yard's
    capture, with a Battle Factory rental draw as the alternative; for
    Argenta, items if the box should not grow, or an egg drawn from Happiny,
-   Smoochum and Elekid. Waiting on Ian; the box sim measurement of the
-   pick follows the balance track's rescore.
+   Smoochum and Elekid. **Ian ruled on Thorton (2026-09-27):** the player
+   picks one of the two starter lines they did not choose, fully evolved at
+   level 40, as a Battle Factory rental sharing the Fuego Ironworks
+   capture. Argenta stays open between items and a level-40 static. The box
+   sim measurement of Thorton's prize follows the balance track's rescore.
+26. **The gift clowns go (Ian, 2026-09-27, through the Overseer).** A clown
+   whose capture area has a table, gift or trade simply goes; otherwise new
+   tall grass with a thematic table takes its place. This supersedes the
+   tracker's backlog item to unify the clown gifts. The proposal, per area,
+   is `docs/oxide/encounters/clown-replacements.md`: new grass in Sandgem
+   Town, Jubilife City, Floaroma Town and Solaceon Town, which homes seven
+   thinly sourced lines (Kricketot, Abra, Combee, Tropius, Happiny,
+   Girafarig, Lickitung) and the two clown-only ones (Poochyena, Trapinch);
+   the Oreburgh, Floaroma Meadow, Veilstone and Restaurant clowns and the
+   Eterna condominium gift simply go; the Canalave Library gift and
+   Charcadet's home are questions for Ian. Waiting on Ian; the main track
+   does the maps and scripts.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

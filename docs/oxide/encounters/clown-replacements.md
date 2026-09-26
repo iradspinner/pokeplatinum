@@ -1,0 +1,94 @@
+# The gift clowns go: what replaces each, a proposal for Ian
+
+Written 2026-09-27 by the encounter track. Ian's ruling of the same day,
+relayed by the Overseer: the gift clowns go. They existed only to give towns
+without grass an encounter, and a clown handing out a random Pokemon jars.
+Where a clown's capture area already has a table, a gift or a trade, the
+clown simply goes. Otherwise it is replaced by new tall grass with a thematic
+table, which also gives the player repel-manip choices. This supersedes the
+backlog item to unify the clown gifts. The main track does the maps and
+scripts, and is finding out where grass can be added at all.
+
+The new tables follow the `author-table` skill: one capture per location
+name, designed for the gym split the place falls in, eight to sixteen lines
+with a day and night pair, nothing over 35%, and outside Roark's split the
+three-line top rung. Roark's split holds only starter-adjacent lines at real
+shares, with anything else as a 4% or 1% tail. No new table holds a line the
+player can always have from a gift (Togepi, Flabebe, Vullaby, Popplio, Eevee,
+Elekid and the fossils; Ian, 2026-09-26). Shares below are rough; the tool
+lays out the exact slots once Ian agrees the casts.
+
+## Every clown, and the gifts of the same kind
+
+| Source | Split | Its capture area also has | Proposal |
+|---|---|---|---|
+| Sandgem Town house | Roark | nothing | new grass |
+| Jubilife City house | Roark | nothing | new grass |
+| Oreburgh City house | Roark | the Vullaby trade | clown goes |
+| Floaroma Town house | Gardenia | nothing | new grass |
+| Floaroma Meadow house | Gardenia | a honey tree | clown goes |
+| Eterna City condominium | Gardenia | water tables and the Popplio trade | gift goes |
+| Solaceon Town house | Maylene | nothing | new grass |
+| Veilstone City house | Maylene | the Elekid gift | clown goes |
+| The Restaurant (Pastoria's clown, moving there) | Wake | nothing, and it is indoors | clown goes, nothing added |
+| Canalave Library 2F | Byron | nothing, and it is indoors | a question for Ian, below |
+
+The Eterna condominium and the Canalave Library are not clowns, but they are
+the same thing: a random roll in a house that Ian's earlier edit added. The
+Day Care's Floette, Bebe's Eevee and the Veilstone Elekid are fixed gifts of a
+line the player can always have, so they stay.
+
+Capture count: the four towns keep their capture, since the grass takes the
+clown's place. The Restaurant loses the capture the Pastoria move was to give
+it, because there is nowhere to put grass indoors, and the library would lose
+one if its gift goes. With the planned maps the count before the League was
+to be 77; it becomes 76, or 75 without the library.
+
+## The four new grass tables
+
+Each cast is in share order, the first line being the face at about a
+quarter of the grass. The tool lays out the exact slots from the cast.
+
+| Town | Split, levels, grass | Cast in share order | Day, night | Tails or top rung |
+|---|---|---|---|---|
+| Sandgem Town | Roark, 3 to 5, a strip between the lab and the beach path | Kricketot (no home today), Bidoof, Starly, Wurmple, Blipbug | Pikipek, Purrloin | Wingull 4%, Poochyena 1% |
+| Jubilife City | Roark, 4 to 7, a lawn by the Trainers' School | Abra (no home today), Machop, Minccino, Rookidee, Shinx | Pawmi, Purrloin | Glameow and Poochyena 4%, Skitty and Murkrow 1% |
+| Floaroma Town | Gardenia, 10 to 14, the flower beds | Combee (no home today), Cherubi, Hoppip, Pachirisu, Tropius (no home today), Bounsweet | Budew, Murkrow | Combee on both 4%s, Chingling and Skitty on the 1%s |
+| Solaceon Town | Maylene, 19 to 24, the fields around the Day Care | Mareep, Happiny (no home today), Girafarig and Lickitung (neither has a home today), Trapinch, Poochyena, Wooloo (Mankey in its place if the library's gift goes) | Chatot, Murkrow | Mareep on both 4%s, Smoochum and Tropius on the 1%s |
+
+The lines a player remembers each by: Kricketot singing behind Rowan's lab,
+Abra teleporting in and out of the school's practice field, Combee working the
+flower town's beds, and Mareep in Solaceon's fields with Happiny by the
+nursery. Every line in Roark's two tables is starter-adjacent apart from the
+tails, as that split requires.
+
+## Lines that lose a source, and lines that gain a home
+
+When the clowns go, five lines lose their only real source. Poochyena and
+Trapinch get homes in Solaceon Town; Trapinch there also clears it from the
+availability gate's cap candidates, since it is fully evolved by 45 and
+Byron's cap is 53. Combee, which today has only cameos and the honey trees,
+gets Floaroma Town. Charcadet, the Eterna condominium's other line, becomes a
+line of cameos only; the fix is to raise it to a 10% home in Fuego Ironworks'
+yard, which is fire-themed and in Byron's split. Mankey's only source is the
+library's gift, so if that gift goes Mankey needs a home of at least 10%,
+which Solaceon's cast can give it in Wooloo's place.
+
+The new tables also give homes to seven lines that today appear only as a
+cameo or two: Kricketot, Abra, Tropius, Happiny, Girafarig, Lickitung and,
+through Floaroma, Combee. Every other line the clowns gave has a home already.
+The Restaurant's six water lines keep their water tables.
+
+## Questions for Ian
+
+1. **The Canalave Library gift.** It is a level-50 random roll among Flygon,
+   Cofagrigus, Hariyama, Klefki, Drapion, Dusclops and Primeape, in a room
+   that is its own capture and cannot hold grass. My recommendation is that it
+   goes with the clowns, since it is the same kind of source, and that Mankey
+   takes a home in Solaceon. The case for keeping it is that Byron's split then
+   still has two scripted captures beside Thorton's prize.
+2. **Charcadet.** A 10% home in Fuego Ironworks' yard, or leave it as cameos
+   only.
+3. **Grass that cannot be placed.** If the main track finds a town where
+   grass cannot go, that town's clown simply goes and its table's lines fall
+   back to where they are today.
