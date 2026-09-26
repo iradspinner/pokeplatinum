@@ -116,6 +116,14 @@ DIVERGED["events_stark_mountain_room_2"] += (
 for _m in ("oreburgh_mine_b2f", "stark_mountain_room_2"):
     DIVERGED[f"events_{_m}"] += (
         "; then the base ROM's Helix, Dome and Claw Fossil balls removed (Ian, 2026-09-21)")
+# The fossils that stay are one-time finds on flags of their own, all three in
+# Oreburgh Mine B2F, so Stark Mountain room 2 loses its Root Fossil (Ian, 2026-09-27).
+DIVERGED["events_oreburgh_mine_b2f"] += (
+    "; then the Root, Armor and Skull Fossil balls each given a one-time flag of its own "
+    "(Ian, 2026-09-27)")
+DIVERGED["events_stark_mountain_room_2"] += (
+    "; then its Root Fossil ball removed, the Root Fossil being Oreburgh Mine B2F's "
+    "(Ian, 2026-09-27)")
 
 
 def render(record, existing, index):
