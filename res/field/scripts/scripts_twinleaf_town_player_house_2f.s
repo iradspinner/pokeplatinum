@@ -678,6 +678,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet36, 8
     AddListMenuEntry TestKit_Text_MenuSet37, 9
     AddListMenuEntry TestKit_Text_MenuSet38, 10
+    AddListMenuEntry TestKit_Text_MenuSet39, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -690,6 +691,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet36
     GoToIfEq VAR_0x8004, 9, TestKit_MoveSet37
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet38
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1064,6 +1066,17 @@ TestKit_MoveSet37:
 TestKit_MoveSet38:
     SetVar VAR_0x8006, MOVE_HARD_PRESS
     SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 39: Pika Papow and Veevee Volley now carry power 1, as Return
+   does, so the type chart reads them as attacks: against the wild Skarmory
+   Pika Papow is "super effective", and against the wild Shuckle Veevee
+   Volley is "not very effective". */
+TestKit_MoveSet39:
+    SetVar VAR_0x8006, MOVE_PIKA_PAPOW
+    SetVar VAR_0x8007, MOVE_VEEVEE_VOLLEY
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
