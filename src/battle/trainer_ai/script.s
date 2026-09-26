@@ -519,6 +519,26 @@ Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    // Oxide: Flower Veil keeps stat drops off a Grass type that holds it or
+    // stands beside its holder (element 5), unless Mold Breaker ignores it.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GRASS, Basic_CheckFlowerVeil
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GRASS, Basic_CheckFlowerVeil
+    PopOrEnd 
+
+Basic_CheckFlowerVeil:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckFlowerVeil_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_FLOWER_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckFlowerVeil_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckFlowerVeil_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_FLOWER_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckFlowerVeil_End:
     PopOrEnd 
 
 Basic_CheckStatStageImbalance:
