@@ -204,7 +204,22 @@ def layout(entry, rates=LAND_RATES):
     rungs = rung_index(ladder)
     pins = {k: rung for k, (_, rung) in enumerate(cast) if rung is not None}
     taken = assign_slots(signature, rates, pins, rungs)
-    return [(cast[taken[i]][0], base + ladder[i]) for i in range(len(rates))]
+    slots = [(cast[taken[i]][0], base + ladder[i]) for i in range(len(rates))]
+    # A single slot Ian placed by hand that the archetype's shares cannot
+    # express, such as one 5% slot of a line the shape gives 15% (the classic
+    # starters' rare finds, 2026-09-27): `slot_species` maps a slot index to
+    # the species it holds, after the layout, at the ladder's level.
+    for key, species in (entry.get("slot_species") or {}).items():
+        try:
+            i = int(key)
+        except (TypeError, ValueError):
+            raise LayoutError(f"slot_species: {key!r} is not a slot index")
+        if not 0 <= i < len(rates):
+            raise LayoutError(f"slot_species: slot {i} out of range")
+        if not isinstance(species, str) or not species.startswith("SPECIES_"):
+            raise LayoutError(f"slot_species[{key}]: expected a species, got {species!r}")
+        slots[i] = (species, slots[i][1])
+    return slots
 
 
 def describe(slots, rates=LAND_RATES):

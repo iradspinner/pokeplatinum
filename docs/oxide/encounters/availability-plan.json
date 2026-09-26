@@ -45,9 +45,9 @@
     },
     "encounters_oreburgh_gate_b1f": {
       "home": ["SPECIES_GEODUDE"],
-      "cameo": ["SPECIES_PHANPY", "SPECIES_RHYHORN", "SPECIES_DWEBBLE", "SPECIES_GLIMMET", "SPECIES_CARBINK"],
+      "cameo": ["SPECIES_PHANPY", "SPECIES_RHYHORN", "SPECIES_DWEBBLE", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_MUDKIP"],
       "tail": ["SPECIES_NACLI", "SPECIES_ONIX"],
-      "note": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%."
+      "note": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%. Mudkip is a 5% find on the damp floor (Ian, 2026-09-27)."
     },
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_MACHOP"],
@@ -82,7 +82,7 @@
       "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET", "SPECIES_SNIVY"],
       "cameo": ["SPECIES_TREECKO", "SPECIES_SNUBBULL", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
       "tail": [],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Snivy's home since the honey trees gave it up (2026-09-26)."
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Snivy's home since the honey trees gave it up (2026-09-26). Treecko has one morning slot, Budew the other (Ian, 2026-09-27)."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO", "SPECIES_AIPOM", "SPECIES_MAREEP"],
@@ -98,9 +98,9 @@
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD", "SPECIES_HOPPIP"],
-      "cameo": ["SPECIES_CHERUBI", "SPECIES_SEWADDLE", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_BUIZEL", "SPECIES_MARILL", "SPECIES_DEWPIDER", "SPECIES_SMOLIV"],
+      "cameo": ["SPECIES_CHERUBI", "SPECIES_SEWADDLE", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_BUIZEL", "SPECIES_MARILL", "SPECIES_DEWPIDER", "SPECIES_SQUIRTLE"],
       "tail": ["SPECIES_FROAKIE", "SPECIES_SHELLOS"],
-      "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night."
+      "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night. Squirtle suns on the bank by day, in Smoliv's old day slot (Ian, 2026-09-27)."
     },
     "encounters_eterna_forest": {
       "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY", "SPECIES_ROWLET", "SPECIES_BURMY"],
@@ -164,9 +164,9 @@
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO", "SPECIES_CHINGLING"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_SNOVER", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOOTHOOT"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_SNOVER", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOOTHOOT", "SPECIES_CHARMANDER"],
       "tail": ["SPECIES_ZUBAT", "SPECIES_MEDITITE"],
-      "note": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side."
+      "note": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side. Charmander is a 5% find among the rocks (Ian, 2026-09-27)."
     },
     "encounters_mt_coronet_1f_north_room_1": {
       "home": ["SPECIES_BRONZOR", "SPECIES_CLEFAIRY"],

@@ -2796,7 +2796,7 @@
     "encounters_oreburgh_gate_b1f": {
       "archetype": "A15",
       "band": "early",
-      "intent": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%.",
+      "intent": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%. Mudkip is a 5% find on the damp floor (Ian, 2026-09-27).",
       "locked": [],
       "base_level": 6,
       "order": 16,
@@ -2924,6 +2924,9 @@
             32
           ]
         ]
+      },
+      "slot_species": {
+        "6": "SPECIES_MUDKIP"
       }
     },
     "encounters_oreburgh_mine_b1f": {
@@ -3311,7 +3314,7 @@
     "encounters_route_204_north": {
       "archetype": "A14",
       "band": "early",
-      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too.",
+      "intent": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Treecko has one morning slot, Budew the other (Ian, 2026-09-27).",
       "locked": [],
       "base_level": 8,
       "order": 17,
@@ -3437,6 +3440,9 @@
             34
           ]
         ]
+      },
+      "slot_species": {
+        "3": "SPECIES_BUDEW"
       }
     },
     "encounters_route_204_south": {
@@ -3579,7 +3585,7 @@
     "encounters_route_205_north": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night.",
+      "intent": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night. Squirtle suns on the bank by day, in Smoliv's old day slot (Ian, 2026-09-27).",
       "locked": [],
       "base_level": 12,
       "order": 21,
@@ -3598,7 +3604,7 @@
       ],
       "day": [
         "SPECIES_SEWADDLE",
-        "SPECIES_SMOLIV"
+        "SPECIES_SQUIRTLE"
       ],
       "night": [
         "SPECIES_SURSKIT",
@@ -4544,7 +4550,7 @@
     "encounters_route_211_west": {
       "archetype": "A18",
       "band": "mid",
-      "intent": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side.",
+      "intent": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side. Charmander is a 5% find among the rocks (Ian, 2026-09-27).",
       "locked": [],
       "base_level": 13,
       "order": 33,
@@ -4566,7 +4572,10 @@
       "night": [
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_HOOTHOOT"
-      ]
+      ],
+      "slot_species": {
+        "6": "SPECIES_CHARMANDER"
+      }
     },
     "encounters_route_212_north": {
       "archetype": "A19",
