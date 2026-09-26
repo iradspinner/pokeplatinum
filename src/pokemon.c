@@ -48,6 +48,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
+#include "system_vars.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
@@ -849,6 +850,10 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->ability;
         break;
 
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        result = monDataBlockA->hasHiddenAbility;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1393,6 +1398,10 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     case MON_DATA_ABILITY:
         monDataBlockB->ability = *u16Value;
+        break;
+
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        monDataBlockA->hasHiddenAbility = *u8Value;
         break;
 
     case MON_DATA_MARKINGS:
@@ -2121,6 +2130,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
+    case MON_DATA_HAS_HIDDEN_ABILITY:
     default:
         GF_ASSERT(FALSE);
         break;
@@ -3498,20 +3508,43 @@ BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon)
     return &mon->box;
 }
 
+// Platinum Oxide: the highest level experience can carry this Pokemon to under
+// the level cap. That is the cap itself, or the Pokemon's own level when it is
+// already above the cap (a gift, a trade, or a cap design that moved down).
+u8 Pokemon_GetLevelCapLevel(Pokemon *mon)
+{
+    u8 cap = LevelCap_Get();
+    u8 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+
+    return level > cap ? level : cap;
+}
+
+// Platinum Oxide: the most experience this Pokemon may hold under the level
+// cap, which is exactly the amount for Pokemon_GetLevelCapLevel's level. A
+// Pokemon's stored level is recalculated from its experience whenever it
+// goes into a box, so holding more would let it past the cap there.
+u32 Pokemon_GetLevelCapExp(Pokemon *mon)
+{
+    return Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetLevelCapLevel(mon));
+}
+
 BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
 {
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 monExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
     int monExpRate = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE);
-    u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, MAX_POKEMON_LEVEL);
+    // Platinum Oxide: stop at the level cap, as hg-engine's Pokemon_TryLevelUp
+    // does, rather than at level 100. With no cap in force this is level 100.
+    u8 maxLevel = Pokemon_GetLevelCapLevel(mon);
+    u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, maxLevel);
 
     if (monExp > maxExp) {
         monExp = maxExp;
         Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &monExp);
     }
 
-    if (monNextLevel > MAX_POKEMON_LEVEL) {
+    if (monNextLevel > maxLevel) {
         return FALSE;
     }
 
@@ -4746,28 +4779,31 @@ void Pokemon_CalcAbility(Pokemon *mon)
     BoxPokemon_CalcAbility(&mon->box);
 }
 
-// Platinum Oxide: give a Pokemon its species' hidden ability, the third slot
-// in the species record. Returns FALSE and changes nothing when the species has
-// no hidden ability, which is most of them today.
+// Platinum Oxide: give a Pokemon its hidden ability, the third slot in the
+// species record. This sets the Pokemon's hidden ability bit and recomputes its
+// ability, so the choice outlives an evolution or a form change: whichever
+// species it becomes, it takes that species' hidden ability when there is one
+// and its ordinary slot when there is not. Returns whether the species it is
+// now has a hidden ability, so a gift script can tell the player.
 //
 // Nothing calls this on its own. Which encounters and gifts hand out hidden
-// abilities is a balance question rather than an engine one, so the mechanism
-// lives here and the policy is a script's decision, through GiveHiddenAbility.
+// abilities is a design question rather than an engine one, so the mechanism
+// lives here and the policy is a script's, through GiveHiddenAbility or
+// FLAG_NEXT_MON_HIDDEN_ABILITY.
 BOOL BoxPokemon_TryGiveHiddenAbility(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     int monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    u16 hiddenAbility = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
-    BOOL gaveIt = FALSE;
+    u8 hasHiddenAbility = TRUE;
 
-    if (hiddenAbility != ABILITY_NONE) {
-        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &hiddenAbility);
-        gaveIt = TRUE;
-    }
+    BoxPokemon_SetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+    BoxPokemon_CalcAbility(boxMon);
+
+    BOOL speciesHasOne = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN) != ABILITY_NONE;
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-    return gaveIt;
+    return speciesHasOne;
 }
 
 BOOL Pokemon_TryGiveHiddenAbility(Pokemon *mon)
@@ -4783,8 +4819,13 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     int monAbility1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
     int monAbility2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
+    // Platinum Oxide: a Pokemon given its hidden ability keeps it through
+    // evolutions and form changes, all of which come back here.
+    int monAbilityHidden = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
 
-    if (monAbility2 != ABILITY_NONE) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monAbilityHidden != ABILITY_NONE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbilityHidden);
+    } else if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {

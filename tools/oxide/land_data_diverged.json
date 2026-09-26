@@ -1,0 +1,1452 @@
+{
+    "map_data_004": {
+        "why": [
+            "Verity Lakefront: a capture area, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "21,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    85,
+                    846
+                ]
+            },
+            "22,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    86,
+                    846
+                ]
+            },
+            "23,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    87,
+                    846
+                ]
+            },
+            "24,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    88,
+                    846
+                ]
+            },
+            "25,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    89,
+                    846
+                ]
+            },
+            "26,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    90,
+                    846
+                ]
+            },
+            "27,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    91,
+                    846
+                ]
+            },
+            "28,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    92,
+                    846
+                ]
+            },
+            "29,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    93,
+                    846
+                ]
+            },
+            "30,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    94,
+                    846
+                ]
+            },
+            "31,14": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    95,
+                    846
+                ]
+            },
+            "21,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    85,
+                    847
+                ]
+            },
+            "22,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    86,
+                    847
+                ]
+            },
+            "23,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    87,
+                    847
+                ]
+            },
+            "24,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    88,
+                    847
+                ]
+            },
+            "25,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    89,
+                    847
+                ]
+            },
+            "30,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    94,
+                    847
+                ]
+            },
+            "31,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    95,
+                    847
+                ]
+            },
+            "21,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    85,
+                    848
+                ]
+            },
+            "22,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    86,
+                    848
+                ]
+            },
+            "23,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    87,
+                    848
+                ]
+            },
+            "24,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    88,
+                    848
+                ]
+            },
+            "25,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    89,
+                    848
+                ]
+            },
+            "30,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    94,
+                    848
+                ]
+            },
+            "31,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    95,
+                    848
+                ]
+            },
+            "21,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    85,
+                    849
+                ]
+            },
+            "22,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    86,
+                    849
+                ]
+            },
+            "23,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    87,
+                    849
+                ]
+            },
+            "24,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    88,
+                    849
+                ]
+            },
+            "25,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    89,
+                    849
+                ]
+            },
+            "26,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    90,
+                    849
+                ]
+            },
+            "27,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    91,
+                    849
+                ]
+            },
+            "28,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    92,
+                    849
+                ]
+            },
+            "29,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    93,
+                    849
+                ]
+            },
+            "30,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    94,
+                    849
+                ]
+            },
+            "31,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    95,
+                    849
+                ]
+            },
+            "21,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    85,
+                    850
+                ]
+            },
+            "22,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    86,
+                    850
+                ]
+            },
+            "23,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    87,
+                    850
+                ]
+            },
+            "24,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    88,
+                    850
+                ]
+            },
+            "25,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    89,
+                    850
+                ]
+            },
+            "26,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    90,
+                    850
+                ]
+            },
+            "27,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    91,
+                    850
+                ]
+            },
+            "28,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    92,
+                    850
+                ]
+            },
+            "29,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    93,
+                    850
+                ]
+            },
+            "30,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    94,
+                    850
+                ]
+            },
+            "31,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    95,
+                    850
+                ]
+            }
+        }
+    },
+    "map_data_007": {
+        "why": [
+            "Sandgem Town: grass replacing the gift clowns, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "14,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    847
+                ]
+            },
+            "15,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    847
+                ]
+            },
+            "16,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    176,
+                    847
+                ]
+            },
+            "17,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    177,
+                    847
+                ]
+            },
+            "18,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    178,
+                    847
+                ]
+            },
+            "19,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    179,
+                    847
+                ]
+            },
+            "20,15": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    180,
+                    847
+                ]
+            },
+            "14,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    848
+                ]
+            },
+            "15,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    848
+                ]
+            },
+            "16,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    176,
+                    848
+                ]
+            },
+            "17,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    177,
+                    848
+                ]
+            },
+            "18,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    178,
+                    848
+                ]
+            },
+            "19,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    179,
+                    848
+                ]
+            },
+            "20,16": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    180,
+                    848
+                ]
+            },
+            "14,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    849
+                ]
+            },
+            "15,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    849
+                ]
+            },
+            "16,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    176,
+                    849
+                ]
+            },
+            "17,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    177,
+                    849
+                ]
+            },
+            "18,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    178,
+                    849
+                ]
+            },
+            "19,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    179,
+                    849
+                ]
+            },
+            "20,17": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    180,
+                    849
+                ]
+            }
+        }
+    },
+    "map_data_016": {
+        "why": [
+            "Jubilife City: grass replacing the gift clowns, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "2,26": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    162,
+                    762
+                ]
+            },
+            "3,26": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    163,
+                    762
+                ]
+            },
+            "4,26": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    164,
+                    762
+                ]
+            },
+            "9,26": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    762
+                ]
+            },
+            "10,26": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    762
+                ]
+            },
+            "2,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    162,
+                    763
+                ]
+            },
+            "3,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    163,
+                    763
+                ]
+            },
+            "4,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    164,
+                    763
+                ]
+            },
+            "9,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    763
+                ]
+            },
+            "10,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    763
+                ]
+            },
+            "4,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    164,
+                    764
+                ]
+            },
+            "9,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    764
+                ]
+            },
+            "10,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    764
+                ]
+            },
+            "4,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    164,
+                    765
+                ]
+            },
+            "9,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    765
+                ]
+            },
+            "10,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    765
+                ]
+            },
+            "2,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    162,
+                    766
+                ]
+            },
+            "3,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    163,
+                    766
+                ]
+            },
+            "4,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    164,
+                    766
+                ]
+            },
+            "5,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    165,
+                    766
+                ]
+            },
+            "6,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    166,
+                    766
+                ]
+            },
+            "7,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    167,
+                    766
+                ]
+            },
+            "8,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    168,
+                    766
+                ]
+            },
+            "9,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    766
+                ]
+            },
+            "10,30": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    766
+                ]
+            }
+        }
+    },
+    "map_data_032": {
+        "why": [
+            "Floaroma Town: grass replacing the gift clowns, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "8,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    168,
+                    642
+                ]
+            },
+            "9,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    642
+                ]
+            },
+            "10,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    642
+                ]
+            },
+            "11,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    171,
+                    642
+                ]
+            },
+            "12,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    172,
+                    642
+                ]
+            },
+            "13,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    173,
+                    642
+                ]
+            },
+            "14,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    642
+                ]
+            },
+            "15,2": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    642
+                ]
+            },
+            "8,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    168,
+                    643
+                ]
+            },
+            "9,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    643
+                ]
+            },
+            "10,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    643
+                ]
+            },
+            "11,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    171,
+                    643
+                ]
+            },
+            "12,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    172,
+                    643
+                ]
+            },
+            "13,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    173,
+                    643
+                ]
+            },
+            "14,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    643
+                ]
+            },
+            "15,3": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    643
+                ]
+            },
+            "8,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    168,
+                    644
+                ]
+            },
+            "9,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    644
+                ]
+            },
+            "10,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    644
+                ]
+            },
+            "11,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    171,
+                    644
+                ]
+            },
+            "12,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    172,
+                    644
+                ]
+            },
+            "13,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    173,
+                    644
+                ]
+            },
+            "14,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    644
+                ]
+            },
+            "15,4": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    644
+                ]
+            },
+            "8,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    168,
+                    645
+                ]
+            },
+            "9,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    169,
+                    645
+                ]
+            },
+            "10,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    170,
+                    645
+                ]
+            },
+            "11,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    171,
+                    645
+                ]
+            },
+            "12,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    172,
+                    645
+                ]
+            },
+            "13,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    173,
+                    645
+                ]
+            },
+            "14,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    174,
+                    645
+                ]
+            },
+            "15,5": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    175,
+                    645
+                ]
+            }
+        }
+    },
+    "map_data_072": {
+        "why": [
+            "Solaceon Town: grass replacing the gift clowns, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "7,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    551,
+                    658
+                ]
+            },
+            "8,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    552,
+                    658
+                ]
+            },
+            "9,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    553,
+                    658
+                ]
+            },
+            "10,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    554,
+                    658
+                ]
+            },
+            "11,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    555,
+                    658
+                ]
+            },
+            "12,18": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    556,
+                    658
+                ]
+            },
+            "7,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    551,
+                    659
+                ]
+            },
+            "8,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    552,
+                    659
+                ]
+            },
+            "9,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    553,
+                    659
+                ]
+            },
+            "10,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    554,
+                    659
+                ]
+            },
+            "11,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    555,
+                    659
+                ]
+            },
+            "12,19": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    556,
+                    659
+                ]
+            },
+            "7,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    551,
+                    660
+                ]
+            },
+            "8,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    552,
+                    660
+                ]
+            },
+            "9,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    553,
+                    660
+                ]
+            },
+            "10,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    554,
+                    660
+                ]
+            },
+            "11,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    555,
+                    660
+                ]
+            },
+            "12,20": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    556,
+                    660
+                ]
+            }
+        }
+    },
+    "map_data_432": {
+        "why": [
+            "Amity Square: a capture area, patch approved by Ian (2026-09-27)"
+        ],
+        "tiles": {
+            "1,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    33,
+                    27
+                ]
+            },
+            "2,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    34,
+                    27
+                ]
+            },
+            "3,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    35,
+                    27
+                ]
+            },
+            "4,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    36,
+                    27
+                ]
+            },
+            "5,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    37,
+                    27
+                ]
+            },
+            "6,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    38,
+                    27
+                ]
+            },
+            "7,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    39,
+                    27
+                ]
+            },
+            "8,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    40,
+                    27
+                ]
+            },
+            "9,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    41,
+                    27
+                ]
+            },
+            "10,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    42,
+                    27
+                ]
+            },
+            "11,27": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    43,
+                    27
+                ]
+            },
+            "1,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    33,
+                    28
+                ]
+            },
+            "2,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    34,
+                    28
+                ]
+            },
+            "3,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    35,
+                    28
+                ]
+            },
+            "4,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    36,
+                    28
+                ]
+            },
+            "5,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    37,
+                    28
+                ]
+            },
+            "6,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    38,
+                    28
+                ]
+            },
+            "7,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    39,
+                    28
+                ]
+            },
+            "8,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    40,
+                    28
+                ]
+            },
+            "9,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    41,
+                    28
+                ]
+            },
+            "10,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    42,
+                    28
+                ]
+            },
+            "11,28": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    43,
+                    28
+                ]
+            },
+            "1,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    33,
+                    29
+                ]
+            },
+            "2,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    34,
+                    29
+                ]
+            },
+            "3,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    35,
+                    29
+                ]
+            },
+            "4,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    36,
+                    29
+                ]
+            },
+            "5,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    37,
+                    29
+                ]
+            },
+            "6,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    38,
+                    29
+                ]
+            },
+            "7,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    39,
+                    29
+                ]
+            },
+            "8,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    40,
+                    29
+                ]
+            },
+            "9,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    41,
+                    29
+                ]
+            },
+            "10,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    42,
+                    29
+                ]
+            },
+            "11,29": {
+                "from": "TILE_BEHAVIOR_NONE",
+                "to": "TILE_BEHAVIOR_TALL_GRASS",
+                "event_xz": [
+                    43,
+                    29
+                ]
+            }
+        }
+    }
+}

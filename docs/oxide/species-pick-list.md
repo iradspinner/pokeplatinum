@@ -90,19 +90,20 @@ already exist in Platinum; no new evolution stones are introduced.
 
 | Species | Method |
 |---|---|
-| Alomomola | Luvdisc, high friendship (method 1) |
+| Alomomola | Luvdisc, level 30 (method 4); was high friendship until Oxide dropped friendship evolutions (Ian, 2026-09-27) |
 | Annihilape | Primeape, level 50 (method 4) |
 | Armarouge | Charcadet + Sun Stone (method 7) |
 | Ceruledge | Charcadet + Dusk Stone (method 7) |
 | Clodsire | Wooper, level up holding Poison Barb (methods 18/19) |
 | Cofagrigus | Yamask, level 34 (method 4) - the non-branch half |
-| Frosmoth | Snom, high friendship at night (method 3) - direct port |
+| Frosmoth | Snom, level up at the Ice Rock (method 26); the donor's friendship at night went with Oxide's friendship evolutions (Ian, 2026-09-27) |
 | Grapploct | Clobbopus, level up knowing Taunt (method 20) - direct port |
 | Gyarados M | alt evolution of Gyarados, Water/Dark; level up holding Dragon Scale (methods 18/19), `phase4-engine-change-answers.md` Q4 |
 | Hisuian Goodra | Hisuian Sliggoo, level 50 (method 4) |
 | Hisuian Sliggoo | Goomy, level up holding Metal Coat (methods 18/19) |
 | Kleavor | Scyther, level up holding Hard Stone (methods 18/19); mirrors Scizor's Metal Coat route |
 | Lopunny M | alt evolution of Lopunny, Normal/Fighting offensive; level up holding Fist Plate (methods 18/19), `phase4-engine-change-answers.md` Q4 |
+| Lurantis | Fomantis, level 34 (method 4); the donor's daytime condition (hg-engine method 27) has no Gen 4 equivalent, as Goodra's rain has none |
 | Mr. Rime | Galarian Mr. Mime, level 42 (method 4) |
 | Naganadel | Poipole, level up knowing Dragon Pulse (method 20) - direct port |
 | Pawmot | Pawmo + Thunder Stone (method 7) |
@@ -115,10 +116,13 @@ already exist in Platinum; no new evolution stones are introduced.
 | Vikavolt | Charjabug, magnetic field (method 24) - direct port |
 | Zygarde 50% | Zygarde 10%, level up (method 4) - cells assembling |
 
-Direct ports need no decision: Salazzle, Vikavolt, Frosmoth, Grapploct, Tsareena
-and Naganadel all use methods Gen 4 already has (level-up-female, magnetic field,
-friendship at night, and level-up-knowing-move, the last being how Piloswine
-becomes Mamoswine).
+Direct ports need no decision: Salazzle, Vikavolt, Grapploct, Tsareena and
+Naganadel all use methods Gen 4 already has (level-up-female, magnetic field and
+level-up-knowing-move, the last being how Piloswine becomes Mamoswine).
+
+No evolution is by friendship in Oxide (Ian, 2026-09-27): the sixteen that were,
+natives included, evolve by level, at a place or by a stone, as
+`docs/oxide/encounters/friendship-evolutions.md` sets out, with Crobat at 40.
 
 Branch points worth noting: Yamask splits into Cofagrigus (level 34) or Runerigus
 (holding Reaper Cloth); Wooper splits into Quagsire (level 20) or Clodsire

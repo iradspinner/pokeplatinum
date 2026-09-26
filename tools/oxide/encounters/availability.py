@@ -398,16 +398,24 @@ def render(out):
         lines.append("")
     plan = out["plan"]
     pool_rows = [r for r in rows if r["pool"]]
-    lines.append("**The legendary pool** (Ian, 2026-09-21). Vanilla's three pre-League "
-                 "legendaries already felt like a lot, so the new ones are not statics of "
-                 "their own. The two lake caverns and the roamer slot each draw one at "
-                 "random, each from its own third of the pool so no two match "
-                 "(2026-09-26): " + "; ".join((plan.get("pool") or {}).get("statics") or [])
-                 + " as two static battles, and "
-                 + ((plan.get("pool") or {}).get("roamer") or "the roamer")
-                 + " as a random roamer. A playthrough meets three of them before the "
-                 "League. The scripting is outside this track; the linter's R12 reads the "
-                 "tree and reports these lines until it exists. The pool, "
+    # Written from the plan's pool block as it stands, since Ian's rulings on
+    # which places draw have changed three times (its _comment has them all).
+    pool = plan.get("pool") or {}
+    statics = pool.get("statics") or []
+    empty = pool.get("empty") or []
+    count = ("no", "one", "two", "three", "four")[min(len(statics) + 1, 4)]
+    lines.append("**The legendary pool** (Ian, 2026-09-21, and his later rulings in the "
+                 "plan's pool comment). Vanilla's three pre-League legendaries already felt "
+                 "like a lot, so the new ones are not statics of their own. Each draw comes "
+                 "from its own part of the pool, so no two match: "
+                 + "; ".join(statics) + (" as a static battle" if len(statics) == 1
+                                          else " as static battles") + ", and "
+                 + (pool.get("roamer") or "the roamer") + " as a random roamer. "
+                 + (("Empty: " + "; ".join(empty) + ", until "
+                     + (pool.get("empty_until") or "Ian says otherwise") + ". ") if empty else "")
+                 + f"A playthrough meets {count} of them before the League. The scripting is "
+                 "outside this track; the linter's R12 reads the tree and reports these lines "
+                 "until it exists. The pool, "
                  f"{len(pool_rows)} candidates: " + ", ".join(r["name"] for r in pool_rows) + ".")
     lines.append("")
     proposed = [r for r in rows if r["status"] == "proposed"]

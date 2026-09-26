@@ -121,6 +121,7 @@ HearthomeCityGymLeaderRoom_0154:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_MAYLENE
     GiveBadge 4
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_CAMPER_DREW

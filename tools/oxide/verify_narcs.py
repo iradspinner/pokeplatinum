@@ -6,7 +6,8 @@ rebuilds to exactly the bytes the reference ROM carries.
 Usage:
     python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref BASE.nds [PATH ...]
 
-With no PATH arguments, checks the tables the importer handles byte-for-byte.
+With no PATH arguments, checks the tables the importer handles byte-for-byte,
+and the overworld sprite archive.
 With --encounters, checks pl_enc_data.narc field by field instead, which is what
 that table needs: a few fields are deliberately not imported, so its bytes are
 not expected to match.
@@ -25,6 +26,25 @@ DEFAULT = [
     "poketool/personal/wotbl.narc",
     "poketool/personal/evo.narc",
     "poketool/waza/pl_waza_tbl.narc",
+    # The base ROM's six overworld sprites in vanilla's dummy slots; nothing
+    # checked this archive until they were found missing in play (2026-09-20).
+    "data/mmodel/mmodel.narc",
+    # The base ROM's visual overhaul (Ian, 2026-09-27; the inventory's
+    # corrections list every member). These compare byte for byte.
+    "poketool/trgra/trfgra.narc",
+    "battle/graphic/pl_batt_bg.narc",
+    "battle/graphic/pl_batt_obj.narc",
+    "itemtool/itemdata/item_icon.narc",
+    "demo/title/titledemo.narc",
+    "graphic/box.narc",
+    "graphic/pl_plist_gra.narc",
+    "battle/graphic/pl_b_plist_gra.narc",
+    "battle/graphic/batt_obj.narc",
+    "wazaeffect/effectdata/waza_particle.narc",
+    "poketool/pokegra/pl_pokegra.narc",
+    "poketool/pokegra/pl_otherpoke.narc",
+    "poketool/pokegra/height.narc",
+    "poketool/poke_edit/pl_poke_data.narc",
 ]
 
 
@@ -35,6 +55,67 @@ def walk(folder, prefix=""):
     for sub, f in folder.folders:
         out.update(walk(f, prefix + sub + "/"))
     return out
+
+
+def load_editcheck():
+    """The re-save rules live in editcheck.py, loaded by path like the importer."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "editcheck.py")
+    spec = importlib.util.spec_from_file_location("editcheck", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def check_by_content(b, r, path):
+    """Member by member for an archive in CONTENT_ARCHIVES, APPENDED or GROWN: a
+    member passes when its bytes match, when it differs only in zero padding,
+    in a GROWN archive when it begins with the reference's member, or, in a
+    content archive, when it differs only as a DSPRE re-save would. Appended
+    members are counted, not compared."""
+    extra, extra_why = APPENDED.get(path, (0, None))
+    if len(b) != len(r) + extra:
+        print(f"{path}: member count {len(b)} vs {len(r)}"
+              f"{f' plus {extra} appended' if extra else ''}")
+        return False
+    ec = None
+    if path in CONTENT_ARCHIVES:
+        ec = load_editcheck()
+        ec.ENCRYPTED = "pokegra/" in path
+    same = resaved = padded = grown = 0
+    bad = []
+    for i in range(len(r)):
+        if b[i] == r[i]:
+            same += 1
+            continue
+        # DSPRE pads some members with zero bytes, as the byte path allows too
+        if bytes(b[i]).rstrip(b"\0") == bytes(r[i]).rstrip(b"\0"):
+            padded += 1
+            continue
+        if path in GROWN and len(b[i]) > len(r[i]) and bytes(b[i][:len(r[i])]) == bytes(r[i]):
+            grown += 1
+            continue
+        kind = ec.classify(b[i], r[i]) if ec else "bytes differ"
+        if ec and not ec.is_edit(kind):
+            resaved += 1
+        else:
+            bad.append((i, kind))
+    note = f"; {extra} appended, {extra_why}" if extra else ""
+    if padded:
+        note += f"; {padded} differing only in zero padding"
+    if grown:
+        note += f"; {grown} grown by appended records, {GROWN[path]}"
+    if bad:
+        print(f"{path}: {len(bad)} members differ: {[i for i, _ in bad[:20]]}{note}")
+        print(f"   first: member {bad[0][0]}, {bad[0][1]}")
+        return False
+    if resaved:
+        print(f"{path}: {same} members identical and {resaved} matching in content "
+              f"(differing only as a DSPRE re-save does){note}")
+    elif padded or grown:
+        print(f"{path}: {same} members identical{note}")
+    else:
+        print(f"{path}: identical ({same} members){note}")
+    return True
 
 
 def load_importer():
@@ -239,16 +320,105 @@ def check_map_headers(built, ref):
                 if line.startswith("    [MAP_HEADER_"))
     size = count * imp.MAP_HEADER_SIZE
     oa, ob = imp.find_map_header_table(a, count), imp.find_map_header_table(b, count)
-    bad = [i for i in range(count)
-           if a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
-           != b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]]
+    maps = imp.load_enum("map_headers")
+    bad, intended = [], []
+    for i in range(count):
+        ha = a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
+        hb = b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]
+        if ha == hb:
+            continue
+        allowed = MAP_HEADERS_DIVERGED.get(maps.get(i), ((), ""))[0]
+        if allowed and all(ha[k] == hb[k] for k in range(imp.MAP_HEADER_SIZE) if k not in allowed):
+            intended.append(maps.get(i))
+        else:
+            bad.append(i)
     if bad:
-        maps = imp.load_enum("map_headers")
         print(f"sMapHeaders: {len(bad)} of {count} headers differ: "
               f"{[maps.get(i, i) for i in bad[:6]]}")
     else:
-        print(f"sMapHeaders: all {count} headers identical to the reference")
+        print(f"sMapHeaders: all {count} headers identical to the reference"
+              + (f", apart from {len(intended)} changed on purpose ({', '.join(intended)})"
+                 if intended else ""))
     return not bad
+
+
+def check_land_data(built, ref, nb, nr, reg=None):
+    """land_data.narc against the reference, member by member. A member may
+    differ only at the tiles tools/oxide/land_data_diverged.json records (the
+    registry mapperm.py writes), and there it must hold exactly the recorded
+    behaviour with every other bit of the tile unchanged. Everything else in
+    the member (props, terrain model, heights) must be byte-identical."""
+    import json
+    path = "fielddata/land_data/land_data.narc"
+    b = ndspy.narc.NARC(built.files[nb[path]]).files
+    r = ndspy.narc.NARC(ref.files[nr[path]]).files
+    order = [l.strip() for l in open(os.path.join("res", "field", "maps", "data", "map_data.order")) if l.strip()]
+    reg_path = os.path.join("tools", "oxide", "land_data_diverged.json")
+    if reg is None:
+        reg = json.load(open(reg_path, encoding="utf-8")) if os.path.exists(reg_path) else {}
+    behaviour = {}
+    src = open(os.path.join("include", "constants", "field", "map_tile_behaviors.h")).read()
+    value = -1
+    for line in src[src.index("{") + 1:src.index("}")].splitlines():
+        line = line.split("//")[0].strip().rstrip(",")
+        if not line:
+            continue
+        if "=" in line:
+            name, v = (s.strip() for s in line.split("="))
+            value = int(v, 0)
+        else:
+            name, value = line, value + 1
+        behaviour[name] = value
+    bad, intended = [], []
+    if len(b) != len(r):
+        bad.append(f"{len(b)} members against the reference's {len(r)}")
+    for i in range(min(len(b), len(r))):
+        name = order[i][:-len(".bin")] if i < len(order) else f"member {i}"
+        entry = reg.get(name)
+        expected = bytearray(r[i])
+        if entry:
+            for tile, change in entry["tiles"].items():
+                lx, lz = (int(v) for v in tile.split(","))
+                o = 16 + (lz * 32 + lx) * 2
+                v = struct.unpack_from("<H", expected, o)[0]
+                struct.pack_into("<H", expected, o, (v & 0xFF00) | behaviour[change["to"]])
+        if bytes(expected) == bytes(b[i]):
+            if entry:
+                intended.append(f"{name} ({len(entry['tiles'])} tiles)")
+            continue
+        bad.append(name + (" differs beyond its registered tiles" if entry else " differs"))
+    if bad:
+        print(f"{path}: {len(bad)} members differ unexpectedly: {bad[:6]}")
+    else:
+        print(f"{path}: all {len(b)} members identical to the reference"
+              + (f", apart from registered tile behaviours in {', '.join(intended)}" if intended else ""))
+    return not bad
+
+
+# Map headers that no longer match the base ROM on purpose, each with the byte
+# offsets allowed to differ and why. Offsets are into the 24-byte MapHeader
+# (include/map_header.h): 14 and 15 are wildEncountersArchiveID.
+MAP_HEADERS_DIVERGED = {
+    "MAP_HEADER_SNOWPOINT_CITY": (range(14, 16), "fishing in Snowpoint City reads "
+                                  "encounters_snowpoint_city, the encounter track's rods "
+                                  "table (Ian, 2026-09-25)"),
+    "MAP_HEADER_AMITY_SQUARE": (range(14, 16), "Amity Square's new grass reads "
+                                "encounters_amity_square (Ian, 2026-09-27)"),
+    "MAP_HEADER_VERITY_LAKEFRONT": (range(14, 16), "Verity Lakefront's new grass reads "
+                                    "encounters_verity_lakefront (Ian, 2026-09-27)"),
+    "MAP_HEADER_SANDGEM_TOWN": (range(14, 16), "Sandgem Town's new grass, in place of its gift "
+                                "clown, reads encounters_sandgem_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_JUBILIFE_CITY": (range(14, 16), "Jubilife City's new grass, in place of its gift "
+                                 "clown, reads encounters_jubilife_city (Ian, 2026-09-27)"),
+    "MAP_HEADER_FLOAROMA_TOWN": (range(14, 16), "Floaroma Town's new grass, in place of its gift "
+                                 "clown, reads encounters_floaroma_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_SOLACEON_TOWN": (range(14, 16), "Solaceon Town's new grass, in place of its gift "
+                                 "clown, reads encounters_solaceon_town (Ian, 2026-09-27)"),
+    # Byte 18 is mapLabelTextID, the location name a gift or catch is met at.
+    "MAP_HEADER_FUEGO_IRONWORKS_BUILDING": (range(18, 19), "the building takes a location "
+                                            "name of its own, Ironworks Hall, so it is a "
+                                            "capture apart from the yard (Ian, 2026-09-27)"),
+}
 
 
 # Members that no longer match the base ROM on purpose. Phase 4 changes the game
@@ -363,6 +533,14 @@ SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
                     "poketool/personal/evo.narc",
                     "poketool/personal/wotbl.narc")
 
+# The sixteen natives whose trade evolutions (methods 5 and 6) element 8
+# stripped: the base ROM had already given each a level-up route to the same
+# species, so the trade entry was unreachable in single player. Scyther (123)
+# is also one of element 3's seven.
+TRADE_EVOLUTIONS_STRIPPED = {
+    61, 64, 67, 75, 79, 93, 95, 112, 117, 123, 125, 126, 137, 233, 356, 366,
+}
+
 # Whole members of a species archive that no longer match the reference on
 # purpose, where the difference is not confined to a few byte offsets the way
 # DIVERGED's entries are. Keyed by the reference's member index.
@@ -373,13 +551,46 @@ DIVERGED_MEMBERS = {
                "longer learn it by level (Ian, 2026-09-26)",
     },
     "poketool/personal/evo.narc": {
-        "members": {57, 123, 130, 133, 194, 370, 428},
+        "members": {57, 123, 130, 133, 194, 370, 428,
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447}
+                   | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
-               "Phase 4 element 3)",
+               "Phase 4 element 3); no evolution is by friendship any more "
+               "(Ian, 2026-09-27; docs/oxide/encounters/friendship-evolutions.md): "
+               "Golbat, Chansey, Pichu, Cleffa, Igglybuff, Togepi, Azurill, "
+               "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
+               "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
+               "Moon Stone; and sixteen lose the trade entries the base ROM left "
+               "beside its level-up routes (element 8)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
+
+# Archives the base ROM carries as DSPRE saved them. DSPRE re-saves whatever it
+# touches (file version, sizes, palette bit 15, sprite encryption, zero-tile
+# padding, the optional PCMP block, LZ recompression), so a member rebuilt from
+# the same pixels and colours never matches its copy byte for byte. Members of
+# these archives compare by content under tools/oxide/editcheck.py's rules;
+# every other archive, and every archive that already matched, compares bytes.
+CONTENT_ARCHIVES = {
+    "battle/graphic/pl_batt_obj.narc": "the base ROM's battle platforms, HP box "
+                                      "palette and one misc sprite (visual overhaul)",
+    "itemtool/itemdata/item_icon.narc": "the Pocket PC's icon, member 441",
+    "poketool/pokegra/pl_pokegra.narc": "the base ROM's Pokemon sprite set",
+}
+# Members Oxide appended after the reference's last; the rest still compare.
+APPENDED = {
+    "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
+    "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
+    "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+}
+# Single-member tables whose member Oxide grew by appending records: the built
+# member must begin with the reference's.
+GROWN = {
+    "poketool/poke_edit/pl_poke_data.narc": "each species' 89-byte sprite record, "
+                                            "the 159 new species' after the base ROM's 494",
+}
 
 
 def reference_to_built(i, n_built, n_ref):
@@ -397,6 +608,13 @@ PERSONAL_OLD_SIZE = 44
 PERSONAL_NEW_SIZE = 48
 PERSONAL_ABILITIES_AT = 0x16
 PERSONAL_BASE_EXP_AT = 0x09
+
+# Species records whose two regular abilities differ from the reference on
+# purpose, by reference member, with the ability ids they must now hold.
+PERSONAL_ABILITIES_DIVERGED = {
+    499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+}
 
 
 def personal_fields(member):
@@ -435,7 +653,13 @@ def check_personal(b, r, path):
             continue
         bh, ba, bx, bt = personal_fields(b[j])
         rh, ra, rx, rt = personal_fields(r[i])
-        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2] or bx != rx:
+        abilities_ok = tuple(ba[:2]) == tuple(ra[:2])
+        if not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED:
+            abilities_ok = tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0]
+            if abilities_ok and bh == rh:
+                intended.append(i)
+                continue
+        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or not abilities_ok or bx != rx:
             bad.append(i)
             continue
         if bh == rh:
@@ -578,6 +802,9 @@ def main():
                          "field by field, no reference ROM involved")
     ap.add_argument("--map-headers", action="store_true",
                     help="compare arm9's sMapHeaders against the reference ROM's")
+    ap.add_argument("--land-data", action="store_true",
+                    help="compare land_data.narc with the reference, allowing only the tile "
+                         "behaviours tools/oxide/land_data_diverged.json records")
     ap.add_argument("--text", action="store_true",
                     help="message-level check of pl_msg.narc instead of a byte comparison")
     ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc")
@@ -601,6 +828,8 @@ def main():
         sys.exit(0 if check_text(built, ref, nb, nr, a.msgenc, a.charmap) else 1)
     if a.map_headers:
         sys.exit(0 if check_map_headers(built, ref) else 1)
+    if a.land_data:
+        sys.exit(0 if check_land_data(built, ref, nb, nr) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if p == "poketool/personal/pl_personal.narc":
@@ -611,6 +840,9 @@ def main():
             continue
         if p == WAZA:
             ok = check_move_table(b, r, p) and ok
+            continue
+        if p in CONTENT_ARCHIVES or p in APPENDED or p in GROWN:
+            ok = check_by_content(b, r, p) and ok
             continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False

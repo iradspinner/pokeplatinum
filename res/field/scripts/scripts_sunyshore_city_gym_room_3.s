@@ -46,6 +46,7 @@ SunyshoreCityGymRoom3_Entry3:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_LEAGUE
     GiveBadge 7
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_ACE_TRAINER_ZACHERY

@@ -555,6 +555,14 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
         }
     }
 
+    // Oxide: no wild encounter while the party is empty. Vanilla keeps all
+    // grass out of reach until the starter is given, so it never needed this;
+    // Oxide's Verity Lakefront has grass beside the path the player walks to
+    // the lake before that (Ian, 2026-09-27).
+    if (Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData)) == 0) {
+        return FALSE;
+    }
+
     return MapHeader_HasWildEncounters(fieldSystem->location->mapHeaderID) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
 }
 

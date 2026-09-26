@@ -2627,6 +2627,88 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
     return result;
 }
 
+/**
+ * @brief Oxide: the multiplier a move takes from one entry of the type chart.
+ *
+ * Freeze-Dry is super effective on Water, which Ice otherwise is not (hg-engine's
+ * UpdateTypeEffectiveness).
+ *
+ * @param move
+ * @param chartEntry    Index of the entry into the type-chart
+ * @return The entry's multiplier for this move
+ */
+static int MoveChartMultiplier(int move, int chartEntry)
+{
+    if (move == MOVE_FREEZE_DRY && sTypeMatchupMultipliers[chartEntry][1] == TYPE_WATER) {
+        return TYPE_MULTI_SUPER_EFF;
+    }
+
+    return sTypeMatchupMultipliers[chartEntry][2];
+}
+
+/**
+ * @brief Oxide: whether a move reads this entry of the type chart.
+ *
+ * A move reads the entries for its own type; Flying Press also reads those
+ * for Flying, so it is Fighting and Flying at once (hg-engine's
+ * GetTypeEffectiveness).
+ *
+ * @param move
+ * @param moveType      The move's type in this battle
+ * @param chartEntry    Index of the entry into the type-chart
+ * @return TRUE if the move reads the entry
+ */
+static BOOL MoveReadsChartEntry(int move, u8 moveType, int chartEntry)
+{
+    return sTypeMatchupMultipliers[chartEntry][0] == moveType
+        || (move == MOVE_FLYING_PRESS && sTypeMatchupMultipliers[chartEntry][0] == TYPE_FLYING);
+}
+
+/**
+ * @brief Oxide: count one type chart multiplier towards a move's net
+ * effectiveness, in doublings.
+ *
+ * @param mul
+ * @return 1 for super effective, -1 for not very effective, 0 otherwise
+ */
+static int ChartMultiplierStep(int mul)
+{
+    if (mul == TYPE_MULTI_SUPER_EFF) {
+        return 1;
+    } else if (mul == TYPE_MULTI_NOT_VERY_EFF) {
+        return -1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Oxide: set Flying Press's effectiveness flags from its net result.
+ *
+ * The flags are kept as a running toggle, which is right for the two entries
+ * one type can read but not for the four Flying Press can: against Rock and
+ * Steel it doubles twice and halves twice, which the toggle reads as not very
+ * effective. So for Flying Press they are set again from the total.
+ *
+ * @param move
+ * @param netSteps          The doublings less the halvings the move took
+ * @param moveStatusMask
+ */
+static void SetNetEffectiveness(int move, int netSteps, u32 *moveStatusMask)
+{
+    if (move != MOVE_FLYING_PRESS || (*moveStatusMask & MOVE_STATUS_INEFFECTIVE)) {
+        return;
+    }
+
+    *moveStatusMask &= ~MOVE_STATUS_BASIC_EFFECTIVENESS;
+
+    if (netSteps > 0) {
+        *moveStatusMask |= MOVE_STATUS_SUPER_EFFECTIVE;
+    } else if (netSteps < 0) {
+        *moveStatusMask |= MOVE_STATUS_NOT_VERY_EFFECTIVE;
+    }
+}
+
 int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask)
 {
     int chartEntry;
@@ -2637,6 +2719,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     u8 defenderItemEffect;
     u8 attackerItemPower;
     u8 defenderItemPower;
+    int netSteps = 0; // Oxide
 
     totalMul = 1;
 
@@ -2695,28 +2778,36 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 }
             }
 
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+            if (MoveReadsChartEntry(move, moveType, chartEntry)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, MoveChartMultiplier(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
+
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, MoveChartMultiplier(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
+
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
             }
 
             chartEntry++;
+        }
+
+        if (movePower) {
+            SetNetEffectiveness(move, netSteps, moveStatusMask);
         }
     }
 
@@ -2756,6 +2847,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
 {
     int chartEntry;
     u8 moveType;
+    int netSteps = 0; // Oxide
 
     if (move == MOVE_STRUGGLE) {
         return;
@@ -2788,21 +2880,25 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
                 }
             }
 
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+            if (MoveReadsChartEntry(move, moveType, chartEntry)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
                     && defenderType1 != defenderType2
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
             }
 
             chartEntry++;
         }
+
+        SetNetEffectiveness(move, netSteps, moveStatusMask);
     }
 
     if (attackerAbility != ABILITY_MOLD_BREAKER
@@ -7330,6 +7426,18 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
+    // Oxide: moves that hit with a stat other than the user's own Attack
+    // (hg-engine's CalcBaseDamage, step 3.2). The user's ability and item
+    // still modify the stat below, as they do there.
+    if (move == MOVE_FOUL_PLAY) {
+        attackStat = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK, NULL);
+    } else if (move == MOVE_BODY_PRESS) {
+        // The user's Defense and its stages, taken before Unaware, so a
+        // target with Unaware ignores them, as in the later games.
+        attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
+        attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
     attackerParams.species = BattleMon_Get(battleCtx, attacker, BATTLEMON_SPECIES, NULL);
     defenderParams.species = BattleMon_Get(battleCtx, defender, BATTLEMON_SPECIES, NULL);
     attackerParams.curHP = BattleMon_Get(battleCtx, attacker, BATTLEMON_CUR_HP, NULL);
@@ -7618,9 +7726,20 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         spAttackStage = 0;
     }
 
-    if (attackerParams.ability == ABILITY_UNAWARE) {
+    // Oxide: Sacred Sword, Darkest Lariat and Chip Away ignore the target's
+    // stat stages, as Unaware does (hg-engine's CalcBaseDamage, step 4.2).
+    if (attackerParams.ability == ABILITY_UNAWARE
+        || move == MOVE_SACRED_SWORD
+        || move == MOVE_DARKEST_LARIAT
+        || move == MOVE_CHIP_AWAY) {
         defenseStage = 0;
         spDefenseStage = 0;
+    }
+
+    // Oxide: Foul Play takes the target's Attack stages with its Attack, and
+    // takes them after Unaware, so a target with Unaware still counts its own.
+    if (move == MOVE_FOUL_PLAY) {
+        attackStage = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK_STAGE, NULL) - DEFAULT_STAT_STAGE;
     }
 
     attackStage += DEFAULT_STAT_STAGE;
@@ -7672,6 +7791,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     if (MOVE_DATA(move).effect == BATTLE_EFFECT_HALVE_DEFENSE) {
         defenseStat = defenseStat / 2;
+    }
+
+    // Oxide: Psyshock, Psystrike and Secret Sword are special moves that hit
+    // the target's Defense, with its Defense stages and the modifiers to its
+    // Defense, in place of its Sp. Def (hg-engine's CalcBaseDamage, step 4.3,
+    // which keeps the Sp. Def stages; the later games take the Defense ones).
+    if (move == MOVE_PSYSHOCK || move == MOVE_PSYSTRIKE || move == MOVE_SECRET_SWORD) {
+        spDefenseStat = defenseStat;
+        spDefenseStage = defenseStage;
     }
 
     if (moveClass == CLASS_PHYSICAL) {
@@ -9303,4 +9431,42 @@ void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, in
 {
     int side = BattleSystem_GetBattlerSide(battleSys, battler);
     battleCtx->sideConditions[side].berryEatenMask |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+}
+
+// Oxide: Rage Fist's count for party slots 0 to 4 sits in rageFistHits, three
+// bits a slot, and slot 5's in rageFistHitsSlot5, where the side conditions
+// had room.
+#define RAGE_FIST_HITS_BITS 3
+#define RAGE_FIST_HITS_MASK ((1 << RAGE_FIST_HITS_BITS) - 1)
+
+int Battler_RageFistHits(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    SideConditions *side = &battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)];
+    int slot = battleCtx->selectedPartySlot[battler];
+
+    if (slot == MAX_PARTY_SIZE - 1) {
+        return side->rageFistHitsSlot5;
+    }
+
+    return (side->rageFistHits >> (slot * RAGE_FIST_HITS_BITS)) & RAGE_FIST_HITS_MASK;
+}
+
+void Battler_AddRageFistHit(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    SideConditions *side = &battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)];
+    int slot = battleCtx->selectedPartySlot[battler];
+    int hits = Battler_RageFistHits(battleSys, battleCtx, battler);
+
+    if (hits >= RAGE_FIST_MAX_HITS) {
+        return;
+    }
+
+    hits++;
+
+    if (slot == MAX_PARTY_SIZE - 1) {
+        side->rageFistHitsSlot5 = hits;
+    } else {
+        side->rageFistHits &= ~(RAGE_FIST_HITS_MASK << (slot * RAGE_FIST_HITS_BITS));
+        side->rageFistHits |= hits << (slot * RAGE_FIST_HITS_BITS);
+    }
 }

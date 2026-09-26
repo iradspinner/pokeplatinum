@@ -200,6 +200,7 @@ Common_Entry17:
     End
 Common_Entry18:
     LockAll
+    ClearFlag FLAG_POCKET_PC_OPEN
     PlaySE SEQ_SE_DP_PC_ON_sseq
     Call Common_0BA7
     BufferPlayerName 0
@@ -510,6 +511,7 @@ Common_Entry57:
     End
 Common_Entry58:
     LockAll
+    SetFlag FLAG_POCKET_PC_OPEN
     SetVarFromValue VAR_0x8004, 255
     PlaySE SEQ_SE_DP_PC_ON_sseq
     BufferPlayerName 0
@@ -784,17 +786,20 @@ Common_0BA7:
     PlayPCBootUpAnimation 90
     WaitForAnimation 90
     Return
+@ Oxide: the PC menu, per Ian's rulings of 2026-09-27 (docs/oxide/pocket-pc.md).
+@ Both PCs offer Pokemon Storage, Healing Waves and Misc.; only a Pokemon Center
+@ PC adds the player's PC and Oak's PC. The Move Tutors, the Teleport System and
+@ the Online Shop are gone from both.
 Common_0BB2:
     BufferPlayerName 0
     Message 33
     InitGlobalTextMenu 1, 1, 0, VAR_0x8006, 1
     AddMenuEntryImm 59, 0
-    AddMenuEntryImm 60, 1
-    AddMenuEntryImm 62, 2
-    AddMenuEntryImm 58, 5
-    AddMenuEntryImm 57, 4
+    CheckFlag FLAG_POCKET_PC_OPEN
+    CallIf 0, Common_PCMenu_PokemonCenterEntries
     AddMenuEntryImm 63, 7
-    AddMenuEntryImm 93, 8
+    CheckFlag FLAG_POCKET_PC_OPEN
+    CallIf 1, Common_PCMenu_RareCandyEntry
     AddMenuEntryImm 64, 6
     ShowMenu
     SetVarFromVar VAR_0x8008, VAR_0x8006
@@ -804,17 +809,35 @@ Common_0BB2:
     GoToIf 1, Common_1198
     CompareVarToValue VAR_0x8008, 2
     GoToIf 1, Common_11A8
-    CompareVarToValue VAR_0x8008, 4
-    GoToIf 1, Common_11BC
-    CompareVarToValue VAR_0x8008, 5
-    GoToIf 1, Common_13AF
     CompareVarToValue VAR_0x8008, 6
     GoToIf 1, Common_1451
     CompareVarToValue VAR_0x8008, 7
     GoToIf 1, Common_14E7
-    CompareVarToValue VAR_0x8008, 8
-    GoToIf 1, Common_14FE
+    CompareVarToValue VAR_0x8008, 9
+    GoToIf 1, Common_PCMenu_RareCandy
     GoTo Common_1514
+Common_PCMenu_PokemonCenterEntries:
+    AddMenuEntryImm 60, 1
+    AddMenuEntryImm 62, 2
+    Return
+Common_PCMenu_RareCandyEntry:
+    AddMenuEntryImm 280, 9
+    Return
+@ Oxide: the Pocket PC's Rare Candy entry tops the bag's stack up to 999, the
+@ most a stack holds, however many are there (Ian, 2026-09-27).
+Common_PCMenu_RareCandy:
+    GetItemQuantity ITEM_RARE_CANDY, VAR_0x8005
+    SetVarFromValue VAR_0x800C, 999
+    SubVar VAR_0x800C, VAR_0x8005
+    CompareVarToValue VAR_0x800C, 0
+    GoToIf 1, Common_PCMenu_RareCandyFilled
+    AddItem ITEM_RARE_CANDY, VAR_0x800C, VAR_0x8005
+Common_PCMenu_RareCandyFilled:
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
+    Message 256
+    WaitButton
+    CloseMessage
+    GoTo Common_0BB2
 Common_0C56:
     Message 41
     Return
@@ -1210,145 +1233,29 @@ Common_11A8:
     CallCommonScript 9951
     SetVarFromValue VAR_0x8004, 255
     GoTo Common_0BB2
-Common_11BC:
-    Message 136
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry 137, 0, 255
-    CheckFlag FLAG_UNK_0x0A8A
-    CallIf 1, Common_17E7
-    CheckFlag FLAG_UNK_0x0A89
-    CallIf 1, Common_17F1
-    CheckFlag FLAG_UNK_0x0A88
-    CallIf 1, Common_17FB
-    CheckFlag FLAG_UNK_0x0A87
-    CallIf 1, Common_1805
-    CheckFlag FLAG_UNK_0x0A86
-    CallIf 1, Common_180F
-    CheckFlag FLAG_UNK_0x0A85
-    CallIf 1, Common_1819
-    CheckFlag FLAG_UNK_0x0A84
-    CallIf 1, Common_1823
-    CheckFlag FLAG_UNK_0x0A83
-    CallIf 1, Common_182D
-    CheckFlag FLAG_UNK_0x0A82
-    CallIf 1, Common_1837
-    CheckFlag FLAG_UNK_0x0A81
-    CallIf 1, Common_1841
-    CheckFlag FLAG_UNK_0x0A80
-    CallIf 1, Common_184B
-    CheckFlag FLAG_UNK_0x0A7F
-    CallIf 1, Common_1855
-    CheckFlag FLAG_UNK_0x0A7E
-    CallIf 1, Common_185F
-    CheckFlag FLAG_UNK_0x0A7D
-    CallIf 1, Common_1869
-    CheckFlag FLAG_UNK_0x0A7C
-    CallIf 1, Common_1873
-    CheckFlag FLAG_UNK_0x0A7B
-    CallIf 1, Common_187D
-    CheckFlag FLAG_UNK_0x0A7A
-    CallIf 1, Common_1887
-    CheckFlag FLAG_UNK_0x0A79
-    CallIf 1, Common_1891
-    AddListMenuEntry 156, 19, 255
-    ShowListMenu
-    SetVarFromVar VAR_0x8008, VAR_0x800C
-    CompareVarToValue VAR_0x8008, 0
-    GoToIf 1, Common_189B
-    CompareVarToValue VAR_0x8008, 1
-    GoToIf 1, Common_18C5
-    CompareVarToValue VAR_0x8008, 2
-    GoToIf 1, Common_18EF
-    CompareVarToValue VAR_0x8008, 3
-    GoToIf 1, Common_1919
-    CompareVarToValue VAR_0x8008, 4
-    GoToIf 1, Common_1943
-    CompareVarToValue VAR_0x8008, 5
-    GoToIf 1, Common_196D
-    CompareVarToValue VAR_0x8008, 6
-    GoToIf 1, Common_1997
-    CompareVarToValue VAR_0x8008, 7
-    GoToIf 1, Common_19C1
-    CompareVarToValue VAR_0x8008, 8
-    GoToIf 1, Common_19EB
-    CompareVarToValue VAR_0x8008, 9
-    GoToIf 1, Common_1A15
-    CompareVarToValue VAR_0x8008, 10
-    GoToIf 1, Common_1A3F
-    CompareVarToValue VAR_0x8008, 11
-    GoToIf 1, Common_1A69
-    CompareVarToValue VAR_0x8008, 12
-    GoToIf 1, Common_1A93
-    CompareVarToValue VAR_0x8008, 13
-    GoToIf 1, Common_1ABD
-    CompareVarToValue VAR_0x8008, 14
-    GoToIf 1, Common_1AE7
-    CompareVarToValue VAR_0x8008, 15
-    GoToIf 1, Common_1B11
-    CompareVarToValue VAR_0x8008, 16
-    GoToIf 1, Common_1B3B
-    CompareVarToValue VAR_0x8008, 17
-    GoToIf 1, Common_1B65
-    CompareVarToValue VAR_0x8008, 18
-    GoToIf 1, Common_1B8F
-    CompareVarToValue VAR_0x8008, 19
-    GoToIf 1, Common_1BB9
-    GoTo Common_0BB2
-Common_13AF:
-    Message 172
-    InitLocalTextListMenu 1, 1, 0, VAR_0x800C, 1
-    AddListMenuEntry 166, 0, 255
-    CountBadgesAcquired SCRIPT_LOCAL_VARS_START
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 3
-    CallIf 4, Common_1BC1
-    CountBadgesAcquired SCRIPT_LOCAL_VARS_START
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 5
-    CallIf 4, Common_1BDB
-    CountBadgesAcquired SCRIPT_LOCAL_VARS_START
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 5
-    CallIf 4, Common_1BE5
-    ShowListMenu
-    SetVarFromVar VAR_0x8008, VAR_0x800C
-    CompareVarToValue VAR_0x8008, 0
-    GoToIf 1, Common_1BEF
-    CompareVarToValue VAR_0x8008, 1
-    GoToIf 1, Common_1C81
-    CompareVarToValue VAR_0x8008, 2
-    GoToIf 1, Common_1CA8
-    CompareVarToValue VAR_0x8008, 3
-    GoToIf 1, Common_1CCF
-    CompareVarToValue VAR_0x8008, 4
-    GoToIf 1, Common_1CF6
-    CompareVarToValue VAR_0x8008, 5
-    GoToIf 1, Common_1D10
-    GoTo Common_0BB2
+@ Oxide: Misc. keeps the Name Rater and Hidden Power APPs, and the Hall of Fame
+@ after the League on a Pokemon Center PC only. Happiness Up and the three
+@ post-game resets are gone (Ian, 2026-09-27).
 Common_1451:
     Message 172
     InitGlobalTextMenu 1, 1, 0, VAR_0x8006, 1
     AddMenuEntryImm 85, 0
     AddMenuEntryImm 86, 1
-    AddMenuEntryImm 87, 2
-    CheckFlag FLAG_GAME_COMPLETED
-    CallIf 1, Common_1D2A
-    CheckFlag FLAG_UNK_0x0A66
-    CallIf 1, Common_1D30
+    CheckFlag FLAG_POCKET_PC_OPEN
+    CallIf 0, Common_PCMenu_HallOfFameEntry
     ShowMenu
     SetVarFromVar VAR_0x8008, VAR_0x8006
     CompareVarToValue VAR_0x8008, 0
     GoToIf 1, Common_1D3E
     CompareVarToValue VAR_0x8008, 1
     GoToIf 1, Common_1D58
-    CompareVarToValue VAR_0x8008, 2
-    GoToIf 1, Common_1D72
-    CompareVarToValue VAR_0x8008, 3
-    GoToIf 1, Common_1E06
     CompareVarToValue VAR_0x8008, 4
     GoToIf 1, Common_1E2D
-    CompareVarToValue VAR_0x8008, 5
-    GoToIf 1, Common_1E5A
-    CompareVarToValue VAR_0x8008, 6
-    GoToIf 1, Common_1E9B
     GoTo Common_0BB2
+Common_PCMenu_HallOfFameEntry:
+    CheckFlag FLAG_GAME_COMPLETED
+    CallIf 1, Common_1D2A
+    Return
 Common_14E7:
     CloseMessage
     PlayFanfare SEQ_ASA_sseq
@@ -1358,15 +1265,6 @@ Common_14E7:
     WaitButton
     CloseMessage
     GoTo Common_0BB2
-Common_14FE:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    CallCommonScript 2019
-    CloseMessageWithoutErasing
-    PokeMartCommon 0
-    ReleaseAll
-    Return
 Common_1514:
     CloseMessage
     PlaySE SEQ_SE_DP_PC_LOGOFF_sseq
@@ -1576,318 +1474,8 @@ Common_178C:
 Common_17DB:
     Call Common_2107
     GoTo Common_2129
-Common_17E7:
-    AddListMenuEntry 138, 1, 255
-    Return
-Common_17F1:
-    AddListMenuEntry 139, 2, 255
-    Return
-Common_17FB:
-    AddListMenuEntry 140, 3, 255
-    Return
-Common_1805:
-    AddListMenuEntry 141, 4, 255
-    Return
-Common_180F:
-    AddListMenuEntry 142, 5, 255
-    Return
-Common_1819:
-    AddListMenuEntry 143, 6, 255
-    Return
-Common_1823:
-    AddListMenuEntry 144, 7, 255
-    Return
-Common_182D:
-    AddListMenuEntry 145, 8, 255
-    Return
-Common_1837:
-    AddListMenuEntry 146, 9, 255
-    Return
-Common_1841:
-    AddListMenuEntry 147, 10, 255
-    Return
-Common_184B:
-    AddListMenuEntry 148, 11, 255
-    Return
-Common_1855:
-    AddListMenuEntry 149, 12, 255
-    Return
-Common_185F:
-    AddListMenuEntry 150, 13, 255
-    Return
-Common_1869:
-    AddListMenuEntry 151, 14, 255
-    Return
-Common_1873:
-    AddListMenuEntry 152, 15, 255
-    Return
-Common_187D:
-    AddListMenuEntry 153, 16, 255
-    Return
-Common_1887:
-    AddListMenuEntry 154, 17, 255
-    Return
-Common_1891:
-    AddListMenuEntry 155, 18, 255
-    Return
-Common_189B:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 411, 116, 886, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_18C5:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 418, 177, 843, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_18EF:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 3, 180, 777, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1919:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 45, 303, 757, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1943:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 426, 176, 667, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_196D:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 65, 305, 531, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1997:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 86, 465, 698, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_19C1:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 433, 566, 657, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_19EB:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 132, 717, 612, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1A15:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 120, 600, 816, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1A3F:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 442, 472, 539, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1A69:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 33, 58, 723, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1A93:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 165, 379, 234, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1ABD:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 150, 860, 785, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1AE7:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 172, 847, 562, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1B11:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 392, 308, 914, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1B3B:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 188, 647, 430, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1B65:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 450, 659, 339, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1B8F:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    Warp 457, 802, 473, 1
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-Common_1BB9:
-    CloseMessage
-    GoTo Common_0BB2
-Common_1BC1:
-    AddListMenuEntry 167, 1, 255
-    AddListMenuEntry 168, 2, 255
-    AddListMenuEntry 169, 3, 255
-    Return
-Common_1BDB:
-    AddListMenuEntry 170, 4, 255
-    Return
-Common_1BE5:
-    AddListMenuEntry 171, 5, 255
-    Return
-Common_1BEF:
-    Message 132
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot VAR_0x8005
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x8005, 255
-    GoToIf 1, Common_2151
-    GetPartyMonSpecies 32773, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_215D
-    CheckHasLearnableReminderMoves VAR_0x800C, 32773
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_216A
-    Message 133
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    OpenMoveReminderMenu 32773
-    CheckLearnedReminderMove VAR_0x800C
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x800C, 255
-    GoToIf 1, Common_2151
-    GoTo Common_2151
-Common_1C81:
-    Message 173
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2177
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_13AF
-    GoTo Common_13AF
-Common_1CA8:
-    Message 173
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2220
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_13AF
-    GoTo Common_13AF
-Common_1CCF:
-    Message 173
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_22C9
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2372
-    GoTo Common_13AF
-Common_1CF6:
-    Message 205
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_237F
-    GoTo Common_2428
-Common_1D10:
-    Message 221
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2435
-    GoTo Common_2442
 Common_1D2A:
     AddMenuEntryImm 61, 4
-    Return
-Common_1D30:
-    AddMenuEntryImm 88, 3
-    AddMenuEntryImm 89, 5
-    AddMenuEntryImm 90, 6
     Return
 Common_1D3E:
     Message 157
@@ -1901,46 +1489,6 @@ Common_1D58:
     CompareVarToValue VAR_0x800C, 1
     GoToIf 1, Common_2506
     GoTo Common_2512
-Common_1D72:
-    Message 59
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2506
-    Message 60
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot VAR_MAP_LOCAL_0x05
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_MAP_LOCAL_0x05, 255
-    GoToIf 1, Common_2506
-    GetPartyMonSpecies 16389, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_258A
-    Message 61
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    PlaySE SEQ_SE_DP_FW367_sseq
-    WaitSE SEQ_SE_DP_FW367_sseq
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    BufferPartyMonNickname 0, 16389
-    Message 62
-    IncreasePartyMonFriendship 255, 16389
-    CloseMessage
-    GoTo Common_2506
-Common_1E06:
-    Message 240
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2597
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2641
-    GoTo Common_1451
 Common_1E2D:
     PlaySE SEQ_SE_DP_PC_LOGIN_sseq
     CloseMessage
@@ -1952,36 +1500,6 @@ Common_1E2D:
     ReturnToField
     Call Common_266D
     GoTo Common_0BB2
-Common_1E5A:
-    Message 243
-    ClearFlag FLAG_UNK_0x095E
-    ClearFlag FLAG_UNK_0x095D
-    ClearFlag FLAG_UNK_0x095C
-    ClearFlag FLAG_UNK_0x095B
-    ClearFlag FLAG_UNK_0x095A
-    ClearFlag FLAG_UNK_0x0959
-    ClearFlag FLAG_UNK_0x0958
-    ClearFlag FLAG_UNK_0x0957
-    ClearFlag FLAG_UNK_0x0956
-    ClearFlag FLAG_UNK_0x0955
-    ClearFlag FLAG_UNK_0x0954
-    ClearFlag FLAG_UNK_0x0953
-    ClearFlag FLAG_UNK_0x0952
-    WaitButton
-    CloseMessage
-    GoTo Common_1451
-Common_1E9B:
-    Message 244
-    ClearFlag FLAG_TRADED_FOR_KAZZA_ABRA
-    ClearFlag FLAG_TRADED_FOR_CHARAP_CHATOT
-    ClearFlag FLAG_TRADED_FOR_GASPAR_HAUNTER
-    ClearFlag FLAG_TRADED_FOR_FOPPA_MAGIKARP
-    ClearFlag FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE
-    ClearFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON
-    ClearFlag FLAG_UNK_0x0A65
-    WaitButton
-    CloseMessage
-    GoTo Common_1451
 Common_1EC4:
     PlayPCShutDownAnimation 90
     WaitForAnimation 90
@@ -2144,170 +1662,6 @@ Common_2129:
     CompareVarToValue VAR_0x8008, 1
     GoToIf 1, Common_2767
     GoTo Common_0BB2
-Common_2151:
-    SetVarFromValue VAR_0x8004, 255
-    GoTo Common_13AF
-Common_215D:
-    Message 134
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_216A:
-    Message 135
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2177:
-    Message 175
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot SCRIPT_LOCAL_VARS_START
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 255
-    GoToIf 1, Common_2151
-    GetPartyMonSpecies 32768, VAR_0x8001
-    CompareVarToValue VAR_0x8001, 0
-    GoToIf 1, Common_2788
-    CheckHasLearnableTutorMoves 32768, 0, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2795
-    BufferPartyMonNickname 0, 32768
-    Message 177
-    ShowMoveTutorMoveSelectionMenu 32768, 0, 32780
-    SetVarFromVar VAR_0x8003, VAR_0x800C
-    CompareVarToValue VAR_0x8003, 65534
-    GoToIf 1, Common_2151
-    CompareVarToValue VAR_0x8003, 239
-    GoToIf 1, Common_27A2
-    GetPartyMonMoveCount VAR_0x800C, 32768
-    SetVarFromVar VAR_0x8002, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 4
-    GoToIf 1, Common_27AF
-    GoTo Common_2867
-Common_2220:
-    Message 175
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot SCRIPT_LOCAL_VARS_START
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 255
-    GoToIf 1, Common_2886
-    GetPartyMonSpecies 32768, VAR_0x8001
-    CompareVarToValue VAR_0x8001, 0
-    GoToIf 1, Common_2893
-    CheckHasLearnableTutorMoves 32768, 2, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_28A0
-    BufferPartyMonNickname 0, 32768
-    Message 177
-    ShowMoveTutorMoveSelectionMenu 32768, 2, 32780
-    SetVarFromVar VAR_0x8003, VAR_0x800C
-    CompareVarToValue VAR_0x8003, 65534
-    GoToIf 1, Common_2886
-    CompareVarToValue VAR_0x800C, 239
-    GoToIf 1, Common_28AD
-    GetPartyMonMoveCount VAR_0x800C, 32768
-    SetVarFromVar VAR_0x8002, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 4
-    GoToIf 1, Common_28BA
-    GoTo Common_2972
-Common_22C9:
-    Message 175
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot SCRIPT_LOCAL_VARS_START
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 255
-    GoToIf 1, Common_2372
-    GetPartyMonSpecies 32768, VAR_0x8001
-    CompareVarToValue VAR_0x8001, 0
-    GoToIf 1, Common_2991
-    CheckHasLearnableTutorMoves 32768, 1, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_299E
-    BufferPartyMonNickname 0, 32768
-    Message 177
-    ShowMoveTutorMoveSelectionMenu 32768, 1, 32780
-    SetVarFromVar VAR_0x8003, VAR_0x800C
-    CompareVarToValue VAR_0x8003, 65534
-    GoToIf 1, Common_2372
-    CompareVarToValue VAR_0x800C, 239
-    GoToIf 1, Common_29AB
-    GetPartyMonMoveCount VAR_0x800C, 32768
-    SetVarFromVar VAR_0x8002, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 4
-    GoToIf 1, Common_29B8
-    GoTo Common_2A70
-Common_2372:
-    Message 174
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_237F:
-    Message 206
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot SCRIPT_LOCAL_VARS_START
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 255
-    GoToIf 1, Common_2428
-    GetPartyMonSpecies 32768, VAR_0x8001
-    CompareVarToValue VAR_0x8001, 0
-    GoToIf 1, Common_2A8F
-    Call Common_2A9C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2B40
-    SetVarFromVar VAR_0x8002, VAR_0x800C
-    Call Common_2B4D
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2B6D
-    GetPartyMonFriendship VAR_0x800C, 32768
-    CompareVarToValue VAR_0x800C, 255
-    GoToIf 0, Common_2B7A
-    BufferPartyMonSpecies 0, 32768
-    CompareVarToValue VAR_0x8002, 1
-    GoToIf 1, Common_2B87
-    CompareVarToValue VAR_0x8002, 2
-    GoToIf 1, Common_2BA7
-    GoTo Common_2BC7
-Common_2428:
-    Message 207
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2435:
-    Message 222
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2442:
-    GetPartyCount VARS_START
-    SubVar VARS_START, 1
-    GetPartyMonSpecies 16384, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2BE7
-    GetPartyMonType VAR_0x8004, VAR_0x8005, 16384
-    CompareVarToValue VAR_0x8004, 16
-    GoToIf 1, Common_2BFA
-    CompareVarToValue VAR_0x8005, 16
-    GoToIf 1, Common_2BFA
-    GoTo Common_2BE7
 Common_2487:
     Message 158
     WaitABPress
@@ -2358,55 +1712,10 @@ Common_2512:
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Common_2CCE
     BufferTypeName 0, 32772
-    Message 38
+    CalcHiddenPowerPower 32768, VAR_0x800C
+    BufferNumber 1, VAR_0x800C
+    Message 257
     GoTo Common_2506
-Common_258A:
-    Message 63
-    WaitButton
-    CloseMessage
-    GoTo Common_2506
-Common_2597:
-    ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
-    ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
-    ClearFlag FLAG_CAUGHT_ARCEUS
-    SetVarFromValue VAR_ARCEUS_EVENT_STATE, 0
-    SetVarFromValue VAR_SPEAR_PILLAR_PALKIA_STATE, 0
-    ClearFlag FLAG_CAUGHT_DIALGA
-    SetVarFromValue VAR_HALL_OF_ORIGIN_STATE, 0
-    ClearFlag FLAG_CAUGHT_PALKIA
-    SetVarFromValue VAR_SPEAR_PILLAR_DIALGA_STATE, 0
-    ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
-    ClearFlag FLAG_CAUGHT_HEATRAN
-    SetVarFromValue VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
-    ClearFlag FLAG_HIDE_SNOWPOINT_TEMPLE_B5F_REGIGIGAS
-    ClearFlag FLAG_CAUGHT_OLD_CHATEAU_ROTOM
-    ClearFlag FLAG_DAILY_BATTLED_OLD_CHATEAU_ROTOM
-    ClearFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
-    ClearFlag FLAG_HIDE_VALOR_CAVERN_AZELF
-    ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
-    ClearFlag FLAG_CAUGHT_DARKRAI
-    ClearFlag FLAG_CAUGHT_SHAYMIN
-    ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
-    SetVarFromValue VAR_IRON_RUINS_STATE, 270
-    SetVarFromValue VAR_ICEBERG_RUINS_STATE, 270
-    SetVarFromValue VAR_ROCK_PEAK_RUINS_STATE, 270
-    SetVarFromValue VAR_ROAMING_MOLTRES_STATE, 0
-    ActivateRoamingPokemon 3
-    SetVarFromValue VAR_ROAMING_ZAPDOS_STATE, 0
-    ActivateRoamingPokemon 4
-    SetVarFromValue VAR_ROAMING_ARTICUNO_STATE, 0
-    ActivateRoamingPokemon 5
-    SetVarFromValue VAR_ROAMING_MESPRIT_STATE, 0
-    ActivateRoamingPokemon 0
-    SetVarFromValue VAR_ROAMING_CRESSELIA_STATE, 0
-    ActivateRoamingPokemon 1
-    Message 241
-    WaitButton
-    CloseMessage
-    GoTo Common_1451
-Common_2641:
-    CloseMessage
-    GoTo Common_1451
 Common_2649:
     Message 131
     GoTo Common_0BB2
@@ -2487,279 +1796,6 @@ Common_2767:
     Call Common_2652
     OpenSealCapsuleEditor
     GoTo Common_2D06
-Common_2788:
-    Message 185
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2795:
-    Message 176
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_27A2:
-    Message 4
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_27AF:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 179
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D28
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    CloseMessage
-    OpenSummaryScreenTeachMove 32768, 32771
-    GetSummarySelectedMoveSlot VAR_0x8002
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x8002, 4
-    GoToIf 1, Common_2D28
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 182
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D28
-    BufferPartyMonNickname 0, 32768
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 183
-    PlaySE SEQ_SE_DP_KON_sseq
-    WaitSE SEQ_SE_DP_KON_sseq
-    WaitTime 30, VAR_0x800C
-    Message 184
-    WaitTime 32, VAR_0x800C
-    PlayFanfare SEQ_FANFA1_sseq
-    BufferMoveName 1, 32771
-    Message 178
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2D4C
-Common_2867:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 186
-    PlayFanfare SEQ_FANFA1_sseq
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2D4C
-Common_2886:
-    Message 174
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2893:
-    Message 185
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_28A0:
-    Message 176
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_28AD:
-    Message 11
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_28BA:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 188
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D5A
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    CloseMessage
-    OpenSummaryScreenTeachMove 32768, 32771
-    GetSummarySelectedMoveSlot VAR_0x8002
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x8002, 4
-    GoToIf 1, Common_2D5A
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 189
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D5A
-    BufferPartyMonNickname 0, 32768
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 190
-    PlaySE SEQ_SE_DP_KON_sseq
-    WaitSE SEQ_SE_DP_KON_sseq
-    WaitTime 30, VAR_0x800C
-    Message 191
-    WaitTime 32, VAR_0x800C
-    PlayFanfare SEQ_FANFA1_sseq
-    BufferMoveName 1, 32771
-    Message 192
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2D7E
-Common_2972:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 193
-    PlayFanfare SEQ_FANFA1_sseq
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2D7E
-Common_2991:
-    Message 185
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_299E:
-    Message 176
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_29AB:
-    Message 196
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_29B8:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 197
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D8C
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    CloseMessage
-    OpenSummaryScreenTeachMove 32768, 32771
-    GetSummarySelectedMoveSlot VAR_0x8002
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x8002, 4
-    GoToIf 1, Common_2D8C
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 198
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2D8C
-    BufferPartyMonNickname 0, 32768
-    GetPartyMonMove VAR_0x800C, 32768, 32770
-    BufferMoveName 1, 32780
-    Message 199
-    PlaySE SEQ_SE_DP_KON_sseq
-    WaitSE SEQ_SE_DP_KON_sseq
-    WaitTime 30, VAR_0x800C
-    Message 200
-    WaitTime 32, VAR_0x800C
-    PlayFanfare SEQ_FANFA1_sseq
-    BufferMoveName 1, 32771
-    Message 201
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2DB0
-Common_2A70:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 202
-    PlayFanfare SEQ_FANFA1_sseq
-    WaitFanfare
-    WaitTime 16, VAR_0x800C
-    GoTo Common_2DB0
-Common_2A8F:
-    Message 209
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2A9C:
-    CompareVarToValue VAR_0x8001, 6
-    GoToIf 1, Common_2DBE
-    CompareVarToValue VAR_0x8001, 157
-    GoToIf 1, Common_2DBE
-    CompareVarToValue VAR_0x8001, 257
-    GoToIf 1, Common_2DBE
-    CompareVarToValue VAR_0x8001, 392
-    GoToIf 1, Common_2DBE
-    CompareVarToValue VAR_0x8001, 9
-    GoToIf 1, Common_2DC6
-    CompareVarToValue VAR_0x8001, 160
-    GoToIf 1, Common_2DC6
-    CompareVarToValue VAR_0x8001, 260
-    GoToIf 1, Common_2DC6
-    CompareVarToValue VAR_0x8001, 395
-    GoToIf 1, Common_2DC6
-    CompareVarToValue VAR_0x8001, 3
-    GoToIf 1, Common_2DCE
-    CompareVarToValue VAR_0x8001, 154
-    GoToIf 1, Common_2DCE
-    CompareVarToValue VAR_0x8001, 254
-    GoToIf 1, Common_2DCE
-    CompareVarToValue VAR_0x8001, 389
-    GoToIf 1, Common_2DCE
-    SetVarFromValue VAR_0x800C, 0
-    Return
-Common_2B40:
-    Message 208
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2B4D:
-    CompareVarToValue VAR_0x8002, 1
-    GoToIf 1, Common_2DD6
-    CompareVarToValue VAR_0x8002, 2
-    GoToIf 1, Common_2DE0
-    GoTo Common_2DEA
-Common_2B6D:
-    Message 211
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2B7A:
-    Message 210
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2B87:
-    Message 212
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2428
-    SetVarFromValue VAR_0x8003, 307
-    GoTo Common_2DF4
-Common_2BA7:
-    Message 213
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2428
-    SetVarFromValue VAR_0x8003, 308
-    GoTo Common_2DF4
-Common_2BC7:
-    Message 214
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2428
-    SetVarFromValue VAR_0x8003, 338
-    GoTo Common_2DF4
-Common_2BE7:
-    CompareVarToValue VARS_START, 0
-    GoToIf 5, Common_2E2D
-    GoTo Common_2E6E
-Common_2BFA:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, 16384
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2E7B
-    CompareVarToValue VARS_START, 0
-    GoToIf 5, Common_2E2D
-    GoTo Common_2E6E
 Common_2C22:
     Message 162
     WaitButton
@@ -2809,7 +1845,9 @@ Common_2CC3:
     GoTo Common_2506
 Common_2CCE:
     BufferTypeName 0, 32772
-    Message 38
+    CalcHiddenPowerPower 32768, VAR_0x800C
+    BufferNumber 1, VAR_0x800C
+    Message 257
     GoTo Common_2506
 Common_2CDC:
     UnloadAnimation 90
@@ -2834,111 +1872,6 @@ Common_2D06:
     Call Common_0BA7
     FadeScreen 6, 1, 1, 0
     GoTo Common_2129
-Common_2D28:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 180
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2F1F
-    GoTo Common_27AF
-Common_2D4C:
-    ResetMoveSlot 32768, 32770, 32771
-    GoTo Common_2151
-Common_2D5A:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 194
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2F32
-    GoTo Common_28BA
-Common_2D7E:
-    ResetMoveSlot 32768, 32770, 32771
-    GoTo Common_2886
-Common_2D8C:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 203
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2F45
-    GoTo Common_29B8
-Common_2DB0:
-    ResetMoveSlot 32768, 32770, 32771
-    GoTo Common_22C9
-Common_2DBE:
-    SetVarFromValue VAR_0x800C, 1
-    Return
-Common_2DC6:
-    SetVarFromValue VAR_0x800C, 2
-    Return
-Common_2DCE:
-    SetVarFromValue VAR_0x800C, 3
-    Return
-Common_2DD6:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_BLAST_BURN, 32768
-    Return
-Common_2DE0:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_HYDRO_CANNON, 32768
-    Return
-Common_2DEA:
-    CheckPartyMonHasMove VAR_0x800C, MOVE_FRENZY_PLANT, 32768
-    Return
-Common_2DF4:
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    OpenMoveTutorMenu 32768, 32771
-    CheckLearnedTutorMove VAR_0x800C
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x800C, 255
-    GoToIf 1, Common_2428
-    GoTo Common_2151
-Common_2E2D:
-    SubVar VARS_START, 1
-    GetPartyMonSpecies 16384, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2BE7
-    GetPartyMonType VAR_0x8004, VAR_0x8005, 16384
-    CompareVarToValue VAR_0x8004, 16
-    GoToIf 1, Common_2BFA
-    CompareVarToValue VAR_0x8005, 16
-    GoToIf 1, Common_2BFA
-    GoTo Common_2BE7
-Common_2E6E:
-    Message 223
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2E7B:
-    Message 224
-    CloseMessage
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    SelectMoveTutorPokemon
-    GetSelectedPartySlot SCRIPT_LOCAL_VARS_START
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue SCRIPT_LOCAL_VARS_START, 255
-    GoToIf 1, Common_2435
-    GetPartyMonSpecies 32768, VAR_0x8001
-    CompareVarToValue VAR_0x8001, 0
-    GoToIf 1, Common_2F58
-    Call Common_2F65
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, Common_2F8F
-    CheckPartyMonHasMove VAR_0x800C, MOVE_DRACO_METEOR, 32768
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, Common_2F9C
-    GetPartyMonFriendship VAR_0x800C, 32768
-    CompareVarToValue VAR_0x800C, 255
-    GoToIf 0, Common_2FAE
-    SetVarFromValue VAR_0x8003, 434
-    GoTo Common_2FBB
 Common_2F07:
     BufferPartyMonNickname 0, 32773
     Message 163
@@ -2946,68 +1879,6 @@ Common_2F07:
     CloseMessage
     SetVarFromValue VAR_0x8004, 255
     GoTo Common_0BB2
-Common_2F1F:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 187
-    GoTo Common_2151
-Common_2F32:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 195
-    GoTo Common_2886
-Common_2F45:
-    BufferPartyMonNickname 0, 32768
-    BufferMoveName 1, 32771
-    Message 204
-    GoTo Common_22C9
-Common_2F58:
-    Message 227
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2F65:
-    GetPartyMonType VAR_0x8004, VAR_0x8005, 32768
-    CompareVarToValue VAR_0x8004, 16
-    GoToIf 1, Common_2FF9
-    CompareVarToValue VAR_0x8005, 16
-    GoToIf 1, Common_2FF9
-    SetVarFromValue VAR_0x800C, 0
-    Return
-Common_2F8F:
-    Message 226
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2F9C:
-    BufferMoveName 0, MOVE_DRACO_METEOR
-    Message 228
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2FAE:
-    Message 225
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2FBB:
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    OpenMoveTutorMenu 32768, MOVE_DRACO_METEOR
-    CheckLearnedTutorMove VAR_0x800C
-    ReturnToField
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    CompareVarToValue VAR_0x800C, 255
-    GoToIf 1, Common_2435
-    Message 229
-    WaitButton
-    CloseMessage
-    GoTo Common_2151
-Common_2FF9:
-    SetVarFromValue VAR_0x800C, 1
-    Return
-    .byte 0
 
     .balign 4, 0
 Common_Movement_3002:

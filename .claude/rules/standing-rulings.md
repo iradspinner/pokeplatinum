@@ -44,3 +44,12 @@ read, so they are written here too. Each is a standing instruction.
 - Ian's super-wanted lines (the `wanted` list in
   `docs/oxide/encounters/values.json`) are never trimmed from the encounter
   tables, and a majority of them should be obtainable in a best-play run.
+- Attrition lives in gauntlets (Ian, 2026-09-27): the Pocket PC heals, and
+  works, everywhere except chosen one-way areas the player must clear, beating
+  a set number of trainers in a row, before leaving to heal. Balance proposals
+  that rely on route attrition belong in a gauntlet.
+- Evolution stones are deliberately scarce (Ian, 2026-09-27): two lines
+  competing for one stone is intended, because it weakens the box and makes
+  the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
+  different Eeveelution). Do not add stones just to settle a contest; the
+  balance track's stone census is where the counts are set.

@@ -39,8 +39,9 @@ def main():
     # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21),
     # 206 with the seventeen water lines, 205 with the Magikarp line cut
     # and 239 with the 34 lines of the Platinum-size pick-list (all 2026-09-26)
-    results.append(("every one of the 239 lines has a row",
-                    len(rows) == 239, f"{len(rows)} rows"))
+    # 238 since Fomantis evolves into Lurantis (main-scripts, 2026-09-27), one line.
+    results.append(("every one of the 238 lines has a row",
+                    len(rows) == 238, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
@@ -72,9 +73,10 @@ def main():
                     not g["early_fit"], ", ".join(g["early_fit"][:3])))
     results.append(("every live land table has something planned",
                     not g["unplanned_tables"], ", ".join(g["unplanned_tables"][:4])))
-    results.append(("the corridor is the Roark and Gardenia splits: 20 live land tables",
+    # 20 until 2026-09-27; 23 with the grass of Sandgem, Jubilife and Floaroma.
+    results.append(("the corridor is the Roark and Gardenia splits: 23 live land tables",
                     out["plan"]["corridor_splits"] == ["Roark", "Gardenia"]
-                    and len(out["corridor"]) == 20, f"{len(out['corridor'])} tables"))
+                    and len(out["corridor"]) == 23, f"{len(out['corridor'])} tables"))
     results.append(("known placements: Gible at home in Wayward Cave B1F, Shinx on Route 202, "
                     "Wooper in the marsh",
                     by["Gible"]["home"] == ["encounters_wayward_cave_b1f"]

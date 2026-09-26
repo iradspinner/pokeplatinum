@@ -65,6 +65,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_data.h"
@@ -1430,6 +1431,12 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
             return CURRENT_MOVE_DATA.power * 2;
         }
         return 0;
+
+    case MOVE_RAGE_FIST:
+        // 50, and 50 more for each time the user has been hit by an attack
+        // this battle, to 350 (Generation 9; Ian, 2026-09-26). The count
+        // lasts through switching out and fainting.
+        return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, battleCtx->attacker);
 
     case MOVE_GRAV_APPLE:
         // Half as strong again while Gravity is in force.
@@ -5693,7 +5700,9 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     u8 *defenderData = (u8 *)&DEFENDING_MON;
 
     int i; // does not match if this is declared outside the individual loops' scopes
-    for (i = 0; i < XtOffset(BattleMon *, ability) + 1; i++) {
+    // Oxide: through the whole ability, which element 2 widened to two bytes;
+    // the copy used to stop after its first, the low byte.
+    for (i = 0; i < XtOffset(BattleMon *, ability) + sizeof(ATTACKING_MON.ability); i++) {
         attackerData[i] = defenderData[i];
     }
 
@@ -10876,7 +10885,17 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         u32 totalExp = 0;
         msg.id = BattleStrings_Text_PokemonGainedExpPoints; // "{0} gained {1} Exp. Points!"
 
-        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
+        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL
+            && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) >= LevelCap_Get()) {
+            // Platinum Oxide: a Pokemon at the level cap gains no experience,
+            // so it gets no message either, but it still gains its effort
+            // values, as hg-engine gives them to a Pokemon at the cap.
+            BattleScript_CalcEffortValues(BattleSystem_GetParty(data->battleSys, expBattler),
+                slot,
+                data->battleCtx->battleMons[data->battleCtx->faintedMon].species,
+                data->battleCtx->battleMons[data->battleCtx->faintedMon].formNum);
+        } else if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
             if (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot)) {
                 totalExp = data->battleCtx->gainedExp;
             }
@@ -10906,6 +10925,13 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             u32 newExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
             data->tmpData[GET_EXP_NEW_EXP] = newExp - Pokemon_GetCurrentLevelBaseExp(mon);
             newExp += totalExp;
+
+            // Platinum Oxide: a Pokemon below the level cap keeps only the
+            // experience that takes it to the cap, so its gauge fills to the
+            // cap and no further. The message still reports the whole gain.
+            if (newExp > Pokemon_GetLevelCapExp(mon)) {
+                newExp = Pokemon_GetLevelCapExp(mon);
+            }
 
             if (slot == data->battleCtx->selectedPartySlot[expBattler]) {
                 data->battleCtx->battleMons[expBattler].exp = newExp;

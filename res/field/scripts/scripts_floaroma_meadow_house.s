@@ -6,8 +6,12 @@
 
     ScriptEntry FloaromaMeadowHouse_Entry0
     ScriptEntry FloaromaMeadowHouse_Entry1
-    ScriptEntry FloaromaMeadowHouse_Entry2
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 FloaromaMeadowHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -26,76 +30,4 @@ FloaromaMeadowHouse_Entry1:
     WaitButton
     CloseMessage
     ReleaseAll
-    End
-FloaromaMeadowHouse_Entry2:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT, FloaromaMeadowHouse_00E7
-    Message 2
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, FloaromaMeadowHouse_00FD
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, FloaromaMeadowHouse_00E7
-    GoTo FloaromaMeadowHouse_00E7
-FloaromaMeadowHouse_0063:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaMeadowHouse_00F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_COMBEE, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaMeadowHouse_008F:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaMeadowHouse_00F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_BUDEW, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaMeadowHouse_00BB:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, FloaromaMeadowHouse_00F2
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_PACHIRISU, 18, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
-    Message 6
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaMeadowHouse_00E7:
-    Message 6
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaMeadowHouse_00F2:
-    Message 7
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-FloaromaMeadowHouse_00FD:
-    GetRandom VAR_0x800C, 3
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, FloaromaMeadowHouse_0063
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, FloaromaMeadowHouse_008F
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, FloaromaMeadowHouse_00BB
     End

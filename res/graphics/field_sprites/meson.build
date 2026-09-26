@@ -189,6 +189,13 @@ field_sprites_textures_32_px_single_palette = [
     { 'file': 'objects/fridge_unused.png' ,'basename': 'icebox'},
     { 'file': 'objects/washing_machine_unused.png' ,'basename': 'waterbox'},
     { 'file': 'objects/lawnmower_unused.png' ,'basename': 'grassbox'},
+    # Oxide: four of the base ROM's six sprites in vanilla's dummy slots. The
+    # texture names are the ones the base ROM's files carry, so they rebuild
+    # byte for byte; the other two, both Abra, are copied in below.
+    { 'file': 'npc/may.png', 'basename': 'daigo'},
+    { 'file': 'npc/steven.png', 'basename': 'daigo'},
+    { 'file': 'npc/ethan.png', 'basename': 'hero'},
+    { 'file': 'npc/red.png', 'basename': 'red'},
 ]
 
 field_sprites_textures_single_frame = [
@@ -541,7 +548,8 @@ foreach texture : field_sprites_textures_32_px_single_palette
     )
 endforeach
 
-foreach index : range(12)
+# Oxide: dummies 0 to 5 hold the base ROM's sprites now, so only 6 to 11 remain.
+foreach index : range(6, 12)
     field_sprites_nsbtxs += custom_target(
         input: files('dummy.png'),
         build_subdir: field_sprites_private_dir,
@@ -666,6 +674,14 @@ foreach texture : field_sprites_textures_two_frame_pokemon
     )
 endforeach
 
+# Oxide: the base ROM's two Abra sprites, copied as they are. Each stores some
+# identical frames twice, which nitrobtx always stores once, so neither can be
+# rebuilt from a PNG byte for byte; nitrobtx dump turns either back into one.
+field_sprites_prebuilt_nsbtxs = copy_gen.process(files(
+    'npc/abra_follower.nsbtx',
+    'npc/abra.nsbtx',
+))
+
 field_sprites_nsbmds = copy_gen.process(files(
     'models/generic_32x32.nsbmd',
     'models/generic_16x16.nsbmd',
@@ -728,6 +744,7 @@ field_sprites_narc = custom_target(field_sprites_target_name,
     ],
     input: [
         field_sprites_nsbtxs,
+        field_sprites_prebuilt_nsbtxs,
         field_sprites_nsbmds,
         field_sprites_frame_seqs,
     ],

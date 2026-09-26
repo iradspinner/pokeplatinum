@@ -21,7 +21,8 @@ typedef struct PokemonDataBlockA {
     /* 0x08 */ u32 exp;
 
     /* 0x0C */ u8 friendship;
-    /* 0x0D */ u8 unusedAbility; //!< Platinum Oxide: the ability moved to block B as a u16. Block A is full, block B had three spare bytes, and ability ids now run past 255. See docs/oxide/save-layout.md.
+    /* 0x0D */ u8 hasHiddenAbility : 1; //!< Platinum Oxide: the Pokemon takes its species' hidden ability, the third slot, whenever that species has one. Kept apart from the ability itself so an evolution or a form change recomputes the right slot.
+               u8 unusedAbility : 7; //!< Platinum Oxide: this byte held the ability until it moved to block B as a u16. Block A is full, block B had three spare bytes, and ability ids now run past 255. See docs/oxide/save-layout.md.
     /* 0x0E */ u8 markings;
     /* 0x0F */ u8 originLanguage;
 

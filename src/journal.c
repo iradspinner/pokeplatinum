@@ -112,6 +112,9 @@ static const MapInfo sMapsInfo[] = {
     { LocationNames_Text_ValleyWindworks, FALSE },
     { LocationNames_Text_FuegoIronworks,  FALSE },
     { LocationNames_Text_OldChateau,      FALSE },
+    // Oxide: the Ironworks building's own name since 2026-09-27, so leaving it
+    // is still written up as the Ironworks was
+    { LocationNames_Text_IronworksHall,   FALSE },
 };
 
 static const GymInfo sGymsInfo[] = {

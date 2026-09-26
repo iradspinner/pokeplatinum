@@ -301,6 +301,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // were worked out before the form was set, so a form Pokemon fought with its base
             // form's stats. Work them out again for the form.
             Pokemon_CalcStats(mon);
+            // The ability too (Ian, 2026-09-27): it was picked from the base form's record by
+            // the personality's low bit, which also carries any ability request, so picking
+            // again by the same bit from the form's record keeps that request.
+            Pokemon_CalcAbility(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -328,6 +332,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // were worked out before the form was set, so a form Pokemon fought with its base
             // form's stats. Work them out again for the form.
             Pokemon_CalcStats(mon);
+            // The ability too (Ian, 2026-09-27): it was picked from the base form's record by
+            // the personality's low bit, which also carries any ability request, so picking
+            // again by the same bit from the form's record keeps that request.
+            Pokemon_CalcAbility(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -351,6 +359,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // were worked out before the form was set, so a form Pokemon fought with its base
             // form's stats. Work them out again for the form.
             Pokemon_CalcStats(mon);
+            // The ability too (Ian, 2026-09-27): it was picked from the base form's record by
+            // the personality's low bit, which also carries any ability request, so picking
+            // again by the same bit from the form's record keeps that request.
+            Pokemon_CalcAbility(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -379,6 +391,10 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // were worked out before the form was set, so a form Pokemon fought with its base
             // form's stats. Work them out again for the form.
             Pokemon_CalcStats(mon);
+            // The ability too (Ian, 2026-09-27): it was picked from the base form's record by
+            // the personality's low bit, which also carries any ability request, so picking
+            // again by the same bit from the form's record keeps that request.
+            Pokemon_CalcAbility(mon);
             Party_AddPokemon(dto->parties[battler], mon);
         }
 

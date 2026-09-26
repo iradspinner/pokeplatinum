@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 22,
-            "species": "SPECIES_PICHU"
+            "species": "SPECIES_PIKACHU"
         },
         {
             "level": 23,
-            "species": "SPECIES_BUNEARY"
+            "species": "SPECIES_LOPUNNY"
         },
         {
             "level": 23,

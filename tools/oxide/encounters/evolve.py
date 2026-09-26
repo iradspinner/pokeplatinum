@@ -17,8 +17,10 @@ otherwise Snorunt would be a Froslass at the stone's judged level and never
 reach Glalie at 42.
 
 **A method with no level of its own gets a judged one**, in PSEUDO below. These
-are the numbers to argue with: a stone at 30, friendship at 20, a trade at 38,
-which is what makes Electabuzz an Electivire late on and not before.
+are the numbers to argue with: a stone or a place (the Moss Rock, the Ice Rock,
+Mt. Coronet's field) at 30, and a held item, a known move or a partner in the
+party at 32. Oxide has no friendship or trade evolution left (Ian, 2026-09-27,
+and element 8's trade strip), so neither has a number.
 
 An evolution into a species the pick-list does not carry is refused, and so is
 one whose stage is already in the same table, because a table cannot hold the
@@ -30,15 +32,17 @@ import os
 from . import audit
 from . import model
 
-# Methods that have no level of their own, and the level each is judged at.
+# Methods that have no level of their own, and the level each is judged at,
+# under the names res/pokemon uses. Until 2026-09-27 this table was keyed by
+# other names (EVO_FRIENDSHIP, EVO_TRADE_ITEM and the like), so every method
+# but the stones fell through to DEFAULT_PSEUDO; the values below are the ones
+# the tables were built against, so renaming them moved nothing.
 PSEUDO = {
-    "EVO_FRIENDSHIP": 20, "EVO_FRIENDSHIP_DAY": 20, "EVO_FRIENDSHIP_NIGHT": 20,
     "EVO_USE_ITEM": 30, "EVO_USE_ITEM_MALE": 30, "EVO_USE_ITEM_FEMALE": 30,
-    "EVO_STONE": 30, "EVO_STONE_MALE": 30, "EVO_STONE_FEMALE": 30,
-    "EVO_TRADE": 38, "EVO_TRADE_ITEM": 38, "EVO_OTHER_PARTY_MON": 38,
-    "EVO_LEVEL_DARK_IN_PARTY": 38,
-    "EVO_LEVEL_MOSS_ROCK": 30, "EVO_LEVEL_ICE_ROCK": 30, "EVO_LEVEL_RAIN": 30,
-    "EVO_HAS_MOVE": 32, "EVO_HAS_MOVE_TYPE": 32,
+    "EVO_LEVEL_MOSS_ROCK": 30, "EVO_LEVEL_ICE_ROCK": 30,
+    "EVO_LEVEL_MAGNETIC_FIELD": 32,
+    "EVO_LEVEL_WITH_HELD_ITEM_DAY": 32, "EVO_LEVEL_WITH_HELD_ITEM_NIGHT": 32,
+    "EVO_LEVEL_KNOW_MOVE": 32, "EVO_LEVEL_SPECIES_IN_PARTY": 32,
 }
 DEFAULT_PSEUDO = 32
 

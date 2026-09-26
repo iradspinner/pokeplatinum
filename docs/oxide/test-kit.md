@@ -45,7 +45,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 |---|---|---|
 | 99 Rare Candies | the item | Rare Candy chaining: after one, the party menu reopens |
 | Rotom and Giratina | Rotom in Wash form (Lv. 30), Giratina in Origin form holding the Griseous Orb (Lv. 50) | the element 3 form fix: each summary shows its form's stats and types |
-| Eevee with Charm | Eevee, Lv. 20, Charm in its first slot | Sylveon: one Rare Candy should evolve it |
+| Eevee with Charm | Eevee, Lv. 15, Charm in its first slot (Lv. 20 until element 8, and lowered so a new game's cap of 16 takes the candy) | Sylveon: one Rare Candy should evolve it |
 | Klefki, Lv. 5 | Klefki, which learns Fairy Wind (move 587) at Lv. 6 | the widened learnset: one Rare Candy teaches a move the old format could not hold; then the Move Relearner |
 | Gible vs. Clefairy | Gible, Lv. 20, with Dragon Claw, then a wild Clefairy, Lv. 10 | Fairy: the Dragon move does nothing |
 | New move sets | a Lv. 50 Mew knowing four of the new moves (sets below) | the battle effect scripts, from the player's side |
@@ -57,13 +57,37 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
 | Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
+| Level caps | puts the player in any of the twelve level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
 a whiteout does. A warp ahead of the story can meet story scripts in the
 destination; that is the kit's nature, not a defect.
 
-## The move sets
+## The level caps
+
+Element 8 holds each Pokemon at the level cap of the player's split. The
+kit's own Pokemon are mostly Lv. 50, above a new game's cap of 16, so they
+gain no Exp. and refuse Rare Candies until "Level caps" moves the split on;
+"No cap" puts back the vanilla rules. The Level caps menu, after "Which
+split?", lists Roark 16, Gardenia 26, Fantina 33, Maylene 39, Wake 44,
+Byron 53, Candice 56, Galactic HQ 60, Galactic 65, Volkner 68, League 78 and
+No cap, and sets the split outright, which the game's own `RaiseLevelCap`
+never does downwards.
+
+With the cap at 16, what to look for:
+
+- Klefki, Lv. 5, takes Rare Candies up to Lv. 16, and the next one "won't
+  have any effect" and is not used up.
+- A Lv. 50 Pokemon beats a wild Chansey with no Exp. message at all, and its
+  effort values still rise (the summary's stats move at its next level).
+- A Pokemon one level under the cap stops at the cap however much Exp. it
+  earns. Take Klefki to Lv. 15, lead with it against the wild Chansey,
+  switch to a Lv. 50 Mew and win: Klefki's message still names the whole
+  gain, but it grows to Lv. 16 only, its Exp. bar sits at the start of the
+  level, and it is still Lv. 16 after a trip into the PC and back.
+- Raising the cap to Gardenia's 26 lets the same Pokemon gain Exp. again.
+
 
 One set per four moves, a batch of effect scripts at a time. Each is a block in
 the kit script that loads four move ids into `VAR_0x8006` to `VAR_0x8009` and
@@ -113,6 +137,14 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 39 | Pika Papow, Veevee Volley, Recover, Splash | the Pika Papow fix; against the wild Skarmory, Pika Papow says "It's super effective!", and against the wild Shuckle, Veevee Volley says "It's not very effective...". Before the fix neither message showed, though the damage was already right |
 | 40 | Lash Out, Crunch, Recover, Splash | the Lash Out fix; starts a battle with a wild Klefki given Prankster that knows only Tail Whip, so its Tail Whip always goes first. While "MEW's Defense fell!" shows each turn, Lash Out (150 power) does about twice what Crunch (80) does; after six Tail Whips Mew's Defense cannot fall further, and Lash Out (75) does a little less than Crunch. Before the fix it was always the latter |
 | 41 | Grav Apple, Seed Bomb, Gravity, Recover | the Grav Apple fix; starts a battle with a wild Chansey given Clear Body, so Grav Apple's Defense drop is blocked, that knows only Splash. Grav Apple (90) does a little more than Seed Bomb (80); after Gravity ("Gravity intensified!"), Grav Apple (135) does about two thirds more than Seed Bomb, until Gravity ends five turns later. Before the fix the two stayed the same |
+| 42 | Foul Play, Crunch, Swords Dance, Recover | the Foul Play fix; starts a battle with a wild Shuckle that knows only Swords Dance. Foul Play takes Shuckle's Attack, which is tiny, so it does well under half what Crunch does; Mew's own Swords Dance raises Crunch and leaves Foul Play alone, and each of Shuckle's Swords Dances raises Foul Play. Before the fix Foul Play did a little more than Crunch and rose with Mew's Swords Dance |
+| 43 | Body Press, Brick Break, Iron Defense, Swords Dance | the Body Press fix; starts a battle with a wild Shuckle that knows only Splash. Body Press (80) and Brick Break (75) start close; one Iron Defense doubles Body Press and leaves Brick Break alone, and Swords Dance does the opposite. Before the fix Body Press followed Swords Dance and ignored Iron Defense |
+| 44 | Psyshock, Psychic, Recover, Splash | the Psyshock fix, which Psystrike and Secret Sword share; starts a battle with a wild Chansey that knows only Calm Mind. Psyshock hits Chansey's tiny Defense and takes most of its HP, where Psychic takes a small share; after a few Calm Minds Psychic does very little and Psyshock is unchanged. Before the fix Psyshock did a little less than Psychic and fell with it |
+| 45 | Sacred Sword, Brick Break, Darkest Lariat, Crunch | the Sacred Sword and Darkest Lariat fixes, which Chip Away shares; starts a battle with a wild Skarmory that knows only Iron Defense and Double Team. Use Sacred Sword and Darkest Lariat on the first turn to see their damage, then Brick Break and Crunch once Skarmory has used both a few times: those two do much less and sometimes miss, while Sacred Sword and Darkest Lariat do what they did at first and never miss. Dark is not very effective on Steel here, so the Dark moves do about half. Before the fix Sacred Sword and Darkest Lariat fell and missed with the others |
+| 46 | Freeze-Dry, Ice Beam, Flying Press, Close Combat | the Freeze-Dry and Flying Press fixes; starts a battle with a wild Poliwrath (Water and Fighting) that knows only Splash. Freeze-Dry says "It's super effective!" and does about three times what Ice Beam does, which says "It's not very effective..."; Flying Press says "It's super effective!", from its Flying half, and Close Combat says neither. Before the fixes Freeze-Dry was not very effective and Flying Press neutral |
+| 47 | Flying Press, Close Combat, Recover, Splash | the Flying Press fix; starts a battle with a wild Probopass (Rock and Steel) that knows only Splash. Close Combat says "It's super effective!" and does about five times what Flying Press does, which says nothing: its Fighting half doubles twice and its Flying half halves twice. Before the fix Flying Press was super effective too |
+| 48 | Rage Fist, Substitute, Recover, Splash | the Rage Fist rule (Ian, 2026-09-26); starts a battle with a wild Registeel that knows only Double Kick, which hits Mew twice a turn ("Hit 2 time(s)!"). Ghost is not very effective on Steel here, so every hit is small, but the steps show: Rage Fist used turn after turn does 50 power on the first turn, before Mew has been hit, then 150, 250 and 350, where it stops growing. Hits on Mew's Substitute add nothing, and switching Mew out and back keeps the count, though kicks the other Pokemon takes do not count for Mew. Before the fix it was always 100 |
+| 49 | Transform, Recover, Splash, Tackle | the Transform fix (the open bug of 2026-09-26); starts a battle with a wild Rattata given Toxic Debris, ability 295, that knows only Tackle. Once Mew has used Transform, the next Tackle it takes brings "Poison spikes were scattered all around the enemy team's feet!", and a second one another layer. Before the fix a transformed Mew got Inner Focus (39, the low byte of 295) and no spikes came |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and
@@ -224,6 +256,9 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | dc60da30 |
 | Defog, both sides | Mew: Defog, Stealth Rock, Reflect, Recover; foe a wild Skarmory that knows Spikes and Toxic Spikes | Let Skarmory lay Spikes and Toxic Spikes on your side, and lay Stealth Rock on its side and Reflect on yours. Defog blows away Stealth Rock, Spikes and Toxic Spikes, each named once, and your Reflect stays: Defog clears screens only on the target's side. It still clears fog | 72252c48 |
 | Rapid Spin | Starmie: Rapid Spin, Surf, Thunderbolt, Recover; foe a wild Skarmory that knows only Spikes | Each Rapid Spin ends with "STARMIE's Speed rose!", after "STARMIE blew away Spikes!" when Skarmory has laid some; at +6 it says nothing more | 349e0f45 |
+| Hidden ability gift | Litten, Lv. 15, given with `FLAG_NEXT_MON_HIDDEN_ABILITY` set (element 8) | Its summary reads Intimidate, its hidden ability, where both ordinary slots are Blaze. One Rare Candy evolves it into a Torracat that still reads Intimidate | element 8, hidden abilities |
+| Hidden ability wild | a wild Litten, Lv. 15, fought with the flag set | "The wild LITTEN's Intimidate cuts ...'s Attack!" as the battle starts. The flag clears itself, so the next scripted wild Pokemon rolls as usual | element 8, hidden abilities |
+| Items restored | Mew holding a Sitrus Berry: Belly Drum, Tackle, Recover, Splash; foe a wild Chansey that knows only Splash | Belly Drum halves Mew's HP and it eats the Sitrus Berry. After the battle, won or run from, Mew's summary shows the Sitrus Berry again | element 8, held items restored |
 
 ## Not built yet
 

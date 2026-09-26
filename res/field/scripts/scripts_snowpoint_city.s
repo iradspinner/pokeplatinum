@@ -117,7 +117,10 @@ SnowpointCity_Entry11:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    CheckFlag FLAG_GAME_COMPLETED
+    @ Oxide: the ferry sails once Galactic HQ is cleared (Cyrus and Saturn
+    @ beaten, the lake guardians freed), not after the Hall of Fame, so the
+    @ Battle Zone opens before Volkner (docs/oxide/battle-zone-plan.md).
+    CheckFlag FLAG_FREED_GALACTIC_HQ_POKEMON
     GoToIf 0, SnowpointCity_0345
     Message 10
     ShowYesNoMenu VAR_0x800C
@@ -475,6 +478,9 @@ SnowpointCity_067F:
     CloseMessage
     ReleaseAll
     End
+    @ Oxide: aligned explicitly now that this file is edited by hand
+    @ (carry-over-map skill, gotcha 6).
+    .balign 4, 0
 SnowpointCity_Movement_068A:
     WalkOnSpotNormalWest 1
     EndMovement

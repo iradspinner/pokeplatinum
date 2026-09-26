@@ -424,13 +424,23 @@ function calculateDPP(gen, attacker, defender, move, field) {
             desc.attackerAbility = attacker.ability;
         }
         var attackStat = isPhysical ? 'atk' : 'spa';
+        // Oxide patch: a profile may name the Pokemon and the stat a move
+        // attacks with (Platinum Oxide: Foul Play the target's Attack, Body
+        // Press the user's Defense). The user's own modifiers still apply.
+        var attackSource = (0, romhack_helpers_1.applyValueHooks)(profile, "attackSource", ctx, null);
+        var attackMon = attackSource ? attackSource.mon : attacker;
+        if (attackSource) {
+            attackStat = attackSource.stat;
+        }
         desc.attackEVs = "";
-        var attack = attacker.rawStats[attackStat];
-        var attackBoost = attacker.boosts[attackStat];
+        var attack = attackMon.rawStats[attackStat];
+        var attackBoost = attackMon.boosts[attackStat];
         if (field.attackerSide.isPowerTrick && isPhysical) {
             desc.isPowerTrickAttacker = true;
         }
-        if (defender.hasAbility('Unaware')) {
+        // Oxide patch: stages a profile takes after Unaware (Foul Play's, the
+        // target's own) are not hidden by it.
+        if (defender.hasAbility('Unaware') && !(attackSource && attackSource.pastUnaware)) {
             desc.defenderAbility = defender.ability;
         }
         // Oxide patch: a profile whose Simple doubles stat changes as they
@@ -494,15 +504,23 @@ function calculateDPP(gen, attacker, defender, move, field) {
         // Oxide patch: a profile's attacking-stat modifiers (Steelworker,
         // Water Bubble).
         attack = (0, romhack_helpers_1.applyValueHooks)(profile, "attackStat", ctx, attack);
-        var defenseStat = isPhysical ? 'def' : 'spd';
+        // Oxide patch: a profile may send a special move against Defense
+        // (Platinum Oxide: Psyshock, Psystrike, Secret Sword), which then takes
+        // the Defense modifiers and not the Sp. Def ones, or have a move ignore
+        // the target's stages (Sacred Sword, Darkest Lariat, Chip Away).
+        var defenseSource = (0, romhack_helpers_1.applyValueHooks)(profile, "defenseSource", ctx, null) || {};
+        var hitsDefense = defenseSource.againstDefense ? true : isPhysical;
+        var defenseStat = hitsDefense ? 'def' : 'spd';
         desc.defenseEVs = "";
         var defense = defender.rawStats[defenseStat];
         var defenseBoost = defender.boosts[defenseStat];
         if (field.defenderSide.isPowerTrick && isPhysical) {
             desc.isPowerTrickDefender = true;
         }
-        if (attacker.hasAbility('Unaware')) {
-            desc.attackerAbility = attacker.ability;
+        if (attacker.hasAbility('Unaware') || defenseSource.ignoreStages) {
+            if (attacker.hasAbility('Unaware')) {
+                desc.attackerAbility = attacker.ability;
+            }
         }
         else if (defender.hasAbility('Simple') &&
             (0, romhack_helpers_1.applyValueHooks)(profile, "simpleAtCalc", ctx, true)) {
@@ -514,30 +532,30 @@ function calculateDPP(gen, attacker, defender, move, field) {
             defense = (0, util_1.getModifiedStat)(defense, defenseBoost);
             desc.defenseBoost = defenseBoost;
         }
-        if (defender.hasAbility('Marvel Scale') && defender.status && isPhysical) {
+        if (defender.hasAbility('Marvel Scale') && defender.status && hitsDefense) {
             defense = Math.floor(defense * 1.5);
             desc.defenderAbility = defender.ability;
         }
-        else if (defender.hasAbility('Flower Gift') && field.hasWeather('Sun') && !isPhysical) {
+        else if (defender.hasAbility('Flower Gift') && field.hasWeather('Sun') && !hitsDefense) {
             defense = Math.floor(defense * 1.5);
             desc.defenderAbility = defender.ability;
             desc.weather = field.weather;
         }
-        else if (field.defenderSide.isFlowerGift && field.hasWeather('Sun') && !isPhysical) {
+        else if (field.defenderSide.isFlowerGift && field.hasWeather('Sun') && !hitsDefense) {
             defense = Math.floor(defense * 1.5);
             desc.weather = field.weather;
             desc.isFlowerGiftDefender = true;
         }
-        if ((defender.hasItem('Soul Dew') && defender.named('Latios', 'Latias') && !isPhysical) || (defender.hasItem('Eviolite') && ((_a = gen.species.get((0, util_1.toID)(defender.name))) === null || _a === void 0 ? void 0 : _a.nfe))) {
+        if ((defender.hasItem('Soul Dew') && defender.named('Latios', 'Latias') && !hitsDefense) || (defender.hasItem('Eviolite') && ((_a = gen.species.get((0, util_1.toID)(defender.name))) === null || _a === void 0 ? void 0 : _a.nfe))) {
             defense = Math.floor(defense * 1.5);
             desc.defenderItem = defender.item;
         }
-        else if ((defender.hasItem('Deep Sea Scale') && defender.named('Clamperl') && !isPhysical) ||
-            (defender.hasItem('Metal Powder') && defender.named('Ditto') && isPhysical)) {
+        else if ((defender.hasItem('Deep Sea Scale') && defender.named('Clamperl') && !hitsDefense) ||
+            (defender.hasItem('Metal Powder') && defender.named('Ditto') && hitsDefense)) {
             defense *= 2;
             desc.defenderItem = defender.item;
         }
-        if (field.hasWeather('Sand') && defender.hasType('Rock') && !isPhysical) {
+        if (field.hasWeather('Sand') && defender.hasType('Rock') && !hitsDefense) {
             defense = Math.floor(defense * 1.5);
             desc.weather = field.weather;
         }

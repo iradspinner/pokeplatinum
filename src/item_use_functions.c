@@ -736,20 +736,25 @@ static void UseHoneyFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), usageContext->item, 1, HEAP_ID_FIELD2);
 }
 
+// Oxide: the Vs. Seeker is the Pocket PC, as in the base ROM. Both handlers run
+// common script 58, the PC menu, in place of the Vs. Seeker's script, so
+// Vs. Seeker rematches are gone (Ian, 2026-09-27; docs/oxide/pocket-pc.md).
 static void UseVsSeekerFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, SCRIPT_ID(VS_SEEKER, 0));
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(COMMON_SCRIPTS, 58));
 }
 
 static BOOL UseVsSeekerInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, SCRIPT_ID(VS_SEEKER, 0));
+    sub_02068584(usageContext, SCRIPT_ID(COMMON_SCRIPTS, 58));
     return FALSE;
 }
 
+// Oxide: the Pocket PC works everywhere but in a gauntlet, where vanilla's
+// Vs. Seeker worked only outdoors (Ian, 2026-09-27).
 static enum ItemUseCheckResult CanUseVsSeeker(const ItemUseContext *usageContext)
 {
-    if (MapHeader_IsOnMainMatrix(usageContext->mapHeaderID)) {
+    if (!MapHeader_IsGauntlet(usageContext->mapHeaderID)) {
         return ITEM_USE_CAN_USE;
     }
 

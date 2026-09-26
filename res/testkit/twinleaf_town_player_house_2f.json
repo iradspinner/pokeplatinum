@@ -258,6 +258,70 @@
             "en_US": "Modern rules"
         },
         {
+            "id": "TestKit_Text_MenuLevelCaps",
+            "en_US": "Level caps"
+        },
+        {
+            "id": "TestKit_Text_WhichCap",
+            "en_US": "Which split?"
+        },
+        {
+            "id": "TestKit_Text_MenuCapRoark",
+            "en_US": "Roark, Lv. 16"
+        },
+        {
+            "id": "TestKit_Text_MenuCapGardenia",
+            "en_US": "Gardenia, Lv. 26"
+        },
+        {
+            "id": "TestKit_Text_MenuCapFantina",
+            "en_US": "Fantina, Lv. 33"
+        },
+        {
+            "id": "TestKit_Text_MenuCapMaylene",
+            "en_US": "Maylene, Lv. 39"
+        },
+        {
+            "id": "TestKit_Text_MenuCapWake",
+            "en_US": "Wake, Lv. 44"
+        },
+        {
+            "id": "TestKit_Text_MenuCapByron",
+            "en_US": "Byron, Lv. 53"
+        },
+        {
+            "id": "TestKit_Text_MenuCapCandice",
+            "en_US": "Candice, Lv. 56"
+        },
+        {
+            "id": "TestKit_Text_MenuCapHQ",
+            "en_US": "Galactic HQ, Lv. 60"
+        },
+        {
+            "id": "TestKit_Text_MenuCapGalactic",
+            "en_US": "Galactic, Lv. 65"
+        },
+        {
+            "id": "TestKit_Text_MenuCapVolkner",
+            "en_US": "Volkner, Lv. 68"
+        },
+        {
+            "id": "TestKit_Text_MenuCapLeague",
+            "en_US": "League, Lv. 78"
+        },
+        {
+            "id": "TestKit_Text_MenuCapNone",
+            "en_US": "No cap"
+        },
+        {
+            "id": "TestKit_Text_LevelCapSet",
+            "en_US": [
+                "The level cap is set.\n",
+                "A Pokémon at the cap gains no\r",
+                "Exp. and takes no Rare Candy."
+            ]
+        },
+        {
             "id": "TestKit_Text_WhichRule",
             "en_US": "Which rule?"
         },
@@ -336,6 +400,18 @@
         {
             "id": "TestKit_Text_MenuStapleRapidSpin",
             "en_US": "Rapid Spin"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleHiddenGift",
+            "en_US": "Hidden ability gift"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleHiddenWild",
+            "en_US": "Hidden ability wild"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleItemsRestored",
+            "en_US": "Items restored"
         },
         {
             "id": "TestKit_Text_MenuWarp",
@@ -556,6 +632,38 @@
             "en_US": "Set 41"
         },
         {
+            "id": "TestKit_Text_MenuSet42",
+            "en_US": "Set 42"
+        },
+        {
+            "id": "TestKit_Text_MenuSet43",
+            "en_US": "Set 43"
+        },
+        {
+            "id": "TestKit_Text_MenuSet44",
+            "en_US": "Set 44"
+        },
+        {
+            "id": "TestKit_Text_MenuSet45",
+            "en_US": "Set 45"
+        },
+        {
+            "id": "TestKit_Text_MenuSet46",
+            "en_US": "Set 46"
+        },
+        {
+            "id": "TestKit_Text_MenuSet47",
+            "en_US": "Set 47"
+        },
+        {
+            "id": "TestKit_Text_MenuSet48",
+            "en_US": "Set 48"
+        },
+        {
+            "id": "TestKit_Text_MenuSet49",
+            "en_US": "Set 49"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },
@@ -567,6 +675,22 @@
                 "{STRVAR_1 6, 1, 0},\n",
                 "{STRVAR_1 6, 2, 0}\r",
                 "and {STRVAR_1 6, 3, 0}."
+            ]
+        },
+        {
+            "id": "TestKit_Text_HiddenGift",
+            "en_US": [
+                "This Litten has its hidden\n",
+                "ability, Intimidate. One Rare\r",
+                "Candy should make a Torracat\n",
+                "that keeps it."
+            ]
+        },
+        {
+            "id": "TestKit_Text_HiddenWild",
+            "en_US": [
+                "A wild Litten, Lv. 15, with its\n",
+                "hidden ability, Intimidate."
             ]
         },
         {

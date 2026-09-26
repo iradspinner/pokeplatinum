@@ -468,6 +468,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuStaples, 15
+    AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -486,6 +487,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
+    GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -506,11 +508,12 @@ TestKit_Forms:
     GoTo TestKit_WaitAndClose
 
 /* Sylveon's method is a level-up while knowing Charm, so Eevee gets Charm in
-   its first slot and one Rare Candy should evolve it. */
+   its first slot and one Rare Candy should evolve it. It is Lv. 15, below a
+   new game's level cap of 16, so the candy is not refused. */
 TestKit_Eevee:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_EEVEE, 15, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_CHARM
     Message TestKit_Text_Eevee
     GoTo TestKit_WaitAndClose
@@ -681,6 +684,14 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet39, 11
     AddListMenuEntry TestKit_Text_MenuSet40, 12
     AddListMenuEntry TestKit_Text_MenuSet41, 13
+    AddListMenuEntry TestKit_Text_MenuSet42, 14
+    AddListMenuEntry TestKit_Text_MenuSet43, 15
+    AddListMenuEntry TestKit_Text_MenuSet44, 16
+    AddListMenuEntry TestKit_Text_MenuSet45, 17
+    AddListMenuEntry TestKit_Text_MenuSet46, 18
+    AddListMenuEntry TestKit_Text_MenuSet47, 19
+    AddListMenuEntry TestKit_Text_MenuSet48, 20
+    AddListMenuEntry TestKit_Text_MenuSet49, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -696,6 +707,14 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
+    GoToIfEq VAR_0x8004, 14, TestKit_MoveSet42
+    GoToIfEq VAR_0x8004, 15, TestKit_MoveSet43
+    GoToIfEq VAR_0x8004, 16, TestKit_MoveSet44
+    GoToIfEq VAR_0x8004, 17, TestKit_MoveSet45
+    GoToIfEq VAR_0x8004, 18, TestKit_MoveSet46
+    GoToIfEq VAR_0x8004, 19, TestKit_MoveSet47
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1112,6 +1131,125 @@ TestKit_MoveSet41:
     SetVar VAR_0x8007, MOVE_SEED_BOMB
     SetVar VAR_0x8008, MOVE_GRAVITY
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 42: Foul Play hits with the target's Attack and its stages. Against
+   a wild Shuckle, whose Attack is tiny, that knows only Swords Dance: Foul
+   Play does well under half what Crunch does, Mew's own Swords Dance raises
+   Crunch and not Foul Play, and each of Shuckle's Swords Dances raises Foul
+   Play. */
+TestKit_MoveSet42:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8006, MOVE_FOUL_PLAY
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 43: Body Press hits with the user's Defense and its stages. Against
+   a wild Shuckle that knows only Splash: Body Press and Brick Break start
+   close, Iron Defense doubles Body Press and leaves Brick Break alone, and
+   Swords Dance does the opposite. */
+TestKit_MoveSet43:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BODY_PRESS
+    SetVar VAR_0x8007, MOVE_BRICK_BREAK
+    SetVar VAR_0x8008, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 44: Psyshock is a special move that hits the target's Defense.
+   Against a wild Chansey, whose Defense is tiny and Sp. Def high, that
+   knows only Calm Mind: Psyshock takes most of Chansey's HP where Psychic
+   takes a small share, and Chansey's Calm Minds weaken Psychic and leave
+   Psyshock as it was. */
+TestKit_MoveSet44:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_CALM_MIND
+    SetVar VAR_0x8006, MOVE_PSYSHOCK
+    SetVar VAR_0x8007, MOVE_PSYCHIC
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 45: Sacred Sword and Darkest Lariat ignore the target's stat stages,
+   Defense and evasion alike. Against a wild Skarmory that knows only Iron
+   Defense and Double Team: once it has used them, Brick Break and Crunch do
+   less and sometimes miss, and Sacred Sword and Darkest Lariat do what they
+   did at first and never miss. */
+TestKit_MoveSet45:
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8003, MOVE_DOUBLE_TEAM
+    SetVar VAR_0x8006, MOVE_SACRED_SWORD
+    SetVar VAR_0x8007, MOVE_BRICK_BREAK
+    SetVar VAR_0x8008, MOVE_DARKEST_LARIAT
+    SetVar VAR_0x8009, MOVE_CRUNCH
+    GoTo TestKit_GiveMew
+
+/* Set 46: Freeze-Dry is super effective on Water, and Flying Press is
+   Fighting and Flying at once. Against a wild Poliwrath (Water and
+   Fighting) that knows only Splash: Freeze-Dry is "super effective" and Ice
+   Beam "not very effective"; Flying Press is "super effective", from its
+   Flying half, and Close Combat is neither. */
+TestKit_MoveSet46:
+    SetVar VAR_0x8000, SPECIES_POLIWRATH
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FREEZE_DRY
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_FLYING_PRESS
+    SetVar VAR_0x8009, MOVE_CLOSE_COMBAT
+    GoTo TestKit_GiveMew
+
+/* Set 47: Flying Press against a wild Probopass (Rock and Steel) that
+   knows only Splash: its Fighting half doubles twice and its Flying half
+   halves twice, so it says nothing about effectiveness, where Close Combat
+   is "super effective". */
+TestKit_MoveSet47:
+    SetVar VAR_0x8000, SPECIES_PROBOPASS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FLYING_PRESS
+    SetVar VAR_0x8007, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 48: Rage Fist gains 50 power for each hit Mew takes from an attack
+   this battle, to 350. Against a wild Registeel that knows only Double
+   Kick, which hits twice: Rage Fist used turn after turn does 50, 150, 250
+   and then 350, hits on Mew's Substitute add nothing, and switching Mew out
+   and back in keeps the count. */
+TestKit_MoveSet48:
+    SetVar VAR_0x8000, SPECIES_REGISTEEL
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DOUBLE_KICK
+    SetVar VAR_0x8006, MOVE_RAGE_FIST
+    SetVar VAR_0x8007, MOVE_SUBSTITUTE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 49: Transform copies the whole ability, including one numbered 256
+   or more. Against a wild Rattata given Toxic Debris (295) that knows only
+   Tackle: once Mew has transformed, each Tackle it takes scatters poison
+   spikes on the foe's side, where before the fix Mew got Inner Focus (39,
+   the low byte) and nothing happened. */
+TestKit_MoveSet49:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_TOXIC_DEBRIS
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_TRANSFORM
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
@@ -1995,6 +2133,8 @@ TestKit_AbilityNeutralizingGas:
    Spin. Each entry is built as an ability entry is, with a foe where it needs
    one. */
 TestKit_Staples:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     Message TestKit_Text_WhichRule
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
@@ -2016,6 +2156,9 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
     AddListMenuEntry TestKit_Text_MenuStapleDefog, 17
     AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
+    AddListMenuEntry TestKit_Text_MenuStapleHiddenGift, 19
+    AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 20
+    AddListMenuEntry TestKit_Text_MenuStapleItemsRestored, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2036,6 +2179,9 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
     GoToIfEq VAR_0x8004, 17, TestKit_StapleDefog
     GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
+    GoToIfEq VAR_0x8004, 19, TestKit_StapleHiddenGift
+    GoToIfEq VAR_0x8004, 20, TestKit_StapleHiddenWild
+    GoToIfEq VAR_0x8004, 21, TestKit_StapleItemsRestored
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2311,8 +2457,69 @@ TestKit_StapleRapidSpin:
     SetVar VAR_0x8002, MOVE_SPIKES
     GoTo TestKit_GivePokemonWithMoves
 
+/* Hidden abilities (element 8): Litten's is Intimidate, where its ordinary
+   slots are both Blaze, so the summary tells them apart. The flag is taken by
+   the next gift or scripted wild Pokemon and then clears itself. One Rare
+   Candy takes the gift to Torracat, whose hidden ability is Intimidate too. */
+TestKit_StapleHiddenGift:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_LITTEN, 15, ITEM_NONE, VAR_RESULT
+    Message TestKit_Text_HiddenGift
+    GoTo TestKit_WaitAndClose
+
+/* The wild Litten's Intimidate announces itself as the battle starts. */
+TestKit_StapleHiddenWild:
+    Message TestKit_Text_HiddenWild
+    WaitButton
+    CloseMessage
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    StartWildBattle SPECIES_LITTEN, 15
+    GoTo TestKit_AfterBattle
+
+/* Held items restored after battle (element 8): a Mew holding a Sitrus
+   Berry, against a wild Chansey that knows only Splash. Belly Drum halves
+   Mew's HP and it eats the Berry; after the battle, won or run from, its
+   summary shows the Sitrus Berry again. */
+TestKit_StapleItemsRestored:
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x8004, ITEM_SITRUS_BERRY
+    SetVar VAR_0x8006, MOVE_BELLY_DRUM
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithItem
+
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
+    GoTo TestKit_WaitAndClose
+
+/* Element 8's level caps: puts the player in any split, including an earlier
+   one, which RaiseLevelCap never does, so the cap can be checked at each
+   value and put back. A new game starts in Roark's split, cap 16. */
+TestKit_LevelCaps:
+    Message TestKit_Text_WhichCap
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuCapRoark, LEVEL_CAP_SPLIT_ROARK
+    AddListMenuEntry TestKit_Text_MenuCapGardenia, LEVEL_CAP_SPLIT_GARDENIA
+    AddListMenuEntry TestKit_Text_MenuCapFantina, LEVEL_CAP_SPLIT_FANTINA
+    AddListMenuEntry TestKit_Text_MenuCapMaylene, LEVEL_CAP_SPLIT_MAYLENE
+    AddListMenuEntry TestKit_Text_MenuCapWake, LEVEL_CAP_SPLIT_WAKE
+    AddListMenuEntry TestKit_Text_MenuCapByron, LEVEL_CAP_SPLIT_BYRON
+    AddListMenuEntry TestKit_Text_MenuCapCandice, LEVEL_CAP_SPLIT_CANDICE
+    AddListMenuEntry TestKit_Text_MenuCapHQ, LEVEL_CAP_SPLIT_HQ
+    AddListMenuEntry TestKit_Text_MenuCapGalactic, LEVEL_CAP_SPLIT_GALACTIC
+    AddListMenuEntry TestKit_Text_MenuCapVolkner, LEVEL_CAP_SPLIT_VOLKNER
+    AddListMenuEntry TestKit_Text_MenuCapLeague, LEVEL_CAP_SPLIT_LEAGUE
+    AddListMenuEntry TestKit_Text_MenuCapNone, LEVEL_CAP_SPLIT_NONE
+    ShowListMenu
+    GoToIfGe VAR_0x8004, LEVEL_CAP_SPLIT_COUNT, TestKit_Close
+    SetVar VAR_LEVEL_CAP_SPLIT, VAR_0x8004
+    Message TestKit_Text_LevelCapSet
     GoTo TestKit_WaitAndClose
 
 TestKit_WaitAndClose:
