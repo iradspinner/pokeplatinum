@@ -172,12 +172,12 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Unnerve | Galvantula: Thunder, Bug Buzz, Energy Ball, Sticky Web; foe a wild Rattata that knows only Growl | "The foe's team is too nervous to eat Berries!" when Galvantula comes in. The wild foe holds no Berry, so the Berry block itself does not show here | 71bfc90f |
 | Screen Cleaner | Mr. Rime: Freeze-Dry, Psychic, Rapid Spin, Slack Off; foe a wild Chansey that knows Reflect and Light Screen | Once Chansey has a screen up, switch Mr. Rime in: "All screens on the field were cleansed!", and Freeze-Dry's damage goes back up | 71bfc90f |
 | Regenerator | Toxapex: Scald, Toxic, Haze, Recover; foe a wild Rattata that knows only Tackle | Let Tackle hurt Toxapex, switch it out, and bring it back: it has a third of its HP back, with no message | 71bfc90f |
-| Pastel Veil | Galarian Rapidash: Play Rough, High Horsepower, Morning Sun, Quick Attack; foe a wild Grimer that knows only Toxic | "RAPIDASH's Pastel Veil prevents poisoning!" every time | this batch |
-| Sweet Veil | Tsareena with Sweet Veil: Trop Kick, Power Whip, Triple Axel, Quick Attack; foe a wild Jigglypuff that knows only Sing | "TSAREENA stayed awake because of its Sweet Veil!" whenever Sing hits | this batch |
-| Harvest | Arboliva holding a Sitrus Berry: Substitute, Hyper Voice, Leech Seed, Protect; foe a wild Rattata that knows only Growl | Use Substitute twice: below half HP Arboliva eats the Sitrus Berry, and at the end of later turns, about one in two, "ARBOLIVA harvested one Sitrus Berry!" (every turn in sunshine) | this batch |
-| Protean | Greninja: Surf, Dark Pulse, Ice Beam, U-turn; foe a wild Rattata that knows only Growl | The first move brings "GRENINJA's Protean made it the Water type!" (or the move's type); later moves bring nothing until Greninja switches out and back in | this batch |
-| Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | this batch |
-| Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | this batch |
+| Pastel Veil | Galarian Rapidash: Play Rough, High Horsepower, Morning Sun, Quick Attack; foe a wild Grimer that knows only Toxic | "RAPIDASH's Pastel Veil prevents poisoning!" every time | a51b0af3 |
+| Sweet Veil | Tsareena with Sweet Veil: Trop Kick, Power Whip, Triple Axel, Quick Attack; foe a wild Jigglypuff that knows only Sing | "TSAREENA stayed awake because of its Sweet Veil!" whenever Sing hits | a51b0af3 |
+| Harvest | Arboliva holding a Sitrus Berry: Substitute, Hyper Voice, Leech Seed, Protect; foe a wild Rattata that knows only Growl | Use Substitute twice: below half HP Arboliva eats the Sitrus Berry, and at the end of later turns, about one in two, "ARBOLIVA harvested one Sitrus Berry!" (every turn in sunshine) | a51b0af3 |
+| Protean | Greninja: Surf, Dark Pulse, Ice Beam, U-turn; foe a wild Rattata that knows only Growl | The first move brings "GRENINJA's Protean made it the Water type!" (or the move's type); later moves bring nothing until Greninja switches out and back in | a51b0af3 |
+| Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | a51b0af3 |
+| Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | a51b0af3 |
 
 ## Not built yet
 
