@@ -2027,7 +2027,8 @@ static void BattleControllerPlayer_FleeCommand(BattleSystem *battleSys, BattleCo
 
     if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
         && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
-        if (ATTACKING_MON.statusVolatile & (VOLATILE_CONDITION_BIND | VOLATILE_CONDITION_MEAN_LOOK)) {
+        if ((ATTACKING_MON.statusVolatile & (VOLATILE_CONDITION_BIND | VOLATILE_CONDITION_MEAN_LOOK))
+            && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GHOST)) { // Oxide: a Ghost flees anyway
             LOAD_SUBSEQ(subscript_enemy_escape_failed);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -2284,14 +2285,18 @@ static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleCo
 {
     int ppCost = 1;
     if (ATTACKER_SELF_TURN_FLAGS.skipPressureCheck == FALSE && battleCtx->defender != BATTLER_NONE) {
-        if (battleCtx->moveTemp == MOVE_IMPRISON) {
+        // Oxide: Pressure acts only on the moves of its holder's opponents, so
+        // an ally's Pressure costs nothing (the later games, as hg-engine has
+        // it from the Scarlet and Violet research); Snatch counts the other
+        // side's Pressure, as Imprison does.
+        if (battleCtx->moveTemp == MOVE_IMPRISON || battleCtx->moveTemp == MOVE_SNATCH) {
             ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
         } else {
             switch (battleCtx->aiContext.moveTable[battleCtx->moveTemp].range) {
             case RANGE_ALL_ADJACENT:
             case RANGE_FIELD:
-                // Number of mons on the field with Pressure
-                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, battleCtx->attacker, ABILITY_PRESSURE);
+                // Number of mons on the enemy side with Pressure
+                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
                 break;
 
             case RANGE_ADJACENT_OPPONENTS:
@@ -2308,6 +2313,7 @@ static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleCo
 
             default:
                 if (battleCtx->attacker != battleCtx->defender
+                    && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)
                     && Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_PRESSURE) {
                     ppCost++;
                 }
@@ -2700,8 +2706,9 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
             break;
 
         case CHECK_STATUS_STATE_PARALYSIS:
-            if ((ATTACKING_MON.status & MON_CONDITION_PARALYSIS)
-                && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD) {
+            // Oxide: Magic Guard no longer saves its holder from full paralysis
+            // (Generation 5; hg-engine drops the exception too).
+            if (ATTACKING_MON.status & MON_CONDITION_PARALYSIS) {
                 if (BattleSystem_RandNext(battleSys) % 4 == 0) {
                     battleCtx->moveFailFlags[battleCtx->attacker].paralyzed = TRUE;
 
@@ -2856,6 +2863,24 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         return subscript_telepathy;
     }
 
+    // Oxide: Grass types are immune to powder and spore moves (Generation 6;
+    // hg-engine's CheckTypeBasedMoveConditionImmunities1).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && Move_IsPowder(battleCtx->moveCur)
+        && MON_HAS_TYPE(defender, TYPE_GRASS)) {
+        return subscript_prankster_dark_immunity;
+    }
+
+    // Oxide: Mean Look, Block and Spider Web do not affect a Ghost type, which
+    // no trap holds (Generation 6; the same hg-engine check).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PREVENT_ESCAPE
+        && MON_HAS_TYPE(defender, TYPE_GHOST)) {
+        return subscript_prankster_dark_immunity;
+    }
+
     if (defender == BATTLER_NONE
         || BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)) {
         return NULL;
@@ -2988,12 +3013,6 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     s8 accStages = battleCtx->battleMons[attacker].statBoosts[BATTLE_STAT_ACCURACY] - 6;
     s8 evaStages = 6 - battleCtx->battleMons[defender].statBoosts[BATTLE_STAT_EVASION];
 
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_SIMPLE) {
-        accStages *= 2;
-    }
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
-        evaStages *= 2;
-    }
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         accStages = 0;
     }
@@ -3001,6 +3020,12 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
         evaStages = 0;
     }
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
+        evaStages = 0;
+    }
+    // Oxide: Keen Eye (Generation 6) and Illuminate (Generation 9) ignore the
+    // target's evasion stages, as in hg-engine's accuracy calculation.
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_KEEN_EYE
+        || Battler_Ability(battleCtx, attacker) == ABILITY_ILLUMINATE) {
         evaStages = 0;
     }
 
@@ -3584,7 +3609,16 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
         }
 
-        if (DEFENDER_TURN_FLAGS.enduring == 0) {
+        // Oxide: Sturdy leaves its holder at 1 HP from a hit taken at full HP,
+        // as a Focus Sash does, with Endure's message (Generation 5; hg-engine's
+        // ServerHPCalc). It comes before the held items, so a Sash is kept.
+        BOOL sturdy = FALSE;
+
+        if (DEFENDER_TURN_FLAGS.enduring == 0
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STURDY) == TRUE
+            && DEFENDING_MON.curHP == DEFENDING_MON.maxHP) {
+            sturdy = TRUE;
+        } else if (DEFENDER_TURN_FLAGS.enduring == 0) {
             if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE && (BattleSystem_RandNext(battleSys) % 100) < itemPower) {
                 DEFENDER_SELF_TURN_FLAGS.focusItemActivated = TRUE;
             }
@@ -3594,11 +3628,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             }
         }
 
-        if ((DEFENDER_TURN_FLAGS.enduring || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
+        if ((DEFENDER_TURN_FLAGS.enduring || sturdy || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
             && DEFENDING_MON.curHP + battleCtx->damage <= 0) {
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
 
-            if (DEFENDER_TURN_FLAGS.enduring) {
+            if (DEFENDER_TURN_FLAGS.enduring || sturdy) {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
             } else {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
@@ -4833,6 +4867,15 @@ static BOOL BattleControllerPlayer_CheckExtraFlinch(BattleSystem *battleSys, Bat
     BOOL result = FALSE;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
+
+    // Oxide: Stench gives its holder's damaging moves a 10% flinch chance
+    // (Generation 5), King's Rock's own. It does not add to a King's Rock, as
+    // in the later games, where hg-engine adds the two.
+    if (itemEffect != HOLD_EFFECT_SOMETIMES_FLINCH
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STENCH) {
+        itemEffect = HOLD_EFFECT_SOMETIMES_FLINCH;
+        itemPower = 10;
+    }
 
     if (battleCtx->defender != BATTLER_NONE
         && itemEffect == HOLD_EFFECT_SOMETIMES_FLINCH

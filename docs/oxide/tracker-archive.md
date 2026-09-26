@@ -300,6 +300,10 @@ Finished on 2026-09-26 and moved out the same day:
   - [x] Main track (`cloud/main-encounter-lists-off`, 7cefbba53, merged with the tables on 2026-09-26): no grass site, the radar or the binoculars reads the lists; the TV flash never airs and the Sandgem sibling keeps her ordinary line (in `bulk_scripts.py`'s DIVERGED). In-game check under Waiting on Ian.
   - [x] Encounter track (5eaf5eb9b on `worktree-encounter-lists`, held for the engine change): all 2,976 entries emptied, and lint rule R17 fails on any species there.
 
+A finished sub-item of the tracker's "The staples survey's rulings" entry, moved out on 2026-09-26; the entry itself is still open:
+
+  - [x] Engine (2026-09-26, branch `cloud/element5-staples`, 24 commits, one per rule; its last commit is the report): the survey's native abilities plus nine more the later games changed (Stench, Water Absorb and Dry Skin, Magic Guard, Plus and Minus, Shed Skin, Liquid Ooze, Pressure, Simple), the three Gen 6 type immunities, 1.5x critical hits at the Gen 7 rates, Defog clearing hazards from both sides (screens from the target's only, as in the later games; a question for Ian below), and Rapid Spin's Speed raise. Each has a Modern rules entry in the test kit where the kit can show it (`docs/oxide/test-kit.md`)
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)

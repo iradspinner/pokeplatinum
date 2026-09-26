@@ -1297,6 +1297,22 @@ static BOOL BtlCmd_HealthBoxSlideOut(BattleSystem *battleSys, BattleContext *bat
     return FALSE;
 }
 
+// Oxide: a critical hit does 1.5x damage (Generation 6), and one by a Sniper
+// 1.5x on top of that, 2.25x in all, where Platinum doubled and tripled.
+// criticalMul stays 1, 2 or 3, so every other reader of it is unchanged.
+static inline int ApplyCriticalMul(int damage, int criticalMul)
+{
+    if (criticalMul == 2) {
+        return damage * 3 / 2;
+    }
+
+    if (criticalMul == 3) {
+        return damage * 9 / 4;
+    }
+
+    return damage;
+}
+
 /**
  * @brief Wait until the battle IO queue is empty.
  *
@@ -1358,7 +1374,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->attacker,
         battleCtx->defender,
         battleCtx->criticalMul);
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_HP_DRAIN_ON_ATK) {
         battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
@@ -2883,6 +2899,13 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Oxide: Simple doubles each stage change as it is made (Generation 5;
+    // hg-engine's statbuffchange), where Platinum doubled the stages when
+    // they were read. Mold Breaker ignores it.
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SIMPLE) == TRUE) {
+        stageChange *= 2;
+    }
+
     // Oxide: Contrary turns every rise into a fall and every fall into a
     // rise, from any source, as hg-engine does; Mold Breaker ignores it.
     if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CONTRARY) == TRUE) {
@@ -2969,7 +2992,19 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     }
 
                     result = 1;
+                } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                    && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INTIMIDATE
+                    && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_INNER_FOCUS
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OWN_TEMPO
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OBLIVIOUS
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_SCRAPPY)) {
+                    // Oxide: Inner Focus, Own Tempo, Oblivious and Scrappy stop
+                    // Intimidate (Generation 8; hg-engine's Intimidate subscript),
+                    // with Hyper Cutter's message against it.
+                    SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
+                    result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_ILLUMINATE, BATTLE_STAT_ACCURACY) // Oxide: Generation 9
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_BIG_PECKS, BATTLE_STAT_DEFENSE)) { // Oxide: Big Pecks
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
@@ -6411,7 +6446,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
     battleCtx->damage /= 50;
     battleCtx->damage += 2;
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (battleCtx->turnFlags[battleCtx->attacker].helpingHand) {
         battleCtx->damage = battleCtx->damage * 15 / 10;
@@ -9328,6 +9363,20 @@ static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *ba
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    // Oxide: Sturdy at full HP survives Pursuit and Future Sight too, as in
+    // hg-engine, but not a Pokemon's own confusion damage, which is no move
+    // (the one caller that names the attacker).
+    if (inBattler != BTLSCR_ATTACKER
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_STURDY) == TRUE
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        if (battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+            battleCtx->hpCalcTemp = (battleCtx->battleMons[battler].curHP - 1) * -1;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
+        }
+
+        return FALSE;
+    }
 
     if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE
         && BattleSystem_RandNext(battleSys) % 100 < itemPower) {

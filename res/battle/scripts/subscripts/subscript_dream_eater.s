@@ -2,7 +2,6 @@
 
 
 _000:
-    CompareMonDataToValue OPCODE_NEQ, BTLSCR_ATTACKER, BATTLEMON_HEAL_BLOCK_TURNS, 0, _059
     UpdateVarFromVar OPCODE_SET, BTLVAR_HP_CALC_TEMP, BTLVAR_HIT_DAMAGE
     CompareVarToValue OPCODE_EQU, BTLVAR_HP_CALC_TEMP, 0, _037
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 2
@@ -15,6 +14,10 @@ _000:
 _037:
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
+    // Oxide: Liquid Ooze hurts a Dream Eater user as it hurts other draining
+    // moves' users (Generation 5), Heal Block or not.
+    CheckAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_LIQUID_OOZE, _liquid_ooze
+    CompareMonDataToValue OPCODE_NEQ, BTLSCR_ATTACKER, BATTLEMON_HEAL_BLOCK_TURNS, 0, _059
     UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, -1
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0}’s dream was eaten!
@@ -30,3 +33,14 @@ _059:
     Wait 
     WaitButtonABTime 30
     End 
+
+_liquid_ooze:
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_MAGIC_GUARD, _liquid_ooze_end
+    Call BATTLE_SUBSCRIPT_UPDATE_HP
+    // It sucked up the liquid ooze!
+    PrintMessage BattleStrings_Text_ItSuckedUpTheLiquidOoze, TAG_NONE
+    Wait 
+    WaitButtonABTime 30
+
+_liquid_ooze_end:
+    End
