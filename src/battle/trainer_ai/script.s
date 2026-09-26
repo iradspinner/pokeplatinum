@@ -89,6 +89,8 @@ Basic_CheckForImmunity:
     // staples rulings), as Volt Absorb and Water Absorb do.
     IfLoadedEqualTo ABILITY_LIGHTNING_ROD, Basic_CheckElectricAbsorption
     IfLoadedEqualTo ABILITY_STORM_DRAIN, Basic_CheckWaterAbsorption
+    // Oxide: Sap Sipper takes Grass moves (element 5).
+    IfLoadedEqualTo ABILITY_SAP_SIPPER, Basic_CheckGrassAbsorption
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckElectricAbsorption:
@@ -104,6 +106,11 @@ Basic_CheckWaterAbsorption:
 Basic_CheckFireAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
     IfTempEqualTo TYPE_FIRE, ScoreMinus12
+    GoTo Basic_NoImmunityAbility
+
+Basic_CheckGrassAbsorption:
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfTempEqualTo TYPE_GRASS, ScoreMinus12
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckWonderGuard:
@@ -153,6 +160,10 @@ Basic_ScoreMoveEffect:
     IfMoveEqualTo MOVE_SPORE, Basic_CheckPowderImmunity
     IfMoveEqualTo MOVE_POWDER, Basic_CheckPowderImmunity
     IfMoveEqualTo MOVE_MAGIC_POWDER, Basic_CheckPowderImmunity
+    // Oxide: the Grass status moves aimed at the foe that are not powders.
+    IfMoveEqualTo MOVE_LEECH_SEED, Basic_CheckSapSipper
+    IfMoveEqualTo MOVE_GRASS_WHISTLE, Basic_CheckSapSipper
+    IfMoveEqualTo MOVE_WORRY_SEED, Basic_CheckSapSipper
 
 Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, Basic_CheckCannotSleep
@@ -321,6 +332,16 @@ Basic_CheckPowderImmunity:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OVERCOAT, ScoreMinus10
+
+Basic_CheckSapSipper:
+    // Oxide: Sap Sipper takes a Grass status move aimed at it, as it takes a
+    // Grass attack (element 5), unless Mold Breaker ignores it.
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfTempNotEqualTo TYPE_GRASS, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_SAP_SIPPER, ScoreMinus10
     GoTo Basic_ScoreMoveEffectByEffect
 
 Basic_CheckCannotSleep:
