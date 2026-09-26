@@ -11,8 +11,9 @@ late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
 permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
-tools. B5 has its readings and a first fit ("What B3b and B5 found"); one
-question for Ian decides how the rest is weighed.
+tools. B5 has its readings, a fit to the references, and Ian's own ratings
+of sixteen fights ("What B3b and B5 found", "What Ian's ratings showed").
+No questions are open.
 
 ## The target
 
@@ -653,6 +654,73 @@ references' boss moves get no number, of the same kinds as B3's five
 (Nature's Madness, Redux's Cyclone and Acidic Payback, and a Pain Split
 that Null's table lists as physical); each is reported, not scored.
 
+What Ian's ratings showed (2026-09-25; `calibrate.py --report`, whose
+IAN_RATINGS holds them). Ian rated sixteen fights he has played in the base
+ROM, on his 1 to 10 scale; he fought the Elite Four and Cynthia only blind,
+so they are left out. His "Mars/Jupiter Double" is read as the Spear
+Pillar tag battle.
+
+| Fight | Ian | Threat by chance | One-on-one answers | Tactics | Predictable |
+|---|---|---|---|---|---|
+| Mars and Jupiter, Spear Pillar | 9 | 0.30 | 0.58 | 12 | 0.48 |
+| Cyrus 3 | 8.5 | 0.47 | 0.26 | 5 | 0.74 |
+| Saturn 2 | 8.5 | 0.40 | 0.31 | 7 | 0.58 |
+| Candice | 8.5 | 0.65 | 0.17 | 9 | 0.60 |
+| Wake | 8 | 0.73 | 0.11 | 2 | 0.83 |
+| Maylene | 8 | 0.68 | 0.21 | 2 | 0.86 |
+| Officer Hesperid, Lake Valor | 7 | 0.44 | 0.47 | 8 | 0.76 |
+| Byron | 7 | 0.32 | 0.18 | 5 | 0.66 |
+| Saturn 1 | 6.5 | 0.51 | 0.34 | 6 | 0.67 |
+| Fantina | 6 | 0.51 | 0.27 | 5 | 0.52 |
+| Barry 4 | 6 | 0.48 | 0.32 | 7 | 0.47 |
+| Cyrus 1 | 5 | 0.37 | 0.54 | 5 | 0.72 |
+| Mars 2 | 5 | 0.36 | 0.38 | 10 | 0.45 |
+| Gardenia | 5 | 0.69 | 0.15 | 5 | 0.57 |
+| Volkner | 3 | 0.59 | 0.33 | 4 | 0.72 |
+| Roark | 2 | 0.12 | 0.24 | 4 | 0.44 |
+
+**No reading orders Ian's fights well.** The damage difference that fits
+the references so closely correlates with his ratings at only +0.12 over
+all sixteen. The best three-reading fit (broad, tactics and predictable)
+misses a fight it has not seen by 1.4 to 1.7 points, against a spread of 2
+in his ratings. Four things show why.
+
+- **The Galactic finales are hard in ways no damage score sees.** Ian
+  rates Mars and Jupiter 9 and Cyrus 3 and Saturn 2 8.5, the three hardest
+  fights he has played, and the scores put them mid-table or lower. The
+  tag battle is a double battle scored as singles without Barry. Saturn 2
+  is scored under Trick Room, but Hypnosis, Future Sight and Curse are not;
+  Cyrus 3 has Curse, Explosion, Swagger and Will-O-Wisp. For these three,
+  Ian's ratings are the measure until the tool can score a double battle
+  and setup.
+- **Before the finales, damage does track him, with answers counting
+  double.** Over the other thirteen fights, threat by chance less twice
+  the one-on-one answers correlates at +0.47, and threat alone at +0.43.
+  The misses are Gardenia (5) and Volkner (3), both far harder in the
+  scores than in play, and Byron (7), softer in the scores. Byron's team
+  walls rather than hits, so its threat is low while its answers are among
+  the fewest, and Metal Burst, Mirror Coat, Explosion and Toxic Spikes go
+  unscored. Volkner's three Choice holders can be baited, which only the
+  lock-counting answers see. Gardenia's sun team spends turns setting up
+  Sunny Day for Chlorophyll and Solar Beam.
+- **"Predictable" runs backwards.** The two fights it calls the most
+  predictable, Maylene and Wake, are rated 8, and over the thirteen it
+  correlates with Ian's ratings at +0.52, the wrong way. It counts every
+  status move as an unpredictable turn, but in these teams a status move
+  is mostly a turn not spent attacking, so it measures how much of a
+  team's time goes to attacks. It stays in `pressure.json` under that
+  reading and is not used as difficulty. What Ian meant (which Pokemon
+  receives a Baton Pass, when an Explosion comes, when the AI switches)
+  needs the AI's switching and its scripts, which the tool does not run.
+- **His scale rises through the game.** Later fights rate higher (the cap
+  correlates at +0.42), as the ramp he asked for should; the scores are
+  relative to the side at each split by design, so a rating is the stage
+  plus the fight's difficulty within it.
+
+So the tool's part in the trainer pass is the damage side, with answers
+weighted over threat, and a flag wherever a fight's score and Ian's feel
+part company. The target for each fight is Ian's rating scale, not a score.
+
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
 Ian's ruling: after Candice (cap 56) the story runs Lake Acuity, the
@@ -886,16 +954,8 @@ disagrees with them.
 
 ## Open questions for Ian
 
-1. **Your own ratings of Oxide's fights** (2026-09-25, "What B3b and B5
-   found"). The references fix how much damage counts, but not how much
-   tactics and predictability do, since every hack's bosses score about
-   the same on those. Your ratings of about a dozen fights you have played
-   in the base ROM, on your 1 to 10 scale or just in order from hardest,
-   would fix both. Most useful: Roark, Gardenia, Fantina, Maylene, Barry 4,
-   Wake, Cyrus 1, Byron, Saturn 1, Officer Hesperid at Lake Valor, Mars 2,
-   Candice and Volkner. The Elite Four and Cynthia are left out, since Ian
-   has fought them only blind (2026-09-25). The scores are kept out of the
-   question so they do not anchor the ratings.
+None. Ian's ratings of sixteen fights (open question 1 until 2026-09-25)
+are in "What Ian's ratings showed".
 
 ## Order of work
 
@@ -1025,8 +1085,10 @@ disagrees with them.
 
   Started 2026-09-25 (`pressure.py`'s B5 columns, `calibrate.py`): the
   readings, the bellwethers and a first fit are in "What B3b and B5
-  found". The damage part is fitted; the weight of tactics and
-  predictability waits on open question 1. Every score is rerun when the
+  found". The damage part is fitted to the references; against Ian's own
+  ratings (2026-09-25) it holds only before the Galactic finales, with
+  answers counting double, and "predictable" runs backwards, so it is not
+  used as difficulty ("What Ian's ratings showed"). Every score is rerun when the
   encounter track teaches the calculator element 5's abilities (Ian,
   2026-09-25), since until then none of the 52 counts on either side.
 - [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
