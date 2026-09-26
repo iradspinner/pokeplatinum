@@ -838,6 +838,15 @@ disagrees with them.
   that gap, so the budget reads as how much of each cap the trainers pay
   for. The per-split tables wait on the Galactic shape.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
+  One check comes first, from Ian (2026-09-25): **the threat score may
+  overrate hyper-offense**. It counts what a boss knocks out while moving
+  first and ignores everything a player does besides attacking back
+  (switching, priority, screens, status), so a team of fast attackers reads
+  as the hardest kind of fight. Ian's tell is Maylene, whom it puts at 0.69
+  threat and 0.20 answers, level with the hardest gym leaders. Calibration
+  tests this against the reference hacks' hyper-offense bosses before
+  trusting the ranking; if it holds, threat is weighted down or tempered by
+  answers.
 - [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
   on the player's side ranked by what it moves.
 

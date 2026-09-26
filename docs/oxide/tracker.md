@@ -50,7 +50,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
 
-- **Two likely typos in the new base ROM** (2026-09-26, carried over from `Test.nds` as it has them): the Celestic Town grunt is named "Officert Argo", and both "Officer Hisperid" and "Officer Hesperid" exist. Fix or keep?
+- **Honey trees by badge count, in game** (2026-09-26, merged in 9b7821c4d): slather a tree at one badge and again at five badges, and check the species and levels against `res/field/encounters/encounters_honey_tree.json` (table 1 and table 5). The Munchlax trees are gone.
+
 
 
 - **Element 6 QA questions** (2026-09-23, `docs/oxide/qa-review-2026-09-23-element6.md`): should a trainer's form Pokemon also get its form's ability, as it now gets its form's stats? And is Snow Cloak on Wormadam's Sandy and Trash forms intended? It looks like a base-ROM slip, and it means Beauty Devon's two and Worker Jackson's Wormadam fight with Anticipation. Also for the record, one more VANILLA FIX landed: 45ad243a6, Weather Ball in fog after a knockout.
