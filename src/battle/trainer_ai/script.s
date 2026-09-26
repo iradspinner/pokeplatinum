@@ -85,6 +85,10 @@ Basic_CheckForImmunity:
     IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckGroundAbsorption
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Dry Skin, not a second Levitate test
     IfLoadedEqualTo ABILITY_DRY_SKIN, Basic_CheckWaterAbsorption2
+    // Oxide: Lightning Rod and Storm Drain take the moves they draw (the
+    // staples rulings), as Volt Absorb and Water Absorb do.
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, Basic_CheckElectricAbsorption
+    IfLoadedEqualTo ABILITY_STORM_DRAIN, Basic_CheckWaterAbsorption
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckElectricAbsorption:
@@ -635,6 +639,7 @@ Basic_CheckCannotParalyze_ThunderWave:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_MOTOR_DRIVE, ScoreMinus10
     IfLoadedEqualTo ABILITY_VOLT_ABSORB, ScoreMinus10
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, ScoreMinus10 // Oxide: it takes Thunder Wave too
 
 Basic_CheckCannotParalyze_ImmuneToStatus:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
@@ -7272,6 +7277,9 @@ TagStrategy_SpreadElectricMove:
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide: a Lightning Rod partner now takes the move as Volt Absorb does
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadElectricMove_CheckTypes:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
@@ -7321,6 +7329,9 @@ TagStrategy_SpreadWaterMove:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide: a Storm Drain partner now takes the move as Water Absorb does
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadWaterMove_CheckTypes:
