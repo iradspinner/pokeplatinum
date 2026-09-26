@@ -9364,8 +9364,14 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
         int ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
         int status = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
 
-        if (battleCtx->battleMons[battler].ability != ABILITY_NATURAL_CURE
-            && Ability_ForbidsStatus(battleCtx, ability, status) == FALSE) {
+        // Oxide: Neutralizing Gas on the field stops the leaving battler's
+        // ability here too, Natural Cure and Regenerator included, since both
+        // read around Battler_Ability.
+        BOOL gassed = BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability);
+
+        if (gassed
+            || (battleCtx->battleMons[battler].ability != ABILITY_NATURAL_CURE
+                && Ability_ForbidsStatus(battleCtx, ability, status) == FALSE)) {
             BattleScript_Iter(battleCtx, jumpNoStatusRestore);
         }
 
@@ -9373,7 +9379,7 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
         // leaves, silently, as in hg-engine, which reads the ability from the
         // party data (so Gastro Acid does not stop it) and also heals when a
         // battle ends.
-        if (ability == ABILITY_REGENERATOR) {
+        if (ability == ABILITY_REGENERATOR && gassed == FALSE) {
             int hp = battleCtx->battleMons[battler].curHP + battleCtx->battleMons[battler].maxHP / 3;
 
             if (hp > battleCtx->battleMons[battler].maxHP) {

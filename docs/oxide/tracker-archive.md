@@ -254,6 +254,10 @@ Finished blocks from element 4 and element 5, moved out on 2026-09-26 (their par
     - **The focused pass is done (2026-09-25, cloud branch `cloud/element4-effects`, merged the same day in 7b6ece777).** Sticky Web (the work parked after the crash, built and verified), After You, Aurora Veil, the Wide Guard set (Wide Guard, Quick Guard, Mat Block, Crafty Shield) and Belch, one commit each, each checked with `romdiff.py` against the previous commit's build and each with a test-kit set (27 to 31). New state went into existing padding, never a new field: Sticky Web and Aurora Veil in the side conditions mask and `SideConditions`, the guards in `TurnFlags`, Belch's per-party-slot record beside Knock Off's in `SideConditions`. The commit messages have the detail and the departures. `--audit` now reads 86 done, 5 settled, 20 unreachable, and three held back: Entrainment for element 5, and terrain (the Terrain moves, Steel Roller, Ice Spinner) for Ian's decision
   - **The pass is done (2026-09-26, cloud branch `cloud/element5-abilities`, merged the same day).** 52 of the 59 new abilities the species carry, in batches of related ones, one commit each, each checked with `romdiff.py` against the previous commit's build, gated, and given test-kit entries (the abilities menu, now two pages). Entrainment (the effect element 4 held back) is in, with hg-engine's list of abilities that refuse a change, which Trace, Role Play, Skill Swap, Gastro Acid and Worry Seed now read too. New state went into existing padding. The commit messages have the detail and the departures; the last one is the report
 
+Element 5's Neutralizing Gas sub-item, finished and moved out on 2026-09-26:
+
+  - [x] **Neutralizing Gas** (0eb1b2e9a, merged 2026-09-26, with the VANILLA FIX d29a8a143: Gastro Acid now stops Super Luck); its report is the last commit on `cloud/element5-neutralizing-gas`. The trainer AI does not know about the gas
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them

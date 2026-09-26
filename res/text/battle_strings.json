@@ -9175,6 +9175,19 @@
         "The foe’s {STRVAR_1 1, 0, 0} avoids\n",
         "attacks by its ally Pokémon!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_NeutralizingGasFilledTheArea",
+      "en_US": [
+        "Neutralizing gas filled the area!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheEffectsOfTheNeutralizingGasWoreOff",
+      "en_US": [
+        "The effects of the neutralizing\n",
+        "gas wore off!"
+      ]
     }
   ]
 }

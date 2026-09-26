@@ -178,6 +178,7 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Protean | Greninja: Surf, Dark Pulse, Ice Beam, U-turn; foe a wild Rattata that knows only Growl | The first move brings "GRENINJA's Protean made it the Water type!" (or the move's type); later moves bring nothing until Greninja switches out and back in | a51b0af3 |
 | Libero | Cinderace: Pyro Ball, Court Change, Sucker Punch, U-turn; foe a wild Rattata that knows only Growl | As Protean, for Cinderace | a51b0af3 |
 | Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | a51b0af3 |
+| Neutralizing Gas | Galarian Weezing: Sludge Bomb, Strange Steam, Will-O-Wisp, Protect; foe a wild Chansey given Pressure that knows only Growl | "The wild CHANSEY is exerting its Pressure!" as the battle starts. Switch Weezing in: "Neutralizing gas filled the area!", and each of its moves aimed at Chansey now costs 1 PP, not 2. Switch Weezing out: after "Go!", "The effects of the neutralizing gas wore off!", then Chansey's Pressure message again, and moves cost 2 PP once more | 0eb1b2e9 |
 
 ## Not built yet
 
