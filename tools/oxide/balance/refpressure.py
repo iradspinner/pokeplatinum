@@ -113,7 +113,7 @@ def boss_mon(hack, mon, blob, notes):
                              "category": "Special", "basePower": HIDDEN_POWER_BP, "priority": 0}
             moves.append(mv)
             continue
-        if mv in pool.UNRELIABLE:
+        if mv in pool.UNRELIABLE and not (mv in pressure.ITEM_MOVES and mon.get("item")):
             continue
         rec, _src = metrics.lookup_move(hack, mv)
         if rec is None:
@@ -165,6 +165,8 @@ def score_ref_fight(hack, fight, blob, blob_path):
             for i, p in enumerate(side):
                 jobs["pairs"].append([key, f"p{i}", job["moves"], w])
                 jobs["pairs"].append([f"p{i}", key, p["moves"], w])
+            pressure.add_branches(jobs, key, dict(job, moves=metrics.default_moves(hack, mon)),
+                                  job["moves"], side, w)
     if not bosses:
         return None
     t0 = time.time()

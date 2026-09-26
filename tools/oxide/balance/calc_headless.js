@@ -203,6 +203,8 @@ function run(blob, jobs) {
       level: p.level, ability: p.ability || undefined, abilityOn: true,
       item: p.item || '', nature: p.nature || 'Hardy',
       ivs: stats(p.ivs), evs: stats(p.evs),
+      // B5: a setup branch's stat stages ({"atk": 1, "spe": -1}).
+      boosts: p.boosts || undefined,
       overrides: p.species_data ? ownSpecies(p.species_data) : speciesOverrides(blob, p.species),
     });
     return built[key];

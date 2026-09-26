@@ -21,6 +21,9 @@
    "threat_chance": 0.508,
    "answers_duel": 0.188,
    "answers_sure": 0.181,
+   "answers_bait": 0.188,
+   "answers_branch": 0.188,
+   "safe": 0.829,
    "cover": 2.0,
    "best_one": 0.667,
    "broad": 0.105,
@@ -50,7 +53,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.524,
      "answers_duel": 0.04,
-     "answers_sure": 0.029
+     "answers_sure": 0.029,
+     "answers_bait": 0.04,
+     "forced": [],
+     "answers_branch": 0.04,
+     "branches": []
     },
     {
      "variant": 0,
@@ -65,7 +72,11 @@
      "answers_lock": 0.076,
      "threat_chance": 0.486,
      "answers_duel": 0.099,
-     "answers_sure": 0.086
+     "answers_sure": 0.086,
+     "answers_bait": 0.099,
+     "forced": [],
+     "answers_branch": 0.099,
+     "branches": []
     },
     {
      "variant": 0,
@@ -80,7 +91,11 @@
      "answers_lock": 0.01,
      "threat_chance": 0.514,
      "answers_duel": 0.426,
-     "answers_sure": 0.429
+     "answers_sure": 0.429,
+     "answers_bait": 0.426,
+     "forced": [],
+     "answers_branch": 0.426,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -89,7 +104,7 @@
    "left_out": {},
    "calcs": 2130,
    "errors": [],
-   "node_seconds": 0.59,
+   "node_seconds": 0.58,
    "wall_seconds": 0.65
   },
   "gardenia": {
@@ -109,6 +124,9 @@
    "threat_chance": 0.551,
    "answers_duel": 0.334,
    "answers_sure": 0.33,
+   "answers_bait": 0.334,
+   "answers_branch": 0.334,
+   "safe": 0.955,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.33,
@@ -139,7 +157,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.472,
      "answers_duel": 0.349,
-     "answers_sure": 0.347
+     "answers_sure": 0.347,
+     "answers_bait": 0.349,
+     "forced": [],
+     "answers_branch": 0.349,
+     "branches": []
     },
     {
      "variant": 0,
@@ -154,7 +176,11 @@
      "answers_lock": 0.057,
      "threat_chance": 0.653,
      "answers_duel": 0.163,
-     "answers_sure": 0.148
+     "answers_sure": 0.148,
+     "answers_bait": 0.163,
+     "forced": [],
+     "answers_branch": 0.163,
+     "branches": []
     },
     {
      "variant": 0,
@@ -169,7 +195,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.528,
      "answers_duel": 0.49,
-     "answers_sure": 0.494
+     "answers_sure": 0.494,
+     "answers_bait": 0.49,
+     "forced": [],
+     "answers_branch": 0.49,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -181,7 +211,7 @@
     "p45 Electro Ball: damage is not a number"
    ],
    "node_seconds": 0.92,
-   "wall_seconds": 0.99
+   "wall_seconds": 0.98
   },
   "fantina": {
    "key": "fantina",
@@ -200,6 +230,9 @@
    "threat_chance": 0.664,
    "answers_duel": 0.176,
    "answers_sure": 0.172,
+   "answers_bait": 0.176,
+   "answers_branch": 0.176,
+   "safe": 0.729,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.199,
@@ -232,7 +265,11 @@
      "answers_lock": 0.018,
      "threat_chance": 0.665,
      "answers_duel": 0.221,
-     "answers_sure": 0.224
+     "answers_sure": 0.224,
+     "answers_bait": 0.221,
+     "forced": [],
+     "answers_branch": 0.221,
+     "branches": []
     },
     {
      "variant": 0,
@@ -247,7 +284,11 @@
      "answers_lock": 0.025,
      "threat_chance": 0.614,
      "answers_duel": 0.196,
-     "answers_sure": 0.195
+     "answers_sure": 0.195,
+     "answers_bait": 0.196,
+     "forced": [],
+     "answers_branch": 0.196,
+     "branches": []
     },
     {
      "variant": 0,
@@ -262,7 +303,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.592,
      "answers_duel": 0.199,
-     "answers_sure": 0.184
+     "answers_sure": 0.184,
+     "answers_bait": 0.199,
+     "forced": [],
+     "answers_branch": 0.199,
+     "branches": []
     },
     {
      "variant": 0,
@@ -277,7 +322,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.784,
      "answers_duel": 0.087,
-     "answers_sure": 0.083
+     "answers_sure": 0.083,
+     "answers_bait": 0.087,
+     "forced": [],
+     "answers_branch": 0.087,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -297,8 +346,8 @@
     "p38 Psywave: damage is not a number",
     "p65 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 1.91,
-   "wall_seconds": 2.0
+   "node_seconds": 1.86,
+   "wall_seconds": 1.95
   },
   "maylene": {
    "key": "maylene",
@@ -317,6 +366,9 @@
    "threat_chance": 0.374,
    "answers_duel": 0.342,
    "answers_sure": 0.327,
+   "answers_bait": 0.342,
+   "answers_branch": 0.342,
+   "safe": 0.928,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.391,
@@ -352,7 +404,11 @@
      "answers_lock": 0.261,
      "threat_chance": 0.33,
      "answers_duel": 0.376,
-     "answers_sure": 0.357
+     "answers_sure": 0.357,
+     "answers_bait": 0.376,
+     "forced": [],
+     "answers_branch": 0.376,
+     "branches": []
     },
     {
      "variant": 0,
@@ -367,7 +423,11 @@
      "answers_lock": 0.052,
      "threat_chance": 0.504,
      "answers_duel": 0.44,
-     "answers_sure": 0.441
+     "answers_sure": 0.441,
+     "answers_bait": 0.44,
+     "forced": [],
+     "answers_branch": 0.44,
+     "branches": []
     },
     {
      "variant": 0,
@@ -382,7 +442,11 @@
      "answers_lock": 0.032,
      "threat_chance": 0.365,
      "answers_duel": 0.234,
-     "answers_sure": 0.212
+     "answers_sure": 0.212,
+     "answers_bait": 0.234,
+     "forced": [],
+     "answers_branch": 0.234,
+     "branches": []
     },
     {
      "variant": 0,
@@ -397,7 +461,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.296,
      "answers_duel": 0.316,
-     "answers_sure": 0.296
+     "answers_sure": 0.296,
+     "answers_bait": 0.316,
+     "forced": [],
+     "answers_branch": 0.316,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -426,8 +494,8 @@
     "p63 Heavy Slam: damage is not a number",
     "p86 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 2.78,
-   "wall_seconds": 2.88
+   "node_seconds": 2.73,
+   "wall_seconds": 2.83
   },
   "wake": {
    "key": "wake",
@@ -446,6 +514,9 @@
    "threat_chance": 0.51,
    "answers_duel": 0.15,
    "answers_sure": 0.141,
+   "answers_bait": 0.15,
+   "answers_branch": 0.15,
+   "safe": 0.48,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.084,
@@ -479,7 +550,11 @@
      "answers_lock": 0.311,
      "threat_chance": 0.289,
      "answers_duel": 0.302,
-     "answers_sure": 0.301
+     "answers_sure": 0.301,
+     "answers_bait": 0.302,
+     "forced": [],
+     "answers_branch": 0.302,
+     "branches": []
     },
     {
      "variant": 0,
@@ -494,7 +569,11 @@
      "answers_lock": 0.107,
      "threat_chance": 0.546,
      "answers_duel": 0.151,
-     "answers_sure": 0.128
+     "answers_sure": 0.128,
+     "answers_bait": 0.151,
+     "forced": [],
+     "answers_branch": 0.151,
+     "branches": []
     },
     {
      "variant": 0,
@@ -509,7 +588,11 @@
      "answers_lock": 0.112,
      "threat_chance": 0.344,
      "answers_duel": 0.173,
-     "answers_sure": 0.158
+     "answers_sure": 0.158,
+     "answers_bait": 0.173,
+     "forced": [],
+     "answers_branch": 0.173,
+     "branches": []
     },
     {
      "variant": 0,
@@ -524,7 +607,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.878,
      "answers_duel": 0.049,
-     "answers_sure": 0.046
+     "answers_sure": 0.046,
+     "answers_bait": 0.049,
+     "forced": [],
+     "answers_branch": 0.049,
+     "branches": []
     },
     {
      "variant": 0,
@@ -539,7 +626,11 @@
      "answers_lock": 0.023,
      "threat_chance": 0.495,
      "answers_duel": 0.076,
-     "answers_sure": 0.074
+     "answers_sure": 0.074,
+     "answers_bait": 0.076,
+     "forced": [],
+     "answers_branch": 0.076,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -568,8 +659,8 @@
     "p70 Heavy Slam: damage is not a number",
     "p94 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.3,
-   "wall_seconds": 4.43
+   "node_seconds": 4.26,
+   "wall_seconds": 4.38
   },
   "byron": {
    "key": "byron",
@@ -588,6 +679,9 @@
    "threat_chance": 0.511,
    "answers_duel": 0.266,
    "answers_sure": 0.25,
+   "answers_bait": 0.266,
+   "answers_branch": 0.237,
+   "safe": 0.528,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.257,
@@ -622,7 +716,13 @@
      "answers_lock": 0.379,
      "threat_chance": 0.276,
      "answers_duel": 0.326,
-     "answers_sure": 0.309
+     "answers_sure": 0.309,
+     "answers_bait": 0.326,
+     "forced": [],
+     "answers_branch": 0.18,
+     "branches": [
+      "Bulk Up"
+     ]
     },
     {
      "variant": 0,
@@ -637,7 +737,11 @@
      "answers_lock": 0.199,
      "threat_chance": 0.425,
      "answers_duel": 0.176,
-     "answers_sure": 0.146
+     "answers_sure": 0.146,
+     "answers_bait": 0.176,
+     "forced": [],
+     "answers_branch": 0.176,
+     "branches": []
     },
     {
      "variant": 0,
@@ -652,7 +756,11 @@
      "answers_lock": 0.048,
      "threat_chance": 0.724,
      "answers_duel": 0.35,
-     "answers_sure": 0.348
+     "answers_sure": 0.348,
+     "answers_bait": 0.35,
+     "forced": [],
+     "answers_branch": 0.35,
+     "branches": []
     },
     {
      "variant": 0,
@@ -667,7 +775,11 @@
      "answers_lock": 0.221,
      "threat_chance": 0.23,
      "answers_duel": 0.333,
-     "answers_sure": 0.319
+     "answers_sure": 0.319,
+     "answers_bait": 0.333,
+     "forced": [],
+     "answers_branch": 0.333,
+     "branches": []
     },
     {
      "variant": 0,
@@ -682,14 +794,18 @@
      "answers_lock": 0.017,
      "threat_chance": 0.901,
      "answers_duel": 0.146,
-     "answers_sure": 0.127
+     "answers_sure": 0.127,
+     "answers_bait": 0.146,
+     "forced": [],
+     "answers_branch": 0.146,
+     "branches": []
     }
    ],
    "stats_from": {
     "canon": 5
    },
    "left_out": {},
-   "calcs": 37916,
+   "calcs": 45249,
    "errors": [
     "b0.3 Heavy Slam: damage is not a number",
     "p126 Heavy Slam: damage is not a number",
@@ -714,8 +830,8 @@
     "p73 Heavy Slam: damage is not a number",
     "p97 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.72,
-   "wall_seconds": 4.85
+   "node_seconds": 5.45,
+   "wall_seconds": 5.59
   },
   "candice": {
    "key": "candice",
@@ -734,6 +850,9 @@
    "threat_chance": 0.442,
    "answers_duel": 0.221,
    "answers_sure": 0.211,
+   "answers_bait": 0.221,
+   "answers_branch": 0.194,
+   "safe": 0.59,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.144,
@@ -772,7 +891,11 @@
      "answers_lock": 0.144,
      "threat_chance": 0.079,
      "answers_duel": 0.306,
-     "answers_sure": 0.299
+     "answers_sure": 0.299,
+     "answers_bait": 0.306,
+     "forced": [],
+     "answers_branch": 0.306,
+     "branches": []
     },
     {
      "variant": 0,
@@ -787,7 +910,11 @@
      "answers_lock": 0.262,
      "threat_chance": 0.287,
      "answers_duel": 0.226,
-     "answers_sure": 0.211
+     "answers_sure": 0.211,
+     "answers_bait": 0.226,
+     "forced": [],
+     "answers_branch": 0.226,
+     "branches": []
     },
     {
      "variant": 0,
@@ -802,7 +929,13 @@
      "answers_lock": 0.058,
      "threat_chance": 0.641,
      "answers_duel": 0.161,
-     "answers_sure": 0.153
+     "answers_sure": 0.153,
+     "answers_bait": 0.161,
+     "forced": [],
+     "answers_branch": 0.113,
+     "branches": [
+      "Agility"
+     ]
     },
     {
      "variant": 0,
@@ -817,7 +950,11 @@
      "answers_lock": 0.157,
      "threat_chance": 0.525,
      "answers_duel": 0.312,
-     "answers_sure": 0.303
+     "answers_sure": 0.303,
+     "answers_bait": 0.312,
+     "forced": [],
+     "answers_branch": 0.312,
+     "branches": []
     },
     {
      "variant": 0,
@@ -832,14 +969,20 @@
      "answers_lock": 0.088,
      "threat_chance": 0.678,
      "answers_duel": 0.099,
-     "answers_sure": 0.088
+     "answers_sure": 0.088,
+     "answers_bait": 0.099,
+     "forced": [],
+     "answers_branch": 0.012,
+     "branches": [
+      "Dragon Dance"
+     ]
     }
    ],
    "stats_from": {
     "canon": 5
    },
    "left_out": {},
-   "calcs": 38808,
+   "calcs": 54072,
    "errors": [
     "p129 Heavy Slam: damage is not a number",
     "p19 Super Fang: damage is not a number",
@@ -864,8 +1007,8 @@
     "p82 Heavy Slam: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.81,
-   "wall_seconds": 4.95
+   "node_seconds": 6.16,
+   "wall_seconds": 6.32
   },
   "volkner": {
    "key": "volkner",
@@ -884,6 +1027,9 @@
    "threat_chance": 0.328,
    "answers_duel": 0.527,
    "answers_sure": 0.517,
+   "answers_bait": 0.527,
+   "answers_branch": 0.453,
+   "safe": 0.749,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.526,
@@ -923,7 +1069,11 @@
      "answers_lock": 0.349,
      "threat_chance": 0.068,
      "answers_duel": 0.538,
-     "answers_sure": 0.515
+     "answers_sure": 0.515,
+     "answers_bait": 0.538,
+     "forced": [],
+     "answers_branch": 0.538,
+     "branches": []
     },
     {
      "variant": 0,
@@ -938,7 +1088,11 @@
      "answers_lock": 0.526,
      "threat_chance": 0.091,
      "answers_duel": 0.67,
-     "answers_sure": 0.658
+     "answers_sure": 0.658,
+     "answers_bait": 0.67,
+     "forced": [],
+     "answers_branch": 0.67,
+     "branches": []
     },
     {
      "variant": 0,
@@ -953,7 +1107,13 @@
      "answers_lock": 0.114,
      "threat_chance": 0.36,
      "answers_duel": 0.467,
-     "answers_sure": 0.453
+     "answers_sure": 0.453,
+     "answers_bait": 0.467,
+     "forced": [],
+     "answers_branch": 0.428,
+     "branches": [
+      "Agility"
+     ]
     },
     {
      "variant": 0,
@@ -968,7 +1128,13 @@
      "answers_lock": 0.075,
      "threat_chance": 0.642,
      "answers_duel": 0.575,
-     "answers_sure": 0.579
+     "answers_sure": 0.579,
+     "answers_bait": 0.575,
+     "forced": [],
+     "answers_branch": 0.328,
+     "branches": [
+      "Quiver Dance"
+     ]
     },
     {
      "variant": 0,
@@ -983,7 +1149,13 @@
      "answers_lock": 0.239,
      "threat_chance": 0.481,
      "answers_duel": 0.385,
-     "answers_sure": 0.378
+     "answers_sure": 0.378,
+     "answers_bait": 0.385,
+     "forced": [],
+     "answers_branch": 0.302,
+     "branches": [
+      "Agility"
+     ]
     }
    ],
    "stats_from": {
@@ -994,7 +1166,7 @@
      "Leech Fang"
     ]
    },
-   "calcs": 41910,
+   "calcs": 67934,
    "errors": [
     "p101 Trump Card: damage is not a number",
     "p106 Heavy Slam: damage is not a number",
@@ -1029,8 +1201,8 @@
     "p95 Trump Card: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 5.53,
-   "wall_seconds": 5.68
+   "node_seconds": 8.05,
+   "wall_seconds": 8.24
   },
   "aaron": {
    "key": "aaron",
@@ -1049,6 +1221,9 @@
    "threat_chance": 0.552,
    "answers_duel": 0.38,
    "answers_sure": 0.371,
+   "answers_bait": 0.38,
+   "answers_branch": 0.38,
+   "safe": 0.544,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.337,
@@ -1090,7 +1265,11 @@
      "answers_lock": 0.105,
      "threat_chance": 0.657,
      "answers_duel": 0.424,
-     "answers_sure": 0.408
+     "answers_sure": 0.408,
+     "answers_bait": 0.424,
+     "forced": [],
+     "answers_branch": 0.424,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1105,7 +1284,11 @@
      "answers_lock": 0.139,
      "threat_chance": 0.7,
      "answers_duel": 0.336,
-     "answers_sure": 0.33
+     "answers_sure": 0.33,
+     "answers_bait": 0.336,
+     "forced": [],
+     "answers_branch": 0.336,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1120,7 +1303,11 @@
      "answers_lock": 0.03,
      "threat_chance": 0.877,
      "answers_duel": 0.296,
-     "answers_sure": 0.289
+     "answers_sure": 0.289,
+     "answers_bait": 0.296,
+     "forced": [],
+     "answers_branch": 0.296,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1135,7 +1322,11 @@
      "answers_lock": 0.226,
      "threat_chance": 0.441,
      "answers_duel": 0.32,
-     "answers_sure": 0.314
+     "answers_sure": 0.314,
+     "answers_bait": 0.32,
+     "forced": [],
+     "answers_branch": 0.32,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1150,7 +1341,11 @@
      "answers_lock": 0.328,
      "threat_chance": 0.084,
      "answers_duel": 0.524,
-     "answers_sure": 0.515
+     "answers_sure": 0.515,
+     "answers_bait": 0.524,
+     "forced": [],
+     "answers_branch": 0.524,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -1195,8 +1390,8 @@
     "p82 Heavy Slam: damage is not a number",
     "p95 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.36,
-   "wall_seconds": 5.51
+   "node_seconds": 5.09,
+   "wall_seconds": 5.23
   },
   "bertha": {
    "key": "bertha",
@@ -1215,6 +1410,9 @@
    "threat_chance": 0.466,
    "answers_duel": 0.306,
    "answers_sure": 0.293,
+   "answers_bait": 0.306,
+   "answers_branch": 0.195,
+   "safe": 0.469,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.269,
@@ -1253,7 +1451,13 @@
      "answers_lock": 0.141,
      "threat_chance": 0.506,
      "answers_duel": 0.475,
-     "answers_sure": 0.462
+     "answers_sure": 0.462,
+     "answers_bait": 0.475,
+     "forced": [],
+     "answers_branch": 0.203,
+     "branches": [
+      "Swords Dance"
+     ]
     },
     {
      "variant": 0,
@@ -1268,7 +1472,13 @@
      "answers_lock": 0.098,
      "threat_chance": 0.121,
      "answers_duel": 0.344,
-     "answers_sure": 0.31
+     "answers_sure": 0.31,
+     "answers_bait": 0.344,
+     "forced": [],
+     "answers_branch": 0.207,
+     "branches": [
+      "Swords Dance"
+     ]
     },
     {
      "variant": 0,
@@ -1283,7 +1493,11 @@
      "answers_lock": 0.353,
      "threat_chance": 0.381,
      "answers_duel": 0.329,
-     "answers_sure": 0.317
+     "answers_sure": 0.317,
+     "answers_bait": 0.329,
+     "forced": [],
+     "answers_branch": 0.329,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1298,7 +1512,13 @@
      "answers_lock": 0.251,
      "threat_chance": 0.729,
      "answers_duel": 0.236,
-     "answers_sure": 0.237
+     "answers_sure": 0.237,
+     "answers_bait": 0.236,
+     "forced": [],
+     "answers_branch": 0.091,
+     "branches": [
+      "Calm Mind"
+     ]
     },
     {
      "variant": 0,
@@ -1313,14 +1533,18 @@
      "answers_lock": 0.198,
      "threat_chance": 0.592,
      "answers_duel": 0.147,
-     "answers_sure": 0.137
+     "answers_sure": 0.137,
+     "answers_bait": 0.147,
+     "forced": [],
+     "answers_branch": 0.147,
+     "branches": []
     }
    ],
    "stats_from": {
     "canon": 5
    },
    "left_out": {},
-   "calcs": 43527,
+   "calcs": 69731,
    "errors": [
     "p106 Heavy Slam: damage is not a number",
     "p131 Heavy Slam: damage is not a number",
@@ -1335,8 +1559,8 @@
     "p82 Heavy Slam: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 5.21,
-   "wall_seconds": 5.36
+   "node_seconds": 7.66,
+   "wall_seconds": 7.84
   },
   "flint": {
    "key": "flint",
@@ -1355,6 +1579,9 @@
    "threat_chance": 0.484,
    "answers_duel": 0.259,
    "answers_sure": 0.246,
+   "answers_bait": 0.259,
+   "answers_branch": 0.217,
+   "safe": 0.501,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.212,
@@ -1395,7 +1622,11 @@
      "answers_lock": 0.219,
      "threat_chance": 0.342,
      "answers_duel": 0.195,
-     "answers_sure": 0.182
+     "answers_sure": 0.182,
+     "answers_bait": 0.195,
+     "forced": [],
+     "answers_branch": 0.195,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1410,7 +1641,11 @@
      "answers_lock": 0.0,
      "threat_chance": 0.72,
      "answers_duel": 0.28,
-     "answers_sure": 0.28
+     "answers_sure": 0.28,
+     "answers_bait": 0.28,
+     "forced": [],
+     "answers_branch": 0.28,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1425,7 +1660,13 @@
      "answers_lock": 0.226,
      "threat_chance": 0.39,
      "answers_duel": 0.247,
-     "answers_sure": 0.207
+     "answers_sure": 0.207,
+     "answers_bait": 0.247,
+     "forced": [],
+     "answers_branch": 0.149,
+     "branches": [
+      "Calm Mind"
+     ]
     },
     {
      "variant": 0,
@@ -1440,7 +1681,11 @@
      "answers_lock": 0.232,
      "threat_chance": 0.59,
      "answers_duel": 0.335,
-     "answers_sure": 0.321
+     "answers_sure": 0.321,
+     "answers_bait": 0.335,
+     "forced": [],
+     "answers_branch": 0.335,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1455,14 +1700,20 @@
      "answers_lock": 0.358,
      "threat_chance": 0.378,
      "answers_duel": 0.24,
-     "answers_sure": 0.241
+     "answers_sure": 0.241,
+     "answers_bait": 0.24,
+     "forced": [],
+     "answers_branch": 0.125,
+     "branches": [
+      "Swords Dance"
+     ]
     }
    ],
    "stats_from": {
     "canon": 5
    },
    "left_out": {},
-   "calcs": 43966,
+   "calcs": 61728,
    "errors": [
     "p101 Trump Card: damage is not a number",
     "p106 Heavy Slam: damage is not a number",
@@ -1497,8 +1748,8 @@
     "p95 Trump Card: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 5.46,
-   "wall_seconds": 5.61
+   "node_seconds": 7.12,
+   "wall_seconds": 7.29
   },
   "lucian": {
    "key": "lucian",
@@ -1517,6 +1768,9 @@
    "threat_chance": 0.654,
    "answers_duel": 0.247,
    "answers_sure": 0.239,
+   "answers_bait": 0.247,
+   "answers_branch": 0.247,
+   "safe": 0.433,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.223,
@@ -1550,7 +1804,11 @@
      "answers_lock": 0.077,
      "threat_chance": 0.501,
      "answers_duel": 0.209,
-     "answers_sure": 0.203
+     "answers_sure": 0.203,
+     "answers_bait": 0.209,
+     "forced": [],
+     "answers_branch": 0.209,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1565,7 +1823,11 @@
      "answers_lock": 0.2,
      "threat_chance": 0.541,
      "answers_duel": 0.159,
-     "answers_sure": 0.15
+     "answers_sure": 0.15,
+     "answers_bait": 0.159,
+     "forced": [],
+     "answers_branch": 0.159,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1580,7 +1842,11 @@
      "answers_lock": 0.155,
      "threat_chance": 0.724,
      "answers_duel": 0.157,
-     "answers_sure": 0.153
+     "answers_sure": 0.153,
+     "answers_bait": 0.157,
+     "forced": [],
+     "answers_branch": 0.157,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1595,7 +1861,11 @@
      "answers_lock": 0.08,
      "threat_chance": 0.631,
      "answers_duel": 0.346,
-     "answers_sure": 0.328
+     "answers_sure": 0.328,
+     "answers_bait": 0.346,
+     "forced": [],
+     "answers_branch": 0.346,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1610,7 +1880,11 @@
      "answers_lock": 0.036,
      "threat_chance": 0.874,
      "answers_duel": 0.364,
-     "answers_sure": 0.362
+     "answers_sure": 0.362,
+     "answers_bait": 0.364,
+     "forced": [],
+     "answers_branch": 0.364,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -1652,8 +1926,8 @@
     "p95 Trump Card: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 5.63,
-   "wall_seconds": 5.77
+   "node_seconds": 5.43,
+   "wall_seconds": 5.57
   },
   "cynthia": {
    "key": "cynthia",
@@ -1672,6 +1946,9 @@
    "threat_chance": 0.598,
    "answers_duel": 0.292,
    "answers_sure": 0.277,
+   "answers_bait": 0.292,
+   "answers_branch": 0.292,
+   "safe": 0.394,
    "cover": 1.0,
    "best_one": 1.0,
    "broad": 0.308,
@@ -1707,7 +1984,11 @@
      "answers_lock": 0.016,
      "threat_chance": 0.841,
      "answers_duel": 0.256,
-     "answers_sure": 0.237
+     "answers_sure": 0.237,
+     "answers_bait": 0.256,
+     "forced": [],
+     "answers_branch": 0.256,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1722,7 +2003,11 @@
      "answers_lock": 0.203,
      "threat_chance": 0.421,
      "answers_duel": 0.321,
-     "answers_sure": 0.308
+     "answers_sure": 0.308,
+     "answers_bait": 0.321,
+     "forced": [],
+     "answers_branch": 0.321,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1737,7 +2022,11 @@
      "answers_lock": 0.276,
      "threat_chance": 0.405,
      "answers_duel": 0.342,
-     "answers_sure": 0.328
+     "answers_sure": 0.328,
+     "answers_bait": 0.342,
+     "forced": [],
+     "answers_branch": 0.342,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1752,7 +2041,11 @@
      "answers_lock": 0.214,
      "threat_chance": 0.168,
      "answers_duel": 0.323,
-     "answers_sure": 0.312
+     "answers_sure": 0.312,
+     "answers_bait": 0.323,
+     "forced": [],
+     "answers_branch": 0.323,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1767,7 +2060,11 @@
      "answers_lock": 0.016,
      "threat_chance": 0.923,
      "answers_duel": 0.258,
-     "answers_sure": 0.248
+     "answers_sure": 0.248,
+     "answers_bait": 0.258,
+     "forced": [],
+     "answers_branch": 0.258,
+     "branches": []
     },
     {
      "variant": 0,
@@ -1782,7 +2079,11 @@
      "answers_lock": 0.082,
      "threat_chance": 0.829,
      "answers_duel": 0.249,
-     "answers_sure": 0.23
+     "answers_sure": 0.23,
+     "answers_bait": 0.249,
+     "forced": [],
+     "answers_branch": 0.249,
+     "branches": []
     }
    ],
    "stats_from": {
@@ -1824,8 +2125,8 @@
     "p95 Trump Card: damage is not a number",
     "p99 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 6.52,
-   "wall_seconds": 6.67
+   "node_seconds": 6.25,
+   "wall_seconds": 6.41
   }
  }
 }

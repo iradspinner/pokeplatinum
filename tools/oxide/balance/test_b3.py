@@ -182,6 +182,22 @@ def check_rules(results):
                     str([i for i, c in enumerate(cases) if not c])))
 
 
+def _branch_jobs():
+    jobs = {"pokemon": {}, "pairs": []}
+    pressure.add_branches(jobs, "b0.0", {"species": "Metagross",
+                                         "moves": ["Agility", "Meteor Mash"]},
+                          ["Meteor Mash"], [{"moves": ["Earthquake"]}], None)
+    keys = sorted(jobs["pokemon"])
+    return keys, jobs["pokemon"][keys[0]]["boosts"], len(jobs["pairs"])
+
+
+def _mon(hits):
+    """A per-Pokemon record as score_mons leaves it, for roll_up."""
+    rec = {k: 0.5 for k in ("threat", "answers", "answers_lock", "threat_chance",
+                            "answers_duel", "answers_sure", "answers_bait", "answers_branch")}
+    return dict(rec, variant=0, species="X", choice=False, _sure=set(), _side=3, _hits=hits)
+
+
 def check_b5_rules(results):
     """B5's readings by hand: accuracy and its modifiers, a self-lowering
     move's softer second hit, the one-on-one, and the cover."""
@@ -209,7 +225,32 @@ def check_b5_rules(results):
         # A Focus Sash turns the OHKO into two hits, which the boss's 2HKO beats.
         pressure.duel({"moves": {"Tackle": hit([120] * 16)}, "speeds": (50, 60)}, two,
                       {"hp": 100, **plain}, {"hp": 100, **plain}, None, True) == 0.0,
+        # A Choice holder picks its strongest move into the lead; a wall
+        # immune to it switches in on it and wins, though it loses the plain
+        # one-on-one, where the boss would pick the move that beats it.
+        pressure.ai_pick({"moves": {"Thunder": hit([90] * 15 + [100]),
+                                    "Ice Beam": hit([60] * 16)}}) == "Thunder",
+        pressure.bait({"moves": {"Earthquake": hit([60] * 16)}, "speeds": (50, 60)},
+                      {"moves": {"Thunder": hit([0] * 16), "Ice Beam": hit([120] * 16)},
+                       "speeds": (60, 50)},
+                      "Thunder", {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 1.0,
+        pressure.duel({"moves": {"Earthquake": hit([60] * 16)}, "speeds": (50, 60)},
+                      {"moves": {"Thunder": hit([0] * 16), "Ice Beam": hit([120] * 16)},
+                       "speeds": (60, 50)},
+                      {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
+        # Natural Gift and Fling spend the item: one hit or none.
+        pressure.hits_needed("Natural Gift", [60] * 16, 100) is None,
+        pressure.hits_needed("Fling", [120] * 16, 100) == 1,
+        pressure.boss_moves({"moves": ["Natural Gift", "Aqua Tail"], "item": "Watmel Berry"},
+                            {"moves": {"Natural Gift": {"category": "Physical"},
+                                       "Aqua Tail": {"category": "Physical"}}})
+        == ["Natural Gift", "Aqua Tail"],
         pressure.cover([{"a"}, {"b"}, {"a", "b"}]) == 2,
+        # A setup move adds the boss as it stands after one use, both ways.
+        _branch_jobs() == (["b0.0+Agility"], {"spe": 2}, 2),
+        # Safe: of three player Pokemon, one is knocked out in one hit by
+        # two boss Pokemon, so two thirds can switch in.
+        pressure.roll_up([_mon({"p0", "p1"}), _mon({"p0"})])["safe"] == round(2 / 3, 3),
         pressure.cover([{"a", "b"}, {"a"}, {"a"}]) == 1,
         pressure.cover([{"a"}, set()]) is None,
         pressure.unseen([[{"species": "Girafarig", "moves": ["Agility", "Baton Pass", "Earthquake"],
@@ -226,8 +267,8 @@ def check_b5_rules(results):
             lambda mv: "Status" if mv in ("Agility", "Baton Pass", "Stealth Rock") else "Physical")
         == round((1 + 1 / 3 + 1 / 1.6) / 3, 3),
     ]
-    results.append(("B5: accuracy, self-lowering moves, one-on-one, cover, tactics, "
-                    "predictability", all(cases),
+    results.append(("B5: accuracy, self-lowering moves, one-on-one, baited locks, item moves, "
+                    "setup branches, safe switch-ins, cover, tactics", all(cases),
                     str([i for i, c in enumerate(cases) if not c])))
 
 
@@ -248,7 +289,7 @@ def check_ref_scores(results, blob):
                 missing.append(f"{hack} {f['key']}")
                 continue
             if (r["cap"] != CAPS[f["split"]] or r["pool"] != sizes[f["split"]]
-                    or "answers_duel" not in r or "predictable" not in r):
+                    or "answers_branch" not in r or "safe" not in r):
                 stale.append(f"{hack} {f['key']}")
             failures |= {e.split(" ", 1)[1].split(":")[0] for e in r["errors"]}
     unknown = failures - REF_UNMODELLED
@@ -270,7 +311,7 @@ def check_scores(results, blob):
                    and any(e.startswith("b") for e in saved[k]["errors"])]
     # Each fight is scored with the Trick Room fights.json gives it.
     rooms = {f["key"]: bool(f.get("trick_room")) for f in data.fights()["fights"]}
-    stale += [k for k in keys if k in saved and "answers_duel" not in saved[k]]
+    stale += [k for k in keys if k in saved and "safe" not in saved[k]]
     stale += [k for k in keys if k in saved and saved[k].get("trick_room", False) != rooms[k]]
     unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
                for e in saved[k]["errors"]} - UNMODELLED

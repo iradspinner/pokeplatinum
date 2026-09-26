@@ -50,7 +50,25 @@ B5 adds columns beside these, which leave the B3 columns as they were:
   Baton Pass, hazards, Explosion, status, evasion, recovery, pinch
   berries), listed by kind and counted, not scored;
 - predictable: how far a player can call the team's moves in advance,
-  from how Platinum's AI picks (predictability()).
+  from how Platinum's AI picks (predictability()); against Ian's ratings it
+  runs backwards, measuring how much of a team's time goes to attacks, so
+  it is not read as difficulty (the plan, "What Ian's ratings showed");
+- answers_branch: answers_bait, but a player Pokemon counts only if it
+  also beats the boss Pokemon after one use of each setup move it knows
+  (SETUP), the branch Ian plans a whole fight around ("if Metagross ever
+  uses Agility, nothing I have beats it");
+- safe: the share of the side that at most one boss Pokemon knocks out
+  in one hit, so that it can switch in, low when a team doubles up its
+  coverage so that baiting one Pokemon draws in another with the same
+  answer (Saturn 2, Cyrus 3), high when it shares a weakness (Mars 2);
+- answers_bait: one-on-one answers, and for a Choice holder also every
+  player Pokemon that wins after the player baits the lock (bait()): the
+  AI's pick against a given lead is fixed, so the player chooses the move
+  it locks into, then switches to something that takes it.
+
+A boss that holds an item keeps Natural Gift and Fling, which the
+calculator works out from the item, as one hit each, since the item is
+spent; the player's side holds no berries and never uses them.
 
 The runs are staged and kept small, one split at a time, because this CPU
 fails under load: every calculation is one process, run one after another.
@@ -137,6 +155,24 @@ UNSEEN = {
 # is a live choice about one turn in five.
 GAMBLES = {"Explosion", "Self-Destruct", "Selfdestruct", "Focus Punch", "Sucker Punch"}
 GAMBLE_WEIGHT = 0.2
+# The stat stages one use of each setup move gives, as Generation 4 has
+# them (Curse's as a non-Ghost uses it). A boss Pokemon that knows one is
+# also scored as it stands after that one use.
+SETUP = {"Swords Dance": {"atk": 2}, "Nasty Plot": {"spa": 2}, "Agility": {"spe": 2},
+         "Rock Polish": {"spe": 2}, "Dragon Dance": {"atk": 1, "spe": 1},
+         "Calm Mind": {"spa": 1, "spd": 1}, "Bulk Up": {"atk": 1, "def": 1},
+         "Curse": {"atk": 1, "def": 1, "spe": -1}, "Cosmic Power": {"def": 1, "spd": 1},
+         "Defend Order": {"def": 1, "spd": 1}, "Iron Defense": {"def": 2},
+         "Acid Armor": {"def": 2}, "Barrier": {"def": 2}, "Amnesia": {"spd": 2},
+         "Growth": {"spa": 1}, "Howl": {"atk": 1}, "Meditate": {"atk": 1},
+         "Sharpen": {"atk": 1}, "Hone Claws": {"atk": 1}, "Work Up": {"atk": 1, "spa": 1},
+         "Coil": {"atk": 1, "def": 1}, "Quiver Dance": {"spa": 1, "spd": 1, "spe": 1},
+         "Shell Smash": {"atk": 2, "spa": 2, "spe": 2, "def": -1, "spd": -1},
+         "Shift Gear": {"atk": 1, "spe": 2}, "Tail Glow": {"spa": 2}, "Belly Drum": {"atk": 6},
+         "Charge": {"spd": 1}, "Victory Dance": {"atk": 1, "def": 1, "spe": 1}}
+# Moves whose power comes from the held item, which one use spends: a boss
+# holding an item keeps them, as a one-hit knockout at most.
+ITEM_MOVES = {"Natural Gift", "Fling"}
 
 
 def hits_to_ko(rolls, hp):
@@ -173,7 +209,7 @@ def wins(row, def_info, speeds, weather, sash=False, trick_room=False):
         if "error" in r:
             continue
         n = hits_to_ko(r["rolls"], def_info["hp"])
-        if n is None:
+        if n is None or (move in ITEM_MOVES and n > 1):
             continue
         if sash and n == 1:
             n = 2
@@ -195,7 +231,7 @@ def turns_to_ko(row, def_info, weather, sash=False):
         if "error" in r:
             continue
         n = hits_to_ko(r["rolls"], def_info["hp"])
-        if n is None:
+        if n is None or (move in ITEM_MOVES and n > 1):
             continue
         if sash and n == 1:
             n = 2
@@ -288,6 +324,8 @@ def hits_needed(move, rolls, hp):
     each use after the first: at two stages down half as hard, at four a
     third."""
     n = hits_to_ko(rolls, hp)
+    if move in ITEM_MOVES and n is not None and n > 1:
+        return None
     drop = SELF_DROP.get(move)
     if n is None or n == 1 or not drop:
         return n
@@ -349,6 +387,62 @@ def duel(up, down, player, boss, weather, sash, trick_room=False):
         if k is None or (t <= k if first else t < k):
             best = max(best, hit_chance(move, player, boss, weather, r.get("category")) ** n)
     return best
+
+
+def ai_pick(row):
+    """The move Evaluate Attack picks against this target: the one whose top
+    roll does most, since every damage check in the AI's script uses the top
+    of the range (docs/oxide/battle-ai/README.md). The gambles, which it
+    never calls strongest, and the priority kill bonus are left out."""
+    best, top = None, 0
+    for move, r in row["moves"].items():
+        if "error" in r or move in GAMBLES:
+            continue
+        if r["rolls"][-1] > top:
+            best, top = move, r["rolls"][-1]
+    return best
+
+
+def bait(up, down, locked, player, boss, weather, sash, trick_room=False):
+    """The chance a player Pokemon beats a boss Pokemon locked into `locked`
+    by switching in on it: one hit taken coming in, then its knockout,
+    within three turns, before the locked move knocks it out. Counted by the
+    chance its own hits land, as in duel()."""
+    r = down["moves"].get(locked)
+    k = None
+    if r and "error" not in r:
+        n = hits_needed(locked, r["rolls"], player["hp"])
+        k = turns(locked, n, weather) if n is not None else None
+    pr = r["priority"] if r and "error" not in r else 0
+    best = 0.0
+    for move, r2 in up["moves"].items():
+        if "error" in r2:
+            continue
+        n = hits_needed(move, r2["rolls"], boss["hp"])
+        if n is None:
+            continue
+        if sash and n == 1:
+            n = 2
+        t = turns(move, n, weather)
+        if t > DUEL_TURNS:
+            continue
+        first = moves_first(r2["priority"] - pr, up["speeds"], trick_room)
+        taken = t if first else t + 1
+        if k is None or taken < k:
+            best = max(best, hit_chance(move, player, boss, weather, r2.get("category")) ** n)
+    return best
+
+
+def add_branches(jobs, key, mon, moves, side, weather):
+    """Adds to `jobs` a copy of the boss Pokemon `key` as it stands after one
+    use of each setup move it knows, keyed "key+Move", with its pairs against
+    the side both ways."""
+    for s in sorted(set(mon.get("moves") or []) & set(SETUP)):
+        bkey = f"{key}+{s}"
+        jobs["pokemon"][bkey] = dict(mon, boosts=SETUP[s])
+        for i, p in enumerate(side):
+            jobs["pairs"].append([bkey, f"p{i}", moves, weather])
+            jobs["pairs"].append([f"p{i}", bkey, p["moves"], weather])
 
 
 def cover(sets):
@@ -421,20 +515,36 @@ def score_mons(bosses, side_keys, rows, info, trick_room=False):
     """Per boss Pokemon: threat, answers, and for a Choice holder the answers
     counting the lock (answers_lock; equal to answers for anyone else); and
     B5's threat by chance, one-on-one answers, and sure answers, whose set
-    (_sure) roll_up takes for the fight's cover."""
+    (_sure) roll_up takes for the fight's cover; the answers that hold in
+    every setup branch (from rows for "key+Move", when there are any); and
+    the set of player Pokemon it knocks out in one hit (_hits), for the
+    fight's "safe"."""
     per_mon = []
     for v, key, mon, w in bosses:
+        ghost = "Ghost" in (info[key].get("types") or [])
+        branches = [k for k in info if k.startswith(key + "+")
+                    and not (ghost and k.endswith("+Curse"))]
         sash = mon.get("item") == "Focus Sash"
         choice = mon.get("item") in CHOICE
         locked = locked_move(rows, key, side_keys, info, w) if choice else None
         threat = answer = lock = 0
-        chance = duels = 0.0
-        sure = set()
+        chance = duels = baits = held = 0.0
+        sure, hits = set(), set()
+        # A Choice holder locks into whatever it picks against the lead, so
+        # the player can force any move it would pick against some Pokemon.
+        forced = sorted({ai_pick(rows[(key, pk)]) for pk in side_keys} - {None}) if choice else []
         for pk in side_keys:
             down, up = rows[(key, pk)], rows[(pk, key)]
             chance += threat_chance(down, info[pk], info[key], w, trick_room)
             d = duel(up, down, info[pk], info[key], w, sash, trick_room)
             duels += d
+            b = max([d] + [bait(up, down, m, info[pk], info[key], w, sash, trick_room)
+                           for m in forced])
+            baits += b
+            held += min([b] + [duel(rows[(pk, bk)], rows[(bk, pk)], info[pk], info[bk], w, sash,
+                                    trick_room) for bk in branches])
+            if any(t <= 1 for t in turns_to_ko(down, info[pk], w).values()):
+                hits.add(pk)
             if d >= SURE:
                 sure.add(pk)
             if wins(down, info[pk], down["speeds"], w, trick_room=trick_room):
@@ -452,7 +562,10 @@ def score_mons(bosses, side_keys, rows, info, trick_room=False):
                         "threat": round(threat / n, 3), "answers": round(answer / n, 3),
                         "answers_lock": round(lock / n, 3),
                         "threat_chance": round(chance / n, 3), "answers_duel": round(duels / n, 3),
-                        "answers_sure": round(len(sure) / n, 3), "_sure": sure, "_side": n})
+                        "answers_sure": round(len(sure) / n, 3), "_sure": sure, "_side": n,
+                        "answers_bait": round(baits / n, 3), "forced": forced,
+                        "answers_branch": round(held / n, 3),
+                        "branches": [k.split("+", 1)[1] for k in branches], "_hits": hits})
     return per_mon
 
 
@@ -468,10 +581,15 @@ def roll_up(per_mon):
     by_variant = {}
     for m in per_mon:
         by_variant.setdefault(m["variant"], []).append(m)
-    covers, best_one, broad = [], [], []
+    covers, best_one, broad, safe = [], [], [], []
     for ms in by_variant.values():
         sets = [m.pop("_sure", set()) for m in ms]
         side = max(m.pop("_side", 1) for m in ms)
+        hit_by = {}
+        for m in ms:
+            for pk in m.pop("_hits", set()):
+                hit_by[pk] = hit_by.get(pk, 0) + 1
+        safe.append(1 - sum(c > 1 for c in hit_by.values()) / side)
         covers.append(cover(sets))
         counts = {}
         for s in sets:
@@ -488,7 +606,8 @@ def roll_up(per_mon):
     return {"threat": mean("threat"), "answers": mean("answers"),
             "answers_lock": mean("answers_lock"),
             "threat_chance": mean("threat_chance"), "answers_duel": mean("answers_duel"),
-            "answers_sure": mean("answers_sure"),
+            "answers_sure": mean("answers_sure"), "answers_bait": mean("answers_bait"),
+            "answers_branch": mean("answers_branch"), "safe": round(sum(safe) / len(safe), 3),
             "cover": None if None in covers else round(sum(covers) / len(covers), 2),
             "best_one": round(sum(best_one) / len(best_one), 3),
             "broad": round(sum(broad) / len(broad), 3), "unanswered": unanswered,
@@ -518,7 +637,7 @@ def fight_weather(tr_ids):
 def boss_moves(mon, blob):
     return [m for m in mon["moves"]
             if m in blob["moves"] and blob["moves"][m].get("category") != "Status"
-            and m not in pool.UNRELIABLE]
+            and (m not in pool.UNRELIABLE or (m in ITEM_MOVES and mon.get("item")))]
 
 
 def run_node(blob_path, jobs):
@@ -556,6 +675,7 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
             for i, p in enumerate(side):
                 jobs["pairs"].append([key, f"p{i}", boss_moves(mon, blob), w])
                 jobs["pairs"].append([f"p{i}", key, p["moves"], w])
+            add_branches(jobs, key, mon, boss_moves(mon, blob), side, w)
     t0 = time.time()
     out = run_node(blob_path, jobs)
     seconds = time.time() - t0

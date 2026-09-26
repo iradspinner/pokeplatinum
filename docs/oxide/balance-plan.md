@@ -726,6 +726,75 @@ So the tool's part in the trainer pass is the damage side, with answers
 weighted over threat, and a flag wherever a fight's score and Ian's feel
 part company. The target for each fight is Ian's rating scale, not a score.
 
+**Ian's explanations** (2026-09-25), for the fights where his rating and
+the scores parted. They are the design reasoning the trainer pass works
+from, so they are kept here in brief.
+
+- **Gardenia (5)** is hard for a second gym, and the scores agree once the
+  stage is counted. Whatever leads into Cherrim is countered by Lumineon,
+  which nothing answers yet: Aqua Tail hits hard even in sun, it outspeeds
+  almost everything, Swagger has no cure because no Persim Berry is in
+  reach, Silver Wind can raise every stat, and Natural Gift is a boosted
+  Fire move into its counters. Breloom's Rock Tomb has to be baited,
+  Roserade hits hard, and Shiftry's sun Solar Beam, Natural Gift and Feint
+  Attack punish its answers. "It's the lack of good answers, and
+  everything is awkward."
+- **Volkner (3)** is easy for three reasons. Magnezone, Luxray and
+  Electivire hold Choice items, so each can be baited into a move
+  something takes for free (an Electric move into a Ground type, Tri
+  Attack or Cross Chop into a Ghost, Giga Impact into Protect). Jolteon
+  and Rotom share Electric and Ghost coverage, and Rotom's Leaf Storm
+  weakens itself. Lanturn, sash and all, has Lanturn's stats: Ian's
+  Empoleon came in on Ice Beam and Earthquaked through Thunder. This fight
+  is why Choice items are now to be nearly entirely gone.
+- **Mars and Jupiter at Spear Pillar (9)** cannot be planned past the first
+  turn or two, because Barry's moves are not the player's. Both leads
+  resist everything Barry's Snorlax does, and Solrock and Lunatone can
+  screen, flinch, raise every stat or crit on turn one. A locked Skuntank
+  that the player walls simply beats on the partner instead. Spiritomb's
+  Pursuit punishes switches, Toxic Spikes and Fake Out change every switch,
+  and the Curse Bronzong stalls behind them: more than the sum of its
+  parts. Ian lost four Pokemon both times he played it.
+- **Saturn 2 (8.5)** is built to resist baiting: most attacking types sit
+  on two Pokemon, so baiting one draws another with the same answer
+  (Earthquake on Rhyperior and Wailord, Rhyperior's Aqua Tail). Every
+  Pokemon hits hard and none holds a Choice item; Wailord's Water Spout
+  kills any switch-in; Cresselia (Moonlight, Calm Mind, Charge Beam) and
+  Wailord (Aqua Ring, Leftovers) stall. It needs slow Pokemon the player
+  may not have kept. Uxie and Toxicroak are the weak part; the Wailord,
+  Cresselia and Rhyperior core is the fight.
+- **Cyrus 3 (8.5)** is Saturn 2 turned up. Four Pokemon carry Rock and
+  Ground, near-perfect coverage together, so almost anything can be
+  baited in; Gyarados' four moves are resisted by nothing in the game.
+  Each Pokemon has its own threat: a fast Swagger Salamence with a King's
+  Rock and three flinching moves, a Curse and Explosion Regirock with Stone
+  Edge, a fast Life Orb Flygon with U-turn and Draco Meteor, Heatran's
+  Magma Storm trap and Ancient Power, and Oxide's buffed Dusknoir, slow
+  enough that Payback hits hard, with Will-O-Wisp, a Lum Berry and
+  Levitate. Ice is its weakness, and every Pokemon in the back carries a
+  Rock move for it.
+- **Byron (7)** is where Ian named the principle. A fight is hard when
+  the plan cannot be sure of its outcome. Against Empoleon, a player who
+  knows which of its moves hurts most knows it will use it. Metagross may
+  use Agility at any point, and if nothing in the box beats a +2 Speed
+  Metagross, the whole fight becomes never letting it. The same goes for
+  Forretress's Explosion, Bastiodon's Metal Burst (it must be knocked out
+  in one hit), Magnezone's Mirror Coat behind a Focus Sash, and Sandstorm
+  and Toxic Spikes changing the knockout sums.
+- **Mars 2 (5)** fails on coverage. Purugly hurts only with Slash, Sucker
+  Punch and Fake Out, so a Ghost walls it; Mesprit has only Psychic and
+  U-turn; Bronzong's Heatproof set leaves Earthquake good against both it
+  and Luxray, the team's only Ground-weak pair with no Levitate or Flying
+  cover; Delcatty and Umbreon hit weakly. "A box check": it needs specific
+  answers, but it has no awkward baiting and little setup that matters.
+
+Three readings came from these (`pressure.py`, B5): answers that hold if a
+boss uses its setup move (the Byron principle), answers that count baiting
+a Choice lock (Volkner), and the share of the side that can safely switch
+in, low when a team doubles up its coverage (Saturn 2 and Cyrus 3) and
+high when it does not (Mars 2). The double battle stays out of reach; for
+Spear Pillar Ian's rating is the measure.
+
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
 Ian's ruling: after Candice (cap 56) the story runs Lake Acuity, the
@@ -1111,7 +1180,10 @@ lands, and each change is re-scored as it lands.
    staples survey): the player can never set, change or end weather, so
    TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
    become other moves. The one Ability Patch in the game (for a hidden
-   ability) is the only exception, and Defog still clears fog.
+   ability) is the only exception, and Defog still clears fog. Choice
+   items are to be nearly entirely gone from the game (Ian, 2026-09-25,
+   after Volkner), up from "quite rare". When a confusion cure is first in
+   reach decides how Swagger plays: at Gardenia no Persim Berry is.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or
@@ -1135,7 +1207,8 @@ abilities. Status stays as Generation 4 has it, and Hidden Power keeps its
 IV formula. The calculator keeps Generation 4's formula and chart, so each
 of these reaches the scores through the move data or the calculator's
 Generation 4 branch, as element 5's abilities will.
-5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
+5. **Trainers**, with the bosses first, Choice items coming off them (Ian,
+   2026-09-25): Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
    against B1e's list. Also the **level 71 Lucas and Dawn fight** (trainer
