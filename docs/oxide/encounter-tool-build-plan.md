@@ -457,6 +457,14 @@ that stay. None blocks anything.
    the evolve tool's judged levels, which have read every
    friendship method as 32 and a held-item trade as 32 because they are
    keyed by names the data does not use, and reruns `test_sim`.
+25. **Thorton's encounter and Argenta's reward (Ian, 2026-09-27, through
+   the Overseer)**, for the Frontier Brains in Byron's split. The proposals
+   are `docs/oxide/encounters/frontier-brains-rewards.md`: a level-40
+   Cinderace static at the heart of Fuego Ironworks, sharing the yard's
+   capture, with a Battle Factory rental draw as the alternative; for
+   Argenta, items if the box should not grow, or an egg drawn from Happiny,
+   Smoochum and Elekid. Waiting on Ian; the box sim measurement of the
+   pick follows the balance track's rescore.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
