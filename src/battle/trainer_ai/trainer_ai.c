@@ -1596,6 +1596,7 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
@@ -1647,6 +1648,7 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
@@ -2436,6 +2438,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
     }
 
     if (sAltPowerMoveEffects[k] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[j] == 0xFFFF)) {
         battler = AI_CONTEXT.attacker;
 
