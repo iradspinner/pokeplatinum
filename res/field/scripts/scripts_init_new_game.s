@@ -123,6 +123,8 @@ InitNewGame:
     SetFlag FLAG_HIDE_FIGHT_AREA_PALMER
     SetFlag FLAG_HIDE_VILLA_DELIVERY_GUY
     SetFlag FLAG_HIDE_VILLA_BOOK
+    @ Oxide: the teleporting Abra are gone (Ian, 2026-09-27)
+    SetFlag FLAG_HIDE_TELEPORT_ABRA
     Call InitNewGame_DrawLegendaryPool
     End
 

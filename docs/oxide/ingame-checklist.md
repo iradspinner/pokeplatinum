@@ -139,13 +139,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Munchlax trees are gone.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
-- [ ] Once `carry-over` merges, the base ROM's overworld sprites: the teleporting
-  Abra outside Sandgem's Pokemon Center is an Abra, not a placeholder, and
-  faces and turns properly when talked to (the same Abra stands in 30 other
-  towns, gyms and routes). Later in the game, May at the Resort Area, Steven in
-  Stark Mountain's first room, and Ethan and Red on Mt. Coronet's north and
-  south slopes draw as themselves.
 - [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
+- [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
+  sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
+  Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
+  Coronet or Stark Mountain, or in Turnback Cave. The gym shortcut Abra still
+  stand at the entrance and by the leader of the Canalave, Pastoria,
+  Snowpoint, Veilstone and Sunyshore gyms, draw as an Abra, and face and
+  turn properly when talked to. Later in the game, May at the Resort Area,
+  Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
+  north and south slopes draw as themselves.
 
 ## 4. The ordinary ROM, mid-game
 
