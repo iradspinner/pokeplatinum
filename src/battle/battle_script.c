@@ -1423,6 +1423,14 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         return power > 0 ? power : 1;
     }
 
+    case MOVE_LASH_OUT:
+        // Doubles when one of the user's stats fell earlier this turn, by
+        // any hand, as hg-engine's anyStatLoweredThisTurn has it.
+        if (battleCtx->turnFlags[battleCtx->attacker].statLowered) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
@@ -3202,6 +3210,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
+        battleCtx->turnFlags[battleCtx->sideEffectMon].statLowered = TRUE; // Oxide, for Lash Out
 
         // Oxide: a stat lowered by a battler of the other side is answered by
         // Defiant or Competitive, once per stat, after the drop's message
@@ -10097,6 +10106,7 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
     } else {
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatFell_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} fell!"
         mon->statBoosts[BATTLE_STAT_SPEED]--;
+        battleCtx->turnFlags[battler].statLowered = TRUE; // Oxide, for Lash Out
         battleCtx->calcTemp = 0;
         battleCtx->selfTurnFlags[battler].defiantPending = TRUE; // Oxide, element 5: the web was laid by the other side
     }
@@ -10454,6 +10464,9 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
     }
 
     mon->statBoosts[stat] = stage;
+    if (stages < 0) {
+        battleCtx->turnFlags[target].statLowered = TRUE; // Oxide, for Lash Out
+    }
     battleCtx->scriptTemp = stages > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
     battleCtx->msgBattlerTemp = target;
     battleCtx->sideEffectMon = target;

@@ -679,6 +679,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet37, 9
     AddListMenuEntry TestKit_Text_MenuSet38, 10
     AddListMenuEntry TestKit_Text_MenuSet39, 11
+    AddListMenuEntry TestKit_Text_MenuSet40, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -692,6 +693,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 9, TestKit_MoveSet37
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet38
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
+    GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1077,6 +1079,21 @@ TestKit_MoveSet38:
 TestKit_MoveSet39:
     SetVar VAR_0x8006, MOVE_PIKA_PAPOW
     SetVar VAR_0x8007, MOVE_VEEVEE_VOLLEY
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 40: Lash Out doubles when one of Mew's stats fell earlier in
+   the turn. Against a wild Klefki with Prankster that knows only Tail
+   Whip, which therefore always goes first: while Tail Whip lowers Mew's
+   Defense, Lash Out (150) does about twice what Crunch (80) does; once
+   Mew's Defense is at its lowest and Tail Whip fails, less. */
+TestKit_MoveSet40:
+    SetVar VAR_0x8000, SPECIES_KLEFKI
+    SetVar VAR_0x8001, ABILITY_PRANKSTER
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_LASH_OUT
+    SetVar VAR_0x8007, MOVE_CRUNCH
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew

@@ -69,7 +69,8 @@ typedef struct TurnFlags {
     u32 fleeing : 2;
     u32 enduring : 1;
     u32 sideGuard : 3; // Oxide, one of SIDE_GUARD_*, from the padding
-    u32 padding00_0D : 19;
+    u32 statLowered : 1; // Oxide: one of its stats fell this turn, for Lash Out, from the padding
+    u32 padding00_0E : 18;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;
