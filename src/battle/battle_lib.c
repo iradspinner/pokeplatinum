@@ -2646,6 +2646,69 @@ static int MoveChartMultiplier(int move, int chartEntry)
     return sTypeMatchupMultipliers[chartEntry][2];
 }
 
+/**
+ * @brief Oxide: whether a move reads this entry of the type chart.
+ *
+ * A move reads the entries for its own type; Flying Press also reads those
+ * for Flying, so it is Fighting and Flying at once (hg-engine's
+ * GetTypeEffectiveness).
+ *
+ * @param move
+ * @param moveType      The move's type in this battle
+ * @param chartEntry    Index of the entry into the type-chart
+ * @return TRUE if the move reads the entry
+ */
+static BOOL MoveReadsChartEntry(int move, u8 moveType, int chartEntry)
+{
+    return sTypeMatchupMultipliers[chartEntry][0] == moveType
+        || (move == MOVE_FLYING_PRESS && sTypeMatchupMultipliers[chartEntry][0] == TYPE_FLYING);
+}
+
+/**
+ * @brief Oxide: count one type chart multiplier towards a move's net
+ * effectiveness, in doublings.
+ *
+ * @param mul
+ * @return 1 for super effective, -1 for not very effective, 0 otherwise
+ */
+static int ChartMultiplierStep(int mul)
+{
+    if (mul == TYPE_MULTI_SUPER_EFF) {
+        return 1;
+    } else if (mul == TYPE_MULTI_NOT_VERY_EFF) {
+        return -1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Oxide: set Flying Press's effectiveness flags from its net result.
+ *
+ * The flags are kept as a running toggle, which is right for the two entries
+ * one type can read but not for the four Flying Press can: against Rock and
+ * Steel it doubles twice and halves twice, which the toggle reads as not very
+ * effective. So for Flying Press they are set again from the total.
+ *
+ * @param move
+ * @param netSteps          The doublings less the halvings the move took
+ * @param moveStatusMask
+ */
+static void SetNetEffectiveness(int move, int netSteps, u32 *moveStatusMask)
+{
+    if (move != MOVE_FLYING_PRESS || (*moveStatusMask & MOVE_STATUS_INEFFECTIVE)) {
+        return;
+    }
+
+    *moveStatusMask &= ~MOVE_STATUS_BASIC_EFFECTIVENESS;
+
+    if (netSteps > 0) {
+        *moveStatusMask |= MOVE_STATUS_SUPER_EFFECTIVE;
+    } else if (netSteps < 0) {
+        *moveStatusMask |= MOVE_STATUS_NOT_VERY_EFFECTIVE;
+    }
+}
+
 int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask)
 {
     int chartEntry;
@@ -2656,6 +2719,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     u8 defenderItemEffect;
     u8 attackerItemPower;
     u8 defenderItemPower;
+    int netSteps = 0; // Oxide
 
     totalMul = 1;
 
@@ -2714,7 +2778,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 }
             }
 
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+            if (MoveReadsChartEntry(move, moveType, chartEntry)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
                     damage = ApplyTypeMultiplier(battleCtx, attacker, MoveChartMultiplier(move, chartEntry), damage, movePower, moveStatusMask);
@@ -2722,6 +2786,8 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                     if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
+
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
@@ -2732,10 +2798,16 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                     if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
+
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
             }
 
             chartEntry++;
+        }
+
+        if (movePower) {
+            SetNetEffectiveness(move, netSteps, moveStatusMask);
         }
     }
 
@@ -2775,6 +2847,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
 {
     int chartEntry;
     u8 moveType;
+    int netSteps = 0; // Oxide
 
     if (move == MOVE_STRUGGLE) {
         return;
@@ -2807,21 +2880,25 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
                 }
             }
 
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+            if (MoveReadsChartEntry(move, moveType, chartEntry)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
                     UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
                     && defenderType1 != defenderType2
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
                     UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
+                    netSteps += ChartMultiplierStep(MoveChartMultiplier(move, chartEntry));
                 }
             }
 
             chartEntry++;
         }
+
+        SetNetEffectiveness(move, netSteps, moveStatusMask);
     }
 
     if (attackerAbility != ABILITY_MOLD_BREAKER
