@@ -150,6 +150,7 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 52 | Mind Blown, Flamethrower, Recover, Splash | Damp and Mind Blown; starts a battle with a wild Politoed given Damp that knows only Splash. Mind Blown fails with "POLITOED's Damp prevents MEW from using Mind Blown!" and Mew keeps its HP |
 | 53 | Shore Up, Sandstorm, Sunny Day, Substitute | Shore Up's weather (2026-09-27); starts a battle with a wild Chansey that knows only Splash. Three Substitutes bring Mew to a quarter of its HP. Shore Up then brings it back to a little under full in a sandstorm (two thirds), and to about three quarters in sun or clear weather (half). Before the fix it healed two thirds in sun and a quarter in a sandstorm |
 | 54 | Nature's Madness, Splash, Recover, Tackle | Nature's Madness's power (2026-09-27); starts a battle with a wild Chansey that knows only Taunt. Once Mew is taunted, Splash and Recover cannot be chosen, and Nature's Madness still can and halves Chansey's HP each time. Before the fix Taunt blocked Nature's Madness too, since its power of 0 marked it as a status move |
+| 55 | Scale Shot, Double Hit, Recover, Splash | Scale Shot's stat changes (2026-09-27), the first set on the third page; starts a battle with a wild Shuckle that knows only Splash. After "Hit 2 time(s)!" (or up to 5), "MEW's Defense fell!" and "MEW's Speed rose!", once a use whatever the number of hits; Double Hit changes nothing. At -6 Defense only the Speed rises. Before this Scale Shot changed no stat |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and
@@ -158,6 +159,8 @@ Sets 1 to 27 fill the first page, whose last entry, "More sets", opens the
 second: a field menu holds 28 entries (`FIELD_MENU_ENTRIES_MAX`), and a
 29th is written past the end of the menu's arrays. Sets 28 to 31 were
 added that way on 2026-09-25 and moved to the second page on 2026-09-26.
+The second page ends the same way at set 54, and set 55 on (2026-09-27) is
+on the third, `TestKit_MoveSets3`.
 Pair a move that needs a condition with the move that sets it up, as sets 3, 5,
 8 and 9 do.
 
