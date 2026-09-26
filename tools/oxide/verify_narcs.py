@@ -325,6 +325,14 @@ MAP_HEADERS_DIVERGED = {
                                 "encounters_amity_square (Ian, 2026-09-27)"),
     "MAP_HEADER_VERITY_LAKEFRONT": (range(14, 16), "Verity Lakefront's new grass reads "
                                     "encounters_verity_lakefront (Ian, 2026-09-27)"),
+    "MAP_HEADER_SANDGEM_TOWN": (range(14, 16), "Sandgem Town's new grass, in place of its gift "
+                    "clown, reads encounters_sandgem_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_JUBILIFE_CITY": (range(14, 16), "Jubilife City's new grass, in place of its gift "
+                     "clown, reads encounters_jubilife_city (Ian, 2026-09-27)"),
+    "MAP_HEADER_FLOAROMA_TOWN": (range(14, 16), "Floaroma Town's new grass, in place of its gift "
+                     "clown, reads encounters_floaroma_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_SOLACEON_TOWN": (range(14, 16), "Solaceon Town's new grass, in place of its gift "
+                     "clown, reads encounters_solaceon_town (Ian, 2026-09-27)"),
 }
 
 
