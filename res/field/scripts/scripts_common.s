@@ -1712,7 +1712,9 @@ Common_2512:
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Common_2CCE
     BufferTypeName 0, 32772
-    Message 38
+    CalcHiddenPowerPower 32768, VAR_0x800C
+    BufferNumber 1, VAR_0x800C
+    Message 257
     GoTo Common_2506
 Common_2649:
     Message 131
@@ -1843,7 +1845,9 @@ Common_2CC3:
     GoTo Common_2506
 Common_2CCE:
     BufferTypeName 0, 32772
-    Message 38
+    CalcHiddenPowerPower 32768, VAR_0x800C
+    BufferNumber 1, VAR_0x800C
+    Message 257
     GoTo Common_2506
 Common_2CDC:
     UnloadAnimation 90
