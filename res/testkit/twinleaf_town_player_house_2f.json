@@ -556,6 +556,10 @@
             "en_US": "Set 41"
         },
         {
+            "id": "TestKit_Text_MenuSet42",
+            "en_US": "Set 42"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },

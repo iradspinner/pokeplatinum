@@ -7330,6 +7330,14 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
+    // Oxide: moves that hit with a stat other than the user's own Attack
+    // (hg-engine's CalcBaseDamage, step 3.2). The user's ability and item
+    // still modify the stat below, as they do there; the stages are chosen
+    // after Unaware.
+    if (move == MOVE_FOUL_PLAY) {
+        attackStat = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK, NULL);
+    }
+
     attackerParams.species = BattleMon_Get(battleCtx, attacker, BATTLEMON_SPECIES, NULL);
     defenderParams.species = BattleMon_Get(battleCtx, defender, BATTLEMON_SPECIES, NULL);
     attackerParams.curHP = BattleMon_Get(battleCtx, attacker, BATTLEMON_CUR_HP, NULL);
@@ -7621,6 +7629,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (attackerParams.ability == ABILITY_UNAWARE) {
         defenseStage = 0;
         spDefenseStage = 0;
+    }
+
+    // Oxide: Foul Play takes the target's Attack stages with its Attack, and
+    // takes them after Unaware, so a target with Unaware still counts its own.
+    if (move == MOVE_FOUL_PLAY) {
+        attackStage = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK_STAGE, NULL) - DEFAULT_STAT_STAGE;
     }
 
     attackStage += DEFAULT_STAT_STAGE;

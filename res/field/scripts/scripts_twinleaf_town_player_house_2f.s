@@ -681,6 +681,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet39, 11
     AddListMenuEntry TestKit_Text_MenuSet40, 12
     AddListMenuEntry TestKit_Text_MenuSet41, 13
+    AddListMenuEntry TestKit_Text_MenuSet42, 14
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -696,6 +697,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
+    GoToIfEq VAR_0x8004, 14, TestKit_MoveSet42
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1111,6 +1113,21 @@ TestKit_MoveSet41:
     SetVar VAR_0x8006, MOVE_GRAV_APPLE
     SetVar VAR_0x8007, MOVE_SEED_BOMB
     SetVar VAR_0x8008, MOVE_GRAVITY
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 42: Foul Play hits with the target's Attack and its stages. Against
+   a wild Shuckle, whose Attack is tiny, that knows only Swords Dance: Foul
+   Play does well under half what Crunch does, Mew's own Swords Dance raises
+   Crunch and not Foul Play, and each of Shuckle's Swords Dances raises Foul
+   Play. */
+TestKit_MoveSet42:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8006, MOVE_FOUL_PLAY
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
     SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
