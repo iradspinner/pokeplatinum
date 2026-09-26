@@ -254,6 +254,18 @@
             "en_US": "Neutralizing Gas"
         },
         {
+            "id": "TestKit_Text_MenuStaples",
+            "en_US": "Modern rules"
+        },
+        {
+            "id": "TestKit_Text_WhichRule",
+            "en_US": "Which rule?"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleSturdy",
+            "en_US": "Sturdy"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

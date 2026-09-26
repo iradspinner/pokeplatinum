@@ -467,6 +467,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildHorsea, 12
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
+    AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -484,6 +485,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 12, TestKit_WildHorsea
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
+    GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -1815,6 +1817,33 @@ TestKit_AbilityNeutralizingGas:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_PRESSURE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
+   rules for native abilities, type immunities, critical hits, Defog and Rapid
+   Spin. Each entry is built as an ability entry is, with a foe where it needs
+   one. */
+TestKit_Staples:
+    Message TestKit_Text_WhichRule
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
+    GoTo TestKit_Close
+
+/* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
+   Surf, which does four times damage to it. Rest takes Geodude back to full
+   HP, so Sturdy holds again. */
+TestKit_StapleSturdy:
+    SetVar VAR_0x800A, SPECIES_GEODUDE
+    SetVar VAR_0x800B, ABILITY_STURDY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_ROCK_SLIDE
+    SetVar VAR_0x8008, MOVE_DEFENSE_CURL
+    SetVar VAR_0x8009, MOVE_MAGNITUDE
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SURF
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

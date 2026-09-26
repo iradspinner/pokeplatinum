@@ -9322,6 +9322,20 @@ static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *ba
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
 
+    // Oxide: Sturdy at full HP survives Pursuit and Future Sight too, as in
+    // hg-engine, but not a Pokemon's own confusion damage, which is no move
+    // (the one caller that names the attacker).
+    if (inBattler != BTLSCR_ATTACKER
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_STURDY) == TRUE
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        if (battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+            battleCtx->hpCalcTemp = (battleCtx->battleMons[battler].curHP - 1) * -1;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
+        }
+
+        return FALSE;
+    }
+
     if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE
         && BattleSystem_RandNext(battleSys) % 100 < itemPower) {
         endure = TRUE;

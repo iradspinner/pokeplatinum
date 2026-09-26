@@ -180,6 +180,18 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 | Infiltrator | Chandelure: Shadow Ball, Flamethrower, Fake Tears, Energy Ball; foe a wild Chansey that knows only Mist | After Chansey's Mist, Fake Tears still brings "The wild CHANSEY's Sp. Def harshly fell!" and not "is protected by Mist!" | a51b0af3 |
 | Neutralizing Gas | Galarian Weezing: Sludge Bomb, Strange Steam, Will-O-Wisp, Protect; foe a wild Chansey given Pressure that knows only Growl | "The wild CHANSEY is exerting its Pressure!" as the battle starts. Switch Weezing in: "Neutralizing gas filled the area!", and each of its moves aimed at Chansey now costs 1 PP, not 2. Switch Weezing out: after "Go!", "The effects of the neutralizing gas wore off!", then Chansey's Pressure message again, and moves cost 2 PP once more | 0eb1b2e9 |
 
+## The modern rules entries
+
+The staples survey's engine rulings (Ian, 2026-09-26) have their own menu,
+"Modern rules", built as the ability entries are: a `TestKit_Staple<Name>`
+block in the kit script, an `AddListMenuEntry` line in `TestKit_Staples` and a
+`TestKit_Text_MenuStaple<Name>` message. As with the ability entries, the new
+Pokemon is not in the lead, so switch it in on the first turn.
+
+| Entry | Pokemon and moves | What to look for | Commit |
+|---|---|---|---|
+| Sturdy | Geodude with Sturdy: Rest, Rock Slide, Defense Curl, Magnitude; foe a wild Vaporeon that knows only Surf | Switched in, Geodude takes the Surf at full HP and is left at 1 HP with "GEODUDE endured the hit!"; the next Surf knocks it out unless Rest has put it back at full HP first | STURDY |
+
 ## Not built yet
 
 Steelworker, Sharpness and Battery change only a move's power, with no

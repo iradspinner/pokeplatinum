@@ -3584,7 +3584,16 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
         }
 
-        if (DEFENDER_TURN_FLAGS.enduring == 0) {
+        // Oxide: Sturdy leaves its holder at 1 HP from a hit taken at full HP,
+        // as a Focus Sash does, with Endure's message (Generation 5; hg-engine's
+        // ServerHPCalc). It comes before the held items, so a Sash is kept.
+        BOOL sturdy = FALSE;
+
+        if (DEFENDER_TURN_FLAGS.enduring == 0
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STURDY) == TRUE
+            && DEFENDING_MON.curHP == DEFENDING_MON.maxHP) {
+            sturdy = TRUE;
+        } else if (DEFENDER_TURN_FLAGS.enduring == 0) {
             if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE && (BattleSystem_RandNext(battleSys) % 100) < itemPower) {
                 DEFENDER_SELF_TURN_FLAGS.focusItemActivated = TRUE;
             }
@@ -3594,11 +3603,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             }
         }
 
-        if ((DEFENDER_TURN_FLAGS.enduring || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
+        if ((DEFENDER_TURN_FLAGS.enduring || sturdy || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
             && DEFENDING_MON.curHP + battleCtx->damage <= 0) {
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
 
-            if (DEFENDER_TURN_FLAGS.enduring) {
+            if (DEFENDER_TURN_FLAGS.enduring || sturdy) {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
             } else {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
