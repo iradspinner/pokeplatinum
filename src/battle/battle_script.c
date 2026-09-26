@@ -1340,6 +1340,40 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
+// Oxide: Electro Ball's power by how many times over the user's Speed is the
+// target's, from under once to four times or more.
+static const u8 sElectroBallPower[] = { 40, 60, 80, 120, 150 };
+
+/**
+ * @brief Work out the power of a move whose power depends on the battle.
+ *
+ * Oxide: the moves element 4 added whose power the later games compute, where
+ * the move's effect is a plain hit and so has no script to set it. Keyed on
+ * the move, as hg-engine's CalcBaseDamage keys it.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return The move's power, or 0 for a move that hits at its table power
+ */
+static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    switch (battleCtx->moveCur) {
+    case MOVE_ELECTRO_BALL: {
+        // The Speeds are the ones the turn order was worked out from, as
+        // Gyro Ball reads them, so stat stages, paralysis and items count.
+        u32 defenderSpeed = battleCtx->monSpeedValues[battleCtx->defender];
+        u32 ratio = defenderSpeed ? battleCtx->monSpeedValues[battleCtx->attacker] / defenderSpeed : 0;
+
+        if (ratio >= NELEMS(sElectroBallPower)) {
+            ratio = NELEMS(sElectroBallPower) - 1;
+        }
+        return sElectroBallPower[ratio];
+    }
+    }
+
+    return 0;
+}
+
 /**
  * @brief Calculate the damage for the current move and store the result in
  * the BattleContext struct.
@@ -1356,6 +1390,15 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveType;
+
+    // Oxide: a move whose power no effect script has set may still be one the
+    // later games work out from the battle; keep it local, since a spread
+    // move comes back here once for each target.
+    int power = battleCtx->movePower;
+    if (power == 0) {
+        power = BattleScript_ComputedMovePower(battleSys, battleCtx);
+    }
+
     if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
         moveType = TYPE_NORMAL;
     } else if (battleCtx->moveType) {
@@ -1369,7 +1412,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->moveCur,
         battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)],
         battleCtx->fieldConditionsMask,
-        battleCtx->movePower,
+        power,
         moveType,
         battleCtx->attacker,
         battleCtx->defender,
