@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_SOLROCK",
             "form": 0,
-            "level": 77,
+            "level": 59,
             "item": "ITEM_NONE",
             "moves": [
                 "MOVE_ZEN_HEADBUTT",
@@ -27,7 +27,7 @@
         {
             "species": "SPECIES_PERSIAN",
             "form": 0,
-            "level": 77,
+            "level": 59,
             "item": "ITEM_NONE",
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -41,7 +41,7 @@
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SLASH",

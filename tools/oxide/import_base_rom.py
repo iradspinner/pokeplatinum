@@ -486,6 +486,31 @@ TRAINERS_DIVERGED = {
     "galactic_grunt_celestic_town": {"name": _NAME_FIX + " (Officert Argo)"},
     "galactic_grunt_lake_valor_2": {"name": _NAME_FIX + " (Officer Hisperid)"},
 }
+# The Battle Zone opens before the League, in the Galactic split (cap 65), so
+# every level of its route and Stark Mountain trainers came down 18 (Ian,
+# 2026-09-25; docs/oxide/balance-plan.md). "level" is left alone on every
+# party member of each.
+_BATTLE_ZONE_RELEVEL = ("the Battle Zone opens before the League, in the Galactic split, so "
+                        "every level came down 18; Ian, 2026-09-25")
+TRAINERS_DIVERGED.update({stem: {"level": _BATTLE_ZONE_RELEVEL} for stem in (
+    "ace_trainer_abel", "ace_trainer_dana", "ace_trainer_deanna",
+    "ace_trainer_felix", "ace_trainer_graham", "ace_trainer_jasmin",
+    "ace_trainer_jose", "ace_trainer_kassandra", "ace_trainer_keenan",
+    "ace_trainer_meagan", "ace_trainer_mikayla", "ace_trainer_moira",
+    "ace_trainer_monique", "ace_trainer_natasha", "ace_trainer_quinn",
+    "ace_trainer_rodolfo", "ace_trainer_sandra", "ace_trainer_saul",
+    "ace_trainer_skylar", "ace_trainer_stefan", "bird_keeper_audrey",
+    "bird_keeper_geneva", "bird_keeper_krystal", "black_belt_davon",
+    "black_belt_griffin", "black_belt_jarrett", "black_belt_ray",
+    "commander_jupiter_stark_mountain", "commander_mars_stark_mountain",
+    "dragon_tamer_darien", "dragon_tamer_drake", "dragon_tamer_geoffrey",
+    "dragon_tamer_kenny", "dragon_tamer_stanley", "psychic_chelsey",
+    "psychic_corbin", "psychic_daisy", "psychic_sterling", "ranger_ashlee",
+    "ranger_deshawn", "ranger_dwayne", "ranger_felicia", "ranger_krista",
+    "ranger_kyler", "swimmer_glenn", "swimmer_joanna", "swimmer_kurt",
+    "swimmer_lydia", "swimmer_mallory", "swimmer_sam", "swimmer_sophia",
+    "swimmer_wade", "veteran_harlan", "buck_stark_mountain",
+)})
 
 # Encounter files the authoring pass has rewritten from the species pick-list
 # (docs/oxide/encounter-authoring-plan.md). The base ROM's table is no longer
@@ -685,8 +710,14 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
         # dumps() inlines (its general "<=2 scalars" rule). Still valid JSON,
         # just occasionally not matching this file's existing hand style.
         current = jsonstyle.get_value(text, ["party"])
-        if _party_differs(current, new_party):
-            text = jsonstyle.replace_value(text, ["party"], _keep_oxide_tuning(current, new_party))
+        merged = _keep_oxide_tuning(current, new_party)
+        # A diverged party field keeps Oxide's value wherever the member still stands.
+        for field in diverged:
+            for i, m in enumerate(merged):
+                if i < len(current) and field in current[i]:
+                    m[field] = current[i][field]
+        if _party_differs(current, merged):
+            text = jsonstyle.replace_value(text, ["party"], merged)
             changed.append(f"party: {len(old_party)} -> {len(new_party)} mons (full rewrite, size changed)")
     else:
         for i, (nm, om) in enumerate(zip(new_party, old_party)):
@@ -695,6 +726,8 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
             tuned = _has_nature(text, i)
             for key in ("species", "form", "level", "item", "moves", "iv_scale", "ball_seal"):
                 if key == "iv_scale" and tuned:
+                    continue
+                if key in diverged:
                     continue
                 val = nm[key]
                 if om.get(key) == val:

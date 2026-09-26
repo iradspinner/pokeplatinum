@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_SEED_BOMB",
@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -45,7 +45,7 @@
         {
             "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_FLASH_CANNON",

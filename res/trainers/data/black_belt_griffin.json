@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 76,
+            "level": 58,
             "item": null,
             "moves": [
                 "MOVE_SPORE",
@@ -27,7 +27,7 @@
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 76,
+            "level": 58,
             "item": null,
             "moves": [
                 "MOVE_DETECT",

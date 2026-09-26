@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_HITMONLEE",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_ENDURE",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_MEGA_PUNCH",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_BULLET_PUNCH",

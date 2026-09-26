@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_CRUNCH",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_SYNTHESIS",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_XATU",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_ROOST",
