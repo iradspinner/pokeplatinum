@@ -682,6 +682,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet40, 12
     AddListMenuEntry TestKit_Text_MenuSet41, 13
     AddListMenuEntry TestKit_Text_MenuSet42, 14
+    AddListMenuEntry TestKit_Text_MenuSet43, 15
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -698,6 +699,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
     GoToIfEq VAR_0x8004, 14, TestKit_MoveSet42
+    GoToIfEq VAR_0x8004, 15, TestKit_MoveSet43
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1129,6 +1131,20 @@ TestKit_MoveSet42:
     SetVar VAR_0x8007, MOVE_CRUNCH
     SetVar VAR_0x8008, MOVE_SWORDS_DANCE
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 43: Body Press hits with the user's Defense and its stages. Against
+   a wild Shuckle that knows only Splash: Body Press and Brick Break start
+   close, Iron Defense doubles Body Press and leaves Brick Break alone, and
+   Swords Dance does the opposite. */
+TestKit_MoveSet43:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BODY_PRESS
+    SetVar VAR_0x8007, MOVE_BRICK_BREAK
+    SetVar VAR_0x8008, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
