@@ -1834,6 +1834,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleIlluminate, 5
     AddListMenuEntry TestKit_Text_MenuStapleSynchronize, 6
     AddListMenuEntry TestKit_Text_MenuStapleLeafGuard, 7
+    AddListMenuEntry TestKit_Text_MenuStapleStench, 8
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1843,6 +1844,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 5, TestKit_StapleIlluminate
     GoToIfEq VAR_0x8004, 6, TestKit_StapleSynchronize
     GoToIfEq VAR_0x8004, 7, TestKit_StapleLeafGuard
+    GoToIfEq VAR_0x8004, 8, TestKit_StapleStench
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1958,6 +1960,20 @@ TestKit_StapleLeafGuard:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Stench: a Skuntank given Stench, against a wild Snorlax that knows only
+   Splash. */
+TestKit_StapleStench:
+    SetVar VAR_0x800A, SPECIES_SKUNTANK
+    SetVar VAR_0x800B, ABILITY_STENCH
+    SetVar VAR_0x8006, MOVE_FURY_SWIPES
+    SetVar VAR_0x8007, MOVE_SCRATCH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

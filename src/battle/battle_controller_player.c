@@ -4849,6 +4849,15 @@ static BOOL BattleControllerPlayer_CheckExtraFlinch(BattleSystem *battleSys, Bat
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
 
+    // Oxide: Stench gives its holder's damaging moves a 10% flinch chance
+    // (Generation 5), King's Rock's own. It does not add to a King's Rock, as
+    // in the later games, where hg-engine adds the two.
+    if (itemEffect != HOLD_EFFECT_SOMETIMES_FLINCH
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STENCH) {
+        itemEffect = HOLD_EFFECT_SOMETIMES_FLINCH;
+        itemPower = 10;
+    }
+
     if (battleCtx->defender != BATTLER_NONE
         && itemEffect == HOLD_EFFECT_SOMETIMES_FLINCH
         && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
