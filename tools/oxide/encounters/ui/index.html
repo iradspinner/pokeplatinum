@@ -206,8 +206,14 @@ button:disabled { color: var(--faint); cursor: default; }
 .arow.spent .chip { filter: grayscale(1); }
 .arow.done .l1 { text-decoration: line-through; }
 /* A one-spot group (the Old Chateau's rooms, the Lost Tower's floors) folds
-   under one row; its tables sit indented beneath it when it is open. */
+   under one row; its tables sit indented beneath it while the pointer is over
+   the group (Ian, 2026-09-26), and stay out while a search or the selected
+   table holds the group open. */
+.agroup { cursor: default; }
 .agroup .fold { display: inline-block; width: 16px; color: var(--dim); }
+.gwrap:not(.open):not(:hover) > .arow.member { display: none; }
+.gwrap .fold .opened, .gwrap.open .fold .shut, .gwrap:hover .fold .shut { display: none; }
+.gwrap.open .fold .opened, .gwrap:hover .fold .opened { display: inline; }
 .agroup .l1 .sub { margin-left: 6px; }
 .arow.member { padding-left: 30px; box-shadow: inset 14px 0 0 var(--sunken); }
 .arow.member.sel { box-shadow: inset 14px 0 0 var(--sunken), inset 17px 0 0 var(--place-ink); }
@@ -1327,14 +1333,6 @@ function takenAt() {
   return out;
 }
 
-// Which one-spot groups are unfolded. A per-viewer convenience, so it lives in
-// the browser's storage when that is allowed and is simply forgotten when not.
-let OPEN_GROUPS = new Set();
-try { OPEN_GROUPS = new Set(JSON.parse(localStorage.getItem("oxide.openGroups") || "[]")); } catch (e) {}
-function saveOpenGroups() {
-  try { localStorage.setItem("oxide.openGroups", JSON.stringify([...OPEN_GROUPS])); } catch (e) {}
-}
-
 function drawList() {
   const q = $("#filter").value.trim().toLowerCase();
   let rows = ALL.slice();
@@ -1400,8 +1398,8 @@ function drawList() {
     const design = { same: "identical", distinct: "distinct" }[members[0].group_design];
     return `<div class="arow agroup ${by ? "spent" : ""}" data-g="${esc(name)}"
         title="${esc(by ? loc + "'s encounter is used: " + by.encounter_label + " in " + by.label
-          : (open ? "Fold" : "Unfold") + " the " + members.length + " tables")}">
-      <div class="l1"><span class="fold">${open ? "\u25BE" : "\u25B8"}</span>${esc(name)}<span class="sub">${
+          : "Point at the group to see its " + members.length + " tables")}">
+      <div class="l1"><span class="fold"><span class="shut">\u25B8</span><span class="opened">\u25BE</span></span>${esc(name)}<span class="sub">${
         members.length} tables${design ? ", " + design : ""}</span></div>
       <div class="l2">${splits.map(sp => splitTag(sp)).join("")}</div>
       <div class="enc ${got ? "" : "none"}">${got ? icon(got.encounter) : ""}<span class="lbl">${
@@ -1418,18 +1416,15 @@ function drawList() {
     if (!m || m.length < 2) { html.push(rowHtml(r)); return; }
     if (shown.has(r.group)) return;
     shown.add(r.group);
-    const open = !!q || OPEN_GROUPS.has(r.group);
-    html.push(groupHtml(r.group, m, open));
-    if (open) m.forEach(x => html.push(rowHtml(x, "member")));
+    // Every table is drawn and CSS unfolds the group on hover; a search, or
+    // the selected table being one of them, keeps it open without the pointer.
+    const open = !!q || m.some(x => x.area === SEL);
+    html.push(`<div class="gwrap ${open ? "open" : ""}">` + groupHtml(r.group, m, open)
+      + m.map(x => rowHtml(x, "member")).join("") + `</div>`);
   });
   $("#rows").innerHTML = html.join("") || `<p class="sub" style="padding:12px">Nothing matches that.</p>`;
   document.querySelectorAll("#rows .arow:not(.agroup)").forEach(el =>
     el.onclick = () => select(el.dataset.a));
-  document.querySelectorAll("#rows .agroup").forEach(el => el.onclick = () => {
-    const g = el.dataset.g;
-    if (OPEN_GROUPS.has(g)) OPEN_GROUPS.delete(g); else OPEN_GROUPS.add(g);
-    saveOpenGroups(); drawList();
-  });
 }
 
 // ---- combobox -----------------------------------------------------------
@@ -1920,10 +1915,8 @@ async function reloadDetail() {
 async function select(name) {
   if (name !== SEL) { PLAN = null; PLAN_SP = null; }
   SEL = name;
-  // Opening a table from anywhere (a link, the dex, the back button) unfolds
-  // its group, so the selected row is never hidden inside a folded one.
-  const row = ALL.find(r => r.area === name);
-  if (row && row.group && !OPEN_GROUPS.has(row.group)) { OPEN_GROUPS.add(row.group); saveOpenGroups(); }
+  // Opening a table from anywhere (a link, the dex, the back button) keeps
+  // its group unfolded (drawList), so the selected row is never hidden.
   try {
     DETAIL = await api(`/api/area/${name}?kind=${KIND}`);
     if (DETAIL.empty && DETAIL.kinds && DETAIL.kinds.length) {
