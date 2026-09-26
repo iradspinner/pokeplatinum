@@ -16,21 +16,28 @@ from ..encounters import calc_export
 from . import data, metrics, pool, pressure, refpressure
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
-# EVs, a neutral nature), and the range it showed for each. Crunch into
-# Bronzor comes out 42 to 50 only on this fork's chart, where Steel still
-# resists Dark; a Generation 6 chart would double it.
+# EVs, a neutral nature), and the range it shows for each since the encounter
+# track's Oxide profile applies a dual type's two factors in the game's order
+# (Crunch into Bronzor 43 to 51, as Ian's in-game roll gave, where it was 42
+# to 50). Crunch into Bronzor comes out that low only on this fork's chart,
+# where Steel still resists Dark; a Generation 6 chart would double it.
 D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
       ("Garchomp", "Clefairy", "Dragon Claw", (0, 0)),
-      ("Machamp", "Bronzor", "Crunch", (42, 50)),
-      ("Machamp", "Bronzor", "Cross Chop", (81, 96)),
+      ("Machamp", "Bronzor", "Crunch", (43, 51)),
+      ("Machamp", "Bronzor", "Cross Chop", (80, 96)),
       ("Machamp", "Clefairy", "Cross Chop", (63, 74))]
 # Ian's caps: the Level Caps sheet, with HQ 60, Galactic 65 and Volkner 68
 # from his Battle Zone rulings of 2026-09-25.
 CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
         "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78}
-# Moves the calculator's Generation 4 mechanics give no number for (they are
-# handled only in its later-generation code); each is reported, not scored.
-UNMODELLED = {"Electro Ball", "Heavy Slam", "Psywave", "Super Fang", "Trump Card"}
+# Moves the calculator gives no number for, each reported, not scored. Since
+# the encounter track's Oxide profile (2026-09-26) it scores Electro Ball,
+# Heavy Slam, Psywave, Super Fang and Trump Card, which its Generation 4
+# mechanics had left out, so none remain and any new failure fails here.
+# Electro Ball comes out at power 1 on purpose: Oxide's engine has no power
+# code for it yet (the tracker, element 4), and the calculator plays it as
+# the game does.
+UNMODELLED = set()
 # The reference bosses add four of the same kind, each reported, not
 # scored: Nature's Madness (Super Fang's Fairy twin), Redux's Cyclone and
 # Acidic Payback (its own moves on the halve-HP and Metal Burst effects),
