@@ -7819,12 +7819,14 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 }
 
 // each value here is implicitly 1 / N
+// Oxide: the Generation 7 rates, as hg-engine's table (Platinum's were 16,
+// 8, 4, 3 and 2).
 static const u8 sCriticalStageRates[] = {
-    16, // neutral
+    24, // neutral
     8, // +1
-    4, // +2
-    3, // +3
-    2, // +4
+    2, // +2
+    1, // +3
+    1, // +4
 };
 
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions)
@@ -7876,6 +7878,9 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
         criticalMul = 2;
     }
 
+    // criticalMul is 2 for a critical hit and 3 for one by a Sniper; since
+    // Oxide's Generation 6 critical hits it is a marker, and the damage step
+    // turns it into 1.5x and 2.25x (ApplyCriticalMul in battle_script.c).
     if (criticalMul == 2 && Battler_Ability(battleCtx, attacker) == ABILITY_SNIPER) {
         criticalMul = 3;
     }

@@ -326,6 +326,10 @@
             "en_US": "Ghosts and trapping"
         },
         {
+            "id": "TestKit_Text_MenuStapleCritical",
+            "en_US": "Critical hits"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

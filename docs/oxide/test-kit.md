@@ -206,6 +206,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Grass and powder | Venusaur: Giga Drain, Sludge Bomb, Body Slam, Synthesis; foe a wild Parasect given Effect Spore that knows Spore and Stun Spore | Spore and Stun Spore: "It doesn't affect VENUSAUR..."; and Body Slam, a contact move, never sets off Effect Spore | GRASSPOWDER |
 | Electric and paralysis | Luxray: Spark, Crunch, Roar, Charge; foe a wild Arbok that knows Glare and Thunder Wave | Glare and Thunder Wave: "It doesn't affect LUXRAY...", and Luxray is never paralysed. Luxray's Spark can still paralyse Arbok | ELECTRIC |
 | Ghosts and trapping | Mismagius: Shadow Ball, Mystical Fire, Protect, Teleport; foe a wild Umbreon that knows Mean Look and Fire Spin | Switch Mismagius in on the first turn. Mean Look: "It doesn't affect MISMAGIUS..."; Fire Spin still hurts it each turn, but Mismagius can switch out, Run gets away and Teleport works | GHOST |
+| Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | CRITICAL |
 
 ## Not built yet
 

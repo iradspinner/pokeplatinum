@@ -1297,6 +1297,22 @@ static BOOL BtlCmd_HealthBoxSlideOut(BattleSystem *battleSys, BattleContext *bat
     return FALSE;
 }
 
+// Oxide: a critical hit does 1.5x damage (Generation 6), and one by a Sniper
+// 1.5x on top of that, 2.25x in all, where Platinum doubled and tripled.
+// criticalMul stays 1, 2 or 3, so every other reader of it is unchanged.
+static inline int ApplyCriticalMul(int damage, int criticalMul)
+{
+    if (criticalMul == 2) {
+        return damage * 3 / 2;
+    }
+
+    if (criticalMul == 3) {
+        return damage * 9 / 4;
+    }
+
+    return damage;
+}
+
 /**
  * @brief Wait until the battle IO queue is empty.
  *
@@ -1358,7 +1374,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->attacker,
         battleCtx->defender,
         battleCtx->criticalMul);
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_HP_DRAIN_ON_ATK) {
         battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
@@ -6423,7 +6439,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
     battleCtx->damage /= 50;
     battleCtx->damage += 2;
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (battleCtx->turnFlags[battleCtx->attacker].helpingHand) {
         battleCtx->damage = battleCtx->damage * 15 / 10;

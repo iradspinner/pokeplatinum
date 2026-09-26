@@ -1842,6 +1842,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleGrassPowder, 13
     AddListMenuEntry TestKit_Text_MenuStapleElectricParalysis, 14
     AddListMenuEntry TestKit_Text_MenuStapleGhostTrap, 15
+    AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1859,6 +1860,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 13, TestKit_StapleGrassPowder
     GoToIfEq VAR_0x8004, 14, TestKit_StapleElectricParalysis
     GoToIfEq VAR_0x8004, 15, TestKit_StapleGhostTrap
+    GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2090,6 +2092,20 @@ TestKit_StapleGhostTrap:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_MEAN_LOOK
     SetVar VAR_0x8003, MOVE_FIRE_SPIN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Critical hits: a Mew with Focus Energy and Slash, against a wild Snorlax
+   that knows only Splash. Focus Energy's two stages and Slash's one make
+   three, which is always a critical hit at the Generation 7 rates. */
+TestKit_StapleCritical:
+    SetVar VAR_0x8006, MOVE_FOCUS_ENERGY
+    SetVar VAR_0x8007, MOVE_SLASH
+    SetVar VAR_0x8008, MOVE_TACKLE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
