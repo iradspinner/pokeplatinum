@@ -357,6 +357,13 @@ Basic_CheckCannotSleep:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotSleep_End
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    // Oxide: Sweet Veil keeps sleep off its holder and its partner.
+    IfLoadedEqualTo ABILITY_SWEET_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckCannotSleep_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckCannotSleep_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_SWEET_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 Basic_CheckCannotSleep_End:
     PopOrEnd 
@@ -586,6 +593,13 @@ Basic_CheckCannotPoison_StatusOrSafeguard:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotPoison_End
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    // Oxide: Pastel Veil keeps poison off its holder and its partner.
+    IfLoadedEqualTo ABILITY_PASTEL_VEIL, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckCannotPoison_End
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_CheckCannotPoison_End
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_PASTEL_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 Basic_CheckCannotPoison_End:
     PopOrEnd 
@@ -946,6 +960,7 @@ Basic_CheckCannotBurn:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotBurn_End
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus10 // Oxide: it keeps burns off
 
 Basic_CheckCannotBurn_End:
     PopOrEnd 
