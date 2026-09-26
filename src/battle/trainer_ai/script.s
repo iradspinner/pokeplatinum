@@ -312,6 +312,11 @@ Basic_CheckPowderImmunity:
     IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    // Oxide: so is Overcoat (element 5), unless Mold Breaker ignores it.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_OVERCOAT, ScoreMinus10
     GoTo Basic_ScoreMoveEffectByEffect
 
 Basic_CheckCannotSleep:
