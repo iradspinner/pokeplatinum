@@ -2235,8 +2235,9 @@ Expert_Main:
     // The moves that always land a critical hit, as the high critical moves.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_CRITICAL, Expert_HighCritical
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
-    // Oxide, change (Ian, 2026-09-27): Rapid Spin now raises its user's Speed.
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_AND_BINDING, Expert_SpeedUpOnHit
+    // Oxide, change (Ian, 2026-09-27): Rapid Spin now raises its user's Speed, and what
+    // it clears on its user's side is valued too.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_AND_BINDING, Expert_RapidSpin
     // Oxide, change (Ian, 2026-09-27): Flame Charge, Aqua Step, Trailblaze and
     // Esper Wing always raise their user's Speed, as Rapid Spin now does.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
@@ -5397,10 +5398,34 @@ Expert_DoubledPower_ScorePlus1:
     AddToMoveScore 1
     PopOrEnd 
 
+Expert_RapidSpin:
+    // Oxide, change (Ian, 2026-09-27). Rapid Spin frees its user from a binding move and Leech
+    // Seed, and clears Spikes, Toxic Spikes, Stealth Rock and Sticky Web from its user's side
+    // (BtlCmd_RapidSpin). Vanilla gave none of that any score.
+    //
+    // If the opponent is immune, the move clears nothing: score -1, as below.
+    //
+    // If the attacker is bound or seeded, or its side has a hazard and it has a party member
+    // left to switch in, score +2, once, as Defog's own-side bonus. Then score the Speed raise
+    // as below.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, Expert_RapidSpin_ClearsOwnSide
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, Expert_RapidSpin_ClearsOwnSide
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_SpeedUpOnHit
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Expert_RapidSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Expert_RapidSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Expert_RapidSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Expert_RapidSpin_ClearsOwnSide
+    GoTo Expert_SpeedUpOnHit
+
+Expert_RapidSpin_ClearsOwnSide:
+    AddToMoveScore 2
+
 Expert_SpeedUpOnHit:
     // Oxide, change (Ian, 2026-09-27). An attack that raises its user's Speed a stage: Rapid Spin
-    // since the staples rulings, Flame Charge and its kin. Scored for the Speed only; vanilla gave Rapid Spin's hazard and
-    // binding clearing no score, and that is unchanged.
+    // since the staples rulings, Flame Charge and its kin. Rapid Spin's clearing is scored
+    // above, in Expert_RapidSpin.
     //
     // If the opponent resists or is immune to the move, score -1.
     //
