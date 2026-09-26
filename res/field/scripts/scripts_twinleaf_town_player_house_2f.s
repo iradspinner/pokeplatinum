@@ -1829,10 +1829,12 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
     AddListMenuEntry TestKit_Text_MenuStapleLightningRod, 1
     AddListMenuEntry TestKit_Text_MenuStapleStormDrain, 2
+    AddListMenuEntry TestKit_Text_MenuStapleIntimidate, 3
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
     GoToIfEq VAR_0x8004, 2, TestKit_StapleStormDrain
+    GoToIfEq VAR_0x8004, 3, TestKit_StapleIntimidate
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1876,6 +1878,20 @@ TestKit_StapleStormDrain:
     SetVar VAR_0x8000, SPECIES_VAPOREON
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SURF
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Intimidate blocked: a Staraptor with Intimidate, against a wild Lucario
+   given Inner Focus that knows only Splash. */
+TestKit_StapleIntimidate:
+    SetVar VAR_0x800A, SPECIES_STARAPTOR
+    SetVar VAR_0x800B, ABILITY_INTIMIDATE
+    SetVar VAR_0x8006, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8007, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_LUCARIO
+    SetVar VAR_0x8001, ABILITY_INNER_FOCUS
+    SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

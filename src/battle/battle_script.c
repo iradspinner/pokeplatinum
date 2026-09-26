@@ -2969,6 +2969,17 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     }
 
                     result = 1;
+                } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                    && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INTIMIDATE
+                    && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_INNER_FOCUS
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OWN_TEMPO
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OBLIVIOUS
+                        || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_SCRAPPY)) {
+                    // Oxide: Inner Focus, Own Tempo, Oblivious and Scrappy stop
+                    // Intimidate (Generation 8; hg-engine's Intimidate subscript),
+                    // with Hyper Cutter's message against it.
+                    SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
+                    result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_BIG_PECKS, BATTLE_STAT_DEFENSE)) { // Oxide: Big Pecks
