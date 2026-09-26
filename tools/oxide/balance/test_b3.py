@@ -165,8 +165,15 @@ def check_rules(results):
                           {"hp": 250}, (60, 50), None),          # three hits is too many
         pressure.wins({"moves": {"Tackle": {"rolls": [100] * 16, "priority": 0}}},
                       {"hp": 150}, (60, 50), None, sash=True),   # sash: 1 hit becomes 2
+        # Trick Room: the slower side goes first, a tie is still no one's,
+        # and priority still beats Speed either way.
+        pressure.moves_first(0, (50, 60), True) and not pressure.moves_first(0, (60, 50), True),
+        not pressure.moves_first(0, (50, 50), True),
+        pressure.moves_first(1, (60, 50), True) and not pressure.moves_first(-3, (50, 60), True),
+        pressure.wins(row, {"hp": 150}, (50, 60), None, trick_room=True),
+        not pressure.wins(row, {"hp": 150}, (60, 50), None, trick_room=True),
     ]
-    results.append(("hits, charging turns, Speed ties and Focus Sash", all(cases),
+    results.append(("hits, charging turns, Speed ties, Focus Sash and Trick Room", all(cases),
                     str([i for i, c in enumerate(cases) if not c])))
 
 
@@ -180,6 +187,9 @@ def check_scores(results, blob):
                                                  or saved[k]["pool"] != sizes[saved[k]["split"]])]
     boss_errors = [k for k in keys if k in saved
                    and any(e.startswith("b") for e in saved[k]["errors"])]
+    # Each fight is scored with the Trick Room fights.json gives it.
+    rooms = {f["key"]: bool(f.get("trick_room")) for f in data.fights()["fights"]}
+    stale += [k for k in keys if k in saved and saved[k].get("trick_room", False) != rooms[k]]
     unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
                for e in saved[k]["errors"]} - UNMODELLED
     ok = not missing and not stale and not boss_errors and not unknown
