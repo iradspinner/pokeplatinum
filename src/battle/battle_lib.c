@@ -8009,6 +8009,16 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage /= 2;
     }
 
+    // Oxide: Friend Guard cuts the damage its holder's partner takes by a
+    // quarter, in a double battle, while the holder is up (hg-engine's
+    // CalcBaseDamage, 6.9.7). Mold Breaker ignores it.
+    i = BattleSystem_GetPartner(battleSys, defender);
+    if (i != defender
+        && battleCtx->battleMons[i].curHP
+        && Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_FRIEND_GUARD) == TRUE) {
+        damage = damage * 3 / 4;
+    }
+
     return damage + 2;
 }
 
