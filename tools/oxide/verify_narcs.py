@@ -111,6 +111,8 @@ def check_by_content(b, r, path):
     if resaved:
         print(f"{path}: {same} members identical and {resaved} matching in content "
               f"(differing only as a DSPRE re-save does){note}")
+    elif padded or grown:
+        print(f"{path}: {same} members identical{note}")
     else:
         print(f"{path}: identical ({same} members){note}")
     return True
@@ -471,7 +473,6 @@ CONTENT_ARCHIVES = {
                                       "palette and one misc sprite (visual overhaul)",
     "itemtool/itemdata/item_icon.narc": "the Pocket PC's icon, member 441",
     "poketool/pokegra/pl_pokegra.narc": "the base ROM's Pokemon sprite set",
-    "poketool/pokegra/pl_otherpoke.narc": "the forms' shiny palettes",
 }
 # Members Oxide appended after the reference's last; the rest still compare.
 APPENDED = {
