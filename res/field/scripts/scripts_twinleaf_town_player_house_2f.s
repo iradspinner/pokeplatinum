@@ -735,8 +735,10 @@ TestKit_MoveSets3:
     Message TestKit_Text_WhichSet
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuSet55, 0
+    AddListMenuEntry TestKit_Text_MenuSet56, 1
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
+    GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1358,6 +1360,21 @@ TestKit_MoveSet55:
     SetVar VAR_0x8007, MOVE_DOUBLE_HIT
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 56: Spiky Shield protects its user and hurts an attacker that makes
+   contact with it by an eighth of its maximum HP. Against a wild Rattata
+   that knows Tackle and Swift: a Tackle into the shield brings "The wild
+   RATTATA was hurt!", a Swift only "MEW protected itself!". */
+TestKit_MoveSet56:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_SPIKY_SHIELD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

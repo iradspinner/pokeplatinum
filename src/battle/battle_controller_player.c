@@ -3228,6 +3228,16 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         // Oxide: the missed subscript names a side guard; MOVE_NONE there
         // means the defender's own Protect or Detect.
         battleCtx->msgMoveTemp = battleCtx->turnFlags[defender].protecting ? MOVE_NONE : sideGuard;
+
+        // Oxide: Spiky Shield hurts an attacker that made contact with it,
+        // as in hg-engine (BtlCmd_checkprotectcontactmoves); the missed
+        // subscript does it once it has said the defender protected itself.
+        if (battleCtx->turnFlags[defender].protecting
+            && battleCtx->moveProtect[defender] == MOVE_SPIKY_SHIELD
+            && Battler_MoveMakesContact(battleCtx, attacker, move)) {
+            battleCtx->msgMoveTemp = battleCtx->moveProtect[defender];
+        }
+
         return 0;
     }
 

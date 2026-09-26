@@ -28,10 +28,30 @@ _058:
 
 _063:
     // Oxide: a side guard names itself; the C leaves MOVE_NONE here when the
-    // defender's own Protect stopped the move.
+    // defender's own Protect stopped the move, or names the defender's
+    // Spiky Shield when the move made contact with it.
+    CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SPIKY_SHIELD, _spiky_shield
     CompareVarToValue OPCODE_NEQ, BTLVAR_MSG_MOVE_TEMP, MOVE_NONE, _side_guard
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    GoTo _179
+
+_spiky_shield:
+    // {0} protected itself!
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    // Oxide: an eighth of the attacker's maximum HP, at least 1, unless it
+    // has Magic Guard, as Rough Skin takes.
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_MAGIC_GUARD, _179
+    UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
+    UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
+    DivideVarByValue BTLVAR_HP_CALC_TEMP, 8
+    UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, -1
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
+    Call BATTLE_SUBSCRIPT_UPDATE_HP
+    // {0} was hurt!
+    PrintMessage BattleStrings_Text_PokemonWasHurt_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _179
 
 _side_guard:
