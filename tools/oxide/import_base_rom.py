@@ -1388,6 +1388,15 @@ def main():
         428: "Lopunny gains Lopunny M",
     }
 
+    # Species whose level-up learnset Oxide has changed on purpose since the
+    # base ROM, so re-importing the base ROM's list would undo it. The rest of
+    # the record is still carried over. Same idea as MOVES_DIVERGED.
+    LEARNSETS_DIVERGED = {
+        215: "Sneasel loses Beat Up, which leaves the game (Ian, 2026-09-26)",
+        228: "Houndour loses Beat Up, which leaves the game (Ian, 2026-09-26)",
+        229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
+    }
+
     # species: personal + learnset + evolutions live in one data.json
     bp, vp = base.narc("poketool/personal/pl_personal.narc"), van.narc("poketool/personal/pl_personal.narc")
     bl, vl = base.narc("poketool/personal/wotbl.narc"), van.narc("poketool/personal/wotbl.narc")
@@ -1411,6 +1420,11 @@ def main():
         for k in ("learnset.by_tm", "learnset.by_level"):
             for dd in (new, old):
                 dd.setdefault("learnset", {})[k.split(".")[1]] = dd.pop(k)
+        if i in LEARNSETS_DIVERGED:
+            new["learnset"].pop("by_level")
+            old["learnset"].pop("by_level")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n

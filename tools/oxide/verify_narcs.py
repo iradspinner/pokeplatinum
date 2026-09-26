@@ -362,6 +362,11 @@ SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
 # purpose, where the difference is not confined to a few byte offsets the way
 # DIVERGED's entries are. Keyed by the reference's member index.
 DIVERGED_MEMBERS = {
+    "poketool/personal/wotbl.narc": {
+        "members": {215, 228, 229},
+        "why": "Beat Up leaves the game, so Sneasel, Houndour and Houndoom no "
+               "longer learn it by level (Ian, 2026-09-26)",
+    },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428},
         "why": "seven natives gain an evolution into a new species "
