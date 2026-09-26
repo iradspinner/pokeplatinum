@@ -16,7 +16,7 @@ ratings of sixteen fights, and his explanations of the fights the scores
 misread: safe switch-ins read both best ("What B3b and B5 found", "What
 Ian's ratings showed"). Every score follows the calculator's computed
 powers (the encounter track's item 22). Next: incremental rescores (Ian,
-2026-09-27), then B6. The stone proposal waits on Ian.
+2026-09-27), then B6. Ian approved the stone plan; no questions are open.
 
 ## The target
 
@@ -1058,10 +1058,8 @@ disagrees with them.
 ## Open questions for Ian
 
 Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
-"What Ian's ratings showed". Open: **the stone proposal** in design pass
-2 (how many of each stone and where), after Ian's rulings of 2026-09-27
-closed the Underground and removed both bulk sets; and whether an
-Everstone should have a fixed find.
+"What Ian's ratings showed". None are open: Ian approved the stone plan
+on 2026-09-27 (design pass 2).
 
 ## Order of work
 
@@ -1312,12 +1310,15 @@ lands, and each change is re-scored as it lands.
    each stone and where, for his approval. The main track makes the script
    changes.
 
-   **The proposal** (2026-09-26, for Ian's approval). One stone for every
-   two or three lines that want it, the first copy about a split after the
-   first claimant can be owned, so every stone is a decision; every find
-   below is one the tree already has, so nothing new is placed. With the
+   **The plan, approved by Ian** (2026-09-27) with one change: the Shiny
+   Stone gets an early copy, since Roserade and Togekiss are likely in
+   hand when Fantina's split starts. One stone for every two or three
+   lines that want it, the first copy about a split after the first
+   claimant can be owned, so every stone is a decision; every find below
+   is one the tree already has, so nothing new is placed. With the
    Underground and the two sets gone, the tree has 27 stones before the
-   League, 2 to 4 of each but the Oval Stone; this keeps 15.
+   League, 2 to 4 of each but the Oval Stone; this keeps 16. The main
+   track makes the changes.
 
    | Stone | Keep | Take out | Lines that want it |
    |---|---|---|---|
@@ -1327,9 +1328,9 @@ lands, and each change is re-scored as it lands.
    | Leaf | Floaroma Meadow (Gardenia's) | Great Marsh, Route 225 | Shiftry, the one line that can use it |
    | Moon | Eterna City (Gardenia's), Mt. Coronet outside north (Galactic's) | Route 211 west | Nidoqueen, Nidoking, Delcatty, Clefable, Umbreon |
    | Sun | Valor Lakefront (Wake's), the one Ian asked for | Mt. Coronet 4F | Espeon, Armarouge |
-   | Shiny | Iron Island B3F (Byron's), Route 228 (Galactic's) | Route 210 north | Cinccino, Togekiss, Roserade, Florges |
+   | Shiny | Route 212 south (Wake's), where the hidden Dawn Stone becomes a Shiny Stone; Iron Island B3F (Byron's); Route 228 (Galactic's) | Route 210 north | Cinccino, Togekiss, Roserade, Florges |
    | Dusk | Wayward Cave (Fantina's), the Galactic Warehouse (HQ's) | none; Victory Road's is after the League | Honchkrow, Ceruledge, Mismagius, Polteageist, Chandelure |
-   | Dawn | Mt. Coronet 1F south (Fantina's) | Route 212 south, Route 225 | Froslass, Gallade |
+   | Dawn | Mt. Coronet 1F south (Fantina's) | Route 225; Route 212 south's becomes the early Shiny Stone | Froslass, Gallade |
    | Oval | the Lost Tower (Maylene's) | none | Chansey |
 
    The tool cannot score this yet: the player's side takes a stone
@@ -1341,15 +1342,16 @@ lands, and each change is re-scored as it lands.
    which lists every other source of each of its 49 treasures):
 
    - Everstone and the four weather rocks come from nowhere else. The
-     rocks can go, since the player never sets weather; an Everstone is a
-     small convenience, and one fixed find in Oreburgh Mine would do.
+     rocks go, since the player never sets weather (Ian, 2026-09-27). One
+     fixed Everstone goes in Oreburgh Mine (Ian): the B2F ball that holds
+     an Old Amber, one of the four fossils Ian deleted, becomes it.
    - Heart Scales, which Pastoria's Move Relearner takes one of a move,
      now that the PCs' free relearner is gone: 10 fixed finds before the
-     League, 4 of them by the time the player reaches Pastoria. The
-     player's side still assumes every level-up move, the level 1 and
-     evolution moves included, so it reads the relearner as free; 10 in a
-     run covers the key moves of a nuzlocke box, and the proposal leaves
-     them as they are.
+     League, 4 of them by the time the player reaches Pastoria, which stay
+     as they are (Ian, 2026-09-27). The player's side still assumes every
+     level-up move, the level 1 and evolution moves included, so it reads
+     the relearner as free; 10 in a run covers the key moves of a nuzlocke
+     box.
    - Every Plate keeps one or two fixed finds, the only Light Clay is on
      Mt. Coronet B1F (Candice's split), and the Root, Armor and Skull
      Fossils stay in Oreburgh Mine B2F; the four fossils Ian deleted go
