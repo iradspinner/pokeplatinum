@@ -2018,6 +2018,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
     AddListMenuEntry TestKit_Text_MenuStapleHiddenGift, 19
     AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 20
+    AddListMenuEntry TestKit_Text_MenuStapleItemsRestored, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2040,6 +2041,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
     GoToIfEq VAR_0x8004, 19, TestKit_StapleHiddenGift
     GoToIfEq VAR_0x8004, 20, TestKit_StapleHiddenWild
+    GoToIfEq VAR_0x8004, 21, TestKit_StapleItemsRestored
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2335,6 +2337,22 @@ TestKit_StapleHiddenWild:
     SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
     StartWildBattle SPECIES_LITTEN, 15
     GoTo TestKit_AfterBattle
+
+/* Held items restored after battle (element 8): a Mew holding a Sitrus
+   Berry, against a wild Chansey that knows only Splash. Belly Drum halves
+   Mew's HP and it eats the Berry; after the battle, won or run from, its
+   summary shows the Sitrus Berry again. */
+TestKit_StapleItemsRestored:
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x8004, ITEM_SITRUS_BERRY
+    SetVar VAR_0x8006, MOVE_BELLY_DRUM
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithItem
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

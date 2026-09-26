@@ -226,6 +226,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Rapid Spin | Starmie: Rapid Spin, Surf, Thunderbolt, Recover; foe a wild Skarmory that knows only Spikes | Each Rapid Spin ends with "STARMIE's Speed rose!", after "STARMIE blew away Spikes!" when Skarmory has laid some; at +6 it says nothing more | 349e0f45 |
 | Hidden ability gift | Litten, Lv. 15, given with `FLAG_NEXT_MON_HIDDEN_ABILITY` set (element 8) | Its summary reads Intimidate, its hidden ability, where both ordinary slots are Blaze. One Rare Candy evolves it into a Torracat that still reads Intimidate | element 8, hidden abilities |
 | Hidden ability wild | a wild Litten, Lv. 15, fought with the flag set | "The wild LITTEN's Intimidate cuts ...'s Attack!" as the battle starts. The flag clears itself, so the next scripted wild Pokemon rolls as usual | element 8, hidden abilities |
+| Items restored | Mew holding a Sitrus Berry: Belly Drum, Tackle, Recover, Splash; foe a wild Chansey that knows only Splash | Belly Drum halves Mew's HP and it eats the Sitrus Berry. After the battle, won or run from, Mew's summary shows the Sitrus Berry again | element 8, held items restored |
 
 ## Not built yet
 

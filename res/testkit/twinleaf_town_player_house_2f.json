@@ -346,6 +346,10 @@
             "en_US": "Hidden ability wild"
         },
         {
+            "id": "TestKit_Text_MenuStapleItemsRestored",
+            "en_US": "Items restored"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
