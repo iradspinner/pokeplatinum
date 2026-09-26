@@ -1231,6 +1231,8 @@ TEXT_BANKS_SKIPPED = {
          "line saying so in place of the Explorer Kit gift",
     85: "the Underground is closed (Ian, 2026-09-27), so the woman who sent the "
         "player to the Underground Man for the Explorer Kit says the tunnels are sealed",
+    477: "the Route 207 woman's search for Mira no longer ends in all nine evolution "
+         "stones (Ian, 2026-09-27), so her two lines drop the promise",
 }
 # The gift clowns are gone (Ian, 2026-09-27; the encounter track's
 # clown-replacements.md): each house's bank loses the giver's lines and the

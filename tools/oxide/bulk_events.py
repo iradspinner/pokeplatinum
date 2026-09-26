@@ -80,6 +80,10 @@ DIVERGED.update({
     "veilstone_city",
     )
 })
+# The base ROM's free evolution stones are gone (Ian, 2026-09-27): Galactic HQ
+# B2F loses the nine stone balls appended to the end of its object list.
+DIVERGED["events_galactic_hq_b2f"] = (
+    "the nine evolution stone balls the base ROM added removed (Ian, 2026-09-27)")
 
 
 def render(record, existing, index):

@@ -163,6 +163,11 @@ DIVERGED["scripts_cycle_shop"] = (
 DIVERGED["scripts_mining_museum"] = (
     "the fossil researcher revives without waiting for the Explorer Kit")
 
+# The base ROM's free evolution stones are gone (Ian, 2026-09-27); the balance
+# track proposes where stones come from instead.
+DIVERGED["scripts_route_207"] = (
+    "the woman who asks the player to find Mira no longer gives all nine evolution stones")
+
 # The clown's gift moved to the Restaurant on Route 213 (Ian, 2026-09-25).
 DIVERGED["scripts_pastoria_city_north_house"] += (
     "; the clown's gift then moved to the Restaurant, so it is gone from here")
