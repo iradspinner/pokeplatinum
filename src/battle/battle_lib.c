@@ -3930,6 +3930,59 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         break;
     }
 
+    case ABILITY_MOODY: {
+        // One of the five stats other than accuracy and evasion that is below
+        // +6 rises two stages, and a different one above -6 falls one, both
+        // drawn at random (Generation 8 on; hg-engine's
+        // ServerFieldConditionCheck). BATTLE_STAT_HP marks a change there is
+        // no room for, which AbilityStatChangeFromVar skips.
+        BattleMon *mon = &battleCtx->battleMons[battler];
+        int up = BATTLE_STAT_HP, down = BATTLE_STAT_HP;
+        int count = 0, stat;
+
+        if (mon->curHP == 0) {
+            break;
+        }
+
+        for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+            count += mon->statBoosts[stat] < MAX_STAT_STAGE;
+        }
+
+        if (count) {
+            count = BattleSystem_RandNext(battleSys) % count;
+
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (mon->statBoosts[stat] < MAX_STAT_STAGE && count-- == 0) {
+                    up = stat;
+                    break;
+                }
+            }
+        }
+
+        count = 0;
+        for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+            count += stat != up && mon->statBoosts[stat] > MIN_STAT_STAGE;
+        }
+
+        if (count) {
+            count = BattleSystem_RandNext(battleSys) % count;
+
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (stat != up && mon->statBoosts[stat] > MIN_STAT_STAGE && count-- == 0) {
+                    down = stat;
+                    break;
+                }
+            }
+        }
+
+        battleCtx->calcTemp = up;
+        battleCtx->msgTemp = down;
+        battleCtx->msgBattlerTemp = battler;
+        subscript = subscript_moody;
+        result = TRUE;
+        break;
+    }
+
     case ABILITY_HARVEST:
         // A Berry it used grows back, every turn in sunshine and half the time
         // otherwise, if it holds nothing.

@@ -371,4 +371,5 @@ subscript_files = files(
     'subscript_permanent_wonder_room.s',
     'subscript_justified.s',
     'subscript_magic_bounce.s',
+    'subscript_moody.s',
 )

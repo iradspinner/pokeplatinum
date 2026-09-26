@@ -1318,6 +1318,15 @@
     .long (\jump_fail-.) / 4 - 1
     .endm
 
+    .macro AbilityStatChangeFromVar holder, target, stat_var, stages, jump_no_effect
+    .long BTLCMD_ABILITYSTATCHANGEFROMVAR
+    .long \holder
+    .long \target
+    .long \stat_var
+    .long \stages
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

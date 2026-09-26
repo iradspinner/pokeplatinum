@@ -323,6 +323,8 @@ static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10461,6 +10463,50 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
     int stages = BattleScript_Read(battleCtx);
     int jumpNoEffect = BattleScript_Read(battleCtx);
 
+    if (AbilityStatChange(battleSys, battleCtx, holder, target, stat, stages) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: AbilityStatChange with the stat read from a script variable,
+ * for Moody, whose stats are drawn at random. A value outside Attack to
+ * evasion changes nothing.
+ *
+ * Inputs:
+ * 1. The ability's holder.
+ * 2. The battler whose stat changes.
+ * 3. The variable that holds the stat, a BATTLE_STAT_ value.
+ * 4. The number of stages, negative to lower it.
+ * 5. The jump distance if nothing changes.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int holder = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int target = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int *stat = BattleScript_VarAddress(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int stages = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    if (*stat < BATTLE_STAT_ATTACK
+        || *stat > BATTLE_STAT_EVASION
+        || AbilityStatChange(battleSys, battleCtx, holder, target, *stat, stages) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+    }
+
+    return FALSE;
+}
+
+// The change the two commands above make; TRUE if the stat changed.
+static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages)
+{
     BattleMon *mon = &battleCtx->battleMons[target];
     int stage = mon->statBoosts[stat] + stages;
 
@@ -10476,7 +10522,6 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
             && target != holder
             && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
                 || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
-        BattleScript_Iter(battleCtx, jumpNoEffect);
         return FALSE;
     }
 
@@ -10508,7 +10553,7 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
         }
     }
 
-    return FALSE;
+    return TRUE;
 }
 
 /**

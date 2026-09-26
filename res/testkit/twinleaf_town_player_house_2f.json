@@ -278,6 +278,10 @@
             "en_US": "Magic Bounce"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMoody",
+            "en_US": "Moody"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

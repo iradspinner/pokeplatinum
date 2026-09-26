@@ -1496,6 +1496,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityJustified, 3
     AddListMenuEntry TestKit_Text_MenuAbilityLightMetal, 4
     AddListMenuEntry TestKit_Text_MenuAbilityMagicBounce, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityMoody, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1503,6 +1504,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 3, TestKit_AbilityJustified
     GoToIfEq VAR_0x8004, 4, TestKit_AbilityLightMetal
     GoToIfEq VAR_0x8004, 5, TestKit_AbilityMagicBounce
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityMoody
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2264,6 +2266,22 @@ TestKit_AbilityMagicBounce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Moody: a wild Chansey that knows only Splash. At the
+   end of each turn with Bibarel in, one of its stats sharply rises and a
+   different one falls, each with a message; accuracy and evasion never
+   move. */
+TestKit_AbilityMoody:
+    SetVar VAR_0x800A, SPECIES_BIBAREL
+    SetVar VAR_0x800B, ABILITY_MOODY
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_PROTECT
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_WATERFALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
