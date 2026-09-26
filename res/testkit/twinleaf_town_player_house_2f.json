@@ -318,6 +318,10 @@
             "en_US": "Grass and powder"
         },
         {
+            "id": "TestKit_Text_MenuStapleElectricParalysis",
+            "en_US": "Electric and paralysis"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

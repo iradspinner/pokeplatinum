@@ -1840,6 +1840,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleLiquidOoze, 11
     AddListMenuEntry TestKit_Text_MenuStapleSimple, 12
     AddListMenuEntry TestKit_Text_MenuStapleGrassPowder, 13
+    AddListMenuEntry TestKit_Text_MenuStapleElectricParalysis, 14
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1855,6 +1856,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 11, TestKit_StapleLiquidOoze
     GoToIfEq VAR_0x8004, 12, TestKit_StapleSimple
     GoToIfEq VAR_0x8004, 13, TestKit_StapleGrassPowder
+    GoToIfEq VAR_0x8004, 14, TestKit_StapleElectricParalysis
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2056,6 +2058,21 @@ TestKit_StapleGrassPowder:
     SetVar VAR_0x8001, ABILITY_EFFECT_SPORE
     SetVar VAR_0x8002, MOVE_SPORE
     SetVar VAR_0x8003, MOVE_STUN_SPORE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Electric and paralysis: a Luxray, against a wild Arbok that knows Glare
+   and Thunder Wave. */
+TestKit_StapleElectricParalysis:
+    SetVar VAR_0x800A, SPECIES_LUXRAY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_SPARK
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_ROAR
+    SetVar VAR_0x8009, MOVE_CHARGE
+    SetVar VAR_0x8000, SPECIES_ARBOK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GLARE
+    SetVar VAR_0x8003, MOVE_THUNDER_WAVE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
