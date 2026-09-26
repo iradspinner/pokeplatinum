@@ -107,9 +107,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
 - [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
-- [ ] After the overworld-sprite carry-over lands (tracker, Phase 3): the NPC
-  outside Sandgem's Pokemon Center draws correctly, and so do the Clown-type
-  NPCs on the other 34 maps that share that sprite slot.
+- [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
+  sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
+  Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
+  Coronet or Stark Mountain, or in Turnback Cave. The gym shortcut Abra still
+  stand at the entrance and by the leader of the Canalave, Pastoria,
+  Snowpoint, Veilstone and Sunyshore gyms, draw as an Abra, and face and
+  turn properly when talked to. Later in the game, May at the Resort Area,
+  Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
+  north and south slopes draw as themselves.
 
 ## 4. The ordinary ROM, mid-game
 

@@ -44,6 +44,42 @@ DIVERGED.update({
               "solaceon_town_northeast_house", "veilstone_city_northeast_house",
               "canalave_library_2f")
 })
+# The teleporting Abra the base ROM added are hidden behind FLAG_HIDE_TELEPORT_ABRA,
+# town teleporters and dungeon shortcuts alike; the gym shortcuts stay (Ian,
+# 2026-09-27; docs/oxide/pocket-pc.md).
+DIVERGED.update({
+    f"events_{m}": "the teleporting Abra the base ROM added is hidden (Ian, 2026-09-27)"
+    for m in (
+    "canalave_city",
+    "celestic_town",
+    "eterna_city",
+    "fight_area",
+    "floaroma_town",
+    "hearthome_city",
+    "jubilife_city",
+    "mt_coronet_6f",
+    "mt_coronet_outside_north",
+    "mt_coronet_outside_south",
+    "oreburgh_city",
+    "pastoria_city",
+    "pokemon_league",
+    "resort_area",
+    "route_207",
+    "route_221",
+    "route_224",
+    "sandgem_town",
+    "snowpoint_city",
+    "solaceon_town",
+    "stark_mountain_outside",
+    "stark_mountain_room_2",
+    "sunyshore_city",
+    "survival_area",
+    "turnback_cave_entrance",
+    "turnback_cave_giratina_room",
+    "twinleaf_town",
+    "veilstone_city",
+    )
+})
 
 
 def render(record, existing, index):
