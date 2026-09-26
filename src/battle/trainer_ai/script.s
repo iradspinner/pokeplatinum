@@ -2106,6 +2106,15 @@ Expert_Main:
     // Oxide, change (Ian, 2026-09-27): the new recovery moves, as Recover.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
+    // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
+    // condition the damage estimate does not see, scored as Wake-Up Slap and
+    // Smelling Salts are.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_DAMAGE_ON_STATUS, Expert_Hex
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BURN_HIT_DOUBLE_POWER_ON_STATUS, Expert_Hex
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_ON_POISONED, Expert_Venoshock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POISON_HIT_DOUBLE_POWER_ON_POISONED, Expert_Venoshock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_DAMAGE_WITHOUT_ITEM, Expert_Acrobatics
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_FASTER, Expert_BoltBeak
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -5159,6 +5168,67 @@ Expert_WakeUpSlap_ScorePlus1:
     AddToMoveScore 1
 
 Expert_WakeUpSlap_End:
+    PopOrEnd 
+
+Expert_Hex:
+    // Oxide, change (Ian, 2026-09-27). Hex and Infernal Parade double their power against a
+    // target with a status, or with Comatose.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the opponent has a status or Comatose, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, Expert_DoubledPower_ScorePlus1
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_COMATOSE, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_Venoshock:
+    // Oxide, change (Ian, 2026-09-27). Venoshock and Barb Barrage double their power against a
+    // poisoned target.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the opponent is poisoned or badly poisoned, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_POISON | MON_CONDITION_TOXIC, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_Acrobatics:
+    // Oxide, change (Ian, 2026-09-27). Acrobatics doubles its power when its user holds no item.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the attacker holds no item, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_NONE, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_BoltBeak:
+    // Oxide, change (Ian, 2026-09-27). Bolt Beak and Fishious Rend double their power when their
+    // user moves before the target.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the attacker is faster than its opponent, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_DoubledPower_ScoreMinus1:
+    AddToMoveScore -1
+    PopOrEnd 
+
+Expert_DoubledPower_ScorePlus1:
+    AddToMoveScore 1
     PopOrEnd 
 
 Expert_HammerArm:
