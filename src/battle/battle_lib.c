@@ -117,6 +117,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].friskFoesFound = 0;
+    battleCtx->battleMons[battler].moveFailedThisTurn = FALSE;
+    battleCtx->battleMons[battler].moveFailedLastTurn = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -2251,6 +2253,12 @@ void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_LAST_TURN;
     }
     battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_ECHOED_VOICE_THIS_TURN;
+
+    // Oxide: and for Stomping Tantrum's record of a failed move.
+    for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+        battleCtx->battleMons[battler].moveFailedLastTurn = battleCtx->battleMons[battler].moveFailedThisTurn;
+        battleCtx->battleMons[battler].moveFailedThisTurn = FALSE;
+    }
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));

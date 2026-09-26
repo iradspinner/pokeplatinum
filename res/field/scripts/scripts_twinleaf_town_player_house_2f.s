@@ -675,6 +675,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet33, 5
     AddListMenuEntry TestKit_Text_MenuSet34, 6
     AddListMenuEntry TestKit_Text_MenuSet35, 7
+    AddListMenuEntry TestKit_Text_MenuSet36, 8
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -684,6 +685,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet33
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet34
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet35
+    GoToIfEq VAR_0x8004, 8, TestKit_MoveSet36
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1011,6 +1013,21 @@ TestKit_MoveSet35:
     SetVar VAR_0x8006, MOVE_ECHOED_VOICE
     SetVar VAR_0x8007, MOVE_HYPER_VOICE
     SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 36: Stomping Tantrum and Temper Flare double the turn after
+   Mew's move misses or fails. Against a wild Chansey that knows only
+   Splash: Snore while awake says "But it failed!", and the Stomping
+   Tantrum or Temper Flare after it does about twice what one after
+   Recover does. */
+TestKit_MoveSet36:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_STOMPING_TANTRUM
+    SetVar VAR_0x8007, MOVE_TEMPER_FLARE
+    SetVar VAR_0x8008, MOVE_SNORE
     SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 

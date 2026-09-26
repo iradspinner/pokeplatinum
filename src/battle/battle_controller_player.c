@@ -4192,6 +4192,16 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         battleCtx->moveSketched[battleCtx->attacker] = battleCtx->moveTemp;
     }
 
+    // Oxide: a move that was used and then missed, failed, was protected
+    // against or had no effect, for Stomping Tantrum and Temper Flare. A
+    // battler that could not move at all (asleep, fully paralysed,
+    // flinched) never shows its attack message, so it does not count, as
+    // from Generation 8 on.
+    if ((battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT)) {
+        ATTACKING_MON.moveFailedThisTurn = TRUE;
+    }
+
     BattleControllerPlayer_UpdateFlagsWhenHit(battleSys, battleCtx);
     BattleSystem_VerifyMetronomeCount(battleSys, battleCtx);
 

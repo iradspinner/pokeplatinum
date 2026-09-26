@@ -1393,6 +1393,14 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         return 40 * (run + 1);
     }
 
+    case MOVE_STOMPING_TANTRUM:
+    case MOVE_TEMPER_FLARE:
+        // Doubles when the user's move the turn before missed or failed.
+        if (ATTACKING_MON.moveFailedLastTurn) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
