@@ -1836,6 +1836,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleLeafGuard, 7
     AddListMenuEntry TestKit_Text_MenuStapleStench, 8
     AddListMenuEntry TestKit_Text_MenuStapleWaterAbsorb, 9
+    AddListMenuEntry TestKit_Text_MenuStapleMagicGuard, 10
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1847,6 +1848,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 7, TestKit_StapleLeafGuard
     GoToIfEq VAR_0x8004, 8, TestKit_StapleStench
     GoToIfEq VAR_0x8004, 9, TestKit_StapleWaterAbsorb
+    GoToIfEq VAR_0x8004, 10, TestKit_StapleMagicGuard
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1990,6 +1992,20 @@ TestKit_StapleWaterAbsorb:
     SetVar VAR_0x8000, SPECIES_VAPOREON
     SetVar VAR_0x8001, ABILITY_WATER_ABSORB
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Magic Guard and paralysis: a Clefable given Magic Guard, against a wild
+   Jolteon that knows only Thunder Wave. */
+TestKit_StapleMagicGuard:
+    SetVar VAR_0x800A, SPECIES_CLEFABLE
+    SetVar VAR_0x800B, ABILITY_MAGIC_GUARD
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_SOFTBOILED
+    SetVar VAR_0x8009, MOVE_FLAMETHROWER
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDER_WAVE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

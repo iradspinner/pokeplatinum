@@ -2700,8 +2700,9 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
             break;
 
         case CHECK_STATUS_STATE_PARALYSIS:
-            if ((ATTACKING_MON.status & MON_CONDITION_PARALYSIS)
-                && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD) {
+            // Oxide: Magic Guard no longer saves its holder from full paralysis
+            // (Generation 5; hg-engine drops the exception too).
+            if (ATTACKING_MON.status & MON_CONDITION_PARALYSIS) {
                 if (BattleSystem_RandNext(battleSys) % 4 == 0) {
                     battleCtx->moveFailFlags[battleCtx->attacker].paralyzed = TRUE;
 

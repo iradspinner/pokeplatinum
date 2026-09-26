@@ -200,6 +200,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Leaf Guard and Rest | Leafeon with Leaf Guard: Sunny Day, Rest, Leaf Blade, Swords Dance; foe a wild Rattata that knows only Tackle | Let Tackle hurt Leafeon, then Rest: it sleeps and heals. Wake it, take another Tackle, use Sunny Day, then Rest: "LEAFEON stayed awake because of its Leaf Guard!" | LEAFGUARD |
 | Stench | Skuntank with Stench: Fury Swipes, Scratch, Protect, Night Slash; foe a wild Snorlax that knows only Splash | Skuntank is faster: about one Scratch in ten makes Snorlax flinch ("The wild SNORLAX flinched!"), and Fury Swipes rolls for each hit | STENCH |
 | Water Absorb and Soak | Lapras: Soak, Thunderbolt, Ice Beam, Sing; foe a wild Vaporeon given Water Absorb that knows only Growl | Soak does not take: Water Absorb takes it, restoring HP if Vaporeon has lost any, or with "made Soak useless!" at full HP. Dry Skin does the same | WATERABSORB |
+| Magic Guard, paralysis | Clefable with Magic Guard: Moonblast, Calm Mind, Soft-Boiled, Flamethrower; foe a wild Jolteon that knows only Thunder Wave | Once paralysed, Clefable is sometimes "fully paralyzed!" (about one turn in four), where before Magic Guard kept it moving | MAGICGUARD |
 
 ## Not built yet
 
