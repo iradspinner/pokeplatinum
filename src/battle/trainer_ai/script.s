@@ -351,6 +351,14 @@ Basic_CheckCannotSleep:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
+    // Oxide: Purifying Salt keeps off every status (element 5), unless Mold
+    // Breaker ignores it.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotSleep_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+
+Basic_CheckCannotSleep_End:
     PopOrEnd 
 
 Basic_CheckCannotExplode:
@@ -573,6 +581,13 @@ Basic_CheckCannotPoison_Hydration:
 Basic_CheckCannotPoison_StatusOrSafeguard:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotPoison_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+
+Basic_CheckCannotPoison_End:
     PopOrEnd 
 
 Basic_CheckAlreadyUnderLightScreen:
@@ -653,6 +668,9 @@ Basic_CheckCannotParalyze:
     // rulings), so paralysing its holder is worth doing again.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotParalyze_ImmuneToStatus
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
     IfMoveEqualTo MOVE_THUNDER_WAVE, Basic_CheckCannotParalyze_ThunderWave
     GoTo Basic_CheckCannotParalyze_ImmuneToStatus
 
@@ -923,6 +941,13 @@ Basic_CheckCannotBurn:
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    // Oxide: Purifying Salt, as for sleep.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotBurn_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+
+Basic_CheckCannotBurn_End:
     PopOrEnd 
 
 Basic_CheckHelpingHand:
