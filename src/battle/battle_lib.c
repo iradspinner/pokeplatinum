@@ -7388,6 +7388,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 13 / 10;
     }
 
+    // Oxide: Normalize raises every move it makes Normal by a fifth, including
+    // those that were Normal already (Generation 7; hg-engine's
+    // CalcBaseDamage). Struggle is left alone.
+    if (attackerParams.ability == ABILITY_NORMALIZE && move != MOVE_STRUGGLE) {
+        movePower = movePower * 12 / 10;
+    }
+
     // Dark Aura and Fairy Aura on any battler raise their type's moves by a
     // third, or lower them by a quarter when Aura Break is also out.
     if ((moveType == TYPE_DARK
