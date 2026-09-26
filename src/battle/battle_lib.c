@@ -7558,6 +7558,14 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Flare Boost raises special moves by half while its holder is burned.
+    // hg-engine raises every move; the later games raise only special ones.
+    if (attackerParams.ability == ABILITY_FLARE_BOOST
+        && (attackerParams.statusMask & MON_CONDITION_BURN)
+        && MOVE_DATA(move).class == CLASS_SPECIAL) {
+        movePower = movePower * 15 / 10;
+    }
+
     // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
     // Force raises the moves whose secondary effects it strips by 30%.
     if (attackerParams.ability == ABILITY_PIXILATE

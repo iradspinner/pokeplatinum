@@ -1491,8 +1491,10 @@ TestKit_Abilities3:
     Message TestKit_Text_WhichAbility
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
+    AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2172,6 +2174,22 @@ TestKit_AbilityAnalytic:
     SetVar VAR_0x8000, SPECIES_MAGNEZONE
     SetVar VAR_0x8001, ABILITY_ANALYTIC
     SetVar VAR_0x8002, MOVE_THUNDERBOLT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* FlareBoost: the player's Snorlax (its own ability) and a
+   wild Drifblim given Flare Boost that knows only Swift. Once Will-O-Wisp
+   has burned Drifblim, its Swift takes about half again as much of Snorlax's
+   HP as before. */
+TestKit_AbilityFlareBoost:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_WILL_O_WISP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_DRIFBLIM
+    SetVar VAR_0x8001, ABILITY_FLARE_BOOST
+    SetVar VAR_0x8002, MOVE_SWIFT
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

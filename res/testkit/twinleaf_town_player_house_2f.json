@@ -258,6 +258,10 @@
             "en_US": "Analytic"
         },
         {
+            "id": "TestKit_Text_MenuAbilityFlareBoost",
+            "en_US": "Flare Boost"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },
