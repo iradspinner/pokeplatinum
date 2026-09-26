@@ -23,7 +23,7 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_CHINGLING"
         },
         {
             "level": 15,
@@ -47,7 +47,7 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_GEODUDE"
+            "species": "SPECIES_MEDITITE"
         }
     ],
     "swarms": [
@@ -60,7 +60,7 @@
     ],
     "night": [
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOOTHOOT"
     ],
     "radar": [
         "SPECIES_MIENSHAO",

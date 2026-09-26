@@ -298,6 +298,25 @@ that stay. None blocks anything.
    appearances and from prizes that compete in one capture, not from
    smaller slots. The tier just below, 75 to 85, still lands a median of
    29 per box, a dozen lines in every run. Next: Ian's call on step 2.
+18. **Step 2 of the scarcity work (Ian, 2026-09-26).**
+   - The two lake caverns give no legendary for now.
+   - The Magikarp line is cut from the pick-list (`cut`, so no id moves).
+   - The pick-list is at Platinum's size: 493 species in 239 lines, up
+     from 420 in 205. Ian's criteria were cute lines, a type spread across
+     the game, zone themes and vanilla Platinum staples. The 34 new lines:
+     Starly, Bidoof, Kricketot, Wurmple, Abra, Machop, Burmy, Cherubi,
+     Chatot, Chingling, Hoothoot, Murkrow, Aipom, Munchlax, Magnemite,
+     Cleffa, Azurill, Happiny, Mime Jr., Bonsly, Lickitung, Tangela,
+     Meditite, Girafarig, Carnivine, Tropius, Snubbull, Mawile, Plusle,
+     Minun, Delibird, Smoochum, Mareep and Hoppip.
+   - Each new line took the slot of a widespread line in a table that
+     suits it, and the honey trees took the vanilla honey lines.
+   - A line may now live only as cameos or tails below the 10% a home needs.
+
+   Best play ends the League with a median of three Pokemon worth 85 or
+   more. The tier from 75 to 85 still lands a median of 29 per box, and 28
+   of its lines land in over half of runs; trimming it waits on Ian's
+   super-wanted list.
 17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
    Overseer).** The three are turned off and never go in a table. This
    track empties the lists in all 186 tables and makes lint fail on any

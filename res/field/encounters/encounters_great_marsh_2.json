@@ -23,7 +23,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_CARNIVINE"
         },
         {
             "level": 30,
@@ -47,7 +47,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_CARNIVINE"
         }
     ],
     "swarms": [

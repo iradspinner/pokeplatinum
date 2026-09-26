@@ -31,7 +31,7 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_SNUBBULL"
         },
         {
             "level": 11,
@@ -47,7 +47,7 @@
         },
         {
             "level": 11,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_SNUBBULL"
         }
     ],
     "swarms": [

@@ -15,7 +15,7 @@
         },
         {
             "level": 23,
-            "species": "SPECIES_MINCCINO"
+            "species": "SPECIES_MIME_JR"
         },
         {
             "level": 24,
@@ -23,7 +23,7 @@
         },
         {
             "level": 24,
-            "species": "SPECIES_GLAMEOW"
+            "species": "SPECIES_MUNCHLAX"
         },
         {
             "level": 24,
@@ -209,7 +209,7 @@
     "daily_encounters": [
         "SPECIES_PICHU",
         "SPECIES_SWABLU",
-        "SPECIES_GLAMEOW",
+        "SPECIES_MUNCHLAX",
         "SPECIES_SKITTY",
         "SPECIES_BUNEARY",
         "SPECIES_FOMANTIS",

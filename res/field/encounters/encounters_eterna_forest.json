@@ -19,11 +19,11 @@
         },
         {
             "level": 12,
-            "species": "SPECIES_DOTTLER"
+            "species": "SPECIES_BEAUTIFLY"
         },
         {
             "level": 12,
-            "species": "SPECIES_GRUBBIN"
+            "species": "SPECIES_BURMY"
         },
         {
             "level": 12,
@@ -60,7 +60,7 @@
     ],
     "night": [
         "SPECIES_SEEDOT",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MURKROW"
     ],
     "radar": [
         "SPECIES_BRELOOM",

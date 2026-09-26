@@ -85,9 +85,10 @@ def check_tiers(results):
     # Chinchou, Carvanha, Remoraid, Buizel, Shellos lines), Mantyke and Mantine,
     # and the five ghost rows (Gastly and Misdreavus lines) Ian added for the
     # Old Chateau on 2026-09-21, and the 37 rows of the seventeen water lines
-    # he added on 2026-09-26 (Clamperl to Wingull).
+    # he added on 2026-09-26 (Clamperl to Wingull), and the 73 rows of the
+    # 34 lines that took the list to Platinum's size the same day.
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 425 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 498 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     results.append(("legendaries, starters, fossils and static battles are gate",
                     by["Articuno"] == by["Charmander"] == by["Cranidos"]
@@ -112,9 +113,10 @@ def check_r12(results):
     # 99 native lines before Phase 4 element 3, 177 with the 159 new species
     # in, 187 with Ian's three cave lines and seven fishing lines, 189 with the
     # Gastly and Misdreavus lines, 206 with the seventeen water lines, 205
-    # with the Magikarp line cut (2026-09-26).
+    # with the Magikarp line cut, 239 with the 34 lines of the Platinum-size
+    # pick-list (2026-09-26).
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 205
+                    avail is not None and len(avail) == 239
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",

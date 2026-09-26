@@ -90,7 +90,7 @@
         "SPECIES_FROSMOTH",
         "SPECIES_SNORUNT",
         "SPECIES_ABSOL",
-        "SPECIES_GALARIAN_MR_MIME"
+        "SPECIES_JYNX"
       ],
       "day": [
         "SPECIES_FROSMOTH",
@@ -113,8 +113,8 @@
         "SPECIES_BUNEARY",
         "SPECIES_SEWADDLE",
         "SPECIES_SEEDOT",
-        "SPECIES_DOTTLER",
-        "SPECIES_GRUBBIN",
+        "SPECIES_BEAUTIFLY",
+        "SPECIES_BURMY",
         "SPECIES_COMBEE",
         "SPECIES_STEENEE"
       ],
@@ -124,7 +124,7 @@
       ],
       "night": [
         "SPECIES_SEEDOT",
-        "SPECIES_PURRLOIN"
+        "SPECIES_MURKROW"
       ],
       "split": "Gardenia"
     },
@@ -138,7 +138,7 @@
       "split": "Byron",
       "cast": [
         "SPECIES_MAGBY",
-        "SPECIES_JOLTIK",
+        "SPECIES_MAGNEMITE",
         "SPECIES_LARVESTA",
         "SPECIES_TOGEDEMARU",
         "SPECIES_SLUGMA",
@@ -294,7 +294,7 @@
         "SPECIES_WOOPER",
         "SPECIES_LOTAD",
         "SPECIES_SURSKIT",
-        "SPECIES_GASTRODON",
+        "SPECIES_AZURILL",
         "SPECIES_BARBOACH"
       ],
       "day": [
@@ -443,7 +443,7 @@
         "SPECIES_SKORUPI",
         "SPECIES_BUDEW",
         "SPECIES_STUNKY",
-        "SPECIES_SALANDIT"
+        "SPECIES_CARNIVINE"
       ],
       "day": [
         "SPECIES_BUDEW",
@@ -739,7 +739,7 @@
         "SPECIES_GLIGAR",
         "SPECIES_HOUNDOOM",
         "SPECIES_MIGHTYENA",
-        "SPECIES_LIEPARD"
+        "SPECIES_TANGELA"
       ],
       "day": [
         "SPECIES_SCYTHER",
@@ -1186,7 +1186,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1213,7 +1213,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1240,7 +1240,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1267,7 +1267,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1294,7 +1294,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1321,7 +1321,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GLIGAR"
+        "SPECIES_MAWILE"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1641,7 +1641,7 @@
       "order": 4,
       "cast": [
         "SPECIES_SURSKIT",
-        "SPECIES_SENTRET",
+        "SPECIES_BIDOOF",
         "SPECIES_WOOLOO",
         "SPECIES_LOTAD",
         "SPECIES_PIKIPEK",
@@ -1774,7 +1774,7 @@
       "order": 5,
       "cast": [
         "SPECIES_SURSKIT",
-        "SPECIES_SENTRET",
+        "SPECIES_BIDOOF",
         "SPECIES_WOOLOO",
         "SPECIES_LOTAD",
         "SPECIES_PIKIPEK",
@@ -1933,7 +1933,7 @@
       "split": "Gardenia",
       "cast": [
         "SPECIES_BRONZOR",
-        "SPECIES_NACLI",
+        "SPECIES_CLEFFA",
         "SPECIES_ZUBAT",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
@@ -3123,7 +3123,7 @@
       "cast": [
         "SPECIES_WOOLOO",
         "SPECIES_SENTRET",
-        "SPECIES_PIKIPEK",
+        "SPECIES_STARLY",
         "SPECIES_BLIPBUG",
         "SPECIES_PURRLOIN",
         "SPECIES_SHINX",
@@ -3140,7 +3140,7 @@
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_SKITTY"
+        "SPECIES_KRICKETOT"
       ],
       "split": "Roark"
     },
@@ -3155,8 +3155,8 @@
         "SPECIES_SHINX",
         "SPECIES_BLIPBUG",
         "SPECIES_WOOLOO",
-        "SPECIES_SENTRET",
-        "SPECIES_PIKIPEK",
+        "SPECIES_BIDOOF",
+        "SPECIES_STARLY",
         "SPECIES_PURRLOIN",
         "SPECIES_GRUBBIN",
         "SPECIES_ROOKIDEE",
@@ -3171,7 +3171,7 @@
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_KRICKETOT"
       ],
       "split": "Roark"
     },
@@ -3189,7 +3189,7 @@
         "SPECIES_PURRLOIN",
         "SPECIES_SHINX",
         "SPECIES_MAKUHITA",
-        "SPECIES_WOOLOO",
+        "SPECIES_ABRA",
         "SPECIES_TORCHIC"
       ],
       "day": [
@@ -3321,7 +3321,7 @@
         "SPECIES_TREECKO",
         "SPECIES_SNIVY",
         "SPECIES_BOUNSWEET",
-        "SPECIES_FLETCHLING"
+        "SPECIES_SNUBBULL"
       ],
       "day": [
         "SPECIES_TORCHIC",
@@ -3450,7 +3450,7 @@
         "SPECIES_BUDEW",
         "SPECIES_GRUBBIN",
         "SPECIES_FLETCHLING",
-        "SPECIES_SENTRET",
+        "SPECIES_WURMPLE",
         "SPECIES_WOOLOO",
         "SPECIES_SEWADDLE",
         "SPECIES_BOUNSWEET",
@@ -3585,9 +3585,9 @@
       "order": 18,
       "cast": [
         "SPECIES_LOTAD",
-        "SPECIES_STEENEE",
+        "SPECIES_CHERUBI",
         "SPECIES_SEWADDLE",
-        "SPECIES_SURSKIT",
+        "SPECIES_HOPPIP",
         "SPECIES_SHROOMISH",
         "SPECIES_WOOPER",
         "SPECIES_PACHIRISU",
@@ -3723,8 +3723,8 @@
         "SPECIES_PACHIRISU",
         "SPECIES_SMOLIV",
         "SPECIES_MINCCINO",
-        "SPECIES_WOOLOO",
-        "SPECIES_SKITTY",
+        "SPECIES_AIPOM",
+        "SPECIES_MAREEP",
         "SPECIES_FLETCHLING",
         "SPECIES_BOUNSWEET",
         "SPECIES_SEWADDLE",
@@ -3862,7 +3862,7 @@
         "SPECIES_STUNKY",
         "SPECIES_DWEBBLE",
         "SPECIES_ONIX",
-        "SPECIES_GEODUDE",
+        "SPECIES_BONSLY",
         "SPECIES_SALANDIT",
         "SPECIES_JOLTIK",
         "SPECIES_NACLI",
@@ -3888,7 +3888,7 @@
       "cast": [
         "SPECIES_PONYTA",
         "SPECIES_VULPIX",
-        "SPECIES_ROOKIDEE",
+        "SPECIES_MACHOP",
         "SPECIES_NACLI",
         "SPECIES_GEODUDE",
         "SPECIES_FLETCHLING",
@@ -3926,7 +3926,7 @@
         "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
         "SPECIES_COMBEE",
-        "SPECIES_MINCCINO",
+        "SPECIES_HAPPINY",
         "SPECIES_GROVYLE",
         "SPECIES_SERVINE"
       ],
@@ -4089,7 +4089,7 @@
         "SPECIES_PACHIRISU"
       ],
       "night": [
-        "SPECIES_PURRLOIN",
+        "SPECIES_MURKROW",
         "SPECIES_YAMASK"
       ],
       "old_rod": {
@@ -4513,7 +4513,7 @@
       ],
       "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOOTHOOT"
       ]
     },
     "encounters_route_211_east": {
@@ -4555,9 +4555,9 @@
         "SPECIES_BRONZOR",
         "SPECIES_VULPIX",
         "SPECIES_SNOVER",
-        "SPECIES_NACLI",
+        "SPECIES_CHINGLING",
         "SPECIES_ZUBAT",
-        "SPECIES_GEODUDE"
+        "SPECIES_MEDITITE"
       ],
       "day": [
         "SPECIES_PONYTA",
@@ -4565,7 +4565,7 @@
       ],
       "night": [
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOOTHOOT"
       ]
     },
     "encounters_route_212_north": {
@@ -4583,7 +4583,7 @@
         "SPECIES_KIRLIA",
         "SPECIES_BUDEW",
         "SPECIES_VESPIQUEN",
-        "SPECIES_MINCCINO",
+        "SPECIES_TROPIUS",
         "SPECIES_STEENEE",
         "SPECIES_SMOLIV",
         "SPECIES_DARTRIX",
@@ -5046,7 +5046,7 @@
         "SPECIES_NACLSTACK",
         "SPECIES_DWEBBLE",
         "SPECIES_SPHEAL",
-        "SPECIES_GRAVELER",
+        "SPECIES_GIRAFARIG",
         "SPECIES_HARIYAMA",
         "SPECIES_CHARMELEON",
         "SPECIES_TORRACAT"
@@ -5200,7 +5200,7 @@
         "SPECIES_FLETCHINDER",
         "SPECIES_CROAGUNK",
         "SPECIES_YANMA",
-        "SPECIES_KOFFING"
+        "SPECIES_LICKITUNG"
       ],
       "day": [
         "SPECIES_YANMA",
@@ -5222,7 +5222,7 @@
       "cast": [
         "SPECIES_SNOVER",
         "SPECIES_FROSMOTH",
-        "SPECIES_SNEASEL",
+        "SPECIES_DELIBIRD",
         "SPECIES_SNEASEL",
         "SPECIES_MIENFOO",
         "SPECIES_SNORUNT",
@@ -5298,7 +5298,7 @@
         "SPECIES_TOUCANNON",
         "SPECIES_QUAGSIRE",
         "SPECIES_ARAQUANID",
-        "SPECIES_GLAMEOW",
+        "SPECIES_CHATOT",
         "SPECIES_FLOATZEL",
         "SPECIES_SHELLOS",
         "SPECIES_LIEPARD"
@@ -5570,7 +5570,7 @@
       "cast": [
         "SPECIES_VIKAVOLT",
         "SPECIES_TOGEDEMARU",
-        "SPECIES_PACHIRISU",
+        "SPECIES_CHATOT",
         "SPECIES_GALVANTULA",
         "SPECIES_TOUCANNON",
         "SPECIES_LUXRAY",
@@ -7778,9 +7778,9 @@
         "SPECIES_PICHU",
         "SPECIES_BUNEARY",
         "SPECIES_SKITTY",
-        "SPECIES_MINCCINO",
+        "SPECIES_MIME_JR",
         "SPECIES_FOMANTIS",
-        "SPECIES_GLAMEOW",
+        "SPECIES_MUNCHLAX",
         "SPECIES_SWABLU",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_PACHIRISU",
@@ -9000,8 +9000,8 @@
         "SPECIES_SHINX",
         "SPECIES_PACHIRISU",
         "SPECIES_MINCCINO",
-        "SPECIES_FLETCHLING",
-        "SPECIES_ROOKIDEE",
+        "SPECIES_MINUN",
+        "SPECIES_PLUSLE",
         "SPECIES_EMOLGA",
         "SPECIES_PICHU"
       ],
@@ -11174,7 +11174,7 @@
       "split": "Roark",
       "order": 3,
       "cast": [
-        "SPECIES_PIKIPEK",
+        "SPECIES_STARLY",
         "SPECIES_BLIPBUG",
         "SPECIES_WOOLOO",
         "SPECIES_PURRLOIN",
@@ -11203,9 +11203,9 @@
       "split": "Fantina",
       "planned_location": "Amity Square",
       "cast": [
-        "SPECIES_SKITTY",
+        "SPECIES_SNUBBULL",
         "SPECIES_SWABLU",
-        "SPECIES_PACHIRISU",
+        "SPECIES_AZURILL",
         "SPECIES_BUNEARY",
         "SPECIES_GLAMEOW",
         "SPECIES_FOMANTIS",
