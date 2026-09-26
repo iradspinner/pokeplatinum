@@ -65,6 +65,13 @@ STATUSES = ("home", "non-wild", "water", "honey", "cameo-only", "tail-only",
 WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
 
 
+def pool_candidates(plan):
+    """Every legendary in the pool: the three thirds the lake caverns and the
+    roamer draw from (Ian, 2026-09-26), in that order."""
+    thirds = (plan.get("pool") or {}).get("thirds") or {}
+    return [sp for key in ("acuity", "valor", "roamer") for sp in thirds.get(key) or []]
+
+
 def load_plan():
     with open(os.path.join(model.repo_root(), PLAN), encoding="utf-8") as f:
         return json.load(f)
@@ -156,7 +163,7 @@ def build(ref=None):
         if lid:
             proposals[lid] = text
     pool = set()
-    for sp in (plan.get("pool") or {}).get("candidates") or []:
+    for sp in pool_candidates(plan):
         lid = resolve(sp, "pool")
         if lid:
             pool.add(lid)
@@ -393,9 +400,10 @@ def render(out):
     pool_rows = [r for r in rows if r["pool"]]
     lines.append("**The legendary pool** (Ian, 2026-09-21). Vanilla's three pre-League "
                  "legendaries already felt like a lot, so the new ones are not statics of "
-                 "their own. The two lake caverns and the roamer slot each draw at random "
-                 "from one pool: " + "; ".join((plan.get("pool") or {}).get("statics") or [])
-                 + " as two static battles drawn without replacement, and "
+                 "their own. The two lake caverns and the roamer slot each draw one at "
+                 "random, each from its own third of the pool so no two match "
+                 "(2026-09-26): " + "; ".join((plan.get("pool") or {}).get("statics") or [])
+                 + " as two static battles, and "
                  + ((plan.get("pool") or {}).get("roamer") or "the roamer")
                  + " as a random roamer. A playthrough meets three of them before the "
                  "League. The scripting is outside this track; the linter's R12 reads the "

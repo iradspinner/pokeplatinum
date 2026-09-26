@@ -155,7 +155,7 @@ def _scripted_location(s):
     """A scripted source's capture area. An egg counts where it hatches,
     which is the player's pick of any place with no table, so each egg is a
     capture of its own."""
-    return s.get("capture_area") or "Egg: " + dex.display_name(s["pool"][0])
+    return s.get("capture_area") or s["label"]
 
 
 def scripted_row(s, st):

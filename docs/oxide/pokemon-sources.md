@@ -42,7 +42,7 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-221 rows across 41 locations, generated 2026-09-25.
+228 rows across 41 locations, generated 2026-09-25.
 
 ## Rows by method
 
@@ -52,6 +52,7 @@ table, so they compete with it rather than adding to it
 | unown room | 18 |
 | static battle | 16 |
 | great marsh daily (post-natdex) | 12 |
+| egg gift | 10 |
 | great marsh daily (pre-natdex) | 9 |
 | fossil | 7 |
 | roamer | 6 |
@@ -73,7 +74,6 @@ table, so they compete with it rather than adding to it
 | honey tree (uncommon, 8 badges) | 6 |
 | in-game trade | 4 |
 | starter | 3 |
-| egg gift | 3 |
 | special tile (rod) | 1 |
 | pal park migration | 1 |
 | day care egg | 1 |
@@ -301,7 +301,14 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Riolu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; hatches at level 1 and counts where it hatches; giver Riley | vanilla | yes | `scripts_iron_island_b2f_left_room.s` |
+| Croagunk | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Gligar | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Hippopotas | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Houndour | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Ralts | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Riolu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Snorunt | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Swablu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
 
 ### Iron Ruins
 
@@ -426,7 +433,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Gengar | in-game trade | (traded mon's level) | trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | yes | `res/npc_trades/gaspar_haunter.json` |
+| Suicune | in-game trade | (traded mon's level) | trade away SPECIES_SNOVER to get it; once only; OT Mindy, holds ITEM_NONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | yes | `res/npc_trades/gaspar_haunter.json` |
 
 ### Snowpoint Temple
 

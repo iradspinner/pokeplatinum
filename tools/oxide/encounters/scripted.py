@@ -36,9 +36,10 @@ def _catalogue(root):
         return list(csv.DictReader(f))
 
 
-def _legendary_pool(root):
+def _legendary_pool(root, key):
+    """The third of the legendary pool one lake cavern draws from."""
     plan = availability.load_plan()
-    return list((plan.get("pool") or {}).get("candidates") or [])
+    return list(((plan.get("pool") or {}).get("thirds") or {}).get(key) or [])
 
 
 def load(root=None):
@@ -59,7 +60,7 @@ def load(root=None):
         if s["kind"] not in KINDS or s["pick"] not in PICKS:
             raise ValueError(f"{s['id']}: unknown kind or pick")
         if s["pick"] == "legendary_pool":
-            s["pool"] = _legendary_pool(root)
+            s["pool"] = _legendary_pool(root, s["pool_key"])
         elif not s.get("pool"):
             want = s["from"]
             hits = [r for r in rows if r["map_or_file"] == want["file"]

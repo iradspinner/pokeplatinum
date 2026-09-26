@@ -1000,10 +1000,14 @@
     }
   },
   "pool": {
-    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible. So the two lake caverns and the roamer slot each draw at random", "from one pool: Uxie's cavern and Azelf's cavern become two static battles", "drawn without replacement from `candidates`, and Mesprit's roamer becomes a", "random roamer from the same list. A playthrough meets three of them before", "the League, as vanilla did; which three is the draw. The scripting is", "outside this track (decision 8). A candidate counts as sourced on paper;", "R12 in the linter reads the tree and will report these until the scripts", "exist. One list on purpose; split it into a static list and a roamer list", "in this file if some should never roam."],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist."],
     "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
     "roamer": "Mesprit's roamer, released at Lake Verity",
-    "candidates": ["SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT", "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES", "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE", "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI", "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE", "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA", "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"]
+    "thirds": {
+      "acuity": ["SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"],
+      "valor": ["SPECIES_AZELF", "SPECIES_MAGEARNA", "SPECIES_BLACEPHALON", "SPECIES_GALARIAN_MOLTRES", "SPECIES_PHEROMOSA", "SPECIES_TAPU_FINI", "SPECIES_DIANCIE", "SPECIES_GUZZLORD"],
+      "roamer": ["SPECIES_MESPRIT", "SPECIES_TAPU_KOKO", "SPECIES_BUZZWOLE", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_POIPOLE", "SPECIES_XURKITREE", "SPECIES_GALARIAN_ARTICUNO"]
+    }
   },
   "honey": {
     "_comment": ["The honey trees (Ian, 2026-09-26): 21 trees from Route 205 onward, one table", "per badge count (1 to 8) with its own levels, a common and an uncommon tier", "of six slots each; the Munchlax trees and their rare tier are gone, and the", "grass starters with them (their homes are Eterna Forest, Route 204 north and", "Route 210 south). Listed here per tier across all eight tables; the tables", "themselves are in encounters_honey_tree.json."],
