@@ -438,6 +438,9 @@ static BOOL ScrCmd_GetNationalDexCaughtCount(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_122(ScriptContext *ctx);
 static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx);
 static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
+#ifdef OXIDE_TESTKIT
+static BOOL ScrCmd_TestKitStartWildBattle(ScriptContext *ctx);
+#endif
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
@@ -4004,6 +4007,26 @@ static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx)
     Encounter_NewVsSpeciesAtLevel(ctx->task, species, level, battleResultMaskPtr, FALSE);
     return TRUE;
 }
+
+#ifdef OXIDE_TESTKIT
+/* Platinum Oxide test kit only: a wild battle whose foe has a set ability and
+   moves (Encounter_TestKitNewVsSpecies). */
+static BOOL ScrCmd_TestKitStartWildBattle(ScriptContext *ctx)
+{
+    int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 species = ScriptContext_GetVar(ctx);
+    u8 level = (u8)ScriptContext_GetVar(ctx);
+    u16 ability = ScriptContext_GetVar(ctx);
+    u16 moves[LEARNED_MOVES_MAX];
+
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        moves[i] = ScriptContext_GetVar(ctx);
+    }
+
+    Encounter_TestKitNewVsSpecies(ctx->task, species, level, ability, moves, battleResultMaskPtr);
+    return TRUE;
+}
+#endif
 
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx)
 {

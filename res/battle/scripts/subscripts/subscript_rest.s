@@ -6,6 +6,8 @@ _000:
     Wait 
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_INSOMNIA, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_VITAL_SPIRIT, _098
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_PURIFYING_SALT, _098 // Oxide
+    CheckAbility CHECK_HAVE_ON_SIDE, BTLSCR_ATTACKER, ABILITY_SWEET_VEIL, _098 // Oxide: it or its partner
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _107
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SOUNDPROOF, _027
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_UPROAR, _115
@@ -42,7 +44,7 @@ _065:
 _098:
     WaitButtonABTime 30
     // {0} stayed awake because of its {1}!
-    PrintMessage BattleStrings_Text_PokemonStayedAwakeBecauseOfItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonStayedAwakeBecauseOfItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ABILITY_MON // Oxide: a partner's Sweet Veil
     GoTo _143
 
 _107:

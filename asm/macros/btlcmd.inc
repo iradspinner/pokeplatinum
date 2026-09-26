@@ -1288,6 +1288,36 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    .macro TryBeastBoost jump_no_effect
+    .long BTLCMD_TRYBEASTBOOST
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
+    .macro TrySoulHeart jump_no_effect
+    .long BTLCMD_TRYSOULHEART
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
+    .macro TryDefiant jump_no_effect
+    .long BTLCMD_TRYDEFIANT
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
+    .macro AbilityStatChange holder, target, stat, stages, jump_no_effect
+    .long BTLCMD_ABILITYSTATCHANGE
+    .long \holder
+    .long \target
+    .long \stat
+    .long \stages
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
+    .macro CheckAbilityChange kind, jump_fail
+    .long BTLCMD_CHECKABILITYCHANGE
+    .long \kind
+    .long (\jump_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

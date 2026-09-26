@@ -1,5 +1,5 @@
 {
-    "_comment": "Platinum's story bosses in play order, each in the split Ian's Level Caps sheet puts it in (My Version RomHack Docs, sheet Level Caps, read 2026-09-22), except that the Galactic fights moved on Ian's rulings of 2026-09-25: Cyrus 2 and Saturn 2 to the HQ split, and Mars and Jupiter at Spear Pillar and Cyrus 3 to the Galactic split. Trainers are Platinum trainer constants, which are also the tr_id every Platinum-based hack's calculator data uses. A rival fight lists all three starter variants; a tag battle lists both opponents. sheet_ace is the sheet's level for the boss's strongest Pokemon, null where the sheet has no row. Tag-battle partners (Cheryl, Mira, Riley, Marley, Buck, Lucas, Dawn, Barry at Spear Pillar) fight beside the player and are not bosses.",
+    "_comment": "Platinum's story bosses in play order, each in the split Ian's Level Caps sheet puts it in (My Version RomHack Docs, sheet Level Caps, read 2026-09-22), except that the Galactic fights moved on Ian's rulings of 2026-09-25: Cyrus 2 and Saturn 2 to the HQ split, and Mars and Jupiter at Spear Pillar and Cyrus 3 to the Galactic split. Trainers are Platinum trainer constants, which are also the tr_id every Platinum-based hack's calculator data uses. A rival fight lists all three starter variants; a tag battle lists both opponents. sheet_ace is the sheet's level for the boss's strongest Pokemon, null where the sheet has no row. trick_room marks a fight fought entirely under Trick Room. Tag-battle partners (Cheryl, Mira, Riley, Marley, Buck, Lucas, Dawn, Barry at Spear Pillar) fight beside the player and are not bosses.",
     "splits": ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "HQ", "Galactic", "Volkner", "League"],
     "caps": {
         "_comment": "Ian's hard caps. Roark to Candice and the League from his Level Caps sheet (Maylene 39, which he confirmed on 2026-09-22); HQ 60, Galactic 65 and Volkner 68 from his Battle Zone rulings of 2026-09-25, set ahead of the trainers, which the trainer pass brings up to them. The level-cap design may move any of them.",
@@ -94,7 +94,8 @@
          "trainers": ["TRAINER_LEADER_CANDICE"]},
         {"key": "cyrus_2", "label": "Cyrus 2", "split": "HQ", "sheet_ace": 58,
          "trainers": ["TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ"]},
-        {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 58,
+        {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 58, "trick_room": true,
+         "note": "Ian's ruling of 2026-09-25: the fight opens in a Trick Room that lasts the whole battle and that no move can end, so the slower side moves first within each priority bracket.",
          "trainers": ["TRAINER_COMMANDER_SATURN_GALACTIC_HQ"]},
         {"key": "mars_jupiter", "label": "Mars and Jupiter", "split": "Galactic", "sheet_ace": 59, "tag": true,
          "trainers": ["TRAINER_COMMANDER_MARS_SPEAR_PILLAR", "TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR"]},

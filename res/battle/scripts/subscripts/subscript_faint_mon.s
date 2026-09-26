@@ -14,4 +14,12 @@ _000:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_NO_EXPERIENCE_GIVEN, _023
 
 _023:
+    // Oxide: Soul Heart raises its holder's Sp. Atk whenever another battler
+    // faints. The stat-stage flag is cleared so its animation plays even when
+    // the move that caused the faint already showed one.
+    TrySoulHeart _end
+    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_UPDATE_STAT_STAGES
+    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+
+_end:
     End 

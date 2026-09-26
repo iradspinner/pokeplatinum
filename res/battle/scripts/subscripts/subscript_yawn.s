@@ -4,6 +4,8 @@
 _000:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_INSOMNIA, _066
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_VITAL_SPIRIT, _066
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PURIFYING_SALT, _066 // Oxide
+    CheckIgnorableAbility CHECK_HAVE_ON_SIDE, BTLSCR_SIDE_EFFECT_MON, ABILITY_SWEET_VEIL, _066 // Oxide: it or its partner
     CheckIgnoreWeather _021
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _021
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _066
@@ -33,7 +35,7 @@ _066:
     Wait 
     WaitButtonABTime 30
     // {0}’s {1} made it ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeItIneffective_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeItIneffective_Ally, TAG_NICKNAME_ABILITY, BTLSCR_ABILITY_MON, BTLSCR_ABILITY_MON // Oxide: the holder, which Sweet Veil makes the partner
     GoTo _089
 
 _077:

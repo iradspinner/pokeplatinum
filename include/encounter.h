@@ -11,6 +11,9 @@ void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto);
 void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr);
 void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary);
+#ifdef OXIDE_TESTKIT
+void Encounter_TestKitNewVsSpecies(FieldTask *task, u16 species, u8 level, u16 ability, const u16 *moves, int *resultMaskPtr);
+#endif
 void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary);
 void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, enum HeapID heapID, int *resultMaskPtr);

@@ -23,6 +23,15 @@ _036:
     PrintBufferedMessage 
     Wait 
     WaitButtonABTime 30
+    // Oxide: Defiant and Competitive answer a stat another side lowered.
+    TryDefiant _end
+    PlayBattleAnimation BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_STAT_BOOST
+    Wait
+    PrintBufferedMessage
+    Wait
+    WaitButtonABTime 30
+
+_end:
     End 
 
 _041:

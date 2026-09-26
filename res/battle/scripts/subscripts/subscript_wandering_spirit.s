@@ -1,0 +1,28 @@
+#include "macros/btlcmd.inc"
+
+
+// Oxide: Wandering Spirit. A contact move swaps the holder's ability with the
+// attacker's, as Skill Swap swaps them, with Skill Swap's message for the
+// holder.
+_000:
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SCRIPT_TEMP, BTLVAR_TOTAL_TURNS
+    UpdateVar OPCODE_BITWISE_AND, BTLVAR_SCRIPT_TEMP, 1
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_TRUANT, BTLVAR_SCRIPT_TEMP
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_TRUANT, BTLVAR_SCRIPT_TEMP
+    UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_ABILITY, BTLVAR_CALC_TEMP
+    UpdateMonDataFromVar OPCODE_GET, BTLSCR_DEFENDER, BATTLEMON_ABILITY, BTLVAR_SCRIPT_TEMP
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_ABILITY, BTLVAR_SCRIPT_TEMP
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_ABILITY, BTLVAR_CALC_TEMP
+    CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, ABILITY_SLOW_START, _message
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SCRIPT_TEMP, BTLVAR_TOTAL_TURNS
+    UpdateVar OPCODE_ADD, BTLVAR_SCRIPT_TEMP, 1
+    UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_SLOW_START_TURN_NUMBER, BTLVAR_SCRIPT_TEMP
+    UpdateMonData OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_SLOW_START_ANNOUNCED, 0
+    UpdateMonData OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_SLOW_START_FINISHED, 0
+
+_message:
+    // {0} swapped abilities with its target!
+    PrintMessage BattleStrings_Text_PokemonSwappedAbilitiesWithItsTarget_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    End 

@@ -15,6 +15,7 @@
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battler_data.h"
@@ -64,6 +65,7 @@ static void BattleAI_ClearKnownItem(BattleContext *battleCtx, u8 battler);
 static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, int defender1, int defender2);
 static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move);
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move);
+static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 static const Fraction sStatStageBoosts[];
 
@@ -111,6 +113,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].friskAnnounced = FALSE;
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
+    battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
+    battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -1285,7 +1289,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
-    if (battler1ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+    if (battler1ItemEffect == HOLD_EFFECT_PINCH_PRIORITY
+        && BerryBlockedByUnnerve(battleSys, battleCtx, battler1) == FALSE) { // Oxide: Unnerve
         if (Battler_Ability(battleCtx, battler1) == ABILITY_GLUTTONY) {
             battler1ItemParam /= 2;
         }
@@ -1351,7 +1356,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
-    if (battler2ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+    if (battler2ItemEffect == HOLD_EFFECT_PINCH_PRIORITY
+        && BerryBlockedByUnnerve(battleSys, battleCtx, battler2) == FALSE) { // Oxide: Unnerve
         if (Battler_Ability(battleCtx, battler2) == ABILITY_GLUTTONY) {
             battler2ItemParam /= 2;
         }
@@ -1394,8 +1400,8 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
             }
         }
 
-        battler1Priority = MOVE_DATA(battler1Move).priority;
-        battler2Priority = MOVE_DATA(battler2Move).priority;
+        battler1Priority = Battler_MovePriority(battleCtx, battler1, battler1Move); // Oxide
+        battler2Priority = Battler_MovePriority(battleCtx, battler2, battler2Move);
     }
 
     if (battler1Priority == battler2Priority) {
@@ -1520,6 +1526,21 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
 {
     BOOL result = FALSE;
     u16 effectChance;
+
+    // Oxide: Sheer Force drops the move's secondary effect. The recoil moves'
+    // subscript carries their recoil too, so for those it only never rolls
+    // the chance of a burn or paralysis.
+    if (battleCtx->sideEffectIndirectFlags
+        && Battler_SheerForceStrips(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_PROBABILISTIC) {
+            battleCtx->battleStatusMask &= ~SYSCTL_APPLY_SECONDARY_EFFECT;
+            SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
+            return TRUE;
+        }
+
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
 
     if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
         SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
@@ -1747,6 +1768,11 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
     moveType = CalcMoveType(battleSys, battleCtx, attacker, move);
     if (moveType == TYPE_NORMAL) {
         moveType = MOVE_DATA(move).type;
+    }
+
+    // Oxide: a type Pixilate or Liquid Voice gave the move.
+    if (battleCtx->moveType) {
+        moveType = battleCtx->moveType;
     }
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -3536,7 +3562,81 @@ static u16 sSoundMoves[] = {
     MOVE_HYPER_VOICE,
     MOVE_BUG_BUZZ,
     MOVE_CHATTER,
+    // Oxide: the moves of hg-engine's SoundBasedMoveList that Platinum does
+    // not have and that aim at another battler, for Soundproof and Liquid
+    // Voice. Heal Bell, Howl, Perish Song and Clangorous Soul, which aim at
+    // their user's side, keep Platinum's own handling.
+    MOVE_ALLURING_VOICE,
+    MOVE_BOOMBURST,
+    MOVE_CLANGING_SCALES,
+    MOVE_CONFIDE,
+    MOVE_DISARMING_VOICE,
+    MOVE_ECHOED_VOICE,
+    MOVE_EERIE_SPELL,
+    MOVE_NOBLE_ROAR,
+    MOVE_OVERDRIVE,
+    MOVE_PARTING_SHOT,
+    MOVE_PSYCHIC_NOISE,
+    MOVE_RELIC_SONG,
+    MOVE_ROUND,
+    MOVE_SNARL,
+    MOVE_SPARKLING_ARIA,
+    MOVE_TORCH_SONG,
 };
+
+// Oxide: the moves Bulletproof stops, hg-engine's BallAndBombMoveList less the
+// ones Oxide does not have.
+static const u16 sBallAndBombMoves[] = {
+    MOVE_ACID_SPRAY,
+    MOVE_AURA_SPHERE,
+    MOVE_BARRAGE,
+    MOVE_BEAK_BLAST,
+    MOVE_BULLET_SEED,
+    MOVE_EGG_BOMB,
+    MOVE_ELECTRO_BALL,
+    MOVE_ENERGY_BALL,
+    MOVE_FOCUS_BLAST,
+    MOVE_GYRO_BALL,
+    MOVE_ICE_BALL,
+    MOVE_MAGNET_BOMB,
+    MOVE_MIST_BALL,
+    MOVE_MUD_BOMB,
+    MOVE_OCTAZOOKA,
+    MOVE_POLLEN_PUFF,
+    MOVE_PYRO_BALL,
+    MOVE_ROCK_BLAST,
+    MOVE_ROCK_WRECKER,
+    MOVE_SEARING_SHOT,
+    MOVE_SEED_BOMB,
+    MOVE_SHADOW_BALL,
+    MOVE_SLUDGE_BOMB,
+    MOVE_SYRUP_BOMB,
+    MOVE_WEATHER_BALL,
+    MOVE_ZAP_CANNON,
+};
+
+// Oxide: the powder moves Overcoat stops, hg-engine's PowderMoveList.
+static const u16 sPowderMoves[] = {
+    MOVE_COTTON_SPORE,
+    MOVE_POISON_POWDER,
+    MOVE_SLEEP_POWDER,
+    MOVE_STUN_SPORE,
+    MOVE_SPORE,
+    MOVE_POWDER,
+    MOVE_RAGE_POWDER,
+    MOVE_MAGIC_POWDER,
+};
+
+static BOOL MoveInList(const u16 *list, int count, int move)
+{
+    for (int i = 0; i < count; i++) {
+        if (list[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
@@ -3596,6 +3696,27 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_ability_restores_hp;
     }
 
+    // Oxide: Sap Sipper takes Grass moves and raises Attack, as Motor Drive
+    // takes Electric moves and raises Speed.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SAP_SIPPER) == TRUE
+        && moveType == TYPE_GRASS
+        && attacker != defender) {
+        subscript = subscript_absorb_and_attack_up_1_stage;
+    }
+
+    // Oxide: Bulletproof stops ball and bomb moves, and Overcoat powder moves,
+    // with Soundproof's message.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
+        && MoveInList(sBallAndBombMoves, NELEMS(sBallAndBombMoves), battleCtx->moveCur)) {
+        subscript = subscript_blocked_by_soundproof;
+    }
+
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_OVERCOAT) == TRUE
+        && MoveInList(sPowderMoves, NELEMS(sPowderMoves), battleCtx->moveCur)
+        && attacker != defender) {
+        subscript = subscript_blocked_by_soundproof;
+    }
+
     return subscript;
 }
 
@@ -3635,6 +3756,54 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
 
             battleCtx->msgBattlerTemp = battler;
             subscript = subscript_ability_restore_status;
+            result = TRUE;
+        }
+        break;
+
+    // Oxide, element 5: after hg-engine's end-of-turn ability checks.
+    case ABILITY_HEALER: {
+        // Three times in ten, its partner's status is cured, as Shed Skin
+        // cures its own.
+        int partner = BattleSystem_GetPartner(battleSys, battler);
+        u32 status = battleCtx->battleMons[partner].status;
+
+        if (partner != battler
+            && battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[partner].curHP
+            && (status & MON_CONDITION_ANY)
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            if (status & MON_CONDITION_SLEEP) {
+                battleCtx->msgTemp = MSGCOND_SLEEP;
+            } else if (status & MON_CONDITION_ANY_POISON) {
+                battleCtx->msgTemp = MSGCOND_POISON;
+            } else if (status & MON_CONDITION_BURN) {
+                battleCtx->msgTemp = MSGCOND_BURN;
+            } else if (status & MON_CONDITION_PARALYSIS) {
+                battleCtx->msgTemp = MSGCOND_PARALYSIS;
+            } else {
+                battleCtx->msgTemp = MSGCOND_FREEZE;
+            }
+
+            battleCtx->msgBattlerTemp = partner;
+            battleCtx->abilityMon = battler;
+            subscript = subscript_healer;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_HARVEST:
+        // A Berry it used grows back, every turn in sunshine and half the time
+        // otherwise, if it holds nothing.
+        if (battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[battler].heldItem == ITEM_NONE
+            && Item_IsBerry(battleCtx->recycleItem[battler])
+            && ((NO_CLOUD_NINE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY))
+                || BattleSystem_RandNext(battleSys) % 2 == 0)) {
+            battleCtx->msgItemTemp = battleCtx->recycleItem[battler];
+            battleCtx->recycleItem[battler] = ITEM_NONE;
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_harvest;
             result = TRUE;
         }
         break;
@@ -3685,6 +3854,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SLOW_START,
     SWITCH_IN_CHECK_STATE_MOLD_BREAKER,
     SWITCH_IN_CHECK_STATE_PRESSURE,
+    SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES,
     SWITCH_IN_CHECK_STATE_FORM_CHANGE,
     SWITCH_IN_CHECK_STATE_AMULET_COIN,
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
@@ -3698,6 +3868,35 @@ enum SwitchInCheckResult {
     SWITCH_IN_CHECK_RESULT_BREAK,
     SWITCH_IN_CHECK_RESULT_DONE,
 };
+
+// Oxide (Ian, 2026-09-26): trainers whose battles open in a Trick Room that
+// lasts the whole fight. The room comes from the same subscript as the Battle
+// Arcade's five-turn one, plus FIELD_CONDITION_TRICK_ROOM_PERM, which stops
+// the end-of-turn countdown and makes the move Trick Room fail.
+static const u16 sPermanentTrickRoomTrainers[] = {
+    TRAINER_COMMANDER_SATURN_GALACTIC_HQ,
+};
+
+static BOOL BattleSystem_OpensInPermanentTrickRoom(BattleSystem *battleSys)
+{
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+
+    // Frontier and link battles number their trainers differently, so an id
+    // there could match the table by accident.
+    if ((battleType & BATTLE_TYPE_TRAINER) == FALSE
+        || (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER))) {
+        return FALSE;
+    }
+
+    for (int i = 0; i < NELEMS(sPermanentTrickRoomTrainers); i++) {
+        if (Battler_GetTrainerID(battleSys, BATTLER_ENEMY_1) == sPermanentTrickRoomTrainers[i]
+            || Battler_GetTrainerID(battleSys, BATTLER_ENEMY_2) == sPermanentTrickRoomTrainers[i]) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
@@ -3713,6 +3912,17 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
     do {
         switch (battleCtx->switchInCheckState) {
         case SWITCH_IN_CHECK_STATE_FIELD_WEATHER:
+            // Oxide: a boss's permanent Trick Room opens the battle. The state is
+            // not advanced, so the next pass still starts any overworld weather;
+            // the permanent bit, never cleared, keeps the room from starting twice.
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM_PERM) == FALSE
+                && BattleSystem_OpensInPermanentTrickRoom(battleSys)) {
+                battleCtx->fieldConditionsMask |= FIELD_CONDITION_TRICK_ROOM_PERM;
+                subscript = subscript_overworld_trick_room;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                break;
+            }
+
             if (battleCtx->fieldWeatherChecked == FALSE) {
                 switch (BattleSystem_GetFieldWeather(battleSys)) {
                 case OVERWORLD_WEATHER_RAINING:
@@ -4165,6 +4375,76 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
             break;
 
+        // Oxide, element 5: the later games' switch-in abilities, after
+        // hg-engine's SwitchInAbilityCheck, each announced once per switch-in
+        // as Pressure is.
+        case SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES:
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].oxideAbilityAnnounced || battleCtx->battleMons[battler].curHP == 0) {
+                    continue;
+                }
+
+                switch (Battler_Ability(battleCtx, battler)) {
+                case ABILITY_UNNERVE:
+                    subscript = subscript_unnerve;
+                    break;
+
+                case ABILITY_DARK_AURA:
+                case ABILITY_FAIRY_AURA:
+                case ABILITY_AURA_BREAK:
+                    battleCtx->msgTemp = Battler_Ability(battleCtx, battler);
+                    subscript = subscript_aura;
+                    break;
+
+                case ABILITY_SCREEN_CLEANER:
+                    // Reflect, Light Screen and Aurora Veil end on both sides.
+                    // With none up it says nothing.
+                    if ((battleCtx->sideConditionsMask[0] | battleCtx->sideConditionsMask[1])
+                        & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL)) {
+                        for (int side = 0; side < 2; side++) {
+                            battleCtx->sideConditionsMask[side] &= ~(SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL);
+                            battleCtx->sideConditions[side].reflectTurns = 0;
+                            battleCtx->sideConditions[side].lightScreenTurns = 0;
+                            battleCtx->sideConditions[side].auroraVeilTurns = 0;
+                        }
+
+                        subscript = subscript_screen_cleaner;
+                    }
+                    break;
+
+                case ABILITY_HOSPITALITY: {
+                    // In a double battle its partner, if hurt, gets back a
+                    // quarter of its HP.
+                    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+                    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                        && partner != battler
+                        && battleCtx->battleMons[partner].curHP
+                        && battleCtx->battleMons[partner].curHP < battleCtx->battleMons[partner].maxHP) {
+                        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[partner].maxHP, 4);
+                        battleCtx->sideEffectMon = partner;
+                        subscript = subscript_hospitality;
+                    }
+                    break;
+                }
+                }
+
+                battleCtx->battleMons[battler].oxideAbilityAnnounced = TRUE;
+
+                if (subscript != NULL) {
+                    battleCtx->msgBattlerTemp = battler;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
         case SWITCH_IN_CHECK_STATE_FORM_CHANGE:
             if (BattleSystem_TriggerFormChange(battleSys, battleCtx, &subscript) == TRUE) {
                 result = SWITCH_IN_CHECK_RESULT_BREAK;
@@ -4271,7 +4551,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4296,6 +4576,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && battleCtx->moveCur != MOVE_STRUGGLE
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE // Oxide
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && CURRENT_MOVE_DATA.power
@@ -4307,6 +4588,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    case ABILITY_IRON_BARBS: // Oxide: Rough Skin under another name
     case ABILITY_ROUGH_SKIN:
         if (ATTACKING_MON.curHP
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
@@ -4314,7 +4596,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 8);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -4330,7 +4612,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -4360,7 +4642,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4378,7 +4660,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4396,7 +4678,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && DEFENDING_MON.curHP
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
@@ -4415,7 +4697,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && ATTACKING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -4423,6 +4705,161 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+
+    // Oxide, element 5: the abilities that answer a hit on their holder,
+    // after hg-engine's MoveHitDefenderAbilityCheck. The stat changes are made
+    // by the subscripts' AbilityStatChange, which does nothing to a stat
+    // already at its limit.
+    case ABILITY_WEAK_ARMOR:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+            *subscript = subscript_weak_armor;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_WATERCOMPACTION: {
+        u8 moveType;
+
+        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+            moveType = TYPE_NORMAL;
+        } else if (battleCtx->moveType) {
+            moveType = battleCtx->moveType;
+        } else {
+            moveType = CURRENT_MOVE_DATA.type;
+        }
+
+        if (DEFENDING_MON.curHP
+            && moveType == TYPE_WATER
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_water_compaction;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_BERSERK: {
+        // The damage taken is stored as a negative number, so the HP before
+        // this hit is the HP now less it.
+        int damage = DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken + DEFENDER_SELF_TURN_FLAGS.specialDamageTaken;
+        int half = DEFENDING_MON.maxHP / 2;
+
+        if (DEFENDING_MON.curHP
+            && damage
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDING_MON.curHP <= half
+            && DEFENDING_MON.curHP - damage > half) {
+            *subscript = subscript_berserk;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_GOOEY:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] > MIN_STAT_STAGE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            *subscript = subscript_gooey;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_CURSED_BODY: {
+        // Disable's own command picks 3 to 6 turns; the later games fix
+        // Cursed Body at four counting the turn it strikes, which is 3 here,
+        // since the counter runs down at the end of each turn.
+        int moveSlot = Battler_SlotForMove(&ATTACKING_MON, battleCtx->moveCur);
+
+        if (ATTACKING_MON.curHP
+            && battleCtx->attacker != battleCtx->defender
+            && ATTACKING_MON.moveEffectsData.disabledMove == MOVE_NONE
+            && moveSlot != LEARNED_MOVES_MAX
+            && ATTACKING_MON.ppCur[moveSlot]
+            && CURRENT_MOVE_DATA.power
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            battleCtx->msgMoveTemp = battleCtx->moveCur;
+            ATTACKING_MON.moveEffectsData.disabledMove = battleCtx->moveCur;
+            ATTACKING_MON.moveEffectsData.disabledTurns = 3;
+
+            *subscript = subscript_cursed_body;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_TOXIC_DEBRIS: {
+        // The spikes go to the holder's other side, which is the attacker's
+        // unless a partner made the hit.
+        int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender) ^ 1;
+
+        if (battleCtx->sideConditions[side].toxicSpikesLayers < 2
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+            battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_TOXIC_SPIKES;
+            battleCtx->sideConditions[side].toxicSpikesLayers++;
+
+            *subscript = subscript_toxic_debris;
+            result = TRUE;
+        }
+        break;
+    }
+
+    // Mummy passes itself on and Wandering Spirit swaps, both on contact,
+    // unless the attacker's ability refuses (hg-engine's failsSuppress and
+    // failsSwap), after hg-engine's MoveHitDefenderAbilityCheck.
+    case ABILITY_MUMMY:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.ability != ABILITY_MUMMY
+            && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SUPPRESS) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            *subscript = subscript_mummy;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_WANDERING_SPIRIT:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.ability != ABILITY_WANDERING_SPIRIT
+            && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SWAP) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            *subscript = subscript_wandering_spirit;
+            result = TRUE;
+        }
+        break;
+    }
+
+    // Oxide: Magician takes the target's item after a damaging move, if its
+    // holder has none, when nothing above has run. TryStealItem, Thief's
+    // command, makes the rest of the checks in its subscript.
+    if (result == FALSE
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MAGICIAN
+        && ATTACKING_MON.curHP
+        && ATTACKING_MON.heldItem == ITEM_NONE
+        && DEFENDING_MON.heldItem
+        && battleCtx->attacker != battleCtx->defender
+        && CURRENT_MOVE_DATA.class != CLASS_STATUS
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+        *subscript = subscript_magician;
+        result = TRUE;
     }
 
     return result;
@@ -4463,6 +4900,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Oxide
         if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
             battleCtx->msgTemp = MSGCOND_BURN;
             result = TRUE;
@@ -4486,6 +4924,26 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
     case ABILITY_UNBURDEN:
         if (battleCtx->battleMons[battler].heldItem) {
             battleCtx->battleMons[battler].moveEffectsData.canUnburden = TRUE;
+        }
+        break;
+
+    // Oxide: Purifying Salt allows no status at all, so it cures whichever
+    // one its holder has, named as Shed Skin names it.
+    case ABILITY_PURIFYING_SALT:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY) {
+            if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                battleCtx->msgTemp = MSGCOND_SLEEP;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
+                battleCtx->msgTemp = MSGCOND_POISON;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+                battleCtx->msgTemp = MSGCOND_BURN;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+                battleCtx->msgTemp = MSGCOND_PARALYSIS;
+            } else {
+                battleCtx->msgTemp = MSGCOND_FREEZE;
+            }
+
+            result = TRUE;
         }
         break;
     }
@@ -4529,6 +4987,7 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Oxide
         if (status & MON_CONDITION_BURN) {
             result = TRUE;
         }
@@ -4536,6 +4995,12 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 
     case ABILITY_MAGMA_ARMOR:
         if (status & MON_CONDITION_FREEZE) {
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_PURIFYING_SALT: // Oxide
+        if (status & MON_CONDITION_ANY) {
             result = TRUE;
         }
         break;
@@ -4626,12 +5091,24 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
+// Oxide: a battler facing an Unnerve holder cannot eat its Berry, after
+// hg-engine's GetBattleMonItem.
+static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    return Item_IsBerry(Battler_HeldItem(battleCtx, battler))
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_UNNERVE);
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
     int subscript;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battler)) {
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5022,6 +5499,10 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
     BOOL result = FALSE;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battler)) {
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5436,6 +5917,10 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    if (BerryBlockedByUnnerve(battleSys, battleCtx, battleCtx->defender)) {
+        return result;
+    }
+
     switch (itemEffect) {
     case HOLD_EFFECT_DMG_USER_CONTACT_XFR:
         if (ATTACKING_MON.curHP
@@ -5444,7 +5929,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
             && battleCtx->moveCur != MOVE_KNOCK_OFF
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_transfer_sticky_barb;
             result = TRUE;
         }
@@ -6617,6 +7102,43 @@ static const Fraction sStatStageBoosts[] = {
     { 40, 10 }, // +6
 };
 
+// Oxide: the moves Sharpness strengthens, hg-engine's SlicingMoveTable. It
+// has five claw moves (Crush Claw, Dire Claw, Dragon Claw, Metal Claw and
+// Shadow Claw) that the later games do not count as slicing.
+static const u16 sSlicingMoves[] = {
+    MOVE_AERIAL_ACE,
+    MOVE_AIR_CUTTER,
+    MOVE_AIR_SLASH,
+    MOVE_AQUA_CUTTER,
+    MOVE_BEHEMOTH_BLADE,
+    MOVE_BITTER_BLADE,
+    MOVE_CEASELESS_EDGE,
+    MOVE_CROSS_POISON,
+    MOVE_CRUSH_CLAW,
+    MOVE_CUT,
+    MOVE_DIRE_CLAW,
+    MOVE_DRAGON_CLAW,
+    MOVE_FURY_CUTTER,
+    MOVE_KOWTOW_CLEAVE,
+    MOVE_LEAF_BLADE,
+    MOVE_METAL_CLAW,
+    MOVE_MIGHTY_CLEAVE,
+    MOVE_NIGHT_SLASH,
+    MOVE_POPULATION_BOMB,
+    MOVE_PSYBLADE,
+    MOVE_PSYCHO_CUT,
+    MOVE_RAZOR_LEAF,
+    MOVE_RAZOR_SHELL,
+    MOVE_SACRED_SWORD,
+    MOVE_SECRET_SWORD,
+    MOVE_SHADOW_CLAW,
+    MOVE_SLASH,
+    MOVE_SOLAR_BLADE,
+    MOVE_STONE_AXE,
+    MOVE_TACHYON_CUTTER,
+    MOVE_X_SCISSOR,
+};
+
 static const u16 sPunchingMoves[] = {
     MOVE_ICE_PUNCH,
     MOVE_FIRE_PUNCH,
@@ -6755,6 +7277,49 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 15 / 10;
     }
 
+    // Oxide, element 5: the later games' power modifiers, after hg-engine's
+    // CalcBaseDamage. Its 4096ths are rounded to hundredths here, as
+    // Platinum's own modifiers are.
+    if (attackerParams.ability == ABILITY_SHARPNESS) {
+        for (i = 0; i < NELEMS(sSlicingMoves); i++) {
+            if (sSlicingMoves[i] == move) {
+                movePower = movePower * 15 / 10;
+                break;
+            }
+        }
+    }
+
+    // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
+    // Force raises the moves whose secondary effects it strips by 30%.
+    if (attackerParams.ability == ABILITY_PIXILATE
+        && moveType == TYPE_FAIRY
+        && MOVE_DATA(move).type == TYPE_NORMAL) {
+        movePower = movePower * 12 / 10;
+    }
+    if (Battler_SheerForceActive(battleCtx, attacker, move)) {
+        movePower = movePower * 13 / 10;
+    }
+
+    // Dark Aura and Fairy Aura on any battler raise their type's moves by a
+    // third, or lower them by a quarter when Aura Break is also out.
+    if ((moveType == TYPE_DARK
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_DARK_AURA))
+        || (moveType == TYPE_FAIRY
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_FAIRY_AURA))) {
+        if (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AURA_BREAK)) {
+            movePower = movePower * 75 / 100;
+        } else {
+            movePower = movePower * 133 / 100;
+        }
+    }
+
+    // Battery raises its partner's special moves, not its own.
+    if (MOVE_DATA(move).class == CLASS_SPECIAL
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_BATTERY)
+            > (attackerParams.ability == ABILITY_BATTERY)) {
+        movePower = movePower * 130 / 100;
+    }
+
     moveClass = MOVE_DATA(move).class;
 
     if (attackerParams.ability == ABILITY_HUGE_POWER || attackerParams.ability == ABILITY_PURE_POWER) {
@@ -6838,6 +7403,31 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_THICK_FAT) == TRUE
         && (moveType == TYPE_FIRE || moveType == TYPE_ICE)) {
+        movePower /= 2;
+    }
+
+    // Oxide: Purifying Salt halves Ghost moves, as Thick Fat halves Fire and
+    // Ice ones. hg-engine halves the attack stat rather than the power, which
+    // comes to the same after the damage formula's rounding in all but a few
+    // cases.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_PURIFYING_SALT) == TRUE
+        && moveType == TYPE_GHOST) {
+        movePower /= 2;
+    }
+
+    // Oxide: Steelworker raises the attacking stat of Steel moves by half, and
+    // Water Bubble doubles it for Water moves and halves Fire moves against
+    // its holder, as Heatproof does.
+    if (attackerParams.ability == ABILITY_STEELWORKER && moveType == TYPE_STEEL) {
+        attackStat = attackStat * 150 / 100;
+        spAttackStat = spAttackStat * 150 / 100;
+    }
+    if (attackerParams.ability == ABILITY_WATER_BUBBLE && moveType == TYPE_WATER) {
+        attackStat = attackStat * 2;
+        spAttackStat = spAttackStat * 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_BUBBLE) == TRUE
+        && moveType == TYPE_FIRE) {
         movePower /= 2;
     }
 
@@ -7037,6 +7627,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         // two do not stack.
         if ((sideConditions & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Oxide
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7078,6 +7669,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & (SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_AURORA_VEIL)) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Oxide
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7129,6 +7721,21 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     if (BattleMon_Get(battleCtx, attacker, BATTLEMON_FLASH_FIRE, NULL) && moveType == TYPE_FIRE) {
         damage = damage * 15 / 10;
+    }
+
+    // Oxide: Fluffy halves contact moves and doubles Fire moves (a Fire
+    // contact move is both), and Ice Scales halves special moves.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLUFFY) == TRUE) {
+        if (Battler_MoveMakesContact(battleCtx, attacker, move)) {
+            damage /= 2;
+        }
+        if (moveType == TYPE_FIRE) {
+            damage *= 2;
+        }
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_ICE_SCALES) == TRUE
+        && moveClass == CLASS_SPECIAL) {
+        damage /= 2;
     }
 
     return damage + 2;
@@ -7194,7 +7801,10 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     if ((BattleSystem_RandNext(battleSys) % sCriticalStageRates[effectiveCritStage] == 0
             || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_ALWAYS_CRITICAL
             || CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL
-            || (battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS))
+            || (battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_LASER_FOCUS)
+            // Oxide: Merciless makes every hit on a poisoned target critical.
+            || (Battler_Ability(battleCtx, attacker) == ABILITY_MERCILESS
+                && (battleCtx->battleMons[defender].status & MON_CONDITION_ANY_POISON)))
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BATTLE_ARMOR) == FALSE
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SHELL_ARMOR) == FALSE
         && (sideConditions & SIDE_CONDITION_LUCKY_CHANT) == FALSE
@@ -7449,7 +8059,10 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
     int defenderItemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, ITEM_POWER_CHECK_ALL);
     int attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    // Oxide: a move Sheer Force strengthened sets off neither Shell Bell nor
+    // Life Orb.
     if (attackerItemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
+        && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
         && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
         && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
         && battleCtx->attacker != battleCtx->defender
@@ -7462,6 +8075,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
     }
 
     if (attackerItemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
+        && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
         && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
         && CURRENT_MOVE_DATA.class != CLASS_STATUS
@@ -7486,7 +8100,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
         && ATTACKING_MON.heldItem == ITEM_NONE
         && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
         *subscript = subscript_transfer_sticky_barb;
         result = TRUE;
     }
@@ -7858,29 +8472,23 @@ static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, 
 {
     int trace = BATTLER_NONE;
 
-    if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE
+    // Oxide: the abilities Trace cannot copy come from Ability_ChangeFails,
+    // where Platinum listed only Forecast, Trace and Multitype.
+    if (Ability_ChangeFails(battleCtx->battleMons[defender1].ability, ABILITY_FAILS_TRACE) == FALSE
         && battleCtx->battleMons[defender1].curHP
         && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+        && Ability_ChangeFails(battleCtx->battleMons[defender2].ability, ABILITY_FAILS_TRACE) == FALSE) {
         // Both targets are eligible; choose randomly
         if (BattleSystem_RandNext(battleSys) & 1) {
             trace = defender2;
         } else {
             trace = defender1;
         }
-    } else if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].curHP
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE) {
+    } else if (Ability_ChangeFails(battleCtx->battleMons[defender1].ability, ABILITY_FAILS_TRACE) == FALSE
+        && battleCtx->battleMons[defender1].curHP) {
         trace = defender1;
-    } else if (battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+    } else if (Ability_ChangeFails(battleCtx->battleMons[defender2].ability, ABILITY_FAILS_TRACE) == FALSE
+        && battleCtx->battleMons[defender2].curHP) {
         trace = defender2;
     }
 
@@ -8341,6 +8949,223 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
 BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler)
 {
     return BattlerIsGrounded(battleCtx, battler);
+}
+
+// Oxide: the abilities that refuse some change, with what each refuses,
+// after hg-engine's AbilityFlags table (its failsTrace, failsRolePlay,
+// failsSwap, failsSuppress and failsEntrainment), cut to the abilities
+// Platinum's list has. Every other ability refuses nothing.
+static const struct {
+    u16 ability;
+    u8 flags;
+} sAbilityChangeFlags[] = {
+    { ABILITY_WONDER_GUARD,     ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TRACE,            ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_FORECAST,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_MULTITYPE,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_FLOWER_GIFT,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ILLUSION,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_IMPOSTER,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ZEN_MODE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_STANCECHANGE,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_SHIELDS_DOWN,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_SCHOOLING,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_DISGUISE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_BATTLE_BOND,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POWER_CONSTRUCT,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_COMATOSE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_RECEIVER,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POWER_OF_ALCHEMY, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_RKS_SYSTEM,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_GULP_MISSILE,     ABILITY_FAILS_SUPPRESS },
+    { ABILITY_ICE_FACE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_NEUTRALIZING_GAS, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_HUNGER_SWITCH,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_AS_ONE,           ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_AS_ONE_2,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ZERO_TO_HERO,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_COMMANDER,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_PROTOSYNTHESIS,   ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_QUARK_DRIVE,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_2,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_3,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_4,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERA_SHIFT,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERA_SHELL,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERAFORM_ZERO,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POISON_PUPPETEER, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+};
+
+BOOL Ability_ChangeFails(int ability, u8 flags)
+{
+    for (int i = 0; i < NELEMS(sAbilityChangeFlags); i++) {
+        if (sAbilityChangeFlags[i].ability == ability) {
+            return (sAbilityChangeFlags[i].flags & flags) != 0;
+        }
+    }
+
+    return FALSE;
+}
+
+BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
+{
+    return (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)
+        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH;
+}
+
+// Oxide: the Normal moves Pixilate leaves alone, after hg-engine's
+// MoveIsAffectedByNormalizeVariants: their type comes from elsewhere.
+static const u16 sMovesKeepTheirType[] = {
+    MOVE_HIDDEN_POWER,
+    MOVE_WEATHER_BALL,
+    MOVE_NATURAL_GIFT,
+    MOVE_JUDGMENT,
+    MOVE_TECHNO_BLAST,
+    MOVE_MULTI_ATTACK,
+    MOVE_TERRAIN_PULSE,
+    MOVE_STRUGGLE,
+};
+
+void BattleSystem_SetMoveTypeByAbility(BattleContext *battleCtx, int attacker, int move)
+{
+    int ability = Battler_Ability(battleCtx, attacker);
+    int i;
+
+    if (MOVE_DATA(move).power == 0) {
+        return;
+    }
+
+    if (ability == ABILITY_PIXILATE && MOVE_DATA(move).type == TYPE_NORMAL) {
+        for (i = 0; i < NELEMS(sMovesKeepTheirType); i++) {
+            if (sMovesKeepTheirType[i] == move) {
+                return;
+            }
+        }
+
+        battleCtx->moveType = TYPE_FAIRY;
+    } else if (ability == ABILITY_LIQUID_VOICE) {
+        for (i = 0; i < NELEMS(sSoundMoves); i++) {
+            if (sSoundMoves[i] == move) {
+                battleCtx->moveType = TYPE_WATER;
+                return;
+            }
+        }
+    }
+}
+
+// Oxide: the effects whose secondary effect Sheer Force strips, from
+// hg-engine's BtlCmd_GoToEffectScript. hg-engine swaps each for a plainer
+// effect script; here the script runs as it is and only the secondary effect
+// is dropped (BattleSystem_TriggerSecondaryEffect), which keeps what else the
+// scripts do: Fake Out's first-turn rule, Thunder, Hurricane and Twister
+// hitting a target in the air, Stomp's double damage on Minimize, Twineedle's
+// two hits, and the recoil of Flare Blitz and Volt Tackle.
+static const u16 sSheerForceEffects[] = {
+    BATTLE_EFFECT_FLINCH_HIT,
+    BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY,
+    BATTLE_EFFECT_RAISE_ALL_STATS_HIT,
+    BATTLE_EFFECT_BLIZZARD,
+    BATTLE_EFFECT_PARALYZE_HIT,
+    BATTLE_EFFECT_LOWER_ATTACK_HIT,
+    BATTLE_EFFECT_LOWER_SPEED_HIT,
+    BATTLE_EFFECT_RAISE_SP_ATK_HIT,
+    BATTLE_EFFECT_CONFUSE_HIT,
+    BATTLE_EFFECT_LOWER_DEFENSE_HIT,
+    BATTLE_EFFECT_LOWER_SP_DEF_HIT,
+    BATTLE_EFFECT_BURN_HIT,
+    BATTLE_EFFECT_FLINCH_BURN_HIT,
+    BATTLE_EFFECT_RAISE_SPEED_HIT,
+    BATTLE_EFFECT_POISON_HIT,
+    BATTLE_EFFECT_FREEZE_HIT,
+    BATTLE_EFFECT_FLINCH_FREEZE_HIT,
+    BATTLE_EFFECT_RAISE_ATTACK_HIT,
+    BATTLE_EFFECT_LOWER_ACCURACY_HIT,
+    BATTLE_EFFECT_BADLY_POISON_HIT,
+    BATTLE_EFFECT_LOWER_SP_ATK_HIT,
+    BATTLE_EFFECT_RAISE_DEF_HIT,
+    BATTLE_EFFECT_THROAT_CHOP,
+    BATTLE_EFFECT_THUNDER,
+    BATTLE_EFFECT_HURRICANE,
+    BATTLE_EFFECT_FLINCH_PARALYZE_HIT,
+    BATTLE_EFFECT_FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE,
+    BATTLE_EFFECT_LOWER_SP_DEF_2_HIT,
+    BATTLE_EFFECT_PREVENT_ESCAPE_HIT,
+    BATTLE_EFFECT_THAW_AND_BURN_HIT,
+    BATTLE_EFFECT_CHATTER,
+    BATTLE_EFFECT_FLINCH_MINIMIZE_DOUBLE_HIT,
+    BATTLE_EFFECT_TRI_ATTACK,
+    BATTLE_EFFECT_HIT_AND_PREVENT_HEALING,
+    BATTLE_EFFECT_SANDSEAR_STORM,
+    BATTLE_EFFECT_BLEAKWIND_STORM,
+    BATTLE_EFFECT_WILDBOLT_STORM,
+    BATTLE_EFFECT_POISON_MULTI_HIT,
+    BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT,
+    BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT,
+    BATTLE_EFFECT_RECOIL_BURN_HIT,
+    BATTLE_EFFECT_RECOIL_PARALYZE_HIT,
+};
+
+// Oxide: moves Sheer Force strengthens that keep their effect, as in
+// hg-engine.
+static const u16 sSheerForceKeepEffectMoves[] = {
+    MOVE_SPARKLING_ARIA,
+    MOVE_SPIRIT_SHACKLE,
+    MOVE_ANCHOR_SHOT,
+    MOVE_CEASELESS_EDGE,
+    MOVE_STONE_AXE,
+    MOVE_ELECTRO_SHOT,
+};
+
+static BOOL MoveKeepsEffectUnderSheerForce(int move)
+{
+    for (int i = 0; i < NELEMS(sSheerForceKeepEffectMoves); i++) {
+        if (sSheerForceKeepEffectMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move)
+{
+    if (Battler_Ability(battleCtx, attacker) != ABILITY_SHEER_FORCE
+        || MoveKeepsEffectUnderSheerForce(move)) {
+        return FALSE;
+    }
+
+    for (int i = 0; i < NELEMS(sSheerForceEffects); i++) {
+        if (sSheerForceEffects[i] == MOVE_DATA(move).effect) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move)
+{
+    return Battler_SheerForceStrips(battleCtx, attacker, move)
+        || (Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE && MoveKeepsEffectUnderSheerForce(move));
+}
+
+int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)
+{
+    int priority = MOVE_DATA(move).priority;
+    int ability = Battler_Ability(battleCtx, battler);
+
+    if (ability == ABILITY_PRANKSTER && MOVE_DATA(move).class == CLASS_STATUS) {
+        priority++;
+    }
+
+    if (ability == ABILITY_GALE_WINGS
+        && MOVE_DATA(move).type == TYPE_FLYING
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        priority++;
+    }
+
+    return priority;
 }
 
 BOOL Battler_HasEatenBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)

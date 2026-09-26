@@ -240,6 +240,11 @@ ScriptCommand(BTLCMD_CHECKSTICKYWEB,              BtlCmd_CheckStickyWeb)
 ScriptCommand(BTLCMD_CHANGEEXECUTIONORDERPRIORITY, BtlCmd_ChangeExecutionOrderPriority)
 ScriptCommand(BTLCMD_TRYAURORAVEIL,               BtlCmd_TryAuroraVeil)
 ScriptCommand(BTLCMD_TRYBELCH,                    BtlCmd_TryBelch)
+ScriptCommand(BTLCMD_TRYBEASTBOOST,               BtlCmd_TryBeastBoost)
+ScriptCommand(BTLCMD_TRYSOULHEART,                BtlCmd_TrySoulHeart)
+ScriptCommand(BTLCMD_TRYDEFIANT,                  BtlCmd_TryDefiant)
+ScriptCommand(BTLCMD_ABILITYSTATCHANGE,           BtlCmd_AbilityStatChange)
+ScriptCommand(BTLCMD_CHECKABILITYCHANGE,          BtlCmd_CheckAbilityChange)
 
 // clang-format on
 

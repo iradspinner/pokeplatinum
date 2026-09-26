@@ -54,6 +54,202 @@
             "en_US": "Wild Glameow"
         },
         {
+            "id": "TestKit_Text_MenuAbilities",
+            "en_US": "Abilities"
+        },
+        {
+            "id": "TestKit_Text_WhichAbility",
+            "en_US": "Which ability?"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBeastBoost",
+            "en_US": "Beast Boost"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySoulHeart",
+            "en_US": "Soul Heart"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySapSipper",
+            "en_US": "Sap Sipper"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBulletproof",
+            "en_US": "Bulletproof"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityOvercoat",
+            "en_US": "Overcoat"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityPurifyingSalt",
+            "en_US": "Purifying Salt"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityCorrosion",
+            "en_US": "Corrosion"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityCompetitive",
+            "en_US": "Competitive"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityDefiant",
+            "en_US": "Defiant"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBigPecks",
+            "en_US": "Big Pecks"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityFlowerVeil",
+            "en_US": "Flower Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityContrary",
+            "en_US": "Contrary"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMirrorArmor",
+            "en_US": "Mirror Armor"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityPrankster",
+            "en_US": "Prankster"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityGaleWings",
+            "en_US": "Gale Wings"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityQueenlyMajesty",
+            "en_US": "Queenly Majesty"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityIronBarbs",
+            "en_US": "Iron Barbs"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWeakArmor",
+            "en_US": "Weak Armor"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityCursedBody",
+            "en_US": "Cursed Body"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWaterCompaction",
+            "en_US": "Water Compaction"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityToxicDebris",
+            "en_US": "Toxic Debris"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBerserk",
+            "en_US": "Berserk"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityGooey",
+            "en_US": "Gooey"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMummy",
+            "en_US": "Mummy"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWanderingSpirit",
+            "en_US": "Wandering Spirit"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityEntrainment",
+            "en_US": "Entrainment"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityAbilityList",
+            "en_US": "Ability list"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMore",
+            "en_US": "More abilities"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityFluffy",
+            "en_US": "Fluffy"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityIceScales",
+            "en_US": "Ice Scales"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWaterBubble",
+            "en_US": "Water Bubble"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMerciless",
+            "en_US": "Merciless"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLongReach",
+            "en_US": "Long Reach"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityPixilate",
+            "en_US": "Pixilate"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLiquidVoice",
+            "en_US": "Liquid Voice"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySheerForce",
+            "en_US": "Sheer Force"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityAuras",
+            "en_US": "Auras"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityAuraBreak",
+            "en_US": "Aura Break"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityUnnerve",
+            "en_US": "Unnerve"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityScreenCleaner",
+            "en_US": "Screen Cleaner"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityRegenerator",
+            "en_US": "Regenerator"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityPastelVeil",
+            "en_US": "Pastel Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySweetVeil",
+            "en_US": "Sweet Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityHarvest",
+            "en_US": "Harvest"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityProtean",
+            "en_US": "Protean"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLibero",
+            "en_US": "Libero"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityInfiltrator",
+            "en_US": "Infiltrator"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

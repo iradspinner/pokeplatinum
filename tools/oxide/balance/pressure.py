@@ -22,7 +22,10 @@ turns a hit, and a recharging one (Hyper Beam) a turn after each hit but the
 last, so "two hits" means two turns. Moving first is a positive priority
 move, or equal priority and strictly more Speed (the engine's own final
 Speed, so Choice Scarf and Swift Swim count); a Speed tie counts for neither
-side. A boss holding a Focus Sash cannot be knocked out in one hit.
+side. A fight fought under Trick Room (fights.json, "trick_room") reverses
+the Speed test, strictly less Speed going first, while a positive priority
+move still goes first. A boss holding a Focus Sash cannot be knocked out in
+one hit.
 
 What this leaves out, and so reads as a ceiling for the boss: accuracy,
 secondary effects, status and setup, switching, and the AI's real choice of
@@ -78,7 +81,16 @@ def turns(move, hits, weather):
     return hits
 
 
-def wins(row, def_info, speeds, weather, sash=False):
+def moves_first(priority, speeds, trick_room=False):
+    """True when the attacker's move goes before the defender's, taken to be
+    a move of no priority: a positive priority goes first, and otherwise the
+    faster side does, or under Trick Room the slower. A tie is neither's."""
+    if priority != 0:
+        return priority > 0
+    return speeds[0] < speeds[1] if trick_room else speeds[0] > speeds[1]
+
+
+def wins(row, def_info, speeds, weather, sash=False, trick_room=False):
     """True when some move of the attacker's knocks the defender out within
     two turns while moving first. `speeds` is (attacker, defender)."""
     for move, r in row["moves"].items():
@@ -91,8 +103,7 @@ def wins(row, def_info, speeds, weather, sash=False):
             n = 2
         if turns(move, n, weather) > 2:
             continue
-        pr = r["priority"]
-        if pr > 0 or (pr == 0 and speeds[0] > speeds[1]):
+        if moves_first(r["priority"], speeds, trick_room):
             return True
     return False
 
@@ -132,7 +143,7 @@ def locked_move(rows, key, side_keys, info, weather):
     return max(tally, key=lambda m: tally[m]) if tally else None
 
 
-def lock_answer(up, down, locked, player_info, boss_info, weather, sash):
+def lock_answer(up, down, locked, player_info, boss_info, weather, sash, trick_room=False):
     """True when a player Pokemon that is not a plain answer beats a
     Choice-locked boss by coming in on its locked move. Coming in costs one
     hit of that move; then the player needs its knockout (two turns at most,
@@ -146,15 +157,14 @@ def lock_answer(up, down, locked, player_info, boss_info, weather, sash):
     for move, n in turns_to_ko(up, boss_info, weather, sash).items():
         if n > 2:
             continue
-        pr = up["moves"][move]["priority"]
-        first = pr > 0 or (pr == 0 and up["speeds"][0] > up["speeds"][1])
+        first = moves_first(up["moves"][move]["priority"], up["speeds"], trick_room)
         taken = n if first else n + 1
         if k is None or taken < k:
             return True
     return False
 
 
-def score_mons(bosses, side_keys, rows, info):
+def score_mons(bosses, side_keys, rows, info, trick_room=False):
     """Per boss Pokemon: threat, answers, and for a Choice holder the answers
     counting the lock (answers_lock; equal to answers for anyone else)."""
     per_mon = []
@@ -165,12 +175,13 @@ def score_mons(bosses, side_keys, rows, info):
         threat = answer = lock = 0
         for pk in side_keys:
             down, up = rows[(key, pk)], rows[(pk, key)]
-            if wins(down, info[pk], down["speeds"], w):
+            if wins(down, info[pk], down["speeds"], w, trick_room=trick_room):
                 threat += 1
-            if wins(up, info[key], up["speeds"], w, sash=sash):
+            if wins(up, info[key], up["speeds"], w, sash=sash, trick_room=trick_room):
                 answer += 1
                 lock += 1
-            elif choice and locked and lock_answer(up, down, locked, info[pk], info[key], w, sash):
+            elif choice and locked and lock_answer(up, down, locked, info[pk], info[key], w, sash,
+                                                   trick_room):
                 lock += 1
         n = len(side_keys)
         per_mon.append({"variant": v, "species": mon["species"], "level": mon["level"],
@@ -264,10 +275,13 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
     rows = {(r["a"], r["d"]): r for r in out["results"]}
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
-    per_mon = score_mons(bosses, [f"p{i}" for i in range(len(side))], rows, out["pokemon"])
+    trick_room = bool(fight.get("trick_room"))
+    per_mon = score_mons(bosses, [f"p{i}" for i in range(len(side))], rows, out["pokemon"],
+                         trick_room)
     return {
         "key": fight["key"], "label": fight["label"], "split": split,
         "cap": cap if cap is not None else pool.caps()[split], "pool": len(side), "weather": weather,
+        "trick_room": trick_room,
         **roll_up(per_mon),
         "mons": per_mon, "calcs": sum(len(r["moves"]) for r in out["results"]),
         "errors": errors, "node_seconds": round(out.get("seconds", 0), 2),

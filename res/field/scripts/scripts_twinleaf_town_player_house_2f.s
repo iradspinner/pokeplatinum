@@ -1,6 +1,9 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_2f.h"
 #include "res/field/events/events_twinleaf_town_player_house_2f.h"
+#ifdef OXIDE_TESTKIT
+#include "generated/abilities.h"
+#endif
 
 
     ScriptEntry TwinleafTownPlayerHouse2F_Wii
@@ -446,6 +449,9 @@ TestKit_Helper:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8000, SPECIES_NONE
+    SetVar VAR_0x8003, MOVE_NONE
     Message TestKit_Text_WhatDoYouNeed
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuRareCandies, 0
@@ -460,6 +466,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildSkarmory, 11
     AddListMenuEntry TestKit_Text_MenuWildHorsea, 12
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
+    AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -476,6 +483,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 11, TestKit_WildSkarmory
     GoToIfEq VAR_0x8004, 12, TestKit_WildHorsea
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
+    GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -933,6 +941,12 @@ TestKit_MoveSet31:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
+/* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
+   a menu has been answered), for an entry that needs a held item. */
+TestKit_GivePokemonWithItem:
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    GoTo TestKit_GivePokemonSetMoves
+
 /* Gives a Lv. 50 Pokemon of species VAR_0x800A (Mew from TestKit_GiveMew) in
    slot VAR_0x8005, holding the four moves in VAR_0x8006 to VAR_0x8009, and
    names them. */
@@ -940,16 +954,30 @@ TestKit_GiveMew:
     SetVar VAR_0x800A, SPECIES_MEW
 TestKit_GivePokemonWithMoves:
     GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+TestKit_GivePokemonSetMoves:
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, VAR_0x8006
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, VAR_0x8009
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
     BufferMoveName 0, VAR_0x8006
     BufferMoveName 1, VAR_0x8007
     BufferMoveName 2, VAR_0x8008
     BufferMoveName 3, VAR_0x8009
     Message TestKit_Text_MoveSet
+    GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
     GoTo TestKit_WaitAndClose
+
+/* An ability entry that names a foe fights it straight after the gift: a wild
+   Lv. 50 VAR_0x8000 with the ability VAR_0x8001 and, unless VAR_0x8002 is
+   MOVE_NONE, that one move (with VAR_0x8003 as a second, if set) in place of
+   its own. The new Pokemon is
+   not in the lead, so switch it in on the first turn. */
+TestKit_AbilityFoe:
+    WaitButton
+    CloseMessage
+    TestKitStartWildBattle VAR_0x8000, 50, VAR_0x8001, VAR_0x8002, VAR_0x8003, MOVE_NONE, MOVE_NONE
+    GoTo TestKit_AfterBattle
 
 /* Towns land on their fly points (src/spawn_locations.c); the Pokemon Center
    lands in front of the counter, where a whiteout does. */
@@ -1006,6 +1034,770 @@ TestKit_WarpVeilstone:
     Warp MAP_HEADER_VEILSTONE_CITY, 0x2CD, 0x264, DIR_SOUTH
     ReleaseAll
     End
+
+TestKit_SetAbility:
+    TestKitSetPartyMonAbility VAR_0x8005, VAR_0x800B
+    Return
+
+/* Element 5: one entry per new ability, each a Lv. 50 Pokemon that carries it,
+   given with the ability set whatever its personality rolls, and four moves
+   that show it. docs/oxide/test-kit.md says what to look for. Add an entry
+   with a menu line, its text in res/testkit/, and a block like the others. */
+TestKit_Abilities:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityBeastBoost, 0
+    AddListMenuEntry TestKit_Text_MenuAbilitySoulHeart, 1
+    AddListMenuEntry TestKit_Text_MenuAbilitySapSipper, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityBulletproof, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityOvercoat, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityPurifyingSalt, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityCorrosion, 6
+    AddListMenuEntry TestKit_Text_MenuAbilityCompetitive, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityDefiant, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityBigPecks, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityFlowerVeil, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityContrary, 11
+    AddListMenuEntry TestKit_Text_MenuAbilityMirrorArmor, 12
+    AddListMenuEntry TestKit_Text_MenuAbilityPrankster, 13
+    AddListMenuEntry TestKit_Text_MenuAbilityGaleWings, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityQueenlyMajesty, 15
+    AddListMenuEntry TestKit_Text_MenuAbilityIronBarbs, 16
+    AddListMenuEntry TestKit_Text_MenuAbilityWeakArmor, 17
+    AddListMenuEntry TestKit_Text_MenuAbilityCursedBody, 18
+    AddListMenuEntry TestKit_Text_MenuAbilityWaterCompaction, 19
+    AddListMenuEntry TestKit_Text_MenuAbilityToxicDebris, 20
+    AddListMenuEntry TestKit_Text_MenuAbilityBerserk, 21
+    AddListMenuEntry TestKit_Text_MenuAbilityGooey, 22
+    AddListMenuEntry TestKit_Text_MenuAbilityMummy, 23
+    AddListMenuEntry TestKit_Text_MenuAbilityWanderingSpirit, 24
+    AddListMenuEntry TestKit_Text_MenuAbilityEntrainment, 25
+    AddListMenuEntry TestKit_Text_MenuAbilityAbilityList, 26
+    AddListMenuEntry TestKit_Text_MenuAbilityMore, 27
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilitySapSipper
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityBulletproof
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityOvercoat
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityPurifyingSalt
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityCorrosion
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilityCompetitive
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityDefiant
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityBigPecks
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityFlowerVeil
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityContrary
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilityMirrorArmor
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilityPrankster
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilityGaleWings
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityQueenlyMajesty
+    GoToIfEq VAR_0x8004, 16, TestKit_AbilityIronBarbs
+    GoToIfEq VAR_0x8004, 17, TestKit_AbilityWeakArmor
+    GoToIfEq VAR_0x8004, 18, TestKit_AbilityCursedBody
+    GoToIfEq VAR_0x8004, 19, TestKit_AbilityWaterCompaction
+    GoToIfEq VAR_0x8004, 20, TestKit_AbilityToxicDebris
+    GoToIfEq VAR_0x8004, 21, TestKit_AbilityBerserk
+    GoToIfEq VAR_0x8004, 22, TestKit_AbilityGooey
+    GoToIfEq VAR_0x8004, 23, TestKit_AbilityMummy
+    GoToIfEq VAR_0x8004, 24, TestKit_AbilityWanderingSpirit
+    GoToIfEq VAR_0x8004, 25, TestKit_AbilityEntrainment
+    GoToIfEq VAR_0x8004, 26, TestKit_AbilityAbilityList
+    GoToIfEq VAR_0x8004, 27, TestKit_Abilities2
+    GoTo TestKit_Close
+
+/* The field menu holds 28 entries, so the abilities go on over a second page. */
+TestKit_Abilities2:
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityFluffy, 0
+    AddListMenuEntry TestKit_Text_MenuAbilityIceScales, 1
+    AddListMenuEntry TestKit_Text_MenuAbilityWaterBubble, 2
+    AddListMenuEntry TestKit_Text_MenuAbilityMerciless, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityLongReach, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityPixilate, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityLiquidVoice, 6
+    AddListMenuEntry TestKit_Text_MenuAbilitySheerForce, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityAuras, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityAuraBreak, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityUnnerve, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityScreenCleaner, 11
+    AddListMenuEntry TestKit_Text_MenuAbilityRegenerator, 12
+    AddListMenuEntry TestKit_Text_MenuAbilityPastelVeil, 13
+    AddListMenuEntry TestKit_Text_MenuAbilitySweetVeil, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityHarvest, 15
+    AddListMenuEntry TestKit_Text_MenuAbilityProtean, 16
+    AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
+    AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilityWaterBubble
+    GoToIfEq VAR_0x8004, 3, TestKit_AbilityMerciless
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityLongReach
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityPixilate
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityLiquidVoice
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilitySheerForce
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityAuras
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityAuraBreak
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityUnnerve
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityScreenCleaner
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilityRegenerator
+    GoToIfEq VAR_0x8004, 13, TestKit_AbilityPastelVeil
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilitySweetVeil
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityHarvest
+    GoToIfEq VAR_0x8004, 16, TestKit_AbilityProtean
+    GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
+    GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
+    GoTo TestKit_Close
+
+/* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
+   Pokemon raises its Attack one stage, right after the faint message. */
+TestKit_AbilityBeastBoost:
+    SetVar VAR_0x800A, SPECIES_KARTANA
+    SetVar VAR_0x800B, ABILITY_BEAST_BOOST
+    SetVar VAR_0x8006, MOVE_LEAF_BLADE
+    SetVar VAR_0x8007, MOVE_SACRED_SWORD
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_NIGHT_SLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Soul Heart: when any other Pokemon faints, Magearna's Sp. Atk rises one
+   stage, right after the faint message. */
+TestKit_AbilitySoulHeart:
+    SetVar VAR_0x800A, SPECIES_MAGEARNA
+    SetVar VAR_0x800B, ABILITY_SOUL_HEART
+    SetVar VAR_0x8006, MOVE_FLEUR_CANNON
+    SetVar VAR_0x8007, MOVE_FLASH_CANNON
+    SetVar VAR_0x8008, MOVE_DAZZLING_GLEAM
+    SetVar VAR_0x8009, MOVE_CALM_MIND
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sap Sipper: a wild Bellsprout that knows only Vine Whip. Goodra takes no
+   damage and its Attack rises instead, until it is at +6. */
+TestKit_AbilitySapSipper:
+    SetVar VAR_0x800A, SPECIES_GOODRA
+    SetVar VAR_0x800B, ABILITY_SAP_SIPPER
+    SetVar VAR_0x8006, MOVE_DRAGON_PULSE
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_BELLSPROUT
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_VINE_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Bulletproof: a wild Chansey that knows only Egg Bomb, which Kommo-o's
+   Bulletproof blocks every time. */
+TestKit_AbilityBulletproof:
+    SetVar VAR_0x800A, SPECIES_KOMMO_O
+    SetVar VAR_0x800B, ABILITY_BULLETPROOF
+    SetVar VAR_0x8006, MOVE_CLANGING_SCALES
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EGG_BOMB
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Overcoat: a wild Paras that knows only Spore, which Overcoat blocks; once
+   Mandibuzz sets up Sandstorm, Paras takes the sand damage and Mandibuzz
+   does not. */
+TestKit_AbilityOvercoat:
+    SetVar VAR_0x800A, SPECIES_MANDIBUZZ
+    SetVar VAR_0x800B, ABILITY_OVERCOAT
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_FOUL_PLAY
+    SetVar VAR_0x8009, MOVE_TOXIC
+    SetVar VAR_0x8000, SPECIES_PARAS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPORE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Purifying Salt: a wild Gengar that knows only Will-O-Wisp, which fails
+   against Garganacl; Garganacl's own Rest fails too, since it cannot fall
+   asleep. */
+TestKit_AbilityPurifyingSalt:
+    SetVar VAR_0x800A, SPECIES_GARGANACL
+    SetVar VAR_0x800B, ABILITY_PURIFYING_SALT
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_SALT_CURE
+    SetVar VAR_0x8008, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_GENGAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WILL_O_WISP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Corrosion: a wild Skarmory, a Steel type, which Salazzle's Toxic and
+   Poison Gas poison all the same. */
+TestKit_AbilityCorrosion:
+    SetVar VAR_0x800A, SPECIES_SALAZZLE
+    SetVar VAR_0x800B, ABILITY_CORROSION
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_POISON_GAS
+    SetVar VAR_0x8008, MOVE_FLAMETHROWER
+    SetVar VAR_0x8009, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Competitive: a wild Chansey that knows only Growl. Each Growl lowers
+   Gothitelle's Attack and then raises its Sp. Atk two stages. */
+TestKit_AbilityCompetitive:
+    SetVar VAR_0x800A, SPECIES_GOTHITELLE
+    SetVar VAR_0x800B, ABILITY_COMPETITIVE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_THUNDER_WAVE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Defiant: a wild Chansey that knows only Tail Whip. Each Tail Whip lowers
+   Galarian Zapdos's Defense and then raises its Attack two stages. */
+TestKit_AbilityDefiant:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_ZAPDOS
+    SetVar VAR_0x800B, ABILITY_DEFIANT
+    SetVar VAR_0x8006, MOVE_THUNDEROUS_KICK
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_BULK_UP
+    SetVar VAR_0x8009, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Big Pecks: a wild Chansey that knows only Tail Whip, which cannot lower
+   Mandibuzz's Defense. */
+TestKit_AbilityBigPecks:
+    SetVar VAR_0x800A, SPECIES_MANDIBUZZ
+    SetVar VAR_0x800B, ABILITY_BIG_PECKS
+    SetVar VAR_0x8006, MOVE_FOUL_PLAY
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_TOXIC
+    SetVar VAR_0x8009, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Flower Veil guards Grass types, and none of its three carriers is one, so
+   the kit gives it to Tsareena. A wild Chansey that knows only Growl cannot
+   lower Tsareena's Attack. */
+TestKit_AbilityFlowerVeil:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_FLOWER_VEIL
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_KNOCK_OFF
+    SetVar VAR_0x8009, MOVE_TRAILBLAZE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Contrary: Serperior's Leaf Storm raises its Sp. Atk two stages instead of
+   lowering it, and Coil lowers its stats instead of raising them. */
+TestKit_AbilityContrary:
+    SetVar VAR_0x800A, SPECIES_SERPERIOR
+    SetVar VAR_0x800B, ABILITY_CONTRARY
+    SetVar VAR_0x8006, MOVE_LEAF_STORM
+    SetVar VAR_0x8007, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8008, MOVE_COIL
+    SetVar VAR_0x8009, MOVE_GLARE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Mirror Armor: a wild Chansey that knows only Growl. Each Growl lowers
+   Chansey's own Attack instead of Corviknight's. */
+TestKit_AbilityMirrorArmor:
+    SetVar VAR_0x800A, SPECIES_CORVIKNIGHT
+    SetVar VAR_0x800B, ABILITY_MIRROR_ARMOR
+    SetVar VAR_0x8006, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8007, MOVE_BODY_PRESS
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_IRON_HEAD
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Prankster: a wild Weavile, faster than Klefki and a Dark type. Klefki's
+   status moves go first; Thunder Wave and Swagger do not affect Weavile,
+   while Spikes, aimed at its side, still works. */
+TestKit_AbilityPrankster:
+    SetVar VAR_0x800A, SPECIES_KLEFKI
+    SetVar VAR_0x800B, ABILITY_PRANKSTER
+    SetVar VAR_0x8006, MOVE_THUNDER_WAVE
+    SetVar VAR_0x8007, MOVE_SPIKES
+    SetVar VAR_0x8008, MOVE_SWAGGER
+    SetVar VAR_0x8009, MOVE_FOUL_PLAY
+    SetVar VAR_0x8000, SPECIES_WEAVILE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Gale Wings: a wild Jolteon, faster than Talonflame. At full HP Brave Bird
+   goes first; once Talonflame has taken damage it does not. */
+TestKit_AbilityGaleWings:
+    SetVar VAR_0x800A, SPECIES_TALONFLAME
+    SetVar VAR_0x800B, ABILITY_GALE_WINGS
+    SetVar VAR_0x8006, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8007, MOVE_FLARE_BLITZ
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Queenly Majesty: a wild Rattata that knows only Quick Attack, which
+   Tsareena's Queenly Majesty stops every time. */
+TestKit_AbilityQueenlyMajesty:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_QUEENLY_MAJESTY
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_KNOCK_OFF
+    SetVar VAR_0x8009, MOVE_TRAILBLAZE
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_QUICK_ATTACK
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Iron Barbs: a wild Rattata that knows only Tackle, which hurts it by an
+   eighth of its HP each time it touches Ferrothorn. */
+TestKit_AbilityIronBarbs:
+    SetVar VAR_0x800A, SPECIES_FERROTHORN
+    SetVar VAR_0x800B, ABILITY_IRON_BARBS
+    SetVar VAR_0x8006, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8007, MOVE_LEECH_SEED
+    SetVar VAR_0x8008, MOVE_GYRO_BALL
+    SetVar VAR_0x8009, MOVE_SPIKES
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Weak Armor: a wild Rattata that knows only Tackle; each physical hit
+   lowers Crustle's Defense and sharply raises its Speed. */
+TestKit_AbilityWeakArmor:
+    SetVar VAR_0x800A, SPECIES_CRUSTLE
+    SetVar VAR_0x800B, ABILITY_WEAK_ARMOR
+    SetVar VAR_0x8006, MOVE_SHELL_SMASH
+    SetVar VAR_0x8007, MOVE_ROCK_SLIDE
+    SetVar VAR_0x8008, MOVE_X_SCISSOR
+    SetVar VAR_0x8009, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Cursed Body: a wild Rattata that knows only Tackle; about one hit in three
+   disables Tackle, and Rattata then has to Struggle. */
+TestKit_AbilityCursedBody:
+    SetVar VAR_0x800A, SPECIES_JELLICENT
+    SetVar VAR_0x800B, ABILITY_CURSED_BODY
+    SetVar VAR_0x8006, MOVE_SCALD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_WILL_O_WISP
+    SetVar VAR_0x8009, MOVE_SHADOW_BALL
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Water Compaction: a wild Psyduck that knows only Water Gun, each hit of
+   which sharply raises Palossand's Defense. */
+TestKit_AbilityWaterCompaction:
+    SetVar VAR_0x800A, SPECIES_PALOSSAND
+    SetVar VAR_0x800B, ABILITY_WATERCOMPACTION
+    SetVar VAR_0x8006, MOVE_SHORE_UP
+    SetVar VAR_0x8007, MOVE_SHADOW_BALL
+    SetVar VAR_0x8008, MOVE_EARTH_POWER
+    SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8000, SPECIES_PSYDUCK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WATER_GUN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Toxic Debris: a wild Rattata that knows only Tackle; each physical hit
+   lays Toxic Spikes on the wild side, up to two layers. */
+TestKit_AbilityToxicDebris:
+    SetVar VAR_0x800A, SPECIES_GLIMMORA
+    SetVar VAR_0x800B, ABILITY_TOXIC_DEBRIS
+    SetVar VAR_0x8006, MOVE_POWER_GEM
+    SetVar VAR_0x8007, MOVE_SLUDGE_WAVE
+    SetVar VAR_0x8008, MOVE_MORTAL_SPIN
+    SetVar VAR_0x8009, MOVE_EARTH_POWER
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Berserk: a wild Rhydon that knows only Rock Slide, strong enough to take
+   Moltres below half its HP in a hit or two. */
+TestKit_AbilityBerserk:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_MOLTRES
+    SetVar VAR_0x800B, ABILITY_BERSERK
+    SetVar VAR_0x8006, MOVE_FIERY_WRATH
+    SetVar VAR_0x8007, MOVE_NASTY_PLOT
+    SetVar VAR_0x8008, MOVE_AIR_SLASH
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_RHYDON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_ROCK_SLIDE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Gooey: a wild Rattata that knows only Tackle, whose Speed falls each time
+   it touches Goodra. */
+TestKit_AbilityGooey:
+    SetVar VAR_0x800A, SPECIES_GOODRA
+    SetVar VAR_0x800B, ABILITY_GOOEY
+    SetVar VAR_0x8006, MOVE_DRAGON_PULSE
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Mummy: a wild Rattata that knows only Tackle, which takes Mummy the first
+   time it touches Cofagrigus. */
+TestKit_AbilityMummy:
+    SetVar VAR_0x800A, SPECIES_COFAGRIGUS
+    SetVar VAR_0x800B, ABILITY_MUMMY
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_WILL_O_WISP
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_NASTY_PLOT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Wandering Spirit: a wild Rattata with Guts that knows only Tackle; the
+   first Tackle swaps their abilities, and after it Runerigus has Guts, so
+   later Tackles do nothing. */
+TestKit_AbilityWanderingSpirit:
+    SetVar VAR_0x800A, SPECIES_RUNERIGUS
+    SetVar VAR_0x800B, ABILITY_WANDERING_SPIRIT
+    SetVar VAR_0x8006, MOVE_EARTHQUAKE
+    SetVar VAR_0x8007, MOVE_SHADOW_CLAW
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Entrainment: a wild Rattata with Guts; Entrainment gives it Leavanny's
+   Swarm, and the other three show the ability moves still working. */
+TestKit_AbilityEntrainment:
+    SetVar VAR_0x800A, SPECIES_LEAVANNY
+    SetVar VAR_0x800B, ABILITY_SWARM
+    SetVar VAR_0x8006, MOVE_ENTRAINMENT
+    SetVar VAR_0x8007, MOVE_SKILL_SWAP
+    SetVar VAR_0x8008, MOVE_ROLE_PLAY
+    SetVar VAR_0x8009, MOVE_WORRY_SEED
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ability list: a wild Rattata given Disguise, one of the abilities on the
+   new list; all four moves fail against it. */
+TestKit_AbilityAbilityList:
+    SetVar VAR_0x800A, SPECIES_LEAVANNY
+    SetVar VAR_0x800B, ABILITY_SWARM
+    SetVar VAR_0x8006, MOVE_ENTRAINMENT
+    SetVar VAR_0x8007, MOVE_SKILL_SWAP
+    SetVar VAR_0x8008, MOVE_ROLE_PLAY
+    SetVar VAR_0x8009, MOVE_GASTRO_ACID
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_DISGUISE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Fluffy: a wild Eevee that knows Tackle and Ember; Fluffy halves the
+   contact Tackle and doubles the Fire-type Ember, so Ember hits around twice
+   as hard as Tackle, where without Fluffy it would hit about half as hard. */
+TestKit_AbilityFluffy:
+    SetVar VAR_0x800A, SPECIES_DUBWOOL
+    SetVar VAR_0x800B, ABILITY_FLUFFY
+    SetVar VAR_0x8006, MOVE_COTTON_GUARD
+    SetVar VAR_0x8007, MOVE_BODY_PRESS
+    SetVar VAR_0x8008, MOVE_WILD_CHARGE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_EEVEE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_EMBER
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ice Scales: a wild Porygon that knows Tackle and Swift; Ice Scales halves
+   the special Swift, which then does less than Tackle, where without it
+   Swift would do more. */
+TestKit_AbilityIceScales:
+    SetVar VAR_0x800A, SPECIES_FROSMOTH
+    SetVar VAR_0x800B, ABILITY_ICE_SCALES
+    SetVar VAR_0x8006, MOVE_QUIVER_DANCE
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_BUG_BUZZ
+    SetVar VAR_0x8009, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8000, SPECIES_PORYGON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Water Bubble: a wild Gengar that knows only Will-O-Wisp, which Water
+   Bubble stops as Water Veil does. */
+TestKit_AbilityWaterBubble:
+    SetVar VAR_0x800A, SPECIES_ARAQUANID
+    SetVar VAR_0x800B, ABILITY_WATER_BUBBLE
+    SetVar VAR_0x8006, MOVE_LIQUIDATION
+    SetVar VAR_0x8007, MOVE_LEECH_LIFE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_MIRROR_COAT
+    SetVar VAR_0x8000, SPECIES_GENGAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WILL_O_WISP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Merciless: a wild Rattata that knows only Growl; once Toxic has poisoned
+   it, every Scald is a critical hit. */
+TestKit_AbilityMerciless:
+    SetVar VAR_0x800A, SPECIES_TOXAPEX
+    SetVar VAR_0x800B, ABILITY_MERCILESS
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_SCALD
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Long Reach: a wild Ferrothorn with Iron Barbs that knows only Iron
+   Defense; Leaf Blade makes no contact, so Iron Barbs never hurts Decidueye. */
+TestKit_AbilityLongReach:
+    SetVar VAR_0x800A, SPECIES_DECIDUEYE
+    SetVar VAR_0x800B, ABILITY_LONG_REACH
+    SetVar VAR_0x8006, MOVE_LEAF_BLADE
+    SetVar VAR_0x8007, MOVE_SHADOW_SNEAK
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_FERROTHORN
+    SetVar VAR_0x8001, ABILITY_IRON_BARBS
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Pixilate: a wild Misdreavus, a Ghost type, that knows only Growl; Hyper
+   Voice and Quick Attack turn Fairy and hit it, where a Normal move would
+   not affect it. */
+TestKit_AbilityPixilate:
+    SetVar VAR_0x800A, SPECIES_SYLVEON
+    SetVar VAR_0x800B, ABILITY_PIXILATE
+    SetVar VAR_0x8006, MOVE_HYPER_VOICE
+    SetVar VAR_0x8007, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_WISH
+    SetVar VAR_0x8000, SPECIES_MISDREAVUS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Liquid Voice: a wild Vaporeon with Water Absorb that knows only Growl;
+   Hyper Voice turns Water, so Water Absorb takes it and restores Vaporeon's
+   HP. */
+TestKit_AbilityLiquidVoice:
+    SetVar VAR_0x800A, SPECIES_PRIMARINA
+    SetVar VAR_0x800B, ABILITY_LIQUID_VOICE
+    SetVar VAR_0x8006, MOVE_HYPER_VOICE
+    SetVar VAR_0x8007, MOVE_MOONBLAST
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_SPARKLING_ARIA
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_WATER_ABSORB
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sheer Force: a wild Chansey that knows only Growl; Flame Charge never
+   raises Toucannon's Speed, since Sheer Force strips that for more power. */
+TestKit_AbilitySheerForce:
+    SetVar VAR_0x800A, SPECIES_TOUCANNON
+    SetVar VAR_0x800B, ABILITY_SHEER_FORCE
+    SetVar VAR_0x8006, MOVE_FLAME_CHARGE
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_BULLET_SEED
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Auras: a wild Yveltal with Dark Aura that knows only Dark Pulse; both
+   announce their auras, Yveltal as the battle starts and Xerneas as it comes
+   in. */
+TestKit_AbilityAuras:
+    SetVar VAR_0x800A, SPECIES_XERNEAS
+    SetVar VAR_0x800B, ABILITY_FAIRY_AURA
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_GEOMANCY
+    SetVar VAR_0x8008, MOVE_PSYSHOCK
+    SetVar VAR_0x8009, MOVE_FOCUS_BLAST
+    SetVar VAR_0x8000, SPECIES_YVELTAL
+    SetVar VAR_0x8001, ABILITY_DARK_AURA
+    SetVar VAR_0x8002, MOVE_DARK_PULSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Aura Break: a wild Yveltal with Dark Aura that knows only Dark Pulse;
+   Zygarde announces Aura Break as it comes in. */
+TestKit_AbilityAuraBreak:
+    SetVar VAR_0x800A, SPECIES_ZYGARDE_50
+    SetVar VAR_0x800B, ABILITY_AURA_BREAK
+    SetVar VAR_0x8006, MOVE_THOUSAND_ARROWS
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_COIL
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_YVELTAL
+    SetVar VAR_0x8001, ABILITY_DARK_AURA
+    SetVar VAR_0x8002, MOVE_DARK_PULSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Unnerve: any foe; Galvantula announces Unnerve as it comes in. */
+TestKit_AbilityUnnerve:
+    SetVar VAR_0x800A, SPECIES_GALVANTULA
+    SetVar VAR_0x800B, ABILITY_UNNERVE
+    SetVar VAR_0x8006, MOVE_THUNDER
+    SetVar VAR_0x8007, MOVE_BUG_BUZZ
+    SetVar VAR_0x8008, MOVE_ENERGY_BALL
+    SetVar VAR_0x8009, MOVE_STICKY_WEB
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Screen Cleaner: a wild Chansey that knows Reflect and Light Screen; once a
+   screen is up, switch Mr. Rime in and it ends them. */
+TestKit_AbilityScreenCleaner:
+    SetVar VAR_0x800A, SPECIES_MR_RIME
+    SetVar VAR_0x800B, ABILITY_SCREEN_CLEANER
+    SetVar VAR_0x8006, MOVE_FREEZE_DRY
+    SetVar VAR_0x8007, MOVE_PSYCHIC
+    SetVar VAR_0x8008, MOVE_RAPID_SPIN
+    SetVar VAR_0x8009, MOVE_SLACK_OFF
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_REFLECT
+    SetVar VAR_0x8003, MOVE_LIGHT_SCREEN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Regenerator: a wild Rattata that knows only Tackle; switch the hurt
+   Toxapex out and back, and it has a third of its HP back. */
+TestKit_AbilityRegenerator:
+    SetVar VAR_0x800A, SPECIES_TOXAPEX
+    SetVar VAR_0x800B, ABILITY_REGENERATOR
+    SetVar VAR_0x8006, MOVE_SCALD
+    SetVar VAR_0x8007, MOVE_TOXIC
+    SetVar VAR_0x8008, MOVE_HAZE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Pastel Veil: a wild Grimer that knows only Toxic, which Pastel Veil stops. */
+TestKit_AbilityPastelVeil:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_RAPIDASH
+    SetVar VAR_0x800B, ABILITY_PASTEL_VEIL
+    SetVar VAR_0x8006, MOVE_PLAY_ROUGH
+    SetVar VAR_0x8007, MOVE_HIGH_HORSEPOWER
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8000, SPECIES_GRIMER
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sweet Veil: a wild Jigglypuff that knows only Sing, which Sweet Veil keeps
+   from putting Tsareena to sleep. */
+TestKit_AbilitySweetVeil:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_SWEET_VEIL
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_TRIPLE_AXEL
+    SetVar VAR_0x8009, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8000, SPECIES_JIGGLYPUFF
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SING
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Harvest: holding a Sitrus Berry; Substitute twice takes Arboliva below
+   half its HP, it eats the Berry, and Harvest then grows it back half the
+   time at the end of a turn. */
+TestKit_AbilityHarvest:
+    SetVar VAR_0x800A, SPECIES_ARBOLIVA
+    SetVar VAR_0x800B, ABILITY_HARVEST
+    SetVar VAR_0x8006, MOVE_SUBSTITUTE
+    SetVar VAR_0x8007, MOVE_HYPER_VOICE
+    SetVar VAR_0x8008, MOVE_LEECH_SEED
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    SetVar VAR_0x8004, ITEM_SITRUS_BERRY
+    GoTo TestKit_GivePokemonWithItem
+
+/* Protean: any foe; Greninja's first move gives it that move's type, and no
+   later one does until it switches out and back in. */
+TestKit_AbilityProtean:
+    SetVar VAR_0x800A, SPECIES_GRENINJA
+    SetVar VAR_0x800B, ABILITY_PROTEAN
+    SetVar VAR_0x8006, MOVE_SURF
+    SetVar VAR_0x8007, MOVE_DARK_PULSE
+    SetVar VAR_0x8008, MOVE_ICE_BEAM
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Libero: as Protean, for Cinderace. */
+TestKit_AbilityLibero:
+    SetVar VAR_0x800A, SPECIES_CINDERACE
+    SetVar VAR_0x800B, ABILITY_LIBERO
+    SetVar VAR_0x8006, MOVE_PYRO_BALL
+    SetVar VAR_0x8007, MOVE_COURT_CHANGE
+    SetVar VAR_0x8008, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator: a wild Chansey that knows only Mist; Fake Tears still lowers
+   its Sp. Def through the Mist. */
+TestKit_AbilityInfiltrator:
+    SetVar VAR_0x800A, SPECIES_CHANDELURE
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_FAKE_TEARS
+    SetVar VAR_0x8009, MOVE_ENERGY_BALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MIST
+    GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
