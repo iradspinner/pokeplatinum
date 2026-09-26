@@ -262,6 +262,10 @@
             "en_US": "Flare Boost"
         },
         {
+            "id": "TestKit_Text_MenuAbilityHeavyMetal",
+            "en_US": "Heavy Metal"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

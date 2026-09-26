@@ -9470,6 +9470,19 @@ BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move)
         || (Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE && MoveKeepsEffectUnderSheerForce(move));
 }
 
+int Battler_Weight(BattleContext *battleCtx, int attacker, int battler)
+{
+    int weight = battleCtx->battleMons[battler].weight;
+
+    // When the attacker is the battler, as for Heavy Slam's user, this reads
+    // its own ability plainly, so one test covers the user and the target.
+    if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_HEAVY_METAL) == TRUE) {
+        weight *= 2;
+    }
+
+    return weight > 0 ? weight : 1;
+}
+
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)
 {
     int priority = MOVE_DATA(move).priority;

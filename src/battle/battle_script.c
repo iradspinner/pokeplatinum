@@ -7193,7 +7193,7 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
     BattleScript_Iter(battleCtx, 1);
 
     int i = 0;
-    int monWeight = DEFENDING_MON.weight;
+    int monWeight = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->defender); // Oxide: Heavy Metal
 
     for (; sWeightToPower[i][0] != 0xFFFF; i++) {
         if (sWeightToPower[i][0] >= monWeight) {
@@ -9939,8 +9939,9 @@ static BOOL BtlCmd_CalcHeavySlamPower(BattleSystem *battleSys, BattleContext *ba
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int attackerWeight = ATTACKING_MON.weight > 0 ? ATTACKING_MON.weight : 1;
-    u32 ratio = DEFENDING_MON.weight * 10000 / attackerWeight;
+    // Oxide: through Battler_Weight, for Heavy Metal on either side.
+    int attackerWeight = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->attacker);
+    u32 ratio = Battler_Weight(battleCtx, battleCtx->attacker, battleCtx->defender) * 10000 / attackerWeight;
 
     if (ratio <= 2000) {
         battleCtx->movePower = 120;

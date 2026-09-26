@@ -1492,9 +1492,11 @@ TestKit_Abilities3:
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
     AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
+    AddListMenuEntry TestKit_Text_MenuAbilityHeavyMetal, 2
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
+    GoToIfEq VAR_0x8004, 2, TestKit_AbilityHeavyMetal
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2190,6 +2192,24 @@ TestKit_AbilityFlareBoost:
     SetVar VAR_0x8000, SPECIES_DRIFBLIM
     SetVar VAR_0x8001, ABILITY_FLARE_BOOST
     SetVar VAR_0x8002, MOVE_SWIFT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* HeavyMetal: the player's Machamp (its own ability) and a
+   wild Aggron given Heavy Metal that knows Heavy Slam and Iron Head.
+   Doubled to 720 kg, Aggron is over five times Machamp's 130 kg, so Heavy
+   Slam hits at 120 and does about half again what Iron Head (80) does;
+   without Heavy Metal it would hit at 60, below Iron Head. */
+TestKit_AbilityHeavyMetal:
+    SetVar VAR_0x800A, SPECIES_MACHAMP
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_KARATE_CHOP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_AGGRON
+    SetVar VAR_0x8001, ABILITY_HEAVY_METAL
+    SetVar VAR_0x8002, MOVE_HEAVY_SLAM
+    SetVar VAR_0x8003, MOVE_IRON_HEAD
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
