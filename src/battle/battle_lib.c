@@ -7714,6 +7714,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 15 / 10;
     }
 
+    // Toxic Boost raises physical moves by half while its holder is poisoned
+    // or badly poisoned. hg-engine raises every move; the later games raise
+    // only physical ones.
+    if (attackerParams.ability == ABILITY_TOXIC_BOOST
+        && (attackerParams.statusMask & MON_CONDITION_ANY_POISON)
+        && MOVE_DATA(move).class == CLASS_PHYSICAL) {
+        movePower = movePower * 15 / 10;
+    }
+
     // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
     // Force raises the moves whose secondary effects it strips by 30%.
     if (attackerParams.ability == ABILITY_PIXILATE

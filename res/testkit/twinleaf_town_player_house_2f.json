@@ -310,6 +310,10 @@
             "en_US": "Sand Rush"
         },
         {
+            "id": "TestKit_Text_MenuAbilityToxicBoost",
+            "en_US": "Toxic Boost"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

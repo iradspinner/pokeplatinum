@@ -1504,6 +1504,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityRattled, 11
     AddListMenuEntry TestKit_Text_MenuAbilitySandForce, 12
     AddListMenuEntry TestKit_Text_MenuAbilitySandRush, 13
+    AddListMenuEntry TestKit_Text_MenuAbilityToxicBoost, 14
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1519,6 +1520,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 11, TestKit_AbilityRattled
     GoToIfEq VAR_0x8004, 12, TestKit_AbilitySandForce
     GoToIfEq VAR_0x8004, 13, TestKit_AbilitySandRush
+    GoToIfEq VAR_0x8004, 14, TestKit_AbilityToxicBoost
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2403,6 +2405,22 @@ TestKit_AbilitySandRush:
     SetVar VAR_0x8000, SPECIES_CHARIZARD
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Toxic Boost: the player's Snorlax (its own ability) and a
+   wild Zangoose given Toxic Boost that knows only Mega Punch. Once Toxic
+   has poisoned Zangoose, its Mega Punch takes about half again as much of
+   Snorlax's HP as before. */
+TestKit_AbilityToxicBoost:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_ZANGOOSE
+    SetVar VAR_0x8001, ABILITY_TOXIC_BOOST
+    SetVar VAR_0x8002, MOVE_MEGA_PUNCH
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
