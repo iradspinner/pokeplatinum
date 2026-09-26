@@ -400,6 +400,31 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Basic_CheckVictoryDance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Basic_CheckClangorousSoul
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Basic_CheckHighStatStage_Defense
+    // Oxide: status moves element 4 added whose effect is not written yet.
+    // They say "But nothing happened!" or do nothing at all, so score -10.
+    // The stubs' effects are named here; the rest sit on the plain hit effect
+    // at power 0. Remove a line when its effect is written (the four
+    // terrain moves wait on Ian's terrain decision).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT, Basic_CheckUnwrittenStatusMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ADD_THIRD_TYPE_GHOST, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ADD_THIRD_TYPE_GRASS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_APPLY_TERRAINS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHANGE_TO_PSYCHIC_TYPE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DECORATE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ION_DELUGE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWDER, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_QUASH, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_SIMPLE, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHED_TAIL, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STUFF_CHEEKS, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TIDY_UP, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_THREAD, ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SNOW, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckUnwrittenStatusMove:
+    LoadMovePower 
+    IfLoadedEqualTo 0, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckPowderImmunity:
