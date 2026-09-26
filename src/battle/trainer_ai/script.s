@@ -2178,6 +2178,10 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
     // Oxide, change (Ian, 2026-09-27): Rapid Spin now raises its user's Speed.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_AND_BINDING, Expert_SpeedUpOnHit
+    // Oxide, change (Ian, 2026-09-27): Flame Charge, Aqua Step, Trailblaze and
+    // Esper Wing always raise their user's Speed, as Rapid Spin now does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -5332,7 +5336,7 @@ Expert_DoubledPower_ScorePlus1:
 
 Expert_SpeedUpOnHit:
     // Oxide, change (Ian, 2026-09-27). An attack that raises its user's Speed a stage: Rapid Spin
-    // since the staples rulings. Scored for the Speed only; vanilla gave Rapid Spin's hazard and
+    // since the staples rulings, Flame Charge and its kin. Scored for the Speed only; vanilla gave Rapid Spin's hazard and
     // binding clearing no score, and that is unchanged.
     //
     // If the opponent resists or is immune to the move, score -1.
