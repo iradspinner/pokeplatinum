@@ -26,7 +26,7 @@ python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/ro
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7: built NARC vs res/ JSON
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --text
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
-python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 15 skipped, the deliberate divergences
+python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 16 skipped, the deliberate divergences
 python3 tools/oxide/bulk_events.py --dry-run    # would write 0
 python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 8 skipped
 python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
@@ -144,7 +144,7 @@ None is Phase 4 work; all of them shape the finished game.
 - [ ] **Ability balance pass** (balance track), including the base ROM's 228 duplicated second slots
 - [ ] **Encounter design decisions** Phase 4 leaves open: which encounters set the hidden-ability flag, and which areas have wild double battles. The Trophy Garden dailies and the Twinleaf legendary menu are never used (Ian, 2026-09-21); swarms, the Poke Radar and the GBA lists have their own entry below
 - [ ] **Swarm, Poke Radar and GBA dual-slot encounters turned off** (Ian, 2026-09-26): none of the three may ever produce a wild Pokemon, and none belongs in an encounter table. Today all 186 tables still carry species in their swarm, radar and five GBA lists (Acuity Lakefront's radar gives Weavile, Abomasnow, Mamoswine and Glalie), live once the National Dex is obtained (the GBA lists also need a cartridge in melonDS's second slot).
-  - [ ] Main track: the engine stops substituting them in `src/overlay006/wild_encounters.c` (the swarm and dual-slot calls at both grass sites, and the radar's four slots) and in `great_marsh_binoculars.c`, and no swarm is ever announced (`swarm.c` reads the table for the news). This lands first or in the same merge as the tables, since an emptied slot the engine still read would be a species 0 encounter.
+  - [x] Main track (on `cloud/main-encounter-lists-off`, merged with the tables, waiting on the Overseer's base-ROM checks): no grass site, the radar or the binoculars reads the lists; the TV flash never airs and the Sandgem sibling keeps her ordinary line (in `bulk_scripts.py`'s DIVERGED). In-game check under Waiting on Ian once merged.
   - [x] Encounter track (5eaf5eb9b on `worktree-encounter-lists`, held for the engine change): all 2,976 entries emptied, and lint rule R17 fails on any species there.
 - [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
 - [ ] **Move the Pastoria City clown gift to the Restaurant on Route 213** (Ian, 2026-09-25): a gift's met location is the location name of the map it is given on, and Pastoria's house reads "Pastoria City", so today the gift and Pastoria's fishing and surf share one nuzlocke capture. Give it on `MAP_HEADER_RESTAURANT` (location "Restaurant") instead. The pool of six water lines and its flag stay as they are; only the map changes: `scripts_pastoria_city_north_house.s` (already in `bulk_scripts.py`'s DIVERGED), the NPC's object event, and the text bank.
