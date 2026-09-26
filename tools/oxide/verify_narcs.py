@@ -325,6 +325,10 @@ MAP_HEADERS_DIVERGED = {
                                 "encounters_amity_square (Ian, 2026-09-27)"),
     "MAP_HEADER_VERITY_LAKEFRONT": (range(14, 16), "Verity Lakefront's new grass reads "
                                     "encounters_verity_lakefront (Ian, 2026-09-27)"),
+    # Byte 18 is mapLabelTextID, the location name a gift or catch is met at.
+    "MAP_HEADER_FUEGO_IRONWORKS_BUILDING": (range(18, 19), "the building takes a location "
+                                            "name of its own, Ironworks Hall, so it is a "
+                                            "capture apart from the yard (Ian, 2026-09-27)"),
 }
 
 
