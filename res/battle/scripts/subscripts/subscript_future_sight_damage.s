@@ -7,6 +7,7 @@ _000:
     WaitButtonABTime 30
     CheckMoveHit BTLSCR_MSG_ATTACKER, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP, _117
     UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1
+    UpdateVar OPCODE_FLAG_OFF, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED // Oxide: a flag left by the turn's last move is not Sturdy's
     PlayMoveAnimationOnMons BTLSCR_MSG_TEMP, BTLSCR_MSG_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_PLAYED_MOVE_ANIMATION
@@ -37,6 +38,15 @@ _058:
     WaitButtonABTime 30
 
 _092:
+    // Oxide: Sturdy endured it (CheckHoldOnWith1HP).
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED, _sturdy_done
+    // {0} endured the hit!
+    PrintMessage BattleStrings_Text_PokemonEnduredTheHit_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    Wait 
+    WaitButtonABTime 30
+    GoTo _116
+
+_sturdy_done:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ITEM, _116
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 

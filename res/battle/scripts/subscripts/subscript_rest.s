@@ -8,6 +8,13 @@ _000:
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_VITAL_SPIRIT, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_PURIFYING_SALT, _098 // Oxide
     CheckAbility CHECK_HAVE_ON_SIDE, BTLSCR_ATTACKER, ABILITY_SWEET_VEIL, _098 // Oxide: it or its partner
+    // Oxide: Leaf Guard keeps its holder awake in sunshine, Rest included
+    // (Generation 5).
+    CheckIgnoreWeather _leaf_guard_done
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _leaf_guard_done
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_LEAF_GUARD, _098
+
+_leaf_guard_done:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _107
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SOUNDPROOF, _027
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_UPROAR, _115

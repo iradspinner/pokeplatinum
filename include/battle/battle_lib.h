@@ -642,6 +642,7 @@ BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
  * @return TRUE if it does
  */
 BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
+BOOL Move_IsPowder(int move);
 
 // Oxide: what an ability refuses, after hg-engine's ability flags.
 #define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it

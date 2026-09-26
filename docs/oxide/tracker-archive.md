@@ -300,6 +300,14 @@ Finished on 2026-09-26 and moved out the same day:
   - [x] Main track (`cloud/main-encounter-lists-off`, 7cefbba53, merged with the tables on 2026-09-26): no grass site, the radar or the binoculars reads the lists; the TV flash never airs and the Sandgem sibling keeps her ordinary line (in `bulk_scripts.py`'s DIVERGED). In-game check under Waiting on Ian.
   - [x] Encounter track (5eaf5eb9b on `worktree-encounter-lists`, held for the engine change): all 2,976 entries emptied, and lint rule R17 fails on any species there.
 
+A finished sub-item of the tracker's "The staples survey's rulings" entry, moved out on 2026-09-26; the entry itself is still open:
+
+  - [x] Engine (2026-09-26, branch `cloud/element5-staples`, 24 commits, one per rule; its last commit is the report): the survey's native abilities plus nine more the later games changed (Stench, Water Absorb and Dry Skin, Magic Guard, Plus and Minus, Shed Skin, Liquid Ooze, Pressure, Simple), the three Gen 6 type immunities, 1.5x critical hits at the Gen 7 rates, Defog clearing hazards from both sides (screens from the target's only, as in the later games; a question for Ian below), and Rapid Spin's Speed raise. Each has a Modern rules entry in the test kit where the kit can show it (`docs/oxide/test-kit.md`)
+
+The staples entry's native move sub-item, finished and moved out on 2026-09-26:
+
+  - [x] Native moves to the full modern set (power, accuracy and PP), keeping the base ROM's deliberate values, every setup move's low PP, and Gen 4 accuracy on Thunder Wave, Dark Void and Swagger. Done 2026-09-26 on `cloud/main-native-moves` (10cb50b0): 81 fields over 66 moves from hg-engine's Generation 9 data, each registered in `verify_narcs.py`, plus a 160 cap on Fury Cutter's doubling (55013113) so its new 40 power cannot reach 640. Ian's answers on the report, on the same branch: Barrier and Tailwind go to 1 PP, Beat Up leaves every learnset and egg list (its record stays), and Leech Life takes 80 power over the base ROM's 65. The branch's last commit lists every change. The balance track rescores after the merge
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)

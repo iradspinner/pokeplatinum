@@ -96,7 +96,6 @@
             "MOVE_TAKE_DOWN",
             "MOVE_AMNESIA",
             "MOVE_CONFUSION",
-            "MOVE_BEAT_UP",
             "MOVE_SUCKER_PUNCH"
         ]
     },
