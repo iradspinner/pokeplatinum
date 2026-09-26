@@ -400,6 +400,10 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Basic_CheckVictoryDance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Basic_CheckClangorousSoul
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Basic_CheckHighStatStage_Defense
+    // Oxide: Autotomize is a Speed raise, checked as Agility is (Trick Room
+    // included); Take Heart as Calm Mind is, unless it has a status to cure.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AUTOTOMIZE, Basic_CheckHighStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAKE_HEART, Basic_CheckTakeHeart
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -1272,6 +1276,13 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
+Basic_CheckTakeHeart:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckTakeHeart_End
+    GoTo Basic_CheckCalmMind
+
+Basic_CheckTakeHeart_End:
+    PopOrEnd 
+
 Basic_CheckCamouflage:
     // If the attacker is already under the respective effect, score -10.
     IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_CAMOUFLAGE, ScoreMinus10
@@ -2050,6 +2061,27 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_HALF, Expert_RecoilMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Expert_HealingWish
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHADOW_FORCE, Expert_ShadowForce
+
+    // Oxide, change (Ian, 2026-09-27): the setup moves element 4 added, each
+    // sent to the routine vanilla uses for its nearest Platinum move. Those
+    // that raise Speed with an attacking stat go to Dragon Dance's, which
+    // favours them when the user is slower; Coil and Cotton Guard go to the
+    // Defense raise, as Bulk Up does; Hone Claws and Work Up to the Attack
+    // raise; Take Heart to the Sp. Def raise, as Calm Mind does; Autotomize
+    // to the Speed raise, as Agility does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_ACC_UP, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_UP, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_ACC_UP, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAKE_HEART, Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AUTOTOMIZE, Expert_StatusSpeedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2_ATK_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Expert_DragonDance
 
     // All other moves have no additional logic.
     PopOrEnd 
