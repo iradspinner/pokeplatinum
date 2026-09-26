@@ -683,6 +683,12 @@ Basic_CheckLockOn:
 Basic_CheckMeanLook:
     // If the target is already under the effect of Mean Look, score -10.
     IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_MEAN_LOOK, ScoreMinus10
+    // Oxide: nothing traps a Ghost type, and Mean Look, Block and Spider Web
+    // fail against one, so score -10.
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_GHOST, ScoreMinus10
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_GHOST, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckCurse:
@@ -8187,6 +8193,11 @@ Harrassment_Effects:
 RoamingPokemon_Main:
     // If the Roamer is trapped, break from this routine
     // Otherwise, override all other possible moves and Escape
+    // Oxide: nothing traps a Ghost type, so a Ghost roamer always escapes.
+    LoadTypeFrom LOAD_ATTACKER_TYPE_1
+    IfLoadedEqualTo TYPE_GHOST, RoamingPokemon_NotTrapped
+    LoadTypeFrom LOAD_ATTACKER_TYPE_2
+    IfLoadedEqualTo TYPE_GHOST, RoamingPokemon_NotTrapped
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, RoamingPokemon_Trapped
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_MEAN_LOOK, RoamingPokemon_Trapped
     LoadAbility AI_BATTLER_DEFENDER
