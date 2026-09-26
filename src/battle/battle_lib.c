@@ -7540,12 +7540,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         defenseStat = defenseStat * 150 / 100;
     }
 
-    if (attackerParams.ability == ABILITY_PLUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)) {
-        spAttackStat = spAttackStat * 150 / 100;
-    }
-    if (attackerParams.ability == ABILITY_MINUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)) {
+    // Oxide: Plus and Minus work with a partner that has either of the two
+    // (Generation 5; hg-engine's CalcBaseDamage), where Platinum needed the
+    // other one. The count takes in the holder, so it needs two.
+    if ((attackerParams.ability == ABILITY_PLUS || attackerParams.ability == ABILITY_MINUS)
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)
+                + BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)
+            > 1) {
         spAttackStat = spAttackStat * 150 / 100;
     }
 
