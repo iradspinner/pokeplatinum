@@ -9188,6 +9188,22 @@
         "The effects of the neutralizing\n",
         "gas wore off!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_ItCreatedABizarreAreaInWhichTheDefenseAndSpDefStatsAreSwapped",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "the Defense and Sp. Def stats\f",
+        "are swapped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_WonderRoomWoreOffAndTheDefenseAndSpDefStatsReturnedToNormal",
+      "en_US": [
+        "Wonder Room wore off, and the\n",
+        "Defense and Sp. Def stats\f",
+        "returned to normal!"
+      ]
     }
   ]
 }

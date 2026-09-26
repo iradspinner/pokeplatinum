@@ -4011,12 +4011,21 @@ enum SwitchInCheckResult {
 // Oxide (Ian, 2026-09-26): trainers whose battles open in a Trick Room that
 // lasts the whole fight. The room comes from the same subscript as the Battle
 // Arcade's five-turn one, plus FIELD_CONDITION_TRICK_ROOM_PERM, which stops
-// the end-of-turn countdown and makes the move Trick Room fail.
+// the end-of-turn countdown and makes the move Trick Room fail. Each list
+// ends in TRAINER_NONE.
 static const u16 sPermanentTrickRoomTrainers[] = {
     TRAINER_COMMANDER_SATURN_GALACTIC_HQ,
+    TRAINER_NONE,
 };
 
-static BOOL BattleSystem_OpensInPermanentTrickRoom(BattleSystem *battleSys)
+// Oxide (Ian, 2026-09-27): the same for Wonder Room, with
+// FIELD_CONDITION_WONDER_ROOM_PERM. Empty until the Frontier Brain fights
+// that use it exist.
+static const u16 sPermanentWonderRoomTrainers[] = {
+    TRAINER_NONE,
+};
+
+static BOOL BattleSystem_EnemyTrainerListed(BattleSystem *battleSys, const u16 *trainers)
 {
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
@@ -4027,9 +4036,9 @@ static BOOL BattleSystem_OpensInPermanentTrickRoom(BattleSystem *battleSys)
         return FALSE;
     }
 
-    for (int i = 0; i < NELEMS(sPermanentTrickRoomTrainers); i++) {
-        if (Battler_GetTrainerID(battleSys, BATTLER_ENEMY_1) == sPermanentTrickRoomTrainers[i]
-            || Battler_GetTrainerID(battleSys, BATTLER_ENEMY_2) == sPermanentTrickRoomTrainers[i]) {
+    for (int i = 0; trainers[i] != TRAINER_NONE; i++) {
+        if (Battler_GetTrainerID(battleSys, BATTLER_ENEMY_1) == trainers[i]
+            || Battler_GetTrainerID(battleSys, BATTLER_ENEMY_2) == trainers[i]) {
             return TRUE;
         }
     }
@@ -4055,9 +4064,18 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             // not advanced, so the next pass still starts any overworld weather;
             // the permanent bit, never cleared, keeps the room from starting twice.
             if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM_PERM) == FALSE
-                && BattleSystem_OpensInPermanentTrickRoom(battleSys)) {
+                && BattleSystem_EnemyTrainerListed(battleSys, sPermanentTrickRoomTrainers)) {
                 battleCtx->fieldConditionsMask |= FIELD_CONDITION_TRICK_ROOM_PERM;
                 subscript = subscript_overworld_trick_room;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                break;
+            }
+
+            // Oxide: and a permanent Wonder Room, the same way, after it.
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM_PERM) == FALSE
+                && BattleSystem_EnemyTrainerListed(battleSys, sPermanentWonderRoomTrainers)) {
+                battleCtx->fieldConditionsMask |= FIELD_CONDITION_WONDER_ROOM_PERM;
+                subscript = subscript_permanent_wonder_room;
                 result = SWITCH_IN_CHECK_RESULT_BREAK;
                 break;
             }
@@ -7426,6 +7444,17 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
+    // Oxide: under Wonder Room every battler's Defense and Sp. Def trade
+    // places, as in Generation 5 on (hg-engine left its step 4.4 a TODO). Only
+    // the stats trade: a physical move still meets the Defense stages and the
+    // modifiers to Defense, now applied to what was the Sp. Def, and so on.
+    // Psyshock, which takes the Defense further down, follows the room with
+    // it, and Body Press takes the user's Sp. Def in the same way.
+    if (fieldConditions & FIELD_CONDITION_WONDER_ROOM) {
+        defenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE, NULL);
+        spDefenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_DEFENSE, NULL);
+    }
+
     // Oxide: moves that hit with a stat other than the user's own Attack
     // (hg-engine's CalcBaseDamage, step 3.2). The user's ability and item
     // still modify the stat below, as they do there.
@@ -7434,7 +7463,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     } else if (move == MOVE_BODY_PRESS) {
         // The user's Defense and its stages, taken before Unaware, so a
         // target with Unaware ignores them, as in the later games.
-        attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
+        attackStat = BattleMon_Get(battleCtx, attacker,
+            (fieldConditions & FIELD_CONDITION_WONDER_ROOM) ? BATTLEMON_SP_DEFENSE : BATTLEMON_DEFENSE, NULL);
         attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     }
 
