@@ -3290,8 +3290,20 @@ static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleCon
         return FALSE;
     }
 
+    // Oxide: Magic Bounce turns the moves Magic Coat does, every turn and
+    // without a move (hg-engine's BattleController_BeforeMove). A move already
+    // turned back is not turned again, so two holders cannot pass it back
+    // and forth, and a holder out of reach in the air or underground does
+    // not turn it. Mold Breaker ignores it. A Magic Coat used this turn goes
+    // first and keeps its own message.
+    BOOL magicBounce = DEFENDER_TURN_FLAGS.magicCoat == FALSE
+        && (battleCtx->battleStatusMask2 & SYSCTL_MAGIC_COAT_REFLECTED) == FALSE
+        && (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE
+        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_CAN_MAGIC_COAT)
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_MAGIC_BOUNCE) == TRUE;
+
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
-        && DEFENDER_TURN_FLAGS.magicCoat
+        && (DEFENDER_TURN_FLAGS.magicCoat || magicBounce)
         && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_CAN_MAGIC_COAT)) {
         DEFENDER_TURN_FLAGS.magicCoat = FALSE;
 
@@ -3301,7 +3313,11 @@ static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleCon
 
         battleCtx->battleStatusMask |= SYSCTL_REUSE_LAST_MOVE;
 
-        LOAD_SUBSEQ(subscript_magic_coat);
+        if (magicBounce) {
+            LOAD_SUBSEQ(subscript_magic_bounce);
+        } else {
+            LOAD_SUBSEQ(subscript_magic_coat);
+        }
         battleCtx->commandNext = battleCtx->command;
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

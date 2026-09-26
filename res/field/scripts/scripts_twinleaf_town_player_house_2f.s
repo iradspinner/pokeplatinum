@@ -1495,12 +1495,14 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityHeavyMetal, 2
     AddListMenuEntry TestKit_Text_MenuAbilityJustified, 3
     AddListMenuEntry TestKit_Text_MenuAbilityLightMetal, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityMagicBounce, 5
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
     GoToIfEq VAR_0x8004, 2, TestKit_AbilityHeavyMetal
     GoToIfEq VAR_0x8004, 3, TestKit_AbilityJustified
     GoToIfEq VAR_0x8004, 4, TestKit_AbilityLightMetal
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityMagicBounce
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2247,6 +2249,21 @@ TestKit_AbilityLightMetal:
     SetVar VAR_0x8001, ABILITY_LIGHT_METAL
     SetVar VAR_0x8002, MOVE_HEAVY_SLAM
     SetVar VAR_0x8003, MOVE_IRON_HEAD
+    GoTo TestKit_GivePokemonWithMoves
+
+/* MagicBounce: a wild Chansey that knows only Toxic. Once Espeon
+   is in, each Toxic is turned back with a message, and Chansey is badly
+   poisoned in Espeon's place. */
+TestKit_AbilityMagicBounce:
+    SetVar VAR_0x800A, SPECIES_ESPEON
+    SetVar VAR_0x800B, ABILITY_MAGIC_BOUNCE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

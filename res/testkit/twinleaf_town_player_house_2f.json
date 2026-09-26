@@ -274,6 +274,10 @@
             "en_US": "Light Metal"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMagicBounce",
+            "en_US": "Magic Bounce"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

@@ -9204,6 +9204,27 @@
         "Defense and Sp. Def stats\f",
         "returned to normal!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBouncedTheMoveBack_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} bounced\n",
+        "the {STRVAR_1 6, 1, 0} back!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBouncedTheMoveBack_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} bounced\n",
+        "the {STRVAR_1 6, 1, 0} back!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonBouncedTheMoveBack_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} bounced\n",
+        "the {STRVAR_1 6, 1, 0} back!"
+      ]
     }
   ]
 }
