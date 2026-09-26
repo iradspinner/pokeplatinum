@@ -269,6 +269,24 @@ KINGS_ROCK_NATIVES = {
     405, 411, 412, 448,
 }
 
+# The native moves given their modern power, accuracy or PP from hg-engine's
+# Generation 9 data (the staples survey's answer 1, Ian, 2026-09-26), by move
+# id and by field. Only fields still at their vanilla value were changed, so
+# none of these bytes is one the base ROM set on purpose.
+MODERN_POWER_NATIVES = {
+    22, 26, 33, 37, 42, 53, 56, 57, 58, 59, 80, 83, 85, 87, 126, 130, 136,
+    152, 168, 202, 210, 248, 250, 257, 265, 295, 296, 309, 314, 315, 317, 328,
+    330, 331, 333, 343, 353, 358, 364, 387, 389, 396, 406, 408, 409, 412, 434,
+    437, 448, 463,
+}
+MODERN_ACCURACY_NATIVES = {
+    18, 20, 35, 46, 128, 178, 184, 198, 261, 309, 353, 375, 441, 463,
+}
+MODERN_PP_NATIVES = {
+    22, 26, 37, 66, 80, 128, 130, 136, 141, 168, 200, 248, 317, 326, 343, 403,
+    409,
+}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
         "offsets": (6, 7),  # type1, type2
@@ -277,7 +295,7 @@ DIVERGED = {
         "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c)",
     },
     # A list when more than one change touches the archive; a member passes if
-    # any one entry allows every byte it differs at.
+    # every byte it differs at is allowed by some entry that lists it.
     "poketool/waza/pl_waza_tbl.narc": [
         {
             "offsets": (4,),  # type
@@ -293,6 +311,21 @@ DIVERGED = {
             "offsets": (8, 9),  # range
             "members": {139},
             "why": "Poison Gas hits both foes, not the partner too (Ian, 2026-09-22)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": MODERN_POWER_NATIVES,
+            "why": "native moves given their modern power (Ian, 2026-09-26)",
+        },
+        {
+            "offsets": (5,),  # accuracy
+            "members": MODERN_ACCURACY_NATIVES,
+            "why": "native moves given their modern accuracy (Ian, 2026-09-26)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": MODERN_PP_NATIVES,
+            "why": "native moves given their modern PP (Ian, 2026-09-26)",
         },
     ],
 }
@@ -407,14 +440,18 @@ def check_personal(b, r, path):
 
 
 def intended_divergence(path, i, built_member, ref_member):
-    """True when member i of `path` differs from the reference only at bytes a
-    DIVERGED entry allows for it."""
+    """True when member i of `path` differs from the reference only at bytes
+    the DIVERGED entries that list it allow. The entries are pooled, because
+    one move can carry two rulings at once (a new power and the King's Rock
+    flag, say), each allowing its own byte."""
     if len(built_member) != len(ref_member):
         return False
-    return any(i in rule["members"]
-               and all(built_member[o] == ref_member[o] or o in rule["offsets"]
-                       for o in range(len(built_member)))
-               for rule in diverged_rules(path))
+    allowed = set()
+    for rule in diverged_rules(path):
+        if i in rule["members"]:
+            allowed.update(rule["offsets"])
+    return bool(allowed) and all(built_member[o] == ref_member[o] or o in allowed
+                                 for o in range(len(built_member)))
 
 
 # The level-up learnset entry grew from one packed u16, move:9 / level:7, to a
