@@ -443,8 +443,12 @@ void EggHatch_LoadSpriteResources(EggHatchCutscene *eggHatch)
     SpriteManager *spriteMan = eggHatch->graphics.spriteMan;
     PaletteData *plttData = eggHatch->graphics.plttData;
 
+    // Platinum Oxide: the egg takes the colour variation of the Pokemon
+    // inside it, as it did in the base ROM.
+    u32 personality = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_PERSONALITY, NULL);
+
     SpriteSystem_LoadCharResObj(spriteSys, spriteMan, narcID, narcIdx[0][0], TRUE, vRamType, ID_EGG_CHAR);
-    SpriteSystem_LoadPaletteBuffer(plttData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narcID, narcIdx[0][1], FALSE, 1, vRamType, ID_EGG_PLTT);
+    SpriteSystem_LoadPaletteBufferWithHueShift(plttData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narcID, narcIdx[0][1], FALSE, 1, vRamType, ID_EGG_PLTT, personality);
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, narcID, narcIdx[0][2], TRUE, ID_EGG_CELL);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, narcID, narcIdx[0][3], TRUE, ID_EGG_ANIM);
 

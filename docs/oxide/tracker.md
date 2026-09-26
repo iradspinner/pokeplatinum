@@ -61,8 +61,6 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - The element 6 QA questions are answered (Ian, 2026-09-27) and done on `main-forms`; the entry is in the archive.
 
-- A low-priority data question from the carry-over, whether the encounter `unown_table`/`rate_form` changes were ever intended: design doc section 7 (the evidence says DSPRE re-saves). The sprite heights once asked about with it came over with the visual overhaul (Phase 3).
-- **The move pool cull's eight questions**: `docs/oxide/move-pool-survey.md`, the section before its recommended cut.
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
 
 ## Phase 0: Setup
@@ -81,7 +79,7 @@ Done apart from the two items below; the archive has every finished item, and wh
 
 - The six overworld sprites the carry-over missed are done (2026-09-26, branch `carry-over`); the item is in the archive and its in-game check in `ingame-checklist.md`.
 - [ ] **The base ROM's visual overhaul**, found 2026-09-26 re-examining the "tool side effect" archives and ruled in whole by Ian on 2026-09-27, **is carried over and merged (2026-09-27)**, waiting only for its in-game check (`ingame-checklist.md`, section 1): the Pokemon sprite set with its shiny palettes, heights and form palettes, the battle scenery, the superbosses' battle sprites, the title logo, box wallpapers, UI palettes, the Pocket PC's icon and one unexplained Shadow Force byte. Every archive is in `verify_narcs.py`'s default list, by bytes where the base ROM's own files came over and by content (`CONTENT_ARCHIVES`, `tools/oxide/editcheck.py`'s rules) where DSPRE's re-save makes bytes impossible; the inventory's corrections say which is which.
-- [ ] Still not ported from the base ROM's arm9, each needing real understanding: the Vs. Seeker as a portable PC, **ruled by Ian on 2026-09-27 and merged the same day**; the teleporting Abra's removal (the town-teleport and dungeon-shortcut Abra go, the gym-shortcut Abra stay) is on `carry-over-abra`, merging after `main-grass` (`docs/oxide/pocket-pc.md` has the survey and the rulings; its in-game check is in `ingame-checklist.md`, sections 3 and 4), without the base ROM's move relearner in it (Ian, 2026-09-26), **which Ian ruled on 2026-09-26 should also give infinite Rare Candies** (B4 found about 30 before the League against the 250 to 440 a team of six needs), the palette hue-shift patch (six hooks, low priority, droppable), and an unidentified two-byte change to a lookup table at arm9 `0x0EC478`. The Battle Arcade commands are closed
+- [ ] **The base ROM's last arm9 changes** (all identified 2026-09-27; the findings are in the inventory's corrections). The Vs. Seeker as the Pocket PC was ruled and merged on 2026-09-27; the teleporting Abra's removal is on `carry-over-abra`, inside `pool-base` (`docs/oxide/pocket-pc.md`). The two bytes at arm9 `0x0EC478` are a slip that gave every Lass the children's encounter music; **not carried over** (Ian, 2026-09-27). **The palette hue shift is ported** on `carry-over-hue` (Ian, 2026-09-27), cut from `pool-base` and merging after it: every Pokemon's sprite palette rotated in hue by up to about 20 degrees, keyed on its personality, the Pokedex kept standard. Oxide passes the personality to the sprite code where the base ROM used 19 hooks and a "last Pokemon read" global, one commit per path. It goes past the base ROM in two places, each its own commit that can be dropped: the trade's wormhole and the GTS listing. Displays that show a species rather than a Pokemon, and the Substitute doll, keep standard colours. Its checks are in `ingame-checklist.md`, sections 3 to 5. The Battle Arcade custom commands are closed: only `Dummy088` is called (hard stop 3), the rest is dropped.
 
 ## Phase 4: Port, one element at a time
 
@@ -179,7 +177,6 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 - The two trade json files still named `abra` and `haunter` for what are now a Ditto and a Suicune
 - Move `Platinum Oxide VSMaker2 Data\` out of the DSPRE contents folder (Ian's call; it is a stale duplicate)
 - Update the chat-surface doc `claude/engine-tooling-comparison.md`: plat-engine is a patch kit not a decomp build; pokeplatinum is matching and active
-- Palette hue-shift patch (IV/nature-driven shiny or per-form palette, base ROM's eight palette-loading hooks): low priority, investigate only after Phase 4 is done; drop if it proves opaque (Ian, 2026-09-15)
 
 - **A true 60 fps overworld** (Ian's question, 2026-09-27, on the back burner): the UNLOCK FPS option only skips the wait for the screen refresh, so the game runs faster than real time and battle audio falls behind. Research what hg-engine's "60 fps outside battle" does and whether the overworld can update every frame at half the step, or draw in-between frames, at normal speed; then drop or rename the uncap.
 

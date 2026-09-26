@@ -542,7 +542,8 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
         DC_FlushRange(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
         GX_LoadOBJ(pcHallOfFameApp->unk_200, 3200 * i, 3200);
 
-        Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, PAL_LOAD_MAIN_OBJ, i * 0x20, 0x20, HEAP_ID_PC_HALL_OF_FAME);
+        // Platinum Oxide: each Pokemon with its personality's colour variation.
+        Graphics_LoadPaletteWithHueShift(spriteTemplate.narcID, spriteTemplate.palette, PAL_LOAD_MAIN_OBJ, i * 0x20, 0x20, HEAP_ID_PC_HALL_OF_FAME, spriteTemplate.personality);
 
         if (i == pcHallOfFameScreen->pokemonIndex) {
             Sound_SetUsingDefaultChatotCry(TRUE);

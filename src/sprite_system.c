@@ -23,6 +23,7 @@
 static Sprite *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteManager *spriteMan, int resourceHeaderID, s16 x, s16 y, s16 z, u16 animIdx, int priority, int plttIdx, enum NNS_G2D_VRAM_TYPE vramType, int param10, int param11, int param12, int param13);
 static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int type, int resourceID);
 static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int type, int resourceID);
+static s8 LoadPlttResObjWithHueShift(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID, u32 personality);
 static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResource *resource);
 static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
 static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
@@ -385,6 +386,11 @@ BOOL SpriteSystem_LoadCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteMana
 
 s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
+    return LoadPlttResObjWithHueShift(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID, 0);
+}
+
+static s8 LoadPlttResObjWithHueShift(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID, u32 personality)
+{
     if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_PLTT], resourceID) == FALSE) {
         return -1;
     }
@@ -398,6 +404,12 @@ s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan
         paletteIdx,
         spriteSys->heapID);
     if (resource != NULL) {
+        // Platinum Oxide: the colour variation goes on the first palette
+        // before it is sent to VRAM, so the screen and any later copy agree.
+        if (personality != 0) {
+            HueShiftPokemonPalette(SpriteResource_GetPaletteFade(resource)->pRawData, personality);
+        }
+
         BOOL success = SpriteTransfer_RequestPlttFreeSpace(resource);
         GF_ASSERT(success == TRUE);
         RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_PLTT], resource);
@@ -437,6 +449,19 @@ s8 SpriteSystem_LoadPlttResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManage
 u8 SpriteSystem_LoadPaletteBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
     int paletteOffset = SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID);
+    if (paletteOffset != -1) {
+        PaletteData_LoadBufferFromHardware(paletteData, bufferID, PLTT_DEST(paletteOffset), paletteIdx * PALETTE_SIZE_BYTES);
+    }
+
+    return paletteOffset;
+}
+
+// Platinum Oxide: as SpriteSystem_LoadPaletteBuffer, with the personality's
+// colour variation (HueShiftPokemonPalette) on the first palette. The egg in
+// the hatching scene loads this way; a personality of 0 changes nothing.
+u8 SpriteSystem_LoadPaletteBufferWithHueShift(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID, u32 personality)
+{
+    int paletteOffset = LoadPlttResObjWithHueShift(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID, personality);
     if (paletteOffset != -1) {
         PaletteData_LoadBufferFromHardware(paletteData, bufferID, PLTT_DEST(paletteOffset), paletteIdx * PALETTE_SIZE_BYTES);
     }

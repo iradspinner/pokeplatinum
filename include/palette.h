@@ -90,6 +90,9 @@ void LoadPaletteFromFile(enum NarcID narcID, u32 narcMemberIdx, enum HeapID heap
 void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target);
 void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target);
 void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB);
+// Platinum Oxide: the base ROM's per-Pokemon colour variation, keyed on the
+// personality, on the 15 visible colours of a 16-colour palette.
+void HueShiftPokemonPalette(u16 *palette, u32 personality);
 
 PaletteData *PaletteData_New(enum HeapID heapID);
 void PaletteData_Free(PaletteData *paletteData);
@@ -100,6 +103,7 @@ void PaletteData_LoadBuffer(PaletteData *paletteData, const void *src, enum Pale
 void PaletteData_LoadBufferFromFile(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart, u16 srcStart);
 void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart);
 void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b);
+void PaletteData_LoadBufferFromFileStartWithHueShift(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 size, u16 start, u32 personality);
 void PaletteData_LoadBufferFromHardware(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 start, u32 size);
 void PaletteData_CopyBuffer(PaletteData *palette, enum PaletteBufferID srcBufferID, u16 srcStart, enum PaletteBufferID destBufferID, u16 destStart, u16 size);
 u16 *PaletteData_GetUnfadedBuffer(PaletteData *palette, enum PaletteBufferID bufferID);

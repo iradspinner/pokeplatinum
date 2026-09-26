@@ -1262,6 +1262,17 @@ PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite)
     return &monSprite->template;
 }
 
+// Platinum Oxide: the personality whose colour variation this sprite's palette
+// takes, or 0 for none (a trainer, a species picture, or the Pokedex).
+u32 PokemonSprite_HueShiftPersonality(PokemonSprite *monSprite)
+{
+    if (monSprite == NULL || monSprite->template.keepStandardColors) {
+        return 0;
+    }
+
+    return monSprite->template.personality;
+}
+
 void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
 {
     if (monSpriteMan->needLoadChar) {
@@ -1442,6 +1453,15 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
 
             monSpriteMan->plttData.fmt = plttData->fmt;
             rawPlttData = plttData->pRawData;
+
+            // Platinum Oxide: the personality's colour variation, as the base
+            // ROM gave every Pokemon sprite. A trainer's template carries no
+            // personality, and the Pokedex asks for standard colours.
+            u32 huePersonality = PokemonSprite_HueShiftPersonality(&monSpriteMan->sprites[i]);
+
+            if (huePersonality != 0) {
+                HueShiftPokemonPalette(rawPlttData, huePersonality);
+            }
 
             for (j = 0; j < PALETTE_SIZE; j++) {
                 monSpriteMan->plttRawData[j + PALETTE_SIZE * i] = rawPlttData[j];

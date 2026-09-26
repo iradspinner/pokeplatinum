@@ -6,11 +6,13 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 
 static u32 LoadTilesToBgLayer(void *ncgrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
 static void LoadTilemapToBgLayer(void *nscrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
 static u32 LoadObjectTiles(void *ncgrBuffer, enum DSScreen display, u32 offset, u32 size);
 static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size);
+static void LoadPaletteWithSrcOffsetAndHueShift(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size, u32 personality);
 static void LoadPartialPalette(void *nclrBuffer, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImagePaletteProxy *paletteProxy);
 static u32 LoadImageMapping(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
 static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
@@ -41,6 +43,15 @@ void Graphics_LoadPaletteWithSrcOffset(enum NarcID narcID, u32 narcMemberIdx, en
 {
     void *nclrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, FALSE, heapID, TRUE);
     LoadPaletteWithSrcOffset(nclrBuffer, loadLocation, srcOffset, palOffset, size);
+}
+
+// Platinum Oxide: a Pokemon palette loaded with the personality's colour
+// variation (HueShiftPokemonPalette); the Hall of Fame and its PC viewer load
+// their Pokemon this way. A personality of 0 loads the palette unchanged.
+void Graphics_LoadPaletteWithHueShift(enum NarcID narcID, u32 narcMemberIdx, enum PaletteLoadLocation loadLocation, u32 palOffset, u32 size, enum HeapID heapID, u32 personality)
+{
+    void *nclrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, FALSE, heapID, TRUE);
+    LoadPaletteWithSrcOffsetAndHueShift(nclrBuffer, loadLocation, 0, palOffset, size, personality);
 }
 
 u32 Graphics_LoadObjectTiles(enum NarcID narcID, u32 narcMemberIdx, enum DSScreen display, u32 offset, u32 size, BOOL compressed, enum HeapID heapID)
@@ -358,11 +369,21 @@ static void (*const sPaletteLoadFuncs[])(const void *, u32, u32) = {
 
 static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size)
 {
+    LoadPaletteWithSrcOffsetAndHueShift(nclrBuffer, loadLocation, srcOffset, offset, size, 0);
+}
+
+static void LoadPaletteWithSrcOffsetAndHueShift(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size, u32 personality)
+{
     if (nclrBuffer != NULL) {
         NNSG2dPaletteData *palette;
 
         if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, &palette)) {
             palette->pRawData = (void *)((u32)palette->pRawData + srcOffset);
+
+            // Platinum Oxide: after the unpack, which must happen only once.
+            if (personality != 0) {
+                HueShiftPokemonPalette(palette->pRawData, personality);
+            }
 
             if (size == 0) {
                 size = palette->szByte - srcOffset;

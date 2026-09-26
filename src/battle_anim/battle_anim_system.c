@@ -1923,14 +1923,16 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
         NNSG2dImagePaletteProxy *proxy = Sprite_GetPaletteProxy(sprite->sprite);
         int offset = PlttTransfer_GetPlttOffset(proxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(
+        // Platinum Oxide: the copy takes the battler's colour variation too.
+        PaletteData_LoadBufferFromFileStartWithHueShift(
             system->paletteData,
             narcID,
             paletteIndex,
             system->heapID,
             PLTTBUF_MAIN_OBJ,
             PALETTE_SIZE_BYTES,
-            PLTT_DEST(offset));
+            PLTT_DEST(offset),
+            PokemonSprite_HueShiftPersonality(BattleAnimSystem_GetBattlerSprite(system, battler)));
     }
 
     GF_ASSERT(system->pokemonSprites[spriteID] == NULL);
@@ -3957,7 +3959,8 @@ BattleMonOBJData *BattleMonOBJData_New(BattleSystem *battleSys, enum HeapID heap
                     paletteProxy = Sprite_GetPaletteProxy(managedSprite->sprite);
                     paletteOffset = PlttTransfer_GetPlttOffset(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteData_LoadBufferFromFileStart(btlMonObjData->spriteContext.plttData, narcID, paletteIdx, btlMonObjData->heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES, PLTT_DEST(paletteOffset));
+                    // Platinum Oxide: the copy takes the battler's colour variation too.
+                    PaletteData_LoadBufferFromFileStartWithHueShift(btlMonObjData->spriteContext.plttData, narcID, paletteIdx, btlMonObjData->heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES, PLTT_DEST(paletteOffset), PokemonSprite_HueShiftPersonality(pokemonSprite));
                 }
             }
         }

@@ -578,6 +578,70 @@ void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int ti
     }
 }
 
+// Platinum Oxide: the base ROM's colour variation (Ian, 2026-09-27). Each
+// Pokemon's sprite palette is turned round the grey axis by one of 32 steps of
+// up to about 20 degrees, in the direction and by the step its personality
+// picks. The table, constants and rounding are the base ROM's own, checked
+// against its code on 2,560 palettes, so a Pokemon looks as it did there.
+// Cosines then sines, 1.0 = 0x400.
+static const u16 sHueShiftCosSin[64] = {
+    0x400, 0x3FF, 0x3FF, 0x3FF, 0x3FE, 0x3FE, 0x3FD, 0x3FC, 0x3FB, 0x3FA, 0x3F9,
+    0x3F8, 0x3F6, 0x3F5, 0x3F3, 0x3F1, 0x3EF, 0x3ED, 0x3EB, 0x3E8, 0x3E6, 0x3E3,
+    0x3E0, 0x3DD, 0x3DA, 0x3D7, 0x3D4, 0x3D1, 0x3CD, 0x3C9, 0x3C6, 0x3C2,
+    0x000, 0x00B, 0x017, 0x022, 0x02E, 0x039, 0x045, 0x050, 0x05C, 0x067, 0x073,
+    0x07E, 0x089, 0x095, 0x0A0, 0x0AC, 0x0B7, 0x0C2, 0x0CE, 0x0D9, 0x0E4, 0x0EF,
+    0x0FB, 0x106, 0x111, 0x11C, 0x127, 0x132, 0x13D, 0x148, 0x153, 0x15E,
+};
+
+// A channel sum in 10-bit fixed point, rounded and held to 0 to 31.
+static int HueShift_Channel(int sum)
+{
+    sum += 1 << 9;
+
+    if (sum < 0) {
+        return 0;
+    }
+
+    if (sum >= 32 << 10) {
+        return 31;
+    }
+
+    return sum >> 10;
+}
+
+void HueShiftPokemonPalette(u16 *palette, u32 personality)
+{
+    // Bits 16 to 20 pick the step, bit 21 the direction; step 0 changes nothing.
+    int step = (personality >> 16) & 31;
+    int cosine = sHueShiftCosSin[step];
+    int sine = sHueShiftCosSin[32 + step];
+
+    if ((personality >> 16) & 32) {
+        sine = -sine;
+    }
+
+    // The hue-rotation matrix: one weight on the diagonal, and two off it that
+    // the sine pulls apart; 341 is a third and 591 one over root three.
+    int diagonal = ((682 * cosine) >> 10) + 341;
+    int across = (341 * (1024 - cosine)) >> 10;
+    int twist = (591 * sine) >> 10;
+    int behind = across - twist;
+    int ahead = across + twist;
+
+    // Colour 0 is the transparent one and is left alone.
+    for (int i = 1; i < SLOTS_PER_PALETTE; i++) {
+        int r = ColorR(palette[i]) << 10;
+        int g = ColorG(palette[i]) << 10;
+        int b = ColorB(palette[i]) << 10;
+
+        int newR = HueShift_Channel(((behind * g) >> 10) + ((diagonal * r) >> 10) + ((ahead * b) >> 10));
+        int newG = HueShift_Channel(((diagonal * g) >> 10) + ((ahead * r) >> 10) + ((behind * b) >> 10));
+        int newB = HueShift_Channel(((ahead * g) >> 10) + ((behind * r) >> 10) + ((diagonal * b) >> 10));
+
+        palette[i] = RGB(newR, newG, newB);
+    }
+}
+
 void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b)
 {
     NNSG2dPaletteData *palette;
@@ -590,6 +654,28 @@ void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum 
     }
 
     TintPalette(palette->pRawData, SLOTS_PER_PALETTE, r, g, b);
+    PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
+    Heap_Free(ptr);
+}
+
+// Platinum Oxide: a Pokemon palette loaded with the personality's colour
+// variation (HueShiftPokemonPalette), for the copies of a Pokemon sprite that
+// load their palette apart from the sprite manager.
+void PaletteData_LoadBufferFromFileStartWithHueShift(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 size, u16 start, u32 personality)
+{
+    NNSG2dPaletteData *palette;
+    void *ptr = Graphics_GetPlttData(narcID, narcMemberIdx, &palette, heapID);
+
+    GF_ASSERT(ptr != NULL);
+
+    if (size == 0) {
+        size = palette->szByte;
+    }
+
+    if (personality != 0) {
+        HueShiftPokemonPalette(palette->pRawData, personality);
+    }
+
     PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
     Heap_Free(ptr);
 }

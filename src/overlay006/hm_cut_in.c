@@ -2100,6 +2100,13 @@ static void *CutIn_GetPokemonSpriteSource(Pokemon *mon, PokemonSpriteTemplate *s
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
 {
     void *paletteSource = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, heapID);
+
+    // Platinum Oxide: the Pokemon using the field move keeps its colour
+    // variation (HueShiftPokemonPalette), as it did in the base ROM.
+    if (spriteTemplate->personality != 0) {
+        HueShiftPokemonPalette(paletteSource, spriteTemplate->personality);
+    }
+
     return paletteSource;
 }
 

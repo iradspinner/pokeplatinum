@@ -22,9 +22,14 @@ typedef struct PokemonSpriteTemplate {
     u16 palette; //< File index to pull from the archive for the palette data
     u16 spindaSpots; //< Simple flag denoting whether the rendered sprite should be pseudo-randomized with splotches (only for Spinda's front-sprite).
 
-    u8 dummy; //< Dummy value; never used or set to anything other than 0.
+    // Platinum Oxide: was an unused byte. TRUE draws the palette as it is,
+    // without the personality's colour variation; the Pokedex sets it.
+    u8 keepStandardColors;
 
-    u32 personality; //< Cached personality value for Pokemon front-sprites. Specifically used for Spinda spots.
+    // Platinum Oxide: the Pokemon's personality, for every sprite now rather
+    // than Spinda's front alone: Spinda's spots and the colour variation (see
+    // HueShiftPokemonPalette) both read it.
+    u32 personality;
 } PokemonSpriteTemplate;
 
 struct PokemonSpriteTransforms {
@@ -166,6 +171,7 @@ void PokemonSprite_Pop(PokemonSprite *monSprite);
 void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite);
+u32 PokemonSprite_HueShiftPersonality(PokemonSprite *monSprite);
 void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value);
 BOOL PokemonSprite_IsActive(PokemonSprite *monSprite);
