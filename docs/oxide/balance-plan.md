@@ -105,7 +105,9 @@ Ian's answers, 2026-09-25, to the three open questions:
   Four: the Galactic fights and the Mt. Coronet climb**, so the zone may
   run a little low. That also answers the curve's shape past Gardenia: it
   holds at the target, with a deliberate peak at the end of the Galactic
-  split.
+  split. By "the Galactic fights" Ian means everything from the Galactic
+  Warehouse in Veilstone through the last fight with Cyrus: the warehouse,
+  the HQ, the Mt. Coronet climb, Spear Pillar and the Distortion World.
 - **IVs and natures matter, but they do not separate the ratings.** They
   make every number harder, and they come close to optimised even in games
   Ian rates 5 or 6. So B5 treats them as a floor Oxide must meet (it does:
@@ -492,6 +494,77 @@ already fits a cap of 78. Until that gate lands, `splits.py` still counts
 it in Galactic. The edit itself is in `res/trainers/`, which the Overseer
 coordinates; it is not made yet.
 
+## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
+
+Ian's ruling: after Candice (cap 56) the story runs Lake Acuity, the
+Galactic HQ, the Battle Zone, the Mt. Coronet climb and Spear Pillar, then
+Volkner, then the League (78). His targets, relative to the caps: the HQ
+hard, the Battle Zone medium hard, the climb and the last Galactic fights
+very hard. `shape.py` scores each group across the gap between its
+strongest Pokemon and the player's cap, with the player's side as it is at
+that point (before the zone's captures for the HQ, after them for the
+rest) and answers counting a Choice lock.
+
+**Levels move a fight only a little; the roster sets its range.** Each
+level of gap is worth about 0.02 of threat. The bands below are anchored
+on Oxide's own fights: very hard is Wake and Candice and above (threat
+0.73 or more, answers 0.12 or fewer), hard is the other gym leaders
+(threat 0.60 to 0.72, answers 0.20 or fewer), medium hard is Saturn 1,
+Barry 5 and Bertha (threat 0.40 to 0.55, answers 0.20 to 0.30). For
+ordinary trainers, medium hard sits between Wake's split's filler (threat
+0.20, answers 0.51, 10 under the cap) and Candice's (0.42 and 0.27, 4
+under).
+
+| Fight | At the cap: threat, answers with the lock | 2 over the cap |
+|---|---|---|
+| Saturn 2 (HQ) | 0.60, 0.17 | 0.65, 0.14 |
+| Cyrus 2 (HQ) | 0.45, 0.12 | 0.48, 0.11 |
+| Mars and Jupiter, Stark Mountain | 0.47, 0.18 | 0.50, 0.16 |
+| Mars and Jupiter, Spear Pillar | 0.37, 0.26 | 0.39, 0.23 |
+| Cyrus 3 | 0.73, 0.12 | 0.75, 0.10 |
+| Volkner | 0.75, 0.18 | 0.77, 0.16 |
+
+The zone's 52 route and Stark Mountain trainers read 0.35 and 0.38 at 10
+under the cap, 0.40 and 0.33 at 7 under, 0.45 and 0.28 at 4 under: medium
+hard at about 7 under.
+
+**Two shapes work, since a cap has to rise at a story event every player
+reaches and the zone is optional, so it cannot close a split of its own.**
+One Galactic split with the zone inside it puts the HQ at the same cap as
+the climb: the HQ's grunts and bosses jump from Candice's 56 to about 65 at
+once, the HQ can only be told apart from the climb by roster, and the HQ is
+scored against zone captures the player cannot have yet. **Two splits** fix
+all three: an HQ split that closes on the HQ fights, then a Galactic split
+holding the zone and the climb that closes on Cyrus 3. That is the
+recommendation:
+
+| Split | Cap | Closes on |
+|---|---|---|
+| Candice | 56 | Candice |
+| HQ (Warehouse and HQ) | 60 | Cyrus 2 and Saturn 2 |
+| Galactic (the zone, the climb, Spear Pillar, the Distortion World) | 65 | Cyrus 3 |
+| Volkner | 68 | Volkner |
+| League | 78 | Cynthia |
+
+| Trainers | Now | Proposed | Reads as |
+|---|---|---|---|
+| Warehouse and HQ grunts (12) | 53 to 55 | ace 56, 4 under | Candice's filler, the hardest ordinary trainers |
+| Saturn 2 and Cyrus 2 | 58 | 60, at the cap | Saturn 2 hard; Cyrus 2's answers are hard but his threat (0.45) needs roster work |
+| Battle Zone (52) with Buck | 73 to 78 | 55 to 60, the parked 18 off | medium hard, about 0.39 and 0.34 |
+| Mars and Jupiter, Stark Mountain | 77 to 78 | 59 to 60 | 0.36 and 0.26, on the soft side of medium hard |
+| Mt. Coronet climb and Spear Pillar trainers (12) | 54 to 55 | 63 to 65, up to the cap | harder than any filler so far |
+| Mars and Jupiter, Spear Pillar | 59 | 67, 2 over | 0.39 at most: levels cannot make it very hard, its roster must |
+| Cyrus 3 | 60 | 67, 2 over | very hard, 0.75 and 0.10 |
+| Volkner | 62 | 68, at the cap | 0.75 and 0.18 with his Choice lock counted |
+
+So the parked 18-level drop fits this shape as it stands (the zone at 5 to
+10 under a cap of 65). Two fights miss their target on levels alone and
+belong to the trainer pass: Cyrus 2 at the HQ and Mars and Jupiter at Spear
+Pillar, whose rosters top out below hard. Both tag battles are scored
+without the player's partner, which flatters the bosses. The Volkner split
+keeps 68: Volkner at the cap reads between hard and very hard once his
+Choice item is counted, as Wake and Candice do.
+
 ## What gets measured
 
 Every metric is computed the same way for every hack, from that hack's own
@@ -639,7 +712,10 @@ disagrees with them.
 
 ## Open questions for Ian
 
-None. Ian answered the last three on 2026-09-25 (above).
+1. **The Galactic stretch** (2026-09-25, "The Galactic stretch" above): two
+   splits, HQ at 60 and Galactic at 65 with Volkner at 68, and the trainer
+   levels in that section's second table? Or one Galactic split at about 65?
+   The parked Battle Zone re-level fits the two-split shape unchanged.
 
 ## Order of work
 
@@ -720,7 +796,14 @@ None. Ian answered the last three on 2026-09-25 (above).
     runner has to take a Pokemon's stats, types and moves per Pokemon
     rather than from one blob. Run it a split at a time, as B3a was.
 - [ ] **B4, the level curve**: the natural level per split, for Oxide and
-  Renegade.
+  Renegade. The tools are built (2026-09-25, `levels.py`, `shape.py`,
+  `test_b4` 5 of 5, twice): the natural level from trainers alone, a Rare
+  Candy budget per split, and the split-shape model behind the Galactic
+  proposal. Trainers alone leave a team of six far under every cap, about
+  30 Rare Candies are placed before the League against 250 to 440 needed,
+  and Ian's ruling that the portable PC gives infinite Rare Candies closes
+  that gap, so the budget reads as how much of each cap the trainers pay
+  for. The per-split tables wait on the Galactic shape.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
 - [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
   on the player's side ranked by what it moves.
