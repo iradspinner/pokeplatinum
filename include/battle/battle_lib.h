@@ -642,6 +642,7 @@ BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
  * @return TRUE if it does
  */
 BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
+BOOL Move_IsPowder(int move);
 
 // Oxide: what an ability refuses, after hg-engine's ability flags.
 #define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
@@ -659,6 +660,26 @@ BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
  * @return TRUE if the ability has any of the flags
  */
 BOOL Ability_ChangeFails(int ability, u8 flags);
+
+/**
+ * @brief Oxide: whether Neutralizing Gas is on the field, that is, whether a
+ * battler with HP left has it and is not itself under Gastro Acid.
+ *
+ * @param battleCtx
+ * @return TRUE if the gas is on the field
+ */
+BOOL BattleSystem_NeutralizingGasActive(BattleContext *battleCtx);
+
+/**
+ * @brief Oxide: whether Neutralizing Gas on the field turns off the given
+ * ability, which it does to every ability but its own and the ones Generation
+ * 9 marks as impossible to suppress.
+ *
+ * @param battleCtx
+ * @param ability   the battler's own ability, before any suppression
+ * @return TRUE if the ability is off
+ */
+BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int ability);
 
 /**
  * @brief Access a particular entry in the type-matchup table.
@@ -756,7 +777,7 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
 
 /**
  * @brief Get the battler's ability, accounting for disrupting effects on itself,
- * e.g. Gastro Acid, Gravity, and Ingrain.
+ * e.g. Gastro Acid, Gravity, and Ingrain, and (Oxide) Neutralizing Gas.
  *
  * @param battleCtx
  * @param battler

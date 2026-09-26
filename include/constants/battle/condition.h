@@ -125,6 +125,7 @@
 #define FIELD_CONDITION_TRICK_ROOM_1   (1 << 17)
 #define FIELD_CONDITION_TRICK_ROOM_2   (1 << 18)
 #define FIELD_CONDITION_TRICK_ROOM_PERM (1 << 19) // Oxide: a boss fight's Trick Room, which never counts down and cannot be undone
+#define FIELD_CONDITION_NEUTRALIZING_GAS (1 << 20) // Oxide: Neutralizing Gas was on the field at the last switch-in check
 
 #define FIELD_CONDITION_RAINING   (FIELD_CONDITION_RAINING_TEMP | FIELD_CONDITION_RAINING_PERM)
 #define FIELD_CONDITION_SANDSTORM (FIELD_CONDITION_SANDSTORM_TEMP | FIELD_CONDITION_SANDSTORM_PERM)

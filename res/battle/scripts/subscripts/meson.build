@@ -364,4 +364,7 @@ subscript_files = files(
     'subscript_telepathy.s',
     'subscript_protean.s',
     'subscript_magician.s',
+    'subscript_neutralizing_gas.s',
+    'subscript_neutralizing_gas_end.s',
+    'subscript_absorb_and_sp_attack_up_1_stage.s',
 )

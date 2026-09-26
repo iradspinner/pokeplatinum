@@ -250,6 +250,94 @@
             "en_US": "Infiltrator"
         },
         {
+            "id": "TestKit_Text_MenuAbilityNeutralizingGas",
+            "en_US": "Neutralizing Gas"
+        },
+        {
+            "id": "TestKit_Text_MenuStaples",
+            "en_US": "Modern rules"
+        },
+        {
+            "id": "TestKit_Text_WhichRule",
+            "en_US": "Which rule?"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleSturdy",
+            "en_US": "Sturdy"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleLightningRod",
+            "en_US": "Lightning Rod"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleStormDrain",
+            "en_US": "Storm Drain"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleIntimidate",
+            "en_US": "Intimidate blocked"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleOblivious",
+            "en_US": "Oblivious and Taunt"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleIlluminate",
+            "en_US": "Keen Eye, Illuminate"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleSynchronize",
+            "en_US": "Synchronize"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleLeafGuard",
+            "en_US": "Leaf Guard and Rest"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleStench",
+            "en_US": "Stench"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleWaterAbsorb",
+            "en_US": "Water Absorb and Soak"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleMagicGuard",
+            "en_US": "Magic Guard, paralysis"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleLiquidOoze",
+            "en_US": "Liquid Ooze, Dream Eater"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleSimple",
+            "en_US": "Simple"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleGrassPowder",
+            "en_US": "Grass and powder"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleElectricParalysis",
+            "en_US": "Electric and paralysis"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleGhostTrap",
+            "en_US": "Ghosts and trapping"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleCritical",
+            "en_US": "Critical hits"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleDefog",
+            "en_US": "Defog, both sides"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleRapidSpin",
+            "en_US": "Rapid Spin"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

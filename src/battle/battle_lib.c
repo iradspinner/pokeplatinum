@@ -115,6 +115,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
     battleCtx->battleMons[battler].proteanUsed = FALSE;
+    battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
+    battleCtx->battleMons[battler].friskFoesFound = 0;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -1172,23 +1174,6 @@ static const u8 sSpeedHalvingItemEffects[] = {
     HOLD_EFFECT_LVLUP_SPDEF_EV_UP
 };
 
-static inline int CompareSpeed_ApplySimple(BattleContext *battleCtx, int battler, int stage)
-{
-    if (Battler_Ability(battleCtx, battler) == ABILITY_SIMPLE) {
-        stage = DEFAULT_STAT_STAGE + ((stage - DEFAULT_STAT_STAGE) * 2);
-
-        if (stage > MAX_STAT_STAGE) {
-            stage = MAX_STAT_STAGE;
-        }
-
-        if (stage < MIN_STAT_STAGE) {
-            stage = MIN_STAT_STAGE;
-        }
-    }
-
-    return stage;
-}
-
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw)
 {
     u8 result = COMPARE_SPEED_FASTER;
@@ -1223,8 +1208,6 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     battler1SpeedStage = battleCtx->battleMons[battler1].statBoosts[BATTLE_STAT_SPEED];
     battler2SpeedStage = battleCtx->battleMons[battler2].statBoosts[BATTLE_STAT_SPEED];
 
-    battler1SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler1, battler1SpeedStage);
-    battler2SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler2, battler2SpeedStage);
 
     battler1Speed = battleCtx->battleMons[battler1].speed * sStatStageBoosts[battler1SpeedStage].numerator / sStatStageBoosts[battler1SpeedStage].denominator;
     battler2Speed = battleCtx->battleMons[battler2].speed * sStatStageBoosts[battler2SpeedStage].numerator / sStatStageBoosts[battler2SpeedStage].denominator;
@@ -3163,6 +3146,11 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
         return ABILITY_NONE;
     }
 
+    // Oxide: while Neutralizing Gas is on the field every other ability is off.
+    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
+        return ABILITY_NONE;
+    }
+
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
         return ABILITY_NONE;
@@ -3266,9 +3254,11 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
+    // Oxide: a Ghost type cannot be trapped by anything (Generation 6).
     if (itemEffect == HOLD_EFFECT_FLEE
         || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
-        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) {
+        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) {
         return FALSE;
     }
 
@@ -3638,6 +3628,12 @@ static BOOL MoveInList(const u16 *list, int count, int move)
     return FALSE;
 }
 
+// Oxide: for the Grass type's immunity to powder moves, in the controller.
+BOOL Move_IsPowder(int move)
+{
+    return MoveInList(sPowderMoves, NELEMS(sPowderMoves), move);
+}
+
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
     int subscript = NULL, moveType;
@@ -3657,17 +3653,20 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_ability_restores_hp;
     }
 
+    // Oxide: Water Absorb and Dry Skin take status Water moves such as Soak
+    // too (Generation 5), but not their holder's own.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_ABSORB) == TRUE
         && moveType == TYPE_WATER
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE // do not proc on first turn of Dive
-        && CURRENT_MOVE_DATA.power) {
+        && attacker != defender) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
         subscript = subscript_ability_restores_hp;
     }
 
+    // Oxide: Flash Fire works while its holder is frozen (Generation 5), as in
+    // hg-engine, which comments the freeze check out.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLASH_FIRE) == TRUE
         && moveType == TYPE_FIRE
-        && (battleCtx->battleMons[defender].status & MON_CONDITION_FREEZE) == FALSE
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && (CURRENT_MOVE_DATA.power || battleCtx->moveCur == MOVE_WILL_O_WISP)) {
         subscript = subscript_absorb_and_boost_fire_type_moves;
@@ -3691,7 +3690,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_DRY_SKIN) == TRUE
         && moveType == TYPE_WATER
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
-        && CURRENT_MOVE_DATA.power) {
+        && attacker != defender) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
         subscript = subscript_ability_restores_hp;
     }
@@ -3702,6 +3701,23 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         && moveType == TYPE_GRASS
         && attacker != defender) {
         subscript = subscript_absorb_and_attack_up_1_stage;
+    }
+
+    // Oxide: Lightning Rod and Storm Drain take the moves they draw and raise
+    // Sp. Atk, as in Generation 5 and hg-engine; in Platinum they only drew
+    // the moves in.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LIGHTNING_ROD) == TRUE
+        && moveType == TYPE_ELECTRIC
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && attacker != defender) {
+        subscript = subscript_absorb_and_sp_attack_up_1_stage;
+    }
+
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_STORM_DRAIN) == TRUE
+        && moveType == TYPE_WATER
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && attacker != defender) {
+        subscript = subscript_absorb_and_sp_attack_up_1_stage;
     }
 
     // Oxide: Bulletproof stops ball and bomb moves, and Overcoat powder moves,
@@ -3739,9 +3755,11 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         break;
 
     case ABILITY_SHED_SKIN:
+        // Oxide: a one in three chance, up from 30% (Generation 5, as in
+        // hg-engine's ServerFieldConditionCheck).
         if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
             && battleCtx->battleMons[battler].curHP
-            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            && BattleSystem_RandNext(battleSys) % 3 == 0) {
             if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
                 battleCtx->msgTemp = MSGCOND_SLEEP;
             } else if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
@@ -3844,6 +3862,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
+    SWITCH_IN_CHECK_STATE_NEUTRALIZING_GAS, // Oxide
     SWITCH_IN_CHECK_STATE_TRACE,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
@@ -3970,6 +3989,64 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
 
             battleCtx->switchInCheckState++;
+            break;
+
+        // Oxide (Ian, 2026-09-26): Neutralizing Gas, first so that it speaks
+        // before any ability it turns off. The suppression itself is in
+        // Battler_Ability; this step only gives the two messages. When the gas
+        // is gone, every battler's switch-in abilities are made to announce
+        // again, and the steps after this one set them off in speed order, as
+        // the later games do. Slow Start starts its five turns over.
+        case SWITCH_IN_CHECK_STATE_NEUTRALIZING_GAS:
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_NEUTRALIZING_GAS)
+                && BattleSystem_NeutralizingGasActive(battleCtx) == FALSE) {
+                battleCtx->fieldConditionsMask &= ~FIELD_CONDITION_NEUTRALIZING_GAS;
+
+                for (i = 0; i < maxBattlers; i++) {
+                    BattleMon *mon = &battleCtx->battleMons[i];
+
+                    mon->weatherAbilityAnnounced = FALSE;
+                    mon->intimidateAnnounced = FALSE;
+                    mon->traceAnnounced = FALSE;
+                    mon->downloadAnnounced = FALSE;
+                    mon->anticipationAnnounced = FALSE;
+                    mon->forewarnAnnounced = FALSE;
+                    mon->friskAnnounced = FALSE;
+                    mon->friskFoesFound = 0;
+                    mon->moldBreakerAnnounced = FALSE;
+                    mon->pressureAnnounced = FALSE;
+                    mon->oxideAbilityAnnounced = FALSE;
+
+                    if (mon->ability == ABILITY_SLOW_START) {
+                        mon->slowStartAnnounced = FALSE;
+                        mon->slowStartFinished = FALSE;
+                        mon->moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
+                    }
+                }
+
+                subscript = subscript_neutralizing_gas_end;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                break;
+            }
+
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].neutralizingGasAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) == ABILITY_NEUTRALIZING_GAS) {
+                    battleCtx->battleMons[battler].neutralizingGasAnnounced = TRUE;
+                    battleCtx->fieldConditionsMask |= FIELD_CONDITION_NEUTRALIZING_GAS;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_neutralizing_gas;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
             break;
 
         case SWITCH_IN_CHECK_STATE_TRACE:
@@ -4262,32 +4339,36 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 if (battleCtx->battleMons[battler].friskAnnounced == FALSE
                     && battleCtx->battleMons[battler].curHP
                     && Battler_Ability(battleCtx, battler) == ABILITY_FRISK) {
-                    battleCtx->battleMons[battler].friskAnnounced = TRUE;
-
                     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                        // Oxide: Frisk names every foe's item (Generation 6), one
+                        // message per foe, where Platinum named one at random. The
+                        // step runs again after each message until none is left.
                         int enemies[] = {
                             BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_RIGHT),
                             BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_LEFT),
                         };
 
-                        if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem
-                            && battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[BattleSystem_RandNext(battleSys) & 1]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[0]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[1]].heldItem;
+                        for (int j = 0; j < NELEMS(enemies); j++) {
+                            if ((battleCtx->battleMons[battler].friskFoesFound & FlagIndex(j)) == FALSE
+                                && battleCtx->battleMons[enemies[j]].curHP
+                                && battleCtx->battleMons[enemies[j]].heldItem) {
+                                battleCtx->battleMons[battler].friskFoesFound |= FlagIndex(j);
+                                battleCtx->msgItemTemp = battleCtx->battleMons[enemies[j]].heldItem;
+                                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                                break;
+                            }
+                        }
+
+                        if (result != SWITCH_IN_CHECK_RESULT_BREAK) {
+                            battleCtx->battleMons[battler].friskAnnounced = TRUE;
+                        }
+                    } else {
+                        battleCtx->battleMons[battler].friskAnnounced = TRUE;
+
+                        if (battleCtx->battleMons[battler ^ 1].curHP && battleCtx->battleMons[battler ^ 1].heldItem) {
+                            battleCtx->msgItemTemp = battleCtx->battleMons[battler ^ 1].heldItem;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
-                    } else if (battleCtx->battleMons[battler ^ 1].curHP && battleCtx->battleMons[battler ^ 1].heldItem) {
-                        battleCtx->msgItemTemp = battleCtx->battleMons[battler ^ 1].heldItem;
-                        result = SWITCH_IN_CHECK_RESULT_BREAK;
                     }
                 }
 
@@ -4613,6 +4694,10 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            // Oxide: its spores are a powder, which misses Grass types and
+            // Overcoat (Generation 6).
+            && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GRASS)
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_OVERCOAT
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -6054,7 +6139,10 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
 {
     int result = FALSE;
 
-    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH) {
+    // Oxide: a Ghost type cannot be trapped by anything (Generation 6; the
+    // trapping checks in hg-engine's other_battle_calculators.c).
+    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) {
         return FALSE;
     }
 
@@ -7300,6 +7388,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 13 / 10;
     }
 
+    // Oxide: Normalize raises every move it makes Normal by a fifth, including
+    // those that were Normal already (Generation 7; hg-engine's
+    // CalcBaseDamage). Struggle is left alone.
+    if (attackerParams.ability == ABILITY_NORMALIZE && move != MOVE_STRUGGLE) {
+        movePower = movePower * 12 / 10;
+    }
+
     // Dark Aura and Fairy Aura on any battler raise their type's moves by a
     // third, or lower them by a quarter when Aura Break is also out.
     if ((moveType == TYPE_DARK
@@ -7443,12 +7538,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         defenseStat = defenseStat * 150 / 100;
     }
 
-    if (attackerParams.ability == ABILITY_PLUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)) {
-        spAttackStat = spAttackStat * 150 / 100;
-    }
-    if (attackerParams.ability == ABILITY_MINUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)) {
+    // Oxide: Plus and Minus work with a partner that has either of the two
+    // (Generation 5; hg-engine's CalcBaseDamage), where Platinum needed the
+    // other one. The count takes in the holder, so it needs two.
+    if ((attackerParams.ability == ABILITY_PLUS || attackerParams.ability == ABILITY_MINUS)
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)
+                + BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)
+            > 1) {
         spAttackStat = spAttackStat * 150 / 100;
     }
 
@@ -7491,42 +7587,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 125 / 100;
     }
 
-    if (attackerParams.ability == ABILITY_SIMPLE) {
-        attackStage *= 2;
-        if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (attackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spAttackStage *= 2;
-        if (spAttackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spAttackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
-
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
-        defenseStage *= 2;
-        if (defenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (defenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spDefenseStage *= 2;
-        if (spDefenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spDefenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
-
+    // Oxide: Simple doubles a stage change when it is made (ChangeStatStage),
+    // not the stages here (Generation 5).
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         attackStage = 0;
         spAttackStage = 0;
@@ -7757,12 +7819,14 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 }
 
 // each value here is implicitly 1 / N
+// Oxide: the Generation 7 rates, as hg-engine's table (Platinum's were 16,
+// 8, 4, 3 and 2).
 static const u8 sCriticalStageRates[] = {
-    16, // neutral
+    24, // neutral
     8, // +1
-    4, // +2
-    3, // +3
-    2, // +4
+    2, // +2
+    1, // +3
+    1, // +4
 };
 
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions)
@@ -7782,7 +7846,9 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     attackerSpecies = battleCtx->battleMons[attacker].species;
     attackerVolStatus = battleCtx->battleMons[attacker].statusVolatile;
     defenderMoveEffects = battleCtx->battleMons[defender].moveEffectsMask;
-    attackerAbility = battleCtx->battleMons[attacker].ability;
+    // VANILLA FIX: through Battler_Ability, as every other ability check is,
+    // so that Gastro Acid (and Oxide's Neutralizing Gas) stops Super Luck.
+    attackerAbility = Battler_Ability(battleCtx, attacker);
     effectiveCritStage = (((attackerVolStatus & VOLATILE_CONDITION_FOCUS_ENERGY) != FALSE) * 2)
         + (itemEffect == HOLD_EFFECT_CRITRATE_UP)
         + criticalStage
@@ -7812,6 +7878,9 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
         criticalMul = 2;
     }
 
+    // criticalMul is 2 for a critical hit and 3 for one by a Sniper; since
+    // Oxide's Generation 6 critical hits it is a marker, and the damage step
+    // turns it into 1.5x and 2.25x (ApplyCriticalMul in battle_script.c).
     if (criticalMul == 2 && Battler_Ability(battleCtx, attacker) == ABILITY_SNIPER) {
         criticalMul = 3;
     }
@@ -9006,6 +9075,38 @@ BOOL Ability_ChangeFails(int ability, u8 flags)
     }
 
     return FALSE;
+}
+
+// Oxide (Ian, 2026-09-26): Neutralizing Gas under the later games' rule. It
+// is worked out afresh from the battlers on the field at every read, so it
+// starts and ends with its holder's arrival, fainting or switching out, and
+// with Gastro Acid on the holder. The ability field is read directly because
+// Battler_Ability calls this. In a single battle the two unused battler slots
+// were zeroed with the battle context, so their HP is 0.
+BOOL BattleSystem_NeutralizingGasActive(BattleContext *battleCtx)
+{
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (battleCtx->battleMons[i].curHP
+            && battleCtx->battleMons[i].ability == ABILITY_NEUTRALIZING_GAS
+            && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) == FALSE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// The gas leaves alone another holder's gas and the abilities Generation 9
+// marks as impossible to suppress, which are exactly the ones the list above
+// gives ABILITY_FAILS_SUPPRESS: Multitype, Zen Mode, Stance Change, Shields
+// Down, Schooling, Disguise, Battle Bond, Power Construct, Comatose, RKS
+// System, Gulp Missile, Ice Face, both As One, Zero to Hero and Tera Shift.
+BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int ability)
+{
+    return ability != ABILITY_NONE
+        && ability != ABILITY_NEUTRALIZING_GAS
+        && BattleSystem_NeutralizingGasActive(battleCtx)
+        && Ability_ChangeFails(ability, ABILITY_FAILS_SUPPRESS) == FALSE;
 }
 
 BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)

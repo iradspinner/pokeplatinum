@@ -254,6 +254,10 @@ Finished blocks from element 4 and element 5, moved out on 2026-09-26 (their par
     - **The focused pass is done (2026-09-25, cloud branch `cloud/element4-effects`, merged the same day in 7b6ece777).** Sticky Web (the work parked after the crash, built and verified), After You, Aurora Veil, the Wide Guard set (Wide Guard, Quick Guard, Mat Block, Crafty Shield) and Belch, one commit each, each checked with `romdiff.py` against the previous commit's build and each with a test-kit set (27 to 31). New state went into existing padding, never a new field: Sticky Web and Aurora Veil in the side conditions mask and `SideConditions`, the guards in `TurnFlags`, Belch's per-party-slot record beside Knock Off's in `SideConditions`. The commit messages have the detail and the departures. `--audit` now reads 86 done, 5 settled, 20 unreachable, and three held back: Entrainment for element 5, and terrain (the Terrain moves, Steel Roller, Ice Spinner) for Ian's decision
   - **The pass is done (2026-09-26, cloud branch `cloud/element5-abilities`, merged the same day).** 52 of the 59 new abilities the species carry, in batches of related ones, one commit each, each checked with `romdiff.py` against the previous commit's build, gated, and given test-kit entries (the abilities menu, now two pages). Entrainment (the effect element 4 held back) is in, with hg-engine's list of abilities that refuse a change, which Trace, Role Play, Skill Swap, Gastro Acid and Worry Seed now read too. New state went into existing padding. The commit messages have the detail and the departures; the last one is the report
 
+Element 5's Neutralizing Gas sub-item, finished and moved out on 2026-09-26:
+
+  - [x] **Neutralizing Gas** (0eb1b2e9a, merged 2026-09-26, with the VANILLA FIX d29a8a143: Gastro Acid now stops Super Luck); its report is the last commit on `cloud/element5-neutralizing-gas`. The trainer AI does not know about the gas
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
@@ -295,6 +299,18 @@ Finished on 2026-09-26 and moved out the same day:
 - [x] **Swarm, Poke Radar and GBA dual-slot encounters turned off** (Ian, 2026-09-26): none of the three may ever produce a wild Pokemon, and none belongs in an encounter table. All 186 tables carried species in those lists, live once the National Dex is obtained.
   - [x] Main track (`cloud/main-encounter-lists-off`, 7cefbba53, merged with the tables on 2026-09-26): no grass site, the radar or the binoculars reads the lists; the TV flash never airs and the Sandgem sibling keeps her ordinary line (in `bulk_scripts.py`'s DIVERGED). In-game check under Waiting on Ian.
   - [x] Encounter track (5eaf5eb9b on `worktree-encounter-lists`, held for the engine change): all 2,976 entries emptied, and lint rule R17 fails on any species there.
+
+A finished sub-item of the tracker's "The staples survey's rulings" entry, moved out on 2026-09-26; the entry itself is still open:
+
+  - [x] Engine (2026-09-26, branch `cloud/element5-staples`, 24 commits, one per rule; its last commit is the report): the survey's native abilities plus nine more the later games changed (Stench, Water Absorb and Dry Skin, Magic Guard, Plus and Minus, Shed Skin, Liquid Ooze, Pressure, Simple), the three Gen 6 type immunities, 1.5x critical hits at the Gen 7 rates, Defog clearing hazards from both sides (screens from the target's only, as in the later games; a question for Ian below), and Rapid Spin's Speed raise. Each has a Modern rules entry in the test kit where the kit can show it (`docs/oxide/test-kit.md`)
+
+The staples entry's native move sub-item, finished and moved out on 2026-09-26:
+
+  - [x] Native moves to the full modern set (power, accuracy and PP), keeping the base ROM's deliberate values, every setup move's low PP, and Gen 4 accuracy on Thunder Wave, Dark Void and Swagger. Done 2026-09-26 on `cloud/main-native-moves` (10cb50b0): 81 fields over 66 moves from hg-engine's Generation 9 data, each registered in `verify_narcs.py`, plus a 160 cap on Fury Cutter's doubling (55013113) so its new 40 power cannot reach 640. Ian's answers on the report, on the same branch: Barrier and Tailwind go to 1 PP, Beat Up leaves every learnset and egg list (its record stays), and Leech Life takes 80 power over the base ROM's 65. The branch's last commit lists every change. The balance track rescores after the merge
+
+The tracker's "The Battle Zone before the Elite Four" entry as it stood on 2026-09-26, before it was shortened again the same day:
+
+- [ ] **The Battle Zone before the Elite Four** (Ian, 2026-09-25; `docs/oxide/battle-zone-plan.md`). **Changed 2026-09-26: the zone opens directly after Galactic HQ** (after Saturn and Cyrus), not straight after Lake Acuity, to break the Galactic fights in two: Candice, Lake Acuity, Galactic HQ, the zone, the Mt. Coronet climb and Spear Pillar, Volkner. **Settled 2026-09-26: two splits**, as the balance track proposed against Ian's targets (Galactic HQ hard, the zone medium hard, the climb and the last Galactic fights very hard): **HQ, cap 60** (the Galactic Warehouse and HQ, closing on Cyrus 2 and Saturn 2), then **Galactic, cap 65** (the Battle Zone, the Coronet climb, Spear Pillar and the Distortion World, closing on Cyrus 3); Candice 56, Volkner 68 and League 78 unchanged. The balance tool has them (c6c6d2ac8), and the encounter track's split table and 7-badge honey table do too (merged in 2c48803ab). Cyrus 2 and Spear Pillar's Mars and Jupiter need roster work in the trainer pass to reach their targets. Still in force from the first placement (Ian, 2026-09-25): **Heatran becomes a draw from the legendary pool** like Uxie and Azelf, Stark Mountain's last room joining the pool's statics, and the Battleground rematches are skipped for now. The entry's full wording as it stood before this cut is in the archive.
 
 ## Phase 5: Verify
 

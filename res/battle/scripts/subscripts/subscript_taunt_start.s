@@ -4,6 +4,8 @@
 _000:
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_DEFENDER, BATTLEMON_TAUNTED_TURNS, 0, _028
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MISSED|MOVE_STATUS_SEMI_INVULNERABLE, _028
+    // Oxide: Oblivious stops Taunt (Generation 6), with Captivate's message.
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_OBLIVIOUS, _oblivious
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     Random 2, 3
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_TAUNTED_TURNS, BTLVAR_CALC_TEMP
@@ -16,3 +18,14 @@ _000:
 _028:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
     End 
+
+_oblivious:
+    PrintAttackMessage 
+    Wait 
+    WaitButtonABTime 15
+    // {0}’s {1} made {2} ineffective!
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    Wait 
+    WaitButtonABTime 30
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
+    End

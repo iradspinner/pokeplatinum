@@ -467,6 +467,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildHorsea, 12
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
+    AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -484,6 +485,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 12, TestKit_WildHorsea
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
+    GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -1130,6 +1132,7 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityProtean, 16
     AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
     AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
+    AddListMenuEntry TestKit_Text_MenuAbilityNeutralizingGas, 19
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1150,6 +1153,7 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 16, TestKit_AbilityProtean
     GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
     GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
+    GoToIfEq VAR_0x8004, 19, TestKit_AbilityNeutralizingGas
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1797,6 +1801,343 @@ TestKit_AbilityInfiltrator:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_MIST
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Neutralizing Gas: a wild Chansey given Pressure that knows only Growl.
+   Pressure announces itself and doubles the PP Weezing's moves cost, so it
+   shows the gas arriving, the suppression, and the gas leaving, after which
+   Pressure announces itself again. */
+TestKit_AbilityNeutralizingGas:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_WEEZING
+    SetVar VAR_0x800B, ABILITY_NEUTRALIZING_GAS
+    SetVar VAR_0x8006, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8007, MOVE_STRANGE_STEAM
+    SetVar VAR_0x8008, MOVE_WILL_O_WISP
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_PRESSURE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
+   rules for native abilities, type immunities, critical hits, Defog and Rapid
+   Spin. Each entry is built as an ability entry is, with a foe where it needs
+   one. */
+TestKit_Staples:
+    Message TestKit_Text_WhichRule
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
+    AddListMenuEntry TestKit_Text_MenuStapleLightningRod, 1
+    AddListMenuEntry TestKit_Text_MenuStapleStormDrain, 2
+    AddListMenuEntry TestKit_Text_MenuStapleIntimidate, 3
+    AddListMenuEntry TestKit_Text_MenuStapleOblivious, 4
+    AddListMenuEntry TestKit_Text_MenuStapleIlluminate, 5
+    AddListMenuEntry TestKit_Text_MenuStapleSynchronize, 6
+    AddListMenuEntry TestKit_Text_MenuStapleLeafGuard, 7
+    AddListMenuEntry TestKit_Text_MenuStapleStench, 8
+    AddListMenuEntry TestKit_Text_MenuStapleWaterAbsorb, 9
+    AddListMenuEntry TestKit_Text_MenuStapleMagicGuard, 10
+    AddListMenuEntry TestKit_Text_MenuStapleLiquidOoze, 11
+    AddListMenuEntry TestKit_Text_MenuStapleSimple, 12
+    AddListMenuEntry TestKit_Text_MenuStapleGrassPowder, 13
+    AddListMenuEntry TestKit_Text_MenuStapleElectricParalysis, 14
+    AddListMenuEntry TestKit_Text_MenuStapleGhostTrap, 15
+    AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
+    AddListMenuEntry TestKit_Text_MenuStapleDefog, 17
+    AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
+    GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
+    GoToIfEq VAR_0x8004, 2, TestKit_StapleStormDrain
+    GoToIfEq VAR_0x8004, 3, TestKit_StapleIntimidate
+    GoToIfEq VAR_0x8004, 4, TestKit_StapleOblivious
+    GoToIfEq VAR_0x8004, 5, TestKit_StapleIlluminate
+    GoToIfEq VAR_0x8004, 6, TestKit_StapleSynchronize
+    GoToIfEq VAR_0x8004, 7, TestKit_StapleLeafGuard
+    GoToIfEq VAR_0x8004, 8, TestKit_StapleStench
+    GoToIfEq VAR_0x8004, 9, TestKit_StapleWaterAbsorb
+    GoToIfEq VAR_0x8004, 10, TestKit_StapleMagicGuard
+    GoToIfEq VAR_0x8004, 11, TestKit_StapleLiquidOoze
+    GoToIfEq VAR_0x8004, 12, TestKit_StapleSimple
+    GoToIfEq VAR_0x8004, 13, TestKit_StapleGrassPowder
+    GoToIfEq VAR_0x8004, 14, TestKit_StapleElectricParalysis
+    GoToIfEq VAR_0x8004, 15, TestKit_StapleGhostTrap
+    GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
+    GoToIfEq VAR_0x8004, 17, TestKit_StapleDefog
+    GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
+    GoTo TestKit_Close
+
+/* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
+   Surf, which does four times damage to it. Rest takes Geodude back to full
+   HP, so Sturdy holds again. */
+TestKit_StapleSturdy:
+    SetVar VAR_0x800A, SPECIES_GEODUDE
+    SetVar VAR_0x800B, ABILITY_STURDY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_ROCK_SLIDE
+    SetVar VAR_0x8008, MOVE_DEFENSE_CURL
+    SetVar VAR_0x8009, MOVE_MAGNITUDE
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SURF
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Lightning Rod: a Raichu given Lightning Rod, against a wild Jolteon that
+   knows only Thunderbolt. */
+TestKit_StapleLightningRod:
+    SetVar VAR_0x800A, SPECIES_RAICHU
+    SetVar VAR_0x800B, ABILITY_LIGHTNING_ROD
+    SetVar VAR_0x8006, MOVE_THUNDERBOLT
+    SetVar VAR_0x8007, MOVE_NASTY_PLOT
+    SetVar VAR_0x8008, MOVE_SURF
+    SetVar VAR_0x8009, MOVE_FOCUS_BLAST
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDERBOLT
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Storm Drain: a Gastrodon given Storm Drain, against a wild Vaporeon that
+   knows only Surf. */
+TestKit_StapleStormDrain:
+    SetVar VAR_0x800A, SPECIES_GASTRODON
+    SetVar VAR_0x800B, ABILITY_STORM_DRAIN
+    SetVar VAR_0x8006, MOVE_EARTH_POWER
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TOXIC
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SURF
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Intimidate blocked: a Staraptor with Intimidate, against a wild Lucario
+   given Inner Focus that knows only Splash. */
+TestKit_StapleIntimidate:
+    SetVar VAR_0x800A, SPECIES_STARAPTOR
+    SetVar VAR_0x800B, ABILITY_INTIMIDATE
+    SetVar VAR_0x8006, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8007, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_U_TURN
+    SetVar VAR_0x8000, SPECIES_LUCARIO
+    SetVar VAR_0x8001, ABILITY_INNER_FOCUS
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Oblivious and Taunt: a Weavile with Taunt, against a wild Slowbro given
+   Oblivious that knows only Growl. */
+TestKit_StapleOblivious:
+    SetVar VAR_0x800A, SPECIES_WEAVILE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TAUNT
+    SetVar VAR_0x8007, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8008, MOVE_ICE_SHARD
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_SLOWBRO
+    SetVar VAR_0x8001, ABILITY_OBLIVIOUS
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Keen Eye and Illuminate: a Starmie given Illuminate, against a wild
+   Chansey that knows Double Team and Sand Attack. Keen Eye works the same
+   way. */
+TestKit_StapleIlluminate:
+    SetVar VAR_0x800A, SPECIES_STARMIE
+    SetVar VAR_0x800B, ABILITY_ILLUMINATE
+    SetVar VAR_0x8006, MOVE_SURF
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_ICE_BEAM
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DOUBLE_TEAM
+    SetVar VAR_0x8003, MOVE_SAND_ATTACK
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Synchronize: an Espeon given Synchronize, against a wild Chansey that
+   knows only Toxic. */
+TestKit_StapleSynchronize:
+    SetVar VAR_0x800A, SPECIES_ESPEON
+    SetVar VAR_0x800B, ABILITY_SYNCHRONIZE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Leaf Guard and Rest: a Leafeon given Leaf Guard, against a wild Rattata
+   that knows only Tackle. */
+TestKit_StapleLeafGuard:
+    SetVar VAR_0x800A, SPECIES_LEAFEON
+    SetVar VAR_0x800B, ABILITY_LEAF_GUARD
+    SetVar VAR_0x8006, MOVE_SUNNY_DAY
+    SetVar VAR_0x8007, MOVE_REST
+    SetVar VAR_0x8008, MOVE_LEAF_BLADE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Stench: a Skuntank given Stench, against a wild Snorlax that knows only
+   Splash. */
+TestKit_StapleStench:
+    SetVar VAR_0x800A, SPECIES_SKUNTANK
+    SetVar VAR_0x800B, ABILITY_STENCH
+    SetVar VAR_0x8006, MOVE_FURY_SWIPES
+    SetVar VAR_0x8007, MOVE_SCRATCH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Water Absorb and Soak: a Lapras that knows Soak, against a wild Vaporeon
+   given Water Absorb that knows only Growl. */
+TestKit_StapleWaterAbsorb:
+    SetVar VAR_0x800A, SPECIES_LAPRAS
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_SOAK
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_ICE_BEAM
+    SetVar VAR_0x8009, MOVE_SING
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_WATER_ABSORB
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Magic Guard and paralysis: a Clefable given Magic Guard, against a wild
+   Jolteon that knows only Thunder Wave. */
+TestKit_StapleMagicGuard:
+    SetVar VAR_0x800A, SPECIES_CLEFABLE
+    SetVar VAR_0x800B, ABILITY_MAGIC_GUARD
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_SOFTBOILED
+    SetVar VAR_0x8009, MOVE_FLAMETHROWER
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDER_WAVE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Liquid Ooze and Dream Eater: a Gengar that knows Hypnosis and Dream
+   Eater, against a wild Tentacruel given Liquid Ooze that knows only
+   Splash. */
+TestKit_StapleLiquidOoze:
+    SetVar VAR_0x800A, SPECIES_GENGAR
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_HYPNOSIS
+    SetVar VAR_0x8007, MOVE_DREAM_EATER
+    SetVar VAR_0x8008, MOVE_SHADOW_BALL
+    SetVar VAR_0x8009, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8000, SPECIES_TENTACRUEL
+    SetVar VAR_0x8001, ABILITY_LIQUID_OOZE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Simple: a Bibarel given Simple, against a wild Chansey that knows only
+   Growl. */
+TestKit_StapleSimple:
+    SetVar VAR_0x800A, SPECIES_BIBAREL
+    SetVar VAR_0x800B, ABILITY_SIMPLE
+    SetVar VAR_0x8006, MOVE_DEFENSE_CURL
+    SetVar VAR_0x8007, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8008, MOVE_RETURN
+    SetVar VAR_0x8009, MOVE_WATERFALL
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Grass and powder: a Venusaur, against a wild Parasect given Effect Spore
+   that knows Spore and Stun Spore. */
+TestKit_StapleGrassPowder:
+    SetVar VAR_0x800A, SPECIES_VENUSAUR
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_BODY_SLAM
+    SetVar VAR_0x8009, MOVE_SYNTHESIS
+    SetVar VAR_0x8000, SPECIES_PARASECT
+    SetVar VAR_0x8001, ABILITY_EFFECT_SPORE
+    SetVar VAR_0x8002, MOVE_SPORE
+    SetVar VAR_0x8003, MOVE_STUN_SPORE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Electric and paralysis: a Luxray, against a wild Arbok that knows Glare
+   and Thunder Wave. */
+TestKit_StapleElectricParalysis:
+    SetVar VAR_0x800A, SPECIES_LUXRAY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_SPARK
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_ROAR
+    SetVar VAR_0x8009, MOVE_CHARGE
+    SetVar VAR_0x8000, SPECIES_ARBOK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GLARE
+    SetVar VAR_0x8003, MOVE_THUNDER_WAVE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ghosts and trapping: a Mismagius, against a wild Umbreon that knows Mean
+   Look and Fire Spin (Wrap, a Normal move, would not touch a Ghost). */
+TestKit_StapleGhostTrap:
+    SetVar VAR_0x800A, SPECIES_MISMAGIUS
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_MYSTICAL_FIRE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_TELEPORT
+    SetVar VAR_0x8000, SPECIES_UMBREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MEAN_LOOK
+    SetVar VAR_0x8003, MOVE_FIRE_SPIN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Critical hits: a Mew with Focus Energy and Slash, against a wild Snorlax
+   that knows only Splash. Focus Energy's two stages and Slash's one make
+   three, which is always a critical hit at the Generation 7 rates. */
+TestKit_StapleCritical:
+    SetVar VAR_0x8006, MOVE_FOCUS_ENERGY
+    SetVar VAR_0x8007, MOVE_SLASH
+    SetVar VAR_0x8008, MOVE_TACKLE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Defog: a Mew with Defog, Stealth Rock and Reflect, against a wild
+   Skarmory that knows Spikes and Toxic Spikes. */
+TestKit_StapleDefog:
+    SetVar VAR_0x8006, MOVE_DEFOG
+    SetVar VAR_0x8007, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8008, MOVE_REFLECT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPIKES
+    SetVar VAR_0x8003, MOVE_TOXIC_SPIKES
+    SetVar VAR_0x800A, SPECIES_MEW
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Rapid Spin: a Starmie with Rapid Spin, against a wild Skarmory that knows
+   only Spikes. */
+TestKit_StapleRapidSpin:
+    SetVar VAR_0x800A, SPECIES_STARMIE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_RAPID_SPIN
+    SetVar VAR_0x8007, MOVE_SURF
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPIKES
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
