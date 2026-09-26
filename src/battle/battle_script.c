@@ -6337,6 +6337,10 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
  * - CompareVarToValue the weather is sun, recovery is equal to 2/3 of the user's maximum HP.
  * - CompareVarToValue any other weather is active, recovery is equal to 1/4 of the user's maximum HP.
  *
+ * Oxide: Shore Up shares this effect but follows its own rule, 1/2 of the
+ * user's maximum HP, or 2/3 in a sandstorm; no other weather changes it.
+ * hg-engine gives it 1/4 in rain, sun or hail, which the later games do not.
+ *
  * @param battleSys
  * @param battleCtx
  * @return FALSE
@@ -6345,7 +6349,13 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if (NO_WEATHER) {
+    if (battleCtx->moveCur == MOVE_SHORE_UP) {
+        if (!NO_WEATHER && WEATHER_IS_SAND) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);
+        } else {
+            battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
+        }
+    } else if (NO_WEATHER) {
         battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
     } else if (WEATHER_IS_SUN) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);

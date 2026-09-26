@@ -3155,10 +3155,12 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
     case BATTLE_EFFECT_SHADOW_FORCE:
-    // Oxide's two-turn moves: Geomancy, Freeze Shock and Ice Burn
+    // Oxide's two-turn moves: Geomancy, Freeze Shock, Ice Burn, Meteor Beam and Electro Shot
     case BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2:
     case BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT:
     case BATTLE_EFFECT_CHARGE_TURN_BURN_HIT:
+    case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP:
+    case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS:
         return TRUE;
     }
 
@@ -8586,6 +8588,9 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
     case BATTLE_EFFECT_SHADOW_FORCE: // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Shadow Force, one before Fire Fang's effect, which was listed by mistake
+    // Oxide: Meteor Beam's and Electro Shot's charge turns are not hits, so Wonder Guard does not stop them
+    case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP:
+    case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS:
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }

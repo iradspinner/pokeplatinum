@@ -68,7 +68,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Transform copying the whole ability. Set 50 on the same page: Wonder Room
   against a Cloyster that recovers every turn, Tackle and Swift trading
   places while the room is up and back again when it wears off five turns
-  later. A stub effect does its damage and skips its extra, or says "But
+  later. Set 51 on the same page: Shore Up against a Chansey's Seismic Toss,
+  healing half Mew's HP in sun or rain and two thirds in a sandstorm. Set 52:
+  Meteor Beam charging for a turn with a Sp. Atk raise, then hitting, or
+  hitting at once holding the Power Herb the set gives. Set 53: Electro Shot
+  the same way out of rain, and raising Sp. Atk and hitting in one turn after
+  Rain Dance. A stub
+  effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
 - [ ] **Element 5, the Abilities menu** (two pages, Neutralizing Gas last): one

@@ -369,4 +369,6 @@ subscript_files = files(
     'subscript_absorb_and_sp_attack_up_1_stage.s',
     'subscript_wonder_room_end.s',
     'subscript_permanent_wonder_room.s',
+    'subscript_power_herb_meteor_beam.s',
+    'subscript_sp_atk_up_rain_skip.s',
 )

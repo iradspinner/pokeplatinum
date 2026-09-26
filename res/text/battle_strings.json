@@ -9204,6 +9204,48 @@
         "Defense and Sp. Def stats\f",
         "returned to normal!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsOverflowingWithSpacePower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is\n",
+        "overflowing with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsOverflowingWithSpacePower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "overflowing with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsOverflowingWithSpacePower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "overflowing with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAbsorbedElectricity_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAbsorbedElectricity_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonAbsorbedElectricity_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
     }
   ]
 }
