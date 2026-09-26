@@ -531,6 +531,49 @@ def new_content(blob):
     return out
 
 
+# ---- dead weight (goal 4) ----------------------------------------------------
+
+# Ian's ruling of 2026-09-27: terrain is not ported. The four Terrain moves
+# say "But nothing happened!", Steel Roller always fails, and the four
+# Surge abilities and Seed Sower do nothing; the passes take them out of
+# everything the player can get. The moves that only read terrain (Ice
+# Spinner, Terrain Pulse and the rest) are plain hits and stay.
+DEAD_MOVES = {"MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN", "MOVE_MISTY_TERRAIN",
+              "MOVE_PSYCHIC_TERRAIN", "MOVE_STEEL_ROLLER"}
+DEAD_ABILITIES = {"ELECTRIC_SURGE", "GRASSY_SURGE", "MISTY_SURGE", "PSYCHIC_SURGE", "SEED_SOWER"}
+
+
+def dead_weight():
+    """{"species": [(constant, obtainable, [what is dead])], "tms": [(machine,
+    move)], "tutors": [(location, move)]}: everything that carries a move
+    or ability Ian's terrain ruling left doing nothing."""
+    owned = set(pool.species_by_split()[SPLITS[-1]])
+    machines = pokedex.machines(data.ROOT)
+    rows = []
+    with open(os.path.join(data.ROOT, "generated", "species.txt"), encoding="utf-8") as f:
+        species = [line.strip() for line in f if line.strip().startswith("SPECIES_")]
+    for sp in species:
+        try:
+            rec = pokedex.load(data.ROOT, sp)
+        except OSError:
+            rec = None
+        if not rec:
+            continue
+        dead = [f"ability {a}" for a in rec["abilities"] if a in DEAD_ABILITIES]
+        if rec.get("hidden_ability") in DEAD_ABILITIES:
+            dead.append(f"hidden ability {rec['hidden_ability']}")
+        dead += [f"level {lvl} {mv}" for lvl, mv in rec["learnset"] if mv in DEAD_MOVES]
+        dead += [f"{m} {machines[m]}" for m in rec["by_tm"] if machines.get(m) in DEAD_MOVES]
+        dead += [f"tutor {mv}" for mv in rec["by_tutor"] if mv in DEAD_MOVES]
+        dead += [f"egg {mv}" for mv in rec["egg_moves"] if mv in DEAD_MOVES]
+        if dead:
+            rows.append((sp, sp in owned, dead))
+    with open(os.path.join(data.ROOT, "res", "pokemon", "move_tutors.json"), encoding="utf-8") as f:
+        tutors = [(r["location"], r["move"]) for r in json.load(f) if r["move"] in DEAD_MOVES]
+    return {"species": rows, "tms": sorted((m, mv) for m, mv in machines.items() if mv in DEAD_MOVES),
+            "tutors": tutors}
+
+
 # ---- report ------------------------------------------------------------------
 
 def _fmt(v, w=6, d=2):
@@ -686,6 +729,13 @@ def report(results, content=None, out=sys.stdout):
         say(f"Fully evolved species that surely answer nothing in {MIN_FIGHTS} or more story "
             f"fights ({len(idle)}): " + ", ".join(canon.showdown_name(sp) for sp in idle))
 
+    dead = dead_weight()
+    say("\nGoal 4, dead weight since terrain is not ported (Ian, 2026-09-27): "
+        f"{len(dead['tms'])} TMs and {len(dead['tutors'])} tutor moves teach a dead move; "
+        f"{sum(o for _s, o, _d in dead['species'])} obtainable species carry one:")
+    for sp, owned, things in dead["species"]:
+        say(f"  {canon.showdown_name(sp):18}{'obtainable' if owned else 'not obtainable':16}"
+            f"{', '.join(things)}")
     if content:
         say("\nGoal 3, what vanilla Platinum lacks, per split: on the player's side, new species "
             "and species with a new move; on the trainers there, new species, moves, abilities:")

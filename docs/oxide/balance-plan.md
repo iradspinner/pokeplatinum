@@ -1282,6 +1282,17 @@ lands, and each change is re-scored as it lands.
    Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
    modern stat buffs, Chimecho and Staraptor go to their modern totals, and
    Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.
+   **Terrain is not ported** (Ian, 2026-09-27), so nothing the player can
+   get may be dead weight: the four Terrain moves (which say "But nothing
+   happened!") and Steel Roller (which always fails) leave every learnset,
+   TM and tutor list, and the four Surge abilities and Seed Sower are
+   replaced wherever a species carries them. The moves that only read
+   terrain (Ice Spinner, Terrain Pulse and the rest) are plain hits and
+   stay. `b6.py --report` lists the worklist: Arboliva's Seed Sower,
+   Galarian Weezing's hidden Misty Surge, and seven obtainable lines that
+   learn a dead move by level (Galarian Mr. Mime and Mr. Rime, Sylveon,
+   Togedemaru, Dhelmise, the Smoliv line); no TM, tutor or egg list
+   teaches one yet, and the TM pass keeps it that way.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
