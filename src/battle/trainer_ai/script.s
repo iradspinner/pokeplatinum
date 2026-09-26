@@ -147,6 +147,10 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_UPROAR, ScoreMinus10
     IfMoveEqualTo MOVE_METAL_SOUND, ScoreMinus10
     IfMoveEqualTo MOVE_GRASS_WHISTLE, ScoreMinus10
+    // Oxide, vanilla fix (Ian, 2026-09-27): Hyper Voice is on the engine's
+    // list of sound moves (sSoundMoves) but was missing here, so the AI used
+    // it into Soundproof.
+    IfMoveEqualTo MOVE_HYPER_VOICE, ScoreMinus10
     IfMoveEqualTo MOVE_BUG_BUZZ, ScoreMinus10
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
     // Oxide: the sound moves element 4 added, from the engine's sSoundMoves.
