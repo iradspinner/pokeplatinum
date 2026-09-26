@@ -1,6 +1,6 @@
 # How Platinum's trainer AI chooses a move
 
-Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes have since shifted lines in the branch (by up to 22 in `script.s` and 31 in `trainer_ai.c`); find a routine by its label, not its number. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
+Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes and changes since have shifted lines in the branch by hundreds in `script.s` and dozens in `trainer_ai.c`; find a routine by its label, not its number, and read the README's later sections for what each routine now does. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
 
 The AI lives in two files. `src/battle/trainer_ai/trainer_ai.c` is the interpreter: it sets up the scores, runs the script, picks the move, and holds the switching and item logic, which are plain C. `src/battle/trainer_ai/script.s` is the script itself, about 8,100 lines of commands such as "if the target is asleep, add minus 10", one routine per AI flag. The commands are the `AICmd_*` functions in the C file. The game asks for a move from `src/battle/battle_display.c` line 3590, through `TrainerAI_Main`, but only for a trainer's Pokemon, a roaming legendary, the tutorial battle, or a partner on the player's side (lines 3586 to 3589). **Every other wild Pokemon picks a usable move at random** (lines 3600 to 3612) and never reaches anything described here. That includes both Pokemon in a wild double battle, so Oxide's wild doubles do not run the AI unless element 8 changes that line; whether they should is a decision for then.
 
@@ -78,7 +78,7 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 
 The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
 
-What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step; the Phase 4 catch-up below took the part of it that is a fix, and lists the rest for Ian.
+What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step; the Phase 4 catch-up below took the part of it that is a fix, and the changes of play of 2026-09-27 most of the rest.
 
 ## Fixes applied, 2026-09-22
 
@@ -152,22 +152,95 @@ Checked and found already right, with nothing to change:
 - **Critical hits at 1.5x.** No score reads the multiplier. The damage estimates leave critical hits out, and Expert's high-critical and Focus Energy bonuses are flat.
 - **The stat and type choosers** (`cloud/element4-stat-choice`). Foul Play, Body Press, Psyshock and the rest live in `BattleSystem_CalcMoveDamage`, which the estimate calls, and Freeze-Dry and Flying Press go through the two type chart walks the AI's effectiveness checks call.
 - **The held items** on the list (Eviolite, Assault Vest, Air Balloon, Rocky Helmet, Weakness Policy, the seeds) do not exist until element 7, so there is nothing to teach yet.
-- **The new Protect moves** keep the AI's repeat penalty at 0, which is what the engine does today, but only by accident: `BtlCmd_TryProtection` resets the run for any move but Protect, Detect, Endure, Wide Guard and Quick Guard, so King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark and Max Guard never lose reliability. That is an engine bug (tracker, element 4); when it is fixed, `AICmd_LoadProtectChain` must take the same list.
+- **The new Protect moves** kept the AI's repeat penalty at 0, which was what the engine did then, but only by accident: `BtlCmd_TryProtection` reset the run for any move but Protect, Detect, Endure, Wide Guard and Quick Guard, so King's Shield and the rest never lost reliability. The engine and the AI were fixed together on 2026-09-27 (next section).
 
 ### Changes of play, for Ian
 
-Each of these would make the AI play differently rather than bring an existing check up to date, so none is made. They are Ian's call.
+The catch-up listed eight ways the AI could play the new rules better. Ian wanted all eight (2026-09-27), and they are made; the next section has them.
 
-1. Tag Strategy gives -1 to a single-target Electric or Water move that the foe's partner would draw in with Lightning Rod or Storm Drain. The move is now lost outright and boosts the foe, so a larger penalty fits.
-2. Tag Strategy aims Electric and Water moves at its own Volt Absorb or Water Absorb partner to heal it. It could aim them at a Lightning Rod or Storm Drain partner for the Sp. Atk boost, and a Grass move at a Sap Sipper partner.
-3. The switch to an absorber (`AI_HasAbsorbAbilityInParty`) knows only Volt Absorb, Water Absorb and Flash Fire. Lightning Rod, Storm Drain and Sap Sipper could join them; Motor Drive and Dry Skin are vanilla omissions.
-4. Dragon Dance takes -10 under Trick Room. The new Speed raisers (Shift Gear, Quiver Dance, Shell Smash, Victory Dance, Geomancy, Fillet Away) do not.
-5. None of the 114 new effects has an Expert routine, so the AI values no new move beyond Basic and the damage comparison. The first candidates, once trainers carry them: the setup moves, U-turn's successors (Volt Switch, Flip Turn, Parting Shot), the new recovery (Strength Sap, Life Dew), and the Speed-lowering attacks (Bulldoze, Electroweb, Low Sweep and others), which Expert's Speed drop routine names by move id.
-6. Defog now clears hazards from the user's side as well, and Rapid Spin raises Speed; Expert values neither.
-7. Basic never checks whether its own Rest can work (vanilla leaves out Insomnia and Vital Spirit too); Oxide adds Leaf Guard in sun, Purifying Salt and Sweet Veil. Nor does Basic refuse Taunt on anything, so Oblivious's new Taunt immunity has no check to join.
-8. Prankster's failure against Dark types and Telepathy's shield against its partner's spread moves have no check. No trainer Pokemon can have either ability yet.
+## Changes of play and fixes, 2026-09-27
 
-**A vanilla bug found and not fixed:** Basic's Soundproof list has always lacked Hyper Voice, which Platinum's engine list has, so the AI uses Hyper Voice into Soundproof. Fixing it is a VANILLA FIX and Ian's call.
+`cloud/element6-changes` made Ian's eight changes of play, one commit per rule, and two fixes. Every change is marked in the code with "Oxide, change (Ian, 2026-09-27)", each vanilla fix with "Oxide, vanilla fix (Ian, 2026-09-27)" and a "VANILLA FIX" commit subject. As with the catch-up, most of the move changes act only once the trainer pass gives trainers the new moves; the ability changes act now wherever a Pokemon on either side has the ability.
+
+Three vanilla fixes are among them. They change how Platinum's own AI plays, so they are listed for Ian apart from the rest: the absorber switch now knows Motor Drive and Dry Skin (8b06bb2b5), Basic checks that the AI's own Rest can work (260718b36), and Hyper Voice joins Basic's Soundproof list (d5bc49486).
+
+| Commit | Change | Kind |
+|---|---|---|
+| b42430802 | Tag Strategy: -10 for a move the foe's Lightning Rod or Storm Drain partner would draw in | change 1 |
+| 2c500dd1a | Tag Strategy: aim Electric and Water moves at its own Lightning Rod or Storm Drain partner, Grass moves at a Sap Sipper one | change 2 |
+| a55af5a76 | The absorber switch knows Lightning Rod, Storm Drain and Sap Sipper | change 3 |
+| 8b06bb2b5 | The absorber switch knows Motor Drive and Dry Skin | change 3, VANILLA FIX |
+| 4c7e307fd | The new Speed raisers take -10 under Trick Room | change 4 |
+| 7516f40e6 | Expert: the new setup moves | change 5 |
+| 938a08d44 | Expert: Parting Shot; Basic: when it fails | change 5 |
+| b76f89126 | Expert: Strength Sap and Life Dew; Basic: when they fail | change 5 |
+| e038640a4 | Expert: the new Speed-lowering attacks | change 5 |
+| 8683308bf | Expert: Hex, Venoshock, Acrobatics and Bolt Beak and their kin when their power doubles | change 5 |
+| 3c2f329e6 | Sticky Web and Aurora Veil, Basic and Expert | change 5 |
+| 1ea62f51f | Expert: Hurricane, the Hisuian storms, the new draining, self-lowering and always-critical attacks | change 5 |
+| cf2a08ed3 | First Impression and Poltergeist, Basic and Expert | change 5 |
+| d2ec8fb9c | Expert: Flame Charge and the other attacks that raise Speed | change 5 |
+| 8ac764a21 | Expert: Freeze Shock and Ice Burn | change 5 |
+| 1c86dd3cd | Defog clearing the hazards on the AI's own side | change 6 |
+| 75fbc76b6 | Rapid Spin's Speed raise | change 6 |
+| 260718b36 | Basic checks the AI's own Rest (vanilla failures) | change 7, VANILLA FIX |
+| 7a6143667 | Basic checks the AI's own Rest (Oxide's failures) | change 7 |
+| be01afea7 | Basic refuses Taunt into Oblivious | change 7 |
+| 69798bb36 | Basic refuses a Prankster status move into a Dark type | change 8 |
+| fb3b0f1e3 | Tag Strategy: a Telepathy partner is safe from spread moves | change 8 |
+| d5bc49486 | Hyper Voice in Basic's Soundproof list | fix, VANILLA FIX |
+| a11da24d1 | The engine: the new Protect moves lose reliability in a row | fix, Oxide (element 4) |
+| 1be560b12 | The AI reads the Protect run with the engine's test | fix, follows the engine |
+
+Two new AI commands came with them, both making the engine's own test so the AI and the battle cannot disagree. `IfMoveCanBeDrawnIn` jumps when Lightning Rod or Storm Drain could draw the move being scored away from its target: aimed at one target or a random foe, used without Normalize or Mold Breaker (`BattleSystem_CheckRedirectionAbilities`). `IfPranksterBlockedByDark` jumps when the user has Prankster, the move is a status move aimed at the target (not at the user's side, the whole field or the foe's side), and the target is a Dark type (`BattleControllerPlayer_PriorityBlock`).
+
+### How each changed check now decides
+
+**Tag Strategy, a single-target Electric or Water move at a foe** (`TagStrategy_CheckElectricMove`, `TagStrategy_CheckWaterMove`). Discharge and Surf go to their spread checks as before. For any other Electric move, the AI first asks whether the move can be drawn in; if it can, the foe's partner is standing, and the AI knows or guesses that partner has Lightning Rod, the move takes -10 and scoring stops. Otherwise, if the AI's own partner has Lightning Rod, -10 as in vanilla, for any Electric move. Water moves do the same with Storm Drain. Vanilla gave the first case -1, and -8 more beside a Ground holder, and gave it to spread moves such as Muddy Water too, which are never drawn in; those now take nothing.
+
+**Tag Strategy, a move aimed at the AI's own partner** (`TagStrategy_Partner`). A damaging Electric move at a partner with Lightning Rod, a damaging Water move at a partner with Storm Drain, a damaging Grass move at a partner with Sap Sipper, Thunder Wave at a Lightning Rod partner and a Grass status move at a Sap Sipper partner are all scored as vanilla scores Motor Drive: 62.5% of the time no change, otherwise -30 if the stat the ability raises (Sp. Atk, or Attack for Sap Sipper) is already at +6 and +3 if not. A partner without the ability still takes -30. The doubles driver keeps a move aimed at the partner only if it scores 100 or more, as before.
+
+**The switch to an absorber** (`AI_HasAbsorbAbilityInParty`, before any move is scored). When the last attack that hit the AI's Pokemon was of a type some ability takes, and the Pokemon does not have such an ability itself, the AI looks through its bench and switches to the first Pokemon with one, half the time. The abilities are now, by type: Fire, Flash Fire; Water, Water Absorb, Storm Drain and Dry Skin; Electric, Volt Absorb, Lightning Rod and Motor Drive; Grass, Sap Sipper (`AI_AbilityAbsorbsType`). Vanilla had one per type, and never switched for a Grass hit. The other conditions are vanilla's: the hit had to be an attack, and a Pokemon with a super-effective move stays in two times in three.
+
+**Speed raisers under Trick Room** (Basic). Quiver Dance, Shift Gear, Shell Smash, Fillet Away, Geomancy, Victory Dance and Autotomize now take -10 while Trick Room is up, the five-turn room or Saturn 2's permanent one, as Dragon Dance and Agility already did. Clangorous Soul, which raises all five stats, does not.
+
+**Expert, the new setup moves.** Each goes to the routine vanilla uses for its nearest Platinum move. Quiver Dance, Shift Gear, Shell Smash, Fillet Away, Geomancy, Victory Dance and Clangorous Soul go to Dragon Dance's: 50% chance of +1 when slower than the target, otherwise a 72.7% chance of -1 at half HP or less. Coil and Cotton Guard go to the Defense raise, as Bulk Up does; Hone Claws and Work Up to the Attack raise; Take Heart to the Sp. Def raise, as Calm Mind does; Autotomize to the Speed raise, as Agility does. Those routines are in `expert-1.md`. Basic checks Autotomize as a Speed raise and Take Heart as Calm Mind, unless Take Heart has a status to cure.
+
+**Expert, the switching moves.** Volt Switch and Flip Turn share U-turn's effect and have always gone to its routine. Parting Shot now does too, leaving out U-turn's check that the target resists, since it is a status move; with no Pokemon left to switch to it is scored as Growl. Basic gives Parting Shot -10 when the target's Attack and Sp. Atk are both at -6, where it fails and its user stays in.
+
+**Expert, the new recovery.** Strength Sap and Life Dew go to the recovery routine, as Recover does (-3 at full HP, -8 when faster, otherwise a likely +2 below 70% HP). Basic gives Life Dew -8 at full HP, as Recover, and Strength Sap -10 when the target's Attack is at -6, where it fails.
+
+**Expert, the Speed-lowering attacks.** The routine for attacks that may lower Speed names the ones that always do, by move id. Low Sweep, Bulldoze, Electroweb, Glaciate, Drum Beating and Pounce join Icy Wind, Rock Tomb and Mud Shot: into a target that does not resist, a 72.7% chance of +2 when slower, -3 when already faster.
+
+**Expert, attacks whose power doubles in their effect script**, which the damage estimate does not see. Each now has a routine in Wake-Up Slap's shape, -1 into a target that resists or is immune and +1 when the power doubles: Hex and Infernal Parade against a target with a status or Comatose, Venoshock and Barb Barrage against a poisoned target, Acrobatics when the user holds no item, Bolt Beak and Fishious Rend when the user is faster.
+
+**Sticky Web and Aurora Veil.** Basic gives Sticky Web -10 when the target's side already has one or the target is its side's last Pokemon, as Spikes; Expert scores it as Spikes. Basic gives Aurora Veil -8 while it is up, as Reflect, and -10 outside hail, where it fails. Expert scores it in Reflect's shape: -2 below half HP, a 50% chance of +1 at 90% or more, and a 75% chance of +1 when the target's last move was an attack of either class.
+
+**Expert, attacks that work as a Platinum move does.** Hurricane goes to Thunder's routine (80.5% chance of -3 into a resisting target or in sun, +1 in rain). The three Hisuian storms go to a copy without the sun part, since the engine keeps their accuracy in sun. Draining Kiss, Oblivion Wing, Bouncy Bubble and Matcha Gotcha go to Giga Drain's; V-create, Clanging Scales and Hyperspace Fury to Close Combat's; Spin Out to Hammer Arm's; Storm Throw, Frost Breath, Wicked Blow, Flower Trick and Surging Strikes to the high critical routine; Freeze Shock and Ice Burn to Skull Bash's. Flame Charge, Aqua Step, Trailblaze and Esper Wing share Rapid Spin's new routine (below).
+
+**First Impression and Poltergeist.** Basic gives First Impression -10 after its user's first turn out, through Fake Out's check, and Expert gives it Fake Out's +2. Basic gives Poltergeist -10 into a target holding no item.
+
+**Defog** (Basic and Expert). Defog now clears the hazards on both sides and the target's Aurora Veil. Basic's "useless" test (-10) no longer fires when the AI's own side has Spikes, Toxic Spikes, Stealth Rock or Sticky Web, or the target's side has Aurora Veil or Sticky Web. Expert adds +2 when the AI's side has a hazard and the AI has a benched Pokemon, and then scores the target's side as vanilla does: its screens and Aurora Veil favour Defog, its hazards, which the AI would rather keep, count against it.
+
+**Rapid Spin and the attacks that raise Speed** (Expert, `Expert_SpeedUpOnHit`). -1 into a target that resists or is immune; otherwise a 50% chance of +1 when the user is not already faster, unless Trick Room is up or its Speed is at +6. Only the Speed raise is valued, as Ian approved; Rapid Spin's hazard, binding and Leech Seed clearing still earns nothing, as in vanilla.
+
+**Rest** (Basic, new). -8 at full HP; -10 with Insomnia or Vital Spirit; -10 during an Uproar unless the user has Soundproof. Those three are vanilla's failures, the VANILLA FIX. Oxide's add -10 with Purifying Salt, with Leaf Guard in sun, and with Sweet Veil on the user or its standing partner in a double battle. Expert's Rest routine is unchanged and still applies after.
+
+**Taunt** (Basic, new). -10 into a target the AI knows or guesses has Oblivious, unless the user has Mold Breaker.
+
+**Prankster** (Basic). A status move the user's Prankster raises takes -10 into a Dark-type target, through `IfPranksterBlockedByDark`.
+
+**Telepathy** (Tag Strategy's spread moves). A partner with Telepathy takes no damage from its partner's moves, unless the user has Mold Breaker. Beside one, Earthquake and Magnitude take +2 (as beside Levitate), Discharge +3 (as beside a Ground type), Surf and Lava Plume +2, and Explosion and Self-Destruct no change (as beside a Ghost), in place of the penalties for a partner the move would hurt.
+
+**Soundproof** (Basic). Hyper Voice takes -10 into a Soundproof target, as the other sound moves do. Vanilla's list lacked it though the engine's has it.
+
+**The Protect run** (the engine and the AI). The engine now keeps the run of Protect successes going after any move on Protect's effect, Endure, Wide Guard or Quick Guard (`Move_KeepsProtectRun`), where it named Protect, Detect and Endure (and Oxide's two guards). So King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark and Max Guard fall to one in two, one in four and one in eight when used in a row, as Protect does. `AICmd_LoadProtectChain` calls the same test, so Expert's Protect routine sees the run too.
+
+### Still open after the changes
+
+These new effects still have no Expert routine and are scored by Basic's generic checks and the damage comparison only. Most are unlikely on a trainer; the ones worth a routine when the trainer pass gives them out are Dragon Tail and Circle Throw, Heal Pulse and the side guards in double battles, Clear Smog, Throat Chop, Triple Axel, Fell Stinger and Final Gambit. The full list: the side guards (Wide Guard, Quick Guard, Mat Block, Crafty Shield), Guard Split, Power Split, Smack Down and Thousand Arrows, Heavy Slam and Heat Crash, Soak, Entrainment, After You, Clear Smog, Heal Pulse, Circle Throw and Dragon Tail, Incinerate, Final Gambit, Techno Blast, Relic Song, Belch, Fell Stinger, Noble Roar and Tearful Look, Diamond Storm, Venom Drench, the trapping attacks (Thousand Waves, Spirit Shackle, Anchor Shot, Jaw Lock), Laser Focus, Throat Chop, Pollen Puff, Burn Up and Double Shock, Guardian of Alola, Multi-Attack, Plasma Fists, the Let's Go moves, Double Iron Bash, Steel Roller and Ice Spinner, Meteor Beam and Electro Shot (plain hits until their effects are written), Coaching, Triple Axel, Dire Claw, Stone Axe and Ceaseless Edge, Chloroblast, Axe Kick, Spicy Extract, Population Bomb, Glaive Rush, Triple Dive, Mortal Spin, Make It Rain, Psyblade, Fickle Beam, Mighty Cleave and Psychic Noise. The status moves whose effects are unwritten keep Basic's -10 from the catch-up.
+
+Two gaps found on the way, both left for Ian. Tag Strategy's partner checks name Earthquake, Magnitude, Surf, Discharge, Lava Plume, Explosion and Self-Destruct only, so the spread moves element 4 added that also hit the partner (Bulldoze, Boomburst, Sludge Wave, Parabolic Charge, Petal Blizzard, Searing Shot and others) are chosen with no thought for the partner. And vanilla's check that the AI's own partner would draw a move in still fires for spread Water and Electric moves, which are never drawn in (Muddy Water beside a Storm Drain partner takes -10); fixing it would be a vanilla fix.
 
 ## The parts
 

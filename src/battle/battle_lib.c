@@ -3748,6 +3748,22 @@ static BOOL MoveInList(const u16 *list, int count, int move)
     return FALSE;
 }
 
+// Oxide: whether the move a battler last used keeps its run of Protect
+// successes going, so the next Protect-type move rolls against the run
+// rather than starting afresh. Platinum named Protect, Detect and Endure;
+// every move on Protect's effect counts, so the protecting moves element 4
+// added (King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap,
+// Burning Bulwark, Max Guard) lose reliability as Protect does, and so do
+// Wide Guard and Quick Guard, as in hg-engine. Mat Block and Crafty Shield
+// do not. Read by BtlCmd_TryProtection and by the AI's LoadProtectChain.
+BOOL Move_KeepsProtectRun(BattleContext *battleCtx, int move)
+{
+    return MOVE_DATA(move).effect == BATTLE_EFFECT_PROTECT
+        || move == MOVE_ENDURE
+        || move == MOVE_WIDE_GUARD
+        || move == MOVE_QUICK_GUARD;
+}
+
 // Oxide: for the Grass type's immunity to powder moves, in the controller.
 BOOL Move_IsPowder(int move)
 {

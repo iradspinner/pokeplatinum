@@ -389,6 +389,8 @@ With every flag in this part at once, Swagger on turn 0 could collect +21 (Setup
 
 Fixed on 2026-09-22: O1, the Weather flag, and O11, Trick, Switcheroo and Gastro Acid on the partner (both vanilla fixes, approved by Ian), O6, Discharge (battle_edits, vanilla fix approved by Ian on 2026-09-15), and O19, the ability byte (Oxide). The rest stand as vanilla has them.
 
+Changed on 2026-09-27 (`cloud/element6-changes`; the README has each rule), in Tag Strategy: the "target's partner has Lightning Rod" and "Storm Drain" rows are now -10, and only for a move that can be drawn in (`IfMoveCanBeDrawnIn`); a Lightning Rod, Storm Drain or Sap Sipper partner is scored as a Motor Drive one when the AI aims a matching move at it, Thunder Wave and Grass status moves included; and a Telepathy partner counts as safe in the Earthquake, Discharge, Surf, Lava Plume and Explosion rows.
+
 Every script bug below is present in vanilla Platinum at the same line on `main`, because `script.s` is unchanged. The C bugs are present in vanilla at the same lines of `trainer_ai.c`. One entry is introduced by Oxide. None has been fixed.
 
 1. O1, Weather falls through for every move. Lines 7987 to 7992. Present in vanilla Platinum, `main` `script.s` lines 7987 to 7992. The four `IfCurrentMoveEffectEqualTo` tests have no jump after them, so a move that is not a weather move runs `Weather_Sun` and gets +5 unless it is sunny. Evidence: line 7991 is followed directly by the label `Weather_Sun:` at 7992. Effect: the flag gives every move +5 on turn 0 and so does nothing, except to favour the non-sun weather moves in sun and to punish repeating the current weather.

@@ -636,6 +636,20 @@
     .long (\jump-.) / 4 - 1
     .endm
 
+    // Oxide: jump if Lightning Rod or Storm Drain could draw the move the AI is
+    // scoring away from its target (one target, no Normalize or Mold Breaker).
+    .macro IfMoveCanBeDrawnIn jump:req
+    .long AICMD_IFMOVECANBEDRAWNIN
+    .long (\jump-.) / 4 - 1
+    .endm
+
+    // Oxide: jump if the move the AI is scoring is a status move Prankster
+    // raises, aimed at a Dark-type target, which it then does not affect.
+    .macro IfPranksterBlockedByDark jump:req
+    .long AICMD_IFPRANKSTERBLOCKEDBYDARK
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

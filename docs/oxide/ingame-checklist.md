@@ -101,6 +101,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   message; a Pokemon one level under the cap stops at it however much it
   earns, and is still at it after a trip into the PC; a higher split lets it
   grow again.
+- [ ] **Protect in a row** (Modern rules, `cloud/element6-changes`): King's
+  Shield used every turn works the first time, then about one time in two, then
+  one in four, with "But it failed!"; Spiky Shield the same. Before the fix
+  both worked every turn.
 - [ ] **One calculator roll** (the encounter tool, M8): in a battle, note an
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
@@ -137,6 +141,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   with Rain Dance, a Weather-flag trainer): break at the end of
   `TrainerAI_MainSingles` and read `moveScore`. Rain Dance reads 105 and
   neither attack carries the Weather flag's +5 (compare the +5, not the gap).
+- [ ] Element 6's absorber switch (`cloud/element6-changes`), Picnicker Siena
+  (level 15, Zigzagoon then an Electrike with Lightning Rod): hit Zigzagoon
+  with an Electric attack that does not knock it out. On about half such
+  turns she switches to Electrike instead of attacking; before the change she
+  never did. Take several tries before calling it.
 - [ ] Honey trees at one badge: slather a tree and check the species and levels
   against table 1 of `res/field/encounters/encounters_honey_tree.json`. The
   Munchlax trees are gone.
@@ -171,9 +180,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   cleared, Route 225 is open from the first arrival at the Fight Area, and the
   Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
   (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
-- [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
-  Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
-  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
 - [ ] **(live)** Element 6's Phase 4 catch-up (`docs/oxide/battle-ai/README.md`),
   in Volkner's battle: lead with a Lightning Rod Pokemon (Electrike's line or
   Rhyhorn's), break at the end of `TrainerAI_MainSingles` and read
@@ -181,6 +187,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
   recorded the ability the AI guesses between the species' two, so the drop
   shows on about half the turns; take several turns before calling it.
+- [ ] Element 6's absorber switch, the VANILLA FIX part: Collector Brady
+  (level 28, Kangaskhan first, a Dry Skin Parasect on his bench) switches to
+  Parasect on about half the turns his Kangaskhan takes a Water attack that
+  does not knock it out; vanilla never did. Attack from a pure Water type, so
+  Kangaskhan's Hammer Arm is not super effective, which would keep it in two
+  turns in three.
+- [ ] Hyper Voice into Soundproof (a VANILLA FIX): against Ace Trainer Skylar
+  (level 60), lead with a Whismur-line Pokemon, whose only ability is
+  Soundproof. Her Exploud never chooses Hyper Voice.
+- [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
+  Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 

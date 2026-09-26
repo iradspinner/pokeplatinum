@@ -147,6 +147,10 @@ Basic_CheckSoundproof:
     IfMoveEqualTo MOVE_UPROAR, ScoreMinus10
     IfMoveEqualTo MOVE_METAL_SOUND, ScoreMinus10
     IfMoveEqualTo MOVE_GRASS_WHISTLE, ScoreMinus10
+    // Oxide, vanilla fix (Ian, 2026-09-27): Hyper Voice is on the engine's
+    // list of sound moves (sSoundMoves) but was missing here, so the AI used
+    // it into Soundproof.
+    IfMoveEqualTo MOVE_HYPER_VOICE, ScoreMinus10
     IfMoveEqualTo MOVE_BUG_BUZZ, ScoreMinus10
     IfMoveEqualTo MOVE_CHATTER, ScoreMinus10
     // Oxide: the sound moves element 4 added, from the engine's sSoundMoves.
@@ -171,9 +175,9 @@ Basic_CheckBulletproof:
     // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
     // Breaker ignores it. The list is the engine's sBallAndBombMoves.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckQueenlyMajesty
+    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckPrankster
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckQueenlyMajesty
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckPrankster
     IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
     IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
     IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
@@ -200,6 +204,11 @@ Basic_CheckBulletproof:
     IfMoveEqualTo MOVE_SYRUP_BOMB, ScoreMinus10
     IfMoveEqualTo MOVE_WEATHER_BALL, ScoreMinus10
     IfMoveEqualTo MOVE_ZAP_CANNON, ScoreMinus10
+
+Basic_CheckPrankster:
+    // Oxide, change (Ian, 2026-09-27): a status move that the user's Prankster raises does not
+    // affect a Dark-type target (element 5), so score -10.
+    IfPranksterBlockedByDark ScoreMinus10
 
 Basic_CheckQueenlyMajesty:
     // Oxide: Queenly Majesty stops a move of raised priority aimed at its
@@ -400,6 +409,26 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Basic_CheckVictoryDance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Basic_CheckClangorousSoul
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Basic_CheckHighStatStage_Defense
+    // Oxide: Autotomize is a Speed raise, checked as Agility is (Trick Room
+    // included); Take Heart as Calm Mind is, unless it has a status to cure.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AUTOTOMIZE, Basic_CheckHighStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAKE_HEART, Basic_CheckTakeHeart
+    // Oxide: Parting Shot fails, and its user stays in, when the target's
+    // Attack and Sp. Atk are both at -6.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Basic_CheckPartingShot
+    // Oxide: Life Dew heals as Recover does; Strength Sap fails when the
+    // target's Attack is already at -6.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
+    // Oxide: Sticky Web fails when the target's side already has one, and is
+    // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
+    // and while it is up, as Reflect does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Basic_CheckStickyWeb
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Basic_CheckAuroraVeil
+    // Oxide: First Impression fails after its user's first turn out, as Fake
+    // Out does; Poltergeist fails against a target holding no item.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FIRST_TURN_ONLY, Basic_CheckFirstTurnInBattle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POLTERGEIST, Basic_CheckPoltergeist
     // Oxide: status moves element 4 added whose effect is not written yet.
     // They say "But nothing happened!" or do nothing at all, so score -10.
     // The stubs' effects are named here; the rest sit on the plain hit effect
@@ -420,6 +449,56 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TIDY_UP, ScoreMinus10
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_THREAD, ScoreMinus10
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SNOW, ScoreMinus10
+    // Oxide, vanilla fix (Ian, 2026-09-27): Basic never checked Rest.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REST, Basic_CheckRest
+    // Oxide, change (Ian, 2026-09-27): Oblivious now stops Taunt.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAUNT, Basic_CheckTaunt
+    PopOrEnd 
+
+Basic_CheckRest:
+    // Oxide, vanilla fix (Ian, 2026-09-27). Rest fails in the engine in each case below, and
+    // Basic never looked, so a trainer could waste its turn:
+    //  - The attacker is at full HP, score -8, as for Recover
+    //  - The attacker has Insomnia or Vital Spirit, score -10
+    //  - An Uproar is going on and the attacker lacks Soundproof, score -10
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER, 100, ScoreMinus8
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
+    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
+    // Oxide, change (Ian, 2026-09-27): the ways Oxide's Rest also fails, score -10:
+    //  - The attacker has Purifying Salt (element 5)
+    //  - The attacker has Leaf Guard, in sunshine (the staples rulings)
+    //  - The attacker or its partner has Sweet Veil (element 5)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    IfLoadedEqualTo ABILITY_SWEET_VEIL, ScoreMinus10
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Basic_CheckRest_Partner
+    LoadCurrentWeather 
+    IfLoadedEqualTo AI_WEATHER_SUNNY, ScoreMinus10
+
+Basic_CheckRest_Partner:
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckRest_Uproar
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, Basic_CheckRest_Uproar
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SWEET_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckRest_Uproar:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_SOUNDPROOF, Basic_CheckRest_End
+    IfFieldConditionsMask FIELD_CONDITION_UPROAR, ScoreMinus10
+
+Basic_CheckRest_End:
+    PopOrEnd 
+
+Basic_CheckTaunt:
+    // Oxide, change (Ian, 2026-09-27). Oblivious stops Taunt (the staples rulings), unless
+    // Mold Breaker ignores it, so score -10.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckTaunt_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
+
+Basic_CheckTaunt_End:
     PopOrEnd 
 
 Basic_CheckUnwrittenStatusMove:
@@ -1201,12 +1280,17 @@ Basic_CheckDragonDance:
     // is: if the first stat they raise is already at +6, score -10; if any of
     // the others is, score -8. The two that cost HP fail at or below that
     // share, so score -10 there first, as for Belly Drum.
+    // Oxide, change (Ian, 2026-09-27): those that raise Speed also score -10
+    // under Trick Room, as Dragon Dance does (Quiver Dance, Shift Gear, Shell
+    // Smash, Fillet Away, Geomancy, Victory Dance). Clangorous Soul, which
+    // raises every stat, is left alone: four of its five raises still help.
 Basic_CheckHoneClaws:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckQuiverDance:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
@@ -1219,11 +1303,13 @@ Basic_CheckCoil:
     PopOrEnd 
 
 Basic_CheckShiftGear:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckShellSmash:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
@@ -1235,6 +1321,7 @@ Basic_CheckWorkUp:
     PopOrEnd 
 
 Basic_CheckFilletAway:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
@@ -1242,12 +1329,14 @@ Basic_CheckFilletAway:
     PopOrEnd 
 
 Basic_CheckGeomancy:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckVictoryDance:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
@@ -1260,6 +1349,41 @@ Basic_CheckClangorousSoul:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckPoltergeist:
+    LoadHeldItem AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ITEM_NONE, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckStickyWeb:
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, ScoreMinus10
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckAuroraVeil:
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_AURORA_VEIL, ScoreMinus8
+    LoadCurrentWeather 
+    IfLoadedNotEqualTo AI_WEATHER_HAILING, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckStrengthSap:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckPartingShot:
+    IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, Basic_CheckPartingShot_End
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, ScoreMinus10
+
+Basic_CheckPartingShot_End:
+    PopOrEnd 
+
+Basic_CheckTakeHeart:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckTakeHeart_End
+    GoTo Basic_CheckCalmMind
+
+Basic_CheckTakeHeart_End:
     PopOrEnd 
 
 Basic_CheckCamouflage:
@@ -1709,6 +1833,14 @@ Basic_CheckDefog:
     IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Basic_CheckDefog_Terminate
+    // Oxide, change (Ian, 2026-09-27): Defog now also clears the target's Aurora Veil, and
+    // blows the hazards off the user's own side (the staples rulings), so either is a use
+    // for it too.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Basic_CheckDefog_Terminate
 
     // If the current weather is Deep Fog, ignore all other checks.
     LoadCurrentWeather 
@@ -1723,6 +1855,7 @@ Basic_CheckDefog:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Basic_CheckDefog_Terminate // Oxide
     GoTo ScoreMinus10
 
 Basic_CheckDefog_Terminate:
@@ -2040,6 +2173,78 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_HALF, Expert_RecoilMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Expert_HealingWish
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHADOW_FORCE, Expert_ShadowForce
+
+    // Oxide, change (Ian, 2026-09-27): the setup moves element 4 added, each
+    // sent to the routine vanilla uses for its nearest Platinum move. Those
+    // that raise Speed with an attacking stat go to Dragon Dance's, which
+    // favours them when the user is slower; Coil and Cotton Guard go to the
+    // Defense raise, as Bulk Up does; Hone Claws and Work Up to the Attack
+    // raise; Take Heart to the Sp. Def raise, as Calm Mind does; Autotomize
+    // to the Speed raise, as Agility does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_ACC_UP, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_UP, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_ACC_UP, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAKE_HEART, Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AUTOTOMIZE, Expert_StatusSpeedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2_ATK_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Expert_DragonDance
+    // Oxide, change (Ian, 2026-09-27): Volt Switch and Flip Turn share U-turn's
+    // effect, so its routine above already scores them; Parting Shot has its own.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PARTING_SHOT, Expert_PartingShot
+    // Oxide, change (Ian, 2026-09-27): the new recovery moves, as Recover.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
+    // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
+    // condition the damage estimate does not see, scored as Wake-Up Slap and
+    // Smelling Salts are.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_DAMAGE_ON_STATUS, Expert_Hex
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BURN_HIT_DOUBLE_POWER_ON_STATUS, Expert_Hex
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_ON_POISONED, Expert_Venoshock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POISON_HIT_DOUBLE_POWER_ON_POISONED, Expert_Venoshock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_DAMAGE_WITHOUT_ITEM, Expert_Acrobatics
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_FASTER, Expert_BoltBeak
+    // Oxide, change (Ian, 2026-09-27): Sticky Web as Spikes; Aurora Veil as
+    // Reflect and Light Screen together.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Expert_Spikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Expert_AuroraVeil
+    // Oxide, change (Ian, 2026-09-27): attacks that work as a Platinum move
+    // does, sent to its routine. Hurricane has Thunder's accuracy in rain and
+    // sun; the three Hisuian storms its accuracy in rain only.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HURRICANE, Expert_Thunder
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BLEAKWIND_STORM, Expert_RainStorm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WILDBOLT_STORM, Expert_RainStorm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SANDSEAR_STORM, Expert_RainStorm
+    // Draining Kiss, Oblivion Wing, Bouncy Bubble and Matcha Gotcha, as Giga Drain.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT, Expert_DrainMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_FULL_DAMAGE_DEALT, Expert_DrainMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT, Expert_DrainMove
+    // V-create, Clanging Scales and Hyperspace Fury lower the user's defences,
+    // as Close Combat; Spin Out its Speed, as Hammer Arm.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_SP_DEF_SPEED_DOWN_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT_REMOVE_PROTECT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_SPEED_DOWN_2_HIT, Expert_HammerArm
+    // First Impression, which works only on its user's first turn out, as Fake Out.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FIRST_TURN_ONLY, Expert_FakeOut
+    // The moves that always land a critical hit, as the high critical moves.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_CRITICAL, Expert_HighCritical
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
+    // Oxide, change (Ian, 2026-09-27): Rapid Spin now raises its user's Speed.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_AND_BINDING, Expert_SpeedUpOnHit
+    // Oxide, change (Ian, 2026-09-27): Flame Charge, Aqua Step, Trailblaze and
+    // Esper Wing always raise their user's Speed, as Rapid Spin now does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
+    // Oxide, change (Ian, 2026-09-27): Freeze Shock and Ice Burn, which
+    // charge for a turn as Skull Bash does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT, Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_BURN_HIT, Expert_ChargeTurnNoInvuln
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -2573,12 +2778,21 @@ Expert_SpeedDownOnHit:
     // If the target is immune to or would resist the move, do not apply any further modifiers.
     //
     // Treat the exact moves Icy Wind, Rock Tomb, and Mud Shot as Speed-reducing status moves.
+    // Oxide: and the six below.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_SpeedDownOnHit_End
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_SpeedDownOnHit_End
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_SpeedDownOnHit_End
     IfMoveEqualTo MOVE_ICY_WIND, Expert_StatusSpeedDown
     IfMoveEqualTo MOVE_ROCK_TOMB, Expert_StatusSpeedDown
     IfMoveEqualTo MOVE_MUD_SHOT, Expert_StatusSpeedDown
+    // Oxide, change (Ian, 2026-09-27): the attacks element 4 added that always lower Speed
+    // (Max Strike aside, which no trainer can use).
+    IfMoveEqualTo MOVE_LOW_SWEEP, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_BULLDOZE, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_ELECTROWEB, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_GLACIATE, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_DRUM_BEATING, Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_POUNCE, Expert_StatusSpeedDown
     PopOrEnd 
 
 Expert_SpeedDownOnHit_End:
@@ -3159,6 +3373,27 @@ Expert_Reflect_PreSplitPhysicalTypes:
     TableEntry TYPE_GHOST
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
+
+Expert_AuroraVeil:
+    // Oxide, change (Ian, 2026-09-27). Aurora Veil halves both kinds of damage, so it is
+    // scored as Reflect is, with the last move's check taking either class.
+    //
+    // If the attacker's HP is < 50%, score -2.
+    //
+    // If the attacker's HP is >= 90%, 50% chance of additional score +1.
+    //
+    // If the opponent's last-used move was a Physical or Special move, 75% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, Expert_Reflect_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, Expert_AuroraVeil_CheckLastUsedMove
+    IfRandomLessThan 128, Expert_AuroraVeil_CheckLastUsedMove
+    AddToMoveScore 1
+
+Expert_AuroraVeil_CheckLastUsedMove:
+    LoadDefenderLastUsedMoveClass 
+    IfLoadedEqualTo CLASS_STATUS, Expert_Reflect_End
+    IfRandomLessThan 64, Expert_Reflect_End
+    AddToMoveScore 1
+    PopOrEnd 
 
 Expert_StatusPoison:
     // If the attacker's HP is < 50% or the defender's HP is <= 50%, score -1.
@@ -4225,6 +4460,21 @@ Expert_Thunder_TryScoreMinus3:
 Expert_Thunder_End:
     PopOrEnd 
 
+Expert_RainStorm:
+    // Oxide, change (Ian, 2026-09-27). Bleakwind, Wildbolt and Sandsear Storm never miss in rain,
+    // as Thunder does, but keep their accuracy in sun.
+    //
+    // If the opponent resists or is immune to the move, ~80.5% chance of score -3.
+    //
+    // If it is raining, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_Thunder_TryScoreMinus3
+    LoadCurrentWeather 
+    IfLoadedNotEqualTo AI_WEATHER_RAINING, Expert_Thunder_End
+    AddToMoveScore 1
+    PopOrEnd 
+
 Expert_ChargeTurnWithInvuln:
     // If the attacker is holding a Power Herb, score +2.
     //
@@ -5086,6 +5336,92 @@ Expert_WakeUpSlap_ScorePlus1:
 Expert_WakeUpSlap_End:
     PopOrEnd 
 
+Expert_Hex:
+    // Oxide, change (Ian, 2026-09-27). Hex and Infernal Parade double their power against a
+    // target with a status, or with Comatose.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the opponent has a status or Comatose, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, Expert_DoubledPower_ScorePlus1
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_COMATOSE, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_Venoshock:
+    // Oxide, change (Ian, 2026-09-27). Venoshock and Barb Barrage double their power against a
+    // poisoned target.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the opponent is poisoned or badly poisoned, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_POISON | MON_CONDITION_TOXIC, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_Acrobatics:
+    // Oxide, change (Ian, 2026-09-27). Acrobatics doubles its power when its user holds no item.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the attacker holds no item, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_NONE, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_BoltBeak:
+    // Oxide, change (Ian, 2026-09-27). Bolt Beak and Fishious Rend double their power when their
+    // user moves before the target.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // If the attacker is faster than its opponent, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_DoubledPower_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, Expert_DoubledPower_ScorePlus1
+    PopOrEnd 
+
+Expert_DoubledPower_ScoreMinus1:
+    AddToMoveScore -1
+    PopOrEnd 
+
+Expert_DoubledPower_ScorePlus1:
+    AddToMoveScore 1
+    PopOrEnd 
+
+Expert_SpeedUpOnHit:
+    // Oxide, change (Ian, 2026-09-27). An attack that raises its user's Speed a stage: Rapid Spin
+    // since the staples rulings, Flame Charge and its kin. Scored for the Speed only; vanilla gave Rapid Spin's hazard and
+    // binding clearing no score, and that is unchanged.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // Otherwise, unless Trick Room is up or the attacker's Speed is already at +6, if the
+    // attacker is not faster than its opponent, 50% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, Expert_SpeedUpOnHit_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, Expert_SpeedUpOnHit_End
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, Expert_SpeedUpOnHit_End
+    IfRandomLessThan 128, Expert_SpeedUpOnHit_End
+    AddToMoveScore 1
+    PopOrEnd 
+
+Expert_SpeedUpOnHit_ScoreMinus1:
+    AddToMoveScore -1
+
+Expert_SpeedUpOnHit_End:
+    PopOrEnd 
+
 Expert_HammerArm:
     // If the opponent resists or is immune to the move, score -1.
     //
@@ -5383,6 +5719,20 @@ Expert_UTurn_ScorePlus1:
 
 Expert_UTurn_End:
     PopOrEnd 
+
+Expert_PartingShot:
+    // Oxide, change (Ian, 2026-09-27). Parting Shot lowers the target's Attack and Sp. Atk,
+    // then its user switches out, as U-turn does after its hit.
+    //
+    // If the attacker is the last living party member, it only lowers the stats: score it as
+    // Growl is scored.
+    //
+    // Otherwise, score it as U-turn, leaving out U-turn's check that the target resists, which
+    // a status move does not meet.
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_StatusAttackDown
+    IfHasSuperEffectiveMove Expert_UTurn_TryScoreMinus2
+    GoTo Expert_UTurn_CheckPartyDamage
 
 Expert_CloseCombat:
     // If the opponent resists or is immune to the move, score -1.
@@ -6385,11 +6735,30 @@ Expert_Defog:
     // Otherwise:
     // - 80.5% chance of additional score -2.
     // - If the opponent's HP <= 70% score -2.
+    //
+    // Oxide, change (Ian, 2026-09-27): Defog now also blows the hazards off the user's own side
+    // (the staples rulings). If the attacker's side has Spikes, Stealth Rock, Toxic Spikes or
+    // Sticky Web and the attacker has a party member left to switch in, score +2 on top of the
+    // above. The target's Aurora Veil counts as a screen, and its Sticky Web as a hazard.
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_Defog_CheckTargetSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_ClearsOwnHazards
+    GoTo Expert_Defog_CheckTargetSide
+
+Expert_Defog_ClearsOwnHazards:
+    AddToMoveScore 2
+
+Expert_Defog_CheckTargetSide:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Expert_Defog_ScreenScrubbing
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Expert_Defog_ScreenScrubbing
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Expert_Defog_ScreenScrubbing
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Expert_Defog_ScoreMinus2AndEnd
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_ScoreMinus2AndEnd
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_ScoreMinus2AndEnd
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_ScoreMinus2AndEnd
     GoTo Expert_Defog_CheckUserHPAndOpponentEvasion
 
 Expert_Defog_ScreenScrubbing:
@@ -6404,6 +6773,7 @@ Expert_Defog_ScreenScrubbingCheckHazards:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Expert_Defog_TryScoreMinus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_TryScoreMinus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_TryScoreMinus1
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_TryScoreMinus1 // Oxide
     GoTo Expert_Defog_CheckUserHPAndOpponentEvasion
 
 Expert_Defog_ScoreMinus2AndEnd:
@@ -7391,6 +7761,10 @@ TagStrategy_Earthquake:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Earthquake_CheckTypes
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage from its partner's
+    // moves (element 5), so it is as safe as a Levitate one
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_Earthquake_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
@@ -7421,11 +7795,20 @@ TagStrategy_Explosion:
     // Explosion and Self-Destruct hit the partner as well as both foes. Vanilla never looked
     // at the partner for them. If our partner:
     //  - Is absent (its slot is empty for the rest of the battle) or a Ghost, no change
+    //    (Oxide: or has Telepathy, below)
     //  - Resists the move (has a Rock or Steel typing), score -3
     //  - Otherwise, score -10
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Explosion_End
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GHOST
     IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, as a Ghost one,
+    // unless the user's Mold Breaker gets past it
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Explosion_CheckTypes
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
+
+TagStrategy_Explosion_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
@@ -7503,19 +7886,21 @@ TagStrategy_SkillSwap:
 TagStrategy_CheckElectricMove:
     // If the move is Discharge, handle it similarly to Earthquake. Otherwise, apply all of the
     // following which are met:
-    //  - The target's partner would redirect the move with Lightning Rod, score -1; additional
-    //    score -8 if the target's partner is also a Ground type
+    //  - The target's partner would draw the move in with Lightning Rod, score -10
     //  - The attacker's partner has Lightning Rod, score -10
+    // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1, and -8 more beside a
+    // Ground partner, since in Platinum Lightning Rod only drew the move in. Now the holder
+    // takes the move and raises its Sp. Atk, so the move is lost and helps the foe. Only a
+    // move that can be drawn in counts: one aimed at a single target, used without Mold
+    // Breaker or Normalize, at a foe whose partner is still standing.
     IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
-    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
-    IfLoadedEqualTo AI_HAVE, TagStrategy_TargetProtectedByLightningRod
+    IfMoveCanBeDrawnIn TagStrategy_CheckTargetLightningRod
     GoTo TagStrategy_PartnerHasLightningRod
 
-TagStrategy_TargetProtectedByLightningRod:
-    AddToMoveScore -1
-    FlagBattlerIsType AI_BATTLER_DEFENDER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_PartnerHasLightningRod
-    AddToMoveScore -8
+TagStrategy_CheckTargetLightningRod:
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_PartnerHasLightningRod
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 TagStrategy_PartnerHasLightningRod:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
@@ -7545,6 +7930,9 @@ TagStrategy_SpreadElectricMove:
     // Oxide: a Lightning Rod partner now takes the move as Volt Absorb does
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner is as safe as a Ground one
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
 
 TagStrategy_SpreadElectricMove_CheckTypes:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): a Ground partner is immune, so it is checked first,
@@ -7563,12 +7951,18 @@ TagStrategy_CheckElectric_End:
 TagStrategy_CheckWaterMove:
     // If the move is Surf, handle it similarly to Earthquake. Otherwise, apply all of the
     // following which are met:
-    //  - The target's partner would redirect the move with Storm Drain, score -1
+    //  - The target's partner would draw the move in with Storm Drain, score -10
     //  - The attacker's partner has Storm Drain, score -10
+    // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1. Now the holder takes
+    // the move and raises its Sp. Atk, as for Lightning Rod above, with the same test.
     IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
+    IfMoveCanBeDrawnIn TagStrategy_CheckTargetStormDrain
+    GoTo TagStrategy_CheckPartnerStormDrain
+
+TagStrategy_CheckTargetStormDrain:
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, TagStrategy_CheckPartnerStormDrain
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_STORM_DRAIN
-    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_CheckPartnerStormDrain
-    AddToMoveScore -1
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 TagStrategy_CheckPartnerStormDrain:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
@@ -7598,6 +7992,10 @@ TagStrategy_SpreadWaterMove:
     // Oxide: a Storm Drain partner now takes the move as Water Absorb does
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, so score +2, as
+    // Earthquake beside a partner immune to it
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_SpreadWaterMove_CheckTypes:
 
@@ -7649,6 +8047,9 @@ TagStrategy_SpreadFireMove:
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
+    // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, as for Surf
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_SpreadFireMove_CheckTypes:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
@@ -7672,6 +8073,7 @@ TagStrategy_Partner:
     IfLoadedEqualTo TYPE_FIRE, TagStrategy_CheckPartnerFireAbsorption
     IfLoadedEqualTo TYPE_ELECTRIC, TagStrategy_CheckPartnerElectricAbsorption
     IfLoadedEqualTo TYPE_WATER, TagStrategy_CheckPartnerWaterAbsorption
+    IfLoadedEqualTo TYPE_GRASS, TagStrategy_CheckPartnerGrassAbsorption // Oxide
     IfMoveEqualTo MOVE_FLING, TagStrategy_PartnerTrick
 
 TagStrategy_ScoreMinus30:
@@ -7701,11 +8103,23 @@ TagStrategy_CheckPartnerElectricAbsorption:
     //  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
     //  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
     //  - Else, 75% chance of score +3, 25% chance of no change
+    //
+    // Oxide, change (Ian, 2026-09-27): if our partner has Lightning Rod, which now takes the
+    // move and raises Sp. Atk, score it as for Motor Drive, reading Sp. Atk for Speed.
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerMotorDrive
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerVoltAbsorb
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerSpAttackBoost
     GoTo TagStrategy_ScoreMinus30
+
+TagStrategy_CheckPartnerSpAttackBoost:
+    // Oxide: shared by Lightning Rod and Storm Drain. 62.5% chance of no score change; else
+    // score -30 if our partner's Sp. Atk is already at +6, and +3 if not.
+    IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 12, TagStrategy_ScoreMinus30
+    GoTo ScorePlus3
 
 TagStrategy_CheckPartnerMotorDrive:
     IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
@@ -7741,11 +8155,26 @@ TagStrategy_CheckPartnerWaterAbsorption:
     //  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
     //  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
     //  - Else, 75% chance of score +3, 25% chance of no change
+    //
+    // Oxide, change (Ian, 2026-09-27): if our partner has Storm Drain, which now takes the
+    // move and raises Sp. Atk, score it as for Lightning Rod.
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerWaterAbsorb
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerWaterAbsorb
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerSpAttackBoost
     GoTo TagStrategy_ScoreMinus30
+
+TagStrategy_CheckPartnerGrassAbsorption:
+    // Oxide, change (Ian, 2026-09-27): if our partner has Sap Sipper, which takes Grass moves
+    // and raises Attack (element 5), score as for Motor Drive, reading Attack for Speed.
+    // Otherwise, score -30. Grass status moves come here too, from the status move checks.
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SAP_SIPPER
+    IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_ScoreMinus30
+    IfRandomLessThan 160, TagStrategy_CheckElectricAbsorption_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TagStrategy_ScoreMinus30
+    GoTo ScorePlus3
 
 TagStrategy_PartnerWaterAbsorb:
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, ScoreMinus10
@@ -7770,6 +8199,10 @@ TagStrategy_CheckWaterAbsorption_End:
     PopOrEnd 
 
 TagStrategy_PartnerStatusMove:
+    // Oxide, change (Ian, 2026-09-27): a Grass status move at a Sap Sipper partner raises its
+    // Attack, as a Grass attack does.
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfLoadedEqualTo TYPE_GRASS, TagStrategy_CheckPartnerGrassAbsorption
     IfMoveEqualTo MOVE_SKILL_SWAP, TagStrategy_PartnerSkillSwap
     IfMoveEqualTo MOVE_WILL_O_WISP, TagStrategy_PartnerWillOWisp
     IfMoveEqualTo MOVE_THUNDER_WAVE, TagStrategy_PartnerThunderWave
@@ -7882,6 +8315,10 @@ TagStrategy_PartnerThunderWave:
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
 
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
+    IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
+
+    // Oxide, change (Ian, 2026-09-27): Lightning Rod takes Thunder Wave too
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, TagStrategy_CheckPartnerElectricAbsorption
 
     GoTo TagStrategy_PartnerScoreMinus30

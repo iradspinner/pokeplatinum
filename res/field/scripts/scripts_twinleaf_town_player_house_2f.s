@@ -2172,6 +2172,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
     AddListMenuEntry TestKit_Text_MenuStapleDefog, 17
     AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
+    AddListMenuEntry TestKit_Text_MenuStapleProtectRun, 19
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2192,6 +2193,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
     GoToIfEq VAR_0x8004, 17, TestKit_StapleDefog
     GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
+    GoToIfEq VAR_0x8004, 19, TestKit_StapleProtectRun
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2465,6 +2467,21 @@ TestKit_StapleRapidSpin:
     SetVar VAR_0x8000, SPECIES_SKARMORY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPIKES
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Protect in a row: a Mew with King's Shield, Spiky Shield and Protect,
+   against a wild Rattata that knows only Tackle. Each of the three loses
+   reliability when used in a row, the new two as Protect does (element 4
+   fix, cloud/element6-changes). */
+TestKit_StapleProtectRun:
+    SetVar VAR_0x8006, MOVE_KINGS_SHIELD
+    SetVar VAR_0x8007, MOVE_SPIKY_SHIELD
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x800A, SPECIES_MEW
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
