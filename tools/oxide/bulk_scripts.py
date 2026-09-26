@@ -160,6 +160,8 @@ DIVERGED["scripts_eterna_city_underground_man_house"] = (
     "the Underground Man no longer gives the Explorer Kit")
 DIVERGED["scripts_cycle_shop"] = (
     "the Bicycle no longer raises Eterna's exit blockade, which waited for the Explorer Kit")
+DIVERGED["scripts_mining_museum"] = (
+    "the fossil researcher revives without waiting for the Explorer Kit")
 
 # The clown's gift moved to the Restaurant on Route 213 (Ian, 2026-09-25).
 DIVERGED["scripts_pastoria_city_north_house"] += (
