@@ -120,6 +120,12 @@ section { overflow-y: auto; }
 #mid .wrow.gone .ico { opacity: .35; }
 #mid .wrow.spent { opacity: .35; }
 #mid .wrow.got { background: color-mix(in srgb, var(--act) 16%, transparent); }
+/* The honey tree and a scripted source's pool: the same brief rows as the
+   water panels, with a box to tick the catch, since neither has a slot grid. */
+#mid .wpanel.honey, #mid .wpanel.pool { cursor: default; }
+#mid .wrow.pick { grid-template-columns: 48px 48px 1fr auto 22px; }
+#mid .wrow.pick input { margin: 0; }
+#mid .srcnote { max-width: 72ch; }
 #mid table.grid tbody tr:hover { background: var(--sunken); }
 #mid td.rate { color: var(--dim); }
 #mid table.grid th { font-size: 15px; }
@@ -186,6 +192,7 @@ button:disabled { color: var(--faint); cursor: default; }
 .arow .l1 { grid-column: 1 / -1; }
 .arow .l2 { min-width: 0; }
 .arow .sub { font-size: 14px; color: var(--faint); }
+.arow .l2 .note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .arow .num { font-size: 14.5px; color: var(--dim); }
 .arow .enc span.lbl { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .arow .enc.none { color: var(--faint); }
@@ -1248,14 +1255,21 @@ function drawList() {
       : frac >= .66 ? "p3" : frac >= .34 ? "p2" : frac > 0 ? "p1" : "";
     const lv = r.level_min === r.level_max ? r.level_min
       : r.level_min + "–" + r.level_max;
-    const water = r.kinds.length > 1 ? `<span class="sub">water</span>` : "";
+    // What else the row holds, as one short note: a scripted source's kind,
+    // a grass split later than the row's own, water, a honey tree.
+    const notes = [];
+    if (r.scripted) notes.push(r.scripted.kind + (r.scripted.planned ? ", planned" : ""));
+    else if (r.first_split && r.first_split !== r.split) notes.push("grass " + r.split);
+    else if (r.kinds.length > 1) notes.push("water");
+    if (r.honey) notes.push("honey");
+    if (r.no_capture) notes.push("no capture");
+    const note = notes.length ? `<span class="sub note" title="${esc(notes.join(", "))}">${esc(notes.join(", "))}</span>` : "";
     return `<div class="arow ${extra} ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
         title="${esc(by ? r.location + "'s encounter is used: " + by.encounter_label + " in " + by.label
           : r.live_total ? (r.target_label
           ? "Rarest still missing: " + r.target_label : "") : "Everything here is caught")}">
       <div class="l1"><span class="flag ${flag}"></span>${esc(r.label)}</div>
-      <div class="l2">${splitTag(r.first_split || r.split)}${r.first_split && r.first_split !== r.split
-        ? `<span class="sub">grass ${esc(r.split)}</span>` : water}${r.no_capture ? `<span class="sub">no capture</span>` : ""}</div>
+      <div class="l2">${splitTag(r.first_split || r.split)}${note}</div>
       <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
       <div class="num">${lv}</div>
@@ -1368,9 +1382,76 @@ function combobox(label, onPick) {
 
 // ---- centre -------------------------------------------------------------
 
+// A honey tree's panel: what one shake gives in the split this place is
+// played in, each species' share of a shake counting the 10% that brings
+// nothing, and a box to tick the catch against the place it stands in.
+function honeyPanel(h, area, spentHere) {
+  if (!h) return "";
+  const st = x => x.caught ? "got" : x.duped ? "gone" : spentHere ? "spent" : "";
+  return `<div class="wpanel honey">
+    <div class="wtitle"><span>Honey tree${h.trees > 1 ? "s (" + h.trees + ")" : ""}</span>
+      <span class="sub">${h.badges} badge${h.badges > 1 ? "s" : ""}, lv <span class="num">${h.level_min}–${h.level_max}</span></span></div>
+    ${h.rows.map(x => `<div class="wrow pick ${st(x)}" title="${esc(x.label)}: ${
+        x.caught ? "caught here" : x.duped ? "already caught" : pct(x.share) + " of a shake"}">
+      <span class="num rate">${pct(x.share)}</span>${icon(x.species, true)}
+      <span class="spname">${esc(x.label)}</span><span></span>
+      <input type="checkbox" class="hck" data-ck="${x.species}" ${x.caught ? "checked" : ""} ${x.duped ? "disabled" : ""}>
+    </div>`).join("")}
+    <p class="sub" style="margin:4px 0 0">A shake: nothing 10%, common 70%, uncommon 20%. The table is the one for the badges held when the tree is shaken.</p>
+  </div>`;
+}
+
+function wireHoney(area) {
+  document.querySelectorAll("#mid input.hck").forEach(el =>
+    el.onchange = ev => setCaught(area, el.dataset.ck, ev.target.checked));
+}
+
+// A scripted source (a gift, trade, static, fossil or egg): its pool, how
+// the player ends up with one member of it, and a box to tick the catch.
+function drawScripted() {
+  const d = DETAIL;
+  const spent = !d.encounter && !!d.location && takenAt().has(d.location);
+  const st = x => x.caught ? "got" : x.duped ? "gone" : (d.encounter || spent) ? "spent" : "";
+  const how = { random: "one at random, even odds", choice: "the player's choice",
+                legendary_pool: "one drawn from the legendary pool" }[d.pick] || d.pick;
+  const where = d.kind === "egg" ? "Counts where it hatches: pick a place with no table and no gift."
+    : d.shares_table ? `Shares ${d.location}'s one capture with its wild table.`
+    : `${d.location} has no wild table, so this is its own capture.`;
+  $("#mid").innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+      <div><span class="aname">${esc(d.label)}</span>
+        <span class="tag">${esc(d.kind)}</span>
+        ${d.planned ? `<span class="tag" title="Not built yet; counted as if it were">planned</span>` : ""}
+        <span class="tag" title="Capture area: one catch per location name">${esc(d.location)}</span>
+        <span title="Gym split">${splitTag(d.split, " split")}</span></div>
+      <div class="encounter"><span class="k">Encounter</span>
+        <span class="v ${d.encounter_label ? "" : "none"}">${d.encounter ? icon(d.encounter, true) : ""}${esc(d.encounter_label || "none yet")}</span></div>
+    </div>
+    <p class="sub srcnote">${esc(where)} Gives ${esc(how)}${d.level ? ", at level " + d.level : ""}.${
+      d.requires_label ? " Wants a " + esc(d.requires_label) + " in trade." : ""}${
+      d.simulate ? "" : " The box simulator leaves it out."}</p>
+    ${d.note ? `<p class="sub srcnote">${esc(d.note)}</p>` : ""}
+    <div class="water">
+      <div class="wpanel pool">
+        <div class="wtitle"><span>Pool</span><span class="sub">${d.pool.length} species</span></div>
+        ${d.pool.map(x => `<div class="wrow pick ${st(x)}" title="${esc(x.label)}${
+            x.duped ? ": already caught" + (x.caught_at ? " (" + x.caught_at + ")" : "") : ""}">
+          <span class="num rate">${d.pool.length > 1 ? pct(1 / d.pool.length) : ""}</span>${icon(x.species, true)}
+          <a href="#" class="spname" data-sp="${x.species}" title="Open in the dex">${esc(x.label)}</a><span></span>
+          <input type="checkbox" class="pck" data-ck="${x.species}" ${x.caught ? "checked" : ""} ${x.duped ? "disabled" : ""}>
+        </div>`).join("")}
+      </div>
+      ${honeyPanel(d.honey, d.area, !!d.encounter || spent)}
+    </div>`;
+  document.querySelectorAll("#mid input.pck").forEach(el =>
+    el.onchange = ev => setCaught(d.area, el.dataset.ck, ev.target.checked));
+  wireHoney(d.area);
+}
+
 function drawMid() {
   const d = DETAIL;
   if (!d) return;
+  if (d.scripted) { drawScripted(); return; }
   if (d.empty) {
     $("#mid").innerHTML = `<p class="sub">${esc(d.label)} has no ${esc(KIND)} table.</p>`;
     return;
@@ -1462,7 +1543,8 @@ function drawMid() {
     <div class="meet head" title="What a player meets: each species' chance, counting only what you still need, against its share on paper"><span></span><span>Species</span>
       <span class="num">Real odds</span><span class="num">On paper</span></div>
     ${mergedRows}</div></div>
-    ${water ? `<div class="water">${water}</div>` : ""}`;
+    ${water || d.honey ? `<div class="water">${water}${honeyPanel(d.honey, d.area, caughtHere)}</div>` : ""}`;
+  wireHoney(d.area);
 
   const tb = $("#slotrows");
   d.slots.forEach(s => {
@@ -1510,7 +1592,7 @@ function drawMid() {
     bars.forEach((el, i) => { el.style.width = target[i]; });
   }
 
-  document.querySelectorAll("#mid .kinds button[data-kind], #mid .wpanel").forEach(b =>
+  document.querySelectorAll("#mid .kinds button[data-kind], #mid .wpanel[data-kind]").forEach(b =>
     b.onclick = () => { KIND = b.dataset.kind; LAYER = "base"; select(SEL); });
   document.querySelectorAll("#mid .kinds button[data-layer]").forEach(b =>
     b.onclick = () => { LAYER = b.dataset.layer; drawMid(); });
@@ -1565,7 +1647,7 @@ if (window.oxideTheme) oxideTheme.onChange(() => { SEG_TEXT = null; if (DETAIL) 
 
 function drawRight() {
   const d = DETAIL;
-  if (!d || d.empty) { $("#right").innerHTML = ""; return; }
+  if (!d || d.empty || d.scripted) { $("#right").innerHTML = ""; return; }
   // Remember every ladder segment's width before the pane is rebuilt, so the
   // same segments can start from where they were and ease to where they are
   // now. Keys carry the area and table kind, so moving to another area never

@@ -38,6 +38,7 @@ from . import locations
 from . import model
 from . import pokedex
 from . import progression
+from . import scripted
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -86,6 +87,14 @@ class State:
         # also dupes out Staravia and Staraptor wherever they appear. owner_of
         # remembers where, so a duped-out row can say "Starly, Route 201".
         self.owned = dex.expand_caught(self.root, self.caught)
+        # The scripted captures (gifts, trades, statics, eggs) sit in the
+        # area list beside the tables, and the honey trees show on the tables
+        # of the places that have one (Ian, 2026-09-26).
+        self.scripted = scripted.load(self.root)
+        self.scripted_by_key = {s["key"]: s for s in self.scripted}
+        self.honey_trees = scripted.honey_tree_locations(self.root)
+        self.honey_stems = scripted.honey_tree_stems(self.root)
+        self.honey_tables = model.honey_tree_tables()
         self.owner_of = {}
         for area, sp in self.encounters.items():
             for member in dex.members_of_line(self.root, dex.line_of(self.root, sp)):
@@ -97,6 +106,10 @@ class State:
         # its grass rate is zero.
         return [a for a in model.load_all(self.ref)
                 if (a.land_active or a.kinds_present()) and not parked(a.name)]
+
+    def label_of(self, name):
+        src = self.scripted_by_key.get(name)
+        return src["label"] if src else _area_label(name)
 
     def entry(self, name):
         return self.entries.get(name) or {}
@@ -126,7 +139,7 @@ def _species_view(species, st, area=None):
         "species": species, "label": dex.display_name(species),
         "caught": here,                       # the encounter for this area
         "duped": owner is not None and not here,
-        "caught_at": _area_label(owner[0]) if owner else None,
+        "caught_at": st.label_of(owner[0]) if owner else None,
         "via": dex.display_name(owner[1]) if owner and owner[1] != species else None,
     }
 
@@ -135,6 +148,89 @@ def _first_split(e, st):
     """The earlier of an area's split and its water_split, by the game's order."""
     splits = [s for s in (e.get("split"), e.get("water_split")) if s]
     return min(splits, key=lambda s: st.split_rank.get(s, 99)) if splits else None
+
+
+def _scripted_location(s):
+    """A scripted source's capture area. An egg counts where it hatches,
+    which is the player's pick of any place with no table, so each egg is a
+    capture of its own."""
+    return s.get("capture_area") or "Egg: " + dex.display_name(s["pool"][0])
+
+
+def scripted_row(s, st):
+    """A scripted source as a row of the area list, shaped like area_row so
+    the list can sort, file and dim it with the tables."""
+    live = [sp for sp in s["pool"] if sp not in st.owned]
+    level = s.get("level") or 0
+    return {
+        "area": s["key"], "label": s["label"],
+        "encounter": st.encounters.get(s["key"]),
+        "encounter_label": dex.display_name(st.encounters[s["key"]])
+                           if s["key"] in st.encounters else None,
+        "band": None, "archetype": None, "intent": s.get("note", ""),
+        "location": _scripted_location(s),
+        "group": None, "group_design": None,
+        "split": s["split"], "first_split": s["split"],
+        "split_rank": st.split_rank.get(s["split"]),
+        "order": s.get("order"), "no_capture": False,
+        "species": len(s["pool"]), "hhi": 0, "top": 0, "uplift": 0, "rungs": 0,
+        "land_rate": None,
+        "level_min": level, "level_max": level, "level_med": level,
+        "kinds": ["scripted"],
+        "species_total": len(s["pool"]), "live_total": len(live),
+        "live_species": len(live),
+        "target_label": None, "best_share": None, "best_level": None,
+        "holds": sorted({dex.display_name(sp) for sp in s["pool"]}),
+        "errors": 0, "warns": 0,
+        "scripted": {k: s.get(k) for k in ("kind", "pick", "planned", "simulate",
+                                            "shares_table", "requires")},
+        "honey": 0 if s["shares_table"] else st.honey_trees.get(s.get("capture_area")) or 0,
+    }
+
+
+def honey_view(trees, split, st, area):
+    """The honey tree (`trees` of them) in one place, as its table reads in
+    the given split, or None where there is no tree. A shake is nothing 10%,
+    the common tier 70% and the uncommon 20%, each tier's slots
+    40/20/20/10/5/5."""
+    if not trees:
+        return None
+    table = scripted.honey_table_for(split, st.split_rank, st.honey_tables)
+    if table is None:
+        return None
+    slot_odds = (0.40, 0.20, 0.20, 0.10, 0.05, 0.05)
+    share = {}
+    for tier, weight in (("common", 0.70), ("uncommon", 0.20)):
+        for sp, p in zip(table[tier], slot_odds):
+            share[sp] = share.get(sp, 0.0) + weight * p
+    return {
+        "trees": trees, "badges": table["badges"], "table_split": table["split"],
+        "level_min": table["level_min"], "level_max": table["level_max"],
+        "rows": [dict(_species_view(sp, st, area), share=v)
+                 for sp, v in sorted(share.items(), key=lambda kv: -kv[1])],
+    }
+
+
+def scripted_detail(s, st):
+    """One scripted source for the middle pane: its pool, each member's
+    state, and the honey tree if its place has one."""
+    return {
+        "area": s["key"], "label": s["label"], "scripted": True,
+        "kind": s["kind"], "pick": s["pick"], "level": s.get("level"),
+        "note": s.get("note", ""), "planned": s.get("planned", False),
+        "simulate": s.get("simulate", True), "requires": s.get("requires"),
+        "requires_label": dex.display_name(s["requires"]) if s.get("requires") else None,
+        "location": _scripted_location(s), "shares_table": s["shares_table"],
+        "split": s["split"],
+        "encounter": st.encounters.get(s["key"]),
+        "encounter_label": dex.display_name(st.encounters[s["key"]])
+                           if s["key"] in st.encounters else None,
+        "pool": [_species_view(sp, st, s["key"]) for sp in s["pool"]],
+        # A place with a tree and no table (Floaroma Meadow) shows its tree
+        # with its gift.
+        "honey": honey_view(0 if s["shares_table"] else st.honey_trees.get(s.get("capture_area")),
+                            s["split"], st, s["key"]),
+    }
 
 
 def area_row(a, st, findings_by_area):
@@ -198,6 +294,7 @@ def area_row(a, st, findings_by_area):
         "best_share": c["best_share"],
         "best_level": c["best_level"],
         "holds": sorted({dex.display_name(s) for s in all_species}),
+        "honey": st.honey_stems.get(a.name) or 0,
         "errors": sum(1 for x in f if x.severity == "error"),
         "warns": sum(1 for x in f if x.severity == "warn"),
     }
@@ -315,6 +412,8 @@ def area_detail(a, st, kind="land"):
         "best_uplift_label": dex.display_name(m["best_uplift_species"])
                              if m["best_uplift_species"] else None,
         "findings": [f._asdict() for f in findings],
+        "honey": honey_view(st.honey_stems.get(a.name), e.get("split") or _first_split(e, st),
+                            st, a.name),
     }
 
 
@@ -732,7 +831,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send({
                     "ref": ref or "working tree",
                     "root": model.repo_root(),
-                    "rows": [area_row(a, st, by_area) for a in areas],
+                    "rows": [area_row(a, st, by_area) for a in areas]
+                            + [scripted_row(s, st) for s in st.scripted],
                     "game": g,
                     "game_findings": [f._asdict() for f in findings
                                       if f.scope == "game"],
@@ -740,8 +840,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     "kind_labels": KIND_LABELS,
                 })
             if parts[1] == "area":
+                name = urllib.parse.unquote(parts[2])
+                if name in st.scripted_by_key:
+                    return self._send(scripted_detail(st.scripted_by_key[name], st))
                 return self._send(
-                    area_detail(model.load_area(parts[2], ref), st, kind))
+                    area_detail(model.load_area(name, ref), st, kind))
             if parts[1] == "species":
                 rows = [{"value": s, "label": dex.display_name(s)}
                         for s in species_universe()]
@@ -803,7 +906,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     area = body.get("area")
                     if not area:
                         return self._send({"error": "which area?"}, 400)
-                    model.load_area(area)          # 404s if it does not exist
+                    if area.startswith(scripted.KEY_PREFIX):
+                        src = scripted.by_key().get(area)
+                        if src is None:
+                            return self._send({"error": "no such source"}, 404)
+                        if body.get("species") not in (None, *src["pool"]):
+                            return self._send({"error": "that source cannot give "
+                                               f"{body.get('species')}"}, 400)
+                    else:
+                        model.load_area(area)      # 404s if it does not exist
                     if body.get("clear") or body.get("caught") is False:
                         if body.get("species") in (None, enc.get(area)):
                             enc.pop(area, None)

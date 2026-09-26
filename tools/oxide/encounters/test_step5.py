@@ -277,6 +277,51 @@ def check_species_only(results):
 _SIDECAR = None
 
 
+def check_scripted(results):
+    """The scripted captures the area list shows (scripted.json): each one
+    resolves against the sources catalogue, sits in a known split, and gives
+    only pick-list species; and the honey trees are all accounted for."""
+    from . import locations
+    from . import progression
+    from . import scripted
+    root = model.repo_root()
+    listed = audit.on_list(root)
+    try:
+        sources = scripted.load(root)
+        err = ""
+    except ValueError as exc:
+        sources, err = [], str(exc)
+    splits = set(progression.split_index(model.load_sidecar()))
+    results.append(("every scripted source resolves to species in the sources catalogue, "
+                    "in a known split, with unique ids",
+                    bool(sources) and not err
+                    and all(s["pool"] and s["split"] in splits for s in sources)
+                    and len({s["id"] for s in sources}) == len(sources),
+                    err or f"{len(sources)} sources"))
+    off = sorted({sp for s in sources for sp in s["pool"] if sp not in listed})
+    results.append(("scripted pools hold only pick-list species",
+                    not off, ", ".join(off)))
+    wild = locations.by_location(root)
+    by_id = {s["id"]: s for s in sources}
+    results.append(("an egg has no capture area; the starter and the Eterna gifts share "
+                    "their places' tables; Sandgem's clown is a capture of its own",
+                    all(s["capture_area"] is None for s in sources if s["kind"] == "egg")
+                    and by_id["starter"]["shares_table"]
+                    and by_id["eterna_condo"]["shares_table"]
+                    and not by_id["sandgem_clown"]["shares_table"]
+                    and "Sandgem Town" not in wild, ""))
+    trees = scripted.honey_tree_locations(root)
+    stems = scripted.honey_tree_stems(root)
+    no_table = {loc: n for loc, n in trees.items() if loc not in wild}
+    results.append(("all 21 honey trees are placed: on a table's map, on its place's "
+                    "first table, or with Floaroma Meadow's gift",
+                    sum(trees.values()) == 21
+                    and sum(stems.values()) + sum(no_table.values()) == 21
+                    and no_table == {"Floaroma Meadow": 1}
+                    and any(s["capture_area"] == "Floaroma Meadow" for s in sources),
+                    f"{sum(stems.values())} on tables, {no_table}"))
+
+
 def sidecar_entry(name):
     global _SIDECAR
     if _SIDECAR is None:
@@ -287,7 +332,7 @@ def sidecar_entry(name):
 def main():
     results = []
     for check in (check_writers, check_audit, check_per_area, check_inactive,
-                  check_species_only):
+                  check_species_only, check_scripted):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

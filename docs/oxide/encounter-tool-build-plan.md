@@ -218,9 +218,18 @@ that stay. None blocks anything.
    at 10% (Eterna Forest by day, Route 204 north, and Route 210 south, where
    Floragato took Swablu's 10 and Smoliv dropped to a 1%). The eight tables are
    a first draft for Ian: bugs and tree dwellers, Heracross climbing from a 1%
-   to the head of the uncommon tier. Waiting on a GitHub build and a shake in
-   game. Next: honey in the tool's area list, the scripted encounters there,
-   and the box simulator tab.
+   to the head of the uncommon tier. The GitHub build of e18209dc1 carries the
+   eight tables at `encdata_ex` member 2 and passes test_step0 against it;
+   waiting on a shake in game at one badge and at five.
+12. **Scripted captures and honey trees in the area list (Ian, 2026-09-26).**
+   `docs/oxide/encounters/scripted.json` names every gift, trade, static,
+   fossil and egg with its capture area, split and play order; `scripted.py`
+   takes the species and levels from the sources catalogue. Each one is a row
+   in the list, in play order, markable as caught, and it spends or shares
+   its place's capture like a table does. An egg is a capture of its own,
+   since it counts where it hatches. A table whose map has a honey tree shows
+   the tree's table for its split, with boxes to tick the catch. Next: the box
+   simulator tab.
 
 ## Standing rules
 
