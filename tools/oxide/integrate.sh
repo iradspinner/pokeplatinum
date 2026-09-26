@@ -430,7 +430,7 @@ done
 # gate, which then ran test_b1 alone, passed. test_b3 runs the calculator in
 # one Node process for about 20 seconds.
 if [ -z "$b1_missing" ]; then
-    for t in test_b1 test_b1e test_b2 test_b3; do
+    for t in test_b1 test_b1e test_b2 test_b3 test_b4; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
     done
 else
