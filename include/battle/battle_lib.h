@@ -671,8 +671,8 @@ BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
 
 /**
  * @brief Oxide: a battler's weight as a move that reads it sees it, in tenths
- * of a kilogram: doubled by Heavy Metal, which the attacker's Mold Breaker
- * ignores when the battler is its target.
+ * of a kilogram: doubled by Heavy Metal and halved by Light Metal, which the
+ * attacker's Mold Breaker ignores when the battler is its target.
  *
  * @param battleCtx
  * @param attacker  The battler whose move reads the weight

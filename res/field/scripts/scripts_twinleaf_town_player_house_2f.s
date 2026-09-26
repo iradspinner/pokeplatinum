@@ -1494,11 +1494,13 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
     AddListMenuEntry TestKit_Text_MenuAbilityHeavyMetal, 2
     AddListMenuEntry TestKit_Text_MenuAbilityJustified, 3
+    AddListMenuEntry TestKit_Text_MenuAbilityLightMetal, 4
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
     GoToIfEq VAR_0x8004, 2, TestKit_AbilityHeavyMetal
     GoToIfEq VAR_0x8004, 3, TestKit_AbilityJustified
+    GoToIfEq VAR_0x8004, 4, TestKit_AbilityLightMetal
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2227,6 +2229,24 @@ TestKit_AbilityJustified:
     SetVar VAR_0x8000, SPECIES_POOCHYENA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_BITE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* LightMetal: the player's Garchomp (its own ability) and a
+   wild Metagross given Light Metal that knows Heavy Slam and Iron Head.
+   Halved to 275 kg, Metagross is under three times Garchomp's 95 kg, so
+   Heavy Slam hits at 60 and does less than Iron Head (80); without Light
+   Metal it would hit at 120. */
+TestKit_AbilityLightMetal:
+    SetVar VAR_0x800A, SPECIES_GARCHOMP
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_DRAGON_CLAW
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_METAGROSS
+    SetVar VAR_0x8001, ABILITY_LIGHT_METAL
+    SetVar VAR_0x8002, MOVE_HEAVY_SLAM
+    SetVar VAR_0x8003, MOVE_IRON_HEAD
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

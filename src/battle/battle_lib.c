@@ -9504,6 +9504,8 @@ int Battler_Weight(BattleContext *battleCtx, int attacker, int battler)
     // its own ability plainly, so one test covers the user and the target.
     if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_HEAVY_METAL) == TRUE) {
         weight *= 2;
+    } else if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_LIGHT_METAL) == TRUE) {
+        weight /= 2;
     }
 
     return weight > 0 ? weight : 1;
