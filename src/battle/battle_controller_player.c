@@ -2284,14 +2284,18 @@ static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleCo
 {
     int ppCost = 1;
     if (ATTACKER_SELF_TURN_FLAGS.skipPressureCheck == FALSE && battleCtx->defender != BATTLER_NONE) {
-        if (battleCtx->moveTemp == MOVE_IMPRISON) {
+        // Oxide: Pressure acts only on the moves of its holder's opponents, so
+        // an ally's Pressure costs nothing (the later games, as hg-engine has
+        // it from the Scarlet and Violet research); Snatch counts the other
+        // side's Pressure, as Imprison does.
+        if (battleCtx->moveTemp == MOVE_IMPRISON || battleCtx->moveTemp == MOVE_SNATCH) {
             ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
         } else {
             switch (battleCtx->aiContext.moveTable[battleCtx->moveTemp].range) {
             case RANGE_ALL_ADJACENT:
             case RANGE_FIELD:
-                // Number of mons on the field with Pressure
-                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, battleCtx->attacker, ABILITY_PRESSURE);
+                // Number of mons on the enemy side with Pressure
+                ppCost += BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battleCtx->attacker, ABILITY_PRESSURE);
                 break;
 
             case RANGE_ADJACENT_OPPONENTS:
@@ -2308,6 +2312,7 @@ static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleCo
 
             default:
                 if (battleCtx->attacker != battleCtx->defender
+                    && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)
                     && Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_PRESSURE) {
                     ppCost++;
                 }
