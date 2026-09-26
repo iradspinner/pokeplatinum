@@ -383,6 +383,10 @@ Basic_CheckHighStatStage_Accuracy:
 Basic_CheckHighStatStage_Evasion:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
+    // Oxide: Keen Eye and Illuminate ignore evasion (the staples rulings),
+    // so raising it against either does nothing.
+    IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, ScoreMinus10
@@ -395,7 +399,8 @@ Basic_CheckHighStatStage_Evasion:
     //   - If reducing Speed -> -10 if Trick Room is currently active
     //   - If reducing Speed -> -10 if the target has Speed Boost
     //   - If reducing Accuracy or Evasion -> -10 if either battler has No Guard
-    //   - If reducing Accuracy -> -10 if the target has Keen Eye
+    //   - If reducing Accuracy -> -10 if the target has Keen Eye (Oxide: or Illuminate)
+    //   - Oxide: if reducing Evasion -> -10 if the attacker has Keen Eye or Illuminate
 Basic_CheckLowStatStage_Attack:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
@@ -427,6 +432,7 @@ Basic_CheckLowStatStage_Accuracy:
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10 // Oxide: it stops accuracy drops too
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     GoTo Basic_CheckClearBodyEffect
 
@@ -434,6 +440,8 @@ Basic_CheckLowStatStage_Evasion:
     IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
+    IfLoadedEqualTo ABILITY_KEEN_EYE, ScoreMinus10 // Oxide: it ignores evasion anyway
+    IfLoadedEqualTo ABILITY_ILLUMINATE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
 
