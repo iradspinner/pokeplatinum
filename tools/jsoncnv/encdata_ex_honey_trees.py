@@ -14,10 +14,17 @@ ANSI_CLEAR = "\033[0m"
 def as_species(s: str) -> bytes:
     return u32(species.Species[s].value)
 
+# Platinum Oxide: the honey trees have one table per badge count (1 to 8),
+# each with its own level range, packed into one member that honey_tree.c
+# reads as HoneyTreeTable[8]: six common species, six uncommon, then the
+# minimum and maximum level, all u32. The two other outputs keep vanilla's
+# member count so the Trophy Garden and Great Marsh members do not move.
 input_path = pathlib.Path(sys.argv[1])
-output_path_common = pathlib.Path(sys.argv[2])
-output_path_uncommon = pathlib.Path(sys.argv[3])
-output_path_rare = pathlib.Path(sys.argv[4])
+output_path_tables = pathlib.Path(sys.argv[2])
+output_path_unused = [pathlib.Path(sys.argv[3]), pathlib.Path(sys.argv[4])]
+
+NUM_TABLES = 8
+TIER_SIZE = 6
 
 try:
     data = {}
@@ -36,25 +43,33 @@ except json.decoder.JSONDecodeError as e:
     print(f"{ANSI_BOLD_WHITE}{input_path}:{e.lineno}:{e.colno}: {ANSI_BOLD_RED}error: {ANSI_BOLD_WHITE}{e.msg}{ANSI_CLEAR}\n{error_out}", file=sys.stderr)
     sys.exit(1)
 
-packables = bytearray([])
-for i in range(6):
-    packables.extend(as_species(data['common'][i]))
-
-with open(output_path_common, 'wb') as output_file:
-    output_file.write(packables)
-
+tables = data['tables']
+if len(tables) != NUM_TABLES:
+    print(f"{input_path}: expected {NUM_TABLES} honey tables, found {len(tables)}", file=sys.stderr)
+    sys.exit(1)
 
 packables = bytearray([])
-for i in range(6):
-    packables.extend(as_species(data['uncommon'][i]))
+for i, table in enumerate(tables):
+    # The engine picks a table by position, so the file must list them in
+    # badge order; `badges` is there to say so to a human reader.
+    if table['badges'] != i + 1:
+        print(f"{input_path}: table {i} is for {table['badges']} badges, expected {i + 1}", file=sys.stderr)
+        sys.exit(1)
+    if not 1 <= table['level_min'] <= table['level_max'] <= 100:
+        print(f"{input_path}: table {i} has a bad level range", file=sys.stderr)
+        sys.exit(1)
+    for tier in ('common', 'uncommon'):
+        if len(table[tier]) != TIER_SIZE:
+            print(f"{input_path}: table {i} {tier} needs {TIER_SIZE} species", file=sys.stderr)
+            sys.exit(1)
+        for s in table[tier]:
+            packables.extend(as_species(s))
+    packables.extend(u32(table['level_min']))
+    packables.extend(u32(table['level_max']))
 
-with open(output_path_uncommon, 'wb') as output_file:
+with open(output_path_tables, 'wb') as output_file:
     output_file.write(packables)
 
-
-packables = bytearray([])
-for i in range(6):
-    packables.extend(as_species(data['rare'][i]))
-
-with open(output_path_rare, 'wb') as output_file:
-    output_file.write(packables)
+for path in output_path_unused:
+    with open(path, 'wb') as output_file:
+        output_file.write(bytes(4 * TIER_SIZE))

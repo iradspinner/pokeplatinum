@@ -19,7 +19,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_SWABLU"
+            "species": "SPECIES_FLORAGATO"
         },
         {
             "level": 20,
@@ -27,7 +27,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_SMOLIV"
+            "species": "SPECIES_SWABLU"
         },
         {
             "level": 20,
@@ -47,7 +47,7 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_FLORAGATO"
+            "species": "SPECIES_SMOLIV"
         }
     ],
     "swarms": [

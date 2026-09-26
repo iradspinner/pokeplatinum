@@ -4489,7 +4489,7 @@
     "encounters_route_210_south": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "Route 210's lower half, Scyther's home; the north half is the delay. Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, the fire and grass starters as 1%s.",
+      "intent": "Route 210's lower half, Scyther's home; the north half is the delay. Sprigatito at 10, its home since the honey trees gave it up (2026-09-26), Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, Torchic a 1%.",
       "locked": [],
       "base_level": 18,
       "order": 62,
@@ -4499,13 +4499,13 @@
         "SPECIES_PONYTA",
         "SPECIES_STEENEE",
         "SPECIES_CORVISQUIRE",
-        "SPECIES_SWABLU",
+        "SPECIES_FLORAGATO",
         "SPECIES_BRAIXEN",
-        "SPECIES_SMOLIV",
+        "SPECIES_SWABLU",
         "SPECIES_SNEASEL",
         "SPECIES_SLUGMA",
         "SPECIES_COMBUSKEN",
-        "SPECIES_FLORAGATO"
+        "SPECIES_SMOLIV"
       ],
       "day": [
         "SPECIES_SWABLU",
