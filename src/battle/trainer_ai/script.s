@@ -2241,6 +2241,10 @@ Expert_Main:
     // Esper Wing always raise their user's Speed, as Rapid Spin now does.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_RAISE_SPEED_HIT, Expert_SpeedUpOnHit
+    // Oxide, change (Ian, 2026-09-27): Freeze Shock and Ice Burn, which
+    // charge for a turn as Skull Bash does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT, Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_BURN_HIT, Expert_ChargeTurnNoInvuln
 
     // All other moves have no additional logic.
     PopOrEnd 
