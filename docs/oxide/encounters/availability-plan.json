@@ -204,6 +204,30 @@
       "tail": ["SPECIES_KLEFKI", "SPECIES_PICHU"],
       "note": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian."
     },
+    "encounters_sandgem_town": {
+      "home": ["SPECIES_KRICKETOT"],
+      "cameo": ["SPECIES_BIDOOF", "SPECIES_STARLY", "SPECIES_WURMPLE", "SPECIES_BLIPBUG", "SPECIES_WOOLOO", "SPECIES_SENTRET", "SPECIES_ROOKIDEE", "SPECIES_PIKIPEK", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_POOCHYENA", "SPECIES_ABRA", "SPECIES_WINGULL"],
+      "note": "Kricketot sings behind Rowan's lab: a lawn by the beach road (Ian, 2026-09-27, replacing the clown), twelve starter-adjacent lines with Wingull over the beach and Poochyena and Abra as 1% previews."
+    },
+    "encounters_jubilife_city": {
+      "home": ["SPECIES_ABRA"],
+      "cameo": ["SPECIES_MACHOP", "SPECIES_MINCCINO", "SPECIES_PAWMI", "SPECIES_ROOKIDEE", "SPECIES_SHINX", "SPECIES_STARLY", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_SKITTY", "SPECIES_MURKROW", "SPECIES_GLAMEOW", "SPECIES_POOCHYENA"],
+      "note": "Abra teleport in and out of the fountain garden by Jubilife TV (Ian, 2026-09-27, replacing the clown): Machop from the building sites, the city's small lines, Glameow and Poochyena as 4% tails."
+    },
+    "encounters_floaroma_town": {
+      "home": ["SPECIES_COMBEE", "SPECIES_TROPIUS", "SPECIES_POOCHYENA"],
+      "cameo": ["SPECIES_CHERUBI", "SPECIES_BUDEW", "SPECIES_BOUNSWEET", "SPECIES_HOPPIP", "SPECIES_AIPOM", "SPECIES_SEEDOT", "SPECIES_PACHIRISU", "SPECIES_MURKROW"],
+      "tail": ["SPECIES_CHINGLING", "SPECIES_SKITTY"],
+      "note": "Combee work the flower beds of the flower town (Ian, 2026-09-27, replacing the clown): Cherubi and Tropius among the flowers, Poochyena's home below the level it evolves, Budew by day and Murkrow by night, Pachirisu on the top rung."
+    },
+    "encounters_solaceon_town": {
+      "home": ["SPECIES_HAPPINY", "SPECIES_GIRAFARIG", "SPECIES_LICKITUNG", "SPECIES_TRAPINCH", "SPECIES_MANKEY"],
+      "cameo": ["SPECIES_CHATOT", "SPECIES_MURKROW", "SPECIES_FLAAFFY", "SPECIES_MIGHTYENA"],
+      "tail": ["SPECIES_SMOOCHUM", "SPECIES_TROPIUS"],
+      "note": "The farm town (Ian, 2026-09-27, replacing the clown): Happiny by the nursery, Girafarig, Lickitung, Trapinch, Mightyena and Mankey in the fields, Chatot by day, Murkrow by night, Mareep on the top rung."
+    },
     "encounters_mt_coronet_1f_south": {
       "home": ["SPECIES_GLIMMET"],
       "cameo": ["SPECIES_BRONZOR", "SPECIES_NACLI", "SPECIES_MIENFOO", "SPECIES_CARBINK", "SPECIES_ZUBAT", "SPECIES_MAKUHITA", "SPECIES_PHANPY", "SPECIES_SNORUNT"],
@@ -854,10 +878,10 @@
       "note": "Stark Mountain, the volcano, one table inside and out (Ian, 2026-09-26): Galarian Weezing's smoke and Turtonator's home, the fire lines around them, Larvesta and Magmortar as the rare finds."
     },
     "encounters_route_228": {
-      "home": ["SPECIES_FLYGON"],
-      "cameo": ["SPECIES_WHISCASH", "SPECIES_PALOSSAND", "SPECIES_CRUSTLE", "SPECIES_SALAZZLE", "SPECIES_DONPHAN", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_RHYPERIOR", "SPECIES_GOLEM", "SPECIES_HOUNDOOM"],
+      "home": [],
+      "cameo": ["SPECIES_FLYGON", "SPECIES_WHISCASH", "SPECIES_PALOSSAND", "SPECIES_CRUSTLE", "SPECIES_SALAZZLE", "SPECIES_DONPHAN", "SPECIES_GARGANACL", "SPECIES_GLIMMORA", "SPECIES_RHYPERIOR", "SPECIES_GOLEM", "SPECIES_HOUNDOOM"],
       "tail": ["SPECIES_STEELIX", "SPECIES_CARBINK"],
-      "note": "The sandstorm route, Trapinch's home: the desert lines, Beldum at 10, the two pseudo-legendaries as 1%s."
+      "note": "The sandstorm route: Flygon with the desert lines (Trapinch's home is Solaceon Town since 2026-09-27), Beldum at 10, the two pseudo-legendaries as 1%s."
     },
     "encounters_route_229": {
       "home": ["SPECIES_HERACROSS"],

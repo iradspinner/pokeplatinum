@@ -55,8 +55,8 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 91/91, the d
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 28/28
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 16/16
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
@@ -508,7 +508,23 @@ that stay. None blocks anything.
    slots needed no grass and are in the tables (2026-09-27): Route 206's
    10% (Dwebble to the 1%) and the Fuego yard's at 29 (Togedemaru out),
    with the Fuego yard as the line's planned home and Ceruledge on Route
-   227 a cameo.
+   227 a cameo. **The four tables are written** (2026-09-27), built ahead
+   of their headers like Amity Square's, as `encounters_sandgem_town`,
+   `encounters_jubilife_city`, `encounters_floaroma_town` and
+   `encounters_solaceon_town`, appended to `encounters.order` so no table
+   moves in the NARC; the main track points each header at its table.
+   Each is an A19 with `planned_location` set. Three departures from the
+   proposal, forced by the layout and the evolve rule: A19 keeps its face
+   at 20% and anchors its 4%s on another line, so Pachirisu (Floaroma) and
+   Mareep (Solaceon, a Flaaffy at 22) take the top rung; Poochyena is a
+   Mightyena at Solaceon's levels, so its home is Floaroma's 10% and
+   Solaceon has Mightyena; and Trapinch's planned home moves from Route
+   228 to Solaceon, which clears it from the cap candidates. The ten
+   retired gift sources left `scripted.json`. Suites: m1 13/13, m2 23/23,
+   m3 18/18, m5 15/15, m6 19/19, m8 91/91, step1 21/21, step2 18/18,
+   step3 35/35, step5 19/19, sim 11/11 (their counts and the clown checks
+   brought up to date); test_m4 and test_step0, which rewrite shared
+   files, were left to the gate while Ian has the server open.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

@@ -29,36 +29,6 @@
       "pick": "choice"
     },
     {
-      "id": "sandgem_clown",
-      "label": "Sandgem Town, the house",
-      "kind": "gift",
-      "capture_area": "Sandgem Town",
-      "split": "Roark",
-      "order": 5,
-      "from": {"file": "scripts_sandgem_town_house.s"},
-      "pick": "random"
-    },
-    {
-      "id": "jubilife_clown",
-      "label": "Jubilife City, south house",
-      "kind": "gift",
-      "capture_area": "Jubilife City",
-      "split": "Roark",
-      "order": 6.5,
-      "from": {"file": "scripts_jubilife_city_south_house_1f.s"},
-      "pick": "random"
-    },
-    {
-      "id": "oreburgh_clown",
-      "label": "Oreburgh City, middle house",
-      "kind": "gift",
-      "capture_area": "Oreburgh City",
-      "split": "Roark",
-      "order": 9.5,
-      "from": {"file": "scripts_oreburgh_city_middle_house.s"},
-      "pick": "random"
-    },
-    {
       "id": "oreburgh_trade",
       "label": "Oreburgh City, Kazza's trade",
       "kind": "trade",
@@ -69,35 +39,6 @@
       "level": 10,
       "pick": "random",
       "note": "Takes any Pokemon; a shiny Vullaby, Hardy."
-    },
-    {
-      "id": "floaroma_clown",
-      "label": "Floaroma Town, middle house",
-      "kind": "gift",
-      "capture_area": "Floaroma Town",
-      "split": "Gardenia",
-      "order": 15.5,
-      "from": {"file": "scripts_floaroma_town_middle_house.s"},
-      "pick": "random"
-    },
-    {
-      "id": "floaroma_meadow_clown",
-      "label": "Floaroma Meadow, the house",
-      "kind": "gift",
-      "capture_area": "Floaroma Meadow",
-      "split": "Gardenia",
-      "order": 15.6,
-      "from": {"file": "scripts_floaroma_meadow_house.s"},
-      "pick": "random"
-    },
-    {
-      "id": "eterna_condo",
-      "label": "Eterna City, condominiums",
-      "kind": "gift",
-      "capture_area": "Eterna City",
-      "split": "Gardenia",
-      "from": {"file": "scripts_eterna_city_condominiums_1f.s"},
-      "pick": "random"
     },
     {
       "id": "eterna_trade",
@@ -164,16 +105,6 @@
       "note": "Needs an Odd Keystone and 32 Underground players talked to, out of reach in an ordinary run."
     },
     {
-      "id": "solaceon_clown",
-      "label": "Solaceon Town, northeast house",
-      "kind": "gift",
-      "capture_area": "Solaceon Town",
-      "split": "Maylene",
-      "order": 43.5,
-      "from": {"file": "scripts_solaceon_town_northeast_house.s"},
-      "pick": "random"
-    },
-    {
       "id": "day_care_floette",
       "label": "Pokemon Day Care, the shiny Floette",
       "kind": "gift",
@@ -181,16 +112,6 @@
       "split": "Maylene",
       "order": 43.6,
       "from": {"file": "scripts_pokemon_day_care.s"},
-      "pick": "random"
-    },
-    {
-      "id": "veilstone_clown",
-      "label": "Veilstone City, northeast house",
-      "kind": "gift",
-      "capture_area": "Veilstone City",
-      "split": "Maylene",
-      "order": 63.5,
-      "from": {"file": "scripts_veilstone_city_northeast_house.s", "level": "40"},
       "pick": "random"
     },
     {
@@ -204,18 +125,6 @@
       "pick": "random"
     },
     {
-      "id": "restaurant_clown",
-      "label": "The Restaurant, Pastoria's clown moved in",
-      "kind": "gift",
-      "capture_area": "Restaurant",
-      "planned": true,
-      "split": "Wake",
-      "order": 69.5,
-      "from": {"file": "scripts_pastoria_city_north_house.s"},
-      "pick": "random",
-      "note": "Planned: the clown moves from Pastoria City's north house into the Restaurant, so Pastoria's water and the gift stop sharing a capture (tracker backlog)."
-    },
-    {
       "id": "manaphy_egg",
       "label": "Pokemon Mansion, the owner's egg",
       "kind": "egg",
@@ -223,16 +132,6 @@
       "split": "Wake",
       "order": 77.5,
       "from": {"file": "scripts_pokemon_mansion_office.s"},
-      "pick": "random"
-    },
-    {
-      "id": "canalave_library",
-      "label": "Canalave Library, 2F",
-      "kind": "gift",
-      "capture_area": "Canalave Library",
-      "split": "Byron",
-      "order": 85.5,
-      "from": {"file": "scripts_canalave_library_2f.s"},
       "pick": "random"
     },
     {
