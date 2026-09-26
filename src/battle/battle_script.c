@@ -1401,6 +1401,22 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         }
         return 0;
 
+    case MOVE_LAST_RESPECTS: {
+        // 50, and 50 more for each Pokemon in the user's party that has
+        // fainted.
+        int i, fainted = 0;
+        for (i = 0; i < BattleSystem_GetPartyCount(battleSys, battleCtx->attacker); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                fainted++;
+            }
+        }
+        return 50 + 50 * fainted;
+    }
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {

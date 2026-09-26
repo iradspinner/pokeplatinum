@@ -676,6 +676,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet34, 6
     AddListMenuEntry TestKit_Text_MenuSet35, 7
     AddListMenuEntry TestKit_Text_MenuSet36, 8
+    AddListMenuEntry TestKit_Text_MenuSet37, 9
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -686,6 +687,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet34
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet35
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet36
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet37
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1029,6 +1031,28 @@ TestKit_MoveSet36:
     SetVar VAR_0x8007, MOVE_TEMPER_FLARE
     SetVar VAR_0x8008, MOVE_SNORE
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 37: Last Respects gains 50 power for each fainted Pokemon in
+   Mew's party. Two Pokemon, then a wild Chansey that knows only Splash:
+   switch Mew in and use Last Respects, switch the Jirachi in and use
+   Memento, send Mew out again, and Last Respects now does about twice what
+   it did (100, from 50). Start with no fainted Pokemon in the party. */
+TestKit_MoveSet37:
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_JIRACHI, 50, ITEM_NONE, VAR_RESULT
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_MEMENTO
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, MOVE_HEALING_WISH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, MOVE_SPLASH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, MOVE_RECOVER
+    AddVar VAR_0x8005, 1
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_LAST_RESPECTS
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
