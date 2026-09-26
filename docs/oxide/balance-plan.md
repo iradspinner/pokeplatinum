@@ -16,7 +16,7 @@ ratings of sixteen fights, and his explanations of the fights the scores
 misread: safe switch-ins read both best ("What B3b and B5 found", "What
 Ian's ratings showed"). Every score follows the calculator's computed
 powers (the encounter track's item 22). Next: incremental rescores (Ian,
-2026-09-27), then B6. No questions are open.
+2026-09-27), then B6. Three questions on evolution stones are open.
 
 ## The target
 
@@ -1057,8 +1057,17 @@ disagrees with them.
 
 ## Open questions for Ian
 
-None. Ian's ratings of sixteen fights (open question 1 until 2026-09-25)
-are in "What Ian's ratings showed".
+Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
+"What Ian's ratings showed". Open since the stone census (2026-09-26,
+design pass 2):
+
+1. **Should the Underground stop giving evolution stones?** While digs
+   give every stone with no limit, no count of fixed finds makes one
+   scarce, so this decides the rest.
+2. **Should Route 207's nine-stone gift and Galactic HQ's full set
+   stay?** Each alone hands the player one of every stone.
+3. With those settled: how many of each stone, and where. The census
+   table has the fixed finds and the lines that want each.
 
 ## Order of work
 
@@ -1273,6 +1282,35 @@ lands, and each change is re-scored as it lands.
    Ceruledge's Dusk Stone has fixed finds in the Galactic Warehouse and on
    Victory Road. Dahlia now gates the Veilstone Game Corner (the Frontier
    Brains ruling, above), so its prize list is reviewed beside the census.
+
+   **The census** (2026-09-26, `stones.py`, on the tree that moves Espeon
+   and Umbreon onto stones). No stone is scarce today, so the one fixed
+   Sun Stone and Moon Stone Ian asked for already exist several times
+   over. Three sources give a full set or close to it: a woman on Route
+   207 gives all nine stones at once after the player has travelled with
+   Mira (Fantina's split, since the bike opens Wayward Cave); Galactic
+   HQ's second basement holds one of each (HQ's split); and the
+   Underground's digs give every stone but the Oval Stone with no limit,
+   0.9 to 1.5 percent of digs before the National Dex and 1.4 to 5.4
+   percent with it, from Gardenia's split. Each stone also has two or
+   three fixed finds of its own.
+
+   | Stone | Fixed finds before the League | Lines that want one, and from when |
+   |---|---|---|
+   | Fire | 5, from Fantina's split | Ninetales (Roark's), Flareon (Fantina's) |
+   | Water | 5, from Fantina's | Ludicolo (Roark's), Poliwrath (Gardenia's), Vaporeon, Starmie, Cloyster |
+   | Thunder | 6, from Fantina's | Vikavolt, Pawmot, Raichu (Gardenia's), Jolteon |
+   | Leaf | 5, from Gardenia's | Shiftry (Roark's) |
+   | Moon | 5, from Gardenia's | Nidoqueen, Nidoking, Delcatty (Roark's), Clefable, Umbreon |
+   | Sun | 4, from Fantina's | Espeon and Armarouge (both Fantina's) |
+   | Shiny | 5, from Fantina's | Cinccino (Roark's), Togekiss, Roserade, Florges |
+   | Dusk | 4, from Fantina's | Honchkrow (Roark's), Ceruledge, Mismagius, Polteageist, Chandelure |
+   | Dawn | 5, from Fantina's | Froslass (Gardenia's), Gallade |
+   | Oval | 1, the Lost Tower (Maylene's); not dug | Chansey (Fantina's) |
+
+   The census also turned up a data question for the encounter track:
+   Polteageist evolves into Sinistcha by Dusk Stone here, which no game
+   does. The questions for Ian are in "Open questions for Ian".
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or

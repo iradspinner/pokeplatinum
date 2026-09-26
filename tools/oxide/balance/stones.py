@@ -57,6 +57,14 @@ def dig_shares():
     return out
 
 
+# A gift the split map places by its map but the script gates on a story
+# flag, with the split the flag is first set in. Route 207's woman gives all
+# nine stones at once, once the player has travelled with Mira through
+# Wayward Cave (FLAG_TRAVELED_WITH_MIRA), which the bike opens in Fantina's
+# split.
+GIFT_GATES = {"ROUTE_207": ("Fantina", "all nine at once, after travelling with Mira")}
+
+
 def underground_split():
     """The split the Explorer Kit is first given in."""
     got = [s for s, _m, item in splits.gifts() if item == "ITEM_EXPLORER_KIT"]
@@ -71,7 +79,9 @@ def sources():
             out[item].append((split, header, how))
     for split, header, item in splits.gifts():
         if item in STONES:
-            out[item].append((split, header, "gift"))
+            gate = GIFT_GATES.get(header)
+            out[item].append((gate[0], f"{header} ({gate[1]})", "gift") if gate
+                             else (split, header, "gift"))
     for split, table, item in splits.marts():
         if item in STONES:
             out[item].append((split, table, "Game Corner" if table == "GameCornerPrizes" else "mart"))
@@ -114,10 +124,10 @@ def main(argv=None):
         print(f"{stone.replace('ITEM_', '').replace('_', ' ').title()}")
         for split, where, how in src.get(stone, []):
             print(f"    {str(split):10} {how:12} {where}")
-        if stone in shares:
+        if stone in shares and any(shares[stone]):
             before, after = shares[stone]
             print(f"    {str(dig):10} {'dig':12} {before:.1%} of digs, {after:.1%} with the "
-                  f"National Dex")
+                  f"National Dex, with no limit")
         for species, target, split in sorted(want.get(stone, []),
                                              key=lambda r: (pool.split_index(r[2]), r[0])):
             print(f"      wanted by {species.replace('SPECIES_', '').title()} for "
