@@ -1460,6 +1460,7 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityLibero, 17
     AddListMenuEntry TestKit_Text_MenuAbilityInfiltrator, 18
     AddListMenuEntry TestKit_Text_MenuAbilityNeutralizingGas, 19
+    AddListMenuEntry TestKit_Text_MenuAbilityMore, 20
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
@@ -1481,6 +1482,17 @@ TestKit_Abilities2:
     GoToIfEq VAR_0x8004, 17, TestKit_AbilityLibero
     GoToIfEq VAR_0x8004, 18, TestKit_AbilityInfiltrator
     GoToIfEq VAR_0x8004, 19, TestKit_AbilityNeutralizingGas
+    GoToIfEq VAR_0x8004, 20, TestKit_Abilities3
+    GoTo TestKit_Close
+
+/* The third page: the hidden abilities the natives carry, which element 5
+   left for a follow-up. */
+TestKit_Abilities3:
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2144,6 +2156,22 @@ TestKit_AbilityNeutralizingGas:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_PRESSURE
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Analytic: the player's Snorlax (its own ability) and a
+   wild Magnezone given Analytic that knows only Thunderbolt. Magnezone is
+   always faster, so its Thunderbolt hits a third harder on the turns Snorlax
+   uses Quick Attack, and moves first, than on the turns it uses Splash. */
+TestKit_AbilityAnalytic:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_MAGNEZONE
+    SetVar VAR_0x8001, ABILITY_ANALYTIC
+    SetVar VAR_0x8002, MOVE_THUNDERBOLT
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

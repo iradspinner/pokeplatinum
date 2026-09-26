@@ -7539,6 +7539,25 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Analytic raises a move by 30% when every other battler still up has
+    // already acted this turn, so its holder moves last. Future Sight and
+    // Doom Desire, whose damage is worked out when they are used, are left
+    // alone, as in hg-engine and the later games.
+    if (attackerParams.ability == ABILITY_ANALYTIC
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_HIT_IN_3_TURNS) {
+        for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+            if (i != attacker
+                && battleCtx->battleMons[i].curHP
+                && Battler_MovedThisTurn(battleCtx, i) == FALSE) {
+                break;
+            }
+        }
+
+        if (i == BattleSystem_GetMaxBattlers(battleSys)) {
+            movePower = movePower * 13 / 10;
+        }
+    }
+
     // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
     // Force raises the moves whose secondary effects it strips by 30%.
     if (attackerParams.ability == ABILITY_PIXILATE

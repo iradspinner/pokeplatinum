@@ -254,6 +254,10 @@
             "en_US": "Neutralizing Gas"
         },
         {
+            "id": "TestKit_Text_MenuAbilityAnalytic",
+            "en_US": "Analytic"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },
