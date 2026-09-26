@@ -123,10 +123,14 @@ def _filler_fight(tr, split):
     return {"key": f"filler_{tr}", "label": t["name"], "split": split, "tr_ids": [tr]}, [t["party"]]
 
 
+# What a cell of the grid keeps of a fight's scores.
+SCORE_KEYS = ("threat", "answers", "answers_lock", "max_threat", "min_answers",
+              "min_answers_lock", "choice_mons", "pool", "cap")
+
+
 def _score(fight, parties, side, cap, blob, blob_path):
     r = pressure.score_fight(fight, blob, blob_path, side=side, parties=parties, cap=cap)
-    return {k: r[k] for k in ("threat", "answers", "answers_lock", "max_threat", "min_answers",
-                              "min_answers_lock", "choice_mons", "pool", "cap")}
+    return {k: r[k] for k in SCORE_KEYS}
 
 
 def load():

@@ -656,6 +656,15 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
 
     A what-if (shape.py) passes its own player's side, boss parties or cap;
     left out, each comes from the fight's split as the game stands."""
+    jobs, ctx = fight_jobs(fight, blob, side, parties, cap)
+    t0 = time.time()
+    out = run_node(blob_path, jobs)
+    return score_jobs(out, ctx, blob, time.time() - t0)
+
+
+def fight_jobs(fight, blob, side=None, parties=None, cap=None):
+    """The job file for one fight, and what scoring its results takes
+    besides: (jobs, ctx). rescore.py fingerprints both."""
     split = fight["split"]
     if side is None:
         side = pool.pool(split, blob)
@@ -676,21 +685,27 @@ def score_fight(fight, blob, blob_path, side=None, parties=None, cap=None):
                 jobs["pairs"].append([key, f"p{i}", boss_moves(mon, blob), w])
                 jobs["pairs"].append([f"p{i}", key, p["moves"], w])
             add_branches(jobs, key, mon, boss_moves(mon, blob), side, w)
-    t0 = time.time()
-    out = run_node(blob_path, jobs)
-    seconds = time.time() - t0
+    ctx = {"key": fight["key"], "label": fight["label"], "split": split,
+           "cap": cap if cap is not None else pool.caps()[split], "pool": len(side),
+           "weather": weather, "trick_room": bool(fight.get("trick_room")),
+           "parties": parties, "bosses": bosses}
+    return jobs, ctx
+
+
+def score_jobs(out, ctx, blob, seconds):
+    """One fight's scores from the calculator's answer to its job file."""
     rows = {(r["a"], r["d"]): r for r in out["results"]}
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
-    trick_room = bool(fight.get("trick_room"))
-    per_mon = score_mons(bosses, [f"p{i}" for i in range(len(side))], rows, out["pokemon"],
-                         trick_room)
+    per_mon = score_mons(ctx["bosses"], [f"p{i}" for i in range(ctx["pool"])], rows,
+                         out["pokemon"], ctx["trick_room"])
     return {
-        "key": fight["key"], "label": fight["label"], "split": split,
-        "cap": cap if cap is not None else pool.caps()[split], "pool": len(side), "weather": weather,
-        "trick_room": trick_room,
-        **roll_up(per_mon), **unseen(parties),
-        "predictable": predictability(parties, lambda mv: blob["moves"].get(mv, {}).get("category")),
+        "key": ctx["key"], "label": ctx["label"], "split": ctx["split"],
+        "cap": ctx["cap"], "pool": ctx["pool"], "weather": ctx["weather"],
+        "trick_room": ctx["trick_room"],
+        **roll_up(per_mon), **unseen(ctx["parties"]),
+        "predictable": predictability(ctx["parties"],
+                                      lambda mv: blob["moves"].get(mv, {}).get("category")),
         "mons": per_mon, "calcs": sum(len(r["moves"]) for r in out["results"]),
         "errors": errors, "node_seconds": round(out.get("seconds", 0), 2),
         "wall_seconds": round(seconds, 2),
