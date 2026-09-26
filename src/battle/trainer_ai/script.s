@@ -519,6 +519,13 @@ Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    // Oxide: Mirror Armor turns the drop back on the user (element 5), unless
+    // Mold Breaker ignores it, so score -10.
+    IfLoadedNotEqualTo ABILITY_MIRROR_ARMOR, Basic_CheckClearBodyEffect_FlowerVeil
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_MOLD_BREAKER, ScoreMinus10
+
+Basic_CheckClearBodyEffect_FlowerVeil:
     // Oxide: Flower Veil keeps stat drops off a Grass type that holds it or
     // stands beside its holder (element 5), unless Mold Breaker ignores it.
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
