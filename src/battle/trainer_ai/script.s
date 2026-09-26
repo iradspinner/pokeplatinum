@@ -346,57 +346,29 @@ Basic_CheckBellyDrum:
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
 
     // General comments on stat-boosting Status moves below:
-    //   - If the attacker has Simple and is already at +2, score -10.
     //   - If the attacker is already at +6, score -10.
+    //   - Oxide: Simple now doubles a stat change as it is made (the staples
+    //     rulings), so a Simple attacker's stages are its real ones and the
+    //     +6 test covers it. The Gen 4 branches that stopped at +2 are gone.
     //   - Special cases for Speed (Trick Room active -> -10) and Accuracy/Evasion (attacker has No Guard -> -10)
 Basic_CheckHighStatStage_Attack:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Attack_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Attack_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_Defense:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Defense_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Defense_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_Speed:
     IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Speed_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Speed_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_SpAttack:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_SpAttack_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_SpAttack_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckHighStatStage_SpDefense:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_SpDefense_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_SpDefense_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus10
     PopOrEnd 
 
@@ -405,11 +377,6 @@ Basic_CheckHighStatStage_Accuracy:
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Accuracy_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Accuracy_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus10
     PopOrEnd 
 
@@ -418,11 +385,6 @@ Basic_CheckHighStatStage_Evasion:
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_NO_GUARD, ScoreMinus10
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckHighStatStage_Evasion_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckHighStatStage_Evasion_NoSimple:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, ScoreMinus10
     PopOrEnd 
 
@@ -698,16 +660,7 @@ Basic_CheckCurse:
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
     IfLoadedEqualTo TYPE_GHOST, Basic_CheckCurse_GhostType
 
-    // If the attacker has Simple, treat it like a boosting move for both Attack and Defense.
-    // That is, if either Attack or Defense are already +2, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCurse_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCurse_NoSimple:
-    // If the attacker does not have Simple and either Attack or Defense are already +6, score -10.
+    // If either Attack or Defense are already +6, score -10/-8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
@@ -964,15 +917,6 @@ Basic_CheckTickle_CheckStatStages:
     PopOrEnd 
 
 Basic_CheckCosmicPower:
-    // If the attacker's ability is Simple and either Defense or SpDefense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCosmicPower_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCosmicPower_NoSimple:
     // If the attacker's Defense is already at +6, score -10.
     // If the attacker's SpDefense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
@@ -980,15 +924,6 @@ Basic_CheckCosmicPower_NoSimple:
     PopOrEnd 
 
 Basic_CheckBulkUp:
-    // If the attacker's ability is Simple and either Attack or Defense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckBulkUp_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckBulkUp_NoSimple:
     // If the attacker's Attack is already at +6, score -10.
     // If the attacker's Defense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
@@ -1001,15 +936,6 @@ Basic_CheckWaterSport:
     PopOrEnd 
 
 Basic_CheckCalmMind:
-    // If the attacker's ability is Simple and either SpAttack or SpDefense are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckCalmMind_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckCalmMind_NoSimple:
     // If the attacker's SpAttack is already at +6, score -10.
     // If the attacker's SpDefense is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
@@ -1020,15 +946,6 @@ Basic_CheckDragonDance:
     // If Trick Room is in effect, score -10.
     IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
 
-    // If the attacker's ability is Simple and either Attack or Speed are already at
-    // +3, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, Basic_CheckDragonDance_NoSimple
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckDragonDance_NoSimple:
     // If the attacker's Attack is already at +6, score -10.
     // If the attacker's Speed is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
@@ -1150,9 +1067,6 @@ Basic_CheckTailwind:
     PopOrEnd 
 
 Basic_CheckAcupressure:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SIMPLE, Basic_CheckAcupressure_Simple
-
     // If any of the attacker's stat stages are already at +6, score -10.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus10
@@ -1161,17 +1075,6 @@ Basic_CheckAcupressure:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus10
-    PopOrEnd 
-
-Basic_CheckAcupressure_Simple:
-    // If the attacker's ability is Simple and any stat stage is already at +3, score -10.
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckMetalBurst:
@@ -7760,17 +7663,13 @@ TagStrategy_PartnerGastroAcid_End:
     PopOrEnd 
 
 TagStrategy_PartnerAcupressure:
-    // If our partner has Simple and any stat at +3 stages, score -10
-    //
-    // Else if our partner has any stat at +6 stages, score -30
+    // If our partner has any stat at +6 stages, score -30
     //
     // Else if our partner's HP is 50% or lower, score -1
     //
     // Else if our partner's HP is 91% or higher, 68.75% chance of score +2, 31.25% chance of no score change
     //
     // Else 31.25% chance of score +2, 68.75% chance of no score change
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SIMPLE
-    IfLoadedEqualTo AI_HAVE, TagStrategy_PartnerAcupressureSimple
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, TagStrategy_PartnerScoreMinus30
@@ -7779,15 +7678,6 @@ TagStrategy_PartnerAcupressure:
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 12, TagStrategy_PartnerScoreMinus30
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 12, TagStrategy_PartnerScoreMinus30
     GoTo TagStrategy_PartnerAcupressure_CheckHP
-
-TagStrategy_PartnerAcupressureSimple:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 8, ScoreMinus10
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 8, ScoreMinus10
 
 TagStrategy_PartnerAcupressure_CheckHP:
     IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 51, TagStrategy_PartnerAcupressure_ScoreMinus1
