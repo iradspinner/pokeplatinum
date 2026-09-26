@@ -117,6 +117,7 @@ ScriptCommand(AICMD_LOADABILITY,                     AICmd_LoadAbility)
 ScriptCommand(AICMD_IFMOVEHASRAISEDPRIORITY,         AICmd_IfMoveHasRaisedPriority) // Oxide
 ScriptCommand(AICMD_IFMOVECANBEDRAWNIN,              AICmd_IfMoveCanBeDrawnIn)      // Oxide
 ScriptCommand(AICMD_IFPRANKSTERBLOCKEDBYDARK,        AICmd_IfPranksterBlockedByDark) // Oxide
+ScriptCommand(AICMD_IFPARTNEREFFECTIVENESSEQUALS,   AICmd_IfPartnerEffectivenessEquals) // Oxide
 
 // clang-format on
 

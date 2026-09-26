@@ -650,6 +650,14 @@
     .long (\jump-.) / 4 - 1
     .endm
 
+    // Oxide: jump if the move the AI is scoring has the given effectiveness on
+    // the attacker's own partner, as IfMoveEffectivenessEquals has on the target.
+    .macro IfPartnerEffectivenessEquals modifier:req, jump:req
+    .long AICMD_IFPARTNEREFFECTIVENESSEQUALS
+    .long \modifier
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

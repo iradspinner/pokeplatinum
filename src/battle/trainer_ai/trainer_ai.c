@@ -201,6 +201,7 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2815,6 +2816,57 @@ static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContex
         && (range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE
         && range != RANGE_OPPONENT_SIDE
         && MON_HAS_TYPE(AI_CONTEXT.defender, TYPE_DARK)) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored has the given effectiveness on
+ * the attacker's own partner.
+ *
+ * IfMoveEffectivenessEquals's test with the partner in the target's place, for
+ * Tag Strategy's check of a spread move that hits the partner too. The type
+ * chart counts Levitate, Magnet Rise and Wonder Guard, and the user's Mold
+ * Breaker getting past them; the absorbing abilities and Telepathy are left to
+ * the script, as the engine leaves them to BattleSystem_TriggerImmunityAbility.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.attacker);
+    u32 damage = TYPE_MULTI_BASE_DAMAGE;
+    u32 effectiveness = 0;
+
+    damage = BattleSystem_ApplyTypeChart(battleSys,
+        battleCtx,
+        AI_CONTEXT.move,
+        TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move),
+        AI_CONTEXT.attacker,
+        partner,
+        damage,
+        &effectiveness);
+
+    if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
+        damage = TYPE_MULTI_DOUBLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE * 4) {
+        damage = TYPE_MULTI_QUADRUPLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 2) {
+        damage = TYPE_MULTI_HALF_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 4) {
+        damage = TYPE_MULTI_QUARTER_DAMAGE;
+    }
+
+    if (effectiveness & MOVE_STATUS_IMMUNE) {
+        damage = TYPE_MULTI_IMMUNE;
+    }
+
+    if (damage == expected) {
         AIScript_Iter(battleCtx, jump);
     }
 }

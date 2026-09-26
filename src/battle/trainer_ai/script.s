@@ -7376,6 +7376,16 @@ TagStrategy_CheckSpecialScoring:
     // Oxide, change (doubles review, approved by Ian 2026-09-22): these hit the partner too
     IfMoveEqualTo MOVE_EXPLOSION, TagStrategy_Explosion
     IfMoveEqualTo MOVE_SELFDESTRUCT, TagStrategy_Explosion
+    // Oxide, change (Ian, 2026-09-27): the spread moves element 4 added hit the partner too.
+    // Bulldoze is scored as Earthquake; Parabolic Charge, Sparkling Aria, Searing Shot and
+    // Mind Blown in the Electric, Water and Fire checks below; the rest by the type chart
+    IfMoveEqualTo MOVE_BULLDOZE, TagStrategy_Earthquake
+    IfMoveEqualTo MOVE_BRUTAL_SWING, TagStrategy_SpreadMove
+    IfMoveEqualTo MOVE_BOOMBURST, TagStrategy_SpreadMove
+    IfMoveEqualTo MOVE_SLUDGE_WAVE, TagStrategy_SpreadMove
+    IfMoveEqualTo MOVE_PETAL_BLIZZARD, TagStrategy_SpreadMove
+    IfMoveEqualTo MOVE_SYNCHRONOISE, TagStrategy_SpreadMove
+    IfMoveEqualTo MOVE_MISTY_EXPLOSION, TagStrategy_SpreadMove
     IfMoveEqualTo MOVE_FUTURE_SIGHT, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_DOOM_DESIRE, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_RAIN_DANCE, TagStrategy_RainDance
@@ -7843,6 +7853,54 @@ TagStrategy_Explosion_CheckTypes:
 TagStrategy_Explosion_End:
     PopOrEnd 
 
+TagStrategy_SpreadMove:
+    // Oxide, change (Ian, 2026-09-27). The spread moves element 4 added that hit the partner as
+    // well as both foes and have no type routine below: Brutal Swing, Boomburst, Sludge Wave,
+    // Petal Blizzard, Synchronoise (a plain hit on every Pokemon around it in the engine) and
+    // Misty Explosion. Scored in Earthquake's shape, from the type chart against the partner
+    // (IfPartnerEffectivenessEquals). If our partner:
+    //  - Is absent (its slot is empty for the rest of the battle), no change
+    //  - Has Sap Sipper against Petal Blizzard, score +3, as the absorbers below
+    //  - Takes no damage (immune by type, Levitate or Wonder Guard, or has Telepathy, or
+    //    Soundproof against Boomburst), score +2; Misty Explosion no change, as Explosion
+    //    beside a Ghost
+    //  - Is weak to the move, score -10
+    //  - Otherwise, score -3; Misty Explosion -10 unless the partner resists, as Explosion
+    // The user's Mold Breaker gets past the partner's abilities, as in the routines below.
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadMove_End
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadMove_CheckTypes
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
+    IfLoadedEqualTo AI_HAVE, TagStrategy_SpreadMove_PartnerUnharmed
+    IfMoveEqualTo MOVE_BOOMBURST, TagStrategy_SpreadMove_CheckSoundproof
+    IfMoveEqualTo MOVE_PETAL_BLIZZARD, TagStrategy_SpreadMove_CheckSapSipper
+    GoTo TagStrategy_SpreadMove_CheckTypes
+
+TagStrategy_SpreadMove_CheckSoundproof:
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SOUNDPROOF
+    IfLoadedEqualTo AI_HAVE, TagStrategy_SpreadMove_PartnerUnharmed
+    GoTo TagStrategy_SpreadMove_CheckTypes
+
+TagStrategy_SpreadMove_CheckSapSipper:
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SAP_SIPPER
+    IfLoadedEqualTo AI_HAVE, ScorePlus3
+
+TagStrategy_SpreadMove_CheckTypes:
+    IfPartnerEffectivenessEquals TYPE_MULTI_IMMUNE, TagStrategy_SpreadMove_PartnerUnharmed
+    IfPartnerEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, ScoreMinus10
+    IfPartnerEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, ScoreMinus10
+    IfPartnerEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, ScoreMinus3
+    IfPartnerEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, ScoreMinus3
+    IfMoveEqualTo MOVE_MISTY_EXPLOSION, ScoreMinus10
+    GoTo ScoreMinus3
+
+TagStrategy_SpreadMove_PartnerUnharmed:
+    IfMoveEqualTo MOVE_MISTY_EXPLOSION, TagStrategy_SpreadMove_End
+    GoTo ScorePlus2
+
+TagStrategy_SpreadMove_End:
+    PopOrEnd 
+
 TagStrategy_FutureSight:
     // If the move is Future Sight or Doom Desire:
     //  - If we have no partner, apply no additional modifiers
@@ -7919,6 +7977,7 @@ TagStrategy_CheckElectricMove:
     // move that can be drawn in counts: one aimed at a single target, used without Mold
     // Breaker or Normalize, at a foe whose partner is still standing.
     IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
+    IfMoveEqualTo MOVE_PARABOLIC_CHARGE, TagStrategy_SpreadElectricMove // Oxide
     IfMoveCanBeDrawnIn TagStrategy_CheckTargetLightningRod
     GoTo TagStrategy_PartnerHasLightningRod
 
@@ -7981,6 +8040,7 @@ TagStrategy_CheckWaterMove:
     // Oxide, change (Ian, 2026-09-27): vanilla gave the first case -1. Now the holder takes
     // the move and raises its Sp. Atk, as for Lightning Rod above, with the same test.
     IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
+    IfMoveEqualTo MOVE_SPARKLING_ARIA, TagStrategy_SparklingAria // Oxide
     IfMoveCanBeDrawnIn TagStrategy_CheckTargetStormDrain
     GoTo TagStrategy_CheckPartnerStormDrain
 
@@ -7996,6 +8056,16 @@ TagStrategy_CheckPartnerStormDrain:
     // This line should never result in a branch
     IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
     GoTo TagStrategy_CheckWater_End
+
+TagStrategy_SparklingAria:
+    // Oxide, change (Ian, 2026-09-27): Sparkling Aria hits the partner as Surf does, but is a
+    // sound move, so a Soundproof partner takes no damage: score +2, as Earthquake beside a
+    // partner immune to it. Otherwise it is scored as Surf.
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadWaterMove
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SOUNDPROOF
+    IfLoadedEqualTo AI_HAVE, ScorePlus2
 
 TagStrategy_SpreadWaterMove:
     // If our partner has Dry Skin or Water Absorb, score +3
@@ -8058,6 +8128,9 @@ TagStrategy_FlashFireScorePlus1:
 
 TagStrategy_CheckLavaPlume:
     IfMoveEqualTo MOVE_LAVA_PLUME, TagStrategy_SpreadFireMove
+    // Oxide, change (Ian, 2026-09-27): these hit the partner as Lava Plume does
+    IfMoveEqualTo MOVE_SEARING_SHOT, TagStrategy_SpreadFireMove
+    IfMoveEqualTo MOVE_MIND_BLOWN, TagStrategy_SpreadFireMove
     GoTo TagStrategy_CheckFire_End
 
 TagStrategy_SpreadFireMove:
