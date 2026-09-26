@@ -427,7 +427,7 @@ most threatening Pokemon and its least answered one.
 | Mars 2 | 0.37 | 0.14 | 0.84 | 0.05 |
 | Candice | 0.67 | 0.14 | 0.93 | 0.04 |
 | Cyrus 2 | 0.45 | 0.13 | 0.83 | 0.03 |
-| Saturn 2 | 0.29 | 0.20 | 0.82 | 0.06 |
+| Saturn 2 | 0.41 | 0.18 | 0.85 | 0.00 |
 | Mars and Jupiter | 0.31 | 0.34 | 0.66 | 0.07 |
 | Cyrus 3 | 0.52 | 0.23 | 0.82 | 0.12 |
 | Volkner | 0.65 | 0.18 | 0.88 | 0.02 |
@@ -549,7 +549,7 @@ under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ, cap 60), Ian's Trick Room team | 0.33, 0.17 | 0.35, 0.14 |
+| Saturn 2 (HQ, cap 60), under Trick Room | 0.42, 0.18 | 0.42, 0.18 |
 | Cyrus 2 (HQ, cap 60), with Suicune | 0.49, 0.11 | 0.52, 0.09 |
 | Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.18 | 0.50, 0.16 |
 | Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.40, 0.25 | 0.42, 0.22 |
@@ -557,11 +557,16 @@ under).
 | Volkner (68) | 0.75, 0.17 | 0.77, 0.16 |
 
 These are Ian's baseline teams (the table was first run on the base ROM's
-older teams). **Two of them lean on what the scores cannot see.** Saturn 2's
-team is built for Trick Room, under which the slowest move first, and the
-scores assume normal Speed order; and Cyrus 3 and Saturn 2 carry Curse,
-Explosion, Swagger and Aqua Ring, which the scores leave out with every
-status and setup move. So both read softer here than they will play.
+older teams). Saturn 2 is scored under Trick Room since Ian's ruling of
+2026-09-25 that the fight opens in one lasting the whole battle, which no
+move can end: his threat rose from 0.29 to 0.41 at the tree's levels, and
+it stays flat as his levels rise, because under Trick Room a level up is
+Speed that costs him turn order. His Rhyperior holds a Choice Scarf, which
+under a permanent Trick Room only makes it move later; the trainer pass
+should give it another item. **Cyrus 3 and Saturn 2 still lean on what the
+scores cannot see:** Curse, Explosion, Swagger and Aqua Ring, which the
+scores leave out with every status and setup move. So both read softer
+here than they will play.
 
 The zone's 52 route and Stark Mountain trainers read 0.35 and 0.38 at 10
 under the cap, 0.40 and 0.33 at 7 under, 0.45 and 0.28 at 4 under: medium

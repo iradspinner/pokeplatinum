@@ -2063,12 +2063,13 @@
    "cap": 60,
    "pool": 323,
    "weather": null,
-   "threat": 0.29,
-   "answers": 0.204,
-   "answers_lock": 0.214,
-   "max_threat": 0.824,
-   "min_answers": 0.062,
-   "min_answers_lock": 0.062,
+   "trick_room": true,
+   "threat": 0.413,
+   "answers": 0.185,
+   "answers_lock": 0.193,
+   "max_threat": 0.845,
+   "min_answers": 0.0,
+   "min_answers_lock": 0.0,
    "choice_mons": 1,
    "mons": [
     {
@@ -2079,9 +2080,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.08,
-     "answers": 0.068,
-     "answers_lock": 0.068
+     "threat": 0.006,
+     "answers": 0.214,
+     "answers_lock": 0.214
     },
     {
      "variant": 0,
@@ -2091,9 +2092,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.133,
-     "answers": 0.251,
-     "answers_lock": 0.251
+     "threat": 0.418,
+     "answers": 0.031,
+     "answers_lock": 0.031
     },
     {
      "variant": 0,
@@ -2103,9 +2104,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.0,
-     "answers": 0.251,
-     "answers_lock": 0.251
+     "threat": 0.845,
+     "answers": 0.0,
+     "answers_lock": 0.0
     },
     {
      "variant": 0,
@@ -2115,9 +2116,9 @@
      "weather": null,
      "choice": true,
      "locked_move": "Stone Edge",
-     "threat": 0.446,
-     "answers": 0.372,
-     "answers_lock": 0.433
+     "threat": 0.52,
+     "answers": 0.276,
+     "answers_lock": 0.322
     },
     {
      "variant": 0,
@@ -2127,9 +2128,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.26,
-     "answers": 0.062,
-     "answers_lock": 0.062
+     "threat": 0.05,
+     "answers": 0.111,
+     "answers_lock": 0.111
     },
     {
      "variant": 0,
@@ -2139,9 +2140,9 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.824,
-     "answers": 0.22,
-     "answers_lock": 0.22
+     "threat": 0.638,
+     "answers": 0.48,
+     "answers_lock": 0.48
     }
    ],
    "calcs": 33595,
@@ -2174,8 +2175,8 @@
     "p75 Trump Card: damage is not a number",
     "p94 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.18,
-   "wall_seconds": 4.29
+   "node_seconds": 4.28,
+   "wall_seconds": 4.4
   },
   "mars_jupiter": {
    "key": "mars_jupiter",

@@ -25,7 +25,9 @@ out and listed per fight.
 Weather: a reference fight starts in no field weather, only in what a boss
 Pokemon's own ability sets up. The references' data carry no map weather,
 and vanilla Platinum's gyms have none; Oxide's four weather fights keep
-theirs in pressure.json, since that weather is part of Oxide.
+theirs in pressure.json, since that weather is part of Oxide. Trick Room is
+the same: Oxide's Saturn 2 is fought under it (fights.json), but a
+reference hack's fight in that seat is scored at ordinary Speed order.
 
 Each hack's results go to pressure_refs/<hack>.json, one file per hack, so
 runs for different hacks can go side by side without sharing a file.
