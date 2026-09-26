@@ -3672,9 +3672,10 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_ability_restores_hp;
     }
 
+    // Oxide: Flash Fire works while its holder is frozen (Generation 5), as in
+    // hg-engine, which comments the freeze check out.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLASH_FIRE) == TRUE
         && moveType == TYPE_FIRE
-        && (battleCtx->battleMons[defender].status & MON_CONDITION_FREEZE) == FALSE
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && (CURRENT_MOVE_DATA.power || battleCtx->moveCur == MOVE_WILL_O_WISP)) {
         subscript = subscript_absorb_and_boost_fire_type_moves;
