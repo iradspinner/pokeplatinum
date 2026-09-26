@@ -8913,6 +8913,48 @@
         "{STRVAR_1 1, 0, 0} hasn’t eaten a Berry,\n",
         "so it can’t possibly belch!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "sharply raised its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} surrounded itself\n",
+        "with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} surrounded\n",
+        "itself with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} surrounded\n",
+        "itself with a veil of petals!"
+      ]
     }
   ]
 }

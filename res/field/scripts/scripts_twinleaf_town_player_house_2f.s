@@ -1046,6 +1046,12 @@ TestKit_Abilities:
     AddListMenuEntry TestKit_Text_MenuAbilityOvercoat, 4
     AddListMenuEntry TestKit_Text_MenuAbilityPurifyingSalt, 5
     AddListMenuEntry TestKit_Text_MenuAbilityCorrosion, 6
+    AddListMenuEntry TestKit_Text_MenuAbilityCompetitive, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityDefiant, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityBigPecks, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityFlowerVeil, 10
+    AddListMenuEntry TestKit_Text_MenuAbilityContrary, 11
+    AddListMenuEntry TestKit_Text_MenuAbilityMirrorArmor, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
@@ -1054,6 +1060,12 @@ TestKit_Abilities:
     GoToIfEq VAR_0x8004, 4, TestKit_AbilityOvercoat
     GoToIfEq VAR_0x8004, 5, TestKit_AbilityPurifyingSalt
     GoToIfEq VAR_0x8004, 6, TestKit_AbilityCorrosion
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilityCompetitive
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityDefiant
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityBigPecks
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityFlowerVeil
+    GoToIfEq VAR_0x8004, 11, TestKit_AbilityContrary
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilityMirrorArmor
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1148,6 +1160,88 @@ TestKit_AbilityCorrosion:
     SetVar VAR_0x8000, SPECIES_SKARMORY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_NONE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Competitive: a wild Chansey that knows only Growl. Each Growl lowers
+   Gothitelle's Attack and then raises its Sp. Atk two stages. */
+TestKit_AbilityCompetitive:
+    SetVar VAR_0x800A, SPECIES_GOTHITELLE
+    SetVar VAR_0x800B, ABILITY_COMPETITIVE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_THUNDER_WAVE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Defiant: a wild Chansey that knows only Tail Whip. Each Tail Whip lowers
+   Galarian Zapdos's Defense and then raises its Attack two stages. */
+TestKit_AbilityDefiant:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_ZAPDOS
+    SetVar VAR_0x800B, ABILITY_DEFIANT
+    SetVar VAR_0x8006, MOVE_THUNDEROUS_KICK
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_BULK_UP
+    SetVar VAR_0x8009, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Big Pecks: a wild Chansey that knows only Tail Whip, which cannot lower
+   Mandibuzz's Defense. */
+TestKit_AbilityBigPecks:
+    SetVar VAR_0x800A, SPECIES_MANDIBUZZ
+    SetVar VAR_0x800B, ABILITY_BIG_PECKS
+    SetVar VAR_0x8006, MOVE_FOUL_PLAY
+    SetVar VAR_0x8007, MOVE_ROOST
+    SetVar VAR_0x8008, MOVE_TOXIC
+    SetVar VAR_0x8009, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAIL_WHIP
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Flower Veil guards Grass types, and none of its three carriers is one, so
+   the kit gives it to Tsareena. A wild Chansey that knows only Growl cannot
+   lower Tsareena's Attack. */
+TestKit_AbilityFlowerVeil:
+    SetVar VAR_0x800A, SPECIES_TSAREENA
+    SetVar VAR_0x800B, ABILITY_FLOWER_VEIL
+    SetVar VAR_0x8006, MOVE_TROP_KICK
+    SetVar VAR_0x8007, MOVE_POWER_WHIP
+    SetVar VAR_0x8008, MOVE_KNOCK_OFF
+    SetVar VAR_0x8009, MOVE_TRAILBLAZE
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Contrary: Serperior's Leaf Storm raises its Sp. Atk two stages instead of
+   lowering it, and Coil lowers its stats instead of raising them. */
+TestKit_AbilityContrary:
+    SetVar VAR_0x800A, SPECIES_SERPERIOR
+    SetVar VAR_0x800B, ABILITY_CONTRARY
+    SetVar VAR_0x8006, MOVE_LEAF_STORM
+    SetVar VAR_0x8007, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8008, MOVE_COIL
+    SetVar VAR_0x8009, MOVE_GLARE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Mirror Armor: a wild Chansey that knows only Growl. Each Growl lowers
+   Chansey's own Attack instead of Corviknight's. */
+TestKit_AbilityMirrorArmor:
+    SetVar VAR_0x800A, SPECIES_CORVIKNIGHT
+    SetVar VAR_0x800B, ABILITY_MIRROR_ARMOR
+    SetVar VAR_0x8006, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8007, MOVE_BODY_PRESS
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_IRON_HEAD
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

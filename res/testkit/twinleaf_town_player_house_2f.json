@@ -90,6 +90,30 @@
             "en_US": "Corrosion"
         },
         {
+            "id": "TestKit_Text_MenuAbilityCompetitive",
+            "en_US": "Competitive"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityDefiant",
+            "en_US": "Defiant"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBigPecks",
+            "en_US": "Big Pecks"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityFlowerVeil",
+            "en_US": "Flower Veil"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityContrary",
+            "en_US": "Contrary"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityMirrorArmor",
+            "en_US": "Mirror Armor"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

@@ -1298,6 +1298,11 @@
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
+    .macro TryDefiant jump_no_effect
+    .long BTLCMD_TRYDEFIANT
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

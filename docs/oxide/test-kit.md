@@ -132,11 +132,17 @@ The new Pokemon is not in the lead, so switch it in on the first turn.
 |---|---|---|---|
 | Beast Boost | Kartana: Leaf Blade, Sacred Sword, Swords Dance, Night Slash | Knock out any wild Pokemon: straight after "fainted!", "KARTANA's Beast Boost raised its Attack!" (Attack is Kartana's highest stat). Nothing on a turn it does not knock anything out | 2f8d27c3 |
 | Soul Heart | Magearna: Fleur Cannon, Flash Cannon, Dazzling Gleam, Calm Mind | When the wild Pokemon faints, "MAGEARNA's Soul Heart raised its Sp. Atk!"; it also fires when one of your own Pokemon faints with Magearna on the field, which needs a double battle | 2f8d27c3 |
-| Sap Sipper | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Bellsprout that knows only Vine Whip | Vine Whip does no damage: "GOODRA's Sap Sipper raised its Attack!", and at +6 "made Vine Whip useless!" | this batch |
-| Bulletproof | Kommo-o: Clanging Scales, Dragon Dance, Close Combat, Iron Defense; foe a wild Chansey that knows only Egg Bomb | "KOMMO-O's Bulletproof blocks Egg Bomb!" every turn | this batch |
-| Overcoat | Mandibuzz: Sandstorm, Roost, Foul Play, Toxic; foe a wild Paras that knows only Spore | "MANDIBUZZ's Overcoat blocks Spore!"; with Sandstorm up, Paras is buffeted by the sandstorm at the end of each turn and Mandibuzz is not | this batch |
-| Purifying Salt | Garganacl: Rest, Salt Cure, Stealth Rock, Recover; foe a wild Gengar that knows only Will-O-Wisp | Will-O-Wisp fails with "GARGANACL's Purifying Salt prevents burns!"; Garganacl's own Rest fails with "stayed awake because of its Purifying Salt!". Its halving of Ghost damage does not show here | this batch |
-| Corrosion | Salazzle: Toxic, Poison Gas, Flamethrower, Sludge Bomb; foe a wild Skarmory with its own moves | Toxic and Poison Gas poison the Steel-type Skarmory, where without Corrosion they would not affect it | this batch |
+| Sap Sipper | Goodra: Dragon Pulse, Sludge Bomb, Thunderbolt, Rest; foe a wild Bellsprout that knows only Vine Whip | Vine Whip does no damage: "GOODRA's Sap Sipper raised its Attack!", and at +6 "made Vine Whip useless!" | 78628e1e |
+| Bulletproof | Kommo-o: Clanging Scales, Dragon Dance, Close Combat, Iron Defense; foe a wild Chansey that knows only Egg Bomb | "KOMMO-O's Bulletproof blocks Egg Bomb!" every turn | 78628e1e |
+| Overcoat | Mandibuzz: Sandstorm, Roost, Foul Play, Toxic; foe a wild Paras that knows only Spore | "MANDIBUZZ's Overcoat blocks Spore!"; with Sandstorm up, Paras is buffeted by the sandstorm at the end of each turn and Mandibuzz is not | 78628e1e |
+| Purifying Salt | Garganacl: Rest, Salt Cure, Stealth Rock, Recover; foe a wild Gengar that knows only Will-O-Wisp | Will-O-Wisp fails with "GARGANACL's Purifying Salt prevents burns!"; Garganacl's own Rest fails with "stayed awake because of its Purifying Salt!". Its halving of Ghost damage does not show here | 78628e1e |
+| Corrosion | Salazzle: Toxic, Poison Gas, Flamethrower, Sludge Bomb; foe a wild Skarmory with its own moves | Toxic and Poison Gas poison the Steel-type Skarmory, where without Corrosion they would not affect it | 78628e1e |
+| Competitive | Gothitelle: Psychic, Calm Mind, Thunderbolt, Thunder Wave; foe a wild Chansey that knows only Growl | After "GOTHITELLE's Attack fell!", "GOTHITELLE's Competitive sharply raised its Sp. Atk!" every time | this batch |
+| Defiant | Galarian Zapdos: Thunderous Kick, Brave Bird, Bulk Up, Close Combat; foe a wild Chansey that knows only Tail Whip | After its Defense falls, "ZAPDOS's Defiant sharply raised its Attack!"; its own Close Combat lowering its stats does not set it off | this batch |
+| Big Pecks | Mandibuzz: Foul Play, Roost, Toxic, Brave Bird; foe a wild Chansey that knows only Tail Whip | "MANDIBUZZ's Big Pecks prevents Defense loss!" every time | this batch |
+| Flower Veil | Tsareena, given Flower Veil because none of its carriers is Grass: Trop Kick, Power Whip, Knock Off, Trailblaze; foe a wild Chansey that knows only Growl | "TSAREENA surrounded itself with a veil of petals!" and its Attack stays. A Florges's Flower Veil guarding a Grass-type partner needs a double battle | this batch |
+| Contrary | Serperior: Leaf Storm, Giga Drain, Coil, Glare; any foe | Leaf Storm: "SERPERIOR's Sp. Atk sharply rose!"; Coil: its Attack, Defense and accuracy each fall | this batch |
+| Mirror Armor | Corviknight: Iron Defense, Body Press, Roost, Iron Head; foe a wild Chansey that knows only Growl | Each Growl lowers the wild Chansey's own Attack, and Corviknight's stays | this batch |
 
 ## Not built yet
 

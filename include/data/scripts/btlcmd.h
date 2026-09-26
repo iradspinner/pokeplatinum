@@ -242,6 +242,7 @@ ScriptCommand(BTLCMD_TRYAURORAVEIL,               BtlCmd_TryAuroraVeil)
 ScriptCommand(BTLCMD_TRYBELCH,                    BtlCmd_TryBelch)
 ScriptCommand(BTLCMD_TRYBEASTBOOST,               BtlCmd_TryBeastBoost)
 ScriptCommand(BTLCMD_TRYSOULHEART,                BtlCmd_TrySoulHeart)
+ScriptCommand(BTLCMD_TRYDEFIANT,                  BtlCmd_TryDefiant)
 
 // clang-format on
 

@@ -54,11 +54,24 @@ _105:
     PrintMessage BattleStrings_Text_PokemonWasCaughtInAStickyWeb_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
     Wait
     WaitButtonABTime 30
+    CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 3, _sticky_web_rise
     CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 0, _sticky_web_message
     PlayBattleAnimation BTLSCR_SWITCHED_MON, BATTLE_ANIMATION_STAT_DROP
     Wait
+    GoTo _sticky_web_message
+
+_sticky_web_rise:
+    PlayBattleAnimation BTLSCR_SWITCHED_MON, BATTLE_ANIMATION_STAT_BOOST
+    Wait
 
 _sticky_web_message:
+    PrintBufferedMessage
+    Wait
+    WaitButtonABTime 30
+    // Oxide, element 5: Defiant and Competitive answer the web's drop.
+    TryDefiant _end
+    PlayBattleAnimation BTLSCR_SWITCHED_MON, BATTLE_ANIMATION_STAT_BOOST
+    Wait
     PrintBufferedMessage
     Wait
     WaitButtonABTime 30
