@@ -47,7 +47,7 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_GLISCOR"
         }
     ],
     "swarms": [
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_KOMMO_O",
         "SPECIES_GARGANACL",
-        "SPECIES_TYRANITAR",
+        "SPECIES_CARBINK",
         "SPECIES_SLIGGOO"
     ],
     "rate_form0": 0,
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_BRONZONG"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_BRONZONG"
     ],
     "emerald": [
         "SPECIES_MILOTIC",

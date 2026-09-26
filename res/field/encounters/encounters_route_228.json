@@ -23,7 +23,7 @@
         },
         {
             "level": 51,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 51,
@@ -43,11 +43,11 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_GARCHOMP"
+            "species": "SPECIES_STEELIX"
         },
         {
             "level": 52,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_CARBINK"
         }
     ],
     "swarms": [
@@ -63,7 +63,7 @@
         "SPECIES_HOUNDOOM"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_SALAZZLE",
         "SPECIES_HERACROSS",
         "SPECIES_ROSERADE",
         "SPECIES_LEAVANNY"

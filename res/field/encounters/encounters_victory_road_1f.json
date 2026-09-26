@@ -7,7 +7,7 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_CRUSTLE"
         },
         {
             "level": 41,
@@ -52,21 +52,21 @@
     ],
     "swarms": [
         "SPECIES_CARBINK",
-        "SPECIES_PUPITAR"
+        "SPECIES_CRUSTLE"
     ],
     "day": [
         "SPECIES_GOLEM",
         "SPECIES_HARIYAMA"
     ],
     "night": [
-        "SPECIES_PUPITAR",
+        "SPECIES_CRUSTLE",
         "SPECIES_ABSOL"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_HARIYAMA",
         "SPECIES_RHYDON",
-        "SPECIES_GARCHOMP",
-        "SPECIES_METAGROSS"
+        "SPECIES_RHYPERIOR",
+        "SPECIES_MIENSHAO"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -84,7 +84,7 @@
     ],
     "emerald": [
         "SPECIES_GLALIE",
-        "SPECIES_METAGROSS"
+        "SPECIES_RHYPERIOR"
     ],
     "firered": [
         "SPECIES_GALARIAN_RAPIDASH",

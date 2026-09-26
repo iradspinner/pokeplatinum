@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_LARVITAR",
+        "SPECIES_CARBINK",
         "SPECIES_GLIGAR"
     ],
     "day": [
@@ -88,7 +88,7 @@
     ],
     "firered": [
         "SPECIES_GASTLY",
-        "SPECIES_GYARADOS"
+        "SPECIES_CARBINK"
     ],
     "leafgreen": [
         "SPECIES_WARTORTLE",

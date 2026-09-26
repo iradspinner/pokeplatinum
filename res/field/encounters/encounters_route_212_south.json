@@ -87,7 +87,7 @@
         "SPECIES_HARIYAMA"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_BRELOOM",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
@@ -127,7 +127,7 @@
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CARVANHA"
         },
         {
             "level_max": 16,
@@ -142,7 +142,7 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_CARVANHA"
+            "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 18,

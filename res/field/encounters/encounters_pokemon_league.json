@@ -63,10 +63,10 @@
         "SPECIES_BRONZONG"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_GARGANACL",
         "SPECIES_RHYDON",
-        "SPECIES_GARCHOMP",
-        "SPECIES_METAGROSS"
+        "SPECIES_GLIMMORA",
+        "SPECIES_HAWLUCHA"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -84,7 +84,7 @@
     ],
     "emerald": [
         "SPECIES_GLALIE",
-        "SPECIES_METAGROSS"
+        "SPECIES_GOLEM"
     ],
     "firered": [
         "SPECIES_GALARIAN_RAPIDASH",
@@ -127,7 +127,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 24,
@@ -198,7 +198,7 @@
         {
             "level_max": 53,
             "level_min": 45,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level_max": 56,

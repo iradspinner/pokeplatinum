@@ -47,7 +47,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_GLIGAR"
         }
     ],
     "swarms": [
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_GOLEM",
-        "SPECIES_GYARADOS"
+        "SPECIES_STEELIX"
     ],
     "surf_rate": 0,
     "surf_encounters": [

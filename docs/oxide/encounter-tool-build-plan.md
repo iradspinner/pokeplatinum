@@ -269,6 +269,41 @@ that stay. None blocks anything.
      later, since Meloetta is not in the species tree. Until then the trade
      stays as it is, and its Magikarp still breaks the rule that a line the
      player can always have is in no table.
+16. **Strong Pokemon made scarce, step 1 (Ian, 2026-09-26).** No Pokemon
+   worth about 85 or more (the simulator's value) should be better than even
+   odds with best play; a box entering the Elite Four should hold one to
+   three, not a party. Best play used to end the League with a median of
+   nine: Giratina, the two eggs and Gyarados in every run, Garchomp and
+   Tyranitar in 98%, Metagross in 85%, Mamoswine in 80%. Step 1:
+   - Giratina in the Distortion World is not a legal catch.
+   - Gible, Beldum and Swinub keep one or two capture areas each (Wayward
+     Cave, Iron Island, Route 217 and Mt. Coronet North). Larvitar is a 1%
+     beside Gible at Wayward Cave, so one capture yields at most one of the
+     two. Magikarp keeps one 4% or 1% Old Rod slot on Lake Verity, Route 203
+     and Route 212 south.
+   - Everywhere else each gave way to a line of the same kind the table
+     lacked, never one worth 80 or more, and no line took more than four
+     slots.
+   - The Route 226 trade leaves the simulator until it becomes Meloetta.
+
+   Over 40 League runs the median is now four, and no line passes half:
+   Garchomp 32%, Mamoswine 18%, Tyranitar 12%, Metagross 5%, Gyarados
+   never. The four are the two eggs, which Ian accepts, and one legendary
+   from each lake cavern. `test_sim` pins the rule over 20 runs.
+
+   What the simulator showed along the way: late in a run the dupes clause
+   inflates any prize whose table's other lines the box already owns. A 1%
+   Pupitar beside a Crobat anchor became a coin flip by Candice's split,
+   since nearly every box has a Zubat. So scarcity comes from fewer
+   appearances and from prizes that compete in one capture, not from
+   smaller slots. The tier just below, 75 to 85, still lands a median of
+   29 per box, a dozen lines in every run. Next: Ian's call on step 2.
+17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
+   Overseer).** The three are turned off and never go in a table. This
+   track empties the lists in all 186 tables and makes lint fail on any
+   species there. It must land in the same merge as the main track's
+   engine change, which stops the substitutions; before that, an emptied
+   slot would be read as species 0.
 
 ## Standing rules
 

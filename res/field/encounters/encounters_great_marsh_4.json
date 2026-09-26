@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SCYTHER"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SCYTHER"
     ],
     "emerald": [
         "SPECIES_MILOTIC",
@@ -127,7 +127,7 @@
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WINGULL"
         },
         {
             "level_max": 16,
@@ -193,7 +193,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_KINGLER"
         },
         {
             "level_max": 45,

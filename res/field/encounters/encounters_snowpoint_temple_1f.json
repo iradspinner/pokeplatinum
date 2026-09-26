@@ -55,7 +55,7 @@
         "SPECIES_LURANTIS"
     ],
     "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
     ],
     "night": [
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_BLAZIKEN",
-        "SPECIES_METAGROSS"
+        "SPECIES_KLEFKI"
     ],
     "sapphire": [
         "SPECIES_BLAZIKEN",
-        "SPECIES_METAGROSS"
+        "SPECIES_KLEFKI"
     ],
     "emerald": [
         "SPECIES_FLYGON",

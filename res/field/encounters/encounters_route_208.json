@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_GLIMMET",
-        "SPECIES_GIBLE"
+        "SPECIES_PACHIRISU"
     ],
     "day": [
         "SPECIES_SEWADDLE",
@@ -127,7 +127,7 @@
         {
             "level_max": 13,
             "level_min": 8,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WAILMER"
         },
         {
             "level_max": 13,
@@ -155,7 +155,7 @@
         {
             "level_max": 22,
             "level_min": 16,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 22,

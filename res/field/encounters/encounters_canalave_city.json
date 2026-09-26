@@ -142,7 +142,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_LUVDISC"
         },
         {
             "level_max": 20,
@@ -183,7 +183,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_LUMINEON"
         },
         {
             "level_max": 44,

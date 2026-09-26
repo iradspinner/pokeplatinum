@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_ABSOL",
-        "SPECIES_METANG"
+        "SPECIES_DOLLIV"
     ],
     "day": [
         "SPECIES_TOUCANNON",
@@ -87,7 +87,7 @@
         "SPECIES_WHISCASH"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_SHELLOS",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
@@ -127,7 +127,7 @@
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 18,

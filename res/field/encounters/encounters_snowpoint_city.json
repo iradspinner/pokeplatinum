@@ -142,7 +142,7 @@
         {
             "level_max": 21,
             "level_min": 17,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SHELLOS"
         },
         {
             "level_max": 22,
@@ -170,7 +170,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_SNOVER"
         },
         {
             "level_max": 38,

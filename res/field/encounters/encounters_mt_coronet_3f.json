@@ -47,7 +47,7 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_GLISCOR"
         }
     ],
     "swarms": [
@@ -64,7 +64,7 @@
     ],
     "radar": [
         "SPECIES_GARGANACL",
-        "SPECIES_TYRANITAR",
+        "SPECIES_GLIMMORA",
         "SPECIES_KOMMO_O",
         "SPECIES_GOLEM"
     ],

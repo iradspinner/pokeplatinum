@@ -55,7 +55,7 @@
         "SPECIES_CARBINK"
     ],
     "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
     ],
     "night": [
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_MR_RIME",
         "SPECIES_CARBINK",
-        "SPECIES_TYRANITAR",
-        "SPECIES_PUPITAR"
+        "SPECIES_FROSMOTH",
+        "SPECIES_ABOMASNOW"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -83,7 +83,7 @@
         "SPECIES_LUNATONE"
     ],
     "emerald": [
-        "SPECIES_METANG",
+        "SPECIES_BRONZONG",
         "SPECIES_MILOTIC"
     ],
     "firered": [

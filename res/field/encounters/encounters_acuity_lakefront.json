@@ -15,7 +15,7 @@
         },
         {
             "level": 33,
-            "species": "SPECIES_PILOSWINE"
+            "species": "SPECIES_SEALEO"
         },
         {
             "level": 34,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_SEEL"
     ],
     "night": [
         "SPECIES_SNEASEL",
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_WEAVILE",
         "SPECIES_ABOMASNOW",
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
     ],
     "rate_form0": 0,
@@ -88,7 +88,7 @@
     ],
     "firered": [
         "SPECIES_GOLBAT",
-        "SPECIES_GYARADOS"
+        "SPECIES_SNEASEL"
     ],
     "leafgreen": [
         "SPECIES_SCYTHER",

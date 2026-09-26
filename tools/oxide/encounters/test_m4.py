@@ -313,18 +313,19 @@ def check_lines_dupe_out(results):
                     abs(sum(s["odds"] for s in d["slots"]) - 1.0) < 1e-9, ""))
 
     # Every authored land table holds first stages only, so the evolved line
-    # member to find is on a Super Rod table: Gyarados in Twinleaf's water,
-    # duped out by a Magikarp caught on Lake Verity's Old Rod.
-    post("/api/caught", {"area": "encounters_lake_verity", "species": "SPECIES_MAGIKARP"})
-    n = get("/api/area/encounters_twinleaf_town?kind=super_rod")
-    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_GYARADOS"]
+    # member to find is on a Super Rod table: Crawdaunt on Ravaged Path,
+    # duped out by a Corphish caught on Route 203's Old Rod. (Gyarados in
+    # Twinleaf's water until Magikarp was made scarce, 2026-09-26.)
+    post("/api/caught", {"area": "encounters_route_203", "species": "SPECIES_CORPHISH"})
+    n = get("/api/area/encounters_ravaged_path?kind=super_rod")
+    staravia = [m for m in n["merged"] if m["species"] == "SPECIES_CRAWDAUNT"]
     results.append(("an uncaught line member reads as duped",
                     bool(staravia) and staravia[0]["duped"]
                     and not staravia[0]["caught"]
                     and staravia[0]["cond"] == 0, ""))
     results.append(("a duped row says where and by what",
-                    bool(staravia) and staravia[0]["caught_at"] == "Lake Verity"
-                    and staravia[0]["via"] == "Magikarp",
+                    bool(staravia) and staravia[0]["caught_at"] == "Route 203"
+                    and staravia[0]["via"] == "Corphish",
                     f"{staravia[0]['via'] if staravia else '-'}, "
                     f"{staravia[0]['caught_at'] if staravia else '-'}"))
     d201 = get("/api/area/encounters_route_201?kind=land")

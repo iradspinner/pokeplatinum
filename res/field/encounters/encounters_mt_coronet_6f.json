@@ -47,12 +47,12 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_GLISCOR"
         }
     ],
     "swarms": [
         "SPECIES_KOMMO_O",
-        "SPECIES_GARCHOMP"
+        "SPECIES_HAKAMO_O"
     ],
     "day": [
         "SPECIES_GRAVELER",
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_KOMMO_O",
         "SPECIES_GARGANACL",
-        "SPECIES_TYRANITAR",
+        "SPECIES_CARBINK",
         "SPECIES_GOLEM"
     ],
     "rate_form0": 0,

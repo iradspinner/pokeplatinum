@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_MR_RIME",
         "SPECIES_ALOLAN_NINETALES"
     ],
     "day": [
@@ -63,10 +63,10 @@
         "SPECIES_MR_RIME"
     ],
     "radar": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_CROBAT",
         "SPECIES_ABSOL",
-        "SPECIES_TYRANITAR",
-        "SPECIES_PUPITAR"
+        "SPECIES_MR_RIME",
+        "SPECIES_GLALIE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,

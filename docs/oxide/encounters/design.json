@@ -86,7 +86,7 @@
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_SNOVER",
-        "SPECIES_PILOSWINE",
+        "SPECIES_SEALEO",
         "SPECIES_FROSMOTH",
         "SPECIES_SNORUNT",
         "SPECIES_ABSOL",
@@ -94,7 +94,7 @@
       ],
       "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_SEEL"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -162,7 +162,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
+          "SPECIES_KRABBY",
           "SPECIES_FROGADIER"
         ],
         "levels": [
@@ -310,7 +310,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
           "SPECIES_CARVANHA",
-          "SPECIES_MAGIKARP",
+          "SPECIES_QWILFISH",
           "SPECIES_MUDKIP"
         ],
         "levels": [
@@ -457,7 +457,7 @@
         "cast": [
           "SPECIES_WOOPER",
           "SPECIES_CARVANHA",
-          "SPECIES_MAGIKARP",
+          "SPECIES_WINGULL",
           "SPECIES_LOTAD",
           "SPECIES_FROAKIE"
         ],
@@ -604,7 +604,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_CARVANHA",
-          "SPECIES_MAGIKARP",
+          "SPECIES_KRABBY",
           "SPECIES_LOTAD",
           "SPECIES_POLIWAG",
           "SPECIES_PSYDUCK"
@@ -668,7 +668,7 @@
           "SPECIES_LUDICOLO",
           "SPECIES_ARAQUANID",
           "SPECIES_JELLICENT",
-          "SPECIES_GYARADOS",
+          "SPECIES_QWILFISH",
           "SPECIES_SWAMPERT"
         ],
         "levels": [
@@ -751,7 +751,7 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_WINGULL",
           "SPECIES_LOTAD",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
@@ -815,7 +815,7 @@
         "cast": [
           "SPECIES_ARAQUANID",
           "SPECIES_JELLICENT",
-          "SPECIES_GYARADOS",
+          "SPECIES_KINGLER",
           "SPECIES_CRAWDAUNT",
           "SPECIES_GRENINJA"
         ],
@@ -962,7 +962,7 @@
       "super_rod": {
         "cast": [
           "SPECIES_JELLICENT",
-          "SPECIES_GYARADOS",
+          "SPECIES_KINGDRA",
           "SPECIES_CRAWDAUNT",
           "SPECIES_WHISCASH",
           "SPECIES_GRENINJA"
@@ -1109,7 +1109,7 @@
       },
       "super_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_WAILMER",
           "SPECIES_CRAWDAUNT",
           "SPECIES_WHISCASH",
           "SPECIES_QUAGSIRE",
@@ -1186,7 +1186,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1213,7 +1213,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1240,7 +1240,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1267,7 +1267,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1294,7 +1294,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1321,7 +1321,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_NACLSTACK",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -1349,7 +1349,7 @@
         "SPECIES_WEAVILE"
       ],
       "day": [
-        "SPECIES_PILOSWINE",
+        "SPECIES_SEALEO",
         "SPECIES_ALOLAN_NINETALES"
       ],
       "night": [
@@ -1359,7 +1359,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CLAMPERL",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FROGADIER"
@@ -1423,7 +1423,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_GYARADOS",
+          "SPECIES_QWILFISH",
           "SPECIES_BLASTOISE"
         ],
         "levels": [
@@ -1511,7 +1511,7 @@
         "cast": [
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CORSOLA",
           "SPECIES_GOLDEEN",
           "SPECIES_MARSHTOMP"
         ],
@@ -1660,11 +1660,11 @@
       "split": "Roark",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
           "SPECIES_GOLDEEN",
           "SPECIES_CHINCHOU",
           "SPECIES_MUDKIP",
-          "SPECIES_SURSKIT"
+          "SPECIES_MAGIKARP"
         ],
         "levels": [
           3,
@@ -1673,7 +1673,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_WINGULL",
           "SPECIES_SURSKIT",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
@@ -1706,7 +1706,7 @@
         "cast": [
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_GYARADOS",
+          "SPECIES_KINGLER",
           "SPECIES_FLOATZEL",
           "SPECIES_GRENINJA"
         ],
@@ -1793,11 +1793,11 @@
       "split": "Roark",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_SURSKIT",
           "SPECIES_GOLDEEN",
           "SPECIES_CHINCHOU",
           "SPECIES_MUDKIP",
-          "SPECIES_SURSKIT"
+          "SPECIES_MAGIKARP"
         ],
         "levels": [
           3,
@@ -1806,7 +1806,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_WINGULL",
           "SPECIES_SURSKIT",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
@@ -1839,7 +1839,7 @@
         "cast": [
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_GYARADOS",
+          "SPECIES_KINGLER",
           "SPECIES_FLOATZEL",
           "SPECIES_GRENINJA"
         ],
@@ -1972,7 +1972,7 @@
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
         "SPECIES_CROBAT",
-        "SPECIES_PUPITAR",
+        "SPECIES_HIPPOWDON",
         "SPECIES_HAKAMO_O"
       ],
       "day": [
@@ -2001,7 +2001,7 @@
         "SPECIES_CARBINK",
         "SPECIES_ZUBAT",
         "SPECIES_SNOM",
-        "SPECIES_SWINUB"
+        "SPECIES_SEEL"
       ],
       "day": [
         "SPECIES_MAKUHITA",
@@ -2153,7 +2153,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2181,7 +2181,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2209,7 +2209,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2237,7 +2237,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2265,7 +2265,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2293,7 +2293,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2321,7 +2321,7 @@
         "SPECIES_CARBINK",
         "SPECIES_GLIMMORA",
         "SPECIES_KLEFKI",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR"
       ],
       "day": [
         "SPECIES_GRAVELER",
@@ -2351,7 +2351,7 @@
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
         "SPECIES_CROBAT",
-        "SPECIES_PUPITAR",
+        "SPECIES_HIPPOWDON",
         "SPECIES_HAKAMO_O"
       ],
       "day": [
@@ -2365,7 +2365,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_FEEBAS",
-          "SPECIES_MAGIKARP",
+          "SPECIES_HORSEA",
           "SPECIES_GOLDEEN",
           "SPECIES_SPHEAL",
           "SPECIES_SEEL"
@@ -2429,7 +2429,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_GYARADOS",
+          "SPECIES_WAILORD",
           "SPECIES_SWAMPERT"
         ],
         "levels": [
@@ -2504,14 +2504,14 @@
         "SPECIES_GARGANACL",
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_PILOSWINE",
+        "SPECIES_SEALEO",
         "SPECIES_SNORUNT",
-        "SPECIES_PUPITAR",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR",
+        "SPECIES_DONPHAN"
       ],
       "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_DEWGONG"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -2535,14 +2535,14 @@
         "SPECIES_GARGANACL",
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_PILOSWINE",
+        "SPECIES_SEALEO",
         "SPECIES_SNORUNT",
-        "SPECIES_PUPITAR",
-        "SPECIES_GABITE"
+        "SPECIES_GLISCOR",
+        "SPECIES_DONPHAN"
       ],
       "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_DEWGONG"
       ],
       "night": [
         "SPECIES_SNEASEL",
@@ -2781,7 +2781,7 @@
         "SPECIES_NIDORAN_M",
         "SPECIES_PURRLOIN",
         "SPECIES_ONIX",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIGAR"
       ],
       "day": [
         "SPECIES_MAKUHITA",
@@ -2807,7 +2807,7 @@
         "SPECIES_DWEBBLE",
         "SPECIES_GLIMMET",
         "SPECIES_CARBINK",
-        "SPECIES_GIBLE",
+        "SPECIES_NACLI",
         "SPECIES_ONIX"
       ],
       "day": [
@@ -2821,7 +2821,7 @@
       "split": "Gardenia",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_CLAMPERL",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
           "SPECIES_SHELLOS",
@@ -2836,7 +2836,7 @@
         "cast": [
           "SPECIES_CHINCHOU",
           "SPECIES_FRILLISH",
-          "SPECIES_MAGIKARP",
+          "SPECIES_QWILFISH",
           "SPECIES_GOLDEEN",
           "SPECIES_POLIWAG"
         ],
@@ -2865,7 +2865,7 @@
       },
       "super_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_CORSOLA",
           "SPECIES_JELLICENT",
           "SPECIES_SEAKING",
           "SPECIES_WHISCASH",
@@ -3205,8 +3205,8 @@
         "cast": [
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
           "SPECIES_WOOPER",
+          "SPECIES_MAGIKARP",
           "SPECIES_FROAKIE"
         ],
         "levels": [
@@ -3217,7 +3217,7 @@
       "good_rod": {
         "cast": [
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
+          "SPECIES_WINGULL",
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
           "SPECIES_FROAKIE"
@@ -3248,7 +3248,7 @@
       "super_rod": {
         "cast": [
           "SPECIES_SHARPEDO",
-          "SPECIES_GYARADOS",
+          "SPECIES_HORSEA",
           "SPECIES_FLOATZEL",
           "SPECIES_QUAGSIRE",
           "SPECIES_FERALIGATR"
@@ -3940,7 +3940,7 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_WAILMER",
           "SPECIES_POLIWAG",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -3971,7 +3971,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_CLAMPERL",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -4097,7 +4097,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CORSOLA",
           "SPECIES_MUDKIP"
         ],
         "levels": [
@@ -4394,7 +4394,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_PSYDUCK",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -4599,7 +4599,7 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_HORSEA",
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
           "SPECIES_QWILFISH",
@@ -4753,10 +4753,10 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_CARVANHA",
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
-          "SPECIES_CARVANHA",
+          "SPECIES_MAGIKARP",
           "SPECIES_SQUIRTLE"
         ],
         "levels": [
@@ -4910,7 +4910,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_QWILFISH",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_POLIWAG",
           "SPECIES_STARYU"
         ],
         "levels": [
@@ -5045,7 +5045,7 @@
         "SPECIES_SALANDIT",
         "SPECIES_NACLSTACK",
         "SPECIES_DWEBBLE",
-        "SPECIES_SWINUB",
+        "SPECIES_SPHEAL",
         "SPECIES_GRAVELER",
         "SPECIES_HARIYAMA",
         "SPECIES_CHARMELEON",
@@ -5057,13 +5057,13 @@
       ],
       "night": [
         "SPECIES_HOUNDOOM",
-        "SPECIES_SWINUB"
+        "SPECIES_SEEL"
       ],
       "old_rod": {
         "cast": [
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_MAGIKARP",
+          "SPECIES_WAILMER",
           "SPECIES_CHINCHOU",
           "SPECIES_FROAKIE"
         ],
@@ -5223,7 +5223,7 @@
         "SPECIES_SNOVER",
         "SPECIES_FROSMOTH",
         "SPECIES_SNEASEL",
-        "SPECIES_PILOSWINE",
+        "SPECIES_SNEASEL",
         "SPECIES_MIENFOO",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
@@ -5233,7 +5233,7 @@
         "SPECIES_TORRACAT"
       ],
       "day": [
-        "SPECIES_PILOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_SNORUNT"
       ],
       "night": [
@@ -5256,7 +5256,7 @@
         "SPECIES_SNEASEL",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_FROSMOTH",
-        "SPECIES_PUPITAR",
+        "SPECIES_DONPHAN",
         "SPECIES_MIENFOO",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_COMBUSKEN",
@@ -5345,7 +5345,7 @@
       "super_rod": {
         "cast": [
           "SPECIES_MANTINE",
-          "SPECIES_GYARADOS",
+          "SPECIES_GOREBYSS",
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
           "SPECIES_GRENINJA"
@@ -5436,7 +5436,7 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_CORSOLA",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
           "SPECIES_LUVDISC",
@@ -5593,7 +5593,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_PSYDUCK",
           "SPECIES_WARTORTLE"
         ],
         "levels": [
@@ -5654,7 +5654,7 @@
         "cast": [
           "SPECIES_TOXAPEX",
           "SPECIES_MANTINE",
-          "SPECIES_GYARADOS",
+          "SPECIES_POLIWRATH",
           "SPECIES_GASTRODON",
           "SPECIES_GRENINJA"
         ],
@@ -5899,7 +5899,7 @@
       ],
       "old_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_SLOWPOKE",
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
           "SPECIES_BUIZEL",
@@ -6051,7 +6051,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_PSYDUCK",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
           "SPECIES_MARSHTOMP"
@@ -6114,7 +6114,7 @@
         "cast": [
           "SPECIES_TOXAPEX",
           "SPECIES_MANTINE",
-          "SPECIES_GYARADOS",
+          "SPECIES_POLIWRATH",
           "SPECIES_RELICANTH",
           "SPECIES_KINGDRA"
         ],
@@ -6205,7 +6205,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
-          "SPECIES_GYARADOS",
+          "SPECIES_SLOWPOKE",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FROGADIER"
@@ -6235,7 +6235,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_GOLDUCK",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -6341,12 +6341,12 @@
         "SPECIES_PALOSSAND",
         "SPECIES_CRUSTLE",
         "SPECIES_SALAZZLE",
-        "SPECIES_METAGROSS",
+        "SPECIES_DONPHAN",
         "SPECIES_GLIMMORA",
         "SPECIES_RHYPERIOR",
         "SPECIES_GARGANACL",
-        "SPECIES_GARCHOMP",
-        "SPECIES_PUPITAR"
+        "SPECIES_STEELIX",
+        "SPECIES_CARBINK"
       ],
       "day": [
         "SPECIES_GOLEM",
@@ -6515,7 +6515,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
-          "SPECIES_GYARADOS",
+          "SPECIES_POLIWAG",
           "SPECIES_WARTORTLE"
         ],
         "levels": [
@@ -6666,7 +6666,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_GYARADOS",
+          "SPECIES_SLOWPOKE",
           "SPECIES_FROGADIER"
         ],
         "levels": [
@@ -6845,10 +6845,10 @@
       "order": 123,
       "split": "League",
       "cast": [
-        "SPECIES_GARCHOMP",
-        "SPECIES_METAGROSS",
+        "SPECIES_DONPHAN",
+        "SPECIES_GLIMMORA",
         "SPECIES_DHELMISE",
-        "SPECIES_PUPITAR",
+        "SPECIES_CRUSTLE",
         "SPECIES_GOODRA",
         "SPECIES_KOMMO_O",
         "SPECIES_ABSOL",
@@ -6931,7 +6931,7 @@
         "cast": [
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_GYARADOS",
+          "SPECIES_SLOWBRO",
           "SPECIES_JELLICENT",
           "SPECIES_BLASTOISE"
         ],
@@ -7007,7 +7007,7 @@
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
       ],
       "night": [
@@ -7027,7 +7027,7 @@
         "SPECIES_WEAVILE",
         "SPECIES_GLALIE",
         "SPECIES_CROBAT",
-        "SPECIES_MAMOSWINE",
+        "SPECIES_ABOMASNOW",
         "SPECIES_CARBINK",
         "SPECIES_FROSMOTH"
       ],
@@ -7059,7 +7059,7 @@
         "SPECIES_KLEFKI"
       ],
       "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
       ],
       "night": [
@@ -7105,12 +7105,12 @@
         "SPECIES_CROBAT",
         "SPECIES_GLALIE",
         "SPECIES_ABOMASNOW",
-        "SPECIES_MAMOSWINE",
+        "SPECIES_FROSMOTH",
         "SPECIES_ABSOL",
-        "SPECIES_PUPITAR"
+        "SPECIES_GLIMMORA"
       ],
       "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_ABOMASNOW",
         "SPECIES_GLALIE"
       ],
       "night": [
@@ -7134,7 +7134,7 @@
         "SPECIES_BRONZONG",
         "SPECIES_KLEFKI",
         "SPECIES_ABSOL",
-        "SPECIES_METAGROSS"
+        "SPECIES_GLIMMORA"
       ],
       "day": [
         "SPECIES_FROSMOTH",
@@ -7164,7 +7164,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7194,7 +7194,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7224,7 +7224,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7254,7 +7254,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7284,7 +7284,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7314,7 +7314,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7344,7 +7344,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7374,7 +7374,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7404,7 +7404,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7434,7 +7434,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7464,7 +7464,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7494,7 +7494,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7524,7 +7524,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7554,7 +7554,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7584,7 +7584,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7614,7 +7614,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7644,7 +7644,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -7674,7 +7674,7 @@
         "SPECIES_ONIX",
         "SPECIES_YAMASK",
         "SPECIES_SINISTEA",
-        "SPECIES_LARVITAR"
+        "SPECIES_GLIMMET"
       ],
       "day": [
         "SPECIES_NOSEPASS",
@@ -9161,7 +9161,7 @@
       "split": "League",
       "cast": [
         "SPECIES_RHYPERIOR",
-        "SPECIES_PUPITAR",
+        "SPECIES_CRUSTLE",
         "SPECIES_HAWLUCHA",
         "SPECIES_GOLEM",
         "SPECIES_HARIYAMA",
@@ -9174,7 +9174,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_PUPITAR",
+        "SPECIES_CRUSTLE",
         "SPECIES_ABSOL"
       ]
     },
@@ -9217,8 +9217,8 @@
         "SPECIES_SOLROCK",
         "SPECIES_GRAPPLOCT",
         "SPECIES_KLEFKI",
-        "SPECIES_GARCHOMP",
-        "SPECIES_METAGROSS"
+        "SPECIES_GARGANACL",
+        "SPECIES_CRUSTLE"
       ],
       "day": [
         "SPECIES_LUNATONE",
@@ -9231,7 +9231,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
-          "SPECIES_GYARADOS",
+          "SPECIES_FINNEON",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_WARTORTLE"
@@ -9387,7 +9387,7 @@
       "split": "League",
       "cast": [
         "SPECIES_SKARMORY",
-        "SPECIES_GABITE",
+        "SPECIES_GARGANACL",
         "SPECIES_HAKAMO_O",
         "SPECIES_GLISCOR",
         "SPECIES_VIBRAVA",
@@ -9398,7 +9398,7 @@
         "SPECIES_GLISCOR"
       ],
       "night": [
-        "SPECIES_GABITE",
+        "SPECIES_VIBRAVA",
         "SPECIES_HAKAMO_O"
       ]
     },
@@ -9412,7 +9412,7 @@
       "split": "League",
       "cast": [
         "SPECIES_STEELIX",
-        "SPECIES_METANG",
+        "SPECIES_GARGANACL",
         "SPECIES_BRONZONG",
         "SPECIES_CARBINK",
         "SPECIES_PROBOPASS",
@@ -9430,7 +9430,7 @@
         "cast": [
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_GYARADOS",
+          "SPECIES_FINNEON",
           "SPECIES_GOLDEEN",
           "SPECIES_SLOWPOKE"
         ],
@@ -9459,7 +9459,7 @@
       },
       "good_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_LUMINEON",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -9618,7 +9618,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_LUVDISC",
           "SPECIES_MARSHTOMP"
         ],
         "levels": [
@@ -9677,7 +9677,7 @@
       },
       "super_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_LUMINEON",
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
           "SPECIES_CLOYSTER",
@@ -9751,7 +9751,7 @@
           "SPECIES_FEEBAS",
           "SPECIES_CORPHISH",
           "SPECIES_CHINCHOU",
-          "SPECIES_MAGIKARP",
+          "SPECIES_LUVDISC",
           "SPECIES_FROGADIER"
         ],
         "levels": [
@@ -9927,7 +9927,7 @@
         "cast": [
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_GYARADOS",
+          "SPECIES_ALOMOMOLA",
           "SPECIES_FLOATZEL",
           "SPECIES_BLASTOISE"
         ],
@@ -10016,7 +10016,7 @@
         "cast": [
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_LUVDISC",
           "SPECIES_SHELLOS",
           "SPECIES_FROGADIER"
         ],
@@ -10280,7 +10280,7 @@
       "split": "League",
       "old_rod": {
         "cast": [
-          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
           "SPECIES_GOLDEEN",
           "SPECIES_BARBOACH",
           "SPECIES_FEEBAS",
@@ -10345,7 +10345,7 @@
           "SPECIES_MILOTIC",
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
-          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
           "SPECIES_RELICANTH"
         ],
         "levels": [
@@ -10662,7 +10662,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
           "SPECIES_CLAMPERL"
@@ -10795,7 +10795,7 @@
       "old_rod": {
         "cast": [
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
           "SPECIES_SHELLOS",
           "SPECIES_FINNEON",
           "SPECIES_FROGADIER"
@@ -10856,7 +10856,7 @@
       },
       "super_rod": {
         "cast": [
-          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
           "SPECIES_GASTRODON",
           "SPECIES_JELLICENT",
           "SPECIES_LANTURN",
@@ -10929,7 +10929,7 @@
         "cast": [
           "SPECIES_REMORAID",
           "SPECIES_MANTYKE",
-          "SPECIES_MAGIKARP",
+          "SPECIES_CHINCHOU",
           "SPECIES_SHELLOS",
           "SPECIES_MARSHTOMP"
         ],
@@ -10990,7 +10990,7 @@
       "super_rod": {
         "cast": [
           "SPECIES_MANTINE",
-          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
           "SPECIES_GASTRODON",
           "SPECIES_WAILORD",
           "SPECIES_TOXAPEX"
@@ -11107,7 +11107,7 @@
           "SPECIES_CRAWDAUNT",
           "SPECIES_LANTURN",
           "SPECIES_SHARPEDO",
-          "SPECIES_GYARADOS",
+          "SPECIES_FLOATZEL",
           "SPECIES_SWAMPERT"
         ],
         "levels": [
@@ -11235,7 +11235,7 @@
           "SPECIES_SPHEAL",
           "SPECIES_SEEL",
           "SPECIES_SHELLDER",
-          "SPECIES_MAGIKARP",
+          "SPECIES_SHELLOS",
           "SPECIES_SNORUNT"
         ],
         "levels": [
@@ -11266,7 +11266,7 @@
           "SPECIES_SPHEAL",
           "SPECIES_SEEL",
           "SPECIES_CLOYSTER",
-          "SPECIES_SWINUB",
+          "SPECIES_SNOVER",
           "SPECIES_LAPRAS"
         ],
         "levels": [

@@ -87,7 +87,7 @@
         "SPECIES_TRAPINCH"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_GRAVELER",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
@@ -137,7 +137,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_LUVDISC"
         },
         {
             "level_max": 19,

@@ -43,9 +43,12 @@ def main():
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
-    tails = {"Litten", "Froakie"}   # Ian's call: tails a dupe-out plan pays off, no home
+    # Ian's calls: Litten and Froakie are tails a dupe-out plan pays off, and
+    # Larvitar a 1% at Wayward Cave, beside Gible, since no Pokemon worth ~85
+    # should be better than even odds with best play (2026-09-26).
+    tails = {"Litten", "Froakie", "Larvitar"}
     results.append(("every non-gate line has exactly one planned home or a non-wild, water or "
-                    "honey source, bar the two deliberate tails",
+                    "honey source, bar the three deliberate tails",
                     all(len(r["home"]) == 1 or r["non_wild"] or r["status"] in ("water", "honey")
                         or r["name"] in tails
                         for r in rows if r["tier"] != "gate"),

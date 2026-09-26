@@ -132,7 +132,7 @@
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level_max": 17,
@@ -198,7 +198,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 48,

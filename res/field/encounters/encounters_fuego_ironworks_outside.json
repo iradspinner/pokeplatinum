@@ -87,7 +87,7 @@
         "SPECIES_ALTARIA"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_CERULEDGE",
         "SPECIES_SCYTHER"
     ],
     "leafgreen": [
@@ -142,7 +142,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_KRABBY"
         },
         {
             "level_max": 20,

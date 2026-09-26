@@ -27,7 +27,7 @@
         },
         {
             "level": 28,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_SPHEAL"
         },
         {
             "level": 28,
@@ -60,7 +60,7 @@
     ],
     "night": [
         "SPECIES_HOUNDOOM",
-        "SPECIES_SWINUB"
+        "SPECIES_SEEL"
     ],
     "radar": [
         "SPECIES_RHYDON",
@@ -137,7 +137,7 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WAILMER"
         },
         {
             "level_max": 17,

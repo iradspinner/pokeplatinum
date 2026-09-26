@@ -47,11 +47,11 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_GLIGAR"
         }
     ],
     "swarms": [
-        "SPECIES_GIBLE",
+        "SPECIES_ZUBAT",
         "SPECIES_ROOKIDEE"
     ],
     "day": [

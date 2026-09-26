@@ -7,7 +7,7 @@
         },
         {
             "level": 42,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 42,
@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_METANG",
+        "SPECIES_SKARMORY",
         "SPECIES_RHYHORN"
     ],
     "day": [
@@ -59,14 +59,14 @@
         "SPECIES_GLISCOR"
     ],
     "night": [
-        "SPECIES_GABITE",
+        "SPECIES_VIBRAVA",
         "SPECIES_HAKAMO_O"
     ],
     "radar": [
         "SPECIES_KOMMO_O",
-        "SPECIES_TYRANITAR",
-        "SPECIES_GARCHOMP",
-        "SPECIES_METAGROSS"
+        "SPECIES_VIBRAVA",
+        "SPECIES_GLISCOR",
+        "SPECIES_ABSOL"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,11 +75,11 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_METAGROSS",
+        "SPECIES_SKARMORY",
         "SPECIES_FLYGON"
     ],
     "sapphire": [
-        "SPECIES_METAGROSS",
+        "SPECIES_SKARMORY",
         "SPECIES_FLYGON"
     ],
     "emerald": [

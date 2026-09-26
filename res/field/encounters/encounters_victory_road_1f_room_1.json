@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_SLIGGOO",
-        "SPECIES_METANG"
+        "SPECIES_GLIMMORA"
     ],
     "day": [
         "SPECIES_CRUSTLE",
@@ -63,7 +63,7 @@
         "SPECIES_GLIMMORA"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_CRUSTLE",
         "SPECIES_GOODRA",
         "SPECIES_SLIGGOO",
         "SPECIES_CARBINK"
@@ -75,11 +75,11 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_METANG",
+        "SPECIES_RHYPERIOR",
         "SPECIES_MILOTIC"
     ],
     "sapphire": [
-        "SPECIES_METANG",
+        "SPECIES_RHYPERIOR",
         "SPECIES_MILOTIC"
     ],
     "emerald": [

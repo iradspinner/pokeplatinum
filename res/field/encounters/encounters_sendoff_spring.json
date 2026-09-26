@@ -3,11 +3,11 @@
     "land_encounters": [
         {
             "level": 50,
-            "species": "SPECIES_GARCHOMP"
+            "species": "SPECIES_DONPHAN"
         },
         {
             "level": 51,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_GLIMMORA"
         },
         {
             "level": 51,
@@ -15,7 +15,7 @@
         },
         {
             "level": 51,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_CRUSTLE"
         },
         {
             "level": 52,
@@ -63,7 +63,7 @@
         "SPECIES_WEAVILE"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_GOODRA",
         "SPECIES_COFAGRIGUS",
         "SPECIES_YAMASK",
         "SPECIES_LAMPENT"
@@ -193,7 +193,7 @@
         {
             "level_max": 57,
             "level_min": 48,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_SLOWBRO"
         },
         {
             "level_max": 57,

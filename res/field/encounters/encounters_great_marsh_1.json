@@ -88,7 +88,7 @@
     ],
     "firered": [
         "SPECIES_GOLBAT",
-        "SPECIES_GYARADOS"
+        "SPECIES_WOOPER"
     ],
     "leafgreen": [
         "SPECIES_SCYTHER",
@@ -142,7 +142,7 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 18,

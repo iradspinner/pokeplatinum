@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_NINETALES"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_NINETALES"
     ],
     "emerald": [
         "SPECIES_MILOTIC",
@@ -127,7 +127,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 26,

@@ -31,7 +31,7 @@
         },
         {
             "level": 38,
-            "species": "SPECIES_PILOSWINE"
+            "species": "SPECIES_SEALEO"
         },
         {
             "level": 39,
@@ -43,11 +43,11 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_GLISCOR"
         },
         {
             "level": 39,
-            "species": "SPECIES_GABITE"
+            "species": "SPECIES_DONPHAN"
         }
     ],
     "swarms": [
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_FROSMOTH",
-        "SPECIES_PILOSWINE"
+        "SPECIES_DEWGONG"
     ],
     "night": [
         "SPECIES_SNEASEL",
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_ABOMASNOW",
         "SPECIES_WEAVILE",
-        "SPECIES_MAMOSWINE",
+        "SPECIES_GARGANACL",
         "SPECIES_GLALIE"
     ],
     "rate_form0": 0,
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SNORUNT"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SNORUNT"
     ],
     "emerald": [
         "SPECIES_MILOTIC",

@@ -91,7 +91,7 @@
         "SPECIES_SMOLIV"
     ],
     "leafgreen": [
-        "SPECIES_GYARADOS",
+        "SPECIES_SMOLIV",
         "SPECIES_SCYTHER"
     ],
     "surf_rate": 10,
@@ -127,7 +127,7 @@
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 16,

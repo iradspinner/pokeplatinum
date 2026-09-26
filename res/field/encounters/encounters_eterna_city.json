@@ -87,7 +87,7 @@
         "SPECIES_TREECKO"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_ZUBAT",
         "SPECIES_CHARMANDER"
     ],
     "leafgreen": [
@@ -193,7 +193,7 @@
         {
             "level_max": 41,
             "level_min": 33,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_ALOMOMOLA"
         },
         {
             "level_max": 41,

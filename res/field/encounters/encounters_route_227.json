@@ -132,7 +132,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 28,
@@ -155,7 +155,7 @@
         {
             "level_max": 41,
             "level_min": 35,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_GOLDUCK"
         },
         {
             "level_max": 41,

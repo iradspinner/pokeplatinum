@@ -132,7 +132,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_PSYDUCK"
         },
         {
             "level_max": 28,
@@ -193,7 +193,7 @@
         {
             "level_max": 57,
             "level_min": 48,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_POLIWRATH"
         },
         {
             "level_max": 57,

@@ -43,7 +43,7 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_HIPPOWDON"
         },
         {
             "level": 35,
@@ -132,7 +132,7 @@
         {
             "level_max": 22,
             "level_min": 18,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 23,
@@ -198,7 +198,7 @@
         {
             "level_max": 51,
             "level_min": 43,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_WAILORD"
         },
         {
             "level_max": 54,

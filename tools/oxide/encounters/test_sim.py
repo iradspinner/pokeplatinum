@@ -67,6 +67,26 @@ def check_runs(results):
                     ", ".join(f"{w:.0f}" for w in worth)))
 
 
+def check_scarcity(results):
+    """Ian (2026-09-26): no Pokemon worth about 85 or more should be better
+    than even odds with best play, a box going into the Elite Four holding
+    one to three of them, not a party. The two eggs he accepted as they are."""
+    exempt = {"SPECIES_MANAPHY", "SPECIES_TOGEKISS"}
+    n = 20
+    got, per_box = collections.Counter(), []
+    for seed in range(n):
+        r = simulate.run("League", deaths=0, seed=5000 + seed)
+        strong = {m["stage"] for m in r["box"] if m["value"] >= 85}
+        got.update(strong - exempt)
+        per_box.append(len(strong))
+    worst = got.most_common(3)
+    results.append(("with best play no line worth 85 or more lands in over half of 20 League "
+                    "runs (bar the two eggs)",
+                    all(c * 2 <= n for _, c in worst),
+                    ", ".join(f"{sp[8:].title()} {c}/{n}" for sp, c in worst)
+                    + f"; per box median {sorted(per_box)[n // 2]}"))
+
+
 def check_areas(results):
     rows = simulate.area_values("Wake")
     results.append(("the per-area analysis prices every area to Wake's split, best option first",
@@ -77,7 +97,7 @@ def check_areas(results):
 
 def main():
     results = []
-    for check in (check_runs, check_areas):
+    for check in (check_runs, check_scarcity, check_areas):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

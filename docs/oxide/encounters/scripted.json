@@ -265,7 +265,9 @@
       "split": "Galactic",
       "from": {"file": "res/npc_trades/foppa_magikarp.json"},
       "pick": "random",
-      "requires": "SPECIES_FINNEON"
+      "requires": "SPECIES_FINNEON",
+      "simulate": false,
+      "note": "To become Meloetta (Ian, 2026-09-26), which needs work first; until then its Magikarp is left out of the simulator."
     },
     {
       "id": "distortion_world_giratina",
@@ -275,7 +277,9 @@
       "split": "Galactic",
       "order": 116,
       "from": {"file": "scripts_distortion_world_giratina_room.s"},
-      "pick": "random"
+      "pick": "random",
+      "simulate": false,
+      "note": "Not a legal catch (Ian, 2026-09-26): the story battle is fought, not caught."
     },
     {
       "id": "acuity_cavern",

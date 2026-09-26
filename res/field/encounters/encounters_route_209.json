@@ -87,7 +87,7 @@
         "SPECIES_SNORUNT"
     ],
     "firered": [
-        "SPECIES_GYARADOS",
+        "SPECIES_SMOLIV",
         "SPECIES_WARTORTLE"
     ],
     "leafgreen": [
@@ -142,7 +142,7 @@
         {
             "level_max": 15,
             "level_min": 11,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 16,

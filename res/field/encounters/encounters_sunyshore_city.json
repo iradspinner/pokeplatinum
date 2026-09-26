@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_PUPITAR",
+        "SPECIES_TOGEDEMARU",
         "SPECIES_CROBAT"
     ],
     "day": [
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_BLASTOISE",
         "SPECIES_CORVIKNIGHT",
-        "SPECIES_TYRANITAR",
-        "SPECIES_PUPITAR"
+        "SPECIES_TOUCANNON",
+        "SPECIES_LUXRAY"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SHELLOS"
     ],
     "sapphire": [
         "SPECIES_LUNATONE",
-        "SPECIES_METANG"
+        "SPECIES_SHELLOS"
     ],
     "emerald": [
         "SPECIES_MILOTIC",
@@ -137,7 +137,7 @@
         {
             "level_max": 23,
             "level_min": 19,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 23,
@@ -188,7 +188,7 @@
         {
             "level_max": 48,
             "level_min": 40,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level_max": 51,

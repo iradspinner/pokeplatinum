@@ -23,7 +23,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_MAMOSWINE"
+            "species": "SPECIES_FROSMOTH"
         },
         {
             "level": 49,
@@ -47,7 +47,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_PUPITAR"
+            "species": "SPECIES_GLIMMORA"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_FROSMOTH"
     ],
     "day": [
-        "SPECIES_MAMOSWINE",
+        "SPECIES_ABOMASNOW",
         "SPECIES_GLALIE"
     ],
     "night": [
@@ -63,7 +63,7 @@
         "SPECIES_ABSOL"
     ],
     "radar": [
-        "SPECIES_TYRANITAR",
+        "SPECIES_ABOMASNOW",
         "SPECIES_ALOLAN_NINETALES",
         "SPECIES_BRONZONG",
         "SPECIES_KLEFKI"
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_BLAZIKEN",
-        "SPECIES_METAGROSS"
+        "SPECIES_ABSOL"
     ],
     "sapphire": [
         "SPECIES_BLAZIKEN",
-        "SPECIES_METAGROSS"
+        "SPECIES_ABSOL"
     ],
     "emerald": [
         "SPECIES_FLYGON",

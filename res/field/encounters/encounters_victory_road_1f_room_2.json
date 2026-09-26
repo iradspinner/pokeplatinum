@@ -39,7 +39,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_GARCHOMP"
+            "species": "SPECIES_GARGANACL"
         },
         {
             "level": 50,
@@ -47,7 +47,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_CRUSTLE"
         }
     ],
     "swarms": [
@@ -65,8 +65,8 @@
     "radar": [
         "SPECIES_GOODRA",
         "SPECIES_GLIMMORA",
-        "SPECIES_TYRANITAR",
-        "SPECIES_PUPITAR"
+        "SPECIES_SOLROCK",
+        "SPECIES_GRAPPLOCT"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -132,7 +132,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FINNEON"
         },
         {
             "level_max": 25,

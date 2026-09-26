@@ -127,7 +127,7 @@
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_SURSKIT"
         },
         {
             "level_max": 7,
@@ -147,7 +147,7 @@
         {
             "level_max": 7,
             "level_min": 3,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_MAGIKARP"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WINGULL"
         },
         {
             "level_max": 20,
@@ -193,7 +193,7 @@
         {
             "level_max": 39,
             "level_min": 33,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_KINGLER"
         },
         {
             "level_max": 39,

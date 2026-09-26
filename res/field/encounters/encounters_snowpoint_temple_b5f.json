@@ -47,12 +47,12 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_METAGROSS"
+            "species": "SPECIES_GLIMMORA"
         }
     ],
     "swarms": [
         "SPECIES_HARIYAMA",
-        "SPECIES_MAMOSWINE"
+        "SPECIES_WEAVILE"
     ],
     "day": [
         "SPECIES_FROSMOTH",

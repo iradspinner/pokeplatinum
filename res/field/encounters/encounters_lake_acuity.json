@@ -55,7 +55,7 @@
         "SPECIES_BRONZONG"
     ],
     "day": [
-        "SPECIES_PILOSWINE",
+        "SPECIES_SEALEO",
         "SPECIES_ALOLAN_NINETALES"
     ],
     "night": [
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_GLALIE",
         "SPECIES_MR_RIME",
-        "SPECIES_MAMOSWINE",
+        "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_BRONZONG"
     ],
     "rate_form0": 0,
@@ -76,11 +76,11 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_GLALIE",
-        "SPECIES_METAGROSS"
+        "SPECIES_SNORUNT"
     ],
     "sapphire": [
         "SPECIES_GLALIE",
-        "SPECIES_METAGROSS"
+        "SPECIES_SNORUNT"
     ],
     "emerald": [
         "SPECIES_TRAPINCH",
@@ -132,7 +132,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 21,
@@ -198,7 +198,7 @@
         {
             "level_max": 49,
             "level_min": 41,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 52,

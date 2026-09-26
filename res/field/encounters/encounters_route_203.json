@@ -137,12 +137,12 @@
         {
             "level_max": 8,
             "level_min": 4,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WOOPER"
         },
         {
             "level_max": 8,
             "level_min": 4,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_MAGIKARP"
         },
         {
             "level_max": 8,
@@ -160,7 +160,7 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WINGULL"
         },
         {
             "level_max": 21,
@@ -188,7 +188,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_HORSEA"
         },
         {
             "level_max": 39,
