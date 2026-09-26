@@ -689,6 +689,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet47, 19
     AddListMenuEntry TestKit_Text_MenuSet48, 20
     AddListMenuEntry TestKit_Text_MenuSet49, 21
+    AddListMenuEntry TestKit_Text_MenuSet50, 22
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -712,6 +713,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet47
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
+    GoToIfEq VAR_0x8004, 22, TestKit_MoveSet50
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1247,6 +1249,22 @@ TestKit_MoveSet49:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 50: Wonder Room trades every battler's Defense and Sp. Def for five
+   turns. Against a wild Cloyster, whose Defense is high and Sp. Def low,
+   that knows only Recover, so it outlasts the five turns: Swift does
+   several times what Tackle does until Wonder Room goes up, then Tackle
+   does several times what Swift does, and they trade back when it wears
+   off five turns later, or at once if Mew uses Wonder Room again. */
+TestKit_MoveSet50:
+    SetVar VAR_0x8000, SPECIES_CLOYSTER
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_RECOVER
+    SetVar VAR_0x8006, MOVE_WONDER_ROOM
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_SWIFT
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

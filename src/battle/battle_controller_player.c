@@ -1771,6 +1771,7 @@ enum SideCondCheckState {
     SIDE_COND_CHECK_STATE_FUTURE_SIGHT = SIDE_COND_CHECK_START,
     SIDE_COND_CHECK_STATE_PERISH_SONG,
     SIDE_COND_CHECK_STATE_TRICK_ROOM,
+    SIDE_COND_CHECK_STATE_WONDER_ROOM, // Oxide
 
     SIDE_COND_CHECK_END
 };
@@ -1859,6 +1860,21 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
             battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_TRICK_ROOM_SHIFT);
             if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) == FALSE) {
                 PrepareSubroutineSequence(battleCtx, subscript_trick_room_end);
+                return;
+            }
+        }
+
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
+        // fall-through
+
+    case SIDE_COND_CHECK_STATE_WONDER_ROOM:
+        // Oxide: Wonder Room counts down its five turns as Trick Room does,
+        // straight after it, which is where the later games end it.
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM) {
+            battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_WONDER_ROOM_SHIFT);
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM) == FALSE) {
+                PrepareSubroutineSequence(battleCtx, subscript_wonder_room_end);
                 return;
             }
         }

@@ -7426,6 +7426,17 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
+    // Oxide: under Wonder Room every battler's Defense and Sp. Def trade
+    // places, as in Generation 5 on (hg-engine left its step 4.4 a TODO). Only
+    // the stats trade: a physical move still meets the Defense stages and the
+    // modifiers to Defense, now applied to what was the Sp. Def, and so on.
+    // Psyshock, which takes the Defense further down, follows the room with
+    // it, and Body Press takes the user's Sp. Def in the same way.
+    if (fieldConditions & FIELD_CONDITION_WONDER_ROOM) {
+        defenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE, NULL);
+        spDefenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_DEFENSE, NULL);
+    }
+
     // Oxide: moves that hit with a stat other than the user's own Attack
     // (hg-engine's CalcBaseDamage, step 3.2). The user's ability and item
     // still modify the stat below, as they do there.
@@ -7434,7 +7445,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     } else if (move == MOVE_BODY_PRESS) {
         // The user's Defense and its stages, taken before Unaware, so a
         // target with Unaware ignores them, as in the later games.
-        attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
+        attackStat = BattleMon_Get(battleCtx, attacker,
+            (fieldConditions & FIELD_CONDITION_WONDER_ROOM) ? BATTLEMON_SP_DEFENSE : BATTLEMON_DEFENSE, NULL);
         attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     }
 
