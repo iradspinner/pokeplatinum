@@ -390,17 +390,17 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 89 | 30 |
-| Gardenia | 26 | 137 | 42 |
-| Fantina | 33 | 211 | 48 |
-| Maylene | 39 | 273 | 78 |
-| Wake | 44 | 297 | 88 |
-| Byron | 53 | 316 | 103 |
-| Candice | 56 | 322 | 109 |
-| HQ | 60 | 323 | 112 |
-| Galactic | 65 | 328 | 124 |
-| Volkner | 68 | 328 | 125 |
-| League | 78 | 328 | 128 |
+| Roark | 16 | 90 | 30 |
+| Gardenia | 26 | 140 | 42 |
+| Fantina | 33 | 219 | 48 |
+| Maylene | 39 | 284 | 78 |
+| Wake | 44 | 313 | 88 |
+| Byron | 53 | 345 | 103 |
+| Candice | 56 | 358 | 109 |
+| HQ | 60 | 359 | 112 |
+| Galactic | 65 | 364 | 124 |
+| Volkner | 68 | 364 | 125 |
+| League | 78 | 364 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -410,35 +410,37 @@ most threatening Pokemon and its least answered one.
 | Fight | Threat | Answers | Worst threat | Fewest answers |
 |---|---|---|---|---|
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.94 |
-| Barry 2 | 0.01 | 0.64 | 0.01 | 0.48 |
-| Roark | 0.13 | 0.16 | 0.44 | 0.04 |
-| Mars 1 | 0.01 | 0.35 | 0.01 | 0.08 |
-| Gardenia | 0.69 | 0.05 | 0.92 | 0.01 |
+| Barry 2 | 0.01 | 0.64 | 0.01 | 0.49 |
+| Roark | 0.12 | 0.16 | 0.42 | 0.04 |
+| Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
+| Gardenia | 0.69 | 0.06 | 0.92 | 0.02 |
 | Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
 | Fantina | 0.51 | 0.10 | 0.88 | 0.01 |
-| Barry 3 | 0.17 | 0.48 | 0.36 | 0.34 |
-| Maylene | 0.69 | 0.20 | 0.79 | 0.08 |
+| Barry 3 | 0.17 | 0.49 | 0.35 | 0.35 |
+| Maylene | 0.69 | 0.21 | 0.79 | 0.08 |
 | Barry 4 | 0.48 | 0.13 | 0.82 | 0.04 |
-| Wake | 0.74 | 0.07 | 0.98 | 0.00 |
-| Cyrus 1 | 0.38 | 0.35 | 0.58 | 0.23 |
+| Wake | 0.73 | 0.07 | 0.98 | 0.00 |
+| Cyrus 1 | 0.37 | 0.36 | 0.57 | 0.24 |
 | Barry 5 | 0.54 | 0.19 | 0.90 | 0.04 |
-| Byron | 0.33 | 0.21 | 0.56 | 0.15 |
-| Saturn 1 | 0.51 | 0.24 | 0.80 | 0.09 |
-| Mars 2 | 0.37 | 0.14 | 0.84 | 0.05 |
-| Candice | 0.67 | 0.14 | 0.93 | 0.04 |
-| Cyrus 2 | 0.45 | 0.13 | 0.83 | 0.03 |
-| Saturn 2 | 0.41 | 0.18 | 0.85 | 0.00 |
-| Mars and Jupiter | 0.31 | 0.34 | 0.66 | 0.07 |
-| Cyrus 3 | 0.52 | 0.23 | 0.82 | 0.12 |
-| Volkner | 0.65 | 0.18 | 0.88 | 0.02 |
+| Byron | 0.32 | 0.22 | 0.54 | 0.15 |
+| Saturn 1 | 0.52 | 0.25 | 0.80 | 0.09 |
+| Mars 2 | 0.36 | 0.14 | 0.84 | 0.05 |
+| Candice | 0.65 | 0.14 | 0.93 | 0.04 |
+| Cyrus 2 | 0.44 | 0.13 | 0.79 | 0.04 |
+| Saturn 2 | 0.41 | 0.19 | 0.82 | 0.00 |
+| Mars and Jupiter | 0.30 | 0.35 | 0.68 | 0.06 |
+| Cyrus 3 | 0.51 | 0.24 | 0.83 | 0.12 |
+| Volkner | 0.66 | 0.18 | 0.90 | 0.03 |
 | Barry 6 | 0.53 | 0.24 | 0.91 | 0.05 |
-| Aaron | 0.58 | 0.19 | 0.74 | 0.09 |
-| Bertha | 0.48 | 0.30 | 0.75 | 0.01 |
+| Aaron | 0.57 | 0.19 | 0.72 | 0.09 |
+| Bertha | 0.48 | 0.32 | 0.75 | 0.02 |
 | Flint | 0.69 | 0.14 | 0.92 | 0.04 |
 | Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
-| Cynthia | 0.68 | 0.15 | 0.90 | 0.02 |
+| Cynthia | 0.68 | 0.15 | 0.89 | 0.02 |
 
-Both tables were recomputed on 2026-09-25 for the encounter track's second
+Both tables were recomputed on 2026-09-25 for Ian's water ruling (seventeen
+water lines back in the wild, which grows the later sides by up to 36
+species and moves no fight by more than 0.02); before that for the encounter track's second
 gift pass (Ian's weaker gifts, and several lines taken out of the wild),
 which shrinks each side by one to four species and moves no fight by more
 than 0.01; and before that for Ian's two Galactic splits, and once honey trees became one
@@ -549,12 +551,12 @@ under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ, cap 60), under Trick Room | 0.42, 0.18 | 0.42, 0.18 |
-| Cyrus 2 (HQ, cap 60), with Suicune | 0.49, 0.11 | 0.52, 0.09 |
-| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.18 | 0.50, 0.16 |
-| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.40, 0.25 | 0.42, 0.22 |
+| Saturn 2 (HQ, cap 60), under Trick Room | 0.41, 0.19 | 0.41, 0.18 |
+| Cyrus 2 (HQ, cap 60), with Suicune | 0.47, 0.11 | 0.50, 0.10 |
+| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.17 | 0.50, 0.14 |
+| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.39, 0.25 | 0.41, 0.23 |
 | Cyrus 3 (Galactic, 65), Ian's new team | 0.63, 0.14 | 0.65, 0.12 |
-| Volkner (68) | 0.75, 0.17 | 0.77, 0.16 |
+| Volkner (68) | 0.76, 0.17 | 0.77, 0.15 |
 
 These are Ian's baseline teams (the table was first run on the base ROM's
 older teams). Saturn 2 is scored under Trick Room since Ian's ruling of
@@ -562,8 +564,9 @@ older teams). Saturn 2 is scored under Trick Room since Ian's ruling of
 move can end: his threat rose from 0.29 to 0.41 at the tree's levels, and
 it stays flat as his levels rise, because under Trick Room a level up is
 Speed that costs him turn order. His Rhyperior holds a Choice Scarf, which
-under a permanent Trick Room only makes it move later; the trainer pass
-should give it another item. **Cyrus 3 and Saturn 2 still lean on what the
+under a permanent Trick Room only makes it move later, and his Uxie's own
+Trick Room now always fails; Ian ruled that the trainer pass swaps both
+(the design passes, item 5). **Cyrus 3 and Saturn 2 still lean on what the
 scores cannot see:** Curse, Explosion, Swagger and Aqua Ring, which the
 scores leave out with every status and setup move. So both read softer
 here than they will play.
@@ -910,7 +913,10 @@ lands, and each change is re-scored as it lands.
    Victory Road, but the only script that starts it is the Battleground's,
    post-game content as in vanilla. Moving it is script and event work.
    Its level 9 and 30 counterparts (787 to 792 on Route 202, 793 to 802 on
-   Route 207) are already where the story passes. Moving a trainer or adding a sight-line blocker edits
+   Route 207) are already where the story passes. **Saturn 2** (Ian,
+   2026-09-25): Uxie's Trick Room, which always fails under the fight's
+   permanent room, and Rhyperior's Choice Scarf, which only makes it move
+   later there, are each swapped for something else, chosen in the pass. Moving a trainer or adding a sight-line blocker edits
    map events and sometimes field scripts, which are carry-over files that
    `checkmap.py` and the bulk tools compare with the base ROM. Each change
    is registered as an intended divergence (the bulk tools' DIVERGED lists)
