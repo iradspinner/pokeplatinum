@@ -397,6 +397,24 @@ that stay. None blocks anything.
    because Suicune lands in 97% of runs. If Mindy asks for a rarer line
    (Delibird was tried) Suicune all but vanishes and the median stays
    three. Meloetta needs porting before it can be placed.
+22. **The calculator follows element 4's variable powers (Ian's Overseer,
+   2026-09-26), queued until the balance track's running rescore merges,
+   so the next rescore takes it in one go.** oxide 48596e2bd computes
+   Electro Ball's power from the Speed ratio (40, 60, 80, 120, 150), and
+   Stored Power, Power Trip, Retaliate, Echoed Voice, Stomping Tantrum,
+   Temper Flare, Last Respects, Hard Press, Pika Papow, Veevee Volley,
+   Lash Out and Grav Apple in code (the report is the last commit on
+   `cloud/element4-variable-power`). The profile's Electro Ball at power
+   1 goes, and each of the others follows the engine as far as a single
+   matchup can show it. In the same pass, Freeze-Dry and Flying Press stop
+   taking their later-game type effects, which upstream's shared
+   `getMoveEffectiveness` gives them in every generation: Oxide's engine
+   hits with both as plain moves until the main track fixes the moves that
+   choose another stat or type in C. Measured on 2026-09-26, the
+   calculator puts Freeze-Dry into Vaporeon at 80 to 96 and Flying Press
+   into Abomasnow at 268 to 316, about four times and 1.6 times what the
+   game does. Foul Play, Body Press, Psyshock, Sacred Sword and Darkest
+   Lariat already hit as plain moves in the calculator's Generation 4 code.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
