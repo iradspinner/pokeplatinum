@@ -477,9 +477,14 @@ _SHEET_TEAM = (
     "Ian's testing team from his Boss Documentation sheet, which is Oxide's "
     "baseline (Ian, 2026-09-25) and is in no ROM, Test.nds included"
 )
+_NAME_FIX = "Ian corrected the base ROM's misspelling on 2026-09-25"
 TRAINERS_DIVERGED = {
     "galactic_boss_cyrus_galactic_hq": {"party": _SHEET_TEAM},
     "galactic_boss_cyrus_distortion_world": {"party": _SHEET_TEAM},
+    # "name" is carried by the text import (the trainer names bank), not by
+    # apply_trainer_diff, and is honoured there.
+    "galactic_grunt_celestic_town": {"name": _NAME_FIX + " (Officert Argo)"},
+    "galactic_grunt_lake_valor_2": {"name": _NAME_FIX + " (Officer Hisperid)"},
 }
 
 # Encounter files the authoring pass has rewritten from the species pick-list
@@ -722,7 +727,8 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
                                     f"-> {nm['ability']!r}/{nm['gender']!r}")
 
     for field, why in diverged.items():
-        log.append((rel, [f"{field}: diverged, left alone ({why})"]))
+        if field != "name":
+            log.append((rel, [f"{field}: diverged, left alone ({why})"]))
     if changed:
         log.append((rel, changed))
         if not dry_run:
@@ -1243,6 +1249,10 @@ def import_text(base, van, msgenc, charmap, tmpdir, dry_run, log):
             # vanilla leaves untagged are correctly not treated as edits.
             if i == TEXT_BANK_TRAINER_NAMES:
                 nv = nv.replace("{TRNAME}", "")
+                why = TRAINERS_DIVERGED.get(os.path.basename(path)[:-len(".json")], {}).get("name")
+                if why:
+                    log.append((os.path.relpath(path, ROOT), [f"name: diverged, left alone ({why})"]))
+                    continue
             text = open(path, encoding="utf-8").read()
             if jsonstyle.get_value(text, keys) == nv:
                 continue
