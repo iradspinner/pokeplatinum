@@ -1,11 +1,10 @@
 # The Pocket PC: the base ROM's Vs. Seeker
 
 Surveyed 2026-09-26 by the Carry-over Agent, from the base ROM's arm9 and its
-`scripts_common`. Nothing is ported yet: Ian asked for the full list of what
-the Pocket PC offers before anything moves (2026-09-27). Two rulings stand:
-**infinite Rare Candies are in**, and **the Move Reminder is out**, the
-relearner staying in Pastoria at a Heart Scale per move (Ian, 2026-09-26).
-Rulings on the rest go in the last section as he makes them.
+`scripts_common`, so that Ian could rule on each function before any of it
+moved. He ruled on all of it on 2026-09-27; the rulings are the last section,
+and they are being built on branch `carry-over`. The survey below describes
+the base ROM, not Oxide.
 
 ## How it works in the base ROM
 
@@ -86,7 +85,7 @@ work is keeping, dropping or changing entries.
 | Infinite Rare Candies as a Rare Candy that is never used up | A small C change in the party menu's item use |
 | Give the Vs. Seeker back as its own item | A free item slot, element 7's item work |
 
-## Questions for Ian
+## Questions put to Ian (answered in the rulings below)
 
 1. Should the Pocket PC work everywhere, or only outdoors as in the base ROM?
 2. The Move Reminder leaves the Pocket PC by ruling. Should it leave the
@@ -107,4 +106,23 @@ work is keeping, dropping or changing entries.
 
 ## Rulings
 
-None yet beyond the two at the top.
+Ian ruled on the whole list on 2026-09-27, relayed by the Overseer.
+
+1. **Where it works:** everywhere, caves and buildings included, except in
+   gauntlets: one-way areas the player must clear, beating a set number of
+   trainers in a row, before leaving to heal. The gauntlets are a later design
+   pass; the mechanism is built now, with no map marked.
+2. **The item** opens the PC menu. Vs. Seeker rematches go, and no Vs. Seeker
+   item comes back.
+3. **The Pocket PC keeps** Pokemon Storage, Healing Waves, the Name Rater APP
+   and the Hidden Power APP, and gains an entry, on the Pocket PC only, that
+   fills the bag's Rare Candy stack to 999.
+4. **The Pocket PC alone drops** the player's PC (items and mailbox), Oak's PC
+   and the Hall of Fame viewer; the Pokemon Center PCs keep those three.
+5. **Every PC drops** the Move Reminder (Pastoria's paid relearner is the only
+   one), the Online Shop, the Teleport System, Happiness Up, every Move Tutor
+   entry (the tutors out in the world stay as in vanilla) and all three
+   post-game resets.
+6. **The teleporting Abra** leaves every town.
+7. **The Hidden Power APP** tells the power as well as the type: the IV
+   formula, 30 to 70, which Ian kept.
