@@ -198,12 +198,12 @@
         {
             "level_max": 47,
             "level_min": 39,
-            "species": "SPECIES_LANTURN"
+            "species": "SPECIES_CLOYSTER"
         },
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_LANTURN"
+            "species": "SPECIES_TOXAPEX"
         }
     ],
     "map_category": {

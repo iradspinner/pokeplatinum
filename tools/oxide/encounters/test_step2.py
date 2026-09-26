@@ -36,9 +36,10 @@ def main():
     results.append(("the plan file loads, names only real areas and pick-list lines",
                     not out["problems"], "; ".join(out["problems"][:3])))
     # 177 lines, 180 with Ian's three cave additions, 187 with his seven
-    # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21)
-    results.append(("every one of the 189 lines has a row",
-                    len(rows) == 189, f"{len(rows)} rows"))
+    # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21),
+    # 206 with the seventeen water lines (2026-09-26)
+    results.append(("every one of the 206 lines has a row",
+                    len(rows) == 206, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))

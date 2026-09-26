@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_MASQUERAIN"
+            "species": "SPECIES_FERALIGATR"
         }
     ],
     "old_rod_rate": 25,
@@ -160,7 +160,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_WOOPER"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 28,
@@ -175,7 +175,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_LOMBRE"
+            "species": "SPECIES_CROCONAW"
         }
     ],
     "super_rod_rate": 75,
