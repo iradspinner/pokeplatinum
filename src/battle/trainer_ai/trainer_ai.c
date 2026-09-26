@@ -200,6 +200,7 @@ static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *ba
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2785,6 +2786,34 @@ static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *bat
     if ((MOVE_DATA(AI_CONTEXT.move).range == RANGE_SINGLE_TARGET || MOVE_DATA(AI_CONTEXT.move).range == RANGE_RANDOM_OPPONENT)
         && ability != ABILITY_NORMALIZE
         && ability != ABILITY_MOLD_BREAKER) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored is a status move that
+ * Prankster raises and the target is a Dark type, which the move then does
+ * not affect.
+ *
+ * The same test as BattleControllerPlayer_PriorityBlock's, for a move aimed
+ * at the target: one that works on its user's side, on the whole field or on
+ * the foe's side (Spikes and the like) is left alone.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int range = MOVE_DATA(AI_CONTEXT.move).range;
+
+    if (Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(AI_CONTEXT.move).class == CLASS_STATUS
+        && (range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE
+        && range != RANGE_OPPONENT_SIDE
+        && MON_HAS_TYPE(AI_CONTEXT.defender, TYPE_DARK)) {
         AIScript_Iter(battleCtx, jump);
     }
 }

@@ -171,9 +171,9 @@ Basic_CheckBulletproof:
     // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
     // Breaker ignores it. The list is the engine's sBallAndBombMoves.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckQueenlyMajesty
+    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckPrankster
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckQueenlyMajesty
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckPrankster
     IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
     IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
     IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
@@ -200,6 +200,11 @@ Basic_CheckBulletproof:
     IfMoveEqualTo MOVE_SYRUP_BOMB, ScoreMinus10
     IfMoveEqualTo MOVE_WEATHER_BALL, ScoreMinus10
     IfMoveEqualTo MOVE_ZAP_CANNON, ScoreMinus10
+
+Basic_CheckPrankster:
+    // Oxide, change (Ian, 2026-09-27): a status move that the user's Prankster raises does not
+    // affect a Dark-type target (element 5), so score -10.
+    IfPranksterBlockedByDark ScoreMinus10
 
 Basic_CheckQueenlyMajesty:
     // Oxide: Queenly Majesty stops a move of raised priority aimed at its
