@@ -1,10 +1,10 @@
 {
-    "_comment": "Platinum's story bosses in play order, each in the split Ian's Level Caps sheet puts it in (My Version RomHack Docs, sheet Level Caps, read 2026-09-22), except that the four Galactic fights from the Veilstone HQ to the Distortion World moved from Volkner's split to the Galactic split on Ian's ruling of 2026-09-25. Trainers are Platinum trainer constants, which are also the tr_id every Platinum-based hack's calculator data uses. A rival fight lists all three starter variants; a tag battle lists both opponents. sheet_ace is the sheet's level for the boss's strongest Pokemon, null where the sheet has no row. Tag-battle partners (Cheryl, Mira, Riley, Marley, Buck, Lucas, Dawn, Barry at Spear Pillar) fight beside the player and are not bosses.",
-    "splits": ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "Galactic", "Volkner", "League"],
+    "_comment": "Platinum's story bosses in play order, each in the split Ian's Level Caps sheet puts it in (My Version RomHack Docs, sheet Level Caps, read 2026-09-22), except that the Galactic fights moved on Ian's rulings of 2026-09-25: Cyrus 2 and Saturn 2 to the HQ split, and Mars and Jupiter at Spear Pillar and Cyrus 3 to the Galactic split. Trainers are Platinum trainer constants, which are also the tr_id every Platinum-based hack's calculator data uses. A rival fight lists all three starter variants; a tag battle lists both opponents. sheet_ace is the sheet's level for the boss's strongest Pokemon, null where the sheet has no row. Tag-battle partners (Cheryl, Mira, Riley, Marley, Buck, Lucas, Dawn, Barry at Spear Pillar) fight beside the player and are not bosses.",
+    "splits": ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "HQ", "Galactic", "Volkner", "League"],
     "caps": {
-        "_comment": "Ian's hard caps. Roark to Candice and the League from his Level Caps sheet (Maylene 39, which he confirmed on 2026-09-22); Galactic 64 and Volkner 68 from his Battle Zone ruling of 2026-09-25, set ahead of the trainers, which the trainer pass brings up to them. The level-cap design may move any of them.",
+        "_comment": "Ian's hard caps. Roark to Candice and the League from his Level Caps sheet (Maylene 39, which he confirmed on 2026-09-22); HQ 60, Galactic 65 and Volkner 68 from his Battle Zone rulings of 2026-09-25, set ahead of the trainers, which the trainer pass brings up to them. The level-cap design may move any of them.",
         "Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44, "Byron": 53,
-        "Candice": 56, "Galactic": 64, "Volkner": 68, "League": 78
+        "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78
     },
     "overrides": {
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
@@ -92,9 +92,9 @@
          "trainers": ["TRAINER_COMMANDER_MARS_LAKE_VERITY"]},
         {"key": "candice", "label": "Candice", "split": "Candice", "sheet_ace": 56,
          "trainers": ["TRAINER_LEADER_CANDICE"]},
-        {"key": "cyrus_2", "label": "Cyrus 2", "split": "Galactic", "sheet_ace": 58,
+        {"key": "cyrus_2", "label": "Cyrus 2", "split": "HQ", "sheet_ace": 58,
          "trainers": ["TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ"]},
-        {"key": "saturn_2", "label": "Saturn 2", "split": "Galactic", "sheet_ace": 58,
+        {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 58,
          "trainers": ["TRAINER_COMMANDER_SATURN_GALACTIC_HQ"]},
         {"key": "mars_jupiter", "label": "Mars and Jupiter", "split": "Galactic", "sheet_ace": 59, "tag": true,
          "trainers": ["TRAINER_COMMANDER_MARS_SPEAR_PILLAR", "TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR"]},

@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_CROSS_CHOP",
@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_POLIWRATH",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_DYNAMIC_PUNCH",
@@ -45,7 +45,7 @@
         {
             "species": "SPECIES_BLAZIKEN",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_FLARE_BLITZ",

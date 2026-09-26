@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_SLASH",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_ARBOK",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_GLARE",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_STEEL_WING",

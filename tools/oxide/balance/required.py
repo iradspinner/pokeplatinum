@@ -47,7 +47,7 @@ from . import data
 from . import world
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
-          "Galactic", "Volkner", "League"]
+          "HQ", "Galactic", "Volkner", "League"]
 
 # The first split in which each field ability can open a path: the later of
 # the split its HM or item is found in (splits.gifts and splits.items, B1d)
@@ -59,7 +59,7 @@ SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
 # Rock Climb: HM08 on Route 217, Icicle Badge. Waterfall: HM07 in
 # Sunyshore, Beacon Badge.
 ABILITY_SPLIT = {"rock_smash": "Gardenia", "cut": "Fantina", "bike": "Fantina",
-                 "surf": "Byron", "strength": "Candice", "rock_climb": "Galactic",
+                 "surf": "Byron", "strength": "Candice", "rock_climb": "HQ",
                  "waterfall": "League"}
 
 WATER = {"WATER_SEA", "WATER_RIVER", "DEEP_WATER", "WATER_CAVE"}

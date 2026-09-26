@@ -6,15 +6,14 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-25).** Test.nds is now Oxide's base ROM, with
-Ian's late boss updates and his sheet's testing teams as the baseline
-(Ian's rulings below); the carry-over is on branch `base-rom-2026-08-31`,
-checked clean (the importer and all three bulk tools at 0 against it, every
-balance suite passing) and waiting for the Overseer to swap the base ROM's
-pin and merge. Ian chose two Galactic splits (HQ 60, Galactic 65); the tool
-learns them after that merge. The Battle Zone's 18-level drop stays parked
-until then. Done before that: B1a, B1b, B1d, B1e, B2, B3a and B4's tools.
-B3b is parked for the new CPU. No questions are open.
+**Where it stands (2026-09-25).** Test.nds is Oxide's base ROM, with Ian's
+late boss updates and his sheet's testing teams as the baseline, merged.
+Honey trees now have one table per badge count, each opening in its own
+split. The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), and
+the Battle Zone has come down 18 levels to fit them, on two stacked
+branches waiting for the Overseer. Done: B1a, B1b, B1d,
+B1e, B2, B3a and B4's tools. B3b is parked for the new CPU. No questions
+are open.
 
 ## The target
 
@@ -121,7 +120,11 @@ Ian's rulings, 2026-09-25, on the Galactic stretch and the base ROM:
 
 - **Two Galactic splits: HQ at 60, then Galactic (the Battle Zone, the
   climb, Spear Pillar, the Distortion World) at 65**, with Volkner at 68.
-  The tool learns the new split once the base ROM change below has merged.
+  The tool knows both (2026-09-25, branch `balance-two-galactic-splits-v2`):
+  the Warehouse and the HQ are the HQ split, closing on Cyrus 2; the Battle
+  Zone, the climb, Spear Pillar and the Distortion World are Galactic,
+  closing on Cyrus 3. The encounter design's split table still has one
+  Galactic split at 64, which is the encounter track's to change.
 - **The "[TESTING CHANGES]" teams in Ian's Boss Documentation sheet are
   Oxide's baseline.**
 - **Test.nds is the base ROM.** The ROM Phase 3 carried over from was
@@ -387,16 +390,16 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 91 | 29 |
-| Gardenia | 26 | 142 | 41 |
-| Fantina | 33 | 217 | 47 |
-| Maylene | 39 | 275 | 77 |
-| Wake | 44 | 299 | 87 |
-| Byron | 53 | 318 | 102 |
-| Candice | 56 | 323 | 108 |
-| Galactic | 64 | 330 | 123 |
-| Volkner | 68 | 330 | 124 |
-| League | 78 | 330 | 128 |
+| Roark | 16 | 91 | 30 |
+| Gardenia | 26 | 140 | 42 |
+| Fantina | 33 | 215 | 48 |
+| Maylene | 39 | 274 | 78 |
+| Wake | 44 | 298 | 88 |
+| Byron | 53 | 317 | 103 |
+| Candice | 56 | 322 | 109 |
+| Galactic | 64 | 329 | 124 |
+| Volkner | 68 | 329 | 125 |
+| League | 78 | 329 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -434,7 +437,10 @@ most threatening Pokemon and its least answered one.
 | Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
 | Cynthia | 0.68 | 0.14 | 0.90 | 0.02 |
 
-Both tables were recomputed on 2026-09-25, for Ian's baseline teams from
+Both tables were recomputed on 2026-09-25 again once honey trees became one
+table per badge count, each opening in its own split (the encounter track's
+change; a split's side moves by one or two species). Before that they were
+recomputed for Ian's baseline teams from
 Test.nds and his sheet (which move Saturn 1, Mars 2, Candice and the four
 Galactic fights), for the Galactic split and the
 encounter track's recast tables (Roark's side went from 92 to 91 species
@@ -509,8 +515,12 @@ under the cap (Dragon Tamer Keegan on Route 228, 57) stays. So does Volkner
 and Flint's tag battle at the Fight Area (74 to 75): once the main track
 gates it behind the Beacon Badge it is a League-split fight, where 75
 already fits a cap of 78. Until that gate lands, `splits.py` still counts
-it in Galactic. The edit itself is in `res/trainers/`, which the Overseer
-coordinates; it is not made yet.
+it in Galactic. **Done on 2026-09-25**, on branch
+`balance-battle-zone-relevel-v2`: 139 levels in 54 trainer files, levels
+only. The importer's TRAINERS_DIVERGED leaves those levels alone and
+reports the 54 as diverged; with their entries removed it would carry all
+54 back, 16 through its party-rewrite path. At Galactic's cap of 65 the
+zone sits 5 to 10 under, medium hard.
 
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
@@ -530,17 +540,17 @@ on Oxide's own fights: very hard is Wake's fight and above (threat
 (threat 0.60 to 0.72, answers 0.20 or fewer), medium hard is Saturn 1,
 Barry 5 and Bertha (threat 0.40 to 0.55, answers 0.20 to 0.30). For
 ordinary trainers, medium hard sits between Wake's split's filler (threat
-0.20, answers 0.51, 10 under the cap) and Candice's (0.42 and 0.27, 4
+0.21, answers 0.50, 10 under the cap) and Candice's (0.42 and 0.27, 4
 under).
 
 | Fight | At the cap: threat, answers with the lock | 2 over the cap |
 |---|---|---|
-| Saturn 2 (HQ), Ian's Trick Room team | 0.32, 0.17 | 0.35, 0.14 |
-| Cyrus 2 (HQ), with Suicune | 0.49, 0.10 | 0.53, 0.09 |
-| Mars and Jupiter, Stark Mountain | 0.47, 0.18 | 0.50, 0.16 |
-| Mars and Jupiter, Spear Pillar, with Luxray | 0.40, 0.24 | 0.42, 0.21 |
-| Cyrus 3, Ian's new team | 0.63, 0.14 | 0.65, 0.11 |
-| Volkner | 0.75, 0.18 | 0.77, 0.16 |
+| Saturn 2 (HQ, cap 60), Ian's Trick Room team | 0.33, 0.17 | 0.35, 0.14 |
+| Cyrus 2 (HQ, cap 60), with Suicune | 0.49, 0.11 | 0.52, 0.09 |
+| Mars and Jupiter, Stark Mountain (Galactic, 65) | 0.46, 0.18 | 0.50, 0.16 |
+| Mars and Jupiter, Spear Pillar (Galactic, 65), with Luxray | 0.40, 0.25 | 0.42, 0.22 |
+| Cyrus 3 (Galactic, 65), Ian's new team | 0.63, 0.14 | 0.65, 0.12 |
+| Volkner (68) | 0.75, 0.17 | 0.77, 0.16 |
 
 These are Ian's baseline teams (the table was first run on the base ROM's
 older teams). **Two of them lean on what the scores cannot see.** Saturn 2's
@@ -830,8 +840,44 @@ disagrees with them.
   30 Rare Candies are placed before the League against 250 to 440 needed,
   and Ian's ruling that the portable PC gives infinite Rare Candies closes
   that gap, so the budget reads as how much of each cap the trainers pay
-  for. The per-split tables wait on the Galactic shape.
+  for.
+
+  Entering each split at the last cap, as candy-to-the-cap means, a team
+  of six (medium slow) reaches this from trainers alone before candies
+  close the rest (2026-09-25, on the settled split shape):
+
+  | Split | Cap | Every placed trainer | Only unavoidable ones |
+  |---|---|---|---|
+  | Roark | 16 | 12 | 9 |
+  | Gardenia | 26 | 21 | 18 |
+  | Fantina | 33 | 29 | 26 |
+  | Maylene | 39 | 37 | 34 |
+  | Wake | 44 | 44 | 40 |
+  | Byron | 53 | 49 | 45 |
+  | Candice | 56 | 55 | 54 |
+  | HQ | 60 | 57 | 56 |
+  | Galactic | 65 | 65 | 60 |
+  | Volkner | 68 | 65 | 65 |
+  | League | 78 | 70 | 69 |
+
+  Two splits pay for their whole cap when every trainer is fought: Wake's,
+  whose 75 placed trainers are the most in the game, and Galactic's, now
+  that the Battle Zone's re-levelled trainers count there. The League's
+  pays least, 8 levels short even fighting everything, because Victory Road
+  and Route 223 are short for a 10-level rise. Counting only the trainers
+  the story path cannot avoid, every split falls 2 to 9 levels short. That
+  gap is what Ian's placement change (more required ordinary trainers)
+  narrows, and B1e's list says where.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
+  One check comes first, from Ian (2026-09-25): **the threat score may
+  overrate hyper-offense**. It counts what a boss knocks out while moving
+  first and ignores everything a player does besides attacking back
+  (switching, priority, screens, status), so a team of fast attackers reads
+  as the hardest kind of fight. Ian's tell is Maylene, whom it puts at 0.69
+  threat and 0.20 answers, level with the hardest gym leaders. Calibration
+  tests this against the reference hacks' hyper-offense bosses before
+  trusting the ranking; if it holds, threat is weighted down or tempered by
+  answers.
 - [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
   on the player's side ranked by what it moves.
 

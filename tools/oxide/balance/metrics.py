@@ -464,7 +464,7 @@ def fight_metrics(hack, fight, unresolved=None):
 
 CLOSING = {"Roark": "roark", "Gardenia": "gardenia", "Fantina": "fantina",
            "Maylene": "maylene", "Wake": "wake", "Byron": "byron", "Candice": "candice",
-           "Galactic": "cyrus_3", "Volkner": "volkner", "League": "cynthia"}
+           "HQ": "cyrus_2", "Galactic": "cyrus_3", "Volkner": "volkner", "League": "cynthia"}
 
 
 @functools.lru_cache(maxsize=None)

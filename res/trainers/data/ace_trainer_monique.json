@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_DISCHARGE",
@@ -26,7 +26,7 @@
         {
             "species": "SPECIES_URSARING",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_HAMMER_ARM",
@@ -40,7 +40,7 @@
         {
             "species": "SPECIES_GLISCOR",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_AERIAL_ACE",

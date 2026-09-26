@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 75,
+            "level": 57,
             "item": null,
             "moves": [
                 "MOVE_THUNDER_PUNCH",
@@ -27,7 +27,7 @@
         {
             "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 75,
+            "level": 57,
             "item": null,
             "moves": [
                 "MOVE_STONE_EDGE",
@@ -41,7 +41,7 @@
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 75,
+            "level": 57,
             "item": null,
             "moves": [
                 "MOVE_BULLET_PUNCH",
