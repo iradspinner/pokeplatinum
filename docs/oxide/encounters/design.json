@@ -9554,7 +9554,7 @@
     "encounters_wayward_cave_1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung.",
+      "intent": "Wayward Cave 1F, the dark cave (Ian, 2026-09-26: the floors differ): Carbink fills it, with Bronzor, Zubat and the rock lines around it, Nacli and Bonsly on the top rung.",
       "locked": [],
       "base_level": 17,
       "order": 33,
@@ -9563,15 +9563,15 @@
         "SPECIES_CARBINK",
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT",
-        "SPECIES_GIBLE",
+        "SPECIES_GEODUDE",
         "SPECIES_ONIX",
         "SPECIES_DWEBBLE",
         "SPECIES_NACLI",
-        "SPECIES_LARVITAR"
+        "SPECIES_BONSLY"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE"
       ],
       "night": [
         "SPECIES_ZUBAT",
@@ -9581,28 +9581,28 @@
     "encounters_wayward_cave_b1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung.",
+      "intent": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung.",
       "locked": [],
       "base_level": 17,
       "order": 34,
       "split": "Fantina",
       "cast": [
-        "SPECIES_CARBINK",
-        "SPECIES_BRONZOR",
-        "SPECIES_ZUBAT",
+        "SPECIES_PHANPY",
+        "SPECIES_SANDYGAST",
+        "SPECIES_GLIMMET",
         "SPECIES_GIBLE",
-        "SPECIES_ONIX",
-        "SPECIES_DWEBBLE",
-        "SPECIES_NACLI",
-        "SPECIES_LARVITAR"
+        "SPECIES_STUNKY",
+        "SPECIES_MEDITITE",
+        "SPECIES_LARVITAR",
+        "SPECIES_NACLI"
       ],
       "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_MIGHTYENA",
+        "SPECIES_MEDITITE"
       ],
       "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_HOUNDOUR",
+        "SPECIES_ZUBAT"
       ]
     },
     "encounters_canalave_city": {
@@ -11461,8 +11461,8 @@
       ]
     },
     "Wayward Cave": {
-      "design": "same",
-      "note": "one cave",
+      "design": "distinct",
+      "note": "the dark 1F and the sand B1F (Ian, 2026-09-26)",
       "areas": [
         "encounters_wayward_cave_1f",
         "encounters_wayward_cave_b1f"

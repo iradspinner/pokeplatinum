@@ -3,15 +3,15 @@
     "land_encounters": [
         {
             "level": 17,
-            "species": "SPECIES_CARBINK"
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 18,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_SANDYGAST"
         },
         {
             "level": 18,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GLIMMET"
         },
         {
             "level": 18,
@@ -19,35 +19,35 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_STUNKY"
         },
         {
             "level": 19,
-            "species": "SPECIES_DWEBBLE"
+            "species": "SPECIES_MEDITITE"
         },
         {
             "level": 19,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_SANDYGAST"
         },
         {
             "level": 19,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_GLIMMET"
         },
         {
             "level": 20,
-            "species": "SPECIES_CARBINK"
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 20,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 20,
-            "species": "SPECIES_NACLI"
+            "species": "SPECIES_PHANPY"
         },
         {
             "level": 20,
             "species": "SPECIES_LARVITAR"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_NACLI"
         }
     ],
     "swarms": [
@@ -55,12 +55,12 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_MIGHTYENA",
+        "SPECIES_MEDITITE"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_BRONZOR"
+        "SPECIES_HOUNDOUR",
+        "SPECIES_ZUBAT"
     ],
     "radar": [
         "SPECIES_NONE",

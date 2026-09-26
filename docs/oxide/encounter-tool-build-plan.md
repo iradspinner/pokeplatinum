@@ -199,7 +199,12 @@ that stay. None blocks anything.
    folds each group under one row and files each area under the earliest split
    it can be caught in (Route 218's Old Rod water sits in Roark's). Captures
    before the League: 73 today, 77 once the planned maps exist, 85 with the
-   Battle Zone open before the League.
+   Battle Zone open before the League. Wayward Cave moved from "same" to
+   "distinct" later that day, at Ian's request: 1F is the dark cave
+   (Carbink, Bronzor, Zubat and the rock lines, Nacli and Bonsly at 1%),
+   B1F the sand floor under Cycling Road (Phanpy leads, Gible's 10% morning
+   home, Sandygast, Glimmet, Stunky, Larvitar at 1%). They share Nacli and
+   Zubat, and the cave is still one capture.
 10. **The top rung (Ian, 2026-09-26).** Every table from Gardenia's split to
    the League had a top rung one or two lines wide, so a max-level manip was a
    guaranteed prize or a coin flip between two. Those 105 tables now lay out in

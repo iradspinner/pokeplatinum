@@ -15,7 +15,7 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_GEODUDE"
         },
         {
             "level": 19,
@@ -47,7 +47,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_LARVITAR"
+            "species": "SPECIES_BONSLY"
         }
     ],
     "swarms": [
@@ -55,8 +55,8 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_GEODUDE",
-        "SPECIES_NOSEPASS"
+        "SPECIES_NOSEPASS",
+        "SPECIES_GEODUDE"
     ],
     "night": [
         "SPECIES_ZUBAT",
