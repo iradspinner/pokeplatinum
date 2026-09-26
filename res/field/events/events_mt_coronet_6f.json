@@ -30,6 +30,22 @@
             "x": 8,
             "z": 6,
             "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_2",
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "script": "TRAINER_DUMMY_834",
+            "initial_dir": 3,
+            "data": [ 4 ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 10,
+            "y": 0,
+            "clone_id": 3
         }
     ],
     "warp_events": [

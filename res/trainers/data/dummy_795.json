@@ -106,5 +106,24 @@
             "gender": null
         }
     ],
-    "messages": []
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "You want what’s in this cave?\n",
+                "Well, earn it!\r"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Try again after practice. A lot of practice."
+        },
+        {
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The madman’s all yours...\n",
+                "At least my shift is almost done.\r"
+            ]
+        }
+    ]
 }
