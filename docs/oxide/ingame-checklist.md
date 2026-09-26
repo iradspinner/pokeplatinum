@@ -218,7 +218,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
   (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
   balls are still there. Once taken, the Secret Key ball does not come back
-  the next day. Stark Mountain room 2 has no Old Amber ball (x 51, z 22).
+  the next day. Stark Mountain room 2 has no fossil balls at all.
+- [ ] Oreburgh Mine B2F holds three fossil balls, the Armor, Skull and Root
+  Fossils, and none comes back the next day once taken; there is no Helix,
+  Dome or Claw Fossil and no Old Amber (its ball holds an Everstone). Taking
+  the Armor Fossil does not change what the Sunyshore north-east house's
+  visit-tomorrow NPC says.
 - [ ] Ian's stone plan: no stone at Fuego Ironworks (the Fire Stone ball),
   Stark Mountain room 2, Route 230, Route 229 (by the Resort Area), Great
   Marsh 3, Route 225 (neither the hidden Leaf Stone nor the Dawn Stone ball),

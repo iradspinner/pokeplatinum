@@ -358,6 +358,11 @@ Four Phase 5 entries finished on 2026-09-27, the grass on `main-grass` and the U
 - [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
 - [ ] **Amity Square as a capture area** (Ian, 2026-09-25): add tall grass to the map and point `MAP_HEADER_AMITY_SQUARE`'s `wildEncountersArchiveID` at `encounters_amity_square`, which the encounter track added on 2026-09-25.
 
+Two fossil entries finished on `main-daily-balls` on 2026-09-27:
+
+- [x] **Base ROM fossil balls** (found 2026-09-27): the base ROM put every fossil in Oreburgh Mine B2F and a second row in Stark Mountain room 2, several behind daily flags that belong to other events, so they came back every day. Done on `main-daily-balls`: the Secret Key ball on Galactic HQ B2F is a one-time find; the Old Amber, Helix, Dome and Claw Fossil balls are gone from both rooms (Ian's deletion of 2026-09-21); and the Root, Armor and Skull Fossils are one-time finds in Oreburgh Mine B2F only, each on a flag of its own, so Stark Mountain room 2 has no fossil left (Ian, 2026-09-27).
+- [x] **Delete the Old Amber, Helix Fossil, Dome Fossil and Claw Fossil** (Ian, 2026-09-21) rather than repoint the museum: take them out of the Underground's dig pools and anything that hands them out, leaving the museum's revive branches unreachable. Item and script work, outside the encounter track **Done 2026-09-27 on `main-daily-balls`:** with the Underground closed and the base ROM's fossil balls removed, nothing hands out those four fossils.
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
