@@ -1499,6 +1499,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityMoody, 6
     AddListMenuEntry TestKit_Text_MenuAbilityMoxie, 7
     AddListMenuEntry TestKit_Text_MenuAbilityMultiscale, 8
+    AddListMenuEntry TestKit_Text_MenuAbilityPickpocket, 9
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1509,6 +1510,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 6, TestKit_AbilityMoody
     GoToIfEq VAR_0x8004, 7, TestKit_AbilityMoxie
     GoToIfEq VAR_0x8004, 8, TestKit_AbilityMultiscale
+    GoToIfEq VAR_0x8004, 9, TestKit_AbilityPickpocket
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2313,6 +2315,23 @@ TestKit_AbilityMultiscale:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_ROCK_THROW
     GoTo TestKit_GivePokemonWithMoves
+
+/* Pickpocket: the player's Snorlax (its own ability) holding
+   Leftovers, and a wild Sneasel given Pickpocket that knows only Splash.
+   Snorlax's first Tackle brings "The wild SNEASEL stole SNORLAX's
+   Leftovers!"; Snorlax has them back after the battle. */
+TestKit_AbilityPickpocket:
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TACKLE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_SNEASEL
+    SetVar VAR_0x8001, ABILITY_PICKPOCKET
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8004, ITEM_LEFTOVERS
+    GoTo TestKit_GivePokemonWithItem
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
    rules for native abilities, type immunities, critical hits, Defog and Rapid

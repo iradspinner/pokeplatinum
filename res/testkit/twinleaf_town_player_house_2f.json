@@ -290,6 +290,10 @@
             "en_US": "Multiscale"
         },
         {
+            "id": "TestKit_Text_MenuAbilityPickpocket",
+            "en_US": "Pickpocket"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

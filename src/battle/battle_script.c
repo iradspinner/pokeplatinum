@@ -324,6 +324,7 @@ static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
@@ -10512,7 +10513,49 @@ static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleConte
     return FALSE;
 }
 
-// The change the two commands above make; TRUE if the stat changed.
+/**
+ * @brief Oxide's Pickpocket: check whether the defender, which holds nothing
+ * and has Pickpocket, may take the attacker's item after a contact move.
+ *
+ * TryStealItem's checks with the two battlers' parts swapped: the item is
+ * not taken while a Knock Off keeps either battler's item from use, from or
+ * by a Multitype holder, when it is a Griseous Orb or Mail, when the
+ * attacker spent a Custap Berry or a Quick Claw's turn, or when the
+ * attacker has Sticky Hold. Unlike Thief, a battler on the enemy side may
+ * take the item, as in the later games; the player's Pokemon gets it back
+ * after the battle, as it does any item it lost.
+ *
+ * Inputs:
+ * 1. The jump distance if the item cannot be taken.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int holderSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
+
+    if (DEFENDING_MON.heldItem
+        || (battleCtx->sideConditions[holderSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->defender]))
+        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE
+        || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_MULTITYPE
+        || ATTACKING_MON.heldItem == ITEM_GRISEOUS_ORB
+        || ATTACKING_MON.moveEffectsData.custapBerry
+        || ATTACKING_MON.moveEffectsData.quickClaw
+        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STICKY_HOLD
+        || BattleSystem_CanStealItem(battleSys, battleCtx, battleCtx->attacker) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+// The change AbilityStatChange and AbilityStatChangeFromVar make; TRUE if the
+// stat changed.
 static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages)
 {
     BattleMon *mon = &battleCtx->battleMons[target];

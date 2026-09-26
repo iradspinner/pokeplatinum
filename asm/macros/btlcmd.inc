@@ -1327,6 +1327,11 @@
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
+    .macro TryPickpocket jump_on_fail
+    .long BTLCMD_TRYPICKPOCKET
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

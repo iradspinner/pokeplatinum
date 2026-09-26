@@ -5116,6 +5116,24 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         break;
     }
 
+    // Oxide: Pickpocket takes the attacker's item after a contact move, if
+    // its holder has none (hg-engine's Activate_Pickpocket); TryPickpocket
+    // makes the item checks in its subscript. A move Sheer Force
+    // strengthened does not set it off.
+    case ABILITY_PICKPOCKET:
+        if (DEFENDING_MON.curHP
+            && DEFENDING_MON.heldItem == ITEM_NONE
+            && ATTACKING_MON.heldItem
+            && battleCtx->attacker != battleCtx->defender
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            *subscript = subscript_pickpocket;
+            result = TRUE;
+        }
+        break;
+
     // Mummy passes itself on and Wandering Spirit swaps, both on contact,
     // unless the attacker's ability refuses (hg-engine's failsSuppress and
     // failsSwap), after hg-engine's MoveHitDefenderAbilityCheck.
