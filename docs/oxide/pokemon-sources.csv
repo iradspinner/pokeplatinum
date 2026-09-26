@@ -66,7 +66,7 @@ Mining Museum,scripts_mining_museum.s,SPECIES_CRANIDOS,fossil,20,"revive ITEM_SK
 Oreburgh City,res/npc_trades/kazza_abra.json,SPECIES_VULLABY,in-game trade,(traded mon's level),"trade away SPECIES_NONE to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY",base-rom,yes
 Eterna City,res/npc_trades/charap_chatot.json,SPECIES_POPPLIO,in-game trade,(traded mon's level),"trade away SPECIES_NONE to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY; vanilla gave SPECIES_CHATOT holding ITEM_LEPPA_BERRY",base-rom,yes
 Snowpoint City,res/npc_trades/gaspar_haunter.json,SPECIES_SUICUNE,in-game trade,(traded mon's level),"trade away SPECIES_SNOVER to get it; once only; OT Mindy, holds ITEM_NONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE",base-rom,yes
-Route 226,res/npc_trades/foppa_magikarp.json,SPECIES_MAGIKARP,in-game trade,(traded mon's level),"trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY",vanilla,yes
+Route 226,res/npc_trades/foppa_magikarp.json,SPECIES_MAGIKARP,in-game trade,(traded mon's level),"trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY",vanilla,no
 Acuity Cavern,scripts_acuity_cavern.s,SPECIES_UXIE,static battle,50,"after the Galactic plot at Lake Acuity; once, unless the post-game Legendary Reset is used",vanilla,yes
 Distortion World,scripts_distortion_world_giratina_room.s,SPECIES_GIRATINA,static battle,47,the story battle in the Distortion World; Origin Forme; once,vanilla,yes
 Flower Paradise,scripts_flower_paradise.s,SPECIES_SHAYMIN,static battle,30,"needs Oak's Letter and the Seabreak Path; in vanilla the Letter was a Mystery Gift item, here the Sandgem lab hands it over with the National Dex",vanilla,yes

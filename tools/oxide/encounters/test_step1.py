@@ -111,9 +111,10 @@ def check_r12(results):
     avail = audit.availability()
     # 99 native lines before Phase 4 element 3, 177 with the 159 new species
     # in, 187 with Ian's three cave lines and seven fishing lines, 189 with the
-    # Gastly and Misdreavus lines, 206 with the seventeen water lines.
+    # Gastly and Misdreavus lines, 206 with the seventeen water lines, 205
+    # with the Magikarp line cut (2026-09-26).
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 206
+                    avail is not None and len(avail) == 205
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",

@@ -1664,7 +1664,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_CHINCHOU",
           "SPECIES_MUDKIP",
-          "SPECIES_MAGIKARP"
+          "SPECIES_PSYDUCK"
         ],
         "levels": [
           3,
@@ -1797,7 +1797,7 @@
           "SPECIES_GOLDEEN",
           "SPECIES_CHINCHOU",
           "SPECIES_MUDKIP",
-          "SPECIES_MAGIKARP"
+          "SPECIES_PSYDUCK"
         ],
         "levels": [
           3,
@@ -3206,7 +3206,7 @@
           "SPECIES_BARBOACH",
           "SPECIES_CORPHISH",
           "SPECIES_WOOPER",
-          "SPECIES_MAGIKARP",
+          "SPECIES_POLIWAG",
           "SPECIES_FROAKIE"
         ],
         "levels": [
@@ -4756,7 +4756,7 @@
           "SPECIES_CARVANHA",
           "SPECIES_BARBOACH",
           "SPECIES_WOOPER",
-          "SPECIES_MAGIKARP",
+          "SPECIES_SLOWPOKE",
           "SPECIES_SQUIRTLE"
         ],
         "levels": [

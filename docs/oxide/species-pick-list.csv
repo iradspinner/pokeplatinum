@@ -47,9 +47,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 47,Magmar,native,126,platinum,,yes,Fire,Fire,,preferred
 48,Magby,native,240,platinum,,yes,Fire,Fire,,preferred
 49,Magmortar,native,467,platinum,,yes,Fire,Fire,,preferred
-50,Magikarp,native,129,platinum,,yes,Water,Water,,preferred
-51,Gyarados,native,,platinum,,UNMATCHED,Water,Flying,,preferred
-52,Gyarados M,new,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian",preferred
+50,Magikarp,cut,129,platinum,,yes,Water,Water,,preferred
+51,Gyarados,cut,,platinum,,UNMATCHED,Water,Flying,,preferred
+52,Gyarados M,cut,130,altevo,1087,"MISMATCH (95, 155, 109, 70, 130, 81)",Water,Dark,"alt evolution of Gyarados, Water/Dark; trigger TBD by Ian",preferred
 53,Eevee,native,133,platinum,,yes,Normal,Normal,,preferred
 54,Vaporeon,native,134,platinum,,yes,Water,Water,,preferred
 55,Jolteon,native,135,platinum,,yes,Electric,Electric,,preferred

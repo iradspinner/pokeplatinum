@@ -291,7 +291,8 @@
       "pick": "legendary_pool",
       "pool_key": "acuity",
       "level": 50,
-      "note": "Uxie's cavern draws one from its own third of the legendary pool (availability plan, `pool`), so it can never match Valor Cavern or the roamer."
+      "simulate": false,
+      "note": "Turned off for now (Ian, 2026-09-26): with the two eggs, a legendary from each cavern alone put four Pokemon worth 85 or more in every box. Uxie's cavern would draw one from its own third of the legendary pool (availability plan, `pool`)."
     },
     {
       "id": "valor_cavern",
@@ -303,7 +304,8 @@
       "pick": "legendary_pool",
       "pool_key": "valor",
       "level": 50,
-      "note": "Azelf's cavern draws one from its own third of the legendary pool."
+      "simulate": false,
+      "note": "Turned off for now (Ian, 2026-09-26), like Acuity Cavern. Azelf's cavern would draw one from its own third of the legendary pool."
     },
     {
       "id": "spear_pillar_dialga",

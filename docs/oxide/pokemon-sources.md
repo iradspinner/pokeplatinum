@@ -419,7 +419,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Magikarp | in-game trade | (traded mon's level) | trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY | vanilla | yes | `res/npc_trades/foppa_magikarp.json` |
+| Magikarp | in-game trade | (traded mon's level) | trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY | vanilla | no | `res/npc_trades/foppa_magikarp.json` |
 
 ### Sandgem Town
 

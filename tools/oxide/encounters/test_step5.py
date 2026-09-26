@@ -298,7 +298,10 @@ def check_scripted(results):
                     and all(s["pool"] and s["split"] in splits for s in sources)
                     and len({s["id"] for s in sources}) == len(sources),
                     err or f"{len(sources)} sources"))
-    off = sorted({sp for s in sources for sp in s["pool"] if sp not in listed})
+    # The Route 226 trade still hands over a Magikarp, cut from the list, until
+    # it becomes Meloetta (Ian, 2026-09-26); it is out of the simulator till then.
+    off = sorted({sp for s in sources for sp in s["pool"] if sp not in listed
+                  and s["id"] != "route_226_trade"})
     results.append(("scripted pools hold only pick-list species",
                     not off, ", ".join(off)))
     wild = locations.by_location(root)
