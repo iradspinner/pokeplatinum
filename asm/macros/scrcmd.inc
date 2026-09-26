@@ -45,6 +45,7 @@
 #include "constants/honey_tree.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
+#include "constants/level_caps.h"
 #include "constants/map_object.h"
 #include "constants/moves.h"
 #include "constants/overworld_weather.h"
@@ -5228,6 +5229,15 @@
     .short SCRCMD_CALCHIDDENPOWERPOWER
     .short \partySlot
     .short \destVar
+    .endm
+
+    /* Platinum Oxide: move the player into the level-cap split \split, one
+       of the LEVEL_CAP_SPLIT_ constants, once the fight that closes the
+       split before it is won. The cap never goes down, so running this
+       again, or for an earlier split, does nothing. */
+    .macro RaiseLevelCap split
+    .short SCRCMD_RAISELEVELCAP
+    .short \split
     .endm
 
 #ifdef OXIDE_TESTKIT

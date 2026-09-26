@@ -44,6 +44,7 @@ GalacticHQControlRoom_Saturn:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GalacticHQControlRoom_BlackOut
     SetFlag FLAG_DEFEATED_GALACTIC_HQ_CONTROL_ROOM_SATURN
+    RaiseLevelCap LEVEL_CAP_SPLIT_GALACTIC
     SetVar VAR_GALACTIC_HQ_CONTROL_ROOM_STATE, 1
     Message GalacticHQControlRoom_Text_WhatMakesYouSoTough
     CloseMessage

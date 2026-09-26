@@ -45,7 +45,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 |---|---|---|
 | 99 Rare Candies | the item | Rare Candy chaining: after one, the party menu reopens |
 | Rotom and Giratina | Rotom in Wash form (Lv. 30), Giratina in Origin form holding the Griseous Orb (Lv. 50) | the element 3 form fix: each summary shows its form's stats and types |
-| Eevee with Charm | Eevee, Lv. 20, Charm in its first slot | Sylveon: one Rare Candy should evolve it |
+| Eevee with Charm | Eevee, Lv. 15, Charm in its first slot (Lv. 20 until element 8, and lowered so a new game's cap of 16 takes the candy) | Sylveon: one Rare Candy should evolve it |
 | Klefki, Lv. 5 | Klefki, which learns Fairy Wind (move 587) at Lv. 6 | the widened learnset: one Rare Candy teaches a move the old format could not hold; then the Move Relearner |
 | Gible vs. Clefairy | Gible, Lv. 20, with Dragon Claw, then a wild Clefairy, Lv. 10 | Fairy: the Dragon move does nothing |
 | New move sets | a Lv. 50 Mew knowing four of the new moves (sets below) | the battle effect scripts, from the player's side |
@@ -57,13 +57,37 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
 | Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
+| Level caps | puts the player in any of the twelve level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
 a whiteout does. A warp ahead of the story can meet story scripts in the
 destination; that is the kit's nature, not a defect.
 
-## The move sets
+## The level caps
+
+Element 8 holds each Pokemon at the level cap of the player's split. The
+kit's own Pokemon are mostly Lv. 50, above a new game's cap of 16, so they
+gain no Exp. and refuse Rare Candies until "Level caps" moves the split on;
+"No cap" puts back the vanilla rules. The Level caps menu, after "Which
+split?", lists Roark 16, Gardenia 26, Fantina 33, Maylene 39, Wake 44,
+Byron 53, Candice 56, Galactic HQ 60, Galactic 65, Volkner 68, League 78 and
+No cap, and sets the split outright, which the game's own `RaiseLevelCap`
+never does downwards.
+
+With the cap at 16, what to look for:
+
+- Klefki, Lv. 5, takes Rare Candies up to Lv. 16, and the next one "won't
+  have any effect" and is not used up.
+- A Lv. 50 Pokemon beats a wild Chansey with no Exp. message at all, and its
+  effort values still rise (the summary's stats move at its next level).
+- A Pokemon one level under the cap stops at the cap however much Exp. it
+  earns. Take Klefki to Lv. 15, lead with it against the wild Chansey,
+  switch to a Lv. 50 Mew and win: Klefki's message still names the whole
+  gain, but it grows to Lv. 16 only, its Exp. bar sits at the start of the
+  level, and it is still Lv. 16 after a trip into the PC and back.
+- Raising the cap to Gardenia's 26 lets the same Pokemon gain Exp. again.
+
 
 One set per four moves, a batch of effect scripts at a time. Each is a block in
 the kit script that loads four move ids into `VAR_0x8006` to `VAR_0x8009` and

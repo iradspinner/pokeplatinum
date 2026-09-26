@@ -66,6 +66,7 @@ EternaCityGym_Entry3:
     Message 2
     PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
+    RaiseLevelCap LEVEL_CAP_SPLIT_FANTINA
     GiveBadge 1
     IncrementTrainerScore2 23
     SetTrainerFlag TRAINER_AROMA_LADY_JENNA

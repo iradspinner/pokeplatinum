@@ -468,6 +468,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuStaples, 15
+    AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -486,6 +487,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
+    GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -506,11 +508,12 @@ TestKit_Forms:
     GoTo TestKit_WaitAndClose
 
 /* Sylveon's method is a level-up while knowing Charm, so Eevee gets Charm in
-   its first slot and one Rare Candy should evolve it. */
+   its first slot and one Rare Candy should evolve it. It is Lv. 15, below a
+   new game's level cap of 16, so the candy is not refused. */
 TestKit_Eevee:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_EEVEE, 15, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_CHARM
     Message TestKit_Text_Eevee
     GoTo TestKit_WaitAndClose
@@ -2448,6 +2451,30 @@ TestKit_StapleRapidSpin:
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
+    GoTo TestKit_WaitAndClose
+
+/* Element 8's level caps: puts the player in any split, including an earlier
+   one, which RaiseLevelCap never does, so the cap can be checked at each
+   value and put back. A new game starts in Roark's split, cap 16. */
+TestKit_LevelCaps:
+    Message TestKit_Text_WhichCap
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuCapRoark, LEVEL_CAP_SPLIT_ROARK
+    AddListMenuEntry TestKit_Text_MenuCapGardenia, LEVEL_CAP_SPLIT_GARDENIA
+    AddListMenuEntry TestKit_Text_MenuCapFantina, LEVEL_CAP_SPLIT_FANTINA
+    AddListMenuEntry TestKit_Text_MenuCapMaylene, LEVEL_CAP_SPLIT_MAYLENE
+    AddListMenuEntry TestKit_Text_MenuCapWake, LEVEL_CAP_SPLIT_WAKE
+    AddListMenuEntry TestKit_Text_MenuCapByron, LEVEL_CAP_SPLIT_BYRON
+    AddListMenuEntry TestKit_Text_MenuCapCandice, LEVEL_CAP_SPLIT_CANDICE
+    AddListMenuEntry TestKit_Text_MenuCapHQ, LEVEL_CAP_SPLIT_HQ
+    AddListMenuEntry TestKit_Text_MenuCapGalactic, LEVEL_CAP_SPLIT_GALACTIC
+    AddListMenuEntry TestKit_Text_MenuCapVolkner, LEVEL_CAP_SPLIT_VOLKNER
+    AddListMenuEntry TestKit_Text_MenuCapLeague, LEVEL_CAP_SPLIT_LEAGUE
+    AddListMenuEntry TestKit_Text_MenuCapNone, LEVEL_CAP_SPLIT_NONE
+    ShowListMenu
+    GoToIfGe VAR_0x8004, LEVEL_CAP_SPLIT_COUNT, TestKit_Close
+    SetVar VAR_LEVEL_CAP_SPLIT, VAR_0x8004
+    Message TestKit_Text_LevelCapSet
     GoTo TestKit_WaitAndClose
 
 TestKit_WaitAndClose:
