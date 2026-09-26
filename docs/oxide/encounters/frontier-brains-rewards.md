@@ -7,6 +7,18 @@ encounters are held back while the difficulty is low (Ian, 2026-09-27). The
 worth figures are the box simulator's, 0 to 100, for the stage a line reaches
 by Byron's cap; Ian's scarcity rule watches 85 and above.
 
+## Rulings
+
+Ian, 2026-09-27, relayed by the Overseer:
+
+- **Thorton:** the player picks one of the two starter lines they did not
+  choose (of Turtwig, Scorbunny and Piplup), fully evolved at level 40, as a
+  Battle Factory rental. It shares the Fuego Ironworks capture with the yard.
+  The box simulator's measurement follows the balance track's rescore.
+- **Argenta:** undecided between items and a level-40 static; both stay open.
+
+The proposals as written are below, for the record.
+
 ## Thorton, at the heart of Fuego Ironworks
 
 The building has no table of its own, but it carries the location name
