@@ -17,6 +17,25 @@ Ian, 2026-09-27, relayed by the Overseer:
   The box simulator's measurement follows the balance track's rescore.
 - **Argenta:** undecided between items and a level-40 static; both stay open.
 
+**Thorton's prize, measured** (2026-09-27, after the balance track's
+rescore). The box simulator played 100 best-play runs to the League for a
+Turtwig start and for a Scorbunny start, today's game against the same game
+with the prize modelled as a choice at Fuego Ironworks in Byron's split,
+sharing that capture. A Piplup start comes out the same as a Scorbunny one
+with the prize, since both boxes then hold Cinderace and Empoleon.
+
+| Start | Fuego capture today | With the prize | Wanted lines per box | Worth 85 or more per box |
+|---|---|---|---|---|
+| Turtwig (or Piplup) | Magnemite, Magby, Slugma and others | Cinderace, every run | 17.8 to 18.5 | 4.09 to 4.16 |
+| Scorbunny | the same | Empoleon, every run | 18.8 to 18.5 | 4.09 to 4.16 |
+
+The prize takes the Fuego capture in every run. It adds about 0.7 of a
+wanted line per box for a Turtwig or Piplup start, by bringing Cinderace in,
+and costs about 0.3 for a Scorbunny start, where the prize is Empoleon and
+the knock-on of losing the yard's catch shows later in the run. Strong
+Pokemon barely move: 0.07 more per box worth 85 or more, and the top six
+gain a point or so. Nothing here crosses Ian's scarcity rule.
+
 The proposals as written are below, for the record.
 
 ## Thorton, at the heart of Fuego Ironworks
