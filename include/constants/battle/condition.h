@@ -134,6 +134,7 @@
 #define FIELD_CONDITION_WONDER_ROOM_0  (1 << 26) // Oxide: Wonder Room's turns left, 0 to 5, in three bits
 #define FIELD_CONDITION_WONDER_ROOM_1  (1 << 27)
 #define FIELD_CONDITION_WONDER_ROOM_2  (1 << 28)
+#define FIELD_CONDITION_WONDER_ROOM_PERM (1 << 29) // Oxide: a boss fight's Wonder Room, which never counts down and cannot be undone
 
 #define FIELD_CONDITION_RAINING   (FIELD_CONDITION_RAINING_TEMP | FIELD_CONDITION_RAINING_PERM)
 #define FIELD_CONDITION_SANDSTORM (FIELD_CONDITION_SANDSTORM_TEMP | FIELD_CONDITION_SANDSTORM_PERM)

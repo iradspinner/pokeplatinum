@@ -1870,8 +1870,10 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
 
     case SIDE_COND_CHECK_STATE_WONDER_ROOM:
         // Oxide: Wonder Room counts down its five turns as Trick Room does,
-        // straight after it, which is where the later games end it.
-        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM) {
+        // straight after it, which is where the later games end it. A
+        // permanent one keeps its counter, as a permanent Trick Room does.
+        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM)
+            && (battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM_PERM) == FALSE) {
             battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_WONDER_ROOM_SHIFT);
             if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_WONDER_ROOM) == FALSE) {
                 PrepareSubroutineSequence(battleCtx, subscript_wonder_room_end);
