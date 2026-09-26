@@ -26,6 +26,15 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import import_base_rom as imp  # noqa: E402
 import jsonstyle  # noqa: E402
 
+# Event files that deliberately gained events the base ROM does not have, and
+# must not be rewritten from it. Each already carries every base ROM edit to
+# its existing events; rewriting would keep those and drop the additions.
+DIVERGED = {
+    "events_victory_road_1f": "the level 71 Lucas and Dawn fight at the start of "
+                              "Victory Road adds the counterpart and a trigger "
+                              "(docs/oxide/battle-zone-plan.md)",
+}
+
 
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""
@@ -65,6 +74,10 @@ def main():
         path = imp.events_json(i)
         if path is None:
             skipped.append(f"events member {i}: no json in res/")
+            continue
+        stem = os.path.basename(path)[:-len(".json")]
+        if stem in DIVERGED:
+            skipped.append(f"{stem}: deliberately diverged, left alone ({DIVERGED[stem]})")
             continue
         current = json.load(open(path, encoding="utf-8"))
         decoded = imp.decode_events(be[i])

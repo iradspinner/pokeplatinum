@@ -170,12 +170,9 @@ StarkMountainRoom3_02AB:
 StarkMountainRoom3_02B1:
     CheckFlag FLAG_CAUGHT_HEATRAN
     GoToIf 1, StarkMountainRoom3_0336
-    CheckGameCompleted VARS_START
-    CompareVarToValue VARS_START, 0
-    GoToIf 1, StarkMountainRoom3_0336
-    GetSetNationalDexEnabled 2, VARS_START
-    CompareVarToValue VARS_START, 0
-    GoToIf 1, StarkMountainRoom3_0336
+    @ Oxide: no Hall of Fame or National Dex check here any more. The Battle
+    @ Zone opens after Galactic HQ, so Heatran waits only on Buck and the
+    @ Charon scene (docs/oxide/battle-zone-plan.md).
     CheckFlag FLAG_TALKED_TO_BATTLEGROUND_BUCK
     GoToIf 0, StarkMountainRoom3_0336
     CompareVarToValue VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
@@ -211,6 +208,9 @@ StarkMountainRoom3_032E:
 StarkMountainRoom3_0336:
     SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
+    @ Oxide: this file no longer keeps the base ROM's length, so the movement
+    @ blocks are aligned explicitly (carry-over-map skill, gotcha 6).
+    .balign 4, 0
 StarkMountainRoom3_Movement_033C:
     Delay8 1
     WalkNormalNorth 2

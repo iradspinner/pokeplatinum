@@ -1203,6 +1203,10 @@ TEXT_BANKS_SKIPPED = {
          "(Ian, 2026-09-21), and his line names it",
     180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
          "Medicham (Ian, 2026-09-26), and her lines name both",
+    176: "the Snowpoint ferry sailor's refusal names Team Galactic, not the Pokemon "
+         "League, now that the Battle Zone opens after Galactic HQ (battle-zone-plan.md)",
+    192: "the Fight Area's arrival lines no longer assume the League or Spear Pillar, "
+         "and four lines are added for the Beacon Badge gate (battle-zone-plan.md)",
 }
 
 
