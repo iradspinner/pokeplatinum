@@ -865,7 +865,7 @@ disagrees with them.
   that the Battle Zone's re-levelled trainers count there. The League's
   pays least, 8 levels short even fighting everything, because Victory Road
   and Route 223 are short for a 10-level rise. Counting only the trainers
-  the story path cannot avoid, every split falls 4 to 9 levels short. That
+  the story path cannot avoid, every split falls 2 to 9 levels short. That
   gap is what Ian's placement change (more required ordinary trainers)
   narrows, and B1e's list says where.
 - [ ] **B5, calibration** to Ian's ratings, and the target band per milestone.
