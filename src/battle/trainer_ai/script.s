@@ -440,6 +440,24 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TIDY_UP, ScoreMinus10
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_THREAD, ScoreMinus10
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SNOW, ScoreMinus10
+    // Oxide, vanilla fix (Ian, 2026-09-27): Basic never checked Rest.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REST, Basic_CheckRest
+    PopOrEnd 
+
+Basic_CheckRest:
+    // Oxide, vanilla fix (Ian, 2026-09-27). Rest fails in the engine in each case below, and
+    // Basic never looked, so a trainer could waste its turn:
+    //  - The attacker is at full HP, score -8, as for Recover
+    //  - The attacker has Insomnia or Vital Spirit, score -10
+    //  - An Uproar is going on and the attacker lacks Soundproof, score -10
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER, 100, ScoreMinus8
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
+    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
+    IfLoadedEqualTo ABILITY_SOUNDPROOF, Basic_CheckRest_End
+    IfFieldConditionsMask FIELD_CONDITION_UPROAR, ScoreMinus10
+
+Basic_CheckRest_End:
     PopOrEnd 
 
 Basic_CheckUnwrittenStatusMove:
