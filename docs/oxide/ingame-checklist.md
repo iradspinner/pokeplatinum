@@ -94,6 +94,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Rare Candy chaining works.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
+- [ ] Battle style is always Set (element 8): the options menu shows SET
+  highlighted and left and right do not move it, and when a trainer's Pokemon
+  faints the game sends the next one out without asking whether you want to
+  switch.
 - [ ] Shinx's ability is always Rivalry, never Intimidate; Bidoof and Starly
   hatch in about 255 steps, down from about 3,825.
 - [ ] Answering yes to "use another Repel?" works (the one carried-over thing
