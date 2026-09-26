@@ -155,6 +155,25 @@ BOOL MapHeader_IsOnMainMatrix(enum MapHeaderID mapHeaderID)
     return MapHeader_GetMapMatrixID(mapHeaderID) == 0;
 }
 
+// Oxide: the gauntlets, one-way areas the player must clear, beating a set
+// number of trainers in a row, before leaving to heal (Ian, 2026-09-27). The
+// Pocket PC refuses to work on these maps. To mark a map, add its header here,
+// before the end marker. None is chosen yet.
+static const u16 sGauntletMapHeaders[] = {
+    MAP_HEADER_INVALID,
+};
+
+BOOL MapHeader_IsGauntlet(enum MapHeaderID mapHeaderID)
+{
+    for (int i = 0; sGauntletMapHeaders[i] != MAP_HEADER_INVALID; i++) {
+        if (sGauntletMapHeaders[i] == mapHeaderID) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 BOOL MapHeader_IsPokemonCenter(enum MapHeaderID mapHeaderID)
 {
     return MapHeader_GetMapType(mapHeaderID) == MAP_TYPE_POKECENTER;

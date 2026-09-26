@@ -1636,6 +1636,20 @@
     {
       "id": "CommonStrings_Text_255",
       "garbage": 0
+    },
+    {
+      "id": "CommonStrings_Text_PocketPC_RareCandyFilled",
+      "en_US": [
+        "Your Rare Candy stock was\n",
+        "filled to 999."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_PocketPC_HiddenPowerTypeAndPower",
+      "en_US": [
+        "This Pokémon’s Hidden Power is the\n",
+        "{STRVAR_1 15, 0, 0} type, with {STRVAR_1 51, 1, 0} power.\r"
+      ]
     }
   ]
 }

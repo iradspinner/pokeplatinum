@@ -27,9 +27,9 @@ python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/ro
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7: built NARC vs res/ JSON
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --text
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
-python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 15 skipped, the deliberate divergences
+python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 16 skipped, the deliberate divergences
 python3 tools/oxide/bulk_events.py --dry-run    # would write 0
-python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 8 skipped
+python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 9 skipped
 python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
 python3 tools/oxide/scriptdis.py --rom ~/roms/base.nds --verify --base-rom
 ```
@@ -43,6 +43,7 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 - `evo.narc`: 667 against 508; 0 disagree, 159 new; 7 members differ on purpose (the natives that gain an evolution) and 501 differ only in trailing zero padding, which is the record going from 44 bytes to 56
 - `pl_waza_tbl.narc`: 923 members against the reference's 471; **0 disagree**, 452 are new moves, 146 differ only at the intended bytes (the three Fairy retypes, the 95 natives given the King's Rock flag, Poison Gas's range, the 66 natives given modern numbers, 45 of which are in none of the other groups, and Barrier and Tailwind at 1 PP). The 146 is worked out from the lists, not yet seen against the base ROM
 - the base ROM importer reports every count 0 and lists those same seven species' evolutions as not carried over
+- once `carry-over` lands, the visual overhaul's archives: `mmodel`, `trfgra`, `pl_batt_bg`, `titledemo`, `box`, `pl_plist_gra`, `pl_b_plist_gra`, `batt_obj`, `waza_particle` and `pl_otherpoke` identical; `pl_batt_obj` 293 identical and 50 by content or padding, plus the Fairy icon appended; `item_icon` 710 identical and 1 by content; `pl_pokegra` 592 identical, 2,372 by content, 954 appended; `height` 1,812 identical, 164 zero padding, 636 appended; `pl_poke_data` grown by the new species' records
 
 Anything else is a regression. The encounter tool's own checks are in its build plan.
 
@@ -53,7 +54,7 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); the new-CPU cleanup list opens it. Add new in-game checks there, not here.
 
 
-- Two low-priority data questions from the carry-over, whether the encounter `unown_table`/`rate_form` or sprite-height changes were ever intended: design doc section 7 (the evidence says DSPRE re-saves).
+- A low-priority data question from the carry-over, whether the encounter `unown_table`/`rate_form` changes were ever intended: design doc section 7 (the evidence says DSPRE re-saves). The sprite heights once asked about with it came over with the visual overhaul (Phase 3).
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
 
 ## Phase 0: Setup
@@ -70,8 +71,9 @@ Both done 2026-09-15: `docs/oxide/phase1-hg-engine-survey.md` and `docs/oxide/ph
 
 Done apart from the two items below; the archive has every finished item, and why each remaining mismatch against the base ROM is intended.
 
-- [ ] **Regression found in play (Ian, 2026-09-20): the base ROM's custom overworld sprites were not carried over.** 43 object events on 35 maps use dummy graphics slots that the base ROM fills with real sprites, `mmodel.narc` members 55, 56, 59, 64, 65 and 73 (`dummy_0.nsbtx` to `dummy_5.nsbtx`). The fix is data only: extract the six from `~/roms/base.nds` and build them in place of `dummy.png` for those entries in `res/graphics/field_sprites/meson.build`. Verify `mmodel.narc` member for member against the base ROM, then Ian looks at the NPC outside Sandgem's Pokemon Center. The six sprites are done on `carry-over` (605390e49), waiting to merge. **Follow-up, re-examined 2026-09-27:** the other "tool side effect" archives are Ian's own visual overhaul, not re-saves (the inventory doc has it member by member), and Ian ruled the same day that all of it comes over: the Black-and-White-style Pokemon sprite set with its shiny palettes, the battle scenery, the superbosses' battle sprites, the title screen, box wallpapers and UI palettes, and the one unexplained move-particle byte. The Carry-over Agent does it after the Pocket PC
-- [ ] Still not ported from the base ROM's arm9, each needing real understanding: the Vs. Seeker as the Pocket PC, whose every entry Ian ruled on 2026-09-27 (`docs/oxide/pocket-pc.md`, Rulings; the Carry-over Agent is building it; the town-teleport and dungeon-shortcut Abra go, the gym-shortcut Abra stay), **which Ian ruled on 2026-09-26 should also give infinite Rare Candies** (B4 found about 30 before the League against the 250 to 440 a team of six needs), the palette hue-shift patch (six hooks, low priority, droppable), and an unidentified two-byte change to a lookup table at arm9 `0x0EC478`. The Battle Arcade commands are closed
+- The six overworld sprites the carry-over missed are done (2026-09-26, branch `carry-over`); the item is in the archive and its in-game check in `ingame-checklist.md`.
+- [ ] **The base ROM's visual overhaul**, found 2026-09-26 re-examining the "tool side effect" archives and ruled in whole by Ian on 2026-09-27, **is carried over and merged (2026-09-27)**, waiting only for its in-game check (`ingame-checklist.md`, section 1): the Pokemon sprite set with its shiny palettes, heights and form palettes, the battle scenery, the superbosses' battle sprites, the title logo, box wallpapers, UI palettes, the Pocket PC's icon and one unexplained Shadow Force byte. Every archive is in `verify_narcs.py`'s default list, by bytes where the base ROM's own files came over and by content (`CONTENT_ARCHIVES`, `tools/oxide/editcheck.py`'s rules) where DSPRE's re-save makes bytes impossible; the inventory's corrections say which is which.
+- [ ] Still not ported from the base ROM's arm9, each needing real understanding: the Vs. Seeker as a portable PC, **ruled by Ian on 2026-09-27 and merged the same day**; the teleporting Abra's removal (the town-teleport and dungeon-shortcut Abra go, the gym-shortcut Abra stay) is on `carry-over-abra`, merging after `main-grass` (`docs/oxide/pocket-pc.md` has the survey and the rulings; its in-game check is in `ingame-checklist.md`, sections 3 and 4), without the base ROM's move relearner in it (Ian, 2026-09-26), **which Ian ruled on 2026-09-26 should also give infinite Rare Candies** (B4 found about 30 before the League against the 250 to 440 a team of six needs), the palette hue-shift patch (six hooks, low priority, droppable), and an unidentified two-byte change to a lookup table at arm9 `0x0EC478`. The Battle Arcade commands are closed
 
 ## Phase 4: Port, one element at a time
 

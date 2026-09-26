@@ -102,10 +102,24 @@ frontier_brains = [
 castle_valet = ['castle_valet']
 castle_valet_png = []
 
+# Oxide: the base ROM gives four player classes the superbosses' battle
+# sprites (Red, Gold, May and Steven fight as these). Their front tiles and
+# palette are the base ROM's own files, copied in: they carry more tiles than
+# the class's cell layout draws, so no PNG rebuilds them exactly.
+oxide_prebuilt_front = [
+    'dp_player_male',
+    'dp_player_female',
+    'dp_player_male_2',
+    'dp_player_female_2',
+]
+oxide_prebuilt_front_files = []
+
 foreach trainer_class : trainer_class_dirnames
     # castle valet has a special front sprite with overlapping OAMs
     if castle_valet.contains(trainer_class)
         castle_valet_png += files(trainer_class / 'front.png')
+    elif oxide_prebuilt_front.contains(trainer_class)
+        oxide_prebuilt_front_files += files(trainer_class / 'front.NCGR', trainer_class / 'front.NCLR')
     else
         trainer_front_png += files(trainer_class / 'front.png')
     endif
@@ -213,6 +227,10 @@ castle_valet_NCGR = ncgr_gen.process(castle_valet_png,
     preserve_path_from: trainer_classes_root,
 )
 
+oxide_prebuilt_front_copies = copy_gen.process(oxide_prebuilt_front_files,
+    preserve_path_from: trainer_classes_root,
+)
+
 trfgra_narc = custom_target('trfgra.narc',
     output: [
         'trfgra.narc',
@@ -225,6 +243,7 @@ trfgra_narc = custom_target('trfgra.narc',
         trainer_front_NCLR,
         trainer_front_scan_NCGR,
         castle_valet_NCGR,
+        oxide_prebuilt_front_copies,
     ],
     command: [
         nitroarc_exe,

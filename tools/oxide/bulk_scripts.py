@@ -36,7 +36,9 @@ import import_base_rom as imp  # noqa: E402
 DIVERGED = {
     "scripts_common": "uses SetRepelSteps instead of the base ROM's scratch-address "
                       "poke plus repurposed Dummy088; regenerating would reintroduce "
-                      "the Repel prompt defect (Phase 3 hard stop 3)",
+                      "the Repel prompt defect (Phase 3 hard stop 3); and its PC "
+                      "menus follow Ian's Pocket PC rulings of 2026-09-27, not the "
+                      "base ROM's (docs/oxide/pocket-pc.md)",
     "scripts_init_battleground": "the base ROM's member is the terminator byte followed "
                                  "by 53 bytes of unreachable leftovers; this builds the "
                                  "4-byte equivalent, which the engine reads identically",

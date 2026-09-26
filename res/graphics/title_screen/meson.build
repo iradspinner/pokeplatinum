@@ -3,9 +3,16 @@ pngs_4bpp = files(
 )
 
 pngs_8bpp = files(
-    'logo.png',
     'logo_jp.png',
 )
+
+# Oxide: the base ROM's title logo (Ian, 2026-09-27). Its tiles and palette are
+# the base ROM's own files: the logo is 256 x 96 with a 142-colour palette, and
+# the 8-bit PNG path above always writes a 256-colour one.
+logo_prebuilt = copy_gen.process(files(
+    'logo.NCGR',
+    'logo.NCLR',
+))
 
 # These PNGs require explicit palettes because they are 4bpp palettes that contain more than 16 colors.
 pngs_explicit = files(
@@ -84,6 +91,7 @@ titledemo_narc = custom_target('titledemo.narc',
     input: [
         ncgrs_4bpp,
         ncgrs_8bpp,
+        logo_prebuilt,
         nclrs_4bpp,
         nclrs_8bpp,
         nclrs_explicit,

@@ -5221,6 +5221,15 @@
     .short \successVar
     .endm
 
+    /* Platinum Oxide: write the power of Hidden Power for the Pokemon in
+       \partySlot, 30 to 70, to \destVar. The Pocket PC's Hidden Power APP
+       tells it beside the type. */
+    .macro CalcHiddenPowerPower partySlot, destVar
+    .short SCRCMD_CALCHIDDENPOWERPOWER
+    .short \partySlot
+    .short \destVar
+    .endm
+
 #ifdef OXIDE_TESTKIT
     /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
        \partySlot into \form. Rotom takes the game's own form change, which

@@ -1310,40 +1310,48 @@ def import_text(base, van, msgenc, charmap, tmpdir, dry_run, log):
     return len(touched)
 
 
-def report_skipped_heights(base, van, log):
-    """Sprite Y-offsets are deliberately not carried over; this only writes the
-    evidence into the report so a later run re-confirms it rather than
-    re-deciding it.
+HEIGHT_SLOTS = (("back", "female"), ("back", "male"), ("front", "female"), ("front", "male"))
+
+
+def import_heights(base, van, dry_run, log):
+    """Sprite Y-offsets from height.narc into each species' sprite_data.json.
 
     height.narc holds four members per species (back female, back male, front
-    female, front male, empty where that gender has no sprite). 298 of them
-    differ, but the pattern says DSPRE re-saved the table rather than Ian
-    editing it: 164 of the differences are a zero byte written where vanilla has
-    an empty member, and of the 116 species where vanilla had male and female
-    offsets equal, every single one has only the male offset changed. A hand
-    edit to a shared sprite's offset would move both. See the inventory's note
-    that 2,788 of 2,964 pl_pokegra files also differ by a few header bytes
-    each."""
-    b, v = base.narc("poketool/pokegra/height.narc"), van.narc("poketool/pokegra/height.narc")
-    differ = [i for i in range(len(b)) if b[i] != v[i]]
-    wrote_into_empty = sum(1 for i in differ if not v[i] and b[i])
-    broke_symmetry = 0
-    for sp in sorted({i // 4 for i in differ}):
-        vals_v = [v[4 * sp + k] for k in range(4)]
-        vals_b = [b[4 * sp + k] for k in range(4)]
-        if all(x for x in vals_v) and vals_v[0] == vals_v[1] and vals_v[2] == vals_v[3]:
-            if vals_b[0] != vals_b[1] or vals_b[2] != vals_b[3]:
-                broke_symmetry += 1
-    log.append(("height.narc (not imported)", [
-        f"{len(differ)} of {len(b)} members differ",
-        f"{wrote_into_empty} of them write a byte where vanilla has an empty member "
-        f"(a gender the species does not have; the decomp derives this from the gender ratio "
-        f"and cannot express it as an edit)",
-        f"{broke_symmetry} species had male == female in vanilla and have only the male "
-        f"offset changed in the base ROM, which a hand edit would not do",
-        "reading this as a DSPRE re-save, not an edit; skipped pending Ian",
-    ]))
-    return 0
+    female, front male), empty where the species has no such gender. The base
+    ROM changes 298 of them. 134 are real: they come with its new sprite set
+    (the visual overhaul, which Ian ruled on 2026-09-27 comes over whole), and
+    they mostly move the male offset alone because the new set replaced mostly
+    male sprites. The other 164 are DSPRE writing a zero byte where the species
+    has no such gender; the decomp derives those empty members from the gender
+    ratio, and verify_narcs reads a lone zero byte as padding.
+
+    This was a report of what was skipped until 2026-09-27, when the male-only
+    pattern was taken for a sign of a re-save; it was a sign of new sprites."""
+    b = base.narc("poketool/pokegra/height.narc")
+    v = van.narc("poketool/pokegra/height.narc")
+    written = 0
+    for sp in range(1, 494):
+        folder = species_dir(sp)
+        path = os.path.join(folder, "sprite_data.json")
+        text = open(path, encoding="utf-8").read()
+        changes = []
+        for k, (face, gender) in enumerate(HEIGHT_SLOTS):
+            nb, nv = bytes(b[4 * sp + k]), bytes(v[4 * sp + k])
+            if nb == nv or not nv or not nb:
+                continue  # unchanged, or a gender this species does not have
+            key = [face, "y_offset", gender]
+            old = jsonstyle.get_value(text, key)
+            if old == nb[0]:
+                continue
+            changes.append(f"{face} {gender} y_offset {old} -> {nb[0]}")
+            text = jsonstyle.replace_value(text, key, nb[0])
+        if changes:
+            written += len(changes)
+            log.append((f"{os.path.basename(folder)}/sprite_data.json", changes))
+            if not dry_run:
+                with open(path, "w", encoding="utf-8", newline="\n") as f:
+                    f.write(text)
+    return written
 
 
 def report_skipped_items(base, van, log):
@@ -1537,7 +1545,7 @@ def main():
     counts["map_headers"] = import_map_headers(base.arm9, van.arm9, a.dry_run, log)
     counts["events"] = import_events(base, van, a.dry_run, log)
 
-    counts["heights"] = report_skipped_heights(base, van, log)
+    counts["heights"] = import_heights(base, van, a.dry_run, log)
     counts["items"] = report_skipped_items(base, van, log)
 
     with open(a.report, "w", encoding="utf-8") as f:

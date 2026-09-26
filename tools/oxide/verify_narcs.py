@@ -6,7 +6,8 @@ rebuilds to exactly the bytes the reference ROM carries.
 Usage:
     python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref BASE.nds [PATH ...]
 
-With no PATH arguments, checks the tables the importer handles byte-for-byte.
+With no PATH arguments, checks the tables the importer handles byte-for-byte,
+and the overworld sprite archive.
 With --encounters, checks pl_enc_data.narc field by field instead, which is what
 that table needs: a few fields are deliberately not imported, so its bytes are
 not expected to match.
@@ -25,6 +26,25 @@ DEFAULT = [
     "poketool/personal/wotbl.narc",
     "poketool/personal/evo.narc",
     "poketool/waza/pl_waza_tbl.narc",
+    # The base ROM's six overworld sprites in vanilla's dummy slots; nothing
+    # checked this archive until they were found missing in play (2026-09-20).
+    "data/mmodel/mmodel.narc",
+    # The base ROM's visual overhaul (Ian, 2026-09-27; the inventory's
+    # corrections list every member). These compare byte for byte.
+    "poketool/trgra/trfgra.narc",
+    "battle/graphic/pl_batt_bg.narc",
+    "battle/graphic/pl_batt_obj.narc",
+    "itemtool/itemdata/item_icon.narc",
+    "demo/title/titledemo.narc",
+    "graphic/box.narc",
+    "graphic/pl_plist_gra.narc",
+    "battle/graphic/pl_b_plist_gra.narc",
+    "battle/graphic/batt_obj.narc",
+    "wazaeffect/effectdata/waza_particle.narc",
+    "poketool/pokegra/pl_pokegra.narc",
+    "poketool/pokegra/pl_otherpoke.narc",
+    "poketool/pokegra/height.narc",
+    "poketool/poke_edit/pl_poke_data.narc",
 ]
 
 
@@ -35,6 +55,67 @@ def walk(folder, prefix=""):
     for sub, f in folder.folders:
         out.update(walk(f, prefix + sub + "/"))
     return out
+
+
+def load_editcheck():
+    """The re-save rules live in editcheck.py, loaded by path like the importer."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "editcheck.py")
+    spec = importlib.util.spec_from_file_location("editcheck", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def check_by_content(b, r, path):
+    """Member by member for an archive in CONTENT_ARCHIVES, APPENDED or GROWN: a
+    member passes when its bytes match, when it differs only in zero padding,
+    in a GROWN archive when it begins with the reference's member, or, in a
+    content archive, when it differs only as a DSPRE re-save would. Appended
+    members are counted, not compared."""
+    extra, extra_why = APPENDED.get(path, (0, None))
+    if len(b) != len(r) + extra:
+        print(f"{path}: member count {len(b)} vs {len(r)}"
+              f"{f' plus {extra} appended' if extra else ''}")
+        return False
+    ec = None
+    if path in CONTENT_ARCHIVES:
+        ec = load_editcheck()
+        ec.ENCRYPTED = "pokegra/" in path
+    same = resaved = padded = grown = 0
+    bad = []
+    for i in range(len(r)):
+        if b[i] == r[i]:
+            same += 1
+            continue
+        # DSPRE pads some members with zero bytes, as the byte path allows too
+        if bytes(b[i]).rstrip(b"\0") == bytes(r[i]).rstrip(b"\0"):
+            padded += 1
+            continue
+        if path in GROWN and len(b[i]) > len(r[i]) and bytes(b[i][:len(r[i])]) == bytes(r[i]):
+            grown += 1
+            continue
+        kind = ec.classify(b[i], r[i]) if ec else "bytes differ"
+        if ec and not ec.is_edit(kind):
+            resaved += 1
+        else:
+            bad.append((i, kind))
+    note = f"; {extra} appended, {extra_why}" if extra else ""
+    if padded:
+        note += f"; {padded} differing only in zero padding"
+    if grown:
+        note += f"; {grown} grown by appended records, {GROWN[path]}"
+    if bad:
+        print(f"{path}: {len(bad)} members differ: {[i for i, _ in bad[:20]]}{note}")
+        print(f"   first: member {bad[0][0]}, {bad[0][1]}")
+        return False
+    if resaved:
+        print(f"{path}: {same} members identical and {resaved} matching in content "
+              f"(differing only as a DSPRE re-save does){note}")
+    elif padded or grown:
+        print(f"{path}: {same} members identical{note}")
+    else:
+        print(f"{path}: identical ({same} members){note}")
+    return True
 
 
 def load_importer():
@@ -381,6 +462,31 @@ DIVERGED_MEMBERS = {
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
 
+# Archives the base ROM carries as DSPRE saved them. DSPRE re-saves whatever it
+# touches (file version, sizes, palette bit 15, sprite encryption, zero-tile
+# padding, the optional PCMP block, LZ recompression), so a member rebuilt from
+# the same pixels and colours never matches its copy byte for byte. Members of
+# these archives compare by content under tools/oxide/editcheck.py's rules;
+# every other archive, and every archive that already matched, compares bytes.
+CONTENT_ARCHIVES = {
+    "battle/graphic/pl_batt_obj.narc": "the base ROM's battle platforms, HP box "
+                                      "palette and one misc sprite (visual overhaul)",
+    "itemtool/itemdata/item_icon.narc": "the Pocket PC's icon, member 441",
+    "poketool/pokegra/pl_pokegra.narc": "the base ROM's Pokemon sprite set",
+}
+# Members Oxide appended after the reference's last; the rest still compare.
+APPENDED = {
+    "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
+    "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
+    "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+}
+# Single-member tables whose member Oxide grew by appending records: the built
+# member must begin with the reference's.
+GROWN = {
+    "poketool/poke_edit/pl_poke_data.narc": "each species' 89-byte sprite record, "
+                                            "the 159 new species' after the base ROM's 494",
+}
+
 
 def reference_to_built(i, n_built, n_ref):
     """Where reference member i lives in the built archive."""
@@ -611,6 +717,9 @@ def main():
             continue
         if p == WAZA:
             ok = check_move_table(b, r, p) and ok
+            continue
+        if p in CONTENT_ARCHIVES or p in APPENDED or p in GROWN:
+            ok = check_by_content(b, r, p) and ok
             continue
         if len(b) != len(r):
             print(f"{p}: member count {len(b)} vs {len(r)}"); ok = False
