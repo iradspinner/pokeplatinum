@@ -3076,6 +3076,15 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
         return 0;
     }
 
+    // Oxide: Wonder Skin cuts a status move's accuracy to 50% against its
+    // holder, before the stages (hg-engine's accuracy calculation, step 5).
+    // A move that cannot miss is already out above. Mold Breaker ignores it.
+    if (moveClass == CLASS_STATUS
+        && hitRate > 50
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WONDER_SKIN) == TRUE) {
+        hitRate = 50;
+    }
+
     // Hurricane shares Thunder's weakness in the sun.
     if (NO_CLOUD_NINE && WEATHER_IS_SUN
         && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER

@@ -1505,6 +1505,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilitySandForce, 12
     AddListMenuEntry TestKit_Text_MenuAbilitySandRush, 13
     AddListMenuEntry TestKit_Text_MenuAbilityToxicBoost, 14
+    AddListMenuEntry TestKit_Text_MenuAbilityWonderSkin, 15
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1521,6 +1522,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 12, TestKit_AbilitySandForce
     GoToIfEq VAR_0x8004, 13, TestKit_AbilitySandRush
     GoToIfEq VAR_0x8004, 14, TestKit_AbilityToxicBoost
+    GoToIfEq VAR_0x8004, 15, TestKit_AbilityWonderSkin
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2421,6 +2423,21 @@ TestKit_AbilityToxicBoost:
     SetVar VAR_0x8000, SPECIES_ZANGOOSE
     SetVar VAR_0x8001, ABILITY_TOXIC_BOOST
     SetVar VAR_0x8002, MOVE_MEGA_PUNCH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Wonder Skin: a wild Chansey that knows only Growl. Once
+   Delcatty is in, about one Growl in two misses, where it never would
+   without Wonder Skin. */
+TestKit_AbilityWonderSkin:
+    SetVar VAR_0x800A, SPECIES_DELCATTY
+    SetVar VAR_0x800B, ABILITY_WONDER_SKIN
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
