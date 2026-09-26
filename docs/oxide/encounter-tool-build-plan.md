@@ -415,6 +415,16 @@ that stay. None blocks anything.
    into Abomasnow at 268 to 316, about four times and 1.6 times what the
    game does. Foul Play, Body Press, Psyshock, Sacred Sword and Darkest
    Lariat already hit as plain moves in the calculator's Generation 4 code.
+   **Done 2026-09-26 and parked unmerged** on branch
+   `encounter-calc-item22`, built on oxide fe5361aed, until the balance
+   track can run the full rescore it needs; merge the two together.
+   Electro Ball, Stored Power, Power Trip, Hard Press, Last Respects (from
+   the calculator's fainted-allies field), Grav Apple under Gravity, and
+   Pika Papow and Veevee Volley at Return's 102 follow the engine; the five
+   that depend on an earlier turn keep their table power, which is the
+   engine's when the condition is not met. Freeze-Dry and Flying Press hit
+   as plain moves, and `test_m8` pins both. When the main track gives them
+   their type rules, the `util.js` patch (`VENDORED.md`, 11) comes out.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

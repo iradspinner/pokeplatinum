@@ -700,7 +700,6 @@ def check_calc_mechanics(results):
         "fang": ("Raticate", "Guts", "Garchomp", "", "Super Fang"),
         "crit": ("Frosmoth", "Shield Dust", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
         "armor": ("Frosmoth", "Shield Dust", "Crawdaunt", "Shell Armor", "Frost Breath"),
-        "ball": ("Pikachu", "Static", "Gyarados", "", "Electro Ball"),
         "order": ("Tyranitar", "Sand Stream", "Bronzor", "", "Crunch"),
         "order2": ("Machamp", "Guts", "Bronzor", "", "Cross Chop"),
         "sniper": ("Frosmoth", "Sniper", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
@@ -711,6 +710,16 @@ def check_calc_mechanics(results):
         "sturdy": ("Garchomp", "Rough Skin", "Geodude", "Sturdy", "Earthquake"),
         "focus": ("Lucario", "Inner Focus", "Gyarados", "Intimidate", "Close Combat"),
         "fast": ("Lucario", "Steadfast", "Gyarados", "Intimidate", "Close Combat"),
+        "slowball": ("Pikachu", "Static", "Electrode", "", "Electro Ball"),
+        "shock": ("Pikachu", "Static", "Electrode", "", "Thunder Shock"),
+        "fastball": ("Pikachu", "Static", "Slowbro", "", "Electro Ball"),
+        "discharge": ("Pikachu", "Static", "Slowbro", "", "Discharge"),
+        "hardpress": ("Registeel", "Clear Body", "Blissey", "", "Hard Press"),
+        "stored": ("Espeon", "Synchronize", "Blissey", "", "Stored Power"),
+        "freezedry": ("Lapras", "Water Absorb", "Vaporeon", "", "Freeze-Dry"),
+        "icebeam": ("Lapras", "Water Absorb", "Vaporeon", "", "Ice Beam"),
+        "press": ("Hawlucha", "Limber", "Abomasnow", "", "Flying Press"),
+        "cc": ("Hawlucha", "Limber", "Abomasnow", "", "Close Combat"),
     }
     jobs = {"pokemon": {}, "pairs": []}
     for key, (att, ability, dfn, dability, move) in cases.items():
@@ -737,11 +746,28 @@ def check_calc_mechanics(results):
                     and rolls["pixie"][0] > rolls["plain"][-1] and set(rolls["sap"]) == {0},
                     f"Night Slash {rolls['blunt'][-1]} to {rolls['sharp'][-1]}, "
                     f"Hyper Voice {rolls['plain'][-1]} to {rolls['pixie'][-1]}"))
-    results.append(("Psywave, Super Fang and Electro Ball do what Oxide's engine does",
+    # Electro Ball's power is 40 when the user is the slower (Pikachu into
+    # Electrode, as Thunder Shock), and 80 at twice the target's Speed
+    # (Pikachu, 110, into Slowbro, 50, as Discharge); Hard
+    # Press is at full power into a full-HP target, and Stored Power is 20
+    # with no stages raised, so it hits far softer than either.
+    results.append(("Psywave, Super Fang and the engine's computed powers do what "
+                    "Oxide's engine does",
                     rolls["psywave"][0] == 25 and rolls["psywave"][-1] == 75
-                    and set(rolls["fang"]) == {hp // 2} and rolls["ball"][-1] <= 12,
-                    f"Psywave {rolls['psywave'][0]} to {rolls['psywave'][-1]}, "
-                    f"Electro Ball at most {rolls['ball'][-1]}"))
+                    and set(rolls["fang"]) == {hp // 2}
+                    and rolls["slowball"] == rolls["shock"] and rolls["fastball"] == rolls["discharge"]
+                    and rolls["hardpress"][0] > 0 and 0 < rolls["stored"][-1],
+                    f"Psywave {rolls['psywave'][0]} to {rolls['psywave'][-1]}, Electro Ball "
+                    f"{rolls['slowball'][-1]} slower, {rolls['fastball'][-1]} at twice the Speed"))
+    # Oxide's engine hits with Freeze-Dry and Flying Press as plain moves:
+    # Freeze-Dry is resisted by Water, so it does less than a stronger Ice
+    # Beam, and Flying Press is only Fighting, so it does less than Close
+    # Combat.
+    results.append(("Freeze-Dry and Flying Press hit as plain moves, as Oxide's engine does",
+                    rolls["freezedry"][-1] < rolls["icebeam"][-1]
+                    and rolls["press"][-1] < rolls["cc"][-1],
+                    f"Freeze-Dry {rolls['freezedry'][-1]}, Ice Beam {rolls['icebeam'][-1]}; "
+                    f"Flying Press {rolls['press'][-1]}, Close Combat {rolls['cc'][-1]}"))
     # Frost Breath always lands a critical hit unless the target has Shell
     # Armor, and Oxide's critical hit is 1.5x, 2.25x for a Sniper (staples
     # survey). Crunch into Bronzor applies Psychic's double before Steel's half,

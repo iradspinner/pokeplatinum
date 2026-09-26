@@ -242,10 +242,12 @@ function getMoveEffectiveness(gen, move, type, isGhostRevealed, isGravity, isRin
     else if ((isCorrosion || isRingTarget) && type === 'Steel' && move.hasType('Poison') && (TITLE.includes("Imperium") || TITLE.includes("Radical"))) {
         effectiveness = 1;
     }
-    else if (move.named('Freeze-Dry') && type === 'Water') {
+    // Oxide patch: Platinum Oxide's engine hits with Freeze-Dry and Flying
+    // Press as plain moves until the main track gives them their type rules.
+    else if (move.named('Freeze-Dry') && type === 'Water' && TITLE !== "Platinum Oxide") {
         effectiveness = 2;
     }
-    else if (move.named('Flying Press')) {
+    else if (move.named('Flying Press') && TITLE !== "Platinum Oxide") {
         effectiveness = (gen.types.get('fighting').effectiveness[type] *
             gen.types.get('flying').effectiveness[type]);
     }
