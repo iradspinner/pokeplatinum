@@ -93,6 +93,9 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.attackerAbility = attacker.ability;
     }
     var isCritical = move.isCrit && !defender.hasAbility('Battle Armor', 'Shell Armor');
+    // Oxide patch: a profile may make a hit critical (Platinum Oxide's
+    // always-critical moves and Merciless).
+    isCritical = (0, romhack_helpers_1.applyValueHooks)(profile, "criticalHit", ctx, isCritical);
     var basePower = move.bp;
     if (move.named('Weather Ball')) {
         if (field.hasWeather('Sun')) {
@@ -143,6 +146,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
         move.type = 'Normal';
         desc.attackerAbility = attacker.ability;
     }
+    // Oxide patch: a profile's type-changing abilities (Pixilate, Liquid Voice).
+    (0, romhack_helpers_1.runHooks)(profile, "afterMoveType", ctx);
     var isGhostRevealed = attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
     var type1Effectiveness = (0, util_1.getMoveEffectiveness)(gen, move, defender.types[0], isGhostRevealed, field.isGravity, false, false, false, false, profile, ctx);
     var type2Effectiveness = defender.types[1]
@@ -192,10 +197,17 @@ function calculateDPP(gen, attacker, defender, move, field) {
         }
             
     }
+    // Oxide patch: a profile's ability immunities (Sap Sipper, Bulletproof,
+    // Overcoat).
+    if ((0, romhack_helpers_1.applyValueHooks)(profile, "moveImmunity", ctx, false)) {
+        return result;
+    }
     desc.HPEVs = "".concat(defender.evs.hp, " HP");
     var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move);
+    // Oxide patch: damage a profile's moves set outright (Psywave, Super Fang).
+    fixedDamage = (0, romhack_helpers_1.applyValueHooks)(profile, "fixedDamage", ctx, fixedDamage);
     if (fixedDamage) {
-        result.damage = fixedDamage;
+        result.damage = (0, romhack_helpers_1.applyValueHooks)(profile, "firstHitDamage", ctx, fixedDamage);
         return result;
     }
 
@@ -323,6 +335,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
             basePower = Math.floor(basePower * 1.5);
             desc.attackerAbility = attacker.ability;
         }
+        // Oxide patch: a profile's power modifiers that follow Technician.
+        basePower = (0, romhack_helpers_1.applyValueHooks)(profile, "powerAfterTechnician", ctx, basePower);
         if (field.attackerSide.is10Buff) {
             basePower = Math.floor(basePower * 1.1);
             desc.is10Buff = true;
@@ -396,6 +410,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
             basePower = Math.floor(basePower * 1.25);
             desc.defenderAbility = defender.ability;
         }
+        // Oxide patch: a profile's defensive power modifiers, beside Thick Fat.
+        basePower = (0, romhack_helpers_1.applyValueHooks)(profile, "defenderPowerMods", ctx, basePower);
         if (attacker.hasAbility('Rivalry') && ![attacker.gender, defender.gender].includes('N')) {
             if (attacker.gender === defender.gender) {
                 basePower = Math.floor(basePower * 1.25);
@@ -417,7 +433,10 @@ function calculateDPP(gen, attacker, defender, move, field) {
         if (defender.hasAbility('Unaware')) {
             desc.defenderAbility = defender.ability;
         }
-        else if (attacker.hasAbility('Simple')) {
+        // Oxide patch: a profile whose Simple doubles stat changes as they
+        // are made (Platinum Oxide) reads the stages as they stand.
+        else if (attacker.hasAbility('Simple') &&
+            (0, romhack_helpers_1.applyValueHooks)(profile, "simpleAtCalc", ctx, true)) {
             attack = getSimpleModifiedStat(attack, attackBoost);
             desc.attackerAbility = attacker.ability;
             desc.attackBoost = attackBoost;
@@ -472,6 +491,9 @@ function calculateDPP(gen, attacker, defender, move, field) {
             attack *= 2;
             desc.attackerItem = attacker.item;
         }
+        // Oxide patch: a profile's attacking-stat modifiers (Steelworker,
+        // Water Bubble).
+        attack = (0, romhack_helpers_1.applyValueHooks)(profile, "attackStat", ctx, attack);
         var defenseStat = isPhysical ? 'def' : 'spd';
         desc.defenseEVs = "";
         var defense = defender.rawStats[defenseStat];
@@ -482,7 +504,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
         if (attacker.hasAbility('Unaware')) {
             desc.attackerAbility = attacker.ability;
         }
-        else if (defender.hasAbility('Simple')) {
+        else if (defender.hasAbility('Simple') &&
+            (0, romhack_helpers_1.applyValueHooks)(profile, "simpleAtCalc", ctx, true)) {
             defense = getSimpleModifiedStat(defense, defenseBoost);
             desc.defenderAbility = defender.ability;
             desc.defenseBoost = defenseBoost;
@@ -559,8 +582,22 @@ function calculateDPP(gen, attacker, defender, move, field) {
             baseDamage = Math.floor(baseDamage * 1.5);
             desc.attackerAbility = 'Flash Fire';
         }
+        // Oxide patch: a profile's damage modifiers before the formula's +2
+        // (Fluffy, Ice Scales).
+        baseDamage = (0, romhack_helpers_1.applyValueHooks)(profile, "beforeFinalDamage", ctx, baseDamage);
         baseDamage += 2;
-        if (isCritical) {
+        // Oxide patch: a profile's critical hit multiplier (Platinum Oxide's
+        // is 1.5x, and 2.25x for a Sniper); it returns the damage, or leaves
+        // it undefined for upstream's.
+        ctx.state.baseDamage = baseDamage;
+        var critDamage = isCritical
+            ? (0, romhack_helpers_1.applyValueHooks)(profile, "criticalDamage", ctx, undefined)
+            : undefined;
+        if (critDamage !== undefined) {
+            baseDamage = critDamage;
+            desc.isCritical = isCritical;
+        }
+        else if (isCritical) {
             var criticalHitMultiplier = (0, util_1.getCriticalHitMultiplier)(gen);
             if (attacker.hasAbility('Sniper')) {
                 baseDamage = Math.floor(baseDamage * criticalHitMultiplier * 1.5);
@@ -636,12 +673,16 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.g4Phase2MetronomeMod = metronomeMod;
         desc.g4Phase2TintedMod = tintedMod;
         desc.g4Phase2BerryMod = berryMod;
+        // Oxide patch: a profile may order the two type factors (Platinum
+        // Oxide applies them in its type chart's row order, as the game does).
+        var typeFactors = (0, romhack_helpers_1.applyValueHooks)(profile, "typeFactorOrder", ctx,
+            [type1Effectiveness, type2Effectiveness]);
         var damage = [];
         for (var i = 0; i < 16; i++) {
             damage[i] = Math.floor((baseDamage * (85 + i)) / 100);
             damage[i] = Math.floor(damage[i] * stabMod);
-            damage[i] = Math.floor(damage[i] * type1Effectiveness);
-            damage[i] = Math.floor(damage[i] * type2Effectiveness);
+            damage[i] = Math.floor(damage[i] * typeFactors[0]);
+            damage[i] = Math.floor(damage[i] * typeFactors[1]);
             damage[i] = Math.floor(damage[i] * filterMod);
             damage[i] = Math.floor(damage[i] * ebeltMod);
             damage[i] = Math.floor(damage[i] * metronomeMod);
@@ -655,7 +696,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
     if (!hitResult) {
         return result;
     }
-    var damage = hitResult.damage;
+    // Oxide patch: a profile's limit on the first hit (Sturdy from full HP).
+    var damage = (0, romhack_helpers_1.applyValueHooks)(profile, "firstHitDamage", ctx, hitResult.damage);
     var attackStat = hitResult.attackStat;
     result.damage = damage;
     desc.attackBoost =

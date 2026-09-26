@@ -292,6 +292,9 @@ def _effect_ids(root):
 # skips its extra, or says "But nothing happened!" if it is a status move.
 FIRST_DONOR_EFFECT = 277
 EFFECT_SCRIPTS = os.path.join("res", "battle", "scripts", "effects")
+# Donor effects the engine carries out in C, for which a plain hit is the
+# right script: the always-critical moves' crit is forced in battle_lib.c.
+EFFECTS_DONE_IN_C = frozenset({"ALWAYS_CRITICAL"})
 
 
 def stub_effects(root):
@@ -319,7 +322,24 @@ def _stub_effects(root, names, stamp):
     stubs = {body(0), body(names.index("BATTLE_EFFECT_DO_NOTHING"))}
     return frozenset(_strip(names[i], "BATTLE_EFFECT_")
                      for i in range(FIRST_DONOR_EFFECT, len(names))
-                     if body(i) in stubs)
+                     if body(i) in stubs
+                     and _strip(names[i], "BATTLE_EFFECT_") not in EFFECTS_DONE_IN_C)
+
+
+# The abilities that set or cancel weather. The player never sets, changes or
+# ends weather in Oxide, so no Pokemon the player can obtain may have one in a
+# regular slot (Ian, 2026-09-26, staples survey). The hidden slot is allowed,
+# since the game's one Ability Patch is the intended way to reach it. The
+# main track's ability pass removes them; until then the tool flags them.
+WEATHER_ABILITIES = ("DRIZZLE", "DROUGHT", "SAND_STREAM", "SNOW_WARNING", "SAND_SPIT",
+                     "CLOUD_NINE", "AIR_LOCK", "PRIMORDIAL_SEA", "DESOLATE_LAND",
+                     "DELTA_STREAM", "ORICHALCUM_PULSE")
+
+
+def weather_abilities(root, species):
+    """The weather abilities in a species' regular slots, empty for none."""
+    rec = load(root, species)
+    return [a for a in (rec or {}).get("abilities", []) if a in WEATHER_ABILITIES]
 
 
 def vanilla_moves(root, ref="main"):

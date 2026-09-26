@@ -108,10 +108,11 @@ to read it.
 - A place whose tables sit in one spot is either identical throughout or very
   different part to part, never one pool rotated (Ian, 2026-09-26). The
   sidecar's `groups` table says which: "same" (Solaceon Ruins, Lake Verity, the
-  Old Chateau, Iron Island, Stark Mountain, the Oreburgh Mine, Wayward Cave, the
-  Ruin Maniac's dig, and Mt. Coronet's B1F, Peak and Mountainside) is one cast,
+  Old Chateau, Iron Island, Stark Mountain, the Oreburgh Mine, the Ruin
+  Maniac's dig, and Mt. Coronet's B1F, Peak and Mountainside) is one cast,
   shape, level and day and night pair on every table; "distinct" (the Great
-  Marsh, the Lost Tower, Victory Road, Oreburgh Gate) gives each part a theme and
+  Marsh, the Lost Tower, Victory Road, Oreburgh Gate, and Wayward Cave since
+  Ian asked for its floors to differ) gives each part a theme and
   a face of its own and lets two parts share at most two species. Lint's R15
   enforces both.
 - A max-level repel manip is never a guaranteed result (Ian, 2026-09-26).

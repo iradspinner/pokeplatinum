@@ -142,6 +142,8 @@ def _species_view(species, st, area=None):
         "duped": owner is not None and not here,
         "caught_at": st.label_of(owner[0]) if owner else None,
         "via": dex.display_name(owner[1]) if owner and owner[1] != species else None,
+        # a weather ability in a regular slot, which Oxide rules out
+        "weather": pokedex.weather_abilities(model.repo_root(), species),
     }
 
 
@@ -551,6 +553,7 @@ def dex_list():
             # ported ones have: vanilla Platinum has never heard of them.
             "canon_delta": (canon.delta(species, rec) or {}).get("bst"),
             "appearances": len(caught.get(species) or []),
+            "weather": pokedex.weather_abilities(root, species),
         })
     return {"rows": rows, "count": len(rows)}
 
@@ -578,6 +581,7 @@ def dex_detail(species):
     out["canon_name"] = canon.showdown_name(species)
     out["sprites"] = pokedex.sprites(root, species)
     out["captures"] = _captures().get(species) or []
+    out["weather"] = pokedex.weather_abilities(root, species)
     out["matchups"] = matchups
     moves = pokedex.moves(root)
     out["learnset"] = []

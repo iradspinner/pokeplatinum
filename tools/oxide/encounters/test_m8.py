@@ -237,6 +237,28 @@ def check_canon(results):
                     == ["Porygon", "Porygon2", "Porygon-Z"], ""))
 
 
+def check_weather_flag(results):
+    """Build plan item 20: a weather ability in a regular slot is flagged in
+    the dex and wherever a table or scripted source offers the species. The
+    hidden slot is the Ability Patch's, so it is not flagged."""
+    root = model.repo_root()
+    rows = {r["species"]: r for r in server.dex_list()["rows"]}
+    flagged = sorted(s for s, r in rows.items() if r["weather"])
+    page = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui", "index.html"),
+                encoding="utf-8").read()
+    results.append(("a weather ability in a regular slot is flagged, a hidden one is not",
+                    rows["SPECIES_HIPPOPOTAS"]["weather"] == ["SAND_STREAM"]
+                    and rows["SPECIES_ALOLAN_NINETALES"]["weather"] == []
+                    and pokedex.load(root, "SPECIES_ALOLAN_NINETALES")["hidden_ability"]
+                    == "SNOW_WARNING"
+                    and server.dex_detail("SPECIES_SNOVER")["weather"] == ["SNOW_WARNING"]
+                    and not rows["SPECIES_BULBASAUR"]["weather"],
+                    f"{len(flagged)} species"))
+    results.append(("the page shows the flag in the dex and on every source's species",
+                    page.count("${weatherTag(") == 4 and 'data-f="weather"' in page,
+                    ""))
+
+
 def check_page(results):
     """D2's gate: every line the pick-list carries opens, and carries what the
     page draws. A species that half renders is worse than one that fails."""
@@ -415,7 +437,8 @@ def check_moves_view(results):
                     f"{len(stubs)} placeholder effects"))
     results.append(("a move is flagged exactly when its effect is a placeholder",
                     all(m["stub"] == (m["effect"] in stubs) for m in moves.values())
-                    and not moves["MOVE_FLAMETHROWER"]["stub"],
+                    and not moves["MOVE_FLAMETHROWER"]["stub"]
+                    and not moves["MOVE_FROST_BREATH"]["stub"],
                     f"{sum(m['stub'] for m in moves.values())} moves"))
 
     vanilla = pokedex.vanilla_moves(root)
@@ -623,6 +646,21 @@ def check_calculator(results):
                     and page.index("oxide-skin.css") > page.rindex("stylesheet\" href=\"./css/")
                     and '<script src="/theme.js">' in page, ""))
 
+    # The Platinum Oxide profile's move lists and chart order are read from
+    # the engine. If the engine's lists change without a rerun, the
+    # calculator applies Sharpness or Sheer Force to the wrong moves.
+    from . import make_calc_mechanics
+    mech = open(os.path.join(root, make_calc_mechanics.OUT), encoding="utf-8").read()
+    fresh = make_calc_mechanics.build(root)
+    results.append(("the calculator's Oxide mechanics data is current and loaded "
+                    "before the romhack profiles",
+                    mech == make_calc_mechanics.render(fresh)
+                    and "Night Slash" in fresh["slicing"] and "Frost Breath" in fresh["alwaysCrit"]
+                    and page.index("profiles/platinum-oxide-data.js")
+                    < page.index("profiles/platinum-oxide.js")
+                    < page.index("romhacks/index.js"),
+                    f"{len(fresh['slicing'])} slicing, {len(fresh['sheerForce'])} Sheer Force"))
+
     # Every patch is written down, so an upstream update knows what to redo.
     vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()
     results.append(("every patch to the vendored calculator is in its patch list",
@@ -630,9 +668,104 @@ def check_calculator(results):
                                                 "js/oxide/title_to_backup_mappings.js",
                                                 "js/vendor/oxide/", "oxide-skin.css",
                                                 "js/shared_controls.js",
-                                                "js/oxide/prefill_picker.js"))
+                                                "js/oxide/prefill_picker.js",
+                                                "calc/mechanics/gen4.js",
+                                                "calc/mechanics/util.js",
+                                                "romhacks/helpers.js",
+                                                "profiles/platinum-oxide.js",
+                                                "js/oxide/menu.svg"))
+                    and 'src="./js/oxide/menu.svg"' in page and "./img/menu.svg" not in page
                     and "npoint_data.picker" in shared
                     and 'src="./js/oxide/prefill_picker.js"' in page, ""))
+
+
+def check_calc_mechanics(results):
+    """The Platinum Oxide profile's rules, run through the calculator's own
+    engine headless (the balance track's runner). Each case is compared with
+    the same matchup without the ability, or pinned to a property the game's
+    arithmetic has, so a stat change elsewhere does not break it."""
+    import json
+    import subprocess
+    import tempfile
+    from . import calc_export
+    root = model.repo_root()
+    runner = os.path.join(root, "tools", "oxide", "balance", "calc_headless.js")
+    cases = {
+        "sharp": ("Scyther", "Sharpness", "Bronzong", "", "Night Slash"),
+        "blunt": ("Scyther", "Technician", "Bronzong", "", "Night Slash"),
+        "pixie": ("Sylveon", "Pixilate", "Garchomp", "", "Hyper Voice"),
+        "plain": ("Sylveon", "Cute Charm", "Garchomp", "", "Hyper Voice"),
+        "sap": ("Venusaur", "Overgrow", "Goodra", "Sap Sipper", "Energy Ball"),
+        "psywave": ("Alakazam", "Synchronize", "Garchomp", "", "Psywave"),
+        "fang": ("Raticate", "Guts", "Garchomp", "", "Super Fang"),
+        "crit": ("Frosmoth", "Shield Dust", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
+        "armor": ("Frosmoth", "Shield Dust", "Crawdaunt", "Shell Armor", "Frost Breath"),
+        "ball": ("Pikachu", "Static", "Gyarados", "", "Electro Ball"),
+        "order": ("Tyranitar", "Sand Stream", "Bronzor", "", "Crunch"),
+        "order2": ("Machamp", "Guts", "Bronzor", "", "Cross Chop"),
+        "sniper": ("Frosmoth", "Sniper", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
+        "normalize": ("Delcatty", "Normalize", "Blissey", "", "Tackle"),
+        "tackle": ("Delcatty", "Cute Charm", "Blissey", "", "Tackle"),
+        "rod": ("Pikachu", "Static", "Rhydon", "Lightning Rod", "Thunderbolt"),
+        "drain": ("Vaporeon", "Water Absorb", "Gastrodon", "Storm Drain", "Surf"),
+        "sturdy": ("Garchomp", "Rough Skin", "Geodude", "Sturdy", "Earthquake"),
+        "focus": ("Lucario", "Inner Focus", "Gyarados", "Intimidate", "Close Combat"),
+        "fast": ("Lucario", "Steadfast", "Gyarados", "Intimidate", "Close Combat"),
+    }
+    jobs = {"pokemon": {}, "pairs": []}
+    for key, (att, ability, dfn, dability, move) in cases.items():
+        jobs["pokemon"]["a" + key] = {"species": att, "ability": ability, "level": 50}
+        jobs["pokemon"]["d" + key] = {"species": dfn, "ability": dability or None, "level": 50}
+        jobs["pairs"].append(["a" + key, "d" + key, [move], None])
+    with tempfile.TemporaryDirectory() as tmp:
+        paths = [os.path.join(tmp, n) for n in ("blob.json", "jobs.json", "out.json")]
+        for path, data in zip(paths, (calc_export.build(), jobs)):
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(data, f)
+        run = subprocess.run(["node", runner] + paths, capture_output=True, text=True)
+        out = json.load(open(paths[2])) if run.returncode == 0 else {"results": []}
+    rolls = {}
+    for key, row in zip(cases, out["results"]):
+        rolls[key] = next(iter(row["moves"].values())).get("rolls") or [None]
+    if len(rolls) < len(cases) or any(None in r for r in rolls.values()):
+        results.append(("the calculator's Oxide profile runs", False, run.stderr[-200:]))
+        return
+    hp = out["pokemon"]["dfang"]["hp"]
+    results.append(("the calculator applies Sharpness, Pixilate and Sap Sipper as "
+                    "Oxide does",
+                    rolls["sharp"][-1] >= rolls["blunt"][-1] * 14 // 10
+                    and rolls["pixie"][0] > rolls["plain"][-1] and set(rolls["sap"]) == {0},
+                    f"Night Slash {rolls['blunt'][-1]} to {rolls['sharp'][-1]}, "
+                    f"Hyper Voice {rolls['plain'][-1]} to {rolls['pixie'][-1]}"))
+    results.append(("Psywave, Super Fang and Electro Ball do what Oxide's engine does",
+                    rolls["psywave"][0] == 25 and rolls["psywave"][-1] == 75
+                    and set(rolls["fang"]) == {hp // 2} and rolls["ball"][-1] <= 12,
+                    f"Psywave {rolls['psywave'][0]} to {rolls['psywave'][-1]}, "
+                    f"Electro Ball at most {rolls['ball'][-1]}"))
+    # Frost Breath always lands a critical hit unless the target has Shell
+    # Armor, and Oxide's critical hit is 1.5x, 2.25x for a Sniper (staples
+    # survey). Crunch into Bronzor applies Psychic's double before Steel's half,
+    # as the chart's rows come; the other way round every roll would be even.
+    # Fighting's rows put Psychic's half first, so Cross Chop's rolls all are.
+    results.append(("the always-critical moves crit, and a dual type's factors "
+                    "come in chart order",
+                    rolls["armor"][-1] * 14 // 10 <= rolls["crit"][-1] <= rolls["armor"][-1] * 16 // 10
+                    and rolls["armor"][-1] * 21 // 10 <= rolls["sniper"][-1] <= rolls["armor"][-1] * 24 // 10
+                    and any(r % 2 for r in rolls["order"])
+                    and not any(r % 2 for r in rolls["order2"]),
+                    f"Frost Breath {rolls['armor'][-1]} to {rolls['crit'][-1]}, "
+                    f"Crunch {rolls['order'][0]} to {rolls['order'][-1]}, "
+                    f"Cross Chop {rolls['order2'][0]} to {rolls['order2'][-1]}"))
+    # The staples rulings (2026-09-26) that change damage.
+    geodude = out["pokemon"]["dsturdy"]["hp"]
+    results.append(("the staples rulings: Normalize's fifth, Lightning Rod and Storm "
+                    "Drain, Sturdy, and Inner Focus against Intimidate",
+                    rolls["normalize"][-1] >= rolls["tackle"][-1] * 115 // 100
+                    and set(rolls["rod"]) == {0} and set(rolls["drain"]) == {0}
+                    and set(rolls["sturdy"]) == {geodude - 1}
+                    and rolls["focus"][0] > rolls["fast"][-1],
+                    f"Tackle {rolls['tackle'][-1]} to {rolls['normalize'][-1]}, "
+                    f"Earthquake into Sturdy {rolls['sturdy'][-1]} of {geodude}"))
 
 
 def check_trainer_sets(results):
@@ -746,8 +879,8 @@ def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
                   check_captures, check_endpoints, check_canon, check_page,
-                  check_qa_findings, check_moves_view, check_calculator,
-                  check_trainer_sets):
+                  check_weather_flag, check_qa_findings, check_moves_view, check_calculator,
+                  check_calc_mechanics, check_trainer_sets):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

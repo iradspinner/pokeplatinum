@@ -182,15 +182,15 @@
     },
     "encounters_wayward_cave_1f": {
       "home": ["SPECIES_CARBINK"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_GIBLE", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_NOSEPASS"],
-      "tail": ["SPECIES_NACLI", "SPECIES_LARVITAR"],
-      "note": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung."
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_GEODUDE", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_NOSEPASS"],
+      "tail": ["SPECIES_NACLI", "SPECIES_BONSLY"],
+      "note": "Wayward Cave 1F, the dark cave (Ian, 2026-09-26: the floors differ): Carbink fills it, with Bronzor, Zubat and the rock lines around it, Nacli and Bonsly on the top rung."
     },
     "encounters_wayward_cave_b1f": {
       "home": ["SPECIES_GIBLE"],
-      "cameo": ["SPECIES_CARBINK", "SPECIES_BRONZOR", "SPECIES_ZUBAT", "SPECIES_ONIX", "SPECIES_DWEBBLE", "SPECIES_GEODUDE", "SPECIES_NOSEPASS"],
-      "tail": ["SPECIES_NACLI", "SPECIES_LARVITAR"],
-      "note": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung."
+      "cameo": ["SPECIES_PHANPY", "SPECIES_SANDYGAST", "SPECIES_GLIMMET", "SPECIES_STUNKY", "SPECIES_MEDITITE", "SPECIES_MIGHTYENA", "SPECIES_HOUNDOUR", "SPECIES_ZUBAT"],
+      "tail": ["SPECIES_LARVITAR", "SPECIES_NACLI"],
+      "note": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung."
     },
     "encounters_route_208": {
       "home": ["SPECIES_FOMANTIS"],

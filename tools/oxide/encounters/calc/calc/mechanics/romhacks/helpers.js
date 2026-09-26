@@ -13,7 +13,17 @@ var HOOK_NAMES = [
     "defenseMods",
     "baseDamage",
     "finalMods",
-    "beforeFinalDamage"
+    "beforeFinalDamage",
+    // Oxide patch: hook points the Platinum Oxide profile needs
+    "moveImmunity",
+    "fixedDamage",
+    "powerAfterTechnician",
+    "defenderPowerMods",
+    "attackStat",
+    "typeFactorOrder",
+    "simpleAtCalc",
+    "criticalDamage",
+    "firstHitDamage"
 ];
 exports.HOOK_NAMES = HOOK_NAMES;
 
