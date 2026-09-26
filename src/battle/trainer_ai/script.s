@@ -1201,12 +1201,17 @@ Basic_CheckDragonDance:
     // is: if the first stat they raise is already at +6, score -10; if any of
     // the others is, score -8. The two that cost HP fail at or below that
     // share, so score -10 there first, as for Belly Drum.
+    // Oxide, change (Ian, 2026-09-27): those that raise Speed also score -10
+    // under Trick Room, as Dragon Dance does (Quiver Dance, Shift Gear, Shell
+    // Smash, Fillet Away, Geomancy, Victory Dance). Clangorous Soul, which
+    // raises every stat, is left alone: four of its five raises still help.
 Basic_CheckHoneClaws:
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckQuiverDance:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
@@ -1219,11 +1224,13 @@ Basic_CheckCoil:
     PopOrEnd 
 
 Basic_CheckShiftGear:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckShellSmash:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
@@ -1235,6 +1242,7 @@ Basic_CheckWorkUp:
     PopOrEnd 
 
 Basic_CheckFilletAway:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
@@ -1242,12 +1250,14 @@ Basic_CheckFilletAway:
     PopOrEnd 
 
 Basic_CheckGeomancy:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckVictoryDance:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
