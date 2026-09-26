@@ -258,6 +258,10 @@ Element 5's Neutralizing Gas sub-item, finished and moved out on 2026-09-26:
 
   - [x] **Neutralizing Gas** (0eb1b2e9a, merged 2026-09-26, with the VANILLA FIX d29a8a143: Gastro Acid now stops Super Luck); its report is the last commit on `cloud/element5-neutralizing-gas`. The trainer AI does not know about the gas
 
+Element 4's Electro Ball item, finished and moved out on 2026-09-26 on `cloud/element4-variable-power` (its last commit is the report; test kit sets 32 to 41):
+
+  - [x] **Electro Ball has no power code** (found by the encounter track, 2026-09-26): the game hits with power 1, and the calculator copies that until the engine computes it from the Speed ratio. Done: Electro Ball, and in the same audit Stored Power, Power Trip, Retaliate, Echoed Voice, Stomping Tantrum, Temper Flare, Last Respects, Hard Press, Lash Out and Grav Apple, one commit each through `BattleScript_ComputedMovePower`; Hard Press, Pika Papow and Veevee Volley went from power 0 to 1
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
