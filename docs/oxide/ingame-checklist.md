@@ -38,6 +38,16 @@ replacement is on the way. When the new chip is in, and before any playtest:
   (element 2 moved the field) and is no valid test bed.
 - [ ] Known crash to avoid until the bug track fixes it: UNLOCK FPS set to
   ALWAYS hard-crashes on entering Sandgem Town (tracker, Phase 5).
+- [ ] Once `carry-over` merges, **the base ROM's visual overhaul**, compared
+  with Ian's own base ROM where anything looks off: the title screen's logo;
+  the new Pokemon sprites front and back in battle, sitting at the right
+  height on their platforms (the heights came with the sprites); a shiny with
+  a custom palette where one turns up (the test kit can make one); the new
+  battle backgrounds and platforms on grass, in a cave and indoors; the HP
+  box's colours; the party menu's colours; the four new box wallpapers; and,
+  post-game, May, Steven, Red and Gold showing their own battle sprites.
+  Shadow Force's animation carries one changed byte nobody has explained;
+  note anything odd about it.
 
 ## 2. The test kit ROM
 
