@@ -610,6 +610,39 @@ int Battler_MovePriority(BattleContext *battleCtx, int battler, int move);
  */
 BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move);
 
+/**
+ * @brief Oxide: give a move the type its user's ability makes it: Fairy for a
+ * Normal move under Pixilate (not Hidden Power and the like, whose type comes
+ * from elsewhere), and Water for a sound move under Liquid Voice. Only moves
+ * with power are changed. Sets battleCtx->moveType; leaves it alone otherwise.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ */
+void BattleSystem_SetMoveTypeByAbility(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: whether Sheer Force strips this move's secondary effect for
+ * the battler.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if it does
+ */
+BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
+
+/**
+ * @brief Oxide: whether Sheer Force strengthens this move for the battler.
+ *
+ * @param battleCtx
+ * @param attacker
+ * @param move
+ * @return TRUE if it does
+ */
+BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
+
 // Oxide: what an ability refuses, after hg-engine's ability flags.
 #define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
 #define ABILITY_FAILS_ROLE_PLAY   (1 << 1) // Role Play cannot copy it

@@ -1521,6 +1521,21 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
     BOOL result = FALSE;
     u16 effectChance;
 
+    // Oxide: Sheer Force drops the move's secondary effect. The recoil moves'
+    // subscript carries their recoil too, so for those it only never rolls
+    // the chance of a burn or paralysis.
+    if (battleCtx->sideEffectIndirectFlags
+        && Battler_SheerForceStrips(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_PROBABILISTIC) {
+            battleCtx->battleStatusMask &= ~SYSCTL_APPLY_SECONDARY_EFFECT;
+            SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
+            return TRUE;
+        }
+
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
+
     if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
         SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
@@ -1747,6 +1762,11 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
     moveType = CalcMoveType(battleSys, battleCtx, attacker, move);
     if (moveType == TYPE_NORMAL) {
         moveType = MOVE_DATA(move).type;
+    }
+
+    // Oxide: a type Pixilate or Liquid Voice gave the move.
+    if (battleCtx->moveType) {
+        moveType = battleCtx->moveType;
     }
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -3536,6 +3556,26 @@ static u16 sSoundMoves[] = {
     MOVE_HYPER_VOICE,
     MOVE_BUG_BUZZ,
     MOVE_CHATTER,
+    // Oxide: the moves of hg-engine's SoundBasedMoveList that Platinum does
+    // not have and that aim at another battler, for Soundproof and Liquid
+    // Voice. Heal Bell, Howl, Perish Song and Clangorous Soul, which aim at
+    // their user's side, keep Platinum's own handling.
+    MOVE_ALLURING_VOICE,
+    MOVE_BOOMBURST,
+    MOVE_CLANGING_SCALES,
+    MOVE_CONFIDE,
+    MOVE_DISARMING_VOICE,
+    MOVE_ECHOED_VOICE,
+    MOVE_EERIE_SPELL,
+    MOVE_NOBLE_ROAR,
+    MOVE_OVERDRIVE,
+    MOVE_PARTING_SHOT,
+    MOVE_PSYCHIC_NOISE,
+    MOVE_RELIC_SONG,
+    MOVE_ROUND,
+    MOVE_SNARL,
+    MOVE_SPARKLING_ARIA,
+    MOVE_TORCH_SONG,
 };
 
 // Oxide: the moves Bulletproof stops, hg-engine's BallAndBombMoveList less the
@@ -4371,6 +4411,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && battleCtx->moveCur != MOVE_STRUGGLE
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE // Oxide
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && CURRENT_MOVE_DATA.power
@@ -4542,6 +4583,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
 
         if (DEFENDING_MON.curHP
             && damage
+            && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && DEFENDING_MON.curHP <= half
             && DEFENDING_MON.curHP - damage > half) {
@@ -7046,6 +7088,17 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Pixilate raises the Normal moves it turned Fairy by a fifth, and Sheer
+    // Force raises the moves whose secondary effects it strips by 30%.
+    if (attackerParams.ability == ABILITY_PIXILATE
+        && moveType == TYPE_FAIRY
+        && MOVE_DATA(move).type == TYPE_NORMAL) {
+        movePower = movePower * 12 / 10;
+    }
+    if (Battler_SheerForceActive(battleCtx, attacker, move)) {
+        movePower = movePower * 13 / 10;
+    }
+
     // Dark Aura and Fairy Aura on any battler raise their type's moves by a
     // third, or lower them by a quarter when Aura Break is also out.
     if ((moveType == TYPE_DARK
@@ -7803,7 +7856,10 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
     int defenderItemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, ITEM_POWER_CHECK_ALL);
     int attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    // Oxide: a move Sheer Force strengthened sets off neither Shell Bell nor
+    // Life Orb.
     if (attackerItemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
+        && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
         && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
         && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
         && battleCtx->attacker != battleCtx->defender
@@ -7816,6 +7872,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
     }
 
     if (attackerItemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
+        && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
         && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
         && CURRENT_MOVE_DATA.class != CLASS_STATUS
@@ -8752,6 +8809,142 @@ BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
 {
     return (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)
         && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH;
+}
+
+// Oxide: the Normal moves Pixilate leaves alone, after hg-engine's
+// MoveIsAffectedByNormalizeVariants: their type comes from elsewhere.
+static const u16 sMovesKeepTheirType[] = {
+    MOVE_HIDDEN_POWER,
+    MOVE_WEATHER_BALL,
+    MOVE_NATURAL_GIFT,
+    MOVE_JUDGMENT,
+    MOVE_TECHNO_BLAST,
+    MOVE_MULTI_ATTACK,
+    MOVE_TERRAIN_PULSE,
+    MOVE_STRUGGLE,
+};
+
+void BattleSystem_SetMoveTypeByAbility(BattleContext *battleCtx, int attacker, int move)
+{
+    int ability = Battler_Ability(battleCtx, attacker);
+    int i;
+
+    if (MOVE_DATA(move).power == 0) {
+        return;
+    }
+
+    if (ability == ABILITY_PIXILATE && MOVE_DATA(move).type == TYPE_NORMAL) {
+        for (i = 0; i < NELEMS(sMovesKeepTheirType); i++) {
+            if (sMovesKeepTheirType[i] == move) {
+                return;
+            }
+        }
+
+        battleCtx->moveType = TYPE_FAIRY;
+    } else if (ability == ABILITY_LIQUID_VOICE) {
+        for (i = 0; i < NELEMS(sSoundMoves); i++) {
+            if (sSoundMoves[i] == move) {
+                battleCtx->moveType = TYPE_WATER;
+                return;
+            }
+        }
+    }
+}
+
+// Oxide: the effects whose secondary effect Sheer Force strips, from
+// hg-engine's BtlCmd_GoToEffectScript. hg-engine swaps each for a plainer
+// effect script; here the script runs as it is and only the secondary effect
+// is dropped (BattleSystem_TriggerSecondaryEffect), which keeps what else the
+// scripts do: Fake Out's first-turn rule, Thunder, Hurricane and Twister
+// hitting a target in the air, Stomp's double damage on Minimize, Twineedle's
+// two hits, and the recoil of Flare Blitz and Volt Tackle.
+static const u16 sSheerForceEffects[] = {
+    BATTLE_EFFECT_FLINCH_HIT,
+    BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY,
+    BATTLE_EFFECT_RAISE_ALL_STATS_HIT,
+    BATTLE_EFFECT_BLIZZARD,
+    BATTLE_EFFECT_PARALYZE_HIT,
+    BATTLE_EFFECT_LOWER_ATTACK_HIT,
+    BATTLE_EFFECT_LOWER_SPEED_HIT,
+    BATTLE_EFFECT_RAISE_SP_ATK_HIT,
+    BATTLE_EFFECT_CONFUSE_HIT,
+    BATTLE_EFFECT_LOWER_DEFENSE_HIT,
+    BATTLE_EFFECT_LOWER_SP_DEF_HIT,
+    BATTLE_EFFECT_BURN_HIT,
+    BATTLE_EFFECT_FLINCH_BURN_HIT,
+    BATTLE_EFFECT_RAISE_SPEED_HIT,
+    BATTLE_EFFECT_POISON_HIT,
+    BATTLE_EFFECT_FREEZE_HIT,
+    BATTLE_EFFECT_FLINCH_FREEZE_HIT,
+    BATTLE_EFFECT_RAISE_ATTACK_HIT,
+    BATTLE_EFFECT_LOWER_ACCURACY_HIT,
+    BATTLE_EFFECT_BADLY_POISON_HIT,
+    BATTLE_EFFECT_LOWER_SP_ATK_HIT,
+    BATTLE_EFFECT_RAISE_DEF_HIT,
+    BATTLE_EFFECT_THROAT_CHOP,
+    BATTLE_EFFECT_THUNDER,
+    BATTLE_EFFECT_HURRICANE,
+    BATTLE_EFFECT_FLINCH_PARALYZE_HIT,
+    BATTLE_EFFECT_FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE,
+    BATTLE_EFFECT_LOWER_SP_DEF_2_HIT,
+    BATTLE_EFFECT_PREVENT_ESCAPE_HIT,
+    BATTLE_EFFECT_THAW_AND_BURN_HIT,
+    BATTLE_EFFECT_CHATTER,
+    BATTLE_EFFECT_FLINCH_MINIMIZE_DOUBLE_HIT,
+    BATTLE_EFFECT_TRI_ATTACK,
+    BATTLE_EFFECT_HIT_AND_PREVENT_HEALING,
+    BATTLE_EFFECT_SANDSEAR_STORM,
+    BATTLE_EFFECT_BLEAKWIND_STORM,
+    BATTLE_EFFECT_WILDBOLT_STORM,
+    BATTLE_EFFECT_POISON_MULTI_HIT,
+    BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT,
+    BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT,
+    BATTLE_EFFECT_RECOIL_BURN_HIT,
+    BATTLE_EFFECT_RECOIL_PARALYZE_HIT,
+};
+
+// Oxide: moves Sheer Force strengthens that keep their effect, as in
+// hg-engine.
+static const u16 sSheerForceKeepEffectMoves[] = {
+    MOVE_SPARKLING_ARIA,
+    MOVE_SPIRIT_SHACKLE,
+    MOVE_ANCHOR_SHOT,
+    MOVE_CEASELESS_EDGE,
+    MOVE_STONE_AXE,
+    MOVE_ELECTRO_SHOT,
+};
+
+static BOOL MoveKeepsEffectUnderSheerForce(int move)
+{
+    for (int i = 0; i < NELEMS(sSheerForceKeepEffectMoves); i++) {
+        if (sSheerForceKeepEffectMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move)
+{
+    if (Battler_Ability(battleCtx, attacker) != ABILITY_SHEER_FORCE
+        || MoveKeepsEffectUnderSheerForce(move)) {
+        return FALSE;
+    }
+
+    for (int i = 0; i < NELEMS(sSheerForceEffects); i++) {
+        if (sSheerForceEffects[i] == MOVE_DATA(move).effect) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move)
+{
+    return Battler_SheerForceStrips(battleCtx, attacker, move)
+        || (Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE && MoveKeepsEffectUnderSheerForce(move));
 }
 
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)

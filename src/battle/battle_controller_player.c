@@ -3365,6 +3365,9 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->beforeMoveCheckState++;
 
     case BEFORE_MOVE_STATE_REDIRECT_TARGET:
+        // Oxide: Pixilate and Liquid Voice set the move's type before
+        // anything reads it.
+        BattleSystem_SetMoveTypeByAbility(battleCtx, battleCtx->attacker, battleCtx->moveCur);
         BattleSystem_CheckRedirectionAbilities(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }

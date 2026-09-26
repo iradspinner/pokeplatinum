@@ -1109,12 +1109,18 @@ TestKit_Abilities2:
     AddListMenuEntry TestKit_Text_MenuAbilityWaterBubble, 2
     AddListMenuEntry TestKit_Text_MenuAbilityMerciless, 3
     AddListMenuEntry TestKit_Text_MenuAbilityLongReach, 4
+    AddListMenuEntry TestKit_Text_MenuAbilityPixilate, 5
+    AddListMenuEntry TestKit_Text_MenuAbilityLiquidVoice, 6
+    AddListMenuEntry TestKit_Text_MenuAbilitySheerForce, 7
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityFluffy
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityIceScales
     GoToIfEq VAR_0x8004, 2, TestKit_AbilityWaterBubble
     GoToIfEq VAR_0x8004, 3, TestKit_AbilityMerciless
     GoToIfEq VAR_0x8004, 4, TestKit_AbilityLongReach
+    GoToIfEq VAR_0x8004, 5, TestKit_AbilityPixilate
+    GoToIfEq VAR_0x8004, 6, TestKit_AbilityLiquidVoice
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilitySheerForce
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1563,6 +1569,50 @@ TestKit_AbilityLongReach:
     SetVar VAR_0x8000, SPECIES_FERROTHORN
     SetVar VAR_0x8001, ABILITY_IRON_BARBS
     SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Pixilate: a wild Misdreavus, a Ghost type, that knows only Growl; Hyper
+   Voice and Quick Attack turn Fairy and hit it, where a Normal move would
+   not affect it. */
+TestKit_AbilityPixilate:
+    SetVar VAR_0x800A, SPECIES_SYLVEON
+    SetVar VAR_0x800B, ABILITY_PIXILATE
+    SetVar VAR_0x8006, MOVE_HYPER_VOICE
+    SetVar VAR_0x8007, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_WISH
+    SetVar VAR_0x8000, SPECIES_MISDREAVUS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Liquid Voice: a wild Vaporeon with Water Absorb that knows only Growl;
+   Hyper Voice turns Water, so Water Absorb takes it and restores Vaporeon's
+   HP. */
+TestKit_AbilityLiquidVoice:
+    SetVar VAR_0x800A, SPECIES_PRIMARINA
+    SetVar VAR_0x800B, ABILITY_LIQUID_VOICE
+    SetVar VAR_0x8006, MOVE_HYPER_VOICE
+    SetVar VAR_0x8007, MOVE_MOONBLAST
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_SPARKLING_ARIA
+    SetVar VAR_0x8000, SPECIES_VAPOREON
+    SetVar VAR_0x8001, ABILITY_WATER_ABSORB
+    SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sheer Force: a wild Chansey that knows only Growl; Flame Charge never
+   raises Toucannon's Speed, since Sheer Force strips that for more power. */
+TestKit_AbilitySheerForce:
+    SetVar VAR_0x800A, SPECIES_TOUCANNON
+    SetVar VAR_0x800B, ABILITY_SHEER_FORCE
+    SetVar VAR_0x8006, MOVE_FLAME_CHARGE
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_BULLET_SEED
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

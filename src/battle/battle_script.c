@@ -2133,6 +2133,7 @@ static BOOL BtlCmd_GoToMoveScript(BattleSystem *battleSys, BattleContext *battle
     battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
     battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
     battleCtx->moveCur = battleCtx->msgMoveTemp;
+    BattleSystem_SetMoveTypeByAbility(battleCtx, battleCtx->attacker, battleCtx->moveCur); // Oxide: Pixilate, Liquid Voice
 
     if (targetIsSet == FALSE) {
         battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp, TRUE, 0);

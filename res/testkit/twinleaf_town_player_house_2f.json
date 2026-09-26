@@ -194,6 +194,18 @@
             "en_US": "Long Reach"
         },
         {
+            "id": "TestKit_Text_MenuAbilityPixilate",
+            "en_US": "Pixilate"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityLiquidVoice",
+            "en_US": "Liquid Voice"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySheerForce",
+            "en_US": "Sheer Force"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
