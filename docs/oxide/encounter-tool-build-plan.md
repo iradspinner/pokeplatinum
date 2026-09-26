@@ -174,20 +174,28 @@ that stay. None blocks anything.
    is the tool's own, and the DeSmuME link is hidden under Oxide (patch 13).
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
    How to name one is under "Standing rules".
-6. **Other tracks' work this track depends on.** The legendary pool's scripting
-   (Acuity Cavern's once-per-save draw and Mesprit's roamer; since 2026-09-27
-   Valor Cavern and Stark Mountain's last room are empty, item 21) is script
-   work the main track has started; until it exists R12 reports those
-   lines, which is why `lint` shows 27 errors and the gate is `lint --ignore R12`.
-   Verity Lakefront's map header still points at no table and the map has no
-   grass, and the starter still needs its own met location; both are in the
-   tracker's backlog. The same holds for the two tables built ahead of their
-   maps on 2026-09-25 (below): Amity Square needs grass and its header, and
-   Snowpoint City's header needs pointing at its rods; and the Pastoria City
-   gift is to move to the Restaurant. All three are in the tracker's backlog. Deleting the four spare fossil items is item and script
-   work. The Day Care Floette's white flower needs a form record and art (tracker
-   backlog). Fomantis's data has no evolution to Lurantis, so the tree holds them
-   as two lines with a home each until element 3's data is fixed.
+6. **Other tracks' work this track depends on.** Most of it landed with
+   `pool-base` (2026-09-27), merged here: the legendary pool's draws are
+   scripted (Acuity Cavern once per save and Mesprit's roamer; Valor Cavern
+   and Stark Mountain's last room empty, item 21), the starter's met location
+   is its own ("Rowan's Briefcase", so Route 201 is a capture from the first
+   step and the simulator no longer spends it on the starter), Verity
+   Lakefront, Amity Square, Snowpoint City and the four clown towns point
+   at their tables, the gift clowns are gone, and Fomantis evolves into
+   Lurantis at 34, so the two are one line (238 lines on the list; Route
+   224's Fomantis slot became Tropius, and Route 221's Lurantis a cameo, the
+   line's home being Route 208). **R12 is not yet right about it.** It reads
+   gifts from `pokemon-gifts.csv`, a survey of the base ROM of 2026-09-20,
+   its starter list still names Chimchar, and it cannot see the pool draws,
+   which name their species through `SetVar`; so `lint` shows 35 R12 errors,
+   among them lines Oxide does hand over (Scorbunny, Elekid, Flabebe, the
+   Acuity draw). Reading gifts from the tree's scripts, the starters from
+   `scripted.json` and the draws from their `SetVar` lines is the next fix;
+   the gate stays `lint --ignore R12` meanwhile. Some flags are real and are
+   for Ian: with the babies at level 10 no wild Pichu or Cleffa is left, only
+   Pikachu and Clefairy. Deleting the four spare fossil items is item and
+   script work. The Day Care Floette's white flower needs a form record and
+   art (tracker backlog).
 7. **Two new capture areas, built ahead of their maps (Ian, 2026-09-25).**
    `encounters_amity_square.json` (grass, Fantina's split, order 36) is a garden
    like the Trophy Garden at very low levels, base level 8, because only small
@@ -489,7 +497,15 @@ that stay. None blocks anything.
    seventeen Crobat placements below 40 back to Golbat by hand, corrects
    the evolve tool's judged levels, which have read every
    friendship method as 32 and a held-item trade as 32 because they are
-   keyed by names the data does not use, and reruns `test_sim`.
+   keyed by names the data does not use, and reruns `test_sim`. **Done
+   2026-09-27 on the `pool-base` data:** the nine slots evolved (four Pichu,
+   three Buneary, the Coronet Cleffa, the Great Marsh Azurill), the
+   seventeen Crobat placements are Golbat again, species only with every
+   level kept, and the evolve tool's judged levels are keyed by the data's
+   own method names (no friendship or trade method is left, so the values
+   are unchanged). The Azurill line, now fully evolved by 18, became a cap
+   candidate in Gardenia's split, so Route 205 north's Pachirisu slot is a
+   Marill. `cli evolve` reports 0 moves.
 25. **Thorton's encounter and Argenta's reward (Ian, 2026-09-27, through
    the Overseer)**, for the Frontier Brains in Byron's split. The proposals
    are `docs/oxide/encounters/frontier-brains-rewards.md`: a level-40

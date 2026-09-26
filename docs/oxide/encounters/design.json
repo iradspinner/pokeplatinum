@@ -294,7 +294,7 @@
         "SPECIES_WOOPER",
         "SPECIES_LOTAD",
         "SPECIES_SURSKIT",
-        "SPECIES_AZURILL",
+        "SPECIES_AZUMARILL",
         "SPECIES_BARBOACH"
       ],
       "day": [
@@ -1933,7 +1933,7 @@
       "split": "Gardenia",
       "cast": [
         "SPECIES_BRONZOR",
-        "SPECIES_CLEFFA",
+        "SPECIES_CLEFAIRY",
         "SPECIES_ZUBAT",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
@@ -1971,7 +1971,7 @@
         "SPECIES_CARBINK",
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_SANDYGAST",
         "SPECIES_MEDITITE"
       ],
@@ -1980,7 +1980,7 @@
         "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
       ],
       "capture_area": "Mt. Coronet B1F"
@@ -2160,7 +2160,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2188,7 +2188,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2216,7 +2216,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2244,7 +2244,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2272,7 +2272,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2300,7 +2300,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2328,7 +2328,7 @@
         "SPECIES_HARIYAMA"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "capture_area": "Mt. Coronet Peak"
@@ -2350,7 +2350,7 @@
         "SPECIES_CARBINK",
         "SPECIES_PROBOPASS",
         "SPECIES_GRAVELER",
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_SANDYGAST",
         "SPECIES_MEDITITE"
       ],
@@ -2359,7 +2359,7 @@
         "SPECIES_DONPHAN"
       ],
       "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
       ],
       "old_rod": {
@@ -3579,7 +3579,7 @@
     "encounters_route_205_north": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night.",
+      "intent": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night.",
       "locked": [],
       "base_level": 12,
       "order": 21,
@@ -3590,7 +3590,7 @@
         "SPECIES_HOPPIP",
         "SPECIES_SHROOMISH",
         "SPECIES_WOOPER",
-        "SPECIES_PACHIRISU",
+        "SPECIES_MARILL",
         "SPECIES_DEWPIDER",
         "SPECIES_BUIZEL",
         "SPECIES_FROAKIE",
@@ -3730,7 +3730,7 @@
         "SPECIES_SEWADDLE",
         "SPECIES_PAWMI",
         "SPECIES_COMBEE",
-        "SPECIES_PICHU"
+        "SPECIES_PIKACHU"
       ],
       "day": [
         "SPECIES_MINCCINO",
@@ -4590,7 +4590,7 @@
         "SPECIES_TANGELA"
       ],
       "day": [
-        "SPECIES_BUNEARY",
+        "SPECIES_LOPUNNY",
         "SPECIES_PACHIRISU"
       ],
       "night": [
@@ -5227,7 +5227,7 @@
         "SPECIES_MIENFOO",
         "SPECIES_SNORUNT",
         "SPECIES_ALOLAN_NINETALES",
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG",
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_SLUGMA"
@@ -5723,7 +5723,7 @@
       "split": "Post",
       "cast": [
         "SPECIES_LURANTIS",
-        "SPECIES_FOMANTIS",
+        "SPECIES_TROPIUS",
         "SPECIES_ALTARIA",
         "SPECIES_EMOLGA",
         "SPECIES_PALOSSAND",
@@ -7775,8 +7775,8 @@
       "order": 83,
       "split": "Wake",
       "cast": [
-        "SPECIES_PICHU",
-        "SPECIES_BUNEARY",
+        "SPECIES_PIKACHU",
+        "SPECIES_LOPUNNY",
         "SPECIES_SKITTY",
         "SPECIES_MIME_JR",
         "SPECIES_FOMANTIS",
@@ -7829,7 +7829,7 @@
       "order": 148,
       "split": "Post",
       "cast": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
         "SPECIES_SINISTCHA",
@@ -7838,7 +7838,7 @@
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_GOTHORITA",
@@ -8176,7 +8176,7 @@
       ],
       "day": [
         "SPECIES_BRONZONG",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_COFAGRIGUS",
@@ -8225,7 +8225,7 @@
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_GOTHORITA",
@@ -8252,7 +8252,7 @@
       ],
       "day": [
         "SPECIES_BRONZONG",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_COFAGRIGUS",
@@ -8275,7 +8275,7 @@
         "SPECIES_DHELMISE",
         "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "day": [
         "SPECIES_CARBINK",
@@ -8301,12 +8301,12 @@
         "SPECIES_DHELMISE",
         "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK",
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
       "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
       ],
       "night": [
         "SPECIES_GOTHORITA",
@@ -8323,7 +8323,7 @@
       "split": "Post",
       "cast": [
         "SPECIES_LITWICK",
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
         "SPECIES_DHELMISE"
@@ -9003,7 +9003,7 @@
         "SPECIES_MINUN",
         "SPECIES_PLUSLE",
         "SPECIES_EMOLGA",
-        "SPECIES_PICHU"
+        "SPECIES_PIKACHU"
       ],
       "day": [
         "SPECIES_PIKIPEK",
@@ -9137,7 +9137,7 @@
         "SPECIES_MINCCINO",
         "SPECIES_GLAMEOW",
         "SPECIES_SKITTY",
-        "SPECIES_BUNEARY",
+        "SPECIES_LOPUNNY",
         "SPECIES_PACHIRISU",
         "SPECIES_SALANDIT",
         "SPECIES_TROPIUS"
@@ -11210,7 +11210,7 @@
         "SPECIES_GLAMEOW",
         "SPECIES_FOMANTIS",
         "SPECIES_KLEFKI",
-        "SPECIES_PICHU"
+        "SPECIES_PIKACHU"
       ],
       "day": [
         "SPECIES_MINCCINO",

@@ -155,12 +155,14 @@ def main():
                     rc == 1, f"exit {rc}"))
 
     # -- evolution levels ---------------------------------------------------
-    results.append(("final_by_level: Magikarp 20, Sentret 15, a final stage 0, Zubat and Nidoran None "
-                    "(friendship, a stone), a mega form is not a stage",
+    # Zubat's line ends at level 40 since Crobat left friendship (Ian,
+    # 2026-09-27); Nidoran still needs a Moon Stone.
+    results.append(("final_by_level: Magikarp 20, Sentret 15, a final stage 0, Zubat 40, "
+                    "Nidoran None (a stone), a mega form is not a stage",
                     dex.final_by_level(root, "SPECIES_MAGIKARP") == 20
                     and dex.final_by_level(root, "SPECIES_SENTRET") == 15
                     and dex.final_by_level(root, "SPECIES_GYARADOS") == 0
-                    and dex.final_by_level(root, "SPECIES_ZUBAT") is None
+                    and dex.final_by_level(root, "SPECIES_ZUBAT") == 40
                     and dex.final_by_level(root, "SPECIES_NIDORAN_F") is None, ""))
 
     # -- archetypes and the cap ---------------------------------------------

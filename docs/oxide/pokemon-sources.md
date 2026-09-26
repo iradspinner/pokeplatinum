@@ -42,20 +42,19 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-228 rows across 41 locations, generated 2026-09-26.
+188 rows across 34 locations, generated 2026-09-26.
 
 ## Rows by method
 
 | Method | Rows |
 |---|---|
-| gift | 44 |
 | unown room | 18 |
-| static battle | 16 |
+| static battle | 15 |
 | great marsh daily (post-natdex) | 12 |
 | egg gift | 10 |
 | great marsh daily (pre-natdex) | 9 |
 | fossil | 7 |
-| roamer | 6 |
+| gift | 6 |
 | honey tree (common, 1 badge) | 6 |
 | honey tree (uncommon, 1 badge) | 6 |
 | honey tree (common, 2 badges) | 6 |
@@ -72,6 +71,7 @@ table, so they compete with it rather than adding to it
 | honey tree (uncommon, 7 badges) | 6 |
 | honey tree (common, 8 badges) | 6 |
 | honey tree (uncommon, 8 badges) | 6 |
+| roamer | 5 |
 | in-game trade | 4 |
 | starter | 3 |
 | special tile (rod) | 1 |
@@ -86,24 +86,6 @@ table, so they compete with it rather than adding to it
 |---|---|---|---|---|---|---|
 | Darkrai | roamer | 40 | the slot exists in src/roaming_pokemon.c but no script calls ActivateRoamingPokemon for it, in this ROM or in vanilla, so it is unreachable | vanilla | yes | `src/roaming_pokemon.c` |
 
-### Acuity Cavern
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Uxie | static battle | 50 | after the Galactic plot at Lake Acuity; once, unless the post-game Legendary Reset is used | vanilla | yes | `scripts_acuity_cavern.s` |
-
-### Canalave Library
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Cofagrigus | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Drapion | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Dusclops | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Flygon | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Hariyama | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Klefki | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-| Primeape | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
-
 ### Distortion World
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
@@ -115,30 +97,10 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Togepi | egg gift | 1 | Egg from Cynthia in Eterna City; once only; hatches at level 1 and counts where it hatches; giver Cynthia | vanilla | yes | `scripts_eterna_city.s` |
-| Charcadet | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
-| Slugma | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
-| Yamask | gift | 23 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_GIFT) | **base-ROM** | yes | `scripts_eterna_city_condominiums_1f.s` |
 | Popplio | in-game trade | (traded mon's level) | trade away SPECIES_NONE to get it; once only; OT Norton, holds ITEM_LEPPA_BERRY; vanilla gave SPECIES_CHATOT holding ITEM_LEPPA_BERRY | **base-ROM** | yes | `res/npc_trades/charap_chatot.json` |
 | Articuno | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
 | Moltres | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
 | Zapdos | roamer | 60 | released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams | vanilla | yes | `scripts_eterna_city_south_house.s` |
-
-### Floaroma Meadow
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Budew | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
-| Combee | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
-| Pachirisu | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
-
-### Floaroma Town
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Poochyena | gift | 18 | clown gift, one of four rolled at random; once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
-| Seedot | gift | 18 | clown gift, one of four rolled at random; once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
-| Stunky | gift | 18 | clown gift, one of four rolled at random; once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
-| Swablu | gift | 18 | clown gift, one of four rolled at random; once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_town_middle_house.s` |
 
 ### Flower Paradise
 
@@ -320,11 +282,8 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Glameow | gift | 10 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
 | Glameow | gift | 8 | a third-floor copy of the Jubilife clown; once only (FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT); check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
-| Purrloin | gift | 10 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
 | Purrloin | gift | 8 | a third-floor copy of the Jubilife clown; once only (FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT); check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
-| Skitty | gift | 10 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_JUBILIFE_CITY_SOUTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_jubilife_city_south_house_1f.s` |
 | Skitty | gift | 8 | a third-floor copy of the Jubilife clown; once only (FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT); check the map is reachable before counting it | **base-ROM** | yes | `scripts_unused_jubilife_city_south_house_3f.s` |
 
 ### Mining Museum
@@ -361,9 +320,6 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Carbink | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
-| Dwebble | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
-| Nosepass | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
 | Vullaby | in-game trade | (traded mon's level) | trade away SPECIES_NONE to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY | **base-ROM** | yes | `res/npc_trades/kazza_abra.json` |
 
 ### Pal Park
@@ -371,17 +327,6 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | (from the GBA save) | pal park migration | (as migrated) | six Pokemon at a time migrated out of a Ruby/Sapphire/Emerald/FireRed/LeafGreen cartridge, then caught in the catching show; the species come from that save, not from any table in this tree; needs the National Dex and a DS with a GBA slot | vanilla | n/a | `src/catching_show.c` |
-
-### Pastoria City
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Crawdaunt | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Lanturn | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Mantine | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Octillery | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Sharpedo | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Whiscash | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 
 ### Pokémon Day Care
 
@@ -420,14 +365,6 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Magikarp | in-game trade | (traded mon's level) | trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY | vanilla | no | `res/npc_trades/foppa_magikarp.json` |
-
-### Sandgem Town
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Fletchling | gift | 5 | pick one of three from a list menu; once only (FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT) | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
-| Grubbin | gift | 5 | pick one of three from a list menu; once only (FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT) | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
-| Pichu | gift | 5 | pick one of three from a list menu; once only (FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT) | **base-ROM** | yes | `scripts_sandgem_town_house.s` |
 
 ### Snowpoint City
 
@@ -469,9 +406,6 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | (egg of the mother's line) | day care egg | 1 | breeding at the Solaceon Day Care; the only route to baby stages and to any egg move; the Day Care man's gift is a Floette rather than the base ROM's Ditto, so there is no longer a universal breeding partner, which Ian ruled out of scope on 2026-09-21 | vanilla | n/a | `src/egg.c` |
-| Lunatone | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
-| Solrock | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
-| Trapinch | gift | 30 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT) | **base-ROM** | yes | `scripts_solaceon_town_northeast_house.s` |
 
 ### Spear Pillar
 
@@ -502,14 +436,5 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Clobbopus | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 | Elekid | gift | 25 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
-| Hawlucha | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
-| Masquerain | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
-
-### Verity Cavern
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Mesprit | roamer | 50 | released when you reach it in Verity Cavern after the Galactic plot; then roams; the Marking Map app tracks it | vanilla | yes | `scripts_verity_cavern.s` |
 

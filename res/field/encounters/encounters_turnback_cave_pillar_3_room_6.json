@@ -39,7 +39,7 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 38,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_KLEFKI",
-        "SPECIES_CROBAT"
+        "SPECIES_GOLBAT"
     ],
     "night": [
         "SPECIES_GOTHORITA",

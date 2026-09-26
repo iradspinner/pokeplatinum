@@ -23,10 +23,11 @@
       "id": "starter",
       "label": "The starter",
       "kind": "starter",
-      "capture_area": "Route 201",
+      "capture_area": "Rowan's Briefcase",
       "split": "Roark",
       "from": {"file": "scripts_route_201.s"},
-      "pick": "choice"
+      "pick": "choice",
+      "note": "Its met location is its own, Rowan's Briefcase (Ian, 2026-09-27, main-scripts), so Route 201's table is a capture from the first step."
     },
     {
       "id": "oreburgh_trade",

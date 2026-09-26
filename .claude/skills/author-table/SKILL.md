@@ -138,9 +138,12 @@ to read it.
 - When a table cannot be filled from the pick-list, stop and propose additions
   to Ian before pushing; do not pad it.
 - After any change to a table's levels, run `cli evolve`: it puts the stage a
-  level deserves in each slot (friendship judged at 20, a stone at 30, a trade at
-  38, `BRANCH` in `evolve.py` for a split line), writes the sidecar, and `apply`
-  then writes the tables. It has converged when it reports 0 moves.
+  level deserves in each slot (a stone or a place judged at 30, a held item, a
+  known move or a partner at 32, `BRANCH` in `evolve.py` for a split line; Oxide
+  has no friendship or trade evolution left), writes the sidecar, and `apply`
+  then writes the tables. It has converged when it reports 0 moves. `apply`
+  lays the plain ladder, so on a table whose levels were tuned, change the
+  species slot by slot (`cli set`, or the model's setters) and keep the levels.
 - Swarms, the Poke Radar, the dual-slot lists and the Trophy Garden dailies are
   not used in Oxide. They are filled with on-list species only so that nothing
   off-list can be rolled, and no capture is counted from them.

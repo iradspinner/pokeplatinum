@@ -39,8 +39,9 @@ def main():
     # fishing lines, 189 with the Gastly and Misdreavus lines (all 2026-09-21),
     # 206 with the seventeen water lines, 205 with the Magikarp line cut
     # and 239 with the 34 lines of the Platinum-size pick-list (all 2026-09-26)
-    results.append(("every one of the 239 lines has a row",
-                    len(rows) == 239, f"{len(rows)} rows"))
+    # 238 since Fomantis evolves into Lurantis (main-scripts, 2026-09-27), one line.
+    results.append(("every one of the 238 lines has a row",
+                    len(rows) == 238, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))

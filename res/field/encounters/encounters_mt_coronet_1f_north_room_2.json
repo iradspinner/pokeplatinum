@@ -35,11 +35,11 @@
         },
         {
             "level": 35,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 35,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_GOLBAT"
         },
         {
             "level": 35,
@@ -59,7 +59,7 @@
         "SPECIES_DONPHAN"
     ],
     "night": [
-        "SPECIES_CROBAT",
+        "SPECIES_GOLBAT",
         "SPECIES_CARBINK"
     ],
     "radar": [
