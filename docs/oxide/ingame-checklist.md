@@ -146,6 +146,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   with an Electric attack that does not knock it out. On about half such
   turns she switches to Electrike instead of attacking; before the change she
   never did. Take several tries before calling it.
+- [ ] **(live)** Rapid Spin's clearing (`cloud/element6-followups`), Bug
+  Catcher Donald in Eterna Forest (level 17, a Pineco with Rapid Spin, Expert
+  flag): seed Pineco with Leech Seed (a Cherubi learns it at level 7), break at
+  the end of `TrainerAI_MainSingles` and read `moveScore`. Rapid Spin reads 2
+  higher than on the turn before the seed, give or take the 1 its Speed raise
+  earns on half the turns. Keep a Ghost type out of the front, since Rapid
+  Spin clears nothing into one.
 - [ ] Honey trees at one badge: slather a tree and check the species and levels
   against table 1 of `res/field/encounters/encounters_honey_tree.json`. The
   Munchlax trees are gone.
