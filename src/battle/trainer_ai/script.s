@@ -387,6 +387,19 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
+    // Oxide: the stat raising moves element 4 added (Cotton Guard is a
+    // single-stat raise and takes the Defense check).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_ACC_UP, Basic_CheckHoneClaws
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP, Basic_CheckQuiverDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_ACC_UP, Basic_CheckCoil
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2_ATK_UP, Basic_CheckShiftGear
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN, Basic_CheckShellSmash
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_UP, Basic_CheckWorkUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP, Basic_CheckFilletAway
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2, Basic_CheckGeomancy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_SPEED_UP, Basic_CheckVictoryDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP, Basic_CheckClangorousSoul
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_3, Basic_CheckHighStatStage_Defense
     PopOrEnd 
 
 Basic_CheckPowderImmunity:
@@ -1157,6 +1170,71 @@ Basic_CheckDragonDance:
     // If the attacker's Speed is already at +6, score -8.
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
     IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+    // Oxide: the stat raising moves element 4 added, checked as Dragon Dance
+    // is: if the first stat they raise is already at +6, score -10; if any of
+    // the others is, score -8. The two that cost HP fail at or below that
+    // share, so score -10 there first, as for Belly Drum.
+Basic_CheckHoneClaws:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckQuiverDance:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckCoil:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckShiftGear:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckShellSmash:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckWorkUp:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckFilletAway:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckGeomancy:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckVictoryDance:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    PopOrEnd 
+
+Basic_CheckClangorousSoul:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 34, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, ScoreMinus8
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, ScoreMinus8
     PopOrEnd 
 
 Basic_CheckCamouflage:
