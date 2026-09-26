@@ -174,8 +174,8 @@
    "left_out": {},
    "calcs": 5180,
    "errors": [],
-   "node_seconds": 1.04,
-   "wall_seconds": 1.12
+   "node_seconds": 1.08,
+   "wall_seconds": 1.16
   },
   "gardenia": {
    "key": "gardenia",
@@ -189,13 +189,13 @@
    ],
    "ace": 25,
    "threat": 0.579,
-   "answers": 0.107,
-   "answers_lock": 0.107,
+   "answers": 0.108,
+   "answers_lock": 0.108,
    "threat_chance": 0.575,
-   "answers_duel": 0.179,
-   "answers_sure": 0.179,
-   "answers_bait": 0.179,
-   "answers_branch": 0.179,
+   "answers_duel": 0.18,
+   "answers_sure": 0.18,
+   "answers_bait": 0.18,
+   "answers_branch": 0.18,
    "safe": 0.506,
    "cover": 1.0,
    "best_one": 1.0,
@@ -285,14 +285,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.085,
-     "answers": 0.148,
-     "answers_lock": 0.148,
+     "answers": 0.153,
+     "answers_lock": 0.153,
      "threat_chance": 0.085,
-     "answers_duel": 0.21,
-     "answers_sure": 0.21,
-     "answers_bait": 0.21,
+     "answers_duel": 0.216,
+     "answers_sure": 0.216,
+     "answers_bait": 0.216,
      "forced": [],
-     "answers_branch": 0.21,
+     "answers_branch": 0.216,
      "branches": []
     },
     {
@@ -340,8 +340,8 @@
    "left_out": {},
    "calcs": 10214,
    "errors": [],
-   "node_seconds": 1.78,
-   "wall_seconds": 1.87
+   "node_seconds": 1.69,
+   "wall_seconds": 1.77
   },
   "fantina": {
    "key": "fantina",
@@ -520,8 +520,8 @@
    "left_out": {},
    "calcs": 20346,
    "errors": [],
-   "node_seconds": 2.93,
-   "wall_seconds": 3.03
+   "node_seconds": 3,
+   "wall_seconds": 3.11
   },
   "maylene": {
    "key": "maylene",
@@ -683,8 +683,8 @@
    "left_out": {},
    "calcs": 31110,
    "errors": [],
-   "node_seconds": 4.3,
-   "wall_seconds": 4.43
+   "node_seconds": 4.38,
+   "wall_seconds": 4.5
   },
   "wake": {
    "key": "wake",
@@ -851,8 +851,8 @@
    "left_out": {},
    "calcs": 39542,
    "errors": [],
-   "node_seconds": 5.14,
-   "wall_seconds": 5.27
+   "node_seconds": 5.54,
+   "wall_seconds": 5.69
   },
   "byron": {
    "key": "byron",
@@ -1030,8 +1030,8 @@
    "left_out": {},
    "calcs": 59498,
    "errors": [],
-   "node_seconds": 7.29,
-   "wall_seconds": 7.45
+   "node_seconds": 7.46,
+   "wall_seconds": 7.65
   },
   "candice": {
    "key": "candice",
@@ -1253,8 +1253,8 @@
    "errors": [
     "b0.4 Nature's Madness: damage is not a number"
    ],
-   "node_seconds": 9.42,
-   "wall_seconds": 9.62
+   "node_seconds": 9.66,
+   "wall_seconds": 9.88
   },
   "volkner": {
    "key": "volkner",
@@ -1267,15 +1267,15 @@
     "Leader Juan [Double] [Boss]"
    ],
    "ace": 93,
-   "threat": 0.887,
+   "threat": 0.886,
    "answers": 0.016,
    "answers_lock": 0.016,
-   "threat_chance": 0.88,
-   "answers_duel": 0.01,
+   "threat_chance": 0.878,
+   "answers_duel": 0.011,
    "answers_sure": 0.011,
-   "answers_bait": 0.01,
-   "answers_branch": 0.01,
-   "safe": 0.016,
+   "answers_bait": 0.011,
+   "answers_branch": 0.011,
+   "safe": 0.03,
    "cover": null,
    "best_one": 0.5,
    "broad": 0.002,
@@ -1327,15 +1327,15 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.991,
+     "threat": 0.984,
      "answers": 0.0,
      "answers_lock": 0.0,
-     "threat_chance": 0.976,
-     "answers_duel": 0.029,
-     "answers_sure": 0.03,
-     "answers_bait": 0.029,
+     "threat_chance": 0.963,
+     "answers_duel": 0.031,
+     "answers_sure": 0.032,
+     "answers_bait": 0.031,
      "forced": [],
-     "answers_branch": 0.029,
+     "answers_branch": 0.031,
      "branches": []
     },
     {
@@ -1421,8 +1421,8 @@
    "left_out": {},
    "calcs": 53365,
    "errors": [],
-   "node_seconds": 6.5,
-   "wall_seconds": 6.66
+   "node_seconds": 6.88,
+   "wall_seconds": 7.04
   },
   "aaron": {
    "key": "aaron",
@@ -1599,8 +1599,8 @@
    "left_out": {},
    "calcs": 71048,
    "errors": [],
-   "node_seconds": 8.61,
-   "wall_seconds": 8.79
+   "node_seconds": 9.01,
+   "wall_seconds": 9.22
   },
   "bertha": {
    "key": "bertha",
@@ -1777,8 +1777,8 @@
    "left_out": {},
    "calcs": 62606,
    "errors": [],
-   "node_seconds": 7.49,
-   "wall_seconds": 7.65
+   "node_seconds": 7.68,
+   "wall_seconds": 7.86
   },
   "flint": {
    "key": "flint",
@@ -1957,8 +1957,8 @@
    "left_out": {},
    "calcs": 70170,
    "errors": [],
-   "node_seconds": 8.27,
-   "wall_seconds": 8.45
+   "node_seconds": 8.53,
+   "wall_seconds": 8.73
   },
   "lucian": {
    "key": "lucian",
@@ -2140,8 +2140,8 @@
    "left_out": {},
    "calcs": 86615,
    "errors": [],
-   "node_seconds": 10.17,
-   "wall_seconds": 10.39
+   "node_seconds": 10.49,
+   "wall_seconds": 10.72
   },
   "cynthia": {
    "key": "cynthia",
@@ -2313,8 +2313,8 @@
    "left_out": {},
    "calcs": 70609,
    "errors": [],
-   "node_seconds": 8.67,
-   "wall_seconds": 8.86
+   "node_seconds": 8.92,
+   "wall_seconds": 9.12
   }
  }
 }

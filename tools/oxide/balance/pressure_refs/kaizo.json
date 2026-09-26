@@ -102,7 +102,7 @@
    "left_out": {},
    "calcs": 1500,
    "errors": [],
-   "node_seconds": 0.44,
+   "node_seconds": 0.43,
    "wall_seconds": 0.5
   },
   "barry_2": {
@@ -504,8 +504,8 @@
    "left_out": {},
    "calcs": 11835,
    "errors": [],
-   "node_seconds": 1.76,
-   "wall_seconds": 1.85
+   "node_seconds": 1.73,
+   "wall_seconds": 1.82
   },
   "roark": {
    "key": "roark",
@@ -688,7 +688,7 @@
    "left_out": {},
    "calcs": 5470,
    "errors": [],
-   "node_seconds": 1.05,
+   "node_seconds": 1.06,
    "wall_seconds": 1.13
   },
   "mars_1": {
@@ -870,7 +870,7 @@
    "left_out": {},
    "calcs": 10743,
    "errors": [],
-   "node_seconds": 1.63,
+   "node_seconds": 1.64,
    "wall_seconds": 1.72
   },
   "gardenia": {
@@ -1218,8 +1218,8 @@
    "left_out": {},
    "calcs": 18033,
    "errors": [],
-   "node_seconds": 2.6,
-   "wall_seconds": 2.7
+   "node_seconds": 2.65,
+   "wall_seconds": 2.74
   },
   "fantina": {
    "key": "fantina",
@@ -1404,8 +1404,8 @@
    "left_out": {},
    "calcs": 20069,
    "errors": [],
-   "node_seconds": 2.58,
-   "wall_seconds": 2.68
+   "node_seconds": 2.63,
+   "wall_seconds": 2.73
   },
   "barry_3": {
    "key": "barry_3",
@@ -1815,8 +1815,8 @@
    "left_out": {},
    "calcs": 101170,
    "errors": [],
-   "node_seconds": 11.7,
-   "wall_seconds": 11.95
+   "node_seconds": 11.62,
+   "wall_seconds": 11.88
   },
   "maylene": {
    "key": "maylene",
@@ -1991,7 +1991,7 @@
    "left_out": {},
    "calcs": 39640,
    "errors": [],
-   "node_seconds": 4.97,
+   "node_seconds": 4.98,
    "wall_seconds": 5.11
   },
   "barry_4": {
@@ -2011,9 +2011,9 @@
    "answers": 0.022,
    "answers_lock": 0.022,
    "threat_chance": 0.862,
-   "answers_duel": 0.041,
-   "answers_sure": 0.04,
-   "answers_bait": 0.041,
+   "answers_duel": 0.04,
+   "answers_sure": 0.039,
+   "answers_bait": 0.04,
    "answers_branch": 0.037,
    "safe": 0.071,
    "cover": null,
@@ -2363,14 +2363,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.515,
-     "answers": 0.13,
-     "answers_lock": 0.13,
+     "answers": 0.128,
+     "answers_lock": 0.128,
      "threat_chance": 0.515,
-     "answers_duel": 0.159,
-     "answers_sure": 0.153,
-     "answers_bait": 0.159,
+     "answers_duel": 0.154,
+     "answers_sure": 0.148,
+     "answers_bait": 0.154,
      "forced": [],
-     "answers_branch": 0.159,
+     "answers_branch": 0.154,
      "branches": []
     },
     {
@@ -2401,8 +2401,8 @@
    "left_out": {},
    "calcs": 141337,
    "errors": [],
-   "node_seconds": 15.9,
-   "wall_seconds": 16.22
+   "node_seconds": 16.05,
+   "wall_seconds": 16.4
   },
   "wake": {
    "key": "wake",
@@ -2416,13 +2416,13 @@
    ],
    "ace": 54,
    "threat": 0.756,
-   "answers": 0.024,
-   "answers_lock": 0.024,
+   "answers": 0.023,
+   "answers_lock": 0.023,
    "threat_chance": 0.753,
-   "answers_duel": 0.013,
-   "answers_sure": 0.013,
-   "answers_bait": 0.013,
-   "answers_branch": 0.013,
+   "answers_duel": 0.012,
+   "answers_sure": 0.012,
+   "answers_bait": 0.012,
+   "answers_branch": 0.012,
    "safe": 0.077,
    "cover": null,
    "best_one": 0.333,
@@ -2484,8 +2484,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.699,
-     "answers": 0.031,
-     "answers_lock": 0.031,
+     "answers": 0.028,
+     "answers_lock": 0.028,
      "threat_chance": 0.699,
      "answers_duel": 0.003,
      "answers_sure": 0.003,
@@ -2503,14 +2503,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.755,
-     "answers": 0.033,
-     "answers_lock": 0.033,
+     "answers": 0.031,
+     "answers_lock": 0.031,
      "threat_chance": 0.755,
-     "answers_duel": 0.046,
-     "answers_sure": 0.046,
-     "answers_bait": 0.046,
+     "answers_duel": 0.04,
+     "answers_sure": 0.041,
+     "answers_bait": 0.04,
      "forced": [],
-     "answers_branch": 0.046,
+     "answers_branch": 0.04,
      "branches": []
     },
     {
@@ -2577,8 +2577,8 @@
    "left_out": {},
    "calcs": 39150,
    "errors": [],
-   "node_seconds": 4.84,
-   "wall_seconds": 4.97
+   "node_seconds": 4.91,
+   "wall_seconds": 5.04
   },
   "cyrus_1": {
    "key": "cyrus_1",
@@ -2596,7 +2596,7 @@
    "answers_lock": 0.043,
    "threat_chance": 0.759,
    "answers_duel": 0.113,
-   "answers_sure": 0.099,
+   "answers_sure": 0.098,
    "answers_bait": 0.113,
    "answers_branch": 0.068,
    "safe": 0.161,
@@ -2703,9 +2703,9 @@
      "answers": 0.038,
      "answers_lock": 0.038,
      "threat_chance": 0.405,
-     "answers_duel": 0.157,
-     "answers_sure": 0.11,
-     "answers_bait": 0.157,
+     "answers_duel": 0.156,
+     "answers_sure": 0.108,
+     "answers_bait": 0.156,
      "forced": [],
      "answers_branch": 0.058,
      "branches": [
@@ -2759,8 +2759,8 @@
    "left_out": {},
    "calcs": 65163,
    "errors": [],
-   "node_seconds": 7.73,
-   "wall_seconds": 7.89
+   "node_seconds": 7.84,
+   "wall_seconds": 8.02
   },
   "barry_5": {
    "key": "barry_5",
@@ -2780,7 +2780,7 @@
    "answers_lock": 0.048,
    "threat_chance": 0.842,
    "answers_duel": 0.066,
-   "answers_sure": 0.063,
+   "answers_sure": 0.062,
    "answers_bait": 0.066,
    "answers_branch": 0.058,
    "safe": 0.071,
@@ -2902,9 +2902,9 @@
      "answers": 0.134,
      "answers_lock": 0.134,
      "threat_chance": 0.76,
-     "answers_duel": 0.187,
+     "answers_duel": 0.186,
      "answers_sure": 0.187,
-     "answers_bait": 0.187,
+     "answers_bait": 0.186,
      "forced": [],
      "answers_branch": 0.141,
      "branches": [
@@ -2920,12 +2920,12 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.47,
-     "answers": 0.177,
-     "answers_lock": 0.177,
+     "answers": 0.175,
+     "answers_lock": 0.175,
      "threat_chance": 0.468,
-     "answers_duel": 0.036,
-     "answers_sure": 0.031,
-     "answers_bait": 0.036,
+     "answers_duel": 0.033,
+     "answers_sure": 0.029,
+     "answers_bait": 0.033,
      "forced": [],
      "answers_branch": 0.011,
      "branches": [
@@ -3131,14 +3131,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.616,
-     "answers": 0.11,
-     "answers_lock": 0.11,
+     "answers": 0.108,
+     "answers_lock": 0.108,
      "threat_chance": 0.616,
-     "answers_duel": 0.062,
-     "answers_sure": 0.055,
-     "answers_bait": 0.062,
+     "answers_duel": 0.057,
+     "answers_sure": 0.05,
+     "answers_bait": 0.057,
      "forced": [],
-     "answers_branch": 0.062,
+     "answers_branch": 0.057,
      "branches": []
     },
     {
@@ -3169,8 +3169,8 @@
    "left_out": {},
    "calcs": 157329,
    "errors": [],
-   "node_seconds": 18.18,
-   "wall_seconds": 18.54
+   "node_seconds": 17.68,
+   "wall_seconds": 18.05
   },
   "byron": {
    "key": "byron",
@@ -3344,8 +3344,8 @@
    "left_out": {},
    "calcs": 44415,
    "errors": [],
-   "node_seconds": 5.64,
-   "wall_seconds": 5.78
+   "node_seconds": 5.54,
+   "wall_seconds": 5.69
   },
   "saturn_1": {
    "key": "saturn_1",
@@ -3359,8 +3359,8 @@
    ],
    "ace": 67,
    "threat": 0.738,
-   "answers": 0.036,
-   "answers_lock": 0.036,
+   "answers": 0.037,
+   "answers_lock": 0.037,
    "threat_chance": 0.682,
    "answers_duel": 0.025,
    "answers_sure": 0.021,
@@ -3442,8 +3442,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.257,
-     "answers": 0.12,
-     "answers_lock": 0.12,
+     "answers": 0.123,
+     "answers_lock": 0.123,
      "threat_chance": 0.257,
      "answers_duel": 0.031,
      "answers_sure": 0.03,
@@ -3497,8 +3497,8 @@
    "left_out": {},
    "calcs": 47088,
    "errors": [],
-   "node_seconds": 5.95,
-   "wall_seconds": 6.09
+   "node_seconds": 5.84,
+   "wall_seconds": 5.99
   },
   "mars_2": {
    "key": "mars_2",
@@ -3515,10 +3515,10 @@
    "answers": 0.052,
    "answers_lock": 0.052,
    "threat_chance": 0.799,
-   "answers_duel": 0.047,
+   "answers_duel": 0.046,
    "answers_sure": 0.044,
-   "answers_bait": 0.047,
-   "answers_branch": 0.036,
+   "answers_bait": 0.046,
+   "answers_branch": 0.035,
    "safe": 0.076,
    "cover": null,
    "best_one": 0.5,
@@ -3597,14 +3597,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.676,
-     "answers": 0.051,
-     "answers_lock": 0.051,
+     "answers": 0.049,
+     "answers_lock": 0.049,
      "threat_chance": 0.676,
-     "answers_duel": 0.024,
-     "answers_sure": 0.021,
-     "answers_bait": 0.024,
+     "answers_duel": 0.019,
+     "answers_sure": 0.016,
+     "answers_bait": 0.019,
      "forced": [],
-     "answers_branch": 0.024,
+     "answers_branch": 0.019,
      "branches": []
     },
     {
@@ -3673,8 +3673,8 @@
    "left_out": {},
    "calcs": 55800,
    "errors": [],
-   "node_seconds": 6.97,
-   "wall_seconds": 7.13
+   "node_seconds": 6.81,
+   "wall_seconds": 6.97
   },
   "candice": {
    "key": "candice",
@@ -3856,8 +3856,8 @@
    "left_out": {},
    "calcs": 69768,
    "errors": [],
-   "node_seconds": 8.35,
-   "wall_seconds": 8.53
+   "node_seconds": 8.17,
+   "wall_seconds": 8.35
   },
   "cyrus_2": {
    "key": "cyrus_2",
@@ -4038,8 +4038,8 @@
    "left_out": {},
    "calcs": 56809,
    "errors": [],
-   "node_seconds": 7.04,
-   "wall_seconds": 7.2
+   "node_seconds": 6.92,
+   "wall_seconds": 7.09
   },
   "saturn_2": {
    "key": "saturn_2",
@@ -4217,8 +4217,8 @@
    "left_out": {},
    "calcs": 63007,
    "errors": [],
-   "node_seconds": 7.68,
-   "wall_seconds": 7.85
+   "node_seconds": 7.84,
+   "wall_seconds": 8.02
   },
   "mars_jupiter": {
    "key": "mars_jupiter",
@@ -4518,8 +4518,8 @@
    "left_out": {},
    "calcs": 115857,
    "errors": [],
-   "node_seconds": 13.3,
-   "wall_seconds": 13.56
+   "node_seconds": 13.24,
+   "wall_seconds": 13.51
   },
   "cyrus_3": {
    "key": "cyrus_3",
@@ -4680,8 +4680,8 @@
    "left_out": {},
    "calcs": 55296,
    "errors": [],
-   "node_seconds": 6.83,
-   "wall_seconds": 6.98
+   "node_seconds": 6.8,
+   "wall_seconds": 6.96
   },
   "volkner": {
    "key": "volkner",
@@ -4695,13 +4695,13 @@
    ],
    "ace": 84,
    "threat": 0.844,
-   "answers": 0.025,
-   "answers_lock": 0.025,
+   "answers": 0.024,
+   "answers_lock": 0.024,
    "threat_chance": 0.829,
-   "answers_duel": 0.023,
-   "answers_sure": 0.023,
-   "answers_bait": 0.023,
-   "answers_branch": 0.019,
+   "answers_duel": 0.021,
+   "answers_sure": 0.021,
+   "answers_bait": 0.021,
+   "answers_branch": 0.018,
    "safe": 0.057,
    "cover": 4.0,
    "best_one": 0.5,
@@ -4731,14 +4731,14 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.617,
-     "answers": 0.05,
-     "answers_lock": 0.05,
+     "answers": 0.048,
+     "answers_lock": 0.048,
      "threat_chance": 0.617,
-     "answers_duel": 0.02,
-     "answers_sure": 0.021,
-     "answers_bait": 0.02,
+     "answers_duel": 0.018,
+     "answers_sure": 0.018,
+     "answers_bait": 0.018,
      "forced": [],
-     "answers_branch": 0.02,
+     "answers_branch": 0.018,
      "branches": []
     },
     {
@@ -4791,11 +4791,11 @@
      "answers": 0.002,
      "answers_lock": 0.002,
      "threat_chance": 0.868,
-     "answers_duel": 0.035,
-     "answers_sure": 0.034,
-     "answers_bait": 0.035,
+     "answers_duel": 0.03,
+     "answers_sure": 0.03,
+     "answers_bait": 0.03,
      "forced": [],
-     "answers_branch": 0.035,
+     "answers_branch": 0.03,
      "branches": []
     },
     {
@@ -4845,8 +4845,8 @@
    "left_out": {},
    "calcs": 63064,
    "errors": [],
-   "node_seconds": 7.51,
-   "wall_seconds": 7.68
+   "node_seconds": 7.45,
+   "wall_seconds": 7.63
   },
   "barry_6": {
    "key": "barry_6",
@@ -5226,8 +5226,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.854,
-     "answers": 0.021,
-     "answers_lock": 0.021,
+     "answers": 0.018,
+     "answers_lock": 0.018,
      "threat_chance": 0.853,
      "answers_duel": 0.0,
      "answers_sure": 0.0,
@@ -5262,8 +5262,8 @@
    "left_out": {},
    "calcs": 189574,
    "errors": [],
-   "node_seconds": 21.64,
-   "wall_seconds": 22.06
+   "node_seconds": 21.01,
+   "wall_seconds": 21.44
   },
   "aaron": {
    "key": "aaron",
@@ -5277,8 +5277,8 @@
    ],
    "ace": 100,
    "threat": 0.846,
-   "answers": 0.047,
-   "answers_lock": 0.047,
+   "answers": 0.046,
+   "answers_lock": 0.046,
    "threat_chance": 0.838,
    "answers_duel": 0.026,
    "answers_sure": 0.023,
@@ -5375,8 +5375,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.847,
-     "answers": 0.093,
-     "answers_lock": 0.093,
+     "answers": 0.091,
+     "answers_lock": 0.091,
      "threat_chance": 0.834,
      "answers_duel": 0.011,
      "answers_sure": 0.011,
@@ -5430,8 +5430,8 @@
    "left_out": {},
    "calcs": 54164,
    "errors": [],
-   "node_seconds": 6.6,
-   "wall_seconds": 6.76
+   "node_seconds": 6.59,
+   "wall_seconds": 6.75
   },
   "bertha": {
    "key": "bertha",
@@ -5609,8 +5609,8 @@
    "left_out": {},
    "calcs": 71487,
    "errors": [],
-   "node_seconds": 8.41,
-   "wall_seconds": 8.59
+   "node_seconds": 8.52,
+   "wall_seconds": 8.71
   },
   "flint": {
    "key": "flint",
@@ -5788,8 +5788,8 @@
    "left_out": {},
    "calcs": 62167,
    "errors": [],
-   "node_seconds": 7.63,
-   "wall_seconds": 7.8
+   "node_seconds": 7.61,
+   "wall_seconds": 7.79
   },
   "lucian": {
    "key": "lucian",
@@ -5971,8 +5971,8 @@
    "left_out": {},
    "calcs": 86176,
    "errors": [],
-   "node_seconds": 10.11,
-   "wall_seconds": 10.32
+   "node_seconds": 10.44,
+   "wall_seconds": 10.66
   },
   "cynthia": {
    "key": "cynthia",
@@ -6149,8 +6149,8 @@
    "left_out": {},
    "calcs": 71926,
    "errors": [],
-   "node_seconds": 8.48,
-   "wall_seconds": 8.66
+   "node_seconds": 8.61,
+   "wall_seconds": 8.8
   }
  }
 }
