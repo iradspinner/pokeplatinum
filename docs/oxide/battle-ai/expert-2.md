@@ -538,6 +538,8 @@ Magic Coat's line 4508 sits after an unconditional jump and never runs. Refresh 
 
 Fixed on 2026-09-22: bug 2, Punishment (vanilla fix, approved by Ian), bugs 3, 7 and 8 (charge-turn, Facade, Water Spout and Eruption; battle_edits, vanilla fixes approved by Ian on 2026-09-15), and bug 14, the ability byte (Oxide). Bug 10, the bench damage check, was put to Ian and kept as vanilla has it. The rest stand as vanilla has them.
 
+Changed on 2026-09-27 (`cloud/element6-changes`; the README has each rule): Parting Shot goes through U-turn's routine; V-create, Clanging Scales and Hyperspace Fury through Close Combat's; Spin Out through Hammer Arm's; First Impression through Fake Out's. Defog's routine gains +2 when the AI's own side has a hazard, and counts the target's Aurora Veil and Sticky Web. New routines sit beside the vanilla ones: `Expert_Hex`, `Expert_Venoshock`, `Expert_Acrobatics` and `Expert_BoltBeak` for power that doubles, `Expert_AuroraVeil`, `Expert_RainStorm`, `Expert_PartingShot` and `Expert_SpeedUpOnHit` (Rapid Spin, Flame Charge and its kin).
+
 Every entry is present in vanilla Platinum except bug 14, which Oxide introduced. For script bugs the vanilla line is the same line on `main`, since the file is unchanged; for C bugs the vanilla line is given.
 
 1. **Thunder never reaches its routine.** Present in vanilla, `Expert_Main` line 1719. The line tests `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN` (151), which line 1716 has already sent to `Expert_ChargeTurnNoInvuln`, so `Expert_Thunder` (3975 to 3990) has no way in. Thunder's own effect, `BATTLE_EFFECT_THUNDER` (152), matches no dispatch line and gets nothing from the Expert flag. The decomp flags it at 1718.

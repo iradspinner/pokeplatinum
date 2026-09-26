@@ -336,6 +336,8 @@ Lines 1567 to 1621 are the shared exits `ScoreMinus1`, `ScoreMinus2`, `ScoreMinu
 
 Fixed on 2026-09-22: B11 (Oxide, the ability byte), B6 (vanilla fix, approved by Ian), and B1 and B2 (battle_edits, vanilla fixes approved by Ian on 2026-09-15). The rest stand as vanilla has them.
 
+Changed on 2026-09-27 (`cloud/element6-changes`; the README's "How each changed check now decides" has each rule): Basic gained checks for Rest (its vanilla failures a VANILLA FIX, Oxide's on top), Taunt into Oblivious, a Prankster status move into a Dark type, Parting Shot, Strength Sap, Life Dew, Sticky Web, Aurora Veil, First Impression, Poltergeist, Autotomize and Take Heart; the new Speed raisers take the Trick Room -10; Defog's useless test counts the hazards on the AI's own side; and Hyper Voice joined the Soundproof list (a VANILLA FIX). The tables above still describe vanilla at vanilla's lines.
+
 Every script bug below is present in vanilla Platinum, at the same line on `main`, because `script.s` is unchanged. Two of them come from C code, and one of those (B11) is introduced by Oxide. None has been fixed.
 
 | # | Lines | Origin | What goes wrong |
