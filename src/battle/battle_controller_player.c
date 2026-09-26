@@ -3016,7 +3016,13 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         accStages = 0;
     }
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_UNAWARE) {
+    // Oxide: Sacred Sword, Darkest Lariat and Chip Away ignore the target's
+    // evasion stages, raised or lowered, as they ignore its defensive ones
+    // (hg-engine's accuracy calculation).
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_UNAWARE
+        || move == MOVE_SACRED_SWORD
+        || move == MOVE_DARKEST_LARIAT
+        || move == MOVE_CHIP_AWAY) {
         evaStages = 0;
     }
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
@@ -3644,6 +3650,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
         if (battleCtx->battleMons[battleCtx->defender].timesDamaged < 0xFF) {
             battleCtx->battleMons[battleCtx->defender].timesDamaged++;
         }
+
+        // Oxide: Rage Fist counts every hit its user takes from an attack,
+        // each hit of a multi-hit move included, for the rest of the battle.
+        // A hit on a Substitute has already left above.
+        Battler_AddRageFistHit(battleSys, battleCtx, battleCtx->defender);
 
         if (CURRENT_MOVE_DATA.class == CLASS_PHYSICAL) {
             DEFENDER_TURN_FLAGS.physicalDamageTakenFrom[battleCtx->attacker] = battleCtx->damage;

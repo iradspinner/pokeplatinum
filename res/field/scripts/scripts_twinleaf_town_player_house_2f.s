@@ -681,6 +681,14 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet39, 11
     AddListMenuEntry TestKit_Text_MenuSet40, 12
     AddListMenuEntry TestKit_Text_MenuSet41, 13
+    AddListMenuEntry TestKit_Text_MenuSet42, 14
+    AddListMenuEntry TestKit_Text_MenuSet43, 15
+    AddListMenuEntry TestKit_Text_MenuSet44, 16
+    AddListMenuEntry TestKit_Text_MenuSet45, 17
+    AddListMenuEntry TestKit_Text_MenuSet46, 18
+    AddListMenuEntry TestKit_Text_MenuSet47, 19
+    AddListMenuEntry TestKit_Text_MenuSet48, 20
+    AddListMenuEntry TestKit_Text_MenuSet49, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -696,6 +704,14 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet39
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet40
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet41
+    GoToIfEq VAR_0x8004, 14, TestKit_MoveSet42
+    GoToIfEq VAR_0x8004, 15, TestKit_MoveSet43
+    GoToIfEq VAR_0x8004, 16, TestKit_MoveSet44
+    GoToIfEq VAR_0x8004, 17, TestKit_MoveSet45
+    GoToIfEq VAR_0x8004, 18, TestKit_MoveSet46
+    GoToIfEq VAR_0x8004, 19, TestKit_MoveSet47
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1112,6 +1128,125 @@ TestKit_MoveSet41:
     SetVar VAR_0x8007, MOVE_SEED_BOMB
     SetVar VAR_0x8008, MOVE_GRAVITY
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 42: Foul Play hits with the target's Attack and its stages. Against
+   a wild Shuckle, whose Attack is tiny, that knows only Swords Dance: Foul
+   Play does well under half what Crunch does, Mew's own Swords Dance raises
+   Crunch and not Foul Play, and each of Shuckle's Swords Dances raises Foul
+   Play. */
+TestKit_MoveSet42:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8006, MOVE_FOUL_PLAY
+    SetVar VAR_0x8007, MOVE_CRUNCH
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 43: Body Press hits with the user's Defense and its stages. Against
+   a wild Shuckle that knows only Splash: Body Press and Brick Break start
+   close, Iron Defense doubles Body Press and leaves Brick Break alone, and
+   Swords Dance does the opposite. */
+TestKit_MoveSet43:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BODY_PRESS
+    SetVar VAR_0x8007, MOVE_BRICK_BREAK
+    SetVar VAR_0x8008, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 44: Psyshock is a special move that hits the target's Defense.
+   Against a wild Chansey, whose Defense is tiny and Sp. Def high, that
+   knows only Calm Mind: Psyshock takes most of Chansey's HP where Psychic
+   takes a small share, and Chansey's Calm Minds weaken Psychic and leave
+   Psyshock as it was. */
+TestKit_MoveSet44:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_CALM_MIND
+    SetVar VAR_0x8006, MOVE_PSYSHOCK
+    SetVar VAR_0x8007, MOVE_PSYCHIC
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 45: Sacred Sword and Darkest Lariat ignore the target's stat stages,
+   Defense and evasion alike. Against a wild Skarmory that knows only Iron
+   Defense and Double Team: once it has used them, Brick Break and Crunch do
+   less and sometimes miss, and Sacred Sword and Darkest Lariat do what they
+   did at first and never miss. */
+TestKit_MoveSet45:
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8003, MOVE_DOUBLE_TEAM
+    SetVar VAR_0x8006, MOVE_SACRED_SWORD
+    SetVar VAR_0x8007, MOVE_BRICK_BREAK
+    SetVar VAR_0x8008, MOVE_DARKEST_LARIAT
+    SetVar VAR_0x8009, MOVE_CRUNCH
+    GoTo TestKit_GiveMew
+
+/* Set 46: Freeze-Dry is super effective on Water, and Flying Press is
+   Fighting and Flying at once. Against a wild Poliwrath (Water and
+   Fighting) that knows only Splash: Freeze-Dry is "super effective" and Ice
+   Beam "not very effective"; Flying Press is "super effective", from its
+   Flying half, and Close Combat is neither. */
+TestKit_MoveSet46:
+    SetVar VAR_0x8000, SPECIES_POLIWRATH
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FREEZE_DRY
+    SetVar VAR_0x8007, MOVE_ICE_BEAM
+    SetVar VAR_0x8008, MOVE_FLYING_PRESS
+    SetVar VAR_0x8009, MOVE_CLOSE_COMBAT
+    GoTo TestKit_GiveMew
+
+/* Set 47: Flying Press against a wild Probopass (Rock and Steel) that
+   knows only Splash: its Fighting half doubles twice and its Flying half
+   halves twice, so it says nothing about effectiveness, where Close Combat
+   is "super effective". */
+TestKit_MoveSet47:
+    SetVar VAR_0x8000, SPECIES_PROBOPASS
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FLYING_PRESS
+    SetVar VAR_0x8007, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 48: Rage Fist gains 50 power for each hit Mew takes from an attack
+   this battle, to 350. Against a wild Registeel that knows only Double
+   Kick, which hits twice: Rage Fist used turn after turn does 50, 150, 250
+   and then 350, hits on Mew's Substitute add nothing, and switching Mew out
+   and back in keeps the count. */
+TestKit_MoveSet48:
+    SetVar VAR_0x8000, SPECIES_REGISTEEL
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DOUBLE_KICK
+    SetVar VAR_0x8006, MOVE_RAGE_FIST
+    SetVar VAR_0x8007, MOVE_SUBSTITUTE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 49: Transform copies the whole ability, including one numbered 256
+   or more. Against a wild Rattata given Toxic Debris (295) that knows only
+   Tackle: once Mew has transformed, each Tackle it takes scatters poison
+   spikes on the foe's side, where before the fix Mew got Inner Focus (39,
+   the low byte) and nothing happened. */
+TestKit_MoveSet49:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_TOXIC_DEBRIS
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_TRANSFORM
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
