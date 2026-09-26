@@ -103,9 +103,10 @@ def check_dex(results):
     new = [r for r in rows if r["status"] == "new"]
     unresolved = [r["name"] for r in natives if not r["constant"]]
     # 199 natives on Ian's sheet, 227 with the seven cave, fourteen fishing, two
-    # Mantyke and five ghost rows of 2026-09-21.
+    # Mantyke and five ghost rows of 2026-09-21, 264 with the 37 rows of the
+    # seventeen water lines of 2026-09-26.
     results.append(("every native on the pick-list resolves to a species in the tree",
-                    len(natives) == 227 and not unresolved,
+                    len(natives) == 264 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
