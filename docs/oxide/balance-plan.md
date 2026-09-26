@@ -8,12 +8,11 @@ the same day, and his answers are recorded below as decisions.
 
 **Where it stands (2026-09-25).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
-Honey trees now have one table per badge count, each opening in its own
-split. The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), and
-the Battle Zone has come down 18 levels to fit them, on two stacked
-branches waiting for the Overseer. Done: B1a, B1b, B1d,
-B1e, B2, B3a and B4's tools. B3b is parked for the new CPU. No questions
-are open.
+The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
+Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
+permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
+tools. B5 has its readings and a first fit ("What B3b and B5 found"); one
+question for Ian decides how the rest is weighed.
 
 ## The target
 
@@ -528,6 +527,132 @@ reports the 54 as diverged; with their entries removed it would carry all
 54 back, 16 through its party-rewrite path. At Galactic's cap of 65 the
 zone sits 5 to 10 under, medium hard.
 
+What B3b and B5 found (2026-09-25; `refpressure.py`, `calibrate.py
+--report`). Every reference hack's bosses were scored against Oxide's side
+in the same seats, each Pokemon with its own game's stats and moves; two
+runs agree exactly. B5 adds five readings to B3's, in columns of their own
+so B3's stay as they were (`pressure.py` says how each is worked out):
+threat counted by the chance each hit lands, one-on-one answers from a free
+switch-in over three turns, "broad" (the share of the side that surely
+answers half the team or more, high when a team shares a weakness), a
+tally of the tactics no damage score sees (setup, Baton Pass, hazards,
+Explosion, status, evasion, recovery, pinch berries), and "predictable",
+Ian's point that a fight whose every turn can be foreseen is easy to plan
+against. That last is estimated from how Platinum's AI picks: every Oxide
+boss carries Evaluate Attack, which makes the strongest attack into the
+target the pick, and each status or setup move is a live alternative.
+
+Over the thirteen seats every hack fills (the gyms, the Elite Four and the
+Champion):
+
+| Hack | Ian's rating | Threat by chance | One-on-one answers | Broad | Tactics | Predictable |
+|---|---|---|---|---|---|---|
+| Oxide today | | 0.56 | 0.26 | 0.27 | 4.4 | 0.69 |
+| Vanilla | 3 | 0.14 | 0.81 | 0.84 | 2.8 | 0.67 |
+| Unbound, difficult | 5.25 | 0.50 | 0.29 | 0.26 | 4.4 | 0.67 |
+| Renegade | 7 | 0.53 | 0.29 | 0.33 | 6.5 | 0.64 |
+| Redux | 8 | 0.68 | 0.10 | 0.07 | 4.8 | 0.72 |
+| Redux hardcore | 8.5 | 0.73 | 0.07 | 0.03 | 4.7 | 0.72 |
+| Hardlove | 9.5 | 0.67 | 0.18 | 0.16 | 6.0 | 0.62 |
+| Kaizo | 10 | 0.76 | 0.03 | 0.01 | 6.6 | 0.65 |
+| Null | 10 | 0.92 | 0.01 | 0.00 | 5.7 | 0.63 |
+| Run & Bun | 10 | 0.83 | 0.04 | 0.02 | 4.9 | 0.70 |
+
+**The damage readings order the hacks as Ian does**, with rank
+correlations of 0.93 for threat by chance and minus 0.92 for one-on-one
+answers and for broad. One line fits the ratings well enough to use:
+
+```
+rating = 5.8 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
+```
+
+On it Oxide's gyms and League sit at about 7.3 today, level with Renegade
+(6.9 on the same line). A 6 needs the difference at about +0.04, against
+Oxide's +0.30. The two misfits show what the yardstick leaves out. Unbound
+reads 1.6 harder than Ian's 5.25, most likely because every hack is scored
+against Oxide's side, so Unbound's own side and AI are not in its score.
+Hardlove reads 1.3 softer, most likely because the calculator's Generation
+4 mechanics drop its bosses' newer abilities. So the 6 is a band about a point wide either way
+until Ian's playtest reads the ramp directly, as "Calibration" says.
+
+Seat by seat, the same difference against the two references nearest a 6:
+
+| Seat | Oxide | Unbound (5.25) | Renegade (7) |
+|---|---|---|---|
+| Roark | -0.11 | 0.33 | -0.17 |
+| Gardenia | 0.54 | 0.21 | 0.28 |
+| Fantina | 0.24 | 0.47 | 0.34 |
+| Maylene | 0.47 | 0.00 | 0.53 |
+| Wake | 0.62 | 0.34 | 0.41 |
+| Byron | 0.14 | 0.23 | -0.18 |
+| Candice | 0.48 | 0.20 | 0.47 |
+| Volkner | 0.26 | -0.23 | 0.26 |
+| Aaron | 0.09 | 0.15 | 0.11 |
+| Bertha | 0.11 | 0.13 | -0.12 |
+| Flint | 0.38 | 0.19 | 0.50 |
+| Lucian | 0.26 | 0.40 | 0.27 |
+| Cynthia | 0.46 | 0.28 | 0.35 |
+
+Oxide is harder than Renegade at Gardenia, Wake, Byron, Bertha and
+Cynthia, and softer at Fantina and Flint. Gardenia and Wake are the two
+seats furthest over a 6.
+
+**Tactics and predictability do not calibrate from the references.**
+Every hack's bosses sit close together on both (rank correlations 0.63
+and minus 0.21), so the references cannot say how much either is worth.
+Ian's three bellwethers say they matter. Ranked among Oxide's 28 story
+fights and the two Hesperid fights, 1 the hardest:
+
+| Reading | Maylene | Hesperid, Lake Valor | Volkner |
+|---|---|---|---|
+| Threat (B3) | 0.69, 3rd | 0.47, 17th | 0.66, 6th |
+| Threat by chance | 0.68, 3rd | 0.44, 17th | 0.59, 8th |
+| One-on-one answers | 0.21, 6th | 0.47, 22nd | 0.33, 13th |
+| Broad | 0.22, 7th | 0.50, 21st | 0.38, 16th |
+| Tactics | 2, 27th | 8, 5th | 4, 22nd |
+| Predictable | 0.86, 30th | 0.76, 26th | 0.72, 23rd |
+
+- **Maylene** keeps her place on damage. Her team has real coverage
+  (Rock Slide, Aerial Ace, Ice Punch, the elemental punches, Flash Cannon),
+  so B3 does not overrate her by accident. What sets her apart is that she
+  is the most predictable fight of the 30, and ties with Wake for the fewest
+  tactics outside the first two rival fights:
+  if she plays easier than her damage, it is because a player can call
+  every turn, which is Ian's point.
+- **Volkner** comes down. Thunder's 70 percent takes his threat from 0.66
+  to 0.59, the one-on-one answers nearly double B3's (0.18 to 0.33), and
+  38 percent of the side answers half his team, his Ground weakness. He
+  still ranks seventh of 28 on the difference, level with Lucian, so
+  "boring" is not reached by damage alone.
+- **Hesperid** reads as middling on damage and fifth on tactics: two
+  Explosions, Agility passed by Baton Pass into a Choice Specs Chatot,
+  Stealth Rock, Bright Powder and two pinch berries. The predictability
+  estimate misses her (0.76), because her danger is which Pokemon receives
+  the pass and when the Explosions come, not which move one Pokemon picks.
+
+On damage alone (the difference above), the hardest fights today are
+these. The order is provisional until open question 1 weighs the last two
+columns:
+
+| Fight | Difference | Tactics | Predictable |
+|---|---|---|---|
+| Wake | 0.62 | 2 | 0.83 |
+| Gardenia | 0.54 | 5 | 0.57 |
+| Candice | 0.48 | 9 | 0.60 |
+| Maylene | 0.47 | 2 | 0.86 |
+| Cynthia | 0.46 | 3 | 0.83 |
+| Flint | 0.38 | 4 | 0.67 |
+| Volkner | 0.26 | 4 | 0.72 |
+| Lucian | 0.26 | 4 | 0.72 |
+| Fantina | 0.24 | 5 | 0.52 |
+| Cyrus 3 | 0.21 | 5 | 0.74 |
+
+Candice is the one near the top on all three. Wake, Maylene and Cynthia
+are fights of pure damage that a player can read turn by turn. Four of the
+references' boss moves get no number, of the same kinds as B3's five
+(Nature's Madness, Redux's Cyclone and Acidic Payback, and a Pain Split
+that Null's table lists as physical); each is reported, not scored.
+
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
 Ian's ruling: after Candice (cap 56) the story runs Lake Acuity, the
@@ -761,10 +886,14 @@ disagrees with them.
 
 ## Open questions for Ian
 
-1. **The Galactic stretch** (2026-09-25, "The Galactic stretch" above): two
-   splits, HQ at 60 and Galactic at 65 with Volkner at 68, and the trainer
-   levels in that section's second table? Or one Galactic split at about 65?
-   The parked Battle Zone re-level fits the two-split shape unchanged.
+1. **Your own ratings of Oxide's fights** (2026-09-25, "What B3b and B5
+   found"). The references fix how much damage counts, but not how much
+   tactics and predictability do, since every hack's bosses score about
+   the same on those. Your ratings of about a dozen fights you have played
+   in the base ROM, on your 1 to 10 scale or just in order from hardest,
+   would fix both. Most useful: Roark, Gardenia, Fantina, Maylene, Wake,
+   Byron, Candice, Saturn 1, Officer Hesperid at Lake Valor, Mars 2,
+   Volkner, and the Elite Four and Cynthia.
 
 ## Order of work
 
@@ -840,10 +969,11 @@ disagrees with them.
   - [x] **B3a, Oxide's side and Oxide's fights** (2026-09-23, `pool.py`,
     `pressure.py`, `calc_headless.js`, `test_b3`). See "What B3 found". The
     check holds against D5's figures; the in-game roll waits on Ian.
-  - [ ] **B3b, the reference hacks' bosses against Oxide's side**, as "What
-    gets measured" asks. Each hack changes species stats and moves, so the
-    runner has to take a Pokemon's stats, types and moves per Pokemon
-    rather than from one blob. Run it a split at a time, as B3a was.
+  - [x] **B3b, the reference hacks' bosses against Oxide's side**
+    (2026-09-25, `refpressure.py`, test_b3 11 of 11). Each boss Pokemon
+    carries its own game's stats, types and move data into the engine; 192
+    seats over nine hacks, two runs agreeing exactly. See "What B3b and B5
+    found".
 - [ ] **B4, the level curve**: the natural level per split, for Oxide and
   Renegade. The tools are built (2026-09-25, `levels.py`, `shape.py`,
   `test_b4` 5 of 5, twice): the natural level from trainers alone, a Rare
@@ -890,6 +1020,13 @@ disagrees with them.
   tests this against the reference hacks' hyper-offense bosses before
   trusting the ranking; if it holds, threat is weighted down or tempered by
   answers.
+
+  Started 2026-09-25 (`pressure.py`'s B5 columns, `calibrate.py`): the
+  readings, the bellwethers and a first fit are in "What B3b and B5
+  found". The damage part is fitted; the weight of tactics and
+  predictability waits on open question 1. Every score is rerun when the
+  encounter track teaches the calculator element 5's abilities (Ian,
+  2026-09-25), since until then none of the 52 counts on either side.
 - [ ] **B6, the audit.** Where every Oxide fight sits today, and every lever
   on the player's side ranked by what it moves.
 
@@ -901,10 +1038,34 @@ lands, and each change is re-scored as it lands.
    `cli evolve` against the new caps. That is coordinated through the
    Overseer and not done from here.
 2. **Item access and TMs.** Which held items, marts and TMs each split
-   offers, and how many TMs there are.
+   offers, and how many TMs there are. Ian's standing rule (2026-09-25,
+   staples survey): the player can never set, change or end weather, so
+   TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
+   become other moves. The one Ability Patch in the game (for a hidden
+   ability) is the only exception, and Defog still clears fog.
 3. **Species, abilities and learnsets**, including the base ROM's 228
-   duplicated second ability slots.
-4. **Weather** on routes and in gyms.
+   duplicated second ability slots. From the same answers: no weather move
+   in any player learnset, tutor or egg list, and no ability that sets or
+   cancels weather (Sand Stream, Snow Warning, Cloud Nine and the rest) in
+   an obtainable Pokemon's regular slots; Drizzle Pelipper and Drought
+   Torkoal are weighed for trainers only. Alakazam, Ampharos, Dugtrio,
+   Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
+   modern stat buffs, Chimecho and Staraptor go to their modern totals, and
+   Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.
+4. **Weather** on routes and in gyms. Weather from an ability stays for
+   the whole battle, and trainers keep theirs.
+
+Engine changes Ian has decided on, each needing every score rerun when it
+lands (staples survey, 2026-09-25): native moves take their full modern
+values (the Generation 5 to 7 buffs and the Generation 6 cuts), except the
+base ROM's deliberate values, and Thunder Wave, Dark Void and Swagger keep
+their Generation 4 accuracy; critical hits become 1.5 times at modern
+rates, which the scores leave out as they leave out every critical hit;
+the Generation 6 type immunities; and modern behaviour for native
+abilities. Status stays as Generation 4 has it, and Hidden Power keeps its
+IV formula. The calculator keeps Generation 4's formula and chart, so each
+of these reaches the scores through the move data or the calculator's
+Generation 4 branch, as element 5's abilities will.
 5. **Trainers**, with the bosses first: Roark to five Pokemon, Gardenia to six,
    then each fight into the band. Filler trainers come after, and with them
    Ian's placement change: more ordinary trainers made unavoidable, checked
@@ -916,7 +1077,11 @@ lands, and each change is re-scored as it lands.
    Route 207) are already where the story passes. **Saturn 2** (Ian,
    2026-09-25): Uxie's Trick Room, which always fails under the fight's
    permanent room, and Rhyperior's Choice Scarf, which only makes it move
-   later there, are each swapped for something else, chosen in the pass. Moving a trainer or adding a sight-line blocker edits
+   later there, are each swapped for something else, chosen in the pass.
+   **Element 5's abilities as Oxide has them** (Ian, 2026-09-25):
+   Neutralizing Gas follows the later games, turning every other ability
+   off while its holder is out; Symbiosis is not ported; Sharpness keeps
+   hg-engine's longer list of slicing moves, with the five claw moves. Moving a trainer or adding a sight-line blocker edits
    map events and sometimes field scripts, which are carry-over files that
    `checkmap.py` and the bulk tools compare with the base ROM. Each change
    is registered as an intended divergence (the bulk tools' DIVERGED lists)

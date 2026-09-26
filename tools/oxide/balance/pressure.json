@@ -12,10 +12,20 @@
    "threat": 0.0,
    "answers": 0.963,
    "answers_lock": 0.963,
+   "threat_chance": 0.0,
+   "answers_duel": 0.989,
+   "answers_sure": 0.989,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.989,
+   "unanswered": [],
    "max_threat": 0.0,
    "min_answers": 0.944,
    "min_answers_lock": 0.944,
    "choice_mons": 0,
+   "unseen": {},
+   "unseen_count": 0.0,
+   "predictable": 0.5,
    "mons": [
     {
      "variant": 0,
@@ -27,7 +37,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.956,
-     "answers_lock": 0.956
+     "answers_lock": 0.956,
+     "threat_chance": 0.0,
+     "answers_duel": 0.989,
+     "answers_sure": 0.989
     },
     {
      "variant": 1,
@@ -39,7 +52,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.944,
-     "answers_lock": 0.944
+     "answers_lock": 0.944,
+     "threat_chance": 0.0,
+     "answers_duel": 0.989,
+     "answers_sure": 0.989
     },
     {
      "variant": 2,
@@ -51,13 +67,16 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.989,
-     "answers_lock": 0.989
+     "answers_lock": 0.989,
+     "threat_chance": 0.0,
+     "answers_duel": 0.989,
+     "answers_sure": 0.989
     }
    ],
    "calcs": 1323,
    "errors": [],
-   "node_seconds": 0.41,
-   "wall_seconds": 0.47
+   "node_seconds": 0.39,
+   "wall_seconds": 0.45
   },
   "barry_2": {
    "key": "barry_2",
@@ -70,10 +89,20 @@
    "threat": 0.006,
    "answers": 0.639,
    "answers_lock": 0.639,
+   "threat_chance": 0.006,
+   "answers_duel": 0.89,
+   "answers_sure": 0.889,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.944,
+   "unanswered": [],
    "max_threat": 0.011,
    "min_answers": 0.489,
    "min_answers_lock": 0.489,
    "choice_mons": 0,
+   "unseen": {},
+   "unseen_count": 0.0,
+   "predictable": 0.5,
    "mons": [
     {
      "variant": 0,
@@ -85,7 +114,10 @@
      "locked_move": null,
      "threat": 0.011,
      "answers": 0.711,
-     "answers_lock": 0.711
+     "answers_lock": 0.711,
+     "threat_chance": 0.011,
+     "answers_duel": 0.9,
+     "answers_sure": 0.9
     },
     {
      "variant": 0,
@@ -97,7 +129,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.489,
-     "answers_lock": 0.489
+     "answers_lock": 0.489,
+     "threat_chance": 0.0,
+     "answers_duel": 0.778,
+     "answers_sure": 0.778
     },
     {
      "variant": 1,
@@ -109,7 +144,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.789,
-     "answers_lock": 0.789
+     "answers_lock": 0.789,
+     "threat_chance": 0.0,
+     "answers_duel": 0.933,
+     "answers_sure": 0.933
     },
     {
      "variant": 1,
@@ -121,7 +159,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.589,
-     "answers_lock": 0.589
+     "answers_lock": 0.589,
+     "threat_chance": 0.0,
+     "answers_duel": 0.9,
+     "answers_sure": 0.9
     },
     {
      "variant": 2,
@@ -133,7 +174,10 @@
      "locked_move": null,
      "threat": 0.011,
      "answers": 0.733,
-     "answers_lock": 0.733
+     "answers_lock": 0.733,
+     "threat_chance": 0.011,
+     "answers_duel": 0.933,
+     "answers_sure": 0.933
     },
     {
      "variant": 2,
@@ -145,13 +189,16 @@
      "locked_move": null,
      "threat": 0.011,
      "answers": 0.522,
-     "answers_lock": 0.522
+     "answers_lock": 0.522,
+     "threat_chance": 0.011,
+     "answers_duel": 0.897,
+     "answers_sure": 0.889
     }
    ],
    "calcs": 3186,
    "errors": [],
-   "node_seconds": 0.7,
-   "wall_seconds": 0.77
+   "node_seconds": 0.68,
+   "wall_seconds": 0.75
   },
   "roark": {
    "key": "roark",
@@ -164,10 +211,33 @@
    "threat": 0.125,
    "answers": 0.163,
    "answers_lock": 0.163,
+   "threat_chance": 0.125,
+   "answers_duel": 0.24,
+   "answers_sure": 0.236,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.289,
+   "unanswered": [],
    "max_threat": 0.422,
    "min_answers": 0.044,
    "min_answers_lock": 0.044,
    "choice_mons": 0,
+   "unseen": {
+    "hazards": [
+     "Nosepass Stealth Rock"
+    ],
+    "speed control": [
+     "Nosepass Thunder Wave"
+    ],
+    "pinch items": [
+     "Nosepass Apicot Berry"
+    ],
+    "recovery": [
+     "Lileep Ingrain"
+    ]
+   },
+   "unseen_count": 4.0,
+   "predictable": 0.438,
    "mons": [
     {
      "variant": 0,
@@ -179,7 +249,10 @@
      "locked_move": null,
      "threat": 0.011,
      "answers": 0.044,
-     "answers_lock": 0.044
+     "answers_lock": 0.044,
+     "threat_chance": 0.011,
+     "answers_duel": 0.167,
+     "answers_sure": 0.167
     },
     {
      "variant": 0,
@@ -191,7 +264,10 @@
      "locked_move": null,
      "threat": 0.011,
      "answers": 0.422,
-     "answers_lock": 0.422
+     "answers_lock": 0.422,
+     "threat_chance": 0.011,
+     "answers_duel": 0.444,
+     "answers_sure": 0.444
     },
     {
      "variant": 0,
@@ -203,7 +279,10 @@
      "locked_move": null,
      "threat": 0.056,
      "answers": 0.044,
-     "answers_lock": 0.044
+     "answers_lock": 0.044,
+     "threat_chance": 0.056,
+     "answers_duel": 0.108,
+     "answers_sure": 0.1
     },
     {
      "variant": 0,
@@ -215,13 +294,16 @@
      "locked_move": null,
      "threat": 0.422,
      "answers": 0.144,
-     "answers_lock": 0.144
+     "answers_lock": 0.144,
+     "threat_chance": 0.422,
+     "answers_duel": 0.241,
+     "answers_sure": 0.233
     }
    ],
    "calcs": 2304,
    "errors": [],
-   "node_seconds": 0.62,
-   "wall_seconds": 0.69
+   "node_seconds": 0.59,
+   "wall_seconds": 0.66
   },
   "mars_1": {
    "key": "mars_1",
@@ -234,10 +316,34 @@
    "threat": 0.011,
    "answers": 0.355,
    "answers_lock": 0.355,
+   "threat_chance": 0.011,
+   "answers_duel": 0.833,
+   "answers_sure": 0.827,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.95,
+   "unanswered": [],
    "max_threat": 0.014,
    "min_answers": 0.086,
    "min_answers_lock": 0.086,
    "choice_mons": 0,
+   "unseen": {
+    "disruption": [
+     "Meowth Fake Out",
+     "Purugly Fake Out"
+    ],
+    "status": [
+     "Zubat Supersonic",
+     "Bronzor Confuse Ray",
+     "Bronzor Hypnosis",
+     "Purugly Hypnosis"
+    ],
+    "setup": [
+     "Bronzor Calm Mind"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.438,
    "mons": [
     {
      "variant": 0,
@@ -249,7 +355,10 @@
      "locked_move": null,
      "threat": 0.014,
      "answers": 0.25,
-     "answers_lock": 0.25
+     "answers_lock": 0.25,
+     "threat_chance": 0.014,
+     "answers_duel": 0.957,
+     "answers_sure": 0.957
     },
     {
      "variant": 0,
@@ -261,7 +370,10 @@
      "locked_move": null,
      "threat": 0.014,
      "answers": 0.693,
-     "answers_lock": 0.693
+     "answers_lock": 0.693,
+     "threat_chance": 0.014,
+     "answers_duel": 0.921,
+     "answers_sure": 0.921
     },
     {
      "variant": 0,
@@ -273,7 +385,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.393,
-     "answers_lock": 0.393
+     "answers_lock": 0.393,
+     "threat_chance": 0.0,
+     "answers_duel": 0.702,
+     "answers_sure": 0.693
     },
     {
      "variant": 0,
@@ -285,15 +400,18 @@
      "locked_move": null,
      "threat": 0.014,
      "answers": 0.086,
-     "answers_lock": 0.086
+     "answers_lock": 0.086,
+     "threat_chance": 0.014,
+     "answers_duel": 0.75,
+     "answers_sure": 0.736
     }
    ],
    "calcs": 4548,
    "errors": [
     "p31 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 0.9,
-   "wall_seconds": 0.97
+   "node_seconds": 0.88,
+   "wall_seconds": 0.95
   },
   "gardenia": {
    "key": "gardenia",
@@ -306,10 +424,34 @@
    "threat": 0.693,
    "answers": 0.056,
    "answers_lock": 0.056,
+   "threat_chance": 0.693,
+   "answers_duel": 0.154,
+   "answers_sure": 0.151,
+   "cover": 2.0,
+   "best_one": 0.8,
+   "broad": 0.136,
+   "unanswered": [],
    "max_threat": 0.921,
    "min_answers": 0.021,
    "min_answers_lock": 0.021,
    "choice_mons": 0,
+   "unseen": {
+    "recovery": [
+     "Cherrim Leech Seed"
+    ],
+    "weather moves": [
+     "Cherrim Sunny Day"
+    ],
+    "status": [
+     "Lumineon Swagger"
+    ],
+    "speed control": [
+     "Breloom Stun Spore",
+     "Roserade Stun Spore"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.567,
    "mons": [
     {
      "variant": 0,
@@ -321,7 +463,10 @@
      "locked_move": null,
      "threat": 0.429,
      "answers": 0.05,
-     "answers_lock": 0.05
+     "answers_lock": 0.05,
+     "threat_chance": 0.429,
+     "answers_duel": 0.298,
+     "answers_sure": 0.293
     },
     {
      "variant": 0,
@@ -333,7 +478,10 @@
      "locked_move": null,
      "threat": 0.571,
      "answers": 0.021,
-     "answers_lock": 0.021
+     "answers_lock": 0.021,
+     "threat_chance": 0.571,
+     "answers_duel": 0.095,
+     "answers_sure": 0.093
     },
     {
      "variant": 0,
@@ -345,7 +493,10 @@
      "locked_move": null,
      "threat": 0.664,
      "answers": 0.057,
-     "answers_lock": 0.057
+     "answers_lock": 0.057,
+     "threat_chance": 0.664,
+     "answers_duel": 0.16,
+     "answers_sure": 0.15
     },
     {
      "variant": 0,
@@ -357,7 +508,10 @@
      "locked_move": null,
      "threat": 0.879,
      "answers": 0.129,
-     "answers_lock": 0.129
+     "answers_lock": 0.129,
+     "threat_chance": 0.879,
+     "answers_duel": 0.15,
+     "answers_sure": 0.157
     },
     {
      "variant": 0,
@@ -369,15 +523,18 @@
      "locked_move": null,
      "threat": 0.921,
      "answers": 0.021,
-     "answers_lock": 0.021
+     "answers_lock": 0.021,
+     "threat_chance": 0.921,
+     "answers_duel": 0.065,
+     "answers_sure": 0.064
     }
    ],
    "calcs": 6105,
    "errors": [
     "p31 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 1.09,
-   "wall_seconds": 1.16
+   "node_seconds": 1.07,
+   "wall_seconds": 1.15
   },
   "jupiter_1": {
    "key": "jupiter_1",
@@ -390,10 +547,34 @@
    "threat": 0.117,
    "answers": 0.26,
    "answers_lock": 0.26,
+   "threat_chance": 0.117,
+   "answers_duel": 0.62,
+   "answers_sure": 0.603,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.653,
+   "unanswered": [],
    "max_threat": 0.178,
    "min_answers": 0.123,
    "min_answers_lock": 0.123,
    "choice_mons": 0,
+   "unseen": {
+    "status": [
+     "Delcatty Attract",
+     "Delcatty Sing",
+     "Tangela Sleep Powder",
+     "Skuntank Toxic"
+    ],
+    "disruption": [
+     "Delcatty Fake Out",
+     "Sableye Fake Out"
+    ],
+    "recovery": [
+     "Tangela Leech Seed"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.479,
    "mons": [
     {
      "variant": 0,
@@ -405,7 +586,10 @@
      "locked_move": null,
      "threat": 0.132,
      "answers": 0.123,
-     "answers_lock": 0.123
+     "answers_lock": 0.123,
+     "threat_chance": 0.132,
+     "answers_duel": 0.7,
+     "answers_sure": 0.68
     },
     {
      "variant": 0,
@@ -417,7 +601,10 @@
      "locked_move": null,
      "threat": 0.096,
      "answers": 0.338,
-     "answers_lock": 0.338
+     "answers_lock": 0.338,
+     "threat_chance": 0.096,
+     "answers_duel": 0.585,
+     "answers_sure": 0.557
     },
     {
      "variant": 0,
@@ -429,7 +616,10 @@
      "locked_move": null,
      "threat": 0.064,
      "answers": 0.397,
-     "answers_lock": 0.397
+     "answers_lock": 0.397,
+     "threat_chance": 0.064,
+     "answers_duel": 0.701,
+     "answers_sure": 0.699
     },
     {
      "variant": 0,
@@ -441,7 +631,10 @@
      "locked_move": null,
      "threat": 0.178,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.178,
+     "answers_duel": 0.494,
+     "answers_sure": 0.475
     }
    ],
    "calcs": 8017,
@@ -456,8 +649,8 @@
     "p164 Super Fang: damage is not a number",
     "p40 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 1.29,
-   "wall_seconds": 1.37
+   "node_seconds": 1.28,
+   "wall_seconds": 1.36
   },
   "fantina": {
    "key": "fantina",
@@ -470,10 +663,32 @@
    "threat": 0.51,
    "answers": 0.1,
    "answers_lock": 0.1,
+   "threat_chance": 0.51,
+   "answers_duel": 0.268,
+   "answers_sure": 0.257,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.187,
+   "unanswered": [],
    "max_threat": 0.881,
    "min_answers": 0.009,
    "min_answers_lock": 0.009,
    "choice_mons": 0,
+   "unseen": {
+    "status": [
+     "Duskull Confuse Ray",
+     "Duskull Will-O-Wisp",
+     "Drifblim Will-O-Wisp"
+    ],
+    "setup": [
+     "Drifblim Calm Mind"
+    ],
+    "recovery": [
+     "Sableye Recover"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.524,
    "mons": [
     {
      "variant": 0,
@@ -485,7 +700,10 @@
      "locked_move": null,
      "threat": 0.018,
      "answers": 0.315,
-     "answers_lock": 0.315
+     "answers_lock": 0.315,
+     "threat_chance": 0.018,
+     "answers_duel": 0.657,
+     "answers_sure": 0.639
     },
     {
      "variant": 0,
@@ -497,7 +715,10 @@
      "locked_move": null,
      "threat": 0.63,
      "answers": 0.009,
-     "answers_lock": 0.009
+     "answers_lock": 0.009,
+     "threat_chance": 0.63,
+     "answers_duel": 0.239,
+     "answers_sure": 0.237
     },
     {
      "variant": 0,
@@ -509,7 +730,10 @@
      "locked_move": null,
      "threat": 0.726,
      "answers": 0.046,
-     "answers_lock": 0.046
+     "answers_lock": 0.046,
+     "threat_chance": 0.726,
+     "answers_duel": 0.18,
+     "answers_sure": 0.174
     },
     {
      "variant": 0,
@@ -521,7 +745,10 @@
      "locked_move": null,
      "threat": 0.297,
      "answers": 0.096,
-     "answers_lock": 0.096
+     "answers_lock": 0.096,
+     "threat_chance": 0.297,
+     "answers_duel": 0.194,
+     "answers_sure": 0.169
     },
     {
      "variant": 0,
@@ -533,7 +760,10 @@
      "locked_move": null,
      "threat": 0.881,
      "answers": 0.032,
-     "answers_lock": 0.032
+     "answers_lock": 0.032,
+     "threat_chance": 0.881,
+     "answers_duel": 0.072,
+     "answers_sure": 0.068
     }
    ],
    "calcs": 10952,
@@ -542,8 +772,8 @@
     "p110 Psywave: damage is not a number",
     "p40 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 1.56,
-   "wall_seconds": 1.64
+   "node_seconds": 1.53,
+   "wall_seconds": 1.62
   },
   "barry_3": {
    "key": "barry_3",
@@ -556,10 +786,41 @@
    "threat": 0.166,
    "answers": 0.49,
    "answers_lock": 0.49,
+   "threat_chance": 0.166,
+   "answers_duel": 0.8,
+   "answers_sure": 0.797,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.906,
+   "unanswered": [],
    "max_threat": 0.349,
    "min_answers": 0.349,
    "min_answers_lock": 0.349,
    "choice_mons": 0,
+   "unseen": {
+    "evasion": [
+     "Staravia Double Team"
+    ],
+    "recovery": [
+     "Staryu Recover",
+     "Grotle Leech Seed",
+     "Shiftry Leech Seed",
+     "Prinplup Aqua Ring"
+    ],
+    "status": [
+     "Vulpix Confuse Ray",
+     "Vulpix Will-O-Wisp"
+    ],
+    "setup": [
+     "Grotle Curse"
+    ],
+    "disruption": [
+     "Shiftry Fake Out",
+     "Monferno Fake Out"
+    ]
+   },
+   "unseen_count": 5.67,
+   "predictable": 0.472,
    "mons": [
     {
      "variant": 0,
@@ -571,7 +832,10 @@
      "locked_move": null,
      "threat": 0.113,
      "answers": 0.391,
-     "answers_lock": 0.391
+     "answers_lock": 0.391,
+     "threat_chance": 0.113,
+     "answers_duel": 0.863,
+     "answers_sure": 0.863
     },
     {
      "variant": 0,
@@ -583,7 +847,10 @@
      "locked_move": null,
      "threat": 0.169,
      "answers": 0.423,
-     "answers_lock": 0.423
+     "answers_lock": 0.423,
+     "threat_chance": 0.169,
+     "answers_duel": 0.882,
+     "answers_sure": 0.88
     },
     {
      "variant": 0,
@@ -595,7 +862,10 @@
      "locked_move": null,
      "threat": 0.261,
      "answers": 0.563,
-     "answers_lock": 0.563
+     "answers_lock": 0.563,
+     "threat_chance": 0.261,
+     "answers_duel": 0.782,
+     "answers_sure": 0.782
     },
     {
      "variant": 0,
@@ -607,7 +877,10 @@
      "locked_move": null,
      "threat": 0.039,
      "answers": 0.687,
-     "answers_lock": 0.687
+     "answers_lock": 0.687,
+     "threat_chance": 0.039,
+     "answers_duel": 0.742,
+     "answers_sure": 0.729
     },
     {
      "variant": 1,
@@ -619,7 +892,10 @@
      "locked_move": null,
      "threat": 0.113,
      "answers": 0.391,
-     "answers_lock": 0.391
+     "answers_lock": 0.391,
+     "threat_chance": 0.113,
+     "answers_duel": 0.863,
+     "answers_sure": 0.863
     },
     {
      "variant": 1,
@@ -631,7 +907,10 @@
      "locked_move": null,
      "threat": 0.141,
      "answers": 0.465,
-     "answers_lock": 0.465
+     "answers_lock": 0.465,
+     "threat_chance": 0.141,
+     "answers_duel": 0.917,
+     "answers_sure": 0.915
     },
     {
      "variant": 1,
@@ -643,7 +922,10 @@
      "locked_move": null,
      "threat": 0.204,
      "answers": 0.567,
-     "answers_lock": 0.567
+     "answers_lock": 0.567,
+     "threat_chance": 0.204,
+     "answers_duel": 0.731,
+     "answers_sure": 0.722
     },
     {
      "variant": 1,
@@ -655,7 +937,10 @@
      "locked_move": null,
      "threat": 0.349,
      "answers": 0.349,
-     "answers_lock": 0.349
+     "answers_lock": 0.349,
+     "threat_chance": 0.349,
+     "answers_duel": 0.678,
+     "answers_sure": 0.676
     },
     {
      "variant": 2,
@@ -667,7 +952,10 @@
      "locked_move": null,
      "threat": 0.123,
      "answers": 0.366,
-     "answers_lock": 0.366
+     "answers_lock": 0.366,
+     "threat_chance": 0.123,
+     "answers_duel": 0.849,
+     "answers_sure": 0.849
     },
     {
      "variant": 2,
@@ -679,7 +967,10 @@
      "locked_move": null,
      "threat": 0.239,
      "answers": 0.415,
-     "answers_lock": 0.415
+     "answers_lock": 0.415,
+     "threat_chance": 0.239,
+     "answers_duel": 0.671,
+     "answers_sure": 0.665
     },
     {
      "variant": 2,
@@ -691,7 +982,10 @@
      "locked_move": null,
      "threat": 0.176,
      "answers": 0.637,
-     "answers_lock": 0.637
+     "answers_lock": 0.637,
+     "threat_chance": 0.176,
+     "answers_duel": 0.777,
+     "answers_sure": 0.778
     },
     {
      "variant": 2,
@@ -703,7 +997,10 @@
      "locked_move": null,
      "threat": 0.063,
      "answers": 0.63,
-     "answers_lock": 0.63
+     "answers_lock": 0.63,
+     "threat_chance": 0.063,
+     "answers_duel": 0.848,
+     "answers_sure": 0.845
     }
    ],
    "calcs": 45580,
@@ -725,8 +1022,8 @@
     "p61 Electro Ball: damage is not a number",
     "p82 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 5.31,
-   "wall_seconds": 5.45
+   "node_seconds": 5.17,
+   "wall_seconds": 5.32
   },
   "maylene": {
    "key": "maylene",
@@ -739,10 +1036,27 @@
    "threat": 0.692,
    "answers": 0.206,
    "answers_lock": 0.206,
+   "threat_chance": 0.682,
+   "answers_duel": 0.214,
+   "answers_sure": 0.211,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.222,
+   "unanswered": [],
    "max_threat": 0.792,
    "min_answers": 0.081,
    "min_answers_lock": 0.081,
    "choice_mons": 0,
+   "unseen": {
+    "weather moves": [
+     "Poliwrath Rain Dance"
+    ],
+    "evasion": [
+     "Cacturne Sand Veil"
+    ]
+   },
+   "unseen_count": 2.0,
+   "predictable": 0.861,
    "mons": [
     {
      "variant": 0,
@@ -754,7 +1068,10 @@
      "locked_move": null,
      "threat": 0.577,
      "answers": 0.106,
-     "answers_lock": 0.106
+     "answers_lock": 0.106,
+     "threat_chance": 0.568,
+     "answers_duel": 0.259,
+     "answers_sure": 0.254
     },
     {
      "variant": 0,
@@ -766,7 +1083,10 @@
      "locked_move": null,
      "threat": 0.637,
      "answers": 0.123,
-     "answers_lock": 0.123
+     "answers_lock": 0.123,
+     "threat_chance": 0.637,
+     "answers_duel": 0.191,
+     "answers_sure": 0.187
     },
     {
      "variant": 0,
@@ -778,7 +1098,10 @@
      "locked_move": null,
      "threat": 0.736,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.697,
+     "answers_duel": 0.232,
+     "answers_sure": 0.236
     },
     {
      "variant": 0,
@@ -790,7 +1113,10 @@
      "locked_move": null,
      "threat": 0.63,
      "answers": 0.581,
-     "answers_lock": 0.581
+     "answers_lock": 0.581,
+     "threat_chance": 0.63,
+     "answers_duel": 0.332,
+     "answers_sure": 0.327
     },
     {
      "variant": 0,
@@ -802,7 +1128,10 @@
      "locked_move": null,
      "threat": 0.778,
      "answers": 0.165,
-     "answers_lock": 0.165
+     "answers_lock": 0.165,
+     "threat_chance": 0.77,
+     "answers_duel": 0.094,
+     "answers_sure": 0.095
     },
     {
      "variant": 0,
@@ -814,7 +1143,10 @@
      "locked_move": null,
      "threat": 0.792,
      "answers": 0.081,
-     "answers_lock": 0.081
+     "answers_lock": 0.081,
+     "threat_chance": 0.792,
+     "answers_duel": 0.178,
+     "answers_sure": 0.165
     }
    ],
    "calcs": 25346,
@@ -836,8 +1168,8 @@
     "p61 Electro Ball: damage is not a number",
     "p82 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 3.21,
-   "wall_seconds": 3.31
+   "node_seconds": 3.17,
+   "wall_seconds": 3.28
   },
   "barry_4": {
    "key": "barry_4",
@@ -850,10 +1182,43 @@
    "threat": 0.478,
    "answers": 0.134,
    "answers_lock": 0.134,
+   "threat_chance": 0.478,
+   "answers_duel": 0.323,
+   "answers_sure": 0.315,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.297,
+   "unanswered": [],
    "max_threat": 0.821,
    "min_answers": 0.042,
    "min_answers_lock": 0.042,
    "choice_mons": 0,
+   "unseen": {
+    "speed control": [
+     "Staraptor Tailwind"
+    ],
+    "pinch items": [
+     "Staraptor White Herb"
+    ],
+    "recovery": [
+     "Starmie Recover",
+     "Snorlax Rest",
+     "Torterra Leech Seed",
+     "Shiftry Leech Seed"
+    ],
+    "status": [
+     "Ninetales Confuse Ray",
+     "Ninetales Will-O-Wisp"
+    ],
+    "disruption": [
+     "Shiftry Fake Out"
+    ],
+    "setup": [
+     "Empoleon Swords Dance"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.472,
    "mons": [
     {
      "variant": 0,
@@ -865,7 +1230,10 @@
      "locked_move": null,
      "threat": 0.658,
      "answers": 0.042,
-     "answers_lock": 0.042
+     "answers_lock": 0.042,
+     "threat_chance": 0.658,
+     "answers_duel": 0.353,
+     "answers_sure": 0.345
     },
     {
      "variant": 0,
@@ -877,7 +1245,10 @@
      "locked_move": null,
      "threat": 0.703,
      "answers": 0.157,
-     "answers_lock": 0.157
+     "answers_lock": 0.157,
+     "threat_chance": 0.703,
+     "answers_duel": 0.314,
+     "answers_sure": 0.313
     },
     {
      "variant": 0,
@@ -889,7 +1260,10 @@
      "locked_move": null,
      "threat": 0.022,
      "answers": 0.093,
-     "answers_lock": 0.093
+     "answers_lock": 0.093,
+     "threat_chance": 0.022,
+     "answers_duel": 0.217,
+     "answers_sure": 0.201
     },
     {
      "variant": 0,
@@ -901,7 +1275,10 @@
      "locked_move": null,
      "threat": 0.623,
      "answers": 0.073,
-     "answers_lock": 0.073
+     "answers_lock": 0.073,
+     "threat_chance": 0.623,
+     "answers_duel": 0.342,
+     "answers_sure": 0.339
     },
     {
      "variant": 0,
@@ -913,7 +1290,10 @@
      "locked_move": null,
      "threat": 0.173,
      "answers": 0.291,
-     "answers_lock": 0.291
+     "answers_lock": 0.291,
+     "threat_chance": 0.173,
+     "answers_duel": 0.266,
+     "answers_sure": 0.259
     },
     {
      "variant": 1,
@@ -925,7 +1305,10 @@
      "locked_move": null,
      "threat": 0.658,
      "answers": 0.042,
-     "answers_lock": 0.042
+     "answers_lock": 0.042,
+     "threat_chance": 0.658,
+     "answers_duel": 0.353,
+     "answers_sure": 0.345
     },
     {
      "variant": 1,
@@ -937,7 +1320,10 @@
      "locked_move": null,
      "threat": 0.773,
      "answers": 0.121,
-     "answers_lock": 0.121
+     "answers_lock": 0.121,
+     "threat_chance": 0.773,
+     "answers_duel": 0.249,
+     "answers_sure": 0.243
     },
     {
      "variant": 1,
@@ -949,7 +1335,10 @@
      "locked_move": null,
      "threat": 0.022,
      "answers": 0.093,
-     "answers_lock": 0.093
+     "answers_lock": 0.093,
+     "threat_chance": 0.022,
+     "answers_duel": 0.217,
+     "answers_sure": 0.201
     },
     {
      "variant": 1,
@@ -961,7 +1350,10 @@
      "locked_move": null,
      "threat": 0.54,
      "answers": 0.24,
-     "answers_lock": 0.24
+     "answers_lock": 0.24,
+     "threat_chance": 0.54,
+     "answers_duel": 0.521,
+     "answers_sure": 0.511
     },
     {
      "variant": 1,
@@ -973,7 +1365,10 @@
      "locked_move": null,
      "threat": 0.821,
      "answers": 0.093,
-     "answers_lock": 0.093
+     "answers_lock": 0.093,
+     "threat_chance": 0.821,
+     "answers_duel": 0.269,
+     "answers_sure": 0.275
     },
     {
      "variant": 2,
@@ -985,7 +1380,10 @@
      "locked_move": null,
      "threat": 0.649,
      "answers": 0.045,
-     "answers_lock": 0.045
+     "answers_lock": 0.045,
+     "threat_chance": 0.649,
+     "answers_duel": 0.369,
+     "answers_sure": 0.355
     },
     {
      "variant": 2,
@@ -997,7 +1395,10 @@
      "locked_move": null,
      "threat": 0.562,
      "answers": 0.355,
-     "answers_lock": 0.355
+     "answers_lock": 0.355,
+     "threat_chance": 0.562,
+     "answers_duel": 0.589,
+     "answers_sure": 0.581
     },
     {
      "variant": 2,
@@ -1009,7 +1410,10 @@
      "locked_move": null,
      "threat": 0.022,
      "answers": 0.093,
-     "answers_lock": 0.093
+     "answers_lock": 0.093,
+     "threat_chance": 0.022,
+     "answers_duel": 0.217,
+     "answers_sure": 0.201
     },
     {
      "variant": 2,
@@ -1021,7 +1425,10 @@
      "locked_move": null,
      "threat": 0.671,
      "answers": 0.042,
-     "answers_lock": 0.042
+     "answers_lock": 0.042,
+     "threat_chance": 0.671,
+     "answers_duel": 0.246,
+     "answers_sure": 0.24
     },
     {
      "variant": 2,
@@ -1033,7 +1440,10 @@
      "locked_move": null,
      "threat": 0.275,
      "answers": 0.224,
-     "answers_lock": 0.224
+     "answers_lock": 0.224,
+     "threat_chance": 0.274,
+     "answers_duel": 0.322,
+     "answers_sure": 0.31
     }
    ],
    "calcs": 74127,
@@ -1055,8 +1465,8 @@
     "p67 Electro Ball: damage is not a number",
     "p92 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 8.37,
-   "wall_seconds": 8.55
+   "node_seconds": 8.21,
+   "wall_seconds": 8.4
   },
   "wake": {
    "key": "wake",
@@ -1069,10 +1479,27 @@
    "threat": 0.73,
    "answers": 0.068,
    "answers_lock": 0.081,
+   "threat_chance": 0.73,
+   "answers_duel": 0.106,
+   "answers_sure": 0.103,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.08,
+   "unanswered": [],
    "max_threat": 0.981,
    "min_answers": 0.0,
    "min_answers_lock": 0.006,
    "choice_mons": 2,
+   "unseen": {
+    "recovery": [
+     "Ludicolo Leech Seed"
+    ],
+    "status": [
+     "Quagsire Yawn"
+    ]
+   },
+   "unseen_count": 2.0,
+   "predictable": 0.833,
    "mons": [
     {
      "variant": 0,
@@ -1084,7 +1511,10 @@
      "locked_move": null,
      "threat": 0.882,
      "answers": 0.006,
-     "answers_lock": 0.006
+     "answers_lock": 0.006,
+     "threat_chance": 0.882,
+     "answers_duel": 0.067,
+     "answers_sure": 0.067
     },
     {
      "variant": 0,
@@ -1096,7 +1526,10 @@
      "locked_move": null,
      "threat": 0.093,
      "answers": 0.182,
-     "answers_lock": 0.182
+     "answers_lock": 0.182,
+     "threat_chance": 0.093,
+     "answers_duel": 0.21,
+     "answers_sure": 0.204
     },
     {
      "variant": 0,
@@ -1108,7 +1541,10 @@
      "locked_move": "Waterfall",
      "threat": 0.866,
      "answers": 0.0,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.866,
+     "answers_duel": 0.096,
+     "answers_sure": 0.096
     },
     {
      "variant": 0,
@@ -1120,7 +1556,10 @@
      "locked_move": null,
      "threat": 0.652,
      "answers": 0.07,
-     "answers_lock": 0.07
+     "answers_lock": 0.07,
+     "threat_chance": 0.652,
+     "answers_duel": 0.03,
+     "answers_sure": 0.029
     },
     {
      "variant": 0,
@@ -1132,7 +1571,10 @@
      "locked_move": "Waterfall",
      "threat": 0.981,
      "answers": 0.137,
-     "answers_lock": 0.15
+     "answers_lock": 0.15,
+     "threat_chance": 0.981,
+     "answers_duel": 0.127,
+     "answers_sure": 0.125
     },
     {
      "variant": 0,
@@ -1144,7 +1586,10 @@
      "locked_move": null,
      "threat": 0.904,
      "answers": 0.01,
-     "answers_lock": 0.01
+     "answers_lock": 0.01,
+     "threat_chance": 0.904,
+     "answers_duel": 0.107,
+     "answers_sure": 0.099
     }
    ],
    "calcs": 31654,
@@ -1166,8 +1611,8 @@
     "p67 Electro Ball: damage is not a number",
     "p92 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.05,
-   "wall_seconds": 4.17
+   "node_seconds": 3.92,
+   "wall_seconds": 4.03
   },
   "cyrus_1": {
    "key": "cyrus_1",
@@ -1180,10 +1625,32 @@
    "threat": 0.367,
    "answers": 0.362,
    "answers_lock": 0.362,
+   "threat_chance": 0.367,
+   "answers_duel": 0.539,
+   "answers_sure": 0.53,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.609,
+   "unanswered": [],
    "max_threat": 0.571,
    "min_answers": 0.241,
    "min_answers_lock": 0.241,
    "choice_mons": 0,
+   "unseen": {
+    "speed control": [
+     "Vibrava Tailwind"
+    ],
+    "disruption": [
+     "Vibrava U-turn",
+     "Hariyama Whirlwind",
+     "Honchkrow Whirlwind"
+    ],
+    "status": [
+     "Honchkrow Confuse Ray"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.719,
    "mons": [
     {
      "variant": 0,
@@ -1195,7 +1662,10 @@
      "locked_move": null,
      "threat": 0.475,
      "answers": 0.243,
-     "answers_lock": 0.243
+     "answers_lock": 0.243,
+     "threat_chance": 0.475,
+     "answers_duel": 0.684,
+     "answers_sure": 0.684
     },
     {
      "variant": 0,
@@ -1207,7 +1677,10 @@
      "locked_move": null,
      "threat": 0.438,
      "answers": 0.31,
-     "answers_lock": 0.31
+     "answers_lock": 0.31,
+     "threat_chance": 0.438,
+     "answers_duel": 0.443,
+     "answers_sure": 0.438
     },
     {
      "variant": 0,
@@ -1219,7 +1692,10 @@
      "locked_move": null,
      "threat": 0.07,
      "answers": 0.525,
-     "answers_lock": 0.525
+     "answers_lock": 0.525,
+     "threat_chance": 0.07,
+     "answers_duel": 0.677,
+     "answers_sure": 0.667
     },
     {
      "variant": 0,
@@ -1231,7 +1707,10 @@
      "locked_move": null,
      "threat": 0.119,
      "answers": 0.562,
-     "answers_lock": 0.562
+     "answers_lock": 0.562,
+     "threat_chance": 0.118,
+     "answers_duel": 0.66,
+     "answers_sure": 0.643
     },
     {
      "variant": 0,
@@ -1243,7 +1722,10 @@
      "locked_move": null,
      "threat": 0.571,
      "answers": 0.29,
-     "answers_lock": 0.29
+     "answers_lock": 0.29,
+     "threat_chance": 0.571,
+     "answers_duel": 0.487,
+     "answers_sure": 0.478
     },
     {
      "variant": 0,
@@ -1255,7 +1737,10 @@
      "locked_move": null,
      "threat": 0.53,
      "answers": 0.241,
-     "answers_lock": 0.241
+     "answers_lock": 0.241,
+     "threat_chance": 0.53,
+     "answers_duel": 0.281,
+     "answers_sure": 0.27
     }
    ],
    "calcs": 35631,
@@ -1278,8 +1763,8 @@
     "p71 Electro Ball: damage is not a number",
     "p98 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.46,
-   "wall_seconds": 4.58
+   "node_seconds": 4.3,
+   "wall_seconds": 4.42
   },
   "barry_5": {
    "key": "barry_5",
@@ -1292,10 +1777,36 @@
    "threat": 0.541,
    "answers": 0.187,
    "answers_lock": 0.21,
+   "threat_chance": 0.53,
+   "answers_duel": 0.342,
+   "answers_sure": 0.332,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.322,
+   "unanswered": [],
    "max_threat": 0.901,
    "min_answers": 0.043,
    "min_answers_lock": 0.043,
    "choice_mons": 2,
+   "unseen": {
+    "recovery": [
+     "Staraptor Roost",
+     "Starmie Recover",
+     "Snorlax Rest",
+     "Torterra Leech Seed"
+    ],
+    "pinch items": [
+     "Staraptor White Herb"
+    ],
+    "disruption": [
+     "Shiftry Fake Out"
+    ],
+    "setup": [
+     "Empoleon Iron Defense"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.611,
    "mons": [
     {
      "variant": 0,
@@ -1307,7 +1818,10 @@
      "locked_move": null,
      "threat": 0.814,
      "answers": 0.067,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.814,
+     "answers_duel": 0.332,
+     "answers_sure": 0.316
     },
     {
      "variant": 0,
@@ -1319,7 +1833,10 @@
      "locked_move": null,
      "threat": 0.681,
      "answers": 0.18,
-     "answers_lock": 0.18
+     "answers_lock": 0.18,
+     "threat_chance": 0.681,
+     "answers_duel": 0.441,
+     "answers_sure": 0.441
     },
     {
      "variant": 0,
@@ -1331,7 +1848,10 @@
      "locked_move": null,
      "threat": 0.029,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.029,
+     "answers_duel": 0.352,
+     "answers_sure": 0.333
     },
     {
      "variant": 0,
@@ -1343,7 +1863,10 @@
      "locked_move": "Heat Wave",
      "threat": 0.812,
      "answers": 0.099,
-     "answers_lock": 0.27
+     "answers_lock": 0.27,
+     "threat_chance": 0.788,
+     "answers_duel": 0.248,
+     "answers_sure": 0.249
     },
     {
      "variant": 0,
@@ -1355,7 +1878,10 @@
      "locked_move": null,
      "threat": 0.154,
      "answers": 0.504,
-     "answers_lock": 0.504
+     "answers_lock": 0.504,
+     "threat_chance": 0.154,
+     "answers_duel": 0.404,
+     "answers_sure": 0.386
     },
     {
      "variant": 1,
@@ -1367,7 +1893,10 @@
      "locked_move": null,
      "threat": 0.814,
      "answers": 0.067,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.814,
+     "answers_duel": 0.332,
+     "answers_sure": 0.316
     },
     {
      "variant": 1,
@@ -1379,7 +1908,10 @@
      "locked_move": null,
      "threat": 0.681,
      "answers": 0.18,
-     "answers_lock": 0.18
+     "answers_lock": 0.18,
+     "threat_chance": 0.681,
+     "answers_duel": 0.441,
+     "answers_sure": 0.441
     },
     {
      "variant": 1,
@@ -1391,7 +1923,10 @@
      "locked_move": null,
      "threat": 0.029,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.029,
+     "answers_duel": 0.352,
+     "answers_sure": 0.333
     },
     {
      "variant": 1,
@@ -1403,7 +1938,10 @@
      "locked_move": null,
      "threat": 0.583,
      "answers": 0.38,
-     "answers_lock": 0.38
+     "answers_lock": 0.38,
+     "threat_chance": 0.529,
+     "answers_duel": 0.397,
+     "answers_sure": 0.397
     },
     {
      "variant": 1,
@@ -1415,7 +1953,10 @@
      "locked_move": null,
      "threat": 0.901,
      "answers": 0.043,
-     "answers_lock": 0.043
+     "answers_lock": 0.043,
+     "threat_chance": 0.901,
+     "answers_duel": 0.218,
+     "answers_sure": 0.214
     },
     {
      "variant": 2,
@@ -1427,7 +1968,10 @@
      "locked_move": null,
      "threat": 0.814,
      "answers": 0.067,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.814,
+     "answers_duel": 0.332,
+     "answers_sure": 0.316
     },
     {
      "variant": 2,
@@ -1439,7 +1983,10 @@
      "locked_move": null,
      "threat": 0.655,
      "answers": 0.264,
-     "answers_lock": 0.264
+     "answers_lock": 0.264,
+     "threat_chance": 0.594,
+     "answers_duel": 0.325,
+     "answers_sure": 0.325
     },
     {
      "variant": 2,
@@ -1451,7 +1998,10 @@
      "locked_move": null,
      "threat": 0.029,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.029,
+     "answers_duel": 0.352,
+     "answers_sure": 0.333
     },
     {
      "variant": 2,
@@ -1463,7 +2013,10 @@
      "locked_move": "Heat Wave",
      "threat": 0.812,
      "answers": 0.099,
-     "answers_lock": 0.27
+     "answers_lock": 0.27,
+     "threat_chance": 0.788,
+     "answers_duel": 0.248,
+     "answers_sure": 0.249
     },
     {
      "variant": 2,
@@ -1475,7 +2028,10 @@
      "locked_move": null,
      "threat": 0.313,
      "answers": 0.304,
-     "answers_lock": 0.304
+     "answers_lock": 0.304,
+     "threat_chance": 0.307,
+     "answers_duel": 0.349,
+     "answers_sure": 0.333
     }
    ],
    "calcs": 88215,
@@ -1498,8 +2054,8 @@
     "p71 Electro Ball: damage is not a number",
     "p98 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 9.92,
-   "wall_seconds": 10.13
+   "node_seconds": 9.6,
+   "wall_seconds": 9.81
   },
   "byron": {
    "key": "byron",
@@ -1512,10 +2068,36 @@
    "threat": 0.32,
    "answers": 0.22,
    "answers_lock": 0.22,
+   "threat_chance": 0.317,
+   "answers_duel": 0.18,
+   "answers_sure": 0.167,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.177,
+   "unanswered": [],
    "max_threat": 0.542,
    "min_answers": 0.154,
    "min_answers_lock": 0.154,
    "choice_mons": 0,
+   "unseen": {
+    "hazards": [
+     "Forretress Toxic Spikes"
+    ],
+    "sacrifice": [
+     "Forretress Explosion"
+    ],
+    "weather moves": [
+     "Steelix Sandstorm"
+    ],
+    "disruption": [
+     "Magnezone Reflect"
+    ],
+    "setup": [
+     "Metagross Agility"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.659,
    "mons": [
     {
      "variant": 0,
@@ -1527,7 +2109,10 @@
      "locked_move": null,
      "threat": 0.22,
      "answers": 0.229,
-     "answers_lock": 0.229
+     "answers_lock": 0.229,
+     "threat_chance": 0.22,
+     "answers_duel": 0.123,
+     "answers_sure": 0.125
     },
     {
      "variant": 0,
@@ -1539,7 +2124,10 @@
      "locked_move": null,
      "threat": 0.087,
      "answers": 0.258,
-     "answers_lock": 0.258
+     "answers_lock": 0.258,
+     "threat_chance": 0.087,
+     "answers_duel": 0.177,
+     "answers_sure": 0.157
     },
     {
      "variant": 0,
@@ -1551,7 +2139,10 @@
      "locked_move": null,
      "threat": 0.528,
      "answers": 0.183,
-     "answers_lock": 0.183
+     "answers_lock": 0.183,
+     "threat_chance": 0.528,
+     "answers_duel": 0.175,
+     "answers_sure": 0.168
     },
     {
      "variant": 0,
@@ -1563,7 +2154,10 @@
      "locked_move": null,
      "threat": 0.542,
      "answers": 0.154,
-     "answers_lock": 0.154
+     "answers_lock": 0.154,
+     "threat_chance": 0.532,
+     "answers_duel": 0.16,
+     "answers_sure": 0.148
     },
     {
      "variant": 0,
@@ -1575,7 +2169,10 @@
      "locked_move": null,
      "threat": 0.475,
      "answers": 0.2,
-     "answers_lock": 0.2
+     "answers_lock": 0.2,
+     "threat_chance": 0.475,
+     "answers_duel": 0.198,
+     "answers_sure": 0.191
     },
     {
      "variant": 0,
@@ -1587,7 +2184,10 @@
      "locked_move": null,
      "threat": 0.067,
      "answers": 0.296,
-     "answers_lock": 0.296
+     "answers_lock": 0.296,
+     "threat_chance": 0.061,
+     "answers_duel": 0.248,
+     "answers_sure": 0.214
     }
    ],
    "calcs": 35286,
@@ -1610,8 +2210,8 @@
     "p71 Electro Ball: damage is not a number",
     "p98 Heavy Slam: damage is not a number"
    ],
-   "node_seconds": 4.36,
-   "wall_seconds": 4.48
+   "node_seconds": 4.25,
+   "wall_seconds": 4.36
   },
   "saturn_1": {
    "key": "saturn_1",
@@ -1624,10 +2224,33 @@
    "threat": 0.516,
    "answers": 0.246,
    "answers_lock": 0.246,
+   "threat_chance": 0.508,
+   "answers_duel": 0.339,
+   "answers_sure": 0.324,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.369,
+   "unanswered": [],
    "max_threat": 0.804,
    "min_answers": 0.089,
    "min_answers_lock": 0.089,
    "choice_mons": 0,
+   "unseen": {
+    "disruption": [
+     "Mr. Mime Light Screen",
+     "Mr. Mime Reflect",
+     "Lickilicky Substitute",
+     "Azelf U-turn"
+    ],
+    "status": [
+     "Lickilicky Toxic"
+    ],
+    "recovery": [
+     "Slaking Slack Off"
+    ]
+   },
+   "unseen_count": 6.0,
+   "predictable": 0.667,
    "mons": [
     {
      "variant": 0,
@@ -1639,7 +2262,10 @@
      "locked_move": null,
      "threat": 0.5,
      "answers": 0.168,
-     "answers_lock": 0.168
+     "answers_lock": 0.168,
+     "threat_chance": 0.5,
+     "answers_duel": 0.373,
+     "answers_sure": 0.355
     },
     {
      "variant": 0,
@@ -1651,7 +2277,10 @@
      "locked_move": null,
      "threat": 0.142,
      "answers": 0.304,
-     "answers_lock": 0.304
+     "answers_lock": 0.304,
+     "threat_chance": 0.142,
+     "answers_duel": 0.453,
+     "answers_sure": 0.433
     },
     {
      "variant": 0,
@@ -1663,7 +2292,10 @@
      "locked_move": null,
      "threat": 0.746,
      "answers": 0.089,
-     "answers_lock": 0.089
+     "answers_lock": 0.089,
+     "threat_chance": 0.746,
+     "answers_duel": 0.157,
+     "answers_sure": 0.126
     },
     {
      "variant": 0,
@@ -1675,7 +2307,10 @@
      "locked_move": null,
      "threat": 0.14,
      "answers": 0.592,
-     "answers_lock": 0.592
+     "answers_lock": 0.592,
+     "threat_chance": 0.133,
+     "answers_duel": 0.49,
+     "answers_sure": 0.48
     },
     {
      "variant": 0,
@@ -1687,7 +2322,10 @@
      "locked_move": null,
      "threat": 0.804,
      "answers": 0.223,
-     "answers_lock": 0.223
+     "answers_lock": 0.223,
+     "threat_chance": 0.765,
+     "answers_duel": 0.334,
+     "answers_sure": 0.327
     },
     {
      "variant": 0,
@@ -1699,7 +2337,10 @@
      "locked_move": null,
      "threat": 0.763,
      "answers": 0.103,
-     "answers_lock": 0.103
+     "answers_lock": 0.103,
+     "threat_chance": 0.763,
+     "answers_duel": 0.224,
+     "answers_sure": 0.223
     }
    ],
    "calcs": 38022,
@@ -1723,8 +2364,8 @@
     "p57 Heavy Slam: damage is not a number",
     "p73 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.6,
-   "wall_seconds": 4.72
+   "node_seconds": 4.47,
+   "wall_seconds": 4.6
   },
   "mars_2": {
    "key": "mars_2",
@@ -1737,10 +2378,41 @@
    "threat": 0.365,
    "answers": 0.145,
    "answers_lock": 0.145,
+   "threat_chance": 0.364,
+   "answers_duel": 0.377,
+   "answers_sure": 0.361,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.444,
+   "unanswered": [],
    "max_threat": 0.844,
    "min_answers": 0.047,
    "min_answers_lock": 0.047,
    "choice_mons": 0,
+   "unseen": {
+    "disruption": [
+     "Umbreon Protect",
+     "Purugly Fake Out",
+     "Mesprit U-turn"
+    ],
+    "setup": [
+     "Delcatty Calm Mind",
+     "Bronzong Curse"
+    ],
+    "passing": [
+     "Delcatty Baton Pass"
+    ],
+    "status": [
+     "Delcatty Attract",
+     "Bronzong Confuse Ray",
+     "Purugly Hypnosis"
+    ],
+    "recovery": [
+     "Mesprit Rest"
+    ]
+   },
+   "unseen_count": 10.0,
+   "predictable": 0.451,
    "mons": [
     {
      "variant": 0,
@@ -1752,7 +2424,10 @@
      "locked_move": null,
      "threat": 0.089,
      "answers": 0.145,
-     "answers_lock": 0.145
+     "answers_lock": 0.145,
+     "threat_chance": 0.089,
+     "answers_duel": 0.407,
+     "answers_sure": 0.383
     },
     {
      "variant": 0,
@@ -1764,7 +2439,10 @@
      "locked_move": null,
      "threat": 0.416,
      "answers": 0.098,
-     "answers_lock": 0.098
+     "answers_lock": 0.098,
+     "threat_chance": 0.416,
+     "answers_duel": 0.529,
+     "answers_sure": 0.517
     },
     {
      "variant": 0,
@@ -1776,7 +2454,10 @@
      "locked_move": null,
      "threat": 0.844,
      "answers": 0.067,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.838,
+     "answers_duel": 0.148,
+     "answers_sure": 0.145
     },
     {
      "variant": 0,
@@ -1788,7 +2469,10 @@
      "locked_move": null,
      "threat": 0.003,
      "answers": 0.324,
-     "answers_lock": 0.324
+     "answers_lock": 0.324,
+     "threat_chance": 0.003,
+     "answers_duel": 0.376,
+     "answers_sure": 0.346
     },
     {
      "variant": 0,
@@ -1800,7 +2484,10 @@
      "locked_move": null,
      "threat": 0.243,
      "answers": 0.047,
-     "answers_lock": 0.047
+     "answers_lock": 0.047,
+     "threat_chance": 0.243,
+     "answers_duel": 0.569,
+     "answers_sure": 0.547
     },
     {
      "variant": 0,
@@ -1812,7 +2499,10 @@
      "locked_move": null,
      "threat": 0.595,
      "answers": 0.19,
-     "answers_lock": 0.19
+     "answers_lock": 0.19,
+     "threat_chance": 0.595,
+     "answers_duel": 0.235,
+     "answers_sure": 0.226
     }
    ],
    "calcs": 36232,
@@ -1836,8 +2526,8 @@
     "p57 Heavy Slam: damage is not a number",
     "p73 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.5,
-   "wall_seconds": 4.63
+   "node_seconds": 4.41,
+   "wall_seconds": 4.54
   },
   "candice": {
    "key": "candice",
@@ -1850,10 +2540,40 @@
    "threat": 0.651,
    "answers": 0.137,
    "answers_lock": 0.137,
+   "threat_chance": 0.65,
+   "answers_duel": 0.171,
+   "answers_sure": 0.134,
+   "cover": 2.0,
+   "best_one": 0.833,
+   "broad": 0.137,
+   "unanswered": [],
    "max_threat": 0.933,
    "min_answers": 0.039,
    "min_answers_lock": 0.039,
    "choice_mons": 0,
+   "unseen": {
+    "status": [
+     "Walrein Toxic",
+     "Glaceon Yawn"
+    ],
+    "recovery": [
+     "Walrein Rest",
+     "Articuno Roost"
+    ],
+    "passing": [
+     "Glaceon Baton Pass"
+    ],
+    "evasion": [
+     "Glaceon Double Team",
+     "Glaceon Snow Cloak",
+     "Froslass Snow Cloak"
+    ],
+    "sacrifice": [
+     "Froslass Destiny Bond"
+    ]
+   },
+   "unseen_count": 9.0,
+   "predictable": 0.597,
    "mons": [
     {
      "variant": 0,
@@ -1865,7 +2585,10 @@
      "locked_move": null,
      "threat": 0.402,
      "answers": 0.184,
-     "answers_lock": 0.184
+     "answers_lock": 0.184,
+     "threat_chance": 0.402,
+     "answers_duel": 0.165,
+     "answers_sure": 0.156
     },
     {
      "variant": 0,
@@ -1877,7 +2600,10 @@
      "locked_move": null,
      "threat": 0.665,
      "answers": 0.151,
-     "answers_lock": 0.151
+     "answers_lock": 0.151,
+     "threat_chance": 0.66,
+     "answers_duel": 0.153,
+     "answers_sure": 0.151
     },
     {
      "variant": 0,
@@ -1889,7 +2615,10 @@
      "locked_move": null,
      "threat": 0.933,
      "answers": 0.039,
-     "answers_lock": 0.039
+     "answers_lock": 0.039,
+     "threat_chance": 0.932,
+     "answers_duel": 0.15,
+     "answers_sure": 0.148
     },
     {
      "variant": 0,
@@ -1901,7 +2630,10 @@
      "locked_move": null,
      "threat": 0.581,
      "answers": 0.106,
-     "answers_lock": 0.106
+     "answers_lock": 0.106,
+     "threat_chance": 0.581,
+     "answers_duel": 0.228,
+     "answers_sure": 0.218
     },
     {
      "variant": 0,
@@ -1913,7 +2645,10 @@
      "locked_move": null,
      "threat": 0.494,
      "answers": 0.277,
-     "answers_lock": 0.277
+     "answers_lock": 0.277,
+     "threat_chance": 0.494,
+     "answers_duel": 0.215,
+     "answers_sure": 0.117
     },
     {
      "variant": 0,
@@ -1925,7 +2660,10 @@
      "locked_move": null,
      "threat": 0.832,
      "answers": 0.067,
-     "answers_lock": 0.067
+     "answers_lock": 0.067,
+     "threat_chance": 0.832,
+     "answers_duel": 0.113,
+     "answers_sure": 0.014
     }
    ],
    "calcs": 37664,
@@ -1949,8 +2687,8 @@
     "p57 Heavy Slam: damage is not a number",
     "p73 Electro Ball: damage is not a number"
    ],
-   "node_seconds": 4.55,
-   "wall_seconds": 4.68
+   "node_seconds": 4.46,
+   "wall_seconds": 4.58
   },
   "cyrus_2": {
    "key": "cyrus_2",
@@ -1963,10 +2701,40 @@
    "threat": 0.437,
    "answers": 0.132,
    "answers_lock": 0.132,
+   "threat_chance": 0.435,
+   "answers_duel": 0.346,
+   "answers_sure": 0.333,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.379,
+   "unanswered": [],
    "max_threat": 0.788,
    "min_answers": 0.036,
    "min_answers_lock": 0.036,
    "choice_mons": 0,
+   "unseen": {
+    "hazards": [
+     "Skarmory Stealth Rock"
+    ],
+    "speed control": [
+     "Skarmory Tailwind"
+    ],
+    "recovery": [
+     "Dusknoir Rest",
+     "Suicune Aqua Ring"
+    ],
+    "status": [
+     "Houndoom Will-O-Wisp"
+    ],
+    "setup": [
+     "Suicune Curse"
+    ],
+    "disruption": [
+     "Weavile Fake Out"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.5,
    "mons": [
     {
      "variant": 0,
@@ -1978,7 +2746,10 @@
      "locked_move": null,
      "threat": 0.281,
      "answers": 0.178,
-     "answers_lock": 0.178
+     "answers_lock": 0.178,
+     "threat_chance": 0.268,
+     "answers_duel": 0.428,
+     "answers_sure": 0.409
     },
     {
      "variant": 0,
@@ -1990,7 +2761,10 @@
      "locked_move": null,
      "threat": 0.15,
      "answers": 0.125,
-     "answers_lock": 0.125
+     "answers_lock": 0.125,
+     "threat_chance": 0.15,
+     "answers_duel": 0.187,
+     "answers_sure": 0.159
     },
     {
      "variant": 0,
@@ -2002,7 +2776,10 @@
      "locked_move": null,
      "threat": 0.747,
      "answers": 0.128,
-     "answers_lock": 0.128
+     "answers_lock": 0.128,
+     "threat_chance": 0.747,
+     "answers_duel": 0.355,
+     "answers_sure": 0.354
     },
     {
      "variant": 0,
@@ -2014,7 +2791,10 @@
      "locked_move": null,
      "threat": 0.217,
      "answers": 0.1,
-     "answers_lock": 0.1
+     "answers_lock": 0.1,
+     "threat_chance": 0.217,
+     "answers_duel": 0.375,
+     "answers_sure": 0.365
     },
     {
      "variant": 0,
@@ -2026,7 +2806,10 @@
      "locked_move": null,
      "threat": 0.437,
      "answers": 0.226,
-     "answers_lock": 0.226
+     "answers_lock": 0.226,
+     "threat_chance": 0.437,
+     "answers_duel": 0.351,
+     "answers_sure": 0.337
     },
     {
      "variant": 0,
@@ -2038,7 +2821,10 @@
      "locked_move": null,
      "threat": 0.788,
      "answers": 0.036,
-     "answers_lock": 0.036
+     "answers_lock": 0.036,
+     "threat_chance": 0.788,
+     "answers_duel": 0.382,
+     "answers_sure": 0.373
     }
    ],
    "calcs": 37024,
@@ -2071,8 +2857,8 @@
     "p75 Trump Card: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 4.46,
-   "wall_seconds": 4.58
+   "node_seconds": 4.37,
+   "wall_seconds": 4.5
   },
   "saturn_2": {
    "key": "saturn_2",
@@ -2085,10 +2871,38 @@
    "threat": 0.406,
    "answers": 0.189,
    "answers_lock": 0.197,
+   "threat_chance": 0.401,
+   "answers_duel": 0.307,
+   "answers_sure": 0.294,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.304,
+   "unanswered": [],
    "max_threat": 0.819,
    "min_answers": 0.0,
    "min_answers_lock": 0.0,
    "choice_mons": 1,
+   "unseen": {
+    "speed control": [
+     "Uxie Trick Room"
+    ],
+    "status": [
+     "Uxie Hypnosis"
+    ],
+    "disruption": [
+     "Uxie U-turn"
+    ],
+    "setup": [
+     "Lickilicky Curse",
+     "Cresselia Calm Mind"
+    ],
+    "recovery": [
+     "Wailord Aqua Ring",
+     "Cresselia Moonlight"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.583,
    "mons": [
     {
      "variant": 0,
@@ -2100,7 +2914,10 @@
      "locked_move": null,
      "threat": 0.006,
      "answers": 0.209,
-     "answers_lock": 0.209
+     "answers_lock": 0.209,
+     "threat_chance": 0.006,
+     "answers_duel": 0.499,
+     "answers_sure": 0.468
     },
     {
      "variant": 0,
@@ -2112,7 +2929,10 @@
      "locked_move": null,
      "threat": 0.423,
      "answers": 0.033,
-     "answers_lock": 0.033
+     "answers_lock": 0.033,
+     "threat_chance": 0.423,
+     "answers_duel": 0.246,
+     "answers_sure": 0.237
     },
     {
      "variant": 0,
@@ -2124,7 +2944,10 @@
      "locked_move": null,
      "threat": 0.819,
      "answers": 0.0,
-     "answers_lock": 0.0
+     "answers_lock": 0.0,
+     "threat_chance": 0.819,
+     "answers_duel": 0.079,
+     "answers_sure": 0.075
     },
     {
      "variant": 0,
@@ -2136,7 +2959,10 @@
      "locked_move": "Stone Edge",
      "threat": 0.515,
      "answers": 0.298,
-     "answers_lock": 0.345
+     "answers_lock": 0.345,
+     "threat_chance": 0.507,
+     "answers_duel": 0.331,
+     "answers_sure": 0.331
     },
     {
      "variant": 0,
@@ -2148,7 +2974,10 @@
      "locked_move": null,
      "threat": 0.05,
      "answers": 0.103,
-     "answers_lock": 0.103
+     "answers_lock": 0.103,
+     "threat_chance": 0.05,
+     "answers_duel": 0.371,
+     "answers_sure": 0.345
     },
     {
      "variant": 0,
@@ -2160,7 +2989,10 @@
      "locked_move": null,
      "threat": 0.624,
      "answers": 0.49,
-     "answers_lock": 0.49
+     "answers_lock": 0.49,
+     "threat_chance": 0.604,
+     "answers_duel": 0.314,
+     "answers_sure": 0.309
     }
    ],
    "calcs": 38101,
@@ -2193,8 +3025,8 @@
     "p75 Trump Card: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 4.69,
-   "wall_seconds": 4.81
+   "node_seconds": 4.6,
+   "wall_seconds": 4.73
   },
   "mars_jupiter": {
    "key": "mars_jupiter",
@@ -2207,10 +3039,43 @@
    "threat": 0.302,
    "answers": 0.346,
    "answers_lock": 0.358,
+   "threat_chance": 0.301,
+   "answers_duel": 0.584,
+   "answers_sure": 0.574,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.602,
+   "unanswered": [],
    "max_threat": 0.681,
    "min_answers": 0.063,
    "min_answers_lock": 0.063,
    "choice_mons": 1,
+   "unseen": {
+    "status": [
+     "Solrock Will-O-Wisp",
+     "Purugly Hypnosis",
+     "Drapion Toxic"
+    ],
+    "disruption": [
+     "Solrock Light Screen",
+     "Delcatty Fake Out",
+     "Purugly Fake Out",
+     "Tangrowth Protect",
+     "Spiritomb Torment"
+    ],
+    "setup": [
+     "Luxray Charge",
+     "Bronzong Curse"
+    ],
+    "hazards": [
+     "Lunatone Stealth Rock"
+    ],
+    "pinch items": [
+     "Lunatone Quick Claw"
+    ]
+   },
+   "unseen_count": 12.0,
+   "predictable": 0.479,
    "mons": [
     {
      "variant": 0,
@@ -2222,7 +3087,10 @@
      "locked_move": null,
      "threat": 0.332,
      "answers": 0.464,
-     "answers_lock": 0.464
+     "answers_lock": 0.464,
+     "threat_chance": 0.32,
+     "answers_duel": 0.65,
+     "answers_sure": 0.648
     },
     {
      "variant": 0,
@@ -2234,7 +3102,10 @@
      "locked_move": null,
      "threat": 0.0,
      "answers": 0.063,
-     "answers_lock": 0.063
+     "answers_lock": 0.063,
+     "threat_chance": 0.0,
+     "answers_duel": 0.952,
+     "answers_sure": 0.945
     },
     {
      "variant": 0,
@@ -2246,7 +3117,10 @@
      "locked_move": null,
      "threat": 0.681,
      "answers": 0.195,
-     "answers_lock": 0.195
+     "answers_lock": 0.195,
+     "threat_chance": 0.681,
+     "answers_duel": 0.354,
+     "answers_sure": 0.352
     },
     {
      "variant": 0,
@@ -2258,7 +3132,10 @@
      "locked_move": null,
      "threat": 0.033,
      "answers": 0.445,
-     "answers_lock": 0.445
+     "answers_lock": 0.445,
+     "threat_chance": 0.033,
+     "answers_duel": 0.55,
+     "answers_sure": 0.527
     },
     {
      "variant": 0,
@@ -2270,7 +3147,10 @@
      "locked_move": null,
      "threat": 0.44,
      "answers": 0.159,
-     "answers_lock": 0.159
+     "answers_lock": 0.159,
+     "threat_chance": 0.44,
+     "answers_duel": 0.573,
+     "answers_sure": 0.566
     },
     {
      "variant": 0,
@@ -2282,7 +3162,10 @@
      "locked_move": null,
      "threat": 0.376,
      "answers": 0.451,
-     "answers_lock": 0.451
+     "answers_lock": 0.451,
+     "threat_chance": 0.376,
+     "answers_duel": 0.597,
+     "answers_sure": 0.596
     },
     {
      "variant": 0,
@@ -2294,7 +3177,10 @@
      "locked_move": null,
      "threat": 0.426,
      "answers": 0.184,
-     "answers_lock": 0.184
+     "answers_lock": 0.184,
+     "threat_chance": 0.426,
+     "answers_duel": 0.527,
+     "answers_sure": 0.519
     },
     {
      "variant": 0,
@@ -2306,7 +3192,10 @@
      "locked_move": null,
      "threat": 0.005,
      "answers": 0.676,
-     "answers_lock": 0.676
+     "answers_lock": 0.676,
+     "threat_chance": 0.004,
+     "answers_duel": 0.605,
+     "answers_sure": 0.585
     },
     {
      "variant": 0,
@@ -2318,7 +3207,10 @@
      "locked_move": null,
      "threat": 0.14,
      "answers": 0.544,
-     "answers_lock": 0.544
+     "answers_lock": 0.544,
+     "threat_chance": 0.14,
+     "answers_duel": 0.654,
+     "answers_sure": 0.626
     },
     {
      "variant": 0,
@@ -2330,7 +3222,10 @@
      "locked_move": "Dark Pulse",
      "threat": 0.591,
      "answers": 0.283,
-     "answers_lock": 0.398
+     "answers_lock": 0.398,
+     "threat_chance": 0.591,
+     "answers_duel": 0.376,
+     "answers_sure": 0.376
     }
    ],
    "calcs": 67888,
@@ -2364,8 +3259,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 7.85,
-   "wall_seconds": 8.02
+   "node_seconds": 7.55,
+   "wall_seconds": 7.73
   },
   "cyrus_3": {
    "key": "cyrus_3",
@@ -2378,10 +3273,34 @@
    "threat": 0.511,
    "answers": 0.237,
    "answers_lock": 0.237,
+   "threat_chance": 0.468,
+   "answers_duel": 0.26,
+   "answers_sure": 0.255,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.297,
+   "unanswered": [],
    "max_threat": 0.827,
    "min_answers": 0.124,
    "min_answers_lock": 0.124,
    "choice_mons": 0,
+   "unseen": {
+    "status": [
+     "Dusknoir Will-O-Wisp",
+     "Salamence Swagger"
+    ],
+    "disruption": [
+     "Flygon U-turn"
+    ],
+    "setup": [
+     "Regirock Curse"
+    ],
+    "sacrifice": [
+     "Regirock Explosion"
+    ]
+   },
+   "unseen_count": 5.0,
+   "predictable": 0.742,
    "mons": [
     {
      "variant": 0,
@@ -2393,7 +3312,10 @@
      "locked_move": null,
      "threat": 0.184,
      "answers": 0.272,
-     "answers_lock": 0.272
+     "answers_lock": 0.272,
+     "threat_chance": 0.184,
+     "answers_duel": 0.337,
+     "answers_sure": 0.332
     },
     {
      "variant": 0,
@@ -2405,7 +3327,10 @@
      "locked_move": null,
      "threat": 0.486,
      "answers": 0.217,
-     "answers_lock": 0.217
+     "answers_lock": 0.217,
+     "threat_chance": 0.468,
+     "answers_duel": 0.278,
+     "answers_sure": 0.264
     },
     {
      "variant": 0,
@@ -2417,7 +3342,10 @@
      "locked_move": null,
      "threat": 0.629,
      "answers": 0.19,
-     "answers_lock": 0.19
+     "answers_lock": 0.19,
+     "threat_chance": 0.572,
+     "answers_duel": 0.159,
+     "answers_sure": 0.157
     },
     {
      "variant": 0,
@@ -2429,7 +3357,10 @@
      "locked_move": null,
      "threat": 0.827,
      "answers": 0.162,
-     "answers_lock": 0.162
+     "answers_lock": 0.162,
+     "threat_chance": 0.767,
+     "answers_duel": 0.292,
+     "answers_sure": 0.291
     },
     {
      "variant": 0,
@@ -2441,7 +3372,10 @@
      "locked_move": null,
      "threat": 0.203,
      "answers": 0.459,
-     "answers_lock": 0.459
+     "answers_lock": 0.459,
+     "threat_chance": 0.2,
+     "answers_duel": 0.142,
+     "answers_sure": 0.143
     },
     {
      "variant": 0,
@@ -2453,7 +3387,10 @@
      "locked_move": null,
      "threat": 0.736,
      "answers": 0.124,
-     "answers_lock": 0.124
+     "answers_lock": 0.124,
+     "threat_chance": 0.614,
+     "answers_duel": 0.349,
+     "answers_sure": 0.343
     }
    ],
    "calcs": 43572,
@@ -2487,8 +3424,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.26,
-   "wall_seconds": 5.39
+   "node_seconds": 5.1,
+   "wall_seconds": 5.23
   },
   "volkner": {
    "key": "volkner",
@@ -2501,10 +3438,31 @@
    "threat": 0.662,
    "answers": 0.176,
    "answers_lock": 0.243,
+   "threat_chance": 0.59,
+   "answers_duel": 0.328,
+   "answers_sure": 0.321,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.382,
+   "unanswered": [],
    "max_threat": 0.896,
    "min_answers": 0.025,
    "min_answers_lock": 0.058,
    "choice_mons": 3,
+   "unseen": {
+    "speed control": [
+     "Jolteon Thunder Wave",
+     "Rotom-Mow Thunder Wave"
+    ],
+    "weather moves": [
+     "Jolteon Rain Dance"
+    ],
+    "recovery": [
+     "Lanturn Aqua Ring"
+    ]
+   },
+   "unseen_count": 4.0,
+   "predictable": 0.722,
    "mons": [
     {
      "variant": 0,
@@ -2516,7 +3474,10 @@
      "locked_move": null,
      "threat": 0.676,
      "answers": 0.058,
-     "answers_lock": 0.058
+     "answers_lock": 0.058,
+     "threat_chance": 0.477,
+     "answers_duel": 0.468,
+     "answers_sure": 0.467
     },
     {
      "variant": 0,
@@ -2528,7 +3489,10 @@
      "locked_move": null,
      "threat": 0.659,
      "answers": 0.25,
-     "answers_lock": 0.25
+     "answers_lock": 0.25,
+     "threat_chance": 0.531,
+     "answers_duel": 0.392,
+     "answers_sure": 0.379
     },
     {
      "variant": 0,
@@ -2540,7 +3504,10 @@
      "locked_move": null,
      "threat": 0.371,
      "answers": 0.31,
-     "answers_lock": 0.31
+     "answers_lock": 0.31,
+     "threat_chance": 0.317,
+     "answers_duel": 0.373,
+     "answers_sure": 0.368
     },
     {
      "variant": 0,
@@ -2552,7 +3519,10 @@
      "locked_move": "Thunder",
      "threat": 0.505,
      "answers": 0.297,
-     "answers_lock": 0.357
+     "answers_lock": 0.357,
+     "threat_chance": 0.475,
+     "answers_duel": 0.242,
+     "answers_sure": 0.225
     },
     {
      "variant": 0,
@@ -2564,7 +3534,10 @@
      "locked_move": "Thunder Fang",
      "threat": 0.863,
      "answers": 0.115,
-     "answers_lock": 0.272
+     "answers_lock": 0.272,
+     "threat_chance": 0.854,
+     "answers_duel": 0.202,
+     "answers_sure": 0.198
     },
     {
      "variant": 0,
@@ -2576,7 +3549,10 @@
      "locked_move": "Thunder Punch",
      "threat": 0.896,
      "answers": 0.025,
-     "answers_lock": 0.212
+     "answers_lock": 0.212,
+     "threat_chance": 0.885,
+     "answers_duel": 0.29,
+     "answers_sure": 0.288
     }
    ],
    "calcs": 43430,
@@ -2610,8 +3586,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.17,
-   "wall_seconds": 5.31
+   "node_seconds": 5.0,
+   "wall_seconds": 5.14
   },
   "barry_6": {
    "key": "barry_6",
@@ -2624,10 +3600,45 @@
    "threat": 0.53,
    "answers": 0.245,
    "answers_lock": 0.245,
+   "threat_chance": 0.52,
+   "answers_duel": 0.382,
+   "answers_sure": 0.376,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.452,
+   "unanswered": [],
    "max_threat": 0.909,
    "min_answers": 0.052,
    "min_answers_lock": 0.052,
    "choice_mons": 0,
+   "unseen": {
+    "disruption": [
+     "Staraptor U-turn"
+    ],
+    "recovery": [
+     "Starmie Recover",
+     "Snorlax Rest",
+     "Torterra Leech Seed"
+    ],
+    "speed control": [
+     "Dragonite Thunder Wave",
+     "Shiftry Tailwind"
+    ],
+    "setup": [
+     "Ninetales Nasty Plot",
+     "Infernape Swords Dance",
+     "Empoleon Swords Dance"
+    ],
+    "status": [
+     "Ninetales Hypnosis",
+     "Ninetales Will-O-Wisp"
+    ],
+    "pinch items": [
+     "Empoleon Salac Berry"
+    ]
+   },
+   "unseen_count": 7.0,
+   "predictable": 0.551,
    "mons": [
     {
      "variant": 0,
@@ -2639,7 +3650,10 @@
      "locked_move": null,
      "threat": 0.824,
      "answers": 0.099,
-     "answers_lock": 0.099
+     "answers_lock": 0.099,
+     "threat_chance": 0.824,
+     "answers_duel": 0.145,
+     "answers_sure": 0.143
     },
     {
      "variant": 0,
@@ -2651,7 +3665,10 @@
      "locked_move": null,
      "threat": 0.772,
      "answers": 0.121,
-     "answers_lock": 0.121
+     "answers_lock": 0.121,
+     "threat_chance": 0.709,
+     "answers_duel": 0.432,
+     "answers_sure": 0.431
     },
     {
      "variant": 0,
@@ -2663,7 +3680,10 @@
      "locked_move": null,
      "threat": 0.552,
      "answers": 0.269,
-     "answers_lock": 0.269
+     "answers_lock": 0.269,
+     "threat_chance": 0.552,
+     "answers_duel": 0.311,
+     "answers_sure": 0.294
     },
     {
      "variant": 0,
@@ -2675,7 +3695,10 @@
      "locked_move": null,
      "threat": 0.651,
      "answers": 0.146,
-     "answers_lock": 0.146
+     "answers_lock": 0.146,
+     "threat_chance": 0.618,
+     "answers_duel": 0.414,
+     "answers_sure": 0.418
     },
     {
      "variant": 0,
@@ -2687,7 +3710,10 @@
      "locked_move": null,
      "threat": 0.06,
      "answers": 0.346,
-     "answers_lock": 0.346
+     "answers_lock": 0.346,
+     "threat_chance": 0.06,
+     "answers_duel": 0.467,
+     "answers_sure": 0.456
     },
     {
      "variant": 0,
@@ -2699,7 +3725,10 @@
      "locked_move": null,
      "threat": 0.299,
      "answers": 0.47,
-     "answers_lock": 0.47
+     "answers_lock": 0.47,
+     "threat_chance": 0.299,
+     "answers_duel": 0.367,
+     "answers_sure": 0.36
     },
     {
      "variant": 1,
@@ -2711,7 +3740,10 @@
      "locked_move": null,
      "threat": 0.808,
      "answers": 0.162,
-     "answers_lock": 0.162
+     "answers_lock": 0.162,
+     "threat_chance": 0.808,
+     "answers_duel": 0.146,
+     "answers_sure": 0.146
     },
     {
      "variant": 1,
@@ -2723,7 +3755,10 @@
      "locked_move": null,
      "threat": 0.723,
      "answers": 0.146,
-     "answers_lock": 0.146
+     "answers_lock": 0.146,
+     "threat_chance": 0.669,
+     "answers_duel": 0.404,
+     "answers_sure": 0.404
     },
     {
      "variant": 1,
@@ -2735,7 +3770,10 @@
      "locked_move": null,
      "threat": 0.552,
      "answers": 0.277,
-     "answers_lock": 0.277
+     "answers_lock": 0.277,
+     "threat_chance": 0.552,
+     "answers_duel": 0.33,
+     "answers_sure": 0.316
     },
     {
      "variant": 1,
@@ -2747,7 +3785,10 @@
      "locked_move": null,
      "threat": 0.591,
      "answers": 0.266,
-     "answers_lock": 0.266
+     "answers_lock": 0.266,
+     "threat_chance": 0.591,
+     "answers_duel": 0.605,
+     "answers_sure": 0.596
     },
     {
      "variant": 1,
@@ -2759,7 +3800,10 @@
      "locked_move": null,
      "threat": 0.063,
      "answers": 0.349,
-     "answers_lock": 0.349
+     "answers_lock": 0.349,
+     "threat_chance": 0.063,
+     "answers_duel": 0.428,
+     "answers_sure": 0.418
     },
     {
      "variant": 1,
@@ -2771,7 +3815,10 @@
      "locked_move": null,
      "threat": 0.909,
      "answers": 0.052,
-     "answers_lock": 0.052
+     "answers_lock": 0.052,
+     "threat_chance": 0.909,
+     "answers_duel": 0.305,
+     "answers_sure": 0.305
     },
     {
      "variant": 2,
@@ -2783,7 +3830,10 @@
      "locked_move": null,
      "threat": 0.769,
      "answers": 0.159,
-     "answers_lock": 0.159
+     "answers_lock": 0.159,
+     "threat_chance": 0.769,
+     "answers_duel": 0.183,
+     "answers_sure": 0.181
     },
     {
      "variant": 2,
@@ -2795,7 +3845,10 @@
      "locked_move": null,
      "threat": 0.563,
      "answers": 0.44,
-     "answers_lock": 0.44
+     "answers_lock": 0.44,
+     "threat_chance": 0.563,
+     "answers_duel": 0.605,
+     "answers_sure": 0.593
     },
     {
      "variant": 2,
@@ -2807,7 +3860,10 @@
      "locked_move": null,
      "threat": 0.552,
      "answers": 0.277,
-     "answers_lock": 0.277
+     "answers_lock": 0.277,
+     "threat_chance": 0.552,
+     "answers_duel": 0.33,
+     "answers_sure": 0.316
     },
     {
      "variant": 2,
@@ -2819,7 +3875,10 @@
      "locked_move": null,
      "threat": 0.585,
      "answers": 0.146,
-     "answers_lock": 0.146
+     "answers_lock": 0.146,
+     "threat_chance": 0.55,
+     "answers_duel": 0.482,
+     "answers_sure": 0.486
     },
     {
      "variant": 2,
@@ -2831,7 +3890,10 @@
      "locked_move": null,
      "threat": 0.063,
      "answers": 0.349,
-     "answers_lock": 0.349
+     "answers_lock": 0.349,
+     "threat_chance": 0.063,
+     "answers_duel": 0.428,
+     "answers_sure": 0.418
     },
     {
      "variant": 2,
@@ -2843,7 +3905,10 @@
      "locked_move": null,
      "threat": 0.209,
      "answers": 0.341,
-     "answers_lock": 0.341
+     "answers_lock": 0.341,
+     "threat_chance": 0.209,
+     "answers_duel": 0.495,
+     "answers_sure": 0.478
     }
    ],
    "calcs": 129150,
@@ -2877,8 +3942,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 14.22,
-   "wall_seconds": 14.5
+   "node_seconds": 13.72,
+   "wall_seconds": 14.01
   },
   "aaron": {
    "key": "aaron",
@@ -2891,10 +3956,35 @@
    "threat": 0.567,
    "answers": 0.191,
    "answers_lock": 0.206,
+   "threat_chance": 0.562,
+   "answers_duel": 0.471,
+   "answers_sure": 0.47,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.544,
+   "unanswered": [],
    "max_threat": 0.725,
    "min_answers": 0.085,
    "min_answers_lock": 0.085,
    "choice_mons": 1,
+   "unseen": {
+    "setup": [
+     "Ninjask Swords Dance",
+     "Vespiquen Defend Order"
+    ],
+    "passing": [
+     "Ninjask Baton Pass"
+    ],
+    "disruption": [
+     "Ninjask Protect",
+     "Yanmega Detect"
+    ],
+    "recovery": [
+     "Vespiquen Heal Order"
+    ]
+   },
+   "unseen_count": 6.0,
+   "predictable": 0.681,
    "mons": [
     {
      "variant": 0,
@@ -2906,7 +3996,10 @@
      "locked_move": null,
      "threat": 0.343,
      "answers": 0.096,
-     "answers_lock": 0.096
+     "answers_lock": 0.096,
+     "threat_chance": 0.343,
+     "answers_duel": 0.672,
+     "answers_sure": 0.673
     },
     {
      "variant": 0,
@@ -2918,7 +4011,10 @@
      "locked_move": "Iron Head",
      "threat": 0.725,
      "answers": 0.297,
-     "answers_lock": 0.387
+     "answers_lock": 0.387,
+     "threat_chance": 0.725,
+     "answers_duel": 0.337,
+     "answers_sure": 0.343
     },
     {
      "variant": 0,
@@ -2930,7 +4026,10 @@
      "locked_move": null,
      "threat": 0.418,
      "answers": 0.354,
-     "answers_lock": 0.354
+     "answers_lock": 0.354,
+     "threat_chance": 0.418,
+     "answers_duel": 0.484,
+     "answers_sure": 0.484
     },
     {
      "variant": 0,
@@ -2942,7 +4041,10 @@
      "locked_move": null,
      "threat": 0.703,
      "answers": 0.192,
-     "answers_lock": 0.192
+     "answers_lock": 0.192,
+     "threat_chance": 0.682,
+     "answers_duel": 0.348,
+     "answers_sure": 0.349
     },
     {
      "variant": 0,
@@ -2954,7 +4056,10 @@
      "locked_move": null,
      "threat": 0.593,
      "answers": 0.124,
-     "answers_lock": 0.124
+     "answers_lock": 0.124,
+     "threat_chance": 0.586,
+     "answers_duel": 0.605,
+     "answers_sure": 0.604
     },
     {
      "variant": 0,
@@ -2966,7 +4071,10 @@
      "locked_move": null,
      "threat": 0.621,
      "answers": 0.085,
-     "answers_lock": 0.085
+     "answers_lock": 0.085,
+     "threat_chance": 0.621,
+     "answers_duel": 0.379,
+     "answers_sure": 0.368
     }
    ],
    "calcs": 43050,
@@ -3000,8 +4108,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.16,
-   "wall_seconds": 5.29
+   "node_seconds": 5.01,
+   "wall_seconds": 5.14
   },
   "bertha": {
    "key": "bertha",
@@ -3014,10 +4122,33 @@
    "threat": 0.48,
    "answers": 0.316,
    "answers_lock": 0.37,
+   "threat_chance": 0.475,
+   "answers_duel": 0.365,
+   "answers_sure": 0.35,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.398,
+   "unanswered": [],
    "max_threat": 0.753,
    "min_answers": 0.019,
    "min_answers_lock": 0.143,
    "choice_mons": 2,
+   "unseen": {
+    "status": [
+     "Hippowdon Yawn"
+    ],
+    "evasion": [
+     "Gliscor Sand Veil"
+    ],
+    "disruption": [
+     "Gliscor U-turn"
+    ],
+    "recovery": [
+     "Flygon Roost"
+    ]
+   },
+   "unseen_count": 4.0,
+   "predictable": 0.806,
    "mons": [
     {
      "variant": 0,
@@ -3029,7 +4160,10 @@
      "locked_move": null,
      "threat": 0.214,
      "answers": 0.481,
-     "answers_lock": 0.481
+     "answers_lock": 0.481,
+     "threat_chance": 0.205,
+     "answers_duel": 0.448,
+     "answers_sure": 0.453
     },
     {
      "variant": 0,
@@ -3041,7 +4175,10 @@
      "locked_move": "Earthquake",
      "threat": 0.736,
      "answers": 0.019,
-     "answers_lock": 0.33
+     "answers_lock": 0.33,
+     "threat_chance": 0.734,
+     "answers_duel": 0.33,
+     "answers_sure": 0.272
     },
     {
      "variant": 0,
@@ -3053,7 +4190,10 @@
      "locked_move": null,
      "threat": 0.648,
      "answers": 0.266,
-     "answers_lock": 0.266
+     "answers_lock": 0.266,
+     "threat_chance": 0.634,
+     "answers_duel": 0.394,
+     "answers_sure": 0.393
     },
     {
      "variant": 0,
@@ -3065,7 +4205,10 @@
      "locked_move": null,
      "threat": 0.305,
      "answers": 0.492,
-     "answers_lock": 0.492
+     "answers_lock": 0.492,
+     "threat_chance": 0.301,
+     "answers_duel": 0.426,
+     "answers_sure": 0.415
     },
     {
      "variant": 0,
@@ -3077,7 +4220,10 @@
      "locked_move": null,
      "threat": 0.753,
      "answers": 0.143,
-     "answers_lock": 0.143
+     "answers_lock": 0.143,
+     "threat_chance": 0.752,
+     "answers_duel": 0.312,
+     "answers_sure": 0.288
     },
     {
      "variant": 0,
@@ -3089,7 +4235,10 @@
      "locked_move": "Rock Wrecker",
      "threat": 0.225,
      "answers": 0.492,
-     "answers_lock": 0.511
+     "answers_lock": 0.511,
+     "threat_chance": 0.223,
+     "answers_duel": 0.282,
+     "answers_sure": 0.277
     }
    ],
    "calcs": 44506,
@@ -3122,8 +4271,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.38,
-   "wall_seconds": 5.52
+   "node_seconds": 5.21,
+   "wall_seconds": 5.34
   },
   "flint": {
    "key": "flint",
@@ -3136,10 +4285,31 @@
    "threat": 0.685,
    "answers": 0.142,
    "answers_lock": 0.185,
+   "threat_chance": 0.667,
+   "answers_duel": 0.29,
+   "answers_sure": 0.29,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.341,
+   "unanswered": [],
    "max_threat": 0.915,
    "min_answers": 0.041,
    "min_answers_lock": 0.041,
    "choice_mons": 2,
+   "unseen": {
+    "weather moves": [
+     "Ninetales Sunny Day",
+     "Camerupt Sunny Day"
+    ],
+    "status": [
+     "Houndoom Will-O-Wisp"
+    ],
+    "recovery": [
+     "Arcanine Morning Sun"
+    ]
+   },
+   "unseen_count": 4.0,
+   "predictable": 0.667,
    "mons": [
     {
      "variant": 0,
@@ -3151,7 +4321,10 @@
      "locked_move": null,
      "threat": 0.643,
      "answers": 0.058,
-     "answers_lock": 0.058
+     "answers_lock": 0.058,
+     "threat_chance": 0.643,
+     "answers_duel": 0.415,
+     "answers_sure": 0.42
     },
     {
      "variant": 0,
@@ -3163,7 +4336,10 @@
      "locked_move": null,
      "threat": 0.78,
      "answers": 0.082,
-     "answers_lock": 0.082
+     "answers_lock": 0.082,
+     "threat_chance": 0.731,
+     "answers_duel": 0.364,
+     "answers_sure": 0.363
     },
     {
      "variant": 0,
@@ -3175,7 +4351,10 @@
      "locked_move": null,
      "threat": 0.214,
      "answers": 0.514,
-     "answers_lock": 0.514
+     "answers_lock": 0.514,
+     "threat_chance": 0.203,
+     "answers_duel": 0.346,
+     "answers_sure": 0.343
     },
     {
      "variant": 0,
@@ -3187,7 +4366,10 @@
      "locked_move": "Close Combat",
      "threat": 0.915,
      "answers": 0.074,
-     "answers_lock": 0.225
+     "answers_lock": 0.225,
+     "threat_chance": 0.915,
+     "answers_duel": 0.174,
+     "answers_sure": 0.173
     },
     {
      "variant": 0,
@@ -3199,7 +4381,10 @@
      "locked_move": null,
      "threat": 0.67,
      "answers": 0.041,
-     "answers_lock": 0.041
+     "answers_lock": 0.041,
+     "threat_chance": 0.67,
+     "answers_duel": 0.307,
+     "answers_sure": 0.305
     },
     {
      "variant": 0,
@@ -3211,7 +4396,10 @@
      "locked_move": "Fire Blast",
      "threat": 0.887,
      "answers": 0.085,
-     "answers_lock": 0.192
+     "answers_lock": 0.192,
+     "threat_chance": 0.84,
+     "answers_duel": 0.136,
+     "answers_sure": 0.137
     }
    ],
    "calcs": 43778,
@@ -3245,8 +4433,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.32,
-   "wall_seconds": 5.46
+   "node_seconds": 5.21,
+   "wall_seconds": 5.34
   },
   "lucian": {
    "key": "lucian",
@@ -3259,10 +4447,29 @@
    "threat": 0.606,
    "answers": 0.277,
    "answers_lock": 0.325,
+   "threat_chance": 0.593,
+   "answers_duel": 0.332,
+   "answers_sure": 0.333,
+   "cover": 1.0,
+   "best_one": 1.0,
+   "broad": 0.401,
+   "unanswered": [],
    "max_threat": 0.931,
    "min_answers": 0.041,
    "min_answers_lock": 0.132,
    "choice_mons": 3,
+   "unseen": {
+    "disruption": [
+     "Espeon Light Screen",
+     "Espeon Reflect"
+    ],
+    "recovery": [
+     "Alakazam Recover",
+     "Slowking Slack Off"
+    ]
+   },
+   "unseen_count": 4.0,
+   "predictable": 0.722,
    "mons": [
     {
      "variant": 0,
@@ -3274,7 +4481,10 @@
      "locked_move": null,
      "threat": 0.742,
      "answers": 0.132,
-     "answers_lock": 0.132
+     "answers_lock": 0.132,
+     "threat_chance": 0.742,
+     "answers_duel": 0.446,
+     "answers_sure": 0.445
     },
     {
      "variant": 0,
@@ -3286,7 +4496,10 @@
      "locked_move": "Leaf Storm",
      "threat": 0.368,
      "answers": 0.569,
-     "answers_lock": 0.577
+     "answers_lock": 0.577,
+     "threat_chance": 0.362,
+     "answers_duel": 0.369,
+     "answers_sure": 0.368
     },
     {
      "variant": 0,
@@ -3298,7 +4511,10 @@
      "locked_move": "Meteor Mash",
      "threat": 0.662,
      "answers": 0.19,
-     "answers_lock": 0.223
+     "answers_lock": 0.223,
+     "threat_chance": 0.656,
+     "answers_duel": 0.1,
+     "answers_sure": 0.102
     },
     {
      "variant": 0,
@@ -3310,7 +4526,10 @@
      "locked_move": null,
      "threat": 0.931,
      "answers": 0.146,
-     "answers_lock": 0.146
+     "answers_lock": 0.146,
+     "threat_chance": 0.9,
+     "answers_duel": 0.36,
+     "answers_sure": 0.363
     },
     {
      "variant": 0,
@@ -3322,7 +4541,10 @@
      "locked_move": null,
      "threat": 0.085,
      "answers": 0.582,
-     "answers_lock": 0.582
+     "answers_lock": 0.582,
+     "threat_chance": 0.085,
+     "answers_duel": 0.459,
+     "answers_sure": 0.456
     },
     {
      "variant": 0,
@@ -3334,7 +4556,10 @@
      "locked_move": "Stone Edge",
      "threat": 0.849,
      "answers": 0.041,
-     "answers_lock": 0.288
+     "answers_lock": 0.288,
+     "threat_chance": 0.813,
+     "answers_duel": 0.257,
+     "answers_sure": 0.261
     }
    ],
    "calcs": 43778,
@@ -3368,8 +4593,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.34,
-   "wall_seconds": 5.47
+   "node_seconds": 5.69,
+   "wall_seconds": 5.83
   },
   "cynthia": {
    "key": "cynthia",
@@ -3382,10 +4607,30 @@
    "threat": 0.678,
    "answers": 0.148,
    "answers_lock": 0.187,
+   "threat_chance": 0.661,
+   "answers_duel": 0.198,
+   "answers_sure": 0.189,
+   "cover": 2.0,
+   "best_one": 0.833,
+   "broad": 0.151,
+   "unanswered": [],
    "max_threat": 0.893,
    "min_answers": 0.016,
    "min_answers_lock": 0.044,
    "choice_mons": 2,
+   "unseen": {
+    "speed control": [
+     "Togekiss Thunder Wave"
+    ],
+    "recovery": [
+     "Milotic Recover"
+    ],
+    "evasion": [
+     "Garchomp Sand Veil"
+    ]
+   },
+   "unseen_count": 3.0,
+   "predictable": 0.833,
    "mons": [
     {
      "variant": 0,
@@ -3397,7 +4642,10 @@
      "locked_move": null,
      "threat": 0.168,
      "answers": 0.36,
-     "answers_lock": 0.36
+     "answers_lock": 0.36,
+     "threat_chance": 0.168,
+     "answers_duel": 0.366,
+     "answers_sure": 0.346
     },
     {
      "variant": 0,
@@ -3409,7 +4657,10 @@
      "locked_move": "Hyper Beam",
      "threat": 0.843,
      "answers": 0.146,
-     "answers_lock": 0.201
+     "answers_lock": 0.201,
+     "threat_chance": 0.843,
+     "answers_duel": 0.053,
+     "answers_sure": 0.049
     },
     {
      "variant": 0,
@@ -3421,7 +4672,10 @@
      "locked_move": null,
      "threat": 0.643,
      "answers": 0.247,
-     "answers_lock": 0.247
+     "answers_lock": 0.247,
+     "threat_chance": 0.636,
+     "answers_duel": 0.231,
+     "answers_sure": 0.225
     },
     {
      "variant": 0,
@@ -3433,7 +4687,10 @@
      "locked_move": "Close Combat",
      "threat": 0.86,
      "answers": 0.016,
-     "answers_lock": 0.195
+     "answers_lock": 0.195,
+     "threat_chance": 0.86,
+     "answers_duel": 0.29,
+     "answers_sure": 0.277
     },
     {
      "variant": 0,
@@ -3445,7 +4702,10 @@
      "locked_move": null,
      "threat": 0.662,
      "answers": 0.074,
-     "answers_lock": 0.074
+     "answers_lock": 0.074,
+     "threat_chance": 0.569,
+     "answers_duel": 0.191,
+     "answers_sure": 0.187
     },
     {
      "variant": 0,
@@ -3457,7 +4717,10 @@
      "locked_move": null,
      "threat": 0.893,
      "answers": 0.044,
-     "answers_lock": 0.044
+     "answers_lock": 0.044,
+     "threat_chance": 0.893,
+     "answers_duel": 0.057,
+     "answers_sure": 0.049
     }
    ],
    "calcs": 44142,
@@ -3491,8 +4754,8 @@
     "p79 Heavy Slam: damage is not a number",
     "p81 Trump Card: damage is not a number"
    ],
-   "node_seconds": 5.34,
-   "wall_seconds": 5.47
+   "node_seconds": 5.21,
+   "wall_seconds": 5.34
   }
  }
 }

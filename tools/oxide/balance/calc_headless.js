@@ -241,7 +241,9 @@ function run(blob, jobs) {
         row.moves[name] = { error: 'damage is not a number' };
         continue;
       }
-      row.moves[name] = { rolls: rs.sort((x, y) => x - y), priority: move.priority || 0 };
+      // The category lets B5 apply Hustle's accuracy cost to physical moves only.
+      row.moves[name] = { rolls: rs.sort((x, y) => x - y), priority: move.priority || 0,
+        category: move.category };
     }
     out.results.push(row);
   }
