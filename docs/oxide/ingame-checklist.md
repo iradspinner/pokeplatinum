@@ -156,6 +156,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
 - [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
+- [ ] The Underground is closed: the Underground Man in Eterna says the
+  tunnels are sealed off and gives nothing, and no Explorer Kit is ever in
+  the Bag. After the Bicycle, Eterna's south exit (to Cycling Road) and west
+  exit are open, with no woman stepping in; talking to her gives the sealed
+  tunnels line. In Oreburgh's Mining Museum the fossil researcher offers to
+  revive a fossil without the kit (once a fossil can be had).
+- [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
+  her says thank you and gives no evolution stones; her first line no longer
+  promises any.
 - [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
   sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
   Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
@@ -205,6 +214,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] A Dusk Stone has no effect on Polteageist (it no longer evolves into
+  Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
+  (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
+  balls are still there.
 - [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
   Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
   30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
