@@ -2176,6 +2176,8 @@ Expert_Main:
     // The moves that always land a critical hit, as the high critical moves.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_CRITICAL, Expert_HighCritical
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
+    // Oxide, change (Ian, 2026-09-27): Rapid Spin now raises its user's Speed.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_AND_BINDING, Expert_SpeedUpOnHit
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -5326,6 +5328,31 @@ Expert_DoubledPower_ScoreMinus1:
 
 Expert_DoubledPower_ScorePlus1:
     AddToMoveScore 1
+    PopOrEnd 
+
+Expert_SpeedUpOnHit:
+    // Oxide, change (Ian, 2026-09-27). An attack that raises its user's Speed a stage: Rapid Spin
+    // since the staples rulings. Scored for the Speed only; vanilla gave Rapid Spin's hazard and
+    // binding clearing no score, and that is unchanged.
+    //
+    // If the opponent resists or is immune to the move, score -1.
+    //
+    // Otherwise, unless Trick Room is up or the attacker's Speed is already at +6, if the
+    // attacker is not faster than its opponent, 50% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_SpeedUpOnHit_ScoreMinus1
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, Expert_SpeedUpOnHit_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, Expert_SpeedUpOnHit_End
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, Expert_SpeedUpOnHit_End
+    IfRandomLessThan 128, Expert_SpeedUpOnHit_End
+    AddToMoveScore 1
+    PopOrEnd 
+
+Expert_SpeedUpOnHit_ScoreMinus1:
+    AddToMoveScore -1
+
+Expert_SpeedUpOnHit_End:
     PopOrEnd 
 
 Expert_HammerArm:
