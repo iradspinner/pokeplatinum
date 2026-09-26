@@ -135,7 +135,8 @@ JSON, and every test suite that needs no reference file. Anything that needs
 the base ROM is checked locally after the work merges.
 
 A cloud session works on its own branch, named `cloud/<track>-<topic>`, and
-never pushes to `oxide`. It cannot message the Overseer, so it reports
+never pushes to `oxide`. It gates that branch with `bash tools/oxide/integrate.sh
+--verify-only`, which checks any branch; `sync-docs.sh` stays the Overseer's. It cannot message the Overseer, so it reports
 through the branch: its last commit message says what was done and checked,
 failures first, and anything waiting on Ian. The Overseer, a local session,
 reviews the branch, runs the base-ROM checks, and merges it.

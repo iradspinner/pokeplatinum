@@ -91,7 +91,9 @@ check() {
 # ---------------------------------------------------------------- 1. preconditions
 say "preconditions"
 branch="$(git rev-parse --abbrev-ref HEAD)"
-[ "$branch" = "oxide" ] || die "on branch $branch, not oxide"
+# Merging happens only on oxide. A verify-only run checks whatever branch it
+# is on, which is how a cloud session gates its own cloud/<track> branch.
+[ "$branch" = "oxide" ] || [ $VERIFY_ONLY -eq 1 ] || die "on branch $branch, not oxide"
 if [ -n "$(git status --porcelain)" ]; then
     git status --short >&2
     die "main checkout has uncommitted changes; commit or discard them first"
