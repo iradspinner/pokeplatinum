@@ -694,6 +694,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet49, 21
     AddListMenuEntry TestKit_Text_MenuSet50, 22
     AddListMenuEntry TestKit_Text_MenuSet51, 23
+    AddListMenuEntry TestKit_Text_MenuSet52, 24
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -719,6 +720,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet50
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet51
+    GoToIfEq VAR_0x8004, 24, TestKit_MoveSet52
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1286,6 +1288,22 @@ TestKit_MoveSet51:
     SetVar VAR_0x8007, MOVE_SANDSTORM
     SetVar VAR_0x8008, MOVE_SUNNY_DAY
     SetVar VAR_0x8009, MOVE_RAIN_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 52: Meteor Beam charges for a turn, raising Sp. Atk one stage, and
+   attacks on the next. Against a wild Chansey that knows only Splash: the
+   first turn prints "is overflowing with space power!" and "Sp. Atk rose!",
+   the second hits. The set also puts a Power Herb in the bag; held, it
+   raises Sp. Atk and attacks in the same turn, and is used up. */
+TestKit_MoveSet52:
+    AddItem ITEM_POWER_HERB, 1, VAR_RESULT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_METEOR_BEAM
+    SetVar VAR_0x8007, MOVE_POWER_GEM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
