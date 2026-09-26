@@ -278,6 +278,10 @@
             "en_US": "Intimidate blocked"
         },
         {
+            "id": "TestKit_Text_MenuStapleOblivious",
+            "en_US": "Oblivious and Taunt"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

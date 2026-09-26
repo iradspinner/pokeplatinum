@@ -1830,11 +1830,13 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleLightningRod, 1
     AddListMenuEntry TestKit_Text_MenuStapleStormDrain, 2
     AddListMenuEntry TestKit_Text_MenuStapleIntimidate, 3
+    AddListMenuEntry TestKit_Text_MenuStapleOblivious, 4
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
     GoToIfEq VAR_0x8004, 2, TestKit_StapleStormDrain
     GoToIfEq VAR_0x8004, 3, TestKit_StapleIntimidate
+    GoToIfEq VAR_0x8004, 4, TestKit_StapleOblivious
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1892,6 +1894,20 @@ TestKit_StapleIntimidate:
     SetVar VAR_0x8000, SPECIES_LUCARIO
     SetVar VAR_0x8001, ABILITY_INNER_FOCUS
     SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Oblivious and Taunt: a Weavile with Taunt, against a wild Slowbro given
+   Oblivious that knows only Growl. */
+TestKit_StapleOblivious:
+    SetVar VAR_0x800A, SPECIES_WEAVILE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_TAUNT
+    SetVar VAR_0x8007, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8008, MOVE_ICE_SHARD
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8000, SPECIES_SLOWBRO
+    SetVar VAR_0x8001, ABILITY_OBLIVIOUS
+    SetVar VAR_0x8002, MOVE_GROWL
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
