@@ -261,6 +261,59 @@ def check_map_headers(built, ref):
     return not bad
 
 
+def check_land_data(built, ref, nb, nr, reg=None):
+    """land_data.narc against the reference, member by member. A member may
+    differ only at the tiles tools/oxide/land_data_diverged.json records (the
+    registry mapperm.py writes), and there it must hold exactly the recorded
+    behaviour with every other bit of the tile unchanged. Everything else in
+    the member (props, terrain model, heights) must be byte-identical."""
+    import json
+    path = "fielddata/land_data/land_data.narc"
+    b = ndspy.narc.NARC(built.files[nb[path]]).files
+    r = ndspy.narc.NARC(ref.files[nr[path]]).files
+    order = [l.strip() for l in open(os.path.join("res", "field", "maps", "data", "map_data.order")) if l.strip()]
+    reg_path = os.path.join("tools", "oxide", "land_data_diverged.json")
+    if reg is None:
+        reg = json.load(open(reg_path, encoding="utf-8")) if os.path.exists(reg_path) else {}
+    behaviour = {}
+    src = open(os.path.join("include", "constants", "field", "map_tile_behaviors.h")).read()
+    value = -1
+    for line in src[src.index("{") + 1:src.index("}")].splitlines():
+        line = line.split("//")[0].strip().rstrip(",")
+        if not line:
+            continue
+        if "=" in line:
+            name, v = (s.strip() for s in line.split("="))
+            value = int(v, 0)
+        else:
+            name, value = line, value + 1
+        behaviour[name] = value
+    bad, intended = [], []
+    if len(b) != len(r):
+        bad.append(f"{len(b)} members against the reference's {len(r)}")
+    for i in range(min(len(b), len(r))):
+        name = order[i][:-len(".bin")] if i < len(order) else f"member {i}"
+        entry = reg.get(name)
+        expected = bytearray(r[i])
+        if entry:
+            for tile, change in entry["tiles"].items():
+                lx, lz = (int(v) for v in tile.split(","))
+                o = 16 + (lz * 32 + lx) * 2
+                v = struct.unpack_from("<H", expected, o)[0]
+                struct.pack_into("<H", expected, o, (v & 0xFF00) | behaviour[change["to"]])
+        if bytes(expected) == bytes(b[i]):
+            if entry:
+                intended.append(f"{name} ({len(entry['tiles'])} tiles)")
+            continue
+        bad.append(name + (" differs beyond its registered tiles" if entry else " differs"))
+    if bad:
+        print(f"{path}: {len(bad)} members differ unexpectedly: {bad[:6]}")
+    else:
+        print(f"{path}: all {len(b)} members identical to the reference"
+              + (f", apart from registered tile behaviours in {', '.join(intended)}" if intended else ""))
+    return not bad
+
+
 # Map headers that no longer match the base ROM on purpose, each with the byte
 # offsets allowed to differ and why. Offsets are into the 24-byte MapHeader
 # (include/map_header.h): 14 and 15 are wildEncountersArchiveID.
@@ -604,6 +657,9 @@ def main():
                          "field by field, no reference ROM involved")
     ap.add_argument("--map-headers", action="store_true",
                     help="compare arm9's sMapHeaders against the reference ROM's")
+    ap.add_argument("--land-data", action="store_true",
+                    help="compare land_data.narc with the reference, allowing only the tile "
+                         "behaviours tools/oxide/land_data_diverged.json records")
     ap.add_argument("--text", action="store_true",
                     help="message-level check of pl_msg.narc instead of a byte comparison")
     ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc")
@@ -627,6 +683,8 @@ def main():
         sys.exit(0 if check_text(built, ref, nb, nr, a.msgenc, a.charmap) else 1)
     if a.map_headers:
         sys.exit(0 if check_map_headers(built, ref) else 1)
+    if a.land_data:
+        sys.exit(0 if check_land_data(built, ref, nb, nr) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if p == "poketool/personal/pl_personal.narc":
