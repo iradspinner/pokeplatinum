@@ -250,6 +250,10 @@
             "en_US": "Infiltrator"
         },
         {
+            "id": "TestKit_Text_MenuAbilityNeutralizingGas",
+            "en_US": "Neutralizing Gas"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

@@ -82,9 +82,20 @@ are the house style.
   but `--force` overwrites them, including the hand-made charge animations of
   Freeze Shock, Ice Burn and Geomancy (listed in
   `docs/oxide/move-animation-map.json`).
+- Ability suppression lives in `Battler_Ability`: Gastro Acid, and Neutralizing
+  Gas, which is worked out there from the battlers on the field. A reader that
+  takes `battleMons[].ability` or the party's ability directly goes around it,
+  as `BtlCmd_TryRestoreStatusOnSwitch` does for Natural Cure, Regenerator and
+  the switch-out cures, and as the critical-hit roll did for Super Luck until
+  2026-09-26. A new suppression, or a new ability read that way, has to cover
+  both.
 - A C change is checked with `tools/oxide/romdiff.py` against the previous
   commit's ROM: every difference must be the intended members or a relink that
-  the tool explains, and it exits non-zero on anything else.
+  the tool explains, and it exits non-zero on anything else. It looks for
+  relinked branches only when an overlay changes size, so when overlay 16
+  changes but keeps its size (a few bytes absorbed by alignment padding) it
+  exits 0 without checking arm9 or the other overlays; run its `explain()` by
+  hand with overlay 16 as the region, as the Super Luck fix did (d29a8a14).
 - Each batch of effect scripts adds its move sets to the test kit in the same
   commit (`docs/oxide/test-kit.md` says how).
 
