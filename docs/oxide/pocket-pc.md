@@ -123,6 +123,15 @@ Ian ruled on the whole list on 2026-09-27, relayed by the Overseer.
    one), the Online Shop, the Teleport System, Happiness Up, every Move Tutor
    entry (the tutors out in the world stay as in vanilla) and all three
    post-game resets.
-6. **The teleporting Abra** leaves every town.
+6. **The teleporting Abra** leaves every town. The base ROM has 39 objects
+   using the Abra sprite, of three kinds, and Ian ruled on each (2026-09-27):
+   the **22 town teleporters go** (the 18 with a destination list, and
+   Canalave's, Twinleaf's, Route 221's at Pal Park and Route 224's); the **7
+   dungeon shortcuts go** (Turnback Cave's pair, Stark Mountain's Heatran
+   chamber, Mt. Coronet 6F and the two outside, and Route 207's list); the
+   **10 gym shortcuts stay** (a pair in each of the Canalave, Pastoria,
+   Snowpoint, Veilstone and Sunyshore gyms, entrance to leader and back).
+   Each one that goes is hidden behind a flag set at new game, not deleted,
+   since the generated scripts address objects by number.
 7. **The Hidden Power APP** tells the power as well as the type: the IV
    formula, 30 to 70, which Ian kept.
