@@ -106,6 +106,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Munchlax trees are gone.
 - [ ] Valley Windworks: the Drifloon balloon no longer appears.
 - [ ] The Hearthome Fan Club member only says goodbye, with no starter gift.
+- [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
 - [ ] After the overworld-sprite carry-over lands (tracker, Phase 3): the NPC
   outside Sandgem's Pokemon Center draws correctly, and so do the Clown-type
   NPCs on the other 34 maps that share that sprite slot.
@@ -123,10 +124,41 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
   Saturn's AI never chooses it.
-- [ ] Once `main-scripts` merges: the Snowpoint ferry opens after Galactic HQ is
-  cleared, Route 225 is open from the first arrival at the Fight Area, and the
-  Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
-  (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
+- [ ] The Restaurant on Route 213 (open 9:00 to 23:00): a clown in the
+  bottom-right corner gives one of Octillery, Mantine, Crawdaunt, Sharpedo,
+  Lanturn or Whiscash at level 45, whose summary reads met at the Restaurant;
+  talked to again he only says "See ya!". Pastoria City's north house has no
+  clown.
+- [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] Snowpoint City: fishing gives the species of
+  `res/field/encounters/encounters_snowpoint_city.json` for each rod.
+- [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
+  about Team Galactic. After HQ it sails, and the first voyage plays Cynthia's
+  scene.
+- [ ] Fight Area without the Beacon Badge: the rival walks you to Volkner and
+  Flint, Volkner turns the challenge down, the rival says he will wait, Buck
+  introduces himself and leaves in a fade. Route 225 is open. Talking to the
+  rival by the Frontier gate gives his "still don't have Volkner's Badge"
+  line. Buck is on Route 227, and not also at the Fight Area.
+- [ ] Fight Area with the Beacon Badge: talking to the rival starts the tag
+  battle, and afterwards the Palmer scene plays, without Buck's part if you
+  first arrived without the badge. Arriving with the badge the first time
+  plays vanilla's whole scene, Buck included.
+- [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
+  is empty after Galactic HQ.
+- [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one
+  of Articuno, Cresselia or Pheromosa, and running or fainting it prints that
+  name in "disappeared deep into its cavern". A new game can draw a different
+  one; a soft reset cannot.
+- [ ] Verity Cavern: Mesprit's sprite, but the preview, the cry and the names
+  in "flew off" and in Rowan's two lines are the roamer draw (one of Mesprit,
+  Tapu Koko, Buzzwole, Galarian Zapdos, Poipole, Xurkitree or Galarian
+  Articuno). That species then roams at level 50, the Marking Map shows it with
+  Mesprit's icon (known), and after defeating it Verity Cavern brings it back.
+- [ ] Victory Road, the first step north inside the south entrance: Dawn (or
+  Lucas, for a female player) notices you, you are walked in front of her, and
+  the level 71 fight uses the team for your starter (trainers 779 to 784).
+  Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
