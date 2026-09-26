@@ -436,6 +436,24 @@ that stay. None blocks anything.
    into Abomasnow at 268 to 316, about four times and 1.6 times what the
    game does. Foul Play, Body Press, Psyshock, Sacred Sword and Darkest
    Lariat already hit as plain moves in the calculator's Generation 4 code.
+23. **The calculator follows the engine's stat and type choices (Ian's
+   Overseer, 2026-09-26), queued until `cloud/element4-stat-choice`
+   merges**: Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat,
+   Freeze-Dry, Flying Press and Rage Fist (50 plus 50 per hit taken, to
+   350). It builds on item 22 and takes out item 22's `util.js` patch for
+   the two type moves. The Generation 4 path has hooks for an attacking
+   stat's size but not for whose stat or which defence stat a move reads,
+   so it gains one; the rules come from the merged engine, not from canon.
+24. **Friendship evolutions replaced (Ian, 2026-09-27, through the
+   Overseer).** Happiness Up is gone, and every friendship evolution moves
+   to a method that cannot be ground. The proposal, one method per line
+   with its split and what it changes here, is
+   `docs/oxide/encounters/friendship-evolutions.md`; it waits on Ian, and
+   the main track edits the data after. Then this track reruns `cli evolve`
+   (with Maylene's cap if it has landed), edits the four Crobat slots it
+   names, corrects the evolve tool's judged levels, which have read every
+   friendship method as 32 and a held-item trade as 32 because they are
+   keyed by names the data does not use, and reruns `test_sim`.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
