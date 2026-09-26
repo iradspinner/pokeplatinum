@@ -171,6 +171,7 @@ void PokemonSprite_Pop(PokemonSprite *monSprite);
 void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite);
+u32 PokemonSprite_HueShiftPersonality(PokemonSprite *monSprite);
 void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value);
 BOOL PokemonSprite_IsActive(PokemonSprite *monSprite);

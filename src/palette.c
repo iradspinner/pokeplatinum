@@ -657,3 +657,25 @@ void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum 
     PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
     Heap_Free(ptr);
 }
+
+// Platinum Oxide: a Pokemon palette loaded with the personality's colour
+// variation (HueShiftPokemonPalette), for the copies of a Pokemon sprite that
+// load their palette apart from the sprite manager.
+void PaletteData_LoadBufferFromFileStartWithHueShift(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, enum HeapID heapID, enum PaletteBufferID bufferID, u32 size, u16 start, u32 personality)
+{
+    NNSG2dPaletteData *palette;
+    void *ptr = Graphics_GetPlttData(narcID, narcMemberIdx, &palette, heapID);
+
+    GF_ASSERT(ptr != NULL);
+
+    if (size == 0) {
+        size = palette->szByte;
+    }
+
+    if (personality != 0) {
+        HueShiftPokemonPalette(palette->pRawData, personality);
+    }
+
+    PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
+    Heap_Free(ptr);
+}
