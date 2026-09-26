@@ -141,7 +141,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_B2F_SECRET_KEY",
             "script": 7467,
             "initial_dir": 1,
             "data": [  ],

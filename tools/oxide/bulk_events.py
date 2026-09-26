@@ -103,6 +103,14 @@ for _m, _why in (
     _why += " (Ian's stone plan, 2026-09-27)"
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# Two base ROM item balls hid behind daily flags, so they came back every day
+# (the Overseer's ruling, 2026-09-27). The Secret Key becomes a one-time find;
+# the Old Amber goes, since Ian deleted it (2026-09-21), and the two fossil
+# balls whose swapped explicit local ids would then collide lose them.
+DIVERGED["events_galactic_hq_b2f"] += (
+    "; then the Secret Key ball given a one-time flag of its own in place of a daily one")
+DIVERGED["events_stark_mountain_room_2"] += (
+    "; then the base ROM's Old Amber ball removed (Ian deleted the Old Amber, 2026-09-21)")
 
 
 def render(record, existing, index):
