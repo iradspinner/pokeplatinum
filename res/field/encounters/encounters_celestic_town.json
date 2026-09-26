@@ -119,7 +119,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_SLOWPOKE"
+            "species": "SPECIES_FRILLISH"
         }
     ],
     "old_rod_rate": 25,
@@ -142,7 +142,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_LUVDISC"
         },
         {
             "level_max": 20,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_LANTURN"
         }
     ],
     "map_category": {

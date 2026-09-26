@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 8,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_SNUBBULL"
         },
         {
             "level": 9,
@@ -11,7 +11,7 @@
         },
         {
             "level": 9,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 9,
@@ -31,15 +31,15 @@
         },
         {
             "level": 10,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 11,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_SNUBBULL"
         },
         {
             "level": 11,
-            "species": "SPECIES_SKITTY"
+            "species": "SPECIES_SNUBBULL"
         },
         {
             "level": 11,

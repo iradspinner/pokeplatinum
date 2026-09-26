@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 27,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_JUMPLUFF"
         },
         {
             "level": 28,
@@ -23,7 +23,7 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_LIEPARD"
+            "species": "SPECIES_TANGELA"
         },
         {
             "level": 29,
@@ -35,11 +35,11 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_JUMPLUFF"
         },
         {
             "level": 30,
-            "species": "SPECIES_SCYTHER"
+            "species": "SPECIES_JUMPLUFF"
         },
         {
             "level": 30,
@@ -47,7 +47,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_LIEPARD"
+            "species": "SPECIES_TANGELA"
         }
     ],
     "swarms": [
@@ -55,7 +55,7 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_SCYTHER",
+        "SPECIES_TROPIUS",
         "SPECIES_GLIGAR"
     ],
     "night": [
@@ -119,7 +119,7 @@
         {
             "level_max": 40,
             "level_min": 34,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_KINGDRA"
         }
     ],
     "old_rod_rate": 25,
@@ -127,7 +127,7 @@
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WINGULL"
         },
         {
             "level_max": 16,
@@ -147,7 +147,7 @@
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_KRABBY"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_QWILFISH"
         }
     ],
     "super_rod_rate": 75,
@@ -193,7 +193,7 @@
         {
             "level_max": 45,
             "level_min": 38,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_KINGLER"
         },
         {
             "level_max": 45,

@@ -43,7 +43,7 @@
         },
         {
             "level": 9,
-            "species": "SPECIES_GIBLE"
+            "species": "SPECIES_NACLI"
         },
         {
             "level": 9,
@@ -127,7 +127,7 @@
         {
             "level_max": 10,
             "level_min": 6,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CLAMPERL"
         },
         {
             "level_max": 10,
@@ -165,7 +165,7 @@
         {
             "level_max": 21,
             "level_min": 16,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 21,
@@ -183,7 +183,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 36,
@@ -203,7 +203,7 @@
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_WAILMER"
         }
     ],
     "map_category": {

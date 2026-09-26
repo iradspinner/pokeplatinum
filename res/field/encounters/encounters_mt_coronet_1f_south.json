@@ -47,7 +47,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_SWINUB"
+            "species": "SPECIES_SEEL"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_PELIPPER"
         }
     ],
     "old_rod_rate": 100,
@@ -147,7 +147,7 @@
         {
             "level_max": 15,
             "level_min": 10,
-            "species": "SPECIES_SQUIRTLE"
+            "species": "SPECIES_CLAMPERL"
         }
     ],
     "good_rod_rate": 50,
@@ -175,7 +175,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_CORSOLA"
         }
     ],
     "super_rod_rate": 75,

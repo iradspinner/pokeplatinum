@@ -19,11 +19,11 @@
         },
         {
             "level": 11,
-            "species": "SPECIES_FLETCHLING"
+            "species": "SPECIES_MINUN"
         },
         {
             "level": 11,
-            "species": "SPECIES_ROOKIDEE"
+            "species": "SPECIES_PLUSLE"
         },
         {
             "level": 11,
@@ -119,7 +119,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_CORPHISH"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 24,
             "level_min": 19,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_LOMBRE"
         }
     ],
     "super_rod_rate": 75,

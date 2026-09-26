@@ -280,11 +280,15 @@ def check_page(results):
 
     litten = server.dex_detail("SPECIES_LITTEN")
     members = {m["species"]: m for m in litten["line"]}
+    # Fletchling's line, since Litten keeps only its Route 204 home now and
+    # Torracat is met nowhere (the scarcity pass, 2026-09-26).
+    fletch = {m["species"]: m for m in server.dex_detail("SPECIES_FLETCHLING")["line"]}
     results.append(("the line view answers where the other stages are met, which "
                     "is what the per-species index cannot",
-                    "SPECIES_TORRACAT" in members
-                    and members["SPECIES_TORRACAT"]["appearances"] > 0
-                    and members["SPECIES_TORRACAT"]["folder"] == "torracat", ""))
+                    "SPECIES_FLETCHINDER" in fletch
+                    and fletch["SPECIES_FLETCHINDER"]["appearances"] > 0
+                    and fletch["SPECIES_FLETCHINDER"]["folder"] == "fletchinder"
+                    and "SPECIES_TORRACAT" in members, ""))
     results.append(("a learnset row carries the move's own numbers, not just its "
                     "name",
                     litten["learnset"][1]["type"] == "FIRE"

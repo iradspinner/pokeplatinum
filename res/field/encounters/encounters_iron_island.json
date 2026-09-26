@@ -137,7 +137,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_LUVDISC"
         },
         {
             "level_max": 19,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_LUMINEON"
         }
     ],
     "map_category": {

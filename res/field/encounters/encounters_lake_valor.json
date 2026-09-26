@@ -47,7 +47,7 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_INCINEROAR"
+            "species": "SPECIES_HONCHKROW"
         }
     ],
     "swarms": [
@@ -137,7 +137,7 @@
         {
             "level_max": 19,
             "level_min": 15,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 19,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_HORSEA"
         }
     ],
     "good_rod_rate": 50,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_SLOWBRO"
+            "species": "SPECIES_CORSOLA"
         }
     ],
     "map_category": {

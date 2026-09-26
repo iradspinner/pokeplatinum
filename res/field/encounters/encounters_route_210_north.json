@@ -23,7 +23,7 @@
         },
         {
             "level": 29,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_TURTONATOR"
         },
         {
             "level": 29,
@@ -43,7 +43,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_GOOMY"
+            "species": "SPECIES_TURTONATOR"
         },
         {
             "level": 30,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_BRAIXEN",
-        "SPECIES_TORRACAT"
+        "SPECIES_CHARCADET"
     ],
     "night": [
         "SPECIES_SNEASEL",
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_MARSHTOMP"
+            "species": "SPECIES_FINNEON"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_PSYDUCK"
         },
         {
             "level_max": 30,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_SLOWBRO"
+            "species": "SPECIES_LUMINEON"
         }
     ],
     "map_category": {

@@ -132,7 +132,7 @@
         {
             "level_max": 24,
             "level_min": 20,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CHINCHOU"
         },
         {
             "level_max": 25,
@@ -183,7 +183,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_GYARADOS"
+            "species": "SPECIES_FLOATZEL"
         },
         {
             "level_max": 50,
@@ -203,7 +203,7 @@
         {
             "level_max": 56,
             "level_min": 48,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_LANTURN"
         }
     ],
     "map_category": {

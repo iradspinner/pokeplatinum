@@ -47,7 +47,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_COMBUSKEN"
+            "species": "SPECIES_MEDITITE"
         }
     ],
     "swarms": [
@@ -59,7 +59,7 @@
         "SPECIES_PACHIRISU"
     ],
     "night": [
-        "SPECIES_PURRLOIN",
+        "SPECIES_MURKROW",
         "SPECIES_YAMASK"
     ],
     "radar": [
@@ -142,12 +142,12 @@
         {
             "level_max": 15,
             "level_min": 11,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 16,
             "level_min": 12,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_FINNEON"
         }
     ],
     "good_rod_rate": 50,

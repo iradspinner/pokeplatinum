@@ -104,15 +104,17 @@ def check_dex(results):
     unresolved = [r["name"] for r in natives if not r["constant"]]
     # 199 natives on Ian's sheet, 227 with the seven cave, fourteen fishing, two
     # Mantyke and five ghost rows of 2026-09-21, 264 with the 37 rows of the
-    # seventeen water lines of 2026-09-26.
+    # seventeen water lines, then 335 with the Magikarp line cut and the 73
+    # rows of the Platinum-size pick-list (all 2026-09-26).
     results.append(("every native on the pick-list resolves to a species in the tree",
-                    len(natives) == 264 and not unresolved,
+                    len(natives) == 335 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
     unported = [r["name"] for r in new if not r["constant"]]
-    results.append(("every `new` row resolves (element 3 ported all 159)",
-                    len(new) == 159 and not unported, f"{len(new)} new, unresolved {unported[:5]}"))
+    # 158 on the list since Gyarados M left it with the Magikarp line (2026-09-26).
+    results.append(("every `new` row resolves (element 3 ported all 159; 158 are listed)",
+                    len(new) == 158 and not unported, f"{len(new)} new, unresolved {unported[:5]}"))
     results.append(("awkward names map: Nidoran F, Mr. Mime, Farfetch'd, Porygon-Z",
                     dex.constant_of(root, "Nidoran F") == "SPECIES_NIDORAN_F"
                     and dex.constant_of(root, "Mr. Mime") == "SPECIES_MR_MIME"
@@ -217,9 +219,10 @@ def check_audit(results):
     # 358 obtainable rows since element 3 (199 before it), 365 with Ian's
     # three cave lines; the files are every JSON in res/field/encounters.
     n_files = len(model.area_names())
-    # 386 until Ian's seventeen water lines (37 species) on 2026-09-26.
-    results.append(("audit sees all 423 pick-list species and every encounter file",
-                    s["natives"] == 423 and s["files"] == n_files,
+    # 386 until Ian's seventeen water lines (37 species), 493 once the list
+    # reached Platinum's size, less the Magikarp line (all 2026-09-26).
+    results.append(("audit sees all 493 pick-list species and every encounter file",
+                    s["natives"] == 493 and s["files"] == n_files,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
@@ -245,13 +248,13 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 423 pick-list species into lines, each on one row",
-                    covered == 423 and len({m for r in lines for m in r["members"]}) == 423,
+    results.append(("coverage groups all 493 pick-list species into lines, each on one row",
+                    covered == 493 and len({m for r in lines for m in r["members"]}) == 493,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",
                     any(m == "eterna_city" for m, _, _ in by["Togepi"]["gifts"])
-                    and any(n == "foppa_magikarp" for n, _ in by["Magikarp"]["trades"])
+                    and any(n == "gaspar_haunter" for n, _ in by["Suicune"]["trades"])
                     and any(sp == "SPECIES_DIALGA" for _, _, sp in by["Dialga"]["static"])
                     and by["Turtwig"]["scripted"] and by["Turtwig"]["status"] == "non-wild",
                     ""))
@@ -267,7 +270,7 @@ def check_coverage(results):
     s = out["summary"]
     results.append(("summary counts add up and the new species are listed separately",
                     sum(s["by_status"].values()) == s["native_lines"]
-                    and s["new_species"] == 159 == len(out["new"]), str(s["by_status"])))
+                    and s["new_species"] == 158 == len(out["new"]), str(s["by_status"])))
 
 
 # -- layout and apply ---------------------------------------------------------

@@ -23,7 +23,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_CARNIVINE"
         },
         {
             "level": 30,
@@ -47,7 +47,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_SALANDIT"
+            "species": "SPECIES_CARNIVINE"
         }
     ],
     "swarms": [
@@ -137,7 +137,7 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_WINGULL"
         },
         {
             "level_max": 17,
@@ -203,7 +203,7 @@
         {
             "level_max": 48,
             "level_min": 41,
-            "species": "SPECIES_BLASTOISE"
+            "species": "SPECIES_QWILFISH"
         }
     ],
     "map_category": {

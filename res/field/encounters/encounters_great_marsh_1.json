@@ -19,7 +19,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 30,
@@ -31,7 +31,7 @@
         },
         {
             "level": 30,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 31,
@@ -43,7 +43,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_GASTRODON"
+            "species": "SPECIES_AZURILL"
         },
         {
             "level": 31,
@@ -142,12 +142,12 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_MAGIKARP"
+            "species": "SPECIES_QWILFISH"
         },
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_MUDKIP"
+            "species": "SPECIES_KRABBY"
         }
     ],
     "good_rod_rate": 50,

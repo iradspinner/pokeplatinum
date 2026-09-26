@@ -43,7 +43,7 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_COMBUSKEN"
+            "species": "SPECIES_MACHOP"
         },
         {
             "level": 21,
@@ -60,7 +60,7 @@
     ],
     "night": [
         "SPECIES_SNEASEL",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_HOOTHOOT"
     ],
     "radar": [
         "SPECIES_NONE",
