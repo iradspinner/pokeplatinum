@@ -25,9 +25,11 @@ read, so they are written here too. Each is a standing instruction.
   third, and a question to Ian before padding a thin table. Swarm, Poke Radar
   and GBA dual-slot encounters are turned off and never go in a table (Ian,
   2026-09-26).
-- Choice items are rarer in Oxide than in the base ROM, and a Choice-locked boss
-  is weaker in play than its score, because the lock can be baited (Ian,
-  2026-09-23; the balance plan has the detail).
+- Choice items are to be nearly entirely gone from Oxide (Ian, 2026-09-26,
+  strengthening "rarer than in the base ROM" of 2026-09-23). A Choice-locked
+  boss is weaker in play than its score: its AI picks a fixed move against a
+  given lead, so the player chooses the lock and switches to something immune.
+  The balance plan's item and trainer passes carry it.
 - Several sessions work at once, and a local session named "Oxide Overseer"
   coordinates them: the docs outside each track's own files, pushes to
   `oxide`, merges, and in-game testing. A local session messages it with
