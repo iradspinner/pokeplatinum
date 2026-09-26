@@ -4127,6 +4127,10 @@ static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSy
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
+        // Oxide: Explosion and its kin faint the user here rather than through
+        // TryFaintMon, so Retaliate's record is kept here too.
+        battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->faintedMon)].faintedThisTurn = TRUE;
+
         LOAD_SUBSEQ(subscript_after_selfdestruct);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS;
@@ -4186,6 +4190,16 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
 
     if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
         battleCtx->moveSketched[battleCtx->attacker] = battleCtx->moveTemp;
+    }
+
+    // Oxide: a move that was used and then missed, failed, was protected
+    // against or had no effect, for Stomping Tantrum and Temper Flare. A
+    // battler that could not move at all (asleep, fully paralysed,
+    // flinched) never shows its attack message, so it does not count, as
+    // from Generation 8 on.
+    if ((battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT)) {
+        ATTACKING_MON.moveFailedThisTurn = TRUE;
     }
 
     BattleControllerPlayer_UpdateFlagsWhenHit(battleSys, battleCtx);

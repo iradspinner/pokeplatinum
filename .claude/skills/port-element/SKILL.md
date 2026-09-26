@@ -97,7 +97,17 @@ are the house style.
   exits 0 without checking arm9 or the other overlays; run its `explain()` by
   hand with overlay 16 as the region, as the Super Luck fix did (d29a8a14).
 - Each batch of effect scripts adds its move sets to the test kit in the same
-  commit (`docs/oxide/test-kit.md` says how).
+  commit (`docs/oxide/test-kit.md` says how). New sets go on the move-set
+  menu's second page: a field menu holds 28 entries and a 29th is written
+  past its arrays, unchecked.
+- `convert_battle_scripts.py --audit` cannot see a move whose effect is a
+  plain hit but whose power hg-engine computes in C, keyed on the move
+  (`CalcBaseDamage`): effect 0 counts as done. Those go in
+  `BattleScript_ComputedMovePower` in `battle_script.c`. A move whose
+  power is computed carries power 1 in its record, never 0: the type chart
+  reads 0 as a status move and sets no effectiveness flags. Moves that pick
+  a different stat or type (Foul Play, Body Press, Psyshock, Freeze-Dry,
+  Flying Press, Sacred Sword) are the same blind spot, still open.
 
 ## Before calling it done
 

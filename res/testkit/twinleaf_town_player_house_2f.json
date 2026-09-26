@@ -516,6 +516,50 @@
             "en_US": "Set 31"
         },
         {
+            "id": "TestKit_Text_MenuSet32",
+            "en_US": "Set 32"
+        },
+        {
+            "id": "TestKit_Text_MenuSet33",
+            "en_US": "Set 33"
+        },
+        {
+            "id": "TestKit_Text_MenuSet34",
+            "en_US": "Set 34"
+        },
+        {
+            "id": "TestKit_Text_MenuSet35",
+            "en_US": "Set 35"
+        },
+        {
+            "id": "TestKit_Text_MenuSet36",
+            "en_US": "Set 36"
+        },
+        {
+            "id": "TestKit_Text_MenuSet37",
+            "en_US": "Set 37"
+        },
+        {
+            "id": "TestKit_Text_MenuSet38",
+            "en_US": "Set 38"
+        },
+        {
+            "id": "TestKit_Text_MenuSet39",
+            "en_US": "Set 39"
+        },
+        {
+            "id": "TestKit_Text_MenuSet40",
+            "en_US": "Set 40"
+        },
+        {
+            "id": "TestKit_Text_MenuSet41",
+            "en_US": "Set 41"
+        },
+        {
+            "id": "TestKit_Text_MenuSetMore",
+            "en_US": "More sets"
+        },
+        {
             "id": "TestKit_Text_MoveSet",
             "en_US": [
                 "The new Pokémon knows\n",
