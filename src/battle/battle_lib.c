@@ -2627,6 +2627,25 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
     return result;
 }
 
+/**
+ * @brief Oxide: the multiplier a move takes from one entry of the type chart.
+ *
+ * Freeze-Dry is super effective on Water, which Ice otherwise is not (hg-engine's
+ * UpdateTypeEffectiveness).
+ *
+ * @param move
+ * @param chartEntry    Index of the entry into the type-chart
+ * @return The entry's multiplier for this move
+ */
+static int MoveChartMultiplier(int move, int chartEntry)
+{
+    if (move == MOVE_FREEZE_DRY && sTypeMatchupMultipliers[chartEntry][1] == TYPE_WATER) {
+        return TYPE_MULTI_SUPER_EFF;
+    }
+
+    return sTypeMatchupMultipliers[chartEntry][2];
+}
+
 int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask)
 {
     int chartEntry;
@@ -2698,9 +2717,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, MoveChartMultiplier(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2708,9 +2727,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry, move) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, MoveChartMultiplier(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (MoveChartMultiplier(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2791,13 +2810,13 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
                     && defenderType1 != defenderType2
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(MoveChartMultiplier(move, chartEntry), moveStatusMask);
                 }
             }
 
