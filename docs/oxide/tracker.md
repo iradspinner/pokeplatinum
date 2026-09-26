@@ -55,6 +55,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); the new-CPU cleanup list opens it. Add new in-game checks there, not here.
 
+- **Kaizo's moves and learnsets compared with Oxide's** (cloud, 2026-09-27; `docs/oxide/kaizo-comparison.md`, ideas only): eight questions at its end for the move and learnset passes. The sharpest two: whether Bulk Up, Cosmic Power, Stockpile, Focus Energy, Defend Order and the new moves' setup (Quiver Dance, Shell Smash, Coil and the rest), still at vanilla or modern PP, should join the 1 to 3 PP setup moves; and whether answer 1's modern numbers cover priority (Fake Out +3, Extreme Speed +2).
+
 
 - A low-priority data question from the carry-over, whether the encounter `unown_table`/`rate_form` changes were ever intended: design doc section 7 (the evidence says DSPRE re-saves). The sprite heights once asked about with it came over with the visual overhaul (Phase 3).
 - Tabled, not blocking anything: the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on stats (see Phase 0).
