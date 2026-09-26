@@ -599,7 +599,8 @@ Basic_CheckCannotParalyze:
     IfLoadedEqualTo TYPE_ELECTRIC, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus10
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
+    // Oxide: Magic Guard no longer stops full paralysis (the staples
+    // rulings), so paralysing its holder is worth doing again.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotParalyze_ImmuneToStatus
     IfMoveEqualTo MOVE_THUNDER_WAVE, Basic_CheckCannotParalyze_ThunderWave
