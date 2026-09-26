@@ -390,17 +390,17 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 90 | 30 |
-| Gardenia | 26 | 140 | 42 |
-| Fantina | 33 | 219 | 48 |
-| Maylene | 39 | 284 | 78 |
-| Wake | 44 | 313 | 88 |
-| Byron | 53 | 345 | 103 |
-| Candice | 56 | 358 | 109 |
-| HQ | 60 | 359 | 112 |
-| Galactic | 65 | 364 | 124 |
-| Volkner | 68 | 364 | 125 |
-| League | 78 | 364 | 128 |
+| Roark | 16 | 105 | 30 |
+| Gardenia | 26 | 176 | 42 |
+| Fantina | 33 | 277 | 48 |
+| Maylene | 39 | 345 | 78 |
+| Wake | 44 | 392 | 88 |
+| Byron | 53 | 417 | 103 |
+| Candice | 56 | 432 | 109 |
+| HQ | 60 | 433 | 112 |
+| Galactic | 65 | 439 | 124 |
+| Volkner | 68 | 439 | 125 |
+| League | 78 | 439 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -409,36 +409,39 @@ most threatening Pokemon and its least answered one.
 
 | Fight | Threat | Answers | Worst threat | Fewest answers |
 |---|---|---|---|---|
-| Barry 1 | 0.00 | 0.96 | 0.00 | 0.94 |
-| Barry 2 | 0.01 | 0.64 | 0.01 | 0.49 |
-| Roark | 0.12 | 0.16 | 0.42 | 0.04 |
-| Mars 1 | 0.01 | 0.35 | 0.01 | 0.09 |
-| Gardenia | 0.69 | 0.06 | 0.92 | 0.02 |
-| Jupiter 1 | 0.12 | 0.26 | 0.18 | 0.12 |
-| Fantina | 0.51 | 0.10 | 0.88 | 0.01 |
-| Barry 3 | 0.17 | 0.49 | 0.35 | 0.35 |
-| Maylene | 0.69 | 0.21 | 0.79 | 0.08 |
-| Barry 4 | 0.48 | 0.13 | 0.82 | 0.04 |
-| Wake | 0.73 | 0.07 | 0.98 | 0.00 |
-| Cyrus 1 | 0.37 | 0.36 | 0.57 | 0.24 |
-| Barry 5 | 0.54 | 0.19 | 0.90 | 0.04 |
-| Byron | 0.32 | 0.22 | 0.54 | 0.15 |
-| Saturn 1 | 0.52 | 0.25 | 0.80 | 0.09 |
-| Mars 2 | 0.36 | 0.14 | 0.84 | 0.05 |
-| Candice | 0.65 | 0.14 | 0.93 | 0.04 |
-| Cyrus 2 | 0.44 | 0.13 | 0.79 | 0.04 |
-| Saturn 2 | 0.41 | 0.19 | 0.82 | 0.00 |
-| Mars and Jupiter | 0.30 | 0.35 | 0.68 | 0.06 |
-| Cyrus 3 | 0.51 | 0.24 | 0.83 | 0.12 |
-| Volkner | 0.66 | 0.18 | 0.90 | 0.03 |
-| Barry 6 | 0.53 | 0.24 | 0.91 | 0.05 |
-| Aaron | 0.57 | 0.19 | 0.72 | 0.09 |
-| Bertha | 0.48 | 0.32 | 0.75 | 0.02 |
-| Flint | 0.69 | 0.14 | 0.92 | 0.04 |
-| Lucian | 0.61 | 0.28 | 0.93 | 0.04 |
-| Cynthia | 0.68 | 0.15 | 0.89 | 0.02 |
+| Barry 1 | 0.00 | 0.96 | 0.00 | 0.92 |
+| Barry 2 | 0.01 | 0.63 | 0.03 | 0.49 |
+| Roark | 0.14 | 0.15 | 0.43 | 0.04 |
+| Mars 1 | 0.01 | 0.34 | 0.03 | 0.09 |
+| Gardenia | 0.68 | 0.05 | 0.91 | 0.02 |
+| Jupiter 1 | 0.12 | 0.23 | 0.19 | 0.11 |
+| Fantina | 0.51 | 0.09 | 0.87 | 0.01 |
+| Barry 3 | 0.18 | 0.47 | 0.38 | 0.32 |
+| Maylene | 0.71 | 0.20 | 0.82 | 0.08 |
+| Barry 4 | 0.49 | 0.13 | 0.83 | 0.04 |
+| Wake | 0.74 | 0.07 | 0.98 | 0.00 |
+| Cyrus 1 | 0.39 | 0.35 | 0.59 | 0.23 |
+| Barry 5 | 0.56 | 0.18 | 0.91 | 0.04 |
+| Byron | 0.34 | 0.21 | 0.58 | 0.14 |
+| Saturn 1 | 0.53 | 0.24 | 0.82 | 0.09 |
+| Mars 2 | 0.38 | 0.14 | 0.85 | 0.04 |
+| Candice | 0.67 | 0.13 | 0.94 | 0.04 |
+| Cyrus 2 | 0.46 | 0.12 | 0.81 | 0.04 |
+| Saturn 2 | 0.41 | 0.19 | 0.83 | 0.00 |
+| Mars and Jupiter | 0.32 | 0.33 | 0.70 | 0.06 |
+| Cyrus 3 | 0.53 | 0.23 | 0.83 | 0.12 |
+| Volkner | 0.67 | 0.17 | 0.90 | 0.03 |
+| Barry 6 | 0.55 | 0.24 | 0.92 | 0.05 |
+| Aaron | 0.59 | 0.18 | 0.76 | 0.08 |
+| Bertha | 0.50 | 0.31 | 0.76 | 0.02 |
+| Flint | 0.70 | 0.14 | 0.92 | 0.04 |
+| Lucian | 0.62 | 0.27 | 0.93 | 0.04 |
+| Cynthia | 0.69 | 0.14 | 0.90 | 0.01 |
 
-Both tables were recomputed on 2026-09-25 for Ian's water ruling (seventeen
+Both tables were recomputed on 2026-09-25 for the encounter track's scarcity
+pass (strong lines made scarce and the pick list at 493 species, which
+grows every side, Roark's from 90 to 105 species and the League's from 364
+to 439, and moves no fight by more than 0.03); before that for Ian's water ruling (seventeen
 water lines back in the wild, which grows the later sides by up to 36
 species and moves no fight by more than 0.02); before that for the encounter track's second
 gift pass (Ian's weaker gifts, and several lines taken out of the wild),
@@ -529,7 +532,9 @@ reports the 54 as diverged; with their entries removed it would carry all
 zone sits 5 to 10 under, medium hard.
 
 What B3b and B5 found (2026-09-25; `refpressure.py`, `calibrate.py
---report`). Every reference hack's bosses were scored against Oxide's side
+--report`). The figures in this section and the next were worked out just
+before the scarcity pass, which moves none of them by more than 0.03; they
+are refreshed with B5's next readings. Every reference hack's bosses were scored against Oxide's side
 in the same seats, each Pokemon with its own game's stats and moves; two
 runs agree exactly. B5 adds five readings to B3's, in columns of their own
 so B3's stay as they were (`pressure.py` says how each is worked out):
