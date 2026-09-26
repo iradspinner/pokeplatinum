@@ -2136,6 +2136,26 @@ Expert_Main:
     // Reflect and Light Screen together.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STICKY_WEB, Expert_Spikes
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_AURORA_VEIL, Expert_AuroraVeil
+    // Oxide, change (Ian, 2026-09-27): attacks that work as a Platinum move
+    // does, sent to its routine. Hurricane has Thunder's accuracy in rain and
+    // sun; the three Hisuian storms its accuracy in rain only.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HURRICANE, Expert_Thunder
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BLEAKWIND_STORM, Expert_RainStorm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WILDBOLT_STORM, Expert_RainStorm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SANDSEAR_STORM, Expert_RainStorm
+    // Draining Kiss, Oblivion Wing, Bouncy Bubble and Matcha Gotcha, as Giga Drain.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT, Expert_DrainMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_FULL_DAMAGE_DEALT, Expert_DrainMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT, Expert_DrainMove
+    // V-create, Clanging Scales and Hyperspace Fury lower the user's defences,
+    // as Close Combat; Spin Out its Speed, as Hammer Arm.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_SP_DEF_SPEED_DOWN_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_DEF_DOWN_HIT_REMOVE_PROTECT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_SPEED_DOWN_2_HIT, Expert_HammerArm
+    // The moves that always land a critical hit, as the high critical moves.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_CRITICAL, Expert_HighCritical
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL, Expert_HighCritical
 
     // All other moves have no additional logic.
     PopOrEnd 
@@ -4349,6 +4369,21 @@ Expert_Thunder_TryScoreMinus3:
     AddToMoveScore -3
 
 Expert_Thunder_End:
+    PopOrEnd 
+
+Expert_RainStorm:
+    // Oxide, change (Ian, 2026-09-27). Bleakwind, Wildbolt and Sandsear Storm never miss in rain,
+    // as Thunder does, but keep their accuracy in sun.
+    //
+    // If the opponent resists or is immune to the move, ~80.5% chance of score -3.
+    //
+    // If it is raining, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_Thunder_TryScoreMinus3
+    LoadCurrentWeather 
+    IfLoadedNotEqualTo AI_WEATHER_RAINING, Expert_Thunder_End
+    AddToMoveScore 1
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln:
