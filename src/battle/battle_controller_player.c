@@ -3003,6 +3003,12 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
         evaStages = 0;
     }
+    // Oxide: Keen Eye (Generation 6) and Illuminate (Generation 9) ignore the
+    // target's evasion stages, as in hg-engine's accuracy calculation.
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_KEEN_EYE
+        || Battler_Ability(battleCtx, attacker) == ABILITY_ILLUMINATE) {
+        evaStages = 0;
+    }
 
     s8 sumStages = 6 + evaStages + accStages;
     if (sumStages < 0) {

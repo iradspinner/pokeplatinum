@@ -282,6 +282,10 @@
             "en_US": "Oblivious and Taunt"
         },
         {
+            "id": "TestKit_Text_MenuStapleIlluminate",
+            "en_US": "Keen Eye, Illuminate"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

@@ -195,6 +195,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Storm Drain | Gastrodon with Storm Drain: Earth Power, Ice Beam, Recover, Toxic; foe a wild Vaporeon that knows only Surf | As Lightning Rod, for Surf: "GASTRODON's Storm Drain raised its Sp. Atk!" | LIGHTNINGROD |
 | Intimidate blocked | Staraptor with Intimidate: Brave Bird, Close Combat, Roost, U-turn; foe a wild Lucario given Inner Focus that knows only Splash | When Staraptor comes in, "The wild LUCARIO's Inner Focus suppressed STARAPTOR's Intimidate!" and Lucario's Attack stays. Own Tempo, Oblivious and Scrappy do the same | INTIMIDATE |
 | Oblivious and Taunt | Weavile: Taunt, Night Slash, Ice Shard, Swords Dance; foe a wild Slowbro given Oblivious that knows only Growl | Taunt: "The wild SLOWBRO's Oblivious made Taunt ineffective!", and Slowbro goes on using Growl | OBLIVIOUS |
+| Keen Eye, Illuminate | Starmie with Illuminate: Surf, Thunderbolt, Ice Beam, Recover; foe a wild Chansey that knows Double Team and Sand Attack | Sand Attack: "STARMIE's Illuminate prevents accuracy loss!". However many Double Teams Chansey stacks, Starmie's Surf never misses. Keen Eye does both the same way | KEENEYE |
 
 ## Not built yet
 

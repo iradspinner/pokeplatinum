@@ -1831,12 +1831,14 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleStormDrain, 2
     AddListMenuEntry TestKit_Text_MenuStapleIntimidate, 3
     AddListMenuEntry TestKit_Text_MenuStapleOblivious, 4
+    AddListMenuEntry TestKit_Text_MenuStapleIlluminate, 5
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
     GoToIfEq VAR_0x8004, 2, TestKit_StapleStormDrain
     GoToIfEq VAR_0x8004, 3, TestKit_StapleIntimidate
     GoToIfEq VAR_0x8004, 4, TestKit_StapleOblivious
+    GoToIfEq VAR_0x8004, 5, TestKit_StapleIlluminate
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1908,6 +1910,22 @@ TestKit_StapleOblivious:
     SetVar VAR_0x8000, SPECIES_SLOWBRO
     SetVar VAR_0x8001, ABILITY_OBLIVIOUS
     SetVar VAR_0x8002, MOVE_GROWL
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Keen Eye and Illuminate: a Starmie given Illuminate, against a wild
+   Chansey that knows Double Team and Sand Attack. Keen Eye works the same
+   way. */
+TestKit_StapleIlluminate:
+    SetVar VAR_0x800A, SPECIES_STARMIE
+    SetVar VAR_0x800B, ABILITY_ILLUMINATE
+    SetVar VAR_0x8006, MOVE_SURF
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_ICE_BEAM
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DOUBLE_TEAM
+    SetVar VAR_0x8003, MOVE_SAND_ATTACK
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
