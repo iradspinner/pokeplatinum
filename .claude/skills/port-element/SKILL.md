@@ -89,6 +89,14 @@ are the house style.
   the switch-out cures, and as the critical-hit roll did for Super Luck until
   2026-09-26. A new suppression, or a new ability read that way, has to cover
   both.
+- The trainer AI keeps its own copies of many engine rules: immunities and
+  absorbing abilities in `script.s`'s Basic routine, move lists (sound, powder,
+  ball and bomb), computed powers in `TrainerAI_CalcDamage`, trapping in
+  `TrainerAI_ShouldSwitch`. A rule change in the engine should grep
+  `src/battle/trainer_ai/` for the ability, move or effect it touches and bring
+  the copy along, or say so in the report for element 6 (its 2026-09-26
+  catch-up is in `docs/oxide/battle-ai/README.md`). The AI is overlay 14, whose
+  slot must end below the battle overlay's start at 0x0223B520.
 - A C change is checked with `tools/oxide/romdiff.py` against the previous
   commit's ROM: every difference must be the intended members or a relink that
   the tool explains, and it exits non-zero on anything else. It looks for
