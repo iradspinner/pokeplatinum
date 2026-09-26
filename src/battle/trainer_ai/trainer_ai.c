@@ -1215,7 +1215,10 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
     int inBattler = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+    // Oxide: Neutralizing Gas suppresses an ability as Gastro Acid does, and
+    // announces itself, so the AI knows it is out.
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+        || BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
         AI_CONTEXT.calcTemp = ABILITY_NONE;
     } else if (AI_CONTEXT.attacker != battler && inBattler != AI_BATTLER_ATTACKER_PARTNER) {
         // If we already know an opponent's ability, load that ability
@@ -1259,7 +1262,8 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
     u8 battler = AIScript_Battler(battleCtx, inBattler);
     int tmpAbility;
 
-    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+        || BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) { // Oxide
         tmpAbility = ABILITY_NONE;
     } else if (inBattler == AI_BATTLER_DEFENDER || inBattler == AI_BATTLER_DEFENDER_PARTNER) {
         // If we already know an opponent's ability, load that ability
@@ -3474,7 +3478,9 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
         return FALSE;
     }
 
-    if (battleCtx->battleMons[BATTLER_OPP(battler)].ability == ABILITY_WONDER_GUARD) {
+    // Oxide: a Wonder Guard under Neutralizing Gas guards nothing.
+    if (battleCtx->battleMons[BATTLER_OPP(battler)].ability == ABILITY_WONDER_GUARD
+        && BattleSystem_NeutralizingGasSuppresses(battleCtx, ABILITY_WONDER_GUARD) == FALSE) {
         // Check if we have a super-effective move against the opponent
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             move = battleCtx->battleMons[battler].moves[i];
