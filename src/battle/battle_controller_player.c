@@ -5013,6 +5013,7 @@ enum AfterMoveHitState {
 
     AFTER_MOVE_HIT_STATE_RAGE = AFTER_MOVE_HIT_START,
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
+    AFTER_MOVE_HIT_STATE_FLAME_BURST, // Oxide
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
 
     AFTER_MOVE_HIT_STATE_END
@@ -5024,6 +5025,7 @@ enum AfterMoveHitState {
  * This handles:
  * - turning off the Rage flag if the attacker did not use Rage again
  * - granting Shell Bell HP restoration
+ * - Oxide: Flame Burst's splash on the target's partner
  * - deducting HP due to Life Orb
  *
  * @param battleSys
@@ -5072,6 +5074,35 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 
             battleCtx->afterMoveHitCheckState++;
             break;
+
+        case AFTER_MOVE_HIT_STATE_FLAME_BURST: {
+            // Oxide: when Flame Burst hits, the burst takes a sixteenth of
+            // the maximum HP of the target's partner, unless it has Magic
+            // Guard or is out of reach in the air, underground or
+            // underwater, as hg-engine does (Activate_FlameBurstHit). Only
+            // a double battle has a partner.
+            int partner = battleCtx->defender == BATTLER_NONE ? BATTLER_NONE : BattleSystem_GetPartner(battleSys, battleCtx->defender);
+
+            if (battleCtx->moveCur == MOVE_FLAME_BURST
+                && partner != BATTLER_NONE
+                && partner != battleCtx->defender
+                && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+                && battleCtx->battleMons[partner].curHP
+                && Battler_Ability(battleCtx, partner) != ABILITY_MAGIC_GUARD
+                && (battleCtx->battleMons[partner].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE) {
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[partner].maxHP * -1, 16);
+                battleCtx->msgBattlerTemp = partner;
+
+                LOAD_SUBSEQ(subscript_flame_burst);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                machineState = STATE_BREAK_OUT;
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
 
         case AFTER_MOVE_HIT_STATE_LIFE_ORB:
             if (itemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
