@@ -1510,6 +1510,9 @@ Basic_CheckDefog_Terminate:
     PopOrEnd 
 
 Basic_CheckTrickRoom:
+    // Oxide: under a boss fight's permanent Trick Room the move fails, so score -10.
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM_PERM, ScoreMinus10
+
     // If the attacker is faster than the target, score -10.
     // Treat speed ties as being faster than the target.
     IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, ScoreMinus10
