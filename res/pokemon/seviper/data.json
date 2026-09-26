@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_DRAGON" ],
-    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHED_SKIN" ],
+    "abilities": [
+        "ABILITY_HYPER_CUTTER",
+        "ABILITY_SHED_SKIN",
+        "ABILITY_INFILTRATOR"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": true,

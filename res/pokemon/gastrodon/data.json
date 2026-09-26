@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_DRY_SKIN", "ABILITY_DRY_SKIN" ],
+    "abilities": [
+        "ABILITY_DRY_SKIN",
+        "ABILITY_DRY_SKIN",
+        "ABILITY_SAND_FORCE"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

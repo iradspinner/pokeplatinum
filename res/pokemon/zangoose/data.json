@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_IMMUNITY" ],
+    "abilities": [
+        "ABILITY_HYPER_CUTTER",
+        "ABILITY_IMMUNITY",
+        "ABILITY_TOXIC_BOOST"
+    ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": true,

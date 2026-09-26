@@ -27,7 +27,11 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
-    "abilities": [ "ABILITY_OVERGROW", "ABILITY_OVERGROW" ],
+    "abilities": [
+        "ABILITY_OVERGROW",
+        "ABILITY_OVERGROW",
+        "ABILITY_HARVEST"
+    ],
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,

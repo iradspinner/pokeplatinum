@@ -1495,6 +1495,14 @@ def main():
             old.pop("abilities")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"abilities: diverged, left alone ({ABILITIES_DIVERGED[i]})"]))
+        else:
+            # A hidden ability is a third entry the base ROM's record has no slot
+            # for (element 8; the natives' came from the donor, 2026-09-27), so it
+            # rides along when the base ROM's two are compared and written.
+            with open(os.path.join(d, "data.json"), encoding="utf-8") as f:
+                hidden = json.load(f).get("abilities", [])[2:]
+            new["abilities"] = new["abilities"] + hidden
+            old["abilities"] = old["abilities"] + hidden
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n

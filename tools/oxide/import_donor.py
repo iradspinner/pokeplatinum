@@ -9,6 +9,7 @@ nothing to do.
 Reading is all in donor.py; this file only decides what the repo should say.
 
     python3 tools/oxide/import_donor.py abilities [--dry-run]
+    python3 tools/oxide/import_donor.py hidden-abilities [--dry-run]
 """
 
 import argparse
@@ -167,9 +168,41 @@ def import_species(d, dry_run, log):
     log.append("species: %d directories written" % len(written))
 
 
+def import_hidden_abilities(d, dry_run, log):
+    """The 493 natives' hidden abilities, from the donor's a/0/2/8 member 7, as
+    the optional third entry of each species' abilities array (element 8's
+    format). A native the donor gives none keeps two entries. Ability ids are
+    the donor's, so the id is looked up by name and nothing is translated. The
+    new species already have theirs, from New Pokedex.xlsx; alternate forms are
+    left alone, since only the base forms are in this table's native range."""
+    import jsonstyle
+    abilities = [l.strip() for l in open(os.path.join(ROOT, "generated", "abilities.txt")) if l.strip()]
+    species = [l.strip() for l in open(os.path.join(ROOT, "generated", "species.txt")) if l.strip()]
+    hidden = d.hidden_abilities()
+    written = 0
+    for sp in range(1, 494):
+        if not hidden[sp]:
+            continue
+        name = abilities[hidden[sp]]
+        folder = species[sp][len("SPECIES_"):].lower()
+        path = os.path.join(ROOT, "res", "pokemon", folder, "data.json")
+        text = open(path, encoding="utf-8").read()
+        current = jsonstyle.get_value(text, ["abilities"])
+        want = current[:2] + [name]
+        if current == want:
+            continue
+        text = jsonstyle.replace_value(text, ["abilities"], want)
+        log.append(f"{folder}: hidden ability {name}")
+        written += 1
+        if not dry_run:
+            with open(path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+    log.append(f"hidden abilities: {'would write' if dry_run else 'wrote'} {written}")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["abilities", "species"])
+    ap.add_argument("what", choices=["abilities", "species", "hidden-abilities"])
     ap.add_argument("--rom", default=donor.DEFAULT_ROM)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -180,6 +213,8 @@ def main():
         import_abilities(d, args.dry_run, log)
     elif args.what == "species":
         import_species(d, args.dry_run, log)
+    elif args.what == "hidden-abilities":
+        import_hidden_abilities(d, args.dry_run, log)
     print("\n".join(log) if log else "nothing to do")
 
 
