@@ -3892,9 +3892,41 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
 }
 
 /**
+ * @brief Oxide: whether an ability takes moves of a given type, for the
+ * switch to an absorber below.
+ *
+ * Vanilla named one ability per type: Flash Fire, Water Absorb and Volt
+ * Absorb. Oxide's Lightning Rod and Storm Drain now take the moves they draw
+ * (the staples rulings) and Sap Sipper takes Grass moves (element 5), so they
+ * join (Ian, 2026-09-27).
+ *
+ * @param ability
+ * @param moveType
+ * @return TRUE if the ability takes moves of that type
+ */
+static BOOL AI_AbilityAbsorbsType(u16 ability, u8 moveType)
+{
+    switch (moveType) {
+    case TYPE_FIRE:
+        return ability == ABILITY_FLASH_FIRE;
+
+    case TYPE_WATER:
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_STORM_DRAIN;
+
+    case TYPE_ELECTRIC:
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_LIGHTNING_ROD;
+
+    case TYPE_GRASS:
+        return ability == ABILITY_SAP_SIPPER;
+    }
+
+    return FALSE;
+}
+
+/**
  * @brief Check if the AI's party has a Pokemon on the bench which has an "absorbing"
- * ability for the move which was last used on it (specifically, Volt Absorb, Water
- * Absorb, and Flash Fire).
+ * ability for the move which was last used on it (in vanilla, Volt Absorb, Water
+ * Absorb, and Flash Fire; Oxide's list is AI_AbilityAbsorbsType).
  *
  * This routine will skip its checks roughly 33% of the time if the AI's battler has
  * a super-effective move. It will also skip its checks if the AI's active battler
@@ -3911,7 +3943,6 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     u8 aiSlot1, aiSlot2;
     u8 moveType;
     u16 ability; // Platinum Oxide: u16, ability ids run past 255
-    u16 checkAbility;
     int start, end;
     Pokemon *mon;
 
@@ -3940,18 +3971,8 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
         moveType = battleCtx->moveHitType[battler];
     }
 
-    if (moveType == TYPE_FIRE) {
-        checkAbility = ABILITY_FLASH_FIRE;
-    } else if (moveType == TYPE_WATER) {
-        checkAbility = ABILITY_WATER_ABSORB;
-    } else if (moveType == TYPE_ELECTRIC) {
-        checkAbility = ABILITY_VOLT_ABSORB;
-    } else {
-        return ABILITY_NONE;
-    }
-
     // If our ability absorbs the type of the last move that hit us, do not switch.
-    if (Battler_Ability(battleCtx, battler) == checkAbility) {
+    if (AI_AbilityAbsorbsType(Battler_Ability(battleCtx, battler), moveType)) {
         return FALSE;
     }
 
@@ -3980,7 +4001,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
             // Switch to a matching Pokemon 50% of the time.
-            if (checkAbility == ability && (BattleSystem_RandNext(battleSys) & 1)) {
+            if (AI_AbilityAbsorbsType(ability, moveType) && (BattleSystem_RandNext(battleSys) & 1)) {
                 battleCtx->aiSwitchedPartySlot[battler] = i;
                 return TRUE;
             }
