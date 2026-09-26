@@ -77,6 +77,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
+- [ ] **Element 5's hidden abilities, the Abilities menu's third page**
+  (reached from "More abilities" at the end of the second; 16 entries,
+  `docs/oxide/test-kit.md` has what each should show). Those with a message:
+  Justified, Magic Bounce, Moody, Moxie, Pickpocket (and the item back after
+  the battle), Poison Touch and Rattled. Those that change a number: Analytic,
+  Flare Boost and Toxic Boost (the foe's hit on your Snorlax grows by a third
+  or a half), Heavy Metal and Light Metal (Heavy Slam against Iron Head),
+  Multiscale (the hit at full HP is halved), Sand Force and Sand Rush (no sand
+  damage; Sandslash moves first in the sand) and Wonder Skin (Growl misses
+  about half the time). Friend Guard, and Rattled's answer to Intimidate, need
+  a double battle or a switch the kit cannot arrange; they are for normal
+  play.
 - [ ] **The staples rulings, the Modern rules menu** (22 entries): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog

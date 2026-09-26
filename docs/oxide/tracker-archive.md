@@ -274,6 +274,14 @@ Element 4's stat and type choosers and Rage Fist, finished and moved out on 2026
   - [x] **Rage Fist** (Ian, 2026-09-26): 50 plus 50 per hit taken, to 350, under the Gen 9 rule that switching out or fainting keeps the count. Done: counted per side and party slot in `SideConditions`' padding, as Belch's Berry is; the record's power is 50
   - [x] **Computed powers left**, the stat and type part: Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat, Freeze-Dry and Flying Press (learnable), Psystrike, Secret Sword and Chip Away pick no other stat or type. Done, one commit per learnable move, the other three riding along; Psyshock takes the Defense stages where hg-engine keeps the Sp. Def ones, and Body Press's stages give way to a target's Unaware, both as in the later games
 
+Element 6's catch-up item, finished and moved out on 2026-09-27:
+
+  - [x] Teach it everything Phase 4 changed done as 23 Oxide fixes on `cloud/element6-catch-up`, merged 2026-09-27; the README's "Phase 4 catch-up" section has the table, what was checked and found already right (Trick Room, 1.5x critical hits, the stat and type choosers), and the held items, which wait for element 7
+
+Element 8's item on the natives' 17 hidden abilities, finished on `cloud/element5-hidden-abilities` on 2026-09-27 (its last commit is the report):
+
+  - [x] **17 of those hidden abilities have no effect in Oxide yet** (element 5 did the new species' abilities only): Analytic, Flare Boost, Friend Guard, Heavy Metal, Justified, Light Metal, Magic Bounce, Moody, Moxie, Multiscale, Pickpocket, Poison Touch, Rattled, Sand Force, Sand Rush, Toxic Boost and Wonder Skin, on 91 natives. Until written they do nothing, which the ability pass may also want to weigh. **Done 2026-09-27 on `cloud/element5-hidden-abilities`**, one commit each, its last commit the report; test kit Abilities page 3
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
@@ -350,6 +358,15 @@ Three finished Phase 5 entries, done on `main-scripts` on 2026-09-27:
 - [x] **Move the Pastoria City clown gift to the Restaurant on Route 213** (Ian, 2026-09-25): a gift's met location is the location name of the map it is given on, and Pastoria's house reads "Pastoria City", so today the gift and Pastoria's fishing and surf share one nuzlocke capture. Give it on `MAP_HEADER_RESTAURANT` (location "Restaurant") instead. The pool of six water lines and its flag stay as they are; only the map changes: `scripts_pastoria_city_north_house.s` (already in `bulk_scripts.py`'s DIVERGED), the NPC's object event, and the text bank. **Done 2026-09-27 on `main-scripts` (0764a8d84):** the clown stands in the Restaurant's bottom-right corner with the same pool, level, flag and lines; the house lost the clown and its orphaned pick names. The Restaurant's hours (9:00 to 23:00) now apply to the gift.
 - [x] **Snowpoint City fishing** (Ian, 2026-09-25): point `MAP_HEADER_SNOWPOINT_CITY`'s `wildEncountersArchiveID` at `encounters_snowpoint_city` (rods only, surf rate 0), which the encounter track added the same day. No map edit should be needed where the water is already fishable. **Done 2026-09-27 on `main-scripts` (0764a8d84):** the southern chunk already has 227 sea tiles. `verify_narcs.py` gained `MAP_HEADERS_DIVERGED` for the header's two changed bytes.
 - [x] **The starter's own met location** (Ian's preference, 2026-09-21): give the starter a unique met-location name so Route 201 counts as a nuzlocke capture area; the encounter plan already assumes it. A script and text-bank change **Done 2026-09-27 on `main-scripts` (0764a8d84):** "Rowan's Briefcase" (a draft name), a new location name, set by a new script command, `SetPartyMonMetLocation`, after the starter is given; the post-game briefcase's starter takes the same name. Fomantis to Lurantis at level 34 landed in the same commit.
+
+The tracker's "Grass for the clown towns" entry, finished on `main-grass` on 2026-09-27:
+
+- [x] **Grass for the clown towns** (Ian, 2026-09-27, option A: the tall-grass behaviour on a patch that already looks distinct; the encounter track's `clown-replacements.md`). Done on `main-grass`: the tools (`maprender.py`, `mapperm.py`, `verify_narcs.py --land-data` with its test in the gate), the ten gift givers removed, the six patches Ian approved laid as tall grass (Sandgem, Jubilife, Floaroma Town, Solaceon, Amity Square, Verity Lakefront; every tile in `tools/oxide/land_data_diverged.json`), Amity Square's and Verity Lakefront's headers pointed at their tables, and a guard against wild encounters with an empty party (Ian, 2026-09-27; not a vanilla fix, since vanilla has no grass before the starter). The four towns' headers point at the encounter track's tables too (35278a745, merged into `main-grass`), so all six patches give encounters. This entry absorbs the Verity Lakefront and Amity Square capture-area entries below.
+
+The two capture-area entries that entry absorbed, moved out with it:
+
+- [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
+- [ ] **Amity Square as a capture area** (Ian, 2026-09-25): add tall grass to the map and point `MAP_HEADER_AMITY_SQUARE`'s `wildEncountersArchiveID` at `encounters_amity_square`, which the encounter track added on 2026-09-25.
 
 ## Phase 5: Verify
 
