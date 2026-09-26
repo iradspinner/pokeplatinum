@@ -320,6 +320,7 @@ static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10162,6 +10163,92 @@ static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 
     SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally, stat - BATTLE_STAT_ATTACK); // "{0}'s {1} sharply raised its {2}!"
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide, element 5: a stat change made by an ability that is not the
+ * target's own ChangeStatStage case, for Weak Armor, Water Compaction,
+ * Berserk and Gooey.
+ *
+ * ChangeStatStage's ability messages name battleCtx->attacker as the
+ * ability's holder, which suits Intimidate and nothing that fires when its
+ * holder is hit, so this takes the holder and the target as inputs, makes the
+ * change, and buffers the matching message: "{0}'s {1} raised its {2}!" (or
+ * "sharply raised" for two stages) or the new "lowered its" for a holder's own
+ * stat, and Intimidate's "{0}'s {1} cuts {2}'s {3}!" for another battler's.
+ * A target with Clear Body or White Smoke keeps a stat another battler would
+ * lower, without a message; Contrary and Mirror Armor are not applied here.
+ *
+ * Inputs:
+ * 1. The ability's holder.
+ * 2. The battler whose stat changes.
+ * 3. The stat, a BATTLE_STAT_ value.
+ * 4. The number of stages, negative to lower it.
+ * 5. The jump distance if nothing changes.
+ *
+ * Side effects, when it changes:
+ * - msgBattlerTemp and sideEffectMon are the target, scriptTemp the stat
+ * animation, and the prepared message buffer holds the message.
+ * - A stat the other side lowered is marked for TryDefiant.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int holder = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int target = BattleScript_Battler(battleSys, battleCtx, BattleScript_Read(battleCtx));
+    int stat = BattleScript_Read(battleCtx);
+    int stages = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    BattleMon *mon = &battleCtx->battleMons[target];
+    int stage = mon->statBoosts[stat] + stages;
+
+    if (stage > MAX_STAT_STAGE) {
+        stage = MAX_STAT_STAGE;
+    } else if (stage < MIN_STAT_STAGE) {
+        stage = MIN_STAT_STAGE;
+    }
+
+    if (mon->curHP == 0
+        || stage == mon->statBoosts[stat]
+        || (stages < 0
+            && target != holder
+            && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
+                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    mon->statBoosts[stat] = stage;
+    battleCtx->scriptTemp = stages > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    battleCtx->msgBattlerTemp = target;
+    battleCtx->sideEffectMon = target;
+
+    if (target == holder) {
+        SetupNicknameAbilityStatMsg(battleCtx,
+            stages >= 2 ? BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally : // "{0}'s {1} sharply raised its {2}!"
+                stages > 0 ? BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally : // "{0}'s {1} raised its {2}!"
+                BattleStrings_Text_PokemonsAbilityLoweredItsStat_Ally, // "{0}'s {1} lowered its {2}!"
+            stat - BATTLE_STAT_ATTACK);
+    } else {
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat_AllyAlly; // "{0}'s {1} cuts {2}'s {3}!"
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
+        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, holder);
+        battleCtx->msgBuffer.params[1] = battleCtx->battleMons[holder].ability;
+        battleCtx->msgBuffer.params[2] = BattleSystem_NicknameTag(battleCtx, target);
+        battleCtx->msgBuffer.params[3] = stat;
+
+        if (stages < 0
+            && BattleSystem_GetBattlerSide(battleSys, holder) != BattleSystem_GetBattlerSide(battleSys, target)) {
+            battleCtx->selfTurnFlags[target].defiantPending = TRUE;
+        }
+    }
 
     return FALSE;
 }

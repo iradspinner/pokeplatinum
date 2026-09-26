@@ -8955,6 +8955,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} surrounded\n",
         "itself with a veil of petals!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "lowered its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} lowered its {STRVAR_1 13, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsAbilityLoweredItsStat_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} lowered its {STRVAR_1 13, 2, 0}!"
+      ]
     }
   ]
 }

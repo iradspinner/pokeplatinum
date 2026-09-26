@@ -4382,6 +4382,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    case ABILITY_IRON_BARBS: // Oxide: Rough Skin under another name
     case ABILITY_ROUGH_SKIN:
         if (ATTACKING_MON.curHP
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
@@ -4498,6 +4499,113 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+
+    // Oxide, element 5: the abilities that answer a hit on their holder,
+    // after hg-engine's MoveHitDefenderAbilityCheck. The stat changes are made
+    // by the subscripts' AbilityStatChange, which does nothing to a stat
+    // already at its limit.
+    case ABILITY_WEAK_ARMOR:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+            *subscript = subscript_weak_armor;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_WATERCOMPACTION: {
+        u8 moveType;
+
+        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+            moveType = TYPE_NORMAL;
+        } else if (battleCtx->moveType) {
+            moveType = battleCtx->moveType;
+        } else {
+            moveType = CURRENT_MOVE_DATA.type;
+        }
+
+        if (DEFENDING_MON.curHP
+            && moveType == TYPE_WATER
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_water_compaction;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_BERSERK: {
+        // The damage taken is stored as a negative number, so the HP before
+        // this hit is the HP now less it.
+        int damage = DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken + DEFENDER_SELF_TURN_FLAGS.specialDamageTaken;
+        int half = DEFENDING_MON.maxHP / 2;
+
+        if (DEFENDING_MON.curHP
+            && damage
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDING_MON.curHP <= half
+            && DEFENDING_MON.curHP - damage > half) {
+            *subscript = subscript_berserk;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_GOOEY:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] > MIN_STAT_STAGE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            *subscript = subscript_gooey;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_CURSED_BODY: {
+        // Disable's own command picks 3 to 6 turns; the later games fix
+        // Cursed Body at four counting the turn it strikes, which is 3 here,
+        // since the counter runs down at the end of each turn.
+        int moveSlot = Battler_SlotForMove(&ATTACKING_MON, battleCtx->moveCur);
+
+        if (ATTACKING_MON.curHP
+            && battleCtx->attacker != battleCtx->defender
+            && ATTACKING_MON.moveEffectsData.disabledMove == MOVE_NONE
+            && moveSlot != LEARNED_MOVES_MAX
+            && ATTACKING_MON.ppCur[moveSlot]
+            && CURRENT_MOVE_DATA.power
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            battleCtx->msgMoveTemp = battleCtx->moveCur;
+            ATTACKING_MON.moveEffectsData.disabledMove = battleCtx->moveCur;
+            ATTACKING_MON.moveEffectsData.disabledTurns = 3;
+
+            *subscript = subscript_cursed_body;
+            result = TRUE;
+        }
+        break;
+    }
+
+    case ABILITY_TOXIC_DEBRIS: {
+        // The spikes go to the holder's other side, which is the attacker's
+        // unless a partner made the hit.
+        int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender) ^ 1;
+
+        if (battleCtx->sideConditions[side].toxicSpikesLayers < 2
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+            battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_TOXIC_SPIKES;
+            battleCtx->sideConditions[side].toxicSpikesLayers++;
+
+            *subscript = subscript_toxic_debris;
+            result = TRUE;
+        }
+        break;
+    }
     }
 
     return result;

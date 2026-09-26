@@ -126,6 +126,34 @@
             "en_US": "Queenly Majesty"
         },
         {
+            "id": "TestKit_Text_MenuAbilityIronBarbs",
+            "en_US": "Iron Barbs"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWeakArmor",
+            "en_US": "Weak Armor"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityCursedBody",
+            "en_US": "Cursed Body"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWaterCompaction",
+            "en_US": "Water Compaction"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityToxicDebris",
+            "en_US": "Toxic Debris"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBerserk",
+            "en_US": "Berserk"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityGooey",
+            "en_US": "Gooey"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

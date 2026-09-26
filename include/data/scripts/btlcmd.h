@@ -243,6 +243,7 @@ ScriptCommand(BTLCMD_TRYBELCH,                    BtlCmd_TryBelch)
 ScriptCommand(BTLCMD_TRYBEASTBOOST,               BtlCmd_TryBeastBoost)
 ScriptCommand(BTLCMD_TRYSOULHEART,                BtlCmd_TrySoulHeart)
 ScriptCommand(BTLCMD_TRYDEFIANT,                  BtlCmd_TryDefiant)
+ScriptCommand(BTLCMD_ABILITYSTATCHANGE,           BtlCmd_AbilityStatChange)
 
 // clang-format on
 

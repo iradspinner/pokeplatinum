@@ -1055,6 +1055,13 @@ TestKit_Abilities:
     AddListMenuEntry TestKit_Text_MenuAbilityPrankster, 13
     AddListMenuEntry TestKit_Text_MenuAbilityGaleWings, 14
     AddListMenuEntry TestKit_Text_MenuAbilityQueenlyMajesty, 15
+    AddListMenuEntry TestKit_Text_MenuAbilityIronBarbs, 16
+    AddListMenuEntry TestKit_Text_MenuAbilityWeakArmor, 17
+    AddListMenuEntry TestKit_Text_MenuAbilityCursedBody, 18
+    AddListMenuEntry TestKit_Text_MenuAbilityWaterCompaction, 19
+    AddListMenuEntry TestKit_Text_MenuAbilityToxicDebris, 20
+    AddListMenuEntry TestKit_Text_MenuAbilityBerserk, 21
+    AddListMenuEntry TestKit_Text_MenuAbilityGooey, 22
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
@@ -1072,6 +1079,13 @@ TestKit_Abilities:
     GoToIfEq VAR_0x8004, 13, TestKit_AbilityPrankster
     GoToIfEq VAR_0x8004, 14, TestKit_AbilityGaleWings
     GoToIfEq VAR_0x8004, 15, TestKit_AbilityQueenlyMajesty
+    GoToIfEq VAR_0x8004, 16, TestKit_AbilityIronBarbs
+    GoToIfEq VAR_0x8004, 17, TestKit_AbilityWeakArmor
+    GoToIfEq VAR_0x8004, 18, TestKit_AbilityCursedBody
+    GoToIfEq VAR_0x8004, 19, TestKit_AbilityWaterCompaction
+    GoToIfEq VAR_0x8004, 20, TestKit_AbilityToxicDebris
+    GoToIfEq VAR_0x8004, 21, TestKit_AbilityBerserk
+    GoToIfEq VAR_0x8004, 22, TestKit_AbilityGooey
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1291,6 +1305,104 @@ TestKit_AbilityQueenlyMajesty:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_QUICK_ATTACK
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Iron Barbs: a wild Rattata that knows only Tackle, which hurts it by an
+   eighth of its HP each time it touches Ferrothorn. */
+TestKit_AbilityIronBarbs:
+    SetVar VAR_0x800A, SPECIES_FERROTHORN
+    SetVar VAR_0x800B, ABILITY_IRON_BARBS
+    SetVar VAR_0x8006, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8007, MOVE_LEECH_SEED
+    SetVar VAR_0x8008, MOVE_GYRO_BALL
+    SetVar VAR_0x8009, MOVE_SPIKES
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Weak Armor: a wild Rattata that knows only Tackle; each physical hit
+   lowers Crustle's Defense and sharply raises its Speed. */
+TestKit_AbilityWeakArmor:
+    SetVar VAR_0x800A, SPECIES_CRUSTLE
+    SetVar VAR_0x800B, ABILITY_WEAK_ARMOR
+    SetVar VAR_0x8006, MOVE_SHELL_SMASH
+    SetVar VAR_0x8007, MOVE_ROCK_SLIDE
+    SetVar VAR_0x8008, MOVE_X_SCISSOR
+    SetVar VAR_0x8009, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Cursed Body: a wild Rattata that knows only Tackle; about one hit in three
+   disables Tackle, and Rattata then has to Struggle. */
+TestKit_AbilityCursedBody:
+    SetVar VAR_0x800A, SPECIES_JELLICENT
+    SetVar VAR_0x800B, ABILITY_CURSED_BODY
+    SetVar VAR_0x8006, MOVE_SCALD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_WILL_O_WISP
+    SetVar VAR_0x8009, MOVE_SHADOW_BALL
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Water Compaction: a wild Psyduck that knows only Water Gun, each hit of
+   which sharply raises Palossand's Defense. */
+TestKit_AbilityWaterCompaction:
+    SetVar VAR_0x800A, SPECIES_PALOSSAND
+    SetVar VAR_0x800B, ABILITY_WATERCOMPACTION
+    SetVar VAR_0x8006, MOVE_SHORE_UP
+    SetVar VAR_0x8007, MOVE_SHADOW_BALL
+    SetVar VAR_0x8008, MOVE_EARTH_POWER
+    SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8000, SPECIES_PSYDUCK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WATER_GUN
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Toxic Debris: a wild Rattata that knows only Tackle; each physical hit
+   lays Toxic Spikes on the wild side, up to two layers. */
+TestKit_AbilityToxicDebris:
+    SetVar VAR_0x800A, SPECIES_GLIMMORA
+    SetVar VAR_0x800B, ABILITY_TOXIC_DEBRIS
+    SetVar VAR_0x8006, MOVE_POWER_GEM
+    SetVar VAR_0x8007, MOVE_SLUDGE_WAVE
+    SetVar VAR_0x8008, MOVE_MORTAL_SPIN
+    SetVar VAR_0x8009, MOVE_EARTH_POWER
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Berserk: a wild Rhydon that knows only Rock Slide, strong enough to take
+   Moltres below half its HP in a hit or two. */
+TestKit_AbilityBerserk:
+    SetVar VAR_0x800A, SPECIES_GALARIAN_MOLTRES
+    SetVar VAR_0x800B, ABILITY_BERSERK
+    SetVar VAR_0x8006, MOVE_FIERY_WRATH
+    SetVar VAR_0x8007, MOVE_NASTY_PLOT
+    SetVar VAR_0x8008, MOVE_AIR_SLASH
+    SetVar VAR_0x8009, MOVE_ROOST
+    SetVar VAR_0x8000, SPECIES_RHYDON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_ROCK_SLIDE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Gooey: a wild Rattata that knows only Tackle, whose Speed falls each time
+   it touches Goodra. */
+TestKit_AbilityGooey:
+    SetVar VAR_0x800A, SPECIES_GOODRA
+    SetVar VAR_0x800B, ABILITY_GOOEY
+    SetVar VAR_0x8006, MOVE_DRAGON_PULSE
+    SetVar VAR_0x8007, MOVE_SLUDGE_BOMB
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_REST
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

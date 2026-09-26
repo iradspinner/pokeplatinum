@@ -347,4 +347,10 @@ subscript_files = files(
     'subscript_absorb_and_attack_up_1_stage.s',
     'subscript_blocked_by_queenly_majesty.s',
     'subscript_prankster_dark_immunity.s',
+    'subscript_weak_armor.s',
+    'subscript_water_compaction.s',
+    'subscript_berserk.s',
+    'subscript_gooey.s',
+    'subscript_cursed_body.s',
+    'subscript_toxic_debris.s',
 )
