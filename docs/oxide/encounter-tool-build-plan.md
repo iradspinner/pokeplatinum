@@ -448,10 +448,13 @@ that stay. None blocks anything.
    Overseer).** Happiness Up is gone, and every friendship evolution moves
    to a method that cannot be ground. The proposal, one method per line
    with its split and what it changes here, is
-   `docs/oxide/encounters/friendship-evolutions.md`; it waits on Ian, and
-   the main track edits the data after. Then this track reruns `cli evolve`
-   (with Maylene's cap if it has landed), edits the four Crobat slots it
-   names, corrects the evolve tool's judged levels, which have read every
+   `docs/oxide/encounters/friendship-evolutions.md`. **Ian accepted it on
+   2026-09-27 with Crobat at level 40** (Wake's split), and one fixed Sun
+   Stone and Moon Stone find for the balance track's item pass to place.
+   The main track edits the evolution data. Once that merges, this track
+   reruns `cli evolve` (with Maylene's cap if it has landed), puts the
+   seventeen Crobat placements below 40 back to Golbat by hand, corrects
+   the evolve tool's judged levels, which have read every
    friendship method as 32 and a held-item trade as 32 because they are
    keyed by names the data does not use, and reruns `test_sim`.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A

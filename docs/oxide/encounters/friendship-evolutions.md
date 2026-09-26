@@ -6,7 +6,19 @@ friendship evolution moves to a method that cannot be ground as easily. The
 data has sixteen friendship evolutions over fifteen lines. This proposes one
 method each, says the split it lands in, and measures what it changes in the
 encounter tables and the box simulator. Nothing here is built; the main
-track edits the evolution data once Ian rules.
+track edits the evolution data.
+
+## Rulings
+
+Ian, 2026-09-27, relayed by the Overseer: the proposal is accepted as
+written, with one change. **Crobat evolves at level 40, in Wake's split**,
+not 36. The Moss Rock for Roselia stands. Espeon and Umbreon evolve by
+stone, and the game gets one fixed Sun Stone find and one fixed Moon Stone
+find, which the balance track's item pass places as part of a census of
+every evolution stone the player can get. The table, the notes and the
+numbers below are updated for Crobat at 40.
+
+## The proposal
 
 A level is the default. Oxide has hard level caps, and the Pocket PC hands
 out Rare Candies without limit, so a level evolution happens the moment the
@@ -21,7 +33,7 @@ work.
 
 | Line | Evolution | Now | Proposed | First possible | Wanted |
 |---|---|---|---|---|---|
-| Zubat | Golbat to Crobat | friendship | level 36, Hardlove's | Maylene, cap 38 | no |
+| Zubat | Golbat to Crobat | friendship | level 40 (Ian; 36 was proposed) | Wake, cap 44 | no |
 | Happiny | Chansey to Blissey | friendship | level 40 | Wake, cap 44 | no |
 | Pichu | Pichu to Pikachu | friendship | level 10, Hardlove's | Roark (the Sandgem clown) | no |
 | Cleffa | Cleffa to Clefairy | friendship | level 10 | Gardenia (Coronet's north room) | no |
@@ -40,9 +52,10 @@ work.
 
 Notes on the choices, line by line where there is a choice to make.
 
-Crobat at 36 keeps an A-rated line out of Fantina's split. Zubat is in nearly
-every early cave, so an earlier Crobat would sit in almost every box; 40
-would push it to Wake if Ian wants it later still. Blissey at 40 lands in
+Crobat was proposed at Hardlove's 36, which keeps an A-rated line out of
+Fantina's split; Zubat is in nearly every early cave, so an early Crobat
+would sit in almost every box. Ian took it further, to 40 and Wake's split.
+Blissey at 40 lands in
 Wake. Chansey itself still needs the Oval Stone held by day, which is on
 Lost Tower 2F and in the Underground, and Happiny's only table is Route 208
 at 8%. Snorlax at 36 matters because Munchlax is in the honey trees from
@@ -85,10 +98,16 @@ which is already due for Maylene's final cap, would evolve nine slots:
 | Trophy Garden | Buneary | Lopunny | 23 |
 | Valor Lakefront | Buneary | Lopunny | 27 |
 
-Four Crobat slots sit below a level-36 Crobat: Mt. Coronet 1F north room 2
-and B1F at 33, Route 216 at 34, and Turnback Cave at 35. The evolve pass only
-moves a slot forward, so those need a hand edit. My pick is Golbat, which
-leaves every level ladder alone; raising their floors to 36 is the other way.
+Seventeen tables place Crobat below level 40, and each goes back to Golbat
+(Ian, 2026-09-27). None of them already holds a Golbat, so no table ends up
+with the species twice, and no level ladder changes. The evolve pass only
+moves a slot forward, so these are hand edits, made with that pass.
+
+| Split | Tables, with Crobat's lowest level there |
+|---|---|
+| Candice | Mt. Coronet 1F north room 2 (33) and B1F (33), Route 216 (34) |
+| Galactic | Mt. Coronet 1F tunnel room, 2F, 3F, 4F rooms 1 and 2, 4F room 3, 5F and 6F, all at night (37) |
+| Post | Turnback Cave's Giratina room (35), pillar room (36), and pillar 3 rooms 1, 3, 4 and 6 (36) and 5 (38) |
 
 ## What it changes in the box simulator
 
@@ -98,7 +117,7 @@ watches:
 
 | Line | Split | Now | Proposed |
 |---|---|---|---|
-| Zubat | Fantina | Crobat, 76.9 | Golbat, 61.8 |
+| Zubat | Fantina and Maylene | Crobat, 76.9 | Golbat, 61.8 |
 | Happiny | Fantina and Maylene | Blissey, 74.8 | Chansey, 59.2 |
 | Munchlax | Fantina | Snorlax, 82.8 | Munchlax, 54.6 |
 | Pichu | Roark and Gardenia | Pichu, 23.4 | Pikachu, 34.5 |
