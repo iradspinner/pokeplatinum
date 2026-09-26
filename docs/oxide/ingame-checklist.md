@@ -218,6 +218,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
   (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
   balls are still there.
+- [ ] Ian's stone plan: no stone at Fuego Ironworks (the Fire Stone ball),
+  Stark Mountain room 2, Route 230, Route 229 (by the Resort Area), Great
+  Marsh 3, Route 225 (neither the hidden Leaf Stone nor the Dawn Stone ball),
+  Mt. Coronet 4F rooms 1 and 2, or Route 210 north; the hidden item on Route
+  212 south is a Shiny Stone, and the ball on Oreburgh Mine B2F an Everstone.
+  The Dowsing Machine finds nothing where those stones were. Fuego Ironworks'
+  workers and Route 225's trainers and berry soil behave as before.
 - [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
   Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
   30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
