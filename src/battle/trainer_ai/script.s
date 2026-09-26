@@ -442,6 +442,8 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SNOW, ScoreMinus10
     // Oxide, vanilla fix (Ian, 2026-09-27): Basic never checked Rest.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REST, Basic_CheckRest
+    // Oxide, change (Ian, 2026-09-27): Oblivious now stops Taunt.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TAUNT, Basic_CheckTaunt
     PopOrEnd 
 
 Basic_CheckRest:
@@ -477,6 +479,17 @@ Basic_CheckRest_Uproar:
     IfFieldConditionsMask FIELD_CONDITION_UPROAR, ScoreMinus10
 
 Basic_CheckRest_End:
+    PopOrEnd 
+
+Basic_CheckTaunt:
+    // Oxide, change (Ian, 2026-09-27). Oblivious stops Taunt (the staples rulings), unless
+    // Mold Breaker ignores it, so score -10.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckTaunt_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
+
+Basic_CheckTaunt_End:
     PopOrEnd 
 
 Basic_CheckUnwrittenStatusMove:
