@@ -321,6 +321,7 @@ static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10248,6 +10249,73 @@ static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *bat
             && BattleSystem_GetBattlerSide(battleSys, holder) != BattleSystem_GetBattlerSide(battleSys, target)) {
             battleCtx->selfTurnFlags[target].defiantPending = TRUE;
         }
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide, element 5: check whether a move that changes abilities may
+ * change these, by the rules of hg-engine's ability flags.
+ *
+ * Inputs:
+ * 1. The move's kind of change, an ABILITY_CHANGE_ value.
+ * 2. The jump distance if the move fails.
+ *
+ * The kinds test the attacker's and the defender's abilities:
+ * - SWAP (Skill Swap): either one refuses a swap.
+ * - COPY (Role Play): the defender's refuses to be copied, or the
+ * attacker's cannot be replaced.
+ * - SUPPRESS (Gastro Acid): the defender's cannot be suppressed.
+ * - OVERWRITE (Worry Seed): the defender's cannot be replaced, or is Truant.
+ * - ENTRAINMENT: the attacker's refuses to be passed on, the defender's
+ * cannot be replaced or is Truant, or the two are the same.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int kind = BattleScript_Read(battleCtx);
+    int jumpFail = BattleScript_Read(battleCtx);
+
+    int attacking = ATTACKING_MON.ability;
+    int defending = DEFENDING_MON.ability;
+    BOOL fails;
+
+    switch (kind) {
+    case ABILITY_CHANGE_SWAP:
+        fails = Ability_ChangeFails(attacking, ABILITY_FAILS_SWAP)
+            || Ability_ChangeFails(defending, ABILITY_FAILS_SWAP);
+        break;
+
+    case ABILITY_CHANGE_COPY:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_ROLE_PLAY)
+            || Ability_ChangeFails(attacking, ABILITY_FAILS_SUPPRESS);
+        break;
+
+    case ABILITY_CHANGE_SUPPRESS:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS);
+        break;
+
+    case ABILITY_CHANGE_OVERWRITE:
+        fails = Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS)
+            || defending == ABILITY_TRUANT;
+        break;
+
+    case ABILITY_CHANGE_ENTRAINMENT:
+    default:
+        fails = Ability_ChangeFails(attacking, ABILITY_FAILS_ENTRAINMENT)
+            || Ability_ChangeFails(defending, ABILITY_FAILS_SUPPRESS)
+            || defending == ABILITY_TRUANT
+            || defending == attacking;
+        break;
+    }
+
+    if (fails) {
+        BattleScript_Iter(battleCtx, jumpFail);
     }
 
     return FALSE;

@@ -48,4 +48,13 @@
 #define EXECUTION_ORDER_AFTER_YOU 1
 #define EXECUTION_ORDER_QUASH     2
 
+// Oxide: the ability changes CheckAbilityChange tests, one per move that
+// makes one. The rules are hg-engine's ability flags (see
+// Ability_ChangeFails in battle_lib.c).
+#define ABILITY_CHANGE_SWAP        0 // Skill Swap: either battler's
+#define ABILITY_CHANGE_COPY        1 // Role Play: the target's, and the user's own
+#define ABILITY_CHANGE_SUPPRESS    2 // Gastro Acid: the target's
+#define ABILITY_CHANGE_OVERWRITE   3 // Worry Seed: the target's
+#define ABILITY_CHANGE_ENTRAINMENT 4 // Entrainment: the user's and the target's
+
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

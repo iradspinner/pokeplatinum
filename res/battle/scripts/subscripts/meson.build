@@ -353,4 +353,6 @@ subscript_files = files(
     'subscript_gooey.s',
     'subscript_cursed_body.s',
     'subscript_toxic_debris.s',
+    'subscript_mummy.s',
+    'subscript_wandering_spirit.s',
 )

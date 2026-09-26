@@ -599,6 +599,23 @@ void Battler_SetBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, in
  */
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move);
 
+// Oxide: what an ability refuses, after hg-engine's ability flags.
+#define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
+#define ABILITY_FAILS_ROLE_PLAY   (1 << 1) // Role Play cannot copy it
+#define ABILITY_FAILS_SWAP        (1 << 2) // Skill Swap and Wandering Spirit cannot take it
+#define ABILITY_FAILS_SUPPRESS    (1 << 3) // it cannot be suppressed or replaced
+#define ABILITY_FAILS_ENTRAINMENT (1 << 4) // Entrainment cannot pass it on
+
+/**
+ * @brief Oxide: whether an ability refuses a change, from hg-engine's
+ * AbilityFlags table, cut to the abilities Platinum's list has.
+ *
+ * @param ability
+ * @param flags   ABILITY_FAILS_ values
+ * @return TRUE if the ability has any of the flags
+ */
+BOOL Ability_ChangeFails(int ability, u8 flags);
+
 /**
  * @brief Access a particular entry in the type-matchup table.
  *

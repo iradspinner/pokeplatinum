@@ -4606,6 +4606,37 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
     }
+
+    // Mummy passes itself on and Wandering Spirit swaps, both on contact,
+    // unless the attacker's ability refuses (hg-engine's failsSuppress and
+    // failsSwap), after hg-engine's MoveHitDefenderAbilityCheck.
+    case ABILITY_MUMMY:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.ability != ABILITY_MUMMY
+            && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SUPPRESS) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            *subscript = subscript_mummy;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_WANDERING_SPIRIT:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.ability != ABILITY_WANDERING_SPIRIT
+            && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SWAP) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            *subscript = subscript_wandering_spirit;
+            result = TRUE;
+        }
+        break;
     }
 
     return result;
@@ -8076,29 +8107,23 @@ static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, 
 {
     int trace = BATTLER_NONE;
 
-    if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE
+    // Oxide: the abilities Trace cannot copy come from Ability_ChangeFails,
+    // where Platinum listed only Forecast, Trace and Multitype.
+    if (Ability_ChangeFails(battleCtx->battleMons[defender1].ability, ABILITY_FAILS_TRACE) == FALSE
         && battleCtx->battleMons[defender1].curHP
         && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+        && Ability_ChangeFails(battleCtx->battleMons[defender2].ability, ABILITY_FAILS_TRACE) == FALSE) {
         // Both targets are eligible; choose randomly
         if (BattleSystem_RandNext(battleSys) & 1) {
             trace = defender2;
         } else {
             trace = defender1;
         }
-    } else if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].curHP
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE) {
+    } else if (Ability_ChangeFails(battleCtx->battleMons[defender1].ability, ABILITY_FAILS_TRACE) == FALSE
+        && battleCtx->battleMons[defender1].curHP) {
         trace = defender1;
-    } else if (battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+    } else if (Ability_ChangeFails(battleCtx->battleMons[defender2].ability, ABILITY_FAILS_TRACE) == FALSE
+        && battleCtx->battleMons[defender2].curHP) {
         trace = defender2;
     }
 
@@ -8559,6 +8584,63 @@ int Battler_AttackAfterStage(BattleContext *battleCtx, int battler)
 BOOL Battler_IsGrounded(BattleContext *battleCtx, int battler)
 {
     return BattlerIsGrounded(battleCtx, battler);
+}
+
+// Oxide: the abilities that refuse some change, with what each refuses,
+// after hg-engine's AbilityFlags table (its failsTrace, failsRolePlay,
+// failsSwap, failsSuppress and failsEntrainment), cut to the abilities
+// Platinum's list has. Every other ability refuses nothing.
+static const struct {
+    u16 ability;
+    u8 flags;
+} sAbilityChangeFlags[] = {
+    { ABILITY_WONDER_GUARD,     ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TRACE,            ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_FORECAST,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_MULTITYPE,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_FLOWER_GIFT,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ILLUSION,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_IMPOSTER,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ZEN_MODE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_STANCECHANGE,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_SHIELDS_DOWN,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_SCHOOLING,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_DISGUISE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_BATTLE_BOND,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POWER_CONSTRUCT,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_COMATOSE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_RECEIVER,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POWER_OF_ALCHEMY, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_RKS_SYSTEM,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_GULP_MISSILE,     ABILITY_FAILS_SUPPRESS },
+    { ABILITY_ICE_FACE,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_NEUTRALIZING_GAS, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_HUNGER_SWITCH,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_AS_ONE,           ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_AS_ONE_2,         ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_ZERO_TO_HERO,     ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_COMMANDER,        ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_PROTOSYNTHESIS,   ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_QUARK_DRIVE,      ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_2,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_3,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_EMBODY_ASPECT_4,  ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERA_SHIFT,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_SUPPRESS | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERA_SHELL,       ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_TERAFORM_ZERO,    ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+    { ABILITY_POISON_PUPPETEER, ABILITY_FAILS_TRACE | ABILITY_FAILS_ROLE_PLAY | ABILITY_FAILS_SWAP | ABILITY_FAILS_ENTRAINMENT },
+};
+
+BOOL Ability_ChangeFails(int ability, u8 flags)
+{
+    for (int i = 0; i < NELEMS(sAbilityChangeFlags); i++) {
+        if (sAbilityChangeFlags[i].ability == ability) {
+            return (sAbilityChangeFlags[i].flags & flags) != 0;
+        }
+    }
+
+    return FALSE;
 }
 
 int Battler_MovePriority(BattleContext *battleCtx, int battler, int move)

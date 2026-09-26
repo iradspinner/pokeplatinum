@@ -1312,6 +1312,12 @@
     .long (\jump_no_effect-.) / 4 - 1
     .endm
 
+    .macro CheckAbilityChange kind, jump_fail
+    .long BTLCMD_CHECKABILITYCHANGE
+    .long \kind
+    .long (\jump_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

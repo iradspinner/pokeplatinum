@@ -154,6 +154,22 @@
             "en_US": "Gooey"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMummy",
+            "en_US": "Mummy"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityWanderingSpirit",
+            "en_US": "Wandering Spirit"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityEntrainment",
+            "en_US": "Entrainment"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityAbilityList",
+            "en_US": "Ability list"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

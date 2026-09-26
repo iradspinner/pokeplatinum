@@ -244,6 +244,7 @@ ScriptCommand(BTLCMD_TRYBEASTBOOST,               BtlCmd_TryBeastBoost)
 ScriptCommand(BTLCMD_TRYSOULHEART,                BtlCmd_TrySoulHeart)
 ScriptCommand(BTLCMD_TRYDEFIANT,                  BtlCmd_TryDefiant)
 ScriptCommand(BTLCMD_ABILITYSTATCHANGE,           BtlCmd_AbilityStatChange)
+ScriptCommand(BTLCMD_CHECKABILITYCHANGE,          BtlCmd_CheckAbilityChange)
 
 // clang-format on
 

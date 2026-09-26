@@ -1062,6 +1062,10 @@ TestKit_Abilities:
     AddListMenuEntry TestKit_Text_MenuAbilityToxicDebris, 20
     AddListMenuEntry TestKit_Text_MenuAbilityBerserk, 21
     AddListMenuEntry TestKit_Text_MenuAbilityGooey, 22
+    AddListMenuEntry TestKit_Text_MenuAbilityMummy, 23
+    AddListMenuEntry TestKit_Text_MenuAbilityWanderingSpirit, 24
+    AddListMenuEntry TestKit_Text_MenuAbilityEntrainment, 25
+    AddListMenuEntry TestKit_Text_MenuAbilityAbilityList, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
     GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
@@ -1086,6 +1090,10 @@ TestKit_Abilities:
     GoToIfEq VAR_0x8004, 20, TestKit_AbilityToxicDebris
     GoToIfEq VAR_0x8004, 21, TestKit_AbilityBerserk
     GoToIfEq VAR_0x8004, 22, TestKit_AbilityGooey
+    GoToIfEq VAR_0x8004, 23, TestKit_AbilityMummy
+    GoToIfEq VAR_0x8004, 24, TestKit_AbilityWanderingSpirit
+    GoToIfEq VAR_0x8004, 25, TestKit_AbilityEntrainment
+    GoToIfEq VAR_0x8004, 26, TestKit_AbilityAbilityList
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -1402,6 +1410,63 @@ TestKit_AbilityGooey:
     SetVar VAR_0x8009, MOVE_REST
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Mummy: a wild Rattata that knows only Tackle, which takes Mummy the first
+   time it touches Cofagrigus. */
+TestKit_AbilityMummy:
+    SetVar VAR_0x800A, SPECIES_COFAGRIGUS
+    SetVar VAR_0x800B, ABILITY_MUMMY
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_WILL_O_WISP
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_NASTY_PLOT
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Wandering Spirit: a wild Rattata with Guts that knows only Tackle; the
+   first Tackle swaps their abilities, and after it Runerigus has Guts, so
+   later Tackles do nothing. */
+TestKit_AbilityWanderingSpirit:
+    SetVar VAR_0x800A, SPECIES_RUNERIGUS
+    SetVar VAR_0x800B, ABILITY_WANDERING_SPIRIT
+    SetVar VAR_0x8006, MOVE_EARTHQUAKE
+    SetVar VAR_0x8007, MOVE_SHADOW_CLAW
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_STEALTH_ROCK
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Entrainment: a wild Rattata with Guts; Entrainment gives it Leavanny's
+   Swarm, and the other three show the ability moves still working. */
+TestKit_AbilityEntrainment:
+    SetVar VAR_0x800A, SPECIES_LEAVANNY
+    SetVar VAR_0x800B, ABILITY_SWARM
+    SetVar VAR_0x8006, MOVE_ENTRAINMENT
+    SetVar VAR_0x8007, MOVE_SKILL_SWAP
+    SetVar VAR_0x8008, MOVE_ROLE_PLAY
+    SetVar VAR_0x8009, MOVE_WORRY_SEED
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ability list: a wild Rattata given Disguise, one of the abilities on the
+   new list; all four moves fail against it. */
+TestKit_AbilityAbilityList:
+    SetVar VAR_0x800A, SPECIES_LEAVANNY
+    SetVar VAR_0x800B, ABILITY_SWARM
+    SetVar VAR_0x8006, MOVE_ENTRAINMENT
+    SetVar VAR_0x8007, MOVE_SKILL_SWAP
+    SetVar VAR_0x8008, MOVE_ROLE_PLAY
+    SetVar VAR_0x8009, MOVE_GASTRO_ACID
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_DISGUISE
     SetVar VAR_0x8002, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithMoves
 
