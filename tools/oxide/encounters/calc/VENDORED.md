@@ -108,12 +108,16 @@ calculator checks fail if the offline ones are lost.
     `criticalHit`, `afterMoveType` and `beforeFinalDamage` calls upstream's
     other generations already make, and calls for the nine new names above.
     The damage loop takes the two type factors from `typeFactorOrder`.
+    Since item 23 (2026-09-27) two more, `attackSource` and `defenseSource`,
+    let a profile name the Pokemon and stat a move attacks with and send a
+    special move against Defense or past the target's stages; the defending
+    side's Defense and Sp. Def modifiers follow the stat the move hits.
 
-11. **`calc/mechanics/util.js`, Mirror Armor, Freeze-Dry and Flying Press.**
-    Freeze-Dry and Flying Press keep their plain type chart under the
-    "Platinum Oxide" title, as Oxide's engine hits with them, until the main
-    track gives them their type rules. Under the "Platinum Oxide"
-    title, `checkIntimidate` lowers the Intimidate user's Attack when the
+11. **`calc/mechanics/util.js`, Mirror Armor.** Freeze-Dry and Flying Press
+    kept their plain type chart under the "Platinum Oxide" title from item 22
+    until the engine took their type rules (item 23, 2026-09-27); upstream's
+    rules are the engine's now, so that part is gone. Under the "Platinum
+    Oxide" title, `checkIntimidate` lowers the Intimidate user's Attack when the
     target has Mirror Armor, as element 5 does, and Inner Focus, Own Tempo,
     Oblivious and Scrappy block it, as the staples rulings have it.
 
