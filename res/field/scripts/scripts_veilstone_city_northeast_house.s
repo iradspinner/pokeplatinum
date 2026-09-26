@@ -59,7 +59,7 @@ VeilstoneCityNortheastHouse_00A4:
     GoToIf 1, VeilstoneCityNortheastHouse_0195
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BELDUM, 40, 0, VAR_0x800C
+    GivePokemon SPECIES_CLOBBOPUS, 40, 0, VAR_0x800C
     SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
     Message 10
     CloseMessage
@@ -72,7 +72,7 @@ VeilstoneCityNortheastHouse_00D0:
     GoToIf 1, VeilstoneCityNortheastHouse_0195
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_SNEASEL, 40, 0, VAR_0x800C
+    GivePokemon SPECIES_HAWLUCHA, 40, 0, VAR_0x800C
     SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
     Message 10
     CloseMessage

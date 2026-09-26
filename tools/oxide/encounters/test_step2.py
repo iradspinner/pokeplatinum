@@ -92,14 +92,15 @@ def main():
     # is gate tier and out of the wild; Litten took over its home on Route 204
     # north, which is what made that half of the route worth delaying for.
     results.append(("the starters are wild: Fennekin and Litten at home (Litten on Route "
-                    "204 north, the delay), Popplio on water, the grass three at home on land "
+                    "204 north, the delay), Popplio only from the Eterna trade, the grass three at home on land "
                     "since the honey trees lost their rare tier, none gate but Scorbunny, "
                     "which is the starter now",
                     by["Fennekin"]["home"] == ["encounters_route_214"]
                     and by["Litten"]["home"] == ["encounters_route_204_north"]
-                    # Popplio is still homed on water; it reads as non-wild now
-                    # only because the Eterna trade hands one over as well.
-                    and by["Popplio"]["water"]
+                    # A line the player can always have is in no table (Ian,
+                    # 2026-09-26), so Popplio is the Eterna trade's alone.
+                    and not by["Popplio"]["water"] and not by["Popplio"]["cameo"]
+                    and by["Popplio"]["status"] == "non-wild"
                     and by["Scorbunny"]["tier"] == "gate"
                     and by["Scorbunny"]["non_wild"]
                     and by["Rowlet"]["home"] == ["encounters_eterna_forest"]

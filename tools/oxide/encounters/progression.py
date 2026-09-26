@@ -238,15 +238,17 @@ def sorted_by_order(sidecar, names):
 # rest are this module's reading of the route sequence and are provisional
 # until he corrects them in the sidecar. The caps are his.
 
-# Galactic is Ian's split between Lake Acuity and Volkner (2026-09-25): the
-# Battle Zone, opened before the League, and the Galactic fights up to the
-# Distortion World.
+# Between Candice and Volkner sit two Galactic splits (Ian, 2026-09-26). HQ is
+# the Galactic Warehouse and Galactic HQ in Veilstone, closing on Cyrus 2 and
+# Saturn 2; it has no wild tables. Galactic is the Battle Zone, opened before
+# the League, the Mt. Coronet climb, Spear Pillar and the Distortion World,
+# closing on Cyrus 3.
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
-          "Candice", "Galactic", "Volkner", "League", "Post"]
-# Ian's hard level caps per split (2026-09-21, Galactic and Volkner's 68 on
-# 2026-09-25); post-game has none.
+          "Candice", "HQ", "Galactic", "Volkner", "League", "Post"]
+# Ian's hard level caps per split (2026-09-21; Volkner's 68 on 2026-09-25; HQ
+# 60 and Galactic 65 on 2026-09-26); post-game has none.
 DEFAULT_CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 38,
-                "Wake": 44, "Byron": 53, "Candice": 56, "Galactic": 64,
+                "Wake": 44, "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65,
                 "Volkner": 68, "League": 78, "Post": None}
 RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice",
         # Surf is the HM from Celestic Town, after Wake

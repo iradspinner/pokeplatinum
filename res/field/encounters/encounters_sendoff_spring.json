@@ -47,7 +47,7 @@
         },
         {
             "level": 53,
-            "species": "SPECIES_ELECTIVIRE"
+            "species": "SPECIES_PAWMOT"
         }
     ],
     "swarms": [
@@ -119,7 +119,7 @@
         {
             "level_max": 55,
             "level_min": 46,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_BUIZEL"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 45,
             "level_min": 39,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_CHINCHOU"
         }
     ],
     "super_rod_rate": 75,

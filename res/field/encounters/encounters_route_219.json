@@ -43,7 +43,7 @@
         },
         {
             "level": 26,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 26,
@@ -87,7 +87,7 @@
         "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_EEVEE",
+        "SPECIES_DOLLIV",
         "SPECIES_GALARIAN_MR_MIME"
     ],
     "leafgreen": [
@@ -99,7 +99,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 26,
@@ -142,7 +142,7 @@
         {
             "level_max": 8,
             "level_min": 4,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_FROAKIE"
         },
         {
             "level_max": 8,
@@ -155,7 +155,7 @@
         {
             "level_max": 20,
             "level_min": 15,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_SHELLOS"
         },
         {
             "level_max": 20,

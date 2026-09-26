@@ -51,7 +51,7 @@
         }
     ],
     "swarms": [
-        "SPECIES_ELECTIVIRE",
+        "SPECIES_CROBAT",
         "SPECIES_LITWICK"
     ],
     "day": [
@@ -65,7 +65,7 @@
     "radar": [
         "SPECIES_DUSCLOPS",
         "SPECIES_GOTHITELLE",
-        "SPECIES_ELECTIVIRE",
+        "SPECIES_SINISTCHA",
         "SPECIES_TOGEDEMARU"
     ],
     "rate_form0": 100,

@@ -176,7 +176,7 @@ CanalaveLibrary2f_024C:
     GoToIf 1, CanalaveLibrary2f_0341
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_BASTIODON, 50, 0, VAR_0x800C
+    GivePokemon SPECIES_KLEFKI, 50, 0, VAR_0x800C
     SetFlag FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT
     Message 15
     CloseMessage

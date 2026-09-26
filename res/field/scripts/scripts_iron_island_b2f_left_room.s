@@ -242,13 +242,52 @@ IronIslandB2FLeftRoom_AcceptedEgg:
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     Message IronIslandB2FLeftRoom_Text_ShowEggPokemonPlaces
-    GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
+    @ Platinum Oxide (Ian, 2026-09-26): a guaranteed Lucario here broke the
+    @ run, so Riley's egg holds one of eight lines at random.
+    GetRandom VAR_0x8004, 8
+    SetVarFromValue VAR_0x8005, SPECIES_RIOLU
+    CallIfEq VAR_0x8004, 1, IronIslandB2FLeftRoom_EggRalts
+    CallIfEq VAR_0x8004, 2, IronIslandB2FLeftRoom_EggSnorunt
+    CallIfEq VAR_0x8004, 3, IronIslandB2FLeftRoom_EggSwablu
+    CallIfEq VAR_0x8004, 4, IronIslandB2FLeftRoom_EggGligar
+    CallIfEq VAR_0x8004, 5, IronIslandB2FLeftRoom_EggHoundour
+    CallIfEq VAR_0x8004, 6, IronIslandB2FLeftRoom_EggCroagunk
+    CallIfEq VAR_0x8004, 7, IronIslandB2FLeftRoom_EggHippopotas
+    GiveEgg VAR_0x8005, SPECIAL_METLOC_NAME_RILEY
     SetFlag FLAG_HIDE_IRON_ISLAND_B2F_LEFT_ROOM_RILEY
     ClearFlag FLAG_COULD_NOT_RECEIVE_RIOLU_EGG
     Call IronIslandB2FLeftRoom_SetFlagReceivedEgg
     Message IronIslandB2FLeftRoom_Text_LetsMeetAgain
     WaitButton
     CloseMessage
+    Return
+
+IronIslandB2FLeftRoom_EggRalts:
+    SetVarFromValue VAR_0x8005, SPECIES_RALTS
+    Return
+
+IronIslandB2FLeftRoom_EggSnorunt:
+    SetVarFromValue VAR_0x8005, SPECIES_SNORUNT
+    Return
+
+IronIslandB2FLeftRoom_EggSwablu:
+    SetVarFromValue VAR_0x8005, SPECIES_SWABLU
+    Return
+
+IronIslandB2FLeftRoom_EggGligar:
+    SetVarFromValue VAR_0x8005, SPECIES_GLIGAR
+    Return
+
+IronIslandB2FLeftRoom_EggHoundour:
+    SetVarFromValue VAR_0x8005, SPECIES_HOUNDOUR
+    Return
+
+IronIslandB2FLeftRoom_EggCroagunk:
+    SetVarFromValue VAR_0x8005, SPECIES_CROAGUNK
+    Return
+
+IronIslandB2FLeftRoom_EggHippopotas:
+    SetVarFromValue VAR_0x8005, SPECIES_HIPPOPOTAS
     Return
 
 IronIslandB2FLeftRoom_NoRoomToTakeEgg:

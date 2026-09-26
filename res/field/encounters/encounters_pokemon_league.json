@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_CARBINK",
-        "SPECIES_ELECTIVIRE"
+        "SPECIES_STEELIX"
     ],
     "day": [
         "SPECIES_GOLEM",
@@ -203,7 +203,7 @@
         {
             "level_max": 56,
             "level_min": 48,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_GYARADOS"
         }
     ],
     "map_category": {

@@ -43,7 +43,7 @@
         },
         {
             "level": 26,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_STEENEE"
         },
         {
             "level": 26,
@@ -87,7 +87,7 @@
         "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_EEVEE",
+        "SPECIES_DOLLIV",
         "SPECIES_GALARIAN_MR_MIME"
     ],
     "leafgreen": [

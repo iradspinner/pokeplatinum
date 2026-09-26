@@ -119,7 +119,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_CORPHISH"
         }
     ],
     "old_rod_rate": 100,
@@ -175,7 +175,7 @@
         {
             "level_max": 24,
             "level_min": 19,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_BUIZEL"
         }
     ],
     "super_rod_rate": 75,

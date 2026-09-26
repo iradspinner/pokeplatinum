@@ -91,16 +91,6 @@
       "pick": "random"
     },
     {
-      "id": "windworks_drifloon",
-      "label": "Valley Windworks, the balloon",
-      "kind": "static",
-      "capture_area": "Valley Windworks",
-      "split": "Gardenia",
-      "from": {"file": "scripts_valley_windworks_outside.s"},
-      "pick": "random",
-      "note": "Fridays only, after the Windworks is cleared."
-    },
-    {
       "id": "eterna_condo",
       "label": "Eterna City, condominiums",
       "kind": "gift",
@@ -122,7 +112,7 @@
     },
     {
       "id": "togepi_egg",
-      "label": "Cynthia's egg (Togepi)",
+      "label": "Cynthia's egg",
       "kind": "egg",
       "capture_area": null,
       "split": "Fantina",
@@ -160,16 +150,6 @@
       "split": "Fantina",
       "order": 35.5,
       "from": {"file": "scripts_hearthome_city_northwest_house.s"},
-      "pick": "random"
-    },
-    {
-      "id": "hearthome_fan_club",
-      "label": "Hearthome City, the Fan Club",
-      "kind": "gift",
-      "capture_area": "Hearthome City",
-      "split": "Fantina",
-      "order": 35.6,
-      "from": {"file": "scripts_hearthome_city_pokemon_fan_club.s"},
       "pick": "random"
     },
     {
@@ -237,7 +217,7 @@
     },
     {
       "id": "manaphy_egg",
-      "label": "Pokemon Mansion, the owner's egg (Manaphy)",
+      "label": "Pokemon Mansion, the owner's egg",
       "kind": "egg",
       "capture_area": null,
       "split": "Wake",
@@ -257,14 +237,14 @@
     },
     {
       "id": "riolu_egg",
-      "label": "Riley's egg (Riolu)",
+      "label": "Riley's egg",
       "kind": "egg",
       "capture_area": null,
       "split": "Byron",
       "order": 86.5,
       "from": {"file": "scripts_iron_island_b2f_left_room.s"},
       "pick": "random",
-      "note": "Given where Iron Island's tables are, so hatch it somewhere with none, such as Verity Lakefront."
+      "note": "One of eight lines at random since 2026-09-26, Riolu among them. Given where Iron Island's tables are, so hatch it somewhere with none, such as Verity Lakefront."
     },
     {
       "id": "snowpoint_trade",
@@ -274,8 +254,8 @@
       "split": "Candice",
       "from": {"file": "res/npc_trades/gaspar_haunter.json"},
       "pick": "random",
-      "requires": "SPECIES_MEDICHAM",
-      "note": "Wants a Medicham, which is not on the pick-list, so it cannot be met in Oxide as it stands."
+      "requires": "SPECIES_SNOVER",
+      "note": "Wants a Snover, gives a shiny Suicune, Serious (neutral), 15 in every IV (Ian, 2026-09-26), at the Snover's level."
     },
     {
       "id": "route_226_trade",
@@ -305,8 +285,9 @@
       "split": "Volkner",
       "order": 118,
       "pick": "legendary_pool",
+      "pool_key": "acuity",
       "level": 50,
-      "note": "Uxie's cavern draws one of the legendary pool, without replacement against Valor Cavern (availability plan, `pool`)."
+      "note": "Uxie's cavern draws one from its own third of the legendary pool (availability plan, `pool`), so it can never match Valor Cavern or the roamer."
     },
     {
       "id": "valor_cavern",
@@ -316,8 +297,9 @@
       "split": "Volkner",
       "order": 119,
       "pick": "legendary_pool",
+      "pool_key": "valor",
       "level": 50,
-      "note": "Azelf's cavern, the second draw from the legendary pool."
+      "note": "Azelf's cavern draws one from its own third of the legendary pool."
     },
     {
       "id": "spear_pillar_dialga",

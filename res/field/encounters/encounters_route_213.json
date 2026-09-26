@@ -43,7 +43,7 @@
         },
         {
             "level": 26,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_QUAGSIRE"
         },
         {
             "level": 26,
@@ -87,7 +87,7 @@
         "SPECIES_MASQUERAIN"
     ],
     "firered": [
-        "SPECIES_EEVEE",
+        "SPECIES_DOLLIV",
         "SPECIES_GALARIAN_MR_MIME"
     ],
     "leafgreen": [
@@ -147,7 +147,7 @@
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_MAGIKARP"
         }
     ],
     "good_rod_rate": 50,

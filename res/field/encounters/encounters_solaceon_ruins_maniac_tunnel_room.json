@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_SCYTHER",
-        "SPECIES_VULLABY"
+        "SPECIES_GEODUDE"
     ],
     "day": [
         "SPECIES_NOSEPASS",
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_GOLBAT",
-        "SPECIES_EEVEE"
+        "SPECIES_YAMASK"
     ],
     "surf_rate": 0,
     "surf_encounters": [

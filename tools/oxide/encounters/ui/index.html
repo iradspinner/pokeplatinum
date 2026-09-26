@@ -727,7 +727,7 @@ const typeChip = (t, cls = "", label = tidy(t)) =>
 // League there is no leader, so Post is a plain tag.
 const SPLIT_TYPE = { Roark: "ROCK", Gardenia: "GRASS", Fantina: "GHOST",
   Maylene: "FIGHTING", Wake: "WATER", Byron: "STEEL", Candice: "ICE",
-  Galactic: "DARK", Volkner: "ELECTRIC", League: "DRAGON" };
+  HQ: "POISON", Galactic: "DARK", Volkner: "ELECTRIC", League: "DRAGON" };
 const splitTag = (split, suffix = "") => !split ? ""
   : SPLIT_TYPE[split]
     ? `<span class="chip mini" style="--t: var(--type-${SPLIT_TYPE[split].toLowerCase()})">${esc(split + suffix)}</span>`
@@ -1257,7 +1257,7 @@ function drawSim() {
     rows.push(`<div class="simrow" title="${esc(alt ? "Next best: " + alt : "")}">
       <span class="where">${esc(e.area)}</span>${icon(e.species, true)}
       <span><a href="#" class="spname" data-sp="${e.species}">${esc(e.label)}</a>
-        <span class="how"> ${esc(e.choice)}</span></span>
+        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span></span>
       <span class="num">${e.value}</span></div>`);
   });
   $("#simlog").innerHTML = rows.join("");
@@ -1265,9 +1265,11 @@ function drawSim() {
       + (m.stage !== m.species ? ", a " + m.stage_label + " by the cap" : ""))}">
     ${icon(m.stage, true)}<span class="nm">${esc(m.stage_label)}<span class="sub"> ${esc(m.area)}</span></span>
     <span class="num">${m.value}</span></div>`;
-  const alive = d.box.filter(m => m.alive), dead = d.box.filter(m => !m.alive);
+  const alive = d.box.filter(m => m.alive), dead = d.box.filter(m => !m.alive && !m.traded);
+  const traded = d.box.filter(m => m.traded);
   $("#simbox").innerHTML = `<h3>The box</h3>${alive.map(mon).join("")}
-    ${dead.length ? `<h3>Dead</h3>${dead.map(mon).join("")}` : ""}`;
+    ${dead.length ? `<h3>Dead</h3>${dead.map(mon).join("")}` : ""}
+    ${traded.length ? `<h3>Traded away</h3>${traded.map(mon).join("")}` : ""}`;
 }
 
 async function setView(view) {
@@ -1881,6 +1883,10 @@ async function setCaught(area, species, caught) {
     CAUGHT = new Set(r.caught);
     toast(caught ? "Caught here" : "Cleared this area's encounter");
     await Promise.all([reloadDetail(), refreshList()]);
+    // The middle pane dims by takenAt(), which reads the area list; the two
+    // reloads race, so draw it again once the list is current. Unticking a
+    // gift left the pane grey when the detail came back first.
+    if (DETAIL) { drawMid(); drawRight(); }
   } catch (e) { toast(e.message, true); }
 }
 

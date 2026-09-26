@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 38,
-            "species": "SPECIES_ELECTIVIRE"
+            "species": "SPECIES_TOGEDEMARU"
         },
         {
             "level": 39,
@@ -43,7 +43,7 @@
         },
         {
             "level": 41,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_SHELLOS"
         },
         {
             "level": 41,
@@ -203,7 +203,7 @@
         {
             "level_max": 54,
             "level_min": 46,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_JELLICENT"
         }
     ],
     "map_category": {

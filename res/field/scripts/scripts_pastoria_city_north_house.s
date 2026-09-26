@@ -124,7 +124,7 @@ PastoriaCityNorthHouse_0162:
     GoToIf 1, PastoriaCityNorthHouse_0199
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_TOXAPEX, 45, 0, VAR_0x800C
+    GivePokemon SPECIES_WHISCASH, 45, 0, VAR_0x800C
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
     Message 4
     CloseMessage

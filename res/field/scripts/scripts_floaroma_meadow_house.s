@@ -59,7 +59,7 @@ FloaromaMeadowHouse_008F:
     GoToIf 1, FloaromaMeadowHouse_00F2
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    GivePokemon SPECIES_FLABEBE, 18, 0, VAR_0x800C
+    GivePokemon SPECIES_BUDEW, 18, 0, VAR_0x800C
     SetFlag FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT
     Message 6
     CloseMessage

@@ -1184,6 +1184,7 @@ TEXT_BANK_MOVE_DESCRIPTIONS = 646
 REBUILT_TRADES = {
     0: "Oreburgh: any Pokemon for a shiny Vullaby",
     1: "Eterna: any Pokemon for a shiny Popplio",
+    2: "Snowpoint: a Snover for a shiny Suicune, Serious, 15 across (2026-09-26)",
 }
 
 TEXT_BANKS_SKIPPED = {
@@ -1196,6 +1197,8 @@ TEXT_BANKS_SKIPPED = {
     568: "Sandgem's gift menu names the species it hands out, re-pooled with the same pass",
     578: "the Day Care man offers a Floette rather than the base ROM's Ditto "
          "(Ian, 2026-09-21), and his line names it",
+    180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
+         "Medicham (Ian, 2026-09-26), and her lines name both",
 }
 
 

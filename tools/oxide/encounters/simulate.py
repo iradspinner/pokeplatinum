@@ -134,7 +134,10 @@ def gain(value, alive_values):
 # -- the world -----------------------------------------------------------------
 
 
-Option = collections.namedtuple("Option", "label kind split shares repel")
+# requires: for a trade, the species it asks for; the player hands over a
+# living member of that line, which leaves the box.
+Option = collections.namedtuple("Option", "label kind split shares repel requires",
+                                defaults=(None,))
 # shares: {species: weight}; a scripted "choice" pool is marked by kind
 # "choice" and a legendary draw by kind "legendary".
 
@@ -194,7 +197,7 @@ def _honey_option(split, rank, tables):
 def _source_option(src):
     kind = {"choice": "choice", "legendary_pool": "legendary"}.get(src["pick"], "scripted")
     shares = {sp: 1.0 / len(src["pool"]) for sp in src["pool"]}
-    return Option(src["label"], kind, src["split"], shares, None)
+    return Option(src["label"], kind, src["split"], shares, None, src.get("requires"))
 
 
 def world(target, root=None):
@@ -240,11 +243,11 @@ def world(target, root=None):
     honey_tables = model.honey_tree_tables()
     trees = scripted.honey_tree_locations(root)
     for src in scripted.load(root):
-        if not src.get("simulate", True) or src.get("requires") or src["kind"] == "starter":
+        if not src.get("simulate", True) or src["kind"] == "starter":
             continue
         if rank.get(src["split"], 99) > rank[target]:
             continue
-        name = src.get("capture_area") or "Egg: " + dex.display_name(src["pool"][0])
+        name = src.get("capture_area") or src["label"]
         a = place(name)
         a["options"].append(_source_option(src))
         a["sources"].append(src["id"])
@@ -276,7 +279,7 @@ class Box:
     def __init__(self, root, values):
         self.root = root
         self.values = values
-        self.members = []          # [{species, area, alive, value}]
+        self.members = []          # [{species, area, alive, value, traded}]
         self.lines = set()         # every line caught, dead or alive
 
     def owns(self, species):
@@ -285,9 +288,17 @@ class Box:
     def alive_values(self):
         return [m["value"] for m in self.members if m["alive"]]
 
+    def payment(self, requires):
+        """The least valuable living member a trade asking for `requires`
+        could take, or None."""
+        line = dex.line_of(self.root, requires)
+        can = [m for m in self.members if m["alive"] and dex.line_of(self.root, m["species"]) == line]
+        return min(can, key=lambda m: m["value"]) if can else None
+
     def add(self, species, area):
         v = self.values.of(species)
-        self.members.append({"species": species, "area": area, "alive": True, "value": v})
+        self.members.append({"species": species, "area": area, "alive": True, "value": v,
+                             "traded": False})
         self.lines.add(dex.line_of(self.root, species))
         return v
 
@@ -305,6 +316,14 @@ def expected_gain(option, box, drawn=()):
     live = _live(option.shares, box, drawn)
     if not live:
         return 0.0
+    if option.requires:
+        pay = box.payment(option.requires)
+        if pay is None:
+            return 0.0
+        rest = list(alive)
+        rest.remove(pay["value"])
+        return sum(p * (box_value(rest + [box.values.of(sp)]) - box_value(alive))
+                   for sp, p in live.items())
     if option.kind == "choice":
         return max(gain(box.values.of(sp), alive) for sp in live)
     return sum(p * gain(box.values.of(sp), alive) for sp, p in live.items())
@@ -418,6 +437,10 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
             drawn.add(sp)
         if opt.repel is not None and rank.get(opt.split, 99) == 0:
             repel_used = True
+        if opt.requires:
+            pay = box.payment(opt.requires)
+            pay["alive"], pay["traded"] = False, True
+            entry["traded_away"] = dex.display_name(pay["species"])
         entry.update(choice=opt.label, species=sp, value=box.add(sp, a["name"]),
                      expected=round(ev, 1))
         log.append(entry)
@@ -436,7 +459,8 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
                      stage=values.stage(m["species"]),
                      stage_label=dex.display_name(values.stage(m["species"])))
                 for m in sorted(box.members, key=lambda m: -m["value"])],
-        "alive": len(alive), "dead": len(box.members) - len(alive),
+        "alive": len(alive),
+        "dead": sum(1 for m in box.members if not m["alive"] and not m["traded"]),
         "worth": round(box_value(alive), 1),
         "sum_alive": round(sum(alive), 1),
         "top_six": round(sum(sorted(alive, reverse=True)[:6]), 1),

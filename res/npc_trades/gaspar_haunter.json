@@ -1,11 +1,11 @@
 {
     "name": "Gaspar",
     "otName": "Mindy",
-    "species": "SPECIES_GENGAR",
-    "hpIV": 20,
-    "atkIV": 25,
+    "species": "SPECIES_SUICUNE",
+    "hpIV": 15,
+    "atkIV": 15,
     "defIV": 15,
-    "speedIV": 25,
+    "speedIV": 15,
     "spAtkIV": 15,
     "spDefIV": 15,
     "unused1": 26,
@@ -15,10 +15,10 @@
     "cute": 0,
     "smart": 0,
     "tough": 0,
-    "personality": 136,
-    "heldItem": "ITEM_EVERSTONE",
+    "personality": 84787,
+    "heldItem": "ITEM_NONE",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
     "language": "LANGUAGE_ENGLISH",
-    "requestedSpecies": "SPECIES_MEDICHAM"
+    "requestedSpecies": "SPECIES_SNOVER"
 }

@@ -52,7 +52,7 @@
     ],
     "swarms": [
         "SPECIES_SCIZOR",
-        "SPECIES_VULLABY"
+        "SPECIES_PONYTA"
     ],
     "day": [
         "SPECIES_SWABLU",
@@ -91,7 +91,7 @@
         "SPECIES_GOLBAT"
     ],
     "leafgreen": [
-        "SPECIES_EEVEE",
+        "SPECIES_SLUGMA",
         "SPECIES_GASTLY"
     ],
     "surf_rate": 0,

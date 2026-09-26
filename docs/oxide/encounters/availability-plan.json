@@ -97,7 +97,7 @@
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD"],
       "cameo": ["SPECIES_STEENEE", "SPECIES_SEWADDLE", "SPECIES_SURSKIT", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_BUIZEL", "SPECIES_PACHIRISU", "SPECIES_DEWPIDER", "SPECIES_SMOLIV"],
-      "tail": ["SPECIES_FROAKIE", "SPECIES_POPPLIO"],
+      "tail": ["SPECIES_FROAKIE", "SPECIES_SHELLOS"],
       "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night."
     },
     "encounters_eterna_forest": {
@@ -191,15 +191,15 @@
       "note": "Wayward Cave, both floors one table (Ian, 2026-09-26): Carbink fills the dark and Gible has its home in it at 10%, the cave's rock lines around them, Nacli and Larvitar on the top rung."
     },
     "encounters_route_208": {
-      "home": ["SPECIES_FOMANTIS", "SPECIES_FLABEBE"],
-      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_STEENEE", "SPECIES_MINCCINO", "SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PURRLOIN", "SPECIES_MIGHTYENA"],
+      "home": ["SPECIES_FOMANTIS"],
+      "cameo": ["SPECIES_PACHIRISU", "SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_STEENEE", "SPECIES_MINCCINO", "SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PURRLOIN", "SPECIES_MIGHTYENA"],
       "tail": ["SPECIES_GROVYLE", "SPECIES_SERVINE"],
       "note": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s."
     },
     "encounters_amity_square": {
       "home": [],
-      "cameo": ["SPECIES_SKITTY", "SPECIES_SWABLU", "SPECIES_PACHIRISU", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FLABEBE", "SPECIES_MINCCINO", "SPECIES_EMOLGA", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_TOGEPI", "SPECIES_PICHU"],
+      "cameo": ["SPECIES_SKITTY", "SPECIES_SWABLU", "SPECIES_PACHIRISU", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FOMANTIS", "SPECIES_MINCCINO", "SPECIES_EMOLGA", "SPECIES_PURRLOIN"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_PICHU"],
       "note": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian."
     },
     "encounters_mt_coronet_1f_south": {
@@ -216,7 +216,7 @@
     },
     "encounters_route_209_lost_tower_1f": {
       "home": [],
-      "cameo": ["SPECIES_YAMASK", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GOTHITA", "SPECIES_VULLABY"],
+      "cameo": ["SPECIES_YAMASK", "SPECIES_ZUBAT", "SPECIES_KOFFING", "SPECIES_GOTHITA", "SPECIES_DRIFLOON"],
       "tail": [],
       "note": "The Lost Tower's ground floor, where the graves begin: Yamask leads, Zubat and Koffing drift in from outside, Gothita and Vullaby watch."
     },
@@ -240,7 +240,7 @@
     },
     "encounters_route_209_lost_tower_5f": {
       "home": [],
-      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_VULLABY"],
+      "cameo": ["SPECIES_MISDREAVUS", "SPECIES_DUSKULL", "SPECIES_YAMASK", "SPECIES_LITWICK", "SPECIES_DRIFLOON"],
       "tail": [],
       "note": "The Lost Tower's top floor, below the two old women: Misdreavus leads, Duskull, Yamask and Litwick gathered, Vullaby circling."
     },
@@ -359,7 +359,7 @@
       "note": "Route 210's lower half, Scyther's home; the north half is the delay. Sprigatito at 10, its home since the honey trees gave it up (2026-09-26), Fennekin at 10 as promised, Swablu, Sneasel and Slugma arriving by the cap rule, Torchic a 1%."
     },
     "encounters_route_215": {
-      "home": ["SPECIES_VULLABY", "SPECIES_CASTFORM"],
+      "home": ["SPECIES_DRIFLOON", "SPECIES_CASTFORM"],
       "cameo": ["SPECIES_SCYTHER", "SPECIES_MIENFOO", "SPECIES_FLETCHINDER", "SPECIES_CROAGUNK", "SPECIES_QUAGSIRE", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_YANMA", "SPECIES_KOFFING"],
       "note": "The rain route: Vullaby's home at 35 with Castform at 20, Yanma and Koffing in the tail by the cap rule, Wooper by day."
@@ -397,7 +397,7 @@
     "encounters_route_213": {
       "home": ["SPECIES_SANDYGAST", "SPECIES_CLOBBOPUS", "SPECIES_DEWPIDER"],
       "cameo": ["SPECIES_TRUMBEAK", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_DOLLIV", "SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
-      "tail": ["SPECIES_POPPLIO", "SPECIES_WARTORTLE"],
+      "tail": ["SPECIES_QUAGSIRE", "SPECIES_WARTORTLE"],
       "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s."
     },
     "encounters_great_marsh_1": {
@@ -438,7 +438,7 @@
     },
     "encounters_route_212_north": {
       "home": ["SPECIES_EMOLGA"],
-      "cameo": ["SPECIES_FLOETTE", "SPECIES_FOMANTIS", "SPECIES_KIRLIA", "SPECIES_BUDEW", "SPECIES_VESPIQUEN", "SPECIES_SMOLIV", "SPECIES_MINCCINO", "SPECIES_STEENEE", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
+      "cameo": ["SPECIES_SWADLOON", "SPECIES_FOMANTIS", "SPECIES_KIRLIA", "SPECIES_BUDEW", "SPECIES_VESPIQUEN", "SPECIES_SMOLIV", "SPECIES_MINCCINO", "SPECIES_STEENEE", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
       "tail": ["SPECIES_DARTRIX", "SPECIES_SERVINE"],
       "note": "Route 212's garden half, Emolga's home: the flower lines, Galarian Mr. Mime a 4 by the cap rule, the grass starters as 1%s."
     },
@@ -450,7 +450,7 @@
     },
     "encounters_trophy_garden": {
       "home": ["SPECIES_PICHU"],
-      "cameo": ["SPECIES_BUNEARY", "SPECIES_SKITTY", "SPECIES_MINCCINO", "SPECIES_FLOETTE", "SPECIES_TOGEPI", "SPECIES_PACHIRISU", "SPECIES_EEVEE", "SPECIES_GALARIAN_MR_MIME", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_LIEPARD"],
+      "cameo": ["SPECIES_BUNEARY", "SPECIES_SKITTY", "SPECIES_MINCCINO", "SPECIES_FOMANTIS", "SPECIES_GLAMEOW", "SPECIES_PACHIRISU", "SPECIES_SWABLU", "SPECIES_GALARIAN_MR_MIME", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_FLORAGATO", "SPECIES_DARTRIX"],
       "note": "The Pokemon Mansion's garden, Pichu's home: the cute lines, Eevee and Togepi at 5 beside their gifts, Galarian Mr. Mime at 5 by the cap rule, the grass starters as 1%s."
     },
@@ -517,12 +517,12 @@
     "encounters_route_221": {
       "home": ["SPECIES_LURANTIS"],
       "cameo": ["SPECIES_DOLLIV", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_STEENEE", "SPECIES_LIEPARD", "SPECIES_SHELLOS", "SPECIES_TRAPINCH", "SPECIES_SANDYGAST", "SPECIES_TOUCANNON", "SPECIES_CORVISQUIRE", "SPECIES_MIGHTYENA"],
-      "tail": ["SPECIES_FLORAGATO", "SPECIES_BRIONNE"],
+      "tail": ["SPECIES_FLORAGATO", "SPECIES_ARAQUANID"],
       "note": "The road to Pal Park: Lurantis's home (a line of its own until Fomantis's data is fixed), Trapinch a 5 by the cap rule, the beach lines small."
     },
     "encounters_lake_valor": {
       "home": ["SPECIES_ABSOL"],
-      "cameo": ["SPECIES_GOTHORITA", "SPECIES_VULLABY", "SPECIES_HAWLUCHA", "SPECIES_ALTARIA", "SPECIES_PURUGLY", "SPECIES_CINCCINO", "SPECIES_LOPUNNY", "SPECIES_LIEPARD"],
+      "cameo": ["SPECIES_GOTHORITA", "SPECIES_SKARMORY", "SPECIES_HAWLUCHA", "SPECIES_ALTARIA", "SPECIES_PURUGLY", "SPECIES_CINCCINO", "SPECIES_LOPUNNY", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_WEAVILE", "SPECIES_INCINEROAR"],
       "note": "The drained lake, Absol's home at 35: disaster's omen at the crater, Gothita and Vullaby watching."
     },
@@ -619,7 +619,7 @@
     "encounters_sendoff_spring": {
       "home": ["SPECIES_DHELMISE"],
       "cameo": ["SPECIES_GARCHOMP", "SPECIES_METAGROSS", "SPECIES_PUPITAR", "SPECIES_GOODRA", "SPECIES_KOMMO_O", "SPECIES_SCIZOR", "SPECIES_ABSOL", "SPECIES_WEAVILE"],
-      "tail": ["SPECIES_HERACROSS", "SPECIES_ELECTIVIRE"],
+      "tail": ["SPECIES_HERACROSS", "SPECIES_PAWMOT"],
       "note": "The spring at the end of the road: the pseudo-legendaries and the best of the preferred tier, the one table worth the walk."
     },
     "encounters_turnback_cave_entrance": {
@@ -733,9 +733,9 @@
       "note": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_route_222": {
-      "home": ["SPECIES_ELECTIVIRE"],
-      "cameo": ["SPECIES_TOGEDEMARU", "SPECIES_PACHIRISU", "SPECIES_GALVANTULA", "SPECIES_TOUCANNON", "SPECIES_LUXRAY", "SPECIES_FLOATZEL", "SPECIES_EMOLGA", "SPECIES_PAWMOT", "SPECIES_TALONFLAME", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD", "SPECIES_HOUNDOOM"],
-      "tail": ["SPECIES_PRIMARINA", "SPECIES_WARTORTLE"],
+      "home": [],
+      "cameo": ["SPECIES_VIKAVOLT", "SPECIES_TOGEDEMARU", "SPECIES_PACHIRISU", "SPECIES_GALVANTULA", "SPECIES_TOUCANNON", "SPECIES_LUXRAY", "SPECIES_FLOATZEL", "SPECIES_EMOLGA", "SPECIES_PAWMOT", "SPECIES_TALONFLAME", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD", "SPECIES_HOUNDOOM"],
+      "tail": ["SPECIES_ARAQUANID", "SPECIES_WARTORTLE"],
       "note": "The beach road to Sunyshore, Elekid's home: every electric line at once, the water starters as 1%s."
     },
     "encounters_victory_road_1f": {
@@ -776,8 +776,8 @@
     },
     "encounters_route_224": {
       "home": [],
-      "cameo": ["SPECIES_LURANTIS", "SPECIES_FLORGES", "SPECIES_ALTARIA", "SPECIES_EMOLGA", "SPECIES_PALOSSAND", "SPECIES_TSAREENA", "SPECIES_TALONFLAME", "SPECIES_VESPIQUEN", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
-      "tail": ["SPECIES_ARAQUANID", "SPECIES_GASTRODON", "SPECIES_TOUCANNON", "SPECIES_ARBOLIVA", "SPECIES_DECIDUEYE", "SPECIES_BRIONNE"],
+      "cameo": ["SPECIES_LURANTIS", "SPECIES_FOMANTIS", "SPECIES_ALTARIA", "SPECIES_EMOLGA", "SPECIES_PALOSSAND", "SPECIES_TSAREENA", "SPECIES_TALONFLAME", "SPECIES_VESPIQUEN", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
+      "tail": ["SPECIES_ARAQUANID", "SPECIES_GASTRODON", "SPECIES_TOUCANNON", "SPECIES_ARBOLIVA", "SPECIES_DECIDUEYE", "SPECIES_QUAGSIRE"],
       "note": "The flower route to Seabreak Path: no line's home, every line a cameo at a new share; Yveltal's static is planned here."
     },
     "encounters_snowpoint_temple_1f": {
@@ -820,7 +820,7 @@
     },
     "encounters_route_226": {
       "home": [],
-      "cameo": ["SPECIES_CORVIKNIGHT", "SPECIES_MIENSHAO", "SPECIES_ARAQUANID", "SPECIES_TOUCANNON", "SPECIES_VULLABY", "SPECIES_CARBINK", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_CORVIKNIGHT", "SPECIES_MIENSHAO", "SPECIES_ARAQUANID", "SPECIES_TOUCANNON", "SPECIES_SKARMORY", "SPECIES_CARBINK", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_ABSOL"],
       "tail": ["SPECIES_FLOATZEL", "SPECIES_SHELLOS"],
       "note": "The cliff route above the sea: eight lines, the birds and the beach."
     },
@@ -862,7 +862,7 @@
     },
     "encounters_route_230": {
       "home": ["SPECIES_GALARIAN_RAPIDASH"],
-      "cameo": ["SPECIES_TOGEKISS", "SPECIES_TOUCANNON", "SPECIES_TSAREENA", "SPECIES_ARBOLIVA", "SPECIES_LURANTIS", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_RAICHU", "SPECIES_TOUCANNON", "SPECIES_TSAREENA", "SPECIES_ARBOLIVA", "SPECIES_LURANTIS", "SPECIES_TALONFLAME", "SPECIES_ALTARIA", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
       "tail": ["SPECIES_GASTRODON", "SPECIES_FLOATZEL"],
       "note": "The last route, by the sea: Galarian Rapidash's home, Togepi at 20."
     },
@@ -1000,10 +1000,14 @@
     }
   },
   "pool": {
-    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible. So the two lake caverns and the roamer slot each draw at random", "from one pool: Uxie's cavern and Azelf's cavern become two static battles", "drawn without replacement from `candidates`, and Mesprit's roamer becomes a", "random roamer from the same list. A playthrough meets three of them before", "the League, as vanilla did; which three is the draw. The scripting is", "outside this track (decision 8). A candidate counts as sourced on paper;", "R12 in the linter reads the tree and will report these until the scripts", "exist. One list on purpose; split it into a static list and a roamer list", "in this file if some should never roam."],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist."],
     "statics": ["Uxie's cavern (Acuity Cavern)", "Azelf's cavern (Valor Cavern)"],
     "roamer": "Mesprit's roamer, released at Lake Verity",
-    "candidates": ["SPECIES_UXIE", "SPECIES_AZELF", "SPECIES_MESPRIT", "SPECIES_GALARIAN_ARTICUNO", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_GALARIAN_MOLTRES", "SPECIES_ZYGARDE_10", "SPECIES_DIANCIE", "SPECIES_TAPU_KOKO", "SPECIES_TAPU_LELE", "SPECIES_TAPU_BULU", "SPECIES_TAPU_FINI", "SPECIES_NIHILEGO", "SPECIES_BUZZWOLE", "SPECIES_PHEROMOSA", "SPECIES_XURKITREE", "SPECIES_CELESTEELA", "SPECIES_KARTANA", "SPECIES_GUZZLORD", "SPECIES_STAKATAKA", "SPECIES_BLACEPHALON", "SPECIES_POIPOLE", "SPECIES_MAGEARNA"]
+    "thirds": {
+      "acuity": ["SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"],
+      "valor": ["SPECIES_AZELF", "SPECIES_MAGEARNA", "SPECIES_BLACEPHALON", "SPECIES_GALARIAN_MOLTRES", "SPECIES_PHEROMOSA", "SPECIES_TAPU_FINI", "SPECIES_DIANCIE", "SPECIES_GUZZLORD"],
+      "roamer": ["SPECIES_MESPRIT", "SPECIES_TAPU_KOKO", "SPECIES_BUZZWOLE", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_POIPOLE", "SPECIES_XURKITREE", "SPECIES_GALARIAN_ARTICUNO"]
+    }
   },
   "honey": {
     "_comment": ["The honey trees (Ian, 2026-09-26): 21 trees from Route 205 onward, one table", "per badge count (1 to 8) with its own levels, a common and an uncommon tier", "of six slots each; the Munchlax trees and their rare tier are gone, and the", "grass starters with them (their homes are Eterna Forest, Route 204 north and", "Route 210 south). Listed here per tier across all eight tables; the tables", "themselves are in encounters_honey_tree.json."],
@@ -1017,7 +1021,6 @@
   },
   "water": {
     "SPECIES_TENTACOOL": ["encounters_route_213", "encounters_route_218", "encounters_route_230"],
-    "SPECIES_POPPLIO": ["encounters_route_219", "encounters_route_220"],
     "SPECIES_MAGIKARP": ["encounters_route_203", "encounters_lake_verity", "encounters_route_212_south"],
     "SPECIES_BARBOACH": ["encounters_route_212_south", "encounters_great_marsh_1"],
     "SPECIES_FEEBAS": ["encounters_mt_coronet_b1f"],

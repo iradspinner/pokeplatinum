@@ -7,7 +7,7 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_TOGEKISS"
+            "species": "SPECIES_GALARIAN_RAPIDASH"
         },
         {
             "level": 48,
@@ -203,7 +203,7 @@
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_TENTACRUEL"
         }
     ],
     "map_category": {

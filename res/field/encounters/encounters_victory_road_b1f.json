@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_GRAVELER",
-        "SPECIES_EEVEE"
+        "SPECIES_STEELIX"
     ],
     "surf_rate": 15,
     "surf_encounters": [
@@ -147,7 +147,7 @@
         {
             "level_max": 26,
             "level_min": 22,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_GOLDEEN"
         }
     ],
     "good_rod_rate": 55,

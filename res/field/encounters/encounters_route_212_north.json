@@ -7,7 +7,7 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_FLOETTE"
+            "species": "SPECIES_SWADLOON"
         },
         {
             "level": 22,
@@ -63,7 +63,7 @@
         "SPECIES_MIGHTYENA"
     ],
     "radar": [
-        "SPECIES_FLORGES",
+        "SPECIES_BUDEW",
         "SPECIES_GARDEVOIR",
         "SPECIES_ROSELIA",
         "SPECIES_CINCCINO"
@@ -88,7 +88,7 @@
     ],
     "firered": [
         "SPECIES_GOLBAT",
-        "SPECIES_EEVEE"
+        "SPECIES_SMOLIV"
     ],
     "leafgreen": [
         "SPECIES_GYARADOS",
@@ -147,7 +147,7 @@
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_BUIZEL"
         }
     ],
     "good_rod_rate": 50,

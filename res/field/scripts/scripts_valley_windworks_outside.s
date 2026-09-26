@@ -23,9 +23,10 @@ ValleyWindworksOutside_Entry0:
     CallIf 0, ValleyWindworksOutside_0215
     CompareVarToValue VAR_VALLEY_WINDWORKS_STATE, 2
     GoToIf 0, ValleyWindworksOutside_021F
-    CheckFlag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
-    GoToIf 1, ValleyWindworksOutside_021F
-    GoTo ValleyWindworksOutside_0225
+    @ Platinum Oxide (Ian, 2026-09-26): the balloon never shows. A Drifloon
+    @ met by script before the second gym was too much with three
+    @ immunities, so Drifloon is a wild encounter instead.
+    GoTo ValleyWindworksOutside_021F
 ValleyWindworksOutside_Entry1:
     CheckFlag FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR
     CallIf 1, ValleyWindworksOutside_020B
@@ -79,21 +80,6 @@ ValleyWindworksOutside_Entry4:
     CallCommonScript 2000
     End
 ValleyWindworksOutside_Entry5:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    PlayCry SPECIES_DRIFLOON, 0
-    Message 8
-    CloseMessage
-    WaitCry
-    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_DRIFLOON, 15
-    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    CheckWonBattle VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, ValleyWindworksOutside_0275
-    SetFlag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
-    ReleaseAll
     End
 ValleyWindworksOutside_Entry6:
     End

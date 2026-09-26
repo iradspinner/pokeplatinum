@@ -23,7 +23,7 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 19,
@@ -47,7 +47,7 @@
         },
         {
             "level": 20,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         }
     ],
     "swarms": [
@@ -92,7 +92,7 @@
     ],
     "leafgreen": [
         "SPECIES_GOLBAT",
-        "SPECIES_EEVEE"
+        "SPECIES_YAMASK"
     ],
     "surf_rate": 0,
     "surf_encounters": [

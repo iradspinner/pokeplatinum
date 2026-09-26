@@ -42,16 +42,17 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-231 rows across 42 locations, generated 2026-09-25.
+228 rows across 41 locations, generated 2026-09-25.
 
 ## Rows by method
 
 | Method | Rows |
 |---|---|
-| gift | 53 |
+| gift | 44 |
 | unown room | 18 |
-| static battle | 17 |
+| static battle | 16 |
 | great marsh daily (post-natdex) | 12 |
+| egg gift | 10 |
 | great marsh daily (pre-natdex) | 9 |
 | fossil | 7 |
 | roamer | 6 |
@@ -73,7 +74,6 @@ table, so they compete with it rather than adding to it
 | honey tree (uncommon, 8 badges) | 6 |
 | in-game trade | 4 |
 | starter | 3 |
-| egg gift | 3 |
 | special tile (rod) | 1 |
 | pal park migration | 1 |
 | day care egg | 1 |
@@ -96,12 +96,12 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Bastiodon | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Cofagrigus | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Drapion | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Dusclops | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Flygon | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Hariyama | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
+| Klefki | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 | Primeape | gift | 50 | clown gift, one of seven rolled at random (GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT) | **base-ROM** | yes | `scripts_canalave_library_2f.s` |
 
 ### Distortion World
@@ -127,8 +127,8 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
+| Budew | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
 | Combee | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
-| Flabebe | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
 | Pachirisu | gift | 18 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT) | **base-ROM** | yes | `scripts_floaroma_meadow_house.s` |
 
 ### Floaroma Town
@@ -188,16 +188,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Charmander | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 | Eevee | gift | 20 | gift from the woman in the house; once only (FLAG_RECEIVED_...EEVEE), cleared again by the post-game Trades/Gifts Reset | vanilla | yes | `scripts_hearthome_city_northwest_house.s` |
-| Froakie | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Litten | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Mudkip | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Piplup | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Squirtle | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Torchic | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Treecko | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
-| Turtwig | gift | 30 | pick one of nine first partners from a list menu; once only (FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT) | **base-ROM** | yes | `scripts_hearthome_city_pokemon_fan_club.s` |
 
 ### Honey trees (21 routes)
 
@@ -310,7 +301,14 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Riolu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; hatches at level 1 and counts where it hatches; giver Riley | vanilla | yes | `scripts_iron_island_b2f_left_room.s` |
+| Croagunk | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Gligar | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Hippopotas | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Houndour | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Ralts | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Riolu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Snorunt | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
+| Swablu | egg gift | 1 | Egg from Riley after the Iron Island partner section; once only; one of 8 species at random; hatches at level 1 and counts where it hatches; giver Riley | **base-ROM** | yes | `scripts_iron_island_b2f_left_room.s` |
 
 ### Iron Ruins
 
@@ -363,9 +361,9 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Bronzor | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
-| Glimmet | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
-| Rhyhorn | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
+| Carbink | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
+| Dwebble | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
+| Nosepass | gift | 15 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_OREBURGH_CITY_MIDDLE_HOUSE_GIFT) | **base-ROM** | yes | `scripts_oreburgh_city_middle_house.s` |
 | Vullaby | in-game trade | (traded mon's level) | trade away SPECIES_NONE to get it; once only; OT Hilary, holds ITEM_DESTINY_KNOT; vanilla gave SPECIES_ABRA holding ITEM_ORAN_BERRY | **base-ROM** | yes | `res/npc_trades/kazza_abra.json` |
 
 ### Pal Park
@@ -383,7 +381,7 @@ table, so they compete with it rather than adding to it
 | Mantine | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 | Octillery | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 | Sharpedo | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
-| Toxapex | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
+| Whiscash | gift | 45 | clown gift, one of six rolled at random; the roll was GetRandom 3 with six branches, so three could never come out, and was widened to six; once only (FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT) | **base-ROM** | yes | `scripts_pastoria_city_north_house.s` |
 
 ### Pokémon Day Care
 
@@ -435,7 +433,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Gengar | in-game trade | (traded mon's level) | trade away SPECIES_MEDICHAM to get it; once only; OT Mindy, holds ITEM_EVERSTONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | yes | `res/npc_trades/gaspar_haunter.json` |
+| Suicune | in-game trade | (traded mon's level) | trade away SPECIES_SNOVER to get it; once only; OT Mindy, holds ITEM_NONE; vanilla gave SPECIES_HAUNTER holding ITEM_EVERSTONE | **base-ROM** | yes | `res/npc_trades/gaspar_haunter.json` |
 
 ### Snowpoint Temple
 
@@ -494,12 +492,6 @@ table, so they compete with it rather than adding to it
 |---|---|---|---|---|---|---|
 | Giratina | static battle | 47 | Turnback Cave, after the Distortion World; Altered Forme | vanilla | yes | `scripts_turnback_cave_giratina_room.s` |
 
-### Valley Windworks
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Drifloon | static battle | 15 | the balloon by the Windworks, Friday only, once per week | vanilla | yes | `scripts_valley_windworks_outside.s` |
-
 ### Valor Cavern
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
@@ -510,10 +502,10 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Beldum | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
+| Clobbopus | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 | Elekid | gift | 25 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
+| Hawlucha | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 | Masquerain | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
-| Sneasel | gift | 40 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 
 ### Verity Cavern
 

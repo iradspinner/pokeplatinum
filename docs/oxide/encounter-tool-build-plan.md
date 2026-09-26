@@ -241,6 +241,29 @@ that stay. None blocks anything.
    for a later table when that is worth more. It also places the one early
    repel where it gains most. A random gift is read as declinable under the
    dupes clause. `test_sim.py` pins the rules.
+14. **Ian's second pass on the scripted sources (2026-09-26).**
+   `scripted-sources.md` has what changed. The weak points were: early
+   gifts too strong, the Windworks Drifloon balloon, and lines the player can
+   always have also sitting in tables. Riley's egg is one of eight lines at
+   random. Mindy trades a shiny Suicune (Serious, 15 across) for a Snover.
+   The legendary pool is dealt into three thirds, one each for Acuity
+   Cavern, Valor Cavern and the roamer. Open, waiting on Ian:
+   - **Water lines for the pick-list.** The Popplio line's 57 water slots in
+     39 areas went to a neighbour in their own table, because the on-list
+     water pool cannot fill them without flooding Alomomola and Finneon.
+     About six new water lines would give them variety. The tree already has
+     twenty off-list water lines to choose from: Clamperl, Corsola, Horsea,
+     Krabby, Lapras, Poliwag, Psyduck, Qwilfish, Relicanth, Seel, Shellder,
+     Slowpoke, Spheal, Staryu, Totodile, Wailmer, Wingull, and the fossils
+     and Kyogre.
+   - **Snowpoint City's ice fishing** needs ice-water lines, and none are on
+     the list. Spheal, Seel, Shellder and Lapras are in the tree; its rods
+     stay as drafted until Ian picks.
+   - **The Route 226 trade's Magikarp** still breaks the rule that a line
+     the player can always have is in no table. The trade is to change.
+   - **Six starters lost their only full source** with the Fan Club:
+     Charmander, Squirtle, Treecko, Torchic, Mudkip and Froakie are tails or
+     cameos now, Froakie only a cameo on Route 212 south.
 
 ## Standing rules
 

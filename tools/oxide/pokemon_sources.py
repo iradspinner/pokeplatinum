@@ -243,6 +243,23 @@ GIVE_RE = re.compile(
 # "Distant land" by number), which the hatched Pokemon's summary shows.
 EGG_RE = re.compile(r"^\s*(GiveEgg)\s+(SPECIES_[A-Z0-9_]+),\s*([A-Za-z0-9_]+)")
 EGG_LEVEL = 1
+# An egg whose species is a variable (Riley's since 2026-09-26) is rolled in
+# the script: the species are the SetVarFromValue lines that fill that variable.
+EGG_VAR_RE = re.compile(r"^\s*GiveEgg\s+(VAR_\w+),\s*([A-Za-z0-9_]+)")
+
+
+def random_eggs():
+    """[(script archive, [species], giver operand)] for eggs rolled at runtime."""
+    out = []
+    for path in sorted(glob.glob(os.path.join(ROOT, SCRIPT_DIR, "*.s"))):
+        text = game_script_text(path)
+        for m in (EGG_VAR_RE.match(l) for l in text.split("\n")):
+            if not m:
+                continue
+            fill = re.findall(r"^\s*SetVarFromValue\s+%s,\s*(SPECIES_[A-Z0-9_]+)" % m.group(1),
+                              text, re.M)
+            out.append((os.path.basename(path)[:-2], list(dict.fromkeys(fill)), m.group(2)))
+    return out
 
 
 def script_commands(regex):
@@ -400,6 +417,14 @@ def build():
         elif item and item not in ("0", "ITEM_NONE"):
             note += f"; holds {item}"
         add(loc.script(script), script + ".s", sp, method, level, note, origin)
+
+    for script, pool, giver in random_eggs():
+        for sp in pool:
+            add(loc.script(script), script + ".s", sp, "egg gift", EGG_LEVEL,
+                GIFT_NOTES.get(script[len("scripts_"):], "NPC gift")
+                + f"; one of {len(pool)} species at random; hatches at level "
+                f"{EGG_LEVEL} and counts where it hatches; giver {egg_giver(giver)}",
+                "base-rom")
 
     # 3. Fossils.
     for item, sp in fossil_species():
