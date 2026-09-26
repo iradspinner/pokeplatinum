@@ -34,17 +34,16 @@ them what they wanted and the even odds meant nothing.
 | Sandgem Town, the house | list menu, 3 | 5 | Roark | Pichu, Grubbin, Fletchling |
 | Jubilife City, south house 1F | random, 3 | 10 | Roark | Glameow, Skitty, Purrloin |
 | Jubilife City, south house 3F (unused map) | list menu, 3 | 8 | Roark | Glameow, Skitty, Purrloin |
-| Oreburgh City, middle house | random, 3 | 15 | Roark | Rhyhorn, Glimmet, Bronzor |
+| Oreburgh City, middle house | random, 3 | 15 | Roark | Dwebble, Nosepass, Carbink |
 | Floaroma Town, middle house | random, 4 | 18 | Gardenia | Poochyena, Seedot, Stunky, Swablu |
-| Floaroma Meadow, the house | random, 3 | 18 | Gardenia | Combee, Flabebe, Pachirisu |
+| Floaroma Meadow, the house | random, 3 | 18 | Gardenia | Combee, Budew, Pachirisu |
 | Eterna City, condominiums 1F | random, 3 | 23 | Gardenia | Slugma, Charcadet, Yamask |
 | Hearthome City, northwest house | once, flagged | 20 | Fantina | Eevee |
-| Hearthome City, Pokemon Fan Club | list menu, 9 | 30 | Fantina | Froakie, Charmander, Squirtle, Litten, Turtwig, Piplup, Treecko, Torchic, Mudkip |
 | Solaceon Town, northeast house | random, 3 | 30 | Maylene | Lunatone, Trapinch, Solrock |
-| Veilstone City, northeast house | random, 3 | 40 | Maylene | Beldum, Sneasel, Masquerain |
+| Veilstone City, northeast house | random, 3 | 40 | Maylene | Clobbopus, Hawlucha, Masquerain |
 | Veilstone City, the Porygon gift | once | 25 | Maylene | Elekid |
-| Pastoria City, north house | random, 6 | 45 | Wake | Octillery, Mantine, Crawdaunt, Sharpedo, Lanturn, Toxapex |
-| Canalave City, the library 2F | random, 7 | 50 | Byron | Flygon, Cofagrigus, Hariyama, Bastiodon, Drapion, Dusclops, Primeape |
+| Pastoria City, north house | random, 6 | 45 | Wake | Octillery, Mantine, Crawdaunt, Sharpedo, Lanturn, Whiscash |
+| Canalave City, the library 2F | random, 7 | 50 | Byron | Flygon, Cofagrigus, Hariyama, Klefki, Drapion, Dusclops, Primeape |
 
 **What each change was for.** Sandgem hands out the three lines its own routes
 only show at 4% and 1%, so the starter town is worth stopping in. Jubilife keeps
@@ -70,6 +69,27 @@ question and its yes or no; the list menu is replaced by a `GetRandom` of the
 same width, so the dispatch below it is untouched. The species names those menus
 used are still in their text banks, unread, because deleting them would renumber
 the bank for nothing.
+
+**Ian's second pass (2026-09-26).** A gift that is too strong this early was
+swapped for a weaker line: Oreburgh's three became Dwebble, Nosepass and
+Carbink; Veilstone's Beldum and Sneasel became Clobbopus and Hawlucha; the
+Restaurant pool's Toxapex became Whiscash. The Fan Club's starter gift is
+gone, since Hearthome's capture is Bebe's Eevee; its member now only says
+goodbye. Valley Windworks' balloon Drifloon, a scripted battle before the
+second gym with three immunities, is gone too: Drifloon is a wild line now,
+at home on Route 215 and on two Lost Tower floors, and its line moved from
+the gate tier to preferred.
+
+A line the player can always have if they want it appears in no table and
+no other pool. That covers Togepi (Cynthia's egg), Floette (the Day Care),
+Vullaby and Popplio (the two any-Pokemon trades), Eevee (Bebe) and Elekid
+(Veilstone), and the fossils, which is why Canalave's Bastiodon became
+Klefki and the Meadow's Flabebe became Budew. Each was replaced table by
+table with a line of the same kind the table lacked. The Popplio line's
+water slots were different: the on-list water pool is too thin to fill
+them without flooding two lines, so each went to a neighbour in its own
+table until Ian adds water lines to the pick-list. The Route 226 trade's
+Magikarp still breaks the rule; that trade is to change (backlog).
 
 ## The trades
 
@@ -176,7 +196,7 @@ names have no table at all, so a free place is never short.
 |---|---|
 | Route 201: the starter | Sandgem Town, Jubilife City, Floaroma Town, Floaroma Meadow, Solaceon Town: the clowns |
 | Eterna City: the condo gift and the Popplio trade | Oreburgh City: the clown and the Vullaby trade, one capture |
-| Valley Windworks: Drifloon | Hearthome City: Eevee and the Fan Club, one capture |
+| Valley Windworks: nothing scripted since 2026-09-26 | Hearthome City: Bebe's Eevee |
 | Old Chateau: Rotom | Veilstone City: the clown and Elekid, one capture |
 | Route 209: Spiritomb | Mining Museum (fossils), Pokemon Day Care (Floette), Canalave Library |
 | Pastoria City: the clown | Acuity Cavern (Uxie), Valor Cavern (Azelf), Distortion World (Giratina) |

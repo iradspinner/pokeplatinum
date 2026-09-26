@@ -7,7 +7,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_FLORGES"
+            "species": "SPECIES_FOMANTIS"
         },
         {
             "level": 50,
@@ -47,7 +47,7 @@
         },
         {
             "level": 52,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_QUAGSIRE"
         }
     ],
     "swarms": [
@@ -63,7 +63,7 @@
         "SPECIES_ABSOL"
     ],
     "radar": [
-        "SPECIES_PRIMARINA",
+        "SPECIES_PALOSSAND",
         "SPECIES_GLALIE",
         "SPECIES_CROBAT",
         "SPECIES_FROSMOTH"
@@ -147,7 +147,7 @@
         {
             "level_max": 30,
             "level_min": 26,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_MANTYKE"
         }
     ],
     "good_rod_rate": 50,

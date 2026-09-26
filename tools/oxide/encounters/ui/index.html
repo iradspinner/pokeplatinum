@@ -1881,6 +1881,10 @@ async function setCaught(area, species, caught) {
     CAUGHT = new Set(r.caught);
     toast(caught ? "Caught here" : "Cleared this area's encounter");
     await Promise.all([reloadDetail(), refreshList()]);
+    // The middle pane dims by takenAt(), which reads the area list; the two
+    // reloads race, so draw it again once the list is current. Unticking a
+    // gift left the pane grey when the detail came back first.
+    if (DETAIL) { drawMid(); drawRight(); }
   } catch (e) { toast(e.message, true); }
 }
 

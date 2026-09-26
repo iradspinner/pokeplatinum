@@ -19,15 +19,15 @@
         },
         {
             "level": 24,
-            "species": "SPECIES_FLOETTE"
+            "species": "SPECIES_FOMANTIS"
         },
         {
             "level": 24,
-            "species": "SPECIES_TOGEPI"
+            "species": "SPECIES_GLAMEOW"
         },
         {
             "level": 24,
-            "species": "SPECIES_EEVEE"
+            "species": "SPECIES_SWABLU"
         },
         {
             "level": 24,
@@ -208,11 +208,11 @@
     ],
     "daily_encounters": [
         "SPECIES_PICHU",
-        "SPECIES_EEVEE",
-        "SPECIES_TOGEPI",
+        "SPECIES_SWABLU",
+        "SPECIES_GLAMEOW",
         "SPECIES_SKITTY",
         "SPECIES_BUNEARY",
-        "SPECIES_FLABEBE",
+        "SPECIES_FOMANTIS",
         "SPECIES_MINCCINO",
         "SPECIES_PACHIRISU",
         "SPECIES_COMBEE",

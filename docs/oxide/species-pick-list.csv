@@ -170,8 +170,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 173,Combee,native,415,platinum,,yes,Bug,Flying,,preferred
 174,Vespiquen,native,416,platinum,,yes,Bug,Flying,,preferred
 175,Pachirisu,native,417,platinum,,yes,Electric,Electric,,starter-adjacent
-176,Drifloon,native,425,platinum,,yes,Ghost,Flying,,gate
-177,Drifblim,native,426,platinum,,yes,Ghost,Flying,,gate
+176,Drifloon,native,425,platinum,,yes,Ghost,Flying,,preferred
+177,Drifblim,native,426,platinum,,yes,Ghost,Flying,,preferred
 178,Buneary,native,427,platinum,,yes,Normal,Normal,,starter-adjacent
 179,Lopunny,native,428,platinum,,yes,Normal,Fighting,,starter-adjacent
 180,Lopunny M,new,428,altevo,1117,"MISMATCH (65, 136, 94, 54, 96, 135)",Normal,Fighting,"alt evolution of Lopunny, Normal/Fighting offensive; trigger TBD by Ian",starter-adjacent

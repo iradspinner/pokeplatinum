@@ -99,30 +99,8 @@ HearthomeCityPokemonFanClub_Entry6:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT, HearthomeCityPokemonFanClub_041E
-    Message 14
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, HearthomeCityPokemonFanClub_041E
-    GetRandom VAR_0x800C, 9
-    SetVarFromVar VAR_0x8008, VAR_0x800C
-    CompareVarToValue VAR_0x8008, 0
-    GoToIf 1, HearthomeCityPokemonFanClub_0292
-    CompareVarToValue VAR_0x8008, 1
-    GoToIf 1, HearthomeCityPokemonFanClub_02BE
-    CompareVarToValue VAR_0x8008, 2
-    GoToIf 1, HearthomeCityPokemonFanClub_02EA
-    CompareVarToValue VAR_0x8008, 3
-    GoToIf 1, HearthomeCityPokemonFanClub_0316
-    CompareVarToValue VAR_0x8008, 4
-    GoToIf 1, HearthomeCityPokemonFanClub_0342
-    CompareVarToValue VAR_0x8008, 5
-    GoToIf 1, HearthomeCityPokemonFanClub_036E
-    CompareVarToValue VAR_0x8008, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_039A
-    CompareVarToValue VAR_0x8008, 7
-    GoToIf 1, HearthomeCityPokemonFanClub_03C6
-    CompareVarToValue VAR_0x8008, 8
-    GoToIf 1, HearthomeCityPokemonFanClub_03F2
+    @ Platinum Oxide (Ian, 2026-09-26): the random starter gift is gone, since
+    @ Hearthome's capture is Bebe's Eevee; this member only says goodbye.
     GoTo HearthomeCityPokemonFanClub_041E
 HearthomeCityPokemonFanClub_022A:
     Message 2
@@ -180,131 +158,8 @@ HearthomeCityPokemonFanClub_0281:
 HearthomeCityPokemonFanClub_028C:
     SetFlag FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER
     End
-HearthomeCityPokemonFanClub_0292:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_FROAKIE, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_02BE:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_CHARMANDER, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_02EA:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_SQUIRTLE, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_0316:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_LITTEN, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_0342:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_TURTWIG, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_036E:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_PIPLUP, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_039A:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_TREECKO, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_03C6:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_TORCHIC, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_03F2:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, HearthomeCityPokemonFanClub_0429
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_MUDKIP, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_GIFT
-    Message 24
-    CloseMessage
-    ReleaseAll
-    End
 HearthomeCityPokemonFanClub_041E:
     Message 24
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-HearthomeCityPokemonFanClub_0429:
-    Message 25
     WaitButton
     CloseMessage
     ReleaseAll

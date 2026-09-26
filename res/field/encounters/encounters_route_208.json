@@ -7,7 +7,7 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_FLABEBE"
+            "species": "SPECIES_PACHIRISU"
         },
         {
             "level": 18,
@@ -63,7 +63,7 @@
         "SPECIES_MIGHTYENA"
     ],
     "radar": [
-        "SPECIES_FLOETTE",
+        "SPECIES_FLETCHINDER",
         "SPECIES_ROSELIA",
         "SPECIES_KIRLIA",
         "SPECIES_TALONFLAME"
@@ -147,7 +147,7 @@
         {
             "level_max": 15,
             "level_min": 10,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_FEEBAS"
         }
     ],
     "good_rod_rate": 50,

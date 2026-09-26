@@ -47,7 +47,7 @@
         },
         {
             "level": 15,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_SHELLOS"
         }
     ],
     "swarms": [
@@ -147,7 +147,7 @@
         {
             "level_max": 14,
             "level_min": 10,
-            "species": "SPECIES_POPPLIO"
+            "species": "SPECIES_MUDKIP"
         }
     ],
     "good_rod_rate": 50,
@@ -203,7 +203,7 @@
         {
             "level_max": 44,
             "level_min": 36,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_JELLICENT"
         }
     ],
     "map_category": {

@@ -19,7 +19,7 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_SKARMORY"
         },
         {
             "level": 49,
@@ -59,11 +59,11 @@
         "SPECIES_ALTARIA"
     ],
     "night": [
-        "SPECIES_VULLABY",
+        "SPECIES_SKARMORY",
         "SPECIES_ABSOL"
     ],
     "radar": [
-        "SPECIES_MANDIBUZZ",
+        "SPECIES_CARBINK",
         "SPECIES_CERULEDGE",
         "SPECIES_SKARMORY",
         "SPECIES_RHYPERIOR"
@@ -203,7 +203,7 @@
         {
             "level_max": 60,
             "level_min": 51,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_GASTRODON"
         }
     ],
     "map_category": {

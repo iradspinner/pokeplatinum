@@ -47,7 +47,7 @@
         },
         {
             "level": 31,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_FLORAGATO"
         }
     ],
     "swarms": [
@@ -99,7 +99,7 @@
         {
             "level_max": 36,
             "level_min": 30,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_MANTYKE"
         },
         {
             "level_max": 36,
@@ -147,7 +147,7 @@
         {
             "level_max": 20,
             "level_min": 16,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_FINNEON"
         }
     ],
     "good_rod_rate": 50,
@@ -155,7 +155,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_BRIONNE"
+            "species": "SPECIES_TENTACOOL"
         },
         {
             "level_max": 30,

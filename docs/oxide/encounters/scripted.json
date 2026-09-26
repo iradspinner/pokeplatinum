@@ -91,16 +91,6 @@
       "pick": "random"
     },
     {
-      "id": "windworks_drifloon",
-      "label": "Valley Windworks, the balloon",
-      "kind": "static",
-      "capture_area": "Valley Windworks",
-      "split": "Gardenia",
-      "from": {"file": "scripts_valley_windworks_outside.s"},
-      "pick": "random",
-      "note": "Fridays only, after the Windworks is cleared."
-    },
-    {
       "id": "eterna_condo",
       "label": "Eterna City, condominiums",
       "kind": "gift",
@@ -160,16 +150,6 @@
       "split": "Fantina",
       "order": 35.5,
       "from": {"file": "scripts_hearthome_city_northwest_house.s"},
-      "pick": "random"
-    },
-    {
-      "id": "hearthome_fan_club",
-      "label": "Hearthome City, the Fan Club",
-      "kind": "gift",
-      "capture_area": "Hearthome City",
-      "split": "Fantina",
-      "order": 35.6,
-      "from": {"file": "scripts_hearthome_city_pokemon_fan_club.s"},
       "pick": "random"
     },
     {

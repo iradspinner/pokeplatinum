@@ -11,7 +11,7 @@
         },
         {
             "level": 39,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_SKARMORY"
         },
         {
             "level": 39,
@@ -31,7 +31,7 @@
         },
         {
             "level": 40,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_SKARMORY"
         },
         {
             "level": 41,
@@ -64,7 +64,7 @@
     ],
     "radar": [
         "SPECIES_GOTHITELLE",
-        "SPECIES_MANDIBUZZ",
+        "SPECIES_PURUGLY",
         "SPECIES_ABOMASNOW",
         "SPECIES_SNOVER"
     ],
@@ -91,7 +91,7 @@
         "SPECIES_WEEZING"
     ],
     "leafgreen": [
-        "SPECIES_EEVEE",
+        "SPECIES_ABSOL",
         "SPECIES_GOLEM"
     ],
     "surf_rate": 10,
@@ -203,7 +203,7 @@
         {
             "level_max": 50,
             "level_min": 42,
-            "species": "SPECIES_PRIMARINA"
+            "species": "SPECIES_LANTURN"
         }
     ],
     "map_category": {

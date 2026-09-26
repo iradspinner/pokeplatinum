@@ -3,7 +3,7 @@
     "land_encounters": [
         {
             "level": 19,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 20,
@@ -27,7 +27,7 @@
         },
         {
             "level": 21,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 21,
@@ -35,11 +35,11 @@
         },
         {
             "level": 22,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 22,
-            "species": "SPECIES_VULLABY"
+            "species": "SPECIES_DRIFLOON"
         },
         {
             "level": 22,
@@ -63,7 +63,7 @@
         "SPECIES_LIEPARD"
     ],
     "radar": [
-        "SPECIES_MANDIBUZZ",
+        "SPECIES_FLETCHINDER",
         "SPECIES_SCIZOR",
         "SPECIES_MIENSHAO",
         "SPECIES_TALONFLAME"
