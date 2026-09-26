@@ -86,6 +86,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
+- [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
+  rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
+  button, outdoors, in a building and in a cave, it opens a PC with Pokemon
+  Storage, Healing Waves, Rare Candy and Misc. (Name Rater APP, Hidden Power
+  APP) and nothing else. Rare Candy fills the stack to 999 from any count,
+  including 0 and 999. The Hidden Power APP names a type and a power between
+  30 and 70. Storage deposits, withdraws and backs out cleanly (the box hang
+  in Phase 5 is on this path). A Pokemon Center PC shows Storage, the player's
+  PC, Oak's PC, Healing Waves and Misc., with the Hall of Fame in Misc. only
+  after the League, and no tutors, Teleport System, Online Shop or resets. No
+  trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
 - [ ] Rare Candy chaining works.
 - [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
   known crash above before choosing ALWAYS).
@@ -118,6 +129,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
+  works everywhere but a gauntlet: the Great Marsh, the Underground, the
+  Distortion World, and the Battle Frontier's lobbies. Each should either open
+  the PC and return cleanly or refuse; note anything that breaks the area's
+  own rules (healing mid-challenge, losing Safari Balls).
 - [ ] Iron Island: Riley's egg hatches as a random species, one of eight lines.
 - [ ] Snowpoint City: Mindy takes a Snover and gives a Suicune, which is shiny.
 - [ ] **(live)** Worker Jackson's Wormadam-Trash (level 49, Relaxed, every IV 27)
