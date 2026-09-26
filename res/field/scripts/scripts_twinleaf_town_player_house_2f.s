@@ -1500,6 +1500,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityMoxie, 7
     AddListMenuEntry TestKit_Text_MenuAbilityMultiscale, 8
     AddListMenuEntry TestKit_Text_MenuAbilityPickpocket, 9
+    AddListMenuEntry TestKit_Text_MenuAbilityPoisonTouch, 10
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1511,6 +1512,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 7, TestKit_AbilityMoxie
     GoToIfEq VAR_0x8004, 8, TestKit_AbilityMultiscale
     GoToIfEq VAR_0x8004, 9, TestKit_AbilityPickpocket
+    GoToIfEq VAR_0x8004, 10, TestKit_AbilityPoisonTouch
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2332,6 +2334,21 @@ TestKit_AbilityPickpocket:
     SetVar VAR_0x8002, MOVE_SPLASH
     SetVar VAR_0x8004, ITEM_LEFTOVERS
     GoTo TestKit_GivePokemonWithItem
+
+/* Poison Touch: a wild Chansey that knows only Tackle. About one Drain
+   Punch or Sucker Punch in three poisons Chansey, with a message naming
+   Poison Touch; Vacuum Wave, which makes no contact, never does it. */
+TestKit_AbilityPoisonTouch:
+    SetVar VAR_0x800A, SPECIES_TOXICROAK
+    SetVar VAR_0x800B, ABILITY_POISON_TOUCH
+    SetVar VAR_0x8006, MOVE_DRAIN_PUNCH
+    SetVar VAR_0x8007, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8008, MOVE_VACUUM_WAVE
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'
    rules for native abilities, type immunities, critical hits, Defog and Rapid

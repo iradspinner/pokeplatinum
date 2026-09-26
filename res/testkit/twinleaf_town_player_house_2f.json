@@ -294,6 +294,10 @@
             "en_US": "Pickpocket"
         },
         {
+            "id": "TestKit_Text_MenuAbilityPoisonTouch",
+            "en_US": "Poison Touch"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

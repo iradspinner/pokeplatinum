@@ -5166,6 +5166,29 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         break;
     }
 
+    // Oxide: Poison Touch poisons the target three times in ten when its
+    // holder's contact move hits, as Poison Point does its holder's attacker
+    // (hg-engine's MoveHitAttackerAbilityCheck), when nothing above has run.
+    // The poison subscript makes Poison Point's checks (a Poison or Steel
+    // type, Immunity, Pastel Veil) and names the ability.
+    if (result == FALSE
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_POISON_TOUCH
+        && DEFENDING_MON.curHP
+        && DEFENDING_MON.status == MON_CONDITION_NONE
+        && battleCtx->attacker != battleCtx->defender
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+        && BattleSystem_RandNext(battleSys) % 10 < 3) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+        battleCtx->sideEffectMon = battleCtx->defender;
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+
+        *subscript = subscript_poison;
+        result = TRUE;
+    }
+
     // Oxide: Magician takes the target's item after a damaging move, if its
     // holder has none, when nothing above has run. TryStealItem, Thief's
     // command, makes the rest of the checks in its subscript.
