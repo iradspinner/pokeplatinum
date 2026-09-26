@@ -773,33 +773,67 @@ def report(results, content=None, out=sys.stdout):
                 f"{c['foe_new_abilities']:>3} abilities")
 
 
-def _draft_party(what):
+# What a species-only draft is filled in with until Ian sets the rest: IVs
+# as Oxide's bosses carry them (B2 read a mean of 28.7), a neutral nature,
+# no item.
+DRAFT_IV = 30
+
+
+@functools.lru_cache(maxsize=None)
+def _constants_by_name():
+    return {canon.showdown_name(sp): sp for sp in pokedex.species_list(data.ROOT)}
+
+
+def _fill(m, level):
+    """A draft entry made whole. A bare species name, or an entry missing a
+    field, takes the level given, the moves the game itself gives a
+    Pokemon of that level (its last four by level-up), its first ability,
+    IVs of DRAFT_IV, a neutral nature and no item."""
+    m = {"species": m} if isinstance(m, str) else dict(m)
+    m.setdefault("level", level)
+    rec = pokedex.load(data.ROOT, _constants_by_name()[m["species"]])
+    if not m.get("moves"):
+        names = pool._move_names()
+        m["moves"] = [names.get(mv, mv) for mv in
+                      calc_trainers.default_moves(sorted(rec["learnset"], key=lambda e: e[0]),
+                                                  m["level"])]
+        m["_filled"] = True
+    if not m.get("ability"):
+        m["ability"] = calc_export.ability_name(rec["abilities"][0])
+    m.setdefault("nature", "Hardy")
+    m.setdefault("item", None)
+    m["ivs"] = {k: (m.get("ivs") or {}).get(k, DRAFT_IV) for k in metrics.STATS}
+    m["evs"] = {k: (m.get("evs") or {}).get(k, 0) for k in metrics.STATS}
+    return m
+
+
+def _draft_party(what, level):
     """A drafted team: a trainer constant already in the tree, or a JSON
     file holding a list of party members in the trainer data's shape
-    (species, level, item, ability, nature, ivs, evs, moves; a missing IV
-    is 31 and a missing EV 0)."""
+    (species, level, item, ability, nature, ivs, evs, moves), any of which
+    may be a bare species name or leave fields out (_fill)."""
     if what.startswith("TRAINER_"):
         t = next(t for t in data.oxide_trainers().values() if t["constant"] == what)
         return t["name"], t["party"], [t["tr_id"]]
     with open(what, encoding="utf-8") as f:
-        party = json.load(f)
-    for m in party:
-        m["ivs"] = {k: (m.get("ivs") or {}).get(k, 31) for k in metrics.STATS}
-        m["evs"] = {k: (m.get("evs") or {}).get(k, 0) for k in metrics.STATS}
+        party = [_fill(m, level) for m in json.load(f)]
     return os.path.basename(what), party, []
 
 
-def score_draft(what, split, weather=None, out=sys.stdout):
+def score_draft(what, split, weather=None, trick_room=False, level=None, out=sys.stdout):
     """One drafted team (Ian's Frontier Brains, 2026-09-27) scored as a
     story fight in `split`, and placed on his fight scale. A trainer in the
     tree fights in its map's weather, a drafted file in `weather` (Rain,
-    Sun, Sand or Hail) or in none. Nothing is stored; a draft that becomes a
-    trainer is scored with the rest."""
+    Sun, Sand or Hail) or in none; `trick_room` fights it under a permanent
+    Trick Room, as Saturn 2's and Thorton's are. A draft's missing levels
+    are `level`, else the split's cap. Nothing is stored; a draft that
+    becomes a trainer is scored with the rest."""
     say = functools.partial(print, file=out)
-    label, party, tr_ids = _draft_party(what)
+    label, party, tr_ids = _draft_party(what, level or pool.caps()[split])
     blob = calc_export.build()
     side = pool.pool(split, blob)
-    fight = {"key": "draft", "label": label, "split": split, "tr_ids": tr_ids}
+    fight = {"key": "draft", "label": label, "split": split, "tr_ids": tr_ids,
+             "trick_room": trick_room}
     with tempfile.TemporaryDirectory(prefix="oxide-b6-draft-") as tmp:
         path = os.path.join(tmp, "blob.json")
         with open(path, "w", encoding="utf-8") as f:
@@ -813,7 +847,11 @@ def score_draft(what, split, weather=None, out=sys.stdout):
     rating = on_scale(r["safe"], line)
     tactics = pressure.unseen([party])
     say(f"{label} in {split}'s split (cap {pool.caps()[split]}, {len(side)} species on the "
-        f"side, weather {ctx['weather'] or 'none'}):")
+        f"side, weather {ctx['weather'] or 'none'}{', under Trick Room' if trick_room else ''}):")
+    filled = [m["species"] for m in party if m.get("_filled")]
+    if filled:
+        say(f"  provisional: {', '.join(filled)} fight with the game's default moves for "
+            f"their level, IVs {DRAFT_IV}, a neutral nature and no item, until Ian sets them")
     say(f"  safe switch-ins {r['safe']:.2f}, so about {rating:.1f} on Ian's fight scale "
         f"({band(rating)}); threat by chance {r['threat_chance']:.2f}, answers baiting counted "
         f"{r['answers_bait']:.2f}, tactics {tactics['unseen_count']}")
@@ -834,13 +872,16 @@ def main(argv=None):
     ap.add_argument("--split", help="the split a --draft is fought in")
     ap.add_argument("--weather", choices=sorted(pressure.CALC_WEATHER),
                     help="the map weather a drafted file is fought in")
+    ap.add_argument("--trick-room", action="store_true",
+                    help="fight the draft under a permanent Trick Room")
+    ap.add_argument("--level", type=int, help="the level of draft members that give none")
     ap.add_argument("--content", action="store_true",
                     help="also count the new species, moves and abilities (about half a minute)")
     args = ap.parse_args(argv)
     if args.draft:
         if args.split not in SPLITS:
             ap.error(f"--draft needs --split, one of {', '.join(SPLITS)}")
-        score_draft(args.draft, args.split, args.weather)
+        score_draft(args.draft, args.split, args.weather, args.trick_room, args.level)
         return 0
     report(load(), new_content(calc_export.build()) if args.content else None)
     return 0
