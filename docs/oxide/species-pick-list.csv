@@ -113,8 +113,8 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 113,Kirlia,native,281,platinum,,yes,Psychic,Fairy,,preferred
 114,Gardevoir,native,282,platinum,,yes,Psychic,Fairy,,preferred
 115,Gallade,native,475,platinum,,yes,Psychic,Fighting,,preferred
-116,Surskit,native,283,platinum,,yes,Bug,Water,,filler
-117,Masquerain,native,284,platinum,,yes,Bug,Water,,filler
+116,Surskit,native,283,platinum,,yes,Bug,Water,,starter-adjacent
+117,Masquerain,native,284,platinum,,yes,Bug,Water,,starter-adjacent
 118,Shroomish,native,285,platinum,,yes,Grass,Grass,,starter-adjacent
 119,Breloom,native,286,platinum,,yes,Grass,Fighting,,starter-adjacent
 120,Makuhita,native,296,platinum,,yes,Fighting,Fighting,,starter-adjacent

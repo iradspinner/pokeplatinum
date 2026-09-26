@@ -9,8 +9,8 @@
     },
     "encounters_verity_lakefront": {
       "home": ["SPECIES_STARLY", "SPECIES_BLIPBUG"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_SURSKIT", "SPECIES_BUNEARY", "SPECIES_VULPIX", "SPECIES_MINCCINO", "SPECIES_POOCHYENA"],
-      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Poochyena by night.",
+      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_SURSKIT", "SPECIES_BUNEARY", "SPECIES_VULPIX", "SPECIES_MINCCINO", "SPECIES_KRICKETOT"],
+      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Kricketot by night.",
       "tail": []
     },
     "encounters_lake_verity": {

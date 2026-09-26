@@ -11168,7 +11168,7 @@
     "encounters_verity_lakefront": {
       "archetype": "A18",
       "band": "early",
-      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Poochyena by night.",
+      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Kricketot by night.",
       "locked": [],
       "base_level": 2,
       "split": "Roark",
@@ -11189,7 +11189,7 @@
       ],
       "night": [
         "SPECIES_PURRLOIN",
-        "SPECIES_POOCHYENA"
+        "SPECIES_KRICKETOT"
       ],
       "planned_location": "Verity Lakefront"
     },
