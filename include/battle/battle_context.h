@@ -47,7 +47,7 @@ typedef struct SideConditions {
     u32 followMe : 1;
     u32 followMeUser : 2;
     u32 knockedOffItemsMask : 6;
-    u32 padding00_1D : 3;
+    u32 rageFistHitsSlot5 : 3; // Oxide, from the padding: party slot 5's hits for Rage Fist, as rageFistHits
 
     u32 spikesLayers : 2;
     u32 toxicSpikesLayers : 2;
@@ -55,7 +55,8 @@ typedef struct SideConditions {
     u32 berryEatenMask : 6; // Oxide, by party slot as knockedOffItemsMask is, for Belch
     u32 faintedThisTurn : 1; // Oxide, from the padding: a battler on this side fainted this turn, for Retaliate
     u32 faintedLastTurn : 1; // Oxide: the same for the turn before, which is what Retaliate reads
-    u32 padding04_0F : 17;
+    u32 rageFistHits : 15; // Oxide, from the padding: hits taken this battle by party slots 0 to 4, 3 bits each, for Rage Fist
+    u32 padding04_1E : 2;
 } SideConditions;
 
 typedef struct TurnFlags {

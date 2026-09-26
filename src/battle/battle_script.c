@@ -1431,6 +1431,12 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         }
         return 0;
 
+    case MOVE_RAGE_FIST:
+        // 50, and 50 more for each time the user has been hit by an attack
+        // this battle, to 350 (Generation 9; Ian, 2026-09-26). The count
+        // lasts through switching out and fainting.
+        return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, battleCtx->attacker);
+
     case MOVE_GRAV_APPLE:
         // Half as strong again while Gravity is in force.
         if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
@@ -5693,7 +5699,9 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     u8 *defenderData = (u8 *)&DEFENDING_MON;
 
     int i; // does not match if this is declared outside the individual loops' scopes
-    for (i = 0; i < XtOffset(BattleMon *, ability) + 1; i++) {
+    // Oxide: through the whole ability, which element 2 widened to two bytes;
+    // the copy used to stop after its first, the low byte.
+    for (i = 0; i < XtOffset(BattleMon *, ability) + sizeof(ATTACKING_MON.ability); i++) {
         attackerData[i] = defenderData[i];
     }
 
