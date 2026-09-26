@@ -28,7 +28,7 @@ python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/ro
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --ref ~/roms/base.nds --map-headers
 python3 tools/oxide/bulk_scripts.py --dry-run   # would write 0; 15 skipped, the deliberate divergences
 python3 tools/oxide/bulk_events.py --dry-run    # would write 0
-python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 8 skipped
+python3 tools/oxide/bulk_text.py --dry-run      # would write 0; 10 skipped
 python3 tools/oxide/scriptdis.py --rom ~/roms/vanilla.nds --verify
 python3 tools/oxide/scriptdis.py --rom ~/roms/base.nds --verify --base-rom
 ```

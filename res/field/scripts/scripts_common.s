@@ -798,6 +798,8 @@ Common_0BB2:
     CheckFlag FLAG_POCKET_PC_OPEN
     CallIf 0, Common_PCMenu_PokemonCenterEntries
     AddMenuEntryImm 63, 7
+    CheckFlag FLAG_POCKET_PC_OPEN
+    CallIf 1, Common_PCMenu_RareCandyEntry
     AddMenuEntryImm 64, 6
     ShowMenu
     SetVarFromVar VAR_0x8008, VAR_0x8006
@@ -811,11 +813,31 @@ Common_0BB2:
     GoToIf 1, Common_1451
     CompareVarToValue VAR_0x8008, 7
     GoToIf 1, Common_14E7
+    CompareVarToValue VAR_0x8008, 9
+    GoToIf 1, Common_PCMenu_RareCandy
     GoTo Common_1514
 Common_PCMenu_PokemonCenterEntries:
     AddMenuEntryImm 60, 1
     AddMenuEntryImm 62, 2
     Return
+Common_PCMenu_RareCandyEntry:
+    AddMenuEntryImm 280, 9
+    Return
+@ Oxide: the Pocket PC's Rare Candy entry tops the bag's stack up to 999, the
+@ most a stack holds, however many are there (Ian, 2026-09-27).
+Common_PCMenu_RareCandy:
+    GetItemQuantity ITEM_RARE_CANDY, VAR_0x8005
+    SetVarFromValue VAR_0x800C, 999
+    SubVar VAR_0x800C, VAR_0x8005
+    CompareVarToValue VAR_0x800C, 0
+    GoToIf 1, Common_PCMenu_RareCandyFilled
+    AddItem ITEM_RARE_CANDY, VAR_0x800C, VAR_0x8005
+Common_PCMenu_RareCandyFilled:
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
+    Message 256
+    WaitButton
+    CloseMessage
+    GoTo Common_0BB2
 Common_0C56:
     Message 41
     Return

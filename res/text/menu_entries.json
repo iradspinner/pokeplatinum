@@ -1144,6 +1144,10 @@
     {
       "id": "MenuEntries_Text_StarPieces_10",
       "en_US": "10"
+    },
+    {
+      "id": "MenuEntries_Text_PocketPC_RareCandy",
+      "en_US": "Rare Candy"
     }
   ]
 }

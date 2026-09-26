@@ -1203,6 +1203,10 @@ TEXT_BANKS_SKIPPED = {
          "(Ian, 2026-09-21), and his line names it",
     180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
          "Medicham (Ian, 2026-09-26), and her lines name both",
+    213: "the Pocket PC's Rare Candy entry appends its message to the common scripts' "
+         "bank (Ian, 2026-09-27); the base ROM's messages before it are unchanged",
+    361: "the Pocket PC's Rare Candy entry appends its menu text (Ian, 2026-09-27); "
+         "the base ROM's entries before it are unchanged",
 }
 
 
