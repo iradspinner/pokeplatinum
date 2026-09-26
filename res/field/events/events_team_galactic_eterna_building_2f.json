@@ -48,11 +48,11 @@
             "hidden_flag": "FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS",
             "script": "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_2F_2",
             "initial_dir": 2,
-            "data": [],
+            "data": [ 5 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 13,
-            "z": 8,
+            "x": 16,
+            "z": 5,
             "y": 0
         },
         {

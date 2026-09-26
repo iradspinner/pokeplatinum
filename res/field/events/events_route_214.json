@@ -34,9 +34,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PI_CARLOS",
             "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 726,
@@ -46,18 +44,16 @@
         {
             "id": "LOCALID_COLLECTOR_DOUGLAS",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_COLLECTOR_DOUGLAS",
-            "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "initial_dir": 2,
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 731,
-            "z": 719,
+            "x": 732,
+            "z": 718,
             "y": 0
         },
         {
@@ -66,12 +62,9 @@
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
-            "script": "TRAINER_COLLECTOR_BRADY",
+            "script": "TRAINER_BEAUTY_DEVON",
             "initial_dir": 0,
-            "data": [
-                2,
-                6
-            ],
+            "data": [ 2, 6 ],
             "movement_range_x": 0,
             "movement_range_z": 6,
             "x": 729,
@@ -81,52 +74,46 @@
         {
             "id": "LOCALID_RUIN_MANIAC_BRYAN",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_BRYAN",
-            "initial_dir": 3,
-            "data": [
-                4
-            ],
+            "initial_dir": 1,
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 714,
-            "z": 691,
+            "z": 685,
             "y": 0
         },
         {
             "id": "LOCALID_RUIN_MANIAC_RONALD",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_RONALD",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "initial_dir": 2,
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 721,
-            "z": 709,
+            "x": 719,
+            "z": 684,
             "y": 0
         },
         {
             "id": "LOCALID_COLLECTOR_JAMAL",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
-            "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_COLLECTOR_JAMAL",
-            "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "initial_dir": 2,
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 719,
-            "z": 701,
+            "x": 720,
+            "z": 714,
             "y": 0
         },
         {
@@ -137,13 +124,11 @@
             "hidden_flag": "0",
             "script": "TRAINER_BEAUTY_DEVON",
             "initial_dir": 3,
-            "data": [
-                1
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 731,
-            "z": 688,
+            "x": 728,
+            "z": 718,
             "y": 0
         },
         {
@@ -154,10 +139,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_MITCHELL",
             "initial_dir": 1,
-            "data": [
-                1,
-                2
-            ],
+            "data": [ 1, 2 ],
             "movement_range_x": 0,
             "movement_range_z": 4,
             "x": 731,
@@ -172,9 +154,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_ABIGAIL",
             "initial_dir": 2,
-            "data": [
-                5
-            ],
+            "data": [ 5 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 721,
@@ -189,7 +169,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
             "script": 10001,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 712,
@@ -204,7 +184,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
             "script": 10001,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -219,9 +199,7 @@
             "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 716,
@@ -236,9 +214,7 @@
             "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
-            "data": [
-                4
-            ],
+            "data": [ 4 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 726,
@@ -253,9 +229,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                66
-            ],
+            "data": [ 66 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 728,
@@ -270,9 +244,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                67
-            ],
+            "data": [ 67 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 729,
@@ -287,9 +259,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                68
-            ],
+            "data": [ 68 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 730,
@@ -304,9 +274,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                69
-            ],
+            "data": [ 69 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 731,
@@ -321,7 +289,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_RARE_CANDY",
             "script": 7050,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 731,
@@ -336,7 +304,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_MAX_REPEL",
             "script": 7077,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 725,
@@ -351,7 +319,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_RED_SHARD",
             "script": 7072,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 722,
@@ -366,7 +334,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_BIG_ROOT",
             "script": 7296,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 724,
@@ -381,7 +349,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -396,7 +364,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -411,7 +379,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -426,7 +394,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -441,7 +409,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -456,7 +424,7 @@
             "hidden_flag": "0",
             "script": 2027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
@@ -471,12 +439,74 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_214_MAGMARIZER",
             "script": 7323,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 711,
             "z": 687,
             "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_28",
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 2027,
+            "initial_dir": 0,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 733,
+            "z": 716,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_29",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 718,
+            "z": 667,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_30",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 717,
+            "z": 667,
+            "y": 0,
+            "clone_id": 31
+        },
+        {
+            "id": "LOCALID_OBJECT_31",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "hidden_flag": "0",
+            "script": "TRAINER_DUMMY_795",
+            "initial_dir": 1,
+            "data": [ 2, 6 ],
+            "movement_range_x": 0,
+            "movement_range_z": 6,
+            "x": 715,
+            "z": 669,
+            "y": 0,
+            "clone_id": 30
         }
     ],
     "warp_events": [
@@ -511,5 +541,5 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

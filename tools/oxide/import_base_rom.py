@@ -468,6 +468,20 @@ MOVES_DIVERGED = {
     },
 }
 
+# Trainer fields Oxide has changed on purpose, so the base ROM's value is no
+# longer the truth: trainer file -> {field: why}. A party field ("level")
+# is left alone on every party member; "party" leaves the whole party alone.
+# The importer reports each as "diverged, left alone" instead of carrying
+# the base ROM's value back.
+_SHEET_TEAM = (
+    "Ian's testing team from his Boss Documentation sheet, which is Oxide's "
+    "baseline (Ian, 2026-09-25) and is in no ROM, Test.nds included"
+)
+TRAINERS_DIVERGED = {
+    "galactic_boss_cyrus_galactic_hq": {"party": _SHEET_TEAM},
+    "galactic_boss_cyrus_distortion_world": {"party": _SHEET_TEAM},
+}
+
 # Encounter files the authoring pass has rewritten from the species pick-list
 # (docs/oxide/encounter-authoring-plan.md). The base ROM's table is no longer
 # the truth for these, so the importer must not carry it back over them; the
@@ -643,6 +657,9 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     text = open(json_path, encoding="utf-8").read()
     changed = []
     rel = os.path.relpath(json_path, ROOT)
+    diverged = TRAINERS_DIVERGED.get(os.path.basename(json_path)[:-len(".json")], {})
+    if "party" in diverged:
+        new_party = old_party = []   # the whole party is Oxide's; headers still carry over
 
     fn, fo = flatten(new_header), flatten(old_header)
     for key, val in fn.items():
@@ -704,6 +721,8 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
                     changed.append(f"party[{i}].ability/gender: {om.get('ability')!r}/{om.get('gender')!r} "
                                     f"-> {nm['ability']!r}/{nm['gender']!r}")
 
+    for field, why in diverged.items():
+        log.append((rel, [f"{field}: diverged, left alone ({why})"]))
     if changed:
         log.append((rel, changed))
         if not dry_run:

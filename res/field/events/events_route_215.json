@@ -34,9 +34,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_DEREK",
             "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 607,
@@ -51,9 +49,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_GREGORY",
             "initial_dir": 2,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 621,
@@ -68,9 +64,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_NATHANIEL",
             "initial_dir": 2,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 643,
@@ -85,9 +79,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_SCOTT",
             "script": "TRAINER_JOGGER_SCOTT",
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 9,
             "movement_range_z": 4,
             "x": 654,
@@ -102,9 +94,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_CALVIN",
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 589,
@@ -119,9 +109,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_DENNIS",
             "initial_dir": 0,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 648,
@@ -136,9 +124,7 @@
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_MAYA",
             "initial_dir": 1,
-            "data": [
-                2
-            ],
+            "data": [ 2 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 648,
@@ -153,9 +139,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_CRAIG",
             "script": "TRAINER_JOGGER_CRAIG",
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 5,
             "movement_range_z": 3,
             "x": 603,
@@ -170,9 +154,7 @@
             "hidden_flag": "0",
             "script": 3,
             "initial_dir": 0,
-            "data": [
-                6
-            ],
+            "data": [ 6 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 580,
@@ -187,9 +169,7 @@
             "hidden_flag": "0",
             "script": 4,
             "initial_dir": 0,
-            "data": [
-                1
-            ],
+            "data": [ 1 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 658,
@@ -204,7 +184,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 611,
@@ -219,7 +199,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 621,
@@ -234,7 +214,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 634,
@@ -249,7 +229,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_4",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 657,
@@ -264,7 +244,7 @@
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_5",
             "script": 10000,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 657,
@@ -279,9 +259,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                70
-            ],
+            "data": [ 70 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 628,
@@ -296,9 +274,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                71
-            ],
+            "data": [ 71 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 629,
@@ -313,9 +289,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                72
-            ],
+            "data": [ 72 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 660,
@@ -330,9 +304,7 @@
             "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
-            "data": [
-                73
-            ],
+            "data": [ 73 ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 661,
@@ -347,7 +319,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HYPER_POTION",
             "script": 7025,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 626,
@@ -362,7 +334,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FULL_HEAL",
             "script": 7027,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 637,
@@ -377,7 +349,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_MAX_ETHER",
             "script": 7039,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 600,
@@ -392,7 +364,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_TM34",
             "script": 7361,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 661,
@@ -407,7 +379,7 @@
             "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 611,
@@ -422,7 +394,7 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FIST_PLATE",
             "script": 7303,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 620,
@@ -437,9 +409,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_SCOTT_NO_BATTLE",
             "script": 5,
             "initial_dir": 1,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 9,
             "movement_range_z": 4,
             "x": 654,
@@ -454,9 +424,7 @@
             "hidden_flag": "FLAG_HIDE_ROUTE_215_JOGGER_CRAIG_NO_BATTLE",
             "script": 6,
             "initial_dir": 0,
-            "data": [
-                3
-            ],
+            "data": [ 3 ],
             "movement_range_x": 5,
             "movement_range_z": 3,
             "x": 603,
@@ -471,7 +439,7 @@
             "hidden_flag": "0",
             "script": 8,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 619,
@@ -486,11 +454,41 @@
             "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HP_UP",
             "script": 7045,
             "initial_dir": 0,
-            "data": [],
+            "data": [  ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 660,
             "z": 576,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_29",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 647,
+            "z": 596,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OBJECT_30",
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 10002,
+            "initial_dir": 1,
+            "data": [  ],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 647,
+            "z": 599,
             "y": 0
         }
     ],
@@ -508,5 +506,5 @@
             "dest_warp_id": 1
         }
     ],
-    "coord_events": []
+    "coord_events": [  ]
 }

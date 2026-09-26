@@ -5,51 +5,59 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_PRIORITIZE_EXTREMES",
+        "AI_FLAG_TAG_STRATEGY"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_JOLTEON",
+            "species": "SPECIES_BANETTE",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_STICKY_BARB",
             "moves": [
-                "MOVE_SAND_ATTACK",
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_DOUBLE_KICK"
+                "MOVE_CURSE",
+                "MOVE_ICY_WIND",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SHADOW_SNEAK"
+            ],
+            "iv_scale": 201,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TYPHLOSION",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_POWER_HERB",
+            "moves": [
+                "MOVE_ERUPTION",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 200,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_VAPOREON",
+            "species": "SPECIES_OCTILLERY",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_SAND_ATTACK",
-                "MOVE_WATER_GUN",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BITE"
+                "MOVE_WATER_SPOUT",
+                "MOVE_AURORA_BEAM",
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_SIGNAL_BEAM"
             ],
-            "iv_scale": 237,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_FLAREON",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": [
-                "MOVE_SAND_ATTACK",
-                "MOVE_EMBER",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BITE"
-            ],
-            "iv_scale": 236,
-            "ball_seal": 0
+            "iv_scale": 187,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

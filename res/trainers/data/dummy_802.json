@@ -13,39 +13,55 @@
             "species": "SPECIES_LOPUNNY",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
                 "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_POUND"
+                "MOVE_MIRROR_COAT"
             ],
-            "iv_scale": 159,
+            "iv_scale": 209,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_FLAREON",
+            "species": "SPECIES_GLACEON",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_BRIGHTPOWDER",
             "moves": [
-                "MOVE_EMBER",
-                "MOVE_ROAR",
-                "MOVE_WILL_O_WISP",
+                "MOVE_ICY_WIND",
+                "MOVE_CHARM",
+                "MOVE_HAIL",
                 "MOVE_FAKE_TEARS"
             ],
             "iv_scale": 162,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAGMAR",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_CONFUSE_RAY",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 194,
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_PRINPLUP",
             "form": 0,
             "level": 30,
-            "item": null,
+            "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_METAL_CLAW",
                 "MOVE_BUBBLE_BEAM",
@@ -54,7 +70,7 @@
             ],
             "iv_scale": 183,
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         }
     ],

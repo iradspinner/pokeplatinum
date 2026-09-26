@@ -5,51 +5,42 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WORMADAM",
+            "species": "SPECIES_SPINDA",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 38,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_HIDDEN_POWER",
-                "MOVE_ENERGY_BALL",
-                "MOVE_SYNTHESIS",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_TEETER_DANCE",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_FAKE_OUT",
+                "MOVE_LAST_RESORT"
             ],
             "iv_scale": 253,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         },
         {
-            "species": "SPECIES_WORMADAM",
-            "form": 1,
-            "level": 33,
-            "item": null,
+            "species": "SPECIES_CLEFABLE",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_BUG_BITE"
+                "MOVE_FOLLOW_ME",
+                "MOVE_BELLY_DRUM",
+                "MOVE_COPYCAT",
+                "MOVE_LAST_RESORT"
             ],
-            "iv_scale": 189,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_WORMADAM",
-            "form": 2,
-            "level": 33,
-            "item": null,
-            "moves": [
-                "MOVE_IRON_HEAD",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_BUG_BITE",
-                "MOVE_GUNK_SHOT"
-            ],
-            "iv_scale": 189,
-            "ball_seal": 0
+            "iv_scale": 173,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

@@ -11,51 +11,20 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_EXPLOUD",
+            "species": "SPECIES_DUSKNOIR",
             "form": 0,
             "level": 59,
             "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_OVERHEAT",
-                "MOVE_REST",
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_PAYBACK",
                 "MOVE_EARTHQUAKE",
-                "MOVE_HYPER_VOICE"
+                "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 243,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_HONCHKROW",
-            "form": 0,
-            "level": 59,
-            "item": "ITEM_SCOPE_LENS",
-            "moves": [
-                "MOVE_BRAVE_BIRD",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_ROOST"
-            ],
-            "iv_scale": 240,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_MAGNEZONE",
-            "form": 0,
-            "level": 59,
-            "item": "ITEM_FOCUS_SASH",
-            "moves": [
-                "MOVE_LOCK_ON",
-                "MOVE_FLASH_CANNON",
-                "MOVE_ZAP_CANNON",
-                "MOVE_EXPLOSION"
-            ],
-            "iv_scale": 237,
-            "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         },
         {
@@ -64,28 +33,64 @@
             "level": 59,
             "item": "ITEM_WACAN_BERRY",
             "moves": [
-                "MOVE_GIGA_IMPACT",
+                "MOVE_AQUA_TAIL",
                 "MOVE_AVALANCHE",
                 "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         },
         {
-            "species": "SPECIES_WEAVILE",
+            "species": "SPECIES_HEATRAN",
             "form": 0,
             "level": 59,
-            "item": "ITEM_CHOICE_BAND",
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_BRICK_BREAK",
-                "MOVE_ICE_SHARD"
+                "MOVE_MAGMA_STORM",
+                "MOVE_EARTH_POWER",
+                "MOVE_FLASH_CANNON",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 237,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_FLYGON",
+            "form": 0,
+            "level": 59,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_EARTH_POWER",
+                "MOVE_DRACO_METEOR",
+                "MOVE_U_TURN",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 240,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_REGIROCK",
+            "form": 0,
+            "level": 59,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_CURSE",
+                "MOVE_EXPLOSION",
+                "MOVE_STONE_EDGE",
+                "MOVE_FIRE_PUNCH"
             ],
             "iv_scale": 250,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -93,17 +98,18 @@
         {
             "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 60,
+            "level": 59,
             "item": "ITEM_KINGS_ROCK",
             "moves": [
                 "MOVE_ROCK_SLIDE",
+                "MOVE_DRAGON_RUSH",
                 "MOVE_SWAGGER",
-                "MOVE_ROOST",
-                "MOVE_FIRE_BLAST"
+                "MOVE_FIRE_FANG"
             ],
             "iv_scale": 252,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         }
     ],

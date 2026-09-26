@@ -21,7 +21,9 @@
                 "MOVE_TAILWIND"
             ],
             "iv_scale": 216,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_FLOATZEL",
@@ -35,7 +37,9 @@
                 "MOVE_BRICK_BREAK"
             ],
             "iv_scale": 208,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_DRIFBLIM",
@@ -49,7 +53,9 @@
                 "MOVE_OMINOUS_WIND"
             ],
             "iv_scale": 197,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [
