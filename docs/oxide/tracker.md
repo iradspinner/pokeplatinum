@@ -14,8 +14,8 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 2. **Encounter Tool Builder**: its build plan's open items.
 3. **Main Production Agent**: free; next, the Frontier Brain fights once Ian's teams exist.
 4. **Carry-over Agent**: its list is finished; the natives' hidden slots and the hue shift land with this landing.
-5. **Cloud**: element 4's partly working moves (`cloud/element4-partial-moves`) and the Kaizo comparison (`cloud/balance-kaizo-comparison`) are running.
-6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in; the Frontier Brain teams; the Kaizo comparison's decisions when it reports.
+5. **Cloud**: element 4's partly working moves (`cloud/element4-partial-moves`) and the Kaizo move data (`cloud/element4-kaizo-move-data`) are running.
+6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in; the Frontier Brain teams.
 7. **No owner yet**: element 7 (items), the rest of element 8 (field moves by badge, 30 PC boxes, wild doubles), and the bug track, which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
