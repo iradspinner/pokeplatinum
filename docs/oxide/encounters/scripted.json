@@ -136,6 +136,19 @@
       "pick": "random"
     },
     {
+      "id": "ironworks_hall_thorton",
+      "label": "Ironworks Hall, Thorton's Battle Factory rental",
+      "kind": "gift",
+      "capture_area": "Ironworks Hall",
+      "split": "Byron",
+      "order": 87.5,
+      "pool": ["SPECIES_TORTERRA", "SPECIES_CINDERACE", "SPECIES_EMPOLEON"],
+      "level": 40,
+      "pick": "choice",
+      "planned": true,
+      "note": "Ian, 2026-09-27: after beating Thorton the player picks one of the two starter lines they did not choose, fully evolved at level 40. The building has its own location name, so this is a capture of its own. Not scripted yet (the main track's Frontier Brain work)."
+    },
+    {
       "id": "riolu_egg",
       "label": "Riley's egg",
       "kind": "egg",

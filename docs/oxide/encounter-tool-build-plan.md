@@ -520,8 +520,11 @@ that stay. None blocks anything.
    **Later on 2026-09-27:** the prize gets a capture of its own (the
    Ironworks building gets its own location name, so 76 captures before
    the League), and Argenta's reward is items, picked by the balance
-   track's item pass. The shared-capture measurement (678ea7531) is redone
-   once the building has its name.
+   track's item pass. Redone once the building had its name, "Ironworks
+   Hall": the prize is `ironworks_hall_thorton` in `scripted.json`, a
+   planned source, and as its own capture it adds a whole wanted line for a
+   Turtwig or Piplup start and no line worth 85 or more (the doc has the
+   table).
 26. **The gift clowns go (Ian, 2026-09-27, through the Overseer).** A clown
    whose capture area has a table, gift or trade simply goes; otherwise new
    tall grass with a thematic table takes its place. This supersedes the
