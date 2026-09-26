@@ -171,9 +171,9 @@ Basic_CheckBulletproof:
     // Oxide: Bulletproof stops ball and bomb moves (element 5), unless Mold
     // Breaker ignores it. The list is the engine's sBallAndBombMoves.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_ScoreMoveEffect
+    IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckQueenlyMajesty
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckQueenlyMajesty
     IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
     IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
     IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
@@ -200,6 +200,24 @@ Basic_CheckBulletproof:
     IfMoveEqualTo MOVE_SYRUP_BOMB, ScoreMinus10
     IfMoveEqualTo MOVE_WEATHER_BALL, ScoreMinus10
     IfMoveEqualTo MOVE_ZAP_CANNON, ScoreMinus10
+
+Basic_CheckQueenlyMajesty:
+    // Oxide: Queenly Majesty stops a move of raised priority aimed at its
+    // holder or the holder's partner (element 5), unless Mold Breaker ignores
+    // it, so score -10.
+    IfMoveHasRaisedPriority Basic_CheckQueenlyMajesty_Priority
+    GoTo Basic_ScoreMoveEffect
+
+Basic_CheckQueenlyMajesty_Priority:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_QUEENLY_MAJESTY, ScoreMinus10
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_ScoreMoveEffect
+    IfBattlerFainted AI_BATTLER_DEFENDER_PARTNER, Basic_ScoreMoveEffect
+    CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_QUEENLY_MAJESTY
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 Basic_ScoreMoveEffect:
     // Oxide: the powder moves the engine keeps as sPowderMoves, less Rage

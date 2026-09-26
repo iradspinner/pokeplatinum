@@ -198,6 +198,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
 static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2737,6 +2738,29 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
     AI_CONTEXT.calcTemp = Battler_Ability(battleCtx, battler);
+}
+
+/**
+ * @brief Oxide: jump if the move being scored will be used with raised
+ * priority at a battler on the other side.
+ *
+ * Queenly Majesty stops such a move (element 5), as the controller's priority
+ * block does: any priority above 0, from the move or from Prankster and the
+ * like, and any move not aimed at the user's own side or the whole field.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+
+    if (Battler_MovePriority(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move) > 0
+        && (MOVE_DATA(AI_CONTEXT.move).range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
+    }
 }
 
 /**
