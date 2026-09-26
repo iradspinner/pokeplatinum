@@ -60,6 +60,27 @@ static const u16 sAltPowerMoveEffects[] = {
     0xFFFF
 };
 
+// Oxide: plain hits whose power the battle works out, listed at power 1 (the
+// type chart reads a power of 0 as a status move). The power check that lets
+// a move into the damage comparison would otherwise leave them out, as it
+// leaves out a status move.
+static const u16 sComputedPowerHits[] = {
+    MOVE_ELECTRO_BALL,
+    MOVE_HARD_PRESS,
+    0xFFFF
+};
+
+static BOOL AI_IsComputedPowerHit(u16 move)
+{
+    for (int i = 0; sComputedPowerHits[i] != 0xFFFF; i++) {
+        if (sComputedPowerHits[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 typedef void (*AICommandFunc)(BattleSystem *, BattleContext *);
 
 enum AIEvalStep {
@@ -1052,6 +1073,7 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || AI_IsComputedPowerHit(AI_CONTEXT.move) // Oxide
         || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         for (i = 0; i < STAT_MAX; i++) {
             ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
@@ -2844,6 +2866,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+            || AI_IsComputedPowerHit(moves[i]) // Oxide
             || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && MOVE_DATA(moves[i]).power > 1)) {
             if (varyDamage == TRUE) {
                 damageRoll = AI_CONTEXT.moveDamageRolls[i];
@@ -2868,6 +2891,109 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
 }
 
 #include "data/battle/weight_to_power.h"
+
+/**
+ * @brief Oxide: the power a move will have when the battle works it out, as
+ * BattleScript_ComputedMovePower does, for the AI's damage estimate.
+ *
+ * The estimate is made before the turn, so each case reads the state the
+ * battle will read when the move is used. Lash Out is left at its table
+ * power: it doubles on a stat drop earlier in the same turn, which the AI
+ * cannot know in advance.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param move
+ * @param attacker
+ * @return The move's power, or 0 for its table power
+ */
+static int TrainerAI_ComputedMovePower(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, int attacker)
+{
+    int i, count;
+
+    switch (move) {
+    case MOVE_ELECTRO_BALL: {
+        // 40, 60, 80, 120 or 150 by how many times over the target's Speed
+        // is the user's.
+        static const u8 sElectroBallPower[] = { 40, 60, 80, 120, 150 };
+        u32 defenderSpeed = battleCtx->monSpeedValues[AI_CONTEXT.defender];
+        u32 ratio = defenderSpeed ? battleCtx->monSpeedValues[attacker] / defenderSpeed : 0;
+
+        if (ratio >= NELEMS(sElectroBallPower)) {
+            ratio = NELEMS(sElectroBallPower) - 1;
+        }
+        return sElectroBallPower[ratio];
+    }
+
+    case MOVE_ECHOED_VOICE: {
+        // 40 more for each turn in a row it has been used, to 200. The run
+        // goes on only if it was used the turn before, or already this turn.
+        u32 field = battleCtx->fieldConditionsMask;
+        int run = (field & FIELD_CONDITION_ECHOED_VOICE) >> FIELD_CONDITION_ECHOED_VOICE_SHIFT;
+
+        if ((field & FIELD_CONDITION_ECHOED_VOICE_THIS_TURN) == FALSE) {
+            if (field & FIELD_CONDITION_ECHOED_VOICE_LAST_TURN) {
+                if (run < 4) {
+                    run++;
+                }
+            } else {
+                run = 0;
+            }
+        }
+        return 40 * (run + 1);
+    }
+
+    case MOVE_STOMPING_TANTRUM:
+    case MOVE_TEMPER_FLARE:
+        if (battleCtx->battleMons[attacker].moveFailedLastTurn) {
+            return MOVE_DATA(move).power * 2;
+        }
+        return 0;
+
+    case MOVE_LAST_RESPECTS:
+        for (i = 0, count = 0; i < BattleSystem_GetPartyCount(battleSys, attacker); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, attacker, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                count++;
+            }
+        }
+        return 50 + 50 * count;
+
+    case MOVE_HARD_PRESS: {
+        int power = 100 * battleCtx->battleMons[AI_CONTEXT.defender].curHP / battleCtx->battleMons[AI_CONTEXT.defender].maxHP;
+        return power > 0 ? power : 1;
+    }
+
+    case MOVE_GRAV_APPLE:
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+            return MOVE_DATA(move).power * 15 / 10;
+        }
+        return 0;
+
+    case MOVE_RETALIATE:
+        if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, attacker)].faintedLastTurn) {
+            return MOVE_DATA(move).power * 2;
+        }
+        return 0;
+
+    case MOVE_STORED_POWER:
+    case MOVE_POWER_TRIP:
+        for (i = BATTLE_STAT_HP, count = 0; i < BATTLE_STAT_MAX; i++) {
+            if (battleCtx->battleMons[attacker].statBoosts[i] > 6) {
+                count += battleCtx->battleMons[attacker].statBoosts[i] - 6;
+            }
+        }
+        return 20 + 20 * count;
+
+    case MOVE_RAGE_FIST:
+        return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, attacker);
+    }
+
+    return 0;
+}
 
 /**
  * @brief Damage calculation routine visible to the AI.
@@ -3035,6 +3161,8 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case MOVE_RETURN:
+    case MOVE_PIKA_PAPOW: // Oxide: both are Return by another name
+    case MOVE_VEEVEE_VOLLEY:
         power = battleCtx->battleMons[attacker].friendship * 10 / 25;
         type = TYPE_NORMAL;
         break;
@@ -3120,8 +3248,9 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
     }
 
     default:
-        // Move has no special calculation logic; default to the basic calc
-        power = 0;
+        // Oxide: the powers BattleScript_ComputedMovePower works out in
+        // battle, read here without changing any of the state it keeps.
+        power = TrainerAI_ComputedMovePower(battleSys, battleCtx, move, attacker);
         type = TYPE_NORMAL;
         break;
     }
