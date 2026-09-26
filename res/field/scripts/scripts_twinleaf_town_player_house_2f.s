@@ -673,6 +673,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet31, 3
     AddListMenuEntry TestKit_Text_MenuSet32, 4
     AddListMenuEntry TestKit_Text_MenuSet33, 5
+    AddListMenuEntry TestKit_Text_MenuSet34, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -680,6 +681,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet31
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet32
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet33
+    GoToIfEq VAR_0x8004, 6, TestKit_MoveSet34
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -977,6 +979,27 @@ TestKit_MoveSet33:
     SetVar VAR_0x8007, MOVE_POWER_TRIP
     SetVar VAR_0x8008, MOVE_AGILITY
     SetVar VAR_0x8009, MOVE_IRON_DEFENSE
+    GoTo TestKit_GiveMew
+
+/* Set 34: Retaliate doubles the turn after a battler on its side
+   faints. Two Pokemon, then a wild Chansey that knows only Splash: switch
+   the Jirachi in and use Memento, send Mew out, and its first Retaliate
+   does about twice what the second does. Needs two free party slots. */
+TestKit_MoveSet34:
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_JIRACHI, 50, ITEM_NONE, VAR_RESULT
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_MEMENTO
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, MOVE_HEALING_WISH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, MOVE_SPLASH
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, MOVE_RECOVER
+    AddVar VAR_0x8005, 1
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_RETALIATE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SWORDS_DANCE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

@@ -2236,6 +2236,14 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 
 void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
+    // Oxide: what fainted this turn is what fainted last turn from now on,
+    // for Retaliate. A faint at the end of a turn, from poison or a
+    // replacement's hazards, counts for the turn it ended.
+    for (int side = 0; side < NUM_BATTLE_SIDES; side++) {
+        battleCtx->sideConditions[side].faintedLastTurn = battleCtx->sideConditions[side].faintedThisTurn;
+        battleCtx->sideConditions[side].faintedThisTurn = FALSE;
+    }
+
     for (int i = 0; i < MAX_BATTLERS; i++) {
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
         MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));

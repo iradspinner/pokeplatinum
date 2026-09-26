@@ -4127,6 +4127,10 @@ static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSy
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
+        // Oxide: Explosion and its kin faint the user here rather than through
+        // TryFaintMon, so Retaliate's record is kept here too.
+        battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->faintedMon)].faintedThisTurn = TRUE;
+
         LOAD_SUBSEQ(subscript_after_selfdestruct);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS;

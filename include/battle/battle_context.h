@@ -53,7 +53,9 @@ typedef struct SideConditions {
     u32 toxicSpikesLayers : 2;
     u32 auroraVeilTurns : 3; // Oxide, from the padding, so the struct keeps its size
     u32 berryEatenMask : 6; // Oxide, by party slot as knockedOffItemsMask is, for Belch
-    u32 padding04_0D : 19;
+    u32 faintedThisTurn : 1; // Oxide, from the padding: a battler on this side fainted this turn, for Retaliate
+    u32 faintedLastTurn : 1; // Oxide: the same for the turn before, which is what Retaliate reads
+    u32 padding04_0F : 17;
 } SideConditions;
 
 typedef struct TurnFlags {

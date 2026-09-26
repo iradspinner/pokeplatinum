@@ -1370,6 +1370,13 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         return sElectroBallPower[ratio];
     }
 
+    case MOVE_RETALIATE:
+        // Doubles when a battler on the user's side fainted the turn before.
+        if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
+            return CURRENT_MOVE_DATA.power * 2;
+        }
+        return 0;
+
     case MOVE_STORED_POWER:
     case MOVE_POWER_TRIP: {
         // 20, and 20 more for every stage the user has raised a stat,
@@ -1859,6 +1866,7 @@ static BOOL BtlCmd_TryFaintMon(BattleSystem *battleSys, BattleContext *battleCtx
         battleCtx->faintedMon = battler;
         battleCtx->battleStatusMask |= (FlagIndex(battler) << SYSCTL_MON_FAINTED_SHIFT);
         battleCtx->totalFainted[battler]++;
+        battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)].faintedThisTurn = TRUE; // Oxide, for Retaliate
 
         BattleScript_UpdateFriendship(battleSys, battleCtx, battler);
     }
