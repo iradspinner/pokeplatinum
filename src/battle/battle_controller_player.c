@@ -1294,6 +1294,7 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_NIGHTMARE,
     MON_COND_CHECK_STATE_CURSE,
     MON_COND_CHECK_STATE_BIND,
+    MON_COND_CHECK_STATE_SALT_CURE, // Oxide
     MON_COND_CHECK_STATE_BAD_DREAMS,
     MON_COND_CHECK_STATE_UPROAR,
     MON_COND_CHECK_STATE_THRASH,
@@ -1498,6 +1499,30 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
 
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moveEffectsData.bindingMove;
                 battleCtx->msgBattlerTemp = battler;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SALT_CURE:
+            // Oxide: a salted battler loses an eighth of its maximum HP, a
+            // quarter if it is a Water or Steel type, as in Generation 9,
+            // unless it has Magic Guard.
+            if ((battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_FLAG_SALT_CURED)
+                && battleCtx->battleMons[battler].curHP
+                && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
+                int type1 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_1, NULL);
+                int type2 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL);
+                BOOL doubled = type1 == TYPE_WATER || type2 == TYPE_WATER || type1 == TYPE_STEEL || type2 == TYPE_STEEL;
+
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, doubled ? 4 : 8);
+                battleCtx->msgBattlerTemp = battler;
+
+                LOAD_SUBSEQ(subscript_salt_cure_damage);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

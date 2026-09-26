@@ -9245,6 +9245,48 @@
         "The bursting flame hit\n",
         "the foe’s {STRVAR_1 1, 0, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is hurt\n",
+        "by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "is hurt by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "is hurt by Salt Cure!"
+      ]
     }
   ]
 }

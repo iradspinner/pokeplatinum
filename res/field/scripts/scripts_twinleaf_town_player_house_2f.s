@@ -737,10 +737,12 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet55, 0
     AddListMenuEntry TestKit_Text_MenuSet56, 1
     AddListMenuEntry TestKit_Text_MenuSet57, 2
+    AddListMenuEntry TestKit_Text_MenuSet58, 3
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
     GoToIfEq VAR_0x8004, 2, TestKit_MoveSet57
+    GoToIfEq VAR_0x8004, 3, TestKit_MoveSet58
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1392,6 +1394,21 @@ TestKit_MoveSet57:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 58: Salt Cure salts its target, which then loses an eighth of its HP
+   at the end of every turn, a quarter as a Water or Steel type. Against a
+   wild Chansey that knows only Splash: "The wild CHANSEY is being salt
+   cured!", then "The wild CHANSEY is hurt by Salt Cure!" each turn; after
+   Soak makes it a Water type, each loss doubles. */
+TestKit_MoveSet58:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SALT_CURE
+    SetVar VAR_0x8007, MOVE_SOAK
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

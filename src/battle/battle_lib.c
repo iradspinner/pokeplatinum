@@ -584,6 +584,9 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
     case BATTLEMON_TEMP:
         return BattleMon_Get(battleCtx, battler, battleCtx->scriptTemp, buf);
 
+    case BATTLEMON_OXIDE_FLAGS:
+        return battleMon->oxideFlags;
+
     default:
         GF_ASSERT(FALSE);
         break;
@@ -937,6 +940,10 @@ void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam pa
 
     case BATTLEMON_TEMP:
         BattleMon_Set(battleCtx, battler, battleCtx->scriptTemp, buf);
+        break;
+
+    case BATTLEMON_OXIDE_FLAGS:
+        mon->oxideFlags = *(u16 *)buf;
         break;
 
     default:
@@ -2080,11 +2087,13 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
 
         battleCtx->battleMons[battler].statusVolatile = VOLATILE_CONDITION_NONE;
         battleCtx->battleMons[battler].moveEffectsMask = MOVE_EFFECT_NONE;
+        battleCtx->battleMons[battler].oxideFlags = 0; // Oxide
     } else {
         // Baton Pass maintains Focus Energy, Mean Look, Confusion, Curse, Substitute,
         // and a variety of move effects (see constants/battle/moves.h)
         battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_BATON_PASSED;
         battleCtx->battleMons[battler].moveEffectsMask &= MOVE_EFFECT_BATON_PASSED;
+        battleCtx->battleMons[battler].oxideFlags = 0; // Oxide: Salt Cure is not passed on
 
         for (i = 0; i < maxBattlers; i++) {
             if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
@@ -2175,6 +2184,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 
     battleCtx->battleMons[battler].statusVolatile = 0;
     battleCtx->battleMons[battler].moveEffectsMask = 0;
+    battleCtx->battleMons[battler].oxideFlags = 0; // Oxide
 
     // Negate Mean Look, Attract, and Bind flags
     for (i = 0; i < maxBattlers; i++) {

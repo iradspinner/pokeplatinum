@@ -370,4 +370,6 @@ subscript_files = files(
     'subscript_wonder_room_end.s',
     'subscript_permanent_wonder_room.s',
     'subscript_flame_burst.s',
+    'subscript_salt_cure.s',
+    'subscript_salt_cure_damage.s',
 )

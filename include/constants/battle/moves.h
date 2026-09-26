@@ -57,6 +57,12 @@
 
 #define MOVE_EFFECT_LOCK_ON_INITIAL_DURATION (1 << (MOVE_EFFECT_LOCK_ON_SHIFT + 1))
 
+// Oxide: BattleMon's oxideFlags (BATTLEMON_OXIDE_FLAGS), the later games'
+// volatile states that have no room in the move-effects mask. They clear
+// when the battler leaves the field (BattleSystem_UpdateAfterSwitch,
+// BattleSystem_CleanupFaintedMon).
+#define OXIDE_MON_FLAG_SALT_CURED (1 << 0) // Salt Cure: loses HP at the end of every turn
+
 #define MOVE_STATUS_MISSED              (1 << 0)
 #define MOVE_STATUS_SUPER_EFFECTIVE     (1 << 1)
 #define MOVE_STATUS_NOT_VERY_EFFECTIVE  (1 << 2)
