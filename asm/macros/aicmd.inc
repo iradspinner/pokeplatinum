@@ -629,6 +629,13 @@
     .long \battler
     .endm
 
+    // Oxide: jump if the move the AI is scoring will have raised priority
+    // (above 0, Prankster and the like included) and is aimed at the other side.
+    .macro IfMoveHasRaisedPriority jump:req
+    .long AICMD_IFMOVEHASRAISEDPRIORITY
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

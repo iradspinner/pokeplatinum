@@ -171,6 +171,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
   at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
+- [ ] **(live)** Element 6's Phase 4 catch-up (`docs/oxide/battle-ai/README.md`),
+  in Volkner's battle: lead with a Lightning Rod Pokemon (Electrike's line or
+  Rhyhorn's), break at the end of `TrainerAI_MainSingles` and read
+  `moveScore`. Every Electric attack reads 12 or more below its score against
+  another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
+  recorded the ability the AI guesses between the species' two, so the drop
+  shows on about half the turns; take several turns before calling it.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
