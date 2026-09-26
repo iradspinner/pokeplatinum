@@ -13,7 +13,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, pool, pressure
+from . import data, metrics, pool, pressure
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it showed for each. Crunch into
@@ -66,6 +66,39 @@ def check_damage(results, blob):
     results.append(("Hidden Power takes its type from the IVs",
                     dark[0] > 0 and fighting[-1] == 0,
                     f"IVs 31 into Gengar {dark[0]}-{dark[-1]}, IVs 30 {fighting[0]}-{fighting[-1]}"))
+
+
+def check_ref_overrides(results, blob):
+    """B3b's reference Pokemon bring their own game's species and move data.
+    Oxide's own data passed that way changes nothing; a move the engine has
+    never heard of, given Earthquake's data, hits exactly as Earthquake does;
+    twice the power does more; and a Clefairy given the Flying type takes
+    nothing from it."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    chomp, clef = blob["poks"]["Garchomp"], blob["poks"]["Clefairy"]
+    own = {"bs": metrics._norm_stats(chomp["bs"]), "types": chomp["types"]}
+    quake = {"type": "Ground", "category": "Physical", "basePower": 100, "priority": 0}
+    jobs = {"pokemon": {
+        "chomp": dict(base, species="Garchomp"),
+        "own": dict(base, species="Garchomp", species_data=own,
+                    move_data={"Test Quake": quake, "Earthquake": dict(quake, basePower=200)}),
+        "clef": dict(base, species="Clefairy"),
+        "bird": dict(base, species="Clefairy",
+                     species_data={"bs": metrics._norm_stats(clef["bs"]), "types": ["Flying"]}),
+    }, "pairs": [["chomp", "clef", ["Earthquake"], None],
+                 ["own", "clef", ["Test Quake", "Earthquake"], None],
+                 ["chomp", "bird", ["Earthquake"], None]]}
+    out = _run(blob, jobs)
+    plain, own_row, bird = (r["moves"] for r in out["results"])
+    ok = (own_row["Test Quake"]["rolls"] == plain["Earthquake"]["rolls"]
+          and own_row["Earthquake"]["rolls"][0] > plain["Earthquake"]["rolls"][-1]
+          and bird["Earthquake"]["rolls"][-1] == 0)
+    results.append(("a reference Pokemon's own species and move data are used", ok,
+                    f"Earthquake {plain['Earthquake']['rolls'][0]}-{plain['Earthquake']['rolls'][-1]}, "
+                    f"at 200 power {own_row['Earthquake']['rolls'][0]}, "
+                    f"into a Flying Clefairy {bird['Earthquake']['rolls'][-1]}"))
 
 
 def check_engine(results):
@@ -162,6 +195,7 @@ def main():
     blob = calc_export.build()
     check_engine(results)
     check_damage(results, blob)
+    check_ref_overrides(results, blob)
     check_pool(results, blob)
     check_rules(results)
     check_scores(results, blob)

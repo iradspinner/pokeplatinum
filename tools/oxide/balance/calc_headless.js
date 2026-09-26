@@ -121,6 +121,19 @@ function makeEngine(blob) {
   return ctx;
 }
 
+function ownSpecies(rec) {
+  // B3b: a reference hack's Pokemon carries its own game's base stats,
+  // types and weight ("species_data"), since each hack rebalances species;
+  // these replace Oxide's record for that one Pokemon only.
+  const bs = rec.bs;
+  const out = {
+    baseStats: { hp: bs.hp, atk: bs.at, def: bs.df, spa: bs.sa, spd: bs.sd, spe: bs.sp },
+    types: rec.types.filter(Boolean).slice(0, 2),
+  };
+  if (rec.weightkg !== undefined) out.weightkg = rec.weightkg;
+  return out;
+}
+
 function speciesOverrides(blob, name) {
   // createPokemon's set branch: the page passes the species' own stats,
   // types, weight and abilities as overrides on every Pokemon it builds.
@@ -190,7 +203,7 @@ function run(blob, jobs) {
       level: p.level, ability: p.ability || undefined, abilityOn: true,
       item: p.item || '', nature: p.nature || 'Hardy',
       ivs: stats(p.ivs), evs: stats(p.evs),
-      overrides: speciesOverrides(blob, p.species),
+      overrides: p.species_data ? ownSpecies(p.species_data) : speciesOverrides(blob, p.species),
     });
     return built[key];
   }
@@ -204,10 +217,15 @@ function run(blob, jobs) {
     const row = { a, d, weather: weather || null, moves: {},
       speeds: [calc.getFinalSpeed(g4, att, field, field.attackerSide),
                calc.getFinalSpeed(g4, def, field, field.defenderSide)] };
+    const own = jobs.pokemon[a].move_data || {};
     for (const name of moveNames) {
+      // B3b: a reference hack's Pokemon names its moves' type, power,
+      // category and priority from its own game's table ("move_data"). The
+      // empty flags let a move the engine has never heard of be built.
+      const overrides = own[name] ? Object.assign({ flags: {} }, own[name])
+        : name === 'Hidden Power' ? hiddenPower(jobs.pokemon[a].ivs) : moveOverrides(blob, name);
       const move = new calc.Move(GEN, name, {
-        ability: att.ability, item: att.item, species: att.name,
-        overrides: name === 'Hidden Power' ? hiddenPower(jobs.pokemon[a].ivs) : moveOverrides(blob, name),
+        ability: att.ability, item: att.item, species: att.name, overrides,
       });
       let r;
       try {
