@@ -688,6 +688,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet46, 18
     AddListMenuEntry TestKit_Text_MenuSet47, 19
     AddListMenuEntry TestKit_Text_MenuSet48, 20
+    AddListMenuEntry TestKit_Text_MenuSet49, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -710,6 +711,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 18, TestKit_MoveSet46
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet47
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet48
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet49
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1230,6 +1232,21 @@ TestKit_MoveSet48:
     SetVar VAR_0x8007, MOVE_SUBSTITUTE
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 49: Transform copies the whole ability, including one numbered 256
+   or more. Against a wild Rattata given Toxic Debris (295) that knows only
+   Tackle: once Mew has transformed, each Tackle it takes scatters poison
+   spikes on the foe's side, where before the fix Mew got Inner Focus (39,
+   the low byte) and nothing happened. */
+TestKit_MoveSet49:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_TOXIC_DEBRIS
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_TRANSFORM
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

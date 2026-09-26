@@ -5699,7 +5699,9 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     u8 *defenderData = (u8 *)&DEFENDING_MON;
 
     int i; // does not match if this is declared outside the individual loops' scopes
-    for (i = 0; i < XtOffset(BattleMon *, ability) + 1; i++) {
+    // Oxide: through the whole ability, which element 2 widened to two bytes;
+    // the copy used to stop after its first, the low byte.
+    for (i = 0; i < XtOffset(BattleMon *, ability) + sizeof(ATTACKING_MON.ability); i++) {
         attackerData[i] = defenderData[i];
     }
 
