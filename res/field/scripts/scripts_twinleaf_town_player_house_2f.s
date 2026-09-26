@@ -1832,6 +1832,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleIntimidate, 3
     AddListMenuEntry TestKit_Text_MenuStapleOblivious, 4
     AddListMenuEntry TestKit_Text_MenuStapleIlluminate, 5
+    AddListMenuEntry TestKit_Text_MenuStapleSynchronize, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1839,6 +1840,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 3, TestKit_StapleIntimidate
     GoToIfEq VAR_0x8004, 4, TestKit_StapleOblivious
     GoToIfEq VAR_0x8004, 5, TestKit_StapleIlluminate
+    GoToIfEq VAR_0x8004, 6, TestKit_StapleSynchronize
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -1926,6 +1928,20 @@ TestKit_StapleIlluminate:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_DOUBLE_TEAM
     SetVar VAR_0x8003, MOVE_SAND_ATTACK
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Synchronize: an Espeon given Synchronize, against a wild Chansey that
+   knows only Toxic. */
+TestKit_StapleSynchronize:
+    SetVar VAR_0x800A, SPECIES_ESPEON
+    SetVar VAR_0x800B, ABILITY_SYNCHRONIZE
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_CALM_MIND
+    SetVar VAR_0x8008, MOVE_MORNING_SUN
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TOXIC
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

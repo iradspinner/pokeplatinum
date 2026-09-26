@@ -61,6 +61,14 @@ _corrosion_1_done:
 _130:
     PlayBattleAnimation BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_POISONED
     Wait 
+    // Oxide: Synchronize passes bad poison on as bad poison (Generation 5).
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _plain_poison
+    CheckAbility CHECK_NOT_HAVE, BTLSCR_MSG_BATTLER_TEMP, ABILITY_SYNCHRONIZE, _plain_poison
+    CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_MSG_BATTLER_TEMP, BATTLEMON_STATUS, MON_CONDITION_TOXIC, _plain_poison
+    UpdateMonData OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_TOXIC
+    GoTo _150
+
+_plain_poison:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_POISON
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _150
     // {0} was poisoned!

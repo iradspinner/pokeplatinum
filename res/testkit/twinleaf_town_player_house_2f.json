@@ -286,6 +286,10 @@
             "en_US": "Keen Eye, Illuminate"
         },
         {
+            "id": "TestKit_Text_MenuStapleSynchronize",
+            "en_US": "Synchronize"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
