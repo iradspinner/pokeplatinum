@@ -677,6 +677,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet35, 7
     AddListMenuEntry TestKit_Text_MenuSet36, 8
     AddListMenuEntry TestKit_Text_MenuSet37, 9
+    AddListMenuEntry TestKit_Text_MenuSet38, 10
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -688,6 +689,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet35
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet36
     GoToIfEq VAR_0x8004, 9, TestKit_MoveSet37
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet38
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1053,6 +1055,17 @@ TestKit_MoveSet37:
     SetVar VAR_0x8007, MOVE_SPLASH
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SWORDS_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 38: Hard Press is stronger the more HP the target has left:
+   100 at full HP, falling with the target's share. Against the wild
+   Chansey, the first Hard Press does a little more than Body Slam (85);
+   once Chansey is below about 85% of its HP, it does less. */
+TestKit_MoveSet38:
+    SetVar VAR_0x8006, MOVE_HARD_PRESS
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

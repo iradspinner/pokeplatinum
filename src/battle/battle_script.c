@@ -1417,6 +1417,12 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         return 50 + 50 * fainted;
     }
 
+    case MOVE_HARD_PRESS: {
+        // Up to 100 by the share of its HP the target has left, at least 1.
+        int power = 100 * DEFENDING_MON.curHP / DEFENDING_MON.maxHP;
+        return power > 0 ? power : 1;
+    }
+
     case MOVE_RETALIATE:
         // Doubles when a battler on the user's side fainted the turn before.
         if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)].faintedLastTurn) {
