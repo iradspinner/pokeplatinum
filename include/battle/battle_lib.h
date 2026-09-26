@@ -670,6 +670,17 @@ BOOL Battler_SheerForceStrips(BattleContext *battleCtx, int attacker, int move);
 BOOL Battler_SheerForceActive(BattleContext *battleCtx, int attacker, int move);
 BOOL Move_IsPowder(int move);
 
+/**
+ * @brief Oxide: whether a battler's last move keeps its run of Protect
+ * successes going (every move on Protect's effect, Endure, Wide Guard and
+ * Quick Guard).
+ *
+ * @param battleCtx
+ * @param move
+ * @return TRUE if it does
+ */
+BOOL Move_KeepsProtectRun(BattleContext *battleCtx, int move);
+
 // Oxide: what an ability refuses, after hg-engine's ability flags.
 #define ABILITY_FAILS_TRACE       (1 << 0) // Trace cannot copy it
 #define ABILITY_FAILS_ROLE_PLAY   (1 << 1) // Role Play cannot copy it

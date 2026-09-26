@@ -199,6 +199,9 @@ static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battl
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2621,9 +2624,10 @@ static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battl
     int inBattler = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (battleCtx->moveProtect[battler] != MOVE_PROTECT
-        && battleCtx->moveProtect[battler] != MOVE_DETECT
-        && battleCtx->moveProtect[battler] != MOVE_ENDURE) {
+    // Oxide: the engine's own test (Move_KeepsProtectRun), so the run the AI
+    // sees is the one the battle rolls against: Wide Guard, Quick Guard and
+    // the protecting moves element 4 added keep it going too.
+    if (Move_KeepsProtectRun(battleCtx, battleCtx->moveProtect[battler]) == FALSE) {
         AI_CONTEXT.calcTemp = 0;
     } else {
         AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].moveEffectsData.protectSuccessTurns;
@@ -2759,6 +2763,110 @@ static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext
 
     if (Battler_MovePriority(battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move) > 0
         && (MOVE_DATA(AI_CONTEXT.move).range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if Lightning Rod or Storm Drain could draw the move being
+ * scored away from its target.
+ *
+ * The same test as BattleSystem_CheckRedirectionAbilities: a move aimed at one
+ * target or a random foe, used without Normalize or Mold Breaker. A spread move
+ * such as Muddy Water or Electroweb is never drawn in.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int ability = Battler_Ability(battleCtx, AI_CONTEXT.attacker);
+
+    if ((MOVE_DATA(AI_CONTEXT.move).range == RANGE_SINGLE_TARGET || MOVE_DATA(AI_CONTEXT.move).range == RANGE_RANDOM_OPPONENT)
+        && ability != ABILITY_NORMALIZE
+        && ability != ABILITY_MOLD_BREAKER) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored is a status move that
+ * Prankster raises and the target is a Dark type, which the move then does
+ * not affect.
+ *
+ * The same test as BattleControllerPlayer_PriorityBlock's, for a move aimed
+ * at the target: one that works on its user's side, on the whole field or on
+ * the foe's side (Spikes and the like) is left alone.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int range = MOVE_DATA(AI_CONTEXT.move).range;
+
+    if (Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(AI_CONTEXT.move).class == CLASS_STATUS
+        && (range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE
+        && range != RANGE_OPPONENT_SIDE
+        && MON_HAS_TYPE(AI_CONTEXT.defender, TYPE_DARK)) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored has the given effectiveness on
+ * the attacker's own partner.
+ *
+ * IfMoveEffectivenessEquals's test with the partner in the target's place, for
+ * Tag Strategy's check of a spread move that hits the partner too. The type
+ * chart counts Levitate, Magnet Rise and Wonder Guard, and the user's Mold
+ * Breaker getting past them; the absorbing abilities and Telepathy are left to
+ * the script, as the engine leaves them to BattleSystem_TriggerImmunityAbility.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.attacker);
+    u32 damage = TYPE_MULTI_BASE_DAMAGE;
+    u32 effectiveness = 0;
+
+    damage = BattleSystem_ApplyTypeChart(battleSys,
+        battleCtx,
+        AI_CONTEXT.move,
+        TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move),
+        AI_CONTEXT.attacker,
+        partner,
+        damage,
+        &effectiveness);
+
+    if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
+        damage = TYPE_MULTI_DOUBLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE * 4) {
+        damage = TYPE_MULTI_QUADRUPLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 2) {
+        damage = TYPE_MULTI_HALF_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 4) {
+        damage = TYPE_MULTI_QUARTER_DAMAGE;
+    }
+
+    if (effectiveness & MOVE_STATUS_IMMUNE) {
+        damage = TYPE_MULTI_IMMUNE;
+    }
+
+    if (damage == expected) {
         AIScript_Iter(battleCtx, jump);
     }
 }
@@ -3866,9 +3974,43 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
 }
 
 /**
+ * @brief Oxide: whether an ability takes moves of a given type, for the
+ * switch to an absorber below.
+ *
+ * Vanilla named one ability per type: Flash Fire, Water Absorb and Volt
+ * Absorb. Oxide's Lightning Rod and Storm Drain now take the moves they draw
+ * (the staples rulings) and Sap Sipper takes Grass moves (element 5), so they
+ * join (Ian, 2026-09-27). Motor Drive and Dry Skin, which Platinum's engine
+ * already had taking Electric and Water moves, were left out of vanilla's
+ * list (Oxide, vanilla fix, Ian, 2026-09-27).
+ *
+ * @param ability
+ * @param moveType
+ * @return TRUE if the ability takes moves of that type
+ */
+static BOOL AI_AbilityAbsorbsType(u16 ability, u8 moveType)
+{
+    switch (moveType) {
+    case TYPE_FIRE:
+        return ability == ABILITY_FLASH_FIRE;
+
+    case TYPE_WATER:
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_STORM_DRAIN || ability == ABILITY_DRY_SKIN;
+
+    case TYPE_ELECTRIC:
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_LIGHTNING_ROD || ability == ABILITY_MOTOR_DRIVE;
+
+    case TYPE_GRASS:
+        return ability == ABILITY_SAP_SIPPER;
+    }
+
+    return FALSE;
+}
+
+/**
  * @brief Check if the AI's party has a Pokemon on the bench which has an "absorbing"
- * ability for the move which was last used on it (specifically, Volt Absorb, Water
- * Absorb, and Flash Fire).
+ * ability for the move which was last used on it (in vanilla, Volt Absorb, Water
+ * Absorb, and Flash Fire; Oxide's list is AI_AbilityAbsorbsType).
  *
  * This routine will skip its checks roughly 33% of the time if the AI's battler has
  * a super-effective move. It will also skip its checks if the AI's active battler
@@ -3885,7 +4027,6 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     u8 aiSlot1, aiSlot2;
     u8 moveType;
     u16 ability; // Platinum Oxide: u16, ability ids run past 255
-    u16 checkAbility;
     int start, end;
     Pokemon *mon;
 
@@ -3914,18 +4055,8 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
         moveType = battleCtx->moveHitType[battler];
     }
 
-    if (moveType == TYPE_FIRE) {
-        checkAbility = ABILITY_FLASH_FIRE;
-    } else if (moveType == TYPE_WATER) {
-        checkAbility = ABILITY_WATER_ABSORB;
-    } else if (moveType == TYPE_ELECTRIC) {
-        checkAbility = ABILITY_VOLT_ABSORB;
-    } else {
-        return ABILITY_NONE;
-    }
-
     // If our ability absorbs the type of the last move that hit us, do not switch.
-    if (Battler_Ability(battleCtx, battler) == checkAbility) {
+    if (AI_AbilityAbsorbsType(Battler_Ability(battleCtx, battler), moveType)) {
         return FALSE;
     }
 
@@ -3954,7 +4085,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
             // Switch to a matching Pokemon 50% of the time.
-            if (checkAbility == ability && (BattleSystem_RandNext(battleSys) & 1)) {
+            if (AI_AbilityAbsorbsType(ability, moveType) && (BattleSystem_RandNext(battleSys) & 1)) {
                 battleCtx->aiSwitchedPartySlot[battler] = i;
                 return TRUE;
             }

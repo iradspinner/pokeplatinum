@@ -5449,12 +5449,11 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
     int jumpOnFail = BattleScript_Read(battleCtx);
 
     // Oxide: Wide Guard and Quick Guard share Protect's run of successes, as
-    // in hg-engine, so either keeps the run going.
-    if (battleCtx->moveProtect[battleCtx->attacker] != MOVE_PROTECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_DETECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_WIDE_GUARD
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_QUICK_GUARD) {
+    // in hg-engine, so either keeps the run going; and so does every move on
+    // Protect's effect, where Platinum named Protect and Detect, so King's
+    // Shield and the other protecting moves element 4 added lose reliability
+    // when used in a row.
+    if (Move_KeepsProtectRun(battleCtx, battleCtx->moveProtect[battleCtx->attacker]) == FALSE) {
         battleCtx->battleMons[battleCtx->attacker].moveEffectsData.protectSuccessTurns = 0;
     }
 
