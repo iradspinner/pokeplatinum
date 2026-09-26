@@ -1841,6 +1841,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleSimple, 12
     AddListMenuEntry TestKit_Text_MenuStapleGrassPowder, 13
     AddListMenuEntry TestKit_Text_MenuStapleElectricParalysis, 14
+    AddListMenuEntry TestKit_Text_MenuStapleGhostTrap, 15
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1857,6 +1858,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 12, TestKit_StapleSimple
     GoToIfEq VAR_0x8004, 13, TestKit_StapleGrassPowder
     GoToIfEq VAR_0x8004, 14, TestKit_StapleElectricParalysis
+    GoToIfEq VAR_0x8004, 15, TestKit_StapleGhostTrap
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2073,6 +2075,21 @@ TestKit_StapleElectricParalysis:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GLARE
     SetVar VAR_0x8003, MOVE_THUNDER_WAVE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Ghosts and trapping: a Mismagius, against a wild Umbreon that knows Mean
+   Look and Fire Spin (Wrap, a Normal move, would not touch a Ghost). */
+TestKit_StapleGhostTrap:
+    SetVar VAR_0x800A, SPECIES_MISMAGIUS
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_SHADOW_BALL
+    SetVar VAR_0x8007, MOVE_MYSTICAL_FIRE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_TELEPORT
+    SetVar VAR_0x8000, SPECIES_UMBREON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MEAN_LOOK
+    SetVar VAR_0x8003, MOVE_FIRE_SPIN
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

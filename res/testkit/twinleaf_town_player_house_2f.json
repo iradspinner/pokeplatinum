@@ -322,6 +322,10 @@
             "en_US": "Electric and paralysis"
         },
         {
+            "id": "TestKit_Text_MenuStapleGhostTrap",
+            "en_US": "Ghosts and trapping"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

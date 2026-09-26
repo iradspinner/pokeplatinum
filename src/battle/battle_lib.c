@@ -3254,9 +3254,11 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
+    // Oxide: a Ghost type cannot be trapped by anything (Generation 6).
     if (itemEffect == HOLD_EFFECT_FLEE
         || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
-        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) {
+        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) {
         return FALSE;
     }
 
@@ -6137,7 +6139,10 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
 {
     int result = FALSE;
 
-    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH) {
+    // Oxide: a Ghost type cannot be trapped by anything (Generation 6; the
+    // trapping checks in hg-engine's other_battle_calculators.c).
+    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) {
         return FALSE;
     }
 

@@ -2027,7 +2027,8 @@ static void BattleControllerPlayer_FleeCommand(BattleSystem *battleSys, BattleCo
 
     if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
         && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
-        if (ATTACKING_MON.statusVolatile & (VOLATILE_CONDITION_BIND | VOLATILE_CONDITION_MEAN_LOOK)) {
+        if ((ATTACKING_MON.statusVolatile & (VOLATILE_CONDITION_BIND | VOLATILE_CONDITION_MEAN_LOOK))
+            && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GHOST)) { // Oxide: a Ghost flees anyway
             LOAD_SUBSEQ(subscript_enemy_escape_failed);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -2868,6 +2869,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         && attacker != defender
         && Move_IsPowder(battleCtx->moveCur)
         && MON_HAS_TYPE(defender, TYPE_GRASS)) {
+        return subscript_prankster_dark_immunity;
+    }
+
+    // Oxide: Mean Look, Block and Spider Web do not affect a Ghost type, which
+    // no trap holds (Generation 6; the same hg-engine check).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PREVENT_ESCAPE
+        && MON_HAS_TYPE(defender, TYPE_GHOST)) {
         return subscript_prankster_dark_immunity;
     }
 
