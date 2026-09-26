@@ -115,7 +115,63 @@ def claimants():
     return out
 
 
+# Ian's rulings on the census (2026-09-27): the Underground closes (the
+# player is never given the Explorer Kit), and both bulk stone sets go,
+# Route 207's nine and Galactic HQ B2F's.
+REMOVED = {("ROUTE_207", "gift"), ("GALACTIC_HQ_B2F", "ball")}
+_TREASURE = re.compile(r"\[(\d+)\] = (ITEM_\w+),")
+
+
+def underground_items():
+    """Every item the Underground hands out: its digs, and its treasure
+    vendors, which sell from the same list (src/underground.c)."""
+    with open(os.path.join(data.ROOT, "src", "underground.c"), encoding="utf-8") as f:
+        text = f.read()
+    body = text[text.index("sMiningItems"):]
+    body = body[:body.index("};")]
+    return [item for _i, item in _TREASURE.findall(body)]
+
+
+def elsewhere():
+    """{item: [(split, where, how)]} for each Underground item, from every
+    source but the Underground and the two bulk stone sets Ian removed."""
+    wanted = set(underground_items())
+    out = {item: [] for item in underground_items()}
+    rows = ([(s, h, it, how) for s, h, it, how in splits.items()]
+            + [(s, h, it, "gift") for s, h, it in splits.gifts()]
+            + [(s, t, it, "Game Corner" if t == "GameCornerPrizes" else "mart")
+               for s, t, it in splits.marts()])
+    for split, where, item, how in rows:
+        if item in wanted and not (item in STONES and (where, how) in REMOVED):
+            out[item].append((split, where, how))
+    for item in out:
+        out[item].sort(key=lambda r: (pool.split_index(r[0]), r[1]))
+    return out
+
+
+def report_underground(items=()):
+    """One line per Underground item, or every source of each item named."""
+    for item, rows in elsewhere().items():
+        name = item.replace("ITEM_", "").replace("_", " ").title()
+        if items:
+            if item in items:
+                print(name)
+                for split, where, how in rows:
+                    print(f"    {str(split):10} {how:12} {where}")
+            continue
+        if not rows:
+            print(f"{name:14} only in the Underground")
+            continue
+        first = rows[0]
+        print(f"{name:14} {len(rows):>2} elsewhere, first {first[0]} ({first[2]}, {first[1]})")
+
+
 def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+    if "--underground" in argv:
+        report_underground([a for a in argv if a.startswith("ITEM_")])
+        return 0
     src, want, shares = sources(), claimants(), dig_shares()
     dig = underground_split()
     for stone in STONES:
