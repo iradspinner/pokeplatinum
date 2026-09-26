@@ -201,6 +201,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Stench | Skuntank with Stench: Fury Swipes, Scratch, Protect, Night Slash; foe a wild Snorlax that knows only Splash | Skuntank is faster: about one Scratch in ten makes Snorlax flinch ("The wild SNORLAX flinched!"), and Fury Swipes rolls for each hit | STENCH |
 | Water Absorb and Soak | Lapras: Soak, Thunderbolt, Ice Beam, Sing; foe a wild Vaporeon given Water Absorb that knows only Growl | Soak does not take: Water Absorb takes it, restoring HP if Vaporeon has lost any, or with "made Soak useless!" at full HP. Dry Skin does the same | WATERABSORB |
 | Magic Guard, paralysis | Clefable with Magic Guard: Moonblast, Calm Mind, Soft-Boiled, Flamethrower; foe a wild Jolteon that knows only Thunder Wave | Once paralysed, Clefable is sometimes "fully paralyzed!" (about one turn in four), where before Magic Guard kept it moving | MAGICGUARD |
+| Liquid Ooze, Dream Eater | Gengar: Hypnosis, Dream Eater, Shadow Ball, Giga Drain; foe a wild Tentacruel given Liquid Ooze that knows only Splash | Once Hypnosis lands, Dream Eater hurts Gengar with "It sucked up the liquid ooze!", as Giga Drain does, where before it healed Gengar | LIQUIDOOZE |
 
 ## Not built yet
 

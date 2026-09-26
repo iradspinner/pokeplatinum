@@ -1837,6 +1837,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleStench, 8
     AddListMenuEntry TestKit_Text_MenuStapleWaterAbsorb, 9
     AddListMenuEntry TestKit_Text_MenuStapleMagicGuard, 10
+    AddListMenuEntry TestKit_Text_MenuStapleLiquidOoze, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -1849,6 +1850,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 8, TestKit_StapleStench
     GoToIfEq VAR_0x8004, 9, TestKit_StapleWaterAbsorb
     GoToIfEq VAR_0x8004, 10, TestKit_StapleMagicGuard
+    GoToIfEq VAR_0x8004, 11, TestKit_StapleLiquidOoze
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2006,6 +2008,21 @@ TestKit_StapleMagicGuard:
     SetVar VAR_0x8000, SPECIES_JOLTEON
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_THUNDER_WAVE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Liquid Ooze and Dream Eater: a Gengar that knows Hypnosis and Dream
+   Eater, against a wild Tentacruel given Liquid Ooze that knows only
+   Splash. */
+TestKit_StapleLiquidOoze:
+    SetVar VAR_0x800A, SPECIES_GENGAR
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8006, MOVE_HYPNOSIS
+    SetVar VAR_0x8007, MOVE_DREAM_EATER
+    SetVar VAR_0x8008, MOVE_SHADOW_BALL
+    SetVar VAR_0x8009, MOVE_GIGA_DRAIN
+    SetVar VAR_0x8000, SPECIES_TENTACRUEL
+    SetVar VAR_0x8001, ABILITY_LIQUID_OOZE
+    SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:

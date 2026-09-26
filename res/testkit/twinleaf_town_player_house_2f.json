@@ -306,6 +306,10 @@
             "en_US": "Magic Guard, paralysis"
         },
         {
+            "id": "TestKit_Text_MenuStapleLiquidOoze",
+            "en_US": "Liquid Ooze, Dream Eater"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
