@@ -8,9 +8,9 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 
 
-**Who is on what** (2026-09-27; each track's status home has the detail):
+**Who is on what** (2026-09-27):
 
-1. **Balance Agent**: the full rescore on the encounter track's item 22, then B6 (`balance-plan.md`).
+1. **Balance Agent**: the full rescore on the encounter track's item 22, then B6.
 2. **Encounter Tool Builder**: its build plan's open items, and item 23 (the calculator follows `cloud/element4-stat-choice`) once that merges.
 3. **Main Production Agent** (`main-scripts`): the Battle Zone's main-track sub-items, then the legendary pool's draws, then the headers and gifts the encounter plan's item 6 waits on.
 4. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) is running.
