@@ -696,6 +696,7 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet51, 23
     AddListMenuEntry TestKit_Text_MenuSet52, 24
     AddListMenuEntry TestKit_Text_MenuSet53, 25
+    AddListMenuEntry TestKit_Text_MenuSet54, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -723,6 +724,7 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet51
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet52
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet53
+    GoToIfEq VAR_0x8004, 26, TestKit_MoveSet54
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1316,6 +1318,20 @@ TestKit_MoveSet53:
     SetVar VAR_0x8007, MOVE_SANDSTORM
     SetVar VAR_0x8008, MOVE_SUNNY_DAY
     SetVar VAR_0x8009, MOVE_SUBSTITUTE
+    GoTo TestKit_GiveMew
+
+/* Set 54: Nature's Madness carries power 1, the mark of a move whose damage
+   is worked out, so Taunt no longer takes it for a status move. Against a
+   wild Chansey that knows only Taunt: once Mew is taunted, Splash cannot be
+   chosen, and Nature's Madness still can and halves Chansey's HP. */
+TestKit_MoveSet54:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAUNT
+    SetVar VAR_0x8006, MOVE_NATURES_MADNESS
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
