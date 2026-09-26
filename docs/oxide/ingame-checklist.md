@@ -217,7 +217,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] A Dusk Stone has no effect on Polteageist (it no longer evolves into
   Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
   (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
-  balls are still there.
+  balls are still there. Once taken, the Secret Key ball does not come back
+  the next day. Stark Mountain room 2 has no Old Amber ball (x 51, z 22).
 - [ ] Ian's stone plan: no stone at Fuego Ironworks (the Fire Stone ball),
   Stark Mountain room 2, Route 230, Route 229 (by the Resort Area), Great
   Marsh 3, Route 225 (neither the hidden Leaf Stone nor the Dawn Stone ball),
