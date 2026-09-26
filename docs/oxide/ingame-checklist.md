@@ -61,7 +61,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
-- [ ] **The staples rulings, the Modern rules menu** (18 entries): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (21 entries): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -83,6 +83,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
   in its range.
+- [ ] **Element 8, hidden abilities** (the last two Modern rules entries):
+  "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
+  Intimidate, not Blaze; one Rare Candy makes a Torracat that still reads
+  Intimidate. "Hidden ability wild" opens with the wild Litten's Intimidate
+  lowering your lead's Attack; the flag clears itself after that one use.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 

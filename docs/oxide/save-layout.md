@@ -33,6 +33,24 @@ Consequences:
   carries the ability as a u16 too.
 - Block B's `unused1` (0x19, HGSS shiny leaves) is still free.
 
+## Boxed Pokemon, the hidden ability bit (element 8)
+
+| Field | Was | Is | Why |
+|---|---|---|---|
+| hasHiddenAbility | nothing (block A 0x0D, freed above) | block A 0x0D bit 0 | a Pokemon given its hidden ability keeps it through evolution and form changes |
+
+`BoxPokemon_CalcAbility` reads the bit, so every path that recomputes an
+ability (evolution, Shedinja, Giratina and Shaymin forms, the Rotom form
+change) keeps the hidden slot. Bits 1 to 7 of the byte are still free. Old
+saves read the bit as 0, which is what their Pokemon were, so this change
+alone costs an old save nothing. The battle-recording copy of a Pokemon
+(`UnkStruct_02078B40`) stores the ability itself, not the bit, which is all a
+replay needs.
+
+The one-shot script flag that hands a hidden ability to the next scripted wild
+Pokemon, gift or egg, `FLAG_NEXT_MON_HIDDEN_ABILITY`, is flag 0x0990, which
+was unused in vanilla and in the base ROM's scripts.
+
 ## Species records, `pl_personal.narc` (2026-09-20)
 
 Not save data, but it is the other format that moved and the two are usually

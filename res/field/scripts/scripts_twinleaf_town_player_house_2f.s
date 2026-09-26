@@ -2016,6 +2016,8 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleCritical, 16
     AddListMenuEntry TestKit_Text_MenuStapleDefog, 17
     AddListMenuEntry TestKit_Text_MenuStapleRapidSpin, 18
+    AddListMenuEntry TestKit_Text_MenuStapleHiddenGift, 19
+    AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 20
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2036,6 +2038,8 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 16, TestKit_StapleCritical
     GoToIfEq VAR_0x8004, 17, TestKit_StapleDefog
     GoToIfEq VAR_0x8004, 18, TestKit_StapleRapidSpin
+    GoToIfEq VAR_0x8004, 19, TestKit_StapleHiddenGift
+    GoToIfEq VAR_0x8004, 20, TestKit_StapleHiddenWild
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2310,6 +2314,27 @@ TestKit_StapleRapidSpin:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPIKES
     GoTo TestKit_GivePokemonWithMoves
+
+/* Hidden abilities (element 8): Litten's is Intimidate, where its ordinary
+   slots are both Blaze, so the summary tells them apart. The flag is taken by
+   the next gift or scripted wild Pokemon and then clears itself. One Rare
+   Candy takes the gift to Torracat, whose hidden ability is Intimidate too. */
+TestKit_StapleHiddenGift:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_LITTEN, 15, ITEM_NONE, VAR_RESULT
+    Message TestKit_Text_HiddenGift
+    GoTo TestKit_WaitAndClose
+
+/* The wild Litten's Intimidate announces itself as the battle starts. */
+TestKit_StapleHiddenWild:
+    Message TestKit_Text_HiddenWild
+    WaitButton
+    CloseMessage
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    StartWildBattle SPECIES_LITTEN, 15
+    GoTo TestKit_AfterBattle
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
