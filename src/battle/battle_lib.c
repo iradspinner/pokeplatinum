@@ -15,6 +15,7 @@
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battler_data.h"
@@ -3699,6 +3700,35 @@ enum SwitchInCheckResult {
     SWITCH_IN_CHECK_RESULT_DONE,
 };
 
+// Oxide (Ian, 2026-09-26): trainers whose battles open in a Trick Room that
+// lasts the whole fight. The room comes from the same subscript as the Battle
+// Arcade's five-turn one, plus FIELD_CONDITION_TRICK_ROOM_PERM, which stops
+// the end-of-turn countdown and makes the move Trick Room fail.
+static const u16 sPermanentTrickRoomTrainers[] = {
+    TRAINER_COMMANDER_SATURN_GALACTIC_HQ,
+};
+
+static BOOL BattleSystem_OpensInPermanentTrickRoom(BattleSystem *battleSys)
+{
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+
+    // Frontier and link battles number their trainers differently, so an id
+    // there could match the table by accident.
+    if ((battleType & BATTLE_TYPE_TRAINER) == FALSE
+        || (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER))) {
+        return FALSE;
+    }
+
+    for (int i = 0; i < NELEMS(sPermanentTrickRoomTrainers); i++) {
+        if (Battler_GetTrainerID(battleSys, BATTLER_ENEMY_1) == sPermanentTrickRoomTrainers[i]
+            || Battler_GetTrainerID(battleSys, BATTLER_ENEMY_2) == sPermanentTrickRoomTrainers[i]) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     // must declare C89-style to match
@@ -3713,6 +3743,17 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
     do {
         switch (battleCtx->switchInCheckState) {
         case SWITCH_IN_CHECK_STATE_FIELD_WEATHER:
+            // Oxide: a boss's permanent Trick Room opens the battle. The state is
+            // not advanced, so the next pass still starts any overworld weather;
+            // the permanent bit, never cleared, keeps the room from starting twice.
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM_PERM) == FALSE
+                && BattleSystem_OpensInPermanentTrickRoom(battleSys)) {
+                battleCtx->fieldConditionsMask |= FIELD_CONDITION_TRICK_ROOM_PERM;
+                subscript = subscript_overworld_trick_room;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+                break;
+            }
+
             if (battleCtx->fieldWeatherChecked == FALSE) {
                 switch (BattleSystem_GetFieldWeather(battleSys)) {
                 case OVERWORLD_WEATHER_RAINING:
