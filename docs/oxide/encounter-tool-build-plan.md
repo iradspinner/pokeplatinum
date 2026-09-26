@@ -488,6 +488,11 @@ that stay. None blocks anything.
    level 40, as a Battle Factory rental sharing the Fuego Ironworks
    capture. Argenta stays open between items and a level-40 static. The box
    sim measurement of Thorton's prize follows the balance track's rescore.
+   **Later on 2026-09-27:** the prize gets a capture of its own (the
+   Ironworks building gets its own location name, so 76 captures before
+   the League), and Argenta's reward is items, picked by the balance
+   track's item pass. The shared-capture measurement (678ea7531) is redone
+   once the building has its name.
 26. **The gift clowns go (Ian, 2026-09-27, through the Overseer).** A clown
    whose capture area has a table, gift or trade simply goes; otherwise new
    tall grass with a thematic table takes its place. This supersedes the

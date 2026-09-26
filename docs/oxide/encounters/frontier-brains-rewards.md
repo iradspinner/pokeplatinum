@@ -16,6 +16,16 @@ Ian, 2026-09-27, relayed by the Overseer:
   Battle Factory rental. It shares the Fuego Ironworks capture with the yard.
   The box simulator's measurement follows the balance track's rescore.
 - **Argenta:** undecided between items and a level-40 static; both stay open.
+- **Later the same day:** Thorton's prize gets **a capture of its own**.
+  The Ironworks building is to have a location name of its own, so the
+  prize and the yard are two captures, and captures before the League go
+  from 75 to 76. Charcadet's home in the yard counts as a real choice
+  again. The measurement below assumed the shared capture; it is redone
+  once the main track has the building's name. **Argenta's reward is
+  items**, which the balance track's item pass picks; no Pokemon there.
+- **Darach** (for the record, relayed with the above): Sigilyph on Ian's
+  draft becomes Galarian Articuno, and the fight is a single-trainer double
+  battle under Darach's own class, whose sprite already shows Caitlin.
 
 **Thorton's prize, measured** (2026-09-27, after the balance track's
 rescore). The box simulator played 100 best-play runs to the League for a

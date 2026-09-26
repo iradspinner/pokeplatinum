@@ -40,6 +40,17 @@ Ian, 2026-09-27, relayed by the Overseer:
   stone (Espeon and Armarouge for the single fixed Sun Stone) is intended,
   and is a standing rule. Charcadet's homes on Route 206 and in Fuego
   Ironworks' yard stand as proposed.
+- **Built 2026-09-27** as `encounters_sandgem_town`,
+  `encounters_jubilife_city`, `encounters_floaroma_town` and
+  `encounters_solaceon_town`, ahead of their headers. Three departures
+  from the tables below, forced by the layout and the evolve rule: the A19
+  layout keeps its face at 20% and anchors the 4% slots on another line,
+  so Pachirisu (Floaroma) and Mareep (Solaceon, a Flaaffy at 22) take the
+  top rungs; Poochyena would stand as a Mightyena at Solaceon's levels, so
+  its home is Floaroma's 10% and Solaceon has Mightyena; and Trapinch's
+  planned home moves from Route 228 to Solaceon. With Thorton's prize a
+  capture of its own (Frontier Brains, ruled the same day), captures before
+  the League come to 76.
 - **Grass is tile behaviour first**, on patches that already look distinct
   (lawns, flower beds), with the tall-grass look later. The Main Production
   Agent picks the tiles, so the rough sizes below stand as a guide only.
