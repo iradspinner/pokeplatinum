@@ -8088,6 +8088,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage /= 2;
     }
 
+    // Oxide: Multiscale halves the damage its holder takes at full HP
+    // (hg-engine's CalcBaseDamage, 6.9.5). Mold Breaker ignores it.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MULTISCALE) == TRUE
+        && defenderParams.curHP == defenderParams.maxHP) {
+        damage /= 2;
+    }
+
     // Oxide: Friend Guard cuts the damage its holder's partner takes by a
     // quarter, in a double battle, while the holder is up (hg-engine's
     // CalcBaseDamage, 6.9.7). Mold Breaker ignores it.

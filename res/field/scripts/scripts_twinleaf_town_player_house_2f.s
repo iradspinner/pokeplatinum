@@ -1498,6 +1498,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityMagicBounce, 5
     AddListMenuEntry TestKit_Text_MenuAbilityMoody, 6
     AddListMenuEntry TestKit_Text_MenuAbilityMoxie, 7
+    AddListMenuEntry TestKit_Text_MenuAbilityMultiscale, 8
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1507,6 +1508,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 5, TestKit_AbilityMagicBounce
     GoToIfEq VAR_0x8004, 6, TestKit_AbilityMoody
     GoToIfEq VAR_0x8004, 7, TestKit_AbilityMoxie
+    GoToIfEq VAR_0x8004, 8, TestKit_AbilityMultiscale
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2295,6 +2297,21 @@ TestKit_AbilityMoxie:
     SetVar VAR_0x8007, MOVE_BRAVE_BIRD
     SetVar VAR_0x8008, MOVE_SUCKER_PUNCH
     SetVar VAR_0x8009, MOVE_ROOST
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Multiscale: a wild Graveler that knows only Rock Throw.
+   The first Rock Throw, at full HP, takes about half what the next one
+   does; Roost back to full HP and the next is halved again. */
+TestKit_AbilityMultiscale:
+    SetVar VAR_0x800A, SPECIES_DRAGONITE
+    SetVar VAR_0x800B, ABILITY_MULTISCALE
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_DRAGON_DANCE
+    SetVar VAR_0x8008, MOVE_EXTREME_SPEED
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_GRAVELER
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_ROCK_THROW
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

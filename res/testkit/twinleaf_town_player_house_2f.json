@@ -286,6 +286,10 @@
             "en_US": "Moxie"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMultiscale",
+            "en_US": "Multiscale"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },
