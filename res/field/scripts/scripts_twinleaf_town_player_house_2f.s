@@ -1,6 +1,9 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_2f.h"
 #include "res/field/events/events_twinleaf_town_player_house_2f.h"
+#ifdef OXIDE_TESTKIT
+#include "generated/abilities.h"
+#endif
 
 
     ScriptEntry TwinleafTownPlayerHouse2F_Wii
@@ -446,6 +449,7 @@ TestKit_Helper:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    SetVar VAR_0x800B, ABILITY_NONE
     Message TestKit_Text_WhatDoYouNeed
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuRareCandies, 0
@@ -460,6 +464,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuWildSkarmory, 11
     AddListMenuEntry TestKit_Text_MenuWildHorsea, 12
     AddListMenuEntry TestKit_Text_MenuWildGlameow, 13
+    AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -476,6 +481,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 11, TestKit_WildSkarmory
     GoToIfEq VAR_0x8004, 12, TestKit_WildHorsea
     GoToIfEq VAR_0x8004, 13, TestKit_WildGlameow
+    GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -944,6 +950,7 @@ TestKit_GivePokemonWithMoves:
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, VAR_0x8009
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
     BufferMoveName 0, VAR_0x8006
     BufferMoveName 1, VAR_0x8007
     BufferMoveName 2, VAR_0x8008
@@ -1006,6 +1013,48 @@ TestKit_WarpVeilstone:
     Warp MAP_HEADER_VEILSTONE_CITY, 0x2CD, 0x264, DIR_SOUTH
     ReleaseAll
     End
+
+TestKit_SetAbility:
+    TestKitSetPartyMonAbility VAR_0x8005, VAR_0x800B
+    Return
+
+/* Element 5: one entry per new ability, each a Lv. 50 Pokemon that carries it,
+   given with the ability set whatever its personality rolls, and four moves
+   that show it. docs/oxide/test-kit.md says what to look for. Add an entry
+   with a menu line, its text in res/testkit/, and a block like the others. */
+TestKit_Abilities:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    Message TestKit_Text_WhichAbility
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuAbilityBeastBoost, 0
+    AddListMenuEntry TestKit_Text_MenuAbilitySoulHeart, 1
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_AbilityBeastBoost
+    GoToIfEq VAR_0x8004, 1, TestKit_AbilitySoulHeart
+    GoTo TestKit_Close
+
+/* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
+   Pokemon raises its Attack one stage, right after the faint message. */
+TestKit_AbilityBeastBoost:
+    SetVar VAR_0x800A, SPECIES_KARTANA
+    SetVar VAR_0x800B, ABILITY_BEAST_BOOST
+    SetVar VAR_0x8006, MOVE_LEAF_BLADE
+    SetVar VAR_0x8007, MOVE_SACRED_SWORD
+    SetVar VAR_0x8008, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8009, MOVE_NIGHT_SLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Soul Heart: when any other Pokemon faints, Magearna's Sp. Atk rises one
+   stage, right after the faint message. */
+TestKit_AbilitySoulHeart:
+    SetVar VAR_0x800A, SPECIES_MAGEARNA
+    SetVar VAR_0x800B, ABILITY_SOUL_HEART
+    SetVar VAR_0x8006, MOVE_FLEUR_CANNON
+    SetVar VAR_0x8007, MOVE_FLASH_CANNON
+    SetVar VAR_0x8008, MOVE_DAZZLING_GLEAM
+    SetVar VAR_0x8009, MOVE_CALM_MIND
+    GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

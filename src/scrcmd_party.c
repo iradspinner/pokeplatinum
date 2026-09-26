@@ -885,4 +885,17 @@ BOOL ScrCmd_TestKitSetPartyMonForm(ScriptContext *ctx)
 
     return FALSE;
 }
+
+/* Platinum Oxide test kit only: gives a party Pokemon the given ability,
+   whatever its species' two slots say, for the element 5 ability entries. */
+BOOL ScrCmd_TestKitSetPartyMonAbility(ScriptContext *ctx)
+{
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 ability = ScriptContext_GetVar(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    Pokemon_SetValue(mon, MON_DATA_ABILITY, &ability);
+
+    return FALSE;
+}
 #endif

@@ -35,4 +35,11 @@ _076:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_NO_EXPERIENCE_GIVEN
     Call BATTLE_SUBSCRIPT_FAINT_MON
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_NO_EXPERIENCE_GIVEN
+    // Oxide: Beast Boost. This subscript runs only after a move, so the
+    // attacker is the battler whose move caused the faint.
+    TryBeastBoost _end
+    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_UPDATE_STAT_STAGES
+    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+
+_end:
     End 

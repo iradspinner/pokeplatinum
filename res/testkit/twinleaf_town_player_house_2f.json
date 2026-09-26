@@ -54,6 +54,22 @@
             "en_US": "Wild Glameow"
         },
         {
+            "id": "TestKit_Text_MenuAbilities",
+            "en_US": "Abilities"
+        },
+        {
+            "id": "TestKit_Text_WhichAbility",
+            "en_US": "Which ability?"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilityBeastBoost",
+            "en_US": "Beast Boost"
+        },
+        {
+            "id": "TestKit_Text_MenuAbilitySoulHeart",
+            "en_US": "Soul Heart"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

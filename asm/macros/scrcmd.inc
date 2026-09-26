@@ -5231,6 +5231,15 @@
     .short \partySlot
     .short \form
     .endm
+
+    /* Platinum Oxide test kit only (make testkit): gives the Pokemon in
+       \partySlot the ability \ability, whatever its species' slots say, so
+       an ability's kit entry does not depend on the personality roll. */
+    .macro TestKitSetPartyMonAbility partySlot, ability
+    .short SCRCMD_TESTKITSETPARTYMONABILITY
+    .short \partySlot
+    .short \ability
+    .endm
 #endif
 
     .macro NPCMessage messageID

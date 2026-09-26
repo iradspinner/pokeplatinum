@@ -317,6 +317,8 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_ChangeExecutionOrderPriority(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryAuroraVeil(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -9928,6 +9930,114 @@ static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx)
     if (Battler_HasEatenBerry(battleSys, battleCtx, battleCtx->attacker) == FALSE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Beast Boost: after the attacker's move knocks out the fainted
+ * battler, raises the attacker's highest stat by one stage.
+ *
+ * The stat is picked from the battler's stats without their stages, as in the
+ * games and hg-engine, with ties going to the first of Attack, Defense, Sp.
+ * Atk, Sp. Def and Speed, the games' order (hg-engine's puts Speed third). The
+ * knockout counts when the fainted battler took the attacker's damage in this
+ * move. The raise goes through the stat-stage subscript as Speed Boost's does.
+ *
+ * Inputs:
+ * 1. The jump distance if nothing happens.
+ *
+ * Side effects, when it does:
+ * - sideEffectParam, sideEffectType and sideEffectMon are set for the
+ * stat-stage subscript, and msgBattlerTemp to the attacker.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int attacker = battleCtx->attacker;
+    int fainted = battleCtx->faintedMon;
+    BattleMon *mon = &battleCtx->battleMons[attacker];
+
+    if (attacker == BATTLER_NONE
+        || fainted == BATTLER_NONE
+        || attacker == fainted
+        || mon->curHP == 0
+        || Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+        || ((battleCtx->selfTurnFlags[fainted].physicalDamageTaken == 0
+                || battleCtx->selfTurnFlags[fainted].physicalDamageLastAttacker != attacker)
+            && (battleCtx->selfTurnFlags[fainted].specialDamageTaken == 0
+                || battleCtx->selfTurnFlags[fainted].specialDamageLastAttacker != attacker))) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    const u8 order[] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+    const u16 values[] = { mon->attack, mon->defense, mon->spAttack, mon->spDefense, mon->speed };
+    int best = 0;
+
+    for (int i = 1; i < NELEMS(order); i++) {
+        if (values[i] > values[best]) {
+            best = i;
+        }
+    }
+
+    if (mon->statBoosts[order[best]] == MAX_STAT_STAGE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
+    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + order[best] - BATTLE_STAT_ATTACK;
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+    battleCtx->sideEffectMon = attacker;
+    battleCtx->msgBattlerTemp = attacker;
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide's Soul Heart: when a battler faints, the first other battler
+ * in speed order that has Soul Heart and is still up gains one stage of Sp.
+ * Atk. hg-engine has no Soul Heart; this is the games' rule, except that with
+ * two Soul Heart holders on the field only the faster one gains, because the
+ * faint subscript is reached from inside other speed-order loops and cannot
+ * run one of its own. Magearna is the only Oxide species that carries it.
+ *
+ * Inputs:
+ * 1. The jump distance if nothing happens.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
+
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = 0; i < maxBattlers; i++) {
+        int battler = battleCtx->monSpeedOrder[i];
+
+        if (battler != battleCtx->faintedMon
+            && battleCtx->battleMons[battler].curHP
+            && Battler_Ability(battleCtx, battler) == ABILITY_SOUL_HEART
+            && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+            battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SP_ATTACK_UP_1_STAGE;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battler;
+            battleCtx->msgBattlerTemp = battler;
+            return FALSE;
+        }
+    }
+
+    BattleScript_Iter(battleCtx, jumpNoEffect);
 
     return FALSE;
 }

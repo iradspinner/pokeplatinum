@@ -49,6 +49,7 @@ BOOL ScrCmd_CheckPartyHasHeldItem(ScriptContext *ctx);
 
 #ifdef OXIDE_TESTKIT
 BOOL ScrCmd_TestKitSetPartyMonForm(ScriptContext *ctx);
+BOOL ScrCmd_TestKitSetPartyMonAbility(ScriptContext *ctx);
 #endif
 
 #endif // POKEPLATINUM_SCRCMD_PARTY_H

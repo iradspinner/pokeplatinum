@@ -1288,6 +1288,16 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    .macro TryBeastBoost jump_no_effect
+    .long BTLCMD_TRYBEASTBOOST
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
+    .macro TrySoulHeart jump_no_effect
+    .long BTLCMD_TRYSOULHEART
+    .long (\jump_no_effect-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

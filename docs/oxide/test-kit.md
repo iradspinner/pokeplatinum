@@ -35,7 +35,7 @@ With the option on:
 |---|---|
 | The NPC's script, at the end of `scripts_twinleaf_town_player_house_2f.s` | an `#ifdef OXIDE_TESTKIT` block; field scripts run through the C preprocessor, and `make_script_bin.sh --define` passes the symbol |
 | The NPC's object event and its text | fragments in `res/testkit/`, appended to the bedroom's real events file and text bank at build time by `tools/oxide/testkit_merge.py`, so the kit never keeps a copy that could drift |
-| `TestKitSetPartyMonForm`, the kit's one script command | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h`, `src/scrcmd_party.c` and `asm/macros/scrcmd.inc`, so no existing opcode moves |
+| `TestKitSetPartyMonForm` and `TestKitSetPartyMonAbility`, the kit's two script commands | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h`, `src/scrcmd_party.c` and `asm/macros/scrcmd.inc`, so no existing opcode moves |
 
 ## What the NPC hands out
 
@@ -55,6 +55,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Skarmory | a wild Skarmory, Lv. 50 | a Flying target bulky enough to survive Smack Down and Thousand Arrows (set 26) |
 | Wild Horsea | a wild Horsea, Lv. 1, which knows only Bubble | a spread move every turn, for Wide Guard (set 30) |
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
+| Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves (entries below) | element 5's ability effects |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
@@ -107,6 +108,22 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 a `TestKit_Text_MenuSetN` message in `res/testkit/twinleaf_town_player_house_2f.json`.
 Pair a move that needs a condition with the move that sets it up, as sets 3, 5,
 8 and 9 do.
+
+## The ability entries
+
+One entry per new ability (element 5), under "Abilities". Each gives a Lv. 50
+Pokemon of a species that carries the ability, with the ability set by the
+kit's `TestKitSetPartyMonAbility` so the personality roll cannot give it the
+species' other ability, and four moves chosen to show it. Each entry is a
+`TestKit_Ability<Name>` block that sets the species in `VAR_0x800A`, the
+ability in `VAR_0x800B` and the moves in `VAR_0x8006` to `VAR_0x8009`, then
+jumps to `TestKit_GivePokemonWithMoves`, with an `AddListMenuEntry` line in
+`TestKit_Abilities` and a `TestKit_Text_MenuAbility<Name>` message.
+
+| Entry | Pokemon and moves | What to look for | Batch |
+|---|---|---|---|
+| Beast Boost | Kartana: Leaf Blade, Sacred Sword, Swords Dance, Night Slash | Knock out any wild Pokemon: straight after "fainted!", "KARTANA's Beast Boost raised its Attack!" (Attack is Kartana's highest stat). Nothing on a turn it does not knock anything out | this batch |
+| Soul Heart | Magearna: Fleur Cannon, Flash Cannon, Dazzling Gleam, Calm Mind | When the wild Pokemon faints, "MAGEARNA's Soul Heart raised its Sp. Atk!"; it also fires when one of your own Pokemon faints with Magearna on the field, which needs a double battle | this batch |
 
 ## Not built yet
 
