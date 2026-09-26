@@ -208,6 +208,12 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
                     # is right to follow vanilla's rule. Compare the names only.
                     wv = wv.replace("{TRNAME}", "") if isinstance(wv, str) else wv
                     hv = hv.replace("{TRNAME}", "") if isinstance(hv, str) else hv
+                    # A name Oxide corrected on purpose (import_base_rom.py's
+                    # TRAINERS_DIVERGED) is not expected to match the reference.
+                    target = imp.trainer_json(slot)
+                    stem = os.path.basename(target)[:-len(".json")] if target else None
+                    if wv != hv and imp.TRAINERS_DIVERGED.get(stem, {}).get("name"):
+                        continue
                 if wv == hv:
                     continue
                 if isinstance(wv, tuple) or isinstance(hv, tuple):
