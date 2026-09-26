@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_WIGGLYTUFF",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_HYPER_VOICE",
@@ -26,7 +26,7 @@
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_BOUNCE",
@@ -40,7 +40,7 @@
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_RECOVER",

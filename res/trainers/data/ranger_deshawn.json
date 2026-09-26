@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SPINDA",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_SUCKER_PUNCH",
@@ -26,7 +26,7 @@
         {
             "species": "SPECIES_KECLEON",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_SUBSTITUTE",
@@ -40,7 +40,7 @@
         {
             "species": "SPECIES_GRANBULL",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_HEADBUTT",

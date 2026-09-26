@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_MASQUERAIN",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_HYDRO_PUMP",
@@ -26,7 +26,7 @@
         {
             "species": "SPECIES_LUDICOLO",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_ENERGY_BALL",

@@ -20,10 +20,12 @@ NOT_IN_ORDER = {"mean_iv", "nature_fit", "priority", "speed_control", "recovery"
 # Moves no table knows: an Unbound custom move.
 UNKNOWN_MOVES = {"unbound": {"Leech Fang"}}
 # Filler that B1d's map split puts in a split whose cap it is above.
-# Filler above its split's cap: 18 early-split revisits, plus the Battle
-# Zone's 55 trainers (73 to 78), which sit in the Galactic split (cap 64)
-# from 2026-09-25 until the trainer pass brings them down to it.
-LATE_VISITS = 73
+# Filler above its split's cap: 18 early-split revisits, and Volkner and
+# Flint's tag at the Fight Area (74 to 75), which sits in the Galactic split
+# (cap 65) until the main track gates it behind the Beacon Badge. The rest of
+# the Battle Zone counted here too (73 in all) until it came down 18 levels
+# on 2026-09-25.
+LATE_VISITS = 20
 
 
 def check_coverage(results):

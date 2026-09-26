@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SOLROCK",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_IRON_HEAD",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_CHIMECHO",
             "form": 0,
-            "level": 78,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_ENERGY_BALL",

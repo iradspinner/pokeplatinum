@@ -9,9 +9,9 @@ the same day, and his answers are recorded below as decisions.
 **Where it stands (2026-09-25).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
 Honey trees now have one table per badge count, each opening in its own
-split. The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), on a
-branch stacked on the honey-tree one. The Battle Zone's 18-level drop is
-parked and fits that shape unchanged; it lands next. Done: B1a, B1b, B1d,
+split. The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), and
+the Battle Zone has come down 18 levels to fit them, on two stacked
+branches waiting for the Overseer. Done: B1a, B1b, B1d,
 B1e, B2, B3a and B4's tools. B3b is parked for the new CPU. No questions
 are open.
 
@@ -515,8 +515,12 @@ under the cap (Dragon Tamer Keegan on Route 228, 57) stays. So does Volkner
 and Flint's tag battle at the Fight Area (74 to 75): once the main track
 gates it behind the Beacon Badge it is a League-split fight, where 75
 already fits a cap of 78. Until that gate lands, `splits.py` still counts
-it in Galactic. The edit itself is in `res/trainers/`, which the Overseer
-coordinates; it is not made yet.
+it in Galactic. **Done on 2026-09-25**, on branch
+`balance-battle-zone-relevel-v2`: 139 levels in 54 trainer files, levels
+only. The importer's TRAINERS_DIVERGED leaves those levels alone and
+reports the 54 as diverged; with their entries removed it would carry all
+54 back, 16 through its party-rewrite path. At Galactic's cap of 65 the
+zone sits 5 to 10 under, medium hard.
 
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 

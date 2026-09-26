@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SHARPEDO",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_ICE_FANG",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_WHISCASH",
             "form": 0,
-            "level": 74,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_AQUA_TAIL",

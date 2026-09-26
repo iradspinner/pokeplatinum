@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_DELCATTY",
             "form": 0,
-            "level": 77,
+            "level": 59,
             "item": null,
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -26,7 +26,7 @@
         {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 77,
+            "level": 59,
             "item": null,
             "moves": [
                 "MOVE_ICE_SHARD",

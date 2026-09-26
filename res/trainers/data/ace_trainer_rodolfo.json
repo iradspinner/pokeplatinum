@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_SURF",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_FLYGON",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_OUTRAGE",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_VENUSAUR",
             "form": 0,
-            "level": 73,
+            "level": 55,
             "item": null,
             "moves": [
                 "MOVE_FRENZY_PLANT",
