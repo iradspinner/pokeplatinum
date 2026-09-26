@@ -1502,6 +1502,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityPickpocket, 9
     AddListMenuEntry TestKit_Text_MenuAbilityPoisonTouch, 10
     AddListMenuEntry TestKit_Text_MenuAbilityRattled, 11
+    AddListMenuEntry TestKit_Text_MenuAbilitySandForce, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1515,6 +1516,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 9, TestKit_AbilityPickpocket
     GoToIfEq VAR_0x8004, 10, TestKit_AbilityPoisonTouch
     GoToIfEq VAR_0x8004, 11, TestKit_AbilityRattled
+    GoToIfEq VAR_0x8004, 12, TestKit_AbilitySandForce
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2366,6 +2368,22 @@ TestKit_AbilityRattled:
     SetVar VAR_0x8000, SPECIES_POOCHYENA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_BITE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Sand Force: a wild Chansey that knows only Splash. With
+   Sandstorm up, Chansey is buffeted at the end of each turn and Shellos,
+   a Water type, is not. Earth Power's 30% rise in the sand has no
+   message. */
+TestKit_AbilitySandForce:
+    SetVar VAR_0x800A, SPECIES_SHELLOS
+    SetVar VAR_0x800B, ABILITY_SAND_FORCE
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_EARTH_POWER
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

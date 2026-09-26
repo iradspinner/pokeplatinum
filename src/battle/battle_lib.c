@@ -7694,6 +7694,16 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Sand Force raises Ground, Rock and Steel moves by 30% in a sandstorm
+    // (hg-engine's CalcBaseDamage); its holder takes no sandstorm damage
+    // (BtlCmd_EndOfTurnWeatherEffect).
+    if (attackerParams.ability == ABILITY_SAND_FORCE
+        && NO_CLOUD_NINE
+        && (fieldConditions & FIELD_CONDITION_SANDSTORM)
+        && (moveType == TYPE_GROUND || moveType == TYPE_ROCK || moveType == TYPE_STEEL)) {
+        movePower = movePower * 13 / 10;
+    }
+
     // Flare Boost raises special moves by half while its holder is burned.
     // hg-engine raises every move; the later games raise only special ones.
     if (attackerParams.ability == ABILITY_FLARE_BOOST

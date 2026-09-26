@@ -302,6 +302,10 @@
             "en_US": "Rattled"
         },
         {
+            "id": "TestKit_Text_MenuAbilitySandForce",
+            "en_US": "Sand Force"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },
