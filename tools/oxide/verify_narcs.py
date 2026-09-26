@@ -320,16 +320,105 @@ def check_map_headers(built, ref):
                 if line.startswith("    [MAP_HEADER_"))
     size = count * imp.MAP_HEADER_SIZE
     oa, ob = imp.find_map_header_table(a, count), imp.find_map_header_table(b, count)
-    bad = [i for i in range(count)
-           if a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
-           != b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]]
+    maps = imp.load_enum("map_headers")
+    bad, intended = [], []
+    for i in range(count):
+        ha = a[oa + i * imp.MAP_HEADER_SIZE : oa + (i + 1) * imp.MAP_HEADER_SIZE]
+        hb = b[ob + i * imp.MAP_HEADER_SIZE : ob + (i + 1) * imp.MAP_HEADER_SIZE]
+        if ha == hb:
+            continue
+        allowed = MAP_HEADERS_DIVERGED.get(maps.get(i), ((), ""))[0]
+        if allowed and all(ha[k] == hb[k] for k in range(imp.MAP_HEADER_SIZE) if k not in allowed):
+            intended.append(maps.get(i))
+        else:
+            bad.append(i)
     if bad:
-        maps = imp.load_enum("map_headers")
         print(f"sMapHeaders: {len(bad)} of {count} headers differ: "
               f"{[maps.get(i, i) for i in bad[:6]]}")
     else:
-        print(f"sMapHeaders: all {count} headers identical to the reference")
+        print(f"sMapHeaders: all {count} headers identical to the reference"
+              + (f", apart from {len(intended)} changed on purpose ({', '.join(intended)})"
+                 if intended else ""))
     return not bad
+
+
+def check_land_data(built, ref, nb, nr, reg=None):
+    """land_data.narc against the reference, member by member. A member may
+    differ only at the tiles tools/oxide/land_data_diverged.json records (the
+    registry mapperm.py writes), and there it must hold exactly the recorded
+    behaviour with every other bit of the tile unchanged. Everything else in
+    the member (props, terrain model, heights) must be byte-identical."""
+    import json
+    path = "fielddata/land_data/land_data.narc"
+    b = ndspy.narc.NARC(built.files[nb[path]]).files
+    r = ndspy.narc.NARC(ref.files[nr[path]]).files
+    order = [l.strip() for l in open(os.path.join("res", "field", "maps", "data", "map_data.order")) if l.strip()]
+    reg_path = os.path.join("tools", "oxide", "land_data_diverged.json")
+    if reg is None:
+        reg = json.load(open(reg_path, encoding="utf-8")) if os.path.exists(reg_path) else {}
+    behaviour = {}
+    src = open(os.path.join("include", "constants", "field", "map_tile_behaviors.h")).read()
+    value = -1
+    for line in src[src.index("{") + 1:src.index("}")].splitlines():
+        line = line.split("//")[0].strip().rstrip(",")
+        if not line:
+            continue
+        if "=" in line:
+            name, v = (s.strip() for s in line.split("="))
+            value = int(v, 0)
+        else:
+            name, value = line, value + 1
+        behaviour[name] = value
+    bad, intended = [], []
+    if len(b) != len(r):
+        bad.append(f"{len(b)} members against the reference's {len(r)}")
+    for i in range(min(len(b), len(r))):
+        name = order[i][:-len(".bin")] if i < len(order) else f"member {i}"
+        entry = reg.get(name)
+        expected = bytearray(r[i])
+        if entry:
+            for tile, change in entry["tiles"].items():
+                lx, lz = (int(v) for v in tile.split(","))
+                o = 16 + (lz * 32 + lx) * 2
+                v = struct.unpack_from("<H", expected, o)[0]
+                struct.pack_into("<H", expected, o, (v & 0xFF00) | behaviour[change["to"]])
+        if bytes(expected) == bytes(b[i]):
+            if entry:
+                intended.append(f"{name} ({len(entry['tiles'])} tiles)")
+            continue
+        bad.append(name + (" differs beyond its registered tiles" if entry else " differs"))
+    if bad:
+        print(f"{path}: {len(bad)} members differ unexpectedly: {bad[:6]}")
+    else:
+        print(f"{path}: all {len(b)} members identical to the reference"
+              + (f", apart from registered tile behaviours in {', '.join(intended)}" if intended else ""))
+    return not bad
+
+
+# Map headers that no longer match the base ROM on purpose, each with the byte
+# offsets allowed to differ and why. Offsets are into the 24-byte MapHeader
+# (include/map_header.h): 14 and 15 are wildEncountersArchiveID.
+MAP_HEADERS_DIVERGED = {
+    "MAP_HEADER_SNOWPOINT_CITY": (range(14, 16), "fishing in Snowpoint City reads "
+                                  "encounters_snowpoint_city, the encounter track's rods "
+                                  "table (Ian, 2026-09-25)"),
+    "MAP_HEADER_AMITY_SQUARE": (range(14, 16), "Amity Square's new grass reads "
+                                "encounters_amity_square (Ian, 2026-09-27)"),
+    "MAP_HEADER_VERITY_LAKEFRONT": (range(14, 16), "Verity Lakefront's new grass reads "
+                                    "encounters_verity_lakefront (Ian, 2026-09-27)"),
+    "MAP_HEADER_SANDGEM_TOWN": (range(14, 16), "Sandgem Town's new grass, in place of its gift "
+                                "clown, reads encounters_sandgem_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_JUBILIFE_CITY": (range(14, 16), "Jubilife City's new grass, in place of its gift "
+                                 "clown, reads encounters_jubilife_city (Ian, 2026-09-27)"),
+    "MAP_HEADER_FLOAROMA_TOWN": (range(14, 16), "Floaroma Town's new grass, in place of its gift "
+                                 "clown, reads encounters_floaroma_town (Ian, 2026-09-27)"),
+    "MAP_HEADER_SOLACEON_TOWN": (range(14, 16), "Solaceon Town's new grass, in place of its gift "
+                                 "clown, reads encounters_solaceon_town (Ian, 2026-09-27)"),
+    # Byte 18 is mapLabelTextID, the location name a gift or catch is met at.
+    "MAP_HEADER_FUEGO_IRONWORKS_BUILDING": (range(18, 19), "the building takes a location "
+                                            "name of its own, Ironworks Hall, so it is a "
+                                            "capture apart from the yard (Ian, 2026-09-27)"),
+}
 
 
 # Members that no longer match the base ROM on purpose. Phase 4 changes the game
@@ -454,10 +543,16 @@ DIVERGED_MEMBERS = {
                "longer learn it by level (Ian, 2026-09-26)",
     },
     "poketool/personal/evo.narc": {
-        "members": {57, 123, 130, 133, 194, 370, 428},
+        "members": {57, 123, 130, 133, 194, 370, 428,
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447},
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
-               "Phase 4 element 3)",
+               "Phase 4 element 3), and no evolution is by friendship any more "
+               "(Ian, 2026-09-27; docs/oxide/encounters/friendship-evolutions.md): "
+               "Golbat, Chansey, Pichu, Cleffa, Igglybuff, Togepi, Azurill, "
+               "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
+               "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
+               "Moon Stone",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
@@ -504,6 +599,13 @@ PERSONAL_NEW_SIZE = 48
 PERSONAL_ABILITIES_AT = 0x16
 PERSONAL_BASE_EXP_AT = 0x09
 
+# Species records whose two regular abilities differ from the reference on
+# purpose, by reference member, with the ability ids they must now hold.
+PERSONAL_ABILITIES_DIVERGED = {
+    499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+}
+
 
 def personal_fields(member):
     """(head, abilities, base exp, tail) for a species record of either size.
@@ -541,7 +643,13 @@ def check_personal(b, r, path):
             continue
         bh, ba, bx, bt = personal_fields(b[j])
         rh, ra, rx, rt = personal_fields(r[i])
-        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or ba[:2] != ra[:2] or bx != rx:
+        abilities_ok = tuple(ba[:2]) == tuple(ra[:2])
+        if not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED:
+            abilities_ok = tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0]
+            if abilities_ok and bh == rh:
+                intended.append(i)
+                continue
+        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or not abilities_ok or bx != rx:
             bad.append(i)
             continue
         if bh == rh:
@@ -684,6 +792,9 @@ def main():
                          "field by field, no reference ROM involved")
     ap.add_argument("--map-headers", action="store_true",
                     help="compare arm9's sMapHeaders against the reference ROM's")
+    ap.add_argument("--land-data", action="store_true",
+                    help="compare land_data.narc with the reference, allowing only the tile "
+                         "behaviours tools/oxide/land_data_diverged.json records")
     ap.add_argument("--text", action="store_true",
                     help="message-level check of pl_msg.narc instead of a byte comparison")
     ap.add_argument("--msgenc", default="build/tools/msgenc/msgenc")
@@ -707,6 +818,8 @@ def main():
         sys.exit(0 if check_text(built, ref, nb, nr, a.msgenc, a.charmap) else 1)
     if a.map_headers:
         sys.exit(0 if check_map_headers(built, ref) else 1)
+    if a.land_data:
+        sys.exit(0 if check_land_data(built, ref, nb, nr) else 1)
     for p in a.paths:
         b, r = ndspy.narc.NARC(built.files[nb[p]]).files, ndspy.narc.NARC(ref.files[nr[p]]).files
         if p == "poketool/personal/pl_personal.narc":

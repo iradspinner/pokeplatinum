@@ -145,6 +145,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   towns, gyms and routes). Later in the game, May at the Resort Area, Steven in
   Stark Mountain's first room, and Ethan and Red on Mt. Coronet's north and
   south slopes draw as themselves.
+- [ ] The starter's summary reads met at "Rowan's Briefcase", not Route 201.
 
 ## 4. The ordinary ROM, mid-game
 
@@ -164,10 +165,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
   Saturn's AI never chooses it.
-- [ ] Once `main-scripts` merges: the Snowpoint ferry opens after Galactic HQ is
-  cleared, Route 225 is open from the first arrival at the Fight Area, and the
-  Volkner and Flint tag battle waits for the Beacon Badge. The legendary draws
-  (Acuity Cavern, Mesprit's roamer, Heatran) as they land.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
   at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
@@ -178,6 +175,51 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   another lead, and Thunder Wave, if he has it, 10 below. Until the battle has
   recorded the ability the AI guesses between the species' two, so the drop
   shows on about half the turns; take several turns before calling it.
+- [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
+  Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
+  Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
+  house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
+  Route 213, have no clown; everyone else in them talks as before, and
+  Veilstone's Elekid gift still gives Elekid.
+- [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
+- [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
+  Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
+- [ ] Fomantis evolves into Lurantis at level 34.
+- [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
+  Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at
+  30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
+  Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
+  Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
+- [ ] Snowpoint City: fishing gives the species of
+  `res/field/encounters/encounters_snowpoint_city.json` for each rod.
+- [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
+  about Team Galactic. After HQ it sails, and the first voyage plays Cynthia's
+  scene.
+- [ ] Fight Area without the Beacon Badge: the rival walks you to Volkner and
+  Flint, Volkner turns the challenge down, the rival says he will wait, Buck
+  introduces himself and leaves in a fade. Route 225 is open. Talking to the
+  rival by the Frontier gate gives his "still don't have Volkner's Badge"
+  line. Buck is on Route 227, and not also at the Fight Area.
+- [ ] Fight Area with the Beacon Badge: talking to the rival starts the tag
+  battle, and afterwards the Palmer scene plays, without Buck's part if you
+  first arrived without the badge. Arriving with the badge the first time
+  plays vanilla's whole scene, Buck included.
+- [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
+  is empty after Galactic HQ.
+- [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one
+  of Articuno, Cresselia or Pheromosa, and running or fainting it prints that
+  name in "disappeared deep into its cavern". A new game can draw a different
+  one; a soft reset cannot.
+- [ ] Verity Cavern: Mesprit's sprite, but the preview, the cry and the names
+  in "flew off" and in Rowan's two lines are the roamer draw (one of Mesprit,
+  Tapu Koko, Buzzwole, Galarian Zapdos, Poipole, Xurkitree or Galarian
+  Articuno). That species then roams at level 50, the Marking Map shows it with
+  Mesprit's icon (known), and after defeating it Verity Cavern brings it back.
+- [ ] Victory Road, the first step north inside the south entrance: Dawn (or
+  Lucas, for a female player) notices you, you are walked in front of her, and
+  the level 71 fight uses the team for your starter (trainers 779 to 784).
+  Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 

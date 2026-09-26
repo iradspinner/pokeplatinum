@@ -14,7 +14,9 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "special_encounter.h"
+#include "system_vars.h"
 #include "trainer_info.h"
+#include "vars_flags.h"
 
 typedef struct NearbyRoutes {
     u16 numPossibilities;
@@ -253,7 +255,15 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 
     switch (slot) {
     case ROAMING_SLOT_MESPRIT:
-        species = SPECIES_MESPRIT;
+        // Oxide: Mesprit's slot holds the legendary pool's roamer draw (Ian,
+        // 2026-09-26), rolled once per save; a save from before the pool
+        // has none and keeps vanilla's Mesprit.
+        species = SystemVars_GetLegendaryPoolRoamerSpecies(SaveData_GetVarsFlags(saveData));
+
+        if (species == SPECIES_NONE) {
+            species = SPECIES_MESPRIT;
+        }
+
         level = 50;
         break;
     case ROAMING_SLOT_CRESSELIA:

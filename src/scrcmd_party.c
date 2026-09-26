@@ -79,6 +79,22 @@ BOOL ScrCmd_GiveHiddenAbility(ScriptContext *ctx)
     return FALSE;
 }
 
+// Platinum Oxide: overwrite a party Pokemon's met location, which a gift
+// otherwise takes from the map it is given on. The starter uses it to get a
+// location of its own, so that Route 201 stays a nuzlocke capture area.
+// `location` indexes the location names like a map label does.
+BOOL ScrCmd_SetPartyMonMetLocation(ScriptContext *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 location = ScriptContext_GetVar(ctx);
+
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
+    Pokemon_SetValue(mon, MON_DATA_MET_LOCATION, &location);
+
+    return FALSE;
+}
+
 BOOL ScrCmd_GetPartyMonSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;

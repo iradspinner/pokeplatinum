@@ -11,6 +11,11 @@
 
 ValorCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
+    @ Oxide: Azelf's cavern holds no legendary for now (Ian, 2026-09-27),
+    @ neither Azelf nor its draw from the legendary pool, until the difficulty
+    @ is high enough that another legendary-tier capture would not inflate the
+    @ box. Hidden on every load, so no script that unhides it brings it back.
+    SetFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorNormal
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorDrained
     End

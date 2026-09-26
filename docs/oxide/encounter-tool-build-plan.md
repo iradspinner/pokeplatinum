@@ -51,12 +51,12 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 82/82, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 91/91, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 28/28
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 16/16
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
@@ -140,24 +140,44 @@ that stay. None blocks anything.
    wait for the balance track's final caps, then `cli evolve` is re-run once
    (section below).
 2. **Ian's one damage roll** in melonDS against the calculator (M8, below).
-3. **From the QA pass on D4 and D5** (M8, below): a range check on a trainer's
-   `nature` in `trainerproc.c` before Phase 5 names one, and the Z-move twins
-   sharing one calculator name. The rest closed on 2026-09-26: the calculator
-   applies a dual type's factors in chart order (Crunch into Bronzor now reads
-   the game's 43 to 51, and Cross Chop into Bronzor 80 to 96, not 81), gives
-   Heavy Slam, Trump Card, Psywave and Super Fang the engine's damage, crits
-   with the always-critical moves, which the dex no longer lists as
-   placeholders, and the vendored libraries carry their licence notices
-   (`calc/VENDORED.md`, patches 9 to 12). Electro Ball hits at power 1,
-   because Oxide's engine has no power code for it yet; the main track has
-   that gap.
+3. **From the QA pass on D4 and D5** (M8, below). One item is open: the
+   importer skips the IV scale of a member that names a nature without
+   saying so, and since Cyrus's teams name natures, a line per member in its
+   report ("left alone", as it logs every other divergence) would keep that
+   visible. The importer is shared tooling, so it waits on the Overseer's
+   word on who takes it. The rest is closed. On 2026-09-26 the calculator
+   took the chart order (Crunch into Bronzor now reads the game's 43 to 51,
+   and Cross Chop into Bronzor 80 to 96, not 81), the engine's damage for
+   Heavy Slam, Trump Card, Psywave and Super Fang, and the always-critical
+   moves, which the dex no longer lists as placeholders; the vendored
+   libraries got their licence notices (`calc/VENDORED.md`, patches 9 to
+   12). Electro Ball's power is item 22's. Later the same day, on branch
+   `encounter-item3`:
+   - The trainer packer refuses a `nature` that is not one of the 25:
+     `NATURE_COUNT`, which would have hung the game building the party, an
+     unknown name, a number and `true` each fail the build at the line, and
+     null still means roll it. The packer's seven outputs for the whole tree
+     are byte-identical to the unchecked packer's. dataproc's own range
+     check (`dp_u16range`) cannot be used on a looked-up name: the node's
+     source position and the looked-up value share one field, so the error
+     report reads the value as a pointer and crashes. The packer compares
+     the value itself, and `itemproc.c` has the same pattern for a TM's
+     type, which never fails today.
+   - The calculator's data holds all 919 moves. Each of the 18 Z-moves is a
+     physical and a special twin in Oxide and one entry in the calculator;
+     the physical keeps the calculator's name and the special is exported
+     as "Breakneck Blitz (Special)" and so on. `calc_export.move_keys` is
+     the one place that names a move, and the mechanics lists use it too.
+   - Two stale comments from the same QA: species weight is in pounds, and
+     the calculator's images come from `res/pokemon/`.
 4. **The calculator's menu and emulator icons.** Done 2026-09-26: the menu icon
    is the tool's own, and the DeSmuME link is hidden under Oxide (patch 13).
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
    How to name one is under "Standing rules".
 6. **Other tracks' work this track depends on.** The legendary pool's scripting
-   (the two lake caverns as two statics and Mesprit's roamer as a random roamer,
-   drawn from one pool of 23) is script work; until it exists R12 reports those
+   (Acuity Cavern's once-per-save draw and Mesprit's roamer; since 2026-09-27
+   Valor Cavern and Stark Mountain's last room are empty, item 21) is script
+   work the main track has started; until it exists R12 reports those
    lines, which is why `lint` shows 27 errors and the gate is `lint --ignore R12`.
    Verity Lakefront's map header still points at no table and the map has no
    grass, and the starter still needs its own met location; both are in the
@@ -182,6 +202,8 @@ that stay. None blocks anything.
    has the working).
 8. **The Galactic split and the Battle Zone (Ian, 2026-09-25).** The split table
    gains Galactic between Candice and Volkner, cap 64, and Volkner's cap is 68.
+   Superseded on 2026-09-26: the Galactic fights are two splits, HQ at cap 60
+   and then Galactic at 65, and the split table has had them since.
    The ten Battle Zone tables and the eleven tables of the Mt. Coronet climb are
    in it, and the Battle Zone follows Snowpoint in progression order. The ten
    tables were authored in Step 4 as post-game content, and in their new split
@@ -397,6 +419,16 @@ that stay. None blocks anything.
    because Suicune lands in 97% of runs. If Mindy asks for a rarer line
    (Delibird was tried) Suicune all but vanishes and the median stays
    three. Meloetta needs porting before it can be placed.
+
+   **Ian, 2026-09-27, relayed by the Overseer:** Valor Cavern holds no
+   legendary at all, Azelf included, and Stark Mountain's last room is empty
+   (no Heatran, no draw), both until the difficulty is high enough that more
+   legendary-tier encounters would not inflate box quality. Acuity Cavern
+   stays a once-per-save draw of the three, shown with Uxie's sprite for
+   now. `scripted.json` marks both places empty and out of the simulator,
+   the pool's comment in `availability-plan.json` carries the condition,
+   and `availability.md` now says a run meets two pool legendaries before
+   the League. The main track is scripting Acuity's draw and the roamer's.
 22. **The calculator follows element 4's variable powers (Ian's Overseer,
    2026-09-26), queued until the balance track's running rescore merges,
    so the next rescore takes it in one go.** oxide 48596e2bd computes
@@ -415,9 +447,8 @@ that stay. None blocks anything.
    into Abomasnow at 268 to 316, about four times and 1.6 times what the
    game does. Foul Play, Body Press, Psyshock, Sacred Sword and Darkest
    Lariat already hit as plain moves in the calculator's Generation 4 code.
-   **Done 2026-09-26 and parked unmerged** on branch
-   `encounter-calc-item22`, built on oxide fe5361aed, until the balance
-   track can run the full rescore it needs; merge the two together.
+   **Done 2026-09-26, and merged on 2026-09-27 with the balance track's
+   rescore** (68eebf653), from branch `encounter-calc-item22`.
    Electro Ball, Stored Power, Power Trip, Hard Press, Last Respects (from
    the calculator's fainted-allies field), Grav Apple under Gravity, and
    Pika Papow and Veevee Volley at Return's 102 follow the engine; the five
@@ -425,6 +456,80 @@ that stay. None blocks anything.
    engine's when the condition is not met. Freeze-Dry and Flying Press hit
    as plain moves, and `test_m8` pins both. When the main track gives them
    their type rules, the `util.js` patch (`VENDORED.md`, 11) comes out.
+23. **The calculator follows the engine's stat and type choices (Ian's
+   Overseer, 2026-09-26), queued until `cloud/element4-stat-choice`
+   merges**: Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat,
+   Freeze-Dry, Flying Press and Rage Fist (50 plus 50 per hit taken, to
+   350). It builds on item 22 and takes out item 22's `util.js` patch for
+   the two type moves. The Generation 4 path has hooks for an attacking
+   stat's size but not for whose stat or which defence stat a move reads,
+   so it gains one; the rules come from the merged engine, not from canon.
+24. **Friendship evolutions replaced (Ian, 2026-09-27, through the
+   Overseer).** Happiness Up is gone, and every friendship evolution moves
+   to a method that cannot be ground. The proposal, one method per line
+   with its split and what it changes here, is
+   `docs/oxide/encounters/friendship-evolutions.md`. **Ian accepted it on
+   2026-09-27 with Crobat at level 40** (Wake's split), and one fixed Sun
+   Stone and Moon Stone find for the balance track's item pass to place.
+   The main track edits the evolution data. Once that merges, this track
+   reruns `cli evolve` (with Maylene's cap if it has landed), puts the
+   seventeen Crobat placements below 40 back to Golbat by hand, corrects
+   the evolve tool's judged levels, which have read every
+   friendship method as 32 and a held-item trade as 32 because they are
+   keyed by names the data does not use, and reruns `test_sim`.
+25. **Thorton's encounter and Argenta's reward (Ian, 2026-09-27, through
+   the Overseer)**, for the Frontier Brains in Byron's split. The proposals
+   are `docs/oxide/encounters/frontier-brains-rewards.md`: a level-40
+   Cinderace static at the heart of Fuego Ironworks, sharing the yard's
+   capture, with a Battle Factory rental draw as the alternative; for
+   Argenta, items if the box should not grow, or an egg drawn from Happiny,
+   Smoochum and Elekid. **Ian ruled on Thorton (2026-09-27):** the player
+   picks one of the two starter lines they did not choose, fully evolved at
+   level 40, as a Battle Factory rental sharing the Fuego Ironworks
+   capture. Argenta stays open between items and a level-40 static. The box
+   sim measurement of Thorton's prize follows the balance track's rescore.
+   **Later on 2026-09-27:** the prize gets a capture of its own (the
+   Ironworks building gets its own location name, so 76 captures before
+   the League), and Argenta's reward is items, picked by the balance
+   track's item pass. The shared-capture measurement (678ea7531) is redone
+   once the building has its name.
+26. **The gift clowns go (Ian, 2026-09-27, through the Overseer).** A clown
+   whose capture area has a table, gift or trade simply goes; otherwise new
+   tall grass with a thematic table takes its place. This supersedes the
+   tracker's backlog item to unify the clown gifts. The proposal, per area,
+   is `docs/oxide/encounters/clown-replacements.md`: new grass in Sandgem
+   Town, Jubilife City, Floaroma Town and Solaceon Town, which homes seven
+   thinly sourced lines (Kricketot, Abra, Combee, Tropius, Happiny,
+   Girafarig, Lickitung) and the two clown-only ones (Poochyena, Trapinch);
+   the Oreburgh, Floaroma Meadow, Veilstone and Restaurant clowns and the
+   Eterna condominium gift simply go. **Ian accepted it on 2026-09-27**:
+   the Canalave Library gift goes too, with Mankey homed in Solaceon's
+   grass; Charcadet gets a 10% home on Route 206 and in Fuego Ironworks'
+   yard (the doc's last section); grass is tile behaviour first; and
+   capture levels end at about 60, which the tables already do (land tops
+   out at 54, the Super Rods at 60; only the post-game Dialga and Palkia,
+   at 70, are higher). The main track does the maps and scripts; this
+   track writes the four tables once the grass exists. Charcadet's two
+   slots needed no grass and are in the tables (2026-09-27): Route 206's
+   10% (Dwebble to the 1%) and the Fuego yard's at 29 (Togedemaru out),
+   with the Fuego yard as the line's planned home and Ceruledge on Route
+   227 a cameo. **The four tables are written** (2026-09-27), built ahead
+   of their headers like Amity Square's, as `encounters_sandgem_town`,
+   `encounters_jubilife_city`, `encounters_floaroma_town` and
+   `encounters_solaceon_town`, appended to `encounters.order` so no table
+   moves in the NARC; the main track points each header at its table.
+   Each is an A19 with `planned_location` set. Three departures from the
+   proposal, forced by the layout and the evolve rule: A19 keeps its face
+   at 20% and anchors its 4%s on another line, so Pachirisu (Floaroma) and
+   Mareep (Solaceon, a Flaaffy at 22) take the top rung; Poochyena is a
+   Mightyena at Solaceon's levels, so its home is Floaroma's 10% and
+   Solaceon has Mightyena; and Trapinch's planned home moves from Route
+   228 to Solaceon, which clears it from the cap candidates. The ten
+   retired gift sources left `scripted.json`. Suites: m1 13/13, m2 23/23,
+   m3 18/18, m5 15/15, m6 19/19, m8 91/91, step1 21/21, step2 18/18,
+   step3 35/35, step5 19/19, sim 11/11 (their counts and the clown checks
+   brought up to date); test_m4 and test_step0, which rewrite shared
+   files, were left to the gate while Ian has the server open.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
@@ -460,9 +565,9 @@ itself.
   8765; the header names the checkout it reads, and `--port` runs a second one.
 - A trainer Pokemon names its nature with `"nature": "NATURE_ADAMANT"` (any of
   the 25), which frees its IV scale to go to 255; a member without the field
-  rolls exactly as before. Do not name `NATURE_COUNT`: until the range check in
-  item 3 lands, the game loops forever building that party. How it works and how
-  it was checked are in the archive under M8.
+  rolls exactly as before. The packer fails the build on anything else, since
+  the game would loop forever building a party with a 26th nature (item 3).
+  How it works and how it was checked are in the archive under M8.
 - The vendored calculator is a clean upstream copy plus the patches listed in
   `calc/VENDORED.md`; after an update, re-apply them and rerun
   `make_calc_skin.py`, and `test_m8` fails until both are done.
@@ -519,21 +624,15 @@ Done except for what follows. The survey, D1 to D5, the trainer teams in the cal
 
 ### What is open in M8
 
-**Open from the QA pass before the merge** (2026-09-22,
+**The QA pass before the merge** (2026-09-22,
 `docs/oxide/qa-review-2026-09-22-encounter-d4d5.md`; none of it blocked the
-merge). The trainer packer accepts `"nature": "NATURE_COUNT"`, and the game
-then loops forever building that party, because no personality lands on a
-26th nature; a numeric or `true` nature is dropped without a word. It needs a
-range check in `trainerproc.c` before Phase 5 names a nature. The calculator
-applies a dual type's two factors in the defender's type order where the game
-uses chart order, so Crunch into Bronzor reads 42 to 50 against the game's 43
-to 51; this is upstream's behaviour, and **Ian ruled (2026-09-22) that the
-calculator follow the game's chart order**, which it does since 2026-09-26
-(`VENDORED.md`, patch 9). The always-critical moves were listed as
-placeholders, because element 4 did their effect in C and left the script a
-plain hit; the dex now knows that effect is done in C. The licence notices are
-in (patch 12). Still open, and small: the Z-move twins share one calculator
-name, so one overwrites the other.
+merge) is closed but for the importer's report line in item 3. The packer
+refused no nature until 2026-09-26 and now refuses all but the 25. The
+calculator took the game's chart order for a dual type (**Ian's ruling of
+2026-09-22**, `VENDORED.md` patch 9); Crunch into Bronzor had read 42 to 50
+against the game's 43 to 51. The dex knows the always-critical effect is done
+in C, the licence notices are in (patch 12), and the Z-move twins have a
+calculator entry each.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a

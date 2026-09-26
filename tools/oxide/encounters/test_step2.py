@@ -72,9 +72,10 @@ def main():
                     not g["early_fit"], ", ".join(g["early_fit"][:3])))
     results.append(("every live land table has something planned",
                     not g["unplanned_tables"], ", ".join(g["unplanned_tables"][:4])))
-    results.append(("the corridor is the Roark and Gardenia splits: 20 live land tables",
+    # 20 until 2026-09-27; 23 with the grass of Sandgem, Jubilife and Floaroma.
+    results.append(("the corridor is the Roark and Gardenia splits: 23 live land tables",
                     out["plan"]["corridor_splits"] == ["Roark", "Gardenia"]
-                    and len(out["corridor"]) == 20, f"{len(out['corridor'])} tables"))
+                    and len(out["corridor"]) == 23, f"{len(out['corridor'])} tables"))
     results.append(("known placements: Gible at home in Wayward Cave B1F, Shinx on Route 202, "
                     "Wooper in the marsh",
                     by["Gible"]["home"] == ["encounters_wayward_cave_b1f"]

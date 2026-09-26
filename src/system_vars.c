@@ -515,8 +515,23 @@ static void SetRoamingArticunoState(VarsFlags *varsFlags, u16 state)
     TrySetVarToValue(varsFlags, VAR_ROAMING_ARTICUNO_STATE, state);
 }
 
+// Oxide: the species the Mesprit roaming slot holds, drawn once per save from
+// the legendary pool's roamer third by the new-game script. Zero on a save made
+// before the pool existed, which RoamingPokemon_ActivateSlot reads as Mesprit.
+u16 SystemVars_GetLegendaryPoolRoamerSpecies(VarsFlags *varsFlags)
+{
+    return TryGetVarValue(varsFlags, VAR_LEGENDARY_POOL_ROAMER_SPECIES);
+}
+
 void SystemVars_SetRoamingSpeciesState(VarsFlags *varsFlags, u16 species, u16 state)
 {
+    // Oxide: whatever the draw put in Mesprit's slot keeps Mesprit's state
+    // var, which Verity Cavern and the Hall of Fame read to bring it back.
+    if (species != SPECIES_NONE && species == SystemVars_GetLegendaryPoolRoamerSpecies(varsFlags)) {
+        SetRoamingMespritState(varsFlags, state);
+        return;
+    }
+
     switch (species) {
     case SPECIES_MESPRIT:
         SetRoamingMespritState(varsFlags, state);

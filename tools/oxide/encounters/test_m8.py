@@ -543,6 +543,18 @@ def check_calculator(results):
                     and moves["Attack Order"]["basePower"] == 120
                     and moves["Dragon Breath"]["type"] == "Dragon"
                     and "basePower" not in moves["Grass Knot"], f"{len(moves)} moves"))
+    # The D4 and D5 QA (2026-09-22), finding 5: each Z-move is a physical and
+    # a special twin in Oxide and one entry in the calculator, and the special
+    # used to replace the physical. Every move now has an entry of its own.
+    named = sum(1 for m in pokedex.moves(root).values()
+                if m["move"] != "MOVE_NONE" and m["name"] not in ("-", ""))
+    results.append(("every move has its own entry, a Z-move's special twin under "
+                    "a name of its own",
+                    len(moves) == named
+                    and moves["Breakneck Blitz"]["category"] == "Physical"
+                    and moves["Breakneck Blitz (Special)"]["category"] == "Special"
+                    and moves["Breakneck Blitz (Special)"]["basePower"] == 0,
+                    f"{len(moves)} of {named}"))
 
     # The chart is the reason the data travels at all: Generation 4 with
     # Fairy, Steel keeping its resistances to Ghost and Dark (Ian, 2026-09-22).

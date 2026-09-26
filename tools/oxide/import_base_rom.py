@@ -766,6 +766,20 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     for field, why in diverged.items():
         if field != "name":
             log.append((rel, [f"{field}: diverged, left alone ({why})"]))
+    # A member that names a nature keeps Oxide's nature and IV scale, and the
+    # importer neither compares nor writes them (see _has_nature). Name each
+    # one here, as every other divergence is named, so the skip is not silent.
+    # Report text only: it counts as no change.
+    if "party" not in diverged:
+        try:
+            members = len(jsonstyle.get_value(text, ["party"]))
+        except KeyError:
+            members = 0
+        tuned = [f"party[{i}].iv_scale: names {jsonstyle.get_value(text, ['party', i, 'nature'])}, "
+                 "left alone (Oxide re-tuned this member's nature and IV scale)"
+                 for i in range(members) if _has_nature(text, i)]
+        if tuned:
+            log.append((rel, tuned))
     if changed:
         log.append((rel, changed))
         if not dry_run:
@@ -1203,7 +1217,24 @@ TEXT_BANKS_SKIPPED = {
          "(Ian, 2026-09-21), and his line names it",
     180: "Mindy in Snowpoint trades a Suicune for a Snover rather than a Haunter for a "
          "Medicham (Ian, 2026-09-26), and her lines name both",
+    176: "the Snowpoint ferry sailor's refusal names Team Galactic, not the Pokemon "
+         "League, now that the Battle Zone opens after Galactic HQ (battle-zone-plan.md)",
+    192: "the Fight Area's arrival lines no longer assume the League or Spear Pillar, "
+         "and four lines are added for the Beacon Badge gate (battle-zone-plan.md)",
+    299: "Uxie's cavern holds the legendary pool's Acuity draw, so its line names the "
+         "drawn species rather than UXIE (Ian, 2026-09-26)",
+    293: "Mesprit's roamer is the legendary pool's roamer draw, so the scene's lines "
+         "name the drawn species rather than MESPRIT (Ian, 2026-09-26)",
+    141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
+         "and the pick menu's orphaned species names went with the move",
 }
+# The gift clowns are gone (Ian, 2026-09-27; the encounter track's
+# clown-replacements.md): each house's bank loses the giver's lines and the
+# orphaned pick-menu names at its end. Sandgem's house (568) is listed above.
+TEXT_BANKS_SKIPPED.update({
+    i: "the gift clown and its lines removed (Ian, 2026-09-27)"
+    for i in (38, 78, 574, 256, 97, 579, 159, 59)
+})
 
 
 def text_bank_names():
@@ -1409,6 +1440,15 @@ def main():
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
     }
 
+    # Records whose abilities Oxide has changed on purpose since the base ROM.
+    # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave
+    # Snow Cloak, a slip: every official game gives all three forms
+    # Anticipation, as the Plant form here has (Ian, 2026-09-27).
+    ABILITIES_DIVERGED = {
+        499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+    }
+
     # species: personal + learnset + evolutions live in one data.json
     bp, vp = base.narc("poketool/personal/pl_personal.narc"), van.narc("poketool/personal/pl_personal.narc")
     bl, vl = base.narc("poketool/personal/wotbl.narc"), van.narc("poketool/personal/wotbl.narc")
@@ -1437,6 +1477,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in ABILITIES_DIVERGED:
+            new.pop("abilities")
+            old.pop("abilities")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"abilities: diverged, left alone ({ABILITIES_DIVERGED[i]})"]))
         if apply_diff(os.path.join(d, "data.json"), new, old, a.dry_run, log):
             n += 1
     counts["species"] = n

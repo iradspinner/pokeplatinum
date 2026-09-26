@@ -81,6 +81,12 @@ EVOLUTION_OVERRIDES = {
     # The donor points Hisuian Sliggoo at 2804, past the end of its own table.
     "SPECIES_HISUIAN_SLIGGOO": [("EVO_LEVEL", 50, "SPECIES_HISUIAN_GOODRA")],
     "SPECIES_SLIGGOO": [("EVO_LEVEL", 50, "SPECIES_GOODRA")],
+    # The donor's level-up-by-day (method 27) has no Generation 4 equivalent,
+    # and the importer used to drop it, leaving Fomantis with no evolution.
+    "SPECIES_FOMANTIS": [("EVO_LEVEL", 34, "SPECIES_LURANTIS")],
+    # No friendship evolutions in Oxide (Ian, 2026-09-27): the donor's
+    # friendship at night becomes a level-up at the Ice Rock on Route 217.
+    "SPECIES_SNOM": [("EVO_LEVEL_ICE_ROCK", None, "SPECIES_FROSMOTH")],
     # The donor's second branch is Hisuian Decidueye, which is not in the
     # pick-list, so the personality split collapses to a plain level 36.
     "SPECIES_DARTRIX": [("EVO_LEVEL", 36, "SPECIES_DECIDUEYE")],
