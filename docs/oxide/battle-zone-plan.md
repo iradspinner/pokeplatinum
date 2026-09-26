@@ -7,6 +7,19 @@ it, for the fights and the captures it adds. Ian ruled on the three open
 questions the same day (below); the encounter track's first step is done,
 and the rest waits on the main and balance tracks.
 
+## Current state (2026-09-27; read this first)
+
+Parts of this plan were overtaken on 2026-09-26, and the tracker's Battle Zone
+entry is the current word. The zone opens **after Galactic HQ**, not after Lake
+Acuity, and the Galactic stretch is two splits: **HQ, cap 60**, then
+**Galactic, cap 65**. The ferry's sailor has **one** `FLAG_GAME_COMPLETED`
+check, not two (the other two guard Snowpoint Temple, which stays post-game),
+and it is to test Galactic HQ being cleared. The Fight Area's block on Route
+225 lifted only after the Volkner and Flint tag battle; since that battle now
+waits for the Beacon Badge, Route 225 is open from the player's first arrival
+and the ferry is the only gate. The main track is carrying this out on
+`main-scripts`.
+
 ## Ian's rulings (2026-09-25)
 
 1. **A new split, Galactic, straight after Lake Acuity.** It holds the whole

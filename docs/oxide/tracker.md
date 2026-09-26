@@ -2,19 +2,20 @@
 
 Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, tick it, then move the block to `docs/oxide/tracker-archive.md` under the same heading and leave a one-line pointer (`integrate.sh` warns past 6,000 words). **Durable facts** are in the design doc's findings log (section 8); the **encounter tool's** status is in `docs/oxide/encounter-tool-build-plan.md`. Everywhere else points, it does not repeat.
 
-**Where things stand (2026-09-26).** Phase 4 is past elements 4 and 5 (terrain waits on Ian), and the staples survey's engine and move rulings are in; element 6, the AI, has to catch up with them. Cloud sessions do the heavy engine work on their own branches. **The CPU is degraded until its replacement arrives**, so playtest ROMs come from `tools/oxide/fetch-rom`. Bugs live in the "Open bug" entries under Phase 5. `git log -1` is the resume point.
+**Where things stand (2026-09-27).** Phase 4 is past elements 4 and 5 (terrain waits on Ian), with the staples survey's engine and move rulings in; element 6, the AI, has to catch up. **The CPU is degraded until its replacement arrives**, so playtest ROMs come from `tools/oxide/fetch-rom`. `git log -1` is the resume point.
 
 **Second track: the encounter tool.** A browser and command-line tool for designing Oxide's wild encounter tables, with a dex, a move list and a damage calculator on Oxide's own data; it owns `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/` and the `encounter-*.md` docs. The authoring pass is done: every wild, water and scripted source is designed from the pick-list, and the tree builds with all 184 tables matching their JSON. Live now: Maylene's split waits on the balance track's final level caps before `cli evolve` is re-run; Ian owes one damage roll in melonDS against the calculator and a honey tree shake at one badge and at five (the trees read a table per badge count since 2026-09-26, an engine change this track made with Ian's say-so); and the tool has a Box sim tab whose line ratings are a first draft for Ian. Everything open, and how to resume cold, is in `docs/oxide/encounter-tool-build-plan.md`, with the finished milestones in its archive; this paragraph is the tool's whole footprint in this file.
 
 
 
-**Next steps, in order:**
+**Who is on what** (2026-09-27; each track's status home has the detail):
 
-1. **Ian: the rest of the emulator pass** under "Waiting on Ian".
-2. **Bug track:** the box deposit hang first, then the UNLOCK FPS ALWAYS crash entering Sandgem (Phase 5).
-3. **Cloud jobs**, one branch each, reviewed and merged by the Overseer: `cloud/element4-variable-power` waits on review.
-4. **The encounter authoring pass** continues on its own branch; its build plan says what is left, and nothing there blocks Phase 4.
-5. **Backlog items that are now cheap:** the six overworld sprites the carry-over missed, and the re-examination of the inventory's other "tool side effect" archives (both under Phase 3).
+1. **Balance Agent**: the full rescore on the encounter track's item 22, then B6 (`balance-plan.md`).
+2. **Encounter Tool Builder**: its build plan's open items, and item 23 (the calculator follows `cloud/element4-stat-choice`) once that merges.
+3. **Main Production Agent** (`main-scripts`): the Battle Zone's main-track sub-items, then the legendary pool's draws, then the headers and gifts the encounter plan's item 6 waits on.
+4. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) is running.
+5. **Ian**: the in-game checks, all at once when the new CPU is in, and the terrain decision.
+6. **No owner yet**: element 6's AI catch-up, elements 7 and 8 (items; hidden abilities, the level-cap mechanism, field moves by badge), and the bug track, which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
 
