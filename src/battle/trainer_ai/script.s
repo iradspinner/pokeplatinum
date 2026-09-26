@@ -454,6 +454,25 @@ Basic_CheckRest:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
+    // Oxide, change (Ian, 2026-09-27): the ways Oxide's Rest also fails, score -10:
+    //  - The attacker has Purifying Salt (element 5)
+    //  - The attacker has Leaf Guard, in sunshine (the staples rulings)
+    //  - The attacker or its partner has Sweet Veil (element 5)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
+    IfLoadedEqualTo ABILITY_SWEET_VEIL, ScoreMinus10
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Basic_CheckRest_Partner
+    LoadCurrentWeather 
+    IfLoadedEqualTo AI_WEATHER_SUNNY, ScoreMinus10
+
+Basic_CheckRest_Partner:
+    LoadBattleType 
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, Basic_CheckRest_Uproar
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, Basic_CheckRest_Uproar
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SWEET_VEIL
+    IfLoadedEqualTo AI_HAVE, ScoreMinus10
+
+Basic_CheckRest_Uproar:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_SOUNDPROOF, Basic_CheckRest_End
     IfFieldConditionsMask FIELD_CONDITION_UPROAR, ScoreMinus10
 
