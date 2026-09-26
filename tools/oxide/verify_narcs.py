@@ -29,6 +29,9 @@ DEFAULT = [
     # The base ROM's six overworld sprites in vanilla's dummy slots; nothing
     # checked this archive until they were found missing in play (2026-09-20).
     "data/mmodel/mmodel.narc",
+    # The base ROM's visual overhaul (Ian, 2026-09-27; the inventory's
+    # corrections list every member). These compare byte for byte.
+    "poketool/trgra/trfgra.narc",
 ]
 
 
