@@ -16,7 +16,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 4. **Carry-over Agent** (`carry-over`): the Phase 3 backlog that needs the base ROM: the six overworld sprites, then the portable PC with infinite Rare Candies and no relearner.
 5. **Cloud**: `cloud/element4-stat-choice` (the seven stat and type moves, Rage Fist, Transform) and `cloud/element8-level-caps` (the level-cap mechanism) are running; element 6's AI catch-up follows the first.
 6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in, and the terrain decision.
-7. **No owner yet**: element 7 (items), the rest of element 8 (hidden abilities, field moves by badge and the smaller changes), and the bug track, which needs Ian live.
+7. **No owner yet**: element 7 (items), the rest of element 8 (field moves by badge, 30 boxes, wild doubles, national dex, 60 fps, and the natives' hidden slots, which need the donor), and the bug track, which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
 
@@ -40,9 +40,9 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 
 - `pl_personal.narc`: 667 members against the reference's 508; **0 disagree**, 20 differ only at the intended bytes (the Fairy retypes), 159 are new species
 - `wotbl.narc`: 667 against 508; 0 disagree, 159 new, 3 differ on purpose (Sneasel, Houndour and Houndoom lose Beat Up), compared as decoded `(level, move)` lists since element 4 widened the entry
-- `evo.narc`: 667 against 508; 0 disagree, 159 new; 7 members differ on purpose (the natives that gain an evolution) and 501 differ only in trailing zero padding, which is the record going from 44 bytes to 56
+- `evo.narc`: 667 against 508; 0 disagree, 159 new; 22 members differ on purpose (the 7 natives that gain an evolution and the 16 that lost their trade entries in element 8, Scyther being both) and 486 differ only in trailing zero padding, which is the record going from 44 bytes to 56. The 22 and 486 are worked out from the lists, not yet seen against the base ROM
 - `pl_waza_tbl.narc`: 923 members against the reference's 471; **0 disagree**, 452 are new moves, 146 differ only at the intended bytes (the three Fairy retypes, the 95 natives given the King's Rock flag, Poison Gas's range, the 66 natives given modern numbers, 45 of which are in none of the other groups, and Barrier and Tailwind at 1 PP). The 146 is worked out from the lists, not yet seen against the base ROM
-- the base ROM importer reports every count 0 and lists those same seven species' evolutions as not carried over
+- the base ROM importer reports every count 0 and lists those same 22 species' evolutions as not carried over
 
 Anything else is a regression. The encounter tool's own checks are in its build plan.
 
@@ -103,7 +103,9 @@ Each element gets a checklist here when it starts, with the emulator test that p
   - [ ] Keep fixes and changes separate: a fix restores what the code plainly intended, a change makes the AI play differently and is Ian's call
   - [ ] Teach it everything Phase 4 changed (2026-09-26 list): the new moves and abilities, Neutralizing Gas, the held items that change a decision (Eviolite, Assault Vest, Air Balloon, Rocky Helmet, Weakness Policy, the seeds), the staples rules (the stale spots are in `cloud/element5-staples`'s report: Simple, the trapping copies in `trainer_ai.c`, Illuminate, 2x critical hits), and Saturn 2's permanent Trick Room, since it guesses who moves first from raw Speed in places; and the computed powers, read at table power in `trainer_ai.c`
 - [ ] **7. Items, a curated subset**, after the move expansion. New items go into Platinum's free slots, not Hardlove's 2,687-record table; the in and out lists are in the answers file. **The TM count must not be hard-capped at 92.** A Pixie Plate is needed for Arceus's Fairy form, since Multitype reads the held item
-- [ ] **8. The remaining engine changes**, one at a time: hidden abilities (third slot, the script flag, Ability Patch; element 2 added `GiveHiddenAbility`, which nothing calls yet); strip the 17 dead trade evolution entries (the nine slots are done); 30 PC boxes; always-set battle mode; 60 fps outside battle (drop it without asking if it misbehaves); wild double battles; single-use items restored after battle; always national dex; script-driven level caps (the mechanism only); the lowered friendship threshold is superseded by the friendship evolutions' replacement (Phase 5)
+- [ ] **8. The remaining engine changes**, one at a time: 30 PC boxes; 60 fps outside battle (drop it without asking if it misbehaves); wild double battles; always national dex; script-driven level caps (the mechanism only); the lowered friendship threshold is superseded by the friendship evolutions' replacement (Phase 5). Hidden abilities as a mechanism, the trade strip, always-Set and restored items are done (`cloud/element8-batch1`, in the archive); the Ability Patch is element 7's
+  - [ ] **The natives' hidden slots.** Only the 159 new species carry a third ability; the 493 natives' hidden abilities are the donor's `a/0/2/8` member 7 (`donor.py`'s `hidden_abilities()`), which a cloud session cannot read. A local job, and the ability pass (the weather ruling) decides what stays
+  - [ ] **Known limit of restored items**: a Pickup holder that eats its Berry and then picks something up keeps the pickup, not the Berry
 
 ## Phase 5: design passes raised while answering Phase 4
 
@@ -139,7 +141,7 @@ None is Phase 4 work; all of them shape the finished game.
 - [ ] **Level-cap split design** (balance track), which **must precede the trainer balance pass**; Phase 4 delivers only the mechanism
 - [ ] **TM pass** (balance track): how many TMs (likely more than 92) and which moves
 - [ ] **Ability balance pass** (balance track), including the base ROM's 228 duplicated second slots
-- [ ] **Encounter design decisions** Phase 4 leaves open: which encounters set the hidden-ability flag, and which areas have wild double battles. The Trophy Garden dailies and the Twinleaf legendary menu are never used (Ian, 2026-09-21); swarms, the Poke Radar and the GBA lists have their own entry below
+- [ ] **Encounter design decisions** Phase 4 leaves open: which encounters set the hidden-ability flag (`FLAG_NEXT_MON_HIDDEN_ABILITY` before a static, gift or egg; `GiveHiddenAbility` on a party slot), and which areas have wild double battles. The Trophy Garden dailies and the Twinleaf legendary menu are never used (Ian, 2026-09-21); swarms, the Poke Radar and the GBA lists have their own entry below
 - [ ] **Verity Lakefront as a capture area** (from the encounter track, 2026-09-21): `res/field/encounters/encounters_verity_lakefront.json` exists and is in the NARC, but `MAP_HEADER_VERITY_LAKEFRONT` still points at `ENCOUNTERS_NONE` and the map has no tall grass. Point the header at the table and add grass to the map
 - [ ] **Move the Pastoria City clown gift to the Restaurant on Route 213** (Ian, 2026-09-25): a gift's met location is the location name of the map it is given on, and Pastoria's house reads "Pastoria City", so today the gift and Pastoria's fishing and surf share one nuzlocke capture. Give it on `MAP_HEADER_RESTAURANT` (location "Restaurant") instead. The pool of six water lines and its flag stay as they are; only the map changes: `scripts_pastoria_city_north_house.s` (already in `bulk_scripts.py`'s DIVERGED), the NPC's object event, and the text bank.
 - [ ] **Amity Square as a capture area** (Ian, 2026-09-25): add tall grass to the map and point `MAP_HEADER_AMITY_SQUARE`'s `wildEncountersArchiveID` at `encounters_amity_square`, which the encounter track added on 2026-09-25.
@@ -167,7 +169,6 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 - **Superseded 2026-09-27 by "The clowns give way to grass" (Phase 5).** Unify the clown-gift events (Ian, 2026-09-20): one common script parameterised by the map, which **names the possible Pokemon** rather than rolling blind (species per map in `docs/oxide/pokemon-gifts.md`), after the faithful carry-over and as its own commit. Orphaned pick-event names still to remove: canalave_library_2f 7, pastoria_city_north_house 6, floaroma_town_middle_house 4, eterna_city_condominiums_1f 3, floaroma_meadow_house 3, jubilife_city_south_house_1f 3, solaceon_town_northeast_house 3
 - Two raw regions the disassembler emits as `.byte` rather than decoding (`scripts_spear_pillar` 0x04b5 and `scripts_common` 0x1268 are the two to start from). They round-trip exactly; they are just not understood
 - The two trade json files still named `abra` and `haunter` for what are now a Ditto and a Suicune
-- Seventeen dead trade-evolution entries (methods 5 and 6) left beside the non-trade routes the base ROM added; harmless in single player, stripping them would free evolution slots on Clamperl
 - Move `Platinum Oxide VSMaker2 Data\` out of the DSPRE contents folder (Ian's call; it is a stale duplicate)
 - Update the chat-surface doc `claude/engine-tooling-comparison.md`: plat-engine is a patch kit not a decomp build; pokeplatinum is matching and active
 - Palette hue-shift patch (IV/nature-driven shiny or per-form palette, base ROM's eight palette-loading hooks): low priority, investigate only after Phase 4 is done; drop if it proves opaque (Ian, 2026-09-15)
