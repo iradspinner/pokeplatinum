@@ -1497,6 +1497,7 @@ TestKit_Abilities3:
     AddListMenuEntry TestKit_Text_MenuAbilityLightMetal, 4
     AddListMenuEntry TestKit_Text_MenuAbilityMagicBounce, 5
     AddListMenuEntry TestKit_Text_MenuAbilityMoody, 6
+    AddListMenuEntry TestKit_Text_MenuAbilityMoxie, 7
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_AbilityAnalytic
     GoToIfEq VAR_0x8004, 1, TestKit_AbilityFlareBoost
@@ -1505,6 +1506,7 @@ TestKit_Abilities3:
     GoToIfEq VAR_0x8004, 4, TestKit_AbilityLightMetal
     GoToIfEq VAR_0x8004, 5, TestKit_AbilityMagicBounce
     GoToIfEq VAR_0x8004, 6, TestKit_AbilityMoody
+    GoToIfEq VAR_0x8004, 7, TestKit_AbilityMoxie
     GoTo TestKit_Close
 
 /* Beast Boost: Kartana's highest stat is Attack, so knocking out any wild
@@ -2282,6 +2284,17 @@ TestKit_AbilityMoody:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Moxie: knock out any wild Pokemon; straight after the
+   faint message Honchkrow's Attack rises a stage, with a message. */
+TestKit_AbilityMoxie:
+    SetVar VAR_0x800A, SPECIES_HONCHKROW
+    SetVar VAR_0x800B, ABILITY_MOXIE
+    SetVar VAR_0x8006, MOVE_NIGHT_SLASH
+    SetVar VAR_0x8007, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8008, MOVE_SUCKER_PUNCH
+    SetVar VAR_0x8009, MOVE_ROOST
     GoTo TestKit_GivePokemonWithMoves
 
 /* The staples survey's engine rulings (Ian, 2026-09-26): the later games'

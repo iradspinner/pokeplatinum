@@ -282,6 +282,10 @@
             "en_US": "Moody"
         },
         {
+            "id": "TestKit_Text_MenuAbilityMoxie",
+            "en_US": "Moxie"
+        },
+        {
             "id": "TestKit_Text_MenuStaples",
             "en_US": "Modern rules"
         },

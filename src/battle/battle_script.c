@@ -10268,6 +10268,9 @@ static BOOL BtlCmd_TryBelch(BattleSystem *battleSys, BattleContext *battleCtx)
  * knockout counts when the fainted battler took the attacker's damage in this
  * move. The raise goes through the stat-stage subscript as Speed Boost's does.
  *
+ * Moxie shares it (Oxide, element 5's hidden abilities): the same knockout
+ * raises the attacker's Attack by one stage.
+ *
  * Inputs:
  * 1. The jump distance if nothing happens.
  *
@@ -10292,7 +10295,8 @@ static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleC
         || fainted == BATTLER_NONE
         || attacker == fainted
         || mon->curHP == 0
-        || Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+        || (Battler_Ability(battleCtx, attacker) != ABILITY_BEAST_BOOST
+            && Battler_Ability(battleCtx, attacker) != ABILITY_MOXIE)
         || ((battleCtx->selfTurnFlags[fainted].physicalDamageTaken == 0
                 || battleCtx->selfTurnFlags[fainted].physicalDamageLastAttacker != attacker)
             && (battleCtx->selfTurnFlags[fainted].specialDamageTaken == 0
@@ -10309,6 +10313,10 @@ static BOOL BtlCmd_TryBeastBoost(BattleSystem *battleSys, BattleContext *battleC
         if (values[i] > values[best]) {
             best = i;
         }
+    }
+
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_MOXIE) {
+        best = 0;
     }
 
     if (mon->statBoosts[order[best]] == MAX_STAT_STAGE) {
