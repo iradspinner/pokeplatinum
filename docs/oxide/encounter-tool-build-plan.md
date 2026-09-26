@@ -51,7 +51,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 91/91, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 94/94, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
@@ -464,6 +464,19 @@ that stay. None blocks anything.
    the two type moves. The Generation 4 path has hooks for an attacking
    stat's size but not for whose stat or which defence stat a move reads,
    so it gains one; the rules come from the merged engine, not from canon.
+   **Done 2026-09-27** on `encounter-item3`, after the engine merged
+   (6e729d2c0). Two new hooks in the Generation 4 path (`VENDORED.md`, 10):
+   `attackSource` gives Foul Play the target's Attack and stages, past its
+   Unaware, and Body Press the user's Defense and stages, with the user's
+   own attack modifiers kept; `defenseSource` sends Psyshock, Psystrike and
+   Secret Sword against Defense with the Defense modifiers and not the
+   Sp. Def ones (sandstorm's Rock boost among them, as the engine swaps the
+   stat after its modifiers), and has Sacred Sword, Darkest Lariat and Chip
+   Away ignore the target's stages. Item 22's `util.js` exception is gone:
+   upstream's Freeze-Dry and Flying Press rules are the engine's now. Rage
+   Fist shows 50, the engine's power before any hit, since the calculator
+   has no field for hits taken. `test_m8` 94/94 pins each rule with rolls
+   that do not depend on Oxide's stats. The balance track rescores after it.
 24. **Friendship evolutions replaced (Ian, 2026-09-27, through the
    Overseer).** Happiness Up is gone, and every friendship evolution moves
    to a method that cannot be ground. The proposal, one method per line
