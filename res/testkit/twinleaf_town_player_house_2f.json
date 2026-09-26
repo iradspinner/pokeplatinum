@@ -402,6 +402,10 @@
             "en_US": "Rapid Spin"
         },
         {
+            "id": "TestKit_Text_MenuStapleProtectRun",
+            "en_US": "Protect in a row"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

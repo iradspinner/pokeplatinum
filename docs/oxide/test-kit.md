@@ -256,6 +256,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Critical hits | Mew: Focus Energy, Slash, Tackle, Recover; foe a wild Snorlax that knows only Splash | Before Focus Energy, Slash is a critical hit about one time in eight and Tackle about one in 24. After it, every Slash is "A critical hit!" (three stages), and Tackle one time in two. A critical Slash does about half as much again as a normal one, not double | dc60da30 |
 | Defog, both sides | Mew: Defog, Stealth Rock, Reflect, Recover; foe a wild Skarmory that knows Spikes and Toxic Spikes | Let Skarmory lay Spikes and Toxic Spikes on your side, and lay Stealth Rock on its side and Reflect on yours. Defog blows away Stealth Rock, Spikes and Toxic Spikes, each named once, and your Reflect stays: Defog clears screens only on the target's side. It still clears fog | 72252c48 |
 | Rapid Spin | Starmie: Rapid Spin, Surf, Thunderbolt, Recover; foe a wild Skarmory that knows only Spikes | Each Rapid Spin ends with "STARMIE's Speed rose!", after "STARMIE blew away Spikes!" when Skarmory has laid some; at +6 it says nothing more | 349e0f45 |
+| Protect in a row | Mew: King's Shield, Spiky Shield, Protect, Recover; foe a wild Rattata that knows only Tackle | Use King's Shield every turn: the first always works, the second about one time in two, the third about one in four, each failure "But it failed!". Spiky Shield the same, and mixing them with Protect keeps the run going. Before the fix both worked every turn | a11da24d |
 
 ## Not built yet
 
