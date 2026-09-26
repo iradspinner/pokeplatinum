@@ -198,12 +198,12 @@
         {
             "level_max": 51,
             "level_min": 43,
-            "species": "SPECIES_JELLICENT"
+            "species": "SPECIES_WAILORD"
         },
         {
             "level_max": 54,
             "level_min": 46,
-            "species": "SPECIES_JELLICENT"
+            "species": "SPECIES_TOXAPEX"
         }
     ],
     "map_category": {

@@ -103,9 +103,10 @@ def check_dex(results):
     new = [r for r in rows if r["status"] == "new"]
     unresolved = [r["name"] for r in natives if not r["constant"]]
     # 199 natives on Ian's sheet, 227 with the seven cave, fourteen fishing, two
-    # Mantyke and five ghost rows of 2026-09-21.
+    # Mantyke and five ghost rows of 2026-09-21, 264 with the 37 rows of the
+    # seventeen water lines of 2026-09-26.
     results.append(("every native on the pick-list resolves to a species in the tree",
-                    len(natives) == 227 and not unresolved,
+                    len(natives) == 264 and not unresolved,
                     f"{len(natives)} natives, unresolved {unresolved[:5]}"))
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
@@ -215,8 +216,9 @@ def check_audit(results):
     # 358 obtainable rows since element 3 (199 before it), 365 with Ian's
     # three cave lines; the files are every JSON in res/field/encounters.
     n_files = len(model.area_names())
-    results.append(("audit sees all 386 pick-list species and every encounter file",
-                    s["natives"] == 386 and s["files"] == n_files,
+    # 386 until Ian's seventeen water lines (37 species) on 2026-09-26.
+    results.append(("audit sees all 423 pick-list species and every encounter file",
+                    s["natives"] == 423 and s["files"] == n_files,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
@@ -242,8 +244,8 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 386 pick-list species into lines, each on one row",
-                    covered == 386 and len({m for r in lines for m in r["members"]}) == 386,
+    results.append(("coverage groups all 423 pick-list species into lines, each on one row",
+                    covered == 423 and len({m for r in lines for m in r["members"]}) == 423,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",

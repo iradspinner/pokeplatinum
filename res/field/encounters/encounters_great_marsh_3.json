@@ -142,12 +142,12 @@
         {
             "level_max": 17,
             "level_min": 13,
-            "species": "SPECIES_GOLDEEN"
+            "species": "SPECIES_POLIWAG"
         },
         {
             "level_max": 18,
             "level_min": 14,
-            "species": "SPECIES_GOLDEEN"
+            "species": "SPECIES_PSYDUCK"
         }
     ],
     "good_rod_rate": 50,

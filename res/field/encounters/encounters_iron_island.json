@@ -114,12 +114,12 @@
         {
             "level_max": 39,
             "level_min": 33,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_CORSOLA"
         },
         {
             "level_max": 42,
             "level_min": 36,
-            "species": "SPECIES_MANTYKE"
+            "species": "SPECIES_MAREANIE"
         }
     ],
     "old_rod_rate": 25,
@@ -155,7 +155,7 @@
         {
             "level_max": 30,
             "level_min": 24,
-            "species": "SPECIES_FINNEON"
+            "species": "SPECIES_SHELLDER"
         },
         {
             "level_max": 30,
@@ -175,7 +175,7 @@
         {
             "level_max": 34,
             "level_min": 28,
-            "species": "SPECIES_MAREANIE"
+            "species": "SPECIES_RELICANTH"
         }
     ],
     "super_rod_rate": 75,

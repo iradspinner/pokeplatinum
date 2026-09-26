@@ -7,6 +7,7 @@ the simulator promises: one capture per area, the dupes clause over
 families, one repel before Gardenia's split, the deaths asked for, nothing
 from past the target split, and the same run again from the same seed.
 """
+import collections
 import sys
 
 from . import dex
@@ -39,6 +40,17 @@ def check_runs(results):
                     all(r["dead"] == 4 for r in runs), ", ".join(str(r["dead"]) for r in runs)))
     results.append(("every catch is made in a split no later than the target",
                     all(rank[e["split"]] <= rank["League"] for c in catches for e in c), ""))
+
+    # Ian's sample boxes (2026-09-26) came up empty at Route 223 and the
+    # Pokemon League: every line there was a family the box already had, so
+    # the dupes clause left nothing (Route 223 in 31 of 40 League runs). The
+    # seventeen water lines fixed it; this keeps any area from going dead.
+    empty = collections.Counter(e["area"] for r in runs for e in r["log"]
+                                if e.get("area") and not e.get("species")
+                                and not e.get("wait") and not e.get("death"))
+    results.append(("no capture area comes up empty in more than one of the five League runs",
+                    all(n <= 1 for n in empty.values()),
+                    ", ".join(f"{a} {n}" for a, n in empty.most_common(3)) or "none empty"))
 
     short = simulate.run("Gardenia", deaths=0, starter="SPECIES_PIPLUP", seed=9)
     results.append(("a run to Gardenia's split starts with the chosen starter and "
