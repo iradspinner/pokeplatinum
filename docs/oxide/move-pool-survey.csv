@@ -1,0 +1,620 @@
+move,name,type,category,power,accuracy,pp,priority,effect,engine,lines,by_level,by_tm,by_tutor,by_egg,unobtainable_lines,earliest_level,tm,tutor,trainer_default,trainer_hand
+MOVE_ABSORB,Absorb,Grass,Special,20,100,25,0,recover half damage dealt,runs,16,16,0,0,0,4,1,,,1,1
+MOVE_ACCELEROCK,Accelerock,Rock,Physical,40,100,20,1,priority 1,runs,1,1,0,0,0,0,55,,,0,0
+MOVE_ACID,Acid,Poison,Special,40,100,30,0,lower sp. def hit (10%),runs,4,4,0,0,0,4,1,,,0,0
+MOVE_ACID_ARMOR,Acid Armor,Poison,Status,,never misses,1,0,def up 2,runs,6,5,0,0,1,2,1,,,0,0
+MOVE_ACID_SPRAY,Acid Spray,Poison,Special,40,100,20,0,lower sp. def 2 hit,runs,2,2,0,0,0,0,7,,,0,0
+MOVE_ACROBATICS,Acrobatics,Flying,Physical,55,100,15,0,double damage without item,runs,8,8,0,0,0,0,22,,,0,0
+MOVE_ACUPRESSURE,Acupressure,Normal,Status,,never misses,30,0,random stat up 2,runs,2,1,0,0,1,2,17,,,1,2
+MOVE_AERIAL_ACE,Aerial Ace,Flying,Physical,60,never misses,20,0,bypass accuracy,runs,61,7,58,0,0,44,1,TM40,,0,34
+MOVE_AEROBLAST,Aeroblast,Flying,Special,100,95,5,0,high critical,runs,0,0,0,0,0,1,,,,0,0
+MOVE_AFTER_YOU,After You,Normal,Status,,never misses,15,0,after you,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_AGILITY,Agility,Psychic,Status,,never misses,1,0,speed up 2,runs,44,34,0,0,12,16,9,,,3,13
+MOVE_AIR_CUTTER,Air Cutter,Flying,Special,60,100,25,0,high critical,runs,28,4,0,26,0,19,1,,Route 212,0,8
+MOVE_AIR_SLASH,Air Slash,Flying,Special,75,95,15,0,flinch hit (30%),runs,18,18,0,0,0,3,1,,,1,16
+MOVE_ALLY_SWITCH,Ally Switch,Psychic,Status,,never misses,15,2,plain hit,partial: status move running the plain-hit script: its effect never happens,2,2,0,0,0,0,16,,,0,0
+MOVE_AMNESIA,Amnesia,Psychic,Status,,never misses,1,0,sp. def up 2,runs,30,15,0,0,15,10,9,,,0,14
+MOVE_ANCHOR_SHOT,Anchor Shot,Steel,Physical,90,100,20,0,prevent escape hit,runs,1,1,0,0,0,0,34,,,0,0
+MOVE_ANCIENT_POWER,AncientPower,Rock,Special,60,100,5,0,raise all stats hit (10%),runs,49,26,0,42,12,22,1,,Survival Area,1,23
+MOVE_AQUA_JET,Aqua Jet,Water,Physical,40,100,20,1,priority 1,runs,9,7,0,0,2,1,1,,,0,20
+MOVE_AQUA_RING,Aqua Ring,Water,Status,,never misses,20,0,restore hp every turn,runs,18,15,0,0,6,0,5,,,1,16
+MOVE_AQUA_TAIL,Aqua Tail,Water,Physical,90,100,10,0,plain hit,runs,37,11,0,35,4,17,28,,Survival Area,0,25
+MOVE_ARM_THRUST,Arm Thrust,Fighting,Physical,15,100,20,0,multi hit,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_ARMOR_CANNON,Armor Cannon,Fire,Special,120,100,5,0,def spd down hit,runs,1,1,0,0,0,0,62,,,0,0
+MOVE_AROMATHERAPY,Aromatherapy,Grass,Status,,never misses,5,0,cure party status,runs,10,7,0,0,3,3,1,,,0,0
+MOVE_AROMATIC_MIST,Aromatic Mist,Fairy,Status,,never misses,20,0,plain hit,partial: status move running the plain-hit script: its effect never happens,3,3,0,0,0,0,1,,,0,0
+MOVE_ASSIST,Assist,Normal,Status,,never misses,20,0,use random ally move,runs,4,3,0,0,1,3,1,,,0,1
+MOVE_ASSURANCE,Assurance,Dark,Physical,70,100,10,0,double power if target hit,runs,16,12,0,0,4,6,1,,,1,2
+MOVE_ASTONISH,Astonish,Ghost,Physical,30,100,15,0,flinch hit (30%),runs,31,26,0,0,5,8,1,,,1,8
+MOVE_ATTACK_ORDER,Attack Order,Bug,Physical,120,100,15,0,poison hit (30%),runs,1,1,0,0,0,0,37,,,0,1
+MOVE_ATTRACT,Attract,Normal,Status,,100,15,0,infatuate,runs,137,9,135,0,1,67,1,TM45,,0,4
+MOVE_AURA_SPHERE,Aura Sphere,Fighting,Special,80,never misses,20,0,bypass accuracy,runs,8,8,0,0,0,2,1,,,0,12
+MOVE_AURORA_BEAM,Aurora Beam,Ice,Special,65,100,20,0,lower attack hit (10%),runs,14,11,0,0,4,2,1,,,0,2
+MOVE_AURORA_VEIL,Aurora Veil,Ice,Status,,never misses,20,0,set aurora veil,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_AUTOTOMIZE,Autotomize,Normal,Status,,never misses,15,0,autotomize,runs,2,2,0,0,0,0,30,,,0,0
+MOVE_AVALANCHE,Avalanche,Ice,Physical,60,100,10,-4,double power if hit,runs,35,1,35,0,0,11,31,TM72,,0,10
+MOVE_BABY_DOLL_EYES,Baby-Doll Eyes,Fairy,Status,,100,10,1,atk down,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_BANEFUL_BUNKER,Baneful Bunker,Poison,Status,,never misses,5,4,protect,partial: a plain Protect; the poison on contact is missing,1,1,0,0,0,0,1,,,0,0
+MOVE_BARRAGE,Barrage,Normal,Physical,15,85,20,0,multi hit,runs,0,0,0,0,0,1,,,,0,0
+MOVE_BARRIER,Barrier,Psychic,Status,,never misses,1,0,def up 2,runs,11,4,0,0,7,3,1,,,1,1
+MOVE_BATON_PASS,Baton Pass,Normal,Status,,never misses,40,0,pass stats and status,runs,21,14,0,0,7,9,1,,,8,7
+MOVE_BEAK_BLAST,Beak Blast,Flying,Physical,120,100,5,-3,plain hit,partial: a priority -3 hit; the burn on contact while it heats up is missing,1,1,0,0,0,0,1,,,0,0
+MOVE_BELCH,Belch,Poison,Special,120,100,10,0,belch,runs,2,2,0,0,0,0,18,,,0,0
+MOVE_BELLY_DRUM,Belly Drum,Normal,Status,,never misses,1,0,max atk lose half max hp,runs,8,3,0,0,5,2,17,,,0,9
+MOVE_BIDE,Bide,Normal,Physical,1,never misses,10,1,bide,runs,10,7,0,0,3,5,1,,,1,3
+MOVE_BIND,Bind,Normal,Physical,15,85,20,0,bind hit,runs,6,6,0,0,0,2,1,,,0,1
+MOVE_BITE,Bite,Dark,Physical,60,100,25,0,flinch hit (30%),runs,36,29,0,0,7,16,1,,,4,13
+MOVE_BITTER_BLADE,Bitter Blade,Fire,Physical,90,100,10,0,recover half damage dealt,runs,1,1,0,0,0,0,48,,,0,0
+MOVE_BLAZE_KICK,Blaze Kick,Fire,Physical,85,90,10,0,high critical burn hit (10%),runs,4,3,0,0,1,2,26,,,0,3
+MOVE_BLIZZARD,Blizzard,Ice,Special,110,70,5,0,blizzard (10%),runs,74,10,72,0,0,23,1,TM14,,0,18
+MOVE_BLOCK,Block,Normal,Status,,never misses,5,1,prevent escape,runs,14,10,0,0,5,0,1,,,0,4
+MOVE_BODY_PRESS,Body Press,Fighting,Physical,80,100,10,0,plain hit,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_BODY_SLAM,Body Slam,Normal,Physical,85,100,15,0,paralyze hit (30%),runs,26,13,0,0,13,11,18,,,0,20
+MOVE_BONE_CLUB,Bone Club,Ground,Physical,65,85,20,0,flinch hit (10%),runs,0,0,0,0,0,1,,,,0,1
+MOVE_BONE_RUSH,Bone Rush,Ground,Physical,25,90,10,0,multi hit,runs,2,2,0,0,0,1,1,,,0,0
+MOVE_BONEMERANG,Bonemerang,Ground,Physical,50,100,10,0,hit twice,runs,0,0,0,0,0,1,,,,0,1
+MOVE_BOOMBURST,Boomburst,Normal,Special,140,100,10,0,plain hit,runs,1,1,0,0,0,0,58,,,0,0
+MOVE_BOUNCE,Bounce,Flying,Physical,85,100,5,0,bounce (30%),runs,30,11,0,26,1,7,16,,Survival Area,0,12
+MOVE_BRAVE_BIRD,Brave Bird,Flying,Physical,120,100,15,0,recoil third,runs,10,8,0,0,2,3,1,,,0,26
+MOVE_BREAKING_SWIPE,Breaking Swipe,Dragon,Physical,60,100,15,0,lower attack hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_BRICK_BREAK,Brick Break,Fighting,Physical,75,100,15,0,remove screens,runs,71,4,68,0,0,36,8,TM31,,0,24
+MOVE_BRINE,Brine,Water,Special,65,100,10,0,double power when below half,runs,34,13,32,0,0,6,1,TM55,,0,14
+MOVE_BRUTAL_SWING,Brutal Swing,Dark,Physical,60,100,20,0,plain hit,runs,1,1,0,0,0,0,16,,,0,0
+MOVE_BUBBLE,Bubble,Water,Special,40,100,30,0,lower speed hit (10%),runs,16,16,0,0,0,0,1,,,0,3
+MOVE_BUBBLE_BEAM,BubbleBeam,Water,Special,65,100,20,0,lower speed hit (10%),runs,19,17,0,0,3,2,1,,,1,2
+MOVE_BUG_BITE,Bug Bite,Bug,Physical,60,100,20,0,eat berry,runs,16,15,0,0,1,9,1,,,0,15
+MOVE_BUG_BUZZ,Bug Buzz,Bug,Special,90,100,10,0,lower sp. def hit (10%),runs,13,12,0,0,1,6,32,,,3,6
+MOVE_BULK_UP,Bulk Up,Fighting,Status,,never misses,20,0,atk def up,runs,18,4,15,0,0,9,20,TM08,,0,4
+MOVE_BULLDOZE,Bulldoze,Ground,Physical,60,100,20,0,lower speed hit,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_BULLET_PUNCH,Bullet Punch,Steel,Physical,40,100,30,1,priority 1,runs,7,2,0,0,5,1,1,,,0,25
+MOVE_BULLET_SEED,Bullet Seed,Grass,Physical,25,100,30,0,multi hit,runs,21,5,18,0,0,10,1,TM09,,0,7
+MOVE_BURN_UP,Burn Up,Fire,Special,130,100,5,0,remove user fire type hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_CALM_MIND,Calm Mind,Psychic,Status,,never misses,3,0,sp. atk sp. def up,runs,41,6,39,0,0,20,23,TM04,,7,18
+MOVE_CAMOUFLAGE,Camouflage,Normal,Status,,never misses,20,0,camouflage,runs,3,3,0,0,0,0,19,,,0,2
+MOVE_CAPTIVATE,Captivate,Normal,Status,,100,20,0,sp. atk down 2 opposite gender,runs,137,15,135,0,1,67,25,TM78,,3,3
+MOVE_CHARGE,Charge,Electric,Status,,never misses,3,0,sp. def up double electric power,runs,12,11,0,0,2,2,1,,,2,3
+MOVE_CHARGE_BEAM,Charge Beam,Electric,Special,50,100,10,0,raise sp. atk hit (70%),runs,44,3,44,0,0,22,49,TM57,,0,5
+MOVE_CHARM,Charm,Fairy,Status,,100,20,0,atk down 2,runs,29,22,0,0,8,8,1,,,2,4
+MOVE_CHATTER,Chatter,Flying,Special,65,100,20,0,chatter,runs,1,1,0,0,0,0,21,,,0,2
+MOVE_CLAMP,Clamp,Water,Physical,35,85,15,0,bind hit,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_CLANGING_SCALES,Clanging Scales,Dragon,Special,110,100,5,0,user def down hit,runs,1,1,0,0,0,0,47,,,0,0
+MOVE_CLEAR_SMOG,Clear Smog,Poison,Special,50,never misses,15,0,clear smog,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_CLOSE_COMBAT,Close Combat,Fighting,Physical,120,100,5,0,def spd down hit,runs,16,14,0,0,3,5,1,,,0,50
+MOVE_COACHING,Coaching,Fighting,Status,,never misses,10,0,coaching,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_COIL,Coil,Poison,Status,,never misses,20,0,atk def acc up,runs,1,1,0,0,0,0,72,,,0,0
+MOVE_COMET_PUNCH,Comet Punch,Normal,Physical,18,85,15,0,multi hit,runs,0,0,0,0,0,3,,,,0,0
+MOVE_CONFUSE_RAY,Confuse Ray,Ghost,Status,,100,10,0,status confuse,runs,32,23,0,0,9,8,1,,,1,47
+MOVE_CONFUSION,Confusion,Psychic,Special,50,100,25,0,confuse hit (10%),runs,31,28,0,0,3,8,1,,,6,9
+MOVE_CONSTRICT,Constrict,Normal,Physical,10,100,35,0,lower speed hit (10%),runs,5,5,0,0,0,3,1,,,0,1
+MOVE_CONVERSION,Conversion,Normal,Status,,never misses,30,0,conversion,runs,0,0,0,0,0,1,,,,0,0
+MOVE_CONVERSION_2,Conversion 2,Normal,Status,,never misses,30,0,conversion2,runs,0,0,0,0,0,1,,,,0,1
+MOVE_COPYCAT,Copycat,Normal,Status,,never misses,20,1,use last used move,runs,15,15,0,0,0,2,1,,,3,6
+MOVE_CORE_ENFORCER,Core Enforcer,Dragon,Special,100,100,10,0,plain hit,partial: plain hit; the ability suppression is missing (hg-engine lacks it too),1,1,0,0,0,0,1,,,0,0
+MOVE_COSMIC_POWER,Cosmic Power,Psychic,Status,,never misses,20,0,def spd up,runs,5,5,0,0,0,3,1,,,2,1
+MOVE_COTTON_GUARD,Cotton Guard,Grass,Status,,never misses,10,0,def up 3,runs,1,1,0,0,0,0,36,,,0,0
+MOVE_COTTON_SPORE,Cotton Spore,Grass,Status,,100,40,0,speed down 2,runs,3,2,0,0,1,1,19,,,0,2
+MOVE_COUNTER,Counter,Fighting,Physical,1,100,20,-5,counter,runs,23,7,0,0,17,14,1,,,0,9
+MOVE_COVET,Covet,Normal,Physical,60,100,25,0,steal held item,runs,9,4,0,0,6,7,1,,,0,1
+MOVE_CRABHAMMER,Crabhammer,Water,Physical,100,95,10,0,high critical,runs,2,2,0,0,0,0,38,,,0,3
+MOVE_CRAFTY_SHIELD,Crafty Shield,Fairy,Status,,never misses,10,3,protect user side,runs,2,2,0,0,0,0,19,,,0,0
+MOVE_CROSS_CHOP,Cross Chop,Fighting,Physical,100,80,5,0,high critical,runs,8,2,0,0,6,1,22,,,3,17
+MOVE_CROSS_POISON,Cross Poison,Poison,Physical,70,100,20,0,high critical poison hit (10%),runs,3,2,0,0,1,2,1,,,0,8
+MOVE_CRUNCH,Crunch,Dark,Physical,80,100,15,0,lower defense hit (20%),runs,33,27,0,0,8,13,1,,,4,59
+MOVE_CRUSH_CLAW,Crush Claw,Normal,Physical,75,95,10,0,lower defense hit (50%),runs,4,0,0,0,4,6,,,,0,2
+MOVE_CRUSH_GRIP,Crush Grip,Normal,Physical,1,100,5,0,increase power with more hp,runs,1,1,0,0,0,0,75,,,0,1
+MOVE_CURSE,Curse,Mystery,Status,,never misses,3,0,curse,runs,35,13,0,0,22,15,1,,,0,19
+MOVE_CUT,Cut,Normal,Physical,50,100,30,0,plain hit,runs,53,1,52,0,0,34,15,HM01,,0,0
+MOVE_DARK_PULSE,Dark Pulse,Dark,Special,80,100,15,0,flinch hit (20%),runs,35,11,31,0,0,11,1,TM79,,0,30
+MOVE_DARK_VOID,Dark Void,Dark,Status,,80,10,0,status sleep,runs,1,1,0,0,0,0,66,,,0,1
+MOVE_DARKEST_LARIAT,Darkest Lariat,Dark,Physical,85,100,10,0,plain hit,runs,1,1,0,0,0,0,36,,,0,0
+MOVE_DAZZLING_GLEAM,Dazzling Gleam,Fairy,Special,80,100,10,0,plain hit,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_DEFEND_ORDER,Defend Order,Bug,Status,,never misses,10,1,def spd up,runs,1,1,0,0,0,0,13,,,0,1
+MOVE_DEFENSE_CURL,Defense Curl,Normal,Status,,never misses,3,0,def up double rollout power,runs,17,13,0,0,5,7,1,,,4,8
+MOVE_DEFOG,Defog,Flying,Status,,never misses,15,0,remove hazards screens eva down,runs,39,7,32,0,0,15,1,HM05,,0,0
+MOVE_DESTINY_BOND,Destiny Bond,Ghost,Status,,never misses,5,0,ko mon that defeated user,runs,12,7,0,0,6,4,40,,,0,13
+MOVE_DETECT,Detect,Fighting,Status,,never misses,5,3,protect,runs,11,10,0,0,2,3,1,,,0,9
+MOVE_DIAMOND_STORM,Diamond Storm,Rock,Physical,100,100,5,0,raise def 2 hit (50%),runs,1,1,0,0,0,0,71,,,0,0
+MOVE_DIG,Dig,Ground,Physical,80,100,10,0,dig,runs,61,4,59,0,1,37,13,TM28,,1,11
+MOVE_DISABLE,Disable,Normal,Status,,100,20,0,disable,runs,20,10,0,0,10,12,1,,,4,2
+MOVE_DISARMING_VOICE,Disarming Voice,Fairy,Special,40,never misses,15,0,bypass accuracy,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_DISCHARGE,Discharge,Electric,Special,80,100,15,0,paralyze hit (30%),runs,16,16,0,0,0,3,28,,,10,9
+MOVE_DIVE,Dive,Water,Physical,80,100,10,0,dive,runs,43,7,0,42,0,8,33,,Route 212,0,4
+MOVE_DIZZY_PUNCH,Dizzy Punch,Normal,Physical,70,100,10,0,confuse hit (20%),runs,2,2,0,0,0,4,1,,,0,7
+MOVE_DOOM_DESIRE,Doom Desire,Steel,Special,140,100,5,0,hit in 3 turns,runs,0,0,0,0,0,1,,,,0,0
+MOVE_DOUBLE_HIT,Double Hit,Normal,Physical,35,90,10,0,hit twice,runs,8,5,0,0,3,3,32,,,3,1
+MOVE_DOUBLE_KICK,Double Kick,Fighting,Physical,30,100,30,0,hit twice,runs,13,9,0,0,4,6,1,,,0,4
+MOVE_DOUBLE_SHOCK,Double Shock,Electric,Physical,120,100,5,0,remove user electric type hit,runs,1,1,0,0,0,0,61,,,0,0
+MOVE_DOUBLE_TEAM,Double Team,Normal,Status,,never misses,6,0,eva up,runs,163,12,161,0,0,81,1,TM32,,2,10
+MOVE_DOUBLE_EDGE,Double-Edge,Normal,Physical,120,100,15,0,recoil third,runs,39,19,0,0,20,18,1,,,0,19
+MOVE_DOUBLE_SLAP,DoubleSlap,Normal,Physical,15,100,10,0,multi hit,runs,14,11,0,0,3,1,1,,,4,2
+MOVE_DRACO_METEOR,Draco Meteor,Dragon,Special,130,90,5,0,user sp. atk down 2,runs,3,3,0,0,0,0,1,,,0,4
+MOVE_DRAGON_CLAW,Dragon Claw,Dragon,Physical,80,100,15,0,plain hit,runs,14,7,13,0,1,7,1,TM02,,0,10
+MOVE_DRAGON_DANCE,Dragon Dance,Dragon,Status,,never misses,1,0,atk spd up,runs,7,3,0,0,4,4,38,,,0,20
+MOVE_DRAGON_PULSE,Dragon Pulse,Dragon,Special,85,100,10,0,plain hit,runs,28,10,23,0,0,10,1,TM59,,0,10
+MOVE_DRAGON_RAGE,Dragon Rage,Dragon,Special,1,100,10,0,40 damage flat,runs,4,3,0,0,1,3,1,,,0,0
+MOVE_DRAGON_RUSH,Dragon Rush,Dragon,Physical,100,75,10,0,flinch hit (20%),runs,7,4,0,0,3,3,37,,,0,4
+MOVE_DRAGON_TAIL,Dragon Tail,Dragon,Physical,60,100,10,-6,force switch hit,runs,4,4,0,0,0,1,1,,,0,0
+MOVE_DRAGON_BREATH,DragonBreath,Dragon,Special,60,100,20,0,paralyze hit (30%),runs,14,10,0,0,4,3,1,,,1,1
+MOVE_DRAIN_PUNCH,Drain Punch,Fighting,Physical,75,100,10,0,recover half damage dealt,runs,20,2,18,0,0,14,25,TM60,,0,8
+MOVE_DRAINING_KISS,Draining Kiss,Fairy,Special,50,100,10,0,recover three quarters damage dealt,runs,5,5,0,0,0,0,15,,,0,0
+MOVE_DREAM_EATER,Dream Eater,Psychic,Special,100,100,15,0,recover damage sleep,runs,47,6,46,0,1,23,19,TM85,,0,7
+MOVE_DRILL_PECK,Drill Peck,Flying,Physical,80,100,20,0,plain hit,runs,7,5,0,0,2,3,24,,,0,11
+MOVE_DUAL_CHOP,Dual Chop,Dragon,Physical,40,100,15,0,hit twice,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_DUAL_WINGBEAT,Dual Wingbeat,Flying,Physical,40,100,10,0,hit twice,runs,2,2,0,0,0,0,28,,,0,0
+MOVE_DYNAMIC_PUNCH,DynamicPunch,Fighting,Physical,100,50,5,0,confuse hit,runs,9,4,0,0,5,1,43,,,2,4
+MOVE_EARTH_POWER,Earth Power,Ground,Special,90,100,10,0,lower sp. def hit (10%),runs,37,12,0,36,0,18,20,,Survival Area,0,24
+MOVE_EARTHQUAKE,Earthquake,Ground,Physical,100,100,10,0,double damage dig,runs,78,15,74,0,0,38,1,TM26,,1,104
+MOVE_ECHOED_VOICE,Echoed Voice,Normal,Special,40,100,15,0,plain hit,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_EERIE_IMPULSE,Eerie Impulse,Electric,Status,,100,5,0,sp. atk down 2,runs,2,2,0,0,0,0,24,,,0,0
+MOVE_EGG_BOMB,Egg Bomb,Normal,Physical,100,100,10,0,plain hit,runs,1,1,0,0,0,1,38,,,0,2
+MOVE_ELECTRIC_TERRAIN,ElectricTerrain,Electric,Status,,never misses,10,0,apply terrains,stub: nothing happens (terrain held),2,2,0,0,0,0,60,,,0,0
+MOVE_ELECTRO_BALL,Electro Ball,Electric,Special,1,100,10,0,plain hit,runs,1,1,0,0,0,0,26,,,0,0
+MOVE_ELECTROWEB,Electroweb,Electric,Special,55,100,15,0,lower speed hit,runs,2,2,0,0,0,0,15,,,0,0
+MOVE_EMBARGO,Embargo,Dark,Status,,100,15,0,prevent item use,runs,19,7,17,0,0,8,1,TM63,,0,1
+MOVE_EMBER,Ember,Fire,Special,40,100,25,0,burn hit (10%),runs,19,19,0,0,0,7,1,,,0,7
+MOVE_ENCORE,Encore,Normal,Status,,100,5,0,encore,runs,22,15,0,0,9,11,1,,,2,6
+MOVE_ENDEAVOR,Endeavor,Normal,Physical,1,100,5,0,set hp equal to user,runs,20,3,0,18,5,16,17,,Survival Area,0,12
+MOVE_ENDURE,Endure,Normal,Status,,never misses,10,3,survive with 1 hp,runs,165,14,161,0,3,81,1,TM58,,2,14
+MOVE_ENERGY_BALL,Energy Ball,Grass,Special,90,100,10,0,lower sp. def hit (10%),runs,43,8,38,0,1,18,1,TM53,,0,41
+MOVE_ENTRAINMENT,Entrainment,Normal,Status,,100,15,0,entrainment,runs,3,3,0,0,0,0,35,,,0,0
+MOVE_ERUPTION,Eruption,Fire,Special,150,100,5,0,decrease power with less user hp,runs,0,0,0,0,0,5,,,,0,4
+MOVE_EXPANDING_FORCE,Expanding Force,Psychic,Special,80,100,10,0,plain hit,partial: plain 80 hit; its Psychic Terrain boost waits on terrain,2,2,0,0,0,0,56,,,0,0
+MOVE_EXPLOSION,Explosion,Normal,Physical,250,100,5,0,halve defense,runs,29,15,25,0,3,9,1,TM64,,2,17
+MOVE_EXTRASENSORY,Extrasensory,Psychic,Special,80,100,20,0,flinch hit (10%),runs,13,12,0,0,2,7,1,,,1,17
+MOVE_EXTREME_SPEED,ExtremeSpeed,Normal,Physical,80,100,5,1,priority 1,runs,3,3,0,0,0,3,1,,,0,8
+MOVE_FACADE,Facade,Normal,Physical,70,100,20,0,double power when statused,runs,161,0,161,0,0,81,,TM42,,0,5
+MOVE_FAINT_ATTACK,Faint Attack,Dark,Physical,60,never misses,20,0,bypass accuracy,runs,30,21,0,0,10,16,1,,,3,15
+MOVE_FAIRY_LOCK,Fairy Lock,Fairy,Status,,never misses,10,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,1,,,0,0
+MOVE_FAIRY_WIND,Fairy Wind,Fairy,Special,40,100,30,0,plain hit,runs,5,5,0,0,0,0,1,,,0,0
+MOVE_FAKE_OUT,Fake Out,Normal,Physical,40,100,10,1,always flinch first turn only,runs,20,11,0,0,11,7,1,,,0,30
+MOVE_FAKE_TEARS,Fake Tears,Dark,Status,,100,20,0,sp. def down 2,runs,15,7,0,0,8,2,1,,,0,5
+MOVE_FALSE_SWIPE,False Swipe,Normal,Physical,40,100,40,0,leave with 1 hp,runs,18,6,11,0,4,10,1,TM54,,0,0
+MOVE_FEATHER_DANCE,FeatherDance,Flying,Status,,100,15,0,atk down 2,runs,11,7,0,0,4,3,16,,,0,1
+MOVE_FEINT,Feint,Normal,Physical,30,100,10,2,remove protect,runs,18,15,0,0,4,7,1,,,3,4
+MOVE_FELL_STINGER,Fell Stinger,Bug,Physical,50,100,25,0,fell stinger,runs,3,3,0,0,0,0,10,,,0,0
+MOVE_FIERY_DANCE,Fiery Dance,Fire,Special,80,100,10,0,raise sp. atk hit (50%),runs,1,1,0,0,0,0,82,,,0,0
+MOVE_FIERY_WRATH,Fiery Wrath,Dark,Special,90,100,10,0,flinch hit (20%),runs,1,1,0,0,0,0,45,,,0,0
+MOVE_FINAL_GAMBIT,Final Gambit,Fighting,Special,1,100,5,0,final gambit,runs,1,1,0,0,0,0,57,,,0,0
+MOVE_FIRE_BLAST,Fire Blast,Fire,Special,110,85,5,0,burn hit (10%),runs,42,6,40,0,0,26,37,TM38,,0,16
+MOVE_FIRE_FANG,Fire Fang,Fire,Physical,90,100,15,0,flinch burn hit (10%),runs,17,13,0,0,6,7,1,,,0,26
+MOVE_FIRE_PUNCH,Fire Punch,Fire,Physical,95,100,15,0,burn hit (10%),runs,37,7,0,37,6,25,1,,Route 212,0,52
+MOVE_FIRE_SPIN,Fire Spin,Fire,Special,35,100,15,0,bind hit,runs,15,14,0,0,1,4,1,,,0,1
+MOVE_FISSURE,Fissure,Ground,Physical,1,30,5,0,one hit ko,runs,12,4,0,0,8,4,47,,,0,3
+MOVE_FLAIL,Flail,Normal,Physical,1,100,15,0,increase power with less hp,runs,33,17,0,0,18,17,1,,,0,2
+MOVE_FLAME_BURST,Flame Burst,Fire,Special,70,100,15,0,plain hit,partial: plain hit; the splash on the target's partner is missing (doubles only),3,3,0,0,0,0,17,,,0,0
+MOVE_FLAME_CHARGE,Flame Charge,Fire,Physical,50,100,20,0,raise speed hit,runs,3,3,0,0,0,0,6,,,0,0
+MOVE_FLAME_WHEEL,Flame Wheel,Fire,Physical,60,100,25,0,thaw and burn hit (10%),runs,2,2,0,0,1,4,15,,,0,5
+MOVE_FLAMETHROWER,Flamethrower,Fire,Special,90,100,15,0,burn hit (10%),runs,47,14,41,0,0,28,24,TM35,,0,35
+MOVE_FLARE_BLITZ,Flare Blitz,Fire,Physical,120,100,15,0,recoil burn hit (10%),runs,10,9,0,0,3,3,40,,,0,15
+MOVE_FLASH,Flash,Normal,Status,,100,20,0,acc down,runs,75,1,74,0,0,40,1,TM70,,0,0
+MOVE_FLASH_CANNON,Flash Cannon,Steel,Special,80,100,10,0,lower sp. def hit (10%),runs,27,7,23,0,0,7,1,TM91,,0,25
+MOVE_FLATTER,Flatter,Dark,Status,,100,15,0,sp. atk up cause confusion,runs,8,6,0,0,2,3,1,,,0,1
+MOVE_FLEUR_CANNON,Fleur Cannon,Fairy,Special,130,100,5,0,user sp. atk down 2,runs,1,1,0,0,0,0,90,,,0,0
+MOVE_FLING,Fling,Dark,Physical,1,100,10,0,fling,runs,81,8,79,0,0,35,1,TM56,,4,5
+MOVE_FLIP_TURN,Flip Turn,Water,Physical,60,100,20,0,switch hit,runs,1,1,0,0,0,0,51,,,0,0
+MOVE_FLOWER_SHIELD,Flower Shield,Fairy,Status,,never misses,10,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,1,,,0,0
+MOVE_FLOWER_TRICK,Flower Trick,Grass,Physical,70,never misses,10,0,always critical,runs,1,1,0,0,0,0,36,,,0,0
+MOVE_FLY,Fly,Flying,Physical,90,95,15,0,fly,runs,23,1,22,0,0,13,36,HM02,,0,2
+MOVE_FLYING_PRESS,Flying Press,Fighting,Physical,100,100,10,0,plain hit,runs,1,1,0,0,0,0,20,,,0,0
+MOVE_FOCUS_BLAST,Focus Blast,Fighting,Special,120,70,5,0,lower sp. def hit (10%),runs,58,2,56,0,0,25,50,TM52,,0,28
+MOVE_FOCUS_ENERGY,Focus Energy,Normal,Status,,never misses,30,0,crit up 2,runs,21,15,0,0,6,11,1,,,3,5
+MOVE_FOCUS_PUNCH,Focus Punch,Fighting,Physical,150,100,20,-3,hit last whiff if hit,runs,59,1,58,0,0,27,70,TM01,,0,6
+MOVE_FOLLOW_ME,Follow Me,Normal,Status,,never misses,20,3,make global target,runs,3,3,0,0,0,0,16,,,2,1
+MOVE_FORCE_PALM,Force Palm,Fighting,Physical,60,100,10,0,paralyze hit (30%),runs,5,5,0,0,0,0,11,,,1,3
+MOVE_FORESIGHT,Foresight,Normal,Status,,never misses,40,0,foresight,runs,21,10,0,0,11,9,1,,,3,3
+MOVE_FOUL_PLAY,Foul Play,Dark,Physical,95,100,15,0,plain hit,runs,3,3,0,0,0,0,18,,,0,0
+MOVE_FREEZE_DRY,Freeze-Dry,Ice,Special,70,100,20,0,freeze hit (10%),runs,1,1,0,0,0,0,44,,,0,0
+MOVE_FREEZING_GLARE,Freezing Glare,Psychic,Special,90,100,10,0,freeze hit (10%),runs,1,1,0,0,0,0,45,,,0,0
+MOVE_FRUSTRATION,Frustration,Normal,Physical,1,100,20,0,power based on low friendship,runs,161,1,161,0,0,81,13,TM21,,1,0
+MOVE_FURY_ATTACK,Fury Attack,Normal,Physical,15,100,20,0,multi hit,runs,16,15,0,0,1,5,1,,,2,5
+MOVE_FURY_CUTTER,Fury Cutter,Bug,Physical,40,95,20,0,double power each turn,runs,58,10,0,53,2,27,1,,Route 212,1,0
+MOVE_FURY_SWIPES,Fury Swipes,Normal,Physical,18,100,15,0,multi hit,runs,13,11,0,0,2,13,5,,,2,8
+MOVE_FUTURE_SIGHT,Future Sight,Psychic,Special,120,100,10,0,hit in 3 turns,runs,26,17,0,0,9,8,34,,,6,7
+MOVE_GASTRO_ACID,Gastro Acid,Poison,Status,,100,10,0,suppress ability,runs,5,4,0,2,0,6,23,,Survival Area,0,0
+MOVE_GEOMANCY,Geomancy,Fairy,Status,,never misses,10,0,charge turn atk sp. atk speed up 2,runs,1,1,0,0,0,0,41,,,0,0
+MOVE_GIGA_DRAIN,Giga Drain,Grass,Special,75,100,10,0,recover half damage dealt,runs,31,13,25,0,0,28,25,TM19,,1,12
+MOVE_GIGA_IMPACT,Giga Impact,Normal,Physical,150,90,5,0,recharge after,runs,148,6,146,0,0,70,49,TM68,,0,11
+MOVE_GLARE,Glare,Normal,Status,,100,30,0,status paralyze,runs,2,2,0,0,0,3,1,,,0,5
+MOVE_GRASS_KNOT,Grass Knot,Grass,Special,1,100,20,0,increase power with weight,runs,56,3,53,0,0,22,1,TM86,,0,6
+MOVE_GRASS_WHISTLE,GrassWhistle,Grass,Status,,55,15,0,status sleep,runs,6,4,0,0,2,4,1,,,1,2
+MOVE_GRASSY_GLIDE,Grassy Glide,Grass,Physical,55,100,20,0,plain hit,partial: plain 55 hit; its priority in Grassy Terrain waits on terrain,1,1,0,0,0,0,46,,,0,0
+MOVE_GRASSY_TERRAIN,Grassy Terrain,Grass,Status,,never misses,10,0,apply terrains,stub: nothing happens (terrain held),2,2,0,0,0,0,23,,,0,0
+MOVE_GRAVITY,Gravity,Psychic,Status,,never misses,5,0,gravity,runs,6,5,0,0,1,2,1,,,1,0
+MOVE_GROWL,Growl,Normal,Status,,100,40,0,atk down,runs,47,47,0,0,0,11,1,,,6,15
+MOVE_GROWTH,Growth,Normal,Status,,never misses,3,0,sp. atk up,runs,14,12,0,0,2,6,1,,,1,3
+MOVE_GRUDGE,Grudge,Ghost,Status,,never misses,5,0,remove all pp on defeat,runs,10,5,0,0,5,2,1,,,0,0
+MOVE_GUARD_SPLIT,Guard Split,Psychic,Status,,never misses,10,0,guard split,runs,5,5,0,0,0,0,12,,,0,0
+MOVE_GUARD_SWAP,Guard Swap,Psychic,Status,,never misses,10,0,swap def sp. def stat changes,runs,6,4,0,0,2,2,1,,,0,0
+MOVE_GUILLOTINE,Guillotine,Normal,Physical,1,30,5,0,one hit ko,runs,4,4,0,0,0,1,31,,,0,5
+MOVE_GUNK_SHOT,Gunk Shot,Poison,Physical,120,80,5,0,poison hit (30%),runs,11,2,0,10,0,9,1,,Survival Area,0,14
+MOVE_GUST,Gust,Flying,Special,40,100,35,0,double damage fly or bounce,runs,16,13,0,0,3,7,1,,,2,3
+MOVE_GYRO_BALL,Gyro Ball,Steel,Physical,1,100,5,0,power based on low speed,runs,21,8,18,0,0,14,1,TM74,,2,8
+MOVE_HAIL,Hail,Ice,Status,,never misses,1,0,weather hail,runs,53,7,52,0,0,9,20,TM07,,0,2
+MOVE_HAMMER_ARM,Hammer Arm,Fighting,Physical,100,100,10,0,speed down hit,runs,13,10,0,0,3,4,1,,,0,10
+MOVE_HARDEN,Harden,Normal,Status,,never misses,5,0,def up,runs,26,24,0,0,2,9,1,,,0,6
+MOVE_HAZE,Haze,Ice,Status,,never misses,30,0,reset stat changes,runs,22,11,0,0,11,7,1,,,0,2
+MOVE_HEAD_SMASH,Head Smash,Rock,Physical,150,80,5,0,recoil half,runs,4,4,0,0,0,0,1,,,0,5
+MOVE_HEADBUTT,Headbutt,Normal,Physical,70,100,15,0,flinch hit (30%),runs,19,14,0,0,5,7,1,,,0,31
+MOVE_HEAL_BELL,Heal Bell,Normal,Status,,never misses,5,0,cure party status,runs,4,2,0,0,2,2,38,,,0,3
+MOVE_HEAL_BLOCK,Heal Block,Psychic,Status,,100,15,0,prevent healing,runs,9,9,0,0,0,3,5,,,0,1
+MOVE_HEAL_ORDER,Heal Order,Bug,Status,,never misses,10,1,restore half hp,runs,1,1,0,0,0,0,25,,,0,1
+MOVE_HEAL_PULSE,Heal Pulse,Psychic,Status,,never misses,10,0,heal target,runs,4,4,0,0,0,0,1,,,0,0
+MOVE_HEALING_WISH,Healing Wish,Psychic,Status,,never misses,10,0,faint and full heal next mon,runs,11,10,0,0,1,2,1,,,2,0
+MOVE_HEART_SWAP,Heart Swap,Psychic,Status,,never misses,10,0,swap stat changes,runs,1,1,0,0,0,0,76,,,0,0
+MOVE_HEAT_WAVE,Heat Wave,Fire,Special,95,90,10,0,burn hit (10%),runs,23,6,0,20,2,16,1,,Survival Area,0,13
+MOVE_HEAVY_SLAM,Heavy Slam,Steel,Physical,1,100,10,0,heavy slam,runs,6,6,0,0,0,0,1,,,0,0
+MOVE_HELPING_HAND,Helping Hand,Normal,Status,,never misses,20,5,boost ally power by 50 percent,runs,51,18,0,43,5,16,1,,Snowpoint City,0,1
+MOVE_HEX,Hex,Ghost,Special,65,100,10,0,double damage on status,runs,4,4,0,0,0,0,20,,,0,0
+MOVE_HI_JUMP_KICK,Hi Jump Kick,Fighting,Physical,130,90,10,0,crash on miss,runs,8,7,0,0,1,1,32,,,0,10
+MOVE_HIDDEN_POWER,Hidden Power,Normal,Special,1,100,15,0,random power based on ivs,runs,161,4,161,0,0,82,1,TM10,,0,23
+MOVE_HOLD_BACK,Hold Back,Normal,Physical,40,100,40,0,leave with 1 hp,runs,1,1,0,0,0,0,14,,,0,0
+MOVE_HONE_CLAWS,Hone Claws,Dark,Status,,never misses,15,0,atk acc up,runs,1,1,0,0,0,0,24,,,0,0
+MOVE_HORN_ATTACK,Horn Attack,Normal,Physical,65,100,25,0,plain hit,runs,6,6,0,0,0,1,1,,,0,1
+MOVE_HORN_DRILL,Horn Drill,Normal,Physical,1,30,5,0,one hit ko,runs,6,3,0,0,3,0,37,,,0,2
+MOVE_HORN_LEECH,Horn Leech,Grass,Physical,75,100,10,0,recover half damage dealt,runs,2,2,0,0,0,0,40,,,0,0
+MOVE_HOWL,Howl,Normal,Status,,never misses,3,0,atk up,runs,4,2,0,0,2,5,1,,,0,2
+MOVE_HURRICANE,Hurricane,Flying,Special,110,80,10,0,hurricane (30%),runs,3,3,0,0,0,0,1,,,0,0
+MOVE_HYDRO_CANNON,Hydro Cannon,Water,Special,150,90,5,0,recharge after,runs,1,1,0,0,0,0,65,,,0,0
+MOVE_HYDRO_PUMP,Hydro Pump,Water,Special,110,80,5,0,plain hit,runs,31,27,0,0,7,5,1,,,0,32
+MOVE_HYPER_BEAM,Hyper Beam,Normal,Special,150,90,5,0,recharge after,runs,147,10,146,0,0,69,45,TM15,,1,14
+MOVE_HYPER_FANG,Hyper Fang,Normal,Physical,80,90,15,0,flinch hit (10%),runs,1,1,0,0,0,1,21,,,0,1
+MOVE_HYPER_VOICE,Hyper Voice,Normal,Special,100,100,10,0,plain hit,runs,8,8,0,0,0,2,1,,,0,6
+MOVE_HYPNOSIS,Hypnosis,Psychic,Status,,60,20,0,status sleep,runs,26,18,0,0,8,5,1,,,1,29
+MOVE_ICE_BALL,Ice Ball,Ice,Physical,30,90,20,0,double power each turn lock into,runs,4,1,0,0,3,0,13,,,0,0
+MOVE_ICE_BEAM,Ice Beam,Ice,Special,90,100,10,0,freeze hit (10%),runs,78,9,76,0,0,26,1,TM13,,0,55
+MOVE_ICE_FANG,Ice Fang,Ice,Physical,90,100,15,0,flinch freeze hit (10%),runs,19,15,0,0,5,5,1,,,0,37
+MOVE_ICE_PUNCH,Ice Punch,Ice,Physical,95,100,15,0,freeze hit (10%),runs,51,6,0,49,10,24,1,,Route 212,0,64
+MOVE_ICE_SHARD,Ice Shard,Ice,Physical,40,100,30,1,priority 1,runs,13,11,0,0,3,0,1,,,0,12
+MOVE_ICICLE_SPEAR,Icicle Spear,Ice,Physical,25,100,30,0,multi hit,runs,4,1,0,0,4,0,13,,,0,2
+MOVE_ICY_WIND,Icy Wind,Ice,Special,55,95,15,0,lower speed hit,runs,84,12,0,79,0,29,1,,Route 212,0,5
+MOVE_IMPRISON,Imprison,Psychic,Status,,never misses,10,0,make shared moves unuseable,runs,13,10,0,0,3,3,1,,,4,3
+MOVE_INCINERATE,Incinerate,Fire,Special,60,100,15,0,incinerate,runs,3,3,0,0,0,0,20,,,0,0
+MOVE_INFESTATION,Infestation,Bug,Special,20,100,20,0,bind hit,runs,4,4,0,0,0,0,5,,,0,0
+MOVE_INGRAIN,Ingrain,Grass,Status,,never misses,1,0,ground trap user continuous heal,runs,12,11,0,0,1,7,1,,,1,2
+MOVE_IRON_DEFENSE,Iron Defense,Steel,Status,,never misses,3,0,def up 2,runs,36,18,0,27,2,14,1,,Survival Area,1,6
+MOVE_IRON_HEAD,Iron Head,Steel,Physical,80,100,15,0,flinch hit (30%),runs,43,12,0,37,2,18,38,,Survival Area,0,30
+MOVE_IRON_TAIL,Iron Tail,Steel,Physical,100,75,15,0,lower defense hit (30%),runs,68,2,67,0,0,35,41,TM23,,0,4
+MOVE_JUDGMENT,Judgment,Normal,Special,100,100,10,0,judgement,runs,1,1,0,0,0,0,100,,,0,0
+MOVE_JUMP_KICK,Jump Kick,Fighting,Physical,100,95,10,0,crash on miss,runs,3,3,0,0,0,1,23,,,1,5
+MOVE_KARATE_CHOP,Karate Chop,Fighting,Physical,50,100,25,0,high critical,runs,5,3,0,0,2,0,1,,,1,2
+MOVE_KINESIS,Kinesis,Psychic,Status,,100,15,0,acc down,runs,1,1,0,0,0,0,1,,,0,1
+MOVE_KNOCK_OFF,Knock Off,Dark,Physical,70,100,20,0,remove held item,runs,49,15,0,41,5,24,1,,Route 212,1,14
+MOVE_LANDS_WRATH,Land’s Wrath,Ground,Physical,90,100,10,0,plain hit,runs,1,1,0,0,0,0,37,,,0,0
+MOVE_LASER_FOCUS,Laser Focus,Normal,Status,,never misses,30,0,laser focus,runs,1,1,0,0,0,0,45,,,0,0
+MOVE_LAST_RESORT,Last Resort,Normal,Physical,140,100,5,0,fail if not used all other moves,runs,30,13,0,26,4,15,1,,Snowpoint City,4,2
+MOVE_LAVA_PLUME,Lava Plume,Fire,Special,80,100,15,0,burn hit (30%),runs,5,5,0,0,0,4,32,,,0,3
+MOVE_LEAF_BLADE,Leaf Blade,Grass,Physical,90,100,15,0,high critical,runs,10,9,0,0,1,2,1,,,0,10
+MOVE_LEAF_STORM,Leaf Storm,Grass,Special,130,90,5,0,user sp. atk down 2,runs,14,12,0,0,4,7,44,,,0,16
+MOVE_LEAFAGE,Leafage,Grass,Physical,40,100,40,0,plain hit,runs,5,5,0,0,0,0,1,,,0,0
+MOVE_LEECH_LIFE,Leech Life,Bug,Physical,80,100,10,0,recover half damage dealt,runs,7,6,0,0,1,5,1,,,1,3
+MOVE_LEECH_SEED,Leech Seed,Grass,Status,,90,10,0,status leech seed,runs,16,9,0,0,7,6,1,,,0,34
+MOVE_LEER,Leer,Normal,Status,,100,3,0,def down,runs,40,38,0,0,3,23,1,,,3,9
+MOVE_LICK,Lick,Ghost,Physical,40,100,30,0,paralyze hit (30%),runs,8,7,0,0,2,4,1,,,0,1
+MOVE_LIFE_DEW,Life Dew,Water,Status,,never misses,10,0,life dew,runs,3,3,0,0,0,0,10,,,0,0
+MOVE_LIGHT_SCREEN,Light Screen,Psychic,Status,,never misses,1,0,set light screen,runs,57,20,42,0,5,26,1,TM16,,9,29
+MOVE_LIQUIDATION,Liquidation,Water,Physical,85,100,10,0,lower defense hit (20%),runs,3,3,0,0,0,0,1,,,0,0
+MOVE_LOCK_ON,Lock-On,Normal,Status,,never misses,5,0,next attack always hits,runs,7,7,0,0,0,1,6,,,3,0
+MOVE_LOVELY_KISS,Lovely Kiss,Normal,Status,,75,10,0,status sleep,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_LOW_KICK,Low Kick,Fighting,Physical,1,100,20,0,increase power with weight,runs,8,6,0,0,2,1,1,,,1,23
+MOVE_LOW_SWEEP,Low Sweep,Fighting,Physical,65,100,20,0,lower speed hit,runs,1,1,0,0,0,0,32,,,0,0
+MOVE_LUCKY_CHANT,Lucky Chant,Normal,Status,,never misses,30,0,prevent crits,runs,12,10,0,0,2,3,1,,,4,0
+MOVE_LUNAR_DANCE,Lunar Dance,Psychic,Status,,never misses,10,0,faint full restore next mon,runs,1,1,0,0,0,0,84,,,0,0
+MOVE_LUNGE,Lunge,Bug,Physical,80,100,15,0,lower attack hit,runs,3,3,0,0,0,0,37,,,0,0
+MOVE_LUSTER_PURGE,Luster Purge,Psychic,Special,95,100,5,0,lower sp. def hit (50%),runs,1,1,0,0,0,0,35,,,0,0
+MOVE_MACH_PUNCH,Mach Punch,Fighting,Physical,40,100,30,1,priority 1,runs,3,2,0,0,1,3,23,,,0,16
+MOVE_MAGIC_COAT,Magic Coat,Psychic,Status,,never misses,15,4,apply magic coat,runs,4,2,0,0,2,4,1,,,0,0
+MOVE_MAGIC_ROOM,Magic Room,Psychic,Status,,never misses,10,0,plain hit,partial: status move running the plain-hit script: its effect never happens,3,3,0,0,0,0,44,,,0,0
+MOVE_MAGICAL_LEAF,Magical Leaf,Grass,Special,60,never misses,20,0,bypass accuracy,runs,17,14,0,0,3,6,1,,,5,6
+MOVE_MAGMA_STORM,Magma Storm,Fire,Special,100,75,5,0,bind hit,runs,1,1,0,0,0,0,96,,,0,2
+MOVE_MAGNET_BOMB,Magnet Bomb,Steel,Physical,60,never misses,20,0,bypass accuracy,runs,2,2,0,0,0,0,1,,,5,1
+MOVE_MAGNET_RISE,Magnet Rise,Electric,Status,,never misses,10,0,give ground immunity,runs,20,5,0,18,0,7,1,,Snowpoint City,3,3
+MOVE_MAGNETIC_FLUX,Magnetic Flux,Electric,Status,,never misses,20,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,24,,,0,0
+MOVE_MAGNITUDE,Magnitude,Ground,Physical,1,100,30,0,psywave,runs,7,3,0,0,4,2,15,,,0,7
+MOVE_MAT_BLOCK,Mat Block,Fighting,Status,,never misses,10,0,protect user side,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_MATCHA_GOTCHA,Matcha Gotcha,Grass,Special,80,90,15,0,recover half damage dealt burn hit (20%),runs,1,1,0,0,0,0,1,,,0,0
+MOVE_ME_FIRST,Me First,Normal,Status,,never misses,20,1,use move first,runs,10,7,0,0,4,5,29,,,0,1
+MOVE_MEAN_LOOK,Mean Look,Normal,Status,,never misses,5,1,prevent escape,runs,14,12,0,0,2,2,8,,,0,6
+MOVE_MEDITATE,Meditate,Psychic,Status,,never misses,3,0,atk up,runs,7,2,0,0,5,2,1,,,1,1
+MOVE_MEGA_DRAIN,Mega Drain,Grass,Special,40,100,15,0,recover half damage dealt,runs,16,16,0,0,1,3,1,,,0,10
+MOVE_MEGA_KICK,Mega Kick,Normal,Physical,120,75,5,0,plain hit,runs,0,0,0,0,0,1,,,,0,2
+MOVE_MEGA_PUNCH,Mega Punch,Normal,Physical,80,85,20,0,plain hit,runs,3,1,0,0,2,3,35,,,0,3
+MOVE_MEGAHORN,Megahorn,Bug,Physical,120,85,10,0,plain hit,runs,9,9,0,0,0,0,1,,,0,10
+MOVE_MEMENTO,Memento,Dark,Status,,100,10,0,faint and atk sp. atk down 2,runs,15,9,0,0,6,1,38,,,0,1
+MOVE_METAL_BURST,Metal Burst,Steel,Physical,1,100,10,-5,metal burst,runs,1,1,0,0,0,1,37,,,0,3
+MOVE_METAL_CLAW,Metal Claw,Steel,Physical,50,95,35,0,raise attack hit (10%),runs,15,10,0,0,5,7,1,,,0,3
+MOVE_METAL_SOUND,Metal Sound,Steel,Status,,100,40,0,sp. def down 2,runs,9,9,0,0,0,2,1,,,1,1
+MOVE_METEOR_MASH,Meteor Mash,Steel,Physical,90,90,10,0,raise attack hit (20%),runs,2,2,0,0,0,0,43,,,3,11
+MOVE_METRONOME,Metronome,Normal,Status,,never misses,10,0,call random move,runs,5,3,0,0,3,1,1,,,1,10
+MOVE_MILK_DRINK,Milk Drink,Normal,Status,,never misses,10,0,restore half hp,runs,0,0,0,0,0,1,,,,0,3
+MOVE_MIMIC,Mimic,Normal,Status,,never misses,10,0,copy move for battle,runs,5,4,0,0,2,1,1,,,3,6
+MOVE_MIND_BLOWN,Mind Blown,Fire,Special,150,100,5,0,plain hit,partial: plain 150 hit; the user's loss of half its HP is missing,1,1,0,0,0,0,70,,,0,0
+MOVE_MIND_READER,Mind Reader,Normal,Status,,never misses,5,0,next attack always hits,runs,8,5,0,0,4,2,18,,,1,0
+MOVE_MINIMIZE,Minimize,Normal,Status,,never misses,3,0,eva up 2 minimize,runs,5,5,0,0,0,1,1,,,2,3
+MOVE_MIRACLE_EYE,Miracle Eye,Psychic,Status,,never misses,40,0,ignore evasion remove dark immune,runs,2,1,0,0,1,2,22,,,2,0
+MOVE_MIRROR_COAT,Mirror Coat,Psychic,Special,1,100,20,-5,mirror coat,runs,17,9,0,0,8,4,1,,,0,11
+MOVE_MIRROR_MOVE,Mirror Move,Flying,Status,,never misses,20,0,copy move,runs,7,4,0,0,3,5,1,,,0,3
+MOVE_MIRROR_SHOT,Mirror Shot,Steel,Special,65,100,10,0,lower accuracy hit (30%),runs,3,3,0,0,0,1,26,,,5,2
+MOVE_MIST,Mist,Ice,Status,,never misses,3,0,prevent stat reduction,runs,21,16,0,0,7,2,1,,,1,0
+MOVE_MIST_BALL,Mist Ball,Psychic,Special,95,100,5,0,lower sp. atk hit (50%),runs,1,1,0,0,0,0,35,,,0,0
+MOVE_MISTY_TERRAIN,Misty Terrain,Fairy,Status,,never misses,10,0,apply terrains,stub: nothing happens (terrain held),4,4,0,0,0,0,1,,,0,0
+MOVE_MOONBLAST,Moonblast,Fairy,Special,95,100,15,0,lower sp. atk hit (10%),runs,8,8,0,0,0,0,43,,,0,0
+MOVE_MOONLIGHT,Moonlight,Fairy,Status,,never misses,5,0,heal half more in sun,runs,4,4,0,0,0,5,20,,,3,3
+MOVE_MORNING_SUN,Morning Sun,Normal,Status,,never misses,5,0,heal half more in sun,runs,3,3,0,0,0,1,20,,,0,3
+MOVE_MORTAL_SPIN,Mortal Spin,Poison,Physical,30,100,15,0,mortal spin,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_MUD_BOMB,Mud Bomb,Ground,Special,65,100,10,0,lower accuracy hit (30%),runs,8,7,0,0,2,4,11,,,2,3
+MOVE_MUD_SHOT,Mud Shot,Ground,Special,55,100,15,0,lower speed hit,runs,9,6,0,0,4,3,1,,,0,1
+MOVE_MUD_SPORT,Mud Sport,Ground,Status,,never misses,15,0,halve electric damage,runs,20,9,0,0,12,2,1,,,0,2
+MOVE_MUD_SLAP,Mud-Slap,Ground,Special,20,100,10,0,lower accuracy hit,runs,131,6,0,130,4,60,1,,Survival Area,0,4
+MOVE_MUDDY_WATER,Muddy Water,Water,Special,90,100,10,0,lower accuracy hit (30%),runs,7,6,0,0,1,0,37,,,0,5
+MOVE_MYSTICAL_FIRE,Mystical Fire,Fire,Special,75,100,10,0,lower sp. atk hit,runs,5,5,0,0,0,0,1,,,0,0
+MOVE_NASTY_PLOT,Nasty Plot,Dark,Status,,never misses,1,0,sp. atk up 2,runs,23,20,0,0,5,7,1,,,9,8
+MOVE_NATURAL_GIFT,Natural Gift,Normal,Physical,1,100,15,0,natural gift,runs,162,12,161,0,0,81,1,TM83,,0,5
+MOVE_NATURE_POWER,Nature Power,Normal,Status,,never misses,20,0,nature power,runs,7,3,0,0,4,4,1,,,0,2
+MOVE_NATURES_MADNESS,Nature’sMadness,Fairy,Special,0,100,10,0,halve hp,"partial: halves HP; table power 0, where computed powers keep 1",4,4,0,0,0,0,55,,,0,0
+MOVE_NEEDLE_ARM,Needle Arm,Grass,Physical,60,100,15,0,flinch hit (30%),runs,0,0,0,0,0,1,,,,0,1
+MOVE_NIGHT_SHADE,Night Shade,Ghost,Special,1,100,15,0,level damage flat,runs,10,8,0,0,2,5,1,,,0,4
+MOVE_NIGHT_SLASH,Night Slash,Dark,Physical,70,100,15,0,high critical,runs,24,22,0,0,4,10,1,,,3,42
+MOVE_NIGHTMARE,Nightmare,Ghost,Status,,100,15,0,status nightmare,runs,2,2,0,0,0,1,38,,,0,0
+MOVE_NOBLE_ROAR,Noble Roar,Normal,Status,,100,10,0,tearful look,runs,1,1,0,0,0,0,41,,,0,0
+MOVE_NUZZLE,Nuzzle,Electric,Physical,20,100,20,0,paralyze hit,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_OBLIVION_WING,Oblivion Wing,Flying,Special,80,100,10,0,recover three quarters damage dealt,runs,1,1,0,0,0,0,38,,,0,0
+MOVE_OCTAZOOKA,Octazooka,Water,Special,65,85,10,0,lower accuracy hit (50%),runs,3,2,0,0,2,0,1,,,0,1
+MOVE_OCTOLOCK,Octolock,Fighting,Status,,100,15,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,1,,,0,0
+MOVE_ODOR_SLEUTH,Odor Sleuth,Normal,Status,,never misses,40,0,foresight,runs,9,6,0,0,3,5,1,,,0,1
+MOVE_OMINOUS_WIND,Ominous Wind,Ghost,Special,60,100,5,0,raise all stats hit (10%),runs,40,10,0,37,3,20,1,,Route 212,4,9
+MOVE_OUTRAGE,Outrage,Dragon,Physical,120,100,10,0,continue and confuse self,runs,33,6,0,28,3,12,49,,Survival Area,0,27
+MOVE_OVERHEAT,Overheat,Fire,Special,130,90,5,0,user sp. atk down 2,runs,19,4,15,0,0,12,60,TM50,,0,2
+MOVE_PAIN_SPLIT,Pain Split,Normal,Status,,never misses,20,0,average hp,runs,8,5,0,0,3,1,28,,,0,6
+MOVE_PARTING_SHOT,Parting Shot,Dark,Status,,100,20,0,parting shot,runs,1,1,0,0,0,0,42,,,0,0
+MOVE_PAY_DAY,Pay Day,Normal,Physical,40,100,20,0,increase prize money,runs,0,0,0,0,0,1,,,,0,0
+MOVE_PAYBACK,Payback,Dark,Physical,60,100,10,0,double power if moving second,runs,56,12,53,0,0,18,5,TM66,,1,14
+MOVE_PECK,Peck,Flying,Physical,40,100,35,0,plain hit,runs,18,17,0,0,1,5,1,,,0,4
+MOVE_PERISH_SONG,Perish Song,Normal,Status,,never misses,5,0,all faint 3 turns,runs,13,9,0,0,4,3,1,,,2,11
+MOVE_PETAL_BLIZZARD,Petal Blizzard,Grass,Physical,90,100,15,0,plain hit,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_PETAL_DANCE,Petal Dance,Grass,Special,120,100,10,0,continue and confuse self,runs,3,3,0,0,0,4,25,,,0,1
+MOVE_PHANTOM_FORCE,Phantom Force,Ghost,Physical,90,100,10,0,shadow force,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_PIN_MISSILE,Pin Missile,Bug,Physical,25,100,20,0,multi hit,runs,7,6,0,0,1,5,12,,,1,1
+MOVE_PLAY_NICE,Play Nice,Normal,Status,,never misses,10,0,atk down,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_PLAY_ROUGH,Play Rough,Fairy,Physical,90,100,10,0,lower attack hit (10%),runs,4,4,0,0,0,0,29,,,0,0
+MOVE_PLUCK,Pluck,Flying,Physical,60,100,20,0,eat berry,runs,20,7,15,0,0,9,1,TM88,,0,3
+MOVE_POISON_FANG,Poison Fang,Poison,Physical,75,100,15,0,badly poison hit (30%),runs,5,3,0,0,2,3,33,,,0,6
+MOVE_POISON_GAS,Poison Gas,Poison,Status,,85,40,0,status poison,runs,2,2,0,0,0,3,1,,,0,4
+MOVE_POISON_JAB,Poison Jab,Poison,Physical,80,100,20,0,poison hit (30%),runs,32,11,29,0,1,16,1,TM84,,0,37
+MOVE_POISON_STING,Poison Sting,Poison,Physical,40,100,35,0,poison hit (30%),runs,12,12,0,0,0,5,1,,,0,7
+MOVE_POISON_TAIL,Poison Tail,Poison,Physical,50,100,25,0,high critical poison hit (10%),runs,1,1,0,0,0,2,12,,,0,0
+MOVE_POISON_POWDER,PoisonPowder,Poison,Status,,75,35,0,status poison,runs,4,4,0,0,0,8,12,,,0,6
+MOVE_POLLEN_PUFF,Pollen Puff,Bug,Special,90,100,15,0,pollen puff,runs,1,1,0,0,0,0,72,,,0,0
+MOVE_POLTERGEIST,Poltergeist,Ghost,Physical,110,90,5,0,poltergeist,runs,2,2,0,0,0,0,1,,,0,0
+MOVE_POUND,Pound,Normal,Physical,40,100,35,0,plain hit,runs,16,16,0,0,0,7,1,,,3,4
+MOVE_POWDER_SNOW,Powder Snow,Ice,Special,40,100,25,0,freeze hit (10%),runs,9,9,0,0,0,0,1,,,0,1
+MOVE_POWER_GEM,Power Gem,Rock,Special,80,100,20,0,plain hit,runs,11,11,0,0,0,3,1,,,0,13
+MOVE_POWER_SPLIT,Power Split,Psychic,Status,,never misses,10,0,power split,runs,2,2,0,0,0,0,25,,,0,0
+MOVE_POWER_SWAP,Power Swap,Psychic,Status,,never misses,10,0,swap atk sp. atk stat changes,runs,5,4,0,0,1,2,1,,,0,0
+MOVE_POWER_TRICK,Power Trick,Psychic,Status,,never misses,10,0,swap atk def,runs,2,1,0,0,1,2,39,,,0,0
+MOVE_POWER_WHIP,Power Whip,Grass,Physical,120,85,10,0,plain hit,runs,8,8,0,0,0,1,47,,,0,4
+MOVE_POWER_UP_PUNCH,Power-Up Punch,Fighting,Physical,40,100,20,0,raise attack hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_PRESENT,Present,Normal,Physical,1,90,15,0,random power maybe heal,runs,7,1,0,0,6,2,1,,,0,3
+MOVE_PROTECT,Protect,Normal,Status,,never misses,10,3,protect,runs,167,21,160,0,0,81,1,TM17,,0,15
+MOVE_PSYBEAM,Psybeam,Psychic,Special,65,100,20,0,confuse hit (10%),runs,21,15,0,0,6,11,1,,,4,10
+MOVE_PSYCH_UP,Psych Up,Normal,Status,,never misses,10,0,copy stat changes,runs,73,7,68,0,10,31,1,TM77,,0,2
+MOVE_PSYCHIC,Psychic,Psychic,Special,90,100,10,0,lower sp. def hit (10%),runs,55,20,49,0,1,21,28,TM29,,10,88
+MOVE_PSYCHIC_TERRAIN,Psychic Terrain,Psychic,Status,,never misses,10,0,apply terrains,stub: nothing happens (terrain held),1,1,0,0,0,0,75,,,0,0
+MOVE_PSYCHO_BOOST,Psycho Boost,Psychic,Special,140,90,5,0,user sp. atk down 2,runs,0,0,0,0,0,1,,,,0,0
+MOVE_PSYCHO_CUT,Psycho Cut,Psychic,Physical,70,100,20,0,high critical,runs,8,7,0,0,1,3,1,,,1,18
+MOVE_PSYCHO_SHIFT,Psycho Shift,Psychic,Status,,100,10,0,transfer status,runs,6,4,0,0,2,2,41,,,0,0
+MOVE_PSYSHOCK,Psyshock,Psychic,Special,80,100,10,0,plain hit,runs,5,5,0,0,0,0,1,,,0,0
+MOVE_PSYWAVE,Psywave,Psychic,Special,1,100,15,0,random damage 1 to 150 level,runs,8,6,0,0,2,1,1,,,0,1
+MOVE_PUNISHMENT,Punishment,Dark,Physical,1,100,5,0,increase power with more stat up,runs,9,4,0,0,5,7,1,,,0,0
+MOVE_PURSUIT,Pursuit,Dark,Physical,40,100,20,0,hit before switch,runs,30,16,0,0,15,19,1,,,0,15
+MOVE_PYRO_BALL,Pyro Ball,Fire,Physical,120,90,5,0,burn hit (10%),runs,1,1,0,0,0,0,72,,,0,0
+MOVE_QUICK_ATTACK,Quick Attack,Normal,Physical,40,100,30,1,priority 1,runs,39,32,0,0,7,15,1,,,6,47
+MOVE_QUICK_GUARD,Quick Guard,Fighting,Status,,never misses,15,3,protect user side,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_QUIVER_DANCE,Quiver Dance,Bug,Status,,never misses,20,0,sp. atk sp. def speed up,runs,2,2,0,0,0,0,52,,,0,0
+MOVE_RAGE,Rage,Normal,Physical,20,100,20,0,raise atk when hit,runs,7,5,0,0,2,8,1,,,0,4
+MOVE_RAGE_FIST,Rage Fist,Ghost,Physical,50,100,10,0,plain hit,runs,1,1,0,0,0,0,35,,,0,0
+MOVE_RAGE_POWDER,Rage Powder,Bug,Status,,100,20,2,make global target,runs,2,2,0,0,0,0,36,,,0,0
+MOVE_RAIN_DANCE,Rain Dance,Water,Status,,never misses,1,0,weather rain,runs,132,17,131,0,0,54,1,TM18,,1,24
+MOVE_RAPID_SPIN,Rapid Spin,Normal,Physical,60,100,40,0,remove hazards and binding,runs,11,8,0,0,3,7,1,,,0,2
+MOVE_RAZOR_LEAF,Razor Leaf,Grass,Physical,55,100,25,0,high critical,runs,17,13,0,0,4,5,1,,,0,3
+MOVE_RAZOR_WIND,Razor Wind,Normal,Special,80,100,10,0,charge turn high crit,runs,7,5,0,0,4,1,1,,,0,1
+MOVE_RECOVER,Recover,Normal,Status,,never misses,10,0,restore half hp,runs,18,16,0,0,2,7,1,,,1,36
+MOVE_RECYCLE,Recycle,Normal,Status,,never misses,10,0,recycle,runs,27,5,24,0,0,11,1,TM67,,4,2
+MOVE_REFLECT,Reflect,Psychic,Status,,never misses,1,0,set reflect,runs,43,10,33,0,5,20,1,TM33,,5,13
+MOVE_REFRESH,Refresh,Normal,Status,,never misses,20,0,heal status,runs,15,8,0,0,7,3,9,,,0,1
+MOVE_REST,Rest,Psychic,Status,,never misses,3,0,rest,runs,160,11,160,0,0,81,1,TM44,,0,30
+MOVE_RETALIATE,Retaliate,Normal,Physical,70,100,5,0,plain hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_RETURN,Return,Normal,Physical,1,100,20,0,power based on friendship,runs,161,1,161,0,0,81,13,TM27,,0,4
+MOVE_REVENGE,Revenge,Fighting,Physical,60,100,10,-4,double power if hit,runs,9,6,0,0,3,4,1,,,4,4
+MOVE_REVERSAL,Reversal,Fighting,Physical,1,100,15,0,increase power with less hp,runs,17,9,0,0,8,7,1,,,0,5
+MOVE_ROAR,Roar,Normal,Status,,never misses,20,-6,force switch,runs,50,6,49,0,0,28,7,TM05,,5,12
+MOVE_ROAR_OF_TIME,Roar of Time,Dragon,Special,150,90,5,0,recharge after,runs,1,1,0,0,0,0,40,,,0,0
+MOVE_ROCK_BLAST,Rock Blast,Rock,Physical,25,100,8,0,multi hit,runs,13,11,0,0,3,2,1,,,1,4
+MOVE_ROCK_CLIMB,Rock Climb,Normal,Physical,90,85,20,0,confuse hit (20%),runs,43,0,43,0,0,23,,HM08,,0,0
+MOVE_ROCK_POLISH,Rock Polish,Rock,Status,,never misses,1,0,speed up 2,runs,27,8,23,0,0,11,1,TM69,,0,5
+MOVE_ROCK_SLIDE,Rock Slide,Rock,Physical,75,90,10,0,flinch hit (30%),runs,78,11,72,0,14,37,14,TM80,,0,18
+MOVE_ROCK_SMASH,Rock Smash,Fighting,Physical,40,100,15,0,lower defense hit (50%),runs,107,6,102,0,0,52,1,HM06,,0,0
+MOVE_ROCK_THROW,Rock Throw,Rock,Physical,50,100,15,0,plain hit,runs,13,13,0,0,0,0,1,,,0,10
+MOVE_ROCK_TOMB,Rock Tomb,Rock,Physical,60,100,15,0,lower speed hit,runs,81,6,78,0,0,38,1,TM39,,0,11
+MOVE_ROCK_WRECKER,Rock Wrecker,Rock,Physical,150,90,5,0,recharge after,runs,2,2,0,0,0,0,61,,,0,3
+MOVE_ROLE_PLAY,Role Play,Psychic,Status,,never misses,10,0,copy ability,runs,4,4,0,0,0,3,1,,,6,0
+MOVE_ROLLING_KICK,Rolling Kick,Fighting,Physical,60,100,15,0,flinch hit (30%),runs,2,0,0,0,2,1,,,,0,0
+MOVE_ROLLOUT,Rollout,Rock,Physical,30,90,20,0,double power each turn lock into,runs,46,9,0,45,6,27,1,,Survival Area,3,9
+MOVE_ROOST,Roost,Flying,Status,,never misses,10,0,heal half remove flying type,runs,30,12,24,0,0,20,1,TM51,,0,34
+MOVE_SACRED_FIRE,Sacred Fire,Fire,Physical,100,95,5,0,thaw and burn hit (50%),runs,0,0,0,0,0,1,,,,0,0
+MOVE_SACRED_SWORD,Sacred Sword,Fighting,Physical,90,100,15,0,plain hit,runs,1,1,0,0,0,0,60,,,0,0
+MOVE_SAFEGUARD,Safeguard,Normal,Status,,never misses,25,0,prevent status,runs,60,22,49,0,5,25,1,TM20,,4,12
+MOVE_SALT_CURE,Salt Cure,Rock,Physical,40,100,15,0,plain hit,partial: plain 40 hit; the damage every turn is missing (hg-engine lacks it too),1,1,0,0,0,0,1,,,0,0
+MOVE_SAND_TOMB,Sand Tomb,Ground,Physical,35,100,15,0,bind hit,runs,8,5,0,0,5,4,1,,,1,3
+MOVE_SAND_ATTACK,Sand-Attack,Ground,Status,,100,5,0,acc down,runs,19,15,0,0,4,10,1,,,0,6
+MOVE_SANDSTORM,Sandstorm,Rock,Status,,never misses,1,0,weather sandstorm,runs,54,8,51,0,0,30,1,TM37,,1,11
+MOVE_SCALD,Scald,Water,Special,80,100,15,0,thaw and burn hit (30%),runs,4,4,0,0,0,0,31,,,0,0
+MOVE_SCALE_SHOT,Scale Shot,Dragon,Physical,25,100,20,0,multi hit,partial: hits two to five times; the Speed rise and Defense drop are missing,1,1,0,0,0,1,45,,,0,0
+MOVE_SCARY_FACE,Scary Face,Normal,Status,,100,10,0,speed down 2,runs,29,26,0,0,3,13,1,,,8,1
+MOVE_SCRATCH,Scratch,Normal,Physical,40,100,35,0,plain hit,runs,18,18,0,0,0,13,1,,,2,8
+MOVE_SCREECH,Screech,Normal,Status,,100,40,0,def down 2,runs,37,26,0,0,12,19,1,,,9,18
+MOVE_SECRET_POWER,Secret Power,Normal,Physical,70,100,20,0,secret power (30%),runs,161,0,161,0,0,81,,TM43,,0,0
+MOVE_SEED_BOMB,Seed Bomb,Grass,Physical,80,100,15,0,plain hit,runs,27,5,0,23,3,15,18,,Survival Area,0,44
+MOVE_SEED_FLARE,Seed Flare,Grass,Special,120,85,5,0,lower sp. def 2 hit (40%),runs,1,1,0,0,0,0,100,,,0,0
+MOVE_SEISMIC_TOSS,Seismic Toss,Fighting,Physical,1,100,20,0,level damage flat,runs,4,4,0,0,0,3,1,,,3,7
+MOVE_SELFDESTRUCT,Selfdestruct,Normal,Physical,200,100,5,0,halve defense,runs,6,5,0,0,1,3,18,,,1,8
+MOVE_SHADOW_BALL,Shadow Ball,Ghost,Special,80,100,15,0,lower sp. def hit (20%),runs,76,10,69,0,0,35,1,TM30,,3,53
+MOVE_SHADOW_CLAW,Shadow Claw,Ghost,Physical,70,100,15,0,high critical,runs,30,5,27,0,0,19,1,TM65,,0,10
+MOVE_SHADOW_FORCE,Shadow Force,Ghost,Physical,120,100,5,0,shadow force,runs,1,1,0,0,0,0,40,,,0,0
+MOVE_SHADOW_PUNCH,Shadow Punch,Ghost,Physical,95,never misses,20,0,bypass accuracy,runs,3,3,0,0,0,1,1,,,0,8
+MOVE_SHADOW_SNEAK,Shadow Sneak,Ghost,Physical,40,100,30,1,priority 1,runs,7,5,0,0,3,6,1,,,0,12
+MOVE_SHARPEN,Sharpen,Normal,Status,,never misses,3,0,atk up,runs,2,2,0,0,0,1,5,,,0,0
+MOVE_SHEER_COLD,Sheer Cold,Ice,Special,1,30,5,0,one hit ko,runs,7,7,0,0,0,1,1,,,0,8
+MOVE_SHELL_SMASH,Shell Smash,Normal,Status,,never misses,15,0,atk sp. atk speed up 2 def sp. def down,runs,1,1,0,0,0,0,60,,,0,0
+MOVE_SHELTER,Shelter,Steel,Status,,never misses,10,0,def up 2,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_SHIFT_GEAR,Shift Gear,Steel,Status,,never misses,10,0,speed up 2 atk up,runs,1,1,0,0,0,0,48,,,0,0
+MOVE_SHOCK_WAVE,Shock Wave,Electric,Special,60,never misses,20,0,bypass accuracy,runs,65,5,62,0,0,37,19,TM34,,0,7
+MOVE_SHORE_UP,Shore Up,Ground,Status,,never misses,5,0,heal half more in sun,"partial: heals more in sun, as Morning Sun does, instead of in sandstorm",1,1,0,0,0,0,52,,,0,0
+MOVE_SIGNAL_BEAM,Signal Beam,Bug,Special,75,100,15,0,confuse hit (10%),runs,56,6,0,54,7,23,1,,Survival Area,0,44
+MOVE_SILVER_WIND,Silver Wind,Bug,Special,60,100,5,0,raise all stats hit (10%),runs,19,5,18,0,2,10,24,TM62,,0,8
+MOVE_SING,Sing,Normal,Status,,55,15,0,status sleep,runs,13,10,0,0,3,1,1,,,5,9
+MOVE_SKETCH,Sketch,Normal,Status,,never misses,1,0,learn move permanent,runs,0,0,0,0,0,1,,,,1,0
+MOVE_SKILL_SWAP,Skill Swap,Psychic,Status,,never misses,2,0,switch abilities,runs,26,4,23,0,0,17,33,TM48,,0,0
+MOVE_SKITTER_SMACK,Skitter Smack,Bug,Physical,70,100,10,0,lower sp. atk hit,runs,1,1,0,0,0,0,22,,,0,0
+MOVE_SKULL_BASH,Skull Bash,Normal,Physical,130,100,10,0,charge turn def up,runs,5,4,0,0,1,2,31,,,0,2
+MOVE_SKY_ATTACK,Sky Attack,Flying,Physical,140,100,5,0,charge turn high crit flinch (30%),runs,9,7,0,0,3,4,1,,,0,5
+MOVE_SKY_DROP,Sky Drop,Flying,Physical,60,100,10,0,plain hit,partial: plain 60 hit; the two-turn lift is missing,1,1,0,0,0,0,20,,,0,0
+MOVE_SKY_UPPERCUT,Sky Uppercut,Fighting,Physical,85,90,15,0,hit fly,runs,5,3,0,0,2,1,33,,,0,5
+MOVE_SLACK_OFF,Slack Off,Normal,Status,,never misses,10,0,restore half hp,runs,3,2,0,0,1,2,1,,,0,8
+MOVE_SLAM,Slam,Normal,Physical,100,100,20,0,plain hit,runs,19,13,0,0,8,4,1,,,1,12
+MOVE_SLASH,Slash,Normal,Physical,70,100,20,0,high critical,runs,29,26,0,0,3,14,1,,,1,26
+MOVE_SLEEP_POWDER,Sleep Powder,Grass,Status,,75,15,0,status sleep,runs,4,2,0,0,2,6,5,,,0,16
+MOVE_SLEEP_TALK,Sleep Talk,Normal,Status,,never misses,10,0,use random learned move sleep,runs,161,1,161,0,6,81,28,TM82,,0,8
+MOVE_SLUDGE,Sludge,Poison,Special,65,100,20,0,poison hit (30%),runs,2,2,0,0,0,2,24,,,0,3
+MOVE_SLUDGE_BOMB,Sludge Bomb,Poison,Special,90,100,10,0,poison hit (30%),runs,30,4,28,0,0,17,40,TM36,,0,33
+MOVE_SLUDGE_WAVE,Sludge Wave,Poison,Special,95,100,10,0,poison hit (10%),runs,2,2,0,0,0,0,46,,,0,0
+MOVE_SMACK_DOWN,Smack Down,Rock,Physical,50,100,15,0,smack down,runs,6,6,0,0,0,0,1,,,0,0
+MOVE_SMART_STRIKE,Smart Strike,Steel,Physical,70,never misses,10,0,bypass accuracy,runs,2,2,0,0,0,0,16,,,0,0
+MOVE_SMELLING_SALT,SmellingSalt,Normal,Physical,70,100,10,0,double power and cure paralysis,runs,7,1,0,0,6,4,22,,,0,2
+MOVE_SMOG,Smog,Poison,Special,55,100,20,0,poison hit (30%),runs,10,9,0,0,1,2,1,,,0,1
+MOVE_SMOKE_SCREEN,SmokeScreen,Normal,Status,,100,20,0,acc down,runs,8,6,0,0,2,3,1,,,0,3
+MOVE_SNARL,Snarl,Dark,Special,55,100,15,0,lower sp. atk hit,runs,1,1,0,0,0,0,13,,,0,0
+MOVE_SNATCH,Snatch,Dark,Status,,never misses,10,4,steal status move,runs,27,1,26,0,0,14,39,TM49,,0,0
+MOVE_SNORE,Snore,Normal,Special,80,100,15,0,damage while asleep (30%),runs,157,3,0,157,8,78,28,,Snowpoint City,0,3
+MOVE_SOAK,Soak,Water,Status,,100,20,0,change to water type,runs,3,3,0,0,0,0,29,,,0,0
+MOVE_SOFTBOILED,Softboiled,Normal,Status,,never misses,10,0,restore half hp,runs,1,1,0,0,0,0,12,,,0,4
+MOVE_SOLAR_BLADE,Solar Blade,Grass,Physical,125,100,10,0,skip charge turn in sun,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_SOLAR_BEAM,SolarBeam,Grass,Special,120,100,10,0,skip charge turn in sun,runs,53,7,50,0,0,45,1,TM22,,0,10
+MOVE_SONIC_BOOM,SonicBoom,Normal,Special,1,100,20,0,20 damage flat,runs,4,4,0,0,0,2,1,,,2,2
+MOVE_SPACIAL_REND,Spacial Rend,Dragon,Special,100,95,5,0,high critical,runs,1,1,0,0,0,0,40,,,0,0
+MOVE_SPARK,Spark,Electric,Physical,65,100,20,0,paralyze hit (30%),runs,13,12,0,0,1,3,13,,,8,4
+MOVE_SPARKLING_ARIA,Sparkling Aria,Water,Special,90,100,10,0,plain hit,runs,1,1,0,0,0,0,36,,,0,0
+MOVE_SPEED_SWAP,Speed Swap,Psychic,Status,,never misses,10,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,55,,,0,0
+MOVE_SPIDER_WEB,Spider Web,Bug,Status,,never misses,10,0,prevent escape,runs,2,2,0,0,0,1,1,,,0,0
+MOVE_SPIKE_CANNON,Spike Cannon,Normal,Physical,20,100,15,0,multi hit,runs,3,3,0,0,0,1,29,,,0,1
+MOVE_SPIKES,Spikes,Ground,Status,,never misses,20,0,set spikes,runs,8,6,0,0,2,4,1,,,0,3
+MOVE_SPIKY_SHIELD,Spiky Shield,Grass,Status,,never misses,5,4,protect,partial: a plain Protect; the damage to a contact attacker is missing,2,2,0,0,0,0,1,,,0,0
+MOVE_SPIRIT_SHACKLE,Spirit Shackle,Ghost,Physical,90,100,10,0,prevent escape hit,runs,1,1,0,0,0,0,34,,,0,0
+MOVE_SPIT_UP,Spit Up,Normal,Special,1,100,10,0,spit up,runs,12,7,0,0,5,5,25,,,2,5
+MOVE_SPITE,Spite,Ghost,Status,,100,10,0,decrease last move pp,runs,28,4,0,27,6,13,1,,Snowpoint City,0,3
+MOVE_SPLASH,Splash,Normal,Status,,never misses,40,0,do nothing,runs,13,6,0,0,7,3,1,,,3,0
+MOVE_SPORE,Spore,Grass,Status,,100,15,0,status sleep,runs,1,1,0,0,0,1,45,,,0,8
+MOVE_STEALTH_ROCK,Stealth Rock,Rock,Status,,never misses,20,0,stealth rock,runs,45,6,39,0,0,24,18,TM76,,0,17
+MOVE_STEEL_ROLLER,Steel Roller,Steel,Physical,130,100,5,0,end terrain,"stub: plain 130 hit, should fail without terrain",2,2,0,0,0,0,1,,,0,0
+MOVE_STEEL_WING,Steel Wing,Steel,Physical,70,90,25,0,raise def hit (10%),runs,23,2,22,0,0,12,20,TM47,,0,8
+MOVE_STICKY_WEB,Sticky Web,Bug,Status,,never misses,20,0,sticky web,runs,5,5,0,0,0,0,1,,,0,0
+MOVE_STOCKPILE,Stockpile,Normal,Status,,never misses,20,0,stockpile,runs,14,9,0,0,5,5,5,,,1,5
+MOVE_STOMP,Stomp,Normal,Physical,65,100,20,0,flinch minimize double hit (30%),runs,19,14,0,0,5,8,1,,,1,3
+MOVE_STOMPING_TANTRUM,StompingTantrum,Ground,Physical,75,100,10,0,plain hit,runs,3,3,0,0,0,0,20,,,0,0
+MOVE_STONE_EDGE,Stone Edge,Rock,Physical,100,80,5,0,high critical,runs,50,12,45,0,0,25,39,TM71,,0,59
+MOVE_STRANGE_STEAM,Strange Steam,Fairy,Special,90,100,10,0,confuse hit (20%),runs,1,1,0,0,0,0,48,,,0,0
+MOVE_STRENGTH,Strength,Normal,Physical,80,100,15,0,plain hit,runs,96,0,96,0,0,51,,HM04,,0,0
+MOVE_STRENGTH_SAP,Strength Sap,Grass,Status,,100,10,0,strength sap,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_STRING_SHOT,String Shot,Bug,Status,,100,40,0,speed down,runs,5,5,0,0,0,3,1,,,0,4
+MOVE_STRUGGLE_BUG,Struggle Bug,Bug,Special,50,100,10,0,lower sp. atk hit,runs,6,6,0,0,0,0,1,,,0,0
+MOVE_STUN_SPORE,Stun Spore,Grass,Status,,75,30,0,status paralyze,runs,9,8,0,0,1,6,1,,,0,10
+MOVE_SUBMISSION,Submission,Fighting,Physical,80,80,20,0,recoil quarter,runs,5,5,0,0,0,1,1,,,2,0
+MOVE_SUBSTITUTE,Substitute,Normal,Status,,never misses,2,0,set substitute,runs,161,2,161,0,12,81,29,TM90,,2,6
+MOVE_SUCKER_PUNCH,Sucker Punch,Dark,Physical,70,100,5,1,hit first if target attacking,runs,36,17,0,29,6,19,22,,Route 212,1,55
+MOVE_SUNNY_DAY,Sunny Day,Fire,Status,,never misses,1,0,weather sun,runs,116,9,114,0,0,75,1,TM11,,0,11
+MOVE_SUPER_FANG,Super Fang,Normal,Physical,1,90,10,0,halve hp,runs,5,5,0,0,0,1,29,,,0,5
+MOVE_SUPERPOWER,Superpower,Fighting,Physical,120,100,5,0,lower own atk and def,runs,33,9,0,31,3,10,25,,Survival Area,0,25
+MOVE_SUPERSONIC,Supersonic,Normal,Status,,55,20,0,status confuse,runs,23,14,0,0,10,9,1,,,2,5
+MOVE_SURF,Surf,Water,Special,90,100,15,0,double damage dive,runs,56,1,55,0,0,14,40,HM03,,0,63
+MOVE_SWAGGER,Swagger,Normal,Status,,90,15,0,atk up 2 status confusion,runs,163,17,161,0,3,81,1,TM87,,7,13
+MOVE_SWALLOW,Swallow,Normal,Status,,never misses,10,0,swallow,runs,13,8,0,0,5,5,5,,,1,5
+MOVE_SWEET_KISS,Sweet Kiss,Fairy,Status,,100,10,0,status confuse,runs,12,8,0,0,4,1,1,,,8,8
+MOVE_SWEET_SCENT,Sweet Scent,Normal,Status,,100,20,0,eva down,runs,15,13,0,0,2,9,1,,,1,3
+MOVE_SWIFT,Swift,Normal,Special,60,never misses,20,0,bypass accuracy,runs,93,14,0,92,0,47,1,,Snowpoint City,2,6
+MOVE_SWITCHEROO,Switcheroo,Dark,Status,,100,10,0,switch held items,runs,1,0,0,0,1,3,,,,0,0
+MOVE_SWORDS_DANCE,Swords Dance,Normal,Status,,never misses,1,0,atk up 2,runs,43,11,40,0,4,25,11,TM75,,0,26
+MOVE_SYNTHESIS,Synthesis,Grass,Status,,never misses,5,0,heal half more in sun,runs,23,14,0,16,5,10,1,,Snowpoint City,0,12
+MOVE_TACKLE,Tackle,Normal,Physical,40,100,35,0,plain hit,runs,66,66,0,0,0,23,1,,,7,9
+MOVE_TAIL_GLOW,Tail Glow,Bug,Status,,never misses,1,0,sp. atk up 2,runs,1,1,0,0,0,1,1,,,0,0
+MOVE_TAIL_SLAP,Tail Slap,Normal,Physical,25,100,10,0,multi hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_TAIL_WHIP,Tail Whip,Normal,Status,,100,3,0,def down,runs,22,21,0,0,1,6,1,,,6,5
+MOVE_TAILWIND,Tailwind,Flying,Status,,never misses,1,0,double speed 3 turns,runs,9,9,0,0,0,3,25,,,0,23
+MOVE_TAKE_DOWN,Take Down,Normal,Physical,90,100,20,0,recoil quarter,runs,40,33,0,0,9,12,1,,,3,5
+MOVE_TAUNT,Taunt,Dark,Status,,100,20,0,taunt,runs,51,14,46,0,0,21,1,TM12,,3,9
+MOVE_TEARFUL_LOOK,Tearful Look,Normal,Status,,never misses,10,0,tearful look,runs,1,1,0,0,0,0,6,,,0,0
+MOVE_TEATIME,Teatime,Normal,Status,,never misses,10,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,1,,,0,0
+MOVE_TEETER_DANCE,Teeter Dance,Normal,Status,,100,20,0,confuse all,runs,4,3,0,0,1,2,23,,,0,2
+MOVE_TELEKINESIS,Telekinesis,Psychic,Status,,never misses,15,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,40,,,0,0
+MOVE_TELEPORT,Teleport,Psychic,Status,,never misses,20,0,flee from wild battle,runs,3,3,0,0,0,3,1,,,2,0
+MOVE_TERRAIN_PULSE,Terrain Pulse,Normal,Special,50,100,10,0,plain hit,partial: plain 50 Normal hit; its type and power change wait on terrain,1,1,0,0,0,0,38,,,0,0
+MOVE_THIEF,Thief,Dark,Physical,60,100,25,0,steal held item,runs,66,2,65,0,0,47,20,TM46,,0,0
+MOVE_THOUSAND_ARROWS,Thousand Arrows,Ground,Physical,90,100,10,0,smack down,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_THOUSAND_WAVES,Thousand Waves,Ground,Physical,90,100,10,0,prevent escape hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_THRASH,Thrash,Normal,Physical,120,100,10,0,continue and confuse self,runs,12,5,0,0,8,10,23,,,0,5
+MOVE_THUNDER,Thunder,Electric,Special,110,70,10,0,thunder (30%),runs,58,8,57,0,0,32,38,TM25,,2,14
+MOVE_THUNDER_FANG,Thunder Fang,Electric,Physical,90,100,15,0,flinch paralyze hit (10%),runs,13,10,0,0,6,7,1,,,4,37
+MOVE_THUNDER_WAVE,Thunder Wave,Electric,Status,,100,20,0,status paralyze,runs,55,13,52,0,1,30,1,TM73,,9,50
+MOVE_THUNDER_PUNCH,ThunderPunch,Electric,Physical,95,100,15,0,paralyze hit (10%),runs,50,7,0,49,7,29,1,,Route 212,0,75
+MOVE_THUNDER_SHOCK,ThunderShock,Electric,Special,40,100,30,0,paralyze hit (10%),runs,11,11,0,0,0,1,1,,,4,3
+MOVE_THUNDERBOLT,Thunderbolt,Electric,Special,90,100,15,0,paralyze hit (10%),runs,61,5,58,0,0,32,1,TM24,,3,54
+MOVE_THUNDEROUS_KICK,Thunderous Kick,Fighting,Physical,90,100,10,0,lower defense hit,runs,1,1,0,0,0,0,45,,,0,0
+MOVE_TICKLE,Tickle,Normal,Status,,100,20,0,atk def down,runs,23,9,0,0,14,4,1,,,2,2
+MOVE_TOPSY_TURVY,Topsy-Turvy,Dark,Status,,never misses,20,0,plain hit,partial: status move running the plain-hit script: its effect never happens,1,1,0,0,0,0,50,,,0,0
+MOVE_TORMENT,Torment,Dark,Status,,100,15,0,torment,runs,46,4,43,0,0,17,1,TM41,,0,1
+MOVE_TOXIC,Toxic,Poison,Status,,100,10,0,status badly poison,runs,166,10,161,0,0,81,1,TM06,,0,25
+MOVE_TOXIC_SPIKES,Toxic Spikes,Poison,Status,,never misses,20,0,toxic spikes,runs,10,10,0,0,0,5,1,,,2,12
+MOVE_TRANSFORM,Transform,Normal,Status,,never misses,10,0,transform,runs,0,0,0,0,0,2,,,,0,1
+MOVE_TRI_ATTACK,Tri Attack,Normal,Special,80,100,10,0,tri attack (20%),runs,1,1,0,0,0,4,1,,,0,10
+MOVE_TRICK,Trick,Psychic,Status,,100,10,0,switch held items,runs,32,5,0,29,2,18,1,,Route 212,5,1
+MOVE_TRICK_ROOM,Trick Room,Psychic,Status,,never misses,5,-7,trick room,runs,25,3,22,0,0,15,46,TM92,,0,1
+MOVE_TRIPLE_AXEL,Triple Axel,Ice,Physical,20,90,10,0,hit three times increment base power 20,runs,3,3,0,0,0,0,1,,,0,0
+MOVE_TRIPLE_KICK,Triple Kick,Fighting,Physical,10,90,10,0,hit three times,runs,1,1,0,0,0,1,30,,,0,0
+MOVE_TROP_KICK,Trop Kick,Grass,Physical,85,100,15,0,lower attack hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_TRUMP_CARD,Trump Card,Normal,Special,1,never misses,5,0,higher power when low pp,runs,3,3,0,0,0,1,48,,,0,0
+MOVE_TWINEEDLE,Twineedle,Bug,Physical,40,100,20,0,poison multi hit (20%),runs,1,1,0,0,0,1,8,,,0,0
+MOVE_TWISTER,Twister,Dragon,Special,40,100,20,0,flinch double damage fly or bounce (20%),runs,32,2,0,31,3,16,17,,Survival Area,0,1
+MOVE_U_TURN,U-turn,Bug,Physical,70,100,20,0,switch hit,runs,35,11,28,0,0,18,1,TM89,,0,36
+MOVE_UPROAR,Uproar,Normal,Special,90,100,10,0,uproar,runs,51,7,0,49,2,33,8,,Snowpoint City,1,6
+MOVE_VACUUM_WAVE,Vacuum Wave,Fighting,Special,40,100,30,1,priority 1,runs,14,3,0,11,2,3,1,,Route 212,0,5
+MOVE_VENOM_DRENCH,Venom Drench,Poison,Status,,100,20,0,venom drench,runs,4,4,0,0,0,0,13,,,0,0
+MOVE_VENOSHOCK,Venoshock,Poison,Special,65,100,10,0,double power on poisoned,runs,5,5,0,0,0,0,19,,,0,0
+MOVE_VICE_GRIP,ViceGrip,Normal,Physical,55,100,30,0,plain hit,runs,4,4,0,0,0,1,1,,,0,1
+MOVE_VINE_WHIP,Vine Whip,Grass,Physical,45,100,25,0,plain hit,runs,3,3,0,0,0,3,1,,,1,0
+MOVE_VITAL_THROW,Vital Throw,Fighting,Physical,70,never misses,10,-1,priority neg 1 bypass accuracy,runs,3,3,0,0,0,1,10,,,2,1
+MOVE_VOLT_SWITCH,Volt Switch,Electric,Special,70,100,20,0,switch hit,runs,2,2,0,0,0,0,40,,,0,0
+MOVE_VOLT_TACKLE,Volt Tackle,Electric,Physical,120,100,15,0,recoil paralyze hit (10%),runs,1,1,0,0,0,0,64,,,0,4
+MOVE_WAKE_UP_SLAP,Wake-Up Slap,Fighting,Physical,70,100,10,0,double power heal sleep,runs,12,9,0,0,4,2,22,,,5,2
+MOVE_WATER_GUN,Water Gun,Water,Special,40,100,25,0,plain hit,runs,32,31,0,0,1,2,1,,,2,9
+MOVE_WATER_PULSE,Water Pulse,Water,Special,60,100,20,0,confuse hit (20%),runs,76,22,72,0,0,30,1,TM03,,2,10
+MOVE_WATER_SHURIKEN,Water Shuriken,Water,Special,15,100,20,1,multi hit,runs,1,1,0,0,0,0,1,,,0,0
+MOVE_WATER_SPORT,Water Sport,Water,Status,,never misses,15,0,halve fire damage,runs,21,16,0,0,8,0,1,,,1,3
+MOVE_WATER_SPOUT,Water Spout,Water,Special,150,100,5,0,decrease power with less user hp,runs,2,2,0,0,0,1,34,,,0,8
+MOVE_WATERFALL,Waterfall,Water,Physical,80,100,15,0,flinch hit (20%),runs,39,2,38,0,0,8,30,HM07,,0,45
+MOVE_WEATHER_BALL,Weather Ball,Normal,Special,50,100,10,0,change type with weather,runs,3,3,0,0,0,0,1,,,0,4
+MOVE_WHIRLPOOL,Whirlpool,Water,Special,35,100,15,0,whirlpool,runs,14,11,0,0,4,0,1,,,0,1
+MOVE_WHIRLWIND,Whirlwind,Normal,Status,,never misses,20,-6,force switch,runs,17,9,0,0,8,7,1,,,0,13
+MOVE_WIDE_GUARD,Wide Guard,Rock,Status,,never misses,10,3,protect user side,runs,8,8,0,0,0,0,1,,,0,0
+MOVE_WILD_CHARGE,Wild Charge,Electric,Physical,90,100,15,0,recoil third,runs,3,3,0,0,0,0,40,,,0,0
+MOVE_WILL_O_WISP,Will-O-Wisp,Fire,Status,,85,15,0,status burn,runs,31,10,22,0,4,12,1,TM61,,0,46
+MOVE_WING_ATTACK,Wing Attack,Flying,Physical,60,100,35,0,plain hit,runs,12,10,0,0,3,4,1,,,0,9
+MOVE_WISH,Wish,Normal,Status,,never misses,10,0,heal in 3 turns,runs,15,6,0,0,9,5,1,,,0,0
+MOVE_WITHDRAW,Withdraw,Water,Status,,never misses,3,0,def up,runs,9,9,0,0,0,3,1,,,1,2
+MOVE_WONDER_ROOM,Wonder Room,Psychic,Status,,never misses,10,0,wonder room,runs,1,1,0,0,0,0,65,,,0,0
+MOVE_WOOD_HAMMER,Wood Hammer,Grass,Physical,120,100,15,0,recoil third,runs,4,4,0,0,0,1,1,,,0,14
+MOVE_WORRY_SEED,Worry Seed,Grass,Status,,100,10,0,set ability to insomnia,runs,11,7,0,0,6,4,16,,,0,0
+MOVE_WRAP,Wrap,Normal,Physical,15,90,20,0,bind hit,runs,8,8,0,0,0,6,1,,,1,0
+MOVE_WRING_OUT,Wring Out,Normal,Special,1,100,5,0,increase power with more hp,runs,9,9,0,0,1,6,1,,,0,3
+MOVE_X_SCISSOR,X-Scissor,Bug,Physical,80,100,15,0,plain hit,runs,23,9,18,0,0,10,1,TM81,,1,25
+MOVE_YAWN,Yawn,Normal,Status,,never misses,10,0,status sleep next turn,runs,18,11,0,0,7,6,1,,,0,24
+MOVE_ZAP_CANNON,Zap Cannon,Electric,Special,120,50,5,0,paralyze hit,runs,8,8,0,0,0,3,54,,,0,0
+MOVE_ZEN_HEADBUTT,Zen Headbutt,Psychic,Physical,80,100,15,0,flinch hit (20%),runs,41,12,0,40,5,25,1,,Route 212,0,44
+MOVE_ZING_ZAP,Zing Zap,Electric,Physical,80,100,10,0,flinch hit (30%),runs,1,1,0,0,0,0,34,,,0,0
