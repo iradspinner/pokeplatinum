@@ -141,17 +141,18 @@ that stay. None blocks anything.
    (section below).
 2. **Ian's one damage roll** in melonDS against the calculator (M8, below).
 3. **From the QA pass on D4 and D5** (M8, below): a range check on a trainer's
-   `nature` in `trainerproc.c` before Phase 5 names one; the calculator's patch to
-   apply a dual type's factors in chart order, which Ian ruled on and which is not
-   yet applied or listed in `calc/VENDORED.md`; the four always-critical moves
-   shown as placeholders; licence notices for `object_hash` and the ag-grid theme
-   CSS; the Z-move twins sharing one calculator name.
-   From the balance track (2026-09-25): the calculator's Generation 4 code gives
-   no damage for Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card,
-   and the dual-type order above is what puts Crunch into Bronzor at 42 to 50
-   where the game says 43 to 51.
-4. **The calculator's menu and emulator icons** are missing, since upstream's
-   `img/` was never vendored. Cosmetic.
+   `nature` in `trainerproc.c` before Phase 5 names one, and the Z-move twins
+   sharing one calculator name. The rest closed on 2026-09-26: the calculator
+   applies a dual type's factors in chart order (Crunch into Bronzor now reads
+   the game's 43 to 51, and Cross Chop into Bronzor 80 to 96, not 81), gives
+   Heavy Slam, Trump Card, Psywave and Super Fang the engine's damage, crits
+   with the always-critical moves, which the dex no longer lists as
+   placeholders, and the vendored libraries carry their licence notices
+   (`calc/VENDORED.md`, patches 9 to 12). Electro Ball hits at power 1,
+   because Oxide's engine has no power code for it yet; the main track has
+   that gap.
+4. **The calculator's menu and emulator icons.** Done 2026-09-26: the menu icon
+   is the tool's own, and the DeSmuME link is hidden under Oxide (patch 13).
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
    How to name one is under "Standing rules".
 6. **Other tracks' work this track depends on.** The legendary pool's scripting
@@ -357,6 +358,12 @@ that stay. None blocks anything.
    report on `cloud/element5-abilities`. It sits beside the three
    calculator defects already held, closes before the trainer pass, and the
    balance track rescores after it.
+   **Done 2026-09-26** as a Platinum Oxide romhack profile in the calculator
+   (`calc/VENDORED.md`, patch 9), with its move lists generated from
+   `battle_lib.c` by `make_calc_mechanics.py` and pinned by `test_m8`.
+   Neutralizing Gas is a battle state, not a matchup, so it is not modelled;
+   blank the ability by hand to see it. The balance track's rescore is
+   pending, and its `test_b3` pins the two Bronzor ranges at the old numbers.
    Later, once the engine has them (Ian's staples-survey answers,
    `docs/oxide/staples-survey.md`), it also needs:
    - critical hits at 1.5x and the modern rates
@@ -385,7 +392,12 @@ that stay. None blocks anything.
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
    Sand Spit, Cloud Nine or Air Lock in a regular slot. The main track's
    ability pass is the fix and the species stay in the pool. Until it
-   lands, the tool's dex and sources views should flag them.
+   lands, the tool's dex and sources views should flag them. **Done
+   2026-09-26:** the dex list (with a Weather filter), the species page, the
+   tables' species lists and the scripted pools name the ability. Ten
+   species have one: Psyduck, Golduck, Tyranitar, Kyogre, Groudon, Rayquaza,
+   Hippopotas, Hippowdon, Snover and Abomasnow. Alolan Ninetales has Snow
+   Warning only as its hidden ability, which the rule allows.
 17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
    Overseer).** The three are turned off and never go in a table. This
    track empties the lists in all 186 tables and makes lint fail on any
@@ -478,13 +490,12 @@ range check in `trainerproc.c` before Phase 5 names a nature. The calculator
 applies a dual type's two factors in the defender's type order where the game
 uses chart order, so Crunch into Bronzor reads 42 to 50 against the game's 43
 to 51; this is upstream's behaviour, and **Ian ruled (2026-09-22) that the
-calculator follow the game's chart order**, so it is this track's next patch
-to the vendored calculator (as of 2026-09-23 neither applied nor yet in
-`VENDORED.md`'s patch list). The four always-critical moves (Flower Trick,
-Frost Breath, Storm Throw, Wicked Blow) are listed as placeholders, because
-element 4 did their effect in C and left the script a plain hit. `object_hash`
-and the ag-grid theme CSS came in with no licence notice. Smaller: the Z-move
-twins share one calculator name, so one overwrites the other.
+calculator follow the game's chart order**, which it does since 2026-09-26
+(`VENDORED.md`, patch 9). The always-critical moves were listed as
+placeholders, because element 4 did their effect in C and left the script a
+plain hit; the dex now knows that effect is done in C. The licence notices are
+in (patch 12). Still open, and small: the Z-move twins share one calculator
+name, so one overwrites the other.
 
 **What is left is Ian's:** one roll in the game against the calculator. In
 melonDS, note an attacker's and a defender's level, stats and the damage a

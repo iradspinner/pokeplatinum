@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <!-- The settings menu's button: three bars in a mid grey that reads on the
+       light and the dark skin alike, since an <img> cannot take the page's colour. -->
+  <g fill="#8c8c8c">
+    <rect x="12" y="15" width="26" height="3.5" rx="1.75"/>
+    <rect x="12" y="23.25" width="26" height="3.5" rx="1.75"/>
+    <rect x="12" y="31.5" width="26" height="3.5" rx="1.75"/>
+  </g>
+</svg>

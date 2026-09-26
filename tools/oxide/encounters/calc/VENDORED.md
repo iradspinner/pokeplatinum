@@ -111,6 +111,12 @@ calculator checks fail if the offline ones are lost.
     and the two files that came without a notice (object-hash and the ag-grid
     theme) carry one in a header comment.
 
+13. **The menu icon and the emulator link** (2026-09-26, build plan item 4).
+    `index.html` takes the settings menu's icon from `js/oxide/menu.svg`, since
+    upstream's `img/` was not vendored. `js/initialize.js` leaves the DeSmuME
+    Lua sync button and its emulator link hidden under the "Platinum Oxide"
+    title: both serve hzla's DeSmuME build, and Oxide is played on melonDS.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

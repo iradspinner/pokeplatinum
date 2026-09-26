@@ -670,7 +670,9 @@ def check_calculator(results):
                                                 "calc/mechanics/gen4.js",
                                                 "calc/mechanics/util.js",
                                                 "romhacks/helpers.js",
-                                                "profiles/platinum-oxide.js"))
+                                                "profiles/platinum-oxide.js",
+                                                "js/oxide/menu.svg"))
+                    and 'src="./js/oxide/menu.svg"' in page and "./img/menu.svg" not in page
                     and "npoint_data.picker" in shared
                     and 'src="./js/oxide/prefill_picker.js"' in page, ""))
 
@@ -698,6 +700,7 @@ def check_calc_mechanics(results):
         "armor": ("Frosmoth", "Shield Dust", "Crawdaunt", "Shell Armor", "Frost Breath"),
         "ball": ("Pikachu", "Static", "Gyarados", "", "Electro Ball"),
         "order": ("Tyranitar", "Sand Stream", "Bronzor", "", "Crunch"),
+        "order2": ("Machamp", "Guts", "Bronzor", "", "Cross Chop"),
     }
     jobs = {"pokemon": {}, "pairs": []}
     for key, (att, ability, dfn, dability, move) in cases.items():
@@ -732,12 +735,15 @@ def check_calc_mechanics(results):
     # Frost Breath always lands a critical hit unless the target has Shell
     # Armor. Crunch into Bronzor applies Psychic's double before Steel's half,
     # as the chart's rows come; the other way round every roll would be even.
+    # Fighting's rows put Psychic's half first, so Cross Chop's rolls all are.
     results.append(("the always-critical moves crit, and a dual type's factors "
                     "come in chart order",
                     rolls["crit"][0] > rolls["armor"][-1] * 3 // 2
-                    and any(r % 2 for r in rolls["order"]),
+                    and any(r % 2 for r in rolls["order"])
+                    and not any(r % 2 for r in rolls["order2"]),
                     f"Frost Breath {rolls['armor'][-1]} to {rolls['crit'][-1]}, "
-                    f"Crunch {rolls['order'][0]} to {rolls['order'][-1]}"))
+                    f"Crunch {rolls['order'][0]} to {rolls['order'][-1]}, "
+                    f"Cross Chop {rolls['order2'][0]} to {rolls['order2'][-1]}"))
 
 
 def check_trainer_sets(results):
@@ -851,8 +857,8 @@ def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
                   check_captures, check_endpoints, check_canon, check_page,
-                  check_weather_flag, check_qa_findings, check_moves_view, check_calculator, check_calc_mechanics,
-                  check_trainer_sets):
+                  check_weather_flag, check_qa_findings, check_moves_view, check_calculator,
+                  check_calc_mechanics, check_trainer_sets):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0
