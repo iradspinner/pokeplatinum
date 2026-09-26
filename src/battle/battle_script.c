@@ -1369,6 +1369,19 @@ static int BattleScript_ComputedMovePower(BattleSystem *battleSys, BattleContext
         }
         return sElectroBallPower[ratio];
     }
+
+    case MOVE_STORED_POWER:
+    case MOVE_POWER_TRIP: {
+        // 20, and 20 more for every stage the user has raised a stat,
+        // counted over every stat as Punishment counts the target's.
+        int i, sumBoosts = 0;
+        for (i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
+            if (ATTACKING_MON.statBoosts[i] > DEFAULT_STAT_STAGE) {
+                sumBoosts += ATTACKING_MON.statBoosts[i] - DEFAULT_STAT_STAGE;
+            }
+        }
+        return 20 + 20 * sumBoosts;
+    }
     }
 
     return 0;
