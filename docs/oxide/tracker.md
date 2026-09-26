@@ -42,6 +42,7 @@ The importer is idempotent, so a non-zero count means something moved. Both `scr
 - `evo.narc`: 667 against 508; 0 disagree, 159 new; 7 members differ on purpose (the natives that gain an evolution) and 501 differ only in trailing zero padding, which is the record going from 44 bytes to 56
 - `pl_waza_tbl.narc`: 923 members against the reference's 471; **0 disagree**, 452 are new moves, 146 differ only at the intended bytes (the three Fairy retypes, the 95 natives given the King's Rock flag, Poison Gas's range, the 66 natives given modern numbers, 45 of which are in none of the other groups, and Barrier and Tailwind at 1 PP). The 146 is worked out from the lists, not yet seen against the base ROM
 - the base ROM importer reports every count 0 and lists those same seven species' evolutions as not carried over
+- once `carry-over` lands, the visual overhaul's archives: `mmodel`, `trfgra`, `pl_batt_bg`, `titledemo`, `box`, `pl_plist_gra`, `pl_b_plist_gra`, `batt_obj`, `waza_particle` and `pl_otherpoke` identical; `pl_batt_obj` 293 identical and 50 by content or padding, plus the Fairy icon appended; `item_icon` 710 identical and 1 by content; `pl_pokegra` 592 identical, 2,372 by content, 954 appended; `height` 1,812 identical, 164 zero padding, 636 appended; `pl_poke_data` grown by the new species' records
 
 Anything else is a regression. The encounter tool's own checks are in its build plan.
 
