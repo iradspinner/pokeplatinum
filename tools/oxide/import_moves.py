@@ -14,7 +14,8 @@ What it writes, and nothing else:
                                      the 468 existing moves already say
   * `res/moves/<slug>/anim.s`        copied from an existing move's animation,
                                      per `docs/oxide/move-animation-map.json`
-  * `generated/move_battle_effects.txt`  grows from 277 entries to 407
+  * `generated/move_battle_effects.txt`  grows from 277 entries to 407, then
+    Oxide's own effects after them (`OXIDE_EFFECTS`), whose scripts it leaves be
   * `res/battle/scripts/effects/effect_script_0277.s` .. `_0406.s` as stubs,
     plus their lines in that folder's `meson.build`
 
@@ -62,6 +63,14 @@ FIRST_NEW = 468          # the first id this tool owns; 468..470 are the retail 
 LAST_NEW = 922           # the donor's last named move
 PLATINUM_EFFECTS = 277   # Platinum's own BATTLE_EFFECT_* count
 LAST_EFFECT = 406        # the donor's highest effect id
+
+# Battle effects Oxide adds after the donor's, and the new moves that use them.
+# The donor gives these moves a plain hit, so a rerun has to put them back.
+# Effect 407 here is not hg-engine's 407 (Magic Room): no donor move uses that
+# one, so the converter never numbers a script past 406.
+OXIDE_EFFECTS = [
+    ("BATTLE_EFFECT_WONDER_ROOM", ["MOVE_WONDER_ROOM"]),   # 407, 2026-09-27
+]
 
 
 # ---------------------------------------------------------------- enum names
@@ -346,7 +355,8 @@ def main():
 
     enums = assign_enums(names, recs)
     effect_names = name_effects(recs, enums)
-    all_effects = effects + effect_names
+    all_effects = effects + effect_names + [e for e, _ in OXIDE_EFFECTS]
+    oxide_effect_of = {m: e for e, moves in OXIDE_EFFECTS for m in moves}
 
     anim = {}
     if os.path.exists(ANIM_MAP):
@@ -371,6 +381,8 @@ def main():
             desc = description(i, descs[i], override)
             data = convert(i, recs[i], names[i], desc,
                            types, ranges, flags, all_effects)
+            if enum in oxide_effect_of:
+                data["effect"]["type"] = oxide_effect_of[enum]
             src = anim.get(i)
             if src is None:
                 fallback.append(i)
@@ -446,8 +458,9 @@ def main():
             f.write(effect_stub(n, recs))
 
     lines = ["effect_script_files = files("]
-    lines += ["    'effect_script_%04d.s'," % n for n in range(LAST_EFFECT)]
-    lines.append("    'effect_script_%04d.s'" % LAST_EFFECT)
+    last = LAST_EFFECT + len(OXIDE_EFFECTS)
+    lines += ["    'effect_script_%04d.s'," % n for n in range(last)]
+    lines.append("    'effect_script_%04d.s'" % last)
     lines.append(")")
     with open(EFFECTS_MESON, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")

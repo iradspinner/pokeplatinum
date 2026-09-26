@@ -65,7 +65,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Apple). Sets 42 to 49 on the same page: Foul Play, Body Press, Psyshock
   (with Psystrike and Secret Sword), Sacred Sword and Darkest Lariat, Freeze-Dry,
   Flying Press, Rage Fist (50 plus 50 per hit taken, kept through switches) and
-  Transform copying the whole ability. A stub effect does its damage and skips its extra, or says "But
+  Transform copying the whole ability. Set 50 on the same page: Wonder Room
+  against a Cloyster that recovers every turn, Tackle and Swift trading
+  places while the room is up and back again when it wears off five turns
+  later. A stub effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
 - [ ] **Element 5, the Abilities menu** (two pages, Neutralizing Gas last): one
