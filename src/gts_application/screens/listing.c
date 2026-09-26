@@ -562,7 +562,9 @@ void GTS_LoadListingPokemonSprite(Pokemon *mon)
     DC_FlushRange(spriteData, 0x20 * 10 * 10);
     GX_LoadOBJ(spriteData, (18 * 32 + 16) * 32, 0x20 * 10 * 10);
 
-    Graphics_LoadPalette(template.narcID, template.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
+    // Platinum Oxide: the listed Pokemon shows its colour variation, as it
+    // does on its summary.
+    Graphics_LoadPaletteWithHueShift(template.narcID, template.palette, 1, 0x20 * 13, 32, HEAP_ID_62, template.personality);
     Heap_Free(spriteData);
 }
 
