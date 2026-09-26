@@ -1,5 +1,7 @@
 #include "system_vars.h"
 
+#include "constants/level_caps.h"
+#include "constants/pokemon.h"
 #include "constants/savedata/vars_flags.h"
 #include "generated/map_headers.h"
 #include "generated/species.h"
@@ -551,4 +553,56 @@ void SystemVars_SetDistortionWorldCyrusApperanceState(VarsFlags *varsFlags, u16 
 u16 SystemVars_GetWiFiFrontierCleared(VarsFlags *varsFlags)
 {
     return TryGetVarValue(varsFlags, VAR_WIFI_FRONTIER_CLEARED);
+}
+
+// Platinum Oxide: the level cap of each split, indexed by VAR_LEVEL_CAP_SPLIT.
+// These are Ian's hard caps as the balance track keeps them in
+// tools/oxide/balance/fights.json ("caps"); the level-cap design may move any
+// of them, and the two must be changed together. After the Champion there is
+// no cap below the game's own.
+static const u8 sLevelCaps[LEVEL_CAP_SPLIT_COUNT] = {
+    [LEVEL_CAP_SPLIT_ROARK] = 16,
+    [LEVEL_CAP_SPLIT_GARDENIA] = 26,
+    [LEVEL_CAP_SPLIT_FANTINA] = 33,
+    [LEVEL_CAP_SPLIT_MAYLENE] = 39,
+    [LEVEL_CAP_SPLIT_WAKE] = 44,
+    [LEVEL_CAP_SPLIT_BYRON] = 53,
+    [LEVEL_CAP_SPLIT_CANDICE] = 56,
+    [LEVEL_CAP_SPLIT_HQ] = 60,
+    [LEVEL_CAP_SPLIT_GALACTIC] = 65,
+    [LEVEL_CAP_SPLIT_VOLKNER] = 68,
+    [LEVEL_CAP_SPLIT_LEAGUE] = 78,
+    [LEVEL_CAP_SPLIT_NONE] = MAX_POKEMON_LEVEL,
+};
+
+u16 SystemVars_GetLevelCapSplit(VarsFlags *varsFlags)
+{
+    return TryGetVarValue(varsFlags, VAR_LEVEL_CAP_SPLIT);
+}
+
+// Moves the player into a later split. It never moves them back, so a closing
+// fight's script that runs again, or runs out of order, cannot lower the cap.
+void SystemVars_RaiseLevelCapSplit(VarsFlags *varsFlags, u16 split)
+{
+    if (split > SystemVars_GetLevelCapSplit(varsFlags)) {
+        TrySetVarToValue(varsFlags, VAR_LEVEL_CAP_SPLIT, split);
+    }
+}
+
+u8 SystemVars_GetLevelCap(VarsFlags *varsFlags)
+{
+    u16 split = SystemVars_GetLevelCapSplit(varsFlags);
+
+    if (split >= LEVEL_CAP_SPLIT_COUNT) {
+        return MAX_POKEMON_LEVEL;
+    }
+
+    return sLevelCaps[split];
+}
+
+// The cap in force now, for code that has no save data at hand (the battle's
+// experience, the level-up check, the Rare Candy and the Day Care).
+u8 LevelCap_Get(void)
+{
+    return SystemVars_GetLevelCap(SaveData_GetVarsFlags(SaveData_Ptr()));
 }

@@ -65,6 +65,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_data.h"
@@ -10876,7 +10877,17 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         u32 totalExp = 0;
         msg.id = BattleStrings_Text_PokemonGainedExpPoints; // "{0} gained {1} Exp. Points!"
 
-        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
+        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL
+            && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) >= LevelCap_Get()) {
+            // Platinum Oxide: a Pokemon at the level cap gains no experience,
+            // so it gets no message either, but it still gains its effort
+            // values, as hg-engine gives them to a Pokemon at the cap.
+            BattleScript_CalcEffortValues(BattleSystem_GetParty(data->battleSys, expBattler),
+                slot,
+                data->battleCtx->battleMons[data->battleCtx->faintedMon].species,
+                data->battleCtx->battleMons[data->battleCtx->faintedMon].formNum);
+        } else if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
             if (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot)) {
                 totalExp = data->battleCtx->gainedExp;
             }
@@ -10906,6 +10917,13 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             u32 newExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
             data->tmpData[GET_EXP_NEW_EXP] = newExp - Pokemon_GetCurrentLevelBaseExp(mon);
             newExp += totalExp;
+
+            // Platinum Oxide: a Pokemon below the level cap keeps only the
+            // experience that takes it to the cap, so its gauge fills to the
+            // cap and no further. The message still reports the whole gain.
+            if (newExp > Pokemon_GetLevelCapExp(mon)) {
+                newExp = Pokemon_GetLevelCapExp(mon);
+            }
 
             if (slot == data->battleCtx->selectedPartySlot[expBattler]) {
                 data->battleCtx->battleMons[expBattler].exp = newExp;

@@ -547,6 +547,17 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
  */
 BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
 
+/**
+ * @brief Platinum Oxide: the highest level experience can take a Pokemon to
+ * under the level cap: the cap, or the Pokemon's own level if it is above it
+ */
+u8 Pokemon_GetLevelCapLevel(Pokemon *mon);
+
+/**
+ * @brief Platinum Oxide: the most experience a Pokemon may hold under the
+ * level cap, the exact amount for Pokemon_GetLevelCapLevel's level
+ */
+u32 Pokemon_GetLevelCapExp(Pokemon *mon);
 BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
 u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
 u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species);
