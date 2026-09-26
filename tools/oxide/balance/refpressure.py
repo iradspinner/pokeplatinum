@@ -136,6 +136,11 @@ def boss_mon(hack, mon, blob, notes):
     }
 
 
+def _category(hack, move):
+    rec, _src = metrics.lookup_move(hack, move)
+    return rec["category"] if rec else None
+
+
 def score_ref_fight(hack, fight, blob, blob_path):
     """One reference fight's scores in Oxide's seat, or None if the hack has
     no fight there."""
@@ -174,7 +179,8 @@ def score_ref_fight(hack, fight, blob, blob_path):
         "cap": pool.caps()[split], "pool": len(side),
         "trainers": [t["name"] for t in data.fight_trainers(hack, fight)],
         "ace": max(m["level"] for p in ps for m in p),
-        **pressure.roll_up(per_mon),
+        **pressure.roll_up(per_mon), **pressure.unseen(ps),
+        "predictable": pressure.predictability(ps, lambda mv: _category(hack, mv)),
         "mons": per_mon, "stats_from": sources,
         "left_out": {k: sorted(v) for k, v in notes.items() if v},
         "calcs": sum(len(r["moves"]) for r in out["results"]),

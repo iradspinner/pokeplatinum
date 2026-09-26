@@ -13,7 +13,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, metrics, pool, pressure
+from . import data, metrics, pool, pressure, refpressure
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it showed for each. Crunch into
@@ -31,6 +31,11 @@ CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
 # Moves the calculator's Generation 4 mechanics give no number for (they are
 # handled only in its later-generation code); each is reported, not scored.
 UNMODELLED = {"Electro Ball", "Heavy Slam", "Psywave", "Super Fang", "Trump Card"}
+# The reference bosses add four of the same kind, each reported, not
+# scored: Nature's Madness (Super Fang's Fairy twin), Redux's Cyclone and
+# Acidic Payback (its own moves on the halve-HP and Metal Burst effects),
+# and Pain Split, which Null's table lists as a physical move of no power.
+REF_UNMODELLED = UNMODELLED | {"Nature's Madness", "Cyclone", "Acidic Payback", "Pain Split"}
 
 
 def _run(blob, jobs):
@@ -177,6 +182,82 @@ def check_rules(results):
                     str([i for i, c in enumerate(cases) if not c])))
 
 
+def check_b5_rules(results):
+    """B5's readings by hand: accuracy and its modifiers, a self-lowering
+    move's softer second hit, the one-on-one, and the cover."""
+    plain, rain = {"ability": None, "item": None}, "Rain"
+    powder = {"ability": None, "item": "Bright Powder"}
+    hit = lambda rolls, pr=0: {"rolls": rolls, "priority": pr, "category": "Special"}
+    two = {"moves": {"Tackle": hit([60] * 16)}, "speeds": (60, 50)}      # 2HKO on 100 HP
+    one = {"moves": {"Tackle": hit([120] * 16)}, "speeds": (50, 60)}     # OHKO on 100 HP
+    slow_two = {"moves": {"Tackle": hit([60] * 16)}, "speeds": (50, 60)}
+    cases = [
+        pressure.hit_chance("Thunder", plain, plain, None) == 0.7,
+        pressure.hit_chance("Thunder", plain, plain, rain) == 1.0,
+        pressure.hit_chance("Aerial Ace", plain, powder, None) == 1.0,       # never misses
+        pressure.hit_chance("High Jump Kick", plain, plain, None) == 0.9,    # "Hi Jump Kick"
+        abs(pressure.hit_chance("Thunder", plain, powder, None) - 0.63) < 1e-9,
+        pressure.hit_chance("Thunder", {"ability": "No Guard"}, powder, None) == 1.0,
+        pressure.hits_needed("Tackle", [60] * 16, 100) == 2,
+        pressure.hits_needed("Leaf Storm", [60] * 16, 100) == 3,             # 60, then 30, then 20
+        pressure.hits_needed("Superpower", [60] * 16, 100) == 2,             # 60, then 40
+        # Faster and 2HKO against a 2HKO: the player wins. Slower, it loses;
+        # against a boss that OHKOs it, it loses even moving first.
+        pressure.duel(two, slow_two, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 1.0,
+        pressure.duel(slow_two, two, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
+        pressure.duel(two, one, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
+        # A Focus Sash turns the OHKO into two hits, which the boss's 2HKO beats.
+        pressure.duel({"moves": {"Tackle": hit([120] * 16)}, "speeds": (50, 60)}, two,
+                      {"hp": 100, **plain}, {"hp": 100, **plain}, None, True) == 0.0,
+        pressure.cover([{"a"}, {"b"}, {"a", "b"}]) == 2,
+        pressure.cover([{"a", "b"}, {"a"}, {"a"}]) == 1,
+        pressure.cover([{"a"}, set()]) is None,
+        pressure.unseen([[{"species": "Girafarig", "moves": ["Agility", "Baton Pass", "Earthquake"],
+                           "item": "Starf Berry", "ability": "Quick Feet"}]])
+        == {"unseen": {"setup": ["Girafarig Agility"], "passing": ["Girafarig Baton Pass"],
+                       "pinch items": ["Girafarig Starf Berry"]}, "unseen_count": 3.0},
+        # A Choice holder is called; an attacker with two status moves is
+        # a third; Sudowoodo's Stealth Rock and three gambles, 1 / 1.6.
+        pressure.predictability(
+            [[{"species": "Chatot", "item": "Choice Specs", "moves": ["Hyper Voice", "Chatter"]},
+              {"species": "Girafarig", "moves": ["Earthquake", "Agility", "Baton Pass", "Charge Beam"]},
+              {"species": "Sudowoodo", "moves": ["Stealth Rock", "Explosion", "Sucker Punch",
+                                                  "Focus Punch"]}]],
+            lambda mv: "Status" if mv in ("Agility", "Baton Pass", "Stealth Rock") else "Physical")
+        == round((1 + 1 / 3 + 1 / 1.6) / 3, 3),
+    ]
+    results.append(("B5: accuracy, self-lowering moves, one-on-one, cover, tactics, "
+                    "predictability", all(cases),
+                    str([i for i, c in enumerate(cases) if not c])))
+
+
+def check_ref_scores(results, blob):
+    """B3b: every reference hack is scored in every seat it fills, against
+    the side as it is now and with B5's columns, and no boss move fails
+    beyond the unmodelled ones."""
+    sizes = {s: len(pool.pool(s, blob)) for s in pool.SPLITS}
+    missing, stale, failures, seats = [], [], set(), 0
+    for hack in refpressure.HACKS:
+        saved = refpressure.load(hack)["fights"]
+        for f in data.fights()["fights"]:
+            if not refpressure.parties(hack, f):
+                continue
+            seats += 1
+            r = saved.get(f["key"])
+            if r is None:
+                missing.append(f"{hack} {f['key']}")
+                continue
+            if (r["cap"] != CAPS[f["split"]] or r["pool"] != sizes[f["split"]]
+                    or "answers_duel" not in r or "predictable" not in r):
+                stale.append(f"{hack} {f['key']}")
+            failures |= {e.split(" ", 1)[1].split(":")[0] for e in r["errors"]}
+    unknown = failures - REF_UNMODELLED
+    ok = not missing and not stale and not unknown
+    results.append(("B3b: every reference seat scored on the current side, no new failures", ok,
+                    f"missing {missing[:5]}, stale {stale[:5]}, failures {sorted(unknown)}"
+                    if not ok else f"{seats} seats in {len(refpressure.HACKS)} hacks"))
+
+
 def check_scores(results, blob):
     """Every story fight is scored, against the side as it is now."""
     saved = pressure.load()["fights"]
@@ -189,6 +270,7 @@ def check_scores(results, blob):
                    and any(e.startswith("b") for e in saved[k]["errors"])]
     # Each fight is scored with the Trick Room fights.json gives it.
     rooms = {f["key"]: bool(f.get("trick_room")) for f in data.fights()["fights"]}
+    stale += [k for k in keys if k in saved and "answers_duel" not in saved[k]]
     stale += [k for k in keys if k in saved and saved[k].get("trick_room", False) != rooms[k]]
     unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
                for e in saved[k]["errors"]} - UNMODELLED
@@ -208,7 +290,9 @@ def main():
     check_ref_overrides(results, blob)
     check_pool(results, blob)
     check_rules(results)
+    check_b5_rules(results)
     check_scores(results, blob)
+    check_ref_scores(results, blob)
     width = max(len(label) for label, _, _ in results)
     failed = 0
     for label, ok, note in results:
