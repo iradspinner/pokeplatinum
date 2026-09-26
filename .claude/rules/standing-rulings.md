@@ -48,3 +48,8 @@ read, so they are written here too. Each is a standing instruction.
   works, everywhere except chosen one-way areas the player must clear, beating
   a set number of trainers in a row, before leaving to heal. Balance proposals
   that rely on route attrition belong in a gauntlet.
+- Evolution stones are deliberately scarce (Ian, 2026-09-27): two lines
+  competing for one stone is intended, because it weakens the box and makes
+  the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
+  different Eeveelution). Do not add stones just to settle a contest; the
+  balance track's stone census is where the counts are set.
