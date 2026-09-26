@@ -357,6 +357,20 @@ that stay. None blocks anything.
    report on `cloud/element5-abilities`. It sits beside the three
    calculator defects already held, closes before the trainer pass, and the
    balance track rescores after it.
+   Later, once the engine has them (Ian's staples-survey answers,
+   `docs/oxide/staples-survey.md`), it also needs:
+   - critical hits at 1.5x and the modern rates
+   - the Gen 6 type immunities: Grass against powder moves, Electric
+     against paralysis
+   - modern behaviour for native abilities (Sturdy, and Lightning Rod and
+     Storm Drain first)
+   - native moves at their full modern numbers after the data pass
+20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
+   standing rule: the player never sets, changes or ends weather, so no
+   obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
+   Sand Spit, Cloud Nine or Air Lock in a regular slot. The main track's
+   ability pass is the fix and the species stay in the pool. Until it
+   lands, the tool's dex and sources views should flag them.
 17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
    Overseer).** The three are turned off and never go in a table. This
    track empties the lists in all 186 tables and makes lint fail on any
