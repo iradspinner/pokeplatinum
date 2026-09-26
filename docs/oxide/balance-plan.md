@@ -1211,7 +1211,16 @@ are in "What Ian's ratings showed".
   recomputes the unverified ones and marks them verified when they agree.
   test_b3 checks that every fingerprint matches its inputs and nothing is
   left unverified, and each rescore reports how many scores it recomputed
-  and how many it reused.
+  and how many it reused. Built (2026-09-26, `rescore.py`): every score
+  the tool stores is a unit, 507 before B6 and 965 with it, and the whole
+  set is fingerprinted in about half a minute. Its first rescore and
+  verify pass wait for the suite slot.
+
+  ```
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore            # what changed
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore --verify   # the second run
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore --status   # counts only
+  ```
 - [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
   target"). Every Oxide fight placed on his fight scale, the required
   ordinary trainers included (they are not scored yet, and they are most of
@@ -1223,6 +1232,16 @@ are in "What Ian's ratings showed".
   side (a species' stats, a TM or item one split earlier, route weather, a
   cap) ranked by how far it moves the scores, with any lever or species
   that moves them absurdly far or not at all flagged for the balance pass.
+  Built (2026-09-26, `b6.py`, `test_b6`), as rescore units: each ordinary
+  trainer the player meets (428, 40 of them required), scored in the split
+  B1e first reaches it in; and each story fight's levers, rerunning only
+  the matchups a change touches. `b6.py --report` gives the findings by
+  goal, `--content` adds the count of new species, moves and abilities on
+  each side, and `--draft` scores one of Ian's Frontier Brain drafts in a
+  split and places it on his fight scale. The runs wait for the suite
+  slot. Already clear from the counts: by the League 127 of the player's
+  439 species are new, while the trainers use 3 new species in about 1,050
+  Pokemon and no new move or ability at all.
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
