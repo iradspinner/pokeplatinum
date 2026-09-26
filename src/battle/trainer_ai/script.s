@@ -1774,6 +1774,14 @@ Basic_CheckDefog:
     IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Basic_CheckDefog_Terminate
+    // Oxide, change (Ian, 2026-09-27): Defog now also clears the target's Aurora Veil, and
+    // blows the hazards off the user's own side (the staples rulings), so either is a use
+    // for it too.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Basic_CheckDefog_Terminate
 
     // If the current weather is Deep Fog, ignore all other checks.
     LoadCurrentWeather 
@@ -1788,6 +1796,7 @@ Basic_CheckDefog:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Basic_CheckDefog_Terminate
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Basic_CheckDefog_Terminate // Oxide
     GoTo ScoreMinus10
 
 Basic_CheckDefog_Terminate:
@@ -6632,11 +6641,30 @@ Expert_Defog:
     // Otherwise:
     // - 80.5% chance of additional score -2.
     // - If the opponent's HP <= 70% score -2.
+    //
+    // Oxide, change (Ian, 2026-09-27): Defog now also blows the hazards off the user's own side
+    // (the staples rulings). If the attacker's side has Spikes, Stealth Rock, Toxic Spikes or
+    // Sticky Web and the attacker has a party member left to switch in, score +2 on top of the
+    // above. The target's Aurora Veil counts as a screen, and its Sticky Web as a hazard.
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_Defog_CheckTargetSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_ClearsOwnHazards
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_ClearsOwnHazards
+    GoTo Expert_Defog_CheckTargetSide
+
+Expert_Defog_ClearsOwnHazards:
+    AddToMoveScore 2
+
+Expert_Defog_CheckTargetSide:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Expert_Defog_ScreenScrubbing
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Expert_Defog_ScreenScrubbing
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Expert_Defog_ScreenScrubbing
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Expert_Defog_ScoreMinus2AndEnd
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_ScoreMinus2AndEnd
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_ScoreMinus2AndEnd
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_ScoreMinus2AndEnd
     GoTo Expert_Defog_CheckUserHPAndOpponentEvasion
 
 Expert_Defog_ScreenScrubbing:
@@ -6651,6 +6679,7 @@ Expert_Defog_ScreenScrubbingCheckHazards:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, Expert_Defog_TryScoreMinus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_Defog_TryScoreMinus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, Expert_Defog_TryScoreMinus1
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STICKY_WEB, Expert_Defog_TryScoreMinus1 // Oxide
     GoTo Expert_Defog_CheckUserHPAndOpponentEvasion
 
 Expert_Defog_ScoreMinus2AndEnd:
