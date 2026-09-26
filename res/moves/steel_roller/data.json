@@ -1,10 +1,10 @@
 {
     "name": "Steel Roller",
     "description": [
-        "The user attacks and\n",
-        "destroys the terrain.\n",
-        "This move fails if\n",
-        "there is no terrain."
+        "The user attacks\n",
+        "while destroying any\n",
+        "terrain. It still hits\n",
+        "if there is no terrain."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_STEEL",
