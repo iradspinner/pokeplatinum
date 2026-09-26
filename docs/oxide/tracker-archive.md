@@ -290,6 +290,12 @@ The tracker's "Balance analysis" entry as it stood from 2026-09-23 until it was 
 
 - [ ] **Balance analysis** (Ian, 2026-09-22): its own track, status in `docs/oxide/balance-plan.md`, covering the whole game's balance. As of 2026-09-23: B2's structural metrics are done (48640c88b); B1e's required-trainer model is built (c98f9fd01), its check waiting on Ian's avoidable-trainer examples; B3a, the player's side and pressure scores for Oxide's 28 fights, is done (908336ad4, `test_b3` 8 of 8, run on one core under a watcher with no fault); its damage check waits on Ian's in-game roll. B3b, the reference hacks' bosses scored against Oxide's side, **stopped on 2026-09-23** when a Node process segfaulted with four cores busy; its unfinished work is parked, unverified, on `wip-balance-b3b` (seven hacks scored, Null's last six fights and Run & Bun left, no test yet). Resume it on the new CPU and rerun everything once there. Ian's two rulings of that day are in that branch's plan: Choice items are weaker in play than their scores (the lock can be baited) and should be rare in Oxide, and a slight nerf to Gardenia's Roserade is intended for the trainer pass. Three calculator defects for the encounter track, which owns the vendored calculator: it applies a dual type's two factors in the opposite order to the game (Crunch into Bronzor reads 42 to 50, the game 43 to 51), and its Generation 4 code gives no damage for Electro Ball, Heavy Slam, Psywave, Super Fang and Trump Card. **The three passes below are that track's work**; their status lives in its plan
 
+Finished on 2026-09-26 and moved out the same day:
+
+- [x] **Swarm, Poke Radar and GBA dual-slot encounters turned off** (Ian, 2026-09-26): none of the three may ever produce a wild Pokemon, and none belongs in an encounter table. All 186 tables carried species in those lists, live once the National Dex is obtained.
+  - [x] Main track (`cloud/main-encounter-lists-off`, 7cefbba53, merged with the tables on 2026-09-26): no grass site, the radar or the binoculars reads the lists; the TV flash never airs and the Sandgem sibling keeps her ordinary line (in `bulk_scripts.py`'s DIVERGED). In-game check under Waiting on Ian.
+  - [x] Encounter track (5eaf5eb9b on `worktree-encounter-lists`, held for the engine change): all 2,976 entries emptied, and lint rule R17 fails on any species there.
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
