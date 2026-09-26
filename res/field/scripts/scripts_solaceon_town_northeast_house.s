@@ -4,8 +4,12 @@
 
     ScriptEntry SolaceonTownNortheastHouse_PokemonBreederF
     ScriptEntry SolaceonTownNortheastHouse_Cowgirl
-    ScriptEntry SolaceonTownNortheastHouse_Clown
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 SolaceonTownNortheastHouse_PokemonBreederF:
     PlaySE SE_CONFIRM_sseq_3
@@ -24,75 +28,5 @@ SolaceonTownNortheastHouse_Cowgirl:
     NPCMessage SolaceonTownNortheastHouse_Text_ThisAreaHadManyPokemon
     End
 
-SolaceonTownNortheastHouse_Clown:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT, SolaceonTownNortheastHouse_Declined
-    Message SolaceonTownNortheastHouse_Text_WouldYouLikeOneOfThesePokemon
-    ShowYesNoMenu VAR_0x800C
-    GoToIfEq VAR_0x800C, 0, SolaceonTownNortheastHouse_PickAGift
-    GoToIfEq VAR_0x800C, 1, SolaceonTownNortheastHouse_Declined
-    GoTo SolaceonTownNortheastHouse_Declined
-
-SolaceonTownNortheastHouse_PickAGift:
-    GetRandom VAR_0x800C, 3
-    GoToIfEq VAR_0x800C, 0, SolaceonTownNortheastHouse_GiveNatu
-    GoToIfEq VAR_0x800C, 1, SolaceonTownNortheastHouse_GiveTrapinch
-    GoToIfEq VAR_0x800C, 2, SolaceonTownNortheastHouse_GiveClamperl
-    End
-
-SolaceonTownNortheastHouse_Declined:
-    Message SolaceonTownNortheastHouse_Text_SeeYa
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-SolaceonTownNortheastHouse_GiveNatu:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_LUNATONE, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
-    Message SolaceonTownNortheastHouse_Text_SeeYa
-    CloseMessage
-    ReleaseAll
-    End
-
-SolaceonTownNortheastHouse_GiveTrapinch:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_TRAPINCH, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
-    Message SolaceonTownNortheastHouse_Text_SeeYa
-    CloseMessage
-    ReleaseAll
-    End
-
-SolaceonTownNortheastHouse_GiveClamperl:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    GoToIfEq VAR_0x800C, 6, SolaceonTownNortheastHouse_PartyIsFull
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_SOLROCK, 30, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_SOLACEON_TOWN_NORTHEAST_HOUSE_GIFT
-    Message SolaceonTownNortheastHouse_Text_SeeYa
-    CloseMessage
-    ReleaseAll
-    End
-
-SolaceonTownNortheastHouse_PartyIsFull:
-    Message SolaceonTownNortheastHouse_Text_YourPartyIsFull
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 
     .balign 4, 0

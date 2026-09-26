@@ -348,6 +348,10 @@ Three finished Phase 5 entries, done on `main-scripts` on 2026-09-27:
 
 ## Backlog / follow-ups
 
+Superseded on 2026-09-27, when Ian ruled that the gift clowns go (the encounter track's `clown-replacements.md`, carried out on `main-grass`):
+
+- **Unify the clown-gift events** (Ian, 2026-09-20): one common script parameterised by the map, which **names the possible Pokemon** rather than rolling blind (species per map in `docs/oxide/pokemon-gifts.md`), after the faithful carry-over and as its own commit. Orphaned pick-event names still to remove: canalave_library_2f 7, pastoria_city_north_house 6, floaroma_town_middle_house 4, eterna_city_condominiums_1f 3, floaroma_meadow_house 3, jubilife_city_south_house_1f 3, solaceon_town_northeast_house 3
+
 The two entries the tracker shortened, in full:
 
 - **Live inspection of the running game (Ian, 2026-09-20).** A `tools/oxide/live.py` that speaks the GDB remote protocol to melonDS's stub directly (no GDB needed for reads): halt, continue, registers, memory by symbol from `build/main.nef.xMAP`, and decoders on top for the party and boxes (Gen 4 block shuffle and encryption, with the ability field where `save-layout.md` says), script flags and vars, current map and player position, the running script's state, and writes for a debug console (set a flag, warp, give an item or a Pokemon, set an ability). Every Phase 4 emulator test then becomes something an agent can run itself. Second piece: an offline reader for the melonDS `.sav` (raw flash image, layout from the decomp's save code) so the encounter tool can take its caught list from the real dex flags and Phase 4 save changes can be checked against a real save. The stub connection is done (`live.py`, `live_watch.py`, recipe in `docs/oxide/setup-fork-and-wsl2.md` part 5b); the decoders and the `.sav` reader are what is left

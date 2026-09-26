@@ -24,7 +24,6 @@
     ScriptEntry Restaurant_BeautyGabriella
     ScriptEntry Restaurant_ScientistEmilio
     ScriptEntry Restaurant_BreederKaylee
-    ScriptEntry Restaurant_Clown
     ScriptEntryEnd
     End
 
@@ -2382,73 +2381,6 @@ Restaurant_KayleeFaceWest:
 
 Restaurant_LostBattle:
     BlackOutFromBattle
-    ReleaseAll
-    End
-
-@ Oxide: the clown's gift of one of six water lines at level 45, moved here
-@ from Pastoria City's north house (Ian, 2026-09-25). A gift's met location
-@ is the map it is given on, so it now counts as the Restaurant's nuzlocke
-@ capture instead of sharing Pastoria City's with its fishing and surf. The
-@ pool, its order, the level, the flag and the lines are the house's, and
-@ the Restaurant's opening hours now apply to it too.
-Restaurant_Clown:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT, Restaurant_ClownSeeYa
-    Message Restaurant_Text_ClownWouldYouLikeOne
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, Restaurant_ClownSeeYa
-    GetRandom VAR_0x8004, 6
-    CloseMessage
-    GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, Restaurant_ClownPartyFull
-    SetVar VAR_0x8005, SPECIES_OCTILLERY
-    CallIfEq VAR_0x8004, 1, Restaurant_ClownPicksMantine
-    CallIfEq VAR_0x8004, 2, Restaurant_ClownPicksCrawdaunt
-    CallIfEq VAR_0x8004, 3, Restaurant_ClownPicksSharpedo
-    CallIfEq VAR_0x8004, 4, Restaurant_ClownPicksLanturn
-    CallIfEq VAR_0x8004, 5, Restaurant_ClownPicksWhiscash
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon VAR_0x8005, 45, ITEM_NONE, VAR_RESULT
-    SetFlag FLAG_RECEIVED_PASTORIA_CITY_NORTH_HOUSE_GIFT
-    Message Restaurant_Text_ClownSeeYa
-    CloseMessage
-    ReleaseAll
-    End
-
-Restaurant_ClownPicksMantine:
-    SetVar VAR_0x8005, SPECIES_MANTINE
-    Return
-
-Restaurant_ClownPicksCrawdaunt:
-    SetVar VAR_0x8005, SPECIES_CRAWDAUNT
-    Return
-
-Restaurant_ClownPicksSharpedo:
-    SetVar VAR_0x8005, SPECIES_SHARPEDO
-    Return
-
-Restaurant_ClownPicksLanturn:
-    SetVar VAR_0x8005, SPECIES_LANTURN
-    Return
-
-Restaurant_ClownPicksWhiscash:
-    SetVar VAR_0x8005, SPECIES_WHISCASH
-    Return
-
-Restaurant_ClownSeeYa:
-    Message Restaurant_Text_ClownSeeYa
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-Restaurant_ClownPartyFull:
-    Message Restaurant_Text_ClownPartyFull
-    WaitButton
-    CloseMessage
     ReleaseAll
     End
 

@@ -124,11 +124,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
   Saturn's AI never chooses it.
-- [ ] The Restaurant on Route 213 (open 9:00 to 23:00): a clown in the
-  bottom-right corner gives one of Octillery, Mantine, Crawdaunt, Sharpedo,
-  Lanturn or Whiscash at level 45, whose summary reads met at the Restaurant;
-  talked to again he only says "See ya!". Pastoria City's north house has no
-  clown.
+- [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
+  Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
+  Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
+  house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
+  Route 213, have no clown; everyone else in them talks as before, and
+  Veilstone's Elekid gift still gives Elekid.
 - [ ] Fomantis evolves into Lurantis at level 34.
 - [ ] No evolution waits on friendship: Pichu, Cleffa, Igglybuff, Togepi and
   Azurill evolve at 10, Buneary and Chingling at 20, Riolu at 28, Luvdisc at

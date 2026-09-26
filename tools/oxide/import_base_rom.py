@@ -1214,6 +1214,13 @@ TEXT_BANKS_SKIPPED = {
     141: "the clown's gift and its lines moved to the Restaurant (Ian, 2026-09-25), "
          "and the pick menu's orphaned species names went with the move",
 }
+# The gift clowns are gone (Ian, 2026-09-27; the encounter track's
+# clown-replacements.md): each house's bank loses the giver's lines and the
+# orphaned pick-menu names at its end. Sandgem's house (568) is listed above.
+TEXT_BANKS_SKIPPED.update({
+    i: "the gift clown and its lines removed (Ian, 2026-09-27)"
+    for i in (38, 78, 574, 256, 97, 579, 159, 59)
+})
 
 
 def text_bank_names():

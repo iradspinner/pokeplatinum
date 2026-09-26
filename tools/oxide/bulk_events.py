@@ -36,6 +36,14 @@ DIVERGED = {
     "events_pastoria_city_north_house": "the clown the base ROM added moved to the "
                                         "Restaurant with its gift (Ian, 2026-09-25)",
 }
+# The gift clowns the base ROM added are gone (Ian, 2026-09-27).
+DIVERGED.update({
+    f"events_{m}": "the gift clown the base ROM added removed (Ian, 2026-09-27)"
+    for m in ("sandgem_town_house", "jubilife_city_south_house_1f", "oreburgh_city_middle_house",
+              "floaroma_town_middle_house", "floaroma_meadow_house", "eterna_city_condominiums_1f",
+              "solaceon_town_northeast_house", "veilstone_city_northeast_house",
+              "canalave_library_2f")
+})
 
 
 def render(record, existing, index):

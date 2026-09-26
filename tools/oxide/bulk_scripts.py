@@ -116,6 +116,15 @@ DIVERGED["scripts_fight_area"] = (
 DIVERGED["scripts_stark_mountain_room_3"] = (
     "the room holds no legendary for now, Heatran included (Ian, 2026-09-27)")
 
+# The gift clowns are gone (Ian, 2026-09-27; the encounter track's
+# clown-replacements.md). Regenerating would bring each one back.
+for _stem in ("scripts_sandgem_town_house", "scripts_jubilife_city_south_house_1f",
+              "scripts_oreburgh_city_middle_house", "scripts_floaroma_town_middle_house",
+              "scripts_floaroma_meadow_house", "scripts_eterna_city_condominiums_1f",
+              "scripts_solaceon_town_northeast_house", "scripts_veilstone_city_northeast_house",
+              "scripts_canalave_library_2f"):
+    DIVERGED[_stem] += "; then the gift clown itself was removed (Ian, 2026-09-27)"
+
 # The starter gets a met location of its own, so that Route 201 stays a
 # nuzlocke capture area (Ian, 2026-09-21).
 DIVERGED["scripts_route_201"] = (

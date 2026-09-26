@@ -1685,18 +1685,6 @@
         "calories, we can always work them off\f",
         "by battling!"
       ]
-    },
-    {
-      "id": "Restaurant_Text_ClownWouldYouLikeOne",
-      "en_US": "Would you like one of these Pokémon?"
-    },
-    {
-      "id": "Restaurant_Text_ClownSeeYa",
-      "en_US": "See ya!\r"
-    },
-    {
-      "id": "Restaurant_Text_ClownPartyFull",
-      "en_US": "Your party is full..."
     }
   ]
 }

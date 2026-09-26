@@ -6,8 +6,12 @@
 
     ScriptEntry VeilstoneCityNortheastHouse_Entry0
     ScriptEntry VeilstoneCityNortheastHouse_Entry1
-    ScriptEntry VeilstoneCityNortheastHouse_Entry2
     ScriptEntryEnd
+
+@ Oxide: the gift clown that stood here is gone (Ian, 2026-09-27; the encounter track's
+@ clown-replacements.md): its object, its script entry and its lines, with the
+@ orphaned pick-menu names. Where the town had no other capture, new grass
+@ outside takes its place.
 
 VeilstoneCityNortheastHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
@@ -29,18 +33,6 @@ VeilstoneCityNortheastHouse_Entry1:
     CloseMessage
     ReleaseAll
     End
-VeilstoneCityNortheastHouse_Entry2:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    FacePlayer
-    GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT, VeilstoneCityNortheastHouse_0128
-    Message 9
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, VeilstoneCityNortheastHouse_01F0
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, VeilstoneCityNortheastHouse_0128
-    GoTo VeilstoneCityNortheastHouse_0128
 VeilstoneCityNortheastHouse_007B:
     Message 7
     GoTo VeilstoneCityNortheastHouse_0133
@@ -52,51 +44,6 @@ VeilstoneCityNortheastHouse_008D:
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, VeilstoneCityNortheastHouse_013B
     GoTo VeilstoneCityNortheastHouse_018C
-VeilstoneCityNortheastHouse_00A4:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, VeilstoneCityNortheastHouse_0195
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_CLOBBOPUS, 40, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
-    Message 10
-    CloseMessage
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_00D0:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, VeilstoneCityNortheastHouse_0195
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_HAWLUCHA, 40, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
-    Message 10
-    CloseMessage
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_00FC:
-    CloseMessage
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, VeilstoneCityNortheastHouse_0195
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GivePokemon SPECIES_MASQUERAIN, 40, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT
-    Message 10
-    CloseMessage
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_0128:
-    Message 10
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 VeilstoneCityNortheastHouse_0133:
     WaitButton
     CloseMessage
@@ -123,12 +70,6 @@ VeilstoneCityNortheastHouse_013B:
 VeilstoneCityNortheastHouse_018C:
     Message 6
     GoTo VeilstoneCityNortheastHouse_0133
-VeilstoneCityNortheastHouse_0195:
-    Message 11
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 VeilstoneCityNortheastHouse_01A0:
     Message 5
     GoTo VeilstoneCityNortheastHouse_0133
@@ -152,14 +93,6 @@ VeilstoneCityNortheastHouse_01E4:
 VeilstoneCityNortheastHouse_01EA:
     IncrementGameRecord 49
     Return
-VeilstoneCityNortheastHouse_01F0:
-    GetRandom VAR_0x800C, 3
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, VeilstoneCityNortheastHouse_00A4
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, VeilstoneCityNortheastHouse_00D0
-    CompareVarToValue VAR_0x800C, 2
-    GoToIf 1, VeilstoneCityNortheastHouse_00FC
-    End
+
     .balign 4, 0
 
