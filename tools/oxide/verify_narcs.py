@@ -475,6 +475,9 @@ MODERN_PRIORITY_NATIVES = {182, 197, 203, 245, 252, 266}
 # Drill Peck, Megahorn, X-Scissor, Power Whip and Dragon Claw given a high
 # critical-hit ratio, Slash's effect in place of a plain hit (Ian, 2026-09-27).
 HIGH_CRITICAL_NATIVES = {65, 224, 337, 404, 438}
+# The weak signature attacks raised to 80 to 90 power (Ian, 2026-09-27):
+# Octazooka, Needle Arm, Crush Claw, Poison Tail, Mirror Shot, Magnet Bomb.
+KAIZO_POWER_NATIVES = {190, 302, 306, 342, 429, 443}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -545,6 +548,11 @@ DIVERGED = {
             "offsets": (0, 1),  # effect
             "members": HIGH_CRITICAL_NATIVES,
             "why": "five attacks given a high critical-hit ratio (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": KAIZO_POWER_NATIVES,
+            "why": "six weak attacks raised to 80 to 90 power (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power
