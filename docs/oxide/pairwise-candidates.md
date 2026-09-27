@@ -68,7 +68,7 @@ score misreads: numbers 4, 5, 7, 10, 11, 14, 15, 17, 19, 21, 25, 26, 28, 30, 33 
 
 ## Galactic split, cap 65
 
-26. [Galactic Officer Somnu](http://localhost:8765/#trainers/galactic_grunt_mt_coronet_5f_2), Mt. Coronet 5F, against [Galactic Grunt](http://localhost:8765/#trainers/galactic_grunt_galactic_hq_b2f_2), Galactic HQ B2F. Answer: Somnu much harder (Ian, 2026-09-27)
+26. [Galactic Officer Somnu](http://localhost:8765/#trainers/galactic_grunt_mt_coronet_5f_2), Mt. Coronet 5F, against [Galactic Grunt](http://localhost:8765/#trainers/galactic_grunt_galactic_hq_b2f_1), Galactic HQ B2F. Answer: Somnu much harder (Ian, 2026-09-27)
 27. Mars and Jupiter, Spear Pillar, a tag fight beside Barry ([Commander Mars](http://localhost:8765/#trainers/commander_mars_spear_pillar), [Commander Jupiter](http://localhost:8765/#trainers/commander_jupiter_spear_pillar)), against [Cyrus 3](http://localhost:8765/#trainers/galactic_boss_cyrus_distortion_world), Distortion World. Answer: ______
 28. [Dragon Tamer Drake](http://localhost:8765/#trainers/dragon_tamer_drake), Stark Mountain, against [Psychic Sterling](http://localhost:8765/#trainers/psychic_sterling), Stark Mountain. Answer: ______
 29. [Galactic Officer Moira](http://localhost:8765/#trainers/galactic_grunt_mt_coronet_5f_1), Mt. Coronet 5F, against [Galactic Officer Hesperid](http://localhost:8765/#trainers/galactic_grunt_mt_coronet_6f), Mt. Coronet 6F. Answer: ______
