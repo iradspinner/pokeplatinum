@@ -31,7 +31,7 @@
         },
         {
             "level": 19,
-            "species": "SPECIES_STEENEE"
+            "species": "SPECIES_TANGELA"
         },
         {
             "level": 20,
@@ -170,7 +170,7 @@
         {
             "level_max": 26,
             "level_min": 20,
-            "species": "SPECIES_SURSKIT"
+            "species": "SPECIES_SLOWPOKE"
         },
         {
             "level_max": 28,
