@@ -19,9 +19,11 @@ Where each piece comes from:
   roamers), each at its location's split, and left out when its level is
   above that split's cap. Swarms, the Poke Radar, the GBA slots and the
   Trophy Garden dailies are never used (Ian, 2026-09-21), so they are not
-  sources. Then every evolution reachable at the cap, by the encounter
-  tool's own rule (evolve.py): a level, or its judged level for a stone,
-  trade or friendship.
+  sources. Then every evolution reachable at the cap: one that needs an
+  item (a stone, or an item held on level-up) from the split that item is
+  first in reach, a wild Pokemon's held item included; the rest by the
+  encounter tool's own rule (evolve.py), a level, or its judged level for
+  friendship and the like.
 - Moves. The level-up moves of the species and of every earlier stage at or
   below the cap, the TMs and HMs the player has by then (B1d's item map),
   and the tutors whose house is reachable by then. Egg moves are left out.
@@ -178,19 +180,60 @@ def pre_evolutions():
 
 
 @functools.lru_cache(maxsize=None)
+def evolution_items_first():
+    """{item constant: the first split the player can have it in}, for the
+    items an evolution needs: the player's own items, and a wild Pokemon's
+    held item from the split its holder is first caught in, since a catch or
+    Thief takes it (Seadra's Dragon Scale, Clamperl's Deep Sea Scale)."""
+    first = dict(_items_first())
+    for sp, (split, _how) in caught().items():
+        rec = pokedex.load(data.ROOT, sp) or {}
+        for item in (rec.get("held_items") or {}).values():
+            if not item or item == "ITEM_NONE" or split not in SPLITS:
+                continue
+            if item not in first or split_index(split) < split_index(first[item]):
+                first[item] = split
+    return first
+
+
+@functools.lru_cache(maxsize=None)
+def evolutions(species):
+    """[(level, item, target)] out of one stage for the player's side: an
+    evolution that needs an item (a stone, or a held item on level-up) takes
+    none of the encounter tool's judged level, only the item, since the player
+    can use it at any level once it is in reach; the rest keep the encounter
+    tool's rule (evolve.py)."""
+    items = {}
+    for evo in (pokedex.load(data.ROOT, species) or {}).get("evolutions", []):
+        if evo["item"] and evo["into"]:
+            items.setdefault(evo["into"], "ITEM_" + evo["item"])
+    return [(1 if target in items else need, items.get(target), target)
+            for need, target in evolve.evolutions(data.ROOT, species)]
+
+
+def reachable(level, item, split):
+    """Whether an evolution is open by a split's end: its item in reach, or
+    its level at or under the cap."""
+    if item:
+        first = evolution_items_first().get(item)
+        return first is not None and split_index(first) <= split_index(split)
+    return level <= caps()[split]
+
+
+@functools.lru_cache(maxsize=None)
 def species_by_split():
     """{split: {species constant: how}}: everything owned by each split's end,
-    evolutions reached at its cap included."""
+    evolutions reached at its cap included. A stone evolution is owned from
+    the split its stone is first in reach (the stone plan's placements)."""
     first = caught()
-    cap = caps()
     out = {}
     for split in SPLITS:
         have = {sp: how for sp, (s, how) in first.items() if split_index(s) <= split_index(split)}
         todo = list(have)
         while todo:
             sp = todo.pop()
-            for need, target in evolve.evolutions(data.ROOT, sp):
-                if need <= cap[split] and target not in have:
+            for need, item, target in evolutions(sp):
+                if reachable(need, item, split) and target not in have:
                     have[target] = "evolved"
                     todo.append(target)
         out[split] = have

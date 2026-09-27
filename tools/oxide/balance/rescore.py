@@ -38,11 +38,17 @@ one, keeping its verified mark; it has been used twice, when the engine
 part narrowed from the whole vendored folder to engine_files, and when
 species records' hidden-ability slot left the hash (_species_record).
 
-Every calculation runs in one Node process at a time.
+Every calculation runs in one Node process, one at a time unless --workers
+asks for more. With Ian's turbo cap (2026-09-27) the CPU ran sixteen copies
+of the flake check twice without a fault, so a run may use two or three
+workers pinned to as many cores (taskset -c 4-6 ... --workers 3). The verify
+pass still recomputes every score, and if a worker ever disagrees the runs
+go back to one.
 """
 import argparse
 import ast
 import collections
+import concurrent.futures
 import functools
 import hashlib
 import json
@@ -464,43 +470,49 @@ def _plain(record):
     return json.loads(json.dumps(record))
 
 
-def _one(u, mode, blob, blob_path, files):
-    """What one unit comes to under `mode`: a count's label, and whether a
-    recomputed score disagreed with the stored one."""
+def _decide(u, mode, blob):
+    """What one unit needs under `mode`: ("done", label) when no calculation
+    is needed (the label is None for a unit with nothing to score), or
+    ("compute", (fingerprint, stored record)) when one is."""
     built = u.built()
     if built is None:
-        return None, False
+        return "done", None
     jobs, _ctx, fp_ctx = built
     fp = fingerprint(u.kind, jobs, fp_ctx, blob)
     old = u.stored()
     current = old is not None and old.get("fingerprint") == fp
     if mode == "status":
-        return ("missing" if old is None else "stale" if not current
-                else "verified" if old.get("verified") else "unverified"), False
+        return "done", ("missing" if old is None else "stale" if not current
+                        else "verified" if old.get("verified") else "unverified")
     if mode == "seed":
         if old is None or "fingerprint" in old:
-            return "left as it was", False
+            return "done", "left as it was"
         u.store(dict(old, fingerprint=fp, verified=False))
-        return "seeded", False
+        return "done", "seeded"
     if mode == "restamp":
         # A score current under the previous definition is current under
         # this one, which reads a subset of the same inputs; it keeps its
         # verified mark.
         if current or old is None:
-            return "left as it was", False
+            return "done", "left as it was"
         if old.get("fingerprint") != fingerprint(u.kind, jobs, fp_ctx, blob, previous=True):
-            return "stale either way", False
+            return "done", "stale either way"
         u.store(dict(old, fingerprint=fp))
-        return "restamped", False
+        return "done", "restamped"
     if mode == "rescore":
-        if current:
-            return "reused", False
-        u.store(dict(_plain(u.compute(blob_path)), fingerprint=fp, verified=False))
+        return ("done", "reused") if current else ("compute", (fp, old))
+    if not current or old.get("verified"):
+        return "done", ("stale" if not current else "already verified")
+    return "compute", (fp, old)
+
+
+def _record(u, mode, fp, old, r, files):
+    """Stores a calculated record `r`: (label, whether it disagreed with the
+    stored one)."""
+    if mode == "rescore":
+        u.store(dict(r, fingerprint=fp, verified=False))
         files.save()
         return "recomputed", False
-    if not current or old.get("verified"):
-        return ("stale" if not current else "already verified"), False
-    r = _plain(u.compute(blob_path))
     if _strip(r) != _strip(old):
         return "disagreed", True
     u.store(dict(old, verified=True))
@@ -508,32 +520,71 @@ def _one(u, mode, blob, blob_path, files):
     return "verified", False
 
 
-def run(mode, kinds=KINDS, names=None, out=sys.stdout):
+def _one(u, mode, blob, blob_path, files):
+    """What one unit comes to under `mode`: a count's label, and whether a
+    recomputed score disagreed with the stored one."""
+    what, detail = _decide(u, mode, blob)
+    if what == "done":
+        return detail, False
+    fp, old = detail
+    return _record(u, mode, fp, old, _plain(u.compute(blob_path)), files)
+
+
+def run(mode, kinds=KINDS, names=None, out=sys.stdout, workers=1):
     """mode: "rescore", "verify", "status" or "seed". Prints and returns
     the counts, which say how many scores a run recomputed and how many it
-    reused."""
+    reused.
+
+    With `workers` above one, that many calculations run at once, each its
+    own Node process waited on by a thread of this one. Building, checking
+    and storing stay on the main thread, so the result files have one
+    writer, and results are stored in the order the units come. Pin the run
+    to as many cores as workers (taskset -c 4-6 for three)."""
     blob = calc_export.build()
     files, sides = Files(), Sides(blob)
     counts = collections.Counter()
     mismatched = []
-    with tempfile.TemporaryDirectory(prefix="oxide-rescore-") as tmp:
+
+    def tally(u, label, disagreed):
+        if label is None:
+            return
+        counts[f"{u.kind} {label}"] += 1
+        if disagreed:
+            mismatched.append(u.name)
+        if label in ("recomputed", "verified", "disagreed"):
+            print(f"{mode} {u.kind} {u.name}: {label}", flush=True)
+
+    # The executor is left before the temporary directory, so no calculation
+    # outlives the blob file it reads.
+    with tempfile.TemporaryDirectory(prefix="oxide-rescore-") as tmp, \
+            concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
         blob_path = os.path.join(tmp, "blob.json")
         with open(blob_path, "w", encoding="utf-8") as f:
             json.dump(blob, f)
+        pending = collections.deque()
+
+        def settle():
+            u, fp, old, fut = pending.popleft()
+            try:
+                label, disagreed = _record(u, mode, fp, old, fut.result(), files)
+            finally:
+                u._built = None      # a built job is large; hold only those in flight
+            tally(u, label, disagreed)
+
         for u in units(blob, files, sides, kinds):
             if names and u.name not in names:
                 continue
-            try:
-                label, disagreed = _one(u, mode, blob, blob_path, files)
-            finally:
-                u._built = None      # a built job is large; keep one at a time
-            if label is None:
+            what, detail = _decide(u, mode, blob)
+            if what == "done":
+                u._built = None
+                tally(u, detail, False)
                 continue
-            counts[f"{u.kind} {label}"] += 1
-            if disagreed:
-                mismatched.append(u.name)
-            if label in ("recomputed", "verified", "disagreed"):
-                print(f"{mode} {u.kind} {u.name}: {label}", flush=True)
+            fp, old = detail
+            pending.append((u, fp, old, ex.submit(lambda u=u: _plain(u.compute(blob_path)))))
+            while len(pending) >= workers:
+                settle()
+        while pending:
+            settle()
         files.save()
     for k in sorted(counts):
         print(f"{k}: {counts[k]}", file=out)
@@ -568,10 +619,12 @@ def main(argv=None):
     ap.add_argument("--kind", action="append", choices=KINDS, default=[])
     ap.add_argument("--name", action="append", default=[],
                     help="one score, as the run prints it (a fight key, 'kaizo roark', ...)")
+    ap.add_argument("--workers", type=int, default=1,
+                    help="calculations at once; pin the run to as many cores")
     args = ap.parse_args(argv)
     mode = ("verify" if args.verify else "status" if args.status else "seed" if args.seed
             else "restamp" if args.restamp else "rescore")
-    run(mode, tuple(args.kind) or KINDS, set(args.name) or None)
+    run(mode, tuple(args.kind) or KINDS, set(args.name) or None, workers=max(1, args.workers))
     return 0
 
 

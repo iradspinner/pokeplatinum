@@ -18,7 +18,7 @@ Ian's ratings showed"). Every score is on the combined branch of
 2026-09-27 (the calculator's items 22 and 23, the friendship and trade
 evolutions, the new grass tables and sources, Heatran out of Stark
 Mountain, the Kaizo move data and element 4's partly working moves, the
-Sinistea split), and rescores are incremental. The encounter tool's team
+Sinistea split, the stone gate), and rescores are incremental. The encounter tool's team
 builder scores a team through `teamscore.py`. B6 is done ("What B6 found"): the bottom band
 is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
 fights with their damage spread across each team, and of the player's
@@ -239,11 +239,11 @@ softer than a finished team will, so these are a floor:
 
 | Brain | Split (cap) | Safe switch-ins | On Ian's fight scale |
 |---|---|---|---|
-| Dahlia | Maylene (39) | 0.57 | about 5.3 |
-| Darach | Wake (44) | 0.64 | about 4.8 |
-| Thorton, under Trick Room | Byron (53) | 0.58 | about 5.2 |
-| Argenta | Byron (53) | 0.54 | about 5.5 |
-| Palmer | Galactic (65) | 0.21 | about 7.8 |
+| Dahlia | Maylene (39) | 0.56 | about 5.3 |
+| Darach | Wake (44) | 0.64 | about 4.7 |
+| Thorton, under Trick Room | Byron (53) | 0.58 | about 5.1 |
+| Argenta | Byron (53) | 0.54 | about 5.4 |
+| Palmer | Galactic (65) | 0.21 | about 7.9 |
 
 Dahlia's Wonder Room is not modelled, and Darach's double battle is scored
 as singles, as every double is.
@@ -500,11 +500,11 @@ strongest damage item the split offers.
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
 | Roark | 16 | 104 | 18 |
-| Gardenia | 26 | 177 | 32 |
-| Fantina | 33 | 272 | 40 |
-| Maylene | 39 | 348 | 72 |
-| Wake | 44 | 393 | 84 |
-| Byron | 53 | 417 | 99 |
+| Gardenia | 26 | 185 | 32 |
+| Fantina | 33 | 257 | 40 |
+| Maylene | 39 | 338 | 72 |
+| Wake | 44 | 390 | 84 |
+| Byron | 53 | 416 | 99 |
 | Candice | 56 | 430 | 105 |
 | HQ | 60 | 431 | 108 |
 | Galactic | 65 | 436 | 120 |
@@ -521,13 +521,13 @@ most threatening Pokemon and its least answered one.
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.92 |
 | Barry 2 | 0.01 | 0.63 | 0.03 | 0.51 |
 | Roark | 0.14 | 0.16 | 0.42 | 0.04 |
-| Mars 1 | 0.01 | 0.36 | 0.03 | 0.09 |
-| Gardenia | 0.68 | 0.06 | 0.90 | 0.03 |
-| Jupiter 1 | 0.12 | 0.24 | 0.19 | 0.11 |
-| Fantina | 0.51 | 0.10 | 0.88 | 0.00 |
-| Barry 3 | 0.17 | 0.47 | 0.38 | 0.33 |
-| Maylene | 0.69 | 0.20 | 0.81 | 0.07 |
-| Barry 4 | 0.48 | 0.13 | 0.83 | 0.03 |
+| Mars 1 | 0.01 | 0.37 | 0.03 | 0.09 |
+| Gardenia | 0.66 | 0.06 | 0.89 | 0.03 |
+| Jupiter 1 | 0.13 | 0.22 | 0.20 | 0.09 |
+| Fantina | 0.53 | 0.09 | 0.89 | 0.00 |
+| Barry 3 | 0.18 | 0.46 | 0.38 | 0.32 |
+| Maylene | 0.70 | 0.20 | 0.81 | 0.07 |
+| Barry 4 | 0.48 | 0.13 | 0.84 | 0.03 |
 | Wake | 0.74 | 0.07 | 0.98 | 0.00 |
 | Cyrus 1 | 0.38 | 0.35 | 0.56 | 0.23 |
 | Barry 5 | 0.55 | 0.19 | 0.91 | 0.04 |
@@ -552,8 +552,9 @@ calculator's item 23, the friendship and trade evolutions, the new grass
 tables and sources, Heatran out of Stark Mountain, then the Kaizo move
 data and element 4's partly working moves, and the stone plan's and the
 Underground's item removals, which cut the items each split holds, then
-Ian's Sinistea split, which adds a species to every split from Fantina's),
-which moves no Oxide fight by more than 0.02; before that on 2026-09-26 for the calculator following the
+Ian's Sinistea split, which adds a species to every split from Fantina's,
+then the stone gate, which takes each stone evolution where its stone is
+first in reach), which moves no Oxide fight by more than 0.03; before that on 2026-09-26 for the calculator following the
 engine's computed powers (the encounter track's item 22), which moves no
 Oxide fight by more than 0.002 and leaves both tables as they were; before
 that the same day for the modern move values, the
@@ -693,13 +694,13 @@ Champion):
 | Hack | Ian's rating | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
 |---|---|---|---|---|---|
 | Oxide today |  | 0.57 | 0.31 | 0.37 | 4.4 |
-| Vanilla | 3 | 0.14 | 0.80 | 0.93 | 2.8 |
+| Vanilla | 3 | 0.15 | 0.80 | 0.93 | 2.8 |
 | Unbound, difficult | 5.25 | 0.51 | 0.28 | 0.62 | 4.4 |
-| Renegade | 7 | 0.54 | 0.31 | 0.34 | 6.5 |
+| Renegade | 7 | 0.54 | 0.31 | 0.33 | 6.5 |
 | Redux | 8 | 0.69 | 0.09 | 0.25 | 4.8 |
 | Redux hardcore | 8.5 | 0.74 | 0.06 | 0.23 | 4.7 |
 | Hardlove | 9.5 | 0.68 | 0.18 | 0.33 | 6.0 |
-| Kaizo | 10 | 0.76 | 0.03 | 0.07 | 6.6 |
+| Kaizo | 10 | 0.77 | 0.03 | 0.07 | 6.6 |
 | Null | 10 | 0.92 | 0.01 | 0.01 | 5.7 |
 | Run & Bun | 10 | 0.84 | 0.04 | 0.13 | 4.9 |
 
@@ -708,7 +709,7 @@ the hacks' ratings is minus 0.93, level with the damage readings, and one
 line fits them better than any damage line does:
 
 ```
-rating = 10.5 - 8.1 x safe switch-ins, R squared 0.91
+rating = 10.5 - 8.1 x safe switch-ins, R squared 0.92
 rating = 5.7 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
 ```
 
@@ -727,9 +728,9 @@ Seat by seat, safe switch-ins against the two references nearest a 6:
 | Seat | Oxide | Unbound (5.25) | Renegade (7) |
 |---|---|---|---|
 | Roark | 0.81 | 0.83 | 0.61 |
-| Gardenia | 0.34 | 0.96 | 0.45 |
-| Fantina | 0.62 | 0.73 | 0.61 |
-| Maylene | 0.30 | 0.93 | 0.30 |
+| Gardenia | 0.37 | 0.96 | 0.46 |
+| Fantina | 0.61 | 0.71 | 0.59 |
+| Maylene | 0.30 | 0.92 | 0.29 |
 | Wake | 0.32 | 0.48 | 0.48 |
 | Byron | 0.24 | 0.51 | 0.11 |
 | Candice | 0.34 | 0.59 | 0.24 |
@@ -759,31 +760,31 @@ left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 | Saturn 2 | 8.5 | 0.39 | 0.35 | 0.36 | 7 |
 | Candice | 8.5 | 0.65 | 0.18 | 0.34 | 9 |
 | Wake | 8 | 0.74 | 0.19 | 0.32 | 2 |
-| Maylene | 8 | 0.68 | 0.21 | 0.30 | 2 |
+| Maylene | 8 | 0.69 | 0.20 | 0.30 | 2 |
 | Officer Hesperid, Lake Valor | 7 | 0.44 | 0.43 | 0.20 | 8 |
 | Byron | 7 | 0.34 | 0.17 | 0.24 | 5 |
 | Saturn 1 | 6.5 | 0.52 | 0.33 | 0.43 | 6 |
-| Fantina | 6 | 0.51 | 0.27 | 0.62 | 5 |
+| Fantina | 6 | 0.53 | 0.25 | 0.61 | 5 |
 | Barry 4 | 6 | 0.48 | 0.33 | 0.63 | 7 |
 | Cyrus 1 | 5 | 0.38 | 0.54 | 0.60 | 5 |
 | Mars 2 | 5 | 0.37 | 0.37 | 0.60 | 10 |
-| Gardenia | 5 | 0.68 | 0.15 | 0.34 | 5 |
+| Gardenia | 5 | 0.66 | 0.17 | 0.37 | 5 |
 | Volkner | 3 | 0.58 | 0.51 | 0.35 | 4 |
 | Roark | 2 | 0.14 | 0.21 | 0.81 | 4 |
 
 Over the fifteen single battles, safe switch-ins correlate with his
-ratings at minus 0.59 (minus 0.66 before the Galactic finales); the
+ratings at minus 0.64 (minus 0.67 before the Galactic finales); the
 damage readings sit between 0.27 and 0.35 either way, and the tactics
 tally at 0.17. Safe switch-ins alone predict a rating it was not fitted on to
 within 1.7 points, against a spread of 1.9 in his ratings, and no pair or
 triple of readings does better on a fight held out. The line is about
-9.3 minus 7.1 times safe switch-ins. Its misses say what is still
+9.4 minus 7.4 times safe switch-ins. Its misses say what is still
 outside:
 
 - **Volkner** reads 6.8 against Ian's 3. Baiting his three Choice locks
   shows in the answers (0.51, among the most of any fight), but not in
   safe switch-ins.
-- **Gardenia** reads 6.9 against 5, the stage: Ian's scale rises through
+- **Gardenia** reads 6.7 against 5, the stage: Ian's scale rises through
   the game (later fights rate higher, correlation 0.42), and the scores
   are relative to each split's side by design.
 - **Candice and Saturn 2** read 6.9 and 6.8 against 8.5, and Spear Pillar cannot
@@ -809,17 +810,17 @@ reading, with Ian's rating where he has one:
 | Flint | 0.22 | 0.42 | not rated |
 | Byron | 0.24 | 0.17 | 7 |
 | Cyrus 3 | 0.24 | 0.26 | 8.5 |
-| Maylene | 0.30 | 0.21 | 8 |
+| Maylene | 0.30 | 0.20 | 8 |
 | Wake | 0.32 | 0.19 | 8 |
-| Gardenia | 0.34 | 0.15 | 5 |
 | Candice | 0.34 | 0.18 | 8.5 |
 | Volkner | 0.35 | 0.51 | 3 |
 | Saturn 2 | 0.36 | 0.35 | 8.5 |
+| Gardenia | 0.37 | 0.17 | 5 |
 
 So the trainer pass reads safe switch-ins first, with answers (baiting
 counted) and the tactics list beside it, translated onto Ian's fight scale
-by the line above (about 9.3 minus 7.1 times safe switch-ins): a fight at
-safe switch-ins of 0.95 or more sits at 2 or under, one at 0.45 to 0.85
+by the line above (about 9.4 minus 7.4 times safe switch-ins): a fight at
+safe switch-ins of 0.94 or more sits at 2 or under, one at 0.45 to 0.85
 between 3 and 6.
 
 **Ian's explanations** (2026-09-25), for the fights where his rating and
@@ -889,15 +890,15 @@ from, so they are kept here in brief.
 B6 scores every ordinary trainer the player meets (428, 40 of them
 required) and each story fight under one change at a time
 (`b6.py --report`; all 458 scores verified by a second run). Every fight
-is placed on Ian's fight scale by the line above, now 9.3 minus 7.1 times
-safe switch-ins. The line bottoms out at 2.2: a party whose Pokemon never
+is placed on Ian's fight scale by the line above, now 9.4 minus 7.4 times
+safe switch-ins. The line bottoms out at 2.1: a party whose Pokemon never
 double up on a knockout leaves every switch-in safe. So the bottom band
-(0 to 2) is safe switch-ins of 0.95 or more.
+(0 to 2) is safe switch-ins of 0.94 or more.
 
 **Goal 2, more fights in the middle and fewer at the bottom.** The story
 fights are mostly in the middle already. Five sit at the bottom (Barry 1,
 2 and 3, Mars 1, Jupiter 1), and seven at the top (Byron, Cyrus 3, Flint,
-Lucian, Cynthia and both Hesperid fights, 7.6 to 8.0). The ordinary
+Lucian, Cynthia and both Hesperid fights, 7.6 to 8.1). The ordinary
 trainers are where the bottom is:
 
 | Split | Bottom (0 to 2), all / required | Middle (3 to 7), all / required |
@@ -905,19 +906,19 @@ trainers are where the bottom is:
 | Roark | 18 / 3 | 0 / 0 |
 | Gardenia | 37 / 8 | 0 / 0 |
 | Fantina | 43 / 3 | 1 / 0 |
-| Maylene | 25 / 1 | 13 / 4 |
+| Maylene | 26 / 1 | 12 / 4 |
 | Wake | 51 / 5 | 21 / 2 |
-| Byron | 36 / 1 | 25 / 3 |
+| Byron | 40 / 1 | 21 / 3 |
 | Candice | 21 / 3 | 9 / 3 |
 | HQ | 3 / 0 | 9 / 0 |
-| Galactic | 16 / 0 | 49 / 0 |
-| Volkner | 13 / 0 | 7 / 1 |
+| Galactic | 19 / 0 | 46 / 0 |
+| Volkner | 14 / 0 | 6 / 1 |
 | League | 9 / 1 | 20 / 1 |
 
 Two ordinary trainers sit at the top. Before Maylene's split, 98 of 99
 ordinary trainers are at the bottom, and only 15 of the 40 required ones
 reach the middle anywhere. Party size decides it: all 166 one-Pokemon
-trainers are at the bottom, 79 of 139 with two, 20 of 105 with three,
+trainers are at the bottom, 86 of 139 with two, 22 of 105 with three,
 and 7 of 18 with four or more. So the lever for goal 2 is the trainer
 pass's party sizes, and the gauntlets, which string bottom-band fights
 into one test.
@@ -926,31 +927,31 @@ into one test.
 0.55 or more, four tactics or fewer, two thirds of turns called): Maylene,
 Wake, Volkner, Flint, Lucian and Cynthia. Their damage is spread across
 the team: no single boss-side change cuts a fight's threat by more than
-0.08 (Maylene's Cacturne without Sucker Punch). So curbing them means
+0.09 (Maylene's Cacturne without Sucker Punch). So curbing them means
 several changes in each, trading damage for the tactics the scores cannot
 see, as Ian's own peak fights do. Four of the six carry Choice items
 (Wake's Sharpedo, Volkner's Electivire, Flint's Infernape and Magmortar),
 which Ian's ruling takes off.
 
 **Flint and Byron, the two Ian named as perhaps too hard**, read 7.8 and
-7.6. Flint's is Fire doubling up: Infernape and Magmortar knock out the
+7.7. Flint's is Fire doubling up: Infernape and Magmortar knock out the
 same 310 player Pokemon in one hit between them. Taking Magmortar's
 Choice Specs off gives back 0.106 of safe switch-ins, and Infernape out
 0.150, so the Choice ruling alone brings him down most of a point.
 Byron's is Forretress's Explosion, which the scores count as a one-hit
-knockout on most of the side: without it his safe switch-ins rise 0.185,
-from 7.6 to about 6.3. The scores count every Explosion as a knockout, not
+knockout on most of the side: without it his safe switch-ins rise 0.186,
+from 7.7 to about 6.3. The scores count every Explosion as a knockout, not
 a one-time trade, so they overrate that part of Byron, the thing Ian
 named.
 
 **Goal 4, the player's levers.** Caps and map weather are the only strong
 ones. Two cap levels move a split's fights by 0.03 to 0.11 of answers and
 0.03 to 0.08 of safe switch-ins. Pastoria Gym's rain is the biggest
-single lever: without it Wake's fight gains 0.125 of safe switch-ins.
+single lever: without it Wake's fight gains 0.124 of safe switch-ins.
 Roark's and Bertha's sand cost the player about 0.07 of answers each.
 Items and TMs barely move anything: Life Orb one split earlier is worth
 0.05, Choice Specs 0.04, and every TM or HM one split earlier 0.016 or
-less, 56 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
+less, 58 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
 TM pass can place TMs for variety; and the player's Choice items going
 away costs only 0.026 of answers. No species is the only sure answer to
 any boss Pokemon, so no fight needs a particular catch. A fully evolved
@@ -1338,7 +1339,7 @@ on 2026-09-27 (design pass 2).
   Started 2026-09-25 (`pressure.py`'s B5 columns, `calibrate.py`). Ian
   rated sixteen fights and explained the ones the scores misread; from
   that came baited Choice locks, setup branches and safe switch-ins, and
-  safe switch-ins read both his hack ratings (R squared 0.91) and his
+  safe switch-ins read both his hack ratings (R squared 0.92) and his
   fight ratings (minus 0.58) best ("What B3b and B5 found", "What Ian's
   ratings showed"). Ian's fight scale is his own design scale, separate
   from the game scale (2026-09-26); the line above translates the readings
@@ -1425,7 +1426,7 @@ on 2026-09-27 (design pass 2).
 
   | Fights | Mean | Worst |
   |---|---|---|
-  | The 28 story fights | 0.26 | 1.0 (Maylene, read too easy) |
+  | The 28 story fights | 0.27 | 1.0 (Maylene, read too easy) |
   | All 456 stored fights | 0.13 | |
 
 Then the design passes, in this order. Each proposal goes to Ian before it
@@ -1527,10 +1528,30 @@ lands, and each change is re-scored as it lands.
    | Dawn | Mt. Coronet 1F south (Fantina's) | Route 225; Route 212 south's becomes the early Shiny Stone | Froslass, Gallade |
    | Oval | the Lost Tower (Maylene's) | none | Chansey |
 
-   The tool cannot score this yet: the player's side takes a stone
-   evolution at a judged level (the encounter tool's rule), not when a
-   stone is in reach, so teaching it the stones' splits is the next step
-   before the scores can weigh a stone.
+   The scores weigh the stones now (2026-09-27). The player's side takes
+   every evolution that needs an item, a stone or an item held on
+   level-up, from the split its item is first in reach, where it took
+   the encounter tool's judged level of 30 or 32 before. A wild
+   Pokemon's held item counts from the split its holder is first
+   caught, since a catch or Thief takes it: Seadra's Dragon Scale and
+   Clamperl's Deep Sea items are the only way to Kingdra, Gorebyss and
+   Huntail. The side changes from Gardenia's split to Byron's:
+
+   | Split | Side before | Side now | Earlier than before | Later than before |
+   |---|---|---|---|---|
+   | Gardenia | 177 | 185 | the Moon and Leaf Stone lines, Steelix, Gorebyss, Huntail | |
+   | Fantina | 272 | 257 | | the Fire, Water, Thunder, Sun and Shiny Stone lines, Politoed |
+   | Maylene | 348 | 338 | | the Sun and Shiny Stone lines, Politoed, Dusknoir, Gliscor, Weavile |
+   | Wake | 393 | 390 | | Dusknoir, Rhyperior, Weavile |
+   | Byron | 417 | 416 | | Dusknoir |
+
+   It staled 418 of the 965 scores, all rescored and verified. Gardenia's
+   fight moves most, 0.03 more safe switch-ins (6.7 on Ian's scale, from
+   6.9), since the Moon and Leaf Stone lines join her split; Fantina's
+   and Maylene's move 0.01 the other way. The fit to Ian's ratings
+   tightens a little: the fight line is now 9.4 minus 7.4 times safe
+   switch-ins, and the rank correlation over his fifteen singles minus
+   0.64.
 
    **What else only the Underground gave** (`stones.py --underground`,
    which lists every other source of each of its 49 treasures):

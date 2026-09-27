@@ -158,6 +158,16 @@ def check_pool(results, blob):
     starters = {"Turtwig", "Piplup", "Scorbunny"}
     results.append(("the three starters are in Roark's split", starters <= roark,
                     str(sorted(starters - roark))))
+    # The stone plan: the Leaf Stone is in Floaroma Meadow (Gardenia's split),
+    # the Thunder Stone first in the Solaceon Ruins (Maylene's); a stone
+    # evolution joins the side where its stone does, not at a judged level.
+    have = pool.species_by_split()
+    cases = [("SPECIES_SHIFTRY", "Gardenia", True), ("SPECIES_RAICHU", "Fantina", False),
+             ("SPECIES_RAICHU", "Maylene", True)]
+    wrong = [f"{sp} {'missing from' if want else 'already in'} {s}"
+             for sp, s, want in cases if (sp in have[s]) != want]
+    results.append(("stone evolutions join the side where their stone is first in reach",
+                    not wrong, ", ".join(wrong)))
 
 
 def check_rules(results):
