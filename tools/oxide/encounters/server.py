@@ -42,6 +42,7 @@ from . import model
 from . import pokedex
 from . import progression
 from . import saves
+from . import savewatch
 from . import scripted
 from . import simulate
 from . import trainers
@@ -851,6 +852,25 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # they need, is an unknown endpoint like any other, not a crash.
         if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer") and len(parts) < 3):
             return self._send({"error": "unknown endpoint"}, 404)
+        # The Sync bridge (savewatch.py): the save's state for the Calc tab's
+        # save bar, or its party and boxes packed for the calculator's Sync.
+        if parts[1] == "save":
+            if len(parts) > 2 and parts[2] == "packed":
+                try:
+                    body = savewatch.WATCHER.packed()
+                except Exception as exc:
+                    return self._send({"error": f"{type(exc).__name__}: {exc}"}, 500)
+                if body is None:
+                    return self._send({"error": "no save read yet: set its path in the "
+                                                "OxiDex's Calc tab"}, 404)
+                self.send_response(200)
+                self.send_header("Content-Type", "application/octet-stream")
+                self.send_header("Cache-Control", "no-store")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
+            return self._send(savewatch.WATCHER.snapshot())
         try:
             st = State(ref)
             if parts[1] == "areas":
@@ -1008,6 +1028,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # a lint error or a packer failure with the findings.
             # "Commit my edits": the tool's own writes, checked, committed on
             # ian-saves and pushed (saves.py). It refuses anywhere else.
+            # The save file the Sync bridge watches, set from the Calc tab.
+            # Only the setting is written; the save itself is only ever read.
+            if parts[:3] == ["api", "save", "path"]:
+                savewatch.WATCHER.set_path(str(body.get("path") or ""))
+                savewatch.WATCHER.check()
+                return self._send(savewatch.WATCHER.snapshot())
+
             if parts[:3] == ["api", "saves", "commit"]:
                 try:
                     out = saves.commit(model.repo_root())
@@ -1110,6 +1137,8 @@ def main(argv=None):
     # The team builder's instant score takes a few seconds the first time;
     # doing it now, on the side, keeps the first edit quick.
     threading.Thread(target=trainers.warm, daemon=True).start()
+    # The Sync bridge watches the save file set in ~/.config/oxidex/settings.json.
+    savewatch.WATCHER.start()
     with httpd:
         print(f"Platinum OxiDex on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")

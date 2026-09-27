@@ -34,9 +34,12 @@ and that nothing is left unverified. --seed adopts scores computed before
 fingerprints existed: it stamps each with its inputs' fingerprint,
 unverified, so the next --verify recomputes all of them once. --restamp
 moves each score that is current under the previous definition to this
-one, keeping its verified mark; it has been used twice, when the engine
-part narrowed from the whole vendored folder to engine_files, and when
-species records' hidden-ability slot left the hash (_species_record).
+one, keeping its verified mark; it has been used three times, when the
+engine part narrowed from the whole vendored folder to engine_files, when
+species records' hidden-ability slot left the hash (_species_record), and
+when the engine part narrowed again to what the runner reads of the page
+and of initialize.js (engine_hash, 2026-09-27: the save reader's Sync
+changed both and no score).
 
 Every calculation runs in one Node process, one at a time unless --workers
 asks for more. With Ian's turbo cap (2026-09-27) the CPU ran sixteen copies
@@ -137,23 +140,64 @@ def _hash_files(paths):
     return h.hexdigest()
 
 
-@functools.lru_cache(maxsize=None)
-def engine_hash():
-    """The engine the runner loads, and Node's version."""
-    return _hash_files(engine_files())
+# The functions calc_headless.js lifts out of initialize.js; the rest of that
+# file (the page's settings, its menus, the save reader's data loading)
+# never runs headless.
+LIFTED = ("applyExportedMoveData", "toImportedBaseStats")
+
+
+def _lift(source, name):
+    """The text of one top-level function, by brace count, as the runner's
+    liftFunction takes it."""
+    start = source.index("function " + name + "(")
+    depth = 0
+    for i in range(source.index("{", start), len(source)):
+        if source[i] == "{":
+            depth += 1
+        elif source[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return source[start:i + 1]
+    raise ValueError("unbalanced " + name)
 
 
 @functools.lru_cache(maxsize=None)
-def scorer_hash(kind, previous=False):
+def engine_hash(previous=False):
+    """What the runner reads, and Node's version: itself, the ./calc/ script
+    tags of the page in order and those scripts, and the functions it lifts
+    out of initialize.js. The rest of the page and of initialize.js is the
+    browser's (the save reader's Sync, 2026-09-27, changed both and no
+    score). `previous` hashes the whole of the page and initialize.js, the
+    definition this one replaced, for --restamp."""
+    if previous:
+        return _hash_files(engine_files())
+    h = hashlib.sha256()
+    scripts = engine_files()[3:]
+    with open(os.path.join(HERE, "calc_headless.js"), "rb") as f:
+        h.update(f.read())
+    for p in scripts:
+        h.update(os.path.relpath(p, HERE).encode())
+        with open(p, "rb") as f:
+            h.update(f.read())
+    with open(os.path.join(CALC_DIR, "js", "initialize.js"), encoding="utf-8") as f:
+        init = f.read()
+    for name in LIFTED:
+        h.update(_lift(init, name).encode())
+    node = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True).stdout
+    h.update(node.strip().encode())
+    return h.hexdigest()
+
+
+@functools.lru_cache(maxsize=None)
+def scorer_hash(kind):
     """The code a kind of score is worked out by: pressure.py for all, and
     the module that reduces or builds it for the others; for B6, b6.py
-    less its report (B6_REPORT_ONLY), or all of it for `previous`."""
+    less its report (B6_REPORT_ONLY)."""
     mods = {"pressure": ["pressure.py"], "calibrate": ["pressure.py"],
             "ref": ["pressure.py", "refpressure.py"], "shape": ["pressure.py", "shape.py"],
             "b6": ["pressure.py", "b6.py"], "b6lever": ["pressure.py", "b6.py"]}[kind]
     return hashlib.sha256("".join(
-        _code_hash(os.path.join(HERE, m),
-                   B6_REPORT_ONLY if m == "b6.py" and not previous else frozenset())
+        _code_hash(os.path.join(HERE, m), B6_REPORT_ONLY if m == "b6.py" else frozenset())
         for m in mods).encode()).hexdigest()
 
 
@@ -187,7 +231,7 @@ def _species_record(rec):
 def fingerprint(kind, jobs, ctx, blob, previous=False):
     """The hash of everything that decides one score (the module's doc).
     `previous` hashes by the definition this one replaced, for --restamp:
-    B6's scorer hashed as the whole of b6.py (scorer_hash)."""
+    the engine as the whole of the page and initialize.js (engine_hash)."""
     species, moves = set(), set()
     _names(jobs["pokemon"], species, moves)
     _names(ctx, species, moves)
@@ -201,7 +245,7 @@ def fingerprint(kind, jobs, ctx, blob, previous=False):
                  "moves": {m: blob["moves"].get(m) for m in sorted(moves)}},
         "accuracy": {m: acc.get(metrics._compact(pressure.MOVE_SPELLING.get(m, m)))
                      for m in sorted(moves)},
-        "engine": engine_hash(), "scorer": scorer_hash(kind, previous),
+        "engine": engine_hash(previous), "scorer": scorer_hash(kind),
     }
     text = json.dumps(payload, sort_keys=True, default=sorted)
     return hashlib.sha256(text.encode()).hexdigest()[:20]

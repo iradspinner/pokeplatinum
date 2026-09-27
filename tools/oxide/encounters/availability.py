@@ -208,6 +208,27 @@ def build(ref=None):
                     if lid:
                         captures[lid].add((effective_split(area, kind), loc_of.get(area) or area))
 
+    # A honey tree is a capture too: the table its map stands on names the
+    # place, and the tree reads the honey table for the badges held when it
+    # is shaken. That is the map's split, or Gardenia's for a map reached
+    # before Honey is sold. Until 2026-09-27 the gate counted no tree, so
+    # Munchlax, whose trees stand from Gardenia's split, read as first caught
+    # in Wake's. The one tree with no table of its own (Floaroma Meadow) is
+    # left out.
+    if ref is None:
+        from . import scripted     # here: scripted imports this module
+        honey_tables = model.honey_tree_tables()
+        for stem in scripted.honey_tree_stems(root):
+            split = split_of.get(stem)
+            if split:
+                split = max((split, scripted.HONEY_FROM), key=lambda s: split_idx.get(s, 99))
+            table = scripted.honey_table_for(split, split_idx, honey_tables) if split else None
+            for tier in ("common", "uncommon"):
+                for sp in (table or {}).get(tier) or []:
+                    lid = base_of.get(sp) or base_of.get(line_of.get(sp, sp))
+                    if lid:
+                        captures[lid].add((split, loc_of.get(stem) or stem))
+
     def first_split(lid):
         best = None
         for s, _ in captures.get(lid, ()):
@@ -403,14 +424,15 @@ def render(out):
     pool = plan.get("pool") or {}
     statics = pool.get("statics") or []
     empty = pool.get("empty") or []
-    count = ("no", "one", "two", "three", "four")[min(len(statics) + 1, 4)]
+    roamer = pool.get("roamer")         # none while the roamer draw is held back
+    count = ("no", "one", "two", "three", "four")[min(len(statics) + (1 if roamer else 0), 4)]
     lines.append("**The legendary pool** (Ian, 2026-09-21, and his later rulings in the "
                  "plan's pool comment). Vanilla's three pre-League legendaries already felt "
                  "like a lot, so the new ones are not statics of their own. Each draw comes "
                  "from its own part of the pool, so no two match: "
                  + "; ".join(statics) + (" as a static battle" if len(statics) == 1
-                                          else " as static battles") + ", and "
-                 + (pool.get("roamer") or "the roamer") + " as a random roamer. "
+                                          else " as static battles")
+                 + (f", and {roamer} as a random roamer. " if roamer else ". ")
                  + (("Empty: " + "; ".join(empty) + ", until "
                      + (pool.get("empty_until") or "Ian says otherwise") + ". ") if empty else "")
                  + f"A playthrough meets {count} of them before the League. The scripting is "

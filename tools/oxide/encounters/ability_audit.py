@@ -25,6 +25,7 @@ import json
 import os
 import sys
 
+from . import audit
 from . import dex
 from . import locations
 from . import model
@@ -129,9 +130,10 @@ def direct_sources(root):
     # and released at Lake Verity once the lake Pokemon are free; no script
     # names it, so scripted.json has no source for it. It is placed in the
     # Acuity draw's split, the same pool's static.
-    with open(os.path.join(root, "docs", "oxide", "encounters", "availability-plan.json"),
-              encoding="utf-8") as f:
-        roamers = ((json.load(f).get("pool") or {}).get("thirds") or {}).get("roamer") or []
+    # Held back since 2026-09-27 (audit.empty_thirds), when it has no species.
+    pool = audit.pool_block(root)
+    roamers = [] if "roamer" in audit.empty_thirds(pool) else \
+        (pool.get("thirds") or {}).get("roamer") or []
     for sp in roamers:
         add(sp, acuity_split, "Lake Verity's roamer",
             f"roamer, one of {len(roamers)} at random (split as the Acuity draw's)")
