@@ -563,6 +563,55 @@ def _exclusives(species):
     return out
 
 
+# Ian (2026-09-27): these five early moves go back to the split in which
+# Kaizo gives the move to the species, or to its nearest Kaizo lines where
+# Kaizo lacks it, and no earlier; the rest of the proposal stands.
+KAIZO_SPLIT_FLOOR = {("SPECIES_VIKAVOLT", "MOVE_DISCHARGE"), ("SPECIES_MAGNEZONE", "MOVE_DISCHARGE"),
+                     ("SPECIES_FRILLISH", "MOVE_SHADOW_BALL"), ("SPECIES_FRILLISH", "MOVE_SCALD"),
+                     ("SPECIES_FLOETTE", "MOVE_MOONBLAST"), ("SPECIES_SPIRITOMB", "MOVE_DARK_PULSE")}
+
+
+def kaizo_reach(species):
+    """The level a Kaizo player can first have the stage at by evolving, 1 for a first stage."""
+    return max(1, g.reached("kaizo", species)) if species in g.kaizo_reached() else 1
+
+
+def kaizo_split_floor(species, const):
+    """(the first Oxide level of the split in which Kaizo gives the move, the
+    reason), or (None, the reason) when no Kaizo split gives it: the
+    species' own entry, or where Kaizo lacks the species the same move on its
+    nearest Kaizo lines. An entry below the level a Kaizo player can have the
+    stage at is unavailable in Kaizo's play, and gives no split."""
+    names = [n for n, _cap in ls.splits("kaizo")]
+
+    def played(ks):
+        entry = (kaizo_evidence(ks) or {}).get(const)
+        if entry is None:
+            return None
+        kl = entry[0]
+        if kl < kaizo_reach(ks):
+            return "unavailable"
+        return ls.split_of("kaizo", max(kl, kaizo_reach(ks)))
+    if kaizo_evidence(species) is not None:
+        got = played(species)
+        if got in (None, "unavailable"):
+            return None, (f"Kaizo's {_sp(species)} has it below level {kaizo_reach(species)}, where a "
+                          f"Kaizo player first has it, so no Kaizo split gives it; Oxide's level stays"
+                          if got else "Kaizo does not give it; Oxide's level stays")
+        split = got
+        why = f"Kaizo gives it in its {split} split"
+    else:
+        splits_ = [s for s in (played(ks) for ks in nearest_kaizo(species)) if s not in (None, "unavailable")]
+        if not splits_:
+            return None, "none of its nearest Kaizo lines learns it, so no Kaizo split gives it; Oxide's level stays"
+        idx = sorted(names.index(s) for s in splits_)
+        split = names[idx[(len(idx) - 1) // 2 if len(idx) % 2 else len(idx) // 2]]
+        why = f"its nearest Kaizo lines get it in their {split} split"
+    order = SPLITS
+    prev = order[order.index(split) - 1] if split in order and order.index(split) > 0 else None
+    return (pool.caps()[prev] + 1 if prev else 1), why
+
+
 def propose(species):
     """(the proposed list, [(MOVE_X, what changed and why)])."""
     rec = pokedex.load(data.ROOT, species)
@@ -692,6 +741,18 @@ def propose(species):
                 out = [e for e in out if e not in hit] + [(1, c)]
                 notes.append((c, f"{hit[0][0]} to 1: an exclusive delay, Kaizo gives it only to "
                                  f"{pre[8:].title()}"))
+    # Ian's five (2026-09-27): no earlier than the split Kaizo gives the move
+    # in; where no Kaizo split gives it, Oxide's own level.
+    for c in [c for (s, c) in KAIZO_SPLIT_FLOOR if s == species]:
+        hit = [(lv, cc) for lv, cc in out if cc == c and lv > 1]
+        was = next((lv for lv, cc in now if cc == c), None)
+        if not hit or was is None:
+            continue
+        floor, why = kaizo_split_floor(species, c)
+        new = max(hit[0][0], floor) if floor else was
+        if new != hit[0][0]:
+            out = [e for e in out if e != hit[0]] + [(new, c)]
+            notes.append((c, f"{hit[0][0]} to {new}: Ian's ruling on five early moves, {why}"))
     # The move-pool survey's level-1 picks, for the species whose only start
     # was Splash or Teleport (Ian, 2026-09-27; Hoppip's is Leafage).
     pick = g.RULED_FIRST.get(species)

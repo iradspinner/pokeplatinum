@@ -26,8 +26,8 @@ It changes the lists of 471 of the 652 species. The 176 that no source gives the
 
 | Entries | Count |
 |---|---|
-| Kept where they are | 8339 |
-| Moved | 275 |
+| Kept where they are | 8343 |
+| Moved | 271 |
 | Added | 122 |
 | Dropped | 524 |
 
@@ -35,10 +35,10 @@ The reasons given for the moves and additions (an entry moved twice, by Kaizo an
 
 | Change | Reason | Count |
 |---|---|---|
-| Moved | Kaizo's own list for the species, translated by split | 131 |
-| Moved | Kaizo's nearest lines, translated by split | 123 |
+| Moved | Kaizo's own list for the species, translated by split | 130 |
+| Moved | Kaizo's nearest lines, translated by split | 120 |
 | Added | Kaizo's own list for the species, translated by split | 88 |
-| Moved | the one-level rule | 59 |
+| Moved | the one-level rule | 56 |
 | Added | a first stage keeps its first attack | 30 |
 | Moved | an exclusive delay from Kaizo | 27 |
 | Added | the one-level rule | 12 |
@@ -385,7 +385,7 @@ A further 4 stages would trip a flag or pass the bar only with the moves a first
 
 ## Strong moves that come sooner
 
-Every good attack or S or SSS status move that the proposal gives a stage a split or more sooner than now, or new before Byron's split: 116 in all. These are the entries to read as a player would. A stage marked held is flagged or over the bar, so its entry here is a new move no earlier than its first good one of that type.
+Every good attack or S or SSS status move that the proposal gives a stage a split or more sooner than now, or new before Byron's split: 112 in all. These are the entries to read as a player would. A stage marked held is flagged or over the bar, so its entry here is a new move no earlier than its first good one of that type.
 
 | Stage | Move | Now | Proposed | Held |
 |---|---|---|---|---|
@@ -411,9 +411,6 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Ferrothorn | Seed Bomb | 48 | 41 |  |
 | Ferrothorn | Iron Head | 51 | 43 |  |
 | Flaaffy | Thunderbolt | not learnt | 43 | yes |
-| Floette | Moonblast | 52 | 37 |  |
-| Frillish | Shadow Ball | 48 | 23 |  |
-| Frillish | Scald | 55 | 24 |  |
 | Garganacl | Earthquake | 49 | 42 |  |
 | Gastrodon | Muddy Water | 41 | 39 |  |
 | Gastrodon | Earthquake | not learnt | 44 |  |
@@ -440,7 +437,6 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Magnemite | Discharge | 38 | 32 |  |
 | Magneton | Discharge | 40 | 35 |  |
 | Magneton | Flash Cannon | not learnt | 44 |  |
-| Magnezone | Discharge | 40 | 35 |  |
 | Magnezone | Flash Cannon | not learnt | 44 |  |
 | Mantine | Air Slash | not learnt | 34 |  |
 | Mantine | Ice Beam | not learnt | 38 |  |
@@ -508,7 +504,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 
 ## Delays
 
-274 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
+275 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
 
 | Pre-evolution | Evolves to | Move | Learnt at | Wait in splits | Evolved stage |
 |---|---|---|---|---|---|
@@ -577,7 +573,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Elekid | Electabuzz | Thunderbolt | 38 | 1 | 47 |
 | Exeggcute | Exeggutor | Psychic | 47 | 3 | never |
 | Fletchling | Fletchinder | Defog | 33 | 2 | never |
-| Floette | Florges | Moonblast | 37 | 1 | 57 |
+| Floette | Florges | Moonblast | 52 | 3 | 57 |
 | Floragato | Meowscarada | Play Rough | 42 | 1 | 47 |
 | Fomantis | Lurantis | Leaf Blade | 35 | 0 | 40 |
 | Gabite | Garchomp | Dragon Rush | 70 | 5 | never |
@@ -633,6 +629,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Luvdisc | Alomomola | Muddy Water | 38 | 1 | 65 |
 | Luxio | Luxray | Thunder Fang | 33 | 0 | 46 |
 | Magikarp | Gyarados | Bounce | 63 | 7 | never |
+| Magneton | Magnezone | Discharge | 35 | 1 | 40 |
 | Makuhita | Hariyama | Close Combat | 44 | 3 | 72 |
 | Makuhita | Hariyama | Shadow Punch | 45 | 4 | never |
 | Mankey | Primeape | Close Combat | 49 | 3 | 59 |
@@ -793,7 +790,7 @@ On Oxide's lists now and on the proposal, the same readings as the first generat
 
 | Reading | Kaizo | Oxide now | The proposal |
 |---|---|---|---|
-| Pre-evolutions that reward a wait of a split or less | 124 | 63 | 71 |
+| Pre-evolutions that reward a wait of a split or less | 124 | 63 | 70 |
 | Moves only a Pokemon kept from evolving gets | 334 | 259 | 273 |
 | Of those, strong | 148 | 41 | 55 |
 | Wild slots that can end the encounter | | 153 | 138 |
@@ -809,7 +806,7 @@ The share of catches with a good move known at capture or learnt by level-up bef
 | Gardenia | 0.26 | 0.23 |
 | Fantina | 0.54 | 0.59 |
 | Maylene | 0.74 | 0.62 |
-| Wake | 0.87 | 0.87 |
+| Wake | 0.87 | 0.86 |
 | Byron | 0.88 | 0.92 |
 | Candice | 0.90 | 0.90 |
 | Galactic | 0.93 | 0.94 |

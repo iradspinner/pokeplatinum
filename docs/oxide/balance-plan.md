@@ -1959,6 +1959,16 @@ lands, and each change is re-scored as it lands.
    Togedemaru, Darkrai's Dark Pulse at 12), so a first stage's reach is
    now its earliest catch, gift or hatch.
 
+   Ian's five early moves (2026-09-27) go no earlier than the split in
+   which Kaizo gives the move to the species, or to its nearest Kaizo
+   lines where Kaizo lacks it. Where no Kaizo split gives it, Oxide's own
+   level stays: Frillish's Shadow Ball (48) and Scald (55) and Floette's
+   Moonblast (52), since none of their nearest lines learns the move, and
+   Magnezone's Discharge (40), since Kaizo's Magnezone has it below the
+   level 80 at which a Kaizo player first has one. Spiritomb's Dark Pulse
+   and Vikavolt's Discharge stay at 32: Kaizo gives each in its Fantina
+   split, and 32 is in Oxide's.
+
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
    the 138 wild slots that can still end an encounter, which this design

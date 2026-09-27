@@ -2418,10 +2418,10 @@ SPECIES_FLOETTE	Magical Leaf	24	24	same
 SPECIES_FLOETTE	Aromatherapy	26	26	same	
 SPECIES_FLOETTE	Giga Drain	31	31	same	
 SPECIES_FLOETTE	Dazzling Gleam	36	36	same	
-SPECIES_FLOETTE	Moonblast	52	37	moved	52 to 36: its nearest Kaizo lines, translated to 36; 36 to 37: the same-level rule (another move is at 36)
 SPECIES_FLOETTE	Helping Hand	40	40	same	
 SPECIES_FLOETTE	Synthesis	45	45	same	
 SPECIES_FLOETTE	SolarBeam	49	49	same	
+SPECIES_FLOETTE	Moonblast	52	52	same	52 to 36: its nearest Kaizo lines, translated to 36; 36 to 52: Ian's ruling on five early moves, none of its nearest Kaizo lines learns it, so no Kaizo split gives it; Oxide's level stays
 SPECIES_FLOETTE	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_FLORAGATO	Leafage	1	1	same	
 SPECIES_FLORAGATO	Scratch	1	1	same	
@@ -2506,13 +2506,13 @@ SPECIES_FRILLISH	Night Shade	5	5	same
 SPECIES_FRILLISH	Ominous Wind	10	10	same	
 SPECIES_FRILLISH	Water Pulse	15	15	same	
 SPECIES_FRILLISH	Imprison	20	20	same	
-SPECIES_FRILLISH	Shadow Ball	48	23	moved	48 to 24: its nearest Kaizo lines, translated to 24; 24 to 23: the same-level rule (another move is at 24)
-SPECIES_FRILLISH	Scald	55	24	moved	55 to 24: its nearest Kaizo lines, translated to 24
 SPECIES_FRILLISH	Confuse Ray	25	25	same	
 SPECIES_FRILLISH	Hex	30	30	same	
 SPECIES_FRILLISH	Brine	34	34	same	
 SPECIES_FRILLISH	Pain Split	39	39	same	
 SPECIES_FRILLISH	Destiny Bond	44	44	same	
+SPECIES_FRILLISH	Shadow Ball	48	48	same	48 to 24: its nearest Kaizo lines, translated to 24; 24 to 48: Ian's ruling on five early moves, none of its nearest Kaizo lines learns it, so no Kaizo split gives it; Oxide's level stays
+SPECIES_FRILLISH	Scald	55	55	same	55 to 24: its nearest Kaizo lines, translated to 24; 24 to 55: Ian's ruling on five early moves, none of its nearest Kaizo lines learns it, so no Kaizo split gives it; Oxide's level stays
 SPECIES_FRILLISH	Water Spout	61	61	same	
 SPECIES_FRILLISH	Recover	70	70	same	
 SPECIES_FRILLISH	Absorb	1		dropped	leaves: strength 20, under 40
@@ -4846,7 +4846,7 @@ SPECIES_MAGNEZONE	Spark	22	22	same
 SPECIES_MAGNEZONE	Lock-On	27	27	same	
 SPECIES_MAGNEZONE	Magnet Bomb	30	30	same	
 SPECIES_MAGNEZONE	Screech	34	34	same	
-SPECIES_MAGNEZONE	Discharge	40	35	moved	40 to 34: Kaizo's Magnezone at 40, translated to 34; 34 to 35: the same-level rule (another move is at 34)
+SPECIES_MAGNEZONE	Discharge	40	40	same	40 to 34: Kaizo's Magnezone at 40, translated to 34; 34 to 40: Ian's ruling on five early moves, Kaizo's Magnezone has it below level 80, where a Kaizo player first has it, so no Kaizo split gives it; Oxide's level stays
 SPECIES_MAGNEZONE	Flash Cannon		44	added	new at 44: Kaizo's Magnezone at 54
 SPECIES_MAGNEZONE	Mirror Shot	46	46	same	
 SPECIES_MAGNEZONE	Thunderbolt		49	added	new at 49: Kaizo's Magnezone at 60
