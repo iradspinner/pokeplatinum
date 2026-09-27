@@ -1925,6 +1925,47 @@ lands, and each change is re-scored as it lands.
    raised) or weakest first (such Pokemon, and trainers on default moves,
    get the strongest); whether more delays should be exclusive, as Kaizo
    has them; and a move for Fletchinder.
+
+   **The second design, and its full proposal** (2026-09-27, `learnplan.py
+   full`; `docs/oxide/learnset-proposal.md` and its `.tsv`). Ian sent the
+   generator above back: placing each move at its usual point across Kaizo
+   overbuffed strong lines and delayed weak first attacks. The second
+   design starts from Oxide's lists and changes an entry only where one of
+   his rules asks for it: Kaizo's placements per species, translated by
+   split; the capture rule; downsides weighed; the tier list; the power
+   flags before Byron's split and the provisional power bar; no strong move
+   earlier than now on a strong stage; pre-evolution routes kept as delays;
+   no two moves on one level; Fletchling's Will-O-Wisp at 25. The proposal
+   doc lists them in full. It writes no game data.
+
+   | Over 652 species | Count |
+   |---|---|
+   | Lists changed | 471 |
+   | Entries moved | 275 |
+   | Entries added | 122 |
+   | Entries dropped (dead weight, weather, the cut) | 524 |
+   | Species no source gives, left but for the drops | 176 |
+
+   Every family passes the check list. Reading the output as a player
+   found three faults, fixed before it went to the Overseer. A
+   pre-evolution learning a move at or just past a strong stage's
+   evolution handed it over with no wait (Kaizo's Kirlia's Thunderbolt at
+   30, the level it becomes Gardevoir), so a route now counts as a delay
+   only from five levels past the evolution, as delay test 3 asks. A
+   proposal could make a stage strong with its own moves (Dhelmise's Power
+   Whip from 70 to 36), so stages are judged on the proposed lists too.
+   And a placement below the level the player can first have a species was
+   taken as early rather than unavailable (a level 2 Iron Head for
+   Togedemaru, Darkrai's Dark Pulse at 12), so a first stage's reach is
+   now its earliest catch, gift or hatch.
+
+   Open for Ian: the bar's thresholds, which 206 stages pass before
+   Byron's split; the five levels that make a pre-evolution route a delay;
+   the 138 wild slots that can still end an encounter, which this design
+   leaves where Oxide has them (the first generator moved them above the
+   wild levels); and the catches left with no good move by their split's
+   cap, 75 against 70 now, since Kaizo places several good attacks later
+   (Maylene's split falls from 0.74 of catches with one to 0.62).
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

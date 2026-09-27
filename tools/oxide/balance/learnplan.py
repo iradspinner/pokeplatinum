@@ -52,6 +52,7 @@ waits for his thresholds.
 """
 import argparse
 import collections
+import csv
 import functools
 import os
 import re
@@ -88,8 +89,31 @@ def name(const):
     return M()[const]["name"]
 
 
+# A move's downside, weighed into its strength (Ian, 2026-09-27): a lock-in
+# takes the choice out of the player's hands ("letting Jesus take the
+# wheel", Uproar the worst of them), and a self-drop weakens the next use.
+# The strength model already counts recoil (a fifth to a tenth off) and a
+# recharge turn (half), so those are not charged twice.
+DOWNSIDE = {"UPROAR": 0.5, "CONTINUE_AND_CONFUSE_SELF": 0.6, "USER_SP_ATK_DOWN_2": 0.8,
+            "LOWER_OWN_ATK_AND_DEF": 0.85, "DEF_SPD_DOWN_HIT": 0.9, "SPEED_DOWN_HIT": 0.95}
+
+
 def strength(const):
-    return ls.strength(ls.oxide_move(M()[const]))
+    """(kind, strength a turn) with the move's downside weighed in."""
+    kind, p = ls.strength(ls.oxide_move(M()[const]))
+    return kind, p * DOWNSIDE.get(M()[const].get("effect"), 1.0)
+
+
+def effective_power(const):
+    """A move's power for the power flags: its listed power after recoil, a
+    recharge turn and its downside, but not its accuracy."""
+    m = M()[const]
+    rec = ls.oxide_move(m)
+    kind, per_turn = ls.strength(rec)
+    if kind != "damage":
+        return 0
+    hit = min(m.get("accuracy") or 100, 100) / 100 if m.get("accuracy") else 1.0
+    return per_turn / hit * DOWNSIDE.get(m.get("effect"), 1.0)
 
 
 def is_good(const, types):
@@ -160,9 +184,47 @@ def like_values(kaizo_name, const):
     return abs(ks[1] - os_[1]) <= LIKE * max(ks[1], os_[1])
 
 
+@functools.lru_cache(maxsize=None)
+def _source_levels():
+    """{species: [level]} for every scripted source, whatever its split
+    (the post-game statics included)."""
+    out = collections.defaultdict(list)
+    with open(pool.SOURCES, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            try:
+                out[row["species"]].append(pool._source_level(row["level"]))
+            except (ValueError, TypeError):
+                continue
+    return out
+
+
+# The drawn legendaries take the lake guardians' slots (the encounter plan's
+# legendary pool), so they are met at those slots' levels.
+GUARDIANS = ("SPECIES_UXIE", "SPECIES_MESPRIT", "SPECIES_AZELF")
+
+
+@functools.lru_cache(maxsize=None)
+def catch_level(species):
+    """The lowest level any source gives the species at (a wild table, a
+    static, a gift, a trade, a hatched egg); for an obtainable species with
+    no source of its own and no earlier stage (a drawn legendary), the lake
+    guardians' lowest; None when nothing gives it."""
+    levels = [lv for _s, lv, _how in pool.catches().get(species) or []] + _source_levels().get(species, [])
+    if not levels and species in g._obtainable() and not pool.pre_evolutions().get(species):
+        levels = [lv for s in GUARDIANS for lv in _source_levels().get(s, [])]
+    return min(levels, default=None)
+
+
 def reach(species):
-    """The level the player can first have the stage at in Oxide, 1 for a first stage."""
-    return max(1, g.reached("oxide", species)) if species in g.oxide_reached() else 1
+    """The level the player can first have the stage at in Oxide: an evolved
+    stage's evolution level (or a lower catch), a first stage's lowest
+    catch, gift or hatch level, 1 for a first stage nothing gives. A
+    placement below it is learnt by nobody, so it means unavailable in play
+    (Ian, 2026-09-27), not early: Kaizo's legendaries' low entries and a
+    level 2 Iron Head for a Togedemaru first met at 20 both stay out."""
+    evo = max(1, g.reached("oxide", species)) if species in g.oxide_reached() else None
+    found = [x for x in (evo, catch_level(species)) if x is not None]
+    return min(found) if found else 1
 
 
 def kaizo_evidence(species):
@@ -287,7 +349,7 @@ def stage_flag(species):
             if st.get(stat, 0) <= 100:
                 continue
             big = sorted((M()[c]["power"], name(c)) for c in _can_have(species, split)
-                         if c in M() and M()[c]["class"] == cls and (M()[c]["power"] or 0) >= 100
+                         if c in M() and M()[c]["class"] == cls and effective_power(c) >= 100
                          and c not in SELF_KO and name(c) not in pool.UNRELIABLE)
             if big:
                 label = "Attack" if cls == "PHYSICAL" else "Special Attack"
@@ -320,6 +382,158 @@ def family(species):
 def marked(species):
     """Whether any stage of the family trips a flag before Byron's split."""
     return any(stage_flag(s) for s in family(species))
+
+
+# The power bar (Ian's Talonflame test; his provisional thresholds of
+# 2026-09-27): a stage is strong for a split when, at the split's cap with
+# the moves it can have by then, it outspeeds more than half the split's
+# trainer Pokemon and knocks out more than a quarter in one hit (the middle
+# roll, from full HP).
+BAR_SPEED, BAR_ONE_HIT = 0.5, 0.25
+
+
+@functools.lru_cache(maxsize=None)
+def _split_trainer_mons(split):
+    """Every trainer Pokemon the player meets in the split: its placed
+    trainers' and its story fights' (each rival variant once)."""
+    from . import b6, pressure
+    ox = data.oxide_trainers()
+    mons = [m for tr, p in b6.placements().items() if p["split"] == split for m in ox[tr]["party"]]
+    for f in data.fights()["fights"]:
+        if f["split"] == split:
+            for party in pressure.boss_parties(f)[0]:
+                mons += party
+    return mons
+
+
+def _bar_record(species, split, blob):
+    from ..encounters import canon, calc_trainers
+    name_ = canon.showdown_name(species)
+    if not name_ or name_ not in blob["poks"]:
+        return None
+    names = pool._move_names()
+    moves = pool.damaging_moves(sorted({names[c] for c in _can_have(species, split) if c in names}), blob)
+    iv = {k: pool.AVERAGE_IV for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    return {"species": name_, "level": pool.caps()[split],
+            "ability": (blob["poks"][name_].get("abilities") or {}).get("0"),
+            "item": None, "nature": "Hardy", "ivs": iv, "evs": {k: 0 for k in iv}, "moves": moves}
+
+
+@functools.lru_cache(maxsize=None)
+def bar_reading(species, split):
+    """(share outsped, share knocked out in one hit) against the split's
+    trainer Pokemon, or None when the stage is not the player's by then."""
+    from . import pressure, teamscore
+    if species not in pool.species_by_split().get(split, {}):
+        return None
+    blob = teamscore._blob()
+    rec = _bar_record(species, split, blob)
+    foes = _split_trainer_mons(split)
+    if rec is None or not foes or not rec["moves"]:
+        return None
+    jobs = {"pokemon": {"me": rec}, "pairs": []}
+    for i, m in enumerate(foes):
+        jobs["pokemon"][f"f{i}"] = m
+        jobs["pairs"].append(["me", f"f{i}", rec["moves"], None])
+    out = pressure.run_node(teamscore._blob_path(), jobs)
+    hp = {k: v["hp"] for k, v in out["pokemon"].items()}
+    faster = one_hit = 0
+    for r in out["results"]:
+        sa, sd = r["speeds"]
+        faster += sa > sd
+        best = max((v["rolls"][len(v["rolls"]) // 2] for v in r["moves"].values()
+                    if "rolls" in v and v["rolls"]), default=0)
+        one_hit += best >= hp[r["d"]]
+    n = len(out["results"])
+    return round(faster / n, 3), round(one_hit / n, 3)
+
+
+def passes_bar(species):
+    """(split, reading) for the first split before Byron's where the stage
+    passes the power bar, or None."""
+    start = _owned_from(species)
+    if not start:
+        return None
+    for split in SPLITS[SPLITS.index(start):SPLITS.index("Byron")]:
+        r = bar_reading(species, split)
+        if r and r[0] > BAR_SPEED and r[1] > BAR_ONE_HIT:
+            return split, r
+    return None
+
+
+def strong_stage(species):
+    """A stage its own list treats as strong (Ian, 2026-09-27): flagged
+    before Byron's split, or over the power bar, on Oxide's lists or on the
+    proposal's (FORCED). Its own list is held to "no earlier than now", and
+    so is what a pre-evolution learns without a real wait (WAIT); a
+    pre-evolution kept back longer is the price of a delay, and stays free."""
+    return (species in FORCED or stage_flag(species) is not None
+            or (USE_BAR and passes_bar(species) is not None))
+
+
+USE_BAR = True
+# Stages the proposal's own moves would flag or put over the bar: proposed
+# again as strong (propose_family).
+FORCED = set()
+# A route through a pre-evolution is a delay only when the wait unevolved is
+# at least this many levels past the strong stage's evolution, as delay test
+# 3 asks: Kaizo's Kirlia learns Thunderbolt at 30, the level it becomes
+# Gardevoir, which is no wait at all, while Joltik's Bug Buzz at 38, eight
+# levels past Galvantula at 30, is one.
+WAIT = 5
+
+
+def passes_bar_proposed(species):
+    """passes_bar on the proposal's lists (PROPOSED), not the cached reading."""
+    start = _owned_from(species)
+    if not start:
+        return None
+    for split in SPLITS[SPLITS.index(start):SPLITS.index("Byron")]:
+        r = bar_reading.__wrapped__(species, split)
+        if r and r[0] > BAR_SPEED and r[1] > BAR_ONE_HIT:
+            return split, r
+    return None
+
+
+def later_stages(species):
+    """Every stage that comes after this one on any branch of its line."""
+    out = []
+    for ln in g.oxide_lines():
+        if species in ln:
+            out += [s for s in ln[ln.index(species) + 1:] if s not in out]
+    return out
+
+
+def _now(species):
+    return [tuple(e) for e in (pokedex.load(data.ROOT, species) or {}).get("learnset", [])]
+
+
+def first_good_of_type(species, move_type, lst=None):
+    """The level of the stage's first good attack of a type that it can
+    learn (at or above the level it is had at), on its list now."""
+    types = _types(species)
+    here = reach(species) if species in g.oxide_reached() else 1
+    return min((lv for lv, c in (lst if lst is not None else _now(species))
+                if lv > 1 and lv >= here and c in M() and M()[c]["type"] == move_type
+                and good_attack(c, types)), default=None)
+
+
+def propose_family(fam):
+    """{species: (list, notes)} for a family, proposed twice where the first
+    proposal's own moves flag a stage or put it over the bar: that stage is
+    held from the start in the second."""
+    before = {s: strong_stage(s) for s in fam}
+    res = {s: propose(s) for s in fam}
+    PROPOSED.update({s: res[s][0] for s in fam})
+    forced = [s for s in fam if not before[s] and (stage_flag(s) is not None
+                                                   or (USE_BAR and passes_bar_proposed(s) is not None))]
+    if forced:
+        FORCED.update(forced)
+        for s in fam:
+            PROPOSED.pop(s, None)
+        res = {s: propose(s) for s in fam}
+        PROPOSED.update({s: res[s][0] for s in fam})
+    return res, forced
 
 
 # ---- the proposal -----------------------------------------------------------------------
@@ -356,8 +570,18 @@ def propose(species):
         return [], []
     now = [tuple(e) for e in rec["learnset"]]
     types = _types(species)
-    ev = kaizo_evidence(species)
-    strong_line = marked(species)
+    # A species the player can never own keeps its list but for the drops:
+    # it only feeds trainers' default moves, which the trainer pass sets.
+    obtainable = species in g._obtainable()
+    ev = kaizo_evidence(species) if obtainable else {}
+    # "No earlier than now" holds for a strong stage's own list (Ian,
+    # 2026-09-27), and for what a pre-evolution learns without a real wait,
+    # since that comes along into the strong stage; a longer wait is the
+    # price of a delay, and stays free.
+    strong_line = strong_stage(species)
+    strong_later = [(e, reach(e) + WAIT - 1) for e in later_stages(species) if strong_stage(e)]
+    held_until = max((h for _e, h in strong_later), default=0)
+    held = lambda level: strong_line or level <= held_until
     notes = []
     first_level = {}
     for lv, c in now:
@@ -384,39 +608,55 @@ def propose(species):
             elif ev is None:
                 t = analogue_level(species, c)
                 src = "its nearest Kaizo lines" if t else None
+                if t is not None and t < reach(species):
+                    t, src = None, None      # below where the player can have it: unavailable
             if t is not None:
                 if good_attack(c, types):
-                    target = max(lv, t) if strong_line else t
+                    target = max(lv, t) if held(t) else t
                 elif kind != "damage" and r is not None and r >= STRONG_RANK:
                     target = max(lv, t)
                 elif kind != "damage" and r == 4:
-                    target = max(lv, t) if strong_line else t
+                    target = max(lv, t) if held(t) else t
+                # An entry below the level the stage is had at is the
+                # relearner's; moving it to where the stage learns it adds the
+                # move, so the rules for additions decide.
+                here = reach(species) if species in g.oxide_reached() else 1
+                if lv < here <= target:
+                    kaizo_own = ev is not None and c in ev and ev[c][2] is None
+                    if kind == "damage" and good_attack(c, types) and strong_line:
+                        first = first_good_of_type(species, M()[c]["type"])
+                        if first is None or target < first:
+                            target = lv
+                    elif kind != "damage" and (r or 0) >= STRONG_RANK and not kaizo_own:
+                        target = lv
                 if target != lv:
                     notes.append((c, f"{lv} to {target}: {src}, translated to {t}"))
         out.append((target, c))
     have = {c for _lv, c in out}
-    flagged_stage = stage_flag(species) is not None
     # Kaizo's moves for this species that Oxide lacks: good attacks and S or
-    # SSS status moves. On a marked line an unflagged stage takes only
-    # same-type attacks (no new coverage), and a flagged stage only an attack
-    # no earlier than its first good one of that type now: an alternative,
-    # not earlier power.
+    # SSS status moves. A strong stage takes an attack only no earlier than
+    # its first good one of that type now: an alternative, not earlier power.
     for c, (kl, t, why) in (ev or {}).items():
         if why or c in have or t <= 1:
             continue
         kind, _p = strength(c)
         r = rank(c)
-        stab = M()[c]["type"].title() in types
         if kind == "damage":
             add = good_attack(c, types)
-            if add and flagged_stage:
-                first_same = min((lv2 for lv2, cc in out if lv2 > 1 and good_attack(cc, types)
-                                  and M()[cc]["type"] == M()[c]["type"]), default=None)
+            if add and strong_line:
+                first_same = first_good_of_type(species, M()[c]["type"])
                 add = first_same is not None and t >= first_same
-            elif add and strong_line:
-                add = stab
+            # Learnt without a real wait, it reaches each strong later stage:
+            # there too, only as an alternative to a good move of its type.
+            for e, until in strong_later:
+                if add and t <= until:
+                    first_e = first_good_of_type(e, M()[c]["type"])
+                    add = first_e is not None and t >= first_e
         else:
             add = r is not None and r >= STRONG_RANK
+            for e, until in strong_later:
+                if add and t <= until:
+                    add = any(cc == c and lv2 <= t for lv2, cc in _now(e))
         if not add or g._signature_elsewhere(c, g._chain(species)):
             continue
         if kind == "damage":
@@ -441,7 +681,7 @@ def propose(species):
         if not (good_attack(c, types) or (r is not None and r >= STRONG_RANK)):
             continue
         notes.append((c, f"an exclusive delay: Kaizo gives it to no later stage"))
-    for pre in g._chain(species)[:-1]:
+    for pre in (g._chain(species)[:-1] if obtainable else []):
         for c, t in _exclusives(pre).items():
             kind, _p = strength(c)
             r = rank(c)
@@ -469,9 +709,53 @@ def propose(species):
             if filler in M() and filler not in {cc for _lv, cc in out}:
                 out.append((before[0], filler))
                 notes.append((filler, f"new at {before[0]}: keeps the first attack's level"))
+    out, crowded = spread_levels(species, now, out, notes, strong_line, held_until)
+    CROWDED[species] = crowded
     order = {c: i for i, (_lv, c) in enumerate(now)}
     out.sort(key=lambda e: (e[0], order.get(e[1], 999), e[1]))
     return out, notes
+
+
+# {species: [(MOVE_X, level)]} the same-level rule found no room for.
+CROWDED = {}
+
+
+def spread_levels(species, now, out, notes, strong_line, held_until=0):
+    """Ian's rule (2026-09-27): no two moves on one level. An entry the
+    method moved or added that shares its level with another goes to the
+    nearest free level in the same split, keeping the other rules: a good
+    attack or a strong status move no earlier than Oxide has it now on a
+    marked line (ties go later), a weak attack no later than now (ties go
+    earlier), nothing at 1 or past 78. Oxide's own pairs (Rest and Sleep
+    Talk) stay. A case with no room is returned, not forced."""
+    kept = set(now)
+    was = {}
+    for lv, c in now:
+        was.setdefault(c, lv)
+    types = _types(species)
+    crowded = []
+    taken = collections.Counter(lv for lv, _c in out if lv > 1)
+    result = []
+    for lv, c in sorted(out, key=lambda e: ((e[0], e[1]) in kept, e[0])):
+        if lv <= 1 or (lv, c) in kept or taken[lv] <= 1:
+            result.append((lv, c))
+            continue
+        strong = good_attack(c, types) or (rank(c) or 0) >= STRONG_RANK
+        lo = was.get(c, 2) if strong and (strong_line or lv <= held_until) and c in was else 2
+        hi = was.get(c, 78) if strength(c)[0] == "damage" and not good_attack(c, types) and c in was else 78
+        split = _split_of(lv)
+        step = [d for k in range(1, 12) for d in ((k, -k) if strong else (-k, k))]
+        new = next((lv + d for d in step if lo <= lv + d <= min(hi, 78) and taken[lv + d] == 0
+                    and _split_of(lv + d) == split), None)
+        if new is None:
+            crowded.append((c, lv))
+            result.append((lv, c))
+            continue
+        taken[lv] -= 1
+        taken[new] += 1
+        result.append((new, c))
+        notes.append((c, f"{lv} to {new}: the same-level rule (another move is at {lv})"))
+    return result, crowded
 
 
 def propose_all(species_list):
@@ -578,16 +862,44 @@ def routes(species, lists):
     return out
 
 
+def nowait_routes(species, lists):
+    """{MOVE_X: (the earliest level a stage knows it by, the stage whose
+    list gives it)} for its good attacks and S or SSS status moves, from its
+    own list from the level it is had, or from a pre-evolution's without a
+    real wait (under WAIT levels past the stage's own), which comes along
+    when it evolves."""
+    here = reach(species) if species in g.oxide_reached() else 1
+    types = _types(species)
+    out = {}
+    for stage in g._chain(species):
+        own = stage == species
+        start = reach(stage) if stage in g.oxide_reached() else 1
+        for lv, c in lists.get(stage, []):
+            if c not in M() or lv < start or (lv <= 1 and stage in g.oxide_reached()):
+                continue
+            if not (good_attack(c, types) or (rank(c) or 0) >= STRONG_RANK):
+                continue
+            if own and lv < here:
+                continue
+            if not own and lv > here + WAIT - 1:
+                continue
+            at = max(lv, here)
+            if c not in out or at < out[c][0]:
+                out[c] = (at, stage)
+    return out
+
+
 def line_report(first, out=sys.stdout):
     fam = family(first)
     lists_now = {s: [tuple(e) for e in (pokedex.load(data.ROOT, s) or {}).get("learnset", [])] for s in fam}
-    results = {s: propose(s) for s in fam}
-    for s in fam:
-        PROPOSED[s] = results[s][0]
+    results, forced = propose_family(fam)
     lists_new = {s: results[s][0] for s in fam}
     flags = {s: stage_flag(s) for s in fam}
     print(f"\n## {' / '.join(s[8:].title() for s in fam)}", file=out)
     mark = any(flags.values())
+    if forced:
+        print(f"\nHeld as strong because the first proposal's own moves flagged them or put them "
+              f"over the bar: {', '.join(s[8:].title() for s in forced)}.", file=out)
     print(f"\nPower flags: " + ("; ".join(
         f"{s[8:].title()} in {f[0]}'s split ({f[1]}), {severity(f[0])}" for s, f in flags.items() if f)
         if mark else "none before Byron's split") + ".", file=out)
@@ -595,7 +907,7 @@ def line_report(first, out=sys.stdout):
         ev = kaizo_evidence(s)
         src = "Kaizo's own list" if ev is not None else \
             "Kaizo lacks it; nearest Kaizo lines " + ", ".join(k[8:].title() for k in nearest_kaizo(s))
-        print(f"\n**{s[8:].title()}**, had from {reach(s) if s in g.oxide_reached() else 'the start'}"
+        print(f"\n**{s[8:].title()}**, had from {reach(s) if reach(s) > 1 else 'the start'}"
               f" ({src}).", file=out)
         print(f"\n- Now: {_names(lists_now[s])}", file=out)
         print(f"- Proposed: {_names(lists_new[s])}", file=out)
@@ -638,22 +950,33 @@ def line_report(first, out=sys.stdout):
                           f"{evo[8:].title()} {'at ' + str(fe) if fe else 'never'}: "
                           f"{'counts' if not fails else 'does not count (fails test ' + ', '.join(fails) + ')'}.",
                           file=out)
+    crowded = [(s, c, lv) for s in fam for c, lv in CROWDED.get(s, [])]
+    if crowded:
+        print("- No free level in its split for: " + "; ".join(
+            f"{s[8:].title()}'s {name(c)} at {lv}" for s, c, lv in crowded) + " (listed for Ian).",
+              file=out)
     print("\n" + checks(fam, lists_now, lists_new, mark), file=out)
 
 
 def checks(fam, now, new, mark):
     """The check list, as one line of results."""
+    res = [(label, not bad) for label, bad in check_results(fam, now, new)]
+    return "Checks: " + "; ".join(f"{label}, {'yes' if ok else 'NO'}" for label, ok in res) + "."
+
+
+def check_results(fam, now, new):
+    """[(check, [what breaks it])] for one family's lists now and proposed."""
     res = []
     over = [(s, lv, c) for s in fam for lv, c in new[s] if lv > 78 and (lv, c) not in now[s]]
-    res.append(("nothing new past 78", not over))
+    res.append(("nothing new past 78", over))
     weather = [(s, c) for s in fam for _lv, c in new[s] if c in g.WEATHER_MOVES and s in g._obtainable()]
-    res.append(("no weather move", not weather))
+    res.append(("no weather move", weather))
     from . import b6
     cut = [(s, c) for s in fam for _lv, c in new[s] if c in b6.DEAD_MOVES]
-    res.append(("no cut move", not cut))
+    res.append(("no cut move", cut))
     added_dead = [(s, c) for s in fam for lv, c in new[s]
                   if c not in {cc for _l, cc in now[s]} and g._dropped(c, s, lv, _types(s))]
-    res.append(("no dead weight added", not added_dead))
+    res.append(("no dead weight added", added_dead))
     later_weak = []
     earlier_strong = []
     for s in fam:
@@ -661,25 +984,50 @@ def checks(fam, now, new, mark):
         a = {}
         for lv, c in now[s]:
             a.setdefault(c, lv)
+        kept = set(now[s])
         for lv, c in new[s]:
-            if c not in a or lv <= 1 or a[c] <= 1:
+            if c not in a or lv <= 1 or a[c] <= 1 or (lv, c) in kept:
                 continue
             kind, _p = strength(c)
             if kind == "damage" and not is_good(c, types) and lv > a[c]:
                 later_weak.append((s, c))
-            if mark and lv < a[c] and ((kind == "damage" and is_good(c, types)) or (rank(c) or 0) >= STRONG_RANK):
+            if strong_stage(s) and lv < a[c] and (good_attack(c, types) or (rank(c) or 0) >= STRONG_RANK):
                 earlier_strong.append((s, c))
             if kind != "damage" and (rank(c) or 0) >= STRONG_RANK and lv < a[c]:
                 earlier_strong.append((s, c))
-    res.append(("no weak attack later than now", not later_weak))
-    res.append(("no strong move earlier than now on a marked line, nor any S or SSS status move",
-                not earlier_strong))
+        # What a strong stage has without a real wait, by any route.
+        if strong_stage(s):
+            was, will = nowait_routes(s, now), nowait_routes(s, new)
+            for c, (lv, via) in will.items():
+                if c in was:
+                    bad = lv < was[c][0]
+                elif strength(c)[0] == "damage":
+                    firsts = [was[cc][0] for cc in was if strength(cc)[0] == "damage"
+                              and M()[cc]["type"] == M()[c]["type"]]
+                    bad = not firsts or lv < min(firsts)
+                else:
+                    # A new S or SSS move: only on the stage's own list, where
+                    # Kaizo gives that species the move.
+                    kaizo_own = (kaizo_evidence(via) or {}).get(c, (0, 0, "none"))[2] is None
+                    bad = via != s or not kaizo_own
+                if bad and (s, c) not in earlier_strong:
+                    earlier_strong.append((s, c))
+    res.append(("no weak attack later than now", later_weak))
+    res.append(("no strong move earlier than now on a strong stage, nor any S or SSS status move",
+                earlier_strong))
+    shared = []
+    for s in fam:
+        kept = set(now[s])
+        levels = collections.Counter(lv for lv, _c in new[s] if lv > 1)
+        shared += [(s, lv, c) for lv, c in new[s] if lv > 1 and levels[lv] > 1 and (lv, c) not in kept
+                   and (c, lv) not in CROWDED.get(s, [])]
+    res.append(("no two moves on one level that the method placed", shared))
     ends = g._ends()
     wild_end = [(s, c) for s in fam for lv, c in new[s]
                 if ls.metrics._compact(name(c)) in ends and 1 < lv <= g.wild_top(s)
                 and (lv, c) not in now[s]]
-    res.append(("no move that ends a wild encounter moved into the wild levels", not wild_end))
-    return "Checks: " + "; ".join(f"{label}, {'yes' if ok else 'NO'}" for label, ok in res) + "."
+    res.append(("no move that ends a wild encounter moved into the wild levels", wild_end))
+    return res
 
 
 def flags_report(out=sys.stdout):
@@ -697,13 +1045,318 @@ def flags_report(out=sys.stdout):
         print(f"{s[8:].title():16} {split:9} {severity(split):24} {why}", file=out)
 
 
+# ---- the full proposal ------------------------------------------------------------------
+
+PROPOSAL_MD = os.path.join(data.ROOT, "docs", "oxide", "learnset-proposal.md")
+PROPOSAL_TSV = os.path.join(data.ROOT, "docs", "oxide", "learnset-proposal.tsv")
+
+
+def families():
+    """Each family once, by its first stage, in Oxide's species order."""
+    seen, out = set(), []
+    for ln in g.oxide_lines():
+        if ln[0] not in seen:
+            seen.add(ln[0])
+            out.append(ln[0])
+    return out
+
+
+def full_run(log=None):
+    """Every family proposed as line_report proposes one: each species' list
+    and notes, and each stage's flags, bar reading, delays, crowded cases
+    and check failures."""
+    PROPOSED.clear()
+    CROWDED.clear()
+    FORCED.clear()
+    run = {"now": {}, "lists": {}, "notes": {}, "flags": {}, "bar": {}, "delays": [],
+           "checks": collections.defaultdict(list), "crowded": [], "forced": []}
+    fams = families()
+    for n, first in enumerate(fams, 1):
+        fam = [s for s in family(first) if s not in run["lists"]]
+        if not fam:
+            continue
+        now = {s: _now(s) for s in fam}
+        res, forced = propose_family(fam)
+        run["forced"] += forced
+        new = {s: res[s][0] for s in fam}
+        for s in fam:
+            run["now"][s], run["lists"][s], run["notes"][s] = now[s], new[s], res[s][1]
+            run["flags"][s] = stage_flag(s)
+            if USE_BAR and not run["flags"][s]:
+                run["bar"][s] = passes_bar(s)
+        for pre in fam:
+            for evo in fam:
+                if g.oxide_reached().get(evo, (None,))[0] == pre:
+                    run["delays"] += [(pre, evo) + row for row in delays(pre, evo, new)]
+        for label, bad in check_results(fam, now, new):
+            run["checks"][label] += bad
+        run["crowded"] += [(s, c, lv) for s in fam for c, lv in CROWDED.get(s, [])]
+        if log and n % 25 == 0:
+            print(f"  {n} of {len(fams)} families", file=log, flush=True)
+    return run
+
+
+def _first(lst):
+    out = {}
+    for lv, c in lst:
+        out.setdefault(c, lv)
+    return out
+
+
+def _kind_of(why):
+    """A note's reason, grouped for the counts."""
+    for key, label in (("leaves:", None), ("same-level rule", "the one-level rule"),
+                       ("exclusive delay", "an exclusive delay from Kaizo"),
+                       ("survey's pick", "the move-pool survey's first move"),
+                       ("keeps the first attack", "a first stage keeps its first attack"),
+                       ("nearest Kaizo lines", "Kaizo's nearest lines, translated by split"),
+                       ("Kaizo's", "Kaizo's own list for the species, translated by split")):
+        if key in why:
+            return label if label else "leaves: " + why.split("leaves: ", 1)[1]
+    return why
+
+
+def _sp(s):
+    return s[8:].replace("_", " ").title()
+
+
+def cap(text):
+    """The first letter upper case, the rest as written (S, SSS and names keep theirs)."""
+    return text[:1].upper() + text[1:]
+
+
+def full_report(md=PROPOSAL_MD, tsv=PROPOSAL_TSV, log=sys.stdout):
+    """Run every family and write the proposal's summary and its entries."""
+    from . import learnwild
+    run = full_run(log)
+    lists, now = run["lists"], run["now"]
+    # The entries, for the apply step: every proposed entry and every dropped move.
+    counts, dropped, moved_by = collections.Counter(), collections.Counter(), collections.Counter()
+    with open(tsv, "w", encoding="utf-8") as f:
+        f.write("species\tmove\tlevel_now\tlevel_proposed\tchange\twhy\n")
+        for s in sorted(lists):
+            a, b = _first(now[s]), _first(lists[s])
+            why = collections.defaultdict(list)
+            for c, w in run["notes"][s]:
+                why[c].append(w)
+            for lv, c in lists[s]:
+                if c not in M():
+                    continue
+                change = "added" if c not in a else "moved" if b.get(c) != a[c] and lv == b[c] else "same"
+                if lv != b[c]:
+                    change = "same"          # a repeat keeps its place
+                counts[change] += 1
+                was = lv if (lv, c) in set(now[s]) else a.get(c, "")
+                f.write(f"{s}\t{name(c)}\t{was}\t{lv}\t{change}\t{'; '.join(why[c])}\n")
+                for w in why[c]:
+                    if change in ("added", "moved"):
+                        moved_by[(change, _kind_of(w))] += 1
+            for c, lv in a.items():
+                if c not in b and c in M():
+                    counts["dropped"] += 1
+                    reason = next((_kind_of(w) for w in why[c] if "leaves" in w), "leaves")
+                    dropped[reason] += 1
+                    f.write(f"{s}\t{name(c)}\t{lv}\t\tdropped\t{'; '.join(why[c])}\n")
+    changed = sum(1 for s in lists if lists[s] != now[s])
+    run["unobtainable"] = sorted(s for s in lists if s not in g._obtainable())
+    # Good attacks and strong status moves that come a split or more sooner.
+    sooner = []
+    for s in sorted(lists):
+        types = _types(s)
+        a, b = _first(now[s]), _first(lists[s])
+        for c, lv in b.items():
+            if lv <= 1 or not (good_attack(c, types) or (rank(c) or 0) >= STRONG_RANK):
+                continue
+            was = a.get(c)
+            at = lambda level: SPLITS.index(_split_of(level)) if _split_of(level) in SPLITS else len(SPLITS)
+            if was is not None and (was <= lv or at(lv) >= at(was)):
+                continue
+            if was is None and _split_of(lv) not in SPLITS[:SPLITS.index("Byron")]:
+                continue
+            sooner.append((s, c, was, lv))
+    # The analyses on Oxide now and on the proposal.
+    g.PROPOSED.clear()
+    g.PROPOSED.update({s: [list(e) for e in lst] for s, lst in lists.items()})
+    learnwild.clear()
+    analyses = {}
+    for game in ("oxide", "proposal"):
+        rows, later = learnwild.readings(game)
+        caps = learnwild._caps(game)
+        by = collections.defaultdict(lambda: [0, 0])
+        for r in rows:
+            by[r["split"]][0] += 1
+            by[r["split"]][1] += any(g._good(e) for e in g.worth(game, r, caps.get(r["split"], 100)))
+        analyses[game] = {"slots": len(rows), "ends": sum(1 for r in rows if r["ends"]),
+                          "self_ko": sum(1 for r in rows if r["self_ko"]), "later": len(later),
+                          "bare": len(g.bare_catches(game)), "good": dict(by)}
+    for game in ("kaizo", "oxide", "proposal"):
+        dl = [r for r in g.delays(game) if r[8] == "delay" and g.real_wait(game, r)]
+        n, strong = g.never_learnt(game)
+        analyses.setdefault(game, {}).update({"wait": len({r[1] for r in dl}), "never": n,
+                                              "never_strong": strong})
+    learnwild.clear()
+    with open(md, "w", encoding="utf-8") as out:
+        _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses)
+    print(f"wrote {os.path.relpath(md, data.ROOT)} and {os.path.relpath(tsv, data.ROOT)}", file=log)
+    return run
+
+
+def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
+    lists = run["lists"]
+    p = lambda *a: print(*a, file=out)
+    p("# The learnset proposal\n")
+    p(f"Written by `learnplan.py full` (2026-09-27) for the Overseer to read before Ian. It "
+      f"proposes level-up lists for all {len(lists)} species; nothing here is in the game "
+      f"data. `docs/oxide/learnset-proposal.tsv` has every entry, now and proposed, with the "
+      f"reason for each change, and `learnplan.py line <species>` prints one line in full, "
+      f"with its delays and check list.\n")
+    p("## The rules it applies\n")
+    p("It starts from Oxide's lists as they are and changes an entry only where one of Ian's "
+      "rules asks for it:\n")
+    for rule in (
+            "Kaizo's placements count per species, translated by split: a Kaizo level goes to the "
+            "same point of the same split in Oxide, so nothing lands past 78. An entry counts only "
+            "where Kaizo's move is Oxide's at like values, and one that lands below the level the "
+            "player can have the stage at (its evolution level, or a first stage's earliest catch, "
+            "gift or hatch) means unavailable, not early.",
+            "A species Kaizo lacks takes its placements from the Kaizo species nearest it in power "
+            "at the same stage of their lines, under the same test of where the player can have it.",
+            "A move's worth is what the Pokemon knows at capture plus what it learns by level-up "
+            "after (the capture rule); a move's downsides count against it (lock-in, Uproar the "
+            "worst, a recharge turn, heavy recoil and self-drops).",
+            "A weak attack never moves later than now, and none is added.",
+            "Status moves follow Ian's tier list (`docs/oxide/status-move-tiers.md`): S and SSS "
+            "are strong, never earlier than now and added only where Kaizo gives the species the "
+            "move; the instant-death moves and the hazards other than Toxic Spikes and Sticky Web "
+            "are unrated.",
+            "The power flags (base Speed over 100, or base Attack or Special Attack over 100 with a "
+            "move of 100 or more of that kind the stage can have) run over the splits before "
+            "Byron's: before Maylene's the line is brought to Ian by name, in Maylene's a very "
+            "close look, in Wake's a close look.",
+            "The power bar (Ian's Talonflame test, thresholds provisional): a stage at the split's "
+            "cap with the moves it can have that outspeeds more than half the split's trainer "
+            "Pokemon and knocks out more than a quarter in one hit.",
+            "A flagged stage, or one over the bar, gets no strong move earlier than now on its own "
+            "list and no new coverage ahead of its first good move of that type. The same holds for "
+            "what a pre-evolution learns within four levels of the strong stage's evolution, since "
+            "that comes along with no real wait. A pre-evolution kept back five levels or more "
+            "may still reach a move sooner; that route is a delay, and it stays.",
+            "A stage is judged strong on Oxide's lists now and again on the proposal's: one that "
+            "the proposal's own moves would flag or put over the bar is proposed again as held.",
+            "A delay counts only when waiting is a real choice: a strong move learnt past the "
+            "level the stage could evolve at, that the evolved stage gets a split and five levels "
+            "later or never, with no same-type move within a tenth of it between.",
+            "No two moves on one level: a moved or added entry that shares a level goes to the "
+            "nearest free level in the same split, within the other rules.",
+            "The dead-weight rule, the move pool's first cut and the weather ruling remove "
+            "entries; nothing that ends a wild encounter moves into the levels the species is "
+            "met wild at.",
+            "Fletchling keeps Will-O-Wisp at 25."):
+        p(f"- {rule}")
+    p("\n## What it changes\n")
+    p(f"It changes the lists of {changed} of the {len(lists)} species. The "
+      f"{len(run['unobtainable'])} that no source gives the player, by the League or after it "
+      f"(Groudon, Xerneas and the like), keep their lists but for the drops: those lists only "
+      f"feed trainers' default moves, which the trainer pass sets.\n")
+    p("| Entries | Count |\n|---|---|")
+    for k, label in (("same", "kept where they are"), ("moved", "moved"), ("added", "added"),
+                     ("dropped", "dropped")):
+        p(f"| {cap(label)} | {counts[k]} |")
+    p("\nThe reasons given for the moves and additions (an entry moved twice, by Kaizo and then "
+      "by the one-level rule, counts under both):\n")
+    p("| Change | Reason | Count |\n|---|---|---|")
+    for (change, why), n in sorted(moved_by.items(), key=lambda kv: -kv[1]):
+        p(f"| {cap(change)} | {why} | {n} |")
+    p("\nWhy entries left:\n")
+    p("| Reason | Count |\n|---|---|")
+    for why, n in dropped.most_common():
+        p(f"| {cap(why.replace('leaves: ', ''))} | {n} |")
+    flagged = [(s, f) for s, f in run["flags"].items() if f]
+    flagged.sort(key=lambda x: (SPLITS.index(x[1][0]), x[0]))
+    p("\n## The power flags\n")
+    p(f"{len(flagged)} stages trip a flag before Byron's split. Each is held to no strong move "
+      f"earlier than now on its own list; the last column is what the proposal does to its "
+      f"strong moves, the earliest each can be known by any route, a pre-evolution kept back "
+      f"included.\n")
+    p("| Stage | Split | Look | Why | Strong moves, now and proposed |\n|---|---|---|---|---|")
+    for s, (split, why) in flagged:
+        a, b = routes(s, {x: run["now"][x] for x in g._chain(s)}), routes(s, {x: lists[x] for x in g._chain(s)})
+        moved = [f"{name(c)} {a.get(c, 'never')} to {b.get(c, 'never')}" for c in sorted(set(a) | set(b), key=name)
+                 if a.get(c) != b.get(c)]
+        p(f"| {_sp(s)} | {split} | {severity(split)} | {why} | {'; '.join(moved) or 'as now'} |")
+    barred = sorted(((s, r) for s, r in run["bar"].items() if r), key=lambda x: (SPLITS.index(x[1][0]), x[0]))
+    p("\n## The power bar\n")
+    p(f"{len(barred)} stages with no flag pass the bar before Byron's split on Oxide's lists "
+      f"now, and are held the same way. The thresholds are provisional; Ian's Talonflame at "
+      f"39 outsped 92 of Maylene's 93 trainer Pokemon and knocked out 38 in one hit, well "
+      f"over both.\n")
+    p("| Stage | Split | Outsped | Knocked out in one hit |\n|---|---|---|---|")
+    for s, (split, (fast, ko)) in barred:
+        p(f"| {_sp(s)} | {split} | {fast:.0%} | {ko:.0%} |")
+    if run["forced"]:
+        p(f"\nA further {len(run['forced'])} stages would trip a flag or pass the bar only with "
+          f"the moves a first proposal gave them, so they are proposed again as held: "
+          + ", ".join(_sp(s) for s in sorted(run["forced"])) + ".")
+    p("\n## Strong moves that come sooner\n")
+    p(f"Every good attack or S or SSS status move that the proposal gives a stage a split or "
+      f"more sooner than now, or new before Byron's split: {len(sooner)} in all. These are the "
+      f"entries to read as a player would. A stage marked held is flagged or over the bar, so "
+      f"its entry here is a new move no earlier than its first good one of that type.\n")
+    p("| Stage | Move | Now | Proposed | Held |\n|---|---|---|---|---|")
+    for s, c, was, lv in sooner:
+        held = "yes" if run["flags"].get(s) or run["bar"].get(s) else ""
+        p(f"| {_sp(s)} | {name(c)} | {was if was is not None else 'not learnt'} | {lv} | {held} |")
+    real = [d for d in run["delays"] if d[5] and d[7] and d[8]]
+    p("\n## Delays\n")
+    p(f"{len(real)} delays pass Ian's tests on the proposed lists (a strong move past the "
+      f"evolution level, the evolved stage a split and five levels later or never, nothing "
+      f"like it between). The wait is given in splits past the one the stage can evolve in.\n")
+    p("| Pre-evolution | Evolves to | Move | Learnt at | Wait in splits | Evolved stage |\n"
+      "|---|---|---|---|---|---|")
+    for pre, evo, c, lv, fe, _t1, wait, _t3, _t4 in sorted(real, key=lambda d: (d[0], d[3])):
+        p(f"| {_sp(pre)} | {_sp(evo)} | {name(c)} | {lv} | {wait if wait is not None else ''} | "
+          f"{fe if fe else 'never'} |")
+    p("\n## The three analyses\n")
+    p("On Oxide's lists now and on the proposal, the same readings as the first generator's:\n")
+    p("| Reading | Kaizo | Oxide now | The proposal |\n|---|---|---|---|")
+    k, o, q = analyses["kaizo"], analyses["oxide"], analyses["proposal"]
+    p(f"| Pre-evolutions that reward a wait of a split or less | {k['wait']} | {o['wait']} | {q['wait']} |")
+    p(f"| Moves only a Pokemon kept from evolving gets | {k['never']} | {o['never']} | {q['never']} |")
+    p(f"| Of those, strong | {k['never_strong']} | {o['never_strong']} | {q['never_strong']} |")
+    p(f"| Wild slots that can end the encounter | | {o['ends']} | {q['ends']} |")
+    p(f"| Wild slots that can knock themselves out | | {o['self_ko']} | {q['self_ko']} |")
+    p(f"| Wild slots with a better version later | | {o['later']} | {q['later']} |")
+    p(f"| Evolved catches with no good move by the split's cap | | {o['bare']} | {q['bare']} |")
+    p("\nThe share of catches with a good move known at capture or learnt by level-up before "
+      "the split's cap:\n")
+    p("| Split | Oxide now | The proposal |\n|---|---|---|")
+    for split in SPLITS:
+        a, b = o["good"].get(split), q["good"].get(split)
+        if a and b:
+            p(f"| {split} | {a[1] / a[0]:.2f} | {b[1] / b[0]:.2f} |")
+    p("\n## The checks\n")
+    p("Every family's check list, totalled over all of them:\n")
+    p("| Check | Failures |\n|---|---|")
+    for label, bad in run["checks"].items():
+        p(f"| {cap(label)} | {len(bad)} |")
+    fails = [(label, bad) for label, bad in run["checks"].items() if bad]
+    for label, bad in fails:
+        p(f"\n{cap(label)}: " + "; ".join(
+            f"{_sp(x[0])} {name(x[-1]) if x[-1] in M() else x[-1]}" for x in bad[:40]) + ".")
+    if run["crowded"]:
+        p(f"\n{len(run['crowded'])} moved entries found no free level in their split and share "
+          f"one: " + "; ".join(f"{_sp(s)}'s {name(c)} at {lv}" for s, c, lv in run["crowded"]) + ".")
+
+
 def main(argv=None):
     from . import learnplan as mod
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["sample", "line", "flags"])
+    ap.add_argument("what", choices=["sample", "line", "flags", "full"])
     ap.add_argument("species", nargs="*")
     args = ap.parse_args(argv)
-    if args.what == "flags":
+    if args.what == "full":
+        mod.full_report()
+    elif args.what == "flags":
         mod.flags_report()
     elif args.what == "line":
         for n in args.species:
