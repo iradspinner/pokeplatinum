@@ -151,6 +151,25 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   failed!") comes before Mew's Extreme Speed every turn, though Mew is far
   faster. Minimize says "sharply rose!". Mew's summary shows Minimize at 3 PP.
 
+- [ ] **Element 7, the items** (the "Element 7 items" menu, 26 entries;
+  `docs/oxide/test-kit.md`, "The item entries", says what each should show).
+  "All new items" first: all 46 arrive, each with its name, icon, pocket and a
+  description that fits the Bag's box, and the long names (Weakness Policy,
+  Gold Bottle Cap, Ability Capsule) fit the summary and the give-item
+  messages. Then each held item beside a Pokemon holding nothing; the Pixie
+  Plate's Arceus pink in its summary and in battle; the Roseli Berry with no
+  number, Check Tag, planting or Poffin in the Bag. From the Bag on a party
+  member: the Ability Capsule and Patch, the Mints and the Bottle Caps, with
+  the Bottle Cap's stat list and the IV viewer showing 31 afterwards. The TM
+  Case check: No. 01, No. 92, HM 01, HM 08 in that order, each with its move.
+  Then save, turn the game off and reload: the Bag (it grew), a swapped
+  ability, a Mint's stats and a trained IV all come back as they were.
+- [ ] **Element 7, for normal play** once the balance track has placed items
+  and given trainers theirs (the kit cannot give a foe an item or run a
+  double battle): a foe's Red Card dragging out a teammate in a trainer
+  battle, a foe's Air Balloon, Eject Button, Rocky Helmet and Weakness Policy,
+  and Ability Shield and Covert Cloak in a double battle.
+
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
