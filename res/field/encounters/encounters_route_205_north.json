@@ -27,7 +27,7 @@
         },
         {
             "level": 14,
-            "species": "SPECIES_PACHIRISU"
+            "species": "SPECIES_MARILL"
         },
         {
             "level": 14,
@@ -56,7 +56,7 @@
     ],
     "day": [
         "SPECIES_SEWADDLE",
-        "SPECIES_SMOLIV"
+        "SPECIES_SQUIRTLE"
     ],
     "night": [
         "SPECIES_SURSKIT",

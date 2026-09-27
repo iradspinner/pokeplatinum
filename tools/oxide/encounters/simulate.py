@@ -383,12 +383,16 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
                          and any(dex.line_of(root, sp) in values.wanted for sp in src["pool"])}
     box = Box(root, values)
     areas = world(target, root)
-    starters = next(s["pool"] for s in scripted.load(root) if s["kind"] == "starter")
-    starter = starter or rng.choice(starters)
-    log = [{"area": "Route 201", "split": "Roark", "choice": "the starter",
-            "species": starter, "value": box.add(starter, "Route 201"), "options": []}]
-    # The starter is Route 201's capture (scripted-sources.md).
-    areas = [a for a in areas if a["name"] != "Route 201"]
+    starter_src = next(s for s in scripted.load(root) if s["kind"] == "starter")
+    starter = starter or rng.choice(starter_src["pool"])
+    # The starter spends the capture of the place scripted.json names for it.
+    # That was Route 201 until the starter got a met location of its own,
+    # Rowan's Briefcase (Ian, 2026-09-27), which leaves Route 201's table a
+    # capture from the first step.
+    where = starter_src.get("capture_area") or "Route 201"
+    log = [{"area": where, "split": "Roark", "choice": "the starter",
+            "species": starter, "value": box.add(starter, where), "options": []}]
+    areas = [a for a in areas if a["name"] != where]
 
     # Deaths land between captures, at random points of the run.
     n = len(areas)

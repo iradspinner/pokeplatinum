@@ -42,13 +42,11 @@ GIFTS_CSV = os.path.join("docs", "oxide", "pokemon-gifts.csv")
 TRADES_DIR = os.path.join("res", "npc_trades")
 
 # Scripts that hand over a species chosen at runtime, which the grep cannot
-# see: the starter on Route 201 (GivePokemon 32768 is a variable) and the
-# Mining Museum's fossil revival (VAR_REVIVED_POKEMON_SPECIES). Decision 3
-# counts both as acquisition paths.
+# see: the starter (GivePokemon 32768 is a variable; its three choices are
+# read from scripted.json, see starters()) and the Mining Museum's fossil
+# revival (VAR_REVIVED_POKEMON_SPECIES). Decision 3 counts both as
+# acquisition paths.
 SCRIPTED = {
-    "SPECIES_TURTWIG": "starter, route_201",
-    "SPECIES_CHIMCHAR": "starter, route_201",
-    "SPECIES_PIPLUP": "starter, route_201",
     "SPECIES_OMANYTE": "fossil, mining_museum",
     "SPECIES_KABUTO": "fossil, mining_museum",
     "SPECIES_AERODACTYL": "fossil, mining_museum",
@@ -98,10 +96,21 @@ def references(ref=None):
     return rows
 
 
+# Script sources that the script itself makes unreachable, which a scan of
+# commands cannot tell: (script, species) with Ian's reason. The sources
+# catalogue (tools/oxide/pokemon_sources.py) honours this list too.
+UNREACHABLE_SCRIPT_SOURCES = {
+    ("scripts_stark_mountain_room_3", "SPECIES_HEATRAN"):
+        "Stark Mountain's last room is empty (Ian, 2026-09-27); the script "
+        "jumps past the line that would unhide Heatran",
+}
+
+
 def script_references(root):
     """[{script, line, command, species}] for the commands in SCRIPT_COMMANDS
     whose species operand is a constant. Operands that are variables (the
-    starter, the revived fossil) are decided at runtime and are not listed."""
+    starter, the revived fossil) are decided at runtime and are not listed,
+    and neither is a source in UNREACHABLE_SCRIPT_SOURCES."""
     rows = []
     for path in sorted(glob.glob(os.path.join(root, "res", "field", "scripts", "*.s"))):
         with open(path, encoding="utf-8", errors="replace") as f:
@@ -116,6 +125,8 @@ def script_references(root):
                     in_kit = not line.startswith("#endif")
                     continue
                 m = _SCRIPT_RE.match(line)
+                if m and (os.path.basename(path)[:-2], m.group(2)) in UNREACHABLE_SCRIPT_SOURCES:
+                    continue
                 if m:
                     rows.append({"script": os.path.basename(path)[:-2],
                                  "line": n, "command": m.group(1),
@@ -175,15 +186,55 @@ def audit(ref=None):
 
 
 def gifts(root):
-    """[{map, command, species}] from pokemon-gifts.csv, the survey of every
-    GivePokemon / GiveEgg the base ROM's scripts reach."""
-    import csv
-    path = os.path.join(root, GIFTS_CSV)
+    """[{map, command, species}] for every gift the tree's scripts make with
+    a constant species. Until 2026-09-27 this read pokemon-gifts.csv, the
+    base ROM's survey of 2026-09-20, which knew nothing of Oxide's own gifts
+    (the Veilstone Elekid, the Day Care Floette) and still listed the gift
+    clowns Ian retired."""
+    return [{"map": r["script"].replace("scripts_", "", 1), "command": r["command"],
+             "species": r["species"]}
+            for r in script_references(root) if r["command"] in GIVE_COMMANDS]
+
+
+# The legendary pool's draws (main-scripts, 2026-09-27): the new-game script
+# rolls each place's species into a variable, and the static battle and the
+# roamer read the variable, so the species are named only by these SetVars.
+# Acuity Cavern's own script also sets a fallback for an old save, which is
+# not a draw, so only the new-game script is read.
+_DRAW_RE = re.compile(r"^\s*SetVar\s+(VAR_LEGENDARY_POOL_[A-Z_]+),\s*(SPECIES_[A-Z0-9_]+)")
+DRAW_SCRIPT = os.path.join("res", "field", "scripts", "scripts_init_new_game.s")
+
+
+def pool_draws(root):
+    """[{script, line, command, species}] for the pool draws' species."""
+    path = os.path.join(root, DRAW_SCRIPT)
     if not os.path.exists(path):
         return []
-    with open(path, encoding="utf-8", newline="") as f:
-        return [{"map": r["map"], "command": r["command"], "species": r["species"]}
-                for r in csv.DictReader(f) if r.get("species", "").startswith("SPECIES_")]
+    rows = []
+    with open(path, encoding="utf-8", errors="replace") as f:
+        for n, line in enumerate(f, 1):
+            m = _DRAW_RE.match(line)
+            if m:
+                rows.append({"script": "scripts_init_new_game", "line": n,
+                             "command": "LegendaryPoolDraw " + m.group(1),
+                             "species": m.group(2)})
+    return rows
+
+
+def starters(root):
+    """{species: label} for what scripted.json's live sources hand over when
+    the script picks at runtime: the starter choice, Riley's random egg and
+    the like, with their pools resolved from the scripts by scripted.load.
+    Sources the simulator leaves out (an empty cavern, a battle that is not
+    a legal catch, a trade of a cut line) are not counted."""
+    from . import scripted     # here, not at the top: scripted imports availability, which imports audit
+    out = {}
+    for s in scripted.load(root):
+        if not s.get("simulate", True):
+            continue
+        for sp in s.get("pool") or []:
+            out.setdefault(sp, f"{s['kind']}, {s['id']}")
+    return out
 
 
 def trades(root):
@@ -287,7 +338,9 @@ def coverage(ref=None):
             for sp in set(vals):
                 other[sp].append((name, key))
     gift_rows, trade_rows = gifts(root), trades(root)
-    static_rows = [r for r in script_references(root) if r["command"] in BATTLE_COMMANDS]
+    static_rows = ([r for r in script_references(root) if r["command"] in BATTLE_COMMANDS]
+                   + pool_draws(root))
+    runtime = dict(SCRIPTED, **starters(root))
     water_keys = {k for k, (key, _, _) in A.TABLE_KINDS.items() if k != "land"}
     water_json = {A.TABLE_KINDS[k][0] for k in water_keys}
 
@@ -309,7 +362,7 @@ def coverage(ref=None):
         t = [(r["name"], r["species"]) for r in trade_rows if r["species"] in consts]
         st = [(r["script"], r["command"], r["species"]) for r in static_rows
               if r["species"] in consts]
-        sc = [(SCRIPTED[sp], sp) for sp in consts if sp in SCRIPTED]
+        sc = [(runtime[sp], sp) for sp in consts if sp in runtime]
         if home:
             status = "home"
         elif g or t or st or sc:

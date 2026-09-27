@@ -302,11 +302,15 @@ def check_scripted(results):
     retired = ("sandgem_clown", "jubilife_clown", "oreburgh_clown", "floaroma_clown",
                "floaroma_meadow_clown", "solaceon_clown", "veilstone_clown",
                "restaurant_clown", "eterna_condo", "canalave_library")
-    results.append(("an egg has no capture area; the starter and the Eterna trade share "
-                    "their places' tables; no gift clown is a source, and Sandgem Town "
-                    "has a table of its own",
+    # The starter's met location is its own since main-scripts (Rowan's
+    # Briefcase, Ian 2026-09-27), so it shares no table and Route 201 is a
+    # capture of its own.
+    results.append(("an egg has no capture area; the starter is Rowan's Briefcase, sharing "
+                    "no table; the Eterna trade shares its place's table; no gift clown is "
+                    "a source, and Sandgem Town has a table of its own",
                     all(s["capture_area"] is None for s in sources if s["kind"] == "egg")
-                    and by_id["starter"]["shares_table"]
+                    and by_id["starter"]["capture_area"] == "Rowan's Briefcase"
+                    and not by_id["starter"]["shares_table"]
                     and by_id["eterna_trade"]["shares_table"]
                     and not any(sid in by_id for sid in retired)
                     and "Sandgem Town" in wild, ""))

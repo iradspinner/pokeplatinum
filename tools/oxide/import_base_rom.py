@@ -451,7 +451,10 @@ def decode_encounter(b):
 #     to 1 (same meaning) and 29 to 0 (opposite meaning). Of those 29, exactly
 #     two are maps that contain Shellos or Gastrodon at all (Route 212 north and
 #     south), which reads as a checkbox being normalised rather than two maps
-#     being deliberately flipped to the west form.
+#     being deliberately flipped to the west form. Ian ruled otherwise on
+#     2026-09-27: Route 212's Gastrodon is the pink West Sea form, as his base
+#     ROM had it, so those two tables carry 0 in the encounter JSON. The keys
+#     stay skipped here, since the other 27 zeros are still noise.
 #
 # rate_form2..4 are unused by the game and move with the other two.
 ENCOUNTER_SKIP_KEYS = ("unown_table", "rate_form0", "rate_form1", "rate_form2", "rate_form3", "rate_form4")

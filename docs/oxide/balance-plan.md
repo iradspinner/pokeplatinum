@@ -14,9 +14,11 @@ permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
 tools. B5 has its readings, fits to the references and to Ian's own
 ratings of sixteen fights, and his explanations of the fights the scores
 misread: safe switch-ins read both best ("What B3b and B5 found", "What
-Ian's ratings showed"). Every score follows the calculator's computed
-powers (the encounter track's item 22). Next: incremental rescores (Ian,
-2026-09-27), then B6. No questions are open.
+Ian's ratings showed"). Every score is on the combined branch of
+2026-09-27 (the calculator's items 22 and 23, the friendship and trade
+evolutions, the new grass tables and sources, Heatran out of Stark
+Mountain), and rescores are incremental. Next: B6's runs. Ian approved
+the stone plan; no questions are open.
 
 ## The target
 
@@ -183,6 +185,35 @@ Ian's rulings, 2026-09-27, on the Pocket PC:
   starter-move tutors, a gap that the tutor pass closes.
 - Friendship evolutions move to methods that cannot be ground as easily;
   the encounter track proposes one per line.
+
+Ian's rulings, 2026-09-27, on the Kaizo comparison (`docs/oxide/kaizo-comparison.md`,
+"Ian's answers"):
+
+- **Moves**: of Kaizo's numbers, only the report's short list comes in,
+  as exceptions to the modern scale; the very large buffs stay out. So
+  every setup move goes to 1 to 3 PP (Bulk Up, Cosmic Power, Stockpile,
+  Focus Energy, Defend Order, and the new moves' Quiver Dance, Coil, Shell
+  Smash, Hone Claws, Work Up, Shift Gear and the rest); the stat-lowering
+  status moves take Kaizo's low PP (Screech, Metal Sound, Fake Tears,
+  Charm, Feather Dance, Tickle and Captivate at 3 to 6, Sweet Scent at 2);
+  every Generation 4 move whose priority changed later takes the modern
+  value (Fake Out +3, Extreme Speed +2); Drill Peck, Megahorn, Dragon
+  Claw, X-Scissor and Power Whip get the high critical ratio; six weak
+  signature attacks (Octazooka, Mirror Shot, Magnet Bomb, Needle Arm,
+  Poison Tail, Crush Claw) rise to about 80 to 90; and six mid attacks
+  (Hyper Fang, Octazooka, Rock Climb, Sky Uppercut, Double Hit, Dragon
+  Rush) go to 100 accuracy. Sleep moves and powders keep their accuracy.
+  A cloud job writes the data. For the scores: PP changes nothing (the
+  calculator carries none) and nor does the critical ratio (the scores
+  leave critical hits out); the power, accuracy and priority changes
+  stale only the fights where those moves appear, for an incremental
+  rescore.
+- **Learnsets**: Kaizo's level-up lists are the line-by-line template for
+  this track's learnset pass, adjusted to Oxide's rulings and splits.
+  Strong moves may sit at level 1 on evolved stages, as Kaizo has them,
+  which makes each worth a Heart Scale at the Move Relearner. No split has
+  a ceiling on coverage power; the rescore judges each move. The move
+  pool's first cut (below, design pass 3) goes into the same pass.
 
 Ian's ruling, 2026-09-27: **the five Frontier Brains become optional
 bosses**, Dahlia at the Veilstone Game Corner (Maylene's split), Darach at
@@ -442,17 +473,17 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 105 | 30 |
-| Gardenia | 26 | 176 | 42 |
-| Fantina | 33 | 277 | 48 |
-| Maylene | 39 | 345 | 78 |
-| Wake | 44 | 392 | 88 |
+| Roark | 16 | 104 | 30 |
+| Gardenia | 26 | 177 | 42 |
+| Fantina | 33 | 272 | 48 |
+| Maylene | 39 | 348 | 78 |
+| Wake | 44 | 393 | 88 |
 | Byron | 53 | 417 | 103 |
-| Candice | 56 | 432 | 109 |
-| HQ | 60 | 433 | 112 |
-| Galactic | 65 | 439 | 124 |
-| Volkner | 68 | 439 | 125 |
-| League | 78 | 439 | 128 |
+| Candice | 56 | 430 | 109 |
+| HQ | 60 | 431 | 112 |
+| Galactic | 65 | 436 | 124 |
+| Volkner | 68 | 436 | 125 |
+| League | 78 | 436 | 128 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -463,12 +494,12 @@ most threatening Pokemon and its least answered one.
 |---|---|---|---|---|
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.92 |
 | Barry 2 | 0.01 | 0.63 | 0.03 | 0.51 |
-| Roark | 0.14 | 0.15 | 0.43 | 0.04 |
-| Mars 1 | 0.01 | 0.35 | 0.03 | 0.09 |
-| Gardenia | 0.69 | 0.05 | 0.91 | 0.02 |
+| Roark | 0.14 | 0.16 | 0.42 | 0.04 |
+| Mars 1 | 0.01 | 0.36 | 0.03 | 0.09 |
+| Gardenia | 0.68 | 0.06 | 0.90 | 0.03 |
 | Jupiter 1 | 0.12 | 0.24 | 0.19 | 0.11 |
-| Fantina | 0.51 | 0.10 | 0.87 | 0.00 |
-| Barry 3 | 0.18 | 0.46 | 0.38 | 0.32 |
+| Fantina | 0.51 | 0.10 | 0.88 | 0.00 |
+| Barry 3 | 0.17 | 0.47 | 0.38 | 0.33 |
 | Maylene | 0.69 | 0.20 | 0.81 | 0.07 |
 | Barry 4 | 0.48 | 0.13 | 0.83 | 0.03 |
 | Wake | 0.74 | 0.07 | 0.98 | 0.00 |
@@ -476,21 +507,24 @@ most threatening Pokemon and its least answered one.
 | Barry 5 | 0.55 | 0.19 | 0.91 | 0.04 |
 | Byron | 0.34 | 0.21 | 0.56 | 0.15 |
 | Saturn 1 | 0.52 | 0.24 | 0.80 | 0.08 |
-| Mars 2 | 0.37 | 0.14 | 0.84 | 0.04 |
+| Mars 2 | 0.37 | 0.14 | 0.85 | 0.04 |
 | Candice | 0.66 | 0.12 | 0.93 | 0.03 |
 | Cyrus 2 | 0.45 | 0.12 | 0.81 | 0.04 |
 | Saturn 2 | 0.40 | 0.19 | 0.83 | 0.00 |
-| Mars and Jupiter | 0.31 | 0.33 | 0.69 | 0.06 |
+| Mars and Jupiter | 0.31 | 0.33 | 0.70 | 0.06 |
 | Cyrus 3 | 0.52 | 0.23 | 0.82 | 0.12 |
 | Volkner | 0.65 | 0.16 | 0.90 | 0.02 |
-| Barry 6 | 0.54 | 0.23 | 0.92 | 0.05 |
-| Aaron | 0.59 | 0.18 | 0.76 | 0.07 |
-| Bertha | 0.49 | 0.31 | 0.76 | 0.02 |
+| Barry 6 | 0.54 | 0.24 | 0.92 | 0.05 |
+| Aaron | 0.59 | 0.17 | 0.76 | 0.08 |
+| Bertha | 0.50 | 0.31 | 0.76 | 0.02 |
 | Flint | 0.69 | 0.14 | 0.92 | 0.04 |
 | Lucian | 0.62 | 0.27 | 0.94 | 0.03 |
 | Cynthia | 0.68 | 0.13 | 0.90 | 0.01 |
 
-Both tables were recomputed on 2026-09-26 for the calculator following the
+Both tables were recomputed on 2026-09-27 for the combined branch (the
+calculator's item 23, the friendship and trade evolutions, the new grass
+tables and sources, Heatran out of Stark Mountain), which moves no Oxide
+fight by more than 0.02; before that on 2026-09-26 for the calculator following the
 engine's computed powers (the encounter track's item 22), which moves no
 Oxide fight by more than 0.002 and leaves both tables as they were; before
 that the same day for the modern move values, the
@@ -518,10 +552,10 @@ team's 62. That is the gap the trainer pass closes, not a change in his
 fight. These are raw scores, not ratings: B5 turns them into a band by
 scoring the reference hacks the same way. What they already show:
 
-- **Gardenia is the largest step in the game.** Roark's fight threatens 13
+- **Gardenia is the largest step in the game.** Roark's fight threatens 14
   percent of the side and Gardenia's 68, level with Cynthia's 68. Her
-  Roserade alone knocks out 91 percent of the side within two turns while
-  moving first, and 1 percent answers it. The plan wants Gardenia to reach
+  Roserade and Breloom each knock out 90 percent of the side within two
+  turns while moving first, and 3 percent answers Roserade. The plan wants Gardenia to reach
   the target and the curve to hold after; whether 0.68 is the target is
   B5's to say, but nothing later climbs as steeply.
 - **Choice Scarf and rain leave bosses with no answer.** Nothing at the cap
@@ -530,8 +564,8 @@ scoring the reference hacks the same way. What they already show:
   Lucario (2 percent or less each). Pastoria Gym's rain doubles Floatzel's
   and Ludicolo's Speed through Swift Swim, and they come out at 1 percent
   and under.
-- **Byron is soft between two peaks**: 0.33 against Wake's 0.74 and
-  Candice's 0.67. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
+- **Byron is soft between two peaks**: 0.34 against Wake's 0.74 and
+  Candice's 0.66. The admins' first fights (Mars 1, Jupiter 1) and Barry 3
   are light too.
 - **Early fights in a split read too easy**, because the player is scored
   at the split's cap: Barry 1 is level 5 against a side at 16. B4's natural
@@ -633,9 +667,9 @@ Champion):
 | Vanilla | 3 | 0.14 | 0.80 | 0.93 | 2.8 |
 | Unbound, difficult | 5.25 | 0.51 | 0.28 | 0.62 | 4.4 |
 | Renegade | 7 | 0.54 | 0.31 | 0.34 | 6.5 |
-| Redux | 8 | 0.69 | 0.09 | 0.26 | 4.8 |
+| Redux | 8 | 0.69 | 0.09 | 0.25 | 4.8 |
 | Redux hardcore | 8.5 | 0.74 | 0.06 | 0.23 | 4.7 |
-| Hardlove | 9.5 | 0.68 | 0.18 | 0.34 | 6.0 |
+| Hardlove | 9.5 | 0.68 | 0.18 | 0.33 | 6.0 |
 | Kaizo | 10 | 0.76 | 0.03 | 0.07 | 6.6 |
 | Null | 10 | 0.92 | 0.01 | 0.01 | 5.7 |
 | Run & Bun | 10 | 0.84 | 0.04 | 0.13 | 4.9 |
@@ -645,7 +679,7 @@ the hacks' ratings is minus 0.93, level with the damage readings, and one
 line fits them better than any damage line does:
 
 ```
-rating = 10.6 - 8.1 x safe switch-ins, R squared 0.91
+rating = 10.5 - 8.1 x safe switch-ins, R squared 0.91
 rating = 5.7 + 4.8 x (threat by chance - one-on-one answers), R squared 0.88
 ```
 
@@ -663,19 +697,19 @@ Seat by seat, safe switch-ins against the two references nearest a 6:
 
 | Seat | Oxide | Unbound (5.25) | Renegade (7) |
 |---|---|---|---|
-| Roark | 0.81 | 0.83 | 0.63 |
-| Gardenia | 0.35 | 0.95 | 0.46 |
-| Fantina | 0.63 | 0.73 | 0.61 |
+| Roark | 0.81 | 0.83 | 0.61 |
+| Gardenia | 0.34 | 0.96 | 0.45 |
+| Fantina | 0.62 | 0.73 | 0.61 |
 | Maylene | 0.30 | 0.93 | 0.30 |
 | Wake | 0.32 | 0.48 | 0.48 |
 | Byron | 0.24 | 0.51 | 0.11 |
-| Candice | 0.35 | 0.59 | 0.24 |
+| Candice | 0.34 | 0.59 | 0.24 |
 | Volkner | 0.35 | 0.70 | 0.27 |
 | Aaron | 0.48 | 0.55 | 0.33 |
-| Bertha | 0.39 | 0.47 | 0.17 |
-| Flint | 0.22 | 0.50 | 0.27 |
-| Lucian | 0.22 | 0.44 | 0.31 |
-| Cynthia | 0.19 | 0.40 | 0.22 |
+| Bertha | 0.38 | 0.47 | 0.17 |
+| Flint | 0.22 | 0.50 | 0.26 |
+| Lucian | 0.21 | 0.43 | 0.31 |
+| Cynthia | 0.18 | 0.40 | 0.22 |
 
 Oxide leaves fewer safe switch-ins than Renegade at Gardenia, Wake,
 Flint, Lucian and Cynthia, and more at Roark, Byron, Candice, Volkner,
@@ -692,21 +726,21 @@ left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 | Fight | Ian | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
 |---|---|---|---|---|---|
 | Mars and Jupiter, Spear Pillar | 9 | 0.31 | 0.59 | 0.50 | 12 |
-| Cyrus 3 | 8.5 | 0.48 | 0.26 | 0.25 | 5 |
+| Cyrus 3 | 8.5 | 0.48 | 0.26 | 0.24 | 5 |
 | Saturn 2 | 8.5 | 0.39 | 0.35 | 0.36 | 7 |
-| Candice | 8.5 | 0.65 | 0.18 | 0.35 | 9 |
+| Candice | 8.5 | 0.65 | 0.18 | 0.34 | 9 |
 | Wake | 8 | 0.74 | 0.19 | 0.32 | 2 |
-| Maylene | 8 | 0.69 | 0.21 | 0.30 | 2 |
+| Maylene | 8 | 0.68 | 0.21 | 0.30 | 2 |
 | Officer Hesperid, Lake Valor | 7 | 0.44 | 0.43 | 0.20 | 8 |
 | Byron | 7 | 0.34 | 0.17 | 0.24 | 5 |
 | Saturn 1 | 6.5 | 0.52 | 0.33 | 0.43 | 6 |
-| Fantina | 6 | 0.51 | 0.27 | 0.63 | 5 |
-| Barry 4 | 6 | 0.48 | 0.33 | 0.62 | 7 |
+| Fantina | 6 | 0.51 | 0.27 | 0.62 | 5 |
+| Barry 4 | 6 | 0.48 | 0.33 | 0.63 | 7 |
 | Cyrus 1 | 5 | 0.38 | 0.54 | 0.60 | 5 |
 | Mars 2 | 5 | 0.37 | 0.37 | 0.60 | 10 |
-| Gardenia | 5 | 0.69 | 0.14 | 0.35 | 5 |
+| Gardenia | 5 | 0.68 | 0.15 | 0.34 | 5 |
 | Volkner | 3 | 0.58 | 0.51 | 0.35 | 4 |
-| Roark | 2 | 0.14 | 0.22 | 0.81 | 4 |
+| Roark | 2 | 0.14 | 0.21 | 0.81 | 4 |
 
 Over the fifteen single battles, safe switch-ins correlate with his
 ratings at minus 0.59 (minus 0.66 before the Galactic finales); the
@@ -714,16 +748,16 @@ damage readings sit between 0.27 and 0.35 either way, and the tactics
 tally at 0.17. Safe switch-ins alone predict a rating it was not fitted on to
 within 1.7 points, against a spread of 1.9 in his ratings, and no pair or
 triple of readings does better on a fight held out. The line is about
-9.3 minus 7.2 times safe switch-ins. Its misses say what is still
+9.3 minus 7.1 times safe switch-ins. Its misses say what is still
 outside:
 
 - **Volkner** reads 6.8 against Ian's 3. Baiting his three Choice locks
   shows in the answers (0.51, among the most of any fight), but not in
   safe switch-ins.
-- **Gardenia** reads 6.8 against 5, the stage: Ian's scale rises through
+- **Gardenia** reads 6.9 against 5, the stage: Ian's scale rises through
   the game (later fights rate higher, correlation 0.42), and the scores
   are relative to each split's side by design.
-- **Candice and Saturn 2** read 6.8 against 8.5, and Spear Pillar cannot
+- **Candice and Saturn 2** read 6.9 and 6.8 against 8.5, and Spear Pillar cannot
   be read at all, since the tool plays a double battle as singles without
   the partner. For those three, Ian's ratings are the measure.
 
@@ -739,23 +773,23 @@ reading, with Ian's rating where he has one:
 
 | Fight | Safe switch-ins | Answers, baiting counted | Ian |
 |---|---|---|---|
-| Cynthia | 0.19 | 0.31 | not rated |
+| Cynthia | 0.18 | 0.31 | not rated |
 | Officer Hesperid, Lake Valor | 0.20 | 0.43 | 7 |
 | Officer Hesperid, Mt. Coronet | 0.21 | 0.45 | not rated |
-| Lucian | 0.22 | 0.48 | not rated |
+| Lucian | 0.21 | 0.48 | not rated |
 | Flint | 0.22 | 0.42 | not rated |
 | Byron | 0.24 | 0.17 | 7 |
-| Cyrus 3 | 0.25 | 0.26 | 8.5 |
+| Cyrus 3 | 0.24 | 0.26 | 8.5 |
 | Maylene | 0.30 | 0.21 | 8 |
 | Wake | 0.32 | 0.19 | 8 |
-| Gardenia | 0.35 | 0.14 | 5 |
-| Candice | 0.35 | 0.18 | 8.5 |
+| Gardenia | 0.34 | 0.15 | 5 |
+| Candice | 0.34 | 0.18 | 8.5 |
 | Volkner | 0.35 | 0.51 | 3 |
 | Saturn 2 | 0.36 | 0.35 | 8.5 |
 
 So the trainer pass reads safe switch-ins first, with answers (baiting
 counted) and the tactics list beside it, translated onto Ian's fight scale
-by the line above (about 9.3 minus 7.2 times safe switch-ins): a fight at
+by the line above (about 9.3 minus 7.1 times safe switch-ins): a fight at
 safe switch-ins of 0.95 or more sits at 2 or under, one at 0.45 to 0.85
 between 3 and 6.
 
@@ -1057,8 +1091,9 @@ disagrees with them.
 
 ## Open questions for Ian
 
-None. Ian's ratings of sixteen fights (open question 1 until 2026-09-25)
-are in "What Ian's ratings showed".
+Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
+"What Ian's ratings showed". None are open: Ian approved the stone plan
+on 2026-09-27 (design pass 2).
 
 ## Order of work
 
@@ -1201,7 +1236,7 @@ are in "What Ian's ratings showed".
   Freeze-Dry, Flying Press) and Rage Fist follow when a cloud session's
   engine work merges and the encounter track's item 23 teaches the
   calculator, with a smaller rescore.
-- [ ] **Incremental rescores** (Ian, 2026-09-27), before B6's runs. A full
+- [x] **Incremental rescores** (Ian, 2026-09-27), before B6's runs. A full
   rescore costs about 45 minutes a run on this CPU and two runs must agree,
   even when a change touches a few fights. Each stored score gets a
   fingerprint of its inputs (the exact job the calculator runs, the slices
@@ -1211,7 +1246,23 @@ are in "What Ian's ratings showed".
   recomputes the unverified ones and marks them verified when they agree.
   test_b3 checks that every fingerprint matches its inputs and nothing is
   left unverified, and each rescore reports how many scores it recomputed
-  and how many it reused.
+  and how many it reused. Built and in use (2026-09-27, `rescore.py`):
+  every score the tool stores is a unit, 507 before B6 and 965 with it,
+  and the whole set is fingerprinted in about half a minute. The first
+  run, on the combined branch (the calculator's item 23, the friendship
+  and trade evolutions, the new grass tables and sources), recomputed all
+  507 and verified all 507 with no disagreement; the classic starters'
+  move that followed staled none, and the Heatran fix staled the 259 built
+  on the Galactic, Volkner and League sides. The engine part covers only
+  the calculator files the runner loads, so no game C, battle script or
+  AI change stales a score. test_b3 checks the scores before B6 and
+  test_b6 checks B6's.
+
+  ```
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore            # what changed
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore --verify   # the second run
+  PYTHONPATH=. python3 -m tools.oxide.balance.rescore --status   # counts only
+  ```
 - [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
   target"). Every Oxide fight placed on his fight scale, the required
   ordinary trainers included (they are not scored yet, and they are most of
@@ -1223,6 +1274,16 @@ are in "What Ian's ratings showed".
   side (a species' stats, a TM or item one split earlier, route weather, a
   cap) ranked by how far it moves the scores, with any lever or species
   that moves them absurdly far or not at all flagged for the balance pass.
+  Built (2026-09-26, `b6.py`, `test_b6`), as rescore units: each ordinary
+  trainer the player meets (428, 40 of them required), scored in the split
+  B1e first reaches it in; and each story fight's levers, rerunning only
+  the matchups a change touches. `b6.py --report` gives the findings by
+  goal, `--content` adds the count of new species, moves and abilities on
+  each side, and `--draft` scores one of Ian's Frontier Brain drafts in a
+  split and places it on his fight scale. The runs wait for the suite
+  slot. Already clear from the counts: by the League 127 of the player's
+  439 species are new, while the trainers use 3 new species in about 1,050
+  Pokemon and no new move or ability at all.
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
@@ -1254,6 +1315,97 @@ lands, and each change is re-scored as it lands.
    Ceruledge's Dusk Stone has fixed finds in the Galactic Warehouse and on
    Victory Road. Dahlia now gates the Veilstone Game Corner (the Frontier
    Brains ruling, above), so its prize list is reviewed beside the census.
+
+   **The census** (2026-09-26, `stones.py`, on the tree that moves Espeon
+   and Umbreon onto stones). No stone is scarce today, so the one fixed
+   Sun Stone and Moon Stone Ian asked for already exist several times
+   over. Three sources give a full set or close to it: a woman on Route
+   207 gives all nine stones at once after the player has travelled with
+   Mira (Fantina's split, since the bike opens Wayward Cave); Galactic
+   HQ's second basement holds one of each (HQ's split); and the
+   Underground's digs give every stone but the Oval Stone with no limit,
+   0.9 to 1.5 percent of digs before the National Dex and 1.4 to 5.4
+   percent with it, from Gardenia's split. Each stone also has two or
+   three fixed finds of its own.
+
+   | Stone | Fixed finds before the League | Lines that want one, and from when |
+   |---|---|---|
+   | Fire | 5, from Fantina's split | Ninetales (Roark's), Flareon (Fantina's) |
+   | Water | 5, from Fantina's | Ludicolo (Roark's), Poliwrath (Gardenia's), Vaporeon, Starmie, Cloyster |
+   | Thunder | 5, from Fantina's | Vikavolt, Pawmot, Raichu (Gardenia's), Jolteon |
+   | Leaf | 5, from Gardenia's | Shiftry (Roark's) |
+   | Moon | 4, from Gardenia's | Nidoqueen, Nidoking, Delcatty (Roark's), Clefable, Umbreon |
+   | Sun | 4, from Fantina's | Espeon and Armarouge (both Fantina's) |
+   | Shiny | 5, from Fantina's | Cinccino (Roark's), Togekiss, Roserade, Florges |
+   | Dusk | 4, from Fantina's | Honchkrow (Roark's), Ceruledge, Mismagius, Polteageist, Chandelure |
+   | Dawn | 5, from Fantina's | Froslass (Gardenia's), Gallade |
+   | Oval | 1, the Lost Tower (Maylene's); not dug | Chansey (Fantina's) |
+
+   **Corrected** (2026-09-26, found by the main track): the first count
+   took a hidden item on the border of two maps twice, since both maps'
+   events list it under one flag. Route 211 west's Moon Stone is Eterna
+   City's, and the Resort Area's and Route 229's Thunder Stone is one
+   item; `stones.py` now counts each hidden item once, and the figures
+   here are recounted.
+
+   The census also turned up a data error, which the main track fixes:
+   Polteageist evolves into Sinistcha by Dusk Stone here, where the later
+   games have Sinistcha come from Poltchageist.
+
+   **Ian's rulings on the census** (2026-09-27): the Underground closes,
+   since the player is never given the Explorer Kit; both bulk sets go,
+   Route 207's nine and Galactic HQ's; and this track proposes how many of
+   each stone and where, for his approval. The main track makes the script
+   changes.
+
+   **The plan, approved by Ian** (2026-09-27) with one change: the Shiny
+   Stone gets an early copy, since Roserade and Togekiss are likely in
+   hand when Fantina's split starts. One stone for every two or three
+   lines that want it, the first copy about a split after the first
+   claimant can be owned, so every stone is a decision; every find below
+   is one the tree already has, so nothing new is placed. With the
+   Underground and the two sets gone, the tree has 25 stones before the
+   League, 2 or 3 of each but the Oval Stone; this keeps 16. The main
+   track makes the changes.
+
+   | Stone | Keep | Take out | Lines that want it |
+   |---|---|---|---|
+   | Fire | Solaceon Ruins (Maylene's) | Fuego Ironworks, Stark Mountain | Ninetales, Flareon |
+   | Water | Solaceon Ruins (Maylene's), Route 213 (Wake's) | Route 230 | Ludicolo, Poliwrath, Vaporeon, Starmie, Cloyster |
+   | Thunder | Solaceon Ruins (Maylene's), Sunyshore (Volkner's) | the one on the Resort Area's border with Route 229 | Raichu, Vikavolt, Pawmot (all from Gardenia's), Jolteon |
+   | Leaf | Floaroma Meadow (Gardenia's) | Great Marsh, Route 225 | Shiftry, the one line that can use it |
+   | Moon | Eterna City (Gardenia's; it is also Route 211 west's, on their border), Mt. Coronet outside north (Galactic's) | none | Nidoqueen, Nidoking, Delcatty, Clefable, Umbreon |
+   | Sun | Valor Lakefront (Wake's), the one Ian asked for | Mt. Coronet 4F | Espeon, Armarouge |
+   | Shiny | Route 212 south (Wake's), where the hidden Dawn Stone becomes a Shiny Stone; Iron Island B3F (Byron's); Route 228 (Galactic's) | Route 210 north | Cinccino, Togekiss, Roserade, Florges |
+   | Dusk | Wayward Cave (Fantina's), the Galactic Warehouse (HQ's) | none; Victory Road's is after the League | Honchkrow, Ceruledge, Mismagius, Polteageist, Chandelure |
+   | Dawn | Mt. Coronet 1F south (Fantina's) | Route 225; Route 212 south's becomes the early Shiny Stone | Froslass, Gallade |
+   | Oval | the Lost Tower (Maylene's) | none | Chansey |
+
+   The tool cannot score this yet: the player's side takes a stone
+   evolution at a judged level (the encounter tool's rule), not when a
+   stone is in reach, so teaching it the stones' splits is the next step
+   before the scores can weigh a stone.
+
+   **What else only the Underground gave** (`stones.py --underground`,
+   which lists every other source of each of its 49 treasures):
+
+   - Everstone and the four weather rocks come from nowhere else. The
+     rocks go, since the player never sets weather (Ian, 2026-09-27). One
+     fixed Everstone goes in Oreburgh Mine (Ian): the B2F ball that holds
+     an Old Amber, one of the four fossils Ian deleted, becomes it.
+   - Heart Scales, which Pastoria's Move Relearner takes one of a move,
+     now that the PCs' free relearner is gone: 10 fixed finds before the
+     League, 4 of them by the time the player reaches Pastoria, which stay
+     as they are (Ian, 2026-09-27). The player's side still assumes every
+     level-up move, the level 1 and evolution moves included, so it reads
+     the relearner as free; 10 in a run covers the key moves of a nuzlocke
+     box.
+   - Every Plate keeps one or two fixed finds, the only Light Clay is on
+     Mt. Coronet B1F (Candice's split), and the Root, Armor and Skull
+     Fossils stay in Oreburgh Mine B2F; the four fossils Ian deleted go
+     with their balls there too. The Pixie Plate is not in the game yet
+     (element 7); when it is, it takes one fixed find like the others.
+   - Money: 21 Star Pieces and 14 Nuggets stay as fixed finds.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or
@@ -1263,6 +1415,55 @@ lands, and each change is re-scored as it lands.
    Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
    modern stat buffs, Chimecho and Staraptor go to their modern totals, and
    Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.
+   Since the natives' 17 hidden abilities merged (2026-09-27,
+   `cloud/element5-hidden-abilities`), 91 native species carry a working
+   hidden ability (Moxie, Multiscale, Magic Bounce, Sand Rush and the
+   rest); the scores do not read hidden abilities, since the player's side
+   takes each species' first ability and a trainer's set names its own, so
+   the pass weighs them by hand, beside the one Ability Patch that reaches
+   them.
+   **Terrain is not ported** (Ian, 2026-09-27), so nothing the player can
+   get may be dead weight: the four Terrain moves (which say "But nothing
+   happened!") leave every learnset, TM and tutor list, and the four Surge
+   abilities and Seed Sower are replaced wherever a species carries them.
+   Steel Roller was on the list until the move survey's ruling below kept
+   it, with its effect to be written. The moves that only read terrain (Ice
+   Spinner, Terrain Pulse and the rest) are plain hits and stay. `b6.py
+   --report` lists the worklist: Arboliva's Seed Sower, Galarian Weezing's
+   hidden Misty Surge, and the obtainable lines that learn a Terrain move
+   by level (Galarian Mr. Mime and Mr. Rime, Sylveon, the Smoliv line, and
+   Tapu Koko and Xurkitree, whom Mesprit's roamer now draws; Tapu Koko's
+   Electric Surge goes too); no TM, tutor or egg list teaches one yet, and
+   the TM pass keeps it that way. The other Tapus and Xerneas stay out of
+   reach.
+
+   **The move-pool survey** (Ian, 2026-09-27; `docs/oxide/move-pool-survey.md`),
+   applied in the learnset pass after B6:
+
+   - Twelve moves leave every learnset now: Telekinesis, Ally Switch,
+     Topsy-Turvy, Flower Shield, Fairy Lock, Aromatic Mist, Magnetic
+     Flux, Speed Swap and the four Terrain moves.
+   - Magic Room, Teatime, Octolock, Sky Drop, Salt Cure and Steel Roller
+     stay; their missing effects are written in a cloud job, with the
+     survey's 22 partly working moves (Mind Blown first). The doubles
+     moves that work stay.
+   - Splash and Teleport go, and each of their six species gets a real
+     level-1 move, this track's pick: Azurill Pound, Bounsweet Leafage,
+     Feebas Tackle, Hoppip Absorb, Wailmer Water Gun and Abra Confusion.
+     Each is a weak attack, of the species' own type but for Feebas, which
+     keeps its weakness with the Tackle it now learns at 15. Abra's is the
+     one that changes play: it can fight before it evolves, where Teleport
+     left it none. Magikarp has the same gap (Splash alone until Tackle at
+     15) and falls under the same ruling, so it takes Tackle at 1, like
+     Feebas; it is off the pick-list, so this reaches only trainers'
+     default moves. Every other Splash or Teleport
+     carrier (Buneary, Ralts, the Abra and Hoppip lines' evolutions,
+     Delphox, and the egg lists) has another move beside it, and simply
+     loses it; `b6.py --report` lists them.
+   - Cut, Rock Smash and Flash leave learnsets where they were there only
+     as HMs, and their TM slots become other moves in the TM pass.
+   - Type-flavoured near-duplicates stay, as do Land's Wrath, Flame Burst
+     and Sludge. The rest of the cull waits for the TM pass.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

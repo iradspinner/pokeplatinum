@@ -23,10 +23,11 @@
       "id": "starter",
       "label": "The starter",
       "kind": "starter",
-      "capture_area": "Route 201",
+      "capture_area": "Rowan's Briefcase",
       "split": "Roark",
       "from": {"file": "scripts_route_201.s"},
-      "pick": "choice"
+      "pick": "choice",
+      "note": "Its met location is its own, Rowan's Briefcase (Ian, 2026-09-27, main-scripts), so Route 201's table is a capture from the first step."
     },
     {
       "id": "oreburgh_trade",
@@ -135,6 +136,19 @@
       "pick": "random"
     },
     {
+      "id": "ironworks_hall_thorton",
+      "label": "Ironworks Hall, Thorton's Battle Factory rental",
+      "kind": "gift",
+      "capture_area": "Ironworks Hall",
+      "split": "Byron",
+      "order": 87.5,
+      "pool": ["SPECIES_TORTERRA", "SPECIES_CINDERACE", "SPECIES_EMPOLEON"],
+      "level": 40,
+      "pick": "choice",
+      "planned": true,
+      "note": "Ian, 2026-09-27: after beating Thorton the player picks one of the two starter lines they did not choose, fully evolved at level 40. The building has its own location name, so this is a capture of its own. Not scripted yet (the main track's Frontier Brain work)."
+    },
+    {
       "id": "riolu_egg",
       "label": "Riley's egg",
       "kind": "egg",
@@ -232,6 +246,7 @@
       "capture_area": "Stark Mountain",
       "split": "Post",
       "from": {"file": "scripts_stark_mountain_room_3.s"},
+      "pool": ["SPECIES_HEATRAN"],
       "pick": "random",
       "simulate": false,
       "note": "The last room holds no Heatran and no draw (Ian, 2026-09-27, relayed by the Overseer), until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The script still gives Heatran after Buck's post-game event until the main track changes it."

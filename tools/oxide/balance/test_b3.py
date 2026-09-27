@@ -7,13 +7,14 @@ it does not rerun the fights (pressure.py does that, a split at a time).
 The plan's check is that damage agrees with the calculator's page and with
 Ian's in-game roll; the second waits on Ian (encounter build plan, M8).
 """
+import collections
 import json
 import os
 import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, metrics, pool, pressure, refpressure
+from . import data, metrics, pool, pressure, refpressure, rescore
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it shows for each since the encounter
@@ -279,11 +280,10 @@ def check_b5_rules(results):
 
 
 def check_ref_scores(results, blob):
-    """B3b: every reference hack is scored in every seat it fills, against
-    the side as it is now and with B5's columns, and no boss move fails
-    beyond the unmodelled ones."""
-    sizes = {s: len(pool.pool(s, blob)) for s in pool.SPLITS}
-    missing, stale, failures, seats = [], [], set(), 0
+    """B3b: every reference hack is scored in every seat it fills, and no
+    boss move fails beyond the unmodelled ones. Whether each score is
+    current is check_fingerprints'."""
+    missing, failures, seats = [], set(), 0
     for hack in refpressure.HACKS:
         saved = refpressure.load(hack)["fights"]
         for f in data.fights()["fights"]:
@@ -294,39 +294,74 @@ def check_ref_scores(results, blob):
             if r is None:
                 missing.append(f"{hack} {f['key']}")
                 continue
-            if (r["cap"] != CAPS[f["split"]] or r["pool"] != sizes[f["split"]]
-                    or "answers_branch" not in r or "safe" not in r):
-                stale.append(f"{hack} {f['key']}")
             failures |= {e.split(" ", 1)[1].split(":")[0] for e in r["errors"]}
     unknown = failures - REF_UNMODELLED
-    ok = not missing and not stale and not unknown
-    results.append(("B3b: every reference seat scored on the current side, no new failures", ok,
-                    f"missing {missing[:5]}, stale {stale[:5]}, failures {sorted(unknown)}"
+    ok = not missing and not unknown
+    results.append(("B3b: every reference seat scored, no new failures", ok,
+                    f"missing {missing[:5]}, failures {sorted(unknown)}"
                     if not ok else f"{seats} seats in {len(refpressure.HACKS)} hacks"))
 
 
 def check_scores(results, blob):
-    """Every story fight is scored, against the side as it is now."""
+    """Every story fight is scored, and no boss move fails. Whether each
+    score is current is check_fingerprints'."""
     saved = pressure.load()["fights"]
     keys = [f["key"] for f in data.fights()["fights"]]
     missing = [k for k in keys if k not in saved]
     sizes = {s: len(pool.pool(s, blob)) for s in pool.SPLITS}
-    stale = [k for k in keys if k in saved and (saved[k]["cap"] != CAPS[saved[k]["split"]]
-                                                 or saved[k]["pool"] != sizes[saved[k]["split"]])]
     boss_errors = [k for k in keys if k in saved
                    and any(e.startswith("b") for e in saved[k]["errors"])]
-    # Each fight is scored with the Trick Room fights.json gives it.
-    rooms = {f["key"]: bool(f.get("trick_room")) for f in data.fights()["fights"]}
-    stale += [k for k in keys if k in saved and "safe" not in saved[k]]
-    stale += [k for k in keys if k in saved and saved[k].get("trick_room", False) != rooms[k]]
     unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
                for e in saved[k]["errors"]} - UNMODELLED
-    ok = not missing and not stale and not boss_errors and not unknown
+    ok = not missing and not boss_errors and not unknown
     results.append(("all 28 fights scored; no boss move fails, and the player's failures "
-                    "are the five unmodelled moves", ok,
-                    f"missing {missing}, stale {stale}, boss errors {boss_errors}, "
+                    "are the unmodelled moves", ok,
+                    f"missing {missing}, boss errors {boss_errors}, "
                     f"other failures {sorted(unknown)}" if not ok else
                     f"{len(keys)} fights, pools {min(sizes.values())} to {max(sizes.values())}"))
+
+
+def check_fingerprint_rules(results):
+    """A fingerprint ignores a docstring but not code, and sees a changed
+    move, weather or party in the job it hashes."""
+    with tempfile.TemporaryDirectory(prefix="oxide-b3-fp-") as tmp:
+        texts = {"a": 'def f():\n    """One."""\n    return 1\n',
+                 "b": 'def f():\n    """Two, reworded."""\n    return 1\n',
+                 "c": 'def f():\n    """One."""\n    return 2\n'}
+        hashes = {}
+        for k, text in texts.items():
+            path = os.path.join(tmp, f"{k}.py")
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(text)
+            hashes[k] = rescore._code_hash(path)
+    blob = {"title": "t", "type_chart": {}, "poks": {"A": {"bs": 1}, "B": {"bs": 2}},
+            "moves": {"Tackle": {"bp": 40}, "Ember": {"bp": 40}}}
+    job = {"pokemon": {"p0": {"species": "A", "moves": ["Tackle"]},
+                       "b0.0": {"species": "B", "moves": ["Ember"]}},
+           "pairs": [["b0.0", "p0", ["Ember"], None], ["p0", "b0.0", ["Tackle"], None]]}
+    base = rescore.fingerprint("pressure", job, {}, blob)
+    moved = json.loads(json.dumps(job))
+    moved["pairs"][0][3] = "Rain"
+    other = dict(blob, moves=dict(blob["moves"], Ember={"bp": 50}))
+    ok = (hashes["a"] == hashes["b"] != hashes["c"]
+          and base == rescore.fingerprint("pressure", json.loads(json.dumps(job)), {}, blob)
+          and base != rescore.fingerprint("pressure", moved, {}, blob)
+          and base != rescore.fingerprint("pressure", job, {}, other)
+          and base != rescore.fingerprint("pressure", job, {"parties": [[{"species": "B",
+                                                                          "moves": ["Ember"]}]]},
+                                          blob))
+    results.append(("a fingerprint sees code, moves, weather and parties, not docstrings", ok, ""))
+
+
+def check_fingerprints(results, blob):
+    """Every stored score before B6 (the story fights, Hesperid's, the
+    reference seats, the shape grid) matches its inputs as they are now,
+    and a second run has verified it (rescore.py). test_b6 checks B6's."""
+    problems = rescore.check(blob, ("pressure", "calibrate", "ref", "shape"))
+    kinds = collections.Counter(p for _n, p in problems)
+    results.append(("every stored score matches its inputs and is verified", not problems,
+                    f"{dict(kinds)}; first {problems[:4]}; run rescore.py, then --verify"
+                    if problems else ""))
 
 
 def main():
@@ -340,6 +375,8 @@ def main():
     check_b5_rules(results)
     check_scores(results, blob)
     check_ref_scores(results, blob)
+    check_fingerprint_rules(results)
+    check_fingerprints(results, blob)
     width = max(len(label) for label, _, _ in results)
     failed = 0
     for label, ok, note in results:

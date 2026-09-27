@@ -55,7 +55,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 94/94, the d
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 35/35
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
@@ -174,20 +174,28 @@ that stay. None blocks anything.
    is the tool's own, and the DeSmuME link is hidden under Oxide (patch 13).
 5. **Which trainer Pokemon get a named nature** is Ian's, as Phase 5 balance work.
    How to name one is under "Standing rules".
-6. **Other tracks' work this track depends on.** The legendary pool's scripting
-   (Acuity Cavern's once-per-save draw and Mesprit's roamer; since 2026-09-27
-   Valor Cavern and Stark Mountain's last room are empty, item 21) is script
-   work the main track has started; until it exists R12 reports those
-   lines, which is why `lint` shows 27 errors and the gate is `lint --ignore R12`.
-   Verity Lakefront's map header still points at no table and the map has no
-   grass, and the starter still needs its own met location; both are in the
-   tracker's backlog. The same holds for the two tables built ahead of their
-   maps on 2026-09-25 (below): Amity Square needs grass and its header, and
-   Snowpoint City's header needs pointing at its rods; and the Pastoria City
-   gift is to move to the Restaurant. All three are in the tracker's backlog. Deleting the four spare fossil items is item and script
-   work. The Day Care Floette's white flower needs a form record and art (tracker
-   backlog). Fomantis's data has no evolution to Lurantis, so the tree holds them
-   as two lines with a home each until element 3's data is fixed.
+6. **Other tracks' work this track depends on.** Most of it landed with
+   `pool-base` (2026-09-27), merged here: the legendary pool's draws are
+   scripted (Acuity Cavern once per save and Mesprit's roamer; Valor Cavern
+   and Stark Mountain's last room empty, item 21), the starter's met location
+   is its own ("Rowan's Briefcase", so Route 201 is a capture from the first
+   step and the simulator no longer spends it on the starter), Verity
+   Lakefront, Amity Square, Snowpoint City and the four clown towns point
+   at their tables, the gift clowns are gone, and Fomantis evolves into
+   Lurantis at 34, so the two are one line (238 lines on the list; Route
+   224's Fomantis slot became Tropius, and Route 221's Lurantis a cameo, the
+   line's home being Route 208). **R12 is not yet right about it.** It reads
+   gifts from `pokemon-gifts.csv`, a survey of the base ROM of 2026-09-20,
+   its starter list still names Chimchar, and it cannot see the pool draws,
+   which name their species through `SetVar`; so `lint` shows 35 R12 errors,
+   among them lines Oxide does hand over (Scorbunny, Elekid, Flabebe, the
+   Acuity draw). Reading gifts from the tree's scripts, the starters from
+   `scripted.json` and the draws from their `SetVar` lines is the next fix;
+   the gate stays `lint --ignore R12` meanwhile. Some flags are real and are
+   for Ian: with the babies at level 10 no wild Pichu or Cleffa is left, only
+   Pikachu and Clefairy. Deleting the four spare fossil items is item and
+   script work. The Day Care Floette's white flower needs a form record and
+   art (tracker backlog).
 7. **Two new capture areas, built ahead of their maps (Ian, 2026-09-25).**
    `encounters_amity_square.json` (grass, Fantina's split, order 36) is a garden
    like the Trophy Garden at very low levels, base level 8, because only small
@@ -489,7 +497,15 @@ that stay. None blocks anything.
    seventeen Crobat placements below 40 back to Golbat by hand, corrects
    the evolve tool's judged levels, which have read every
    friendship method as 32 and a held-item trade as 32 because they are
-   keyed by names the data does not use, and reruns `test_sim`.
+   keyed by names the data does not use, and reruns `test_sim`. **Done
+   2026-09-27 on the `pool-base` data:** the nine slots evolved (four Pichu,
+   three Buneary, the Coronet Cleffa, the Great Marsh Azurill), the
+   seventeen Crobat placements are Golbat again, species only with every
+   level kept, and the evolve tool's judged levels are keyed by the data's
+   own method names (no friendship or trade method is left, so the values
+   are unchanged). The Azurill line, now fully evolved by 18, became a cap
+   candidate in Gardenia's split, so Route 205 north's Pachirisu slot is a
+   Marill. `cli evolve` reports 0 moves.
 25. **Thorton's encounter and Argenta's reward (Ian, 2026-09-27, through
    the Overseer)**, for the Frontier Brains in Byron's split. The proposals
    are `docs/oxide/encounters/frontier-brains-rewards.md`: a level-40
@@ -504,8 +520,11 @@ that stay. None blocks anything.
    **Later on 2026-09-27:** the prize gets a capture of its own (the
    Ironworks building gets its own location name, so 76 captures before
    the League), and Argenta's reward is items, picked by the balance
-   track's item pass. The shared-capture measurement (678ea7531) is redone
-   once the building has its name.
+   track's item pass. Redone once the building had its name, "Ironworks
+   Hall": the prize is `ironworks_hall_thorton` in `scripted.json`, a
+   planned source, and as its own capture it adds a whole wanted line for a
+   Turtwig or Piplup start and no line worth 85 or more (the doc has the
+   table).
 26. **The gift clowns go (Ian, 2026-09-27, through the Overseer).** A clown
    whose capture area has a table, gift or trade simply goes; otherwise new
    tall grass with a thematic table takes its place. This supersedes the
@@ -543,6 +562,35 @@ that stay. None blocks anything.
    step3 35/35, step5 19/19, sim 11/11 (their counts and the clown checks
    brought up to date); test_m4 and test_step0, which rewrite shared
    files, were left to the gate while Ian has the server open.
+27. **R12 reads Oxide's sources; the classic starters and Surskit (Ian,
+   2026-09-27, through the Overseer).** On branch `encounter-r12-sources`,
+   after 316afcc01. R12 and the availability gate now read gifts from the
+   tree's scripts, the runtime picks from `scripted.json`'s live sources and
+   the pool draws from the new-game script, where they read the base ROM's
+   survey of 2026-09-20; R12 falls from 35 errors to 30, all real. That
+   exposed three things. Ian ruled that the classic starters leave the gate
+   tier and become ordinary wild lines; their placements are proposed in
+   `docs/oxide/encounters/classic-starters.md` and wait on him (Charmander
+   on Route 211 west, Squirtle on Route 205 north, Torchic on Route 205
+   south, Mudkip on Oreburgh Gate B1F, Treecko staying on Route 204 north).
+   Surskit is retiered to starter-adjacent, so its Lake Verity home stands
+   in Roark's split. And Verity Lakefront's night slot, which held
+   Poochyena on the strength of the Floaroma clown, is Kricketot. Until the
+   starters go in, the gate's one complaint is Squirtle and Mudkip without
+   a source, so three suites fail on this branch; it merges after the
+   placements, as a small incremental rescore. **Ian approved the rarer
+   shapes on 2026-09-27, and they are in**: the fifteen rows leave the gate
+   tier for preferred; Charmander is a 5% slot on Route 211 west, Mudkip a
+   5% slot on Oreburgh Gate B1F, Treecko one morning slot on Route 204
+   north (Budew has the other), Squirtle by day on Route 205 north, Torchic
+   by day on Route 204 north as before. A single slot inside a line's share
+   is not something an archetype can express, so the sidecar gains
+   `slot_species` (slot index to species, set after the layout at the
+   ladder's level), tested in test_step3. Route 212's Shellos and Gastrodon
+   are the West Sea form (Ian, the same day). The gate passes; R12 shows 27
+   errors, every one either a pool line drawn nowhere, a proposal, a baby
+   now standing as its next stage, or a slot its land-only cost model does
+   not price (Squirtle's and Torchic's day finds among them).
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

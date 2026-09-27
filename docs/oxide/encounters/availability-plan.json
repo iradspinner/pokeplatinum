@@ -9,8 +9,8 @@
     },
     "encounters_verity_lakefront": {
       "home": ["SPECIES_STARLY", "SPECIES_BLIPBUG"],
-      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_SURSKIT", "SPECIES_BUNEARY", "SPECIES_VULPIX", "SPECIES_MINCCINO", "SPECIES_POOCHYENA"],
-      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Poochyena by night.",
+      "cameo": ["SPECIES_WOOLOO", "SPECIES_PURRLOIN", "SPECIES_SENTRET", "SPECIES_SURSKIT", "SPECIES_BUNEARY", "SPECIES_VULPIX", "SPECIES_MINCCINO", "SPECIES_KRICKETOT"],
+      "note": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Kricketot by night.",
       "tail": []
     },
     "encounters_lake_verity": {
@@ -45,9 +45,9 @@
     },
     "encounters_oreburgh_gate_b1f": {
       "home": ["SPECIES_GEODUDE"],
-      "cameo": ["SPECIES_PHANPY", "SPECIES_RHYHORN", "SPECIES_DWEBBLE", "SPECIES_GLIMMET", "SPECIES_CARBINK"],
+      "cameo": ["SPECIES_PHANPY", "SPECIES_RHYHORN", "SPECIES_DWEBBLE", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_MUDKIP"],
       "tail": ["SPECIES_NACLI", "SPECIES_ONIX"],
-      "note": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%."
+      "note": "Oreburgh Gate's deep floor, open once Rock Smash is (Ian, 2026-09-26): Geodude's home among the ground types, Gible as the 4%. Mudkip is a 5% find on the damp floor (Ian, 2026-09-27)."
     },
     "encounters_route_207": {
       "home": ["SPECIES_PONYTA", "SPECIES_VULPIX", "SPECIES_MACHOP"],
@@ -82,25 +82,25 @@
       "home": ["SPECIES_LITTEN", "SPECIES_SEWADDLE", "SPECIES_BOUNSWEET", "SPECIES_SNIVY"],
       "cameo": ["SPECIES_TREECKO", "SPECIES_SNUBBULL", "SPECIES_TORCHIC", "SPECIES_BUDEW", "SPECIES_POOCHYENA", "SPECIES_PURRLOIN"],
       "tail": [],
-      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Snivy's home since the honey trees gave it up (2026-09-26)."
+      "note": "The delay: Route 204 is one capture and this half is in the Gardenia split, so it carries the prizes at real shares: Litten at home at 25, Treecko 20, Snivy 10, Torchic by day at 10, with Sewaddle and Bounsweet at home too. Snivy's home since the honey trees gave it up (2026-09-26). Treecko has one morning slot, Budew the other (Ian, 2026-09-27)."
     },
     "encounters_route_205_south": {
       "home": ["SPECIES_PACHIRISU", "SPECIES_SMOLIV", "SPECIES_MINCCINO", "SPECIES_AIPOM", "SPECIES_MAREEP"],
       "cameo": ["SPECIES_FLETCHLING", "SPECIES_PAWMI", "SPECIES_BOUNSWEET", "SPECIES_SEWADDLE", "SPECIES_BUNEARY", "SPECIES_POOCHYENA"],
-      "tail": ["SPECIES_COMBEE", "SPECIES_PICHU"],
+      "tail": ["SPECIES_COMBEE", "SPECIES_PIKACHU"],
       "note": "Floaroma's meadow, twelve lines: Pachirisu, Smoliv and Minccino at home, Skitty a regular, Pawmi and Shinx small, Combee and Pichu the 1%s, Buneary by day, Poochyena by night."
     },
     "encounters_valley_windworks_outside": {
       "home": ["SPECIES_PAWMI", "SPECIES_PLUSLE", "SPECIES_MINUN"],
       "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO", "SPECIES_PIKIPEK"],
-      "tail": ["SPECIES_EMOLGA", "SPECIES_PICHU"],
+      "tail": ["SPECIES_EMOLGA", "SPECIES_PIKACHU"],
       "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%."
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD", "SPECIES_HOPPIP"],
-      "cameo": ["SPECIES_CHERUBI", "SPECIES_SEWADDLE", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_BUIZEL", "SPECIES_PACHIRISU", "SPECIES_DEWPIDER", "SPECIES_SMOLIV"],
+      "cameo": ["SPECIES_CHERUBI", "SPECIES_SEWADDLE", "SPECIES_SHROOMISH", "SPECIES_WOOPER", "SPECIES_BUIZEL", "SPECIES_MARILL", "SPECIES_DEWPIDER", "SPECIES_SQUIRTLE"],
       "tail": ["SPECIES_FROAKIE", "SPECIES_SHELLOS"],
-      "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider and Buizel small, Froakie and Popplio the 1%s, Surskit and Wooper by night."
+      "note": "The damp side before the forest, twelve lines: Lotad at home, Wooper (fully evolved by 20) a regular, Dewpider, Buizel and Marill small (Marill here since 2026-09-27, the Azurill line's place under Gardenia's cap), Froakie and Popplio the 1%s, Surskit and Wooper by night. Squirtle suns on the bank by day, in Smoliv's old day slot (Ian, 2026-09-27)."
     },
     "encounters_eterna_forest": {
       "home": ["SPECIES_SHROOMISH", "SPECIES_BUNEARY", "SPECIES_ROWLET", "SPECIES_BURMY"],
@@ -164,12 +164,12 @@
     },
     "encounters_route_211_west": {
       "home": ["SPECIES_ALOLAN_NINETALES", "SPECIES_MIENFOO", "SPECIES_CHINGLING"],
-      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_SNOVER", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOOTHOOT"],
+      "cameo": ["SPECIES_BRONZOR", "SPECIES_VULPIX", "SPECIES_SNOVER", "SPECIES_PONYTA", "SPECIES_ROOKIDEE", "SPECIES_HOOTHOOT", "SPECIES_CHARMANDER"],
       "tail": ["SPECIES_ZUBAT", "SPECIES_MEDITITE"],
-      "note": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side."
+      "note": "Route 211's early half, at the foot of the mountain: Alolan Ninetales at home at 20 (Ian wanted a likely early chance), Mienfoo with it, Snover at 10 as the first snow line, the two Vulpix side by side. Charmander is a 5% find among the rocks (Ian, 2026-09-27)."
     },
     "encounters_mt_coronet_1f_north_room_1": {
-      "home": ["SPECIES_BRONZOR", "SPECIES_CLEFFA"],
+      "home": ["SPECIES_BRONZOR", "SPECIES_CLEFAIRY"],
       "cameo": ["SPECIES_ZUBAT", "SPECIES_SNORUNT", "SPECIES_ALOLAN_NINETALES", "SPECIES_CARBINK", "SPECIES_SNOVER", "SPECIES_NOSEPASS", "SPECIES_SWINUB"],
       "tail": ["SPECIES_MAKUHITA", "SPECIES_PHANPY"],
       "note": "Mt. Coronet's first room, reachable in the Gardenia split: Bronzor's home, and the mountain's ice arrives early here: Snorunt and Alolan Ninetales at 10, Swinub and Snover behind, Nosepass where its evolution happens."
@@ -201,7 +201,7 @@
     "encounters_amity_square": {
       "home": ["SPECIES_SNUBBULL"],
       "cameo": ["SPECIES_SWABLU", "SPECIES_AZURILL", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FOMANTIS", "SPECIES_MINCCINO", "SPECIES_EMOLGA", "SPECIES_PURRLOIN"],
-      "tail": ["SPECIES_KLEFKI", "SPECIES_PICHU"],
+      "tail": ["SPECIES_KLEFKI", "SPECIES_PIKACHU"],
       "note": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian."
     },
     "encounters_sandgem_town": {
@@ -416,7 +416,7 @@
     },
     "encounters_valor_lakefront": {
       "home": ["SPECIES_SWABLU"],
-      "cameo": ["SPECIES_HOUNDOOM", "SPECIES_PONYTA", "SPECIES_ABSOL", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_PACHIRISU", "SPECIES_SKITTY", "SPECIES_BUNEARY", "SPECIES_FLETCHINDER", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
+      "cameo": ["SPECIES_HOUNDOOM", "SPECIES_PONYTA", "SPECIES_ABSOL", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_PACHIRISU", "SPECIES_SKITTY", "SPECIES_LOPUNNY", "SPECIES_FLETCHINDER", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_SALANDIT", "SPECIES_TROPIUS"],
       "note": "The hotel grounds above Lake Valor: Swablu's home, Absol at 10 and by night, the cute lines from Floaroma back at other shares, two starters as 1%s."
     },
@@ -427,7 +427,7 @@
       "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s."
     },
     "encounters_great_marsh_1": {
-      "home": ["SPECIES_WOOPER", "SPECIES_AZURILL"],
+      "home": ["SPECIES_WOOPER", "SPECIES_AZUMARILL"],
       "cameo": ["SPECIES_LOTAD", "SPECIES_SURSKIT", "SPECIES_BARBOACH"],
       "tail": [],
       "note": "The Great Marsh's mudflats, Wooper's home: the lily pads and the shallow water."
@@ -464,7 +464,7 @@
     },
     "encounters_route_212_north": {
       "home": ["SPECIES_EMOLGA"],
-      "cameo": ["SPECIES_SWADLOON", "SPECIES_FOMANTIS", "SPECIES_KIRLIA", "SPECIES_BUDEW", "SPECIES_VESPIQUEN", "SPECIES_SMOLIV", "SPECIES_TROPIUS", "SPECIES_STEENEE", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
+      "cameo": ["SPECIES_SWADLOON", "SPECIES_FOMANTIS", "SPECIES_KIRLIA", "SPECIES_BUDEW", "SPECIES_VESPIQUEN", "SPECIES_SMOLIV", "SPECIES_TROPIUS", "SPECIES_STEENEE", "SPECIES_LOPUNNY", "SPECIES_PACHIRISU", "SPECIES_LIEPARD", "SPECIES_MIGHTYENA"],
       "tail": ["SPECIES_DARTRIX", "SPECIES_TANGELA"],
       "note": "Route 212's garden half, Emolga's home: the flower lines, Galarian Mr. Mime a 4 by the cap rule, the grass starters as 1%s."
     },
@@ -475,8 +475,8 @@
       "note": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s."
     },
     "encounters_trophy_garden": {
-      "home": ["SPECIES_PICHU", "SPECIES_MUNCHLAX", "SPECIES_MIME_JR"],
-      "cameo": ["SPECIES_BUNEARY", "SPECIES_SKITTY", "SPECIES_FOMANTIS", "SPECIES_PACHIRISU", "SPECIES_SWABLU", "SPECIES_GALARIAN_MR_MIME", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_LIEPARD"],
+      "home": ["SPECIES_PIKACHU", "SPECIES_MUNCHLAX", "SPECIES_MIME_JR"],
+      "cameo": ["SPECIES_LOPUNNY", "SPECIES_SKITTY", "SPECIES_FOMANTIS", "SPECIES_PACHIRISU", "SPECIES_SWABLU", "SPECIES_GALARIAN_MR_MIME", "SPECIES_STEENEE", "SPECIES_SMOLIV", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_TANGELA", "SPECIES_DARTRIX"],
       "note": "The Pokemon Mansion's garden, Pichu's home: the cute lines, Eevee and Togepi at 5 beside their gifts, Galarian Mr. Mime at 5 by the cap rule, the grass starters as 1%s."
     },
@@ -541,8 +541,8 @@
       "note": "One of Iron Island's mine floors, all one table (Ian, 2026-09-26): Steelix in the iron, Metang, the sun and moon pair and Togedemaru at home, Gabite as the 1%."
     },
     "encounters_route_221": {
-      "home": ["SPECIES_LURANTIS"],
-      "cameo": ["SPECIES_DOLLIV", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_STEENEE", "SPECIES_LIEPARD", "SPECIES_SHELLOS", "SPECIES_DONPHAN", "SPECIES_SANDYGAST", "SPECIES_TOUCANNON", "SPECIES_CORVISQUIRE", "SPECIES_MIGHTYENA"],
+      "home": [],
+      "cameo": ["SPECIES_FOMANTIS", "SPECIES_DOLLIV", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_STEENEE", "SPECIES_LIEPARD", "SPECIES_SHELLOS", "SPECIES_DONPHAN", "SPECIES_SANDYGAST", "SPECIES_TOUCANNON", "SPECIES_CORVISQUIRE", "SPECIES_MIGHTYENA"],
       "tail": ["SPECIES_CARNIVINE", "SPECIES_ARAQUANID"],
       "note": "The road to Pal Park: Lurantis's home (a line of its own until Fomantis's data is fixed), Trapinch a 5 by the cap rule, the beach lines small."
     },
@@ -554,7 +554,7 @@
     },
     "encounters_route_216": {
       "home": ["SPECIES_SNOVER", "SPECIES_FROSMOTH", "SPECIES_DELIBIRD"],
-      "cameo": ["SPECIES_MIENFOO", "SPECIES_SNORUNT", "SPECIES_BRONZONG", "SPECIES_ALOLAN_NINETALES", "SPECIES_CROBAT", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_MIENFOO", "SPECIES_SNORUNT", "SPECIES_BRONZONG", "SPECIES_ALOLAN_NINETALES", "SPECIES_GOLBAT", "SPECIES_ABSOL"],
       "tail": ["SPECIES_GALARIAN_MR_MIME", "SPECIES_SLUGMA"],
       "note": "The first snow route: Snover and Snom at home, the mountain's cold cast, Litten a 1% fire in the snow."
     },
@@ -578,31 +578,31 @@
     },
     "encounters_mt_coronet_1f_tunnel_room": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_1f_north_room_2": {
       "home": [],
-      "cameo": ["SPECIES_GOOMY", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_CROBAT", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
+      "cameo": ["SPECIES_GOOMY", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_GOLBAT", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
       "tail": ["SPECIES_SANDYGAST", "SPECIES_MEDITITE"],
       "note": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s."
     },
     "encounters_mt_coronet_b1f": {
       "home": ["SPECIES_GOOMY"],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_CROBAT", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENFOO", "SPECIES_GLIMMET", "SPECIES_CARBINK", "SPECIES_GOLBAT", "SPECIES_PROBOPASS", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_DONPHAN"],
       "tail": ["SPECIES_SANDYGAST", "SPECIES_MEDITITE"],
       "note": "Mt. Coronet's Snowpoint side, B1F and North Room 2 one table (Ian, 2026-09-26): Goomy's wet home, the mountain's steel and salt lines, Pupitar and Hakamo-o as the 1%s."
     },
     "encounters_mt_coronet_2f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_3f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
@@ -614,13 +614,13 @@
     },
     "encounters_mt_coronet_4f_rooms_1_and_2": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_4f_room_3": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
@@ -632,13 +632,13 @@
     },
     "encounters_mt_coronet_5f": {
       "home": [],
-      "cameo": ["SPECIES_MACHOKE", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_MACHOKE", "SPECIES_BRONZONG", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
     "encounters_mt_coronet_6f": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_MACHOKE", "SPECIES_NACLSTACK", "SPECIES_MIENSHAO", "SPECIES_CARBINK", "SPECIES_GLIMMORA", "SPECIES_GRAVELER", "SPECIES_HARIYAMA", "SPECIES_GOLBAT"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_GLISCOR"],
       "note": "The climb to Spear Pillar, every floor one table (Ian, 2026-09-26): Bronzong rings through it, Hakamo-o's home, the peak's salt, fighting and crystal lines, Gabite as the 1%."
     },
@@ -718,7 +718,7 @@
     },
     "encounters_turnback_cave_pillar_3_room_1": {
       "home": [],
-      "cameo": ["SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_CROBAT", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK"],
+      "cameo": ["SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_GOLBAT", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK"],
       "note": "Turnback Cave, room 16 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A18."
     },
     "encounters_turnback_cave_pillar_3_room_2": {
@@ -728,34 +728,34 @@
     },
     "encounters_turnback_cave_pillar_3_room_3": {
       "home": [],
-      "cameo": ["SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_DHELMISE", "SPECIES_GOLBAT"],
       "note": "Turnback Cave, room 18 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A7."
     },
     "encounters_turnback_cave_pillar_3_room_4": {
       "home": [],
-      "cameo": ["SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK", "SPECIES_BRONZONG", "SPECIES_CROBAT"],
+      "cameo": ["SPECIES_GOTHORITA", "SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_LITWICK", "SPECIES_BRONZONG", "SPECIES_GOLBAT"],
       "note": "Turnback Cave, room 19 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8."
     },
     "encounters_turnback_cave_pillar_3_room_5": {
       "home": [],
       "cameo": ["SPECIES_KLEFKI", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_DUSKULL", "SPECIES_SINISTCHA"],
-      "tail": ["SPECIES_LITWICK", "SPECIES_CROBAT"],
+      "tail": ["SPECIES_LITWICK", "SPECIES_GOLBAT"],
       "note": "Turnback Cave, room 20 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A15."
     },
     "encounters_turnback_cave_pillar_3_room_6": {
       "home": [],
       "cameo": ["SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_STEELIX", "SPECIES_DHELMISE", "SPECIES_COFAGRIGUS", "SPECIES_KLEFKI", "SPECIES_GOTHORITA"],
-      "tail": ["SPECIES_LITWICK", "SPECIES_CROBAT", "SPECIES_BRONZONG"],
+      "tail": ["SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZONG"],
       "note": "Turnback Cave, room 21 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A17."
     },
     "encounters_turnback_cave_pillar_room": {
       "home": [],
-      "cameo": ["SPECIES_LITWICK", "SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_SINISTCHA"],
+      "cameo": ["SPECIES_LITWICK", "SPECIES_GOLBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_DHELMISE", "SPECIES_CARBINK", "SPECIES_PROBOPASS", "SPECIES_SINISTCHA"],
       "note": "Turnback Cave, room 2 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A13."
     },
     "encounters_turnback_cave_giratina_room": {
       "home": [],
-      "cameo": ["SPECIES_CROBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_DHELMISE", "SPECIES_KLEFKI"],
+      "cameo": ["SPECIES_GOLBAT", "SPECIES_BRONZONG", "SPECIES_DUSKULL", "SPECIES_SINISTCHA", "SPECIES_GOTHORITA", "SPECIES_DHELMISE", "SPECIES_KLEFKI"],
       "note": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_route_222": {
@@ -802,7 +802,7 @@
     },
     "encounters_route_224": {
       "home": [],
-      "cameo": ["SPECIES_LURANTIS", "SPECIES_FOMANTIS", "SPECIES_ALTARIA", "SPECIES_EMOLGA", "SPECIES_PALOSSAND", "SPECIES_TSAREENA", "SPECIES_TALONFLAME", "SPECIES_VESPIQUEN", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
+      "cameo": ["SPECIES_LURANTIS", "SPECIES_TROPIUS", "SPECIES_ALTARIA", "SPECIES_EMOLGA", "SPECIES_PALOSSAND", "SPECIES_TSAREENA", "SPECIES_TALONFLAME", "SPECIES_VESPIQUEN", "SPECIES_LIEPARD", "SPECIES_ABSOL"],
       "tail": ["SPECIES_ARAQUANID", "SPECIES_GASTRODON", "SPECIES_TOUCANNON", "SPECIES_ARBOLIVA", "SPECIES_DECIDUEYE", "SPECIES_QUAGSIRE"],
       "note": "The flower route to Seabreak Path: no line's home, every line a cameo at a new share; Yveltal's static is planned here."
     },
@@ -1029,7 +1029,7 @@
     }
   },
   "pool": {
-    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands.", "Ian, 2026-09-26: Acuity Cavern returns drawing one of Ian's three most-wanted legendaries (Articuno, Cresselia, Pheromosa); Valor Cavern stays off with its old draw; the lines Acuity drew before wait in `reserve`, drawn nowhere.", "Ian, 2026-09-27, relayed by the Overseer: Valor Cavern holds no legendary at all, Azelf included, and Stark Mountain's last room is empty (no Heatran, no draw), both until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The `valor` third stays as a record, drawn nowhere. Acuity Cavern stays a once-per-save draw of Articuno, Cresselia or Pheromosa, shown with Uxie's sprite for now."],
+    "_comment": ["Ian, 2026-09-21: vanilla's three pre-League legendaries (Uxie, Azelf, the", "roaming Mesprit) already felt like a lot, and twenty new ones as statics is", "not feasible, so the two lake caverns and the roamer slot each draw one at", "random. Since 2026-09-26 (Ian) each draws from its own third, so no two can", "be the same: `acuity` for Uxie's cavern, `valor` for Azelf's, `roamer` for", "Mesprit's roamer. The thirds were dealt strongest first by the line ratings", "(values.json), each keeping its own lake guardian. The scripting is outside", "this track (decision 8); a candidate counts as sourced on paper, and R12", "reports these lines until the scripts exist.", "The two cavern draws are turned off for now (Ian, 2026-09-26); the roamer's third stands.", "Ian, 2026-09-26: Acuity Cavern returns drawing one of Ian's three most-wanted legendaries (Articuno, Cresselia, Pheromosa); Valor Cavern stays off with its old draw; the lines Acuity drew before wait in `reserve`, drawn nowhere.", "Ian, 2026-09-27, relayed by the Overseer: Valor Cavern holds no legendary at all, Azelf included, and Stark Mountain's last room is empty (no Heatran, no draw), both until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The `valor` third stays as a record, drawn nowhere. Acuity Cavern stays a once-per-save draw of Articuno, Cresselia or Pheromosa, shown with Uxie's sprite for now.", "Heatran waits in `reserve` with them (2026-09-27): its room's script is unreachable, so no tool counts it as a source."],
     "statics": ["Uxie's cavern (Acuity Cavern), once per save"],
     "empty": ["Azelf's cavern (Valor Cavern)", "Stark Mountain's last room, Heatran's"],
     "empty_until": "the difficulty is high enough that more legendary-tier encounters would not inflate box quality (Ian, 2026-09-27)",
@@ -1038,7 +1038,7 @@
       "acuity": ["SPECIES_ARTICUNO", "SPECIES_CRESSELIA", "SPECIES_PHEROMOSA"],
       "valor": ["SPECIES_AZELF", "SPECIES_MAGEARNA", "SPECIES_BLACEPHALON", "SPECIES_GALARIAN_MOLTRES", "SPECIES_TAPU_FINI", "SPECIES_DIANCIE", "SPECIES_GUZZLORD"],
       "roamer": ["SPECIES_MESPRIT", "SPECIES_TAPU_KOKO", "SPECIES_BUZZWOLE", "SPECIES_GALARIAN_ZAPDOS", "SPECIES_POIPOLE", "SPECIES_XURKITREE", "SPECIES_GALARIAN_ARTICUNO"],
-      "reserve": ["SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"]
+      "reserve": ["SPECIES_HEATRAN", "SPECIES_UXIE", "SPECIES_KARTANA", "SPECIES_TAPU_LELE", "SPECIES_CELESTEELA", "SPECIES_NIHILEGO", "SPECIES_TAPU_BULU", "SPECIES_ZYGARDE_10", "SPECIES_STAKATAKA"]
     }
   },
   "honey": {

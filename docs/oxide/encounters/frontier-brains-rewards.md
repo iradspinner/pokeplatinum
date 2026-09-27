@@ -46,6 +46,23 @@ the knock-on of losing the yard's catch shows later in the run. Strong
 Pokemon barely move: 0.07 more per box worth 85 or more, and the top six
 gain a point or so. Nothing here crosses Ian's scarcity rule.
 
+**Measured again as its own capture** (2026-09-27, on the pool-base data,
+with the building named "Ironworks Hall"). The prize is in `scripted.json`
+as `ironworks_hall_thorton`, a planned source until the main track scripts
+it. Over 100 best-play League runs per start, against the same game
+without it:
+
+| Start | The prize | Wanted lines per box | Worth 85 or more per box | Box worth |
+|---|---|---|---|---|
+| Turtwig (or Piplup) | Cinderace, every run | 16.9 to 17.9 | 4.18, unchanged | +83 |
+| Scorbunny | Empoleon, every run | 17.9, unchanged | 4.18, unchanged | +84 |
+
+As a capture of its own the prize adds a Pokemon rather than replacing the
+yard's (Magby, Magnemite or Slugma, as before), a whole wanted line for a
+Turtwig or Piplup start, and no line worth 85 or more. The figures differ
+from the shared-capture run above because the game under them changed the
+same day (the clowns' grass, the friendship ruling, pool-base).
+
 The proposals as written are below, for the record.
 
 ## Thorton, at the heart of Fuego Ironworks

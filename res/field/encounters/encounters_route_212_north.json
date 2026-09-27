@@ -55,7 +55,7 @@
         "SPECIES_NONE"
     ],
     "day": [
-        "SPECIES_BUNEARY",
+        "SPECIES_LOPUNNY",
         "SPECIES_PACHIRISU"
     ],
     "night": [
@@ -68,8 +68,8 @@
         "SPECIES_NONE",
         "SPECIES_NONE"
     ],
-    "rate_form0": 100,
-    "rate_form1": 100,
+    "rate_form0": 0,
+    "rate_form1": 0,
     "rate_form2": 0,
     "rate_form3": 0,
     "rate_form4": 0,

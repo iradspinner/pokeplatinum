@@ -144,11 +144,25 @@ def _category(hack, move):
 def score_ref_fight(hack, fight, blob, blob_path):
     """One reference fight's scores in Oxide's seat, or None if the hack has
     no fight there."""
+    built = ref_jobs(hack, fight, blob)
+    if built is None:
+        return None
+    jobs, ctx = built
+    t0 = time.time()
+    out = pressure.run_node(blob_path, jobs)
+    return score_ref_jobs(out, ctx, time.time() - t0)
+
+
+def ref_jobs(hack, fight, blob, side=None):
+    """The job file for one reference fight in Oxide's seat, and what
+    scoring its results takes besides: (jobs, ctx), or None if the hack has
+    no fight there. rescore.py fingerprints both."""
     ps = parties(hack, fight)
     if not ps:
         return None
     split = fight["split"]
-    side = pool.pool(split, blob)
+    if side is None:
+        side = pool.pool(split, blob)
     notes = {k: set() for k in ("species", "moves", "mega_as_base")}
     jobs = {"pokemon": {f"p{i}": p for i, p in enumerate(side)}, "pairs": []}
     bosses, sources = [], {}
@@ -169,22 +183,32 @@ def score_ref_fight(hack, fight, blob, blob_path):
                                   job["moves"], side, w)
     if not bosses:
         return None
-    t0 = time.time()
-    out = pressure.run_node(blob_path, jobs)
-    seconds = time.time() - t0
+    ctx = {"hack": hack, "key": fight["key"], "label": fight["label"], "split": split,
+           "cap": pool.caps()[split], "pool": len(side),
+           "trainers": [t["name"] for t in data.fight_trainers(hack, fight)],
+           "ace": max(m["level"] for p in ps for m in p), "ps": ps, "bosses": bosses,
+           "sources": sources, "left_out": {k: sorted(v) for k, v in notes.items() if v},
+           # predictability's move categories, read here so the fingerprint
+           # sees them.
+           "categories": {mv: _category(hack, mv) for p in ps for m in p
+                          for mv in m.get("moves") or []}}
+    return jobs, ctx
+
+
+def score_ref_jobs(out, ctx, seconds):
+    """One reference fight's scores from the calculator's answer to its job
+    file."""
     rows = {(r["a"], r["d"]): r for r in out["results"]}
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
-    per_mon = pressure.score_mons(bosses, [f"p{i}" for i in range(len(side))], rows, out["pokemon"])
+    per_mon = pressure.score_mons(ctx["bosses"], [f"p{i}" for i in range(ctx["pool"])], rows,
+                                  out["pokemon"])
     return {
-        "key": fight["key"], "label": fight["label"], "split": split, "hack": hack,
-        "cap": pool.caps()[split], "pool": len(side),
-        "trainers": [t["name"] for t in data.fight_trainers(hack, fight)],
-        "ace": max(m["level"] for p in ps for m in p),
-        **pressure.roll_up(per_mon), **pressure.unseen(ps),
-        "predictable": pressure.predictability(ps, lambda mv: _category(hack, mv)),
-        "mons": per_mon, "stats_from": sources,
-        "left_out": {k: sorted(v) for k, v in notes.items() if v},
+        "key": ctx["key"], "label": ctx["label"], "split": ctx["split"], "hack": ctx["hack"],
+        "cap": ctx["cap"], "pool": ctx["pool"], "trainers": ctx["trainers"], "ace": ctx["ace"],
+        **pressure.roll_up(per_mon), **pressure.unseen(ctx["ps"]),
+        "predictable": pressure.predictability(ctx["ps"], lambda mv: ctx["categories"].get(mv)),
+        "mons": per_mon, "stats_from": ctx["sources"], "left_out": ctx["left_out"],
         "calcs": sum(len(r["moves"]) for r in out["results"]),
         "errors": errors, "node_seconds": round(out.get("seconds", 0), 2),
         "wall_seconds": round(seconds, 2),
