@@ -641,9 +641,23 @@ def kaizo_level_floor(species, const):
     return round(statistics.median(levels)) if levels else None
 
 
-# {(species, MOVE_X): the level no placement goes below}: Kaizo's own level
-# for the strong moves the proposal places from Kaizo (Ian, 2026-09-27).
+# {(species, MOVE_X): the level no placement goes below}: for the strong
+# moves the proposal places from Kaizo (Ian, 2026-09-27), Kaizo's own level,
+# but never past the end of the Oxide split that level translates to.
 FLOORS = {}
+
+
+def floor_level(kaizo_level):
+    """Kaizo's own level, held to the last level of the Oxide split it
+    translates to (Ian, 2026-09-27): Houndoom's Dark Pulse, Kaizo's 70,
+    translates into Candice's split, so it goes no earlier than 56."""
+    return min(kaizo_level, pool.caps()[_split_of(translate(kaizo_level))])
+# Entries the one-level rule put a level or so under their floor to keep them
+# in their split, when the split had no free level at or above it.
+UNDER_FLOOR = set()
+# {(species, MOVE_X): the translated placement a floor raised}, the lowest
+# the one-level rule may then put it.
+TRANSLATED = {}
 # [(species, MOVE_X, Kaizo's level, the place kept)] where Kaizo's own level
 # is past Oxide's 78: listed for Ian rather than taken out of play.
 PAST_CAP = []
@@ -717,23 +731,27 @@ def propose(species):
                     elif kind != "damage" and (r or 0) >= STRONG_RANK and not kaizo_own:
                         target = lv
                 # Ian (2026-09-27): a strong move's translated placement is
-                # never earlier than Kaizo's own level. Past Oxide's 78 that
-                # would take it out of play, which his rule of no level past
-                # 78 forbids; those keep the translated place and are listed.
+                # never earlier than Kaizo's own level, held to the end of the
+                # Oxide split that level translates to (floor_level). Past
+                # Oxide's 78 the rule would take it out of play, which his rule
+                # of no level past 78 forbids; those keep the translated place
+                # and are listed.
                 strong_move = good_attack(c, types) or (r or 0) >= STRONG_RANK
-                raised = False
+                raised, fl = False, None
                 if (target != lv and strong_move and kaizo_level
                         and (species, c) not in KAIZO_SPLIT_FLOOR):
                     if kaizo_level > 78:
                         PAST_CAP.append((species, c, kaizo_level, target))
                     else:
-                        FLOORS[(species, c)] = kaizo_level
-                        raised = target < kaizo_level
+                        fl = floor_level(kaizo_level)
+                        FLOORS[(species, c)] = fl
+                        TRANSLATED[(species, c)] = target
+                        raised = target < fl
                 if raised:
-                    if kaizo_level != lv:
-                        notes.append((c, f"{lv} to {kaizo_level}: {src}, translated to {t}, and no "
-                                         f"earlier than Kaizo's own level"))
-                    target = kaizo_level
+                    if fl != lv:
+                        notes.append((c, f"{lv} to {fl}: {src}, translated to {t}, and no earlier "
+                                         f"than Kaizo's level of {kaizo_level} within its split"))
+                    target = fl
                 elif target != lv:
                     notes.append((c, f"{lv} to {target}: {src}, translated to {t}"))
         out.append((target, c))
@@ -774,17 +792,20 @@ def propose(species):
         drop = g._dropped(c, species, t, types)
         if drop:
             continue
-        # No earlier than Kaizo's own level (Ian, 2026-09-27), up to 78.
+        # No earlier than Kaizo's own level within its split (Ian, 2026-09-27).
         if kl > 78:
             PAST_CAP.append((species, c, kl, t))
-        elif t < kl:
-            FLOORS[(species, c)] = kl
-            out.append((kl, c))
-            notes.append((c, f"new at {kl}: Kaizo's {species[8:].title()} at {kl}, no earlier than "
-                             f"Kaizo's own level (translated to {t})"))
+        elif t < floor_level(kl):
+            fl = floor_level(kl)
+            FLOORS[(species, c)] = fl
+            TRANSLATED[(species, c)] = t
+            out.append((fl, c))
+            notes.append((c, f"new at {fl}: Kaizo's {species[8:].title()} at {kl}, no earlier than "
+                             f"that within its split (translated to {t})"))
             continue
         else:
-            FLOORS[(species, c)] = kl
+            FLOORS[(species, c)] = floor_level(kl)
+            TRANSLATED[(species, c)] = t
         out.append((t, c))
         notes.append((c, f"new at {t}: Kaizo's {species[8:].title()} at {kl}"))
     # Exclusive delays from Kaizo: the pre-evolution keeps the move, and a
@@ -882,9 +903,20 @@ def spread_levels(species, now, out, notes, strong_line, held_until=0):
         step = [d for k in range(1, 12) for d in ((k, -k) if strong else (-k, k))]
         new = next((lv + d for d in step if lo <= lv + d <= min(hi, 78) and taken[lv + d] == 0
                     and _split_of(lv + d) == split), None)
+        if new is None and strong and (species, c) in FLOORS:
+            # No room in the split at or above the floor, which is Kaizo's
+            # level held to the split's end: the move stays in the split its
+            # level translates to (Ian, 2026-09-27), a level or so under the
+            # floor, as long as it is not earlier than now on a strong stage.
+            lo_now = was.get(c, 2) if strong_line or lv <= held_until else 2
+            lo_now = max(lo_now, TRANSLATED.get((species, c), 2))   # never under its translated place
+            new = next((lv + d for d in step if lo_now <= lv + d <= min(hi, 78) and taken[lv + d] == 0
+                        and _split_of(lv + d) == split), None)
+            if new is not None:
+                UNDER_FLOOR.add((species, c))
         if new is None and strong:
-            # No room in the split above its floor: a strong move may go
-            # later, into the next split, which never makes it earlier.
+            # Still no room: a strong move may go later, into the next split,
+            # which never makes it earlier.
             new = next((lv + d for d in range(1, 12) if lv + d <= min(hi, 78) and taken[lv + d] == 0), None)
         if new is None:
             crowded.append((c, lv))
@@ -893,7 +925,9 @@ def spread_levels(species, now, out, notes, strong_line, held_until=0):
         taken[lv] -= 1
         taken[new] += 1
         result.append((new, c))
-        notes.append((c, f"{lv} to {new}: the same-level rule (another move is at {lv})"))
+        notes.append((c, f"{lv} to {new}: the same-level rule (another move is at {lv})"
+                         + ("; its split has no free level at or above its floor, so it stays in the "
+                            "split a level under it" if (species, c) in UNDER_FLOOR and new < lv else "")))
     return result, crowded
 
 
@@ -1161,8 +1195,9 @@ def check_results(fam, now, new):
         shared += [(s, lv, c) for lv, c in new[s] if lv > 1 and levels[lv] > 1 and (lv, c) not in kept
                    and (c, lv) not in CROWDED.get(s, [])]
     res.append(("no two moves on one level that the method placed", shared))
-    under = [(s, c) for s in fam for lv, c in new[s] if (s, c) in FLOORS and 1 < lv < FLOORS[(s, c)]]
-    res.append(("no strong move placed earlier than Kaizo's own level", under))
+    under = [(s, c) for s in fam for lv, c in new[s] if (s, c) in FLOORS and 1 < lv < FLOORS[(s, c)]
+             and (s, c) not in UNDER_FLOOR]
+    res.append(("no strong move placed earlier than Kaizo's level within its split", under))
     ends = g._ends()
     wild_end = [(s, c) for s in fam for lv, c in new[s]
                 if ls.metrics._compact(name(c)) in ends and 1 < lv <= g.wild_top(s)
@@ -1210,6 +1245,8 @@ def full_run(log=None):
     CROWDED.clear()
     FORCED.clear()
     FLOORS.clear()
+    UNDER_FLOOR.clear()
+    TRANSLATED.clear()
     PAST_CAP.clear()
     run = {"now": {}, "lists": {}, "notes": {}, "flags": {}, "bar": {}, "delays": [],
            "checks": collections.defaultdict(list), "crowded": [], "forced": []}
@@ -1395,8 +1432,10 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
             "entries; nothing that ends a wild encounter moves into the levels the species is "
             "met wild at.",
             "A strong move placed from Kaizo is never earlier than Kaizo's own level (Ian, "
-            "2026-09-27), or, where Kaizo lacks the species, its nearest lines' level; where "
-            "that level is past 78 the translated place stays, listed below for Ian.",
+            "2026-09-27), or, where Kaizo lacks the species, its nearest lines' level, but never "
+            "past the end of the Oxide split that level translates to (Houndoom's Dark Pulse, "
+            "Kaizo's 70, no earlier than 56, the end of Candice's split); where that level is past "
+            "78 the translated place stays, listed below for Ian.",
             "Fletchling keeps Will-O-Wisp at 25."):
         p(f"- {rule}")
     p("\n## What it changes\n")

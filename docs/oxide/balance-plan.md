@@ -1969,12 +1969,15 @@ lands, and each change is re-scored as it lands.
 
    Ian then ruled (2026-09-27) that a strong move's translated placement is
    never earlier than Kaizo's own level, or its nearest lines' level where
-   Kaizo lacks the species. Spiritomb's Dark Pulse goes to 38 (Kaizo's 37,
-   one on for the one-level rule) and Vikavolt's Discharge to 34, both in
-   Maylene's split; the rule moves 308 entries in all
+   Kaizo lacks the species, but never past the end of the Oxide split that
+   level translates to. Houndoom's Dark Pulse goes to 56, the end of
+   Candice's split; Talonflame's Brave Bird and Flare Blitz stay in the
+   Galactic split (65 and 64). Spiritomb's Dark Pulse (38, Kaizo's 37 one on
+   for the one-level rule) and Vikavolt's Discharge (34) follow the ruling
+   on the five. The rule moves 248 entries, all later but two that sit at
+   their translated place, none by more than ten levels
    (`docs/oxide/learnset-floor-changes.md`). Nineteen whose Kaizo level is
-   past 78 keep their translated place for Ian, since the rule would take
-   them out of play.
+   past 78 keep their translated place for Ian.
 
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
