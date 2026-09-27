@@ -38,14 +38,14 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_NIGHT_SHADE" ],
+            [ 1, "MOVE_ASSURANCE" ],
+            [ 1, "MOVE_CHATTER" ],
             [ 1, "MOVE_PURSUIT" ],
-            [ 1, "MOVE_HAZE" ],
-            [ 1, "MOVE_WING_ATTACK" ],
-            [ 25, "MOVE_SWAGGER" ],
-            [ 35, "MOVE_NASTY_PLOT" ],
-            [ 45, "MOVE_NIGHT_SLASH" ],
-            [ 55, "MOVE_DARK_PULSE" ]
+            [ 25, "MOVE_WHIRLWIND" ],
+            [ 35, "MOVE_BRAVE_BIRD" ],
+            [ 45, "MOVE_SUPERPOWER" ],
+            [ 55, "MOVE_PUNISHMENT" ]
         ],
         "by_tm": [
             "TM04",

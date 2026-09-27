@@ -34,14 +34,14 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_NATURE_POWER" ],
             [ 10, "MOVE_WATER_GUN" ],
             [ 10, "MOVE_EMBER" ],
             [ 10, "MOVE_POWDER_SNOW" ],
-            [ 20, "MOVE_RAIN_DANCE" ],
-            [ 20, "MOVE_SUNNY_DAY" ],
-            [ 20, "MOVE_HAIL" ],
-            [ 30, "MOVE_WEATHER_BALL" ]
+            [ 20, "MOVE_HYDRO_PUMP" ],
+            [ 20, "MOVE_FLAMETHROWER" ],
+            [ 20, "MOVE_ICE_BEAM" ],
+            [ 30, "MOVE_SURF" ]
         ],
         "by_tm": [
             "TM03",

@@ -38,22 +38,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_FORESIGHT" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_DIG" ],
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 4, "MOVE_FOLLOW_ME" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_FURY_SWIPES" ],
             [ 17, "MOVE_HELPING_HAND" ],
-            [ 21, "MOVE_FOLLOW_ME" ],
-            [ 28, "MOVE_SLAM" ],
-            [ 32, "MOVE_REST" ],
-            [ 36, "MOVE_SUCKER_PUNCH" ],
-            [ 42, "MOVE_AMNESIA" ],
-            [ 46, "MOVE_BATON_PASS" ],
-            [ 50, "MOVE_ME_FIRST" ],
-            [ 56, "MOVE_HYPER_VOICE" ]
+            [ 21, "MOVE_KNOCK_OFF" ],
+            [ 28, "MOVE_BODY_SLAM" ],
+            [ 32, "MOVE_THUNDER_WAVE" ],
+            [ 36, "MOVE_HYPER_VOICE" ],
+            [ 42, "MOVE_SUPER_FANG" ],
+            [ 46, "MOVE_SUCKER_PUNCH" ],
+            [ 50, "MOVE_SLAM" ],
+            [ 56, "MOVE_QUICK_ATTACK" ]
         ],
         "by_tm": [
             "TM01",

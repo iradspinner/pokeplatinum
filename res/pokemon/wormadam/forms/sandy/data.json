@@ -38,7 +38,7 @@
             [ 10, "MOVE_PROTECT" ],
             [ 15, "MOVE_BUG_BITE" ],
             [ 20, "MOVE_HIDDEN_POWER" ],
-            [ 23, "MOVE_CONFUSION" ],
+            [ 23, "MOVE_PROTECT" ],
             [ 26, "MOVE_ROCK_BLAST" ],
             [ 29, "MOVE_HARDEN" ],
             [ 32, "MOVE_PSYBEAM" ],
@@ -46,7 +46,7 @@
             [ 38, "MOVE_FLAIL" ],
             [ 41, "MOVE_ATTRACT" ],
             [ 44, "MOVE_PSYCHIC" ],
-            [ 47, "MOVE_FISSURE" ]
+            [ 47, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [
             "TM06",

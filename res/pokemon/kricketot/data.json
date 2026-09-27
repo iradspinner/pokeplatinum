@@ -39,8 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_BIDE" ],
-            [ 16, "MOVE_BUG_BITE" ]
+            [ 1, "MOVE_BUG_BITE" ],
+            [ 16, "MOVE_ROLLOUT" ]
         ],
         "by_tm": [  ],
         "by_tutor": [

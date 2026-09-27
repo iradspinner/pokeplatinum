@@ -39,19 +39,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_GROWL" ],
-            [ 9, "MOVE_DEFENSE_CURL" ],
-            [ 13, "MOVE_ROLLOUT" ],
-            [ 15, "MOVE_WATER_GUN" ],
-            [ 18, "MOVE_HEADBUTT" ],
+            [ 1, "MOVE_MUD_BOMB" ],
+            [ 5, "MOVE_MUD_BOMB" ],
+            [ 9, "MOVE_BITE" ],
+            [ 13, "MOVE_ICE_FANG" ],
+            [ 15, "MOVE_MUD_SHOT" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
             [ 23, "MOVE_HYPER_FANG" ],
-            [ 28, "MOVE_YAWN" ],
-            [ 33, "MOVE_AMNESIA" ],
-            [ 38, "MOVE_TAKE_DOWN" ],
-            [ 43, "MOVE_SUPER_FANG" ],
-            [ 48, "MOVE_SUPERPOWER" ],
-            [ 53, "MOVE_CURSE" ]
+            [ 28, "MOVE_DIVE" ],
+            [ 33, "MOVE_YAWN" ],
+            [ 38, "MOVE_AQUA_JET" ],
+            [ 40, "MOVE_SUPER_FANG" ],
+            [ 43, "MOVE_SUPERPOWER" ],
+            [ 47, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM01",

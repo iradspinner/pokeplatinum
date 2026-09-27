@@ -40,11 +40,11 @@
             [ 1, "MOVE_DIZZY_PUNCH" ],
             [ 1, "MOVE_KNOCK_OFF" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_FORESIGHT" ],
+            [ 1, "MOVE_EARTHQUAKE" ],
             [ 25, "MOVE_REVENGE" ],
             [ 50, "MOVE_ZEN_HEADBUTT" ],
             [ 75, "MOVE_CRUSH_GRIP" ],
-            [ 100, "MOVE_GIGA_IMPACT" ]
+            [ 100, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM01",

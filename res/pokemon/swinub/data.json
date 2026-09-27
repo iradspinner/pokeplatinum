@@ -38,20 +38,20 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_ODOR_SLEUTH" ],
-            [ 4, "MOVE_MUD_SPORT" ],
-            [ 8, "MOVE_POWDER_SNOW" ],
-            [ 13, "MOVE_MUD_SLAP" ],
-            [ 16, "MOVE_ENDURE" ],
-            [ 20, "MOVE_MUD_BOMB" ],
-            [ 25, "MOVE_ICY_WIND" ],
-            [ 28, "MOVE_ICE_SHARD" ],
-            [ 32, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_EARTHQUAKE" ],
-            [ 40, "MOVE_MIST" ],
-            [ 44, "MOVE_BLIZZARD" ],
-            [ 49, "MOVE_AMNESIA" ]
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 4, "MOVE_MUD_SLAP" ],
+            [ 8, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_ROCK_THROW" ],
+            [ 16, "MOVE_AURORA_BEAM" ],
+            [ 20, "MOVE_DIG" ],
+            [ 25, "MOVE_ROCK_SLIDE" ],
+            [ 28, "MOVE_BITE" ],
+            [ 39, "MOVE_ICE_FANG" ],
+            [ 42, "MOVE_EARTHQUAKE" ],
+            [ 45, "MOVE_CRUNCH" ],
+            [ 55, "MOVE_STONE_EDGE" ],
+            [ 60, "MOVE_ICICLE_SPEAR" ]
         ],
         "by_tm": [
             "TM05",

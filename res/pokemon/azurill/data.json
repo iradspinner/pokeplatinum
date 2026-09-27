@@ -38,12 +38,12 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
-            [ 2, "MOVE_CHARM" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_BUBBLE" ],
-            [ 15, "MOVE_SLAM" ],
-            [ 18, "MOVE_WATER_GUN" ]
+            [ 1, "MOVE_PRESENT" ],
+            [ 2, "MOVE_WATER_GUN" ],
+            [ 7, "MOVE_POUND" ],
+            [ 10, "MOVE_BUBBLE_BEAM" ],
+            [ 25, "MOVE_SLAM" ],
+            [ 28, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM03",

@@ -38,17 +38,17 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_RAZOR_LEAF" ],
-            [ 1, "MOVE_POUND" ],
-            [ 3, "MOVE_HARDEN" ],
-            [ 7, "MOVE_GROWTH" ],
-            [ 13, "MOVE_NATURE_POWER" ],
-            [ 19, "MOVE_FAKE_OUT" ],
-            [ 25, "MOVE_TORMENT" ],
-            [ 31, "MOVE_FAINT_ATTACK" ],
-            [ 37, "MOVE_RAZOR_WIND" ],
-            [ 43, "MOVE_SWAGGER" ],
-            [ 49, "MOVE_EXTRASENSORY" ]
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_NATURE_POWER" ],
+            [ 3, "MOVE_SILVER_WIND" ],
+            [ 7, "MOVE_ROCK_SLIDE" ],
+            [ 13, "MOVE_FAINT_ATTACK" ],
+            [ 19, "MOVE_RAZOR_LEAF" ],
+            [ 25, "MOVE_EXTRASENSORY" ],
+            [ 31, "MOVE_EXPLOSION" ],
+            [ 37, "MOVE_NIGHT_SLASH" ],
+            [ 43, "MOVE_LEAF_BLADE" ],
+            [ 49, "MOVE_GRASS_WHISTLE" ]
         ],
         "by_tm": [
             "TM06",

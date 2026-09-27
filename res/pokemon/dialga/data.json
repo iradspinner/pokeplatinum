@@ -38,17 +38,17 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_DRAGON_BREATH" ],
-            [ 1, "MOVE_SCARY_FACE" ],
+            [ 1, "MOVE_EARTH_POWER" ],
+            [ 1, "MOVE_AURA_SPHERE" ],
             [ 10, "MOVE_METAL_CLAW" ],
             [ 20, "MOVE_ANCIENT_POWER" ],
             [ 30, "MOVE_DRAGON_CLAW" ],
             [ 40, "MOVE_ROAR_OF_TIME" ],
-            [ 50, "MOVE_HEAL_BLOCK" ],
-            [ 60, "MOVE_EARTH_POWER" ],
-            [ 70, "MOVE_SLASH" ],
+            [ 50, "MOVE_DRAGON_BREATH" ],
+            [ 60, "MOVE_OUTRAGE" ],
+            [ 70, "MOVE_ROAR" ],
             [ 80, "MOVE_FLASH_CANNON" ],
-            [ 90, "MOVE_AURA_SPHERE" ]
+            [ 90, "MOVE_FOCUS_BLAST" ]
         ],
         "by_tm": [
             "TM02",

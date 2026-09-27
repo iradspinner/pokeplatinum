@@ -38,18 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 4, "MOVE_CHARM" ],
             [ 5, "MOVE_SCRATCH" ],
-            [ 8, "MOVE_GROWL" ],
-            [ 13, "MOVE_HYPNOSIS" ],
-            [ 17, "MOVE_FAINT_ATTACK" ],
-            [ 20, "MOVE_FURY_SWIPES" ],
-            [ 25, "MOVE_CHARM" ],
+            [ 8, "MOVE_FAINT_ATTACK" ],
+            [ 13, "MOVE_AERIAL_ACE" ],
+            [ 17, "MOVE_METAL_CLAW" ],
+            [ 20, "MOVE_SLASH" ],
+            [ 25, "MOVE_NIGHT_SLASH" ],
             [ 29, "MOVE_ASSIST" ],
-            [ 32, "MOVE_CAPTIVATE" ],
-            [ 37, "MOVE_SLASH" ],
+            [ 32, "MOVE_HYPNOSIS" ],
+            [ 37, "MOVE_FAKE_OUT" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
-            [ 45, "MOVE_ATTRACT" ]
+            [ 45, "MOVE_FURY_SWIPES" ]
         ],
         "by_tm": [
             "TM03",

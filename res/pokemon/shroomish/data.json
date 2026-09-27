@@ -38,18 +38,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
-            [ 5, "MOVE_TACKLE" ],
-            [ 9, "MOVE_STUN_SPORE" ],
-            [ 13, "MOVE_LEECH_SEED" ],
-            [ 17, "MOVE_MEGA_DRAIN" ],
-            [ 21, "MOVE_HEADBUTT" ],
-            [ 25, "MOVE_POISON_POWDER" ],
-            [ 29, "MOVE_WORRY_SEED" ],
-            [ 33, "MOVE_GROWTH" ],
-            [ 37, "MOVE_GIGA_DRAIN" ],
-            [ 41, "MOVE_SEED_BOMB" ],
-            [ 45, "MOVE_SPORE" ]
+            [ 1, "MOVE_POISON_POWDER" ],
+            [ 5, "MOVE_MEGA_DRAIN" ],
+            [ 9, "MOVE_TAKE_DOWN" ],
+            [ 13, "MOVE_STUN_SPORE" ],
+            [ 17, "MOVE_HEADBUTT" ],
+            [ 21, "MOVE_MEGA_DRAIN" ],
+            [ 25, "MOVE_TAKE_DOWN" ],
+            [ 49, "MOVE_SLEEP_POWDER" ],
+            [ 53, "MOVE_SLUDGE_BOMB" ],
+            [ 57, "MOVE_DOUBLE_EDGE" ],
+            [ 61, "MOVE_SEED_BOMB" ],
+            [ 100, "MOVE_SPORE" ]
         ],
         "by_tm": [
             "TM06",

@@ -38,19 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SMOG" ],
-            [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_EMBER" ],
-            [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 16, "MOVE_FAINT_ATTACK" ],
-            [ 19, "MOVE_FIRE_SPIN" ],
+            [ 1, "MOVE_FIRE_SPIN" ],
+            [ 1, "MOVE_BRICK_BREAK" ],
+            [ 1, "MOVE_FLARE_BLITZ" ],
+            [ 7, "MOVE_MEGA_PUNCH" ],
+            [ 10, "MOVE_FIRE_PUNCH" ],
+            [ 16, "MOVE_SMOKE_SCREEN" ],
+            [ 19, "MOVE_FAINT_ATTACK" ],
             [ 25, "MOVE_CONFUSE_RAY" ],
-            [ 28, "MOVE_FIRE_PUNCH" ],
-            [ 36, "MOVE_LAVA_PLUME" ],
-            [ 41, "MOVE_FLAMETHROWER" ],
-            [ 49, "MOVE_SUNNY_DAY" ],
-            [ 54, "MOVE_FIRE_BLAST" ]
+            [ 28, "MOVE_THUNDER_PUNCH" ],
+            [ 36, "MOVE_FIRE_PUNCH" ],
+            [ 41, "MOVE_PSYCHIC" ],
+            [ 49, "MOVE_CROSS_CHOP" ],
+            [ 54, "MOVE_HEAT_WAVE" ],
+            [ 80, "MOVE_MILK_DRINK" ]
         ],
         "by_tm": [
             "TM01",

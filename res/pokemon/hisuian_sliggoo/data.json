@@ -50,10 +50,6 @@
             ],
             [
                 1,
-                "MOVE_SHELTER"
-            ],
-            [
-                1,
                 "MOVE_ABSORB"
             ],
             [
@@ -83,10 +79,6 @@
             [
                 25,
                 "MOVE_WATER_PULSE"
-            ],
-            [
-                30,
-                "MOVE_RAIN_DANCE"
             ],
             [
                 35,

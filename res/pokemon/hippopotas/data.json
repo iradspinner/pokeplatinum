@@ -38,16 +38,16 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_DOUBLE_EDGE" ],
+            [ 1, "MOVE_WHIRLWIND" ],
             [ 7, "MOVE_BITE" ],
             [ 13, "MOVE_YAWN" ],
-            [ 19, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_ICE_FANG" ],
             [ 25, "MOVE_SAND_TOMB" ],
             [ 31, "MOVE_CRUNCH" ],
-            [ 37, "MOVE_EARTHQUAKE" ],
-            [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 50, "MOVE_FISSURE" ]
+            [ 37, "MOVE_ROAR" ],
+            [ 44, "MOVE_STONE_EDGE" ],
+            [ 50, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM03",

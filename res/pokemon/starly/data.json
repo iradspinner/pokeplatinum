@@ -39,16 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_QUICK_ATTACK" ],
-            [ 9, "MOVE_WING_ATTACK" ],
-            [ 13, "MOVE_DOUBLE_TEAM" ],
-            [ 17, "MOVE_ENDEAVOR" ],
-            [ 21, "MOVE_WHIRLWIND" ],
-            [ 25, "MOVE_AERIAL_ACE" ],
-            [ 29, "MOVE_TAKE_DOWN" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 37, "MOVE_BRAVE_BIRD" ]
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 5, "MOVE_PECK" ],
+            [ 9, "MOVE_SWIFT" ],
+            [ 13, "MOVE_GUST" ],
+            [ 17, "MOVE_HEADBUTT" ],
+            [ 21, "MOVE_WING_ATTACK" ],
+            [ 25, "MOVE_WHIRLWIND" ],
+            [ 29, "MOVE_STEEL_WING" ],
+            [ 45, "MOVE_DOUBLE_EDGE" ],
+            [ 50, "MOVE_BRAVE_BIRD" ]
         ],
         "by_tm": [
             "TM06",

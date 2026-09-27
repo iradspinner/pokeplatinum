@@ -38,22 +38,22 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FIRE_PUNCH" ],
-            [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FLAMETHROWER" ],
+            [ 1, "MOVE_DISCHARGE" ],
+            [ 1, "MOVE_PSYCHIC" ],
             [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_LOW_KICK" ],
-            [ 7, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_HAMMER_ARM" ],
+            [ 7, "MOVE_THUNDERBOLT" ],
             [ 10, "MOVE_LOW_KICK" ],
             [ 16, "MOVE_SWIFT" ],
             [ 19, "MOVE_SHOCK_WAVE" ],
-            [ 25, "MOVE_LIGHT_SCREEN" ],
+            [ 25, "MOVE_SEISMIC_TOSS" ],
             [ 28, "MOVE_THUNDER_PUNCH" ],
-            [ 37, "MOVE_DISCHARGE" ],
-            [ 43, "MOVE_THUNDERBOLT" ],
-            [ 52, "MOVE_SCREECH" ],
-            [ 58, "MOVE_THUNDER" ],
-            [ 67, "MOVE_GIGA_IMPACT" ]
+            [ 37, "MOVE_CROSS_CHOP" ],
+            [ 43, "MOVE_FIRE_PUNCH" ],
+            [ 52, "MOVE_ICE_PUNCH" ],
+            [ 65, "MOVE_WILD_CHARGE" ],
+            [ 69, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM01",

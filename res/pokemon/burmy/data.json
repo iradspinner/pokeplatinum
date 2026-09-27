@@ -42,9 +42,9 @@
     ],
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_PROTECT" ],
-            [ 10, "MOVE_TACKLE" ],
-            [ 15, "MOVE_BUG_BITE" ],
+            [ 1, "MOVE_LEECH_LIFE" ],
+            [ 10, "MOVE_NATURE_POWER" ],
+            [ 15, "MOVE_CAMOUFLAGE" ],
             [ 20, "MOVE_HIDDEN_POWER" ]
         ],
         "by_tm": [  ],

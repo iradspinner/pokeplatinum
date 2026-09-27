@@ -38,13 +38,14 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TOXIC_SPIKES" ],
-            [ 1, "MOVE_WITHDRAW" ],
+            [ 1, "MOVE_TOXIC" ],
+            [ 1, "MOVE_ROCK_BLAST" ],
             [ 1, "MOVE_SUPERSONIC" ],
-            [ 1, "MOVE_AURORA_BEAM" ],
-            [ 1, "MOVE_PROTECT" ],
-            [ 28, "MOVE_SPIKES" ],
-            [ 40, "MOVE_SPIKE_CANNON" ]
+            [ 2, "MOVE_SELFDESTRUCT" ],
+            [ 3, "MOVE_EXPLOSION" ],
+            [ 28, "MOVE_LIQUIDATION" ],
+            [ 69, "MOVE_ICICLE_SPEAR" ],
+            [ 72, "MOVE_AQUA_CUTTER" ]
         ],
         "by_tm": [
             "TM03",

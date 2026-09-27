@@ -34,19 +34,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_GLOW" ],
-            [ 1, "MOVE_BUBBLE" ],
-            [ 1, "MOVE_WATER_SPORT" ],
-            [ 9, "MOVE_CHARM" ],
-            [ 16, "MOVE_SUPERSONIC" ],
-            [ 24, "MOVE_BUBBLE_BEAM" ],
-            [ 31, "MOVE_ACID_ARMOR" ],
-            [ 39, "MOVE_WHIRLPOOL" ],
-            [ 46, "MOVE_WATER_PULSE" ],
-            [ 54, "MOVE_AQUA_RING" ],
-            [ 61, "MOVE_DIVE" ],
-            [ 69, "MOVE_RAIN_DANCE" ],
-            [ 76, "MOVE_HEART_SWAP" ]
+            [ 1, "MOVE_AQUA_TAIL" ],
+            [ 1, "MOVE_FOCUS_BLAST" ],
+            [ 1, "MOVE_CONFUSE_RAY" ],
+            [ 9, "MOVE_SIGNAL_BEAM" ],
+            [ 16, "MOVE_WHIRLPOOL" ],
+            [ 24, "MOVE_WHIRLWIND" ],
+            [ 39, "MOVE_ENERGY_BALL" ],
+            [ 46, "MOVE_ICE_BEAM" ],
+            [ 54, "MOVE_HYDRO_PUMP" ],
+            [ 61, "MOVE_EARTH_POWER" ],
+            [ 69, "MOVE_AURA_SPHERE" ]
         ],
         "by_tm": [
             "TM03",

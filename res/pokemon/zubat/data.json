@@ -40,15 +40,16 @@
         "by_level": [
             [ 1, "MOVE_LEECH_LIFE" ],
             [ 5, "MOVE_SUPERSONIC" ],
-            [ 9, "MOVE_ASTONISH" ],
-            [ 13, "MOVE_BITE" ],
-            [ 17, "MOVE_WING_ATTACK" ],
-            [ 21, "MOVE_CONFUSE_RAY" ],
-            [ 25, "MOVE_AIR_CUTTER" ],
-            [ 29, "MOVE_MEAN_LOOK" ],
-            [ 33, "MOVE_POISON_FANG" ],
-            [ 37, "MOVE_HAZE" ],
-            [ 41, "MOVE_AIR_SLASH" ]
+            [ 9, "MOVE_WING_ATTACK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 17, "MOVE_STEEL_WING" ],
+            [ 21, "MOVE_BITE" ],
+            [ 25, "MOVE_AERIAL_ACE" ],
+            [ 29, "MOVE_POISON_JAB" ],
+            [ 33, "MOVE_CONFUSE_RAY" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_BRAVE_BIRD" ],
+            [ 45, "MOVE_POISON_FANG" ]
         ],
         "by_tm": [
             "TM06",

@@ -38,17 +38,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WHIRLPOOL" ],
+            [ 1, "MOVE_LIQUIDATION" ],
             [ 6, "MOVE_CONFUSION" ],
-            [ 10, "MOVE_AGILITY" ],
+            [ 10, "MOVE_LEECH_LIFE" ],
             [ 15, "MOVE_WATER_PULSE" ],
-            [ 19, "MOVE_AMNESIA" ],
-            [ 24, "MOVE_AQUA_RING" ],
-            [ 28, "MOVE_CAPTIVATE" ],
-            [ 33, "MOVE_BATON_PASS" ],
-            [ 37, "MOVE_DIVE" ],
-            [ 42, "MOVE_PSYCHIC" ],
-            [ 46, "MOVE_AQUA_TAIL" ],
+            [ 19, "MOVE_AURORA_BEAM" ],
+            [ 24, "MOVE_PSYCHIC" ],
+            [ 28, "MOVE_MEGA_DRAIN" ],
+            [ 33, "MOVE_WHIRLPOOL" ],
+            [ 37, "MOVE_SHADOW_BALL" ],
+            [ 42, "MOVE_ICE_BEAM" ],
+            [ 46, "MOVE_GIGA_DRAIN" ],
             [ 51, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [

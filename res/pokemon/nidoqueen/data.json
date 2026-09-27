@@ -38,13 +38,15 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_DOUBLE_KICK" ],
-            [ 1, "MOVE_POISON_STING" ],
-            [ 23, "MOVE_BODY_SLAM" ],
-            [ 43, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_SUPERPOWER" ]
+            [ 1, "MOVE_THUNDERBOLT" ],
+            [ 1, "MOVE_ICE_BEAM" ],
+            [ 1, "MOVE_EARTH_POWER" ],
+            [ 1, "MOVE_SUPERPOWER" ],
+            [ 23, "MOVE_CRUNCH" ],
+            [ 48, "MOVE_POISON_FANG" ],
+            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 60, "MOVE_ROAR" ],
+            [ 68, "MOVE_POISON_TAIL" ]
         ],
         "by_tm": [
             "TM01",

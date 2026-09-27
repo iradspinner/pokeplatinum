@@ -38,20 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_SNORE" ],
             [ 1, "MOVE_SONIC_BOOM" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_WATER_SPORT" ],
-            [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 3, "MOVE_QUICK_ATTACK" ],
-            [ 6, "MOVE_WATER_GUN" ],
-            [ 10, "MOVE_PURSUIT" ],
-            [ 15, "MOVE_SWIFT" ],
-            [ 21, "MOVE_AQUA_JET" ],
-            [ 26, "MOVE_CRUNCH" ],
-            [ 29, "MOVE_AGILITY" ],
-            [ 39, "MOVE_WHIRLPOOL" ],
-            [ 50, "MOVE_RAZOR_WIND" ]
+            [ 1, "MOVE_HYDRO_PUMP" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_SWIFT" ],
+            [ 23, "MOVE_BUBBLE_BEAM" ],
+            [ 26, "MOVE_BITE" ],
+            [ 30, "MOVE_ICE_PUNCH" ],
+            [ 35, "MOVE_HEADBUTT" ],
+            [ 41, "MOVE_DIVE" ],
+            [ 56, "MOVE_CRUNCH" ],
+            [ 69, "MOVE_ICE_FANG" ],
+            [ 79, "MOVE_VITAL_THROW" ],
+            [ 90, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM01",

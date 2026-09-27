@@ -38,19 +38,19 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FAKE_TEARS" ],
+            [ 1, "MOVE_ROCK_THROW" ],
             [ 1, "MOVE_COPYCAT" ],
-            [ 6, "MOVE_FLAIL" ],
+            [ 6, "MOVE_MIMIC" ],
             [ 9, "MOVE_LOW_KICK" ],
             [ 14, "MOVE_ROCK_THROW" ],
-            [ 17, "MOVE_MIMIC" ],
+            [ 17, "MOVE_SELFDESTRUCT" ],
             [ 22, "MOVE_BLOCK" ],
             [ 25, "MOVE_FAINT_ATTACK" ],
-            [ 30, "MOVE_ROCK_TOMB" ],
-            [ 33, "MOVE_ROCK_SLIDE" ],
-            [ 38, "MOVE_SLAM" ],
+            [ 30, "MOVE_ROCK_SLIDE" ],
+            [ 33, "MOVE_EXPLOSION" ],
+            [ 38, "MOVE_WOOD_HAMMER" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ]
+            [ 56, "MOVE_FAKE_TEARS" ]
         ],
         "by_tm": [
             "TM04",

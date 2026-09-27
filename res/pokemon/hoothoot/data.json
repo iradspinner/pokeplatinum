@@ -39,20 +39,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_FORESIGHT" ],
-            [ 5, "MOVE_HYPNOSIS" ],
-            [ 9, "MOVE_PECK" ],
-            [ 13, "MOVE_UPROAR" ],
-            [ 17, "MOVE_REFLECT" ],
-            [ 21, "MOVE_CONFUSION" ],
-            [ 25, "MOVE_TAKE_DOWN" ],
-            [ 29, "MOVE_AIR_SLASH" ],
-            [ 33, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_EXTRASENSORY" ],
-            [ 41, "MOVE_PSYCHO_SHIFT" ],
-            [ 45, "MOVE_ROOST" ],
-            [ 49, "MOVE_DREAM_EATER" ]
+            [ 5, "MOVE_UPROAR" ],
+            [ 9, "MOVE_STEEL_WING" ],
+            [ 13, "MOVE_ZEN_HEADBUTT" ],
+            [ 17, "MOVE_AERIAL_ACE" ],
+            [ 21, "MOVE_WHIRLWIND" ],
+            [ 25, "MOVE_EXTRASENSORY" ],
+            [ 27, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_HYPNOSIS" ],
+            [ 37, "MOVE_ROOST" ],
+            [ 41, "MOVE_AIR_SLASH" ],
+            [ 45, "MOVE_HYPER_VOICE" ],
+            [ 49, "MOVE_PSYCHO_SHIFT" ]
         ],
         "by_tm": [
             "TM06",

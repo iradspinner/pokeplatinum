@@ -111,10 +111,6 @@
             [
                 70,
                 "MOVE_SOAK"
-            ],
-            [
-                75,
-                "MOVE_MISTY_TERRAIN"
             ]
         ],
         "by_tm": [],

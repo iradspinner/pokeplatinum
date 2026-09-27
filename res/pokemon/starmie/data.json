@@ -38,11 +38,11 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WATER_GUN" ],
-            [ 1, "MOVE_RAPID_SPIN" ],
+            [ 1, "MOVE_DOUBLE_EDGE" ],
             [ 1, "MOVE_RECOVER" ],
-            [ 1, "MOVE_SWIFT" ],
-            [ 28, "MOVE_CONFUSE_RAY" ]
+            [ 1, "MOVE_POWER_GEM" ],
+            [ 55, "MOVE_HYDRO_PUMP" ],
+            [ 65, "MOVE_MEGA_KICK" ]
         ],
         "by_tm": [
             "TM03",

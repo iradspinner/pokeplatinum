@@ -39,16 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_EMBER" ],
-            [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 17, "MOVE_DRAGON_RAGE" ],
-            [ 21, "MOVE_SCARY_FACE" ],
-            [ 28, "MOVE_FIRE_FANG" ],
-            [ 32, "MOVE_SLASH" ],
-            [ 39, "MOVE_FLAMETHROWER" ],
-            [ 43, "MOVE_FIRE_SPIN" ]
+            [ 7, "MOVE_SLASH" ],
+            [ 10, "MOVE_METAL_CLAW" ],
+            [ 17, "MOVE_FLAME_WHEEL" ],
+            [ 21, "MOVE_ROAR" ],
+            [ 28, "MOVE_CRUNCH" ],
+            [ 32, "MOVE_TAKE_DOWN" ],
+            [ 39, "MOVE_SMOKE_SCREEN" ],
+            [ 43, "MOVE_FLAMETHROWER" ]
         ],
         "by_tm": [
             "TM01",

@@ -34,17 +34,16 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CONFUSION" ],
-            [ 1, "MOVE_DOUBLE_TEAM" ],
-            [ 11, "MOVE_SAFEGUARD" ],
-            [ 20, "MOVE_MIST" ],
-            [ 29, "MOVE_AURORA_BEAM" ],
-            [ 38, "MOVE_FUTURE_SIGHT" ],
-            [ 47, "MOVE_SLASH" ],
-            [ 57, "MOVE_MOONLIGHT" ],
-            [ 66, "MOVE_PSYCHO_CUT" ],
-            [ 75, "MOVE_PSYCHO_SHIFT" ],
-            [ 84, "MOVE_LUNAR_DANCE" ],
+            [ 1, "MOVE_LUNAR_DANCE" ],
+            [ 1, "MOVE_AURA_SPHERE" ],
+            [ 11, "MOVE_MOONLIGHT" ],
+            [ 20, "MOVE_NIGHT_SHADE" ],
+            [ 38, "MOVE_TRIPLE_AXEL" ],
+            [ 47, "MOVE_PSYCHO_SHIFT" ],
+            [ 57, "MOVE_PSYCHO_CUT" ],
+            [ 66, "MOVE_WHIRLWIND" ],
+            [ 75, "MOVE_HYPER_BEAM" ],
+            [ 84, "MOVE_SIGNAL_BEAM" ],
             [ 93, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [

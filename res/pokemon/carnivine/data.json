@@ -34,18 +34,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BIND" ],
-            [ 1, "MOVE_GROWTH" ],
+            [ 1, "MOVE_VINE_WHIP" ],
+            [ 1, "MOVE_LEECH_LIFE" ],
             [ 7, "MOVE_BITE" ],
-            [ 11, "MOVE_VINE_WHIP" ],
-            [ 17, "MOVE_SWEET_SCENT" ],
-            [ 21, "MOVE_INGRAIN" ],
-            [ 27, "MOVE_FAINT_ATTACK" ],
-            [ 31, "MOVE_STOCKPILE" ],
-            [ 31, "MOVE_SPIT_UP" ],
-            [ 31, "MOVE_SWALLOW" ],
+            [ 11, "MOVE_SWEET_SCENT" ],
+            [ 17, "MOVE_RAZOR_LEAF" ],
+            [ 21, "MOVE_FAINT_ATTACK" ],
+            [ 27, "MOVE_FIRE_FANG" ],
+            [ 31, "MOVE_WRING_OUT" ],
+            [ 31, "MOVE_GIGA_DRAIN" ],
+            [ 31, "MOVE_POISON_JAB" ],
             [ 37, "MOVE_CRUNCH" ],
-            [ 41, "MOVE_WRING_OUT" ],
+            [ 41, "MOVE_SLEEP_POWDER" ],
             [ 47, "MOVE_POWER_WHIP" ]
         ],
         "by_tm": [

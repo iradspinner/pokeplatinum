@@ -38,12 +38,14 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_NASTY_PLOT" ],
-            [ 1, "MOVE_EMBER" ],
-            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_ROAR" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_SAFEGUARD" ],
-            [ 40, "MOVE_FLARE_BLITZ" ]
+            [ 1, "MOVE_FIRE_BLAST" ],
+            [ 1, "MOVE_IMPRISON" ],
+            [ 1, "MOVE_DARK_PULSE" ],
+            [ 28, "MOVE_DISABLE" ],
+            [ 40, "MOVE_FLAMETHROWER" ],
+            [ 47, "MOVE_EXTRASENSORY" ]
         ],
         "by_tm": [
             "TM04",

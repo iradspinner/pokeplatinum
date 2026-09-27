@@ -34,17 +34,16 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TRICK" ],
-            [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_THUNDER_WAVE" ],
             [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 8, "MOVE_UPROAR" ],
-            [ 15, "MOVE_DOUBLE_TEAM" ],
-            [ 22, "MOVE_SHOCK_WAVE" ],
-            [ 29, "MOVE_OMINOUS_WIND" ],
-            [ 36, "MOVE_SUBSTITUTE" ],
-            [ 43, "MOVE_CHARGE" ],
+            [ 1, "MOVE_UPROAR" ],
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 1, "MOVE_SHOCK_WAVE" ],
+            [ 8, "MOVE_NIGHT_SHADE" ],
+            [ 15, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_SHADOW_BALL" ],
+            [ 29, "MOVE_DARK_PULSE" ],
+            [ 36, "MOVE_SIGNAL_BEAM" ],
+            [ 43, "MOVE_FOCUS_BLAST" ],
             [ 50, "MOVE_DISCHARGE" ]
         ],
         "by_tm": [

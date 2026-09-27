@@ -38,8 +38,8 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HARDEN" ],
-            [ 7, "MOVE_HARDEN" ]
+            [ 1, "MOVE_BUG_BITE" ],
+            [ 7, "MOVE_IRON_DEFENSE" ]
         ],
         "by_tm": [  ],
         "by_tutor": [ "MOVE_IRON_DEFENSE" ]

@@ -86,10 +86,6 @@
             ],
             [
                 1,
-                "MOVE_MISTY_TERRAIN"
-            ],
-            [
-                1,
                 "MOVE_POUND"
             ],
             [
@@ -107,10 +103,6 @@
             [
                 12,
                 "MOVE_CONFUSION"
-            ],
-            [
-                16,
-                "MOVE_ALLY_SWITCH"
             ],
             [
                 20,

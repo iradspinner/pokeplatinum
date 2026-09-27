@@ -34,17 +34,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_AURA_SPHERE" ],
             [ 1, "MOVE_OMINOUS_WIND" ],
-            [ 1, "MOVE_DISABLE" ],
-            [ 11, "MOVE_QUICK_ATTACK" ],
+            [ 5, "MOVE_MEAN_LOOK" ],
+            [ 11, "MOVE_DARK_PULSE" ],
             [ 20, "MOVE_HYPNOSIS" ],
             [ 29, "MOVE_FAINT_ATTACK" ],
-            [ 38, "MOVE_NIGHTMARE" ],
-            [ 47, "MOVE_DOUBLE_TEAM" ],
-            [ 57, "MOVE_HAZE" ],
+            [ 35, "MOVE_GLARE" ],
+            [ 38, "MOVE_SHADOW_FORCE" ],
+            [ 47, "MOVE_DREAM_EATER" ],
+            [ 57, "MOVE_EXTRASENSORY" ],
             [ 66, "MOVE_DARK_VOID" ],
-            [ 75, "MOVE_NASTY_PLOT" ],
-            [ 84, "MOVE_DREAM_EATER" ],
+            [ 84, "MOVE_AURA_SPHERE" ],
             [ 93, "MOVE_DARK_PULSE" ]
         ],
         "by_tm": [

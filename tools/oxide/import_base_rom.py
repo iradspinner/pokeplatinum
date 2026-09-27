@@ -124,6 +124,21 @@ LANGUAGES = {
     6: "LANGUAGE_UNUSED_6", 7: "LANGUAGE_SPANISH", 8: "LANGUAGE_KOREAN",
 }
 
+def learnset_pass_members():
+    """The wotbl members the balance track's learnset pass changed, read from
+    verify_narcs.py's LEARNSET_PASS without running that module, so that the
+    importer and the verifier share one list."""
+    import ast
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify_narcs.py")
+    with open(path, encoding="utf-8") as f:
+        tree = ast.parse(f.read())
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(
+                getattr(t, "id", None) == "LEARNSET_PASS" for t in node.targets):
+            return frozenset(ast.literal_eval(node.value.args[0]))
+    raise KeyError("LEARNSET_PASS not found in verify_narcs.py")
+
+
 NUM_TMS = 92  # include/constants/items.h: TM01..TM92, HM01..HM08
 
 # Alternate forms that have their own personal/learnset/evolution records,
@@ -1498,6 +1513,9 @@ def main():
         228: "Houndour loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
     }
+    for i in learnset_pass_members():
+        LEARNSETS_DIVERGED.setdefault(
+            i, "the learnset pass: Kaizo's list, adjusted to Ian's rulings (2026-09-27)")
 
     # Records whose abilities Oxide has changed on purpose since the base ROM.
     # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave

@@ -38,10 +38,10 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_MEGA_DRAIN" ],
-            [ 1, "MOVE_NATURE_POWER" ]
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_ENERGY_BALL" ],
+            [ 1, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

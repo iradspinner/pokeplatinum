@@ -38,20 +38,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BIDE" ],
-            [ 4, "MOVE_MEDITATE" ],
+            [ 1, "MOVE_KARATE_CHOP" ],
             [ 8, "MOVE_CONFUSION" ],
-            [ 11, "MOVE_DETECT" ],
-            [ 15, "MOVE_HIDDEN_POWER" ],
-            [ 18, "MOVE_MIND_READER" ],
-            [ 22, "MOVE_FEINT" ],
-            [ 25, "MOVE_CALM_MIND" ],
-            [ 29, "MOVE_FORCE_PALM" ],
-            [ 32, "MOVE_HI_JUMP_KICK" ],
-            [ 36, "MOVE_PSYCH_UP" ],
-            [ 39, "MOVE_POWER_TRICK" ],
-            [ 43, "MOVE_REVERSAL" ],
-            [ 46, "MOVE_RECOVER" ]
+            [ 11, "MOVE_HIDDEN_POWER" ],
+            [ 15, "MOVE_SECRET_POWER" ],
+            [ 22, "MOVE_ROCK_THROW" ],
+            [ 25, "MOVE_SEISMIC_TOSS" ],
+            [ 29, "MOVE_PSYBEAM" ],
+            [ 32, "MOVE_POISON_JAB" ],
+            [ 49, "MOVE_ZEN_HEADBUTT" ],
+            [ 54, "MOVE_FORCE_PALM" ],
+            [ 100, "MOVE_MEDITATE" ]
         ],
         "by_tm": [
             "TM01",

@@ -38,21 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MAGNET_RISE" ],
-            [ 1, "MOVE_TAKE_DOWN" ],
-            [ 1, "MOVE_METAL_CLAW" ],
-            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_MAGNET_BOMB" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_ICE_PUNCH" ],
+            [ 1, "MOVE_PURSUIT" ],
             [ 20, "MOVE_METAL_CLAW" ],
-            [ 20, "MOVE_CONFUSION" ],
-            [ 24, "MOVE_SCARY_FACE" ],
-            [ 28, "MOVE_PURSUIT" ],
-            [ 32, "MOVE_BULLET_PUNCH" ],
-            [ 36, "MOVE_PSYCHIC" ],
-            [ 40, "MOVE_IRON_DEFENSE" ],
-            [ 44, "MOVE_AGILITY" ],
-            [ 48, "MOVE_METEOR_MASH" ],
-            [ 52, "MOVE_ZEN_HEADBUTT" ],
-            [ 56, "MOVE_HYPER_BEAM" ]
+            [ 20, "MOVE_EXPLOSION" ],
+            [ 28, "MOVE_DOUBLE_EDGE" ],
+            [ 32, "MOVE_IRON_HEAD" ],
+            [ 36, "MOVE_ZEN_HEADBUTT" ],
+            [ 40, "MOVE_SELFDESTRUCT" ],
+            [ 48, "MOVE_PSYCHO_CUT" ],
+            [ 52, "MOVE_EXPLOSION" ],
+            [ 56, "MOVE_METEOR_MASH" ]
         ],
         "by_tm": [
             "TM06",

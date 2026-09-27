@@ -107,10 +107,6 @@
             [
                 70,
                 "MOVE_SKULL_BASH"
-            ],
-            [
-                75,
-                "MOVE_GRASSY_TERRAIN"
             ]
         ],
         "by_tm": [],

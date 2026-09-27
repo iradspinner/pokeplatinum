@@ -34,19 +34,21 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
-            [ 6, "MOVE_GROWL" ],
-            [ 9, "MOVE_ASTONISH" ],
-            [ 14, "MOVE_CONFUSION" ],
-            [ 17, "MOVE_UPROAR" ],
-            [ 22, "MOVE_TAKE_DOWN" ],
+            [ 1, "MOVE_SAFEGUARD" ],
+            [ 6, "MOVE_WRAP" ],
+            [ 9, "MOVE_UPROAR" ],
+            [ 14, "MOVE_CONFUSE_RAY" ],
+            [ 17, "MOVE_HEAL_BELL" ],
+            [ 22, "MOVE_HYPER_VOICE" ],
             [ 25, "MOVE_YAWN" ],
-            [ 30, "MOVE_PSYWAVE" ],
-            [ 33, "MOVE_DOUBLE_EDGE" ],
-            [ 38, "MOVE_HEAL_BELL" ],
-            [ 41, "MOVE_SAFEGUARD" ],
+            [ 30, "MOVE_PSYCHIC" ],
+            [ 33, "MOVE_SIGNAL_BEAM" ],
+            [ 38, "MOVE_RECOVER" ],
+            [ 41, "MOVE_SHADOW_BALL" ],
             [ 46, "MOVE_EXTRASENSORY" ],
-            [ 49, "MOVE_HEALING_WISH" ]
+            [ 49, "MOVE_AURA_SPHERE" ],
+            [ 51, "MOVE_FLASH_CANNON" ],
+            [ 85, "MOVE_METAL_SOUND" ]
         ],
         "by_tm": [
             "TM04",

@@ -38,19 +38,19 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_PECK" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_ACID" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 7, "MOVE_PECK" ],
             [ 9, "MOVE_DOUBLE_KICK" ],
             [ 13, "MOVE_POISON_STING" ],
             [ 20, "MOVE_FURY_ATTACK" ],
-            [ 23, "MOVE_HORN_ATTACK" ],
-            [ 28, "MOVE_HELPING_HAND" ],
-            [ 35, "MOVE_TOXIC_SPIKES" ],
-            [ 38, "MOVE_FLATTER" ],
-            [ 43, "MOVE_POISON_JAB" ],
-            [ 50, "MOVE_CAPTIVATE" ],
-            [ 58, "MOVE_HORN_DRILL" ]
+            [ 23, "MOVE_EARTH_POWER" ],
+            [ 28, "MOVE_DRILL_PECK" ],
+            [ 35, "MOVE_POISON_FANG" ],
+            [ 38, "MOVE_DRILL_RUN" ],
+            [ 43, "MOVE_MEGAHORN" ],
+            [ 50, "MOVE_PUNISHMENT" ],
+            [ 75, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [
             "TM03",

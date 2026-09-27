@@ -38,19 +38,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_CONFUSION" ],
-            [ 7, "MOVE_HYPNOSIS" ],
-            [ 12, "MOVE_IMPRISON" ],
-            [ 14, "MOVE_CONFUSE_RAY" ],
-            [ 19, "MOVE_EXTRASENSORY" ],
-            [ 26, "MOVE_IRON_DEFENSE" ],
-            [ 30, "MOVE_SAFEGUARD" ],
-            [ 35, "MOVE_GYRO_BALL" ],
-            [ 37, "MOVE_FUTURE_SIGHT" ],
-            [ 41, "MOVE_FAINT_ATTACK" ],
-            [ 49, "MOVE_PAYBACK" ],
-            [ 52, "MOVE_HEAL_BLOCK" ]
+            [ 1, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 5, "MOVE_SELFDESTRUCT" ],
+            [ 12, "MOVE_EXTRASENSORY" ],
+            [ 19, "MOVE_IRON_HEAD" ],
+            [ 26, "MOVE_EXPLOSION" ],
+            [ 30, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_PAYBACK" ],
+            [ 37, "MOVE_MIRROR_SHOT" ],
+            [ 41, "MOVE_SELFDESTRUCT" ],
+            [ 49, "MOVE_PSYCHIC" ],
+            [ 52, "MOVE_GYRO_BALL" ]
         ],
         "by_tm": [
             "TM04",

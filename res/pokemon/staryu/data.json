@@ -39,18 +39,15 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_HARDEN" ],
             [ 6, "MOVE_WATER_GUN" ],
-            [ 10, "MOVE_RAPID_SPIN" ],
-            [ 15, "MOVE_RECOVER" ],
-            [ 19, "MOVE_CAMOUFLAGE" ],
-            [ 24, "MOVE_SWIFT" ],
-            [ 28, "MOVE_BUBBLE_BEAM" ],
-            [ 33, "MOVE_MINIMIZE" ],
-            [ 37, "MOVE_GYRO_BALL" ],
-            [ 42, "MOVE_LIGHT_SCREEN" ],
-            [ 46, "MOVE_POWER_GEM" ],
-            [ 51, "MOVE_COSMIC_POWER" ],
+            [ 10, "MOVE_SWIFT" ],
+            [ 15, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_TAKE_DOWN" ],
+            [ 28, "MOVE_PSYBEAM" ],
+            [ 33, "MOVE_POWER_GEM" ],
+            [ 37, "MOVE_SIGNAL_BEAM" ],
+            [ 46, "MOVE_DOUBLE_EDGE" ],
+            [ 51, "MOVE_RECOVER" ],
             [ 55, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [

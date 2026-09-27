@@ -38,8 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SKY_ATTACK" ],
-            [ 1, "MOVE_EXTREME_SPEED" ],
+            [ 1, "MOVE_WHIRLWIND" ],
             [ 1, "MOVE_AURA_SPHERE" ],
             [ 1, "MOVE_AIR_SLASH" ]
         ],

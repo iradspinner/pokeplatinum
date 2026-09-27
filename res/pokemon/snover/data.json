@@ -39,17 +39,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POWDER_SNOW" ],
-            [ 1, "MOVE_LEER" ],
-            [ 5, "MOVE_RAZOR_LEAF" ],
-            [ 9, "MOVE_ICY_WIND" ],
-            [ 13, "MOVE_GRASS_WHISTLE" ],
-            [ 17, "MOVE_SWAGGER" ],
-            [ 21, "MOVE_MIST" ],
-            [ 26, "MOVE_ICE_SHARD" ],
-            [ 31, "MOVE_INGRAIN" ],
-            [ 36, "MOVE_WOOD_HAMMER" ],
-            [ 41, "MOVE_BLIZZARD" ],
-            [ 46, "MOVE_SHEER_COLD" ]
+            [ 1, "MOVE_RAZOR_LEAF" ],
+            [ 5, "MOVE_ICE_PUNCH" ],
+            [ 9, "MOVE_SEED_BOMB" ],
+            [ 13, "MOVE_ICE_BEAM" ],
+            [ 17, "MOVE_GRASS_WHISTLE" ],
+            [ 21, "MOVE_FOCUS_BLAST" ],
+            [ 26, "MOVE_BLIZZARD" ],
+            [ 31, "MOVE_LEAF_STORM" ],
+            [ 36, "MOVE_STONE_EDGE" ],
+            [ 41, "MOVE_AVALANCHE" ],
+            [ 46, "MOVE_WOOD_HAMMER" ]
         ],
         "by_tm": [
             "TM03",

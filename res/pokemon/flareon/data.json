@@ -38,19 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HEAT_WAVE" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_HELPING_HAND" ],
-            [ 8, "MOVE_SAND_ATTACK" ],
+            [ 8, "MOVE_ROAR" ],
             [ 15, "MOVE_EMBER" ],
             [ 22, "MOVE_QUICK_ATTACK" ],
             [ 29, "MOVE_BITE" ],
-            [ 36, "MOVE_FIRE_SPIN" ],
-            [ 43, "MOVE_FIRE_FANG" ],
+            [ 36, "MOVE_FIRE_FANG" ],
+            [ 43, "MOVE_IRON_TAIL" ],
             [ 50, "MOVE_LAST_RESORT" ],
-            [ 57, "MOVE_SMOG" ],
-            [ 64, "MOVE_SCARY_FACE" ],
-            [ 71, "MOVE_FIRE_BLAST" ],
+            [ 57, "MOVE_FLARE_BLITZ" ],
+            [ 64, "MOVE_SUPERPOWER" ],
+            [ 71, "MOVE_CRUNCH" ],
             [ 78, "MOVE_LAVA_PLUME" ]
         ],
         "by_tm": [

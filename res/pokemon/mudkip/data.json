@@ -39,17 +39,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 6, "MOVE_MUD_SLAP" ],
-            [ 10, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_BIDE" ],
-            [ 19, "MOVE_FORESIGHT" ],
-            [ 24, "MOVE_MUD_SPORT" ],
-            [ 28, "MOVE_TAKE_DOWN" ],
-            [ 33, "MOVE_WHIRLPOOL" ],
-            [ 37, "MOVE_PROTECT" ],
-            [ 42, "MOVE_HYDRO_PUMP" ],
-            [ 46, "MOVE_ENDEAVOR" ]
+            [ 10, "MOVE_ROCK_THROW" ],
+            [ 15, "MOVE_ROCK_SMASH" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_MUD_BOMB" ],
+            [ 28, "MOVE_ROCK_SLIDE" ],
+            [ 33, "MOVE_BRICK_BREAK" ],
+            [ 37, "MOVE_HYDRO_PUMP" ],
+            [ 42, "MOVE_SUPERPOWER" ],
+            [ 46, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM03",

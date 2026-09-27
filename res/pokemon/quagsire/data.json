@@ -39,19 +39,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_MUD_SPORT" ],
-            [ 5, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_ACID" ],
+            [ 1, "MOVE_SLUDGE_BOMB" ],
+            [ 5, "MOVE_DIG" ],
             [ 9, "MOVE_MUD_SHOT" ],
-            [ 15, "MOVE_SLAM" ],
-            [ 19, "MOVE_MUD_BOMB" ],
-            [ 24, "MOVE_AMNESIA" ],
-            [ 31, "MOVE_YAWN" ],
-            [ 36, "MOVE_EARTHQUAKE" ],
-            [ 41, "MOVE_RAIN_DANCE" ],
-            [ 48, "MOVE_MIST" ],
-            [ 48, "MOVE_HAZE" ],
-            [ 53, "MOVE_MUDDY_WATER" ]
+            [ 15, "MOVE_WATER_PULSE" ],
+            [ 19, "MOVE_BODY_SLAM" ],
+            [ 24, "MOVE_MUD_BOMB" ],
+            [ 31, "MOVE_MUDDY_WATER" ],
+            [ 40, "MOVE_POISON_JAB" ],
+            [ 45, "MOVE_ICE_PUNCH" ],
+            [ 53, "MOVE_EARTHQUAKE" ],
+            [ 60, "MOVE_AQUA_TAIL" ],
+            [ 69, "MOVE_YAWN" ]
         ],
         "by_tm": [
             "TM01",

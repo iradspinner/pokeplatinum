@@ -38,17 +38,17 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_DEFENSE_CURL" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_ROLLOUT" ],
-            [ 18, "MOVE_BUBBLE_BEAM" ],
-            [ 23, "MOVE_AQUA_RING" ],
-            [ 27, "MOVE_DOUBLE_EDGE" ],
-            [ 32, "MOVE_RAIN_DANCE" ],
-            [ 37, "MOVE_AQUA_TAIL" ],
-            [ 42, "MOVE_HYDRO_PUMP" ]
+            [ 1, "MOVE_PRESENT" ],
+            [ 12, "MOVE_WATER_GUN" ],
+            [ 17, "MOVE_POUND" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 25, "MOVE_BRICK_BREAK" ],
+            [ 28, "MOVE_BODY_SLAM" ],
+            [ 33, "MOVE_DIVE" ],
+            [ 37, "MOVE_DOUBLE_EDGE" ],
+            [ 42, "MOVE_ICE_PUNCH" ],
+            [ 47, "MOVE_BOUNCE" ],
+            [ 52, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM01",

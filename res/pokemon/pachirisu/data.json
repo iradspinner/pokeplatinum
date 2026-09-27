@@ -38,17 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_BIDE" ],
-            [ 5, "MOVE_QUICK_ATTACK" ],
-            [ 9, "MOVE_CHARM" ],
-            [ 13, "MOVE_SPARK" ],
-            [ 17, "MOVE_ENDURE" ],
-            [ 21, "MOVE_SWIFT" ],
-            [ 25, "MOVE_SWEET_KISS" ],
-            [ 29, "MOVE_DISCHARGE" ],
-            [ 33, "MOVE_SUPER_FANG" ],
-            [ 37, "MOVE_LAST_RESORT" ]
+            [ 1, "MOVE_DISCHARGE" ],
+            [ 1, "MOVE_POUND" ],
+            [ 5, "MOVE_BITE" ],
+            [ 9, "MOVE_HYPER_FANG" ],
+            [ 13, "MOVE_SHOCK_WAVE" ],
+            [ 17, "MOVE_FIRE_FANG" ],
+            [ 20, "MOVE_ROLLOUT" ],
+            [ 21, "MOVE_CRUNCH" ],
+            [ 25, "MOVE_ICE_FANG" ],
+            [ 27, "MOVE_FOLLOW_ME" ],
+            [ 35, "MOVE_THUNDER_FANG" ],
+            [ 45, "MOVE_SUPER_FANG" ],
+            [ 50, "MOVE_CHARM" ],
+            [ 55, "MOVE_THUNDER" ]
         ],
         "by_tm": [
             "TM06",

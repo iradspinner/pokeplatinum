@@ -38,19 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_EMBER" ],
-            [ 4, "MOVE_HOWL" ],
-            [ 9, "MOVE_SMOG" ],
-            [ 14, "MOVE_ROAR" ],
-            [ 17, "MOVE_BITE" ],
-            [ 22, "MOVE_ODOR_SLEUTH" ],
+            [ 1, "MOVE_ROAR" ],
+            [ 1, "MOVE_PURSUIT" ],
+            [ 4, "MOVE_SMOG" ],
+            [ 9, "MOVE_EMBER" ],
+            [ 14, "MOVE_BITE" ],
+            [ 17, "MOVE_ROAR" ],
+            [ 22, "MOVE_DOUBLE_EDGE" ],
             [ 30, "MOVE_FIRE_FANG" ],
             [ 35, "MOVE_FAINT_ATTACK" ],
-            [ 40, "MOVE_EMBARGO" ],
-            [ 43, "MOVE_FLAMETHROWER" ],
-            [ 48, "MOVE_CRUNCH" ],
-            [ 53, "MOVE_NASTY_PLOT" ]
+            [ 40, "MOVE_CRUNCH" ],
+            [ 43, "MOVE_ROAR" ],
+            [ 48, "MOVE_FLAMETHROWER" ],
+            [ 53, "MOVE_DARK_PULSE" ]
         ],
         "by_tm": [
             "TM05",

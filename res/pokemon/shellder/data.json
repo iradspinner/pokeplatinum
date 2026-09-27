@@ -38,19 +38,17 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_WITHDRAW" ],
+            [ 1, "MOVE_TAKE_DOWN" ],
             [ 8, "MOVE_SUPERSONIC" ],
-            [ 13, "MOVE_ICICLE_SPEAR" ],
-            [ 16, "MOVE_PROTECT" ],
-            [ 20, "MOVE_LEER" ],
-            [ 25, "MOVE_CLAMP" ],
-            [ 28, "MOVE_ICE_SHARD" ],
-            [ 32, "MOVE_AURORA_BEAM" ],
-            [ 37, "MOVE_WHIRLPOOL" ],
-            [ 40, "MOVE_IRON_DEFENSE" ],
-            [ 44, "MOVE_BRINE" ],
-            [ 49, "MOVE_ICE_BEAM" ]
+            [ 13, "MOVE_WATER_PULSE" ],
+            [ 16, "MOVE_POWDER_SNOW" ],
+            [ 25, "MOVE_SELFDESTRUCT" ],
+            [ 28, "MOVE_LIQUIDATION" ],
+            [ 32, "MOVE_POISON_FANG" ],
+            [ 37, "MOVE_EXPLOSION" ],
+            [ 40, "MOVE_HYDRO_PUMP" ],
+            [ 49, "MOVE_ICICLE_SPEAR" ],
+            [ 75, "MOVE_CLAMP" ]
         ],
         "by_tm": [
             "TM03",

@@ -38,20 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_HELPING_HAND" ],
-            [ 8, "MOVE_SAND_ATTACK" ],
-            [ 15, "MOVE_THUNDER_SHOCK" ],
-            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_SWIFT" ],
+            [ 8, "MOVE_TAKE_DOWN" ],
+            [ 15, "MOVE_ROAR" ],
+            [ 22, "MOVE_BITE" ],
             [ 29, "MOVE_DOUBLE_KICK" ],
             [ 36, "MOVE_PIN_MISSILE" ],
-            [ 43, "MOVE_THUNDER_FANG" ],
-            [ 50, "MOVE_LAST_RESORT" ],
-            [ 57, "MOVE_THUNDER_WAVE" ],
-            [ 64, "MOVE_AGILITY" ],
-            [ 71, "MOVE_THUNDER" ],
-            [ 78, "MOVE_DISCHARGE" ]
+            [ 43, "MOVE_SWIFT" ],
+            [ 50, "MOVE_WILD_CHARGE" ],
+            [ 57, "MOVE_DOUBLE_EDGE" ],
+            [ 64, "MOVE_ROAR" ],
+            [ 71, "MOVE_THUNDER_WAVE" ],
+            [ 95, "MOVE_DISCHARGE" ]
         ],
         "by_tm": [
             "TM05",

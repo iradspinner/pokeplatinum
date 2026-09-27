@@ -54,10 +54,6 @@
             ],
             [
                 1,
-                "MOVE_DISARMING_VOICE"
-            ],
-            [
-                1,
                 "MOVE_COVET"
             ],
             [
@@ -101,10 +97,6 @@
                 "MOVE_TAIL_WHIP"
             ],
             [
-                1,
-                "MOVE_FAIRY_WIND"
-            ],
-            [
                 5,
                 "MOVE_SAND_ATTACK"
             ],
@@ -127,10 +119,6 @@
             [
                 28,
                 "MOVE_LIGHT_SCREEN"
-            ],
-            [
-                32,
-                "MOVE_MISTY_TERRAIN"
             ],
             [
                 33,

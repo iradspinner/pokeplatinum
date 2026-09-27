@@ -38,19 +38,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CURSE" ],
+            [ 1, "MOVE_PAIN_SPLIT" ],
             [ 1, "MOVE_PURSUIT" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_SPITE" ],
-            [ 1, "MOVE_SHADOW_SNEAK" ],
-            [ 7, "MOVE_FAINT_ATTACK" ],
+            [ 1, "MOVE_REVENGE" ],
+            [ 1, "MOVE_PAYBACK" ],
             [ 13, "MOVE_HYPNOSIS" ],
-            [ 19, "MOVE_DREAM_EATER" ],
+            [ 19, "MOVE_SILVER_WIND" ],
+            [ 20, "MOVE_CURSE" ],
             [ 25, "MOVE_OMINOUS_WIND" ],
-            [ 31, "MOVE_SUCKER_PUNCH" ],
-            [ 37, "MOVE_NASTY_PLOT" ],
-            [ 43, "MOVE_MEMENTO" ],
-            [ 49, "MOVE_DARK_PULSE" ]
+            [ 37, "MOVE_DARK_PULSE" ],
+            [ 43, "MOVE_AURA_SPHERE" ],
+            [ 49, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM03",

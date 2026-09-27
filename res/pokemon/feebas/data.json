@@ -38,7 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_WATER_PULSE" ],
             [ 15, "MOVE_TACKLE" ],
             [ 30, "MOVE_FLAIL" ]
         ],

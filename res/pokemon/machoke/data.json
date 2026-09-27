@@ -38,20 +38,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_BRICK_BREAK" ],
             [ 1, "MOVE_LOW_KICK" ],
-            [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_FOCUS_ENERGY" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_VITAL_THROW" ],
+            [ 7, "MOVE_MEGA_PUNCH" ],
             [ 10, "MOVE_KARATE_CHOP" ],
-            [ 13, "MOVE_FORESIGHT" ],
+            [ 13, "MOVE_FIRE_PUNCH" ],
             [ 19, "MOVE_SEISMIC_TOSS" ],
-            [ 22, "MOVE_REVENGE" ],
-            [ 25, "MOVE_VITAL_THROW" ],
-            [ 32, "MOVE_SUBMISSION" ],
-            [ 36, "MOVE_WAKE_UP_SLAP" ],
-            [ 40, "MOVE_CROSS_CHOP" ],
-            [ 44, "MOVE_SCARY_FACE" ],
-            [ 51, "MOVE_DYNAMIC_PUNCH" ]
+            [ 22, "MOVE_THUNDER_PUNCH" ],
+            [ 25, "MOVE_WAKE_UP_SLAP" ],
+            [ 32, "MOVE_SMELLING_SALT" ],
+            [ 36, "MOVE_SUBMISSION" ],
+            [ 40, "MOVE_ROCK_SLIDE" ],
+            [ 44, "MOVE_PAYBACK" ],
+            [ 56, "MOVE_CROSS_CHOP" ],
+            [ 100, "MOVE_MEGA_KICK" ]
         ],
         "by_tm": [
             "TM01",

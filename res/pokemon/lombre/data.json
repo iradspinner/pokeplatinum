@@ -38,17 +38,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ASTONISH" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 5, "MOVE_ABSORB" ],
-            [ 7, "MOVE_NATURE_POWER" ],
-            [ 11, "MOVE_FAKE_OUT" ],
-            [ 15, "MOVE_FURY_SWIPES" ],
-            [ 19, "MOVE_WATER_SPORT" ],
-            [ 25, "MOVE_BUBBLE_BEAM" ],
-            [ 31, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_UPROAR" ],
-            [ 45, "MOVE_HYDRO_PUMP" ]
+            [ 1, "MOVE_UPROAR" ],
+            [ 3, "MOVE_TACKLE" ],
+            [ 5, "MOVE_ASTONISH" ],
+            [ 7, "MOVE_RAZOR_LEAF" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 21, "MOVE_NATURE_POWER" ],
+            [ 28, "MOVE_MAGICAL_LEAF" ],
+            [ 35, "MOVE_BUBBLE_BEAM" ],
+            [ 41, "MOVE_ZEN_HEADBUTT" ],
+            [ 45, "MOVE_ICE_PUNCH" ],
+            [ 55, "MOVE_ENERGY_BALL" ],
+            [ 60, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",

@@ -38,12 +38,12 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
-            [ 4, "MOVE_GROWTH" ],
-            [ 7, "MOVE_WATER_SPORT" ],
+            [ 1, "MOVE_VINE_WHIP" ],
+            [ 4, "MOVE_POISON_STING" ],
+            [ 7, "MOVE_POISON_POWDER" ],
             [ 10, "MOVE_STUN_SPORE" ],
-            [ 13, "MOVE_MEGA_DRAIN" ],
-            [ 16, "MOVE_WORRY_SEED" ]
+            [ 13, "MOVE_RAZOR_LEAF" ],
+            [ 16, "MOVE_ACID" ]
         ],
         "by_tm": [
             "TM06",

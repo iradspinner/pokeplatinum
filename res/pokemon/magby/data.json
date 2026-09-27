@@ -38,18 +38,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_EMBER" ],
             [ 1, "MOVE_SMOG" ],
-            [ 1, "MOVE_LEER" ],
-            [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 16, "MOVE_FAINT_ATTACK" ],
-            [ 19, "MOVE_FIRE_SPIN" ],
-            [ 25, "MOVE_CONFUSE_RAY" ],
-            [ 28, "MOVE_FIRE_PUNCH" ],
+            [ 7, "MOVE_POUND" ],
+            [ 10, "MOVE_CONFUSE_RAY" ],
+            [ 16, "MOVE_FIRE_PUNCH" ],
+            [ 19, "MOVE_FAINT_ATTACK" ],
+            [ 25, "MOVE_THUNDER_PUNCH" ],
+            [ 28, "MOVE_KARATE_CHOP" ],
             [ 34, "MOVE_LAVA_PLUME" ],
-            [ 37, "MOVE_FLAMETHROWER" ],
-            [ 43, "MOVE_SUNNY_DAY" ],
-            [ 46, "MOVE_FIRE_BLAST" ]
+            [ 37, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_CROSS_CHOP" ],
+            [ 46, "MOVE_OVERHEAT" ]
         ],
         "by_tm": [
             "TM01",

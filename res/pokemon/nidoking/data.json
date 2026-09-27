@@ -38,13 +38,14 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_PECK" ],
-            [ 1, "MOVE_FOCUS_ENERGY" ],
-            [ 1, "MOVE_DOUBLE_KICK" ],
-            [ 1, "MOVE_POISON_STING" ],
-            [ 23, "MOVE_THRASH" ],
-            [ 43, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_MEGAHORN" ]
+            [ 1, "MOVE_POISON_TAIL" ],
+            [ 1, "MOVE_DRILL_PECK" ],
+            [ 1, "MOVE_PUNISHMENT" ],
+            [ 1, "MOVE_DOUBLE_EDGE" ],
+            [ 23, "MOVE_POISON_JAB" ],
+            [ 43, "MOVE_MEGAHORN" ],
+            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 62, "MOVE_ROAR" ]
         ],
         "by_tm": [
             "TM01",

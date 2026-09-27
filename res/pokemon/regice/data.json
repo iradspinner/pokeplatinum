@@ -38,19 +38,18 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_STOMP" ],
-            [ 9, "MOVE_ICY_WIND" ],
-            [ 17, "MOVE_CURSE" ],
-            [ 25, "MOVE_SUPERPOWER" ],
+            [ 1, "MOVE_LOCK_ON" ],
+            [ 1, "MOVE_FOCUS_BLAST" ],
+            [ 9, "MOVE_EARTH_POWER" ],
+            [ 17, "MOVE_TRI_ATTACK" ],
+            [ 25, "MOVE_ICE_BEAM" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
-            [ 41, "MOVE_AMNESIA" ],
-            [ 49, "MOVE_CHARGE_BEAM" ],
-            [ 57, "MOVE_LOCK_ON" ],
-            [ 65, "MOVE_ZAP_CANNON" ],
-            [ 73, "MOVE_ICE_BEAM" ],
-            [ 81, "MOVE_HAMMER_ARM" ],
-            [ 89, "MOVE_HYPER_BEAM" ]
+            [ 41, "MOVE_ZAP_CANNON" ],
+            [ 49, "MOVE_SELFDESTRUCT" ],
+            [ 57, "MOVE_BLIZZARD" ],
+            [ 65, "MOVE_EXPLOSION" ],
+            [ 73, "MOVE_THUNDERBOLT" ],
+            [ 81, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM01",

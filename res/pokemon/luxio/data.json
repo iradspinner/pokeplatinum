@@ -38,18 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_LEER" ],
-            [ 5, "MOVE_LEER" ],
-            [ 9, "MOVE_CHARGE" ],
-            [ 13, "MOVE_SPARK" ],
-            [ 18, "MOVE_BITE" ],
-            [ 23, "MOVE_ROAR" ],
-            [ 28, "MOVE_SWAGGER" ],
-            [ 33, "MOVE_THUNDER_FANG" ],
-            [ 38, "MOVE_CRUNCH" ],
-            [ 43, "MOVE_SCARY_FACE" ],
-            [ 48, "MOVE_DISCHARGE" ]
+            [ 1, "MOVE_SLASH" ],
+            [ 1, "MOVE_FLASH" ],
+            [ 5, "MOVE_ICE_FANG" ],
+            [ 9, "MOVE_THUNDER_WAVE" ],
+            [ 16, "MOVE_SHOCK_WAVE" ],
+            [ 18, "MOVE_ROAR" ],
+            [ 23, "MOVE_METAL_CLAW" ],
+            [ 28, "MOVE_DOUBLE_KICK" ],
+            [ 33, "MOVE_FIRE_FANG" ],
+            [ 38, "MOVE_NIGHT_SLASH" ],
+            [ 43, "MOVE_ROAR" ],
+            [ 49, "MOVE_WILD_CHARGE" ],
+            [ 51, "MOVE_FAKE_OUT" ]
         ],
         "by_tm": [
             "TM05",

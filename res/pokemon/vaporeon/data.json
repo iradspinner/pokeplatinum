@@ -38,20 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_HELPING_HAND" ],
-            [ 8, "MOVE_SAND_ATTACK" ],
-            [ 15, "MOVE_WATER_GUN" ],
-            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_ACID_ARMOR" ],
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 1, "MOVE_TAKE_DOWN" ],
+            [ 8, "MOVE_ROAR" ],
+            [ 15, "MOVE_ICE_FANG" ],
+            [ 21, "MOVE_WATER_PULSE" ],
             [ 29, "MOVE_BITE" ],
-            [ 36, "MOVE_AURORA_BEAM" ],
-            [ 43, "MOVE_AQUA_RING" ],
-            [ 50, "MOVE_LAST_RESORT" ],
-            [ 57, "MOVE_HAZE" ],
-            [ 64, "MOVE_ACID_ARMOR" ],
-            [ 71, "MOVE_HYDRO_PUMP" ],
-            [ 78, "MOVE_MUDDY_WATER" ]
+            [ 36, "MOVE_BODY_SLAM" ],
+            [ 43, "MOVE_ICE_FANG" ],
+            [ 50, "MOVE_AQUA_TAIL" ],
+            [ 57, "MOVE_ROAR" ],
+            [ 64, "MOVE_CAMOUFLAGE" ],
+            [ 71, "MOVE_ICE_BEAM" ],
+            [ 73, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",

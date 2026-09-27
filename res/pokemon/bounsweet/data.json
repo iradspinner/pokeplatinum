@@ -46,7 +46,7 @@
         "by_level": [
             [
                 1,
-                "MOVE_SPLASH"
+                "MOVE_LEAFAGE"
             ],
             [
                 5,
@@ -75,10 +75,6 @@
             [
                 29,
                 "MOVE_FLAIL"
-            ],
-            [
-                33,
-                "MOVE_AROMATIC_MIST"
             ]
         ],
         "by_tm": [],

@@ -38,22 +38,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
             [ 3, "MOVE_THUNDER_WAVE" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
             [ 10, "MOVE_HELPING_HAND" ],
-            [ 15, "MOVE_SPARK" ],
-            [ 17, "MOVE_ENCORE" ],
-            [ 21, "MOVE_CHARM" ],
+            [ 15, "MOVE_THUNDER_PUNCH" ],
+            [ 17, "MOVE_FIRE_PUNCH" ],
+            [ 21, "MOVE_SWIFT" ],
             [ 24, "MOVE_COPYCAT" ],
-            [ 29, "MOVE_SWIFT" ],
-            [ 31, "MOVE_FAKE_TEARS" ],
+            [ 29, "MOVE_WILD_CHARGE" ],
+            [ 31, "MOVE_ICE_PUNCH" ],
             [ 35, "MOVE_CHARGE" ],
-            [ 38, "MOVE_THUNDER" ],
-            [ 42, "MOVE_BATON_PASS" ],
-            [ 44, "MOVE_AGILITY" ],
-            [ 48, "MOVE_TRUMP_CARD" ],
-            [ 51, "MOVE_NASTY_PLOT" ]
+            [ 38, "MOVE_HYPER_VOICE" ],
+            [ 42, "MOVE_DISCHARGE" ],
+            [ 44, "MOVE_GRASS_KNOT" ],
+            [ 48, "MOVE_THUNDERBOLT" ],
+            [ 51, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM06",

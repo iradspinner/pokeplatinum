@@ -34,19 +34,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_PSYWAVE" ],
-            [ 5, "MOVE_SPITE" ],
-            [ 10, "MOVE_ASTONISH" ],
-            [ 14, "MOVE_CONFUSE_RAY" ],
-            [ 19, "MOVE_MEAN_LOOK" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_BITE" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 14, "MOVE_NIGHT_SHADE" ],
+            [ 19, "MOVE_CONFUSE_RAY" ],
             [ 23, "MOVE_PSYBEAM" ],
-            [ 28, "MOVE_PAIN_SPLIT" ],
-            [ 32, "MOVE_PAYBACK" ],
-            [ 37, "MOVE_SHADOW_BALL" ],
-            [ 41, "MOVE_PERISH_SONG" ],
-            [ 46, "MOVE_GRUDGE" ],
-            [ 50, "MOVE_POWER_GEM" ]
+            [ 28, "MOVE_POWER_GEM" ],
+            [ 32, "MOVE_OMINOUS_WIND" ],
+            [ 41, "MOVE_PAIN_SPLIT" ],
+            [ 46, "MOVE_SHADOW_BALL" ],
+            [ 80, "MOVE_SHADOW_SNEAK" ]
         ],
         "by_tm": [
             "TM04",

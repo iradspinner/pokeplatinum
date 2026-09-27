@@ -39,7 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_SEISMIC_TOSS" ],
             [ 5, "MOVE_COPYCAT" ],
             [ 9, "MOVE_REFRESH" ],
             [ 12, "MOVE_SWEET_KISS" ]

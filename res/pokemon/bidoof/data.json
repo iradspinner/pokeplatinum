@@ -38,18 +38,18 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_GROWL" ],
-            [ 9, "MOVE_DEFENSE_CURL" ],
-            [ 13, "MOVE_ROLLOUT" ],
-            [ 17, "MOVE_HEADBUTT" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 5, "MOVE_BITE" ],
+            [ 9, "MOVE_WATER_GUN" ],
+            [ 13, "MOVE_HEADBUTT" ],
+            [ 17, "MOVE_BUBBLE_BEAM" ],
             [ 21, "MOVE_HYPER_FANG" ],
-            [ 25, "MOVE_YAWN" ],
-            [ 29, "MOVE_AMNESIA" ],
-            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_DIVE" ],
+            [ 29, "MOVE_YAWN" ],
+            [ 33, "MOVE_CRUNCH" ],
             [ 37, "MOVE_SUPER_FANG" ],
             [ 41, "MOVE_SUPERPOWER" ],
-            [ 45, "MOVE_CURSE" ]
+            [ 45, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM06",

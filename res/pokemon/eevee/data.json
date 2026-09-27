@@ -38,16 +38,16 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_SECRET_POWER" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_HELPING_HAND" ],
-            [ 8, "MOVE_SAND_ATTACK" ],
-            [ 15, "MOVE_GROWL" ],
-            [ 22, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 8, "MOVE_MUD_SLAP" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 22, "MOVE_DOUBLE_KICK" ],
             [ 29, "MOVE_BITE" ],
-            [ 36, "MOVE_BATON_PASS" ],
-            [ 43, "MOVE_TAKE_DOWN" ],
-            [ 50, "MOVE_LAST_RESORT" ],
+            [ 36, "MOVE_BODY_SLAM" ],
+            [ 43, "MOVE_IRON_TAIL" ],
+            [ 50, "MOVE_DOUBLE_EDGE" ],
             [ 57, "MOVE_TRUMP_CARD" ]
         ],
         "by_tm": [

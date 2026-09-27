@@ -97,10 +97,6 @@
                 "MOVE_THUNDERBOLT"
             ],
             [
-                60,
-                "MOVE_ELECTRIC_TERRAIN"
-            ],
-            [
                 65,
                 "MOVE_POWER_WHIP"
             ],

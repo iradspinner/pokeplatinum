@@ -39,18 +39,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 4, "MOVE_GROWL" ],
+            [ 6, "MOVE_PECK" ],
             [ 8, "MOVE_BUBBLE" ],
-            [ 11, "MOVE_WATER_SPORT" ],
-            [ 15, "MOVE_PECK" ],
-            [ 18, "MOVE_BUBBLE_BEAM" ],
-            [ 22, "MOVE_BIDE" ],
-            [ 25, "MOVE_FURY_ATTACK" ],
-            [ 29, "MOVE_BRINE" ],
-            [ 32, "MOVE_WHIRLPOOL" ],
-            [ 36, "MOVE_MIST" ],
-            [ 39, "MOVE_DRILL_PECK" ],
-            [ 43, "MOVE_HYDRO_PUMP" ]
+            [ 11, "MOVE_DOUBLE_SLAP" ],
+            [ 13, "MOVE_METAL_CLAW" ],
+            [ 16, "MOVE_AURORA_BEAM" ],
+            [ 19, "MOVE_AQUA_CUTTER" ],
+            [ 22, "MOVE_HELPING_HAND" ],
+            [ 25, "MOVE_MIST" ],
+            [ 29, "MOVE_WHIRLPOOL" ],
+            [ 32, "MOVE_ROAR" ],
+            [ 38, "MOVE_HYDRO_PUMP" ],
+            [ 40, "MOVE_WEATHER_BALL" ],
+            [ 43, "MOVE_AQUA_TAIL" ],
+            [ 49, "MOVE_AQUA_JET" ]
         ],
         "by_tm": [
             "TM03",

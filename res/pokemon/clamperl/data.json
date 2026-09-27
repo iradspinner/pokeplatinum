@@ -38,10 +38,11 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CLAMP" ],
-            [ 1, "MOVE_WATER_GUN" ],
-            [ 1, "MOVE_WHIRLPOOL" ],
-            [ 1, "MOVE_IRON_DEFENSE" ]
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_AURORA_BEAM" ],
+            [ 1, "MOVE_SECRET_POWER" ],
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 44, "MOVE_CLAMP" ]
         ],
         "by_tm": [
             "TM03",

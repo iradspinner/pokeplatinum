@@ -38,13 +38,13 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BUBBLE_BEAM" ],
+            [ 1, "MOVE_BOUNCE" ],
             [ 1, "MOVE_HYPNOSIS" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 1, "MOVE_PERISH_SONG" ],
-            [ 27, "MOVE_SWAGGER" ],
-            [ 37, "MOVE_BOUNCE" ],
-            [ 48, "MOVE_HYPER_VOICE" ]
+            [ 1, "MOVE_BUBBLE_BEAM" ],
+            [ 1, "MOVE_HYPER_VOICE" ],
+            [ 27, "MOVE_ICE_BEAM" ],
+            [ 37, "MOVE_EARTH_POWER" ],
+            [ 65, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM01",

@@ -66,22 +66,6 @@
             ],
             [
                 1,
-                "MOVE_NIGHT_SLASH"
-            ],
-            [
-                1,
-                "MOVE_SHADOW_SNEAK"
-            ],
-            [
-                1,
-                "MOVE_QUICK_GUARD"
-            ],
-            [
-                1,
-                "MOVE_SOLAR_BLADE"
-            ],
-            [
-                1,
                 "MOVE_LEER"
             ],
             [
@@ -123,10 +107,6 @@
             [
                 37,
                 "MOVE_SWORDS_DANCE"
-            ],
-            [
-                42,
-                "MOVE_ALLY_SWITCH"
             ],
             [
                 48,

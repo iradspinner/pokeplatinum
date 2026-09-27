@@ -39,11 +39,11 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_CHARM" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_THUNDER_WAVE" ],
-            [ 13, "MOVE_SWEET_KISS" ],
-            [ 18, "MOVE_NASTY_PLOT" ]
+            [ 1, "MOVE_SWEET_KISS" ],
+            [ 5, "MOVE_THUNDER_WAVE" ],
+            [ 55, "MOVE_SURF" ],
+            [ 65, "MOVE_VOLT_TACKLE" ],
+            [ 75, "MOVE_EXTREME_SPEED" ]
         ],
         "by_tm": [
             "TM06",

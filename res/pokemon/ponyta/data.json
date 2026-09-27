@@ -38,17 +38,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_EMBER" ],
-            [ 15, "MOVE_FLAME_WHEEL" ],
-            [ 19, "MOVE_STOMP" ],
-            [ 24, "MOVE_FIRE_SPIN" ],
-            [ 28, "MOVE_TAKE_DOWN" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 37, "MOVE_FIRE_BLAST" ],
-            [ 42, "MOVE_BOUNCE" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 6, "MOVE_HIGH_HORSEPOWER" ],
+            [ 10, "MOVE_FLAME_WHEEL" ],
+            [ 15, "MOVE_DOUBLE_KICK" ],
+            [ 19, "MOVE_TAKE_DOWN" ],
+            [ 24, "MOVE_BOUNCE" ],
+            [ 28, "MOVE_BLAZE_KICK" ],
+            [ 33, "MOVE_DRILL_RUN" ],
+            [ 37, "MOVE_DOUBLE_EDGE" ],
+            [ 42, "MOVE_HI_JUMP_KICK" ],
             [ 46, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [

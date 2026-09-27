@@ -38,12 +38,11 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BIDE" ],
-            [ 3, "MOVE_HARDEN" ],
-            [ 7, "MOVE_GROWTH" ],
-            [ 13, "MOVE_NATURE_POWER" ],
-            [ 21, "MOVE_SYNTHESIS" ],
-            [ 31, "MOVE_SUNNY_DAY" ],
+            [ 1, "MOVE_MEGA_DRAIN" ],
+            [ 3, "MOVE_LEECH_LIFE" ],
+            [ 13, "MOVE_SELFDESTRUCT" ],
+            [ 21, "MOVE_GIGA_DRAIN" ],
+            [ 31, "MOVE_SEED_BOMB" ],
             [ 43, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [

@@ -38,20 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_MIRROR_COAT" ],
             [ 1, "MOVE_WRAP" ],
-            [ 5, "MOVE_WATER_SPORT" ],
-            [ 9, "MOVE_REFRESH" ],
+            [ 5, "MOVE_AURORA_BEAM" ],
+            [ 9, "MOVE_WHIRLPOOL" ],
             [ 13, "MOVE_WATER_PULSE" ],
             [ 17, "MOVE_TWISTER" ],
-            [ 21, "MOVE_RECOVER" ],
-            [ 25, "MOVE_CAPTIVATE" ],
-            [ 29, "MOVE_AQUA_TAIL" ],
-            [ 33, "MOVE_RAIN_DANCE" ],
+            [ 21, "MOVE_AQUA_TAIL" ],
+            [ 25, "MOVE_HYPER_VOICE" ],
+            [ 29, "MOVE_REFRESH" ],
+            [ 33, "MOVE_DRAGON_BREATH" ],
             [ 37, "MOVE_HYDRO_PUMP" ],
-            [ 41, "MOVE_ATTRACT" ],
-            [ 45, "MOVE_SAFEGUARD" ],
-            [ 49, "MOVE_AQUA_RING" ]
+            [ 55, "MOVE_TWISTER" ],
+            [ 76, "MOVE_ICE_BEAM" ],
+            [ 81, "MOVE_DRAGON_PULSE" ]
         ],
         "by_tm": [
             "TM03",

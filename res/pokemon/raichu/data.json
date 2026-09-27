@@ -38,10 +38,12 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_SURF" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_THUNDERBOLT" ]
+            [ 1, "MOVE_FOCUS_BLAST" ],
+            [ 1, "MOVE_DISCHARGE" ],
+            [ 78, "MOVE_MAGNET_RISE" ],
+            [ 85, "MOVE_FOCUS_BLAST" ]
         ],
         "by_tm": [
             "TM01",

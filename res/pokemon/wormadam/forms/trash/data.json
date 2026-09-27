@@ -38,7 +38,7 @@
             [ 10, "MOVE_PROTECT" ],
             [ 15, "MOVE_BUG_BITE" ],
             [ 20, "MOVE_HIDDEN_POWER" ],
-            [ 23, "MOVE_CONFUSION" ],
+            [ 23, "MOVE_PROTECT" ],
             [ 26, "MOVE_MIRROR_SHOT" ],
             [ 29, "MOVE_METAL_SOUND" ],
             [ 32, "MOVE_PSYBEAM" ],

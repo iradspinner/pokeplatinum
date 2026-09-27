@@ -38,17 +38,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WATER_GUN" ],
-            [ 6, "MOVE_LOCK_ON" ],
-            [ 10, "MOVE_PSYBEAM" ],
+            [ 1, "MOVE_PSYBEAM" ],
+            [ 3, "MOVE_SWIFT" ],
+            [ 5, "MOVE_WATER_GUN" ],
             [ 14, "MOVE_AURORA_BEAM" ],
-            [ 19, "MOVE_BUBBLE_BEAM" ],
-            [ 23, "MOVE_FOCUS_ENERGY" ],
-            [ 27, "MOVE_BULLET_SEED" ],
-            [ 32, "MOVE_WATER_PULSE" ],
-            [ 36, "MOVE_SIGNAL_BEAM" ],
-            [ 40, "MOVE_ICE_BEAM" ],
-            [ 45, "MOVE_HYPER_BEAM" ]
+            [ 19, "MOVE_SIGNAL_BEAM" ],
+            [ 23, "MOVE_BUBBLE_BEAM" ],
+            [ 27, "MOVE_WATER_PULSE" ],
+            [ 32, "MOVE_LOCK_ON" ],
+            [ 36, "MOVE_FIRE_BLAST" ],
+            [ 40, "MOVE_HYPER_BEAM" ],
+            [ 50, "MOVE_HYDRO_PUMP" ],
+            [ 93, "MOVE_HYDRO_CANNON" ]
         ],
         "by_tm": [
             "TM03",

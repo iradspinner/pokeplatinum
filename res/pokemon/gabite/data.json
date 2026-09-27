@@ -38,17 +38,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SAND_ATTACK" ],
-            [ 3, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_DRAGON_PULSE" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 3, "MOVE_HYPER_VOICE" ],
             [ 7, "MOVE_DRAGON_RAGE" ],
-            [ 13, "MOVE_SANDSTORM" ],
-            [ 15, "MOVE_TAKE_DOWN" ],
-            [ 19, "MOVE_SAND_TOMB" ],
-            [ 28, "MOVE_SLASH" ],
-            [ 33, "MOVE_DRAGON_CLAW" ],
-            [ 40, "MOVE_DIG" ],
-            [ 49, "MOVE_DRAGON_RUSH" ]
+            [ 13, "MOVE_CRUNCH" ],
+            [ 15, "MOVE_SAND_TOMB" ],
+            [ 19, "MOVE_DRAGON_CLAW" ],
+            [ 28, "MOVE_ROAR" ],
+            [ 33, "MOVE_FIRE_FANG" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
+            [ 88, "MOVE_DRAGON_RUSH" ]
         ],
         "by_tm": [
             "TM02",

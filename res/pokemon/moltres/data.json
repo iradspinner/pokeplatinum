@@ -38,20 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WING_ATTACK" ],
-            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_PLUCK" ],
+            [ 1, "MOVE_HEAT_WAVE" ],
             [ 8, "MOVE_FIRE_SPIN" ],
-            [ 15, "MOVE_AGILITY" ],
-            [ 22, "MOVE_ENDURE" ],
+            [ 15, "MOVE_HYPER_BEAM" ],
+            [ 22, "MOVE_SURF" ],
             [ 29, "MOVE_ANCIENT_POWER" ],
-            [ 36, "MOVE_FLAMETHROWER" ],
-            [ 43, "MOVE_SAFEGUARD" ],
-            [ 50, "MOVE_AIR_SLASH" ],
-            [ 57, "MOVE_ROOST" ],
-            [ 64, "MOVE_HEAT_WAVE" ],
-            [ 71, "MOVE_SOLAR_BEAM" ],
-            [ 78, "MOVE_SKY_ATTACK" ],
-            [ 85, "MOVE_SUNNY_DAY" ]
+            [ 36, "MOVE_AIR_SLASH" ],
+            [ 43, "MOVE_ROAR" ],
+            [ 50, "MOVE_SOLAR_BEAM" ],
+            [ 57, "MOVE_OVERHEAT" ],
+            [ 64, "MOVE_WHIRLWIND" ],
+            [ 71, "MOVE_SKY_ATTACK" ],
+            [ 78, "MOVE_SLEEP_TALK" ],
+            [ 85, "MOVE_ROOST" ]
         ],
         "by_tm": [
             "TM05",

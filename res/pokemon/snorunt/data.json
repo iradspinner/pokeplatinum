@@ -39,17 +39,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POWDER_SNOW" ],
-            [ 1, "MOVE_LEER" ],
-            [ 4, "MOVE_DOUBLE_TEAM" ],
-            [ 10, "MOVE_BITE" ],
-            [ 13, "MOVE_ICY_WIND" ],
-            [ 19, "MOVE_HEADBUTT" ],
-            [ 22, "MOVE_PROTECT" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 4, "MOVE_BITE" ],
+            [ 10, "MOVE_HEADBUTT" ],
+            [ 13, "MOVE_AURORA_BEAM" ],
+            [ 19, "MOVE_SECRET_POWER" ],
+            [ 22, "MOVE_NATURE_POWER" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
-            [ 37, "MOVE_ICE_SHARD" ],
-            [ 40, "MOVE_HAIL" ],
-            [ 46, "MOVE_BLIZZARD" ]
+            [ 37, "MOVE_DOUBLE_EDGE" ],
+            [ 40, "MOVE_ICE_BEAM" ],
+            [ 46, "MOVE_SHADOW_BALL" ]
         ],
         "by_tm": [
             "TM03",

@@ -35,18 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SEISMIC_TOSS" ],
-            [ 1, "MOVE_COSMIC_POWER" ],
-            [ 1, "MOVE_NATURAL_GIFT" ],
+            [ 1, "MOVE_HYPER_BEAM" ],
+            [ 1, "MOVE_ROAR_OF_TIME" ],
             [ 1, "MOVE_PUNISHMENT" ],
-            [ 10, "MOVE_GRAVITY" ],
+            [ 10, "MOVE_SEED_FLARE" ],
             [ 20, "MOVE_EARTH_POWER" ],
             [ 30, "MOVE_HYPER_VOICE" ],
-            [ 40, "MOVE_EXTREME_SPEED" ],
-            [ 50, "MOVE_REFRESH" ],
-            [ 60, "MOVE_FUTURE_SIGHT" ],
-            [ 70, "MOVE_RECOVER" ],
-            [ 80, "MOVE_HYPER_BEAM" ],
-            [ 90, "MOVE_PERISH_SONG" ],
+            [ 40, "MOVE_EXPLOSION" ],
+            [ 50, "MOVE_MAGMA_STORM" ],
+            [ 60, "MOVE_RECOVER" ],
+            [ 70, "MOVE_EARTHQUAKE" ],
+            [ 80, "MOVE_EXTREME_SPEED" ],
+            [ 90, "MOVE_SHADOW_FORCE" ],
             [ 100, "MOVE_JUDGMENT" ]
         ],
         "by_tm": [

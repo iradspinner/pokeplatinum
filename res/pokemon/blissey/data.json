@@ -39,19 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_REFRESH" ],
-            [ 12, "MOVE_SOFTBOILED" ],
+            [ 1, "MOVE_SUBMISSION" ],
+            [ 9, "MOVE_TAKE_DOWN" ],
+            [ 12, "MOVE_DOUBLE_EDGE" ],
             [ 16, "MOVE_DOUBLE_SLAP" ],
-            [ 20, "MOVE_MINIMIZE" ],
-            [ 23, "MOVE_SING" ],
+            [ 20, "MOVE_METRONOME" ],
             [ 27, "MOVE_FLING" ],
-            [ 31, "MOVE_DEFENSE_CURL" ],
-            [ 34, "MOVE_LIGHT_SCREEN" ],
-            [ 38, "MOVE_EGG_BOMB" ],
-            [ 42, "MOVE_HEALING_WISH" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ]
+            [ 31, "MOVE_SUBMISSION" ],
+            [ 34, "MOVE_DOUBLE_EDGE" ],
+            [ 42, "MOVE_TAKE_DOWN" ],
+            [ 46, "MOVE_SEED_BOMB" ]
         ],
         "by_tm": [
             "TM01",

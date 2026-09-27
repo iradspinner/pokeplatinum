@@ -38,10 +38,10 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 1, "MOVE_MINIMIZE" ],
-            [ 1, "MOVE_METRONOME" ]
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_METRONOME" ],
+            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 55, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [
             "TM01",

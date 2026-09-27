@@ -117,10 +117,6 @@
                 "MOVE_FUTURE_SIGHT"
             ],
             [
-                40,
-                "MOVE_TELEKINESIS"
-            ],
-            [
                 48,
                 "MOVE_MAGIC_ROOM"
             ]

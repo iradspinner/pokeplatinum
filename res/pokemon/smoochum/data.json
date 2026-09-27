@@ -39,19 +39,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 5, "MOVE_LICK" ],
+            [ 5, "MOVE_SHADOW_CLAW" ],
             [ 8, "MOVE_SWEET_KISS" ],
             [ 11, "MOVE_POWDER_SNOW" ],
             [ 15, "MOVE_CONFUSION" ],
-            [ 18, "MOVE_SING" ],
-            [ 21, "MOVE_MEAN_LOOK" ],
-            [ 25, "MOVE_FAKE_TEARS" ],
-            [ 28, "MOVE_LUCKY_CHANT" ],
-            [ 31, "MOVE_AVALANCHE" ],
-            [ 35, "MOVE_PSYCHIC" ],
-            [ 38, "MOVE_COPYCAT" ],
-            [ 41, "MOVE_PERISH_SONG" ],
-            [ 45, "MOVE_BLIZZARD" ]
+            [ 18, "MOVE_SWEET_KISS" ],
+            [ 21, "MOVE_SEISMIC_TOSS" ],
+            [ 25, "MOVE_PSYBEAM" ],
+            [ 28, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_COPYCAT" ],
+            [ 35, "MOVE_FOCUS_BLAST" ],
+            [ 38, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_SING" ],
+            [ 45, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

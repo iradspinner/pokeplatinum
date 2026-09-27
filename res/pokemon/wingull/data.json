@@ -38,18 +38,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_WATER_GUN" ],
             [ 6, "MOVE_SUPERSONIC" ],
-            [ 11, "MOVE_WING_ATTACK" ],
-            [ 16, "MOVE_MIST" ],
+            [ 11, "MOVE_BITE" ],
+            [ 16, "MOVE_WING_ATTACK" ],
             [ 19, "MOVE_WATER_PULSE" ],
-            [ 24, "MOVE_QUICK_ATTACK" ],
-            [ 29, "MOVE_ROOST" ],
-            [ 34, "MOVE_PURSUIT" ],
-            [ 37, "MOVE_AGILITY" ],
-            [ 42, "MOVE_AERIAL_ACE" ],
-            [ 47, "MOVE_AIR_SLASH" ]
+            [ 24, "MOVE_PURSUIT" ],
+            [ 29, "MOVE_PLUCK" ],
+            [ 34, "MOVE_ICE_BEAM" ],
+            [ 37, "MOVE_BRINE" ],
+            [ 42, "MOVE_AIR_SLASH" ],
+            [ 47, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",

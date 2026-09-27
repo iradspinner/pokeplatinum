@@ -73,10 +73,6 @@
                 "MOVE_FLATTER"
             ],
             [
-                30,
-                "MOVE_AROMATIC_MIST"
-            ],
-            [
                 35,
                 "MOVE_SWEET_SCENT"
             ],
@@ -107,10 +103,6 @@
             [
                 70,
                 "MOVE_SKILL_SWAP"
-            ],
-            [
-                75,
-                "MOVE_PSYCHIC_TERRAIN"
             ]
         ],
         "by_tm": [],

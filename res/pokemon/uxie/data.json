@@ -34,18 +34,16 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_REST" ],
-            [ 1, "MOVE_CONFUSION" ],
-            [ 6, "MOVE_IMPRISON" ],
-            [ 16, "MOVE_ENDURE" ],
-            [ 21, "MOVE_SWIFT" ],
+            [ 1, "MOVE_RECOVER" ],
+            [ 1, "MOVE_AURA_SPHERE" ],
+            [ 6, "MOVE_SIGNAL_BEAM" ],
+            [ 16, "MOVE_EXTRASENSORY" ],
             [ 31, "MOVE_YAWN" ],
             [ 36, "MOVE_FUTURE_SIGHT" ],
-            [ 46, "MOVE_AMNESIA" ],
-            [ 51, "MOVE_EXTRASENSORY" ],
-            [ 61, "MOVE_FLAIL" ],
+            [ 46, "MOVE_THUNDER_WAVE" ],
+            [ 51, "MOVE_PSYCHIC" ],
             [ 66, "MOVE_NATURAL_GIFT" ],
-            [ 76, "MOVE_MEMENTO" ]
+            [ 76, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM03",

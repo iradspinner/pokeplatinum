@@ -38,22 +38,19 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_CONFUSION" ],
-            [ 1, "MOVE_DOUBLE_TEAM" ],
-            [ 1, "MOVE_TELEPORT" ],
+            [ 1, "MOVE_PETAL_DANCE" ],
+            [ 1, "MOVE_BLAZE_KICK" ],
+            [ 1, "MOVE_TRIPLE_AXEL" ],
             [ 6, "MOVE_CONFUSION" ],
-            [ 10, "MOVE_DOUBLE_TEAM" ],
-            [ 12, "MOVE_TELEPORT" ],
-            [ 17, "MOVE_LUCKY_CHANT" ],
-            [ 22, "MOVE_MAGICAL_LEAF" ],
-            [ 25, "MOVE_CALM_MIND" ],
-            [ 31, "MOVE_PSYCHIC" ],
-            [ 36, "MOVE_IMPRISON" ],
-            [ 39, "MOVE_FUTURE_SIGHT" ],
-            [ 45, "MOVE_CHARM" ],
+            [ 19, "MOVE_FUTURE_SIGHT" ],
+            [ 20, "MOVE_MAGICAL_LEAF" ],
+            [ 25, "MOVE_LUCKY_CHANT" ],
+            [ 28, "MOVE_ZEN_HEADBUTT" ],
+            [ 31, "MOVE_SEISMIC_TOSS" ],
+            [ 36, "MOVE_THUNDERBOLT" ],
+            [ 45, "MOVE_PSYCHIC" ],
             [ 50, "MOVE_HYPNOSIS" ],
-            [ 53, "MOVE_DREAM_EATER" ]
+            [ 55, "MOVE_MYSTICAL_FIRE" ]
         ],
         "by_tm": [
             "TM04",

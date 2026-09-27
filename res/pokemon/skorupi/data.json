@@ -40,16 +40,16 @@
         "by_level": [
             [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_POISON_STING" ],
-            [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_KNOCK_OFF" ],
-            [ 12, "MOVE_PIN_MISSILE" ],
-            [ 17, "MOVE_ACUPRESSURE" ],
-            [ 23, "MOVE_SCARY_FACE" ],
-            [ 28, "MOVE_TOXIC_SPIKES" ],
-            [ 34, "MOVE_BUG_BITE" ],
-            [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_CRUNCH" ],
-            [ 50, "MOVE_CROSS_POISON" ]
+            [ 1, "MOVE_LEECH_LIFE" ],
+            [ 6, "MOVE_PIN_MISSILE" ],
+            [ 12, "MOVE_POISON_JAB" ],
+            [ 17, "MOVE_SLASH" ],
+            [ 23, "MOVE_TWINEEDLE" ],
+            [ 28, "MOVE_CROSS_POISON" ],
+            [ 34, "MOVE_NIGHT_SLASH" ],
+            [ 39, "MOVE_X_SCISSOR" ],
+            [ 45, "MOVE_AQUA_TAIL" ],
+            [ 65, "MOVE_POISON_TAIL" ]
         ],
         "by_tm": [
             "TM06",

@@ -38,11 +38,11 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FAINT_ATTACK" ],
+            [ 1, "MOVE_CRUNCH" ],
             [ 1, "MOVE_WHIRLWIND" ],
-            [ 1, "MOVE_NASTY_PLOT" ],
-            [ 1, "MOVE_RAZOR_LEAF" ],
-            [ 49, "MOVE_LEAF_STORM" ]
+            [ 1, "MOVE_EXPLOSION" ],
+            [ 1, "MOVE_HEAT_WAVE" ],
+            [ 55, "MOVE_LEAF_BLADE" ]
         ],
         "by_tm": [
             "TM06",

@@ -39,18 +39,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ANCIENT_POWER" ],
-            [ 9, "MOVE_LEER" ],
+            [ 5, "MOVE_POISON_JAB" ],
+            [ 9, "MOVE_MAGMA_STORM" ],
             [ 17, "MOVE_FIRE_FANG" ],
-            [ 25, "MOVE_METAL_SOUND" ],
+            [ 25, "MOVE_FLASH_CANNON" ],
             [ 33, "MOVE_CRUNCH" ],
-            [ 41, "MOVE_SCARY_FACE" ],
+            [ 41, "MOVE_EARTH_POWER" ],
             [ 49, "MOVE_LAVA_PLUME" ],
             [ 57, "MOVE_FIRE_SPIN" ],
             [ 65, "MOVE_IRON_HEAD" ],
-            [ 73, "MOVE_EARTH_POWER" ],
+            [ 73, "MOVE_EXPLOSION" ],
             [ 81, "MOVE_HEAT_WAVE" ],
             [ 88, "MOVE_STONE_EDGE" ],
-            [ 96, "MOVE_MAGMA_STORM" ]
+            [ 96, "MOVE_DRAGON_PULSE" ]
         ],
         "by_tm": [
             "TM05",

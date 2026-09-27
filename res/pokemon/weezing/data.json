@@ -38,21 +38,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_POISON_GAS" ],
-            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HEAT_WAVE" ],
+            [ 1, "MOVE_GYRO_BALL" ],
             [ 1, "MOVE_SMOG" ],
-            [ 1, "MOVE_SMOKE_SCREEN" ],
-            [ 6, "MOVE_SMOG" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 6, "MOVE_TOXIC" ],
             [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 15, "MOVE_ASSURANCE" ],
+            [ 15, "MOVE_SLUDGE" ],
             [ 19, "MOVE_SELFDESTRUCT" ],
-            [ 24, "MOVE_SLUDGE" ],
-            [ 28, "MOVE_HAZE" ],
+            [ 24, "MOVE_ASSURANCE" ],
+            [ 28, "MOVE_SLUDGE_BOMB" ],
             [ 33, "MOVE_DOUBLE_HIT" ],
             [ 40, "MOVE_EXPLOSION" ],
-            [ 48, "MOVE_SLUDGE_BOMB" ],
-            [ 55, "MOVE_DESTINY_BOND" ],
-            [ 63, "MOVE_MEMENTO" ]
+            [ 48, "MOVE_POISON_GAS" ],
+            [ 55, "MOVE_POISON_FANG" ],
+            [ 63, "MOVE_SHADOW_BALL" ]
         ],
         "by_tm": [
             "TM06",

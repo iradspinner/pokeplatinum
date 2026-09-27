@@ -39,16 +39,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HEADBUTT" ],
-            [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_FOCUS_ENERGY" ],
-            [ 10, "MOVE_PURSUIT" ],
-            [ 15, "MOVE_TAKE_DOWN" ],
-            [ 19, "MOVE_SCARY_FACE" ],
-            [ 24, "MOVE_ASSURANCE" ],
-            [ 28, "MOVE_ANCIENT_POWER" ],
-            [ 33, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_SCREECH" ],
-            [ 43, "MOVE_HEAD_SMASH" ]
+            [ 1, "MOVE_PURSUIT" ],
+            [ 6, "MOVE_TAKE_DOWN" ],
+            [ 10, "MOVE_ROCK_THROW" ],
+            [ 15, "MOVE_ROAR" ],
+            [ 19, "MOVE_HEADBUTT" ],
+            [ 24, "MOVE_ROCK_SLIDE" ],
+            [ 28, "MOVE_ASSURANCE" ],
+            [ 33, "MOVE_DIG" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 43, "MOVE_ROAR" ],
+            [ 70, "MOVE_IRON_HEAD" ],
+            [ 99, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [
             "TM05",

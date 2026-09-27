@@ -38,20 +38,20 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_ROLLING_KICK" ],
             [ 1, "MOVE_FORESIGHT" ],
-            [ 6, "MOVE_ENDURE" ],
-            [ 13, "MOVE_FRUSTRATION" ],
-            [ 16, "MOVE_QUICK_ATTACK" ],
-            [ 23, "MOVE_JUMP_KICK" ],
-            [ 26, "MOVE_BATON_PASS" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 36, "MOVE_DIZZY_PUNCH" ],
-            [ 43, "MOVE_CHARM" ],
-            [ 46, "MOVE_BOUNCE" ],
-            [ 53, "MOVE_HEALING_WISH" ]
+            [ 6, "MOVE_BITE" ],
+            [ 13, "MOVE_SWIFT" ],
+            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 23, "MOVE_DOUBLE_KICK" ],
+            [ 36, "MOVE_CRUNCH" ],
+            [ 43, "MOVE_BLAZE_KICK" ],
+            [ 46, "MOVE_DIZZY_PUNCH" ],
+            [ 53, "MOVE_BOUNCE" ],
+            [ 56, "MOVE_HI_JUMP_KICK" ],
+            [ 65, "MOVE_MEGA_KICK" ]
         ],
         "by_tm": [
             "TM01",

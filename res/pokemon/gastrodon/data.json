@@ -41,19 +41,19 @@
     ],
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MUD_SLAP" ],
-            [ 1, "MOVE_MUD_SPORT" ],
-            [ 1, "MOVE_HARDEN" ],
-            [ 1, "MOVE_WATER_PULSE" ],
-            [ 2, "MOVE_MUD_SPORT" ],
-            [ 4, "MOVE_HARDEN" ],
+            [ 1, "MOVE_EARTH_POWER" ],
+            [ 1, "MOVE_DIVE" ],
+            [ 1, "MOVE_SECRET_POWER" ],
+            [ 1, "MOVE_BRINE" ],
+            [ 2, "MOVE_SLUDGE_BOMB" ],
+            [ 4, "MOVE_MUD_SLAP" ],
             [ 7, "MOVE_WATER_PULSE" ],
             [ 11, "MOVE_MUD_BOMB" ],
             [ 16, "MOVE_HIDDEN_POWER" ],
-            [ 22, "MOVE_RAIN_DANCE" ],
+            [ 22, "MOVE_ROCK_SLIDE" ],
             [ 29, "MOVE_BODY_SLAM" ],
-            [ 41, "MOVE_MUDDY_WATER" ],
-            [ 54, "MOVE_RECOVER" ]
+            [ 47, "MOVE_MUDDY_WATER" ],
+            [ 54, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM03",

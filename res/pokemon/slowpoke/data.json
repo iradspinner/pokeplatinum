@@ -38,21 +38,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CURSE" ],
-            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_HEADBUTT" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_GROWL" ],
-            [ 11, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 11, "MOVE_CONFUSION" ],
+            [ 15, "MOVE_WATER_PULSE" ],
             [ 20, "MOVE_DISABLE" ],
-            [ 25, "MOVE_HEADBUTT" ],
-            [ 29, "MOVE_WATER_PULSE" ],
-            [ 34, "MOVE_ZEN_HEADBUTT" ],
-            [ 39, "MOVE_SLACK_OFF" ],
-            [ 43, "MOVE_AMNESIA" ],
+            [ 25, "MOVE_BODY_SLAM" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
+            [ 34, "MOVE_DIVE" ],
+            [ 39, "MOVE_YAWN" ],
             [ 48, "MOVE_PSYCHIC" ],
-            [ 53, "MOVE_RAIN_DANCE" ],
-            [ 57, "MOVE_PSYCH_UP" ]
+            [ 53, "MOVE_HYDRO_PUMP" ],
+            [ 57, "MOVE_SLACK_OFF" ],
+            [ 60, "MOVE_POISON_JAB" ]
         ],
         "by_tm": [
             "TM03",

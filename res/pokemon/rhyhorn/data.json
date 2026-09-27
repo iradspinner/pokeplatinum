@@ -38,17 +38,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HORN_ATTACK" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_STOMP" ],
-            [ 13, "MOVE_FURY_ATTACK" ],
-            [ 21, "MOVE_SCARY_FACE" ],
-            [ 25, "MOVE_ROCK_BLAST" ],
-            [ 33, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_HORN_DRILL" ],
-            [ 45, "MOVE_STONE_EDGE" ],
-            [ 49, "MOVE_EARTHQUAKE" ],
-            [ 57, "MOVE_MEGAHORN" ]
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 9, "MOVE_DIG" ],
+            [ 13, "MOVE_BITE" ],
+            [ 21, "MOVE_PECK" ],
+            [ 25, "MOVE_HIGH_HORSEPOWER" ],
+            [ 33, "MOVE_ROCK_SLIDE" ],
+            [ 37, "MOVE_DRILL_RUN" ],
+            [ 49, "MOVE_CRUNCH" ],
+            [ 57, "MOVE_MEGAHORN" ],
+            [ 65, "MOVE_EARTHQUAKE" ],
+            [ 72, "MOVE_STONE_EDGE" ]
         ],
         "by_tm": [
             "TM05",
