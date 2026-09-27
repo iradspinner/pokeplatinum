@@ -10,7 +10,7 @@
     "type": "TYPE_NORMAL",
     "power": 0,
     "accuracy": 0,
-    "pp": 10,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_STUFF_CHEEKS",
         "chance": 100

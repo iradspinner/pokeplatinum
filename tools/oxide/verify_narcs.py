@@ -459,6 +459,10 @@ MODERN_PP_NATIVES = {
 # Barrier and Tailwind cut to 1 PP like the base ROM's other setup moves
 # (Ian, 2026-09-26, answering the native-moves report).
 SETUP_PP_NATIVES = {112, 366}
+# Every other native setup move brought into the same 1 to 3 PP band (Ian,
+# 2026-09-27, the Kaizo comparison's answer 2): Double Team, Harden, Focus
+# Energy, Stockpile, Cosmic Power, Bulk Up, Acupressure and Defend Order.
+KAIZO_SETUP_PP_NATIVES = {104, 106, 116, 254, 322, 339, 367, 455}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -504,6 +508,11 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": SETUP_PP_NATIVES,
             "why": "Barrier and Tailwind cut to 1 PP as setup moves (Ian, 2026-09-26)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": KAIZO_SETUP_PP_NATIVES,
+            "why": "the other native setup moves cut to 1 to 3 PP (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power

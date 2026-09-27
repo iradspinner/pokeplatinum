@@ -11,7 +11,7 @@
     "type": "TYPE_NORMAL",
     "power": 0,
     "accuracy": 0,
-    "pp": 15,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_AUTOTOMIZE",
         "chance": 0

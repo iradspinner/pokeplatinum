@@ -10,7 +10,7 @@
     "type": "TYPE_GRASS",
     "power": 0,
     "accuracy": 0,
-    "pp": 10,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_DEF_UP_3",
         "chance": 0
