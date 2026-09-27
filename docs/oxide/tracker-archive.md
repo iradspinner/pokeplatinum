@@ -275,6 +275,13 @@ Element 4's Wonder Room and the three effect gaps, and element 6's Phase 4 catch
   - [x] **Shore Up, Meteor Beam and Electro Shot** (2026-09-27, `cloud/element4-effect-gaps`, its last commit the report; test kit sets 51 to 53). Shore Up healed as Synthesis does and now heals half, or two thirds in a sandstorm, with no other weather changing it (hg-engine's quarter in rain, sun or hail is not followed). Meteor Beam and Electro Shot were stubs that hit at once; each now charges a turn with a Sp. Atk raise, a Power Herb skips the wait, and Electro Shot attacks at once in rain. Both join `Move_IsMultiTurn` and `MoveIsOnDamagingTurn`.
   - [x] Teach it everything Phase 4 changed done as 23 Oxide fixes on `cloud/element6-catch-up`, merged 2026-09-27; the README's "Phase 4 catch-up" section has the table, what was checked and found already right (Trick Room, 1.5x critical hits, the stat and type choosers), and the held items, which wait for element 7
 
+Element 4's partly working moves, finished on 2026-09-27 on `cloud/element4-partial-moves` (its last commit is the report), with the `RANGE_ALL` part of the 2026-09-22 QA item, which Teatime's commit settled (the rest of that item is still open):
+
+  - [x] **Learnable moves whose effect is still missing** (2026-09-27, not fixed; the report on `cloud/element4-effect-gaps` has the detail). The audit lists only terrain's two, ruled out; a scan for new moves that borrow a Platinum effect while hg-engine adds the rest in C finds Mind Blown (no HP cost), Magic Room (does nothing), Scale Shot (no stat changes), Spiky Shield and Baneful Bunker (no contact punishment) and Topsy-Turvy (does nothing), plus Ally Switch, Aromatic Mist and Flame Burst's splash, which matter only in doubles
+  - Done on that branch: all of these but Topsy-Turvy, Ally Switch and Aromatic Mist, which leave every learnset by Ian's first cut of the move pool, together with the rest of the survey's partly working moves still learnable and the six Ian kept (Magic Room, Teatime, Octolock, Sky Drop, Salt Cure, Steel Roller), one commit each.
+  - [ ] **Left open by the 2026-09-22 QA** (`docs/oxide/qa-review-2026-09-22.md` has the detail). `RANGE_ALL` has no branch in `BattleSystem_Defender`, so Rototiller, Flower Shield and Teatime fall through until their effects are written. The `.shared` scripts under `res/moves/` are dead but still assembled; remove them with the moves build file once two builds agree. The TV segment's random move can still name a placeholder record, which is cosmetic
+
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
@@ -348,6 +355,10 @@ The tracker's "The Battle Zone before the Elite Four" entry as it stood on 2026-
 - [ ] Check the Poketch move tester agrees with the battle engine on Fairy, and that the Pokedex info page on a Fairy Pokemon shows the NORMAL plate rather than garbage (the known gap, not a crash)
 
 ## Backlog / follow-ups
+
+Superseded on 2026-09-27 by the tracker's "The clowns give way to grass" (Phase 5) and moved out the same day:
+
+- **Superseded 2026-09-27 by "The clowns give way to grass" (Phase 5).** Unify the clown-gift events (Ian, 2026-09-20): one common script parameterised by the map, which **names the possible Pokemon** rather than rolling blind (species per map in `docs/oxide/pokemon-gifts.md`), after the faithful carry-over and as its own commit. Orphaned pick-event names still to remove: canalave_library_2f 7, pastoria_city_north_house 6, floaroma_town_middle_house 4, eterna_city_condominiums_1f 3, floaroma_meadow_house 3, jubilife_city_south_house_1f 3, solaceon_town_northeast_house 3
 
 The two entries the tracker shortened, in full:
 

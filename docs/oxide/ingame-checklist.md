@@ -73,7 +73,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Meteor Beam charging for a turn with a Sp. Atk raise, then hitting, or
   hitting at once holding the Power Herb the set gives. Set 53: Electro Shot
   the same way out of rain, and raising Sp. Atk and hitting in one turn after
-  Rain Dance. A stub
+  Rain Dance. Sets 54 to 67, the partly working moves (2026-09-27), set 54 on
+  the same page and the rest on the third: Mind Blown costing half Mew's HP
+  even into Protect (54) and stopped by Damp at no cost (55), Nature's
+  Madness usable under Taunt (56), Scale Shot's Defense drop and Speed rise
+  (57), Spiky Shield hurting and Baneful Bunker poisoning a Tackle but not a
+  Swift (58, 59), Salt Cure's damage each turn, doubled after Soak (60),
+  Octolock's drops each turn (61), Magic Room stopping Leftovers for five
+  turns (62), Teatime eating a Liechi Berry at full HP (63), Core Enforcer
+  against a faster Volt Absorb Jolteon (64), Beak Blast burning a Tackle
+  (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
+  affecting a Skarmory (67). A stub
   effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
@@ -160,6 +170,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] Double battles, once a trainer uses these moves (none does yet;
+  `cloud/element4-partial-moves`): Flame Burst hits its target's partner for
+  a sixteenth of its HP with "The bursting flame hit ...!"; Teatime's target
+  screen shows every battler, as Haze's does, and it feeds every Pokemon on
+  the field its Berry; Core Enforcer leaves the ability of a foe that has not
+  moved yet alone.
 - [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
   works everywhere but a gauntlet: the Great Marsh, the Underground, the
   Distortion World, and the Battle Frontier's lobbies. Each should either open
