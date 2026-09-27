@@ -47,7 +47,7 @@ from ..encounters import locations
 from . import data
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
-          "HQ", "Galactic", "Volkner", "League", "Post"]
+          "HQ", "Galactic", "Volkner", "Barry", "League", "Post"]
 
 # Maps whose location name or position would place them wrong. Checked
 # against the story fights fought on them.
@@ -55,7 +55,7 @@ MAP_SPLITS = {
     "ETERNA_CITY_GALACTIC_BUILDING": "Fantina",   # Jupiter 1, after Gardenia
     "GALACTIC_HQ": "HQ",
     "VEILSTONE_CITY_GALACTIC_WAREHOUSE": "HQ",
-    "POKEMON_LEAGUE": "League",
+    "POKEMON_LEAGUE": "Barry",            # the League's front; its rooms are story fights
 }
 
 # Where the player first arrives, for location names with no wild table of
@@ -81,7 +81,7 @@ LOCATION_SPLITS = {
     # Battleground's rematches and the Villa stay after the League.
     "Fight Area": "Galactic", "Survival Area": "Galactic", "Resort Area": "Galactic",
     "Sunyshore City": "Volkner", "Sunyshore Market": "Volkner", "Vista Lighthouse": "Volkner",
-    "Pokémon League": "League",
+    "Pokémon League": "Barry",
     "Villa": "Post",
     "Battleground": "Post", "Battle Frontier": "Post", "Battle Tower": "Post",
     "Battle Park": "Post", "Battle Factory": "Post", "Battle Hall": "Post",
@@ -385,13 +385,13 @@ def trainer_weather(tr_id):
 # with none, 2 with one, 3 with three, 4 with five, 5 with seven, 6 with
 # eight. The split a tier opens in is the first split with that many badges;
 # seven badges come with Candice's, so tier 5 opens in HQ.
-MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "HQ", 6: "League"}
+MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "HQ", 6: "Barry"}
 # Each specialty stock, by the start of its table name, to its city's split.
 MART_TABLE_SPLIT = {
     "Jubilife": "Roark", "Oreburgh": "Roark", "Floaroma": "Gardenia", "Eterna": "Gardenia",
     "Hearthome": "Fantina", "Solaceon": "Maylene", "Veilstone": "Maylene", "Pastoria": "Wake",
     "Celestic": "Byron", "Canalave": "Byron", "Snowpoint": "Candice", "Sunyshore": "Volkner",
-    "PokemonLeague": "League",
+    "PokemonLeague": "Barry",
 }
 _COMMON = re.compile(r"\{ (ITEM_\w+), (0x[0-9a-fA-F]+|\d+) \}")
 _TABLE = re.compile(r"const u16 (\w+)\[\] = \{(.*?)\};", re.S)
