@@ -478,6 +478,11 @@ _KAIZO_SETUP_PP = "every setup move goes to 1 to 3 PP (Ian, 2026-09-27)"
 for _move in ("double_team", "harden", "focus_energy", "stockpile",
               "cosmic_power", "bulk_up", "acupressure", "defend_order"):
     MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_SETUP_PP
+_KAIZO_DEBUFF_PP = ("the stat-lowering status moves take Kaizo's low PP "
+                    "(Ian, 2026-09-27)")
+for _move in ("screech", "charm", "sweet_scent", "feather_dance", "fake_tears",
+              "metal_sound", "tickle", "captivate"):
+    MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_DEBUFF_PP
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")

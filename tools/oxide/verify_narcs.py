@@ -463,6 +463,10 @@ SETUP_PP_NATIVES = {112, 366}
 # 2026-09-27, the Kaizo comparison's answer 2): Double Team, Harden, Focus
 # Energy, Stockpile, Cosmic Power, Bulk Up, Acupressure and Defend Order.
 KAIZO_SETUP_PP_NATIVES = {104, 106, 116, 254, 322, 339, 367, 455}
+# The stat-lowering status moves at Kaizo's low PP (Ian, 2026-09-27, answer 3):
+# Screech, Charm, Sweet Scent, Feather Dance, Fake Tears, Metal Sound, Tickle
+# and Captivate.
+KAIZO_DEBUFF_PP_NATIVES = {103, 204, 230, 297, 313, 319, 321, 445}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -513,6 +517,11 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": KAIZO_SETUP_PP_NATIVES,
             "why": "the other native setup moves cut to 1 to 3 PP (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": KAIZO_DEBUFF_PP_NATIVES,
+            "why": "the stat-lowering status moves cut to 2 to 6 PP (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power
