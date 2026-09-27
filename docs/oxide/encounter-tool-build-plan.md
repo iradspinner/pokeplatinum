@@ -704,7 +704,13 @@ that stay. None blocks anything.
    attack items and Choice Scarf; no ability, weather or critical hit). It
    gives safe switch-ins, threat and answers, with safe switch-ins
    corrected by a line fitted to the full scorer and put on the fight
-   scale. The server warms it at start, in the background. The full score
+   scale. The line has r² 0.936 over 456 stored fights, and over the 28
+   story fights the estimate is 0.26 points off on average and 1.0 at
+   worst (Maylene, read too easy); the estimate returns these under
+   `"fit"`, and the page shows the number with that margin. `teamscore`
+   is at 98ff5bebe on `balance-incremental-b6`, landing with the balance
+   track. The server warms the estimate at start, in the background, since
+   the first call takes about 9 s. The full score
    runs pinned to one core in the background and returns the plan's scale
    and band, the readings, per-Pokemon rows and the reference hacks' same
    seat. A saved team stales its fight's scores, which the balance track's
