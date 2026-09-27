@@ -61,7 +61,28 @@ was unused in vanilla and in the base ROM's scripts.
 bit exclusive-or this bit, so the personality itself, and with it gender,
 nature and shininess, never changes. Old saves read the bit as 0, which is no
 swap. The Ability Patch needs no storage of its own: it sets the hidden
-ability bit above. Bits 2 to 7 of the byte are still free.
+ability bit above. Bits 2 to 7 of the byte are Hyper Training's (next section).
+
+## Boxed Pokemon, Mints and Hyper Training (element 7)
+
+| Field | Was | Is | Why |
+|---|---|---|---|
+| hyperTrained | nothing (block A 0x0D, freed above) | block A 0x0D bits 2 to 7 | one bit per stat, in `enum PokemonStat` order (HP, Attack, Defense, Speed, Sp. Atk, Sp. Def), set by a Bottle Cap |
+| statNature | block B 0x19 `unused1` (HGSS shiny leaves, never used in Platinum) | block B 0x19, u8 | 0, or one more than the nature a Mint gave the stats |
+
+With these, block A's byte 0x0D is fully used and block B has no spare
+byte left. `MON_DATA_UNUSED_113`, the only way to reach `unused1`, has had
+its accessor cases removed; the enum member stays so no other parameter
+shifts.
+
+`Pokemon_CalcStats` reads both through two helpers in `pokemon.c`:
+`Pokemon_GetStatIV` gives 31 for a trained stat and the stored IV
+otherwise, and `Pokemon_GetStatNature` gives the Mint's nature when there
+is one. The stored IVs and the personality are never changed, so Hidden
+Power, breeding, the nature's name, flavours and Synchronize keep the real
+values, as in the later games. The summary's IV viewer shows
+`Pokemon_GetStatIV`, so it agrees with the stat page. Old saves read both
+fields as 0, which is untrained and no Mint.
 
 ## Species records, `pl_personal.narc` (2026-09-20)
 

@@ -1013,6 +1013,34 @@
         "{STRVAR_1 1, 0, 0}’s Ability changed\n",
         "to {STRVAR_1 5, 1, 0}!"
       ]
+    },
+    {
+      "id": "PartyMenu_Text_MonsStatsChangedByMint",
+      "en_US": [
+        "The {STRVAR_1 8, 1, 0} changed how\n",
+        "{STRVAR_1 1, 0, 0}’s stats grow!"
+      ]
+    },
+    {
+      "id": "PartyMenu_Text_HyperTrainWhichStat",
+      "en_US": [
+        "Hyper Train\n",
+        "which stat?"
+      ]
+    },
+    {
+      "id": "PartyMenu_Text_MonsStatWasHyperTrained",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
+        "was maxed out by Hyper Training!"
+      ]
+    },
+    {
+      "id": "PartyMenu_Text_MonWasHyperTrained",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s stats were all\n",
+        "maxed out by Hyper Training!"
+      ]
     }
   ]
 }

@@ -577,18 +577,22 @@ void Pokemon_CalcStats(Pokemon *mon)
     monMaxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     monCurrentHp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
-    monHpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
+    // Platinum Oxide: a Hyper Trained stat counts its IV as 31, and a Mint's
+    // nature, when there is one, decides which stats the nature raises and
+    // lowers.
+    monHpIV = Pokemon_GetStatIV(mon, STAT_HP);
     monHpEV = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
-    monAtkIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL);
+    monAtkIV = Pokemon_GetStatIV(mon, STAT_ATTACK);
     monAtkEV = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
-    monDefIV = Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL);
+    monDefIV = Pokemon_GetStatIV(mon, STAT_DEFENSE);
     monDefEV = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
-    monSpeedIV = Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL);
+    monSpeedIV = Pokemon_GetStatIV(mon, STAT_SPEED);
     monSpeedEV = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
-    monSpAtkIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL);
+    monSpAtkIV = Pokemon_GetStatIV(mon, STAT_SPECIAL_ATTACK);
     monSpAtkEV = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
-    monSpDefIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
+    monSpDefIV = Pokemon_GetStatIV(mon, STAT_SPECIAL_DEFENSE);
     monSpDefEV = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+    u8 monStatNature = Pokemon_GetStatNature(mon);
 
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -607,27 +611,27 @@ void Pokemon_CalcStats(Pokemon *mon)
 
     // TODO inline func maybe
     int newAtk = ((2 * speciesData->baseStats.attack + monAtkIV + monAtkEV / 4) * monLevel / 100 + 5);
-    newAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
+    newAtk = Pokemon_GetNatureStatValue(monStatNature, newAtk, STAT_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_ATK, &newAtk);
 
     int newDef = ((2 * speciesData->baseStats.defense + monDefIV + monDefEV / 4) * monLevel / 100 + 5);
-    newDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
+    newDef = Pokemon_GetNatureStatValue(monStatNature, newDef, STAT_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_DEF, &newDef);
 
     int newSpeed = ((2 * speciesData->baseStats.speed + monSpeedIV + monSpeedEV / 4) * monLevel / 100 + 5);
-    newSpeed = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
+    newSpeed = Pokemon_GetNatureStatValue(monStatNature, newSpeed, STAT_SPEED);
 
     Pokemon_SetValue(mon, MON_DATA_SPEED, &newSpeed);
 
     int newSpAtk = ((2 * speciesData->baseStats.spAttack + monSpAtkIV + monSpAtkEV / 4) * monLevel / 100 + 5);
-    newSpAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
+    newSpAtk = Pokemon_GetNatureStatValue(monStatNature, newSpAtk, STAT_SPECIAL_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_SP_ATK, &newSpAtk);
 
     int newSpDef = ((2 * speciesData->baseStats.spDefense + monSpDefIV + monSpDefEV / 4) * monLevel / 100 + 5);
-    newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
+    newSpDef = Pokemon_GetNatureStatValue(monStatNature, newSpDef, STAT_SPECIAL_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_SP_DEF, &newSpDef);
     Heap_Free(speciesData);
@@ -859,6 +863,14 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockA->abilitySlotSwapped;
         break;
 
+    case MON_DATA_HYPER_TRAINED:
+        result = monDataBlockA->hyperTrained;
+        break;
+
+    case MON_DATA_STAT_NATURE:
+        result = monDataBlockB->statNature;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1060,9 +1072,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->form;
         break;
 
-    case MON_DATA_UNUSED_113:
-        result = monDataBlockB->unused1;
-        break;
 
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
@@ -1413,6 +1422,14 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockA->abilitySlotSwapped = *u8Value;
         break;
 
+    case MON_DATA_HYPER_TRAINED:
+        monDataBlockA->hyperTrained = *u8Value;
+        break;
+
+    case MON_DATA_STAT_NATURE:
+        monDataBlockB->statNature = *u8Value;
+        break;
+
     case MON_DATA_MARKINGS:
         monDataBlockA->markings = *u8Value;
         break;
@@ -1623,9 +1640,6 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->form = *u8Value;
         break;
 
-    case MON_DATA_UNUSED_113:
-        monDataBlockB->unused1 = *u8Value;
-        break;
 
     case MON_DATA_NICKNAME_AND_FLAG: {
         charcode_t baseName[MON_NAME_LEN + 1];
@@ -2141,6 +2155,8 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_SPECIES_NAME:
     case MON_DATA_HAS_HIDDEN_ABILITY:
     case MON_DATA_ABILITY_SLOT_SWAPPED:
+    case MON_DATA_HYPER_TRAINED:
+    case MON_DATA_STAT_NATURE:
     default:
         GF_ASSERT(FALSE);
         break;
@@ -2420,6 +2436,41 @@ u8 BoxPokemon_GetNature(BoxPokemon *boxMon)
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
     return Pokemon_GetNatureOf(monPersonality);
+}
+
+// Platinum Oxide: the nature a Pokemon's stats grow by, which a Mint can
+// set apart from the nature its personality gives it. Everything else that
+// reads a nature (its name, flavours, Synchronize, breeding) keeps the real one.
+u8 Pokemon_GetStatNature(Pokemon *mon)
+{
+    return BoxPokemon_GetStatNature(&mon->box);
+}
+
+u8 BoxPokemon_GetStatNature(BoxPokemon *boxMon)
+{
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    u32 statNature = BoxPokemon_GetValue(boxMon, MON_DATA_STAT_NATURE, NULL);
+    u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+
+    if (statNature != 0 && statNature <= NATURE_COUNT) {
+        return statNature - 1;
+    }
+
+    return Pokemon_GetNatureOf(monPersonality);
+}
+
+// Platinum Oxide: the IV a stat is computed from, which is 31 once a Bottle
+// Cap has Hyper Trained it. The stored IV is left alone, so Hidden Power and
+// breeding still see the real one, as in the later games.
+u32 Pokemon_GetStatIV(Pokemon *mon, enum PokemonStat stat)
+{
+    if (Pokemon_GetValue(mon, MON_DATA_HYPER_TRAINED, NULL) & (1 << stat)) {
+        return MAX_IVS_SINGLE_STAT;
+    }
+
+    return Pokemon_GetValue(mon, MON_DATA_HP_IV + stat, NULL);
 }
 
 u8 Pokemon_GetNatureOf(u32 monPersonality)

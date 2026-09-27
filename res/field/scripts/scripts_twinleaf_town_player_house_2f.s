@@ -3182,6 +3182,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemPixiePlate, 20
     AddListMenuEntry TestKit_Text_MenuItemRoseliBerry, 21
     AddListMenuEntry TestKit_Text_MenuItemAbilities, 22
+    AddListMenuEntry TestKit_Text_MenuItemMintsCaps, 23
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3206,6 +3207,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 20, TestKit_ItemPixiePlate
     GoToIfEq VAR_0x8004, 21, TestKit_ItemRoseliBerry
     GoToIfEq VAR_0x8004, 22, TestKit_ItemAbilities
+    GoToIfEq VAR_0x8004, 23, TestKit_ItemMintsCaps
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3683,6 +3685,27 @@ TestKit_ItemAbilities:
     AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
     AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
     Message TestKit_Text_ItemAbilities
+    GoTo TestKit_WaitAndClose
+
+/* The Mints and Bottle Caps: a Machamp, with two Adamant Mints, a Modest
+   and a Serious Mint, two Bottle Caps and a Gold Bottle Cap in the Bag. Note its
+   nature and its stats, then its IVs (R on the stat page). An Adamant Mint
+   ("The Adamant Mint changed how MACHAMP's stats grow!") raises Attack and
+   lowers Sp. Atk by a tenth against its base nature, and its summary still
+   shows its own nature; a second Adamant Mint has no effect. A Bottle Cap
+   asks for a stat and puts that IV at 31 in the viewer, raising the stat;
+   on a stat already at 31 it has no effect and stays in the Bag. The Gold
+   Bottle Cap does all six at once. */
+TestKit_ItemMintsCaps:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    GivePokemon SPECIES_MACHAMP, 50, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ADAMANT_MINT, 2, VAR_RESULT
+    AddItem ITEM_MODEST_MINT, 1, VAR_RESULT
+    AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
+    AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
+    AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
+    Message TestKit_Text_ItemMintsCaps
     GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:

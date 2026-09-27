@@ -7,6 +7,7 @@
 #include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
+#include "generated/pokemon_stats.h"
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/struct_02078B40_decl.h"
@@ -333,6 +334,12 @@ u8 Pokemon_GetNature(Pokemon *mon);
  * @return The pokemons nature
  */
 u8 BoxPokemon_GetNature(BoxPokemon *boxMon);
+
+// Platinum Oxide: the nature the stats grow by, a Mint's if it has been given
+// one, and the IV a stat is computed from, 31 once a Bottle Cap has trained it.
+u8 Pokemon_GetStatNature(Pokemon *mon);
+u8 BoxPokemon_GetStatNature(BoxPokemon *boxMon);
+u32 Pokemon_GetStatIV(Pokemon *mon, enum PokemonStat stat);
 
 /**
  * @brief Gets the nature of a pokemon based on its personality value

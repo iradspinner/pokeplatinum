@@ -180,3 +180,5 @@ MON_DATA_TYPE_2
 MON_DATA_SPECIES_NAME
 MON_DATA_HAS_HIDDEN_ABILITY # Platinum Oxide: block A's hidden ability bit
 MON_DATA_ABILITY_SLOT_SWAPPED # Platinum Oxide: block A's Ability Capsule bit
+MON_DATA_HYPER_TRAINED # Platinum Oxide: block A's Bottle Cap bits, one per stat
+MON_DATA_STAT_NATURE # Platinum Oxide: block B's Mint nature, 0 for none

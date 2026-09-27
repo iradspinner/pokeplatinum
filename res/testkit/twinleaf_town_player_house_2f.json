@@ -1034,6 +1034,17 @@
                 "A Machamp and a Ditto, two Ability\n",
                 "Capsules and the Ability Patch."
             ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemMintsCaps",
+            "en_US": "Mints, Bottle Caps"
+        },
+        {
+            "id": "TestKit_Text_ItemMintsCaps",
+            "en_US": [
+                "A Machamp, three kinds of Mint,\n",
+                "two Bottle Caps and a Gold one."
+            ]
         }
     ]
 }
