@@ -102,6 +102,11 @@
             "EVO_USE_ITEM",
             "ITEM_DUSK_STONE",
             "SPECIES_POLTEAGEIST"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_LEAF_STONE",
+            "SPECIES_SINISTCHA"
         ]
     ],
     "offspring": "SPECIES_SINISTEA",

@@ -300,8 +300,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] Fomantis evolves into Lurantis at level 34.
-- [ ] A Dusk Stone has no effect on Polteageist (it no longer evolves into
-  Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
+- [ ] A Dusk Stone has no effect on Polteageist; on Sinistea a Dusk Stone
+  makes Polteageist and a Leaf Stone makes Sinistcha. Galactic HQ B2F: the nine stone balls around the Galactic Key
   (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
   balls are still there. Once taken, the Secret Key ball does not come back
   the next day. Stark Mountain room 2 has no fossil balls at all.
