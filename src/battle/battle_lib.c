@@ -8483,6 +8483,83 @@ static const u16 sCannotMetronomeMoves[] = {
     MOVE_AROMATIC_MIST,
     MOVE_MAGNETIC_FLUX,
     MOVE_SPEED_SWAP,
+    // Ian barred every other move Metronome could call without it working
+    // (2026-09-27). Assist and Copycat read this part of the table too, and
+    // share the bars: no Pokemon can know the moves below apart from the four
+    // weather moves, and Copycat would otherwise let the player copy a
+    // trainer's weather.
+    // The effect audit's unreachable effects, not ported because no Oxide
+    // species learns them, so their scripts are placeholders; and the four
+    // Terrain moves, since terrain is not ported and they do nothing.
+    MOVE_SHED_TAIL,
+    MOVE_QUASH,
+    MOVE_BOUNCY_BUBBLE,
+    MOVE_SNOWSCAPE,
+    MOVE_SIMPLE_BEAM,
+    MOVE_TOXIC_THREAD,
+    MOVE_MAKE_IT_RAIN,
+    MOVE_TIDY_UP,
+    MOVE_FORESTS_CURSE,
+    MOVE_TRICK_OR_TREAT,
+    MOVE_MAGIC_POWDER,
+    MOVE_DECORATE,
+    MOVE_ION_DELUGE,
+    MOVE_PLASMA_FISTS,
+    MOVE_STUFF_CHEEKS,
+    MOVE_POWDER,
+    MOVE_GLAIVE_RUSH,
+    MOVE_THROAT_CHOP,
+    MOVE_ELECTRIC_TERRAIN,
+    MOVE_GRASSY_TERRAIN,
+    MOVE_MISTY_TERRAIN,
+    MOVE_PSYCHIC_TERRAIN,
+    // The Max moves and Max Guard: Dynamax is not in Oxide, so their records
+    // are placeholders (power 10 for most, the weather and terrain ones plain
+    // hits), and the later games never let Metronome call them either.
+    MOVE_MAX_GUARD,
+    MOVE_MAX_FLARE,
+    MOVE_MAX_FLUTTERBY,
+    MOVE_MAX_LIGHTNING,
+    MOVE_MAX_STRIKE,
+    MOVE_MAX_KNUCKLE,
+    MOVE_MAX_PHANTASM,
+    MOVE_MAX_HAILSTORM,
+    MOVE_MAX_OOZE,
+    MOVE_MAX_GEYSER,
+    MOVE_MAX_AIRSTREAM,
+    MOVE_MAX_STARFALL,
+    MOVE_MAX_WYRMWIND,
+    MOVE_MAX_MINDSTORM,
+    MOVE_MAX_ROCKFALL,
+    MOVE_MAX_QUAKE,
+    MOVE_MAX_DARKNESS,
+    MOVE_MAX_OVERGROWTH,
+    MOVE_MAX_STEELSPIKE,
+    // The signature Z-moves, like the generic ones above: mostly plain hits of
+    // 175 to 210 power that never miss, and Extreme Evoboost does nothing.
+    MOVE_CATASTROPIKA,
+    MOVE_SINISTER_RAID,
+    MOVE_MOONSAULT,
+    MOVE_OCEANIC_OPERETTA,
+    MOVE_ALOLAN_GUARDIAN,
+    MOVE_7_STAR_STRIKE,
+    MOVE_SPARKSURFER,
+    MOVE_PULVER_PANCAKE,
+    MOVE_EXTREME_EVOBOOST,
+    MOVE_ORIGIN_SUPERNOVA,
+    MOVE_10_000_000_BOLT,
+    MOVE_LIGHT_BURN_SKY,
+    MOVE_SUNRAZE_SMASH,
+    MOVE_MOONRAZE_STORM,
+    MOVE_LETS_SNUGGLE,
+    MOVE_STORMSHARDS,
+    MOVE_SOULBLAZE,
+    // The weather moves, since the player never sets weather (Ian,
+    // 2026-09-26) and Metronome is learnable.
+    MOVE_RAIN_DANCE,
+    MOVE_SUNNY_DAY,
+    MOVE_SANDSTORM,
+    MOVE_HAIL,
     FORBIDDEN_BY_METRONOME_DELIM,
 };
 
