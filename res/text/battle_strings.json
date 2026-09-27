@@ -9575,6 +9575,78 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
         "copied its foe’s stat changes!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against\f",
+        "the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against\f",
+        "the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is switched out\n",
+        "with the {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is switched\n",
+        "out with the {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is switched\n",
+        "out with the {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

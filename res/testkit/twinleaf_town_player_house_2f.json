@@ -1007,6 +1007,14 @@
         {
             "id": "TestKit_Text_MenuItemMirrorHerb",
             "en_US": "Mirror Herb"
+        },
+        {
+            "id": "TestKit_Text_MenuItemEjectButton",
+            "en_US": "Eject Button"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRedCard",
+            "en_US": "Red Card"
         }
     ]
 }

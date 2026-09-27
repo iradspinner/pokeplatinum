@@ -1608,6 +1608,22 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
 BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 
 /**
+ * @brief Oxide, element 7: the Red Card and the Eject Button, after
+ * hg-engine's Activate_KeeMarangaBerry_RedCard_EjectButton. When a foe's
+ * damaging move hits the defender, which is still up and not behind a
+ * substitute, an Eject Button sends its holder back for a replacement, and a
+ * Red Card sends the attacker away as Dragon Tail would. Neither acts before
+ * a multi-hit move's last hit, after a U-turn has already taken the attacker
+ * out, or against a move Sheer Force strengthened.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param[out] subscript    The subscript to run, when it returns TRUE
+ * @return TRUE if an item acts
+ */
+BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
  * @brief Decrement additional PP from the attacker's selected move if its
  * target has the Pressure ability.
  *

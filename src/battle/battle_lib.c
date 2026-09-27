@@ -6462,6 +6462,44 @@ BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler)
     return battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END;
 }
 
+BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
+{
+    int holder = battleCtx->defender;
+
+    if (holder == BATTLER_NONE
+        || battleCtx->battleMons[holder].curHP == 0
+        || Battler_SubstituteWasHit(battleCtx, holder) == TRUE
+        || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE)
+        || (battleCtx->multiHitNumHits && battleCtx->multiHitCounter > 1)
+        || (battleCtx->selfTurnFlags[holder].physicalDamageTaken == 0 && battleCtx->selfTurnFlags[holder].specialDamageTaken == 0)
+        || BattleSystem_GetBattlerSide(battleSys, holder) == BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+        || Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        return FALSE;
+    }
+
+    switch (Battler_HeldItemEffect(battleCtx, holder)) {
+    case HOLD_EFFECT_EJECT_BUTTON:
+        battleCtx->msgBattlerTemp = holder;
+        *subscript = subscript_eject_button;
+        return TRUE;
+
+    case HOLD_EFFECT_RED_CARD:
+        if (battleCtx->battleMons[battleCtx->attacker].curHP == 0) {
+            return FALSE;
+        }
+
+        // The subscript runs Dragon Tail's switch on the attacker, so the two
+        // trade places until it ends: it puts them back.
+        battleCtx->sideEffectMon = holder;
+        battleCtx->defender = battleCtx->attacker;
+        battleCtx->attacker = holder;
+        *subscript = subscript_red_card;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);

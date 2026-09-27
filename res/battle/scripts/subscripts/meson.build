@@ -393,4 +393,6 @@ subscript_files = files(
     'subscript_air_balloon_float.s',
     'subscript_air_balloon_pop.s',
     'subscript_mirror_herb.s',
+    'subscript_red_card.s',
+    'subscript_eject_button.s',
 )

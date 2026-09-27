@@ -3177,6 +3177,8 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemBindingBand, 15
     AddListMenuEntry TestKit_Text_MenuItemLoadedDice, 16
     AddListMenuEntry TestKit_Text_MenuItemMirrorHerb, 17
+    AddListMenuEntry TestKit_Text_MenuItemEjectButton, 18
+    AddListMenuEntry TestKit_Text_MenuItemRedCard, 19
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3196,6 +3198,8 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 15, TestKit_ItemBindingBand
     GoToIfEq VAR_0x8004, 16, TestKit_ItemLoadedDice
     GoToIfEq VAR_0x8004, 17, TestKit_ItemMirrorHerb
+    GoToIfEq VAR_0x8004, 18, TestKit_ItemEjectButton
+    GoToIfEq VAR_0x8004, 19, TestKit_ItemRedCard
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3571,6 +3575,42 @@ TestKit_ItemMirrorHerb:
     SetVar VAR_0x8007, MOVE_SPLASH
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Eject Button: Chansey against a wild Rattata that knows only Tackle.
+   When a Tackle hits the Chansey holding it, "CHANSEY is switched out
+   with the Eject Button!" and the party list opens for a replacement. */
+TestKit_ItemEjectButton:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_EJECT_BUTTON
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Red Card: Chansey against a wild Rattata that knows only Tackle.
+   When a Tackle hits the Chansey holding it, "CHANSEY held up its Red
+   Card against the wild RATTATA!" and, as with Dragon Tail against a wild
+   Pokemon, the battle ends. Sending a trainer's Pokemon away needs a
+   trainer battle, which the kit does not have. */
+TestKit_ItemRedCard:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_RED_CARD
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
     GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:

@@ -4046,6 +4046,7 @@ enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_DEFENDER_ITEM,
     AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT,
     AFTER_MOVE_EFFECT_THAW_DEFENDER,
+    AFTER_MOVE_EFFECT_SWITCH_ITEMS, // Oxide, element 7
     AFTER_MOVE_EFFECT_MIRROR_HERB, // Oxide, element 7
     AFTER_MOVE_EFFECT_HELD_ITEM_STATUS,
 
@@ -4138,6 +4139,19 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
             LOAD_SUBSEQ(subscript_thaw_out);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+            return;
+        }
+
+    // Oxide, element 7: a Red Card or an Eject Button on the defender.
+    case AFTER_MOVE_EFFECT_SWITCH_ITEMS:
+        battleCtx->afterMoveEffectState++;
+
+        int switchSeq;
+        if (BattleSystem_TriggerSwitchItem(battleSys, battleCtx, &switchSeq) == TRUE) {
+            LOAD_SUBSEQ(switchSeq);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
