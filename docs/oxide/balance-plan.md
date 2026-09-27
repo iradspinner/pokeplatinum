@@ -225,7 +225,24 @@ bosses**, Dahlia at the Veilstone Game Corner (Maylene's split), Darach at
 the Pokemon Mansion (Wake's), Thorton at Fuego Ironworks (Byron's), and
 tentatively Argenta at Pal Park (Byron's) and Palmer at the Resort Area's
 entrance (Galactic's). Ian builds the teams, and this track scores each
-draft as it comes, so he sees where it lands on his fight scale.
+draft as it comes, so he sees where it lands on his fight scale
+(`b6.py --draft`, `--trick-room` for Thorton).
+
+The first drafts (2026-09-27, `docs/oxide/frontier-brains.md`) name
+species only, so each member is scored at the split's cap with the game's
+own default moves for that level, no item and IVs of 30. That reads
+softer than a finished team will, so these are a floor:
+
+| Brain | Split (cap) | Safe switch-ins | On Ian's fight scale |
+|---|---|---|---|
+| Dahlia | Maylene (39) | 0.57 | about 5.3 |
+| Darach | Wake (44) | 0.64 | about 4.8 |
+| Thorton, under Trick Room | Byron (53) | 0.58 | about 5.2 |
+| Argenta | Byron (53) | 0.54 | about 5.5 |
+| Palmer | Galactic (65) | 0.21 | about 7.8 |
+
+Dahlia's Wonder Room is not modelled, and Darach's double battle is scored
+as singles, as every double is.
 
 ## What the first look found
 
