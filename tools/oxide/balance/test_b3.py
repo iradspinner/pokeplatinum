@@ -354,10 +354,10 @@ def check_fingerprint_rules(results):
 
 
 def check_fingerprints(results, blob):
-    """Every stored score (the story fights, Hesperid's, the reference
-    seats, the shape grid, B6's trainers and levers) matches its inputs as
-    they are now, and a second run has verified it (rescore.py)."""
-    problems = rescore.check(blob)
+    """Every stored score before B6 (the story fights, Hesperid's, the
+    reference seats, the shape grid) matches its inputs as they are now,
+    and a second run has verified it (rescore.py). test_b6 checks B6's."""
+    problems = rescore.check(blob, ("pressure", "calibrate", "ref", "shape"))
     kinds = collections.Counter(p for _n, p in problems)
     results.append(("every stored score matches its inputs and is verified", not problems,
                     f"{dict(kinds)}; first {problems[:4]}; run rescore.py, then --verify"

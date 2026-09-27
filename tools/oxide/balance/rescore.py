@@ -17,9 +17,11 @@ player's side, the boss Pokemon, their moves, weather); what the scorer
 takes besides (the parties as the trainer data holds them, Trick Room, the
 cap, a reference's move categories); the slices of the calculator's data
 the job reads (the title, the type chart, and the species and move records
-it names); the accuracies of its moves; the engine's files and Node's
-version; and the scorer's code with docstrings left out, so a change to
-the scoring rules rescores everything and a change to its wording does not.
+it names); the accuracies of its moves; the damage calculator's files the
+headless runner loads (engine_files) and Node's version; and the scorer's
+code with docstrings left out, so a change to the scoring rules rescores
+everything and a change to its wording does not. The game's own C, battle
+scripts and AI are not read by any score, so merging them stales nothing.
 Every score is worked out from its own fight alone, and every roll-up is
 made at report time from the stored scores, so nothing else can move one.
 
@@ -30,7 +32,10 @@ aside, which keeps the rule that two runs agree while this CPU can return
 wrong answers. test_b3 checks that every fingerprint matches its inputs
 and that nothing is left unverified. --seed adopts scores computed before
 fingerprints existed: it stamps each with its inputs' fingerprint,
-unverified, so the next --verify recomputes all of them once.
+unverified, so the next --verify recomputes all of them once. --restamp
+moved the scores of 2026-09-26 from the first engine definition (every
+file in the vendored folder) to engine_files, keeping each verified mark,
+and only for a score current under the first.
 
 Every calculation runs in one Node process at a time.
 """
@@ -41,6 +46,7 @@ import functools
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -71,14 +77,25 @@ def _code_hash(path):
     return hashlib.sha256(ast.dump(tree).encode()).hexdigest()
 
 
-@functools.lru_cache(maxsize=None)
-def engine_hash():
-    """The vendored calculator's files, the headless runner and Node's version."""
+_SCRIPT = re.compile(r'<script[^>]*src="\./(calc/[^"?]+)')
+
+
+def engine_files():
+    """The files the headless runner reads, as calc_headless.js finds them:
+    itself, the page, every ./calc/ script the page loads (a commented-out
+    line skipped), and initialize.js, whose helpers it lifts. Nothing else
+    in the vendored folder (its notes, other data) can move a score."""
+    with open(os.path.join(CALC_DIR, "index.html"), encoding="utf-8") as f:
+        scripts = [m.group(1) for line in f if not line.strip().startswith("<!--")
+                   for m in [_SCRIPT.search(line)] if m]
+    paths = [os.path.join(HERE, "calc_headless.js"), os.path.join(CALC_DIR, "index.html"),
+             os.path.join(CALC_DIR, "js", "initialize.js")]
+    paths += [os.path.join(CALC_DIR, s) for s in dict.fromkeys(scripts)]
+    return paths
+
+
+def _hash_files(paths):
     h = hashlib.sha256()
-    paths = [os.path.join(HERE, "calc_headless.js")]
-    for root, dirs, files in os.walk(CALC_DIR):
-        dirs.sort()
-        paths += [os.path.join(root, f) for f in sorted(files)]
     for p in paths:
         h.update(os.path.relpath(p, HERE).encode())
         with open(p, "rb") as f:
@@ -86,6 +103,23 @@ def engine_hash():
     node = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True).stdout
     h.update(node.strip().encode())
     return h.hexdigest()
+
+
+@functools.lru_cache(maxsize=None)
+def engine_hash():
+    """The engine the runner loads, and Node's version."""
+    return _hash_files(engine_files())
+
+
+@functools.lru_cache(maxsize=None)
+def engine_hash_folder():
+    """The first definition (2026-09-26), every file in the vendored
+    folder, kept for --restamp only."""
+    paths = [os.path.join(HERE, "calc_headless.js")]
+    for root, dirs, files in os.walk(CALC_DIR):
+        dirs.sort()
+        paths += [os.path.join(root, f) for f in sorted(files)]
+    return _hash_files(paths)
 
 
 @functools.lru_cache(maxsize=None)
@@ -114,8 +148,9 @@ def _names(o, species, moves):
             _names(v, species, moves)
 
 
-def fingerprint(kind, jobs, ctx, blob):
-    """The hash of everything that decides one score (the module's doc)."""
+def fingerprint(kind, jobs, ctx, blob, engine=None):
+    """The hash of everything that decides one score (the module's doc).
+    `engine` stands in for engine_hash() when --restamp needs the old one."""
     species, moves = set(), set()
     _names(jobs["pokemon"], species, moves)
     _names(ctx, species, moves)
@@ -129,7 +164,7 @@ def fingerprint(kind, jobs, ctx, blob):
                  "moves": {m: blob["moves"].get(m) for m in sorted(moves)}},
         "accuracy": {m: acc.get(metrics._compact(pressure.MOVE_SPELLING.get(m, m)))
                      for m in sorted(moves)},
-        "engine": engine_hash(), "scorer": scorer_hash(kind),
+        "engine": engine or engine_hash(), "scorer": scorer_hash(kind),
     }
     text = json.dumps(payload, sort_keys=True, default=sorted)
     return hashlib.sha256(text.encode()).hexdigest()[:20]
@@ -418,6 +453,17 @@ def _one(u, mode, blob, blob_path, files):
             return "left as it was", False
         u.store(dict(old, fingerprint=fp, verified=False))
         return "seeded", False
+    if mode == "restamp":
+        # A score current under the first engine definition (the whole
+        # vendored folder) is current under the narrower one, which reads a
+        # subset of the same files; it keeps its verified mark.
+        if current or old is None:
+            return "left as it was", False
+        if old.get("fingerprint") != fingerprint(u.kind, jobs, fp_ctx, blob,
+                                                 engine=engine_hash_folder()):
+            return "stale either way", False
+        u.store(dict(old, fingerprint=fp))
+        return "restamped", False
     if mode == "rescore":
         if current:
             return "reused", False
@@ -468,13 +514,14 @@ def run(mode, kinds=KINDS, names=None, out=sys.stdout):
     return counts
 
 
-def check(blob=None):
-    """[(unit name, problem)] for every stored score whose fingerprint does
-    not match its inputs or that is not verified; test_b3 reads it."""
+def check(blob=None, kinds=KINDS):
+    """[(unit name, problem)] for every stored score of `kinds` whose
+    fingerprint does not match its inputs or that is not verified. test_b3
+    reads it for the scores before B6, test_b6 for B6's."""
     blob = calc_export.build() if blob is None else blob
     files, sides = Files(), Sides(blob)
     problems = []
-    for u in units(blob, files, sides):
+    for u in units(blob, files, sides, kinds):
         label, _disagreed = _one(u, "status", blob, None, files)
         u._built = None
         if label not in (None, "verified"):
@@ -488,12 +535,14 @@ def main(argv=None):
     g.add_argument("--verify", action="store_true")
     g.add_argument("--status", action="store_true")
     g.add_argument("--seed", action="store_true")
+    g.add_argument("--restamp", action="store_true",
+                   help="move scores current under the first engine definition to the narrower one")
     ap.add_argument("--kind", action="append", choices=KINDS, default=[])
     ap.add_argument("--name", action="append", default=[],
                     help="one score, as the run prints it (a fight key, 'kaizo roark', ...)")
     args = ap.parse_args(argv)
-    mode = "verify" if args.verify else "status" if args.status else "seed" if args.seed \
-        else "rescore"
+    mode = ("verify" if args.verify else "status" if args.status else "seed" if args.seed
+            else "restamp" if args.restamp else "rescore")
     run(mode, tuple(args.kind) or KINDS, set(args.name) or None)
     return 0
 

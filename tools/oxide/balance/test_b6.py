@@ -2,8 +2,9 @@
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_b6
 
-Runs no Node: it reads b6.json as rescore.py saved it. Whether each stored
-score is current and verified is test_b3's fingerprint check.
+Runs no Node: it reads b6.json as rescore.py saved it, and checks that
+each B6 score's fingerprint matches its inputs and is verified, as test_b3
+does for the scores before B6.
 """
 import sys
 
@@ -70,9 +71,20 @@ def check_species(results):
     results.append(("species tallies are consistent", not bad, f"{bad[:5]}" if bad else ""))
 
 
+def check_fingerprints(results):
+    """Every B6 score (the ordinary trainers and each fight's levers)
+    matches its inputs as they are now, and a second run has verified it."""
+    from . import rescore
+    problems = rescore.check(kinds=("b6", "b6lever"))
+    kinds = {p: sum(q == p for _n, q in problems) for _n, p in problems}
+    results.append(("every B6 score matches its inputs and is verified", not problems,
+                    f"{kinds}; first {problems[:4]}" if problems else ""))
+
+
 def main():
     results = []
-    for check in (check_placements, check_scale, check_bases, check_levers, check_species):
+    for check in (check_placements, check_scale, check_bases, check_levers, check_species,
+                  check_fingerprints):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
