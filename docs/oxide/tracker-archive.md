@@ -429,6 +429,10 @@ The tracker's "Friendship evolutions replaced", finished across the main, encoun
 
 - [x] **Friendship evolutions replaced** (Ian, 2026-09-27): Happiness Up is gone, and every friendship evolution moves to a method that cannot be ground as easily. **Ruled 2026-09-27:** the encounter track's proposal (`docs/oxide/encounters/friendship-evolutions.md`) is accepted with one change, Crobat at level 40 (Wake's split) instead of 36; Roselia at the Moss Rock, and Espeon and Umbreon by Sun and Moon Stone, with one fixed find of each. The main track edits the evolution data; the encounter track then re-runs `cli evolve` and fixes its tool's reading of friendship methods. Ian also wants a census of every evolution stone the player can get, as a scarcity lever, for the balance track's item pass. Competition for a scarce stone is intended (Ian, 2026-09-27; standing rulings). The main track's data edit is done on `main-friendship` (96065e8fa): all sixteen evolutions replaced and registered against the base ROM. The encounter track's evolve re-run followed on `encounter-item3`, and the balance track's stone census is done.
 
+A sub-item of the tracker's Saturn 2 entry, finished on 2026-09-27:
+
+  - [x] Trainer pass, two changes to Saturn 2's team (Ian, 2026-09-26): Uxie's Trick Room, which now always fails, is swapped for another move, and Rhyperior's Choice Scarf, which under the permanent room only makes it move later, is swapped for another item. The replacements are the trainer pass's to choose Done by Ian in the OxiDex's team builder (Uxie: Hypnosis, Future Sight, U-turn, Foul Play; Rhyperior: Expert Belt), landed with `barry-split` on 2026-09-27.
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
