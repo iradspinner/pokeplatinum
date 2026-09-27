@@ -320,8 +320,10 @@ Pokemon is not in the lead, so switch it in on the first turn.
 
 Element 7's items have their own menu, "Element 7 items". Its first entry,
 "All new items", puts one of each of the 46 in the Bag, for their names,
-icons, pockets and descriptions (a full Bag makes some of them fail to
-arrive). The entries after it are built as the ability entries are, from a
+icons, pockets and descriptions. The Items, Medicine and Berries pockets
+were widened to hold one of every item of their kind, so all 46 arrive
+unless those pockets were already holding other items near their size. The
+entries after it are built as the ability entries are, from a
 `TestKit_Item<Name>` block, but each goes through `TestKit_GiveItemPair`:
 two Lv. 50 copies of one Pokemon with the same four moves, the first holding
 the item and the second holding nothing, so every effect is seen beside a

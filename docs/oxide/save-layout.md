@@ -184,6 +184,37 @@ sized by a constant I changed end up in the save", and a text bank's entry count
 is exactly that kind of constant. The next element that adds names to any group
 before the Union Room list moves these ids again.
 
+## The Bag grew (element 7)
+
+Vanilla sizes each Bag pocket to hold one of every item that goes in it.
+Element 7's items broke that for three pockets, so they grew:
+
+| Pocket | Kinds of item | Was | Is |
+|---|---|---|---|
+| Items | 185 | 165 | 187 |
+| Medicine | 61 | 40 | 63 |
+| Berries | 65 | 64 | 65 |
+
+The `Bag` struct is 184 bytes bigger (1,908 to 2,092). It is the fourth
+entry of `SAVE_BLOCK_ID_NORMAL`, so every entry after it moves, which is
+nearly the whole block: an old save reads wrongly from the Bag on.
+
+The budget, measured from the build's own size functions rather than by
+hand: the two blocks with their footers take 127,672 of the 131,072 bytes
+`SavePageInfo_Init` allows, 3,400 spare. Vanilla's normal block was 53,036
+bytes, exactly what PKHeX expects; the Pokedex's 240 and the Bag's 184 are
+all it has grown.
+
+One thing found on the way. `SaveBlockInfo_Init` also asserts that the
+blocks, each rounded up to whole 4 KB sectors, number at most
+`SAVE_PAGE_MAX` (32). Vanilla uses exactly 32 (13 and 19), and the Pokedex
+growth already made the normal block 14, so that assert fails. It is
+harmless: asserts are compiled out, the card layout packs the blocks by
+bytes rather than by sector, and nothing reads the two sector fields the
+assert checks. It matters only to a build with `PM_KEEP_ASSERTS`, and to
+whoever raises `SAVE_PAGE_MAX` for the 30 PC boxes, who should fix or drop
+that assert at the same time.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
@@ -195,5 +226,3 @@ Listed so the next change can be planned rather than discovered:
   at sector 0 and the backup at 64, but not to 64: the extra save table is laid
   out at `SAVE_PAGE_MAX + 0` through `+ 11`, so anything above **52** puts the
   battle recordings on top of the backup copy
-- The expanded bag, if the item pass outgrows Platinum's free item slots
-  (Phase 4 element 7)
