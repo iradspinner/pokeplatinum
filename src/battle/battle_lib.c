@@ -6128,6 +6128,12 @@ u16 Battler_HeldItem(BattleContext *battleCtx, int battler)
         return ITEM_NONE;
     }
 
+    // Oxide: under Magic Room no held item works, as under Embargo, which is
+    // where hg-engine stops it too (GetBattleItemData).
+    if (battleCtx->magicRoomTurns) {
+        return ITEM_NONE;
+    }
+
     return battleCtx->battleMons[battler].heldItem;
 }
 
@@ -6223,7 +6229,7 @@ s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPo
         break;
 
     case ITEM_POWER_CHECK_EMBARGO:
-        if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+        if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
             return 0;
         }
 
@@ -6254,7 +6260,7 @@ s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler)
 
 s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler)
 {
-    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
         return FLING_EFFECT_NONE;
     }
 
@@ -6263,7 +6269,7 @@ s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler)
 
 s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler)
 {
-    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
         return 0;
     }
 

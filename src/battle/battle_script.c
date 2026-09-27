@@ -10823,6 +10823,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->selfTurnFlags[battleCtx->attacker].shellBellDamageDealt;
     case BTLVAR_WAITING_BATTLERS:
         return &battleCtx->waitingBattlers;
+    case BTLVAR_MAGIC_ROOM_TURNS: // Oxide
+        return &battleCtx->magicRoomTurns;
     }
 
     return NULL;

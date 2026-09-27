@@ -9308,6 +9308,21 @@
         "The foe’s {STRVAR_1 1, 0, 0} can no\n",
         "longer escape because of Octolock!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_ItCreatedABizarreAreaInWhichPokemonsHeldItemsLoseTheirEffects",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Pokémon’s held items lose\f",
+        "their effects!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MagicRoomWoreOffAndHeldItemsEffectsReturnedToNormal",
+      "en_US": [
+        "Magic Room wore off, and held\n",
+        "items’ effects returned to normal!"
+      ]
     }
   ]
 }

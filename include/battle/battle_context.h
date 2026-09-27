@@ -162,7 +162,7 @@ struct BattleContext {
     int switchInCheckState;
     int vanishedCheckTemp;
 
-    int padding0060;
+    int magicRoomTurns; // Oxide: Magic Room's turns left, 0 when it is down; from the padding
 
     int attacker;
     int attackerTemp;

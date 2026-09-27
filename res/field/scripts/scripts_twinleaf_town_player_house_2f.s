@@ -739,12 +739,14 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet57, 2
     AddListMenuEntry TestKit_Text_MenuSet58, 3
     AddListMenuEntry TestKit_Text_MenuSet59, 4
+    AddListMenuEntry TestKit_Text_MenuSet60, 5
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
     GoToIfEq VAR_0x8004, 2, TestKit_MoveSet57
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet58
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet59
+    GoToIfEq VAR_0x8004, 5, TestKit_MoveSet60
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1428,6 +1430,26 @@ TestKit_MoveSet59:
     SetVar VAR_0x8008, MOVE_SWIFT
     SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
+
+/* Set 60: for five turns under Magic Room no held item works. Mew holds
+   Leftovers; against a wild Chansey that knows only Splash. After a
+   Substitute, "MEW restored a little HP using its Leftovers!" at the end of
+   each turn; once "It created a bizarre area in which Pokemon's held items
+   lose their effects!", no more until "Magic Room wore off, and held items'
+   effects returned to normal!" five turns later, or at once if Mew uses
+   Magic Room again. */
+TestKit_MoveSet60:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LEFTOVERS
+    SetVar VAR_0x8006, MOVE_MAGIC_ROOM
+    SetVar VAR_0x8007, MOVE_SUBSTITUTE
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithItem
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */

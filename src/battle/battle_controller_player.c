@@ -1819,6 +1819,7 @@ enum SideCondCheckState {
     SIDE_COND_CHECK_STATE_PERISH_SONG,
     SIDE_COND_CHECK_STATE_TRICK_ROOM,
     SIDE_COND_CHECK_STATE_WONDER_ROOM, // Oxide
+    SIDE_COND_CHECK_STATE_MAGIC_ROOM, // Oxide
 
     SIDE_COND_CHECK_END
 };
@@ -1926,6 +1927,18 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
                 PrepareSubroutineSequence(battleCtx, subscript_wonder_room_end);
                 return;
             }
+        }
+
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
+        // fall-through
+
+    case SIDE_COND_CHECK_STATE_MAGIC_ROOM:
+        // Oxide: Magic Room counts down its five turns straight after
+        // Wonder Room, as the later games do.
+        if (battleCtx->magicRoomTurns && --battleCtx->magicRoomTurns == 0) {
+            PrepareSubroutineSequence(battleCtx, subscript_magic_room_end);
+            return;
         }
 
         battleCtx->sideConditionCheckState++;
