@@ -9287,6 +9287,27 @@
         "The foe’s {STRVAR_1 1, 0, 0}\n",
         "is hurt by Salt Cure!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can no longer\n",
+        "escape because of Octolock!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can no\n",
+        "longer escape because of Octolock!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can no\n",
+        "longer escape because of Octolock!"
+      ]
     }
   ]
 }

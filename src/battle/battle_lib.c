@@ -2076,6 +2076,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
             if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
                 && (battleCtx->battleMons[i].moveEffectsData.meanLookTarget == battler)) {
                 battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_MEAN_LOOK;
+                battleCtx->battleMons[i].oxideFlags &= ~OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock ends with its trap
             }
 
             if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
@@ -2093,7 +2094,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
         // and a variety of move effects (see constants/battle/moves.h)
         battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_BATON_PASSED;
         battleCtx->battleMons[battler].moveEffectsMask &= MOVE_EFFECT_BATON_PASSED;
-        battleCtx->battleMons[battler].oxideFlags = 0; // Oxide: Salt Cure is not passed on
+        battleCtx->battleMons[battler].oxideFlags &= OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock goes with Mean Look's trap; Salt Cure is not passed on
 
         for (i = 0; i < maxBattlers; i++) {
             if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
@@ -2191,6 +2192,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
         if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
             && battleCtx->battleMons[i].moveEffectsData.meanLookTarget == battler) {
             battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_MEAN_LOOK;
+            battleCtx->battleMons[i].oxideFlags &= ~OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock ends with its trap
         }
 
         if (battleCtx->battleMons[i].statusVolatile & (FlagIndex(battler) << VOLATILE_CONDITION_ATTRACT_SHIFT)) {

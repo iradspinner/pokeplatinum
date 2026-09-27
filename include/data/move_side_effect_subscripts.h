@@ -210,5 +210,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_AFTER_YOU]                        = subscript_handle_after_you,
     [MOVE_SUBSCRIPT_PTR_AURORA_VEIL]                      = subscript_aurora_veil,
     [MOVE_SUBSCRIPT_PTR_SALT_CURE]                        = subscript_salt_cure,
+    [MOVE_SUBSCRIPT_PTR_OCTOLOCK]                         = subscript_octolock,
 };
 // clang-format on

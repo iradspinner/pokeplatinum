@@ -1294,6 +1294,7 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_NIGHTMARE,
     MON_COND_CHECK_STATE_CURSE,
     MON_COND_CHECK_STATE_BIND,
+    MON_COND_CHECK_STATE_OCTOLOCK, // Oxide
     MON_COND_CHECK_STATE_SALT_CURE, // Oxide
     MON_COND_CHECK_STATE_BAD_DREAMS,
     MON_COND_CHECK_STATE_UPROAR,
@@ -1499,6 +1500,27 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
 
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moveEffectsData.bindingMove;
                 battleCtx->msgBattlerTemp = battler;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_OCTOLOCK:
+            // Oxide: an octolocked battler loses a stage of Defense and one
+            // of Sp. Def. Its Octolock user stands as the attacker, which is
+            // who the stat checks weigh the drops against.
+            if ((battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_FLAG_OCTOLOCKED)
+                && battleCtx->battleMons[battler].curHP) {
+                battleCtx->attacker = battleCtx->battleMons[battler].moveEffectsData.meanLookTarget;
+                battleCtx->sideEffectMon = battler;
+                battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
+                battleCtx->msgBattlerTemp = battler;
+
+                LOAD_SUBSEQ(subscript_octolock_turn);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

@@ -62,6 +62,7 @@
 // when the battler leaves the field (BattleSystem_UpdateAfterSwitch,
 // BattleSystem_CleanupFaintedMon).
 #define OXIDE_MON_FLAG_SALT_CURED (1 << 0) // Salt Cure: loses HP at the end of every turn
+#define OXIDE_MON_FLAG_OCTOLOCKED (1 << 1) // Octolock: trapped as by Mean Look, and loses Defense and Sp. Def every turn
 
 #define MOVE_STATUS_MISSED              (1 << 0)
 #define MOVE_STATUS_SUPER_EFFECTIVE     (1 << 1)

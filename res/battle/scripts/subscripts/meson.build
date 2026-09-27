@@ -372,4 +372,6 @@ subscript_files = files(
     'subscript_flame_burst.s',
     'subscript_salt_cure.s',
     'subscript_salt_cure_damage.s',
+    'subscript_octolock.s',
+    'subscript_octolock_turn.s',
 )

@@ -738,11 +738,13 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet56, 1
     AddListMenuEntry TestKit_Text_MenuSet57, 2
     AddListMenuEntry TestKit_Text_MenuSet58, 3
+    AddListMenuEntry TestKit_Text_MenuSet59, 4
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
     GoToIfEq VAR_0x8004, 2, TestKit_MoveSet57
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet58
+    GoToIfEq VAR_0x8004, 4, TestKit_MoveSet59
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1409,6 +1411,22 @@ TestKit_MoveSet58:
     SetVar VAR_0x8007, MOVE_SOAK
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 59: Octolock traps its target and lowers its Defense and Sp. Def by a
+   stage each at the end of every turn. Against a wild Chansey that knows
+   only Splash: "The wild CHANSEY can no longer escape because of
+   Octolock!", then each turn "The wild CHANSEY's Defense fell!" and "The
+   wild CHANSEY's Sp. Def fell!", so Tackle and Swift hit harder turn by
+   turn; a second Octolock fails. */
+TestKit_MoveSet59:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_OCTOLOCK
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_SWIFT
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
