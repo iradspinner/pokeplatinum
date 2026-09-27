@@ -867,6 +867,35 @@ that stay. None blocks anything.
    the type chips are. Suites: m4 51/51, m8 98/98, trainers 26/26 (a new
    check holds the scores to the balance files' own), docview 16/16, saves
    5/5, and a headless Chrome pass over the tab.
+34. **Saves in the tool (Ian approved steps 1 to 5 of the plan, 2026-09-27,
+   through the Overseer).** The Calc tab's save features, planned from a
+   read-only survey of the vendored calculator: its Sync talks to a patched
+   DeSmuME, so for melonDS the OxiDex reads Ian's `.sav` itself. Steps 1 and 2
+   are done. `savefile.py` reads a save, read-only: it finds each block by
+   its footer and takes the copy saved last, then decrypts the party and the
+   boxes with Oxide's two changes to a record (the u16 ability in block B, the
+   hidden-ability bit in block A). `cli save PATH` prints what it read and
+   the build it came from, from the block sizes (vanilla's until 2026-09-21,
+   Oxide's since the Pokedex grew), a move past vanilla's 467 (element 4) and
+   the hidden bit. It reports a mismatch (exit 2) for a record whose checksum
+   fails or an id past this build's tables. The calculator's own Read Save
+   reads Oxide saves too: the blob carries `includes`, Oxide's species,
+   moves, items, growth rates and abilities by id (`calc_export.save_includes`),
+   and two patches (VENDORED.md 14 and 15) install them and find the layout
+   by footer. Ian's save of 2026-09-21 is the first test: its working copy
+   is `~/roms/oxide-save-2026-09-21.sav`, beside the ROM it came from as
+   `~/roms/oxide-2026-09-21.nds`, both read-only and outside the repository,
+   which is public. Both readers give a Chimchar at level 6 with Blaze,
+   Scratch and Leer, met on Route 201; the box block's only good copy is the
+   backup, which vanilla's fixed offsets would never have found. The id lists
+   of the build that wrote it (bb0c45993) are today's, less element 4's new
+   moves. `test_savefile` builds a save byte by byte and checks both readers,
+   plus Ian's copy where it exists. Open: step 3, the Sync bridge (inotify
+   for a save on the Linux filesystem, mtime polling for one under `/mnt`,
+   the path in one setting); step 4, the Box and Import/Export against a
+   real save; step 5, mints and Hyper Training when element 7 records them
+   and 30 boxes after element 8; step 6, the battle log, waits on Ian's
+   choice of source.
 
 ## Standing rules
 

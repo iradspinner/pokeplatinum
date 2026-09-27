@@ -131,6 +131,25 @@ calculator checks fail if the offline ones are lost.
     Lua sync button and its emulator link hidden under the "Platinum Oxide"
     title: both serve hzla's DeSmuME build, and Oxide is played on melonDS.
 
+14. **`js/initialize.js`, Oxide's save tables** (2026-09-27, Ian's save
+    plan, step 1). The "Platinum Oxide" branch sets `settings.readIncludes`,
+    so upstream's own loader installs the blob's `includes` (species, moves,
+    items, growth rates and abilities by the ids an Oxide save stores,
+    `calc_export.save_includes`) as the save reader's tables. The includes
+    loader then skips `extendSavArraysToGen67` under that title, since it
+    writes Generation 6 and 7 names over species past 650, moves past 559
+    and every ability.
+
+15. **`js/savereaders/savereader.js`, Oxide's save layout and ability**
+    (2026-09-27, step 2). `applyOxideSaveLayout` finds the normal and box
+    blocks by their footers (the signature 0x20060623 with the size before
+    it) and sets the offsets the vanilla Platinum branch hard-codes, which
+    an Oxide save no longer matches: its larger Pokedex moved the box block.
+    `parsePKM` reads the ability as the u16 at block B 0x1A and shows the
+    hidden-ability bit (block A 0x0D bit 0) as slot 3. Both apply only under
+    the "Platinum Oxide" title. `tools/oxide/encounters/savefile.py` reads
+    saves the same way for the OxiDex, and `test_savefile` checks both.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

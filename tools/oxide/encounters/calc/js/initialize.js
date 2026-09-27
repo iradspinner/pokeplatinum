@@ -1264,6 +1264,9 @@ function setGameSettings(title) {
     save_expansion = false
     showDex = false;
     showAI = false;
+    // Oxide patch: the save reader takes Oxide's species, moves, items,
+    // growth rates and abilities from the blob's `includes` (calc_export.py).
+    settings.readIncludes = true
     $('label[for="snow"]').hide()
   } else if (title == "Platinum Kaizo" || title == "Platinum") {
     gameGen = 4
@@ -2320,7 +2323,10 @@ function loadDataSource(data) {
         sav_abilities = includes["abilities"]
         window.HGE_SAVE_INCLUDES_READY = mechanics == "hge"
         window.HGE_SAVE_INCLUDE_SOURCE = hasCompleteEmbeddedIncludes ? "backup" : "shared-fallback"
-        if (mechanics != "hge" && typeof window.extendSavArraysToGen67 === "function") {
+        // Oxide patch: Oxide's tables are the ROM's own ids; the Generation 6
+        // and 7 extender would overwrite them.
+        if (mechanics != "hge" && TITLE != "Platinum Oxide"
+            && typeof window.extendSavArraysToGen67 === "function") {
           window.extendSavArraysToGen67()
         }
       } else {
