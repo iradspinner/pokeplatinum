@@ -757,6 +757,10 @@ def cmd_save(args):
     for sign in s["era"]["signs"]:
         print(f"  build: {sign}")
     print(f"  trainer id {s['trainer_id']}, secret id {s['secret_id']}")
+    pr = s["progress"]
+    split = pr["split"] or {}
+    print(f"  {pr['badges']} badge{'s' if pr['badges'] != 1 else ''}, {pr['money']} money"
+          + (f", in {split['name']}'s split (level cap {split['cap']})" if split.get("name") else ""))
     print(f"party, {len(s['party'])}:")
     for mon in s["party"]:
         print("  " + savefile.describe(mon))

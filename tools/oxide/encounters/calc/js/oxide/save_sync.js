@@ -8,12 +8,27 @@
 // patch). A save made in game reaches the calculator's box within a few
 // seconds with no button pressed; Sync still works by hand. Its tooltip says
 // what was read last, or why nothing was.
+//
+// The save also says which level-cap split the player is in, so the
+// calculator's level cap (the Box's cap and its "set to cap") follows it:
+// set when a save's cap differs from the last one set here, so a cap typed
+// by hand stays until the game's own cap changes (step 4).
 (function () {
   if (window.__oxideSaveSync) {
     return;
   }
   window.__oxideSaveSync = true;
-  var lastSeq = 0;
+  var lastSeq = 0, lastCap = null;
+
+  function applyCap(save) {
+    var split = save && save.progress && save.progress.split;
+    if (!split || !split.cap || split.cap === lastCap) {
+      return;
+    }
+    lastCap = split.cap;
+    try { localStorage.lvlCap = String(split.cap); } catch (e) { /* private window */ }
+    $('#lvl-cap').val(split.cap).trigger('change');
+  }
 
   function tick() {
     if (typeof TITLE === "undefined" || TITLE !== "Platinum Oxide" || document.hidden) {
@@ -32,6 +47,7 @@
           : "Set the save file in the OxiDex's Calc tab, above the calculator";
         if (s.save && s.seq > lastSeq) {
           lastSeq = s.seq;
+          applyCap(s.save);
           $(btn).click();
         }
       })

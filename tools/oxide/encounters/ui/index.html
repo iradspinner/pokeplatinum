@@ -829,7 +829,10 @@ function drawSaveBar(s) {
   else if (s.path && s.save) {
     const when = new Date(s.mtime * 1000).toLocaleString();
     const off = s.save.era.mismatches.length;
-    text = `${s.save.party_count} in the party, ${s.save.boxed} in the boxes; saved ${when}, `
+    const pr = s.save.progress || {}, split = pr.split || {};
+    const where = split.name ? `${pr.badges} badge${pr.badges === 1 ? "" : "s"}, ${split.name}'s split `
+      + `(cap ${split.cap}); ` : "";
+    text = `${where}${s.save.party_count} in the party, ${s.save.boxed} in the boxes; saved ${when}, `
       + `watched by ${s.mode}.` + (off ? ` ${off} sign${off > 1 ? "s" : ""} it is not this build's.` : "");
   } else if (s.path) text = "Waiting for the file.";
   state.textContent = text;

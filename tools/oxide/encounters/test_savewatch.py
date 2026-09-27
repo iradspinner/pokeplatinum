@@ -152,11 +152,12 @@ def main():
     # The calculator's side: Sync reads the bridge under the Oxide title.
     calc = os.path.join(S.model.repo_root(), "tools", "oxide", "encounters", "calc")
     read = lambda *p: open(os.path.join(calc, *p), encoding="utf-8").read()
-    results.append(("the calculator's Sync reads the bridge under the Oxide title, and polls it "
-                    "(VENDORED.md patch 16)",
+    results.append(("the calculator's Sync reads the bridge under the Oxide title, and polls it, "
+                    "setting the level cap from the save (VENDORED.md patch 16)",
                     '"/api/save/packed"' in read("js", "moveset_import.js")
                     and 'TITLE == "Platinum Oxide"' in read("js", "calc_ui", "menu_settings.js")
                     and "/api/save" in read("js", "oxide", "save_sync.js")
+                    and "$('#lvl-cap')" in read("js", "oxide", "save_sync.js")
                     and 'src="./js/oxide/save_sync.js"' in read("index.html"), ""))
 
     shutil.rmtree(tmp, ignore_errors=True)

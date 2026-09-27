@@ -173,6 +173,74 @@ def _tables():
     }
 
 
+def _entry_body(size):
+    """SaveTableEntry_BodySize: an entry's size rounded past the next multiple
+    of four, plus four, which is how far apart the save table lays entries."""
+    size += 4 - size % 4
+    return size + 4
+
+
+@functools.lru_cache(maxsize=1)
+def _vars_layout():
+    """Where VarsFlags sits in the normal block, and what the level-cap split
+    variable means, from this build's own source: the save table puts the
+    party, then the bag, then the variables and flags (src/savedata/
+    save_table.c); the bag's pockets are include/bag.h's; the ids are
+    generated/vars_flags.txt's; the caps are the engine's sLevelCaps."""
+    import re
+    root = model.repo_root()
+    read = lambda *p: open(os.path.join(root, *p), encoding="utf-8").read()
+    pockets = sum(int(n) for n in re.findall(r"#define \w+_POCKET_SIZE\s+(\d+)", read("include", "bag.h")))
+    party = 4 + 4 + 6 * PARTY_RECORD
+    bag = pockets * 4 + 4
+    values, last = {}, -1
+    for line in read("generated", "vars_flags.txt").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = re.match(r"^(\w+)\s*=\s*(\w+)$", line)
+        if m:
+            name, v = m.groups()
+            last = int(v, 0) if v[0].isdigit() else values[v]
+        else:
+            name, last = line, last + 1
+        values[name] = last
+    flags = int(re.search(r"#define NUM_FLAGS\s+(\d+)", read("include", "vars_flags.h")).group(1))
+    splits = dict((int(v), n.title()) for n, v in
+                  re.findall(r"#define LEVEL_CAP_SPLIT_(\w+)\s+(\d+)", read("include", "constants", "level_caps.h"))
+                  if n != "COUNT")
+    caps = {}
+    for n, v in re.findall(r"\[LEVEL_CAP_SPLIT_(\w+)\] = (\w+)", read("src", "system_vars.c")):
+        caps[n.title()] = int(v) if v.isdigit() else 100
+    return {"at": PARTY_AT + _entry_body(party) + _entry_body(bag),
+            "vars_start": values["VARS_START"], "num_vars": values["VARS_END"] - values["VARS_START"],
+            "num_flags": flags, "values": values, "splits": splits, "caps": caps}
+
+
+def _progress(data, n0):
+    """The trainer's money and badges, and the level-cap split: what the
+    save says about how far the player is."""
+    money, = struct.unpack_from("<I", data, n0 + 0x7C)
+    mask = data[n0 + 0x82]
+    out = {"money": money, "badge_mask": mask, "badges": bin(mask).count("1"), "split": None}
+    lay = _vars_layout()
+    var = lay["values"].get("VAR_LEVEL_CAP_SPLIT")
+    if var is not None:
+        i = struct.unpack_from("<H", data, n0 + lay["at"] + 2 * (var - lay["vars_start"]))[0]
+        name = lay["splits"].get(i)
+        out["split"] = {"index": i, "name": name, "cap": lay["caps"].get(name)} if name else {"index": i}
+    return out
+
+
+def flag(data, name):
+    """Whether a named flag is set in a save's newest normal block."""
+    lay = _vars_layout()
+    n0 = blocks(data)[BLOCK_NORMAL]["start"]
+    i = lay["values"][name]
+    at = n0 + lay["at"] + 2 * lay["num_vars"] + i // 8
+    return bool(data[at] >> (i % 8) & 1)
+
+
 def _level(species, exp):
     """A boxed Pokemon's level, from its experience and its species' curve."""
     rec = pokedex.load(model.repo_root(), species) or {}
@@ -291,7 +359,7 @@ def parse(data, path="(memory)"):
         "blocks": {k: {x: v[x] for x in ("copy", "start", "size", "save_counter", "block_counter")}
                    for k, v in found.items()},
         "footers": footers(data),
-        "trainer_id": tid, "secret_id": sid,
+        "trainer_id": tid, "secret_id": sid, "progress": _progress(data, n0),
         "party": party, "boxes": boxes, "box_count": box_count, "current_box": current_box,
     }
     save["era"] = build_era(save)
@@ -332,7 +400,8 @@ def summary(save):
     many are boxed, and the build signs."""
     return {"trainer_id": save["trainer_id"], "secret_id": save["secret_id"],
             "party": [describe(m) for m in save["party"]], "party_count": len(save["party"]),
-            "boxed": len(save["boxes"]), "box_count": save["box_count"], "era": save["era"]}
+            "boxed": len(save["boxes"]), "box_count": save["box_count"], "era": save["era"],
+            "progress": save["progress"]}
 
 
 def build_era(save):
@@ -357,6 +426,10 @@ def build_era(save):
                           "(2026-09-20), whose abilities this build cannot read")
     if any(mon["hidden_ability"] for mon in mons):
         signs.append("a Pokemon with its hidden ability (element 8)")
+    split = (save.get("progress") or {}).get("split")
+    if split and "name" not in split:
+        mismatches.append(f"the level-cap split reads {split['index']}, which this build has no "
+                          f"split for; the variables may not be where this build keeps them")
     party_ids = {(mon["ot_id"], mon["ot_secret"]) for mon in save["party"]}
     if save["party"] and (save["trainer_id"], save["secret_id"]) not in party_ids:
         mismatches.append("no Pokemon in the party carries the save's trainer id; the trainer "

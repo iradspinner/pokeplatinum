@@ -906,10 +906,24 @@ that stay. None blocks anything.
    read a newer save, so a save made in game reaches the calculator's box
    within a few seconds. Checked end to end in headless Chrome on a copy of
    Ian's save: the box synced by itself, then followed when the file was
-   replaced. Open: step 4, the Box and Import/Export against a real save of
-   the current ROM; step 5, mints and Hyper Training when element 7 records
-   them and 30 boxes after element 8; step 6, the battle log, waits on
-   Ian's choice of source.
+   replaced.
+
+   Step 4 is done, on Ian's first save from a current ROM (53b863005, in his
+   room after the intro; working copy `~/roms/oxide-save-2026-09-27-53b863005.sav`).
+   Its layout is the 2026-09-21 one, so nothing saved has moved since. The
+   reader now also gives the trainer's money and badges and the level-cap
+   split, with the engine's own cap: the variables and flags sit after the
+   party and the bag, at 0xDAC in the normal block, which both of Ian's
+   saves confirm (his older one holds `VAR_PLAYER_STARTER` 390, Chimchar,
+   and the Pokedex flag). The save bar shows the split, and the calculator's
+   level cap, which its Box uses, follows the save's split cap whenever that
+   cap changes. Import/Export needed nothing: a team of Oxide-only names
+   (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
+   Toxic Debris) imports and exports unchanged. A Sync replaces the box with
+   what the save holds, as upstream's does, so a team typed in by hand goes
+   at the next save. Open: step 5, mints and Hyper Training when element 7
+   records them and 30 boxes after element 8; step 6, the battle log, waits
+   on Ian's choice of source.
 
 ## Standing rules
 

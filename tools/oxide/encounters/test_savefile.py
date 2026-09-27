@@ -21,6 +21,8 @@ from . import savefile as S
 
 NORMAL_SIZE, BOX_SIZE = 0xD01C, 0x121E4
 IAN_COPY = os.path.expanduser("~/roms/oxide-save-2026-09-21.sav")
+# His first save on a current ROM (53b863005), in his room after the intro.
+IAN_CURRENT = os.path.expanduser("~/roms/oxide-save-2026-09-27-53b863005.sav")
 
 
 def species_id(constant):
@@ -67,13 +69,19 @@ def footer(body, block, save_counter, block_counter, size):
             + bytes([block, 0]) + struct.pack("<H", S.crc16(body)))
 
 
-def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0)):
+def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
+              money=12345):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
     copy of each block is newer (0 leaves that copy's block unwritten)."""
     data = bytearray(b"\xff" * 0x80000)
     normal = bytearray(NORMAL_SIZE - S.FOOTER_SIZE)
     struct.pack_into("<HH", normal, S.TRAINER_ID_AT, 25097, 32454)
     struct.pack_into("<ii", normal, S.PARTY_AT, 6, len(party))
+    struct.pack_into("<I", normal, 0x7C, money)
+    normal[0x82] = badges
+    lay = S._vars_layout()
+    var = lay["values"]["VAR_LEVEL_CAP_SPLIT"] - lay["vars_start"]
+    struct.pack_into("<H", normal, lay["at"] + 2 * var, split)
     for i, rec in enumerate(party):
         normal[S.PARTY_AT + 8 + i * S.PARTY_RECORD:S.PARTY_AT + 8 + (i + 1) * S.PARTY_RECORD] = rec
     boxes = bytearray(BOX_SIZE - S.FOOTER_SIZE)
@@ -143,6 +151,12 @@ def main():
                     and any("hidden" in x for x in era["signs"])
                     and any("box 3 slot 1" in x and "checksum" in x for x in era["mismatches"]),
                     "; ".join(era["mismatches"])))
+    pr = s["progress"]
+    results.append(("the save's progress: money and badges from the trainer, the level-cap "
+                    "split from its variable (after the party and the bag), with the engine's cap",
+                    pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC,
+                    f"{pr['badges']} badges, {pr['split']}"))
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))
@@ -200,6 +214,20 @@ def main():
                         S.describe(first) if first else "no party"))
     else:
         print(f"  skip  Ian's save: no working copy at {IAN_COPY}")
+    if os.path.exists(IAN_CURRENT) and os.path.exists(IAN_COPY):
+        now = S.read(IAN_CURRENT)
+        old = open(IAN_COPY, "rb").read()
+        results.append(("Ian's first save on a current ROM: the same layout, an empty party, "
+                        "3000 money, Roark's split at cap 16; his older save has the Pokedex "
+                        "flag set, read from the same place",
+                        now["blocks"][0]["size"] == 0xD01C and not now["party"]
+                        and now["progress"]["money"] == 3000
+                        and now["progress"]["split"] == {"index": 0, "name": "Roark", "cap": 16}
+                        and not now["era"]["mismatches"] and S.flag(old, "FLAG_HAS_POKEDEX")
+                        and not S.flag(open(IAN_CURRENT, "rb").read(), "FLAG_HAS_POKEDEX"),
+                        str(now["progress"])))
+    else:
+        print(f"  skip  Ian's current save: no working copy at {IAN_CURRENT}")
 
     width = max(len(l) for l, _, _ in results)
     failed = 0

@@ -159,8 +159,9 @@ calculator checks fail if the offline ones are lost.
     show Sync under the title whatever the menu's Lua toggle says, and keep
     the DeSmuME link hidden (patch 13); `index.html` loads
     `js/oxide/save_sync.js`, which asks `/api/save` every three seconds and
-    presses Sync when the OxiDex has read a newer save. `test_savewatch`
-    checks all four.
+    presses Sync when the OxiDex has read a newer save, and sets the level
+    cap (`#lvl-cap`, which the Box uses) to the save's split cap whenever
+    that cap changes (step 4). `test_savewatch` checks all four.
 
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
