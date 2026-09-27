@@ -409,6 +409,12 @@ Finished and landed on oxide at 98ff5bebe (2026-09-27): a sub-item of "The move 
   - [x] The move data (the short list, the setup and stat-lowering PP, the modern priorities), as one cloud job: done on `cloud/element4-kaizo-move-data`, not merged Ian kept its calls (Focus Energy at 3 PP, 2026-09-27); the main track updates the five high critical-hit moves' descriptions.
 - [x] **Sinistea splits** (Ian, 2026-09-27): a Dusk Stone makes Polteageist and a Leaf Stone makes Sinistcha, as Ian always meant; done on `sinistea-split`. It corrects `73aca545f`, whose "Ian's ruling" was the Overseer's own call. The balance track counts the Leaf Stone's new claimant. Landed on oxide at 98ff5bebe.
 
+Three sub-items of "The move pool, first cut", finished on 2026-09-27 (the Metronome bars on `main-metronome` and `main-metronome-2`, the hidden abilities on `balance-weather-hidden`):
+
+  - [x] The eight cut status moves (Telekinesis, Ally Switch, Topsy-Turvy, Flower Shield, Fairy Lock, Aromatic Mist, Magnetic Flux, Speed Swap) stay unwritten and are barred from Metronome (Ian, 2026-09-27; barred on `main-metronome`, which bars them from Assist and Copycat too); cleaning up the cut and empty move slots waits until the move list has mostly settled (main track). Done on `main-metronome`, landed 2026-09-27.
+  - [x] Metronome is barred from every move that does nothing or is partial (22), the Max moves and Max Guard, the signature Z-moves, and Rain Dance, Sunny Day, Sandstorm and Hail (Ian, 2026-09-27). Done on `main-metronome-2`: 62 moves join the Metronome part of the table, and Assist and Copycat share the bars, so the player cannot copy a trainer's weather either
+  - [x] Pelipper's hidden ability becomes Drizzle and Torkoal's Drought now, for trainers (Ian, 2026-09-27, staples answer 9); lint R18 keeps them out of gifts, eggs and scripted battles Done on `balance-weather-hidden` (2026-09-27).
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
