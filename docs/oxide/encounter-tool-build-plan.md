@@ -860,6 +860,32 @@ that stay. None blocks anything.
    needs a table change, which goes to Ian as a proposal first. Suites:
    step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim 11/11.
 
+   **The proposal, waiting on Ian.** Ten slot swaps, one per line, each in a
+   table the gate dates to the line's cap split or earlier. Every swap takes
+   a slot of the same rate, so no table's shape or top share moves, and every
+   line that gives way keeps an earlier or equal first capture elsewhere.
+   The Barry split did not change the list.
+
+   | Line (final stage by, cap split) | Table and slot | Gives way |
+   |---|---|---|
+   | Luvdisc (Alomomola 30, Fantina) | Route 219, Old Rod 5% (Roark) | Wingull, 9 other places |
+   | Mantyke (Mantine 30, Fantina) | Valley Windworks, Old Rod 5% (Gardenia) | Remoraid, 16 other places |
+   | Totodile (Feraligatr 30, Fantina) | Route 208, Old Rod 5% (Fantina) | Barboach, 46 other places |
+   | Drifloon (Drifblim 28, Fantina) | Amity Square, night slot (Fantina) | Glameow's night slot; it keeps its 10% there |
+   | Smoochum (Jynx 30, Fantina) | Amity Square, day slot (Fantina) | Emolga's day slot; its first capture stays Valley Windworks |
+   | Hippopotas (Hippowdon 34, Maylene) | Wayward Cave B1F, 10% (Fantina) | Meditite's base 10%; it keeps its day slot there |
+   | Slowpoke (Slowbro 37, Maylene) | Route 209, Good Rod 4% (Maylene) | Surskit, 24 other places |
+   | Tangela (Tangrowth 35, Maylene) | Route 209, one 4% land slot (Maylene) | Smoliv, down from 8% to 4% there |
+   | Goomy (Goodra 50, Byron) | Route 212 south, 1% land slot (Wake) | Frillish, 32 other places |
+   | Spheal (Walrein 44, Wake) | Route 213, Good Rod 1% (Wake) | Chinchou, 51 other places |
+
+   Two choices are Ian's. Walrein is final at exactly Wake's cap of 44, and
+   the gate counts a line final at the cap as under it; he may rule that at
+   the cap is fine, and Spheal stays in Snowpoint. Smoochum's alternative to
+   Emolga's day slot is Klefki's 1% in Amity Square, which costs less and
+   makes it rarer. On a yes, the swaps go in, then `cli evolve`, the lint,
+   the gate (which must show no cap candidates) and the suites.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
