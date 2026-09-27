@@ -820,12 +820,32 @@ that stay. None blocks anything.
    slot would be read as species 0. **Done**: the engine change is
    7cefbba53, every list is empty (`test_step5`), and lint R17 fails on any
    species put back.
+31. **Ian's edits reach oxide (the Overseer, 2026-09-27).** Ian's first team
+   builder save (Saturn 2 without Trick Room or the Choice Scarf) landed
+   uncommitted in this track's worktree, where his server ran, on whatever
+   branch was out; it was committed on its own branch
+   (`encounter-saturn-save`, 54792de1f). Since then his server runs from a
+   worktree of its own, `.claude/worktrees/ian-tool`, on the branch
+   `ian-saves`, and the page's header has "Commit my edits" with a count of
+   what is waiting. It commits only what the tool writes (trainer files,
+   the importer's registry, encounter tables and their sidecar), only on
+   `ian-saves`, and only after the encounter lint and the importer's dry
+   run pass; then it pushes and shows the head. The Overseer lands
+   `ian-saves` like a track branch, after the Balance Agent rescores what a
+   trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
+   throwaway repository.
 
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
 and the whole-game gate) are in the `author-table` skill. These are about the tool
 itself.
+
+- Ian's server runs from `.claude/worktrees/ian-tool` on `ian-saves`
+  (item 31). Never switch that worktree's branch. When the Overseer merges
+  oxide into `ian-saves`, restart the server there (the project's 3.13
+  venv, detached), and bring along nothing but its code: his caught list
+  lives in that checkout.
 
 - The Trainers tab writes `res/trainers/data/` for real. Try a change to
   its save path on a scratch copy first: `trainers.save` takes a folder and

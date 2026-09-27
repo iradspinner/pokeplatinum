@@ -41,6 +41,7 @@ from . import locations
 from . import model
 from . import pokedex
 from . import progression
+from . import saves
 from . import scripted
 from . import simulate
 from . import trainers
@@ -907,6 +908,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
                                    "caps": trainers.caps(),
                                    "choices": trainers.choices(model.repo_root())})
+            if parts[1] == "saves":
+                # Ian's uncommitted edits, for the header's badge (saves.py).
+                return self._send(saves.pending(model.repo_root()))
             if parts[1] == "trainer-moves":
                 # The three move lists for one team member (learnsets.py).
                 species = (q.get("species") or [""])[0]
@@ -1002,6 +1006,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # The team builder (trainers.py): /preview rebuilds an unsaved team
             # and lints it, writing nothing; a bare POST saves it, refusing on
             # a lint error or a packer failure with the findings.
+            # "Commit my edits": the tool's own writes, checked, committed on
+            # ian-saves and pushed (saves.py). It refuses anywhere else.
+            if parts[:3] == ["api", "saves", "commit"]:
+                try:
+                    out = saves.commit(model.repo_root())
+                except saves.CommitRefused as exc:
+                    return self._send({"error": str(exc)}, 409)
+                return self._send(out, 200 if out.get("pushed") else 502)
+
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "trainer":
                 root, stem, data = model.repo_root(), parts[2], body.get("data")
                 if not isinstance(data, dict):
