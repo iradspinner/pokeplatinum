@@ -169,6 +169,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
   Claw land critical hits noticeably more often than Peck or Scratch.
+- [ ] The learnset pass in normal play (`cloud/balance-learnset-pass`,
+  `docs/oxide/learnset-pass.md`): a wild Abra knows Confusion and never
+  Teleport; a low-level wild Shellder knows Take Down; Charmander learns Metal
+  Claw at 16 and Dragon Claw at 25; at the Move Relearner, an evolved stage such as
+  Charizard offers its level-1 moves (Earthquake, Flare Blitz).
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.
