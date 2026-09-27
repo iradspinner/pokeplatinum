@@ -15,8 +15,9 @@
 #define LEVEL_CAP_SPLIT_HQ       7
 #define LEVEL_CAP_SPLIT_GALACTIC 8
 #define LEVEL_CAP_SPLIT_VOLKNER  9
-#define LEVEL_CAP_SPLIT_LEAGUE   10
-#define LEVEL_CAP_SPLIT_NONE     11 // after the Champion: no cap below level 100
-#define LEVEL_CAP_SPLIT_COUNT    12
+#define LEVEL_CAP_SPLIT_BARRY    10 // after the Beacon Badge, up to the Elite Four
+#define LEVEL_CAP_SPLIT_LEAGUE   11 // from entering the Elite Four
+#define LEVEL_CAP_SPLIT_NONE     12 // after the Champion: no cap below level 100
+#define LEVEL_CAP_SPLIT_COUNT    13
 
 #endif // POKEPLATINUM_CONSTANTS_LEVEL_CAPS_H
