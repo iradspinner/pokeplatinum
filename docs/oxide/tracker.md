@@ -10,10 +10,10 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 **Who is on what** (2026-09-27, after the landing of 98ff5bebe):
 
-1. **Balance Agent**: the Kaizo pattern study's parts 1 and 2 are done, and its rules summary waits on Ian before the generator (part 3); meanwhile stone scoring and the gauntlet proposals.
+1. **Balance Agent**: the Lucas and Dawn fights and the placed dummy trainers into the scores; the Kaizo study's generator waits on Ian.
 2. **Encounter Tool Builder**: the trainer team builder landed (2026-09-27, the tool's Trainers tab); next, its build plan's open items.
-3. **Main Production Agent**: free; next, the Frontier Brain fights once Ian's teams exist, or barring more moves from Metronome if Ian rules it.
-4. **Carry-over Agent**: its list is finished and landed.
+3. **Main Production Agent**: next, the Frontier fights once Ian's teams exist, or more Metronome bars if Ian rules them.
+4. **Carry-over Agent**: finished.
 5. **Cloud**: nothing running. The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
 6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in; the Frontier Brain teams; the Metronome question below.
 7. **No owner yet**: element 7 (items), the rest of element 8 (field moves by badge, 30 PC boxes, wild doubles), and the bug track, which needs Ian live.
@@ -50,6 +50,10 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
+
+- **The Kaizo pattern study's rules** (balance track, 2026-09-27; the plan's "What parts 1 and 2 found"): confirm the direction before the generator is built, and say yes or no to the dead-weight rule's further catches: Astonish, Rollout, Fire Spin, Fury Cutter, Whirlpool, Sand Tomb, Bind, Sky Attack, Skull Bash and the rarer ones the plan lists.
+
+- **The gauntlet proposal** (balance track, 2026-09-27; the plan's design pass 5): four story gauntlets and three optional ones. Say whether the bag heals inside one, and whether a gauntlet asks as much as its split's gym or less.
 
 - **Metronome can still call moves that do nothing** (main track, 2026-09-27, after barring the eight cut moves): 22 moves whose effect is missing or partial, the 18 Max moves and Max Guard, and the 17 signature Z-moves (most are 175 to 210 power and never miss), plus Rain Dance, Sunny Day, Sandstorm and Hail, which work, so a player's Metronome gets round the no-weather ruling. The later games bar Max and Z-moves. Say which to bar; each is a one-list change.
 
