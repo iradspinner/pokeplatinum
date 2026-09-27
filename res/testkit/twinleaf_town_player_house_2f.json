@@ -932,6 +932,29 @@
                 "One of each of the 46 new items\n",
                 "is in the Bag."
             ]
+        },
+        {
+            "id": "TestKit_Text_ItemPair",
+            "en_US": [
+                "Two new Pokémon: the first holds\n",
+                "{STRVAR_1 8, 0, 0}, the second nothing."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemEviolite",
+            "en_US": "Eviolite"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAssaultVest",
+            "en_US": "Assault Vest"
+        },
+        {
+            "id": "TestKit_Text_MenuItemPunchingGlove",
+            "en_US": "Punching Glove"
+        },
+        {
+            "id": "TestKit_Text_MenuItemFairyFeather",
+            "en_US": "Fairy Feather"
         }
     ]
 }

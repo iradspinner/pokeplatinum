@@ -2419,6 +2419,15 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Oxide, element 7: an Assault Vest's holder cannot choose a status
+        // move, Me First aside (hg-engine's STRUGGLE_CHECK_ASSAULT_VEST).
+        if (itemEffect == HOLD_EFFECT_ASSAULT_VEST
+            && (opMask & CHECK_INVALID_ASSAULT_VEST)
+            && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).class == CLASS_STATUS
+            && battleCtx->battleMons[battler].moves[i] != MOVE_ME_FIRST) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if (battleCtx->battleMons[battler].moveEffectsData.encoredMove
             && battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[i]) {
             invalidMoves |= FlagIndex(i);
@@ -2482,6 +2491,11 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->tags = TAG_NICKNAME;
         msgOut->id = BattleStrings_Text_PokemonHasntEatenABerrySoItCantPossiblyBelch; // "{0} hasn't eaten a Berry, so it can't possibly belch!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ASSAULT_VEST) & FlagIndex(moveSlot)) { // Oxide
+        msgOut->tags = TAG_ITEM;
+        msgOut->id = BattleStrings_Text_TheEffectsOfTheItemPreventStatusMovesFromBeingUsed; // "The effects of the {0} prevent status moves from being used!"
+        msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_ITEM_MOVE;
@@ -7559,6 +7573,7 @@ static const ItemEffectTypePair sTypeBoostingItems[] = {
     { HOLD_EFFECT_STRENGTHEN_FIRE, TYPE_FIRE },
     { HOLD_EFFECT_STRENGTHEN_DRAGON, TYPE_DRAGON },
     { HOLD_EFFECT_STRENGTHEN_NORMAL, TYPE_NORMAL },
+    { HOLD_EFFECT_STRENGTHEN_FAIRY, TYPE_FAIRY }, // Oxide, element 7: the Fairy Feather
     { HOLD_EFFECT_ARCEUS_FIRE, TYPE_FIRE },
     { HOLD_EFFECT_ARCEUS_WATER, TYPE_WATER },
     { HOLD_EFFECT_ARCEUS_ELECTRIC, TYPE_ELECTRIC },
@@ -7630,6 +7645,10 @@ static const u16 sSlicingMoves[] = {
     MOVE_X_SCISSOR,
 };
 
+// The punching moves, which Iron Fist and the Punching Glove raise. Oxide,
+// element 7: the later games' punches are added after Platinum's fifteen, from
+// hg-engine's PunchingMoveTable, less its Double Shock, which no main-series
+// game counts as a punch.
 static const u16 sPunchingMoves[] = {
     MOVE_ICE_PUNCH,
     MOVE_FIRE_PUNCH,
@@ -7645,8 +7664,41 @@ static const u16 sPunchingMoves[] = {
     MOVE_SHADOW_PUNCH,
     MOVE_DRAIN_PUNCH,
     MOVE_BULLET_PUNCH,
-    MOVE_SKY_UPPERCUT
+    MOVE_SKY_UPPERCUT,
+    MOVE_DOUBLE_IRON_BASH,
+    MOVE_HEADLONG_RUSH,
+    MOVE_ICE_HAMMER,
+    MOVE_JET_PUNCH,
+    MOVE_PLASMA_FISTS,
+    MOVE_POWER_UP_PUNCH,
+    MOVE_RAGE_FIST,
+    MOVE_SURGING_STRIKES,
+    MOVE_WICKED_BLOW,
 };
+
+// Oxide, element 7: whether a move is one of the punches above.
+static BOOL Move_IsPunching(int move)
+{
+    for (int i = 0; i < NELEMS(sPunchingMoves); i++) {
+        if (sPunchingMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Oxide, element 7: whether a species can still evolve, for the Eviolite.
+// A species can when its evolution record's first slot is in use, which is
+// hg-engine's test.
+static BOOL Species_CanEvolve(int species)
+{
+    u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
+    SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
+
+    NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, species);
+    return evolutions[0].method != EVO_NONE;
+}
 
 typedef struct DamageCalcParams {
     u16 species;
@@ -7969,6 +8021,23 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
     }
 
+    // Oxide, element 7, after hg-engine's CalcBaseDamage. The Punching
+    // Glove raises punches by a tenth (its effect parameter). The Eviolite
+    // raises its holder's Defense and Sp. Def by half while it can still
+    // evolve, and the Assault Vest its Sp. Def by half; both apply to the
+    // stat the move meets, so under Wonder Room they follow the swap, as the
+    // other defensive modifiers here do.
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_PUNCHING_GLOVE && Move_IsPunching(move)) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && Species_CanEvolve(defenderParams.species)) {
+        defenseStat = defenseStat * 150 / 100;
+        spDefenseStat = spDefenseStat * 150 / 100;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_ASSAULT_VEST) {
+        spDefenseStat = spDefenseStat * (100 + defenderParams.heldItemPower) / 100;
+    }
+
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_THICK_FAT) == TRUE
         && (moveType == TYPE_FIRE || moveType == TYPE_ICE)) {
         movePower /= 2;
@@ -8101,11 +8170,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 75 / 100;
     }
 
-    for (i = 0; i < NELEMS(sPunchingMoves); i++) {
-        if (sPunchingMoves[i] == move && attackerParams.ability == ABILITY_IRON_FIST) {
-            movePower = movePower * 12 / 10;
-            break;
-        }
+    if (attackerParams.ability == ABILITY_IRON_FIST && Move_IsPunching(move)) {
+        movePower = movePower * 12 / 10;
     }
 
     if (NO_CLOUD_NINE) {
@@ -9713,8 +9779,11 @@ BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int abilit
 
 BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
 {
+    // Oxide, element 7: a punch thrown with a Punching Glove makes no
+    // contact (hg-engine's IsContactBeingMade).
     return (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)
-        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH;
+        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH
+        && (Battler_HeldItemEffect(battleCtx, attacker) != HOLD_EFFECT_PUNCHING_GLOVE || Move_IsPunching(move) == FALSE);
 }
 
 // Oxide: the Normal moves Pixilate leaves alone, after hg-engine's

@@ -58,6 +58,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves, over three pages, the third for the natives' hidden abilities (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
 | Level caps | puts the player in any of the twelve level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
+| Element 7 items | one of each of the 46 new items, and a battle for each held item (entries below) | element 7's items |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
@@ -314,6 +315,26 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Hidden ability wild | a wild Litten, Lv. 15, fought with the flag set | "The wild LITTEN's Intimidate cuts ...'s Attack!" as the battle starts. The flag clears itself, so the next scripted wild Pokemon rolls as usual | element 8, hidden abilities |
 | Items restored | Mew holding a Sitrus Berry: Belly Drum, Tackle, Recover, Splash; foe a wild Chansey that knows only Splash | Belly Drum halves Mew's HP and it eats the Sitrus Berry. After the battle, won or run from, Mew's summary shows the Sitrus Berry again | element 8, held items restored |
 | Kaizo move data | Mew: Extreme Speed, Minimize, Protect, Recover; foe a wild Shuckle that knows only Fake Out | Switch Mew in on the first turn. From then Shuckle's Fake Out ("But it failed!") comes before Mew's Extreme Speed every turn, though Mew is far faster: Fake Out is +3 and Extreme Speed +2 (Ian, 2026-09-27), where both were +1 and Mew went first. Minimize: "MEW's evasiveness sharply rose!", two stages where it was one | cloud/element4-kaizo-move-data |
+
+## The item entries
+
+Element 7's items have their own menu, "Element 7 items". Its first entry,
+"All new items", puts one of each of the 46 in the Bag, for their names,
+icons, pockets and descriptions (a full Bag makes some of them fail to
+arrive). The entries after it are built as the ability entries are, from a
+`TestKit_Item<Name>` block, but each goes through `TestKit_GiveItemPair`:
+two Lv. 50 copies of one Pokemon with the same four moves, the first holding
+the item and the second holding nothing, so every effect is seen beside a
+baseline. Two free party slots are needed, and neither new Pokemon is in the
+lead, so switch the one you want in on the first turn. The kit's Pokemon
+have random IVs and natures, so "about" in the table below is loose.
+
+| Entry | Pokemon and moves | What to look for | Commit |
+|---|---|---|---|
+| Eviolite | Chansey: Splash, Softboiled, Protect, Seismic Toss; foe a wild Machamp that knows only Karate Chop | Each Karate Chop takes about two thirds as much from the Chansey holding the Eviolite as from the other, since Chansey can still evolve | element 7, damage items |
+| Assault Vest | Mew: Psychic, Swords Dance, Recover, Tackle; foe a wild Magmortar that knows only Flamethrower | On the Mew wearing it, choosing Swords Dance or Recover brings "The effects of the Assault Vest prevent the use of status moves!" and nothing happens; each Flamethrower takes about two thirds as much from it as from the other Mew | element 7, damage items |
+| Punching Glove | Hitmonchan: Ice Punch, Mach Punch, Close Combat, Bulk Up; foe a wild Ferrothorn given Iron Barbs that knows only Iron Defense | The gloved Hitmonchan's Ice Punch and Mach Punch do about a tenth more than the other's and bring no Iron Barbs damage; its Close Combat, a kick, still does, as every contact move from the other Hitmonchan does | element 7, damage items |
+| Fairy Feather | Clefable: Moonblast, Dazzling Gleam, Calm Mind, Moonlight; foe a wild Chansey that knows only Splash | Moonblast and Dazzling Gleam from the Clefable holding it do about a fifth more than from the other | element 7, damage items |
 
 ## Not built yet
 

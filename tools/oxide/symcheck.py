@@ -90,7 +90,10 @@ class Map:
                 self.by_key[(module, key, n)] = (addr, size)
                 syms[i] = (addr, size, key, n)
         self.starts = {m: [s[0] for s in syms] for m, syms in self.symbols.items()}
-        self.ends = {m: max(s[0] + s[1] for s in syms) for m, syms in self.symbols.items()}
+        # How far the module's own symbols reach; a gap past this is not the
+        # module's, even if a linker label lies beyond it.
+        self.ends = {m: max([s[0] + s[1] for s in syms if s[2][1] != "linker"] or [0])
+                     for m, syms in self.symbols.items()}
 
     def locate(self, module, addr):
         """The symbol key and offset that `addr` falls in within `module`, or
@@ -99,12 +102,19 @@ class Map:
         if not syms:
             return None
         i = bisect.bisect_right(self.starts[module], addr) - 1
-        if i < 0 or addr > self.ends[module]:
+        if i < 0:
             return None
         # The last symbol starting at or before addr; an address in a gap
         # between symbols (padding, the exception tables) is placed by the
         # symbol before it, which moves the gap with it.
+        # A linker label only places an address that is exactly on it.
+        while i >= 0 and syms[i][2][1] == "linker" and syms[i][0] != addr:
+            i -= 1
+        if i < 0:
+            return None
         lo, size, key, n = syms[i]
+        if addr > lo + size and addr > self.ends[module]:
+            return None
         return key, n, addr - lo
 
 

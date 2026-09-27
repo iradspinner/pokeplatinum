@@ -3160,8 +3160,16 @@ TestKit_Items:
     Message TestKit_Text_WhichItems
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuItemsAll, 0
+    AddListMenuEntry TestKit_Text_MenuItemEviolite, 1
+    AddListMenuEntry TestKit_Text_MenuItemAssaultVest, 2
+    AddListMenuEntry TestKit_Text_MenuItemPunchingGlove, 3
+    AddListMenuEntry TestKit_Text_MenuItemFairyFeather, 4
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
+    GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
+    GoToIfEq VAR_0x8004, 2, TestKit_ItemAssaultVest
+    GoToIfEq VAR_0x8004, 3, TestKit_ItemPunchingGlove
+    GoToIfEq VAR_0x8004, 4, TestKit_ItemFairyFeather
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3213,6 +3221,104 @@ TestKit_ItemsAll:
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
     Message TestKit_Text_ItemsAll
     GoTo TestKit_WaitAndClose
+
+/* Element 7's held-item entries: two Lv. 50 VAR_0x800A with the four moves in
+   VAR_0x8006 to VAR_0x8009 (and the ability VAR_0x800B, unless ABILITY_NONE),
+   the first holding the item VAR_0x8004 and the second nothing, so each item
+   is seen beside a baseline. Then, when VAR_0x8000 names one, the foe is
+   fought as in TestKit_AbilityFoe. Needs two free party slots. */
+TestKit_GiveItemPair:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
+    Call TestKit_SetPairMoves
+    AddVar VAR_0x8005, 1
+    GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
+    Call TestKit_SetPairMoves
+    BufferItemName 0, VAR_0x8004
+    Message TestKit_Text_ItemPair
+    GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
+    GoTo TestKit_WaitAndClose
+
+TestKit_SetPairMoves:
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, VAR_0x8006
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, VAR_0x8009
+    Return
+
+/* The Eviolite: Chansey, which can still evolve, against a wild Machamp
+   that knows only Karate Chop. Each chop takes about two thirds as much
+   from the Chansey holding it as from the other. */
+TestKit_ItemEviolite:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_EVIOLITE
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_SOFTBOILED
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Assault Vest: Mew against a wild Magmortar that knows only
+   Flamethrower. The Mew wearing it cannot choose Swords Dance or Recover
+   ("The effects of the Assault Vest prevent the use of status moves!"),
+   and each Flamethrower takes about two thirds as much from it as from
+   the other Mew. */
+TestKit_ItemAssaultVest:
+    SetVar VAR_0x8000, SPECIES_MAGMORTAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_FLAMETHROWER
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ASSAULT_VEST
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveItemPair
+
+/* The Punching Glove: Hitmonchan against a wild Ferrothorn given Iron
+   Barbs that knows only Iron Defense. The gloved Hitmonchan's Ice Punch
+   does about a tenth more than the other's and brings no Iron Barbs
+   damage; its Close Combat, a kick, still does. */
+TestKit_ItemPunchingGlove:
+    SetVar VAR_0x8000, SPECIES_FERROTHORN
+    SetVar VAR_0x8001, ABILITY_IRON_BARBS
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_HITMONCHAN
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_PUNCHING_GLOVE
+    SetVar VAR_0x8006, MOVE_ICE_PUNCH
+    SetVar VAR_0x8007, MOVE_MACH_PUNCH
+    SetVar VAR_0x8008, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8009, MOVE_BULK_UP
+    GoTo TestKit_GiveItemPair
+
+/* The Fairy Feather: Clefable against a wild Chansey that knows only
+   Splash. Moonblast from the Clefable holding it does about a fifth more
+   than from the other. */
+TestKit_ItemFairyFeather:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CLEFABLE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_FAIRY_FEATHER
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_DAZZLING_GLEAM
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_MOONLIGHT
+    GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

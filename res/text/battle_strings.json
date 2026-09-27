@@ -9463,6 +9463,13 @@
         "The foe’s {STRVAR_1 1, 0, 0} took the\n",
         "foe’s {STRVAR_1 1, 1, 0} into the sky!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_TheEffectsOfTheItemPreventStatusMovesFromBeingUsed",
+      "en_US": [
+        "The effects of the {STRVAR_1 8, 0, 0}\n",
+        "prevent the use of status moves!"
+      ]
     }
   ]
 }
