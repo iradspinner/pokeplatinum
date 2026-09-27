@@ -10,8 +10,8 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 **Who is on what** (2026-09-27, after the landing of 98ff5bebe):
 
-1. **Balance Agent**: the Kaizo pattern study (Phase 5, the Kaizo entry), with a rules summary to Ian before its generator; then stone scoring and the gauntlet proposals.
-2. **Encounter Tool Builder**: R18 and its side of the trainer hidden slot (`encounter-weather-lint`, `encounter-trainer-hidden`), then the trainer team builder (its build plan's item 28).
+1. **Balance Agent**: the Kaizo pattern study's parts 1 and 2 are done, and its rules summary waits on Ian before the generator (part 3); meanwhile stone scoring and the gauntlet proposals.
+2. **Encounter Tool Builder**: the trainer team builder landed (2026-09-27, the tool's Trainers tab); next, its build plan's open items.
 3. **Main Production Agent**: free; next, the Frontier Brain fights once Ian's teams exist, or barring more moves from Metronome if Ian rules it.
 4. **Carry-over Agent**: its list is finished and landed.
 5. **Cloud**: nothing running. The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
