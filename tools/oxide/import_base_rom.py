@@ -488,6 +488,9 @@ for _move in ("protect", "detect", "endure", "extreme_speed", "fake_out", "follo
     MOVES_DIVERGED.setdefault(_move, {})["priority"] = _MODERN_PRIORITY
 MOVES_DIVERGED.setdefault("cotton_spore", {})["range"] = (
     "hits both foes, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+for _move in ("drill_peck", "megahorn", "dragon_claw", "x_scissor", "power_whip"):
+    MOVES_DIVERGED.setdefault(_move, {})["effect"] = (
+        "a high critical-hit ratio, from the Kaizo comparison's short list (Ian, 2026-09-27)")
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")

@@ -472,6 +472,9 @@ KAIZO_DEBUFF_PP_NATIVES = {103, 204, 230, 297, 313, 319, 321, 445}
 # Generation 9 data: Protect, Detect and Endure +4, Extreme Speed +2, Fake
 # Out +3, Follow Me +2.
 MODERN_PRIORITY_NATIVES = {182, 197, 203, 245, 252, 266}
+# Drill Peck, Megahorn, X-Scissor, Power Whip and Dragon Claw given a high
+# critical-hit ratio, Slash's effect in place of a plain hit (Ian, 2026-09-27).
+HIGH_CRITICAL_NATIVES = {65, 224, 337, 404, 438}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -537,6 +540,11 @@ DIVERGED = {
             "offsets": (10,),  # priority
             "members": MODERN_PRIORITY_NATIVES,
             "why": "native moves given their modern priority (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (0, 1),  # effect
+            "members": HIGH_CRITICAL_NATIVES,
+            "why": "five attacks given a high critical-hit ratio (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power
