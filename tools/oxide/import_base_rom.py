@@ -494,6 +494,9 @@ for _move in ("drill_peck", "megahorn", "dragon_claw", "x_scissor", "power_whip"
 for _move in ("octazooka", "mirror_shot", "magnet_bomb", "needle_arm", "poison_tail", "crush_claw"):
     MOVES_DIVERGED.setdefault(_move, {})["power"] = (
         "raised to 80 to 90, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+for _move in ("hyper_fang", "octazooka", "rock_climb", "sky_uppercut", "double_hit", "dragon_rush"):
+    MOVES_DIVERGED.setdefault(_move, {})["accuracy"] = (
+        "100, from the Kaizo comparison's short list (Ian, 2026-09-27)")
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")

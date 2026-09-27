@@ -478,6 +478,9 @@ HIGH_CRITICAL_NATIVES = {65, 224, 337, 404, 438}
 # The weak signature attacks raised to 80 to 90 power (Ian, 2026-09-27):
 # Octazooka, Needle Arm, Crush Claw, Poison Tail, Mirror Shot, Magnet Bomb.
 KAIZO_POWER_NATIVES = {190, 302, 306, 342, 429, 443}
+# 100 accuracy for the unreliable mid attacks (Ian, 2026-09-27): Hyper Fang,
+# Octazooka, Sky Uppercut, Dragon Rush, Rock Climb, Double Hit.
+KAIZO_ACCURACY_NATIVES = {158, 190, 327, 407, 431, 458}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -553,6 +556,11 @@ DIVERGED = {
             "offsets": (3,),  # power
             "members": KAIZO_POWER_NATIVES,
             "why": "six weak attacks raised to 80 to 90 power (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (5,),  # accuracy
+            "members": KAIZO_ACCURACY_NATIVES,
+            "why": "six mid attacks given 100 accuracy (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power
