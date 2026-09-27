@@ -879,6 +879,63 @@ that stay. None blocks anything.
    the type chips are. Suites: m4 51/51, m8 98/98, trainers 26/26 (a new
    check holds the scores to the balance files' own), docview 16/16, saves
    5/5, and a headless Chrome pass over the tab.
+34. **Saves in the tool (Ian approved steps 1 to 5 of the plan, 2026-09-27,
+   through the Overseer).** The Calc tab's save features, planned from a
+   read-only survey of the vendored calculator: its Sync talks to a patched
+   DeSmuME, so for melonDS the OxiDex reads Ian's `.sav` itself. Steps 1 and 2
+   are done. `savefile.py` reads a save, read-only: it finds each block by
+   its footer and takes the copy saved last, then decrypts the party and the
+   boxes with Oxide's two changes to a record (the u16 ability in block B, the
+   hidden-ability bit in block A). `cli save PATH` prints what it read and
+   the build it came from, from the block sizes (vanilla's until 2026-09-21,
+   Oxide's since the Pokedex grew), a move past vanilla's 467 (element 4) and
+   the hidden bit. It reports a mismatch (exit 2) for a record whose checksum
+   fails or an id past this build's tables. The calculator's own Read Save
+   reads Oxide saves too: the blob carries `includes`, Oxide's species,
+   moves, items, growth rates and abilities by id (`calc_export.save_includes`),
+   and two patches (VENDORED.md 14 and 15) install them and find the layout
+   by footer. Ian's save of 2026-09-21 is the first test: its working copy
+   is `~/roms/oxide-save-2026-09-21.sav`, beside the ROM it came from as
+   `~/roms/oxide-2026-09-21.nds`, both read-only and outside the repository,
+   which is public. Both readers give a Chimchar at level 6 with Blaze,
+   Scratch and Leer, met on Route 201; the box block's only good copy is the
+   backup, which vanilla's fixed offsets would never have found. The id lists
+   of the build that wrote it (bb0c45993) are today's, less element 4's new
+   moves. `test_savefile` builds a save byte by byte and checks both readers,
+   plus Ian's copy where it exists. A second save, a new game on the local
+   build of 2026-09-22, reads on the same layout.
+
+   Step 3, the Sync bridge, is done (`savewatch.py`). The Calc tab has a save
+   bar: the path of the `.sav` melonDS writes, as Windows or WSL names it,
+   kept in `~/.config/oxidex/settings.json` outside the repository. The
+   server watches that file with inotify on the Linux filesystem and by its
+   modification time every three seconds under `/mnt`, reads it once it has
+   stopped changing, keeps the last good save if a read fails, and never
+   writes it. `/api/save` gives its state and `/api/save/packed` the party
+   and boxes in the calculator's own packed format, which its Sync decodes
+   with the same reader as Read Save. Patch 16 points Sync there under the
+   Oxide title, and `js/oxide/save_sync.js` presses it when the OxiDex has
+   read a newer save, so a save made in game reaches the calculator's box
+   within a few seconds. Checked end to end in headless Chrome on a copy of
+   Ian's save: the box synced by itself, then followed when the file was
+   replaced.
+
+   Step 4 is done, on Ian's first save from a current ROM (53b863005, in his
+   room after the intro; working copy `~/roms/oxide-save-2026-09-27-53b863005.sav`).
+   Its layout is the 2026-09-21 one, so nothing saved has moved since. The
+   reader now also gives the trainer's money and badges and the level-cap
+   split, with the engine's own cap: the variables and flags sit after the
+   party and the bag, at 0xDAC in the normal block, which both of Ian's
+   saves confirm (his older one holds `VAR_PLAYER_STARTER` 390, Chimchar,
+   and the Pokedex flag). The save bar shows the split, and the calculator's
+   level cap, which its Box uses, follows the save's split cap whenever that
+   cap changes. Import/Export needed nothing: a team of Oxide-only names
+   (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
+   Toxic Debris) imports and exports unchanged. A Sync replaces the box with
+   what the save holds, as upstream's does, so a team typed in by hand goes
+   at the next save. Open: step 5, mints and Hyper Training when element 7
+   records them and 30 boxes after element 8; step 6, the battle log, waits
+   on Ian's choice of source.
 
    **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
    one per line, each in a table the gate dates to the line's cap split or

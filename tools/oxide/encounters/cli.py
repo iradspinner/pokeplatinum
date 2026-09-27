@@ -734,6 +734,48 @@ def cmd_evolve(args):
     return 0
 
 
+def cmd_save(args):
+    """Reads a save file, read-only, and prints its trainer, party and boxes
+    and what it says about the build that wrote it (savefile.py). Exits 2 when
+    the save does not match this build, so a script can tell."""
+    import os
+    from . import savefile
+    try:
+        s = savefile.read(os.path.expanduser(args.path))
+    except (OSError, savefile.SaveError) as e:
+        print(e, file=sys.stderr)
+        return 1
+    if args.json:
+        s = dict(s, footers=[f for f in s["footers"]])
+        print(json.dumps(s, indent=1, default=str))
+        return 2 if s["era"]["mismatches"] else 0
+    print(f"{s['path']}: {s['size']} bytes")
+    for block, b in sorted(s["blocks"].items()):
+        label = "normal" if block == savefile.BLOCK_NORMAL else "boxes"
+        print(f"  {label} block: the {b['copy']} copy at {b['start']:#07x}, {b['size']:#x} bytes, "
+              f"save {b['save_counter']}, block counter {b['block_counter']}")
+    for sign in s["era"]["signs"]:
+        print(f"  build: {sign}")
+    print(f"  trainer id {s['trainer_id']}, secret id {s['secret_id']}")
+    pr = s["progress"]
+    split = pr["split"] or {}
+    print(f"  {pr['badges']} badge{'s' if pr['badges'] != 1 else ''}, {pr['money']} money"
+          + (f", in {split['name']}'s split (level cap {split['cap']})" if split.get("name") else ""))
+    print(f"party, {len(s['party'])}:")
+    for mon in s["party"]:
+        print("  " + savefile.describe(mon))
+    print(f"boxes, {len(s['boxes'])} Pokemon in {s['box_count']}:")
+    for mon in s["boxes"]:
+        print("  " + savefile.describe(mon))
+    if s["era"]["mismatches"]:
+        print("does not match this build:")
+        for m in s["era"]["mismatches"]:
+            print(f"  {m}")
+        return 2
+    print("nothing in it contradicts this build")
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -865,6 +907,12 @@ def main(argv=None):
     ev.add_argument("--apply", action="store_true",
                     help="write the sidecar and the plan (then run `apply`)")
     ev.set_defaults(func=cmd_evolve)
+
+    sv = sub.add_parser("save", help="read a save file (read-only): trainer, party, "
+                                     "boxes, and the build it came from")
+    sv.add_argument("path", help="the .sav, which is only ever read")
+    sv.add_argument("--json", action="store_true")
+    sv.set_defaults(func=cmd_save)
 
     args = p.parse_args(argv)
     return args.func(args)

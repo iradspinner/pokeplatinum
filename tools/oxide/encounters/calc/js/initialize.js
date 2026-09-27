@@ -1264,6 +1264,9 @@ function setGameSettings(title) {
     save_expansion = false
     showDex = false;
     showAI = false;
+    // Oxide patch: the save reader takes Oxide's species, moves, items,
+    // growth rates and abilities from the blob's `includes` (calc_export.py).
+    settings.readIncludes = true
     $('label[for="snow"]').hide()
   } else if (title == "Platinum Kaizo" || title == "Platinum") {
     gameGen = 4
@@ -1586,9 +1589,11 @@ function setBaseGame(title) {
         } else if (TITLE.includes("Platinum") ) {
           baseGame = "Pt"
           save_expansion = false
-          // Oxide patch: the DeSmuME Lua sync and its emulator link serve
-          // hzla's DeSmuME build; Oxide is played on melonDS.
+          // Oxide patch: the DeSmuME emulator link serves hzla's DeSmuME
+          // build, and Oxide is played on melonDS, so under the Oxide title
+          // only Sync shows, and it reads the OxiDex's save bridge.
           if (TITLE !== "Platinum Oxide") $('#sync-lua, #desmume-icon').show()
+          else $('#sync-lua').show()
         } else if (TITLE.includes("Black") || TITLE.includes("White")) {
           baseGame = "BW"
           if (TITLE.includes("Black 2") || TITLE.includes("White 2")) {
@@ -2320,7 +2325,10 @@ function loadDataSource(data) {
         sav_abilities = includes["abilities"]
         window.HGE_SAVE_INCLUDES_READY = mechanics == "hge"
         window.HGE_SAVE_INCLUDE_SOURCE = hasCompleteEmbeddedIncludes ? "backup" : "shared-fallback"
-        if (mechanics != "hge" && typeof window.extendSavArraysToGen67 === "function") {
+        // Oxide patch: Oxide's tables are the ROM's own ids; the Generation 6
+        // and 7 extender would overwrite them.
+        if (mechanics != "hge" && TITLE != "Platinum Oxide"
+            && typeof window.extendSavArraysToGen67 === "function") {
           window.extendSavArraysToGen67()
         }
       } else {
