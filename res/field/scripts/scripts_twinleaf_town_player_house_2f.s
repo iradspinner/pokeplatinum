@@ -3174,6 +3174,9 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemCellBattery, 12
     AddListMenuEntry TestKit_Text_MenuItemWeaknessPolicy, 13
     AddListMenuEntry TestKit_Text_MenuItemAirBalloon, 14
+    AddListMenuEntry TestKit_Text_MenuItemBindingBand, 15
+    AddListMenuEntry TestKit_Text_MenuItemLoadedDice, 16
+    AddListMenuEntry TestKit_Text_MenuItemMirrorHerb, 17
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3190,6 +3193,9 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 12, TestKit_ItemCellBattery
     GoToIfEq VAR_0x8004, 13, TestKit_ItemWeaknessPolicy
     GoToIfEq VAR_0x8004, 14, TestKit_ItemAirBalloon
+    GoToIfEq VAR_0x8004, 15, TestKit_ItemBindingBand
+    GoToIfEq VAR_0x8004, 16, TestKit_ItemLoadedDice
+    GoToIfEq VAR_0x8004, 17, TestKit_ItemMirrorHerb
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3512,6 +3518,59 @@ TestKit_ItemAirBalloon:
     SetVar VAR_0x8007, MOVE_BODY_SLAM
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Binding Band: Mew against a wild Chansey that knows only Splash. After
+   the banded Mew's Wrap, Chansey loses an eighth of its HP at the end of
+   each turn; after the other Mew's, a sixteenth. */
+TestKit_ItemBindingBand:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_BINDING_BAND
+    SetVar VAR_0x8006, MOVE_WRAP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Loaded Dice: Mew against a wild Chansey that knows only Splash. From
+   the Mew holding them, Bullet Seed always hits four or five times,
+   Population Bomb four to ten times, and Triple Axel never misses a later
+   kick; from the other, Bullet Seed mostly hits two or three times. */
+TestKit_ItemLoadedDice:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LOADED_DICE
+    SetVar VAR_0x8006, MOVE_BULLET_SEED
+    SetVar VAR_0x8007, MOVE_TRIPLE_AXEL
+    SetVar VAR_0x8008, MOVE_POPULATION_BOMB
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveItemPair
+
+/* The Mirror Herb: Mew against a wild Chansey that knows only Swords Dance.
+   After Chansey's first Swords Dance, the Mew holding the herb copies it
+   ("MEW's Mirror Herb copied its foe's stat changes!"), its Tackle does
+   about twice as much, and the herb is gone; the other Mew gets nothing. */
+TestKit_ItemMirrorHerb:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_MIRROR_HERB
+    SetVar VAR_0x8006, MOVE_TACKLE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:

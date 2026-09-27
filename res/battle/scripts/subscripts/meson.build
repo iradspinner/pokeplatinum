@@ -392,4 +392,5 @@ subscript_files = files(
     'subscript_weakness_policy.s',
     'subscript_air_balloon_float.s',
     'subscript_air_balloon_pop.s',
+    'subscript_mirror_herb.s',
 )

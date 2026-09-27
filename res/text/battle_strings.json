@@ -9554,6 +9554,27 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 8, 1, 0} popped!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0} copied\n",
+        "its foe’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "copied its foe’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "copied its foe’s stat changes!"
+      ]
     }
   ]
 }

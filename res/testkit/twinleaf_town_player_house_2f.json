@@ -995,6 +995,18 @@
         {
             "id": "TestKit_Text_MenuItemAirBalloon",
             "en_US": "Air Balloon"
+        },
+        {
+            "id": "TestKit_Text_MenuItemBindingBand",
+            "en_US": "Binding Band"
+        },
+        {
+            "id": "TestKit_Text_MenuItemLoadedDice",
+            "en_US": "Loaded Dice"
+        },
+        {
+            "id": "TestKit_Text_MenuItemMirrorHerb",
+            "en_US": "Mirror Herb"
         }
     ]
 }

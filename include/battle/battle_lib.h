@@ -1594,6 +1594,20 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
 BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 
 /**
+ * @brief Oxide, element 7: the Mirror Herb. When a foe's move has just raised
+ * its own stats, a battler holding the herb raises the same stats by the same
+ * stages (up to +6) and uses the herb up. The rises are kept in each
+ * battler's SelfTurnFlags by ChangeStatStage, from moves only, and a herb
+ * that copies them clears them.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param[out] subscript    The subscript to run, when it returns TRUE
+ * @return TRUE if a herb copied something
+ */
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
  * @brief Decrement additional PP from the attacker's selected move if its
  * target has the Pressure ability.
  *

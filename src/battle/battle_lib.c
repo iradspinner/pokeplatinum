@@ -6462,6 +6462,50 @@ BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler)
     return battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END;
 }
 
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = 0; i < maxBattlers; i++) {
+        int holder = battleCtx->monSpeedOrder[i];
+
+        if (battleCtx->battleMons[holder].curHP == 0
+            || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+            continue;
+        }
+
+        for (int foe = 0; foe < maxBattlers; foe++) {
+            u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
+            BOOL copied = FALSE;
+
+            if (raises == 0
+                || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
+                continue;
+            }
+
+            for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
+                int stages = (raises >> (stat * 3)) & 7;
+                s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
+
+                if (stages && *boost < MAX_STAT_STAGE) {
+                    *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
+                    copied = TRUE;
+                }
+            }
+
+            battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
+
+            if (copied) {
+                battleCtx->msgBattlerTemp = holder;
+                *subscript = subscript_mirror_herb;
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
+}
+
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;

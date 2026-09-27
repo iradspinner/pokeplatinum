@@ -2816,6 +2816,8 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
     int flags = BattleScript_Read(battleCtx);
 
     if (battleCtx->multiHitNumHits == 0) {
+        BOOL rolled = hits == 0; // Oxide, element 7, for the Loaded Dice
+
         if (hits == 0) {
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
@@ -2827,6 +2829,20 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
                     hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
                 }
             }
+        }
+
+        // Oxide, element 7: Loaded Dice (hg-engine's SetMultiHit). A two to
+        // five hit move that rolled two or three hits four or five instead,
+        // Population Bomb hits four to ten times, and every hit after the
+        // first skips its accuracy check, which Triple Kick's kind makes.
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_LOADED_DICE) {
+            if (hits == 10) {
+                hits = 10 - BattleSystem_RandNext(battleSys) % 7;
+            } else if (rolled && hits < 4) {
+                hits = 5 - BattleSystem_RandNext(battleSys) % 2;
+            }
+
+            flags |= SYSCTL_SKIP_ACCURACY_CHECK;
         }
 
         battleCtx->multiHitCounter = hits;
@@ -2991,6 +3007,23 @@ static inline void SetupNicknameAbilityNicknameAbilityMsg(BattleContext *battleC
  * @param battleCtx
  * @return FALSE
  */
+// Oxide, element 7: add a stat's rise to the battler's record for the Mirror
+// Herb, three bits a stat, capped at 7.
+static void RecordMirrorHerbRaise(BattleContext *battleCtx, int battler, int statOffset, int stages)
+{
+    u32 record = battleCtx->selfTurnFlags[battler].mirrorHerbRaises;
+    int kept = (record >> (statOffset * 3)) & 7;
+
+    kept += stages;
+    if (kept > 7) {
+        kept = 7;
+    }
+
+    record &= ~(7 << (statOffset * 3));
+    record |= kept << (statOffset * 3);
+    battleCtx->selfTurnFlags[battler].mirrorHerbRaises = record;
+}
+
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jumpNoChange;
@@ -3085,10 +3118,20 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     statOffset);
             }
 
+            int stageBefore = mon->statBoosts[BATTLE_STAT_ATTACK + statOffset]; // Oxide, element 7
+
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
 
             if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > MAX_STAT_STAGE) {
                 mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MAX_STAT_STAGE;
+            }
+
+            // Oxide, element 7: a rise a move made is kept for a foe's Mirror
+            // Herb, which copies it once the move is over.
+            if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
+                RecordMirrorHerbRaise(battleCtx, battleCtx->sideEffectMon, statOffset,
+                    mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] - stageBefore);
             }
         }
     } else {
