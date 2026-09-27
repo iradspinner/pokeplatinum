@@ -14,7 +14,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 2. **Encounter Tool Builder**: the trainer team builder landed (2026-09-27, the tool's Trainers tab); next, its build plan's open items.
 3. **Main Production Agent**: next, the Frontier fights once Ian's teams exist, or more Metronome bars if Ian rules them.
 4. **Carry-over Agent**: finished.
-5. **Cloud**: nothing running. The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
+5. **Cloud**: `cloud/overseer-script-index` (the script index, in the backlog below) waits on the Overseer's review. The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
 6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in; the Frontier Brain teams; the Metronome question below.
 7. **No owner yet**: element 7 (items), the rest of element 8 (field moves by badge, 30 PC boxes, wild doubles), and the bug track, which needs Ian live.
 
@@ -169,6 +169,7 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 ## Backlog / follow-ups
 
 - **Live inspection of the running game (Ian, 2026-09-20).** The stub connection is done (`live.py`, `live_watch.py`, `docs/oxide/setup-fork-and-wsl2.md` part 5b). Left: decoders on `live.py` for the party, boxes, flags, vars, map and running script, with writes for a debug console; and an offline reader for the melonDS `.sav`, so the encounter tool can read the real dex flags
+- **The script index** (Ian, 2026-09-27): `tools/oxide/scriptindex.py` writes what each map does to `docs/oxide/script-index.md` and `.json`, and the gate warns when they are stale. Left: the Overseer checks its base ROM or Oxide attribution locally; its first findings are in the findings log
 - **Re-humanise the 86 generated scripts**, a map at a time, as each map gets attention: named labels, `NPCMessage`, text-bank constants, real names for `LOCALID_OBJECT_<n>` and `<Bank>_Text_<n>`. `checkmap.py` is the check. Never during a faithful carry-over; the point of the bulk pass was to be done
 - Two raw regions the disassembler emits as `.byte` rather than decoding (`scripts_spear_pillar` 0x04b5 and `scripts_common` 0x1268 are the two to start from). They round-trip exactly; they are just not understood
 - The two trade json files still named `abra` and `haunter` for what are now a Ditto and a Suicune

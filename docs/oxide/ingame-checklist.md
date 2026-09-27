@@ -259,6 +259,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   own rules (healing mid-challenge, losing Safari Balls).
 - [ ] Iron Island: Riley's egg hatches as a random species, one of eight lines.
 - [ ] Snowpoint City: Mindy takes a Snover and gives a Suicune, which is shiny.
+- [ ] Route 210 South: talk to the Black Belt the base ROM placed at x 570,
+  z 535. His event runs script 13 and the map's script file has 8 (the script
+  index, 2026-09-27), so he may hang or crash the game; if he does, he becomes
+  an open bug. Save first.
 - [ ] With `carry-over-hue` merged: Riley's egg (or any Day Care egg) is
   tinted like the Pokemon inside it while it hatches, and the hatched Pokemon
   shows the same colours on its summary. In Mindy's trade the Snover and the
