@@ -450,11 +450,13 @@ def check_moves_view(results):
     results.append(("the vanilla baseline is every move main has, read in one go",
                     len(vanilla) == 468 and "MOVE_MOONBLAST" not in vanilla,
                     f"{len(vanilla)} moves"))
-    # Charm is element 1's Fairy retype, Tackle and Attack Order are the base
-    # ROM's own edits, and Flamethrower is one of the 95 natives given the
-    # King's Rock flag.
+    # Charm is element 1's Fairy retype, with its PP cut to 3 by the Kaizo
+    # move data (Ian, 2026-09-27); Tackle and Attack Order are the base ROM's
+    # own edits, and Flamethrower is one of the 95 natives given the King's
+    # Rock flag.
     results.append(("a move reports what changed from vanilla, field by field",
-                    d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"}}
+                    d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"},
+                                        "pp": {"was": 20, "now": 3}}
                     and d("MOVE_TACKLE") == {"power": {"was": 35, "now": 40},
                                              "accuracy": {"was": 95, "now": 100}}
                     and d("MOVE_ATTACK_ORDER")["effect"]["now"] == "POISON_HIT"

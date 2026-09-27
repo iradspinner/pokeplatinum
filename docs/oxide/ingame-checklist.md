@@ -145,6 +145,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   lowering your lead's Attack; the flag clears itself after that one use.
   "Items restored": Mew eats its Sitrus Berry after Belly Drum, and has it
   back in its summary after the battle.
+- [ ] **The Kaizo move data** (Modern rules, "Kaizo move data";
+  `cloud/element4-kaizo-move-data`, Ian's rulings of 2026-09-27). Switch Mew
+  in on the first turn. From then the wild Shuckle's Fake Out ("But it
+  failed!") comes before Mew's Extreme Speed every turn, though Mew is far
+  faster. Minimize says "sharply rose!". Mew's summary shows Minimize at 3 PP.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -160,6 +165,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
+  TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
+  Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
+  Claw land critical hits noticeably more often than Peck or Scratch.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.

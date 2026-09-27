@@ -10,7 +10,7 @@
     "type": "TYPE_BUG",
     "power": 0,
     "accuracy": 0,
-    "pp": 20,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP",
         "chance": 0

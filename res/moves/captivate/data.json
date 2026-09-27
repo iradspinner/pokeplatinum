@@ -11,7 +11,7 @@
     "type": "TYPE_NORMAL",
     "power": 0,
     "accuracy": 100,
-    "pp": 20,
+    "pp": 3,
     "effect": {
         "type": "BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER",
         "chance": 0

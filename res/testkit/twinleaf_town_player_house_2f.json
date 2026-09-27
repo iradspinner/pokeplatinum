@@ -482,6 +482,10 @@
             "en_US": "Items restored"
         },
         {
+            "id": "TestKit_Text_MenuStapleKaizoMoves",
+            "en_US": "Kaizo move data"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

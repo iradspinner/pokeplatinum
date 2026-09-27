@@ -9,7 +9,7 @@
     "type": "TYPE_DRAGON",
     "power": 0,
     "accuracy": 0,
-    "pp": 5,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP",
         "chance": 100
