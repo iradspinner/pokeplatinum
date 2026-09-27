@@ -741,6 +741,26 @@ that stay. None blocks anything.
    all. The vendored lists are `canon_learnsets.json`, from
    `pokemon-showdown` 0.11.11, with their provenance in `canon_src/`.
    `test_trainers` 13/13. Nothing edits yet; piece 3 is next.
+
+   **Pieces 3 to 5 are done** (2026-09-27, the same branch, dfd6f1ba7 and
+   88d88d6a0). The tab edits every field Ian listed, removes and adds
+   Pokemon, and gives a trainer that lists no moves or items a starting
+   set. Each edit is previewed at once (the game's build, the lint, the
+   estimate), and Save writes only the changed fields, in the files' own
+   list style. The lint, the packer and the divergence registry run as
+   planned; the registry is `tools/oxide/trainers_diverged.json`, beside
+   the importer, because `sync-docs.sh` refuses a file under `docs/oxide/`
+   that it does not mirror. The importer now honours a registered header
+   field too, and its dry run stays at every count 0 on the tree; over a
+   scratch root holding builder edits it is 0 with the registry, and
+   carries Roark's party and Tristan's AI flags back without it. "Score
+   it" and the estimate are `teamscore`'s. The hidden slot needed nothing
+   more once the engine change and `calc_trainers` had landed (6662712ae):
+   the ability menu offers it, and a species without one is a lint
+   warning. Every save test runs on a scratch copy. `test_trainers` 25/25,
+   `test_m4` 51/51. Still open: Pelipper's and Torkoal's hidden slots are
+   Rain Dish and Shell Armor in `res/`, so Ian's staples answer 9 needs
+   species data before a trainer's ability 3 gives Drizzle or Drought.
 29. **A doc viewer in the tool (Ian, 2026-09-27, through the Overseer).**
    Every document a session points Ian at opens rendered in his browser,
    in the tool's own style, from a link the `doc-links` skill gives:
@@ -793,6 +813,16 @@ that stay. None blocks anything.
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
 and the whole-game gate) are in the `author-table` skill. These are about the tool
 itself.
+
+- The Trainers tab writes `res/trainers/data/` for real. Try a change to
+  its save path on a scratch copy first: `trainers.save` takes a folder and
+  a registry, and a test server started with `OXIDE_TRAINERS_DIR` and
+  `OXIDE_TRAINERS_REGISTRY` reads and writes only those. Every save then
+  keeps the importer's dry run at every count 0, because it registers the
+  trainer in `tools/oxide/trainers_diverged.json`.
+- A save runs the packer in `build/tools/dataproc/`. When `trainerproc.c`
+  changes, rebuild it (`ninja -C build -j2 tools/dataproc/trainerproc`); a
+  stale one judges by the old rules, and the save's message says so.
 
 - Run the suites one at a time. `test_step0` rewrites shared files under a
   restore, and every test restores by writing back the text it saved, never by
