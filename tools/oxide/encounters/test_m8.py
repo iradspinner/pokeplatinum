@@ -68,9 +68,13 @@ def check_delta(results):
     results.append(("a native that gained an evolution reports it",
                     bool(d and d.get("evolutions")),
                     str((d or {}).get("evolutions"))))
+    # Every native has a hidden ability since element 8 (357b3b855), which
+    # vanilla has none of, so Bulbasaur's numbers agree with vanilla and its
+    # delta is that ability alone.
     unchanged = pokedex.delta(root, "SPECIES_BULBASAUR")
-    results.append(("a species vanilla still agrees with reports nothing",
-                    unchanged is None, str(unchanged)))
+    results.append(("a species whose numbers vanilla still agrees with reports only its "
+                    "hidden ability",
+                    unchanged == {"hidden_ability": "CHLOROPHYLL"}, str(unchanged)))
 
 
 def check_chart(results):
@@ -446,11 +450,13 @@ def check_moves_view(results):
     results.append(("the vanilla baseline is every move main has, read in one go",
                     len(vanilla) == 468 and "MOVE_MOONBLAST" not in vanilla,
                     f"{len(vanilla)} moves"))
-    # Charm is element 1's Fairy retype, Tackle and Attack Order are the base
-    # ROM's own edits, and Flamethrower is one of the 95 natives given the
-    # King's Rock flag.
+    # Charm is element 1's Fairy retype, with its PP cut to 3 by the Kaizo
+    # move data (Ian, 2026-09-27); Tackle and Attack Order are the base ROM's
+    # own edits, and Flamethrower is one of the 95 natives given the King's
+    # Rock flag.
     results.append(("a move reports what changed from vanilla, field by field",
-                    d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"}}
+                    d("MOVE_CHARM") == {"type": {"was": "NORMAL", "now": "FAIRY"},
+                                        "pp": {"was": 20, "now": 3}}
                     and d("MOVE_TACKLE") == {"power": {"was": 35, "now": 40},
                                              "accuracy": {"was": 95, "now": 100}}
                     and d("MOVE_ATTACK_ORDER")["effect"]["now"] == "POISON_HIT"
@@ -534,7 +540,9 @@ def check_calculator(results):
                                                "sa": 85, "sd": 85, "sp": 102}
                     and poks["Clefairy"]["types"] == ["Fairy"]
                     and poks["Ninetales-Alola"]["types"] == ["Ice", "Fairy"]
-                    and poks["Gible"]["abilities"] == {"0": "Sand Veil", "1": "Rough Skin"},
+                    # the two regular slots; Gible has a hidden one too since element 8
+                    and poks["Gible"]["abilities"].get("0") == "Sand Veil"
+                    and poks["Gible"]["abilities"].get("1") == "Rough Skin",
                     f"{len(poks)} species"))
     moves = blob["moves"]
     results.append(("moves carry Oxide's type, category and power, and a coded "
