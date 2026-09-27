@@ -200,7 +200,7 @@ def pre_evolutions():
     """{species: [its earlier stages]}, from every species' evolutions."""
     parent = {}
     for sp in pokedex.species_list(data.ROOT):
-        for _need, target in evolve.evolutions(data.ROOT, sp):
+        for _need, _item, target in evolutions(sp):
             parent.setdefault(target, sp)
     out = {}
     for sp in pokedex.species_list(data.ROOT):
@@ -240,8 +240,17 @@ def evolutions(species):
     for evo in (pokedex.load(data.ROOT, species) or {}).get("evolutions", []):
         if evo["item"] and evo["into"]:
             items.setdefault(evo["into"], "ITEM_" + evo["item"])
-    return [(1 if target in items else need, items.get(target), target)
-            for need, target in evolve.evolutions(data.ROOT, species)]
+    out = [(1 if target in items else need, items.get(target), target)
+           for need, target in evolve.evolutions(data.ROOT, species)]
+    # The encounter tool keeps only a stage's level evolutions when it has
+    # any, which is right for placing wild stages; the player can use the
+    # item as well (Kirlia's Dawn Stone to Gallade, Wooper's Poison Barb to
+    # Clodsire, Goomy's Metal Coat to Hisuian Sliggoo).
+    seen = {target for _n, _i, target in out}
+    for target, item in items.items():
+        if target not in seen and not target.startswith(species + "_"):
+            out.append((1, item, target))
+    return out
 
 
 def reachable(level, item, split):
