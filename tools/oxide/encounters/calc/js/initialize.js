@@ -1589,9 +1589,11 @@ function setBaseGame(title) {
         } else if (TITLE.includes("Platinum") ) {
           baseGame = "Pt"
           save_expansion = false
-          // Oxide patch: the DeSmuME Lua sync and its emulator link serve
-          // hzla's DeSmuME build; Oxide is played on melonDS.
+          // Oxide patch: the DeSmuME emulator link serves hzla's DeSmuME
+          // build, and Oxide is played on melonDS, so under the Oxide title
+          // only Sync shows, and it reads the OxiDex's save bridge.
           if (TITLE !== "Platinum Oxide") $('#sync-lua, #desmume-icon').show()
+          else $('#sync-lua').show()
         } else if (TITLE.includes("Black") || TITLE.includes("White")) {
           baseGame = "BW"
           if (TITLE.includes("Black 2") || TITLE.includes("White 2")) {

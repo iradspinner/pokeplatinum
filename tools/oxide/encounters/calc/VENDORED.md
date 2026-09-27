@@ -150,6 +150,18 @@ calculator checks fail if the offline ones are lost.
     the "Platinum Oxide" title. `tools/oxide/encounters/savefile.py` reads
     saves the same way for the OxiDex, and `test_savefile` checks both.
 
+16. **Sync reads the OxiDex's save bridge** (2026-09-27, step 3). Upstream's
+    DS Sync fetches `/box/packed` from a patched DeSmuME; under the "Platinum
+    Oxide" title it fetches `/api/save/packed` from the OxiDex, which serves
+    the save file melonDS writes in the same packed format
+    (`savewatch.py`). `js/moveset_import.js` makes that fetch, with no
+    clipboard fallback; `js/calc_ui/menu_settings.js` and `js/initialize.js`
+    show Sync under the title whatever the menu's Lua toggle says, and keep
+    the DeSmuME link hidden (patch 13); `index.html` loads
+    `js/oxide/save_sync.js`, which asks `/api/save` every three seconds and
+    presses Sync when the OxiDex has read a newer save. `test_savewatch`
+    checks all four.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

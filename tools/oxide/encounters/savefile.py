@@ -298,6 +298,43 @@ def parse(data, path="(memory)"):
     return save
 
 
+def packed(data):
+    """The save's party and boxes as the calculator's Sync decodes them
+    (`decodeDsPackedBoxPayload`, format "DPB1"): an 18-byte header (the
+    magic, the trainer's id and secret id, the party and box counts, the two
+    record sizes, the box slots that follow and the current box), then the
+    party's 236-byte records and every box slot's 136-byte record exactly as
+    the save stores them. The calculator decrypts them itself, with the same
+    parsePKM its Read Save uses, so this adds no second decoder to keep."""
+    found = blocks(data)
+    if BLOCK_NORMAL not in found:
+        raise SaveError("no valid copy of the normal block")
+    n0 = found[BLOCK_NORMAL]["start"]
+    tid, sid = struct.unpack_from("<HH", data, n0 + TRAINER_ID_AT)
+    capacity, count = struct.unpack_from("<ii", data, n0 + PARTY_AT)
+    if capacity != 6 or not 0 <= count <= 6:
+        raise SaveError(f"the party is not where Platinum keeps it (capacity {capacity})")
+    first = n0 + PARTY_AT + 8
+    party = data[first:first + count * PARTY_RECORD]
+    boxes, box_count, current = b"", 0, 0
+    if BLOCK_BOXES in found:
+        bx = found[BLOCK_BOXES]
+        box_count = (bx["size"] - FOOTER_SIZE - 5) // BOX_STRIDE
+        current = struct.unpack_from("<I", data, bx["start"])[0]
+        boxes = data[bx["start"] + 4:bx["start"] + 4 + box_count * MONS_PER_BOX * BOX_RECORD]
+    header = b"DPB1" + struct.pack("<HHBBHHHB", tid, sid, count, box_count, PARTY_RECORD,
+                                   BOX_RECORD, box_count * MONS_PER_BOX, min(current, 255)) + b"\0"
+    return header + party + boxes
+
+
+def summary(save):
+    """What the OxiDex's save bar shows: the trainer, the party in words, how
+    many are boxed, and the build signs."""
+    return {"trainer_id": save["trainer_id"], "secret_id": save["secret_id"],
+            "party": [describe(m) for m in save["party"]], "party_count": len(save["party"]),
+            "boxed": len(save["boxes"]), "box_count": save["box_count"], "era": save["era"]}
+
+
 def build_era(save):
     """What the save says about the build that wrote it, and any sign that it
     does not match this one: {"layout", "signs": [...], "mismatches": [...]}."""

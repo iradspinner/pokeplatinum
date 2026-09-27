@@ -890,12 +890,26 @@ that stay. None blocks anything.
    backup, which vanilla's fixed offsets would never have found. The id lists
    of the build that wrote it (bb0c45993) are today's, less element 4's new
    moves. `test_savefile` builds a save byte by byte and checks both readers,
-   plus Ian's copy where it exists. Open: step 3, the Sync bridge (inotify
-   for a save on the Linux filesystem, mtime polling for one under `/mnt`,
-   the path in one setting); step 4, the Box and Import/Export against a
-   real save; step 5, mints and Hyper Training when element 7 records them
-   and 30 boxes after element 8; step 6, the battle log, waits on Ian's
-   choice of source.
+   plus Ian's copy where it exists. A second save, a new game on the local
+   build of 2026-09-22, reads on the same layout.
+
+   Step 3, the Sync bridge, is done (`savewatch.py`). The Calc tab has a save
+   bar: the path of the `.sav` melonDS writes, as Windows or WSL names it,
+   kept in `~/.config/oxidex/settings.json` outside the repository. The
+   server watches that file with inotify on the Linux filesystem and by its
+   modification time every three seconds under `/mnt`, reads it once it has
+   stopped changing, keeps the last good save if a read fails, and never
+   writes it. `/api/save` gives its state and `/api/save/packed` the party
+   and boxes in the calculator's own packed format, which its Sync decodes
+   with the same reader as Read Save. Patch 16 points Sync there under the
+   Oxide title, and `js/oxide/save_sync.js` presses it when the OxiDex has
+   read a newer save, so a save made in game reaches the calculator's box
+   within a few seconds. Checked end to end in headless Chrome on a copy of
+   Ian's save: the box synced by itself, then followed when the file was
+   replaced. Open: step 4, the Box and Import/Export against a real save of
+   the current ROM; step 5, mints and Hyper Training when element 7 records
+   them and 30 boxes after element 8; step 6, the battle log, waits on
+   Ian's choice of source.
 
 ## Standing rules
 
