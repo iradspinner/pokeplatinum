@@ -23,9 +23,9 @@ builder scores a team through `teamscore.py`. B6 is done ("What B6 found"): the 
 is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
 fights with their damage spread across each team, and of the player's
 levers only caps and map weather move the scores much. Next: the design
-passes, starting with the learnset study (design pass 3): Kaizo's
-patterns as rules, then a generator that proposes lists. Ian approved
-the stone plan; no questions are open.
+passes, starting with the learnset study (design pass 3). Its parts 1 and
+2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
+the generator waits on Ian's word on them, the one open question.
 
 ## The target
 
@@ -1641,6 +1641,65 @@ lands, and each change is re-scored as it lands.
       weather move for an obtainable species, the move pool's first cut).
       Before part 3 is built, a one-paragraph summary of the rules goes to
       Ian through the Overseer, so he can confirm the direction.
+
+   **What parts 1 and 2 found** (2026-09-27, `learnstudy.py` and its
+   `--rules`; the rules wait on Ian's word before part 3). Kaizo's 493
+   lists were read as 264 lines, each along the path a player walks: a
+   stage's moves count from the level it is reached. Every move is valued
+   as Kaizo plays it: power, times accuracy, times hits, over the turns it
+   takes. Kaizo's splits follow its gyms, which close at 16, 28, 38, 47,
+   54, 65, 74 and 84, with the League running to 100.
+
+   The typical new move grows stronger through the game, and coverage
+   keeps pace with same-type moves from the start:
+
+   | Kaizo split | Same-type median | Coverage median |
+   |---|---|---|
+   | Roark | 60 | 60 |
+   | Gardenia | 75 | 80 |
+   | Fantina | 80 | 90 |
+   | Maylene | 90 | 95 |
+   | Wake | 95 | 95 |
+   | Byron to the League | 100 to 102 | 96 to 102 |
+
+   Two lines in three have a same-type move of 70 or more by the end of
+   Gardenia's split, and half have a strong one (85 or more) by the end of
+   Fantina's, mostly on the stage the line ends at. Half the lines get a
+   coverage move of 70 or more in Roark's split. Past level 1, feeble moves
+   (under 50) sit almost all in Roark's split. Nine in ten damaging moves
+   past level 1 are a new type or at least as strong as the best of that
+   type already known; the rest are priority, pivot and spread moves.
+   Stat-raising setup is nearly absent, 25 entries in all 493 lists. Kaizo
+   kept vanilla's early levels, so with its higher caps a move lands a gym
+   or two earlier than in vanilla.
+
+   Each move has a usual point in Kaizo's game, and placing it there
+   predicts the lists of families held out (five folds) best. A move
+   Kaizo never used, as most later-generation moves are, is placed nearly
+   as well by the usual point of Kaizo's moves of like strength. The stage
+   and same-type barely help once the move is known.
+
+   | Placing damaging moves, on held-out families | Mean miss, in splits | Within one split |
+   |---|---|---|
+   | The move's usual split | 1.24 | 67% |
+   | A move Kaizo never used, by moves of like strength | 1.38 | 61% |
+   | The strength curve alone | 1.74 | 57% |
+   | Vanilla's timing | 2.01 | 50% |
+
+   The dead-weight rule has five tests, each read off Kaizo's lists:
+   strength under 40; under 90% accuracy on under 100 power (Kaizo's lists
+   keep one such move, Mega Punch); a charging turn in the open (Kaizo's
+   keep none); at most half of what the split usually gives; and Snore and
+   the moves that return less than double damage (Bide, Metal Burst,
+   Comeuppance). Priority, pivots, item moves, False Swipe and a certain
+   stat drop or status are exempt. It catches all eleven moves Ian named,
+   in every split (Octazooka at vanilla's values: Oxide's own, 85 at full
+   accuracy, passes). Kaizo's own lists break it in 99 of 3,528 entries,
+   most of them Tackle at its old 35 power. In Oxide's lists it catches 434
+   entries of 36 moves; beyond Ian's eleven, the most common are Astonish
+   (69 entries), Rollout (30), Fire Spin (28), Fury Cutter (20), Whirlpool
+   (18), Sand Tomb (17), Bind (15), Sky Attack (9) and Skull Bash (6), and
+   those want Ian's word.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
