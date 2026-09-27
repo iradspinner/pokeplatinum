@@ -279,7 +279,7 @@ static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID);
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u16 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
@@ -4829,12 +4829,12 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
     }
 }
 
-BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID)
+BOOL Pokemon_CanLearnTM(Pokemon *mon, u16 tmID)
 {
     return CanBoxPokemonLearnTM(&mon->box, tmID);
 }
 
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u16 tmID)
 {
     u16 monSpeciesEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
@@ -4842,29 +4842,19 @@ static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
     return CanPokemonFormLearnTM(monSpeciesEgg, monForm, tmID);
 }
 
-BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
+// Platinum Oxide: reads the mask word the bit is in, however many words
+// NUM_TMHMS makes, where vanilla stopped at four.
+BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u16 tmID)
 {
-    if (monSpecies == SPECIES_EGG) {
+    if (monSpecies == SPECIES_EGG || tmID >= NUM_TMHMS) {
         return FALSE;
     }
 
-    u32 tmFlag;
-    u8 speciesDataAttribute;
-    if (tmID < 32) {
-        tmFlag = (1 << tmID);
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_1;
-    } else if (tmID < 64) {
-        tmFlag = (1 << (tmID - 32));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_2;
-    } else if (tmID < 96) {
-        tmFlag = (1 << (tmID - 64));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_3;
-    } else {
-        tmFlag = (1 << (tmID - 96));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_4;
-    }
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(Pokemon_GetFormNarcIndex(monSpecies, monForm), HEAP_ID_SYSTEM);
+    BOOL result = (speciesData->tmLearnsetMasks[tmID / 32] & (1 << (tmID % 32))) != 0;
 
-    return (SpeciesData_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
+    SpeciesData_Free(speciesData);
+    return result;
 }
 
 void Pokemon_CalcAbility(Pokemon *mon)

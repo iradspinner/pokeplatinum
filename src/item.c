@@ -293,20 +293,25 @@ static s32 ItemPartyParam_Get(ItemPartyParam *partyParam, enum ItemDataParam att
     }
 }
 
+// Platinum Oxide: sTMHMMoves is generated in item id order, so it holds
+// TM01 to TM92, then HM01 to HM08, then any TMs past TM92.
 u16 Item_MoveForTMHM(u16 item)
 {
-    if (item < ITEM_TM01 || item > ITEM_HM08) {
-        return MOVE_NONE;
+    if (item >= ITEM_TM01 && item <= ITEM_HM08) {
+        return sTMHMMoves[item - ITEM_TM01];
     }
 
-    item -= ITEM_TM01;
-    return sTMHMMoves[item];
+    if (item >= FIRST_EXTRA_TM_IDX && item <= LAST_EXTRA_TM_IDX) {
+        return sTMHMMoves[NUM_BASE_TMS + NUM_HMS + item - FIRST_EXTRA_TM_IDX];
+    }
+
+    return MOVE_NONE;
 }
 
 u8 Item_IsHMMove(u16 move)
 {
     for (u8 i = 0; i < NUM_HMS; i++) {
-        if (sTMHMMoves[NUM_TMS + i] == move) {
+        if (sTMHMMoves[NUM_BASE_TMS + i] == move) {
             return TRUE;
         }
     }
@@ -314,13 +319,40 @@ u8 Item_IsHMMove(u16 move)
     return FALSE;
 }
 
-u8 Item_TMHMNumber(u16 item)
+// Platinum Oxide: the TM/HM number counts every TM, TMs past TM92 included,
+// before the HMs, which is also the order of the species learnset bits.
+u16 Item_TMHMNumber(u16 item)
 {
-    if (item < ITEM_TM01 || item > ITEM_HM08) {
-        return ITEM_NONE;
+    if (item >= ITEM_TM01 && item <= LAST_BASE_TM_IDX) {
+        return item - ITEM_TM01;
     }
 
-    return item - ITEM_TM01;
+    if (item >= FIRST_EXTRA_TM_IDX && item <= LAST_EXTRA_TM_IDX) {
+        return NUM_BASE_TMS + item - FIRST_EXTRA_TM_IDX;
+    }
+
+    if (item >= ITEM_HM01 && item <= ITEM_HM08) {
+        return NUM_TMS + item - ITEM_HM01;
+    }
+
+    return ITEM_NONE;
+}
+
+u16 Item_ForTMHMNumber(u16 tmhm)
+{
+    if (tmhm < NUM_BASE_TMS) {
+        return ITEM_TM01 + tmhm;
+    }
+
+    if (tmhm < NUM_TMS) {
+        return FIRST_EXTRA_TM_IDX + tmhm - NUM_BASE_TMS;
+    }
+
+    if (tmhm < NUM_TMHMS) {
+        return ITEM_HM01 + tmhm - NUM_TMS;
+    }
+
+    return ITEM_NONE;
 }
 
 u8 Item_IsMail(u16 item)

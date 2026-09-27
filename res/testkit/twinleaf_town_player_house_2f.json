@@ -1045,6 +1045,17 @@
                 "A Machamp, three kinds of Mint,\n",
                 "two Bottle Caps and a Gold one."
             ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemTMs",
+            "en_US": "TM Case check"
+        },
+        {
+            "id": "TestKit_Text_ItemTMs",
+            "en_US": [
+                "TM01, TM92, HM01 and HM08\n",
+                "are in the TM Case."
+            ]
         }
     ]
 }

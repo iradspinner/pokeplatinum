@@ -13,7 +13,7 @@
 // docs/oxide/save-layout.md.
 #define ITEM_POCKET_SIZE        187
 #define KEY_ITEM_POCKET_SIZE    50
-#define TMHM_POCKET_SIZE        100
+#define TMHM_POCKET_SIZE        NUM_TMHMS // Platinum Oxide: vanilla's 100, and grows with the TMs
 #define MAIL_POCKET_SIZE        12
 #define MEDICINE_POCKET_SIZE    63
 #define BERRY_POCKET_SIZE       65

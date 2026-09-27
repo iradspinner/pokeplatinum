@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_SPECIES_H
 #define POKEPLATINUM_SPECIES_H
 
+#include "constants/items.h"
+
 // Platinum Oxide: three, not two. Slots 0 and 1 are the ordinary pair a
 // Pokemon picks between on its personality; slot 2 is the hidden ability, and
 // ABILITY_NONE there means the species has none.
@@ -83,7 +85,7 @@ typedef struct SpeciesData {
     u8 flipSprite : 1;
     u16 baseExpReward; // Platinum Oxide: sits in what used to be implicit padding
 
-    u32 tmLearnsetMasks[4]; // Bitflags for whether this pokemon can learn a TM
+    u32 tmLearnsetMasks[TM_LEARNSET_MASKS]; // Bitflags for whether this pokemon can learn a TM
 } SpeciesData;
 
 typedef struct SpeciesEvolution {

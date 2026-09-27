@@ -124,7 +124,7 @@ LANGUAGES = {
     6: "LANGUAGE_UNUSED_6", 7: "LANGUAGE_SPANISH", 8: "LANGUAGE_KOREAN",
 }
 
-NUM_TMS = 92  # include/constants/items.h: TM01..TM92, HM01..HM08
+NUM_TMS = 92  # the base ROM's TMs, TM01..TM92 then HM01..HM08; Oxide's own count is NUM_TMS in include/constants/items.h
 
 # Alternate forms that have their own personal/learnset/evolution records,
 # in NARC order after SPECIES_BAD_EGG (495). Mirrors alt_forms_with_data[] in

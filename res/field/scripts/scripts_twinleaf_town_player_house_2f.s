@@ -3183,6 +3183,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemRoseliBerry, 21
     AddListMenuEntry TestKit_Text_MenuItemAbilities, 22
     AddListMenuEntry TestKit_Text_MenuItemMintsCaps, 23
+    AddListMenuEntry TestKit_Text_MenuItemTMs, 24
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3208,6 +3209,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 21, TestKit_ItemRoseliBerry
     GoToIfEq VAR_0x8004, 22, TestKit_ItemAbilities
     GoToIfEq VAR_0x8004, 23, TestKit_ItemMintsCaps
+    GoToIfEq VAR_0x8004, 24, TestKit_ItemTMs
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3706,6 +3708,20 @@ TestKit_ItemMintsCaps:
     AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
     AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
     Message TestKit_Text_ItemMintsCaps
+    GoTo TestKit_WaitAndClose
+
+/* The TM mechanism, which now allows more than 92 TMs but has none past
+   TM92 yet, so this checks that nothing moved: TM92, HM08, TM01 and HM01
+   are added in that order. In the TM Case they sort as No. 01, No. 92,
+   HM 01, HM 08, each with its own move (Focus Punch, Trick Room, Cut, Rock
+   Climb), and using one shows ABLE and NOT ABLE beside the party as
+   before. A move taught by an HM still cannot be forgotten. */
+TestKit_ItemTMs:
+    AddItem ITEM_TM92, 1, VAR_RESULT
+    AddItem ITEM_HM08, 1, VAR_RESULT
+    AddItem ITEM_TM01, 1, VAR_RESULT
+    AddItem ITEM_HM01, 1, VAR_RESULT
+    Message TestKit_Text_ItemTMs
     GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:

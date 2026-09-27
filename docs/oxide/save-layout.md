@@ -219,6 +219,12 @@ that assert at the same time.
 
 Listed so the next change can be planned rather than discovered:
 
+- More TMs (the TM pass, after element 7 took the cap off). The Bag's TM
+  pocket is `NUM_TMHMS` slots, so every TM past TM92 adds 4 bytes to the Bag
+  and moves the rest of the normal save block. Past 120 TMs the species
+  record grows by 4 bytes for each 32 more (`TM_LEARNSET_MASKS`), which is
+  not save data but moves `pl_personal.narc`'s record size, and
+  `verify_narcs.py`'s `PERSONAL_NEW_SIZE` would have to follow it
 - 30 PC boxes (Phase 4 element 8). The budget to check first: `SavePageInfo_Init`
   asserts the running total of **both** blocks against `SAVE_SECTOR_SIZE *
   SAVE_PAGE_MAX`, 131,072 bytes, and eighteen more boxes is on the order of
