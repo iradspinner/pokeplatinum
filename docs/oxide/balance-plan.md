@@ -6,7 +6,7 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-26).** Test.nds is Oxide's base ROM, with Ian's
+**Where it stands (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
@@ -18,8 +18,12 @@ Ian's ratings showed"). Every score is on the combined branch of
 2026-09-27 (the calculator's items 22 and 23, the friendship and trade
 evolutions, the new grass tables and sources, Heatran out of Stark
 Mountain, the Kaizo move data and element 4's partly working moves), and
-rescores are incremental. Next: B6's runs. Ian approved
-the stone plan; no questions are open.
+rescores are incremental. B6 is done ("What B6 found"): the bottom band
+is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
+fights with their damage spread across each team, and of the player's
+levers only caps and map weather move the scores much. Next: the design
+passes, with the learnset pass as a cloud job (design pass 3). Ian
+approved the stone plan; no questions are open.
 
 ## The target
 
@@ -858,6 +862,91 @@ from, so they are kept here in brief.
   cover; Delcatty and Umbreon hit weakly. "A box check": it needs specific
   answers, but it has no awkward baiting and little setup that matters.
 
+## What B6 found (2026-09-27)
+
+B6 scores every ordinary trainer the player meets (428, 40 of them
+required) and each story fight under one change at a time
+(`b6.py --report`; all 458 scores verified by a second run). Every fight
+is placed on Ian's fight scale by the line above, now 9.3 minus 7.1 times
+safe switch-ins. The line bottoms out at 2.2: a party whose Pokemon never
+double up on a knockout leaves every switch-in safe. So the bottom band
+(0 to 2) is safe switch-ins of 0.96 or more.
+
+**Goal 2, more fights in the middle and fewer at the bottom.** The story
+fights are mostly in the middle already. Five sit at the bottom (Barry 1,
+2 and 3, Mars 1, Jupiter 1), and seven at the top (Byron, Cyrus 3, Flint,
+Lucian, Cynthia and both Hesperid fights, 7.6 to 8.0). The ordinary
+trainers are where the bottom is:
+
+| Split | Bottom (0 to 2), all / required | Middle (3 to 7), all / required |
+|---|---|---|
+| Roark | 18 / 3 | 0 / 0 |
+| Gardenia | 37 / 8 | 0 / 0 |
+| Fantina | 43 / 3 | 1 / 0 |
+| Maylene | 25 / 1 | 13 / 4 |
+| Wake | 51 / 5 | 21 / 2 |
+| Byron | 36 / 1 | 25 / 3 |
+| Candice | 21 / 3 | 9 / 3 |
+| HQ | 3 / 0 | 9 / 0 |
+| Galactic | 16 / 0 | 49 / 0 |
+| Volkner | 13 / 0 | 7 / 1 |
+| League | 9 / 1 | 20 / 1 |
+
+Two ordinary trainers sit at the top. Before Maylene's split, 98 of 99
+ordinary trainers are at the bottom, and only 15 of the 40 required ones
+reach the middle anywhere. Party size decides it: all 166 one-Pokemon
+trainers are at the bottom, 79 of 139 with two, 20 of 105 with three,
+and 7 of 18 with four or more. So the lever for goal 2 is the trainer
+pass's party sizes, and the gauntlets, which string bottom-band fights
+into one test.
+
+**Goal 1, the hyper-offense.** Six fights meet the test (threat by chance
+0.55 or more, four tactics or fewer, two thirds of turns called): Maylene,
+Wake, Volkner, Flint, Lucian and Cynthia. Their damage is spread across
+the team: no single boss-side change cuts a fight's threat by more than
+0.08 (Maylene's Cacturne without Sucker Punch). So curbing them means
+several changes in each, trading damage for the tactics the scores cannot
+see, as Ian's own peak fights do. Four of the six carry Choice items
+(Wake's Sharpedo, Volkner's Electivire, Flint's Infernape and Magmortar),
+which Ian's ruling takes off.
+
+**Flint and Byron, the two Ian named as perhaps too hard**, read 7.8 and
+7.6. Flint's is Fire doubling up: Infernape and Magmortar knock out the
+same 309 player Pokemon in one hit between them. Taking Magmortar's
+Choice Specs off gives back 0.106 of safe switch-ins, and Infernape out
+0.149, so the Choice ruling alone brings him down most of a point.
+Byron's is Forretress's Explosion, which the scores count as a one-hit
+knockout on most of the side: without it his safe switch-ins rise 0.186,
+from 7.6 to about 6.3. The scores count every Explosion as a knockout, not
+a one-time trade, so they overrate that part of Byron, the thing Ian
+named.
+
+**Goal 4, the player's levers.** Caps and map weather are the only strong
+ones. Two cap levels move a split's fights by 0.03 to 0.11 of answers and
+0.03 to 0.08 of safe switch-ins. Pastoria Gym's rain is the biggest
+single lever: without it Wake's fight gains 0.125 of safe switch-ins.
+Roark's and Bertha's sand cost the player about 0.07 of answers each.
+Items and TMs barely move anything: Life Orb one split earlier is worth
+0.05, Choice Specs 0.04, and every TM or HM one split earlier 0.016 or
+less, 59 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
+TM pass can place TMs for variety; and the player's Choice items going
+away costs only 0.026 of answers. No species is the only sure answer to
+any boss Pokemon, so no fight needs a particular catch. A fully evolved
+species' median share of boss Pokemon surely answered is 0.58; three stand
+far above it: Giratina 0.97, Dusknoir 0.92 and Feraligatr 0.88. Only
+Unown answers nothing. The report also lists everything Ian's cuts of
+2026-09-27 touch (design pass 3).
+
+**Goal 3, the added content.** By the League, 126 of the player's 434
+species are new to Oxide, but the trainers use 3 new species in about
+1,050 Pokemon, and no new move or ability at all. Bringing the new
+content in is the trainer pass's job.
+
+**The legendary gate** (Ian, 2026-09-27): not yet. Nothing here has moved
+the difficulty; the bottom band and the hyper-offense are as the base ROM
+left them, so the question of Valor Cavern and Stark Mountain stays
+closed until the trainer pass lands and is rescored.
+
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
 Ian's ruling: after Candice (cap 56) the story runs Lake Acuity, the
@@ -1271,7 +1360,7 @@ on 2026-09-27 (design pass 2).
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore --verify   # the second run
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore --status   # counts only
   ```
-- [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
+- [x] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
   target"). Every Oxide fight placed on his fight scale, the required
   ordinary trainers included (they are not scored yet, and they are most of
   the 0 to 2 fights); the fights whose difficulty is all damage (high
@@ -1288,10 +1377,10 @@ on 2026-09-27 (design pass 2).
   the matchups a change touches. `b6.py --report` gives the findings by
   goal, `--content` adds the count of new species, moves and abilities on
   each side, and `--draft` scores one of Ian's Frontier Brain drafts in a
-  split and places it on his fight scale. The runs wait for the suite
-  slot. Already clear from the counts: by the League 127 of the player's
-  439 species are new, while the trainers use 3 new species in about 1,050
-  Pokemon and no new move or ability at all.
+  split and places it on his fight scale. Run and verified on 2026-09-27;
+  "What B6 found" has the findings. The report's own code is left out of
+  B6's fingerprint (`rescore.B6_REPORT_ONLY`), so editing it stales no
+  score.
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
@@ -1472,6 +1561,40 @@ lands, and each change is re-scored as it lands.
      as HMs, and their TM slots become other moves in the TM pass.
    - Type-flavoured near-duplicates stay, as do Land's Wrath, Flame Burst
      and Sludge. The rest of the cull waits for the TM pass.
+
+   **The learnset pass, as a cloud job** (spec draft, 2026-09-27, for the
+   Overseer to turn into a prompt after B6). The data work is too large to
+   do by hand well, so a cloud session writes it and this track reviews
+   the diff line by line and rescores.
+
+   1. Scope: the level-up learnset (`learnset.by_level` in
+      `res/pokemon/<folder>/data.json`) of every species on the pick-list.
+      TMs, tutors and egg moves wait for the TM pass.
+   2. Template: `docs/oxide/kaizo-learnsets.tsv` (Kaizo's level-up list for
+      every native species, move at level) line by line for the natives;
+      the new species keep their donor lists and take the same adjustments.
+   3. Adjustments, each a ruling of Ian's: no weather move in any learnset
+      (Rain Dance, Sunny Day, Sandstorm, Hail and their like); the move
+      pool's first cut above (the twelve moves out, Splash and Teleport
+      replaced by the seven level-1 picks, Cut, Rock Smash and Flash out
+      where they were only HMs); Kaizo's rebuilt moves (Water Ball, Fire
+      Ball, the fixed-type Hidden Powers) become the real move the
+      comparison names, or leave; strong moves may sit at level 1 on an
+      evolved stage, as Kaizo has them; no split has a ceiling on coverage
+      power; type-flavoured near-duplicates, Land's Wrath, Flame Burst and
+      Sludge stay.
+   4. Limits of the engine and the data: only moves in Oxide's table whose
+      effect works (never a Z-move, nothing the effect audit calls
+      unported); at most 34 entries a species (`MAX_LEARNSET_ENTRIES`);
+      a level-0 evolution move becomes level 1, as the format has it.
+   5. Output: the edited files in each file's own style (`jsonstyle.py`,
+      never a reformat), a report per line of what was added, removed or
+      moved against today's list and Kaizo's, and the `wotbl` members that
+      now differ from the base ROM declared in `verify_narcs.py`'s
+      `DIVERGED`. The encounter suites and test_m8 pass.
+   6. After it lands, this track rescores: every fight's player side
+      changes, so it is a full rescore and verify, and B6's lever ranking
+      is rerun on the new lists.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

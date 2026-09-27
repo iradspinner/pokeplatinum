@@ -65,10 +65,21 @@ KINDS = ("pressure", "calibrate", "ref", "shape", "b6", "b6lever")
 
 # ---- what decides a score ----------------------------------------------------
 
-def _code_hash(path):
-    """The module's code as Python parses it, docstrings left out."""
+def _top_names(node):
+    """The names a top-level statement defines."""
+    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+        return {node.name}
+    if isinstance(node, ast.Assign):
+        return {t.id for t in node.targets if isinstance(t, ast.Name)}
+    return set()
+
+
+def _code_hash(path, skip=frozenset()):
+    """The module's code as Python parses it, docstrings left out, and any
+    top-level function or constant named in `skip` too."""
     with open(path, encoding="utf-8") as f:
         tree = ast.parse(f.read())
+    tree.body = [n for n in tree.body if not (_top_names(n) and _top_names(n) <= skip)]
     for node in ast.walk(tree):
         body = getattr(node, "body", None)
         if (isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
@@ -76,6 +87,18 @@ def _code_hash(path):
                 and isinstance(body[0].value, ast.Constant) and isinstance(body[0].value.value, str)):
             node.body = body[1:] or [ast.Pass()]
     return hashlib.sha256(ast.dump(tree).encode()).hexdigest()
+
+
+# What b6.py holds besides its scoring: the report, the fight scale, the
+# draft scorer, the new-content and dead-weight counts, and their constants.
+# None of it decides a stored score, so editing it stales nothing. Kept
+# here, not in b6.py, so that listing it never changed b6.py's own hash.
+B6_REPORT_ONLY = frozenset({
+    "BANDS", "FAR", "CARRIES", "MIN_FIGHTS", "HYPER", "TOO_HARD", "DEAD_MOVES",
+    "DEAD_ABILITIES", "DRAFT_IV", "story_scores", "scale_line", "on_scale", "band",
+    "_main_list", "new_content", "obtainable", "dead_weight", "_fmt", "lever_table",
+    "species_table", "hyper_offense", "fully_evolved", "_changes", "report",
+    "_constants_by_name", "_fill", "_draft_party", "score_draft", "main"})
 
 
 _SCRIPT = re.compile(r'<script[^>]*src="\./(calc/[^"?]+)')
@@ -113,14 +136,17 @@ def engine_hash():
 
 
 @functools.lru_cache(maxsize=None)
-def scorer_hash(kind):
+def scorer_hash(kind, previous=False):
     """The code a kind of score is worked out by: pressure.py for all, and
-    the module that reduces or builds it for the others."""
+    the module that reduces or builds it for the others; for B6, b6.py
+    less its report (B6_REPORT_ONLY), or all of it for `previous`."""
     mods = {"pressure": ["pressure.py"], "calibrate": ["pressure.py"],
             "ref": ["pressure.py", "refpressure.py"], "shape": ["pressure.py", "shape.py"],
             "b6": ["pressure.py", "b6.py"], "b6lever": ["pressure.py", "b6.py"]}[kind]
-    return hashlib.sha256("".join(_code_hash(os.path.join(HERE, m)) for m in mods).encode()
-                          ).hexdigest()
+    return hashlib.sha256("".join(
+        _code_hash(os.path.join(HERE, m),
+                   B6_REPORT_ONLY if m == "b6.py" and not previous else frozenset())
+        for m in mods).encode()).hexdigest()
 
 
 def _names(o, species, moves):
@@ -138,22 +164,22 @@ def _names(o, species, moves):
             _names(v, species, moves)
 
 
-def _species_record(rec, previous=False):
+def _species_record(rec):
     """A species' calculator record as the fingerprint reads it: without
     its hidden ability ("H"). No score can reach that slot: every scored
     Pokemon is given an ability (the side its first, a trainer's set its
     own), and the engine falls back to slot "0" when one is missing. The
     natives' hidden abilities (2026-09-27) added "H" to 451 records and so
-    changed every score's hash while changing no score. `previous` gives
-    the record as the definition before that read it, for --restamp."""
-    if previous or not isinstance(rec, dict) or not isinstance(rec.get("abilities"), dict):
+    changed every score's hash while changing no score."""
+    if not isinstance(rec, dict) or not isinstance(rec.get("abilities"), dict):
         return rec
     return dict(rec, abilities={k: v for k, v in rec["abilities"].items() if k != "H"})
 
 
 def fingerprint(kind, jobs, ctx, blob, previous=False):
     """The hash of everything that decides one score (the module's doc).
-    `previous` hashes by the definition this one replaced, for --restamp."""
+    `previous` hashes by the definition this one replaced, for --restamp:
+    B6's scorer hashed as the whole of b6.py (scorer_hash)."""
     species, moves = set(), set()
     _names(jobs["pokemon"], species, moves)
     _names(ctx, species, moves)
@@ -163,12 +189,11 @@ def fingerprint(kind, jobs, ctx, blob, previous=False):
     payload = {
         "jobs": jobs, "ctx": ctx,
         "blob": {"title": blob["title"], "type_chart": blob["type_chart"],
-                 "poks": {s: _species_record(blob["poks"].get(s), previous)
-                          for s in sorted(species)},
+                 "poks": {s: _species_record(blob["poks"].get(s)) for s in sorted(species)},
                  "moves": {m: blob["moves"].get(m) for m in sorted(moves)}},
         "accuracy": {m: acc.get(metrics._compact(pressure.MOVE_SPELLING.get(m, m)))
                      for m in sorted(moves)},
-        "engine": engine_hash(), "scorer": scorer_hash(kind),
+        "engine": engine_hash(), "scorer": scorer_hash(kind, previous),
     }
     text = json.dumps(payload, sort_keys=True, default=sorted)
     return hashlib.sha256(text.encode()).hexdigest()[:20]
