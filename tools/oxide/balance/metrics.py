@@ -606,6 +606,8 @@ def filler_summary(hack):
             m["name"], m["tr_id"] = t["name"], tr_id
             m["over_cap"] = m["ace_level"] - cap
             ms.append(m)
+        if not ms:
+            continue        # no filler: the League's rooms hold only its story fights
         mean = lambda k: statistics.mean(m[k] for m in ms if m[k] is not None)
         worst = max(ms, key=lambda m: (m["over_cap"], m["party_size"], m["mean_bst"] or 0))
         out[split] = {"trainers": len(ms), "doubles": sum(m["doubles"] for m in ms),

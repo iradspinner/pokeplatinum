@@ -55,7 +55,15 @@ MAP_SPLITS = {
     "ETERNA_CITY_GALACTIC_BUILDING": "Fantina",   # Jupiter 1, after Gardenia
     "GALACTIC_HQ": "HQ",
     "VEILSTONE_CITY_GALACTIC_WAREHOUSE": "HQ",
-    "POKEMON_LEAGUE": "Barry",            # the League's front; its rooms are story fights
+    # The Elite Four's and the Champion's rooms, the lifts to them and the
+    # Hall of Fame are the League split; the rest of the League (its front,
+    # Pokemon Centers and mart) comes before them, in the Barry split. The
+    # first pattern a map's name starts with wins, so the rooms come first.
+    "POKEMON_LEAGUE_AARON_ROOM": "League", "POKEMON_LEAGUE_BERTHA_ROOM": "League",
+    "POKEMON_LEAGUE_FLINT_ROOM": "League", "POKEMON_LEAGUE_LUCIAN_ROOM": "League",
+    "POKEMON_LEAGUE_CHAMPION_ROOM": "League", "POKEMON_LEAGUE_ELEVATOR_TO_": "League",
+    "POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME": "League", "POKEMON_LEAGUE_HALL_OF_FAME": "League",
+    "POKEMON_LEAGUE": "Barry",
 }
 
 # Where the player first arrives, for location names with no wild table of
@@ -98,6 +106,8 @@ STORY_REVISITS = {
     "mars_2": "Lake Verity, first reached in Roark's split, fought in Candice's",
     "lucas_dawn_2": "Route 207, first reached in Roark's split, fought in Fantina's "
                     "on the way from Eterna to Hearthome (its aces are 30)",
+    "flint_volkner": "the Fight Area, first reached in the Galactic split, fought in the "
+                     "Barry split once the Beacon Badge is won",
 }
 
 _HEADER = re.compile(r"\[(MAP_HEADER_\w+)\] = \{(.*?)\n    \},", re.S)
