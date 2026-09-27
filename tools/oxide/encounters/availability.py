@@ -424,14 +424,15 @@ def render(out):
     pool = plan.get("pool") or {}
     statics = pool.get("statics") or []
     empty = pool.get("empty") or []
-    count = ("no", "one", "two", "three", "four")[min(len(statics) + 1, 4)]
+    roamer = pool.get("roamer")         # none while the roamer draw is held back
+    count = ("no", "one", "two", "three", "four")[min(len(statics) + (1 if roamer else 0), 4)]
     lines.append("**The legendary pool** (Ian, 2026-09-21, and his later rulings in the "
                  "plan's pool comment). Vanilla's three pre-League legendaries already felt "
                  "like a lot, so the new ones are not statics of their own. Each draw comes "
                  "from its own part of the pool, so no two match: "
                  + "; ".join(statics) + (" as a static battle" if len(statics) == 1
-                                          else " as static battles") + ", and "
-                 + (pool.get("roamer") or "the roamer") + " as a random roamer. "
+                                          else " as static battles")
+                 + (f", and {roamer} as a random roamer. " if roamer else ". ")
                  + (("Empty: " + "; ".join(empty) + ", until "
                      + (pool.get("empty_until") or "Ian says otherwise") + ". ") if empty else "")
                  + f"A playthrough meets {count} of them before the League. The scripting is "
