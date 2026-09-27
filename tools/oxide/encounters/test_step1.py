@@ -150,6 +150,7 @@ def check_r12(results):
                     not {"Articuno", "Mesprit", "Cresselia", "Xurkitree"} & errors
                     and "reserve" in warned.get("Nihilego", "")
                     and "Valor Cavern" in warned.get("Guzzlord", "")
+                    and "roamer" in warned.get("Xurkitree", "")
                     and "post-League" in warned.get("Xerneas", "")
                     and "Snivy" not in errors, ""))
     orphan = [dict(r, held=None, proposal=None, non_wild=False) for r in avail

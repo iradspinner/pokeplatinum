@@ -56,9 +56,10 @@ SCRIPTED = {
     "SPECIES_CRANIDOS": "fossil, mining_museum",
     "SPECIES_SHIELDON": "fossil, mining_museum",
     # Platinum's roamers are released by an event and then walk the routes;
-    # no script names them. Mesprit after Valor Cavern, Cresselia from
-    # Fullmoon Island, the three birds from Oak in Eterna after the League.
-    "SPECIES_MESPRIT": "roamer, valor_cavern",
+    # no script names them. Cresselia from Fullmoon Island, the three birds
+    # from Oak in Eterna after the League. Mesprit's roamer, released at
+    # Verity Cavern, is the legendary pool's roamer draw, which Ian turned off
+    # on 2026-09-27; Mesprit waits in that third, held back (empty_thirds).
     "SPECIES_CRESSELIA": "roamer, fullmoon_island",
     "SPECIES_ARTICUNO": "roamer, eterna_city (Oak, post-League)",
     "SPECIES_ZAPDOS": "roamer, eterna_city (Oak, post-League)",
@@ -211,15 +212,19 @@ DRAW_SCRIPT = os.path.join("res", "field", "scripts", "scripts_init_new_game.s")
 
 
 def pool_draws(root):
-    """[{script, line, command, species}] for the pool draws' species."""
+    """[{script, line, command, species}] for the pool draws' species. A draw
+    for a third the plan holds back (the roamer's since 2026-09-27) is left
+    out: the script may still roll it, but nothing releases what it rolls."""
     path = os.path.join(root, DRAW_SCRIPT)
     if not os.path.exists(path):
         return []
+    held = empty_thirds(pool_block(root))
     rows = []
     with open(path, encoding="utf-8", errors="replace") as f:
         for n, line in enumerate(f, 1):
             m = _DRAW_RE.match(line)
-            if m:
+            key = m and m.group(1)[len("VAR_LEGENDARY_POOL_"):-len("_SPECIES")].lower()
+            if m and key not in held:
                 rows.append({"script": "scripts_init_new_game", "line": n,
                              "command": "LegendaryPoolDraw " + m.group(1),
                              "species": m.group(2)})
@@ -409,6 +414,25 @@ def acquisition_costs(areas, wanted):
     return best
 
 
+def pool_block(root):
+    """The availability plan's legendary pool block, or {} without one."""
+    path = os.path.join(root, "docs", "oxide", "encounters", "availability-plan.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f).get("pool") or {}
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def empty_thirds(pool):
+    """The thirds of the legendary pool drawn nowhere: the reserve, and the
+    third of any place the pool lists as empty (Valor Cavern, and the roamer
+    since 2026-09-27). A third is matched by its name in the empty list, as
+    the balance track's obtainable() matches it, so the two cannot disagree."""
+    empty = " ".join(pool.get("empty") or []).lower()
+    return {k for k in (pool.get("thirds") or {}) if k == "reserve" or k.lower() in empty}
+
+
 def held_back(root):
     """{species: why} for the legendaries Ian keeps out of reach on purpose,
     from the availability plan's pool block: the pool's reserve, and the
@@ -429,7 +453,7 @@ def held_back(root):
         if key == "reserve":
             why = "in the legendary pool's reserve, drawn nowhere"
         else:
-            place = next((e for e in pool.get("empty") or [] if key.title() in e), None)
+            place = next((e for e in pool.get("empty") or [] if key.lower() in e.lower()), None)
             if not place:
                 continue
             why = f"in the pool third of {place}, which holds no legendary until {until}"

@@ -87,9 +87,11 @@ def main():
     results.append(("scripted lines carry their source, not a home (Turtwig, Dialga, Togepi)",
                     all(by[n]["status"] == "non-wild" and not by[n]["home"]
                         for n in ("Turtwig", "Dialga", "Togepi")), ""))
-    results.append(("the roamers and Phione are sourced by their vanilla mechanism",
-                    all(by[n]["status"] == "non-wild" for n in
-                        ("Articuno", "Mesprit", "Cresselia", "Phione")), ""))
+    # Mesprit's roamer is the pool's roamer draw, held back since 2026-09-27.
+    results.append(("the roamers and Phione are sourced by their vanilla mechanism; Mesprit "
+                    "waits in the held-back roamer draw",
+                    all(by[n]["status"] == "non-wild" for n in ("Articuno", "Cresselia", "Phione"))
+                    and by["Mesprit"]["status"] == "pool", by["Mesprit"]["status"]))
     proposed = [r["name"] for r in rows if r["status"] == "proposed"]
     pool = [r["name"] for r in rows if r["status"] == "pool"]
     results.append(("every new legendary is in the pool or, for the two box legendaries, proposed",
@@ -97,8 +99,10 @@ def main():
                         if r["tier"] == "gate" and not r["non_wild"])
                     and sorted(proposed) == ["Xerneas", "Yveltal"]
                     and "Nihilego" in pool and "Guzzlord" in pool
-                    # a line the roamer's draw names is sourced (2026-09-27)
-                    and next(r for r in rows if r["name"] == "Tapu Koko")["non_wild"],
+                    # the roamer's draw named Tapu Koko until Ian held it back
+                    # (2026-09-27); its lines now wait in the pool
+                    and "Tapu Koko" in pool
+                    and not next(r for r in rows if r["name"] == "Tapu Koko")["non_wild"],
                     f"{len(pool)} in the pool, {len(proposed)} proposed"))
     # Scorbunny replaced Chimchar in Rowan's briefcase on 2026-09-21 (Ian), so it
     # is gate tier and out of the wild; Litten took over its home on Route 204
