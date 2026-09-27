@@ -447,7 +447,16 @@ def lint_game(areas, t, availability=None):
                 out.append(Finding("R12", "warn", "game", name,
                                    "no tier on the pick-list; unchecked"))
             elif tier == "gate":
-                if not row["non_wild"]:
+                # A legendary Ian keeps out of reach on purpose, or one a
+                # post-League proposal sources on paper, is reported with the
+                # reason; an error is a gate line nobody has decided about.
+                if not row["non_wild"] and row.get("held"):
+                    out.append(Finding("R12", "warn", "game", name,
+                                       f"no source, on purpose: {row['held']}"))
+                elif not row["non_wild"] and row.get("proposal"):
+                    out.append(Finding("R12", "warn", "game", name,
+                                       f"sourced on paper, script to come: {row['proposal']}"))
+                elif not row["non_wild"]:
                     out.append(Finding(
                         "R12", "error", "game", name,
                         "gate line with no scripted source (no gift, trade, "
@@ -462,10 +471,11 @@ def lint_game(areas, t, availability=None):
                     f"{tier} line with no wild table and no scripted source"))
             elif tier in ceilings and row["cost"] > ceilings[tier]:
                 area, kind, lead = row["where"]
+                met = f", as {row['met_as']}" if row.get("met_as") else ""
                 out.append(Finding(
                     "R12", "error", "game", name,
                     f"{tier} line costs {row['cost']:.1f} encounters at best "
-                    f"({area.replace('encounters_', '')} {kind}, lead {lead}), "
+                    f"({area.replace('encounters_', '')} {kind}, lead {lead}{met}), "
                     f"ceiling {ceilings[tier]:.0f}"))
             elif tier not in ceilings:
                 out.append(Finding("R12", "warn", "game", name,
