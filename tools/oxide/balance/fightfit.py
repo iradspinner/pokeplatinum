@@ -204,6 +204,8 @@ def main(argv=None):
     ap.add_argument("--box", action="store_true", help="plan each six from a realistic box")
     args = ap.parse_args(argv)
     fightsim.BOX_MODE = args.box
+    # Ian judged his pairs as singles, the four doubles trainers among them too.
+    fightsim.PLAY_DOUBLES = False
     reads = mod.readings(args.cached)
     weights, level, err = mod.fit(reads)
     print("weights:", dict(zip(FEATURES, (round(float(w), 3) for w in weights))),

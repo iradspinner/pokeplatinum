@@ -156,10 +156,115 @@ def check_doubles(results):
                     f"lost {lost}, won {won}, Rock Slide's range {rs.range}"))
 
 
+def field(mons, rows, speeds=None):
+    """A singles battle from a sketch: mons is {key: (types, moves)}, the
+    player's keys starting with p (the first leads) and the trainer's with
+    b; rows is {(attacker, target): {move: damage}}; every Pokemon has 100 HP."""
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False}
+    for key, (types, moves) in mons.items():
+        st["info"][key] = {"hp": 100, "stats": {"atk": 100, "def": 100, "spa": 100, "spd": 100, "spe": 100},
+                           "types": list(types), "ability": None, "item": None}
+        st["pokemon"][key] = {"species": key, "level": 50}
+        st["moves"][key] = moves
+        st["speed"][(None, key)] = (speeds or {}).get(key, 100 if key.startswith("p") else 50)
+    for a in mons:
+        for d in mons:
+            if a[0] != d[0]:
+                got = rows.get((a, d), {})
+                st["rows"][(None, a, d)] = {"moves": {m: {"rolls": [got.get(m, 0)] * 16}
+                                                      for m in mons[a][1]}}
+    side = {s: [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], s) for k in mons if k[0] == s]
+            for s in "pb"}
+    return fs.Battle(st, fs.Side(side["p"], "p"), fs.Side(side["b"], "b"), random.Random(1), ai_flags=7)
+
+
+def check_pivot(results):
+    """A Pokemon that would win the exchange but not after taking the move
+    aimed at the lead goes in through one that resists that move."""
+    b = field({"p0": (["Normal"], ["Scratch"]), "p1": (["Grass"], ["Scratch"]),
+               "p2": (["Water"], ["Scratch"]), "b0": (["Fire"], ["Ember", "Scratch"])},
+              {("p0", "b0"): {"Scratch": 10}, ("p1", "b0"): {"Scratch": 50}, ("p2", "b0"): {"Scratch": 5},
+               ("b0", "p0"): {"Ember": 60, "Scratch": 15}, ("b0", "p1"): {"Ember": 70, "Scratch": 20},
+               ("b0", "p2"): {"Ember": 10, "Scratch": 15}})
+    got = fs.player_choice(b)
+    ok = got == ("switch", 2)
+    results.append(("the player pivots through a resist", ok, f"choice {got}"))
+
+
+def check_stall(results):
+    """With the foe's Light Screen up and Pokemon that take little, the
+    player trades places until it runs out; with none up it attacks."""
+    mons = {"p0": (["Normal"], ["Ember"]), "p1": (["Normal"], ["Scratch"]), "b0": (["Normal"], ["Scratch"])}
+    rows = {("p0", "b0"): {"Ember": 40}, ("p1", "b0"): {"Scratch": 10},
+            ("b0", "p0"): {"Scratch": 10}, ("b0", "p1"): {"Scratch": 10}}
+    b = field(mons, rows)
+    b.b.screens["Light Screen"] = 5
+    screened = fs.player_choice(b)
+    plain = fs.player_choice(field(mons, rows))
+    ok = screened == ("switch", 1) and plain[0] == "move"
+    results.append(("the player stalls out the foe's screens", ok, f"screened {screened}, plain {plain[0]}"))
+
+
+def check_pp_stall(results):
+    """A threat nearly out of PP is drained by a Pokemon that takes it easily."""
+    b = field({"p0": (["Grass"], ["Scratch"]), "p1": (["Water"], ["Scratch"]),
+               "b0": (["Fire"], ["Flamethrower", "Scratch"])},
+              {("p0", "b0"): {"Scratch": 30}, ("p1", "b0"): {"Scratch": 5},
+               ("b0", "p0"): {"Flamethrower": 60, "Scratch": 10},
+               ("b0", "p1"): {"Flamethrower": 10, "Scratch": 15}})
+    b.b.cur().pp["Flamethrower"] = 3
+    drained = fs.player_choice(b)
+    b.b.cur().pp["Flamethrower"] = 10
+    full = fs.player_choice(b)
+    ok = drained == ("switch", 1) and full != drained
+    results.append(("the player drains a threat's last PP", ok, f"3 PP {drained}, 10 PP {full}"))
+
+
+def check_setup(results):
+    """Setup while the foe needs many hits, up to +2 against a last Pokemon."""
+    b = field({"p0": (["Normal"], ["Scratch", "Swords Dance"]), "b0": (["Normal"], ["Scratch"])},
+              {("p0", "b0"): {"Scratch": 20}, ("b0", "p0"): {"Scratch": 10}})
+    first = fs.player_choice(b)
+    b.p.cur().stages["atk"] = 2
+    capped = fs.player_choice(b)
+    ok = first[1].name == "Swords Dance" and capped[1].name == "Scratch"
+    results.append(("the player sets up when safe, to its cap", ok, f"{first[1].name} then {capped[1].name}"))
+
+
+def check_self_risk(results):
+    """The player does not faint its own Pokemon with recoil while another
+    attack does damage, and uses the recoil move when it is safe."""
+    mons = {"p0": (["Fire"], ["Flare Blitz", "Scratch"]), "b0": (["Normal"], ["Scratch"])}
+    rows = {("p0", "b0"): {"Flare Blitz": 90, "Scratch": 30}, ("b0", "p0"): {"Scratch": 5}}
+    healthy = fs.player_choice(field(mons, rows))
+    b = field(mons, rows)
+    b.p.cur().hp = 20
+    low = fs.player_choice(b)
+    ok = healthy[1].name == "Flare Blitz" and low[1].name == "Scratch"
+    results.append(("the player does not recoil its own Pokemon to death", ok,
+                    f"full HP {healthy[1].name}, 20 HP {low[1].name}"))
+
+
+def check_sure(results):
+    """The sure Pokemon: the starters, the one-species gifts and eggs, the
+    trades that ask nothing and the statics; no random gift, and no trade
+    that asks for a catch."""
+    sure = fs.sure_catches()
+    want = {"SPECIES_TURTWIG", "SPECIES_PIPLUP", "SPECIES_SCORBUNNY", "SPECIES_EEVEE", "SPECIES_TOGEPI",
+            "SPECIES_VULLABY", "SPECIES_POPPLIO", "SPECIES_ROTOM"}
+    not_sure = {"SPECIES_RIOLU", "SPECIES_GLAMEOW", "SPECIES_ELEKID", "SPECIES_SUICUNE"}
+    ok = want <= set(sure) and not (not_sure & set(sure))
+    results.append(("the sure Pokemon are the ones every run has", ok,
+                    f"{len(sure)} sure; missing {sorted(want - set(sure))}; wrongly in "
+                    f"{sorted(not_sure & set(sure))}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
-                  check_battle, check_doubles):
+                  check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
+                  check_self_risk, check_sure):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

@@ -29,14 +29,20 @@ The trainer chooses as the game's AI does (docs/oxide/battle-ai, condensed
 in fightai.py): its own flags score each move, with the switch rules and the
 post-faint pick. The player follows a fixed policy: the best answer leads;
 each turn it attacks with the move that finishes the foe soonest, uses a
-status or setup move when a one-turn look ahead says the exchange then
-turns its way, and switches to a bench member that wins the exchange when
-the active one loses it; after a faint it sends in the best answer.
+status move when it turns the exchange, sets up while the foe needs three
+or more hits to faint it, and switches to a bench member that wins the
+exchange when the active one loses it, judging each switch-in on the move
+the foe aimed at the Pokemon it replaces and going in through a pivot that
+takes that move easily when nothing else can. It stalls out the foe's
+screens, Tailwind, a move's Trick Room or weather, and a threat with few PP
+left, by trading places between Pokemon that take little. After a faint it
+sends in the best answer.
 
 A fight's reading is the mean number of the player's Pokemon lost, the
 chance of losing three or more, and the chance of a wipe.
 """
 import collections
+import csv
 import functools
 import json
 import math
@@ -135,7 +141,12 @@ SELF_STAGES = {
     "DEF_SPD_UP": {"def": 1, "spd": 1}, "EVA_UP": {"eva": 1}, "EVA_UP_2_MINIMIZE": {"eva": 2},
     "DEF_UP_DOUBLE_ROLLOUT_POWER": {"def": 1}, "SP_DEF_UP_DOUBLE_ELECTRIC_POWER": {"spd": 1},
     "STOCKPILE": {"def": 1, "spd": 1}, "CHARGE_TURN_DEF_UP": {"def": 1},
-    # Oxide's new setup moves reuse these where the effect table names them.
+    # Oxide's newer setup moves, under the effect names its table gives them.
+    "SP_ATK_SP_DEF_SPEED_UP": {"spa": 1, "spd": 1, "spe": 1},
+    "ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN": {"atk": 2, "spa": 2, "spe": 2, "def": -1, "spd": -1},
+    "ATK_DEF_ACC_UP": {"atk": 1, "def": 1, "acc": 1}, "SPEED_UP_2_ATK_UP": {"spe": 2, "atk": 1},
+    "ATK_SP_ATK_UP": {"atk": 1, "spa": 1}, "ATK_ACC_UP": {"atk": 1, "acc": 1}, "DEF_UP_3": {"def": 3},
+    "ATK_DEF_SPEED_UP": {"atk": 1, "def": 1, "spe": 1}, "TAKE_HEART": {"spa": 1, "spd": 1},
     "SHELL_SMASH": {"atk": 2, "spa": 2, "spe": 2, "def": -1, "spd": -1},
     "QUIVER_DANCE": {"spa": 1, "spd": 1, "spe": 1}, "COIL": {"atk": 1, "def": 1, "acc": 1},
     "SHIFT_GEAR": {"atk": 1, "spe": 2}, "HONE_CLAWS": {"atk": 1, "acc": 1},
@@ -170,6 +181,10 @@ SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 WEATHER_OF = {"WEATHER_RAIN": "Rain", "WEATHER_SUN": "Sun", "WEATHER_SANDSTORM": "Sand",
               "WEATHER_HAIL": "Hail"}
 ABILITY_WEATHER = {"Drizzle": "Rain", "Drought": "Sun", "Sand Stream": "Sand", "Snow Warning": "Hail"}
+# The abilities no obtainable Pokemon keeps in a regular slot (Ian, 2026-09-26),
+# and the stand-in the player's side takes when both its regular slots held one.
+NO_WEATHER_ABILITY = set(ABILITY_WEATHER) | {"Cloud Nine", "Air Lock"}
+WEATHER_STAND_IN = "Pressure"
 
 
 # ---- the Pokemon and the field -----------------------------------------------------------
@@ -667,10 +682,10 @@ def status_move(b, att, mv, dfn, first):
         heal(att, att.maxhp // 4)
     elif e == "SET_LIGHT_SCREEN":
         if not own_side.screens["Light Screen"]:
-            own_side.screens["Light Screen"] = 5
+            own_side.screens["Light Screen"] = 8 if att.item == "Light Clay" else 5
     elif e == "SET_REFLECT":
         if not own_side.screens["Reflect"]:
-            own_side.screens["Reflect"] = 5
+            own_side.screens["Reflect"] = 8 if att.item == "Light Clay" else 5
     elif e in WEATHER_OF:
         if b.weather != WEATHER_OF[e]:
             b.weather, b.weather_turns = WEATHER_OF[e], 5
@@ -862,40 +877,215 @@ def wins(t_me, t_foe, first):
     return t_me < t_foe or (t_me == t_foe and first)
 
 
+def moves_first(b, a, c):
+    """Whether a outspeeds c as things stand, Trick Room included."""
+    return b.speed(a) < b.speed(c) if b.trick_room else b.speed(a) > b.speed(c)
+
+
+def after_entry(b, m, foe, hit):
+    """For m coming in and taking `hit` on the way: (wins its exchange,
+    turns it needs, share of its HP left), or None when the hit faints it."""
+    left = m.hp - hit
+    if left <= 0:
+        return None
+    _m, mine = best_attack(b, m, foe)
+    _f, theirs = best_attack(b, foe, m)
+    tm = math.ceil(foe.hp / mine) if mine > 0 else 99
+    tf = math.ceil(left / theirs) if theirs > 0 else 99
+    return wins(tm, tf, moves_first(b, m, foe)), tm, left / m.maxhp
+
+
+def entry_hit(b, foe, m, mv):
+    """What m takes coming in on the move the foe chose for the Pokemon it replaces."""
+    return exp_damage(b, foe, m, mv) if mv is not None else 0.0
+
+
+# The player's switching (the Overseer's rules, 2026-09-27). The foe picks
+# its move against the Pokemon in front of it, so whatever comes in takes
+# that move: a switch-in is judged on it, and a Pokemon that takes it easily
+# can carry a teammate in behind it (a pivot). Switches in one battle are
+# capped so two answers cannot trade places for ever.
+SWITCH_CAP = 14
+# Stalling: while the foe's side has a timed effect that turns the exchange
+# (screens, Tailwind, a move's Trick Room or weather), or its one threat is
+# nearly out of PP, the player trades places between Pokemon that each take
+# at most STALL_HIT of their HP from what is aimed at them, for at most
+# STALL_CAP turns in a battle.
+STALL_HIT = 0.2
+STALL_CAP = 12
+PP_STALL_MAX = 4
+
+
+def cleared(b):
+    """The field with the foe side's timed effects run out, to compare the
+    exchange with; a context that puts everything back."""
+    class _Cleared:
+        def __enter__(self):
+            self.saved = (dict(b.b.screens), b.b.tailwind, b.trick_room, b.weather, b.weather_turns)
+            b.b.screens = dict.fromkeys(b.b.screens, 0)
+            b.b.tailwind = 0
+            if b.trick_room < 999:
+                b.trick_room = 0
+            if b.weather_turns:
+                b.weather, b.weather_turns = b.st.get("base_weather"), 0
+            return b
+
+        def __exit__(self, *exc):
+            b.b.screens, b.b.tailwind, b.trick_room, b.weather, b.weather_turns = self.saved
+    return _Cleared()
+
+
+def timed_edge(b, me, foe):
+    """Turns left on the foe side's timed effects when they turn this
+    exchange against the player, else 0."""
+    left = max([v for v in b.b.screens.values()] + [b.b.tailwind,
+               b.trick_room if b.trick_room < 999 else 0, b.weather_turns])
+    if left < 2:
+        return 0
+    now = exchange(b, me, foe)
+    with cleared(b):
+        then = exchange(b, me, foe)
+    if (wins(*then) and not wins(*now)) or then[0] * 1.5 <= now[0]:
+        return left
+    return 0
+
+
+def pp_threat(b, me, foe, pred):
+    """The foe's move to drain when it is the one thing beating `me` and
+    has few uses left, else None."""
+    if pred is None or foe.pp.get(pred.name, 0) > PP_STALL_MAX or foe.pp.get(pred.name, 0) <= 0:
+        return None
+    t_me, t_foe, first = exchange(b, me, foe)
+    if wins(t_me, t_foe, first):
+        return None
+    others = [exp_damage(b, foe, me, m) for m in foe.moves if m.damaging() and m.name != pred.name
+              and foe.pp.get(m.name, 1) > 0]
+    theirs = max(others, default=0.0)
+    t_foe2 = math.ceil(me.hp / theirs) if theirs > 0 else 99
+    return pred if wins(t_me, t_foe2, first) else None
+
+
+def stall_switch(b, me, foe, pred):
+    """A bench Pokemon to trade places with while stalling: it takes at most
+    STALL_HIT from the move aimed at `me`, and `me`, coming back, takes at
+    most that from what the foe would aim at it. None when there is none."""
+    best = None
+    for i, m in enumerate(b.p.mons):
+        if i == b.p.active or not m.alive() or m.hp * 2 < m.maxhp:
+            continue
+        hit = entry_hit(b, foe, m, pred)
+        back_mv = best_attack(b, foe, m)[0]
+        back = entry_hit(b, foe, me, back_mv)
+        if hit <= STALL_HIT * m.maxhp and back <= STALL_HIT * me.maxhp and back < me.hp:
+            key = hit / m.maxhp + back / me.maxhp
+            if best is None or key < best[0]:
+                best = (key, i)
+    return best[1] if best else None
+
+
+def pick_switch(b, me, foe, pred):
+    """The bench Pokemon to bring in, straight or through a pivot: (index,
+    pivot). Straight: it takes `pred` and still wins its exchange. Through a
+    pivot C: C takes `pred` for at most a quarter of its HP, and the one
+    after it wins, having taken what the foe aims at C."""
+    best = None
+    for i, m in enumerate(b.p.mons):
+        if i == b.p.active or not m.alive():
+            continue
+        got = after_entry(b, m, foe, entry_hit(b, foe, m, pred))
+        if got and got[0]:
+            key = (got[1], -got[2])
+            if best is None or key < best[0]:
+                best = (key, i)
+    if best:
+        return best[1], False
+    for c, pivot in enumerate(b.p.mons):
+        if c == b.p.active or not pivot.alive():
+            continue
+        hit = entry_hit(b, foe, pivot, pred)
+        if hit > pivot.maxhp / 4 or hit >= pivot.hp:
+            continue
+        aimed = best_attack(b, foe, pivot)[0]
+        for i, m in enumerate(b.p.mons):
+            if i in (b.p.active, c) or not m.alive():
+                continue
+            got = after_entry(b, m, foe, entry_hit(b, foe, m, aimed))
+            if got and got[0]:
+                key = (got[1], -got[2])
+                if best is None or key < best[0]:
+                    best = (key, c)
+    return (best[1], True) if best else (None, False)
+
+
+# Setup when safe (the Overseer, 2026-09-27): a boost is worth its turn when
+# the foe needs three or more hits to faint the user after it, up to +2 in
+# the attacking stat against a last Pokemon and +4 with more to come; Speed
+# counts when the user is slower; a defence boost when the foe's best hits
+# that side.
+SETUP_CAP = {1: 2}
+SETUP_CAP_MORE = 4
+
+
+def setup_worth(b, me, foe, mv, t_me, safe_turns, first):
+    e = mv.effect
+    foes_left = len(b.b.alive())
+    cap = SETUP_CAP.get(foes_left, SETUP_CAP_MORE)
+    best = best_attack(b, me, foe)[0]
+    att_stat = "atk" if (best or mv).cat == "Physical" else "spa"
+    if e == "MAX_ATK_LOSE_HALF_MAX_HP":
+        _f, theirs = best_attack(b, foe, me)
+        after = (me.hp - me.maxhp // 2)
+        return (att_stat == "atk" and me.stages["atk"] < 2 and after > 0
+                and (math.ceil(after / theirs) if theirs > 0 else 99) >= 3
+                and (t_me >= 2 or foes_left >= 2))
+    ch = SELF_STAGES.get(e) or ({"atk": 1, "def": 1, "spe": -1} if e == "CURSE" and "Ghost" not in me.types else None)
+    if not ch or safe_turns < 3 or (t_me < 2 and foes_left < 2):
+        return False
+    if ch.get(att_stat, 0) > 0 and me.stages[att_stat] < cap:
+        return True
+    if ch.get("spe", 0) > 0 and not first and me.stages["spe"] < 2:
+        return True
+    fm = best_attack(b, foe, me)[0]
+    guard = "def" if fm and fm.cat == "Physical" else "spd"
+    return ch.get(guard, 0) > 0 and me.stages[guard] < 2 and t_me >= 3
+
+
 def player_choice(b):
     """('move', Move) or ('switch', index)."""
+    choice = _player_choice(b)
+    if choice[0] == "switch":
+        b.p_switches = getattr(b, "p_switches", 0) + 1
+    return choice
+
+
+def _player_choice(b):
     side, me, foe = b.p, b.p.cur(), b.b.cur()
     if me.lock:
         return "move", me.lock[0]
     if me.charging is not None:
         return "move", me.charging
     t_me, t_foe, first = exchange(b, me, foe)
+    pred = best_attack(b, foe, me)[0]      # the move the player expects on `me`
+    can_switch = getattr(b, "p_switches", 0) < SWITCH_CAP and side.bench()
     # Perish Song about to take it: out it goes, to the best answer left.
     if me.perish and me.perish <= 2 and side.bench():
         idx = player_replacement(b)
         if idx is not None and idx != side.active:
             return "switch", idx
+    finishing = t_me == 1 and first
+    # Stalling: run out the foe's timed effects or its threat's PP.
+    if can_switch and not finishing and getattr(b, "stalled", 0) < STALL_CAP:
+        if timed_edge(b, me, foe) or pp_threat(b, me, foe, pred):
+            idx = stall_switch(b, me, foe, pred)
+            if idx is not None:
+                b.stalled = getattr(b, "stalled", 0) + 1
+                return "switch", idx
     # Switch when this one loses the exchange and a bench member wins it,
-    # after the hit it takes coming in.
-    if not wins(t_me, t_foe, first) and not (t_me == 1 and first):
-        best = None
-        for i, m in enumerate(side.mons):
-            if i == side.active or not m.alive():
-                continue
-            _f, theirs = best_attack(b, foe, m)
-            left = m.hp - theirs
-            if left <= 0:
-                continue
-            _m, mine = best_attack(b, m, foe)
-            tm = math.ceil(foe.hp / mine) if mine > 0 else 99
-            tf = math.ceil(left / theirs) if theirs > 0 else 99
-            fm = b.speed(m) > b.speed(foe) if not b.trick_room else b.speed(m) < b.speed(foe)
-            if wins(tm, tf, fm):
-                key = (tm, -left / m.maxhp)
-                if best is None or key < best[0]:
-                    best = (key, i)
-        if best:
-            return "switch", best[1]
+    # straight or through a pivot.
+    if can_switch and not wins(t_me, t_foe, first) and not finishing:
+        idx, _pivot = pick_switch(b, me, foe, pred)
+        if idx is not None:
+            return "switch", idx
     # A status or setup move when it turns the exchange: it costs a turn.
     safe_turns = t_foe - (0 if first else 1)
     for mv in me.moves:
@@ -915,24 +1105,47 @@ def player_choice(b):
                     return "move", mv
             if st == "tox" and t_me >= 4:
                 return "move", mv
-        if e in SELF_STAGES and safe_turns >= 3:
-            ch = SELF_STAGES[e]
-            att_stat = "atk" if (best_attack(b, me, foe)[0] or mv).cat == "Physical" else "spa"
-            if ch.get(att_stat, 0) > 0 and me.stages[att_stat] < 2 and t_me >= 3:
-                return "move", mv
+        if (e in SELF_STAGES or e in ("MAX_ATK_LOSE_HALF_MAX_HP", "CURSE")) \
+                and setup_worth(b, me, foe, mv, t_me, safe_turns, first):
+            return "move", mv
         if e in HEAL_HALF and me.hp * 2 < me.maxhp and safe_turns >= 2:
             return "move", mv
-    mv, _d = best_attack(b, me, foe)
+    mv, _d = safe_attack(b, me, foe)
     if mv is None:
         mv = next((m for m in me.moves if me.pp.get(m.name, 1) > 0), me.moves[0])
     # A move that finishes the foe this turn goes first when one exists.
     for m in me.moves:
-        if m.damaging() and (not me.choice or m.name == me.choice):
+        if m.damaging() and (not me.choice or m.name == me.choice) and not self_risk(b, me, foe, m):
             r = b.rolls(me, foe, m)
             if r and b.damage(me, foe, m, roll=0) >= foe.hp and (m.pri > 0 or first) \
                     and (m.acc == 0 or m.acc >= 90):
                 return "move", m
     return "move", mv
+
+
+def self_risk(b, me, foe, mv):
+    """Whether the move could faint its user: recoil from its top roll (up
+    to the foe's HP), or the crash of a miss. A nuzlocke player does not
+    trade a Pokemon for a hit when another move will do."""
+    if mv.effect in RECOIL and me.ability != "Rock Head":
+        r = b.rolls(me, foe, mv)
+        top = b.damage(me, foe, mv, roll=len(r) - 1) if r else 0
+        return int(min(top or 0, foe.hp) * RECOIL[mv.effect]) >= me.hp
+    if mv.effect == "CRASH_ON_MISS" and mv.acc and mv.acc < 100:
+        return me.maxhp // 2 >= me.hp
+    return False
+
+
+def safe_attack(b, me, foe):
+    """The player's best attack, leaving out any that could faint the user
+    while one that cannot still does damage."""
+    usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
+              and (not me.choice or m.name == me.choice)]
+    safe = [m for m in usable if not self_risk(b, me, foe, m)]
+    pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
+    if not pick:
+        return None, 0.0
+    return max(((m, exp_damage(b, me, foe, m)) for m in pick), key=lambda x: x[1])
 
 
 def player_replacement(b):
@@ -1218,7 +1431,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 DOWNSIDE = {"UPROAR": 0.5, "CONTINUE_AND_CONFUSE_SELF": 0.6, "USER_SP_ATK_DOWN_2": 0.8,
             "LOWER_OWN_ATK_AND_DEF": 0.85, "DEF_SPD_DOWN_HIT": 0.9, "SPEED_DOWN_HIT": 0.95}
 # The status and setup moves the player's policy knows how to use.
-POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF
+POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF | {"MAX_ATK_LOSE_HALF_MAX_HP", "CURSE"}
 
 
 def play_strength(name, types):
@@ -1390,6 +1603,47 @@ def side_at(split, cap, blob):
             pool.species_by_split.cache_clear()
 
 
+# What a run is sure to have (the Overseer, 2026-09-27): the starter (one,
+# the player's pick), the gifts and eggs every run is handed, the trades that
+# ask for nothing, and the static battles. A giver who hands over one of
+# several at random (Riley's egg, the clowns) makes no one species sure.
+SURE_HOW = ("starter", "gift", "egg gift", "static battle", "in-game trade")
+
+
+@functools.lru_cache(maxsize=None)
+def sure_catches():
+    """{species constant: (split, how)} for the sure Pokemon, each in the
+    first split it is had in."""
+    locs = pool._location_splits()
+    groups = collections.defaultdict(list)
+    with open(pool.SOURCES, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row["method"] in SURE_HOW:
+                groups[(row["location"], row["map_or_file"], row["method"])].append(row)
+    rolled = pool.catches()
+    out = {}
+    for (loc, _file, how), rows in groups.items():
+        split = locs.get(loc)
+        if not split or (len(rows) > 1 and how != "starter"):
+            continue
+        if "at random" in rows[0]["conditions"]:
+            continue            # the Veilstone clown lists only the roll that is a Pokemon
+        if how == "in-game trade" and "trade away SPECIES_NONE" not in rows[0]["conditions"]:
+            continue
+        for r in rows:
+            sp = r["species"]
+            # Only what the pool counts by the split's cap (a level-70 static is not).
+            if any(h == how and s == split for s, _lv, h in rolled.get(sp, [])):
+                if sp not in out or pool.split_index(split) < pool.split_index(out[sp][0]):
+                    out[sp] = (split, how)
+    return out
+
+
+def family(species):
+    """The first stage of a species' line."""
+    return (pool.pre_evolutions().get(species) or [species])[-1]
+
+
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
@@ -1404,6 +1658,16 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         bs = blob["poks"].get(p["species"], {}).get("bs") or {}
         totals[p["species"]] = sum(bs.values())
     third = sorted(side, key=lambda p: -totals.get(p["species"], 0))[:max(6, len(side) // 3)]
+    # Beside it, what every run has by the split, as far as it evolves.
+    owned = {p["constant"] for p in side}
+    sure = [sp for sp, (s, _how) in sure_catches().items()
+            if pool.split_index(s) <= pool.split_index(split)]
+    for p in side:
+        c = p["constant"]
+        from_sure = any(c == sp or sp in pool.pre_evolutions().get(c, []) for sp in sure)
+        last = not any(t in owned for _n, _i, t in pool.evolutions(c))
+        if from_sure and last and p not in third:
+            third.append(p)
     if BOX_MODE:
         third = side          # a box can hold anything the split's side has
     tiers = status_tiers()
@@ -1414,16 +1678,21 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         types = poks.get("types") or []
         can_names = sorted({names[c] for c in can[p["constant"]] if c in names})
         mv = player_moves(p, can_names, tiers, types)
+        # A caught Pokemon has either regular ability, never the hidden one,
+        # and never one that sets or cancels weather (Ian, 2026-09-26: the
+        # player never controls weather). A species whose regular slots hold
+        # only such abilities takes a stand-in with no effect here or in the
+        # calculator, until the ability pass gives it a real one.
+        abilities = poks.get("abilities") or {}
+        regular = [a for a in dict.fromkeys((abilities.get("0"), abilities.get("1")))
+                   if a and a not in NO_WEATHER_ABILITY]
         # Rows without the player's item: items are handed out per team and
         # applied here (assign_items, Battle.damage).
-        pokemon[f"p{i}"] = dict(p, moves=mv, item=None)
+        pokemon[f"p{i}"] = dict(p, moves=mv, item=None, ability=regular[0] if regular else WEATHER_STAND_IN)
         moves[f"p{i}"] = mv
         variants[f"p{i}"] = [f"p{i}"]
-        # A caught Pokemon has either regular ability, never the hidden one.
-        abilities = poks.get("abilities") or {}
-        second = abilities.get("1")
-        if second and second != abilities.get("0"):
-            pokemon[f"p{i}~1"] = dict(pokemon[f"p{i}"], ability=second)
+        if len(regular) > 1:
+            pokemon[f"p{i}~1"] = dict(pokemon[f"p{i}"], ability=regular[1])
             moves[f"p{i}~1"] = mv
             variants[f"p{i}"].append(f"p{i}~1")
     boss_keys = []
@@ -1485,8 +1754,15 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         speed[(r["weather"], r["d"])] = r["speeds"][1]
     info = out["pokemon"]
     rock = {k: effectiveness(blob, "Rock", inf.get("types") or []) for k, inf in info.items()}
+    # A team holds one Pokemon of each family, and one starter.
+    starters = {family(sp) for sp, (_s, how) in sure_catches().items() if how == "starter"}
+    group = {}
+    for k in variants:
+        fam = family(pokemon[k]["constant"])
+        group[k] = "starter" if fam in starters else fam
     return {"pokemon": pokemon, "moves": moves, "info": info, "rows": rows, "speed": speed,
-            "player": list(variants), "variants": variants, "bosses": boss_keys, "partners": partner_keys,
+            "player": list(variants), "variants": variants, "group": group,
+            "bosses": boss_keys, "partners": partner_keys,
             "base_weather": pressure.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split}
 
@@ -1501,13 +1777,15 @@ def effectiveness(blob_or_chart, atk_type, def_types):
 
 
 # The planned team (Ian, 2026-09-27): the player prepares for the fight.
-# CANDIDATES random sixes from the strong third each play PRE_RUNS battles;
-# the FINALISTS losing fewest play FINAL_RUNS more, and the best of those,
-# by Pokemon lost and then battles won, is the team. One stage alone picks
-# lucky teams: ten battles cannot tell a good six from a fortunate one.
-CANDIDATES = 40
+# CANDIDATES sixes from the strong third and the sure Pokemon each play
+# PRE_RUNS battles; the FINALISTS losing fewest play FINAL_RUNS more, and the
+# best of those, by Pokemon lost and then battles won, is the team. One stage
+# alone picks lucky teams: ten battles cannot tell a good six from a
+# fortunate one. Three candidates in four are drawn at random; the fourth is
+# drawn toward the Pokemon that beat most of the trainer's one on one.
+CANDIDATES = 80
 PRE_RUNS = 10
-FINALISTS = 5
+FINALISTS = 8
 FINAL_RUNS = 40
 
 
@@ -1552,11 +1830,43 @@ def draw(st, keys, rng):
     return [rng.choice(st.get("variants", {}).get(k, [k])) for k in keys]
 
 
+def sample_team(st, rng, weights=None):
+    """Six of the player's Pokemon, one per family and one starter at most;
+    with weights, the heavier ones more likely."""
+    keys = list(st["player"])
+    if weights:
+        keys.sort(key=lambda k: -rng.random() ** (1 / weights.get(k, 1.0)))
+    else:
+        rng.shuffle(keys)
+    team, groups = [], set()
+    for k in keys:
+        g = st.get("group", {}).get(k, k)
+        if g not in groups:
+            team.append(k)
+            groups.add(g)
+        if len(team) == 6:
+            break
+    return team
+
+
+def matchups(st, v):
+    """{player key: the trainer's Pokemon it beats one on one at full HP,
+    plus a half}, the weight a drawn candidate leans on."""
+    rng = random.Random(0)
+    boss = st["bosses"][v] if st.get("battle") != "tag" else [k for g in st["bosses"] for k in g]
+    pm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in st["player"]]
+    bm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "b") for k in boss]
+    b = Battle(st, Side(pm, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
+               trick_room=st.get("trick_room"))
+    return {m.key: 0.5 + sum(1 for f in bm if wins(*exchange(b, m, f))) for m in pm}
+
+
 def plan_team(st, v, flags, rng):
     """The six a player prepared for this fight brings."""
     first = []
-    for _ in range(CANDIDATES):
-        team = draw(st, rng.sample(st["player"], min(6, len(st["player"]))), rng)
+    weights = matchups(st, v)
+    for c in range(CANDIDATES):
+        team = draw(st, sample_team(st, rng, weights if c % 4 == 3 else None), rng)
         first.append((_trial(st, team, v, flags, rng, PRE_RUNS), team))
     first.sort(key=lambda x: x[0])
     final = [(_trial(st, team, v, flags, rng, FINAL_RUNS), team) for _k, team in first[:FINALISTS]]
