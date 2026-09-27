@@ -51,6 +51,10 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
 
+- **The Kaizo pattern study's rules** (balance track, 2026-09-27; the plan's "What parts 1 and 2 found"): confirm the direction before the generator is built, and say yes or no to the dead-weight rule's further catches: Astonish, Rollout, Fire Spin, Fury Cutter, Whirlpool, Sand Tomb, Bind, Sky Attack, Skull Bash and the rarer ones the plan lists.
+
+- **The gauntlet proposal** (balance track, 2026-09-27; the plan's design pass 5): Galactic HQ through Cyrus, Mt. Coronet to Spear Pillar, Victory Road opened by the level 71 Lucas and Dawn fight, and the Eterna building to Jupiter, with Iron Island, the Lost Tower and Stark Mountain's first 8 trainers optional. Two questions: does the bag heal inside a gauntlet, and should a gauntlet ask as much as its split's gym or less?
+
 - **Metronome can still call moves that do nothing** (main track, 2026-09-27, after barring the eight cut moves): 22 moves whose effect is missing or partial, the 18 Max moves and Max Guard, and the 17 signature Z-moves (most are 175 to 210 power and never miss), plus Rain Dance, Sunny Day, Sandstorm and Hail, which work, so a player's Metronome gets round the no-weather ruling. The later games bar Max and Z-moves. Say which to bar; each is a one-list change.
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); the new-CPU cleanup list opens it. Add new in-game checks there, not here.
