@@ -70,7 +70,9 @@ CAP_STEP = 2
 FAR = 0.05
 # A species that surely answers this share of the boss Pokemon it meets,
 # over at least MIN_FIGHTS story fights, is flagged as carrying the game.
-CARRIES = 0.5
+# Half is common at the cap with a species' best moves and item (over a
+# hundred species reach it), so the flag is for the few far above that.
+CARRIES = 0.85
 MIN_FIGHTS = 5
 
 
@@ -745,11 +747,14 @@ def report(results, content=None, out=sys.stdout):
             say(f"  {label[:56]:57}{_fmt(ab, 7, 3)}{_fmt(sf, 7, 3)}{n:>4}  {flag}")
 
         tot = species_table(results)
+        shares = sorted(t["answered"] / t["faced"] for sp, t in tot.items()
+                        if t["fights"] >= MIN_FIGHTS and t["faced"] and fully_evolved(sp))
         carriers = sorted((sp for sp, t in tot.items() if t["fights"] >= MIN_FIGHTS
                            and t["answered"] >= CARRIES * t["faced"]),
                           key=lambda sp: -tot[sp]["answered"] / tot[sp]["faced"])
-        say(f"\nGoal 4, species that surely answer half or more of the boss Pokemon they meet "
-            f"(over {MIN_FIGHTS} story fights or more): " + (", ".join(
+        say(f"\nGoal 4, the share of boss Pokemon a species surely answers, over the story "
+            f"fights it meets ({MIN_FIGHTS} or more): a fully evolved species' median is "
+            f"{shares[len(shares) // 2]:.2f}; {CARRIES} or more: " + (", ".join(
                 f"{canon.showdown_name(sp)} {tot[sp]['answered'] / tot[sp]['faced']:.2f}"
                 for sp in carriers) or "none"))
         alone = sorted((sp for sp, t in tot.items() if t["alone"]), key=lambda sp: -tot[sp]["alone"])

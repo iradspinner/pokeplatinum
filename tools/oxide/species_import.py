@@ -70,10 +70,11 @@ EVOLUTION_OVERRIDES = {
     "SPECIES_CHARCADET": [("EVO_USE_ITEM", "ITEM_SUN_STONE", "SPECIES_ARMAROUGE"),
                           ("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_CERULEDGE")],
     "SPECIES_PAWMO": [("EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_PAWMOT")],
-    "SPECIES_SINISTEA": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_POLTEAGEIST")],
-    # Polteageist does not evolve. Sinistcha comes from Poltchageist with the
-    # Unremarkable Teacup, and Oxide has neither; the Dusk Stone route the
-    # pick-list first gave it was wrong (Ian, 2026-09-27).
+    # Sinistea splits: a Dusk Stone makes Polteageist and a Leaf Stone makes
+    # Sinistcha, so the player picks one by the stone they spend (Ian,
+    # 2026-09-27). The donor chained Sinistcha after Polteageist instead.
+    "SPECIES_SINISTEA": [("EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_POLTEAGEIST"),
+                         ("EVO_USE_ITEM", "ITEM_LEAF_STONE", "SPECIES_SINISTCHA")],
     "SPECIES_POLTEAGEIST": [],
     "SPECIES_YAMASK": [("EVO_LEVEL", 34, "SPECIES_COFAGRIGUS"),
                        ("EVO_LEVEL_WITH_HELD_ITEM_DAY", "ITEM_REAPER_CLOTH", "SPECIES_RUNERIGUS"),

@@ -175,9 +175,9 @@
    "left_out": {},
    "calcs": 4456,
    "errors": [],
-   "node_seconds": 0.96,
-   "wall_seconds": 1.04,
-   "fingerprint": "9336116639ffaa95fa58",
+   "node_seconds": 0.95,
+   "wall_seconds": 1.02,
+   "fingerprint": "01679cb1df28bf7df782",
    "verified": true
   },
   "gardenia": {
@@ -357,9 +357,9 @@
    "left_out": {},
    "calcs": 14553,
    "errors": [],
-   "node_seconds": 2.36,
-   "wall_seconds": 2.45,
-   "fingerprint": "ee20aea9f7aea19e7c93",
+   "node_seconds": 2.29,
+   "wall_seconds": 2.38,
+   "fingerprint": "2e3bef90ce53d2a9d832",
    "verified": true
   },
   "fantina": {
@@ -524,9 +524,9 @@
    "left_out": {},
    "calcs": 17966,
    "errors": [],
-   "node_seconds": 2.8,
-   "wall_seconds": 2.91,
-   "fingerprint": "5639b72a925718805df9",
+   "node_seconds": 2.67,
+   "wall_seconds": 2.78,
+   "fingerprint": "30bad70cd75c642e3744",
    "verified": true
   },
   "maylene": {
@@ -706,9 +706,9 @@
    "errors": [
     "b0.4 Pain Split: damage is not a number"
    ],
-   "node_seconds": 5.5,
-   "wall_seconds": 5.64,
-   "fingerprint": "341a322457f3b6a72a13",
+   "node_seconds": 5.34,
+   "wall_seconds": 5.48,
+   "fingerprint": "c2c03eb2dee6aca24e7a",
    "verified": true
   },
   "wake": {
@@ -898,9 +898,9 @@
    "left_out": {},
    "calcs": 51912,
    "errors": [],
-   "node_seconds": 6.58,
-   "wall_seconds": 6.74,
-   "fingerprint": "760b177c44618048e936",
+   "node_seconds": 6.42,
+   "wall_seconds": 6.58,
+   "fingerprint": "e4d6ca4148f329dd3d48",
    "verified": true
   },
   "byron": {
@@ -1080,9 +1080,9 @@
    "left_out": {},
    "calcs": 51310,
    "errors": [],
-   "node_seconds": 6.66,
-   "wall_seconds": 6.82,
-   "fingerprint": "2431f71c9aa7a91ef9df",
+   "node_seconds": 6.53,
+   "wall_seconds": 6.69,
+   "fingerprint": "ca67a230439605e9b65d",
    "verified": true
   },
   "candice": {
@@ -1295,9 +1295,9 @@
    "left_out": {},
    "calcs": 68859,
    "errors": [],
-   "node_seconds": 8.48,
-   "wall_seconds": 8.67,
-   "fingerprint": "9172ce67f93d6410107d",
+   "node_seconds": 8.27,
+   "wall_seconds": 8.45,
+   "fingerprint": "8b5cd92a5f280182df52",
    "verified": true
   },
   "volkner": {
@@ -1314,7 +1314,7 @@
    "threat": 0.842,
    "answers": 0.028,
    "answers_lock": 0.028,
-   "threat_chance": 0.81,
+   "threat_chance": 0.825,
    "answers_duel": 0.008,
    "answers_sure": 0.008,
    "answers_bait": 0.008,
@@ -1470,7 +1470,7 @@
      "threat": 0.979,
      "answers": 0.0,
      "answers_lock": 0.0,
-     "threat_chance": 0.863,
+     "threat_chance": 0.954,
      "answers_duel": 0.007,
      "answers_sure": 0.007,
      "answers_bait": 0.007,
@@ -1485,9 +1485,9 @@
    "left_out": {},
    "calcs": 69018,
    "errors": [],
-   "node_seconds": 8.89,
-   "wall_seconds": 9.09,
-   "fingerprint": "6205c9bc27fc45e6a419",
+   "node_seconds": 10.22,
+   "wall_seconds": 10.41,
+   "fingerprint": "346be8ac815656295d53",
    "verified": true
   },
   "aaron": {
@@ -1668,9 +1668,9 @@
    "left_out": {},
    "calcs": 69482,
    "errors": [],
-   "node_seconds": 8.71,
-   "wall_seconds": 8.91,
-   "fingerprint": "1e6447ed402a23c215c4",
+   "node_seconds": 9.37,
+   "wall_seconds": 9.56,
+   "fingerprint": "e2eed182a82296d8f05d",
    "verified": true
   },
   "bertha": {
@@ -1687,7 +1687,7 @@
    "threat": 0.858,
    "answers": 0.066,
    "answers_lock": 0.066,
-   "threat_chance": 0.841,
+   "threat_chance": 0.856,
    "answers_duel": 0.021,
    "answers_sure": 0.02,
    "answers_bait": 0.021,
@@ -1832,7 +1832,7 @@
      "threat": 0.975,
      "answers": 0.0,
      "answers_lock": 0.0,
-     "threat_chance": 0.879,
+     "threat_chance": 0.97,
      "answers_duel": 0.0,
      "answers_sure": 0.0,
      "answers_bait": 0.0,
@@ -1849,9 +1849,9 @@
    "left_out": {},
    "calcs": 88375,
    "errors": [],
-   "node_seconds": 10.41,
-   "wall_seconds": 10.64,
-   "fingerprint": "0e1a02c567a14d3b7436",
+   "node_seconds": 10.23,
+   "wall_seconds": 10.45,
+   "fingerprint": "ff07dacf67713f6319a5",
    "verified": true
   },
   "flint": {
@@ -2019,9 +2019,9 @@
    "left_out": {},
    "calcs": 71657,
    "errors": [],
-   "node_seconds": 9.05,
-   "wall_seconds": 9.26,
-   "fingerprint": "bd09bb81ebddf5766ec8",
+   "node_seconds": 8.51,
+   "wall_seconds": 8.7,
+   "fingerprint": "3b990fafc3721877af44",
    "verified": true
   },
   "lucian": {
@@ -2199,9 +2199,9 @@
    "left_out": {},
    "calcs": 70787,
    "errors": [],
-   "node_seconds": 9.08,
-   "wall_seconds": 9.29,
-   "fingerprint": "a0d6b282e167d3282ec4",
+   "node_seconds": 8.52,
+   "wall_seconds": 8.71,
+   "fingerprint": "8b6579088a2adfa9d5db",
    "verified": true
   },
   "cynthia": {
@@ -2375,9 +2375,9 @@
    "left_out": {},
    "calcs": 63298,
    "errors": [],
-   "node_seconds": 8.31,
-   "wall_seconds": 8.5,
-   "fingerprint": "116d21ae573b457c17e8",
+   "node_seconds": 7.76,
+   "wall_seconds": 7.93,
+   "fingerprint": "e2e1d882ab64edfa851c",
    "verified": true
   }
  }

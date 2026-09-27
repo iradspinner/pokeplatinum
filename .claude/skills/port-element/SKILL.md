@@ -71,7 +71,16 @@ are the house style.
   state: a side takes bits 11 and 15 of its conditions mask (Sticky Web,
   Aurora Veil) and fields from `SideConditions`' padding (Aurora Veil's turns,
   Belch's per-party-slot berry record); a one-turn state goes in `TurnFlags`'
-  padding, which clears every turn (the side guards).
+  padding, which clears every turn (the side guards, Beak Blast's heat).
+  The move-effects mask is now full, so a later-games volatile state goes in
+  `BattleMon.oxideFlags` (the old `padding007A`, `OXIDE_MON_FLAG_*` in
+  `constants/battle/moves.h`, reached by scripts as `BATTLEMON_OXIDE_FLAGS`):
+  bits 0 to 4 are taken (Salt Cure, Octolock, Sky Drop's hold and holder),
+  and the word clears when the battler leaves the field. A per-action flag
+  goes in `SelfTurnFlags.statusFlags` (bit 4, Mind Blown's cost). Field-wide
+  state with a counter has `BattleContext`'s old padding: `magicRoomTurns`
+  (was `padding0060`, script variable `BTLVAR_MAGIC_ROOM_TURNS`) and
+  `teatimeNext` (three bits of the old `padding3154_01`, 28 left).
 - A new battle script command is appended after `End`, so no opcode moves. New
   subscripts and side-effect pointers are appended only once implemented, and a
   stat-stage pointer only once `ChangeStatStage` names its range.

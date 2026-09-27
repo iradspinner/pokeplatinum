@@ -532,7 +532,7 @@
   "801": {
     "name": "Steel Roller",
     "was": "The user attacks while  destroying the terrain.  This move fails if the  ground hasn’t turned  into a terrain.",
-    "text": "The user attacks and destroys the terrain. This move fails if there is no terrain."
+    "text": "The user attacks while destroying any terrain. It still hits if there is no terrain."
   },
   "804": {
     "name": "Shell Side Arm",

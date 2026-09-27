@@ -57,6 +57,20 @@
 
 #define MOVE_EFFECT_LOCK_ON_INITIAL_DURATION (1 << (MOVE_EFFECT_LOCK_ON_SHIFT + 1))
 
+// Oxide: BattleMon's oxideFlags (BATTLEMON_OXIDE_FLAGS), the later games'
+// volatile states that have no room in the move-effects mask. They clear
+// when the battler leaves the field (BattleSystem_UpdateAfterSwitch,
+// BattleSystem_CleanupFaintedMon).
+#define OXIDE_MON_FLAG_SALT_CURED (1 << 0) // Salt Cure: loses HP at the end of every turn
+#define OXIDE_MON_FLAG_OCTOLOCKED (1 << 1) // Octolock: trapped as by Mean Look, and loses Defense and Sp. Def every turn
+#define OXIDE_MON_FLAG_SKY_DROP_HELD (1 << 2) // Sky Drop: held in the air by the battler in the next two bits
+#define OXIDE_MON_SKY_DROP_HOLDER_SHIFT 3
+#define OXIDE_MON_SKY_DROP_HOLDER (3 << OXIDE_MON_SKY_DROP_HOLDER_SHIFT)
+
+// Oxide: the modes of the battle script command TryTeatime.
+#define TEATIME_CHECK 0
+#define TEATIME_NEXT  1
+
 #define MOVE_STATUS_MISSED              (1 << 0)
 #define MOVE_STATUS_SUPER_EFFECTIVE     (1 << 1)
 #define MOVE_STATUS_NOT_VERY_EFFECTIVE  (1 << 2)

@@ -139,7 +139,9 @@ format holds, per trainer, in one file: name, class, items, `ai_flags`,
 
 1. Add two optional per-mon fields to the trainer JSON and to `trainerproc`
    (`tools/dataproc/src/trainerproc.c`), for example `"ability": 0|1|2` and
-   `"gender": null|"male"|"female"`.
+   `"gender": null|"male"|"female"`. Since 2026-09-27 `"ability": 3` gives the
+   species' hidden ability, or its ordinary one when it has none, and leaves
+   the personality as 0 does.
 2. Make `TrainerData_BuildParty` in `src/trainer_data.c` honour them, written
    correctly rather than as a ±2 nudge.
 3. Extend `tools/oxide/import_base_rom.py` with a trainer importer that writes the

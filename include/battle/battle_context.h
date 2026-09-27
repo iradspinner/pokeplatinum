@@ -71,7 +71,8 @@ typedef struct TurnFlags {
     u32 enduring : 1;
     u32 sideGuard : 3; // Oxide, one of SIDE_GUARD_*, from the padding
     u32 statLowered : 1; // Oxide: one of its stats fell this turn, for Lash Out, from the padding
-    u32 padding00_0E : 18;
+    u32 beakBlastHeating : 1; // Oxide: it chose Beak Blast and heated its beak at the start of this turn, from the padding
+    u32 padding00_0F : 17;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;
@@ -162,7 +163,7 @@ struct BattleContext {
     int switchInCheckState;
     int vanishedCheckTemp;
 
-    int padding0060;
+    int magicRoomTurns; // Oxide: Magic Room's turns left, 0 when it is down; from the padding
 
     int attacker;
     int attackerTemp;
@@ -325,7 +326,8 @@ struct BattleContext {
     int waitingBattlers;
 
     u32 battleProgressFlag : 1;
-    u32 padding3154_01 : 31;
+    u32 teatimeNext : 3; // Oxide: the next battler TryTeatime looks at, from the padding
+    u32 padding3154_04 : 28;
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

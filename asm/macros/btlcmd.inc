@@ -1332,6 +1332,17 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    .macro TryTeatime mode, jump_none
+    .long BTLCMD_TRYTEATIME
+    .long \mode
+    .long (\jump_none-.) / 4 - 1
+    .endm
+
+    .macro TrySkyDrop jump_on_fail
+    .long BTLCMD_TRYSKYDROP
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

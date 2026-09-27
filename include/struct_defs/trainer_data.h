@@ -34,6 +34,9 @@ enum TrainerMonAbility {
     TRAINER_MON_ABILITY_DONT_CARE = 0,
     TRAINER_MON_ABILITY_SLOT_1,
     TRAINER_MON_ABILITY_SLOT_2,
+    // Platinum Oxide: the species' hidden ability, or its ordinary one when it
+    // has none. It leaves the personality as "don't care" does.
+    TRAINER_MON_ABILITY_HIDDEN,
 };
 
 enum TrainerMonGender {

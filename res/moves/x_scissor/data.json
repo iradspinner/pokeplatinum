@@ -1,11 +1,11 @@
 {
     "name": "X-Scissor",
     "description": [
-        "The user slashes at\n",
-        "the foe by crossing\n",
-        "its scythes or claws\n",
-        "as if they were a pair\n",
-        "of scissors."
+        "The user slashes the\n",
+        "foe by crossing its\n",
+        "scythes or claws.\n",
+        "It has a high\n",
+        "critical-hit ratio."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_HIGH_CRITICAL",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

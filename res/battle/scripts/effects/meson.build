@@ -406,5 +406,12 @@ effect_script_files = files(
     'effect_script_0404.s',
     'effect_script_0405.s',
     'effect_script_0406.s',
-    'effect_script_0407.s'
+    'effect_script_0407.s',
+    'effect_script_0408.s',
+    'effect_script_0409.s',
+    'effect_script_0410.s',
+    'effect_script_0411.s',
+    'effect_script_0412.s',
+    'effect_script_0413.s',
+    'effect_script_0414.s'
 )

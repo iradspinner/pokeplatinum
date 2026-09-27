@@ -84,6 +84,7 @@ copy "battle-ai/basic.md" "notes/battle-ai/basic.md"
 copy "battle-ai/expert-1.md" "notes/battle-ai/expert-1.md"
 copy "battle-ai/expert-2.md" "notes/battle-ai/expert-2.md"
 copy "battle-ai/other-flags.md" "notes/battle-ai/other-flags.md"
+copy "battle-ai/expert-gaps.md" "notes/battle-ai/expert-gaps.md"
 copy "battle-ai/switching-and-items.md" "notes/battle-ai/switching-and-items.md"
 copy "battle-ai/doubles.md" "notes/battle-ai/doubles.md"
 copy "encounter-design-survey.md" "Claude outputs/encounter-design-survey.md"
@@ -101,6 +102,7 @@ copy "encounters/values.json" "Claude outputs/encounters/values.json"
 copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship-evolutions.md"
 copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
 copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replacements.md"
+copy "encounters/classic-starters.md" "Claude outputs/encounters/classic-starters.md"
 
 # Anything under docs/oxide that the list above does not name. caught.json is
 # per-playthrough state and gitignored, so it is not a doc and is not mirrored.

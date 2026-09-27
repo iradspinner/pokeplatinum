@@ -10,7 +10,7 @@
     "type": "TYPE_STEEL",
     "power": 0,
     "accuracy": 0,
-    "pp": 10,
+    "pp": 1,
     "effect": {
         "type": "BATTLE_EFFECT_SPEED_UP_2_ATK_UP",
         "chance": 0

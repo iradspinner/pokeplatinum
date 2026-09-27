@@ -584,6 +584,9 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
     case BATTLEMON_TEMP:
         return BattleMon_Get(battleCtx, battler, battleCtx->scriptTemp, buf);
 
+    case BATTLEMON_OXIDE_FLAGS:
+        return battleMon->oxideFlags;
+
     default:
         GF_ASSERT(FALSE);
         break;
@@ -937,6 +940,10 @@ void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam pa
 
     case BATTLEMON_TEMP:
         BattleMon_Set(battleCtx, battler, battleCtx->scriptTemp, buf);
+        break;
+
+    case BATTLEMON_OXIDE_FLAGS:
+        mon->oxideFlags = *(u16 *)buf;
         break;
 
     default:
@@ -1673,7 +1680,8 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
     } else if (range == RANGE_USER // e.g., Swords Dance
         || range == RANGE_USER_SIDE // e.g., Light Screen, Reflect
         || range == RANGE_SINGLE_TARGET_SPECIAL // e.g., Counter, Mirror Coat
-        || range == RANGE_FIELD) { // e.g., Sunny Day
+        || range == RANGE_FIELD // e.g., Sunny Day
+        || range == RANGE_ALL) { // Oxide: e.g., Teatime, which reaches every battler as Haze does
         defender = attacker;
     } else if (range == RANGE_ALLY) { // e.g., Helping Hand
         if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
@@ -1851,6 +1859,66 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
     battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_SEMI_INVULNERABLE;
     battleCtx->battleMons[battler].moveEffectsData.rolloutCount = 0;
     battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
+
+    // Oxide: a Sky Drop user stopped in the air lets its target go.
+    Battler_ReleaseSkyDropTargets(battleCtx, battler);
+}
+
+/**
+ * @brief Oxide: whether a battler is held in the air by a Sky Drop user.
+ *
+ * The hold lasts while the target and its holder are both still standing, both
+ * in the air, and the holder is still locked into its move. When any of that
+ * has stopped, the hold is cleared here, and the target comes back to the
+ * ground; the controller's usual check shows it again, since its
+ * moveEffectsTemp still marks it as vanished.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if the battler is held, FALSE otherwise
+ */
+BOOL Battler_SkyDropHeld(BattleContext *battleCtx, int battler)
+{
+    BattleMon *target = &battleCtx->battleMons[battler];
+
+    if ((target->oxideFlags & OXIDE_MON_FLAG_SKY_DROP_HELD) == FALSE) {
+        return FALSE;
+    }
+
+    BattleMon *holder = &battleCtx->battleMons[(target->oxideFlags & OXIDE_MON_SKY_DROP_HOLDER) >> OXIDE_MON_SKY_DROP_HOLDER_SHIFT];
+
+    if (target->curHP
+        && (target->moveEffectsMask & MOVE_EFFECT_AIRBORNE)
+        && holder->curHP
+        && (holder->moveEffectsMask & MOVE_EFFECT_AIRBORNE)
+        && (holder->statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
+        return TRUE;
+    }
+
+    target->oxideFlags &= ~(OXIDE_MON_FLAG_SKY_DROP_HELD | OXIDE_MON_SKY_DROP_HOLDER);
+    target->moveEffectsMask &= ~MOVE_EFFECT_AIRBORNE;
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: release every battler a Sky Drop user holds, when that user
+ * stops before its drop: it is interrupted, faints or leaves the field.
+ *
+ * @param battleCtx
+ * @param holder
+ */
+void Battler_ReleaseSkyDropTargets(BattleContext *battleCtx, int holder)
+{
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        BattleMon *target = &battleCtx->battleMons[i];
+
+        if ((target->oxideFlags & OXIDE_MON_FLAG_SKY_DROP_HELD)
+            && ((target->oxideFlags & OXIDE_MON_SKY_DROP_HOLDER) >> OXIDE_MON_SKY_DROP_HOLDER_SHIFT) == holder) {
+            target->oxideFlags &= ~(OXIDE_MON_FLAG_SKY_DROP_HELD | OXIDE_MON_SKY_DROP_HOLDER);
+            target->moveEffectsMask &= ~MOVE_EFFECT_AIRBORNE;
+        }
+    }
 }
 
 enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler)
@@ -2065,12 +2133,15 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     // Forcefully end the battler's turn after the replacement
     battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
+    Battler_ReleaseSkyDropTargets(battleCtx, battler); // Oxide
+
     if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
         // Clear any Mean Look or Lock On effects from other active battlers
         for (i = 0; i < maxBattlers; i++) {
             if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
                 && (battleCtx->battleMons[i].moveEffectsData.meanLookTarget == battler)) {
                 battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_MEAN_LOOK;
+                battleCtx->battleMons[i].oxideFlags &= ~OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock ends with its trap
             }
 
             if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
@@ -2082,11 +2153,13 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
 
         battleCtx->battleMons[battler].statusVolatile = VOLATILE_CONDITION_NONE;
         battleCtx->battleMons[battler].moveEffectsMask = MOVE_EFFECT_NONE;
+        battleCtx->battleMons[battler].oxideFlags = 0; // Oxide
     } else {
         // Baton Pass maintains Focus Energy, Mean Look, Confusion, Curse, Substitute,
         // and a variety of move effects (see constants/battle/moves.h)
         battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_BATON_PASSED;
         battleCtx->battleMons[battler].moveEffectsMask &= MOVE_EFFECT_BATON_PASSED;
+        battleCtx->battleMons[battler].oxideFlags &= OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock goes with Mean Look's trap; Salt Cure is not passed on
 
         for (i = 0; i < maxBattlers; i++) {
             if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
@@ -2177,12 +2250,15 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 
     battleCtx->battleMons[battler].statusVolatile = 0;
     battleCtx->battleMons[battler].moveEffectsMask = 0;
+    battleCtx->battleMons[battler].oxideFlags = 0; // Oxide
+    Battler_ReleaseSkyDropTargets(battleCtx, battler); // Oxide
 
     // Negate Mean Look, Attract, and Bind flags
     for (i = 0; i < maxBattlers; i++) {
         if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
             && battleCtx->battleMons[i].moveEffectsData.meanLookTarget == battler) {
             battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_MEAN_LOOK;
+            battleCtx->battleMons[i].oxideFlags &= ~OXIDE_MON_FLAG_OCTOLOCKED; // Oxide: Octolock ends with its trap
         }
 
         if (battleCtx->battleMons[i].statusVolatile & (FlagIndex(battler) << VOLATILE_CONDITION_ATTRACT_SHIFT)) {
@@ -3163,6 +3239,7 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_CHARGE_TURN_BURN_HIT:
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP:
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS:
+    case BATTLE_EFFECT_SKY_DROP: // Oxide
         return TRUE;
     }
 
@@ -4849,6 +4926,26 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         return result;
     }
 
+    // Oxide: a battler heating its beak for Beak Blast burns an attacker that
+    // makes contact with it until it has used the move, under Flame Body's
+    // conditions but every time. It comes before the defender's own ability,
+    // which then does not trigger on this hit.
+    if (battleCtx->turnFlags[battleCtx->defender].beakBlastHeating
+        && Battler_MovedThisTurn(battleCtx, battleCtx->defender) == FALSE
+        && ATTACKING_MON.curHP
+        && ATTACKING_MON.status == MON_CONDITION_NONE
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
+        battleCtx->sideEffectMon = battleCtx->attacker;
+        battleCtx->msgBattlerTemp = battleCtx->defender;
+
+        *subscript = subscript_burn;
+        return TRUE;
+    }
+
     switch (Battler_Ability(battleCtx, battleCtx->defender)) {
     case ABILITY_STATIC:
         if (ATTACKING_MON.curHP
@@ -6272,6 +6369,12 @@ u16 Battler_HeldItem(BattleContext *battleCtx, int battler)
         return ITEM_NONE;
     }
 
+    // Oxide: under Magic Room no held item works, as under Embargo, which is
+    // where hg-engine stops it too (GetBattleItemData).
+    if (battleCtx->magicRoomTurns) {
+        return ITEM_NONE;
+    }
+
     return battleCtx->battleMons[battler].heldItem;
 }
 
@@ -6367,7 +6470,7 @@ s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPo
         break;
 
     case ITEM_POWER_CHECK_EMBARGO:
-        if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+        if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
             return 0;
         }
 
@@ -6398,7 +6501,7 @@ s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler)
 
 s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler)
 {
-    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
         return FLING_EFFECT_NONE;
     }
 
@@ -6407,7 +6510,7 @@ s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler)
 
 s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler)
 {
-    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns || battleCtx->magicRoomTurns) { // Oxide: Magic Room
         return 0;
     }
 
@@ -6432,6 +6535,12 @@ static inline int CountAbilityTheirSide(BattleSystem *battleSys, BattleContext *
 BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int result = FALSE;
+
+    // Oxide: a battler held in the air by Sky Drop cannot switch out, whatever
+    // its type or item.
+    if (Battler_SkyDropHeld(battleCtx, battler)) {
+        return TRUE;
+    }
 
     // Oxide: a Ghost type cannot be trapped by anything (Generation 6; the
     // trapping checks in hg-engine's other_battle_calculators.c).
@@ -8363,6 +8472,17 @@ static const u16 sCannotMetronomeMoves[] = {
     MOVE_BLACK_ECLIPSE_SPECIAL,
     MOVE_TWINKLE_TACKLE_PHYSICAL,
     MOVE_TWINKLE_TACKLE_SPECIAL,
+    // The eight status moves cut from Oxide (Ian, 2026-09-27) keep their
+    // records but have no working effect, so Metronome must not call them.
+    // Their slots are left as they are until the move list settles.
+    MOVE_TELEKINESIS,
+    MOVE_ALLY_SWITCH,
+    MOVE_TOPSY_TURVY,
+    MOVE_FLOWER_SHIELD,
+    MOVE_FAIRY_LOCK,
+    MOVE_AROMATIC_MIST,
+    MOVE_MAGNETIC_FLUX,
+    MOVE_SPEED_SWAP,
     FORBIDDEN_BY_METRONOME_DELIM,
 };
 
@@ -8792,6 +8912,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     // Oxide: Meteor Beam's and Electro Shot's charge turns are not hits, so Wonder Guard does not stop them
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP:
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS:
+    case BATTLE_EFFECT_SKY_DROP: // Oxide
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }

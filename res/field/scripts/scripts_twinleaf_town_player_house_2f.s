@@ -696,6 +696,8 @@ TestKit_MoveSets2:
     AddListMenuEntry TestKit_Text_MenuSet51, 23
     AddListMenuEntry TestKit_Text_MenuSet52, 24
     AddListMenuEntry TestKit_Text_MenuSet53, 25
+    AddListMenuEntry TestKit_Text_MenuSet54, 26
+    AddListMenuEntry TestKit_Text_MenuSetMore, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet28
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet29
@@ -723,6 +725,42 @@ TestKit_MoveSets2:
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet51
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet52
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet53
+    GoToIfEq VAR_0x8004, 26, TestKit_MoveSet54
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSets3
+    GoTo TestKit_Close
+
+/* The third page, from set 55 on (2026-09-27): the second filled up with
+   Shore Up, Meteor Beam, Electro Shot and Mind Blown. */
+TestKit_MoveSets3:
+    Message TestKit_Text_WhichSet
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuSet55, 0
+    AddListMenuEntry TestKit_Text_MenuSet56, 1
+    AddListMenuEntry TestKit_Text_MenuSet57, 2
+    AddListMenuEntry TestKit_Text_MenuSet58, 3
+    AddListMenuEntry TestKit_Text_MenuSet59, 4
+    AddListMenuEntry TestKit_Text_MenuSet60, 5
+    AddListMenuEntry TestKit_Text_MenuSet61, 6
+    AddListMenuEntry TestKit_Text_MenuSet62, 7
+    AddListMenuEntry TestKit_Text_MenuSet63, 8
+    AddListMenuEntry TestKit_Text_MenuSet64, 9
+    AddListMenuEntry TestKit_Text_MenuSet65, 10
+    AddListMenuEntry TestKit_Text_MenuSet66, 11
+    AddListMenuEntry TestKit_Text_MenuSet67, 12
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
+    GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
+    GoToIfEq VAR_0x8004, 2, TestKit_MoveSet57
+    GoToIfEq VAR_0x8004, 3, TestKit_MoveSet58
+    GoToIfEq VAR_0x8004, 4, TestKit_MoveSet59
+    GoToIfEq VAR_0x8004, 5, TestKit_MoveSet60
+    GoToIfEq VAR_0x8004, 6, TestKit_MoveSet61
+    GoToIfEq VAR_0x8004, 7, TestKit_MoveSet62
+    GoToIfEq VAR_0x8004, 8, TestKit_MoveSet63
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet64
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet65
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet66
+    GoToIfEq VAR_0x8004, 12, TestKit_MoveSet67
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1321,6 +1359,223 @@ TestKit_MoveSet53:
     SetVar VAR_0x8007, MOVE_RAIN_DANCE
     SetVar VAR_0x8008, MOVE_THUNDERBOLT
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 54: Mind Blown costs its user half its maximum HP once the move is
+   over, hit or miss. Against a wild Chansey that knows Protect and Splash:
+   each Mind Blown takes half Mew's HP ("MEW is hit with recoil!"), even when
+   Chansey protects itself, and Flamethrower costs nothing. */
+TestKit_MoveSet54:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_PROTECT
+    SetVar VAR_0x8003, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_MIND_BLOWN
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 55: Damp stops Mind Blown before it starts, and then it costs nothing.
+   Against a wild Politoed given Damp that knows only Splash. */
+TestKit_MoveSet55:
+    SetVar VAR_0x8000, SPECIES_POLITOED
+    SetVar VAR_0x8001, ABILITY_DAMP
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_MIND_BLOWN
+    SetVar VAR_0x8007, MOVE_FLAMETHROWER
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 56: Nature's Madness carries power 1, the mark of a move whose damage
+   is worked out, so Taunt no longer takes it for a status move. Against a
+   wild Chansey that knows only Taunt: once Mew is taunted, Splash cannot be
+   chosen, and Nature's Madness still can and halves Chansey's HP. */
+TestKit_MoveSet56:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TAUNT
+    SetVar VAR_0x8006, MOVE_NATURES_MADNESS
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 57: once Scale Shot's last hit is in, its user's Defense falls and its
+   Speed rises, one stage each. Against a wild Shuckle that knows only
+   Splash, which Scale Shot cannot knock out: after "Hit N time(s)!", "MEW's
+   Defense fell!" and "MEW's Speed rose!", once however many hits landed. */
+TestKit_MoveSet57:
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SCALE_SHOT
+    SetVar VAR_0x8007, MOVE_DOUBLE_HIT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 58: Spiky Shield protects its user and hurts an attacker that makes
+   contact with it by an eighth of its maximum HP. Against a wild Rattata
+   that knows Tackle and Swift: a Tackle into the shield brings "The wild
+   RATTATA was hurt!", a Swift only "MEW protected itself!". */
+TestKit_MoveSet58:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_SPIKY_SHIELD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 59: Baneful Bunker protects its user and poisons an attacker that
+   makes contact with it. Against a wild Rattata that knows Tackle and
+   Swift: the first Tackle into the bunker brings "The wild RATTATA was
+   poisoned!", a Swift only "MEW protected itself!". */
+TestKit_MoveSet59:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_BANEFUL_BUNKER
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 60: Salt Cure salts its target, which then loses an eighth of its HP
+   at the end of every turn, a quarter as a Water or Steel type. Against a
+   wild Chansey that knows only Splash: "The wild CHANSEY is being salt
+   cured!", then "The wild CHANSEY is hurt by Salt Cure!" each turn; after
+   Soak makes it a Water type, each loss doubles. */
+TestKit_MoveSet60:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SALT_CURE
+    SetVar VAR_0x8007, MOVE_SOAK
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 61: Octolock traps its target and lowers its Defense and Sp. Def by a
+   stage each at the end of every turn. Against a wild Chansey that knows
+   only Splash: "The wild CHANSEY can no longer escape because of
+   Octolock!", then each turn "The wild CHANSEY's Defense fell!" and "The
+   wild CHANSEY's Sp. Def fell!", so Tackle and Swift hit harder turn by
+   turn; a second Octolock fails. */
+TestKit_MoveSet61:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_OCTOLOCK
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_SWIFT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 62: for five turns under Magic Room no held item works. Mew holds
+   Leftovers; against a wild Chansey that knows only Splash. After a
+   Substitute, "MEW restored a little HP using its Leftovers!" at the end of
+   each turn; once "It created a bizarre area in which Pokemon's held items
+   lose their effects!", no more until "Magic Room wore off, and held items'
+   effects returned to normal!" five turns later, or at once if Mew uses
+   Magic Room again. */
+TestKit_MoveSet62:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LEFTOVERS
+    SetVar VAR_0x8006, MOVE_MAGIC_ROOM
+    SetVar VAR_0x8007, MOVE_SUBSTITUTE
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithItem
+
+/* Set 63: Teatime makes every battler on the field eat its held Berry at
+   once, whether or not it would trigger. Mew holds a Liechi Berry; against
+   a wild Chansey that knows only Splash. At full HP, Teatime brings "It's
+   teatime! Everyone dug in to their Berries!" and then Mew's Liechi Berry
+   raising its Attack; a second Teatime fails, since no Berry is left. */
+TestKit_MoveSet63:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LIECHI_BERRY
+    SetVar VAR_0x8006, MOVE_TEATIME
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithItem
+
+/* Set 64: Core Enforcer suppresses the ability of a target that has already
+   moved this turn. Against a wild Jolteon given Volt Absorb, which is faster
+   than Mew and knows only Splash: Thunderbolt does nothing to it, since
+   Volt Absorb takes it; after a Core Enforcer, "The wild JOLTEON's ability
+   was suppressed!", and Thunderbolt hurts it from then on. */
+TestKit_MoveSet64:
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_VOLT_ABSORB
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_CORE_ENFORCER
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 65: Beak Blast heats its user's beak at the start of the turn and
+   burns an attacker that makes contact with it before it strikes. Against
+   a wild Rattata that knows Tackle and Swift: when Mew chooses Beak Blast,
+   "MEW started heating up its beak!" comes first, and a Tackle into it
+   brings "The wild RATTATA was burned!" before Beak Blast hits; a Swift
+   makes no contact and burns nothing, nor does a Tackle on a turn Mew
+   chooses something else. */
+TestKit_MoveSet65:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_BEAK_BLAST
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 66: Sky Drop lifts its target on the first turn, and the target can
+   do nothing until it is dropped on the second. Against a wild Chansey that
+   knows only Tackle, slower than Mew: "MEW took the wild CHANSEY into the
+   sky!", then no Tackle that turn; next turn the drop hits before Chansey
+   moves, and both are back on the ground, so Chansey tackles later that
+   same turn. */
+TestKit_MoveSet66:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_SKY_DROP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveMew
+
+/* Set 67: Sky Drop can lift a Flying type but the drop does not affect it.
+   Against a wild Skarmory that knows only Splash: "MEW took the wild
+   SKARMORY into the sky!", then on the second turn "It doesn't affect the
+   wild SKARMORY..." once both have landed. */
+TestKit_MoveSet67:
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SKY_DROP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
@@ -2525,6 +2780,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleHiddenGift, 20
     AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 21
     AddListMenuEntry TestKit_Text_MenuStapleItemsRestored, 22
+    AddListMenuEntry TestKit_Text_MenuStapleKaizoMoves, 23
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2549,6 +2805,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 20, TestKit_StapleHiddenGift
     GoToIfEq VAR_0x8004, 21, TestKit_StapleHiddenWild
     GoToIfEq VAR_0x8004, 22, TestKit_StapleItemsRestored
+    GoToIfEq VAR_0x8004, 23, TestKit_StapleKaizoMoves
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2875,6 +3132,23 @@ TestKit_StapleItemsRestored:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithItem
+
+/* The Kaizo comparison's move data (Ian, 2026-09-27): a Mew with Extreme
+   Speed and Minimize, against a wild Shuckle that knows only Fake Out.
+   Fake Out is now +3 and Extreme Speed +2, so the far slower Shuckle's
+   Fake Out ("But it failed!" after the first turn) comes before Mew's
+   Extreme Speed every turn; before, both were +1 and Mew went first.
+   Minimize raises evasion two stages ("sharply rose!"), not one. */
+TestKit_StapleKaizoMoves:
+    SetVar VAR_0x8006, MOVE_EXTREME_SPEED
+    SetVar VAR_0x8007, MOVE_MINIMIZE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_FAKE_OUT
+    SetVar VAR_0x800A, SPECIES_MEW
+    GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

@@ -33,6 +33,7 @@ from . import analysis as A
 from . import calc_export
 from . import canon
 from . import dex
+from . import docview
 from . import lint
 from . import locations
 from . import model
@@ -795,6 +796,26 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _doc(self, url, ref):
+        """/doc is every document, /doc/<repo path> one of them, both read
+        fresh from disk or from `ref`; nothing here writes."""
+        rel = urllib.parse.unquote(url.path[len("/doc"):])
+        try:
+            if rel.strip("/"):
+                body, code = docview.document_page(model.repo_root(), rel, ref), 200
+            else:
+                body, code = docview.index_page(model.repo_root(), ref), 200
+        except docview.DocError as exc:
+            body, code = docview.error_page(exc), exc.code
+        except Exception as exc:        # a renderer bug shows, not a dropped connection
+            body, code = docview.error_page(f"the viewer failed: {exc!r}"), 500
+        data = body.encode("utf-8")
+        self.send_response(code)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
     def _body(self):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n) or b"{}")
@@ -816,6 +837,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(body)
                 return
+        # Oxide's documents, rendered in the tool's style (docview.py), for
+        # the links the doc-links skill gives Ian.
+        if parts and parts[0] == "doc":
+            return self._doc(url, ref)
         if not parts or parts[0] != "api":
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name

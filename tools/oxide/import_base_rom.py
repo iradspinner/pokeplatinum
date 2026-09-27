@@ -474,6 +474,32 @@ MOVES_DIVERGED = {
                  "its modern 80",
     },
 }
+# The move data Ian ruled on 2026-09-27 from the Kaizo comparison
+# (docs/oxide/kaizo-comparison.md, "Ian's answers"), one entry per field
+# changed, so the importer never carries a base ROM value back over one.
+_KAIZO_SETUP_PP = "every setup move goes to 1 to 3 PP (Ian, 2026-09-27)"
+for _move in ("double_team", "harden", "focus_energy", "stockpile",
+              "cosmic_power", "bulk_up", "acupressure", "defend_order"):
+    MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_SETUP_PP
+_KAIZO_DEBUFF_PP = ("the stat-lowering status moves take Kaizo's low PP "
+                    "(Ian, 2026-09-27)")
+for _move in ("screech", "charm", "sweet_scent", "feather_dance", "fake_tears",
+              "metal_sound", "tickle", "captivate"):
+    MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_DEBUFF_PP
+_MODERN_PRIORITY = "the modern priority, answer 4 of the Kaizo comparison (Ian, 2026-09-27)"
+for _move in ("protect", "detect", "endure", "extreme_speed", "fake_out", "follow_me"):
+    MOVES_DIVERGED.setdefault(_move, {})["priority"] = _MODERN_PRIORITY
+MOVES_DIVERGED.setdefault("cotton_spore", {})["range"] = (
+    "hits both foes, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+for _move in ("drill_peck", "megahorn", "dragon_claw", "x_scissor", "power_whip"):
+    MOVES_DIVERGED.setdefault(_move, {})["effect"] = (
+        "a high critical-hit ratio, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+for _move in ("octazooka", "mirror_shot", "magnet_bomb", "needle_arm", "poison_tail", "crush_claw"):
+    MOVES_DIVERGED.setdefault(_move, {})["power"] = (
+        "raised to 80 to 90, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+for _move in ("hyper_fang", "octazooka", "rock_climb", "sky_uppercut", "double_hit", "dragon_rush"):
+    MOVES_DIVERGED.setdefault(_move, {})["accuracy"] = (
+        "100, from the Kaizo comparison's short list (Ian, 2026-09-27)")
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")
@@ -1209,6 +1235,19 @@ TEXT_BANK_TRAINER_NAMES = 618
 TEXT_BANK_ITEM_DESCRIPTIONS = 391
 TEXT_BANK_ITEM_NAMES = 392
 TEXT_BANK_MOVE_DESCRIPTIONS = 646
+
+# Single entries that deliberately differ from the base ROM inside a bank that
+# is otherwise checked against it, keyed by bank and then by entry. A bank that
+# grew in Phase 4 is still compared on the entries it shares with the base ROM
+# (verify_narcs.py --text), so an intended rewording of one of those needs a
+# line here or the gate reports it.
+TEXT_ENTRIES_DIVERGED = {
+    TEXT_BANK_MOVE_DESCRIPTIONS: {
+        entry: "the Kaizo move data gave it a high critical-hit ratio, so its "
+               "description says so (Ian, 2026-09-27)"
+        for entry in (65, 224, 337, 404, 438)  # Drill Peck, Megahorn, Dragon Claw, X-Scissor, Power Whip
+    },
+}
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.

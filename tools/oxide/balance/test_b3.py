@@ -14,7 +14,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, metrics, pool, pressure, refpressure, rescore
+from . import data, metrics, pool, pressure, refpressure, rescore, splits
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it shows for each since the encounter
@@ -343,14 +343,40 @@ def check_fingerprint_rules(results):
     moved = json.loads(json.dumps(job))
     moved["pairs"][0][3] = "Rain"
     other = dict(blob, moves=dict(blob["moves"], Ember={"bp": 50}))
+    # A hidden ability no score can reach leaves the hash alone; a first
+    # ability, which the engine falls back to, does not.
+    hidden = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "X", "H": "Y"}}))
+    plain = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "X"}}))
+    first = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "Z"}}))
     ok = (hashes["a"] == hashes["b"] != hashes["c"]
           and base == rescore.fingerprint("pressure", json.loads(json.dumps(job)), {}, blob)
           and base != rescore.fingerprint("pressure", moved, {}, blob)
           and base != rescore.fingerprint("pressure", job, {}, other)
           and base != rescore.fingerprint("pressure", job, {"parties": [[{"species": "B",
                                                                           "moves": ["Ember"]}]]},
-                                          blob))
-    results.append(("a fingerprint sees code, moves, weather and parties, not docstrings", ok, ""))
+                                          blob)
+          and rescore.fingerprint("pressure", job, {}, hidden)
+          == rescore.fingerprint("pressure", job, {}, plain)
+          != rescore.fingerprint("pressure", job, {}, first))
+    results.append(("a fingerprint sees code, moves, weather, parties and first abilities, "
+                    "not docstrings or hidden abilities", ok, ""))
+
+
+def check_flag_numbers(results):
+    """The split map numbers the tree's own flag list rather than reading a
+    shared build header: every hidden item's flag has a number of its own,
+    inside HIDDEN_ITEM_FLAGS_START to HIDDEN_ITEM_FLAGS_END."""
+    flags = splits.flag_values()
+    start, end = flags["HIDDEN_ITEM_FLAGS_START"], flags["HIDDEN_ITEM_FLAGS_END"]
+    used = [flag for _item, flag in
+            splits._HIDDEN.findall(splits._read("include", "data", "field", "hidden_items.h"))]
+    missing = [flag for flag in used if flag not in flags]
+    values = [flags[flag] for flag in used if flag in flags]
+    ok = (not missing and len(set(values)) == len(values)
+          and all(start <= v <= end for v in values))
+    results.append(("hidden-item flags numbered from the tree's own list", ok,
+                    f"{len(values)} flags in {start} to {end}" if ok
+                    else f"missing {missing[:3]}, {len(values) - len(set(values))} shared"))
 
 
 def check_fingerprints(results, blob):
@@ -376,6 +402,7 @@ def main():
     check_scores(results, blob)
     check_ref_scores(results, blob)
     check_fingerprint_rules(results)
+    check_flag_numbers(results)
     check_fingerprints(results, blob)
     width = max(len(label) for label, _, _ in results)
     failed = 0

@@ -6,6 +6,7 @@
 #define SELF_TURN_FLAG_PLUCK_BERRY    (1 << 1)
 #define SELF_TURN_FLAG_INFATUATED     (1 << 2)
 #define SELF_TURN_FLAG_SUBSTITUTE_HIT (1 << 3)
+#define SELF_TURN_FLAG_MIND_BLOWN     (1 << 4) // Oxide: owes half its max HP once the move is over
 
 // Oxide: the one-turn guard a battler raised over its side, kept in its
 // TurnFlags so it clears with them at the end of the turn.

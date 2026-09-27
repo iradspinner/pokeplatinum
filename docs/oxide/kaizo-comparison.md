@@ -215,7 +215,7 @@ For learnsets, the ideas worth the balance track's learnset pass, in order:
 3. The stat-lowering status moves take Kaizo's low PP: Screech, Metal Sound, Fake Tears, Charm, Feather Dance, Tickle and Captivate at 3 to 6, and Sweet Scent at 2.
 4. Answer 1 covers priority: every Generation 4 move whose priority changed in later games takes the modern value, Fake Out +3 and Extreme Speed +2 among them, each checked against hg-engine.
 5. Sleep moves and powders keep their accuracy, the same stance as answer 2.
-6. Kaizo's level-up lists are the line-by-line template for the learnset pass, adjusted to Oxide's rulings and splits.
+6. Kaizo's level-up lists are studied, not copied (Ian, 2026-09-27, correcting the first reading of "line-by-line template"): relate each move's level to its real strength as Kaizo has the move, same-type or coverage, evolution stage and the split it lands in; write the findings as rules tested by how well they predict Kaizo's own lists; and build a generator that applies them to any species and any move, later-generation moves included, proposing lists inside Oxide's caps and dropping dead-weight moves. Nothing is written to the game data until Ian chooses a sweeping pass, after the broken moves are fixed. The copy made on `cloud/balance-learnset-pass` stays unmerged as reference.
 7. Strong moves may sit at level 1 on evolved stages, as Kaizo has them, which makes each a Heart Scale's worth at the Move Relearner.
 8. No split has a ceiling on coverage power; the rescore judges each move.
 

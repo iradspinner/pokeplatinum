@@ -482,6 +482,10 @@
             "en_US": "Items restored"
         },
         {
+            "id": "TestKit_Text_MenuStapleKaizoMoves",
+            "en_US": "Kaizo move data"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -746,6 +750,62 @@
         {
             "id": "TestKit_Text_MenuSet53",
             "en_US": "Set 53"
+        },
+        {
+            "id": "TestKit_Text_MenuSet54",
+            "en_US": "Set 54"
+        },
+        {
+            "id": "TestKit_Text_MenuSet55",
+            "en_US": "Set 55"
+        },
+        {
+            "id": "TestKit_Text_MenuSet56",
+            "en_US": "Set 56"
+        },
+        {
+            "id": "TestKit_Text_MenuSet57",
+            "en_US": "Set 57"
+        },
+        {
+            "id": "TestKit_Text_MenuSet58",
+            "en_US": "Set 58"
+        },
+        {
+            "id": "TestKit_Text_MenuSet59",
+            "en_US": "Set 59"
+        },
+        {
+            "id": "TestKit_Text_MenuSet60",
+            "en_US": "Set 60"
+        },
+        {
+            "id": "TestKit_Text_MenuSet61",
+            "en_US": "Set 61"
+        },
+        {
+            "id": "TestKit_Text_MenuSet62",
+            "en_US": "Set 62"
+        },
+        {
+            "id": "TestKit_Text_MenuSet63",
+            "en_US": "Set 63"
+        },
+        {
+            "id": "TestKit_Text_MenuSet64",
+            "en_US": "Set 64"
+        },
+        {
+            "id": "TestKit_Text_MenuSet65",
+            "en_US": "Set 65"
+        },
+        {
+            "id": "TestKit_Text_MenuSet66",
+            "en_US": "Set 66"
+        },
+        {
+            "id": "TestKit_Text_MenuSet67",
+            "en_US": "Set 67"
         },
         {
             "id": "TestKit_Text_MenuSetMore",

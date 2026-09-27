@@ -16,7 +16,7 @@
    "answers_duel": 0.4,
    "answers_sure": 0.401,
    "answers_bait": 0.428,
-   "answers_branch": 0.421,
+   "answers_branch": 0.422,
    "safe": 0.2,
    "cover": 1.0,
    "best_one": 1.0,
@@ -122,11 +122,11 @@
      "answers": 0.727,
      "answers_lock": 0.727,
      "threat_chance": 0.224,
-     "answers_duel": 0.104,
+     "answers_duel": 0.105,
      "answers_sure": 0.124,
-     "answers_bait": 0.104,
+     "answers_bait": 0.105,
      "forced": [],
-     "answers_branch": 0.104,
+     "answers_branch": 0.105,
      "branches": []
     },
     {
@@ -155,9 +155,9 @@
    ],
    "calcs": 46335,
    "errors": [],
-   "node_seconds": 5.79,
-   "wall_seconds": 5.94,
-   "fingerprint": "58b2eed8c723314a625d",
+   "node_seconds": 6.03,
+   "wall_seconds": 6.19,
+   "fingerprint": "340fb62ee50bc70e4223",
    "verified": true
   },
   "hesperid_coronet": {
@@ -333,9 +333,9 @@
    ],
    "calcs": 76923,
    "errors": [],
-   "node_seconds": 9.16,
-   "wall_seconds": 9.37,
-   "fingerprint": "2728787eaa4b055d97c4",
+   "node_seconds": 9.29,
+   "wall_seconds": 9.5,
+   "fingerprint": "27736be2574edc3a9fa8",
    "verified": true
   }
  }

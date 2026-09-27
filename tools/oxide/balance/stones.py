@@ -76,9 +76,9 @@ def hidden_items():
     border of two maps is listed in both maps' events under one script,
     and so one flag: it is one item, found from whichever map the player
     reaches first (Route 211 west's Moon Stone is Eterna City's)."""
-    flags = dict(splits._FLAG.findall(splits._read("build", "generated", "vars_flags.h")))
-    start = int(flags["HIDDEN_ITEM_FLAGS_START"])
-    hidden = {int(flags[flag]) - start: item for item, flag in
+    flags = splits.flag_values()
+    start = flags["HIDDEN_ITEM_FLAGS_START"]
+    hidden = {flags[flag] - start: item for item, flag in
               splits._HIDDEN.findall(splits._read("include", "data", "field", "hidden_items.h"))}
     by_script = {}
     for header, fields in splits.headers().items():

@@ -33,9 +33,10 @@ wrong answers. test_b3 checks that every fingerprint matches its inputs
 and that nothing is left unverified. --seed adopts scores computed before
 fingerprints existed: it stamps each with its inputs' fingerprint,
 unverified, so the next --verify recomputes all of them once. --restamp
-moved the scores of 2026-09-26 from the first engine definition (every
-file in the vendored folder) to engine_files, keeping each verified mark,
-and only for a score current under the first.
+moves each score that is current under the previous definition to this
+one, keeping its verified mark; it has been used twice, when the engine
+part narrowed from the whole vendored folder to engine_files, and when
+species records' hidden-ability slot left the hash (_species_record).
 
 Every calculation runs in one Node process at a time.
 """
@@ -64,10 +65,21 @@ KINDS = ("pressure", "calibrate", "ref", "shape", "b6", "b6lever")
 
 # ---- what decides a score ----------------------------------------------------
 
-def _code_hash(path):
-    """The module's code as Python parses it, docstrings left out."""
+def _top_names(node):
+    """The names a top-level statement defines."""
+    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+        return {node.name}
+    if isinstance(node, ast.Assign):
+        return {t.id for t in node.targets if isinstance(t, ast.Name)}
+    return set()
+
+
+def _code_hash(path, skip=frozenset()):
+    """The module's code as Python parses it, docstrings left out, and any
+    top-level function or constant named in `skip` too."""
     with open(path, encoding="utf-8") as f:
         tree = ast.parse(f.read())
+    tree.body = [n for n in tree.body if not (_top_names(n) and _top_names(n) <= skip)]
     for node in ast.walk(tree):
         body = getattr(node, "body", None)
         if (isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
@@ -75,6 +87,18 @@ def _code_hash(path):
                 and isinstance(body[0].value, ast.Constant) and isinstance(body[0].value.value, str)):
             node.body = body[1:] or [ast.Pass()]
     return hashlib.sha256(ast.dump(tree).encode()).hexdigest()
+
+
+# What b6.py holds besides its scoring: the report, the fight scale, the
+# draft scorer, the new-content and dead-weight counts, and their constants.
+# None of it decides a stored score, so editing it stales nothing. Kept
+# here, not in b6.py, so that listing it never changed b6.py's own hash.
+B6_REPORT_ONLY = frozenset({
+    "BANDS", "FAR", "CARRIES", "MIN_FIGHTS", "HYPER", "TOO_HARD", "DEAD_MOVES",
+    "DEAD_ABILITIES", "DRAFT_IV", "story_scores", "scale_line", "on_scale", "band",
+    "_main_list", "new_content", "obtainable", "dead_weight", "_fmt", "lever_table",
+    "species_table", "hyper_offense", "fully_evolved", "_changes", "report",
+    "_constants_by_name", "_fill", "_draft_party", "score_draft", "main"})
 
 
 _SCRIPT = re.compile(r'<script[^>]*src="\./(calc/[^"?]+)')
@@ -112,25 +136,17 @@ def engine_hash():
 
 
 @functools.lru_cache(maxsize=None)
-def engine_hash_folder():
-    """The first definition (2026-09-26), every file in the vendored
-    folder, kept for --restamp only."""
-    paths = [os.path.join(HERE, "calc_headless.js")]
-    for root, dirs, files in os.walk(CALC_DIR):
-        dirs.sort()
-        paths += [os.path.join(root, f) for f in sorted(files)]
-    return _hash_files(paths)
-
-
-@functools.lru_cache(maxsize=None)
-def scorer_hash(kind):
+def scorer_hash(kind, previous=False):
     """The code a kind of score is worked out by: pressure.py for all, and
-    the module that reduces or builds it for the others."""
+    the module that reduces or builds it for the others; for B6, b6.py
+    less its report (B6_REPORT_ONLY), or all of it for `previous`."""
     mods = {"pressure": ["pressure.py"], "calibrate": ["pressure.py"],
             "ref": ["pressure.py", "refpressure.py"], "shape": ["pressure.py", "shape.py"],
             "b6": ["pressure.py", "b6.py"], "b6lever": ["pressure.py", "b6.py"]}[kind]
-    return hashlib.sha256("".join(_code_hash(os.path.join(HERE, m)) for m in mods).encode()
-                          ).hexdigest()
+    return hashlib.sha256("".join(
+        _code_hash(os.path.join(HERE, m),
+                   B6_REPORT_ONLY if m == "b6.py" and not previous else frozenset())
+        for m in mods).encode()).hexdigest()
 
 
 def _names(o, species, moves):
@@ -148,9 +164,22 @@ def _names(o, species, moves):
             _names(v, species, moves)
 
 
-def fingerprint(kind, jobs, ctx, blob, engine=None):
+def _species_record(rec):
+    """A species' calculator record as the fingerprint reads it: without
+    its hidden ability ("H"). No score can reach that slot: every scored
+    Pokemon is given an ability (the side its first, a trainer's set its
+    own), and the engine falls back to slot "0" when one is missing. The
+    natives' hidden abilities (2026-09-27) added "H" to 451 records and so
+    changed every score's hash while changing no score."""
+    if not isinstance(rec, dict) or not isinstance(rec.get("abilities"), dict):
+        return rec
+    return dict(rec, abilities={k: v for k, v in rec["abilities"].items() if k != "H"})
+
+
+def fingerprint(kind, jobs, ctx, blob, previous=False):
     """The hash of everything that decides one score (the module's doc).
-    `engine` stands in for engine_hash() when --restamp needs the old one."""
+    `previous` hashes by the definition this one replaced, for --restamp:
+    B6's scorer hashed as the whole of b6.py (scorer_hash)."""
     species, moves = set(), set()
     _names(jobs["pokemon"], species, moves)
     _names(ctx, species, moves)
@@ -160,11 +189,11 @@ def fingerprint(kind, jobs, ctx, blob, engine=None):
     payload = {
         "jobs": jobs, "ctx": ctx,
         "blob": {"title": blob["title"], "type_chart": blob["type_chart"],
-                 "poks": {s: blob["poks"].get(s) for s in sorted(species)},
+                 "poks": {s: _species_record(blob["poks"].get(s)) for s in sorted(species)},
                  "moves": {m: blob["moves"].get(m) for m in sorted(moves)}},
         "accuracy": {m: acc.get(metrics._compact(pressure.MOVE_SPELLING.get(m, m)))
                      for m in sorted(moves)},
-        "engine": engine or engine_hash(), "scorer": scorer_hash(kind),
+        "engine": engine_hash(), "scorer": scorer_hash(kind, previous),
     }
     text = json.dumps(payload, sort_keys=True, default=sorted)
     return hashlib.sha256(text.encode()).hexdigest()[:20]
@@ -454,13 +483,12 @@ def _one(u, mode, blob, blob_path, files):
         u.store(dict(old, fingerprint=fp, verified=False))
         return "seeded", False
     if mode == "restamp":
-        # A score current under the first engine definition (the whole
-        # vendored folder) is current under the narrower one, which reads a
-        # subset of the same files; it keeps its verified mark.
+        # A score current under the previous definition is current under
+        # this one, which reads a subset of the same inputs; it keeps its
+        # verified mark.
         if current or old is None:
             return "left as it was", False
-        if old.get("fingerprint") != fingerprint(u.kind, jobs, fp_ctx, blob,
-                                                 engine=engine_hash_folder()):
+        if old.get("fingerprint") != fingerprint(u.kind, jobs, fp_ctx, blob, previous=True):
             return "stale either way", False
         u.store(dict(old, fingerprint=fp))
         return "restamped", False

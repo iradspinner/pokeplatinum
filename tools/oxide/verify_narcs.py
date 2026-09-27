@@ -262,9 +262,13 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
                 if (len(got) > len(new) and i not in imp.TEXT_BANKS_SKIPPED
                         and not isinstance(imp.message_body(new[0]), tuple)):
                     prefixed += 1
+                    # Entries reworded on purpose are left out
+                    # (import_base_rom.py's TEXT_ENTRIES_DIVERGED).
+                    intended = imp.TEXT_ENTRIES_DIVERGED.get(i, {})
                     bad = [f"[{s}] built {imp.message_body(h)!r} != ref {imp.message_body(w)!r}"
                            for s, (w, h) in enumerate(zip(new, got))
-                           if imp.message_body(w) != imp.message_body(h)
+                           if s not in intended
+                           and imp.message_body(w) != imp.message_body(h)
                            and not isinstance(imp.message_body(w), tuple)
                            and not isinstance(imp.message_body(h), tuple)]
                     if bad:
@@ -459,6 +463,28 @@ MODERN_PP_NATIVES = {
 # Barrier and Tailwind cut to 1 PP like the base ROM's other setup moves
 # (Ian, 2026-09-26, answering the native-moves report).
 SETUP_PP_NATIVES = {112, 366}
+# Every other native setup move brought into the same 1 to 3 PP band (Ian,
+# 2026-09-27, the Kaizo comparison's answer 2): Double Team, Harden, Focus
+# Energy, Stockpile, Cosmic Power, Bulk Up, Acupressure and Defend Order.
+KAIZO_SETUP_PP_NATIVES = {104, 106, 116, 254, 322, 339, 367, 455}
+# The stat-lowering status moves at Kaizo's low PP (Ian, 2026-09-27, answer 3):
+# Screech, Charm, Sweet Scent, Feather Dance, Fake Tears, Metal Sound, Tickle
+# and Captivate.
+KAIZO_DEBUFF_PP_NATIVES = {103, 204, 230, 297, 313, 319, 321, 445}
+# The native moves whose priority changed after Generation 4, at the modern
+# value (Ian, 2026-09-27, answer 4), read from the vendored calculator's
+# Generation 9 data: Protect, Detect and Endure +4, Extreme Speed +2, Fake
+# Out +3, Follow Me +2.
+MODERN_PRIORITY_NATIVES = {182, 197, 203, 245, 252, 266}
+# Drill Peck, Megahorn, X-Scissor, Power Whip and Dragon Claw given a high
+# critical-hit ratio, Slash's effect in place of a plain hit (Ian, 2026-09-27).
+HIGH_CRITICAL_NATIVES = {65, 224, 337, 404, 438}
+# The weak signature attacks raised to 80 to 90 power (Ian, 2026-09-27):
+# Octazooka, Needle Arm, Crush Claw, Poison Tail, Mirror Shot, Magnet Bomb.
+KAIZO_POWER_NATIVES = {190, 302, 306, 342, 429, 443}
+# 100 accuracy for the unreliable mid attacks (Ian, 2026-09-27): Hyper Fang,
+# Octazooka, Sky Uppercut, Dragon Rush, Rock Climb, Double Hit.
+KAIZO_ACCURACY_NATIVES = {158, 190, 327, 407, 431, 458}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -486,6 +512,11 @@ DIVERGED = {
             "why": "Poison Gas hits both foes, not the partner too (Ian, 2026-09-22)",
         },
         {
+            "offsets": (8, 9),  # range
+            "members": {178},
+            "why": "Cotton Spore hits both foes (Ian, 2026-09-27, the Kaizo comparison)",
+        },
+        {
             "offsets": (3,),  # power
             "members": MODERN_POWER_NATIVES,
             "why": "native moves given their modern power (Ian, 2026-09-26)",
@@ -504,6 +535,36 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": SETUP_PP_NATIVES,
             "why": "Barrier and Tailwind cut to 1 PP as setup moves (Ian, 2026-09-26)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": KAIZO_SETUP_PP_NATIVES,
+            "why": "the other native setup moves cut to 1 to 3 PP (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": KAIZO_DEBUFF_PP_NATIVES,
+            "why": "the stat-lowering status moves cut to 2 to 6 PP (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (10,),  # priority
+            "members": MODERN_PRIORITY_NATIVES,
+            "why": "native moves given their modern priority (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (0, 1),  # effect
+            "members": HIGH_CRITICAL_NATIVES,
+            "why": "five attacks given a high critical-hit ratio (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": KAIZO_POWER_NATIVES,
+            "why": "six weak attacks raised to 80 to 90 power (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (5,),  # accuracy
+            "members": KAIZO_ACCURACY_NATIVES,
+            "why": "six mid attacks given 100 accuracy (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power

@@ -107,7 +107,31 @@ _BATTLE = re.compile(r"^\s*(StartTrainerBattle|StartFirstBattle|StartTagBattle)\
 _NOT_OPPONENTS = {"StartTrainerBattle": 0, "StartFirstBattle": 0, "StartTagBattle": 1}
 _VISIBLE = re.compile(r"^VisibleItems_Entry(\d+):\n\s*SetVarFromValue VAR_0x8008, (\w+)", re.M)
 _HIDDEN = re.compile(r"HIDDEN_ITEM_ENTRY\((ITEM_\w+),\s*\d+,\s*\d+,\s*(FLAG_\w+)\)")
-_FLAG = re.compile(r"#define (FLAG_OBTAINED_HIDDEN_\w+|HIDDEN_ITEM_FLAGS_START)\s+(\d+)")
+_NUMBER = re.compile(r"0x[0-9a-fA-F]+|\d+")
+
+
+@functools.lru_cache(maxsize=None)
+def flag_values():
+    """{flag or var name: its number}, from the tree's own
+    generated/vars_flags.txt, numbered as metang numbers it for the build:
+    each name one past the name before, unless it is set to a number or to
+    an earlier name, which the count then continues from. This used to be
+    read from the build's generated header, but build/ is shared by every
+    session and holds whichever tree last built it, so on 2026-09-27 a
+    rename in another tree's list left this tree's hidden items unread."""
+    out, nxt = {}, 0
+    for line in _read("generated", "vars_flags.txt").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if "=" in line:
+            name, expr = (s.strip() for s in line.split("=", 1))
+            value = int(expr, 0) if _NUMBER.fullmatch(expr) else out[expr]
+        else:
+            name, value = line, nxt
+        out[name] = value
+        nxt = value + 1
+    return out
 VISIBLE_ITEM_SCRIPT, HIDDEN_ITEM_SCRIPT = 7000, 8000
 BG_HIDDEN_ITEM = 2   # bg event type; the others are signs and triggers
 
@@ -406,10 +430,10 @@ def items():
                _VISIBLE.findall(_read("res", "field", "scripts", "scripts_visible_items.s"))}
     # A hidden item's bg event script is 8000 plus its obtained-flag's offset
     # from HIDDEN_ITEM_FLAGS_START, not its position in gHiddenItems. The
-    # flag numbers come from the build's generated header.
-    flags = dict(_FLAG.findall(_read("build", "generated", "vars_flags.h")))
-    start = int(flags["HIDDEN_ITEM_FLAGS_START"])
-    hidden = {int(flags[flag]) - start: item for item, flag in
+    # flag numbers come from the tree's own flag list (flag_values).
+    flags = flag_values()
+    start = flags["HIDDEN_ITEM_FLAGS_START"]
+    hidden = {flags[flag] - start: item for item, flag in
               _HIDDEN.findall(_read("include", "data", "field", "hidden_items.h"))}
     out = []
     for header, fields in headers().items():

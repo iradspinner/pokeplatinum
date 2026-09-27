@@ -22,6 +22,13 @@ rulings by date, and anything to leave alone>. Branch: cloud/<track>-<topic>,
 cut from origin/oxide.
 ```
 
+Before a job that rewrites game data at scale (learnsets, trainers, tables,
+move data), put its outcome to Ian in one plain sentence ("this replaces 389
+level-up lists with ...") and wait for a yes; the prompt is written from
+that sentence, not from a recorded option. Write into the prompt the
+pitfalls its source docs already name: levels past the League cap, a
+reference hack's own changes to a move it teaches, dead-weight moves.
+
 Name every exclusion Ian made, since the session cannot ask. Suggest the
 model with it: Opus 5.5 at Medium for a data pass or a small engine fix, at
 High for anything touching the type chart, turn order, or many abilities at

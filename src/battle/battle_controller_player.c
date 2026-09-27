@@ -819,6 +819,24 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
 
                 battleCtx->turnStartCheckTemp++;
 
+                // Oxide: Beak Blast heats its user's beak here, under Focus
+                // Punch's conditions, and burns an attacker that makes contact
+                // until the user moves (BattleSystem_TriggerAbilityOnHit).
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
+                    && Battler_SelectedMove(battleCtx, battler) == MOVE_BEAK_BLAST
+                    && Battler_CheckTruant(battleCtx, battler) == FALSE
+                    && battleCtx->turnFlags[battler].struggling == FALSE) {
+                    BattleController_EmitClearMessageBox(battleSys);
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->turnFlags[battler].beakBlastHeating = TRUE;
+
+                    LOAD_SUBSEQ(subscript_beak_blast_start);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    return;
+                }
+
                 if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
                     && Battler_SelectedMove(battleCtx, battler) == MOVE_FOCUS_PUNCH
                     && Battler_CheckTruant(battleCtx, battler) == FALSE
@@ -1294,6 +1312,8 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_NIGHTMARE,
     MON_COND_CHECK_STATE_CURSE,
     MON_COND_CHECK_STATE_BIND,
+    MON_COND_CHECK_STATE_OCTOLOCK, // Oxide
+    MON_COND_CHECK_STATE_SALT_CURE, // Oxide
     MON_COND_CHECK_STATE_BAD_DREAMS,
     MON_COND_CHECK_STATE_UPROAR,
     MON_COND_CHECK_STATE_THRASH,
@@ -1498,6 +1518,51 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
 
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moveEffectsData.bindingMove;
                 battleCtx->msgBattlerTemp = battler;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_OCTOLOCK:
+            // Oxide: an octolocked battler loses a stage of Defense and one
+            // of Sp. Def. Its Octolock user stands as the attacker, which is
+            // who the stat checks weigh the drops against.
+            if ((battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_FLAG_OCTOLOCKED)
+                && battleCtx->battleMons[battler].curHP) {
+                battleCtx->attacker = battleCtx->battleMons[battler].moveEffectsData.meanLookTarget;
+                battleCtx->sideEffectMon = battler;
+                battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
+                battleCtx->msgBattlerTemp = battler;
+
+                LOAD_SUBSEQ(subscript_octolock_turn);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SALT_CURE:
+            // Oxide: a salted battler loses an eighth of its maximum HP, a
+            // quarter if it is a Water or Steel type, as in Generation 9,
+            // unless it has Magic Guard.
+            if ((battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_FLAG_SALT_CURED)
+                && battleCtx->battleMons[battler].curHP
+                && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
+                int type1 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_1, NULL);
+                int type2 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL);
+                BOOL doubled = type1 == TYPE_WATER || type2 == TYPE_WATER || type1 == TYPE_STEEL || type2 == TYPE_STEEL;
+
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, doubled ? 4 : 8);
+                battleCtx->msgBattlerTemp = battler;
+
+                LOAD_SUBSEQ(subscript_salt_cure_damage);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -1772,6 +1837,7 @@ enum SideCondCheckState {
     SIDE_COND_CHECK_STATE_PERISH_SONG,
     SIDE_COND_CHECK_STATE_TRICK_ROOM,
     SIDE_COND_CHECK_STATE_WONDER_ROOM, // Oxide
+    SIDE_COND_CHECK_STATE_MAGIC_ROOM, // Oxide
 
     SIDE_COND_CHECK_END
 };
@@ -1879,6 +1945,18 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
                 PrepareSubroutineSequence(battleCtx, subscript_wonder_room_end);
                 return;
             }
+        }
+
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
+        // fall-through
+
+    case SIDE_COND_CHECK_STATE_MAGIC_ROOM:
+        // Oxide: Magic Room counts down its five turns straight after
+        // Wonder Room, as the later games do.
+        if (battleCtx->magicRoomTurns && --battleCtx->magicRoomTurns == 0) {
+            PrepareSubroutineSequence(battleCtx, subscript_magic_room_end);
+            return;
         }
 
         battleCtx->sideConditionCheckState++;
@@ -2454,6 +2532,7 @@ static int BattleControllerPlayer_CheckTypeChart(BattleSystem *battleSys, Battle
 enum CheckStatusState {
     CHECK_STATUS_START = 0,
 
+    CHECK_STATUS_STATE_SKY_DROP, // Oxide
     CHECK_STATUS_STATE_SLEEP,
     CHECK_STATUS_STATE_FREEZE,
     CHECK_STATUS_STATE_TRUANT,
@@ -2503,6 +2582,17 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
         case CHECK_STATUS_START:
             ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_DESTINY_BOND;
             ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_GRUDGE;
+            battleCtx->statusCheckState++;
+            break;
+
+        case CHECK_STATUS_STATE_SKY_DROP:
+            // Oxide: a battler held in the air by Sky Drop does nothing until
+            // it is dropped, as in Generation 5 on.
+            if (Battler_SkyDropHeld(battleCtx, battleCtx->attacker)) {
+                battleCtx->command = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
             battleCtx->statusCheckState++;
             break;
 
@@ -3244,6 +3334,21 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         // Oxide: the missed subscript names a side guard; MOVE_NONE there
         // means the defender's own Protect or Detect.
         battleCtx->msgMoveTemp = battleCtx->turnFlags[defender].protecting ? MOVE_NONE : sideGuard;
+
+        // Oxide: Spiky Shield hurts an attacker that made contact with it,
+        // and Baneful Bunker poisons it, as in hg-engine
+        // (BtlCmd_checkprotectcontactmoves); the missed subscript does it
+        // once it has said the defender protected itself. The accuracy roll
+        // came first, and a miss it rolled would stop the poison, though
+        // the shield stopped the move before any roll in the later games.
+        if (battleCtx->turnFlags[defender].protecting
+            && (battleCtx->moveProtect[defender] == MOVE_SPIKY_SHIELD
+                || battleCtx->moveProtect[defender] == MOVE_BANEFUL_BUNKER)
+            && Battler_MoveMakesContact(battleCtx, attacker, move)) {
+            battleCtx->msgMoveTemp = battleCtx->moveProtect[defender];
+            battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
+        }
+
         return 0;
     }
 
@@ -4184,6 +4289,22 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
 
 static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx)
 {
+    // Oxide: Mind Blown's user pays half its maximum HP here, once, after
+    // every target has been tried, whether the move hit, missed or was
+    // blocked, as hg-engine charges it after the move. The subscript is
+    // Chloroblast's, which Magic Guard skips. This state is entered again
+    // afterwards, for Explosion's faint.
+    if (ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_MIND_BLOWN) {
+        ATTACKER_SELF_TURN_FLAGS.statusFlags &= ~SELF_TURN_FLAG_MIND_BLOWN;
+
+        if (ATTACKING_MON.curHP) {
+            LOAD_SUBSEQ(subscript_recoil_half_max_hp);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT;
+            return;
+        }
+    }
+
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
@@ -5014,6 +5135,7 @@ enum AfterMoveHitState {
 
     AFTER_MOVE_HIT_STATE_RAGE = AFTER_MOVE_HIT_START,
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
+    AFTER_MOVE_HIT_STATE_FLAME_BURST, // Oxide
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
 
     AFTER_MOVE_HIT_STATE_END
@@ -5025,6 +5147,7 @@ enum AfterMoveHitState {
  * This handles:
  * - turning off the Rage flag if the attacker did not use Rage again
  * - granting Shell Bell HP restoration
+ * - Oxide: Flame Burst's splash on the target's partner
  * - deducting HP due to Life Orb
  *
  * @param battleSys
@@ -5073,6 +5196,35 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 
             battleCtx->afterMoveHitCheckState++;
             break;
+
+        case AFTER_MOVE_HIT_STATE_FLAME_BURST: {
+            // Oxide: when Flame Burst hits, the burst takes a sixteenth of
+            // the maximum HP of the target's partner, unless it has Magic
+            // Guard or is out of reach in the air, underground or
+            // underwater, as hg-engine does (Activate_FlameBurstHit). Only
+            // a double battle has a partner.
+            int partner = battleCtx->defender == BATTLER_NONE ? BATTLER_NONE : BattleSystem_GetPartner(battleSys, battleCtx->defender);
+
+            if (battleCtx->moveCur == MOVE_FLAME_BURST
+                && partner != BATTLER_NONE
+                && partner != battleCtx->defender
+                && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+                && battleCtx->battleMons[partner].curHP
+                && Battler_Ability(battleCtx, partner) != ABILITY_MAGIC_GUARD
+                && (battleCtx->battleMons[partner].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE) {
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[partner].maxHP * -1, 16);
+                battleCtx->msgBattlerTemp = partner;
+
+                LOAD_SUBSEQ(subscript_flame_burst);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                machineState = STATE_BREAK_OUT;
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
 
         case AFTER_MOVE_HIT_STATE_LIFE_ORB:
             if (itemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK

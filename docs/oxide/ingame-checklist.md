@@ -73,7 +73,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Meteor Beam charging for a turn with a Sp. Atk raise, then hitting, or
   hitting at once holding the Power Herb the set gives. Set 53: Electro Shot
   the same way out of rain, and raising Sp. Atk and hitting in one turn after
-  Rain Dance. A stub
+  Rain Dance. Sets 54 to 67, the partly working moves (2026-09-27), set 54 on
+  the same page and the rest on the third: Mind Blown costing half Mew's HP
+  even into Protect (54) and stopped by Damp at no cost (55), Nature's
+  Madness usable under Taunt (56), Scale Shot's Defense drop and Speed rise
+  (57), Spiky Shield hurting and Baneful Bunker poisoning a Tackle but not a
+  Swift (58, 59), Salt Cure's damage each turn, doubled after Soak (60),
+  Octolock's drops each turn (61), Magic Room stopping Leftovers for five
+  turns (62), Teatime eating a Liechi Berry at full HP (63), Core Enforcer
+  against a faster Volt Absorb Jolteon (64), Beak Blast burning a Tackle
+  (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
+  affecting a Skarmory (67). A stub
   effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
@@ -135,6 +145,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   lowering your lead's Attack; the flag clears itself after that one use.
   "Items restored": Mew eats its Sitrus Berry after Belly Drum, and has it
   back in its summary after the battle.
+- [ ] **The Kaizo move data** (Modern rules, "Kaizo move data";
+  `cloud/element4-kaizo-move-data`, Ian's rulings of 2026-09-27). Switch Mew
+  in on the first turn. From then the wild Shuckle's Fake Out ("But it
+  failed!") comes before Mew's Extreme Speed every turn, though Mew is far
+  faster. Minimize says "sharply rose!". Mew's summary shows Minimize at 3 PP.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -150,6 +165,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
+  TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
+  Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
+  Claw land critical hits noticeably more often than Peck or Scratch.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.
@@ -227,6 +246,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] Double battles, once a trainer uses these moves (none does yet;
+  `cloud/element4-partial-moves`): Flame Burst hits its target's partner for
+  a sixteenth of its HP with "The bursting flame hit ...!"; Teatime's target
+  screen shows every battler, as Haze's does, and it feeds every Pokemon on
+  the field its Berry; Core Enforcer leaves the ability of a foe that has not
+  moved yet alone.
 - [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
   works everywhere but a gauntlet: the Great Marsh, the Underground, the
   Distortion World, and the Battle Frontier's lobbies. Each should either open
@@ -275,8 +300,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] Fomantis evolves into Lurantis at level 34.
-- [ ] A Dusk Stone has no effect on Polteageist (it no longer evolves into
-  Sinistcha). Galactic HQ B2F: the nine stone balls around the Galactic Key
+- [ ] A Dusk Stone has no effect on Polteageist; on Sinistea a Dusk Stone
+  makes Polteageist and a Leaf Stone makes Sinistcha. Galactic HQ B2F: the nine stone balls around the Galactic Key
   (x 19 to 22, z 3 to 6) are gone; the Galactic Key, TM36 and the Secret Key
   balls are still there. Once taken, the Secret Key ball does not come back
   the next day. Stark Mountain room 2 has no fossil balls at all.

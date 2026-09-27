@@ -313,6 +313,8 @@ void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, i
  * @param battler
  */
 void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+BOOL Battler_SkyDropHeld(BattleContext *battleCtx, int battler);
+void Battler_ReleaseSkyDropTargets(BattleContext *battleCtx, int holder);
 
 /**
  * @brief Calculate the status effect value for a battler's non-volatile

@@ -6,7 +6,7 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-26).** Test.nds is Oxide's base ROM, with Ian's
+**Where it stands (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
@@ -17,7 +17,14 @@ misread: safe switch-ins read both best ("What B3b and B5 found", "What
 Ian's ratings showed"). Every score is on the combined branch of
 2026-09-27 (the calculator's items 22 and 23, the friendship and trade
 evolutions, the new grass tables and sources, Heatran out of Stark
-Mountain), and rescores are incremental. Next: B6's runs. Ian approved
+Mountain, the Kaizo move data and element 4's partly working moves, the
+Sinistea split), and rescores are incremental. The encounter tool's team
+builder scores a team through `teamscore.py`. B6 is done ("What B6 found"): the bottom band
+is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
+fights with their damage spread across each team, and of the player's
+levers only caps and map weather move the scores much. Next: the design
+passes, starting with the learnset study (design pass 3): Kaizo's
+patterns as rules, then a generator that proposes lists. Ian approved
 the stone plan; no questions are open.
 
 ## The target
@@ -208,8 +215,10 @@ Ian's rulings, 2026-09-27, on the Kaizo comparison (`docs/oxide/kaizo-comparison
   leave critical hits out); the power, accuracy and priority changes
   stale only the fights where those moves appear, for an incremental
   rescore.
-- **Learnsets**: Kaizo's level-up lists are the line-by-line template for
-  this track's learnset pass, adjusted to Oxide's rulings and splits.
+- **Learnsets** (answer 6 as Ian corrected it the same day): Kaizo's
+  level-up lists are studied for when and why each move is given, and the
+  rules become a generator that proposes lists inside Oxide's caps; the
+  lists are not copied (design pass 3, "The learnset study").
   Strong moves may sit at level 1 on evolved stages, as Kaizo has them,
   which makes each worth a Heart Scale at the Move Relearner. No split has
   a ceiling on coverage power; the rescore judges each move. The move
@@ -220,7 +229,24 @@ bosses**, Dahlia at the Veilstone Game Corner (Maylene's split), Darach at
 the Pokemon Mansion (Wake's), Thorton at Fuego Ironworks (Byron's), and
 tentatively Argenta at Pal Park (Byron's) and Palmer at the Resort Area's
 entrance (Galactic's). Ian builds the teams, and this track scores each
-draft as it comes, so he sees where it lands on his fight scale.
+draft as it comes, so he sees where it lands on his fight scale
+(`b6.py --draft`, `--trick-room` for Thorton).
+
+The first drafts (2026-09-27, `docs/oxide/frontier-brains.md`) name
+species only, so each member is scored at the split's cap with the game's
+own default moves for that level, no item and IVs of 30. That reads
+softer than a finished team will, so these are a floor:
+
+| Brain | Split (cap) | Safe switch-ins | On Ian's fight scale |
+|---|---|---|---|
+| Dahlia | Maylene (39) | 0.57 | about 5.3 |
+| Darach | Wake (44) | 0.64 | about 4.8 |
+| Thorton, under Trick Room | Byron (53) | 0.58 | about 5.2 |
+| Argenta | Byron (53) | 0.54 | about 5.5 |
+| Palmer | Galactic (65) | 0.21 | about 7.8 |
+
+Dahlia's Wonder Room is not modelled, and Darach's double battle is scored
+as singles, as every double is.
 
 ## What the first look found
 
@@ -473,17 +499,17 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 104 | 30 |
-| Gardenia | 26 | 177 | 42 |
-| Fantina | 33 | 272 | 48 |
-| Maylene | 39 | 348 | 78 |
-| Wake | 44 | 393 | 88 |
-| Byron | 53 | 417 | 103 |
-| Candice | 56 | 430 | 109 |
-| HQ | 60 | 431 | 112 |
-| Galactic | 65 | 436 | 124 |
-| Volkner | 68 | 436 | 125 |
-| League | 78 | 436 | 128 |
+| Roark | 16 | 104 | 18 |
+| Gardenia | 26 | 177 | 32 |
+| Fantina | 33 | 272 | 40 |
+| Maylene | 39 | 348 | 72 |
+| Wake | 44 | 393 | 84 |
+| Byron | 53 | 417 | 99 |
+| Candice | 56 | 430 | 105 |
+| HQ | 60 | 431 | 108 |
+| Galactic | 65 | 436 | 120 |
+| Volkner | 68 | 436 | 121 |
+| League | 78 | 436 | 124 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -523,8 +549,11 @@ most threatening Pokemon and its least answered one.
 
 Both tables were recomputed on 2026-09-27 for the combined branch (the
 calculator's item 23, the friendship and trade evolutions, the new grass
-tables and sources, Heatran out of Stark Mountain), which moves no Oxide
-fight by more than 0.02; before that on 2026-09-26 for the calculator following the
+tables and sources, Heatran out of Stark Mountain, then the Kaizo move
+data and element 4's partly working moves, and the stone plan's and the
+Underground's item removals, which cut the items each split holds, then
+Ian's Sinistea split, which adds a species to every split from Fantina's),
+which moves no Oxide fight by more than 0.02; before that on 2026-09-26 for the calculator following the
 engine's computed powers (the encounter track's item 22), which moves no
 Oxide fight by more than 0.002 and leaves both tables as they were; before
 that the same day for the modern move values, the
@@ -726,7 +755,7 @@ left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 | Fight | Ian | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
 |---|---|---|---|---|---|
 | Mars and Jupiter, Spear Pillar | 9 | 0.31 | 0.59 | 0.50 | 12 |
-| Cyrus 3 | 8.5 | 0.48 | 0.26 | 0.24 | 5 |
+| Cyrus 3 | 8.5 | 0.50 | 0.26 | 0.24 | 5 |
 | Saturn 2 | 8.5 | 0.39 | 0.35 | 0.36 | 7 |
 | Candice | 8.5 | 0.65 | 0.18 | 0.34 | 9 |
 | Wake | 8 | 0.74 | 0.19 | 0.32 | 2 |
@@ -854,6 +883,91 @@ from, so they are kept here in brief.
   and Luxray, the team's only Ground-weak pair with no Levitate or Flying
   cover; Delcatty and Umbreon hit weakly. "A box check": it needs specific
   answers, but it has no awkward baiting and little setup that matters.
+
+## What B6 found (2026-09-27)
+
+B6 scores every ordinary trainer the player meets (428, 40 of them
+required) and each story fight under one change at a time
+(`b6.py --report`; all 458 scores verified by a second run). Every fight
+is placed on Ian's fight scale by the line above, now 9.3 minus 7.1 times
+safe switch-ins. The line bottoms out at 2.2: a party whose Pokemon never
+double up on a knockout leaves every switch-in safe. So the bottom band
+(0 to 2) is safe switch-ins of 0.95 or more.
+
+**Goal 2, more fights in the middle and fewer at the bottom.** The story
+fights are mostly in the middle already. Five sit at the bottom (Barry 1,
+2 and 3, Mars 1, Jupiter 1), and seven at the top (Byron, Cyrus 3, Flint,
+Lucian, Cynthia and both Hesperid fights, 7.6 to 8.0). The ordinary
+trainers are where the bottom is:
+
+| Split | Bottom (0 to 2), all / required | Middle (3 to 7), all / required |
+|---|---|---|
+| Roark | 18 / 3 | 0 / 0 |
+| Gardenia | 37 / 8 | 0 / 0 |
+| Fantina | 43 / 3 | 1 / 0 |
+| Maylene | 25 / 1 | 13 / 4 |
+| Wake | 51 / 5 | 21 / 2 |
+| Byron | 36 / 1 | 25 / 3 |
+| Candice | 21 / 3 | 9 / 3 |
+| HQ | 3 / 0 | 9 / 0 |
+| Galactic | 16 / 0 | 49 / 0 |
+| Volkner | 13 / 0 | 7 / 1 |
+| League | 9 / 1 | 20 / 1 |
+
+Two ordinary trainers sit at the top. Before Maylene's split, 98 of 99
+ordinary trainers are at the bottom, and only 15 of the 40 required ones
+reach the middle anywhere. Party size decides it: all 166 one-Pokemon
+trainers are at the bottom, 79 of 139 with two, 20 of 105 with three,
+and 7 of 18 with four or more. So the lever for goal 2 is the trainer
+pass's party sizes, and the gauntlets, which string bottom-band fights
+into one test.
+
+**Goal 1, the hyper-offense.** Six fights meet the test (threat by chance
+0.55 or more, four tactics or fewer, two thirds of turns called): Maylene,
+Wake, Volkner, Flint, Lucian and Cynthia. Their damage is spread across
+the team: no single boss-side change cuts a fight's threat by more than
+0.08 (Maylene's Cacturne without Sucker Punch). So curbing them means
+several changes in each, trading damage for the tactics the scores cannot
+see, as Ian's own peak fights do. Four of the six carry Choice items
+(Wake's Sharpedo, Volkner's Electivire, Flint's Infernape and Magmortar),
+which Ian's ruling takes off.
+
+**Flint and Byron, the two Ian named as perhaps too hard**, read 7.8 and
+7.6. Flint's is Fire doubling up: Infernape and Magmortar knock out the
+same 310 player Pokemon in one hit between them. Taking Magmortar's
+Choice Specs off gives back 0.106 of safe switch-ins, and Infernape out
+0.150, so the Choice ruling alone brings him down most of a point.
+Byron's is Forretress's Explosion, which the scores count as a one-hit
+knockout on most of the side: without it his safe switch-ins rise 0.185,
+from 7.6 to about 6.3. The scores count every Explosion as a knockout, not
+a one-time trade, so they overrate that part of Byron, the thing Ian
+named.
+
+**Goal 4, the player's levers.** Caps and map weather are the only strong
+ones. Two cap levels move a split's fights by 0.03 to 0.11 of answers and
+0.03 to 0.08 of safe switch-ins. Pastoria Gym's rain is the biggest
+single lever: without it Wake's fight gains 0.125 of safe switch-ins.
+Roark's and Bertha's sand cost the player about 0.07 of answers each.
+Items and TMs barely move anything: Life Orb one split earlier is worth
+0.05, Choice Specs 0.04, and every TM or HM one split earlier 0.016 or
+less, 56 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
+TM pass can place TMs for variety; and the player's Choice items going
+away costs only 0.026 of answers. No species is the only sure answer to
+any boss Pokemon, so no fight needs a particular catch. A fully evolved
+species' median share of boss Pokemon surely answered is 0.58; three stand
+far above it: Giratina 0.97, Dusknoir 0.92 and Feraligatr 0.88. Only
+Unown answers nothing. The report also lists everything Ian's cuts of
+2026-09-27 touch (design pass 3).
+
+**Goal 3, the added content.** By the League, 126 of the player's 434
+species are new to Oxide, but the trainers use 3 new species in about
+1,050 Pokemon, and no new move or ability at all. Bringing the new
+content in is the trainer pass's job.
+
+**The legendary gate** (Ian, 2026-09-27): not yet. Nothing here has moved
+the difficulty; the bottom band and the hyper-offense are as the base ROM
+left them, so the question of Valor Cavern and Stark Mountain stays
+closed until the trainer pass lands and is rescored.
 
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 
@@ -1225,7 +1339,7 @@ on 2026-09-27 (design pass 2).
   rated sixteen fights and explained the ones the scores misread; from
   that came baited Choice locks, setup branches and safe switch-ins, and
   safe switch-ins read both his hack ratings (R squared 0.91) and his
-  fight ratings (minus 0.59) best ("What B3b and B5 found", "What Ian's
+  fight ratings (minus 0.58) best ("What B3b and B5 found", "What Ian's
   ratings showed"). Ian's fight scale is his own design scale, separate
   from the game scale (2026-09-26); the line above translates the readings
   onto it. Left: the double battle,
@@ -1252,18 +1366,23 @@ on 2026-09-27 (design pass 2).
   run, on the combined branch (the calculator's item 23, the friendship
   and trade evolutions, the new grass tables and sources), recomputed all
   507 and verified all 507 with no disagreement; the classic starters'
-  move that followed staled none, and the Heatran fix staled the 259 built
-  on the Galactic, Volkner and League sides. The engine part covers only
-  the calculator files the runner loads, so no game C, battle script or
-  AI change stales a score. test_b3 checks the scores before B6 and
-  test_b6 checks B6's.
+  move that followed staled none, the Heatran fix staled the 259 built
+  on the Galactic, Volkner and League sides, and the Kaizo move data with
+  element 4's partly working moves staled 489, all but Roark's split. The
+  engine part covers only the calculator files the runner loads, so no
+  game C, battle script or AI change stales a score, and a species'
+  hidden-ability slot, which no score can reach, is left out, since the
+  natives' hidden abilities otherwise staled all 507 while changing none.
+  Hidden items' flag numbers come from the tree's own flag list, not the
+  shared build folder's header, which holds whichever tree last built it.
+  test_b3 checks the scores before B6 and test_b6 checks B6's.
 
   ```
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore            # what changed
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore --verify   # the second run
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore --status   # counts only
   ```
-- [ ] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
+- [x] **B6, the audit**, aimed at Ian's four goals of 2026-09-26 ("The
   target"). Every Oxide fight placed on his fight scale, the required
   ordinary trainers included (they are not scored yet, and they are most of
   the 0 to 2 fights); the fights whose difficulty is all damage (high
@@ -1280,10 +1399,34 @@ on 2026-09-27 (design pass 2).
   the matchups a change touches. `b6.py --report` gives the findings by
   goal, `--content` adds the count of new species, moves and abilities on
   each side, and `--draft` scores one of Ian's Frontier Brain drafts in a
-  split and places it on his fight scale. The runs wait for the suite
-  slot. Already clear from the counts: by the League 127 of the player's
-  439 species are new, while the trainers use 3 new species in about 1,050
-  Pokemon and no new move or ability at all.
+  split and places it on his fight scale. Run and verified on 2026-09-27;
+  "What B6 found" has the findings. The report's own code is left out of
+  B6's fingerprint (`rescore.B6_REPORT_ONLY`), so editing it stales no
+  score.
+- [x] **The team builder's two numbers** (Ian, 2026-09-27): the encounter
+  tool's team builder edits a trainer's team and shows where it lands on
+  Ian's fight scale. It calls `teamscore.py` (interface agreed with the
+  encounter tool builder on 2026-09-27). `score(stem, data)` runs the full
+  scorer on the trainer's fight (its story fight when it has one, else
+  the split B6 places it in, in its map's weather and the engine's
+  permanent Trick Room table) and returns the plan's number, with the
+  same seat in each reference hack for a story fight; about 1 second
+  early in the game and up to 20 late. `estimate(stem, data)` is the
+  instant number, 0.01 to 0.06 seconds: each boss Pokemon against the
+  split's side by the Generation 4 damage formula at the middle roll in
+  plain Python (stats from base stats, level, IVs, EVs and nature; move
+  power, type, STAB and effectiveness; the attack items and Choice Scarf;
+  no ability, weather or critical hit), read as the plan's safe
+  switch-ins, threat and answers, with safe switch-ins corrected by a line
+  fitted to the full scorer over every stored fight (`teamscore.json`,
+  `--fit`). A team the builder saves stales its fight's scores as usual.
+  The estimate is for steering an edit, and the full score is the number
+  to quote; its distance from the full score, in points of Ian's scale:
+
+  | Fights | Mean | Worst |
+  |---|---|---|
+  | The 28 story fights | 0.26 | 1.0 (Maylene, read too easy) |
+  | All 456 stored fights | 0.13 | |
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
@@ -1333,7 +1476,7 @@ lands, and each change is re-scored as it lands.
    | Fire | 5, from Fantina's split | Ninetales (Roark's), Flareon (Fantina's) |
    | Water | 5, from Fantina's | Ludicolo (Roark's), Poliwrath (Gardenia's), Vaporeon, Starmie, Cloyster |
    | Thunder | 5, from Fantina's | Vikavolt, Pawmot, Raichu (Gardenia's), Jolteon |
-   | Leaf | 5, from Gardenia's | Shiftry (Roark's) |
+   | Leaf | 5, from Gardenia's | Shiftry (Roark's), Sinistcha (Fantina's; since the Sinistea ruling) |
    | Moon | 4, from Gardenia's | Nidoqueen, Nidoking, Delcatty (Roark's), Clefable, Umbreon |
    | Sun | 4, from Fantina's | Espeon and Armarouge (both Fantina's) |
    | Shiny | 5, from Fantina's | Cinccino (Roark's), Togekiss, Roserade, Florges |
@@ -1348,9 +1491,12 @@ lands, and each change is re-scored as it lands.
    item; `stones.py` now counts each hidden item once, and the figures
    here are recounted.
 
-   The census also turned up a data error, which the main track fixes:
-   Polteageist evolves into Sinistcha by Dusk Stone here, where the later
-   games have Sinistcha come from Poltchageist.
+   The census also turned up what looked like a data error, Polteageist
+   evolving into Sinistcha by Dusk Stone. **Superseded** (Ian, 2026-09-27):
+   Sinistea splits, a Dusk Stone making Polteageist and a Leaf Stone making
+   Sinistcha, which was always his intention. So the Leaf Stone gains a
+   second claimant, Sinistea for Sinistcha from Fantina's split, beside
+   Shiftry, and the one Leaf Stone the plan keeps becomes a contest.
 
    **Ian's rulings on the census** (2026-09-27): the Underground closes,
    since the player is never given the Explorer Kit; both bulk sets go,
@@ -1373,7 +1519,7 @@ lands, and each change is re-scored as it lands.
    | Fire | Solaceon Ruins (Maylene's) | Fuego Ironworks, Stark Mountain | Ninetales, Flareon |
    | Water | Solaceon Ruins (Maylene's), Route 213 (Wake's) | Route 230 | Ludicolo, Poliwrath, Vaporeon, Starmie, Cloyster |
    | Thunder | Solaceon Ruins (Maylene's), Sunyshore (Volkner's) | the one on the Resort Area's border with Route 229 | Raichu, Vikavolt, Pawmot (all from Gardenia's), Jolteon |
-   | Leaf | Floaroma Meadow (Gardenia's) | Great Marsh, Route 225 | Shiftry, the one line that can use it |
+   | Leaf | Floaroma Meadow (Gardenia's) | Great Marsh, Route 225 | Shiftry and, since the Sinistea ruling, Sinistcha |
    | Moon | Eterna City (Gardenia's; it is also Route 211 west's, on their border), Mt. Coronet outside north (Galactic's) | none | Nidoqueen, Nidoking, Delcatty, Clefable, Umbreon |
    | Sun | Valor Lakefront (Wake's), the one Ian asked for | Mt. Coronet 4F | Espeon, Armarouge |
    | Shiny | Route 212 south (Wake's), where the hidden Dawn Stone becomes a Shiny Stone; Iron Island B3F (Byron's); Route 228 (Galactic's) | Route 210 north | Cinccino, Togekiss, Roserade, Florges |
@@ -1464,6 +1610,37 @@ lands, and each change is re-scored as it lands.
      as HMs, and their TM slots become other moves in the TM pass.
    - Type-flavoured near-duplicates stay, as do Land's Wrath, Flame Burst
      and Sludge. The rest of the cull waits for the TM pass.
+
+   **The learnset study** (Ian, 2026-09-27; `docs/oxide/kaizo-comparison.md`,
+   answer 6). A study of when and why Kaizo gives each move, written as
+   rules and turned into a generator that proposes level-up lists for any
+   species and any move, the later generations' moves included, inside
+   Oxide's caps. It writes no game data. It replaces the first reading of
+   answer 6, which copied Kaizo's lists line by line: that copy
+   (`cloud/balance-learnset-pass`) and this track's review of it
+   (`balance-learnset-review`) stay unmerged as reference. Ian's points
+   against the copy were Stone Edge at 87 when the League cap is 78, Dig
+   added widely although Kaizo made Dig a one-turn 60, and wholesale
+   changes while many moves are still broken.
+
+   1. Relate, for each Kaizo line, every move's level to the move's real
+      strength as Kaizo has it (`docs/oxide/kaizo-move-changes.md` first),
+      to whether it is same-type or coverage, to the evolution stage, and
+      to the gym split it lands in under Kaizo's own caps.
+   2. Write the findings as rules (when the first strong same-type move
+      arrives against a split, how coverage is timed, and the like), and
+      test them by how well they predict Kaizo's own lists, some lines held
+      out.
+   3. Build the generator. It proposes; a sweeping pass comes only when Ian
+      chooses one, after the broken moves are fixed. It keeps every level
+      at or under the League cap of 78 unless a line is post-game only; it
+      drops dead-weight moves by a rule that catches the ones Ian named as
+      never good (Absorb, Wrap, Constrict, Barrage, Snore, Rage, Razor
+      Wind, Bide, Comeuppance, vanilla Octazooka and Submission) rather
+      than by the list alone; and it follows the standing rulings (no
+      weather move for an obtainable species, the move pool's first cut).
+      Before part 3 is built, a one-paragraph summary of the rules goes to
+      Ian through the Overseer, so he can confirm the direction.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

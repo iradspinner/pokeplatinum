@@ -9267,6 +9267,202 @@
         "The foe’s {STRVAR_1 1, 0, 0} bounced\n",
         "the {STRVAR_1 6, 1, 0} back!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasHurt_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasHurt_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasHurt_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheBurstingFlameHitPokemon_Ally",
+      "en_US": [
+        "The bursting flame hit\n",
+        "{STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheBurstingFlameHitPokemon_Wild",
+      "en_US": [
+        "The bursting flame hit\n",
+        "the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_TheBurstingFlameHitPokemon_Foe",
+      "en_US": [
+        "The bursting flame hit\n",
+        "the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsBeingSaltCured_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "is being salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is hurt\n",
+        "by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "is hurt by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsHurtBySaltCure_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "is hurt by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can no longer\n",
+        "escape because of Octolock!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can no\n",
+        "longer escape because of Octolock!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanNoLongerEscapeBecauseOfOctolock_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can no\n",
+        "longer escape because of Octolock!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_ItCreatedABizarreAreaInWhichPokemonsHeldItemsLoseTheirEffects",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Pokémon’s held items lose\f",
+        "their effects!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_MagicRoomWoreOffAndHeldItemsEffectsReturnedToNormal",
+      "en_US": [
+        "Magic Room wore off, and held\n",
+        "items’ effects returned to normal!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_ItsTeatimeEveryoneDugInToTheirBerries",
+      "en_US": [
+        "It’s teatime! Everyone dug in to\n",
+        "their Berries!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the wild\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the foe’s\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took the\n",
+        "wild {STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took the\n",
+        "foe’s {STRVAR_1 1, 1, 0} into the sky!"
+      ]
     }
   ]
 }
