@@ -1,10 +1,11 @@
 {
     "name": "Drill Peck",
     "description": [
-        "A corkscrewing\n",
-        "attack with the\n",
-        "sharp beak acting\n",
-        "as a drill.\n"
+        "A corkscrewing attack\n",
+        "with the sharp beak\n",
+        "acting as a drill.\n",
+        "It has a high\n",
+        "critical-hit ratio."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
