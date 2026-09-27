@@ -326,6 +326,10 @@
             "en_US": "Level caps"
         },
         {
+            "id": "TestKit_Text_MenuItems",
+            "en_US": "Element 7 items"
+        },
+        {
             "id": "TestKit_Text_WhichCap",
             "en_US": "Which split?"
         },
@@ -912,6 +916,21 @@
             "en_US": [
                 "Your party has no room.\n",
                 "Put some Pokémon in a box first."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WhichItems",
+            "en_US": "Which items?"
+        },
+        {
+            "id": "TestKit_Text_MenuItemsAll",
+            "en_US": "All new items"
+        },
+        {
+            "id": "TestKit_Text_ItemsAll",
+            "en_US": [
+                "One of each of the 46 new items\n",
+                "is in the Bag."
             ]
         }
     ]

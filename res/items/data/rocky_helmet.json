@@ -1,0 +1,30 @@
+{
+  "name": "Rocky Helmet",
+  "plural": "Rocky Helmets",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "If the holder is hit, the attacker\n",
+    "will also be damaged upon contact."
+  ],
+  "icon": {
+    "sprite": "rocky_helmet_NCGR",
+    "palette": "rocky_helmet_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 6,
+  "holdEffect": "HOLD_EFFECT_ROCKY_HELMET",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 60,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

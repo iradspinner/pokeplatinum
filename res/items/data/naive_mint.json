@@ -1,0 +1,30 @@
+{
+  "name": "Naive Mint",
+  "plural": "sprigs of Naive Mint",
+  "article": "a",
+  "description": [
+    "Having a Pokémon smell this mint can\n",
+    "make its Speed stat grow stronger.\n",
+    "However, its Sp. Def stat may suffer."
+  ],
+  "icon": {
+    "sprite": "naive_mint_NCGR",
+    "palette": "naive_mint_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

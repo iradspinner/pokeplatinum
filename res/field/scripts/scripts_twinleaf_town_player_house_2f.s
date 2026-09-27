@@ -469,6 +469,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
+    AddListMenuEntry TestKit_Text_MenuItems, 17
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -488,6 +489,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
+    GoToIfEq VAR_0x8004, 17, TestKit_Items
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -3149,6 +3151,68 @@ TestKit_StapleKaizoMoves:
     SetVar VAR_0x8002, MOVE_FAKE_OUT
     SetVar VAR_0x800A, SPECIES_MEW
     GoTo TestKit_GivePokemonWithMoves
+
+/* Element 7's items (docs/oxide/test-kit.md, "The item entries"). "All new
+   items" puts one of each of the 46 in the bag, for their names, icons,
+   pockets and descriptions; the entries after it set up a battle for one
+   item or a group. */
+TestKit_Items:
+    Message TestKit_Text_WhichItems
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuItemsAll, 0
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
+    GoTo TestKit_Close
+
+TestKit_ItemsAll:
+    AddItem ITEM_EVIOLITE, 1, VAR_RESULT
+    AddItem ITEM_AIR_BALLOON, 1, VAR_RESULT
+    AddItem ITEM_ROCKY_HELMET, 1, VAR_RESULT
+    AddItem ITEM_ASSAULT_VEST, 1, VAR_RESULT
+    AddItem ITEM_WEAKNESS_POLICY, 1, VAR_RESULT
+    AddItem ITEM_SAFETY_GOGGLES, 1, VAR_RESULT
+    AddItem ITEM_RED_CARD, 1, VAR_RESULT
+    AddItem ITEM_EJECT_BUTTON, 1, VAR_RESULT
+    AddItem ITEM_RING_TARGET, 1, VAR_RESULT
+    AddItem ITEM_BINDING_BAND, 1, VAR_RESULT
+    AddItem ITEM_ABSORB_BULB, 1, VAR_RESULT
+    AddItem ITEM_CELL_BATTERY, 1, VAR_RESULT
+    AddItem ITEM_COVERT_CLOAK, 1, VAR_RESULT
+    AddItem ITEM_CLEAR_AMULET, 1, VAR_RESULT
+    AddItem ITEM_MIRROR_HERB, 1, VAR_RESULT
+    AddItem ITEM_LOADED_DICE, 1, VAR_RESULT
+    AddItem ITEM_PUNCHING_GLOVE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_SHIELD, 1, VAR_RESULT
+    AddItem ITEM_FAIRY_FEATHER, 1, VAR_RESULT
+    AddItem ITEM_PIXIE_PLATE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_CAPSULE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
+    AddItem ITEM_ROSELI_BERRY, 1, VAR_RESULT
+    AddItem ITEM_BOTTLE_CAP, 1, VAR_RESULT
+    AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
+    AddItem ITEM_LONELY_MINT, 1, VAR_RESULT
+    AddItem ITEM_ADAMANT_MINT, 1, VAR_RESULT
+    AddItem ITEM_NAUGHTY_MINT, 1, VAR_RESULT
+    AddItem ITEM_BRAVE_MINT, 1, VAR_RESULT
+    AddItem ITEM_BOLD_MINT, 1, VAR_RESULT
+    AddItem ITEM_IMPISH_MINT, 1, VAR_RESULT
+    AddItem ITEM_LAX_MINT, 1, VAR_RESULT
+    AddItem ITEM_RELAXED_MINT, 1, VAR_RESULT
+    AddItem ITEM_MODEST_MINT, 1, VAR_RESULT
+    AddItem ITEM_MILD_MINT, 1, VAR_RESULT
+    AddItem ITEM_RASH_MINT, 1, VAR_RESULT
+    AddItem ITEM_QUIET_MINT, 1, VAR_RESULT
+    AddItem ITEM_CALM_MINT, 1, VAR_RESULT
+    AddItem ITEM_GENTLE_MINT, 1, VAR_RESULT
+    AddItem ITEM_CAREFUL_MINT, 1, VAR_RESULT
+    AddItem ITEM_SASSY_MINT, 1, VAR_RESULT
+    AddItem ITEM_TIMID_MINT, 1, VAR_RESULT
+    AddItem ITEM_HASTY_MINT, 1, VAR_RESULT
+    AddItem ITEM_JOLLY_MINT, 1, VAR_RESULT
+    AddItem ITEM_NAIVE_MINT, 1, VAR_RESULT
+    AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
+    Message TestKit_Text_ItemsAll
+    GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

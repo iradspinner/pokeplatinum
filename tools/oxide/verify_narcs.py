@@ -645,6 +645,7 @@ APPENDED = {
     "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
     "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
     "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+    "itemtool/itemdata/item_icon.narc": (92, "a sprite and a palette for each of element 7's 46 new items"),
 }
 # Single-member tables whose member Oxide grew by appending records: the built
 # member must begin with the reference's.
