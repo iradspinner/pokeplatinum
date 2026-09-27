@@ -212,6 +212,8 @@ def basic(b, u, t, mv, f):
         return 0 if worse else -10
     if e == "TAUNT":
         return -10 if t.taunt else 0
+    if e == "ALL_FAINT_3_TURNS":
+        return -10 if t.perish or u.perish else 0
     if e in ("PASS_STATS_AND_STATUS",):
         return -10 if not own_side.bench() else 0
     if e == "PROTECT":
@@ -575,6 +577,10 @@ def choose(b, u, t):
         return "move", u.charging
     if u.recharge:
         return "move", u.moves[0]
+    if u.choice:
+        locked = next((m for m in u.moves if m.name == u.choice), None)
+        if locked is not None and u.pp.get(locked.name, 1) > 0:
+            return "move", locked
     side = b.p if u.side == "p" else b.b
     sw = should_switch(b, side, u, t)
     if sw is not None:
@@ -583,6 +589,56 @@ def choose(b, u, t):
     top = max(scores)
     picks = [i for i, s in enumerate(scores) if s == top]
     return "move", u.moves[b.rng.choice(picks)]
+
+
+def tag_strategy(b, u, t, mv, ally):
+    """Tag Strategy toward a foe, lightly (section 4 of the spec): a spread
+    move that hurts the ally is marked down, Explosion beside a living ally
+    most of all, and a strongest or super-effective hit a little up."""
+    s = 0
+    if ally is not None:
+        if mv.range == "ALL_ADJACENT" and mv.damaging():
+            e = eff(b, mv, ally)
+            if e == 0 or (mv.type == "Ground" and (ally.ability == "Levitate" or "Flying" in ally.types)):
+                s += 2
+            elif e >= 2:
+                s -= 10
+            else:
+                s -= 3
+        if mv.effect in fs.SELF_KO and mv.damaging():
+            s += 0 if "Ghost" in ally.types else (-3 if set(ally.types) & {"Rock", "Steel"} else -10)
+    f = figure(b, u, t, mv)
+    if f:
+        mine = [figure(b, u, t, m) or 0 for m in u.moves]
+        theirs = [figure(b, ally, t, m) or 0 for m in ally.moves] if ally else []
+        if f >= max(mine + theirs):
+            s += 1 if chance(b, 80.5 if mv.pri > 0 else 50) else 0
+        elif eff(b, mv, t) >= 2 and chance(b, 60.9):
+            s += 1
+    return s
+
+
+def choose_doubles(b, u):
+    """('move', Move, target): each foe scored as the target in turn, the
+    best move for each kept, and the target whose best scores highest."""
+    if u.lock:
+        return "move", u.lock[0], None
+    if u.charging is not None:
+        return "move", u.charging, None
+    if u.recharge:
+        return "move", u.moves[0], None
+    foes = fs.foes_of(b, u)
+    ally = fs.ally_of(b, u)
+    best = []
+    for t in foes:
+        scores = score_moves(b, u, t, b.ai_flags)
+        for i, mv in enumerate(u.moves):
+            s = scores[i] + (tag_strategy(b, u, t, mv, ally) if scores[i] > 0 else 0)
+            best.append((s, b.rng.random(), mv, t))
+    if not best:
+        return "move", u.moves[0], None
+    s, _r, mv, t = max(best, key=lambda x: (x[0], x[1]))
+    return "move", mv, t
 
 
 def _se_moves(b, mon, t):
@@ -594,6 +650,9 @@ def should_switch(b, side, u, t):
     bench = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
     if not bench or u.bound:
         return None
+    # Rule 1: Perish Song's count has run down, so it leaves.
+    if u.perish == 1:
+        return replacement(b, side, t)
     # Rule 3: every damaging move of two or more is immune.
     dmg = [m for m in u.moves if m.damaging()]
     if len(dmg) >= 2 and all(eff(b, m, t) == 0 for m in dmg):
@@ -627,12 +686,16 @@ def should_switch(b, side, u, t):
     return None
 
 
-def replacement(b, side, target):
+def replacement(b, side, target, owner=None):
     """The post-faint pick: by type match-up first (the candidate's types
     against the target's), taken only with a super-effective move; else by
-    the damage its moves would do."""
-    cands = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
-    if not cands:
+    the damage its moves would do. In a tag battle only the fainted
+    Pokemon's own trainer's party can refill its slot."""
+    def mine(m):
+        return owner is None or getattr(m, "owner", None) == owner
+    cands = [i for i, m in enumerate(side.mons)
+             if i not in (side.active, side.active2) and m.alive() and mine(m)]
+    if not cands and owner is None:
         cands = [i for i, m in enumerate(side.mons) if m.alive()]
     if not cands:
         return None

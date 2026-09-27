@@ -117,16 +117,20 @@ def all_fights():
     return out
 
 
+def cache_path():
+    return CACHE.replace(".json", "_box.json") if fightsim.BOX_MODE else CACHE
+
+
 def readings(cached=False):
     """{fight id: reading}, read now or from the saved file."""
-    if cached and os.path.exists(CACHE):
-        with open(CACHE, encoding="utf-8") as f:
+    if cached and os.path.exists(cache_path()):
+        with open(cache_path(), encoding="utf-8") as f:
             return json.load(f)
     out = {}
     for f in all_fights():
         out[fight_id(f)] = read(f)
         print(f"  {fight_id(f):22} {out[fight_id(f)]}", flush=True)
-    with open(CACHE, "w", encoding="utf-8") as fh:
+    with open(cache_path(), "w", encoding="utf-8") as fh:
         json.dump(out, fh, indent=1)
         fh.write("\n")
     return out
@@ -197,7 +201,9 @@ def main(argv=None):
     from . import fightfit as mod
     ap = argparse.ArgumentParser()
     ap.add_argument("--cached", action="store_true")
+    ap.add_argument("--box", action="store_true", help="plan each six from a realistic box")
     args = ap.parse_args(argv)
+    fightsim.BOX_MODE = args.box
     reads = mod.readings(args.cached)
     weights, level, err = mod.fit(reads)
     print("weights:", dict(zip(FEATURES, (round(float(w), 3) for w in weights))),

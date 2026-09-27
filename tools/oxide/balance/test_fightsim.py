@@ -75,6 +75,19 @@ def check_status(results):
                     f"{not no_burn}, second status {not second}"))
 
 
+def check_sleep_turns(results):
+    """A Pokemon given N turns of sleep misses exactly N turns, then wakes
+    and acts the same turn (Generation 4)."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16})
+    p.status, p.sleep = "slp", 2
+    hp = []
+    for _ in range(3):
+        fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        hp.append(foe.hp)
+    ok = hp == [100, 100, 90] and p.status is None
+    results.append(("sleep lasts its turns, then the Pokemon acts", ok, f"foe HP {hp}"))
+
+
 def check_ai_kill(results):
     """Evaluate Attack: a move that kills scores above the strongest that
     does not, and Basic refuses a move the target is immune to."""
@@ -118,9 +131,35 @@ def check_battle(results):
     results.append(("a battle runs to its end", ok, f"lost {lost}, won {won}"))
 
 
+def check_doubles(results):
+    """A double battle runs to its end, and a spread move hits both foes at
+    three quarters."""
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False}
+    keys = ("p0", "p1", "b0.0", "b0.1")
+    for key in keys:
+        st["info"][key] = {"hp": 100, "stats": {"atk": 100, "def": 100}, "types": ["Normal"],
+                           "ability": None, "item": None}
+        st["pokemon"][key] = {"species": key, "level": 50}
+        st["moves"][key] = ["Rock Slide"] if key.startswith("p") else ["Tackle"]
+        st["speed"][(None, key)] = 100 if key.startswith("p") else 50
+    for a in ("p0", "p1"):
+        for d in ("b0.0", "b0.1"):
+            st["rows"][(None, a, d)] = {"moves": {"Rock Slide": {"rolls": [40] * 16}}}
+            st["rows"][(None, d, a)] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+    b, p, foe = battle(["Rock Slide"], ["Tackle"], {})
+    rs = fs.move("Rock Slide")
+    lost, won = fs.run_doubles(st, ["p0", "p1"], [["b0.0", "b0.1"]], random.Random(5), [7])
+    spread_ok = rs.range == "ADJACENT_OPPONENTS"
+    ok = won and lost == 0 and spread_ok
+    results.append(("a double battle runs to its end with a spread move", ok,
+                    f"lost {lost}, won {won}, Rock Slide's range {rs.range}"))
+
+
 def main():
     results = []
-    for check in (check_damage, check_status, check_ai_kill, check_ai_status, check_battle):
+    for check in (check_damage, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
+                  check_battle, check_doubles):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
