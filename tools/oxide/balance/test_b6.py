@@ -71,6 +71,36 @@ def check_species(results):
     results.append(("species tallies are consistent", not bad, f"{bad[:5]}" if bad else ""))
 
 
+def check_teamscore(results):
+    """The team builder's instant estimate: its fit covers every stored fight,
+    it places Roark within the fit's story error of his full score, and an
+    unsaved edit that raises every level reads no safer than the saved team."""
+    import copy
+    import json
+    import os
+
+    from . import pressure, teamscore
+    fit = teamscore._fit()
+    stored = len(pressure.load()["fights"]) + len(b6.load().get("trainers", {}))
+    if not fit or fit.get("n") != stored or "story_max_error" not in fit:
+        results.append(("team builder estimate is fitted to every stored fight", False,
+                        f"fit {fit and fit.get('n')} of {stored} fights; run teamscore --fit"))
+        return
+    line = b6.scale_line()
+    full = b6.on_scale(pressure.load()["fights"]["roark"]["safe"], line)
+    est = teamscore.estimate("leader_roark")
+    with open(os.path.join(data.ROOT, "res", "trainers", "data", "leader_roark.json"),
+              encoding="utf-8") as f:
+        edited = copy.deepcopy(json.load(f))
+    for mon in edited["party"]:
+        mon["level"] += 10
+    harder = teamscore.estimate("leader_roark", edited)
+    ok = abs(est["scale"] - full) <= fit["story_max_error"] and harder["safe"] <= est["safe"]
+    results.append(("team builder estimate is fitted and tracks the full score", ok,
+                    f"Roark {est['scale']} against {full:.1f}, {harder['scale']} ten levels up; "
+                    f"story error {fit['story_mean_error']} over {fit['story_n']}"))
+
+
 def check_fingerprints(results):
     """Every B6 score (the ordinary trainers and each fight's levers)
     matches its inputs as they are now, and a second run has verified it."""
@@ -84,7 +114,7 @@ def check_fingerprints(results):
 def main():
     results = []
     for check in (check_placements, check_scale, check_bases, check_levers, check_species,
-                  check_fingerprints):
+                  check_teamscore, check_fingerprints):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
