@@ -66,8 +66,9 @@ table work), `carry-over-map` (scripts, events and text for one map),
 design sheets on G:, with the synced `xlsx` skill for the mechanics),
 `debug-live` (any in-game bug, with Ian driving melonDS), `cloud-job` (writing,
 running or merging a cloud session's job), `ruling` (recording any decision of
-Ian's everywhere it must be read) and `playtest-day` (a session of in-game
-checks from `docs/oxide/ingame-checklist.md`). In
+Ian's everywhere it must be read), `playtest-day` (a session of in-game
+checks from `docs/oxide/ingame-checklist.md`) and `doc-links` (a clickable,
+rendered link for any doc Ian is pointed at). In
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
