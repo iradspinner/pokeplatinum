@@ -41,6 +41,7 @@ from . import pokedex
 from . import progression
 from . import scripted
 from . import simulate
+from . import trainers
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -845,7 +846,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
         # they need, is an unknown endpoint like any other, not a crash.
-        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite") and len(parts) < 3):
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer") and len(parts) < 3):
             return self._send({"error": "unknown endpoint"}, 404)
         try:
             st = State(ref)
@@ -898,6 +899,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "dex":
                 return self._send(dex_list() if len(parts) < 3
                                   else dex_detail(parts[2]))
+            # The Trainers tab (build plan item 28): every trainer with its
+            # split and cap, and one trainer's team as the game builds it.
+            if parts[1] == "trainers":
+                return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
+                                   "caps": trainers.caps()})
+            if parts[1] == "trainer":
+                try:
+                    return self._send(trainers.detail(model.repo_root(), parts[2]))
+                except (KeyError, FileNotFoundError):
+                    return self._send({"error": f"no such trainer: {parts[2]}"}, 404)
             if parts[1] == "moves":
                 return self._send(move_list())
             if parts[1] == "calc-data":
