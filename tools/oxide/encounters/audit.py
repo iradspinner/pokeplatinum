@@ -96,10 +96,21 @@ def references(ref=None):
     return rows
 
 
+# Script sources that the script itself makes unreachable, which a scan of
+# commands cannot tell: (script, species) with Ian's reason. The sources
+# catalogue (tools/oxide/pokemon_sources.py) honours this list too.
+UNREACHABLE_SCRIPT_SOURCES = {
+    ("scripts_stark_mountain_room_3", "SPECIES_HEATRAN"):
+        "Stark Mountain's last room is empty (Ian, 2026-09-27); the script "
+        "jumps past the line that would unhide Heatran",
+}
+
+
 def script_references(root):
     """[{script, line, command, species}] for the commands in SCRIPT_COMMANDS
     whose species operand is a constant. Operands that are variables (the
-    starter, the revived fossil) are decided at runtime and are not listed."""
+    starter, the revived fossil) are decided at runtime and are not listed,
+    and neither is a source in UNREACHABLE_SCRIPT_SOURCES."""
     rows = []
     for path in sorted(glob.glob(os.path.join(root, "res", "field", "scripts", "*.s"))):
         with open(path, encoding="utf-8", errors="replace") as f:
@@ -114,6 +125,8 @@ def script_references(root):
                     in_kit = not line.startswith("#endif")
                     continue
                 m = _SCRIPT_RE.match(line)
+                if m and (os.path.basename(path)[:-2], m.group(2)) in UNREACHABLE_SCRIPT_SOURCES:
+                    continue
                 if m:
                     rows.append({"script": os.path.basename(path)[:-2],
                                  "line": n, "command": m.group(1),

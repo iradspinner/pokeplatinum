@@ -41,7 +41,6 @@ Route 209,scripts_route_209.s,SPECIES_SPIRITOMB,static battle,25,"put an Odd Key
 Snowpoint Temple,scripts_snowpoint_temple_b5f.s,SPECIES_REGIGIGAS,static battle,1,"at the bottom of Snowpoint Temple with Regirock, Regice and Registeel in the party; level 1",vanilla,yes
 Spear Pillar,scripts_spear_pillar_dialga.s,SPECIES_DIALGA,static battle,70,the story battle at the Spear Pillar,vanilla,yes
 Spear Pillar,scripts_spear_pillar_palkia.s,SPECIES_PALKIA,static battle,70,the story battle at the Spear Pillar,vanilla,yes
-Stark Mountain,scripts_stark_mountain_room_3.s,SPECIES_HEATRAN,static battle,50,after the Stark Mountain / Buck story; once,vanilla,yes
 Turnback Cave,scripts_turnback_cave_giratina_room.s,SPECIES_GIRATINA,static battle,47,"Turnback Cave, after the Distortion World; Altered Forme",vanilla,yes
 Valor Cavern,scripts_valor_cavern.s,SPECIES_AZELF,static battle,50,after the Galactic plot at Lake Valor; once,vanilla,yes
 Fullmoon Island,scripts_fullmoon_island_forest.s,SPECIES_CRESSELIA,roamer,50,released on Fullmoon Island (reached with the Lunar Wing errand); then roams,vanilla,yes

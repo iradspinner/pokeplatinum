@@ -42,14 +42,14 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-188 rows across 34 locations, generated 2026-09-26.
+187 rows across 33 locations, generated 2026-09-26.
 
 ## Rows by method
 
 | Method | Rows |
 |---|---|
 | unown room | 18 |
-| static battle | 15 |
+| static battle | 14 |
 | great marsh daily (post-natdex) | 12 |
 | egg gift | 10 |
 | great marsh daily (pre-natdex) | 9 |
@@ -413,12 +413,6 @@ table, so they compete with it rather than adding to it
 |---|---|---|---|---|---|---|
 | Dialga | static battle | 70 | the story battle at the Spear Pillar | vanilla | yes | `scripts_spear_pillar_dialga.s` |
 | Palkia | static battle | 70 | the story battle at the Spear Pillar | vanilla | yes | `scripts_spear_pillar_palkia.s` |
-
-### Stark Mountain
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Heatran | static battle | 50 | after the Stark Mountain / Buck story; once | vanilla | yes | `scripts_stark_mountain_room_3.s` |
 
 ### Turnback Cave
 
