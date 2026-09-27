@@ -30,6 +30,20 @@ SPECIAL_NAMES = {
 
 _CACHE = {}
 
+# Level-up methods whose number is not a level: Feebas evolves on a Beauty
+# condition of 170, not at level 170. Every other EVO_LEVEL method's number
+# is the level (surveyed 2026-09-27, when the Balance Agent found Milotic
+# read as reached at 170).
+NOT_A_LEVEL = {"EVO_LEVEL_BEAUTY"}
+
+
+def evo_level(method, ints):
+    """The level a level-up evolution happens at, or None when the method has
+    no level of its own (a stone, a held item, Feebas's Beauty)."""
+    if method.startswith("EVO_LEVEL") and method not in NOT_A_LEVEL and ints:
+        return ints[0]
+    return None
+
 
 def display_name(species):
     """SPECIES_GLALIE -> Glalie. The page never shows a raw constant."""
@@ -138,7 +152,7 @@ def _build_lines(root):
             # friendship, which no level cap gates.
             method = evo[0] if evo and isinstance(evo[0], str) else ""
             ints = [x for x in evo if isinstance(x, int) and not isinstance(x, bool)]
-            level = ints[0] if method.startswith("EVO_LEVEL") and ints else None
+            level = evo_level(method, ints)
             # The result is the last species named. A species named before it
             # is a partner, not a stage: EVO_LEVEL_SPECIES_IN_PARTY is
             # [method, the species in the party, the result], and until
