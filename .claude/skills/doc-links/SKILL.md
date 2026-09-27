@@ -21,11 +21,14 @@ http://localhost:8765/doc/<repo path>
 http://localhost:8765/doc/<repo path>?ref=<branch or commit>
 ```
 
-The first form reads the file in the main checkout as it is on disk. Add
-`?ref=` when the doc is on a branch that has not merged, such as a cloud
-job's report branch; the viewer reads that version through `git show`, so
-the branch only needs to exist locally or on `origin` after a fetch.
-`http://localhost:8765/doc` lists every doc.
+The first form reads the file in the main checkout (`/home/ian/pokeplatinum`)
+as it is on disk, so a doc that exists only on an unmerged branch (a cloud
+job's report, a track's branch) needs `?ref=<branch>`; without it the page is
+a 404. The viewer reads that version through `git show`, trying
+`origin/<branch>` when there is no local branch. Relative links keep the ref,
+and a link to a code file opens on GitHub at the same branch.
+`http://localhost:8765/doc` lists every doc. It serves only `docs/` and
+`.claude/skills/`.
 
 **GitHub**, when the viewer is not running or the reader is not on Ian's
 machine:
@@ -58,8 +61,9 @@ say in one line that the tool's server is not running; Ian starts it with:
 PYTHONPATH=. python3 -m tools.oxide.encounters.server
 ```
 
-After a landing that changes `server.py`, the running server still has the
-old code until it is restarted; the Overseer restarts it.
+The server on 8765 runs from the encounter tool builder's worktree, so after
+a landing that changes `server.py` it keeps the old code until that session
+restarts it; ask it to.
 
 ## 4. Other sessions
 
