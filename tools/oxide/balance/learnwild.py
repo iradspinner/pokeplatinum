@@ -255,12 +255,15 @@ def _can_reach(game, start, target, split):
 
 
 @functools.lru_cache(maxsize=None)
-def _path_stab(game, start, level, split):
+def _path_stab(game, start, level, split, toward=None):
     """The strongest same-type move a Pokemon caught as `start` at `level`
     can know by a split's end, by level-up along its line (each stage's moves
-    from the level it is reached), its own moves at capture included."""
+    from the level it is reached), its own moves at capture included. A line
+    that branches (Sinistea to Polteageist or Sinistcha) is followed toward
+    `toward` when that is on one of its branches."""
     cap = _caps(game).get(split, 100)
-    line = next((ln for ln in learngen.game_lines(game) if start in ln), [start])
+    lines = [ln for ln in learngen.game_lines(game) if start in ln]
+    line = next((ln for ln in lines if toward in ln), lines[0] if lines else [start])
     best = best_stab(game, start, moveset(game, start, level))
     for i, sp in enumerate(line[line.index(start):], start=line.index(start)):
         if not _can_reach(game, start, sp, split):
@@ -300,7 +303,7 @@ def better_later(game, rows):
                         break
                     continue
                 theirs = best_stab(game, b["species"], b["moves"])
-                mine = _path_stab(game, a["species"], a["level"], b["split"])
+                mine = _path_stab(game, a["species"], a["level"], b["split"], b["species"])
                 if theirs >= mine + 15 and ls.band(theirs) != ls.band(mine):
                     out[i] = j
                     break

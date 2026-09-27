@@ -62,6 +62,10 @@ def oxide_reached():
         for level, target in evolve.evolutions(data.ROOT, sp):
             # evolve.py reads Mantyke's party species as its result (see
             # learnstudy.evolution_result); the entry's last species is it.
+            # It also reads Feebas's beauty (170) as a level: past 100 it is
+            # taken at the stand-in level, like the other non-level methods.
+            if level > 100:
+                level = evolve.DEFAULT_PSEUDO
             out.setdefault(party[0] if party else target, (sp, level))
     return out
 
@@ -157,10 +161,12 @@ def is_oxide(game):
 # ---- (a) delays ------------------------------------------------------------------
 
 def delays(game):
-    """Every strong move a pre-evolution has that its next stage has later or
-    never: (line, pre, evolved, move, pre's level, evolution level, evolved
-    stage's level or None, splits between them or None, kind) with kind
-    "delay" (learnt at or after the evolution level) or "head start"."""
+    """Every strong move a pre-evolution has that its next stage learns later
+    or never by level-up (only at level 1 counts as never: that is the
+    relearner's, Ian, 2026-09-27): (line, pre, evolved, move, pre's level,
+    evolution level, evolved stage's level or None, splits between them or
+    None, kind) with kind "delay" (learnt at or after the evolution level)
+    or "head start"."""
     out = []
     seen = set()
     for line in game_lines(game):
@@ -178,12 +184,35 @@ def delays(game):
                     continue
                 b_e = later.get(e["move"])
                 gap = None if b_e is None else b_e["index"] - e["index"]
-                if b_e is not None and gap < 1:
+                if b_e is not None and b_e["level"] <= e["level"]:
                     continue
                 kind = "delay" if e["level"] >= evo_level else "head start"
                 out.append((line, a, b, e["move"], e["level"], evo_level,
                             b_e["level"] if b_e else None, gap, kind))
     return out
+
+
+def never_learnt(game):
+    """(moves, strong ones): what a pre-evolution learns by level-up at or
+    after the level its next stage comes, which no later stage of the line
+    then learns by level-up: a move only a Pokemon kept from evolving ever
+    gets. Ian counts these as the strongest delay (2026-09-27). A move learnt
+    before the evolution level is not one: a raised Pokemon keeps it."""
+    n = strong = 0
+    seen = set()
+    for line in game_lines(game):
+        for i, pre in enumerate(line[:-1]):
+            evolves_at = reached(game, line[i + 1])
+            later = {e["move"] for sp in line[i + 1:] for e in game_entries(game, sp)
+                     if e["level"] > 1}
+            for e in game_entries(game, pre):
+                key = (pre, e["move"])
+                if e["level"] < evolves_at or e["level"] <= 1 or e["move"] in later or key in seen:
+                    continue
+                seen.add(key)
+                n += 1
+                strong += e["kind"] == "damage" and e["power"] >= STRONG
+    return n, strong
 
 
 def split_index(game, level):
@@ -244,6 +273,29 @@ def _good(e):
                                       or (e["stab"] and e["power"] >= GOOD_STAB))
 
 
+def learned_after(game, species, level, cap):
+    """What a Pokemon caught as `species` at `level` learns by level-up up to
+    a cap, on its form and on each later one from the level it is reached
+    (a later form's level-1 moves are the relearner's, worth almost nothing:
+    Ian, 2026-09-27)."""
+    line = next((ln for ln in game_lines(game) if species in ln), [species])
+    out = [e for e in game_entries(game, species) if level < e["level"] <= cap]
+    for sp in line[line.index(species) + 1:]:
+        at = reached(game, sp)
+        if at > cap:
+            break
+        out += [e for e in game_entries(game, sp) if max(at, 2) <= e["level"] <= cap]
+    return out
+
+
+def worth(game, row, cap):
+    """A catch's moves to the player: the four it knows at capture and what it
+    learns by level-up afterwards, up to the cap (the entries, for _good)."""
+    entries = {e["move"]: e for e in game_entries(game, row["species"])}
+    return [entries[m] for m in row["moves"] if m in entries] + \
+        learned_after(game, row["species"], row["level"], cap)
+
+
 def bare_catches(game):
     """Evolved stages caught wild that have no good move (a same-type move of
     70 or more a turn, or any of 85 or more) at capture or by level-up before
@@ -266,8 +318,7 @@ def bare_catches(game):
         cap = caps.get(r["split"], 100)
         entries = {e["move"]: e for e in game_entries(game, sp)}
         have = [entries[m] for m in r["moves"] if m in entries]
-        learn = [e for e in game_entries(game, sp) if r["level"] < e["level"] <= cap]
-        if any(_good(e) for e in have + learn):
+        if any(_good(e) for e in worth(game, r, cap)):
             continue
         pre = [e["move"] for e in game_entries(game, parent[sp]) if _good(e) and e["level"] <= cap]
         out.append((r, have, sorted(set(pre))))
@@ -509,7 +560,26 @@ def propose(species):
     final = _start(kept, species, types, chain)
     for _lv, c in set(kept) - set(final):
         why.setdefault(c, "past the six attacks and two status moves an evolved stage keeps at 1")
-    return final
+    return ordered(final, evolved=len(chain) > 1)
+
+
+# How an evolved stage's level 1 is ordered. A wild or trainer Pokemon with
+# fewer than four moves of its own at or under its level fills from level 1,
+# taking the last entries in the list's order. Strongest first leaves it the
+# weakest, so a wild evolved Pokemon met soon after its evolution level is
+# not a better catch than one raised (Ian's rule of 2026-09-27); weakest
+# first gives it the strongest. The relearner's menu is the same either way.
+LEVEL1_STRONGEST_FIRST = True
+
+
+def ordered(entries, evolved):
+    """The list in the game's order: by level, level 1 by strength (strongest
+    first on an evolved stage when LEVEL1_STRONGEST_FIRST), each later level
+    weakest first."""
+    power = lambda c: ls.strength(ls.oxide_move(_oxide_moves()[c]))[1]
+    down = evolved and LEVEL1_STRONGEST_FIRST
+    return sorted(entries, key=lambda e: (e[0], -power(e[1]) if e[0] <= 1 and down else power(e[1]),
+                                          e[1]))
 
 
 @functools.lru_cache(maxsize=None)
@@ -576,7 +646,10 @@ STARTER_BY_TYPE = {"Normal": "MOVE_TACKLE", "Grass": "MOVE_LEAFAGE", "Water": "M
                    "Ice": "MOVE_POWDER_SNOW", "Fighting": "MOVE_KARATE_CHOP", "Flying": "MOVE_GUST",
                    "Ghost": "MOVE_SHADOW_SNEAK", "Dark": "MOVE_BITE", "Dragon": "MOVE_TWISTER",
                    "Steel": "MOVE_METAL_CLAW", "Fairy": "MOVE_FAIRY_WIND"}
-LEVEL1_ATTACKS, LEVEL1_STATUS = 6, 2
+# An evolved stage's level 1 is the relearner's menu and the trainer palette;
+# it costs the player nothing either way, so it is kept whole (Ian's question
+# of 2026-09-27). None keeps every entry.
+LEVEL1_ATTACKS, LEVEL1_STATUS = None, None
 
 
 def _start(entries, species, types, chain):
@@ -611,6 +684,8 @@ def _trim_level1(entries):
     status moves; the order within level 1 stays weakest first."""
     ones = [c for lv, c in entries if lv <= 1]
     rest = [e for e in entries if e[0] > 1]
+    if LEVEL1_ATTACKS is None:
+        return entries
     power = lambda c: ls.strength(ls.oxide_move(_oxide_moves()[c]))
     attacks = [c for c in ones if power(c)[0] == "damage"][-LEVEL1_ATTACKS:]
     status = [c for c in ones if power(c)[0] != "damage"][-LEVEL1_STATUS:]
@@ -619,13 +694,64 @@ def _trim_level1(entries):
 
 
 def propose_all():
-    """Every species' proposed list, into PROPOSED."""
+    """Every species' proposed list, into PROPOSED, then the bare catches
+    fixed (fix_bare)."""
     PROPOSED.clear()
     for sp in pokedex.species_list(data.ROOT):
         lst = propose(sp)
         if lst:
             PROPOSED[sp] = lst
+    fix_bare()
     return PROPOSED
+
+
+FIXED = {}
+
+
+def fix_bare():
+    """An evolved form caught wild with no good move by its split's cap gets
+    its line's earliest good move by level-up on itself, between the level it
+    is reached and the split's cap: known at capture when that is at or under
+    the wild level, learnt soon after otherwise. Level-1 entries do not fix
+    it: a wild Pokemon's four push them out first, and after capture they
+    are the relearner's (Ian, 2026-09-27)."""
+    from . import learnwild
+    FIXED.clear()
+    learnwild.clear()
+    caps = learnwild._caps("proposal")
+    # Each species once, placed for its earliest bare catch: at that catch's
+    # level when the move comes by then (the newest of its four at capture),
+    # else at its usual level if that is by the catch's split's cap.
+    first = {}
+    for r, _have, _pre in bare_catches("proposal"):
+        sp = r["species"]
+        cap = min(caps.get(r["split"], 100), LEVEL_MAP[-1][1])
+        if sp not in first or (r["level"], cap) < first[sp]:
+            first[sp] = (r["level"], cap)
+    for sp, (wild, cap) in sorted(first.items()):
+        rec = pokedex.load(data.ROOT, sp) or {}
+        types = {t.title() for t in rec.get("types", [])}
+        chain = _chain(sp)
+        pool = {}
+        for s in chain:
+            for lv, c in PROPOSED.get(s, []):
+                m = _oxide_moves()[c]
+                kind, power = ls.strength(ls.oxide_move(m))
+                if kind == "damage" and (power >= GOOD_ANY or
+                                         (m["type"].title() in types and power >= GOOD_STAB)):
+                    t = target_level(m) or lv
+                    pool[c] = min(pool.get(c, 999), t)
+        if not pool:
+            continue
+        const, t = min(pool.items(), key=lambda kv: (kv[1], kv[0]))
+        at = reached("oxide", sp) if len(chain) > 1 else 1
+        level = max(at, wild if t <= wild else min(t, cap))
+        if level > LEVEL_MAP[-1][1]:
+            continue
+        lst = [e for e in PROPOSED.get(sp, []) if e[1] != const or e[0] <= 1]
+        PROPOSED[sp] = ordered(lst + [(level, const)], evolved=len(chain) > 1)
+        FIXED[sp] = (const, level)
+    learnwild.clear()
 
 
 def proposal_report(out=sys.stdout):
@@ -653,6 +779,25 @@ def proposal_report(out=sys.stdout):
                 reasons[WHY[sp].get(c, "learnt before the evolution, and not good enough to keep")] += 1
     for r, n in reasons.most_common():
         print(f"  dropped, {r}: {n}", file=out)
+    print(f"  species the bare-catch fix gave a move: {len(FIXED)}", file=out)
+    for game in ("kaizo", "oxide", "proposal"):
+        n, strong = never_learnt(game)
+        print(f"  {game:8}: moves only a Pokemon kept from evolving learns (at or after its "
+              f"evolution level, and no later stage by level-up): {n}, {strong} of them strong",
+              file=out)
+    print("  catches with a good move by their split's cap (known at capture or learnt by "
+          "level-up after), by split, now against proposed:", file=out)
+    for game in ("oxide", "proposal"):
+        rows, _later = learnwild.readings(game)
+        caps = learnwild._caps(game)
+        by = collections.defaultdict(lambda: [0, 0])
+        for r in rows:
+            b = by[r["split"]]
+            b[0] += 1
+            b[1] += any(_good(e) for e in worth(game, r, caps.get(r["split"], 100)))
+        print(f"    {game:8} " + ", ".join(f"{s} {b[1] / b[0]:.2f}" for s, b in
+                                          sorted(by.items(), key=lambda kv: _oxide_index(kv[0]))),
+              file=out)
     for game in ("oxide", "proposal"):
         rows, later = learnwild.readings(game)
         bare = bare_catches(game)
