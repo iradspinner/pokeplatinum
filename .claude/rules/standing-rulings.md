@@ -69,3 +69,10 @@ read, so they are written here too. Each is a standing instruction.
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
   branch), or the GitHub page of the pushed branch. The `doc-links` skill has
   the forms.
+- A move's worth to the player is what the Pokemon knows at capture (the last
+  four moves its list gives by its level, which can include moves below the
+  catch level) plus what it learns by level-up afterwards (Ian, 2026-09-27).
+  Relearner-only moves, an evolved form's level-1 moves among them, count for
+  almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
+  Scale, and each use competes with every other in the box. Level-1 lists
+  matter as the relearner's menu and the legal palette for trainer teams.
