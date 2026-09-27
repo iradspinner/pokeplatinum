@@ -731,6 +731,16 @@ that stay. None blocks anything.
       background.
    5. The hidden slot, once the main production agent's engine change
       has merged.
+
+   **Pieces 1 and 2 are done** (2026-09-27, branch `encounter-team-builder`,
+   baa9b3007 and 2d8a5ff06): the Trainers tab lists all 928 trainers in
+   play order with split and cap, shows a team as the game builds it, and
+   gives each member its three move lists. The list's split matches
+   `teamscore.resolve`, except that Post has no cap and so no score; 361
+   trainers (the dummies and the slots no map fields) have no split at
+   all. The vendored lists are `canon_learnsets.json`, from
+   `pokemon-showdown` 0.11.11, with their provenance in `canon_src/`.
+   `test_trainers` 13/13. Nothing edits yet; piece 3 is next.
 29. **A doc viewer in the tool (Ian, 2026-09-27, through the Overseer).**
    Every document a session points Ian at opens rendered in his browser,
    in the tool's own style, from a link the `doc-links` skill gives:
