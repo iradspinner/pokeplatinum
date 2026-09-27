@@ -975,6 +975,26 @@
         {
             "id": "TestKit_Text_MenuItemAbilityShield",
             "en_US": "Ability Shield"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRockyHelmet",
+            "en_US": "Rocky Helmet"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbsorbBulb",
+            "en_US": "Absorb Bulb"
+        },
+        {
+            "id": "TestKit_Text_MenuItemCellBattery",
+            "en_US": "Cell Battery"
+        },
+        {
+            "id": "TestKit_Text_MenuItemWeaknessPolicy",
+            "en_US": "Weakness Policy"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAirBalloon",
+            "en_US": "Air Balloon"
         }
     ]
 }

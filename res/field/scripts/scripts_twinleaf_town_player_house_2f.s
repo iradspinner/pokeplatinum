@@ -3169,6 +3169,11 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemCovertCloak, 7
     AddListMenuEntry TestKit_Text_MenuItemClearAmulet, 8
     AddListMenuEntry TestKit_Text_MenuItemAbilityShield, 9
+    AddListMenuEntry TestKit_Text_MenuItemRockyHelmet, 10
+    AddListMenuEntry TestKit_Text_MenuItemAbsorbBulb, 11
+    AddListMenuEntry TestKit_Text_MenuItemCellBattery, 12
+    AddListMenuEntry TestKit_Text_MenuItemWeaknessPolicy, 13
+    AddListMenuEntry TestKit_Text_MenuItemAirBalloon, 14
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3180,6 +3185,11 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 7, TestKit_ItemCovertCloak
     GoToIfEq VAR_0x8004, 8, TestKit_ItemClearAmulet
     GoToIfEq VAR_0x8004, 9, TestKit_ItemAbilityShield
+    GoToIfEq VAR_0x8004, 10, TestKit_ItemRockyHelmet
+    GoToIfEq VAR_0x8004, 11, TestKit_ItemAbsorbBulb
+    GoToIfEq VAR_0x8004, 12, TestKit_ItemCellBattery
+    GoToIfEq VAR_0x8004, 13, TestKit_ItemWeaknessPolicy
+    GoToIfEq VAR_0x8004, 14, TestKit_ItemAirBalloon
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3415,6 +3425,93 @@ TestKit_ItemAbilityShield:
     SetVar VAR_0x8007, MOVE_TACKLE
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Rocky Helmet: Skarmory against a wild Rattata that knows Tackle and
+   Swift. Each Tackle into the helmeted Skarmory hurts Rattata by a sixth
+   of its HP; Swift, which makes no contact, does not, and nor does a
+   Tackle into the other Skarmory. */
+TestKit_ItemRockyHelmet:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x800A, SPECIES_SKARMORY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ROCKY_HELMET
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Absorb Bulb: Chansey against a wild Psyduck that knows only Water
+   Gun. The first Water Gun into the Chansey holding it brings "The Absorb
+   Bulb raised CHANSEY's Sp. Atk!", and the bulb is gone. */
+TestKit_ItemAbsorbBulb:
+    SetVar VAR_0x8000, SPECIES_PSYDUCK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WATER_GUN
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ABSORB_BULB
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Cell Battery: as the Absorb Bulb, for Attack, against a wild Pikachu
+   that knows only Thunder Shock. */
+TestKit_ItemCellBattery:
+    SetVar VAR_0x8000, SPECIES_PIKACHU
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDER_SHOCK
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_CELL_BATTERY
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Weakness Policy: Snorlax against a wild Machamp that knows only
+   Karate Chop, super effective on it. The first chop into the Snorlax
+   holding it sharply raises its Attack and then its Sp. Atk, and the
+   policy is gone. */
+TestKit_ItemWeaknessPolicy:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_WEAKNESS_POLICY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Air Balloon: Snorlax against a wild Dugtrio that knows Earthquake and
+   Scratch. Switched in, the Snorlax holding it "floats in the air with its
+   Air Balloon!", Earthquake does not affect it, and the first Scratch
+   pops the balloon; after that Earthquake hits it. */
+TestKit_ItemAirBalloon:
+    SetVar VAR_0x8000, SPECIES_DUGTRIO
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EARTHQUAKE
+    SetVar VAR_0x8003, MOVE_SCRATCH
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_AIR_BALLOON
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:

@@ -9512,6 +9512,48 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 8, 1, 0} prevents stat loss!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} floats in the air\n",
+        "with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} floats in\n",
+        "the air with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} floats in\n",
+        "the air with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} popped!"
+      ]
     }
   ]
 }

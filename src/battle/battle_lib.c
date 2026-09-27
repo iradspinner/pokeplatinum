@@ -114,6 +114,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
+    battleCtx->battleMons[battler].airBalloonAnnounced = FALSE; // Oxide, element 7
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].friskFoesFound = 0;
@@ -2863,6 +2864,14 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED
         && move != MOVE_THOUSAND_ARROWS) {
         *moveStatusMask |= MOVE_STATUS_MAGNET_RISE;
+    } else if (defenderItemEffect == HOLD_EFFECT_AIR_BALLOON
+        && moveType == TYPE_GROUND
+        && (battleCtx->battleMons[defender].moveEffectsMask & (MOVE_EFFECT_INGRAIN | MOVE_EFFECT_SMACKED_DOWN)) == FALSE
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+        && move != MOVE_THOUSAND_ARROWS) {
+        // Oxide, element 7: a Ground move misses an Air Balloon's holder
+        // with "It doesn't affect...", as in hg-engine.
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
 
@@ -2966,6 +2975,11 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         && moveType == TYPE_GROUND
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
+    } else if (defenderItemEffect == HOLD_EFFECT_AIR_BALLOON // Oxide, element 7
+        && moveType == TYPE_GROUND
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+        && move != MOVE_THOUSAND_ARROWS) {
         *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
@@ -3520,6 +3534,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE && itemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
             // Oxide: a Flying Pokemon brought down by Smack Down is trapped.
             if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+                && itemEffect != HOLD_EFFECT_AIR_BALLOON // Oxide, element 7
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                 && (MON_IS_NOT_TYPE(battler, TYPE_FLYING)
                     || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN))) {
@@ -4181,6 +4196,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_MOLD_BREAKER,
     SWITCH_IN_CHECK_STATE_PRESSURE,
     SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES,
+    SWITCH_IN_CHECK_STATE_AIR_BALLOON, // Oxide, element 7
     SWITCH_IN_CHECK_STATE_FORM_CHANGE,
     SWITCH_IN_CHECK_STATE_AMULET_COIN,
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
@@ -4841,6 +4857,28 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                 if (subscript != NULL) {
                     battleCtx->msgBattlerTemp = battler;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        // Oxide, element 7: an Air Balloon's holder says so once per
+        // switch-in (hg-engine's SwitchInAbilityCheck).
+        case SWITCH_IN_CHECK_STATE_AIR_BALLOON:
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].airBalloonAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_AIR_BALLOON) {
+                    battleCtx->battleMons[battler].airBalloonAnnounced = TRUE;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_air_balloon_float;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -6479,6 +6517,64 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         }
         break;
 
+    // Oxide, element 7, after hg-engine's CheckDefenderItemEffectOnHit. The
+    // Rocky Helmet stays and hurts a contact attacker by a sixth of its HP
+    // (the item's effect parameter); U-turn is left out, as for the Jaboca
+    // Berry above, since its user has already switched out here.
+    case HOLD_EFFECT_ROCKY_HELMET:
+        if (ATTACKING_MON.curHP
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
+            *subscript = subscript_rocky_helmet;
+            result = TRUE;
+        }
+        break;
+
+    // The Absorb Bulb and the Cell Battery are used up to raise Sp. Atk or
+    // Attack one stage when a Water or an Electric move hits the holder.
+    case HOLD_EFFECT_ABSORB_BULB:
+    case HOLD_EFFECT_CELL_BATTERY: {
+        int stat = itemEffect == HOLD_EFFECT_ABSORB_BULB ? BATTLE_STAT_SP_ATTACK : BATTLE_STAT_ATTACK;
+        int type = itemEffect == HOLD_EFFECT_ABSORB_BULB ? TYPE_WATER : TYPE_ELECTRIC;
+
+        if (DEFENDING_MON.curHP
+            && CurrentMoveType(battleCtx) == type
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && DEFENDING_MON.statBoosts[stat] < MAX_STAT_STAGE) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->msgTemp = stat;
+            *subscript = subscript_item_raise_stat_on_hit;
+            result = TRUE;
+        }
+        break;
+    }
+
+    // The Weakness Policy is used up to raise Attack and Sp. Atk two stages
+    // each when a supereffective move hits the holder.
+    case HOLD_EFFECT_WEAKNESS_POLICY:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE
+                || DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE)) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            *subscript = subscript_weakness_policy;
+            result = TRUE;
+        }
+        break;
+
+    // The Air Balloon bursts when a damaging move hits its holder.
+    case HOLD_EFFECT_AIR_BALLOON:
+        if (DEFENDING_MON.curHP
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_air_balloon_pop;
+            result = TRUE;
+        }
+        break;
+
     case HOLD_EFFECT_HP_RESTORE_SE:
         if (DEFENDING_MON.curHP && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, itemPower);
@@ -6560,7 +6656,9 @@ s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler)
 
 static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
 {
+    // Oxide, element 7: an Air Balloon holds its holder up as Levitate does.
     return (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+               && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_AIR_BALLOON
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
