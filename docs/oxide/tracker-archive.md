@@ -415,6 +415,16 @@ Three sub-items of "The move pool, first cut", finished on 2026-09-27 (the Metro
   - [x] Metronome is barred from every move that does nothing or is partial (22), the Max moves and Max Guard, the signature Z-moves, and Rain Dance, Sunny Day, Sandstorm and Hail (Ian, 2026-09-27). Done on `main-metronome-2`: 62 moves join the Metronome part of the table, and Assist and Copycat share the bars, so the player cannot copy a trainer's weather either
   - [x] Pelipper's hidden ability becomes Drizzle and Torkoal's Drought now, for trainers (Ian, 2026-09-27, staples answer 9); lint R18 keeps them out of gifts, eggs and scripted battles Done on `balance-weather-hidden` (2026-09-27).
 
+The tracker's backlog entry for the script index, finished on `cloud/overseer-script-index` and landed on 2026-09-27:
+
+- **The script index** (Ian, 2026-09-27): `tools/oxide/scriptindex.py` writes what each map does to `docs/oxide/script-index.md` and `.json`, and the gate warns when they are stale. Left: the Overseer checks its base ROM or Oxide attribution locally; its first findings are in the findings log
+
+Ian's answers on the Kaizo pattern study's first generator (2026-09-27), moved out when he sent it back to the drawing board; each still stands for the redesign:
+
+  - [x] Ian's answers (2026-09-27): the direction is confirmed, the generator goes ahead, and the nine further dead-weight catches go too. Three analyses join it: delays, the four moves each wild Pokemon carries in Kaizo's tables and Oxide's, and fully evolved catches that lack good moves without the relearner (the comparison's answer 6 has the detail)
+  - [x] Ian's answers on part 3 (2026-09-27): recoil attacks stay real attacks; the 169 evolutions that reward a wait stay (long waits are worth it); Hoppip gets Leafage; tag battles are scored as played. And a move's worth to the player is the four it has at capture (the last four by level) plus what it learns after, so an evolved form's level-1 moves count for almost nothing: the generator, its analyses and the scores' player movesets are rechecked on it (standing rulings)
+  - [x] Later answers (2026-09-27): more exclusive delays, as Kaizo has, each placed by the split Kaizo delays it to, not its level; the level-1 order and Fletchinder's move wait on examples
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)

@@ -10,11 +10,11 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 **Who is on what** (2026-09-27, after the landing of 98ff5bebe):
 
-1. **Balance Agent**: the Lucas and Dawn fights and the placed dummy trainers into the scores; the Kaizo study's generator waits on Ian.
+1. **Balance Agent**: the score fixes (rescoring), then the scoring rebuild; the learnset generator's redesign waits on Ian's two calls.
 2. **Encounter Tool Builder**: the trainer team builder landed (2026-09-27, the tool's Trainers tab); next, its build plan's open items.
 3. **Main Production Agent**: free until Ian's Frontier teams exist.
 4. **Carry-over Agent**: finished.
-5. **Cloud**: nothing running; the script index landed (`docs/oxide/script-index.md`). The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
+5. **Cloud**: nothing running. The script index landed; the learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
 6. **Ian**: the in-game checks (`docs/oxide/ingame-checklist.md`), all at once when the new CPU is in; the Frontier Brain teams; the gauntlet trainers case by case; the level-1 order and Fletchinder.
 7. **No owner yet**: element 7 (items), the rest of element 8 (field moves by badge, 30 PC boxes, wild doubles), and the bug track, which needs Ian live.
 
@@ -142,9 +142,7 @@ None is Phase 4 work; all of them shape the finished game.
   - [ ] The cut and empty move slots are cleaned up once the move list has mostly settled (Ian, 2026-09-27)
 - [ ] **The Kaizo comparison, ruled** (Ian, 2026-09-27; `docs/oxide/kaizo-comparison.md`, "Ian's answers", has all eight). Moves: only the report's short list comes in beside answer 1's modern numbers, and answer 1 now covers priority (Fake Out +3, Extreme Speed +2, and every other Generation 4 move whose priority later changed); every setup move, old or new, goes to 1 to 3 PP, and the stat-lowering status moves to 3 to 6 (Sweet Scent 2); sleep moves and powders keep their accuracy. Learnsets: Kaizo's lists are the line-by-line template, strong moves may sit at level 1 on evolved stages, and no split has a power ceiling.
   - [ ] Balance track: the Kaizo pattern study (Ian, 2026-09-27; the comparison's answer 6): rules for when and why Kaizo gives each move, tested against Kaizo's own lists, and a generator that proposes lists for any species and move inside Oxide's caps, dropping dead-weight moves (Absorb, Wrap, Constrict, Barrage, Snore, Rage, Razor Wind, Bide, Comeuppance, vanilla Octazooka, Submission); writes no game data. The copy on `cloud/balance-learnset-pass` stays unmerged
-  - [ ] Ian's answers (2026-09-27): the direction is confirmed, the generator goes ahead, and the nine further dead-weight catches go too. Three analyses join it: delays, the four moves each wild Pokemon carries in Kaizo's tables and Oxide's, and fully evolved catches that lack good moves without the relearner (the comparison's answer 6 has the detail)
-  - [ ] Ian's answers on part 3 (2026-09-27): recoil attacks stay real attacks; the 169 evolutions that reward a wait stay (long waits are worth it); Hoppip gets Leafage; tag battles are scored as played. And a move's worth to the player is the four it has at capture (the last four by level) plus what it learns after, so an evolved form's level-1 moves count for almost nothing: the generator, its analyses and the scores' player movesets are rechecked on it (standing rulings)
-  - [ ] Later answers (2026-09-27): more exclusive delays, as Kaizo has, each placed by the split Kaizo delays it to, not its level; the level-1 order and Fletchinder's move wait on examples
+  - [ ] Back to the drawing board (Ian, 2026-09-27): the first generator overbuffed strong lines (Houndoom, a Flare Blitz Fletchinder) and delayed weak early attacks. The redesign places moves per species from Kaizo's reachable entries, by split; uses Ian's Talonflame test as a power bar; never moves a weak attack later; and counts only real delays. Its first output is six lines for Ian; the bar's thresholds and the strong status moves beyond Toxic, Will-O-Wisp and Spore are his calls. His earlier answers (the capture rule, recoil, delays, Leafage, exclusives by split, tag battles) are in the archive and still stand
 - [ ] **Gauntlets** (Ian, 2026-09-27): the Pocket PC heals anywhere, so attrition gets its own home: chosen one-way areas the player must clear, beating a set number of trainers in a row, before leaving to heal, where the Pocket PC refuses to work. The balance track proposes which areas and how many trainers; the Carry-over Agent's Pocket PC work adds the per-map switch; the main track scripts the one-way entries.
   - [ ] Ian's rulings on the proposal (2026-09-27, in the standing rulings): 2 to 5 mandatory trainers on the easier side of average, bag healing allowed, bosses outside; the four areas split into sections; the simulation underrates them
   - [ ] All twelve sections are taken (Eterna 2, Galactic HQ 4, Mt. Coronet 2, Victory Road 4); Ian judges the above-average trainers case by case from their teams
@@ -171,7 +169,6 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 ## Backlog / follow-ups
 
 - **Live inspection of the running game (Ian, 2026-09-20).** The stub connection is done (`live.py`, `live_watch.py`, `docs/oxide/setup-fork-and-wsl2.md` part 5b). Left: decoders on `live.py` for the party, boxes, flags, vars, map and running script, with writes for a debug console; and an offline reader for the melonDS `.sav`, so the encounter tool can read the real dex flags
-- **The script index** (Ian, 2026-09-27): `tools/oxide/scriptindex.py` writes what each map does to `docs/oxide/script-index.md` and `.json`, and the gate warns when they are stale. Left: the Overseer checks its base ROM or Oxide attribution locally; its first findings are in the findings log
 - **Re-humanise the 86 generated scripts**, a map at a time, as each map gets attention: named labels, `NPCMessage`, text-bank constants, real names for `LOCALID_OBJECT_<n>` and `<Bank>_Text_<n>`. `checkmap.py` is the check. Never during a faithful carry-over; the point of the bulk pass was to be done
 - Two raw regions the disassembler emits as `.byte` rather than decoding (`scripts_spear_pillar` 0x04b5 and `scripts_common` 0x1268 are the two to start from). They round-trip exactly; they are just not understood
 - The two trade json files still named `abra` and `haunter` for what are now a Ditto and a Suicune
