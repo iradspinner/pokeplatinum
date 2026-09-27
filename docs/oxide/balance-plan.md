@@ -1762,8 +1762,8 @@ lands, and each change is re-scored as it lands.
    |---|---|---|---|
    | Evolutions rewarding a wait of a split or less | 124 of 246 | 63 of 320 | 169 of 320 |
    | Median wait past the evolution level | 8 | 5 | 6 |
-   | Moves only a Pokemon kept from evolving gets | 334 | 242 | 34 |
-   | Of those, strong | 148 | 37 | 13 |
+   | Moves only a Pokemon kept from evolving gets | 334 | 243 | 35 |
+   | Of those, strong | 148 | 37 | 14 |
 
    The proposal turns most delays into a move the evolved stage learns a
    split later, not never: Kaizo keeps many more exclusive ones.
@@ -1836,7 +1836,7 @@ lands, and each change is re-scored as it lands.
    else a weak one of its type); keeps every move that ends a wild
    encounter above the levels the species is wild at; fixes the bare
    catches as above; and stays at or under 78. Over 652 species it adds
-   4,221 moves, moves 4,833 and drops 717: 397 dead weight, 233 weaker
+   4,221 moves, moves 4,830 and drops 718: 397 dead weight, 234 weaker
    same-type, 67 weather and 59 the move pool's cut.
 
    The level-1 lists are kept whole, as the relearner's menu and the trainer
