@@ -3146,6 +3146,11 @@ Expert_Conversion_End:
     PopOrEnd 
 
 Expert_Synthesis:
+    // Oxide, change (Ian, 2026-09-27): Shore Up shares Synthesis's effect, but the engine
+    // heals it by its own rule, half, or two thirds in a sandstorm (BtlCmd_WeatherHPRecovery),
+    // never less as Synthesis heals in rain, hail or a sandstorm. So it is scored as Recover,
+    // its nearest Platinum move by what it does.
+    IfMoveEqualTo MOVE_SHORE_UP, Expert_Recovery
     // Treat Synthesis-type effects like any other recovery move, but additional score -2 if the
     // weather is Hail, Rain, or Sand.
     LoadCurrentWeather 
