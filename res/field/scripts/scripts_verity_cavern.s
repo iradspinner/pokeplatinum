@@ -12,6 +12,11 @@ VerityCavern_OnTransition:
     @ Oxide: a save from before the legendary pool has no draw; its roamer
     @ is the vanilla Mesprit.
     CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_NONE, VerityCavern_DrawMesprit
+    @ Oxide: the roamer pool is off for now (Ian, 2026-09-27), like Valor
+    @ Cavern and Stark Mountain, while the balance passes run: the roamer's
+    @ object is hidden on every load, so it is never released, and no script
+    @ that unhides it (the lab, the Hall of Fame) brings it back.
+    SetFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     End
 
 VerityCavern_DrawMesprit:
