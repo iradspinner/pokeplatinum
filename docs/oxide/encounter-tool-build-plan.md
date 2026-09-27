@@ -847,6 +847,18 @@ that stay. None blocks anything.
    `ian-saves` like a track branch, after the Balance Agent rescores what a
    trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
    throwaway repository.
+32. **Honey trees in the gate, and ten cap candidates (2026-09-27).** The
+   availability gate counted no honey tree as a capture, so Munchlax, whose
+   trees read the one-badge table from Gardenia's split, showed as first
+   caught in Wake's and sat among eleven cap candidates. The gate now counts
+   each tree on the table its map stands on, reading the honey table for the
+   badges held then, and no earlier than Gardenia's split, when Honey is
+   first sold in Floaroma (the rule the box simulator already used, now
+   `scripted.HONEY_FROM` for both). Munchlax and Heracross now read as first
+   caught in Gardenia's split, and ten cap candidates remain. The authoring
+   pass ended with none, so these crept in with later table changes; each
+   needs a table change, which goes to Ian as a proposal first. Suites:
+   step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim 11/11.
 
 ## Standing rules
 

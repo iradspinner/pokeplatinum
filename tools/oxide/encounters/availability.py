@@ -208,6 +208,27 @@ def build(ref=None):
                     if lid:
                         captures[lid].add((effective_split(area, kind), loc_of.get(area) or area))
 
+    # A honey tree is a capture too: the table its map stands on names the
+    # place, and the tree reads the honey table for the badges held when it
+    # is shaken. That is the map's split, or Gardenia's for a map reached
+    # before Honey is sold. Until 2026-09-27 the gate counted no tree, so
+    # Munchlax, whose trees stand from Gardenia's split, read as first caught
+    # in Wake's. The one tree with no table of its own (Floaroma Meadow) is
+    # left out.
+    if ref is None:
+        from . import scripted     # here: scripted imports this module
+        honey_tables = model.honey_tree_tables()
+        for stem in scripted.honey_tree_stems(root):
+            split = split_of.get(stem)
+            if split:
+                split = max((split, scripted.HONEY_FROM), key=lambda s: split_idx.get(s, 99))
+            table = scripted.honey_table_for(split, split_idx, honey_tables) if split else None
+            for tier in ("common", "uncommon"):
+                for sp in (table or {}).get(tier) or []:
+                    lid = base_of.get(sp) or base_of.get(line_of.get(sp, sp))
+                    if lid:
+                        captures[lid].add((split, loc_of.get(stem) or stem))
+
     def first_split(lid):
         best = None
         for s, _ in captures.get(lid, ()):
