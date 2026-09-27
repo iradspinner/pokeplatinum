@@ -1426,8 +1426,39 @@ misjudged. Read by hand:
   has Jupiter a bit harder; both cost the planned six little.
 
 The realistic boxes hold what the sources file gives: Azelf's static in
-Candice's split among them, though Ian has ruled Valor Cavern empty for
-now.
+Candice's split among them, until this branch takes oxide's Azelf fix.
+
+**Two trials** (Ian, 2026-09-27). (a) Each mode weighted on its own: the
+share of HP spent for a planned fight, the Pokemon lost for a blind one
+(fightfit's MODE_FEATURES). Letting each mode take any reading fits no
+better on the held-out pairs and puts a weight of 189 on "three or more
+lost", which blind fights rarely reach, so the plain pair is kept. (b)
+Each planned six planned from a realistic box of what the run has, the
+best six from it for the fight, rather than from the strongest third of
+everything (fightfit --box).
+
+| Reading | Held out (the bar is 13) | All forty |
+|---|---|---|
+| One weighting, planned from the strongest third | 7 of 15 | 23 of 40 |
+| (a) per mode, planned from the strongest third | 9 of 15 | 28 of 40 |
+| (a) and (b), planned from a realistic box | 9 of 15 | 29 of 40 |
+
+With (b) Somnu against a grunt (23) reads Ian's way, as he expected, and
+Byron above Cyrus 1 (16) too.
+
+**Ian's top ten** (the stored score's hardest fights, which he calls a
+defensible list: Cynthia; both Hesperid fights; Flint and Lucian; Byron;
+Cyrus at the Galactic HQ; the Fight Area's Flint and Volkner; Maylene and
+Barry 6). The rebuild departs from it. With (a) and (b) its ten hardest
+are Wake, Barry 6, Cynthia, Saturn 1, Candice, Bertha, Lucian, Gardenia,
+Flint and Fantina: four of the stored ten (Cynthia, Barry 6, Lucian,
+Flint), with Maylene 12th and Cyrus 14th. The far departures are Byron
+(18th), the Fight Area's tag battle (26th) and both Hesperid fights (27th
+and 28th). Byron and Hesperid carry Explosions, which Generation 4's AI
+rarely uses at high HP, so the rebuild reads them easy where the stored
+score counts every Explosion as a knockout; the tag battle has Barry
+beside the player. The rebuild should not replace the stored score while
+it departs this far from a list Ian stands by.
 
 ## Open questions for Ian
 

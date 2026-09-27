@@ -1,0 +1,1488 @@
+{
+ "story:roark": {
+  "losses": 0.93,
+  "three_plus": 0.105,
+  "wipe": 0.055,
+  "won": 0.945,
+  "hp_lost": 0.511,
+  "teams": [
+   [
+    "Pachirisu",
+    "Phanpy",
+    "Lombre",
+    "Nidorina",
+    "Geodude",
+    "Prinplup"
+   ]
+  ]
+ },
+ "story:barry_2": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.001,
+  "teams": [
+   [
+    "Remoraid",
+    "Lombre",
+    "Tentacool",
+    "Nosepass",
+    "Vullaby",
+    "Prinplup"
+   ],
+   [
+    "Prinplup",
+    "Sewaddle",
+    "Luxio",
+    "Nosepass",
+    "Houndour",
+    "Remoraid"
+   ],
+   [
+    "Turtwig",
+    "Staravia",
+    "Purrloin",
+    "Skitty",
+    "Remoraid",
+    "Nidorino"
+   ]
+  ]
+ },
+ "tr:323": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.0,
+  "teams": [
+   [
+    "Pachirisu",
+    "Bibarel",
+    "Prinplup",
+    "Nosepass",
+    "Vullaby",
+    "Nidorina"
+   ]
+  ]
+ },
+ "tr:245": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.041,
+  "teams": [
+   [
+    "Pachirisu",
+    "Bibarel",
+    "Prinplup",
+    "Nosepass",
+    "Vullaby",
+    "Nidorina"
+   ]
+  ]
+ },
+ "story:gardenia": {
+  "losses": 2.02,
+  "three_plus": 0.265,
+  "wipe": 0.175,
+  "won": 0.825,
+  "hp_lost": 0.604,
+  "teams": [
+   [
+    "Cherrim",
+    "Vespiquen",
+    "Barboach",
+    "Steelix",
+    "Tentacool",
+    "Heracross"
+   ]
+  ]
+ },
+ "story:mars_1": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.066,
+  "teams": [
+   [
+    "Wormadam",
+    "Lombre",
+    "Snover",
+    "Brionne",
+    "Vullaby",
+    "Heracross"
+   ]
+  ]
+ },
+ "tr:299": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.001,
+  "teams": [
+   [
+    "Nidoqueen",
+    "Delcatty",
+    "Vullaby",
+    "Feebas",
+    "Krabby",
+    "Breloom"
+   ]
+  ]
+ },
+ "tr:326": {
+  "losses": 0.01,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.041,
+  "teams": [
+   [
+    "Vespiquen",
+    "Steelix",
+    "Nidoqueen",
+    "Octillery",
+    "Cherrim",
+    "Heracross"
+   ]
+  ]
+ },
+ "tr:78": {
+  "losses": 0.005,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.005,
+  "teams": [
+   [
+    "Vespiquen",
+    "Steelix",
+    "Nidoqueen",
+    "Octillery",
+    "Cherrim",
+    "Heracross"
+   ]
+  ]
+ },
+ "tr:203": {
+  "losses": 0.035,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.04,
+  "teams": [
+   [
+    "Vespiquen",
+    "Steelix",
+    "Nidoqueen",
+    "Octillery",
+    "Cherrim",
+    "Heracross"
+   ]
+  ]
+ },
+ "story:fantina": {
+  "losses": 2.215,
+  "three_plus": 0.325,
+  "wipe": 0.165,
+  "won": 0.835,
+  "hp_lost": 0.581,
+  "teams": [
+   [
+    "Seel",
+    "Houndoom",
+    "Graveler",
+    "Togetic",
+    "Haunter",
+    "Liepard"
+   ]
+  ]
+ },
+ "story:lucas_dawn_2": {
+  "losses": 0.039,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.118,
+  "teams": [
+   [
+    "Munchlax",
+    "Delcatty",
+    "Breloom",
+    "Mothim",
+    "Litwick",
+    "Glameow"
+   ],
+   [
+    "Leavanny",
+    "Kingler",
+    "Brionne",
+    "Heracross",
+    "Raboot",
+    "Naclstack"
+   ],
+   [
+    "Graveler",
+    "Heracross",
+    "Tsareena",
+    "Carbink",
+    "Salazzle",
+    "Polteageist"
+   ],
+   [
+    "Orbeetle",
+    "Mothim",
+    "Cherrim",
+    "Breloom",
+    "Dubwool",
+    "Mightyena"
+   ],
+   [
+    "Nidoking",
+    "Furret",
+    "Heracross",
+    "Glameow",
+    "Frogadier",
+    "Leafeon"
+   ],
+   [
+    "Delcatty",
+    "Breloom",
+    "Mightyena",
+    "Corsola",
+    "Wormadam",
+    "Shiftry"
+   ]
+  ]
+ },
+ "tr:266": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.018,
+  "teams": [
+   [
+    "Vespiquen",
+    "Ninetales-Alola",
+    "Milotic",
+    "Nidoking",
+    "Tsareena",
+    "Sylveon"
+   ]
+  ]
+ },
+ "tr:36": {
+  "losses": 0.035,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.017,
+  "teams": [
+   [
+    "Vespiquen",
+    "Ninetales-Alola",
+    "Milotic",
+    "Nidoking",
+    "Tsareena",
+    "Sylveon"
+   ]
+  ]
+ },
+ "tr:423": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.036,
+  "teams": [
+   [
+    "Lanturn",
+    "Litwick",
+    "Crawdaunt",
+    "Cherrim",
+    "Frogadier",
+    "Togetic"
+   ]
+  ]
+ },
+ "story:jupiter_1": {
+  "losses": 0.055,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.146,
+  "teams": [
+   [
+    "Munchlax",
+    "Seaking",
+    "Tsareena",
+    "Toucannon",
+    "Charjabug",
+    "Haunter"
+   ]
+  ]
+ },
+ "story:maylene": {
+  "losses": 1.075,
+  "three_plus": 0.13,
+  "wipe": 0.02,
+  "won": 0.98,
+  "hp_lost": 0.542,
+  "teams": [
+   [
+    "Mismagius",
+    "Staraptor",
+    "Donphan",
+    "Torterra",
+    "Electivire",
+    "Vespiquen"
+   ]
+  ]
+ },
+ "story:barry_3": {
+  "losses": 0.022,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.137,
+  "teams": [
+   [
+    "Kleavor",
+    "Talonflame",
+    "Mightyena",
+    "Nidoking",
+    "Quagsire",
+    "Rotom"
+   ],
+   [
+    "Kleavor",
+    "Cofagrigus",
+    "Greninja",
+    "Rotom",
+    "Orbeetle",
+    "Gastrodon"
+   ],
+   [
+    "Magmortar",
+    "Kadabra",
+    "Garganacl",
+    "Togetic",
+    "Gastrodon",
+    "Glimmora"
+   ]
+  ]
+ },
+ "tr:294": {
+  "losses": 0.275,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.239,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "tr:127": {
+  "losses": 0.085,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.165,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "tr:532": {
+  "losses": 0.005,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.047,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "tr:310": {
+  "losses": 0.15,
+  "three_plus": 0.005,
+  "wipe": 0.005,
+  "won": 0.995,
+  "hp_lost": 0.137,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "tr:65": {
+  "losses": 0.02,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.107,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "tr:290": {
+  "losses": 0.075,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.118,
+  "teams": [
+   [
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Electivire",
+    "Spiritomb",
+    "Honchkrow"
+   ]
+  ]
+ },
+ "story:wake": {
+  "losses": 4.395,
+  "three_plus": 0.85,
+  "wipe": 0.465,
+  "won": 0.535,
+  "hp_lost": 0.875,
+  "teams": [
+   [
+    "Abomasnow",
+    "Gothitelle",
+    "Leavanny",
+    "Ludicolo",
+    "Glimmora",
+    "Azumarill"
+   ]
+  ]
+ },
+ "story:barry_4": {
+  "losses": 0.25,
+  "three_plus": 0.012,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.337,
+  "teams": [
+   [
+    "Crustle",
+    "Scizor",
+    "Araquanid",
+    "Carbink",
+    "Manaphy",
+    "Mismagius"
+   ],
+   [
+    "Milotic",
+    "Vespiquen",
+    "Politoed",
+    "Wailord",
+    "Lanturn",
+    "Dusclops"
+   ],
+   [
+    "Rotom",
+    "Vikavolt",
+    "Vaporeon",
+    "Primarina",
+    "Milotic",
+    "Polteageist"
+   ]
+  ]
+ },
+ "tr:795": {
+  "losses": 0.805,
+  "three_plus": 0.065,
+  "wipe": 0.025,
+  "won": 0.975,
+  "hp_lost": 0.406,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Wailord",
+    "Florges"
+   ]
+  ]
+ },
+ "tr:293": {
+  "losses": 0.75,
+  "three_plus": 0.045,
+  "wipe": 0.005,
+  "won": 0.995,
+  "hp_lost": 0.433,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Wailord",
+    "Florges"
+   ]
+  ]
+ },
+ "tr:382": {
+  "losses": 0.045,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.127,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Wailord",
+    "Florges"
+   ]
+  ]
+ },
+ "tr:105": {
+  "losses": 0.08,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.224,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Wailord",
+    "Florges"
+   ]
+  ]
+ },
+ "story:byron": {
+  "losses": 1.215,
+  "three_plus": 0.135,
+  "wipe": 0.035,
+  "won": 0.965,
+  "hp_lost": 0.392,
+  "teams": [
+   [
+    "Pelipper",
+    "Politoed",
+    "Galvantula",
+    "Electivire",
+    "Gengar",
+    "Chandelure"
+   ]
+  ]
+ },
+ "story:cyrus_1": {
+  "losses": 0.245,
+  "three_plus": 0.01,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.324,
+  "teams": [
+   [
+    "Floatzel",
+    "Dusclops",
+    "Emolga",
+    "Talonflame",
+    "Lumineon",
+    "Glimmora"
+   ]
+  ]
+ },
+ "tr:283": {
+  "losses": 0.065,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.221,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Florges",
+    "Electivire"
+   ]
+  ]
+ },
+ "tr:392": {
+  "losses": 0.17,
+  "three_plus": 0.005,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.198,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Florges",
+    "Electivire"
+   ]
+  ]
+ },
+ "story:barry_5": {
+  "losses": 0.203,
+  "three_plus": 0.005,
+  "wipe": 0.002,
+  "won": 0.905,
+  "hp_lost": 0.345,
+  "teams": [
+   [
+    "Carbink",
+    "Jellicent",
+    "Glimmora",
+    "Kleavor",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   [
+    "Jellicent",
+    "Vikavolt",
+    "Araquanid",
+    "Milotic",
+    "Hippowdon",
+    "Weezing"
+   ],
+   [
+    "Drifblim",
+    "Gastrodon",
+    "Purugly",
+    "Greninja",
+    "Heracross",
+    "Togekiss"
+   ]
+  ]
+ },
+ "tr:416": {
+  "losses": 0.015,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.125,
+  "teams": [
+   [
+    "Gallade",
+    "Sharpedo",
+    "Lumineon",
+    "Electivire",
+    "Wormadam",
+    "Klefki"
+   ]
+  ]
+ },
+ "tr:68": {
+  "losses": 0.125,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.195,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Florges",
+    "Electivire"
+   ]
+  ]
+ },
+ "tr:505": {
+  "losses": 0.055,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.171,
+  "teams": [
+   [
+    "Manaphy",
+    "Vespiquen",
+    "Probopass",
+    "Steelix",
+    "Florges",
+    "Electivire"
+   ]
+  ]
+ },
+ "story:candice": {
+  "losses": 2.515,
+  "three_plus": 0.38,
+  "wipe": 0.21,
+  "won": 0.79,
+  "hp_lost": 0.666,
+  "teams": [
+   [
+    "Floatzel",
+    "Lucario",
+    "Flareon",
+    "Larvesta",
+    "Araquanid",
+    "Ludicolo"
+   ]
+  ]
+ },
+ "story:mars_2": {
+  "losses": 0.415,
+  "three_plus": 0.015,
+  "wipe": 0.005,
+  "won": 0.995,
+  "hp_lost": 0.365,
+  "teams": [
+   [
+    "Metagross",
+    "Steelix",
+    "Toxicroak",
+    "Sinistcha",
+    "Absol",
+    "Gengar"
+   ]
+  ]
+ },
+ "tr:141": {
+  "losses": 0.24,
+  "three_plus": 0.005,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.188,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Goodra",
+    "Manaphy",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:138": {
+  "losses": 0.01,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.094,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Goodra",
+    "Manaphy",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "story:saturn_1": {
+  "losses": 2.235,
+  "three_plus": 0.325,
+  "wipe": 0.18,
+  "won": 0.82,
+  "hp_lost": 0.728,
+  "teams": [
+   [
+    "Gastrodon",
+    "Corviknight",
+    "Primarina",
+    "Manaphy",
+    "Glalie",
+    "Lunatone"
+   ]
+  ]
+ },
+ "tr:418": {
+  "losses": 0.105,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.266,
+  "teams": [
+   [
+    "Golem",
+    "Torterra",
+    "Metagross",
+    "Hippowdon",
+    "Blastoise",
+    "Toxapex"
+   ]
+  ]
+ },
+ "tr:420": {
+  "losses": 0.02,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.028,
+  "teams": [
+   [
+    "Azelf",
+    "Metagross",
+    "Ninetales-Alola",
+    "Jellicent",
+    "Gliscor",
+    "Vespiquen"
+   ]
+  ]
+ },
+ "tr:419": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.035,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Goodra",
+    "Manaphy",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "story:cyrus_2": {
+  "losses": 0.46,
+  "three_plus": 0.04,
+  "wipe": 0.02,
+  "won": 0.98,
+  "hp_lost": 0.362,
+  "teams": [
+   [
+    "Togekiss",
+    "Lucario",
+    "Blastoise",
+    "Araquanid",
+    "Azelf",
+    "Volcarona"
+   ]
+  ]
+ },
+ "story:saturn_2": {
+  "losses": 1,
+  "three_plus": 0.09,
+  "wipe": 0.015,
+  "won": 0.985,
+  "hp_lost": 0.483,
+  "teams": [
+   [
+    "Metagross",
+    "Gastrodon",
+    "Scizor",
+    "Frosmoth",
+    "Crawdaunt",
+    "Quagsire"
+   ]
+  ]
+ },
+ "tr:830": {
+  "losses": 0.055,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.096,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:509": {
+  "losses": 0.04,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.13,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:525": {
+  "losses": 0.53,
+  "three_plus": 0.04,
+  "wipe": 0.02,
+  "won": 0.98,
+  "hp_lost": 0.372,
+  "teams": [
+   [
+    "Probopass",
+    "Drapion",
+    "Golem",
+    "Araquanid",
+    "Greninja",
+    "Kingler"
+   ]
+  ]
+ },
+ "tr:507": {
+  "losses": 0.025,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.023,
+  "teams": [
+   [
+    "Metagross",
+    "Garchomp",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "story:mars_jupiter": {
+  "losses": 2.03,
+  "three_plus": 0.275,
+  "wipe": 0.02,
+  "won": 0.98,
+  "hp_lost": 0.41,
+  "teams": [
+   [
+    "Chandelure",
+    "Tentacruel",
+    "Steelix",
+    "Honchkrow",
+    "Garganacl",
+    "Feraligatr"
+   ]
+  ]
+ },
+ "story:cyrus_3": {
+  "losses": 1.315,
+  "three_plus": 0.125,
+  "wipe": 0.025,
+  "won": 0.975,
+  "hp_lost": 0.513,
+  "teams": [
+   [
+    "Nidoqueen",
+    "Weavile",
+    "Staraptor",
+    "Manaphy",
+    "Electivire",
+    "Kingler"
+   ]
+  ]
+ },
+ "tr:561": {
+  "losses": 0.19,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.159,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:584": {
+  "losses": 0.09,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.13,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:520": {
+  "losses": 0.05,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.12,
+  "teams": [
+   [
+    "Steelix",
+    "Whiscash",
+    "Pachirisu",
+    "Milotic",
+    "Dusknoir",
+    "Lucario"
+   ]
+  ]
+ },
+ "tr:526": {
+  "losses": 0.07,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.23,
+  "teams": [
+   [
+    "Primarina",
+    "Electivire",
+    "Clodsire",
+    "Gliscor",
+    "Skuntank",
+    "Nidoking"
+   ]
+  ]
+ },
+ "tr:578": {
+  "losses": 0.085,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.104,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:565": {
+  "losses": 0.065,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.167,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:926": {
+  "losses": 0.015,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.121,
+  "teams": [
+   [
+    "Clodsire",
+    "Altaria",
+    "Rhyperior",
+    "Absol",
+    "Feraligatr",
+    "Gorebyss"
+   ]
+  ]
+ },
+ "tr:927": {
+  "losses": 0.015,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.073,
+  "teams": [
+   [
+    "Gallade",
+    "Roserade",
+    "Clodsire",
+    "Corviknight",
+    "Araquanid",
+    "Kleavor"
+   ]
+  ]
+ },
+ "story:volkner": {
+  "losses": 0.27,
+  "three_plus": 0.015,
+  "wipe": 0.005,
+  "won": 0.995,
+  "hp_lost": 0.32,
+  "teams": [
+   [
+    "Nidoqueen",
+    "Breloom",
+    "Whiscash",
+    "Lucario",
+    "Cherrim",
+    "Steelix"
+   ]
+  ]
+ },
+ "tr:281": {
+  "losses": 0.07,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.107,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Manaphy",
+    "Goodra",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:331": {
+  "losses": 0.01,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.015,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Manaphy",
+    "Goodra",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:341": {
+  "losses": 0,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.0,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Manaphy",
+    "Goodra",
+    "Azelf",
+    "Suicune"
+   ]
+  ]
+ },
+ "story:cynthia": {
+  "losses": 3.365,
+  "three_plus": 0.535,
+  "wipe": 0.28,
+  "won": 0.72,
+  "hp_lost": 0.752,
+  "teams": [
+   [
+    "Froslass",
+    "Electivire",
+    "Volcarona",
+    "Mismagius",
+    "Gallade",
+    "Glimmora"
+   ]
+  ]
+ },
+ "story:lucian": {
+  "losses": 2.06,
+  "three_plus": 0.275,
+  "wipe": 0.085,
+  "won": 0.915,
+  "hp_lost": 0.638,
+  "teams": [
+   [
+    "Dusknoir",
+    "Bronzong",
+    "Octillery",
+    "Drifblim",
+    "Electivire",
+    "Giratina"
+   ]
+  ]
+ },
+ "story:flint_volkner": {
+  "losses": 1.365,
+  "three_plus": 0.125,
+  "wipe": 0.025,
+  "won": 0.995,
+  "hp_lost": 0.297,
+  "teams": [
+   [
+    "Hippowdon",
+    "Flygon",
+    "Swampert",
+    "Kingdra",
+    "Mothim",
+    "Staraptor"
+   ]
+  ]
+ },
+ "story:lucas_dawn_3": {
+  "losses": 1.301,
+  "three_plus": 0.138,
+  "wipe": 0.038,
+  "won": 0.962,
+  "hp_lost": 0.52,
+  "teams": [
+   [
+    "Turtonator",
+    "Giratina",
+    "Glimmora",
+    "Donphan",
+    "Tsareena",
+    "Goodra"
+   ],
+   [
+    "Skarmory",
+    "Flygon",
+    "Frosmoth",
+    "Gyarados",
+    "Galvantula",
+    "Octillery"
+   ],
+   [
+    "Tsareena",
+    "Scizor",
+    "Volcarona",
+    "Steelix",
+    "Wormadam",
+    "Electivire"
+   ],
+   [
+    "Crawdaunt",
+    "Lucario",
+    "Dusknoir",
+    "Azelf",
+    "Crustle",
+    "Wailord"
+   ],
+   [
+    "Vikavolt",
+    "Hippowdon",
+    "Azelf",
+    "Dubwool",
+    "Masquerain",
+    "Breloom"
+   ],
+   [
+    "Castform",
+    "Heracross",
+    "Crustle",
+    "Orbeetle",
+    "Gyarados",
+    "Chandelure"
+   ]
+  ]
+ },
+ "story:bertha": {
+  "losses": 1.89,
+  "three_plus": 0.25,
+  "wipe": 0.05,
+  "won": 0.95,
+  "hp_lost": 0.641,
+  "teams": [
+   [
+    "Manaphy",
+    "Tsareena",
+    "Azelf",
+    "Steelix",
+    "Weezing",
+    "Weavile"
+   ]
+  ]
+ },
+ "story:aaron": {
+  "losses": 1.15,
+  "three_plus": 0.135,
+  "wipe": 0.055,
+  "won": 0.945,
+  "hp_lost": 0.543,
+  "teams": [
+   [
+    "Metagross",
+    "Liepard",
+    "Steelix",
+    "Glimmora",
+    "Giratina",
+    "Gyarados"
+   ]
+  ]
+ },
+ "story:flint": {
+  "losses": 1.575,
+  "three_plus": 0.245,
+  "wipe": 0.055,
+  "won": 0.945,
+  "hp_lost": 0.598,
+  "teams": [
+   [
+    "Politoed",
+    "Flygon",
+    "Snorlax",
+    "Staraptor",
+    "Swampert",
+    "Gyarados"
+   ]
+  ]
+ },
+ "tr:230": {
+  "losses": 0.15,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.148,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:228": {
+  "losses": 0.16,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.196,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:236": {
+  "losses": 0.095,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.163,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "tr:234": {
+  "losses": 0.11,
+  "three_plus": 0.0,
+  "wipe": 0.0,
+  "won": 1.0,
+  "hp_lost": 0.183,
+  "teams": [
+   [
+    "Giratina",
+    "Metagross",
+    "Azelf",
+    "Goodra",
+    "Manaphy",
+    "Suicune"
+   ]
+  ]
+ },
+ "story:barry_6": {
+  "losses": 3.027,
+  "three_plus": 0.528,
+  "wipe": 0.225,
+  "won": 0.775,
+  "hp_lost": 0.764,
+  "teams": [
+   [
+    "Frosmoth",
+    "Abomasnow",
+    "Weezing-Galar",
+    "Milotic",
+    "Giratina",
+    "Flygon"
+   ],
+   [
+    "Volcarona",
+    "Araquanid",
+    "Giratina",
+    "Bronzong",
+    "Hippowdon",
+    "Solrock"
+   ],
+   [
+    "Magcargo",
+    "Feraligatr",
+    "Corsola",
+    "Giratina",
+    "Gyarados",
+    "Crobat"
+   ]
+  ]
+ }
+}

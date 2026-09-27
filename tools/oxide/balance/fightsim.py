@@ -1678,6 +1678,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         types = poks.get("types") or []
         can_names = sorted({names[c] for c in can[p["constant"]] if c in names})
         mv = player_moves(p, can_names, tiers, types)
+        if not any(move(m).damaging() for m in mv):
+            continue    # nothing to attack with (a box can hold such a catch; no player brings it)
         # A caught Pokemon has either regular ability, never the hidden one,
         # and never one that sets or cancels weather (Ian, 2026-09-26: the
         # player never controls weather). A species whose regular slots hold

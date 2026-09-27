@@ -9,11 +9,13 @@ player at that split's cap, and by how much, in six grades. Twenty-five
 fit the headline's weights; fifteen are held out, and the headline
 replaces today's score only when it agrees with at least 13 of those.
 
-The headline is a weighted sum of a fight's readings (fightsim.py): the
-Pokemon lost a battle, the chance of losing three or more, the chance of a
-wipe, and the share of HP spent. The weights are fitted so that each
-fitted pair's difference in headline matches its grade's gap on Ian's
-1-to-10 scale, none of them negative. The level of the scale comes from
+The headline is a weighted reading of each fight (fightsim.py), read the
+way Ian judged it: a boss or named Galactic fight with a planned six, the
+rest blind. Each mode is weighted on its own (Ian, 2026-09-27): the share
+of HP spent for a planned fight, the Pokemon lost for a blind one. The
+weights are fitted so that each fitted pair's difference in headline
+matches its grade's gap on Ian's 1-to-10 scale, none of them negative.
+--box plans each planned six from a realistic box of what the run has. The level of the scale comes from
 Ian's own ratings of sixteen fights (calibrate.IAN_RATINGS). A held-out
 pair agrees when the headline puts the fight Ian named above the other;
 for his "very close" and "the same", when the two sit within half a point.
@@ -104,14 +106,21 @@ def planned(f):
     return f[0] == S or bool(NAMED_GALACTIC.match(data.oxide_trainers()[f[1]]["name"]))
 
 
+# Trial (b) of 2026-09-27 (--box): a planned fight's six is planned from a
+# realistic box of what the run has, not from the strongest third of
+# everything; blind fights stay blind.
+PLAN_FROM_BOX = False
+
+
 def read(f, runs=fightsim.RUNS):
-    blind = not fightsim.BOX_MODE and not planned(f)
-    was = fightsim.BLIND_MODE
+    blind = not planned(f)
+    was = fightsim.BLIND_MODE, fightsim.BOX_MODE
     fightsim.BLIND_MODE = blind
+    fightsim.BOX_MODE = PLAN_FROM_BOX and not blind
     try:
         return _read(f, runs)
     finally:
-        fightsim.BLIND_MODE = was
+        fightsim.BLIND_MODE, fightsim.BOX_MODE = was
 
 
 def _read(f, runs):
@@ -142,7 +151,7 @@ def all_fights():
 
 
 def cache_path():
-    return CACHE.replace(".json", "_box.json") if fightsim.BOX_MODE else CACHE
+    return CACHE.replace(".json", "_box.json") if PLAN_FROM_BOX else CACHE
 
 
 def readings(cached=False):
@@ -160,31 +169,42 @@ def readings(cached=False):
     return out
 
 
-def vec(r):
-    return np.array([r[k] for k in FEATURES], dtype=float)
+# Each mode weighted on its own (Ian, 2026-09-27): the share of HP spent
+# for a planned fight, the Pokemon lost for a blind one. Letting each mode
+# take any of the four readings fits no better on the held-out pairs and
+# puts an outsized weight on "three or more lost", which blind fights
+# rarely reach.
+MODE_FEATURES = (("planned", "hp_lost"), ("blind", "losses"))
+
+
+def vec(f, r):
+    """The fight's readings in its mode's columns."""
+    mode = "planned" if planned(f) else "blind"
+    return np.array([r[k] if m == mode else 0.0 for m, k in MODE_FEATURES], dtype=float)
 
 
 def fit(reads):
-    """Non-negative weights for the features, from the fitted pairs'
+    """Non-negative weights, one per mode, from the fitted pairs'
     differences, and the scale's level from Ian's ratings."""
     rows, target = [], []
     for a, b_, harder, grade, held in PAIRS:
         if held:
             continue
-        d = vec(reads[fight_id(a)]) - vec(reads[fight_id(b_)])
+        d = vec(a, reads[fight_id(a)]) - vec(b_, reads[fight_id(b_)])
         sign = 1 if harder == "A" else -1 if harder == "B" else 0
         rows.append(d)
         target.append(sign * GAP[grade])
     X, y = np.array(rows), np.array(target)
+    n = len(MODE_FEATURES)
     best = None
-    # Every subset of the features, least squares on each, keeping only
-    # solutions with no negative weight: four features make sixteen tries.
-    for k in range(1, len(FEATURES) + 1):
-        for cols in itertools.combinations(range(len(FEATURES)), k):
+    # Every subset of the columns, least squares on each, keeping only
+    # solutions with no negative weight.
+    for k in range(1, n + 1):
+        for cols in itertools.combinations(range(n), k):
             w, *_ = np.linalg.lstsq(X[:, cols], y, rcond=None)
             if (w < 0).any():
                 continue
-            full = np.zeros(len(FEATURES))
+            full = np.zeros(n)
             full[list(cols)] = w
             err = float(((X @ full - y) ** 2).sum())
             if best is None or err < best[0]:
@@ -193,12 +213,12 @@ def fit(reads):
     rated = []
     for key, rating in calibrate.IAN_RATINGS.items():
         f = (T, RATED_TRAINERS[key]) if key in RATED_TRAINERS else (S, key)
-        rated.append(rating - float(vec(reads[fight_id(f)]) @ weights))
+        rated.append(rating - float(vec(f, reads[fight_id(f)]) @ weights))
     return weights, statistics.mean(rated), best[0]
 
 
-def headline(r, weights, level):
-    return level + float(vec(r) @ weights)
+def headline(f, r, weights, level):
+    return level + float(vec(f, r) @ weights)
 
 
 def test(reads, weights, level, out=sys.stdout):
@@ -208,7 +228,8 @@ def test(reads, weights, level, out=sys.stdout):
     for n, (a, b_, harder, grade, held_) in enumerate(PAIRS, 1):
         if not held_:
             continue
-        ha, hb = headline(reads[fight_id(a)], weights, level), headline(reads[fight_id(b_)], weights, level)
+        ha = headline(a, reads[fight_id(a)], weights, level)
+        hb = headline(b_, reads[fight_id(b_)], weights, level)
         if grade in ("same", "very close"):
             ok = abs(ha - hb) <= CLOSE or (harder == "A" and ha > hb) or (harder == "B" and hb > ha)
         else:
@@ -225,14 +246,15 @@ def main(argv=None):
     from . import fightfit as mod
     ap = argparse.ArgumentParser()
     ap.add_argument("--cached", action="store_true")
-    ap.add_argument("--box", action="store_true", help="plan each six from a realistic box")
+    ap.add_argument("--box", action="store_true",
+                    help="plan the planned fights' sixes from a realistic box")
     args = ap.parse_args(argv)
-    fightsim.BOX_MODE = args.box
+    mod.PLAN_FROM_BOX = args.box
     # Ian judged his pairs as singles, the four doubles trainers among them too.
     fightsim.PLAY_DOUBLES = False
     reads = mod.readings(args.cached)
     weights, level, err = mod.fit(reads)
-    print("weights:", dict(zip(FEATURES, (round(float(w), 3) for w in weights))),
+    print("weights:", {f"{m} {k}": round(float(w), 3) for (m, k), w in zip(MODE_FEATURES, weights)},
           f"level {level:.2f}, fitted error {err:.2f}")
     mod.test(reads, weights, level)
     return 0
