@@ -2246,9 +2246,46 @@ Expert_Main:
     // charge for a turn as Skull Bash does.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT, Expert_ChargeTurnNoInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_BURN_HIT, Expert_ChargeTurnNoInvuln
+    // Oxide, change (Ian, 2026-09-27): every learnable new move takes the
+    // routine of its nearest Platinum effect, judged by what its effect
+    // script does, where that effect has one (docs/oxide/battle-ai/
+    // expert-new-moves.md has the whole mapping, and the moves left without).
+    // Thousand Waves, Spirit Shackle and Anchor Shot trap as Mean Look does;
+    // Octolock is built on Mean Look's effect.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_HIT, Expert_BindingMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_OCTOLOCK, Expert_BindingMove
+    // Dragon Tail forces a switch, as Roar and Whirlwind do.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH_HIT, Expert_ForceSwitch
+    // Incinerate burns up the target's Berry, as Pluck takes it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCINERATE, Expert_Pluck
+    // Entrainment overwrites the target's ability, as Worry Seed does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ENTRAINMENT, Expert_WorrySeed
+    // Sky Drop takes a turn in the air, as Fly does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKY_DROP, Expert_ChargeTurnWithInvuln
+    // Noble Roar, Tearful Look and Venom Drench lower the target's Attack with
+    // other stats; Platinum sends its own two-stat drop, Tickle, to a one-stat
+    // routine too.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TEARFUL_LOOK, Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_VENOM_DRENCH, Expert_StatusAttackDown
+    // Mind Blown costs its user HP after the hit, as Head Smash's recoil does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIND_BLOWN, Expert_RecoilMove
+    // Burn Up and Double Shock weaken their user after a strong hit, as
+    // Overheat does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_USER_FIRE_TYPE_HIT, Expert_Overheat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_USER_ELECTRIC_TYPE_HIT, Expert_Overheat
+    // Clear Smog resets its target's stat changes: Haze's routine, the
+    // target's half.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CLEAR_SMOG, Expert_ClearSmog
+    // Mortal Spin clears what Rapid Spin clears, without the Speed raise.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MORTAL_SPIN, Expert_MortalSpin
+    // Smack Down and Thousand Arrows ground their target, as Gravity grounds
+    // every battler.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SMACK_DOWN, Expert_Gravity
+    // Magic Room stops held items, as Embargo does.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAGIC_ROOM, Expert_Embargo
 
     // All other moves have no additional logic.
-    PopOrEnd 
+    PopOrEnd
 
 Expert_StatusSleep:
     // If the attacker knows a move which requires the target to be asleep (Dream Eater or Nightmare
@@ -3010,7 +3047,41 @@ Expert_Haze_TryScorePlus3:
     AddToMoveScore 3
 
 Expert_Haze_End:
-    PopOrEnd 
+    PopOrEnd
+
+Expert_ClearSmog:
+    // Oxide, change (Ian, 2026-09-27). Clear Smog resets only its target's stat changes
+    // (subscript_clear_smog), so it takes the target's half of Expert_Haze. As a damaging
+    // move it takes none of Haze's -1 when neither half applies.
+    //
+    // If any of the target's stat stages are at -3 or lower, 80.4% chance of score -3.
+    //
+    // If any of the target's stat stages are at +3 or higher, 80.4% chance of score +3.
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 4, Expert_ClearSmog_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 4, Expert_ClearSmog_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 4, Expert_ClearSmog_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 4, Expert_ClearSmog_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 4, Expert_ClearSmog_TryScoreMinus3
+    GoTo Expert_ClearSmog_CheckToEncourage
+
+Expert_ClearSmog_TryScoreMinus3:
+    IfRandomLessThan 50, Expert_ClearSmog_CheckToEncourage
+    AddToMoveScore -3
+
+Expert_ClearSmog_CheckToEncourage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, Expert_ClearSmog_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, Expert_ClearSmog_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, Expert_ClearSmog_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, Expert_ClearSmog_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_ClearSmog_TryScorePlus3
+    GoTo Expert_ClearSmog_End
+
+Expert_ClearSmog_TryScorePlus3:
+    IfRandomLessThan 50, Expert_ClearSmog_End
+    AddToMoveScore 3
+
+Expert_ClearSmog_End:
+    PopOrEnd
 
 Expert_Bide:
     // If the attacker's HP is <= 90%, score -2.
@@ -5445,7 +5516,37 @@ Expert_SpeedUpOnHit_ScoreMinus1:
     AddToMoveScore -1
 
 Expert_SpeedUpOnHit_End:
-    PopOrEnd 
+    PopOrEnd
+
+Expert_MortalSpin:
+    // Oxide, change (Ian, 2026-09-27). Mortal Spin poisons its target and then clears its
+    // user's side as Rapid Spin does (subscript_mortal_spin), without Rapid Spin's Speed
+    // raise, so it takes the clearing half of Expert_RapidSpin:
+    //
+    // If the opponent is immune, the move clears nothing: score -1.
+    //
+    // If the attacker is bound or seeded, or its side has a hazard and it has a party member
+    // left to switch in, score +2.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_MortalSpin_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, Expert_MortalSpin_ClearsOwnSide
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, Expert_MortalSpin_ClearsOwnSide
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, Expert_MortalSpin_End
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SPIKES, Expert_MortalSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STEALTH_ROCK, Expert_MortalSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TOXIC_SPIKES, Expert_MortalSpin_ClearsOwnSide
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_STICKY_WEB, Expert_MortalSpin_ClearsOwnSide
+    GoTo Expert_MortalSpin_End
+
+Expert_MortalSpin_ClearsOwnSide:
+    AddToMoveScore 2
+    GoTo Expert_MortalSpin_End
+
+Expert_MortalSpin_ScoreMinus1:
+    AddToMoveScore -1
+
+Expert_MortalSpin_End:
+    PopOrEnd
 
 Expert_HammerArm:
     // If the opponent resists or is immune to the move, score -1.
