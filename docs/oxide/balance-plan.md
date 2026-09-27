@@ -25,7 +25,9 @@ fights with their damage spread across each team, and of the player's
 levers only caps and map weather move the scores much. Next: the design
 passes, starting with the learnset study (design pass 3). Its parts 1 and
 2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
-the generator waits on Ian's word on them, the one open question.
+the generator waits on Ian's word on them. The scores weigh the stone
+plan now, and the gauntlet proposal (design pass 5) waits on his choice
+of areas and two questions.
 
 ## The target
 
@@ -182,7 +184,8 @@ Ian's rulings, 2026-09-27, on the Pocket PC:
   outside a gauntlet every fight is scored from a healed party, as the
   scores already are, and any proposal that relies on attrition goes in a
   gauntlet. **This track proposes which areas become gauntlets and how
-  many trainers each holds**, for Ian (the tracker's Phase 5 "Gauntlets").
+  many trainers each holds**, for Ian (the tracker's Phase 5 "Gauntlets"):
+  proposed under design pass 5, "The gauntlet proposal".
 - **Every PC loses its extras**: the free Move Reminder, the Online Shop,
   the Teleport System, Happiness Up, the PC move tutors (the shard tutors,
   Blast Burn and its kin and Draco Meteor from five badges) and the
@@ -1743,8 +1746,8 @@ Generation 4 branch, as element 5's abilities will.
    one-way areas the Pocket PC refuses to work in, and how many trainers
    each holds in a row, proposed to Ian first. Also the **level 71 Lucas and Dawn fight** (trainer
    slots 779 to 784, one per starter): Ian designed it for the start of
-   Victory Road, but the only script that starts it is the Battleground's,
-   post-game content as in vanilla. Moving it is script and event work.
+   Victory Road, and Victory Road 1F's script starts it there now (the main
+   track's `3a3472432`, which moved the Battle Zone after the Galactic HQ).
    Its level 9 and 30 counterparts (787 to 792 on Route 202, 793 to 802 on
    Route 207) are already where the story passes. **Saturn 2** (Ian,
    2026-09-25): Uxie's Trick Room, which always fails under the fight's
@@ -1759,6 +1762,86 @@ Generation 4 branch, as element 5's abilities will.
    is registered as an intended divergence (the bulk tools' DIVERGED lists)
    in the same commit, and the Overseer is told before the pass starts so
    the gate learns about it at the same time.
+
+   **The gauntlet proposal** (2026-09-27, `gauntlet.py`; for Ian). The
+   scores read every fight from a healed party, so a gauntlet needs a
+   reading of its own: random parties of six are sent through its trainers
+   in order with nothing healed between them. Each boss Pokemon is met by
+   the member that beats it losing the least HP, damage carries over both
+   ways, and a member that falls is a nuzlocke death. The parties are sixes
+   from the strongest third of the split's side by stats, closer to a
+   chosen team than sixes from the whole side, which run from first stages
+   to legendaries. The reading is the share of parties that clear without
+   a faint, and the HP they spend, in whole members, set beside the split's
+   story fights read the same way. It leaves out misses, critical hits,
+   status, switching and the bag's items, so it compares gauntlets with
+   fights, not with a run. Two runs gave the same readings.
+
+   | Area | Split | Trainers | Pokemon | Clean clears | HP spent |
+   |---|---|---|---|---|---|
+   | Team Galactic's Eterna building, ending at Jupiter | Fantina | 6 and Jupiter | 15 | 1.00 | 0.37 |
+   | Wayward Cave | Fantina | 10 | 15 | 1.00 | 0 |
+   | The Lost Tower | Maylene | 6 | 12 | 1.00 | 0.54 |
+   | Iron Island | Byron | 14 | 29 | 0.92 | 1.70 |
+   | The Galactic HQ, its grunts | HQ | 12 | 23 | 0.95 | 1.38 |
+   | The Galactic HQ, ending at Cyrus and Saturn | HQ | 12 and both | 35 | 0.36 | 4.73 |
+   | The Mt. Coronet climb, its grunts | Galactic | 10 | 29 | 0.94 | 1.05 |
+   | The climb, ending at Spear Pillar | Galactic | 10, Mars and Jupiter, Cyrus | 45 | 0.43 | 3.71 |
+   | Stark Mountain, its first 8 | Galactic | 8 | 22 | 0.80 | 1.83 |
+   | Stark Mountain, all of it | Galactic | 19 | 55 | 0.32 | 6 |
+   | Victory Road | League | 14 | 44 | 0.98 | 0.84 |
+   | Victory Road, opened by Ian's level 71 Dawn fight | League | the rival and 14 | 50 | 0.96 | 1.32 |
+
+   | Story fight, from a healed party | Clean clears | HP spent |
+   |---|---|---|
+   | Fantina | 0.41 | 2.81 |
+   | Maylene | 0.31 | 2.61 |
+   | Byron | 0.59 | 1.61 |
+   | Cyrus 2 | 0.94 | 1.57 |
+   | Saturn 2 | 0.64 | 1.80 |
+   | Cyrus 3 | 0.77 | 1.37 |
+   | Flint | 0.43 | 2.86 |
+   | Cynthia | 0.21 | 3.64 |
+
+   Today's grunts and route trainers cost a chosen party almost nothing,
+   however many are strung together: the Eterna building's six, Wayward
+   Cave's ten and Victory Road's fourteen together spend less than one
+   member's HP. So a gauntlet of them adds no attrition until the trainer
+   pass raises them into the middle band, which is B6's finding again. The
+   two story climbs are the exception, because they end at their bosses:
+   the Galactic HQ read as one gauntlet is as testing as Maylene's fight,
+   and harder than either of its bosses alone, and the Mt. Coronet climb
+   is as testing as Fantina's or Flint's.
+
+   The proposal, one gauntlet on each stretch of the story where the game
+   already walks the player one way through a building or a climb:
+
+   | Gauntlet | Split | Trainers in a row | What it asks now |
+   |---|---|---|---|
+   | The Galactic HQ, from the door to Cyrus and Saturn | HQ | its 12, then both | a gym-strength test already |
+   | The Mt. Coronet climb, to Spear Pillar | Galactic | its 10, then Mars and Jupiter and Cyrus | a gym-strength test already |
+   | Victory Road, opened by Lucas and Dawn at 71, as its script now starts | League | the rival, then its 14 | its trainers raised in the pass, to be the last test before the League |
+   | Team Galactic's Eterna building, to Jupiter | Fantina | its 6, then Jupiter | the first gauntlet, kept light once its grunts are raised |
+
+   And optional ones, each with its prize at the far end: Iron Island
+   (Byron's split, the Riolu egg), all 14 trainers, a moderate test already;
+   the Lost Tower (Maylene's, the Oval Stone), its 6, light; and Stark
+   Mountain (the Galactic split), cut to its first 8 trainers, since a
+   third of parties clear the whole climb cleanly and the median party
+   loses all six. Left out:
+   Wayward Cave, whose Gible is one of Ian's super-wanted lines and should
+   not sit behind attrition; Eterna Forest, whose trainers are tag battles
+   beside Cheryl, which the scores cannot read; and the open routes, which
+   are not one-way.
+
+   Two questions come with it. Does the bag's healing work inside a
+   gauntlet (the reading assumes not, which is the harder case)? And should
+   a gauntlet ask as much as its split's gym, read the same way, or less?
+   Ian's level 71 Lucas and Dawn slots (779 to 784), and their level 9 and
+   30 counterparts on Routes 202 and 207 (787 to 802), sit in the trainer
+   data's dummy_ files, which the balance data skips as unused, so B6 has
+   not scored them; the gauntlet reads 779 from its file, and the data
+   layer's next change reads every dummy_ slot a map battles.
 
 Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before

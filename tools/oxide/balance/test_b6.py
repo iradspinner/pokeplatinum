@@ -101,6 +101,23 @@ def check_teamscore(results):
                     f"story error {fit['story_mean_error']} over {fit['story_n']}"))
 
 
+def check_gauntlet(results):
+    """The gauntlet reading's duel, by hand: a member taking half the boss a
+    turn and losing 0.3 a turn beats it in two turns, moving first, for one
+    hit; moving second, for two; and a member that falls leaves the boss
+    what its hits did not take."""
+    from . import gauntlet
+    cases = [
+        gauntlet.duel((0.5, 0.3, True), 1.0, 1.0) == (True, 0.7, 0.0),
+        abs(gauntlet.duel((0.5, 0.3, False), 1.0, 1.0)[1] - 0.4) < 1e-9,
+        gauntlet.duel((0.2, 0.6, False), 1.0, 1.0) == (False, 0.0, 0.8),
+        gauntlet.duel((0.2, 0.6, True), 1.0, 1.0)[2] == 0.6,
+        gauntlet.duel((0.0, 0.1, True), 1.0, 1.0) == (False, 0.0, 1.0),
+    ]
+    results.append(("the gauntlet reading's duel carries damage both ways", all(cases),
+                    str(cases)))
+
+
 def check_fingerprints(results):
     """Every B6 score (the ordinary trainers and each fight's levers)
     matches its inputs as they are now, and a second run has verified it."""
@@ -114,7 +131,7 @@ def check_fingerprints(results):
 def main():
     results = []
     for check in (check_placements, check_scale, check_bases, check_levers, check_species,
-                  check_teamscore, check_fingerprints):
+                  check_teamscore, check_gauntlet, check_fingerprints):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
