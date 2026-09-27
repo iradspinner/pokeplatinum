@@ -535,7 +535,7 @@ def _placed_filler():
     fight, a tag partner or a gym leader's rematch, by B1d's split map. The
     post-game split is not scored."""
     from . import splits
-    story = {i for f in data.fights()["fights"] for i in f["tr_ids"]}
+    story = {i for f in data.fights()["fights"] for i in f["tr_ids"] + f["partner_ids"]}
     out = {s: [] for s in data.fights()["splits"]}
     for tr_id, t in data.oxide_trainers().items():
         if tr_id in story or t["stem"].startswith(PARTNER_STEMS) or "rematch" in t["stem"]:
