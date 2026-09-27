@@ -120,9 +120,65 @@ def split_order():
 
 
 def summary(root=None):
-    """One row per trainer for the list, rebuilt when a trainer file changes."""
+    """One row per trainer for the list, rebuilt when a trainer file changes,
+    each with its stored score (or None) for the list to sort by."""
     root = root or model.repo_root()
-    return _summary(root, _stamp(root))
+    scores = stored_scores(root)
+    return [dict(r, score=scores.get(r["stem"])) for r in _summary(root, _stamp(root))]
+
+
+# -- the stored scores (Ian, 2026-09-27) ------------------------------------------
+# The list sorts by the numbers the balance plan reports, read from the
+# balance track's stored results without scoring anything: a story fight's
+# from pressure.json (Hesperid's two from calibrate.json), shared by every
+# variant of it (Barry's three starters), and an ordinary trainer's from
+# b6.json. Each goes onto Ian's fight scale by the plan's own line. A team
+# saved since its last rescore shows the score from before the save. When the
+# Balance Agent's rebuilt score lands, this function is the one to repoint.
+
+def _score_files():
+    from ..balance import b6, calibrate, pressure
+    return tuple(p for p in (pressure.OUT, calibrate.OUT, b6.OUT) if os.path.exists(p))
+
+
+def stored_scores(root=None):
+    """{stem: {"scale", "band", "fight"}} for every trainer with a stored score;
+    "fight" is the story fight's key, or None for an ordinary trainer."""
+    root = root or model.repo_root()
+    files = _score_files()
+    return _stored_scores(root, tuple(os.stat(p).st_mtime_ns for p in files))
+
+
+@functools.lru_cache(maxsize=2)
+def _stored_scores(root, stamp):
+    from ..balance import b6, calibrate, data as bdata
+    try:
+        line = b6.scale_line()
+    except (KeyError, ZeroDivisionError):  # no stored story fights to draw the line from
+        return {}
+    stem_of = {tr: name[len("TRAINER_"):].lower()
+               for name, tr in calc_trainers._tables(root)["ids"].items()}
+    rate = lambda safe: round(b6.on_scale(safe, line), 1)
+    out = {}
+    for tr, r in b6.load().get("trainers", {}).items():
+        stem = stem_of.get(int(tr))
+        if stem and r.get("safe") is not None:
+            out[stem] = {"scale": rate(r["safe"]), "fight": None}
+    stories = b6.story_scores()
+    fights = [(f["key"], f["tr_ids"]) for f in bdata.fights()["fights"]]
+    by_constant = {name: tr for name, tr in calc_trainers._tables(root)["ids"].items()}
+    fights += [(key, [by_constant[c]]) for c, _split, key, _label in calibrate.EXTRA if c in by_constant]
+    for key, ids in fights:
+        r = stories.get(key)
+        if not r or r.get("safe") is None:
+            continue
+        for tr in ids:
+            stem = stem_of.get(tr)
+            if stem:
+                out[stem] = {"scale": rate(r["safe"]), "fight": key}
+    for v in out.values():
+        v["band"] = b6.band(v["scale"])
+    return out
 
 
 @functools.lru_cache(maxsize=2)
@@ -264,12 +320,13 @@ def full_score(stem, data=None):
 
 
 def choices(root):
-    """What the editor offers: every species, move, item and nature by name."""
+    """What the editor offers: every species, move, item and nature by name.
+    A move also carries its type, which colours its box in the editor."""
     moves = pokedex.moves(root)
     tidy = lambda c, p: c[len(p):].replace("_", " ").title()
     e = enums(root)
     return {
-        "moves": sorted(([c, r.get("name") or c] for c, r in moves.items()
+        "moves": sorted(([c, r.get("name") or c, r.get("type") or ""] for c, r in moves.items()
                          if c != "MOVE_NONE" and "(Special)" not in (r.get("name") or "")),
                         key=lambda x: x[1]),
         "items": sorted(([c, tidy(c, "ITEM_")] for c in e["items"] if c != "ITEM_NONE"),
@@ -495,7 +552,7 @@ def register(root, stem, fields, registry=None):
             reg = json.load(f)
     except FileNotFoundError:
         reg = {}
-    why = f"edited in the encounter tool's team builder, {datetime.date.today().isoformat()}"
+    why = f"edited in the OxiDex team builder, {datetime.date.today().isoformat()}"
     entry = reg.setdefault(stem, {})
     for field in fields:
         entry.setdefault(field, why)

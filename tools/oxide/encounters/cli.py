@@ -1,4 +1,4 @@
-"""Headless entry points for the encounter tool.
+"""Headless entry points for the OxiDex, the encounter tool.
 
     python3 -m tools.oxide.encounters.cli roundtrip
     python3 -m tools.oxide.encounters.cli areas   [--ref main] [--json]

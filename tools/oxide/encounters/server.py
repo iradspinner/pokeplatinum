@@ -1111,7 +1111,7 @@ def main(argv=None):
     # doing it now, on the side, keeps the first edit quick.
     threading.Thread(target=trainers.warm, daemon=True).start()
     with httpd:
-        print(f"encounter tool on http://{HOST}:{a.port}")
+        print(f"Platinum OxiDex on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")
         print("ctrl-c to stop")
         try:
