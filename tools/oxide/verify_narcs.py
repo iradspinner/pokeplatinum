@@ -499,6 +499,11 @@ DIVERGED = {
             "why": "Poison Gas hits both foes, not the partner too (Ian, 2026-09-22)",
         },
         {
+            "offsets": (8, 9),  # range
+            "members": {178},
+            "why": "Cotton Spore hits both foes (Ian, 2026-09-27, the Kaizo comparison)",
+        },
+        {
             "offsets": (3,),  # power
             "members": MODERN_POWER_NATIVES,
             "why": "native moves given their modern power (Ian, 2026-09-26)",

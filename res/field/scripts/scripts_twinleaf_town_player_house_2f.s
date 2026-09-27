@@ -2525,6 +2525,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleHiddenGift, 20
     AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 21
     AddListMenuEntry TestKit_Text_MenuStapleItemsRestored, 22
+    AddListMenuEntry TestKit_Text_MenuStapleKaizoMoves, 23
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2549,6 +2550,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 20, TestKit_StapleHiddenGift
     GoToIfEq VAR_0x8004, 21, TestKit_StapleHiddenWild
     GoToIfEq VAR_0x8004, 22, TestKit_StapleItemsRestored
+    GoToIfEq VAR_0x8004, 23, TestKit_StapleKaizoMoves
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2875,6 +2877,23 @@ TestKit_StapleItemsRestored:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithItem
+
+/* The Kaizo comparison's move data (Ian, 2026-09-27): a Mew with Extreme
+   Speed and Minimize, against a wild Shuckle that knows only Fake Out.
+   Fake Out is now +3 and Extreme Speed +2, so the far slower Shuckle's
+   Fake Out ("But it failed!" after the first turn) comes before Mew's
+   Extreme Speed every turn; before, both were +1 and Mew went first.
+   Minimize raises evasion two stages ("sharply rose!"), not one. */
+TestKit_StapleKaizoMoves:
+    SetVar VAR_0x8006, MOVE_EXTREME_SPEED
+    SetVar VAR_0x8007, MOVE_MINIMIZE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    SetVar VAR_0x8000, SPECIES_SHUCKLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_FAKE_OUT
+    SetVar VAR_0x800A, SPECIES_MEW
+    GoTo TestKit_GivePokemonWithMoves
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
