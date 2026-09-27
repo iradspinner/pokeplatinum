@@ -14,8 +14,12 @@ because the parts a calculator needs most are not stored anywhere:
   party entry asks for a gender or an ability slot, which this fork's
   `TrainerMon_PersonalityLowByte` then satisfies.
 - **Ability.** Personality bit 0 picks the second ability when the species has
-  one. It is the base species' pair even for a form, because
-  `Pokemon_InitWith` sets the ability before the form is set.
+  one. `Pokemon_InitWith` picks it from the base form's record, and since
+  f801cc160 (a VANILLA FIX) the game picks again by the same bit from the
+  form's own record once the form is set, so a form takes its form's pair.
+  An `"ability"` of 3 asks for the hidden ability (1832a346c): it leaves the
+  personality as 0 does, and the Pokemon takes the form record's hidden
+  ability, or keeps its ordinary one when the record has none.
 - **Gender.** The low byte against the species' gender ratio.
 - **Nature, when named.** Oxide lets a party member name its nature, which
   the game then forces by stepping the rolled high part up until the
@@ -49,6 +53,9 @@ GENDER_RATIOS = {"MALE_ONLY": 0, "FEMALE_12_5": 31, "FEMALE_25": 63,
 LCRNG_MULTIPLIER, LCRNG_INCREMENT = 1103515245, 24691
 LOW_BYTE_MALE_CLASS, LOW_BYTE_FEMALE_CLASS = 136, 120
 MAX_IV, MAX_IV_SCALE = 31, 255
+# A party entry's "ability": 0 either slot by personality, 1 or 2 that slot,
+# 3 the hidden ability (enum TrainerMonAbility).
+ABILITY_HIDDEN = 3
 # Form numbers of the species whose forms have records (include/constants/forms.h).
 FORM_FOLDERS = {
     ("SPECIES_DEOXYS", 1): "attack", ("SPECIES_DEOXYS", 2): "defense",
@@ -123,7 +130,11 @@ def gender_of(ratio, pid):
 
 def low_byte(ratio, want_gender, want_slot, default):
     """`TrainerMon_PersonalityLowByte`, this fork's: honour a requested gender
-    and ability slot (1 or 2) together, since both live in this byte."""
+    and ability slot (1 or 2) together, since both live in this byte. The
+    hidden ability (3) is given after the Pokemon is built, so here it is
+    "don't care", as in the game."""
+    if want_slot == ABILITY_HIDDEN:
+        want_slot = 0
     if want_gender is None:
         if not want_slot:
             return default
@@ -206,10 +217,16 @@ def build_trainer(root, stem, data=None):
                           want_gender=m.get("gender"), want_slot=m.get("ability") or 0,
                           nature=NATURES.index(named.replace("NATURE_", "").title())
                           if named else None)
-        # The ability pair is the base species', whatever the form.
-        a1, a2 = (base["abilities"] + ["ABILITY_NONE"])[:2]
-        ability = a2 if a2 != "ABILITY_NONE" and pid & 1 else a1
+        # The ability comes from the form's own record, by the same bit
+        # (f801cc160); a form without one, such as the East Sea's, is its base.
         form_folder = FORM_FOLDERS.get((species, form))
+        record = _raw_species(root, species, form_folder) if form_folder else base
+        a1, a2, hidden = (record["abilities"] + ["ABILITY_NONE"] * 3)[:3]
+        ability = a2 if a2 != "ABILITY_NONE" and pid & 1 else a1
+        # Asking for the hidden ability falls back to the ordinary one when the
+        # record has none, as Pokemon_TryGiveHiddenAbility does.
+        if m.get("ability") == ABILITY_HIDDEN and hidden != "ABILITY_NONE":
+            ability = hidden
         if has_moves:
             move_ids = [mv for mv in (m.get("moves") or []) if mv and mv != "MOVE_NONE"]
         else:
