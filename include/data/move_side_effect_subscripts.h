@@ -212,5 +212,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SALT_CURE]                        = subscript_salt_cure,
     [MOVE_SUBSCRIPT_PTR_OCTOLOCK]                         = subscript_octolock,
     [MOVE_SUBSCRIPT_PTR_TEATIME]                          = subscript_teatime,
+    [MOVE_SUBSCRIPT_PTR_CORE_ENFORCER]                    = subscript_core_enforcer,
 };
 // clang-format on

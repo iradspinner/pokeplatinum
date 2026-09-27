@@ -741,6 +741,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet59, 4
     AddListMenuEntry TestKit_Text_MenuSet60, 5
     AddListMenuEntry TestKit_Text_MenuSet61, 6
+    AddListMenuEntry TestKit_Text_MenuSet62, 7
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -749,6 +750,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet59
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet60
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet61
+    GoToIfEq VAR_0x8004, 7, TestKit_MoveSet62
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1470,6 +1472,21 @@ TestKit_MoveSet61:
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithItem
+
+/* Set 62: Core Enforcer suppresses the ability of a target that has already
+   moved this turn. Against a wild Jolteon given Volt Absorb, which is faster
+   than Mew and knows only Splash: Thunderbolt does nothing to it, since
+   Volt Absorb takes it; after a Core Enforcer, "The wild JOLTEON's ability
+   was suppressed!", and Thunderbolt hurts it from then on. */
+TestKit_MoveSet62:
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_VOLT_ABSORB
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_CORE_ENFORCER
+    SetVar VAR_0x8007, MOVE_THUNDERBOLT
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */
