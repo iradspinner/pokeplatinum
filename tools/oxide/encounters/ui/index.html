@@ -1712,8 +1712,7 @@ async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain)").hidden
-    = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain)").hidden = view !== "tables";
   $("#simmain").hidden = view !== "sim";
   $("#trainmain").hidden = view !== "trainers";
   if (view === "sim" && !SIM) simulate(true);
