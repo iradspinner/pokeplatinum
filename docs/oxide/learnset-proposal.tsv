@@ -3506,7 +3506,7 @@ SPECIES_HIPPOPOTAS	Bite	7	7	same
 SPECIES_HIPPOPOTAS	Yawn	13	13	same	
 SPECIES_HIPPOPOTAS	Take Down	19	19	same	
 SPECIES_HIPPOPOTAS	Crunch	31	31	same	
-SPECIES_HIPPOPOTAS	Earthquake	37	43	moved	37 to 44: Kaizo's Hippopotas at 50, translated to 41, and no earlier than Kaizo's level of 50 within its split; 44 to 43: the same-level rule (another move is at 44); its split has no free level at or above its floor, so it stays in the split a level under it
+SPECIES_HIPPOPOTAS	Earthquake	37	37	same	37 to 44: Kaizo's Hippopotas at 50, translated to 41, and no earlier than Kaizo's level of 50 within its split; 44 to 43: the same-level rule (another move is at 44); its split has no free level at or above its floor, so it stays in the split a level under it; at 43 to 37: Ian's rule that no stage goes more than one split without an attack of its own type, for Hippopotas
 SPECIES_HIPPOPOTAS	Double-Edge	44	44	same	
 SPECIES_HIPPOPOTAS	Fissure	50	50	same	
 SPECIES_HIPPOPOTAS	Sand Tomb	25		dropped	leaves: strength 35, under 40
@@ -6277,9 +6277,9 @@ SPECIES_POLTEAGEIST	Sucker Punch	24	24	same
 SPECIES_POLTEAGEIST	Aromatherapy	30	30	same	
 SPECIES_POLTEAGEIST	Giga Drain	36	36	same	
 SPECIES_POLTEAGEIST	Nasty Plot	42	42	same	
+SPECIES_POLTEAGEIST	Shadow Ball	48	48	same	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split; at 65 to 48: Ian's rule that no stage goes more than one split without an attack of its own type, for Polteageist
 SPECIES_POLTEAGEIST	Memento	54	54	same	
 SPECIES_POLTEAGEIST	Shell Smash	60	60	same	
-SPECIES_POLTEAGEIST	Shadow Ball	48	65	moved	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split
 SPECIES_POLTEAGEIST	Curse	66	66	same	
 SPECIES_POLTEAGEIST	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_POLTEAGEIST	Aromatic Mist	1		dropped	leaves: the move pool's first cut
@@ -8181,11 +8181,11 @@ SPECIES_TAPU_KOKO	Shock Wave	25	25	same
 SPECIES_TAPU_KOKO	Charge	30	30	same	
 SPECIES_TAPU_KOKO	Agility	35	35	same	
 SPECIES_TAPU_KOKO	Screech	40	40	same	
+SPECIES_TAPU_KOKO	Discharge	45	45	same	45 to 69: its nearest Kaizo lines, translated to 69; at 69 to 45: Ian's rule that no stage goes more than one split without an attack of its own type, for Tapu Koko
 SPECIES_TAPU_KOKO	Mean Look	50	50	same	
 SPECIES_TAPU_KOKO	Nature’sMadness	55	55	same	
 SPECIES_TAPU_KOKO	Wild Charge	60	60	same	
 SPECIES_TAPU_KOKO	Brave Bird	65	65	same	
-SPECIES_TAPU_KOKO	Discharge	45	69	moved	45 to 69: its nearest Kaizo lines, translated to 69
 SPECIES_TAPU_KOKO	Power Swap	70	70	same	
 SPECIES_TAPU_KOKO	ElectricTerrain	75		dropped	leaves: the move pool's first cut
 SPECIES_TAPU_LELE	Confusion	1	1	same	

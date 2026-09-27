@@ -532,6 +532,129 @@ def first_good_of_type(species, move_type, lst=None):
                 and good_attack(c, types)), default=None)
 
 
+# ---- the own-type gap (Ian, 2026-09-27) ----------------------------------------------
+# No stage the player can have goes more than one split without an attack of
+# its own type of 50 or more, by effective power (Bonemerang's two hits
+# count). What a pre-evolution kept back learns does not count here; what a
+# player who evolves on time has does.
+STAB_GAP_POWER = 50
+# [(stage, MOVE_X, the stage whose list holds it, its level)] kept at its
+# level by the rule, and those that would reach a flagged or barred stage,
+# listed for Ian rather than decided.
+STAB_KEPT = []
+STAB_FOR_IAN = []
+
+
+def _own_type_attack(c, types):
+    return c in M() and M()[c]["type"].title() in types and effective_power(c) >= STAB_GAP_POWER
+
+
+def had_from(species, lists):
+    """{MOVE_X: the level the stage has it from}: what a first stage knows at
+    capture, what an evolved stage brings from its pre-evolution evolved on
+    time (everything it has by the evolution level), and its own level-up
+    moves from the level it is had at."""
+    here = reach(species)
+    own = lists.get(species) if species in lists else _now(species)
+    out = {}
+    if species in g.oxide_reached():
+        parent = g.oxide_reached()[species][0]
+        for c, lv in had_from(parent, lists).items():
+            if lv <= here:
+                out[c] = here
+    else:
+        for c in calc_trainers.default_moves([list(e) for e in own], here):
+            out[c] = here
+    for lv, c in own:
+        if lv >= here and (lv > 1 or species not in g.oxide_reached()):
+            out[c] = min(out.get(c, 999), lv)
+    return out
+
+
+def gap_applies(species):
+    """Whether the rule reads the stage: one the player can have by the League."""
+    return species in g._obtainable() and _split_of(reach(species)) in SPLITS
+
+
+def stab_gap(species, lists):
+    """The splits from the one the stage is first had in to the one it first
+    has an attack of its own type of 50 or more in; None if never by the
+    League's cap."""
+    types = _types(species)
+    firsts = [lv for c, lv in had_from(species, lists).items() if _own_type_attack(c, types)]
+    first = min(firsts, default=None)
+    if first is None or _split_of(first) not in SPLITS:
+        return None
+    return SPLITS.index(_split_of(first)) - SPLITS.index(_split_of(reach(species)))
+
+
+def breaks_gap(species, lists):
+    gap = stab_gap(species, lists)
+    return gap is None or gap >= 2
+
+
+def widens_gap(species, now, new):
+    """Whether the proposal leaves the stage more than one split without an
+    attack of its own type, or longer than Oxide's lists now do where they
+    already break the rule (Grovyle, first had at Roark's cap, waits for
+    Leaf Blade into Fantina's split now; the proposal must not make it
+    longer)."""
+    g_now, g_new = stab_gap(species, now), stab_gap(species, new)
+    g_now = 99 if g_now is None else g_now
+    g_new = 99 if g_new is None else g_new
+    return g_new > max(1, g_now)
+
+
+def _entry_list(lst, c, lv):
+    """The list with its level-up entries of the move replaced by one at lv."""
+    return sorted([e for e in lst if not (e[1] == c and e[0] > 1)] + [(lv, c)], key=lambda e: e[0])
+
+
+def close_gaps(fam, res):
+    """Where the proposal leaves a stage more than one split without an
+    attack of its own type and Oxide's lists now do not, the nearest such
+    move it has now stays at its current level (Ian, 2026-09-27). If keeping
+    it would reach a flagged or barred stage, it is listed for Ian instead."""
+    now = {s: _now(s) for s in fam}
+    for s in fam:
+        if not gap_applies(s):
+            continue
+        new = {x: res[x][0] for x in fam}
+        if not widens_gap(s, now, new):
+            continue
+        types = _types(s)
+        # Each own-type attack it has now, earliest first, and every stage of
+        # its chain whose list holds it: the one that gives it the move (its
+        # own list, or a pre-evolution's before the evolution) is found by
+        # trying each.
+        options = []
+        for c, lv_had in sorted(had_from(s, now).items(), key=lambda kv: kv[1]):
+            if not _own_type_attack(c, types):
+                continue
+            for holder in g._chain(s)[::-1]:
+                lv = next((l for l, cc in now[holder] if cc == c and l > 1), None)
+                if lv is not None:
+                    options.append((lv_had, c, holder, lv))
+        for _lv_had, c, holder, lv in options:
+            trial = dict(new, **{holder: _entry_list(new[holder], c, lv)})
+            if widens_gap(s, now, trial):
+                continue
+            reached = [x for x in [holder] + later_stages(holder)
+                       if strong_stage(x) and (x == holder or lv <= reach(x))]
+            if reached:
+                STAB_FOR_IAN.append((s, c, holder, lv, reached))
+                break
+            was = next((l for l, cc in new[holder] if cc == c and l > 1), None)
+            notes = res[holder][1] + [(c, f"{'dropped' if was is None else 'at ' + str(was)} to {lv}: Ian's rule "
+                                          f"that no stage goes more than one split without an attack of "
+                                          f"its own type, for {_sp(s)}")]
+            res[holder] = (trial[holder], notes)
+            FLOORS.pop((holder, c), None)
+            STAB_KEPT.append((s, c, holder, lv))
+            break
+    return res
+
+
 def propose_family(fam):
     """{species: (list, notes)} for a family, proposed twice where the first
     proposal's own moves flag a stage or put it over the bar: that stage is
@@ -547,6 +670,8 @@ def propose_family(fam):
             PROPOSED.pop(s, None)
         res = {s: propose(s) for s in fam}
         PROPOSED.update({s: res[s][0] for s in fam})
+    res = close_gaps(fam, res)
+    PROPOSED.update({s: res[s][0] for s in fam})
     return res, forced
 
 
@@ -1198,6 +1323,10 @@ def check_results(fam, now, new):
     under = [(s, c) for s in fam for lv, c in new[s] if (s, c) in FLOORS and 1 < lv < FLOORS[(s, c)]
              and (s, c) not in UNDER_FLOOR]
     res.append(("no strong move placed earlier than Kaizo's level within its split", under))
+    for_ian = {x[0] for x in STAB_FOR_IAN}
+    gaps = [(s, "no attack of its own type") for s in fam if gap_applies(s) and widens_gap(s, now, new)
+            and s not in for_ian]
+    res.append(("no stage more than one split without an attack of its own type of 50 or more", gaps))
     ends = g._ends()
     wild_end = [(s, c) for s in fam for lv, c in new[s]
                 if ls.metrics._compact(name(c)) in ends and 1 < lv <= g.wild_top(s)
@@ -1246,6 +1375,8 @@ def full_run(log=None):
     FORCED.clear()
     FLOORS.clear()
     UNDER_FLOOR.clear()
+    STAB_KEPT.clear()
+    STAB_FOR_IAN.clear()
     TRANSLATED.clear()
     PAST_CAP.clear()
     run = {"now": {}, "lists": {}, "notes": {}, "flags": {}, "bar": {}, "delays": [],
@@ -1436,6 +1567,11 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
             "past the end of the Oxide split that level translates to (Houndoom's Dark Pulse, "
             "Kaizo's 70, no earlier than 56, the end of Candice's split); where that level is past "
             "78 the translated place stays, listed below for Ian.",
+            "No stage the player can have goes more than one split without an attack of its own "
+            "type of 50 or more by effective power (Ian, 2026-09-27), counting what it brings "
+            "from a pre-evolution evolved on time; where the proposal would break that, the "
+            "nearest such move stays at its current level, or goes to Ian when it would reach a "
+            "stage the flags or the bar hold.",
             "Fletchling keeps Will-O-Wisp at 25."):
         p(f"- {rule}")
     p("\n## What it changes\n")
@@ -1528,6 +1664,31 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
     for label, bad in fails:
         p(f"\n{cap(label)}: " + "; ".join(
             f"{_sp(x[0])} {name(x[-1]) if x[-1] in M() else x[-1]}" for x in bad[:40]) + ".")
+    kept = sorted(set(STAB_KEPT))
+    if kept:
+        p(f"\nThe own-type rule keeps {len(kept)} moves at their current level, where the proposal "
+          f"would have left a stage more than one split without an attack of its own type of 50 "
+          f"or more:\n")
+        p("| Stage | Move | In the list of | Kept at |\n|---|---|---|---|")
+        for s, c, holder, lv in kept:
+            p(f"| {_sp(s)} | {name(c)} | {_sp(holder)} | {lv} |")
+    asked = collections.defaultdict(set)
+    for s, c, h, lv, r in STAB_FOR_IAN:
+        asked[(h, c, lv, tuple(r))].add(s)
+    if asked:
+        p(f"\nFor Ian: {len(asked)} such moves would reach a stage the power flags or the bar hold, "
+          f"so they are not kept until he rules; the stages they are for go without an attack of "
+          f"their own type meanwhile:\n")
+        p("| Move | In the list of | Its level now | For | Would reach |\n|---|---|---|---|---|")
+        for (holder, c, lv, reached), stages in sorted(asked.items()):
+            p(f"| {name(c)} | {_sp(holder)} | {lv} | {', '.join(_sp(x) for x in sorted(stages))} | "
+              f"{', '.join(_sp(x) for x in reached)} |")
+    already = sorted(s for s in lists if gap_applies(s) and breaks_gap(s, run["now"])
+                     and not widens_gap(s, run["now"], lists))
+    if already:
+        p(f"\n{len(already)} stages go more than one split without an attack of their own type on "
+          f"Oxide's lists now, and the proposal does not make it longer; they are Oxide's own, for "
+          f"the learnset pass: " + ", ".join(_sp(s) for s in already) + ".")
     past = sorted(set(PAST_CAP))
     if past:
         p(f"\nWhere Kaizo's own level is past Oxide's 78, the rule would take the move out of "

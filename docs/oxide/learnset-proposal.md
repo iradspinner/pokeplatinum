@@ -19,6 +19,7 @@ It starts from Oxide's lists as they are and changes an entry only where one of 
 - No two moves on one level: a moved or added entry that shares a level goes to the nearest free level in the same split, within the other rules.
 - The dead-weight rule, the move pool's first cut and the weather ruling remove entries; nothing that ends a wild encounter moves into the levels the species is met wild at.
 - A strong move placed from Kaizo is never earlier than Kaizo's own level (Ian, 2026-09-27), or, where Kaizo lacks the species, its nearest lines' level, but never past the end of the Oxide split that level translates to (Houndoom's Dark Pulse, Kaizo's 70, no earlier than 56, the end of Candice's split); where that level is past 78 the translated place stays, listed below for Ian.
+- No stage the player can have goes more than one split without an attack of its own type of 50 or more by effective power (Ian, 2026-09-27), counting what it brings from a pre-evolution evolved on time; where the proposal would break that, the nearest such move stays at its current level, or goes to Ian when it would reach a stage the flags or the bar hold.
 - Fletchling keeps Will-O-Wisp at 25.
 
 ## What it changes
@@ -27,8 +28,8 @@ It changes the lists of 471 of the 652 species. The 176 that no source gives the
 
 | Entries | Count |
 |---|---|
-| Kept where they are | 8344 |
-| Moved | 270 |
+| Kept where they are | 8347 |
+| Moved | 267 |
 | Added | 122 |
 | Dropped | 524 |
 
@@ -36,10 +37,10 @@ The reasons given for the moves and additions (an entry moved twice, by Kaizo an
 
 | Change | Reason | Count |
 |---|---|---|
-| Moved | Kaizo's own list for the species, translated by split | 130 |
-| Moved | Kaizo's nearest lines, translated by split | 121 |
+| Moved | Kaizo's own list for the species, translated by split | 129 |
+| Moved | Kaizo's nearest lines, translated by split | 119 |
 | Added | Kaizo's own list for the species, translated by split | 88 |
-| Moved | the one-level rule | 61 |
+| Moved | the one-level rule | 60 |
 | Added | a first stage keeps its first attack | 30 |
 | Moved | an exclusive delay from Kaizo | 27 |
 | Added | the one-level rule | 25 |
@@ -158,7 +159,7 @@ Why entries left:
 | Gengar | Wake | close look | base Speed 110 | as now |
 | Golem | Wake | close look | base Attack 130 with Double-Edge (120) | as now |
 | Grapploct | Wake | close look | base Attack 118 with Superpower (120) | Superpower 45 to 44 |
-| Hippowdon | Wake | close look | base Attack 112 with Double-Edge (120) | Earthquake 37 to 43 |
+| Hippowdon | Wake | close look | base Attack 112 with Double-Edge (120) | as now |
 | Kleavor | Wake | close look | base Attack 135 with Superpower (120) | Superpower 40 to 43 |
 | Machamp | Wake | close look | base Attack 130 with Earthquake (100) | as now |
 | Mamoswine | Wake | close look | base Attack 135 with Earthquake (100) | as now |
@@ -500,7 +501,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 
 ## Delays
 
-282 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
+281 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
 
 | Pre-evolution | Evolves to | Move | Learnt at | Wait in splits | Evolved stage |
 |---|---|---|---|---|---|
@@ -589,7 +590,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Growlithe | Arcanine | Flare Blitz | 48 | 3 | never |
 | Grubbin | Charjabug | X-Scissor | 39 | 2 | 53 |
 | Gulpin | Swalot | Sludge Bomb | 39 | 2 | 45 |
-| Hippopotas | Hippowdon | Earthquake | 43 | 1 | 53 |
+| Hippopotas | Hippowdon | Earthquake | 37 | 0 | 53 |
 | Hippopotas | Hippowdon | Double-Edge | 44 | 1 | 50 |
 | Hoothoot | Noctowl | Hyper Voice | 39 | 2 | 44 |
 | Hoppip | Skiploom | Bullet Seed | 23 | 0 | 44 |
@@ -719,7 +720,6 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Shroomish | Breloom | Giga Drain | 37 | 2 | 56 |
 | Shroomish | Breloom | Spore | 78 | 10 | never |
 | Sinistea | Sinistcha | Nasty Plot | 42 | 2 | never |
-| Sinistea | Polteageist | Shadow Ball | 48 | 3 | 65 |
 | Sinistea | Sinistcha | Shadow Ball | 48 | 3 | 65 |
 | Sinistea | Sinistcha | Shell Smash | 60 | 5 | never |
 | Slowpoke | Slowking | Dive | 33 | 0 | never |
@@ -830,7 +830,34 @@ Every family's check list, totalled over all of them:
 | No strong move earlier than now on a strong stage, nor any S or SSS status move | 0 |
 | No two moves on one level that the method placed | 0 |
 | No strong move placed earlier than Kaizo's level within its split | 0 |
+| No stage more than one split without an attack of its own type of 50 or more | 0 |
 | No move that ends a wild encounter moved into the wild levels | 0 |
+
+The own-type rule keeps 3 moves at their current level, where the proposal would have left a stage more than one split without an attack of its own type of 50 or more:
+
+| Stage | Move | In the list of | Kept at |
+|---|---|---|---|
+| Hippopotas | Earthquake | Hippopotas | 37 |
+| Polteageist | Shadow Ball | Polteageist | 48 |
+| Tapu Koko | Discharge | Tapu Koko | 45 |
+
+For Ian: 11 such moves would reach a stage the power flags or the bar hold, so they are not kept until he rules; the stages they are for go without an attack of their own type meanwhile:
+
+| Move | In the list of | Its level now | For | Would reach |
+|---|---|---|---|---|
+| Lava Plume | Armarouge | 32 | Armarouge | Armarouge |
+| Air Slash | Beautifly | 26 | Beautifly | Beautifly |
+| Scald | Brionne | 34 | Brionne | Brionne, Primarina |
+| Leaf Blade | Grovyle | 29 | Grovyle, Sceptile | Grovyle, Sceptile |
+| Earthquake | Hippowdon | 40 | Hippowdon | Hippowdon |
+| Fire Fang | Litten | 14 | Litten, Torracat | Litten, Torracat |
+| Earth Power | Nidoqueen | 43 | Nidoqueen | Nidoqueen |
+| Thunderbolt | Pikachu | 26 | Pikachu | Pikachu, Raichu |
+| X-Scissor | Scizor | 41 | Scizor | Scizor |
+| Blaze Kick | Scorbunny | 26 | Scorbunny | Scorbunny, Cinderace |
+| Bullet Seed | Skiploom | 20 | Jumpluff, Skiploom | Skiploom, Jumpluff |
+
+96 stages go more than one split without an attack of their own type on Oxide's lists now, and the proposal does not make it longer; they are Oxide's own, for the learnset pass: Abra, Alolan Ninetales, Alomomola, Braixen, Budew, Buizel, Buneary, Carnivine, Cascoon, Charcadet, Charmeleon, Clamperl, Clefable, Clefairy, Cradily, Croconaw, Delibird, Dhelmise, Donphan, Duskull, Dustox, Eevee, Feebas, Fennekin, Feraligatr, Flaaffy, Flareon, Floatzel, Gastly, Glaceon, Gligar, Gliscor, Granbull, Gyarados, Happiny, Hippopotas, Jolteon, Kabuto, Kabutops, Lileep, Lopunny, Lunatone, Luvdisc, Magby, Magikarp, Mareep, Masquerain, Mawile, Misdreavus, Mismagius, Mudkip, Munchlax, Naganadel, Nidoking, Nidoran F, Nidoran M, Nidorina, Nidorino, Nuzleaf, Phanpy, Polteageist, Popplio, Qwilfish, Raboot, Rhyperior, Roselia, Roserade, Seedot, Seel, Shellder, Shiftry, Shroomish, Silcoon, Sinistea, Skitty, Slugma, Snubbull, Solrock, Staryu, Steelix, Swablu, Sylveon, Tangela, Tangrowth, Togekiss, Togepi, Togetic, Torchic, Totodile, Trapinch, Treecko, Unown, Vaporeon, Wartortle, Yanma, Yanmega.
 
 Where Kaizo's own level is past Oxide's 78, the rule would take the move out of play, against the rule that nothing goes past 78, so these 19 keep their translated place for Ian to decide:
 

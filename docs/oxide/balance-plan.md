@@ -1979,6 +1979,18 @@ lands, and each change is re-scored as it lands.
    (`docs/oxide/learnset-floor-changes.md`). Nineteen whose Kaizo level is
    past 78 keep their translated place for Ian.
 
+   Ian added a check (2026-09-27): no stage the player can have goes more
+   than one split without an attack of its own type of 50 or more by
+   effective power, counting what it brings from a pre-evolution evolved
+   on time. Where the proposal would break that, or lengthen a gap Oxide
+   already has, the nearest such move stays at its current level:
+   Hippopotas's Earthquake (37), Polteageist's Shadow Ball (48) and Tapu
+   Koko's Discharge (45). Eleven such moves would reach a stage the flags
+   or the bar hold, Grovyle's Leaf Blade at 29 for Sceptile among them;
+   the proposal lists them for Ian. Ninety-six stages already go more than
+   one split without one on Oxide's lists; the proposal names them for the
+   learnset pass.
+
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
    the 138 wild slots that can still end an encounter, which this design
