@@ -287,6 +287,20 @@ def analogue_level(species, const):
     """A species Kaizo lacks: the median translated level at which its nearest
     Kaizo species learn a like move (the same status move; an attack of the
     same category, same-type-ness and strength within a tenth), or None."""
+    got = _analogue(species, const)
+    return round(statistics.median(t for t, _kl in got)) if got else None
+
+
+def analogue_kaizo_level(species, const):
+    """The same, at Kaizo's own levels (untranslated), or None."""
+    got = _analogue(species, const)
+    return round(statistics.median(kl for _t, kl in got)) if got else None
+
+
+@functools.lru_cache(maxsize=None)
+def _analogue(species, const):
+    """[(translated level, Kaizo's level)], one per nearest Kaizo species that
+    learns a like move, each its earliest."""
     m = M()[const]
     kind, p = strength(const)
     types = {t.title() for t in (pokedex.load(data.ROOT, species) or {}).get("types", [])}
@@ -296,7 +310,7 @@ def analogue_level(species, const):
         ev = kaizo_evidence(ks) or {}
         ktypes = {t.title() for t in (pokedex.load(data.ROOT, ks) or {}).get("types", [])}
         best = None
-        for c, (_kl, t, why) in ev.items():
+        for c, (kl, t, why) in ev.items():
             if why:
                 continue
             if kind != "damage":
@@ -306,11 +320,11 @@ def analogue_level(species, const):
                 ok = (kk == "damage" and M()[c]["class"] == m["class"]
                       and (M()[c]["type"].title() in ktypes) == stab
                       and abs(kp - p) <= LIKE * max(kp, p))
-            if ok and (best is None or t < best):
-                best = t
+            if ok and (best is None or t < best[0]):
+                best = (t, kl)
         if best is not None:
             levels.append(best)
-    return round(statistics.median(levels)) if levels else None
+    return tuple(levels)
 
 
 # ---- the power flags ------------------------------------------------------------------
@@ -612,6 +626,29 @@ def kaizo_split_floor(species, const):
     return (pool.caps()[prev] + 1 if prev else 1), why
 
 
+def kaizo_level_floor(species, const):
+    """Kaizo's own level for the move: the species' own entry, or where Kaizo
+    lacks it the median over its nearest Kaizo lines that learn the same move
+    where a Kaizo player can; None when none does."""
+    def played(ks):
+        entry = (kaizo_evidence(ks) or {}).get(const)
+        if entry is None or entry[0] < kaizo_reach(ks):
+            return None
+        return entry[0]
+    if kaizo_evidence(species) is not None:
+        return played(species)
+    levels = [lv for lv in (played(ks) for ks in nearest_kaizo(species)) if lv is not None]
+    return round(statistics.median(levels)) if levels else None
+
+
+# {(species, MOVE_X): the level no placement goes below}: Kaizo's own level
+# for the strong moves the proposal places from Kaizo (Ian, 2026-09-27).
+FLOORS = {}
+# [(species, MOVE_X, Kaizo's level, the place kept)] where Kaizo's own level
+# is past Oxide's 78: listed for Ian rather than taken out of play.
+PAST_CAP = []
+
+
 def propose(species):
     """(the proposed list, [(MOVE_X, what changed and why)])."""
     rec = pokedex.load(data.ROOT, species)
@@ -651,12 +688,13 @@ def propose(species):
         if lv > 1:
             kind, _p = strength(c)
             r = rank(c)
-            t, src = None, None
+            t, src, kaizo_level = None, None, None
             if ev is not None and c in ev and ev[c][2] is None:
-                t, src = ev[c][1], f"Kaizo's {species[8:].title()} at {ev[c][0]}"
+                t, src, kaizo_level = ev[c][1], f"Kaizo's {species[8:].title()} at {ev[c][0]}", ev[c][0]
             elif ev is None:
                 t = analogue_level(species, c)
                 src = "its nearest Kaizo lines" if t else None
+                kaizo_level = analogue_kaizo_level(species, c) if t else None
                 if t is not None and t < reach(species):
                     t, src = None, None      # below where the player can have it: unavailable
             if t is not None:
@@ -678,7 +716,25 @@ def propose(species):
                             target = lv
                     elif kind != "damage" and (r or 0) >= STRONG_RANK and not kaizo_own:
                         target = lv
-                if target != lv:
+                # Ian (2026-09-27): a strong move's translated placement is
+                # never earlier than Kaizo's own level. Past Oxide's 78 that
+                # would take it out of play, which his rule of no level past
+                # 78 forbids; those keep the translated place and are listed.
+                strong_move = good_attack(c, types) or (r or 0) >= STRONG_RANK
+                raised = False
+                if (target != lv and strong_move and kaizo_level
+                        and (species, c) not in KAIZO_SPLIT_FLOOR):
+                    if kaizo_level > 78:
+                        PAST_CAP.append((species, c, kaizo_level, target))
+                    else:
+                        FLOORS[(species, c)] = kaizo_level
+                        raised = target < kaizo_level
+                if raised:
+                    if kaizo_level != lv:
+                        notes.append((c, f"{lv} to {kaizo_level}: {src}, translated to {t}, and no "
+                                         f"earlier than Kaizo's own level"))
+                    target = kaizo_level
+                elif target != lv:
                     notes.append((c, f"{lv} to {target}: {src}, translated to {t}"))
         out.append((target, c))
     have = {c for _lv, c in out}
@@ -718,6 +774,17 @@ def propose(species):
         drop = g._dropped(c, species, t, types)
         if drop:
             continue
+        # No earlier than Kaizo's own level (Ian, 2026-09-27), up to 78.
+        if kl > 78:
+            PAST_CAP.append((species, c, kl, t))
+        elif t < kl:
+            FLOORS[(species, c)] = kl
+            out.append((kl, c))
+            notes.append((c, f"new at {kl}: Kaizo's {species[8:].title()} at {kl}, no earlier than "
+                             f"Kaizo's own level (translated to {t})"))
+            continue
+        else:
+            FLOORS[(species, c)] = kl
         out.append((t, c))
         notes.append((c, f"new at {t}: Kaizo's {species[8:].title()} at {kl}"))
     # Exclusive delays from Kaizo: the pre-evolution keeps the move, and a
@@ -749,7 +816,13 @@ def propose(species):
         if not hit or was is None:
             continue
         floor, why = kaizo_split_floor(species, c)
-        new = max(hit[0][0], floor) if floor else was
+        # And no earlier than Kaizo's own level (Ian, 2026-09-27): Spiritomb's
+        # 37, Vikavolt's the level its nearest lines learn the move at.
+        level = kaizo_level_floor(species, c) if floor else None
+        new = max(hit[0][0], floor, level or 0) if floor else was
+        if level:
+            FLOORS[(species, c)] = level
+            why += f", and no earlier than Kaizo's level of {level}"
         if new != hit[0][0]:
             out = [e for e in out if e != hit[0]] + [(new, c)]
             notes.append((c, f"{hit[0][0]} to {new}: Ian's ruling on five early moves, {why}"))
@@ -803,11 +876,16 @@ def spread_levels(species, now, out, notes, strong_line, held_until=0):
             continue
         strong = good_attack(c, types) or (rank(c) or 0) >= STRONG_RANK
         lo = was.get(c, 2) if strong and (strong_line or lv <= held_until) and c in was else 2
+        lo = max(lo, FLOORS.get((species, c), 2))    # never below Kaizo's own level
         hi = was.get(c, 78) if strength(c)[0] == "damage" and not good_attack(c, types) and c in was else 78
         split = _split_of(lv)
         step = [d for k in range(1, 12) for d in ((k, -k) if strong else (-k, k))]
         new = next((lv + d for d in step if lo <= lv + d <= min(hi, 78) and taken[lv + d] == 0
                     and _split_of(lv + d) == split), None)
+        if new is None and strong:
+            # No room in the split above its floor: a strong move may go
+            # later, into the next split, which never makes it earlier.
+            new = next((lv + d for d in range(1, 12) if lv + d <= min(hi, 78) and taken[lv + d] == 0), None)
         if new is None:
             crowded.append((c, lv))
             result.append((lv, c))
@@ -1083,6 +1161,8 @@ def check_results(fam, now, new):
         shared += [(s, lv, c) for lv, c in new[s] if lv > 1 and levels[lv] > 1 and (lv, c) not in kept
                    and (c, lv) not in CROWDED.get(s, [])]
     res.append(("no two moves on one level that the method placed", shared))
+    under = [(s, c) for s in fam for lv, c in new[s] if (s, c) in FLOORS and 1 < lv < FLOORS[(s, c)]]
+    res.append(("no strong move placed earlier than Kaizo's own level", under))
     ends = g._ends()
     wild_end = [(s, c) for s in fam for lv, c in new[s]
                 if ls.metrics._compact(name(c)) in ends and 1 < lv <= g.wild_top(s)
@@ -1129,6 +1209,8 @@ def full_run(log=None):
     PROPOSED.clear()
     CROWDED.clear()
     FORCED.clear()
+    FLOORS.clear()
+    PAST_CAP.clear()
     run = {"now": {}, "lists": {}, "notes": {}, "flags": {}, "bar": {}, "delays": [],
            "checks": collections.defaultdict(list), "crowded": [], "forced": []}
     fams = families()
@@ -1312,6 +1394,9 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
             "The dead-weight rule, the move pool's first cut and the weather ruling remove "
             "entries; nothing that ends a wild encounter moves into the levels the species is "
             "met wild at.",
+            "A strong move placed from Kaizo is never earlier than Kaizo's own level (Ian, "
+            "2026-09-27), or, where Kaizo lacks the species, its nearest lines' level; where "
+            "that level is past 78 the translated place stays, listed below for Ian.",
             "Fletchling keeps Will-O-Wisp at 25."):
         p(f"- {rule}")
     p("\n## What it changes\n")
@@ -1404,6 +1489,14 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
     for label, bad in fails:
         p(f"\n{cap(label)}: " + "; ".join(
             f"{_sp(x[0])} {name(x[-1]) if x[-1] in M() else x[-1]}" for x in bad[:40]) + ".")
+    past = sorted(set(PAST_CAP))
+    if past:
+        p(f"\nWhere Kaizo's own level is past Oxide's 78, the rule would take the move out of "
+          f"play, against the rule that nothing goes past 78, so these {len(past)} keep their "
+          f"translated place for Ian to decide:\n")
+        p("| Stage | Move | Kaizo's level | Kept at |\n|---|---|---|---|")
+        for s, c, kl, kept in past:
+            p(f"| {_sp(s)} | {name(c)} | {kl} | {kept} |")
     if run["crowded"]:
         p(f"\n{len(run['crowded'])} moved entries found no free level in their split and share "
           f"one: " + "; ".join(f"{_sp(s)}'s {name(c)} at {lv}" for s, c, lv in run["crowded"]) + ".")

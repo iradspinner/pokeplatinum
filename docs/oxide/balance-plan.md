@@ -1965,9 +1965,16 @@ lands, and each change is re-scored as it lands.
    level stays: Frillish's Shadow Ball (48) and Scald (55) and Floette's
    Moonblast (52), since none of their nearest lines learns the move, and
    Magnezone's Discharge (40), since Kaizo's Magnezone has it below the
-   level 80 at which a Kaizo player first has one. Spiritomb's Dark Pulse
-   and Vikavolt's Discharge stay at 32: Kaizo gives each in its Fantina
-   split, and 32 is in Oxide's.
+   level 80 at which a Kaizo player first has one.
+
+   Ian then ruled (2026-09-27) that a strong move's translated placement is
+   never earlier than Kaizo's own level, or its nearest lines' level where
+   Kaizo lacks the species. Spiritomb's Dark Pulse goes to 38 (Kaizo's 37,
+   one on for the one-level rule) and Vikavolt's Discharge to 34, both in
+   Maylene's split; the rule moves 308 entries in all
+   (`docs/oxide/learnset-floor-changes.md`). Nineteen whose Kaizo level is
+   past 78 keep their translated place for Ian, since the rule would take
+   them out of play.
 
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
