@@ -786,6 +786,19 @@ that stay. None blocks anything.
    page loads the tool's theme. Done on `encounter-doc-viewer`
    (41c179ece, from `sinistea-split`); `test_docview` 16/16, and all 84
    documents render.
+30. **The Barry split (Ian, 2026-09-27, through the Overseer).** After
+   Volkner the engine caps levels at 71 for every fight up to the Elite
+   Four, and at 78 inside it. The split table gains Barry between Volkner
+   and the League, cap 71, and the six tables reached after Volkner move
+   into it: Sendoff Spring, Route 223, Victory Road's 1F, 2F and B1F, and
+   the Pokemon League's water. The League keeps its cap of 78 and holds no
+   table, since the Elite Four has none. Their levels keep vanilla's curve,
+   which tops out at 60 (Sendoff Spring's Super Rod), under the new cap, so
+   no level changes; `cli evolve` owes no move, the availability gate is as
+   it was (no line without a source, the same eleven cap candidates), and
+   `availability.md` only renames the split. It lands on `barry-split` after
+   the main production agent's engine change; the Balance Agent updates
+   `fights.json` and rescores last.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,

@@ -47,7 +47,7 @@ from ..encounters import locations
 from . import data
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
-          "HQ", "Galactic", "Volkner", "League", "Post"]
+          "HQ", "Galactic", "Volkner", "Barry", "League", "Post"]
 
 # Maps whose location name or position would place them wrong. Checked
 # against the story fights fought on them.
@@ -55,7 +55,15 @@ MAP_SPLITS = {
     "ETERNA_CITY_GALACTIC_BUILDING": "Fantina",   # Jupiter 1, after Gardenia
     "GALACTIC_HQ": "HQ",
     "VEILSTONE_CITY_GALACTIC_WAREHOUSE": "HQ",
-    "POKEMON_LEAGUE": "League",
+    # The Elite Four's and the Champion's rooms, the lifts to them and the
+    # Hall of Fame are the League split; the rest of the League (its front,
+    # Pokemon Centers and mart) comes before them, in the Barry split. The
+    # first pattern a map's name starts with wins, so the rooms come first.
+    "POKEMON_LEAGUE_AARON_ROOM": "League", "POKEMON_LEAGUE_BERTHA_ROOM": "League",
+    "POKEMON_LEAGUE_FLINT_ROOM": "League", "POKEMON_LEAGUE_LUCIAN_ROOM": "League",
+    "POKEMON_LEAGUE_CHAMPION_ROOM": "League", "POKEMON_LEAGUE_ELEVATOR_TO_": "League",
+    "POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME": "League", "POKEMON_LEAGUE_HALL_OF_FAME": "League",
+    "POKEMON_LEAGUE": "Barry",
 }
 
 # Where the player first arrives, for location names with no wild table of
@@ -81,7 +89,7 @@ LOCATION_SPLITS = {
     # Battleground's rematches and the Villa stay after the League.
     "Fight Area": "Galactic", "Survival Area": "Galactic", "Resort Area": "Galactic",
     "Sunyshore City": "Volkner", "Sunyshore Market": "Volkner", "Vista Lighthouse": "Volkner",
-    "Pokémon League": "League",
+    "Pokémon League": "Barry",
     "Villa": "Post",
     "Battleground": "Post", "Battle Frontier": "Post", "Battle Tower": "Post",
     "Battle Park": "Post", "Battle Factory": "Post", "Battle Hall": "Post",
@@ -98,6 +106,8 @@ STORY_REVISITS = {
     "mars_2": "Lake Verity, first reached in Roark's split, fought in Candice's",
     "lucas_dawn_2": "Route 207, first reached in Roark's split, fought in Fantina's "
                     "on the way from Eterna to Hearthome (its aces are 30)",
+    "flint_volkner": "the Fight Area, first reached in the Galactic split, fought in the "
+                     "Barry split once the Beacon Badge is won",
 }
 
 _HEADER = re.compile(r"\[(MAP_HEADER_\w+)\] = \{(.*?)\n    \},", re.S)
@@ -385,13 +395,13 @@ def trainer_weather(tr_id):
 # with none, 2 with one, 3 with three, 4 with five, 5 with seven, 6 with
 # eight. The split a tier opens in is the first split with that many badges;
 # seven badges come with Candice's, so tier 5 opens in HQ.
-MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "HQ", 6: "League"}
+MART_TIER_SPLIT = {1: "Roark", 2: "Gardenia", 3: "Maylene", 4: "Byron", 5: "HQ", 6: "Barry"}
 # Each specialty stock, by the start of its table name, to its city's split.
 MART_TABLE_SPLIT = {
     "Jubilife": "Roark", "Oreburgh": "Roark", "Floaroma": "Gardenia", "Eterna": "Gardenia",
     "Hearthome": "Fantina", "Solaceon": "Maylene", "Veilstone": "Maylene", "Pastoria": "Wake",
     "Celestic": "Byron", "Canalave": "Byron", "Snowpoint": "Candice", "Sunyshore": "Volkner",
-    "PokemonLeague": "League",
+    "PokemonLeague": "Barry",
 }
 _COMMON = re.compile(r"\{ (ITEM_\w+), (0x[0-9a-fA-F]+|\d+) \}")
 _TABLE = re.compile(r"const u16 (\w+)\[\] = \{(.*?)\};", re.S)
