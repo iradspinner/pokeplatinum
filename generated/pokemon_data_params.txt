@@ -179,3 +179,4 @@ MON_DATA_TYPE_1
 MON_DATA_TYPE_2
 MON_DATA_SPECIES_NAME
 MON_DATA_HAS_HIDDEN_ABILITY # Platinum Oxide: block A's hidden ability bit
+MON_DATA_ABILITY_SLOT_SWAPPED # Platinum Oxide: block A's Ability Capsule bit

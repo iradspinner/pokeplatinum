@@ -1023,6 +1023,17 @@
         {
             "id": "TestKit_Text_MenuItemRoseliBerry",
             "en_US": "Roseli Berry"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbilities",
+            "en_US": "Ability Capsule, Patch"
+        },
+        {
+            "id": "TestKit_Text_ItemAbilities",
+            "en_US": [
+                "A Machamp and a Ditto, two Ability\n",
+                "Capsules and the Ability Patch."
+            ]
         }
     ]
 }

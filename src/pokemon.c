@@ -855,6 +855,10 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockA->hasHiddenAbility;
         break;
 
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        result = monDataBlockA->abilitySlotSwapped;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1403,6 +1407,10 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     case MON_DATA_HAS_HIDDEN_ABILITY:
         monDataBlockA->hasHiddenAbility = *u8Value;
+        break;
+
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        monDataBlockA->abilitySlotSwapped = *u8Value;
         break;
 
     case MON_DATA_MARKINGS:
@@ -2132,6 +2140,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
     case MON_DATA_HAS_HIDDEN_ABILITY:
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
     default:
         GF_ASSERT(FALSE);
         break;
@@ -4859,7 +4868,8 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monAbilityHidden != ABILITY_NONE) {
         BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbilityHidden);
     } else if (monAbility2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
+        // An Ability Capsule flips which ordinary slot the personality picks.
+        if ((monPersonality & 1) ^ BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL)) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility1);

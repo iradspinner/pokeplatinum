@@ -41,7 +41,7 @@ Consequences:
 
 `BoxPokemon_CalcAbility` reads the bit, so every path that recomputes an
 ability (evolution, Shedinja, Giratina and Shaymin forms, the Rotom form
-change) keeps the hidden slot. Bits 1 to 7 of the byte are still free. Old
+change) keeps the hidden slot. Bit 1 is the Ability Capsule's (next section). Old
 saves read the bit as 0, which is what their Pokemon were, so this change
 alone costs an old save nothing. The battle-recording copy of a Pokemon
 (`UnkStruct_02078B40`) stores the ability itself, not the bit, which is all a
@@ -50,6 +50,18 @@ replay needs.
 The one-shot script flag that hands a hidden ability to the next scripted wild
 Pokemon, gift or egg, `FLAG_NEXT_MON_HIDDEN_ABILITY`, is flag 0x0990, which
 was unused in vanilla and in the base ROM's scripts.
+
+## Boxed Pokemon, the Ability Capsule bit (element 7)
+
+| Field | Was | Is | Why |
+|---|---|---|---|
+| abilitySlotSwapped | nothing (block A 0x0D, freed above) | block A 0x0D bit 1 | an Ability Capsule swaps a Pokemon between its two ordinary abilities, and the swap has to outlive an evolution |
+
+`BoxPokemon_CalcAbility` picks the ordinary slot from the personality's low
+bit exclusive-or this bit, so the personality itself, and with it gender,
+nature and shininess, never changes. Old saves read the bit as 0, which is no
+swap. The Ability Patch needs no storage of its own: it sets the hidden
+ability bit above. Bits 2 to 7 of the byte are still free.
 
 ## Species records, `pl_personal.narc` (2026-09-20)
 

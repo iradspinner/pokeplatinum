@@ -1006,6 +1006,13 @@
         "The {STRVAR_1 8, 0, 0} cannot be\n",
         "given here.\n"
       ]
+    },
+    {
+      "id": "PartyMenu_Text_MonsAbilityChanged",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Ability changed\n",
+        "to {STRVAR_1 5, 1, 0}!"
+      ]
     }
   ]
 }

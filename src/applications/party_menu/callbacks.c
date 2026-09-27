@@ -392,6 +392,90 @@ void PartyMenu_SetItemUseCallback(PartyMenuApplication *application)
     }
 }
 
+// Platinum Oxide: the Ability Capsule swaps a Pokemon between its species'
+// two ordinary abilities. It does nothing for a species with one ordinary
+// ability, or both the same, or for a Pokemon on its hidden ability.
+static BOOL UseAbilityCapsule(Pokemon *mon)
+{
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    u32 ability1 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_1);
+    u32 ability2 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_2);
+    u32 hidden = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
+
+    if (ability2 == ABILITY_NONE || ability1 == ability2) {
+        return FALSE;
+    }
+
+    if (Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && hidden != ABILITY_NONE) {
+        return FALSE;
+    }
+
+    u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
+    Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
+    Pokemon_CalcAbility(mon);
+    return TRUE;
+}
+
+// Platinum Oxide: the Ability Patch gives a Pokemon its species' hidden
+// ability. The game holds exactly one, so it refuses rather than be spent on a
+// Pokemon it would not change.
+static BOOL UseAbilityPatch(Pokemon *mon)
+{
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    u32 hidden = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
+
+    if (hidden == ABILITY_NONE
+        || Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL)
+        || Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL) == hidden) {
+        return FALSE;
+    }
+
+    Pokemon_TryGiveHiddenAbility(mon);
+    return TRUE;
+}
+
+// Platinum Oxide: the items used on a party member whose effect the item
+// table's parameters cannot express. Returns the next state once it has dealt
+// with the item, used or refused, and -1 for any other item.
+int PartyMenu_TryUseOxideItem(PartyMenuApplication *application)
+{
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    u16 item = application->partyMenu->usedItemID;
+    BOOL used;
+    String *string;
+
+    if (item != ITEM_ABILITY_CAPSULE && item != ITEM_ABILITY_PATCH) {
+        return -1;
+    }
+
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+        used = FALSE;
+    } else if (item == ITEM_ABILITY_CAPSULE) {
+        used = UseAbilityCapsule(mon);
+    } else {
+        used = UseAbilityPatch(mon);
+    }
+
+    if (used) {
+        Bag_TryRemoveItem(application->partyMenu->bag, item, 1, HEAP_ID_PARTY_MENU);
+        string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MonsAbilityChanged);
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetAbilityName(application->template, 1, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+        StringTemplate_Format(application->template, application->tmpString, string);
+        String_Free(string);
+        PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
+    } else {
+        PartyMenu_PrintLongMessage(application, PartyMenu_Text_ItWontHaveAnyEffect, TRUE);
+        application->currPartySlot = PARTY_MENU_SLOT_CANCEL;
+    }
+
+    application->callback = PartyMenuCB_PrintThenWaitABPress;
+    return PARTY_MENU_STATE_EXEC_CALLBACK;
+}
+
 enum PartyMenuState PartyMenuCB_PrintThenWaitABPress(PartyMenuApplication *application)
 {
     if (Text_IsPrinterActive(application->textPrinterID)) {

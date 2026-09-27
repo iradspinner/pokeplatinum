@@ -3181,6 +3181,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemRedCard, 19
     AddListMenuEntry TestKit_Text_MenuItemPixiePlate, 20
     AddListMenuEntry TestKit_Text_MenuItemRoseliBerry, 21
+    AddListMenuEntry TestKit_Text_MenuItemAbilities, 22
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3204,6 +3205,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 19, TestKit_ItemRedCard
     GoToIfEq VAR_0x8004, 20, TestKit_ItemPixiePlate
     GoToIfEq VAR_0x8004, 21, TestKit_ItemRoseliBerry
+    GoToIfEq VAR_0x8004, 22, TestKit_ItemAbilities
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3665,6 +3667,23 @@ TestKit_ItemRoseliBerry:
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_DRAGON_CLAW
     GoTo TestKit_GiveItemPair
+
+/* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
+   Capsules and the Ability Patch in the Bag. A Capsule used on the Machamp
+   swaps it between Guts and No Guard ("Machamp's Ability changed to ...!")
+   and the second swaps it back; the Patch then makes it Steadfast, after
+   which a Capsule has no effect. Both have no effect on the Ditto, whose
+   species has one ordinary ability; the Patch would make it Imposter, so
+   try the Capsule first. The summary shows the ability after each. */
+TestKit_ItemAbilities:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_MACHAMP, 50, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_DITTO, 50, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
+    AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
+    Message TestKit_Text_ItemAbilities
+    GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
