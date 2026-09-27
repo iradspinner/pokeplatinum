@@ -37,6 +37,7 @@ pokegra_files = []
 cry_banks = []
 cry_waves = []
 otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
+otherpoke_appended = [] # Oxide: form sprites added after the archive's last member, in pairs of back and front, then normal and shiny palettes
 
 pokemon_data_root = meson.current_source_dir()
 
@@ -171,6 +172,11 @@ otherpoke_files = []
 num_keys = otherpoke_index.keys().length()
 foreach key : range(num_keys)
     otherpoke_files += otherpoke_index.get(key.to_string())
+endforeach
+
+otherpoke_appended_args = []
+foreach f : otherpoke_appended
+    otherpoke_appended_args += ['--appended', f]
 endforeach
 
 
@@ -316,6 +322,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     input: [
         otherpoke_files,
         form_sprites_shared,
+        otherpoke_appended,
     ],
     depends: [ py_consts_generators ],
     command: [
@@ -326,6 +333,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         '--output-dir', '@OUTDIR@',
         '--sprite-entries', '154',
         '--palette-entries', '94',
+        otherpoke_appended_args,
         otherpoke_files,
         form_sprites_shared,
     ],

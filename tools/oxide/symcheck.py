@@ -44,9 +44,19 @@ class Map:
     def __init__(self, path):
         self.symbols = {}  # module -> list of (addr, size, key)
         self.overlay_ids = {}  # module name -> overlay id
+        self.main_size = None  # bytes of arm9's static module before its .bss
         module = None
+        in_memory_map = False
         for line in open(path, encoding="latin-1"):
             line = line.rstrip("\n")
+            if line.startswith("# Memory map:"):
+                in_memory_map = True
+                continue
+            if in_memory_map:
+                parts = line.split()
+                if len(parts) == 4 and parts[3] == "main" and self.main_size is None:
+                    self.main_size = int(parts[2], 16)
+                continue
             m = SECTION.match(line)
             if m:
                 name = m.group(1)
@@ -122,7 +132,9 @@ def module_bytes(rom, mp):
     """Bytes of each module as the ROM stores them, keyed by module name."""
     out = {}
     base = 0x02000000
-    out["main"] = (base, rom.arm9)
+    # arm9 as stored carries the autoload code after the static module, so
+    # only the static module's own bytes are the main module's.
+    out["main"] = (base, rom.arm9[:mp.main_size] if mp.main_size else rom.arm9)
     ovs = rom.loadArm9Overlays()
     for name, oid in mp.overlay_ids.items():
         if oid in ovs:

@@ -1015,6 +1015,10 @@
         {
             "id": "TestKit_Text_MenuItemRedCard",
             "en_US": "Red Card"
+        },
+        {
+            "id": "TestKit_Text_MenuItemPixiePlate",
+            "en_US": "Pixie Plate"
         }
     ]
 }

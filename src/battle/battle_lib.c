@@ -7796,7 +7796,8 @@ static const ItemEffectTypePair sTypeBoostingItems[] = {
     { HOLD_EFFECT_ARCEUS_GHOST, TYPE_GHOST },
     { HOLD_EFFECT_ARCEUS_DRAGON, TYPE_DRAGON },
     { HOLD_EFFECT_ARCEUS_DARK, TYPE_DARK },
-    { HOLD_EFFECT_ARCEUS_STEEL, TYPE_STEEL }
+    { HOLD_EFFECT_ARCEUS_STEEL, TYPE_STEEL },
+    { HOLD_EFFECT_ARCEUS_FAIRY, TYPE_FAIRY } // Oxide, element 7: the Pixie Plate
 };
 
 static const Fraction sStatStageBoosts[] = {
@@ -9357,6 +9358,9 @@ static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonP
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
             break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
+            break;
 
         default:
             type = TYPE_NORMAL;
@@ -9505,6 +9509,9 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
             break;
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
+            break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
             break;
         case HOLD_EFFECT_ARCEUS_FIRE:
             type = TYPE_FIRE;
@@ -9805,6 +9812,9 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
             break;
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
+            break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
             break;
         case HOLD_EFFECT_ARCEUS_FIRE:
             type = TYPE_FIRE;

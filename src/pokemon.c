@@ -54,6 +54,7 @@
 #include "unk_02017038.h"
 #include "unk_02092494.h"
 
+#include "res/pokemon/pl_otherpoke.naix"
 #include "res/pokemon/regional_pokedex_size.h"
 #include "res/trainers/classes/trbgra.naix"
 
@@ -2884,6 +2885,15 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 
     case SPECIES_ARCEUS:
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+
+        // Oxide, element 7: the Fairy form's back and front sprites, then
+        // its normal and shiny palettes, follow the archive's last member.
+        if (form == ARCEUS_FORM_FAIRY) {
+            spriteTemplate->character = pokemon_z_00_arceus_fairy_back_NCGR + (face / 2);
+            spriteTemplate->palette = pokemon_z_02_arceus_fairy_normal_NCLR + shiny;
+            break;
+        }
+
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 190 + shiny + form * 2;
         break;
@@ -3082,6 +3092,12 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
         break;
 
     case SPECIES_ARCEUS:
+        // Oxide, element 7: the Diamond and Pearl archive has no Fairy form,
+        // so it shows the Normal one.
+        if (form == ARCEUS_FORM_FAIRY) {
+            form = 0;
+        }
+
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 170 + shiny + form * 2;
@@ -3235,6 +3251,12 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
         break;
 
     case SPECIES_ARCEUS:
+        // Oxide, element 7: every form of Arceus is the same shape, so the
+        // Fairy form, which has no height entry, takes the Normal form's.
+        if (form == ARCEUS_FORM_FAIRY) {
+            form = 0;
+        }
+
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
@@ -3324,6 +3346,10 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
         break;
 
     case SPECIES_ARCEUS:
+        if (form == ARCEUS_FORM_FAIRY) { // Oxide, element 7, as above
+            form = 0;
+        }
+
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
@@ -4408,6 +4434,9 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
         break;
     case HOLD_EFFECT_ARCEUS_STEEL:
         type = TYPE_STEEL;
+        break;
+    case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+        type = TYPE_FAIRY;
         break;
     default:
         type = TYPE_NORMAL;

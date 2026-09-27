@@ -3179,6 +3179,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemMirrorHerb, 17
     AddListMenuEntry TestKit_Text_MenuItemEjectButton, 18
     AddListMenuEntry TestKit_Text_MenuItemRedCard, 19
+    AddListMenuEntry TestKit_Text_MenuItemPixiePlate, 20
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3200,6 +3201,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 17, TestKit_ItemMirrorHerb
     GoToIfEq VAR_0x8004, 18, TestKit_ItemEjectButton
     GoToIfEq VAR_0x8004, 19, TestKit_ItemRedCard
+    GoToIfEq VAR_0x8004, 20, TestKit_ItemPixiePlate
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3612,6 +3614,37 @@ TestKit_ItemRedCard:
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
     GoTo TestKit_GiveItemPair
+
+/* The Pixie Plate: two Arceus with Judgment, Moonblast, Recover and Splash,
+   the first holding the plate and set to its Fairy form (as giving it the
+   plate from the Bag would), the second holding nothing, against a wild
+   Dragonite that knows only Dragon Claw. The first is pink in its summary
+   and in battle, its types read Fairy, its Judgment is a Fairy move that is
+   super effective on Dragonite, and Dragon Claw does not affect it; the
+   second is a Normal Arceus whose Judgment is Normal. */
+TestKit_ItemPixiePlate:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    SetVar VAR_0x8000, SPECIES_DRAGONITE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DRAGON_CLAW
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_ARCEUS
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_PIXIE_PLATE
+    SetVar VAR_0x8006, MOVE_JUDGMENT
+    SetVar VAR_0x8007, MOVE_MOONBLAST
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    Call TestKit_SetPairMoves
+    TestKitSetPartyMonForm VAR_0x8005, 18    /* ARCEUS_FORM_FAIRY */
+    AddVar VAR_0x8005, 1
+    GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+    Call TestKit_SetPairMoves
+    BufferItemName 0, VAR_0x8004
+    Message TestKit_Text_ItemPair
+    GoTo TestKit_AbilityFoe
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull
