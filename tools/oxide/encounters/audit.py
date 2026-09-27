@@ -104,6 +104,10 @@ UNREACHABLE_SCRIPT_SOURCES = {
     ("scripts_stark_mountain_room_3", "SPECIES_HEATRAN"):
         "Stark Mountain's last room is empty (Ian, 2026-09-27); the script "
         "jumps past the line that would unhide Heatran",
+    ("scripts_valor_cavern", "SPECIES_AZELF"):
+        "Valor Cavern holds no legendary (Ian, 2026-09-27); its transition "
+        "script sets FLAG_HIDE_VALOR_CAVERN_AZELF on every load, so the lab "
+        "and the Hall of Fame clearing the flag never bring Azelf back",
 }
 
 

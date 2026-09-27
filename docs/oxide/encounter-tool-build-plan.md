@@ -847,6 +847,18 @@ that stay. None blocks anything.
    `ian-saves` like a track branch, after the Balance Agent rescores what a
    trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
    throwaway repository.
+32. **Honey trees in the gate, and ten cap candidates (2026-09-27).** The
+   availability gate counted no honey tree as a capture, so Munchlax, whose
+   trees read the one-badge table from Gardenia's split, showed as first
+   caught in Wake's and sat among eleven cap candidates. The gate now counts
+   each tree on the table its map stands on, reading the honey table for the
+   badges held then, and no earlier than Gardenia's split, when Honey is
+   first sold in Floaroma (the rule the box simulator already used, now
+   `scripted.HONEY_FROM` for both). Munchlax and Heracross now read as first
+   caught in Gardenia's split, and ten cap candidates remain. The authoring
+   pass ended with none, so these crept in with later table changes; each
+   needs a table change, which goes to Ian as a proposal first. Suites:
+   step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim 11/11.
 33. **The Trainers tab, second pass (through the Overseer, 2026-09-27).** The
    trainer list sorts by score, hardest first, with play order a click away,
    and each row shows its stored score. The score is the balance plan's
@@ -867,6 +879,42 @@ that stay. None blocks anything.
    the type chips are. Suites: m4 51/51, m8 98/98, trainers 26/26 (a new
    check holds the scores to the balance files' own), docview 16/16, saves
    5/5, and a headless Chrome pass over the tab.
+
+   **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
+   one per line, each in a table the gate dates to the line's cap split or
+   earlier. Every swap takes a slot of the same rate, so no table's shape or
+   top share moves, and every line that gives way keeps an earlier or equal
+   first capture elsewhere. The Barry split did not change the list.
+
+   | Line (final stage by, cap split) | Table and slot | Gives way |
+   |---|---|---|
+   | Luvdisc (Alomomola 30, Fantina) | Route 219, Old Rod 5% (Roark) | Wingull, 9 other places |
+   | Mantyke (Mantine 30, Fantina) | Valley Windworks, Old Rod 5% (Gardenia) | Remoraid, 16 other places |
+   | Totodile (Feraligatr 30, Fantina) | Route 208, Old Rod 5% (Fantina) | Barboach, 46 other places |
+   | Drifloon (Drifblim 28, Fantina) | Amity Square, night slot (Fantina) | Glameow's night slot; it keeps its 10% there |
+   | Smoochum (Jynx 30, Fantina) | Amity Square, day slot (Fantina) | Emolga's day slot; its first capture stays Valley Windworks |
+   | Hippopotas (Hippowdon 34, Maylene) | Wayward Cave B1F, 10% (Fantina) | Meditite's base 10%; it keeps its day slot there |
+   | Slowpoke (Slowbro 37, Maylene) | Route 209, Good Rod 4% (Maylene) | Surskit, 24 other places |
+   | Tangela (Tangrowth 35, Maylene) | Route 209, a 5% land slot (Maylene) | Steenee's 5%; the Bounsweet line has many earlier places |
+   | Goomy (Goodra 50, Byron) | Route 212 south, 1% land slot (Wake) | Frillish, 32 other places |
+   | Spheal (Walrein 44, Wake) | Route 213, Good Rod 1% (Wake) | Chinchou, 51 other places |
+
+   Ian's two answers: a line final at a split's cap counts as under it, so
+   Spheal moves, and Smoochum takes Emolga's day slot. One swap differs from
+   the proposal. Tangela was to take one of Smoliv's two 4% slots on Route
+   209, but R16 wants a table's top rung to hold three lines with one of them
+   on both 4%s, so it takes Steenee's 5% instead and Smoliv keeps its 8%.
+   Koffing's 5% beside it was not used, since Koffing is on Route 209 for its
+   own cap. The casts, the day and night pairs and the plan changed in the
+   sidecar; `cli apply` wrote ten values in eight tables and no level moved.
+   Checked, one suite at a time: `cli evolve` 0 moves; the gate clean with no
+   cap candidates; lint 0 errors; `audit --fail-on-leak` exit 0; the
+   importer's dry run 0 changes; m1 13/13, m2 23/23, m3 18/18, m5 15/15, m6
+   19/19, m8 98/98, step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim
+   11/11, and step0 34/35, whose one failure compares the tables with this
+   checkout's build of 2026-09-22; the GitHub build of the pushed commit is
+   the check that counts. The swaps change the player's pool, so the Balance
+   Agent rescores what they stale before they land.
 
 ## Standing rules
 
