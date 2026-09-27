@@ -195,9 +195,10 @@ Container proc_trainer(datafile_t *df, enum TrainerID trainer) {
         u16 form    = dp_u8(dp_objmemb(party_member, "form"));
 
         // ability/gender are optional overrides; absent (or null, for gender) means "don't care"
+        // Ability 1 and 2 pick a slot; 3 asks for the hidden ability (Platinum Oxide).
         u8 ability = 0;
         if (dp_hasmemb(party_member, "ability")) {
-            ability = dp_u8range(dp_objmemb(party_member, "ability"), 0, 2);
+            ability = dp_u8range(dp_objmemb(party_member, "ability"), 0, TRAINER_MON_ABILITY_HIDDEN);
         }
 
         u8 gender = 0;

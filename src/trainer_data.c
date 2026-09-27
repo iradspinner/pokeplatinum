@@ -187,6 +187,13 @@ static u8 TrainerMon_PersonalityLowByte(u16 species, u8 genderOverride, u8 abili
 {
     u8 wantBit, candidate, nudged;
 
+    // Platinum Oxide: the hidden ability is given after the Pokemon is built,
+    // not through the personality, so it leaves the personality as "don't
+    // care" does and no other roll moves.
+    if (abilityOverride == TRAINER_MON_ABILITY_HIDDEN) {
+        abilityOverride = TRAINER_MON_ABILITY_DONT_CARE;
+    }
+
     if (genderOverride == TRAINER_MON_GENDER_DONT_CARE) {
         if (abilityOverride == TRAINER_MON_ABILITY_DONT_CARE) {
             return defaultLowByte;
@@ -305,6 +312,11 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // the personality's low bit, which also carries any ability request, so picking
             // again by the same bit from the form's record keeps that request.
             Pokemon_CalcAbility(mon);
+            // Platinum Oxide: ability 3 asks for the hidden ability, which falls
+            // back to the ordinary one when the species has none.
+            if (trmon[i].ability == TRAINER_MON_ABILITY_HIDDEN) {
+                Pokemon_TryGiveHiddenAbility(mon);
+            }
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -336,6 +348,11 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // the personality's low bit, which also carries any ability request, so picking
             // again by the same bit from the form's record keeps that request.
             Pokemon_CalcAbility(mon);
+            // Platinum Oxide: ability 3 asks for the hidden ability, which falls
+            // back to the ordinary one when the species has none.
+            if (trmon[i].ability == TRAINER_MON_ABILITY_HIDDEN) {
+                Pokemon_TryGiveHiddenAbility(mon);
+            }
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -363,6 +380,11 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // the personality's low bit, which also carries any ability request, so picking
             // again by the same bit from the form's record keeps that request.
             Pokemon_CalcAbility(mon);
+            // Platinum Oxide: ability 3 asks for the hidden ability, which falls
+            // back to the ordinary one when the species has none.
+            if (trmon[i].ability == TRAINER_MON_ABILITY_HIDDEN) {
+                Pokemon_TryGiveHiddenAbility(mon);
+            }
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -395,6 +417,11 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             // the personality's low bit, which also carries any ability request, so picking
             // again by the same bit from the form's record keeps that request.
             Pokemon_CalcAbility(mon);
+            // Platinum Oxide: ability 3 asks for the hidden ability, which falls
+            // back to the ordinary one when the species has none.
+            if (trmon[i].ability == TRAINER_MON_ABILITY_HIDDEN) {
+                Pokemon_TryGiveHiddenAbility(mon);
+            }
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
