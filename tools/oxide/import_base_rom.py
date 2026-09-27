@@ -483,6 +483,9 @@ _KAIZO_DEBUFF_PP = ("the stat-lowering status moves take Kaizo's low PP "
 for _move in ("screech", "charm", "sweet_scent", "feather_dance", "fake_tears",
               "metal_sound", "tickle", "captivate"):
     MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_DEBUFF_PP
+_MODERN_PRIORITY = "the modern priority, answer 4 of the Kaizo comparison (Ian, 2026-09-27)"
+for _move in ("protect", "detect", "endure", "extreme_speed", "fake_out", "follow_me"):
+    MOVES_DIVERGED.setdefault(_move, {})["priority"] = _MODERN_PRIORITY
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")

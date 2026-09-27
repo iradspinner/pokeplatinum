@@ -467,6 +467,11 @@ KAIZO_SETUP_PP_NATIVES = {104, 106, 116, 254, 322, 339, 367, 455}
 # Screech, Charm, Sweet Scent, Feather Dance, Fake Tears, Metal Sound, Tickle
 # and Captivate.
 KAIZO_DEBUFF_PP_NATIVES = {103, 204, 230, 297, 313, 319, 321, 445}
+# The native moves whose priority changed after Generation 4, at the modern
+# value (Ian, 2026-09-27, answer 4), read from the vendored calculator's
+# Generation 9 data: Protect, Detect and Endure +4, Extreme Speed +2, Fake
+# Out +3, Follow Me +2.
+MODERN_PRIORITY_NATIVES = {182, 197, 203, 245, 252, 266}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
@@ -522,6 +527,11 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": KAIZO_DEBUFF_PP_NATIVES,
             "why": "the stat-lowering status moves cut to 2 to 6 PP (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (10,),  # priority
+            "members": MODERN_PRIORITY_NATIVES,
+            "why": "native moves given their modern priority (Ian, 2026-09-27)",
         },
         {
             "offsets": (3,),  # power
