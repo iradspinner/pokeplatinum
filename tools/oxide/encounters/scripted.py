@@ -28,6 +28,9 @@ KINDS = ("starter", "gift", "trade", "static", "fossil", "egg")
 PICKS = ("random", "choice", "legendary_pool")
 KEY_PREFIX = "scripted:"
 HONEY_PREFIX = "honey:"
+# Honey is first sold in Floaroma, in Gardenia's split, so no tree is
+# shaken before it however early its map is reached.
+HONEY_FROM = "Gardenia"
 
 
 def _catalogue(root):

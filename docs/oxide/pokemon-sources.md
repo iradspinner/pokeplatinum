@@ -42,14 +42,14 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-187 rows across 33 locations, generated 2026-09-26.
+186 rows across 32 locations, generated 2026-09-27.
 
 ## Rows by method
 
 | Method | Rows |
 |---|---|
 | unown room | 18 |
-| static battle | 14 |
+| static battle | 13 |
 | great marsh daily (post-natdex) | 12 |
 | egg gift | 10 |
 | great marsh daily (pre-natdex) | 9 |
@@ -419,12 +419,6 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Giratina | static battle | 47 | Turnback Cave, after the Distortion World; Altered Forme | vanilla | yes | `scripts_turnback_cave_giratina_room.s` |
-
-### Valor Cavern
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Azelf | static battle | 50 | after the Galactic plot at Lake Valor; once | vanilla | yes | `scripts_valor_cavern.s` |
 
 ### Veilstone City
 

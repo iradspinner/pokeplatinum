@@ -69,7 +69,7 @@ BST_FLOOR, BST_CEIL = 250, 600
 TOP_SIX_WEIGHT = 0.25
 # A later option is waited for only when it beats the best one now by this.
 DEFER_MARGIN = 1.05
-HONEY_FROM = "Gardenia"          # Honey is sold in Floaroma, Gardenia's split
+HONEY_FROM = scripted.HONEY_FROM  # Honey is sold in Floaroma, Gardenia's split
 HONEY_SLOTS = (0.40, 0.20, 0.20, 0.10, 0.05, 0.05)
 WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
 KIND_WORDS = {"land": "grass", "surf": "surf", "old_rod": "Old Rod",

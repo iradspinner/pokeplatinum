@@ -42,7 +42,6 @@ Snowpoint Temple,scripts_snowpoint_temple_b5f.s,SPECIES_REGIGIGAS,static battle,
 Spear Pillar,scripts_spear_pillar_dialga.s,SPECIES_DIALGA,static battle,70,the story battle at the Spear Pillar,vanilla,yes
 Spear Pillar,scripts_spear_pillar_palkia.s,SPECIES_PALKIA,static battle,70,the story battle at the Spear Pillar,vanilla,yes
 Turnback Cave,scripts_turnback_cave_giratina_room.s,SPECIES_GIRATINA,static battle,47,"Turnback Cave, after the Distortion World; Altered Forme",vanilla,yes
-Valor Cavern,scripts_valor_cavern.s,SPECIES_AZELF,static battle,50,after the Galactic plot at Lake Valor; once,vanilla,yes
 Fullmoon Island,scripts_fullmoon_island_forest.s,SPECIES_CRESSELIA,roamer,50,released on Fullmoon Island (reached with the Lunar Wing errand); then roams,vanilla,yes
 (not released by any script),src/roaming_pokemon.c,SPECIES_DARKRAI,roamer,40,"the slot exists in src/roaming_pokemon.c but no script calls ActivateRoamingPokemon for it, in this ROM or in vanilla, so it is unreachable",vanilla,yes
 Eterna City,scripts_eterna_city_south_house.s,SPECIES_MOLTRES,roamer,60,released by Prof. Oak in the Eterna City south house once the National Dex is in hand; then roams,vanilla,yes
