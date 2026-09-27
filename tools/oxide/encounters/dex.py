@@ -181,6 +181,24 @@ def final_by_level(root, species):
     return walk(species, {species})
 
 
+def later_stages(root, species):
+    """`species` and every stage it can evolve into, by any method. A hidden
+    ability given by a script stays through evolution (element 8), so a check
+    on what one hands over has to follow the line forward. As in
+    final_by_level, a mega or regional form listed under its base is not a
+    stage."""
+    lines(root)
+    into = _CACHE.get("evolves_into") or {}
+    out, todo = [species], [species]
+    while todo:
+        s = todo.pop()
+        for t in sorted(into.get(s) or ()):
+            if not t.startswith(s + "_") and t not in out:
+                out.append(t)
+                todo.append(t)
+    return out
+
+
 def lines(root):
     if "lines" not in _CACHE:
         _CACHE["lines"] = _build_lines(root)
