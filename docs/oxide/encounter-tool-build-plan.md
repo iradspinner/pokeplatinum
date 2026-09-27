@@ -860,11 +860,11 @@ that stay. None blocks anything.
    needs a table change, which goes to Ian as a proposal first. Suites:
    step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim 11/11.
 
-   **The proposal, waiting on Ian.** Ten slot swaps, one per line, each in a
-   table the gate dates to the line's cap split or earlier. Every swap takes
-   a slot of the same rate, so no table's shape or top share moves, and every
-   line that gives way keeps an earlier or equal first capture elsewhere.
-   The Barry split did not change the list.
+   **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
+   one per line, each in a table the gate dates to the line's cap split or
+   earlier. Every swap takes a slot of the same rate, so no table's shape or
+   top share moves, and every line that gives way keeps an earlier or equal
+   first capture elsewhere. The Barry split did not change the list.
 
    | Line (final stage by, cap split) | Table and slot | Gives way |
    |---|---|---|
@@ -875,16 +875,26 @@ that stay. None blocks anything.
    | Smoochum (Jynx 30, Fantina) | Amity Square, day slot (Fantina) | Emolga's day slot; its first capture stays Valley Windworks |
    | Hippopotas (Hippowdon 34, Maylene) | Wayward Cave B1F, 10% (Fantina) | Meditite's base 10%; it keeps its day slot there |
    | Slowpoke (Slowbro 37, Maylene) | Route 209, Good Rod 4% (Maylene) | Surskit, 24 other places |
-   | Tangela (Tangrowth 35, Maylene) | Route 209, one 4% land slot (Maylene) | Smoliv, down from 8% to 4% there |
+   | Tangela (Tangrowth 35, Maylene) | Route 209, a 5% land slot (Maylene) | Steenee's 5%; the Bounsweet line has many earlier places |
    | Goomy (Goodra 50, Byron) | Route 212 south, 1% land slot (Wake) | Frillish, 32 other places |
    | Spheal (Walrein 44, Wake) | Route 213, Good Rod 1% (Wake) | Chinchou, 51 other places |
 
-   Two choices are Ian's. Walrein is final at exactly Wake's cap of 44, and
-   the gate counts a line final at the cap as under it; he may rule that at
-   the cap is fine, and Spheal stays in Snowpoint. Smoochum's alternative to
-   Emolga's day slot is Klefki's 1% in Amity Square, which costs less and
-   makes it rarer. On a yes, the swaps go in, then `cli evolve`, the lint,
-   the gate (which must show no cap candidates) and the suites.
+   Ian's two answers: a line final at a split's cap counts as under it, so
+   Spheal moves, and Smoochum takes Emolga's day slot. One swap differs from
+   the proposal. Tangela was to take one of Smoliv's two 4% slots on Route
+   209, but R16 wants a table's top rung to hold three lines with one of them
+   on both 4%s, so it takes Steenee's 5% instead and Smoliv keeps its 8%.
+   Koffing's 5% beside it was not used, since Koffing is on Route 209 for its
+   own cap. The casts, the day and night pairs and the plan changed in the
+   sidecar; `cli apply` wrote ten values in eight tables and no level moved.
+   Checked, one suite at a time: `cli evolve` 0 moves; the gate clean with no
+   cap candidates; lint 0 errors; `audit --fail-on-leak` exit 0; the
+   importer's dry run 0 changes; m1 13/13, m2 23/23, m3 18/18, m5 15/15, m6
+   19/19, m8 98/98, step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim
+   11/11, and step0 34/35, whose one failure compares the tables with this
+   checkout's build of 2026-09-22; the GitHub build of the pushed commit is
+   the check that counts. The swaps change the player's pool, so the Balance
+   Agent rescores what they stale before they land.
 
 ## Standing rules
 
