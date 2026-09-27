@@ -94,7 +94,7 @@
       "home": ["SPECIES_PAWMI", "SPECIES_PLUSLE", "SPECIES_MINUN"],
       "cameo": ["SPECIES_SHINX", "SPECIES_PACHIRISU", "SPECIES_MINCCINO", "SPECIES_PIKIPEK"],
       "tail": ["SPECIES_EMOLGA", "SPECIES_PIKACHU"],
-      "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%."
+      "note": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%. The Old Rod's 5% is Mantyke, under Fantina's cap (2026-09-27)."
     },
     "encounters_route_205_north": {
       "home": ["SPECIES_LOTAD", "SPECIES_HOPPIP"],
@@ -188,21 +188,21 @@
     },
     "encounters_wayward_cave_b1f": {
       "home": ["SPECIES_GIBLE"],
-      "cameo": ["SPECIES_PHANPY", "SPECIES_SANDYGAST", "SPECIES_GLIMMET", "SPECIES_STUNKY", "SPECIES_MEDITITE", "SPECIES_MIGHTYENA", "SPECIES_HOUNDOUR", "SPECIES_ZUBAT"],
+      "cameo": ["SPECIES_PHANPY", "SPECIES_SANDYGAST", "SPECIES_GLIMMET", "SPECIES_STUNKY", "SPECIES_MEDITITE", "SPECIES_MIGHTYENA", "SPECIES_HOUNDOUR", "SPECIES_ZUBAT", "SPECIES_HIPPOPOTAS"],
       "tail": ["SPECIES_LARVITAR", "SPECIES_NACLI"],
-      "note": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung."
+      "note": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung. Hippopotas takes Meditite's 10%, under Maylene's cap; Meditite keeps its day slot (2026-09-27)."
     },
     "encounters_route_208": {
       "home": ["SPECIES_FOMANTIS"],
       "cameo": ["SPECIES_PACHIRISU", "SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_STEENEE", "SPECIES_HAPPINY", "SPECIES_SMOLIV", "SPECIES_COMBEE", "SPECIES_SEWADDLE", "SPECIES_GRUBBIN", "SPECIES_PURRLOIN", "SPECIES_MIGHTYENA"],
       "tail": ["SPECIES_GROVYLE", "SPECIES_CARNIVINE"],
-      "note": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s."
+      "note": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s. The Old Rod's 5% is Totodile, under Fantina's cap (2026-09-27)."
     },
     "encounters_amity_square": {
       "home": ["SPECIES_SNUBBULL"],
-      "cameo": ["SPECIES_SWABLU", "SPECIES_AZURILL", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FOMANTIS", "SPECIES_MINCCINO", "SPECIES_EMOLGA", "SPECIES_PURRLOIN"],
+      "cameo": ["SPECIES_SWABLU", "SPECIES_AZURILL", "SPECIES_BUNEARY", "SPECIES_GLAMEOW", "SPECIES_FOMANTIS", "SPECIES_MINCCINO", "SPECIES_SMOOCHUM", "SPECIES_PURRLOIN", "SPECIES_DRIFLOON"],
       "tail": ["SPECIES_KLEFKI", "SPECIES_PIKACHU"],
-      "note": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian."
+      "note": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Smoochum by day, Drifloon and Purrloin by night; Smoochum and Drifloon are here under Fantina's cap (2026-09-27). A draft for Ian."
     },
     "encounters_sandgem_town": {
       "home": ["SPECIES_KRICKETOT"],
@@ -236,9 +236,9 @@
     },
     "encounters_route_209": {
       "home": ["SPECIES_GOTHITA"],
-      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_SMOLIV", "SPECIES_KOFFING", "SPECIES_STEENEE", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_MURKROW", "SPECIES_YAMASK"],
+      "cameo": ["SPECIES_BUDEW", "SPECIES_RALTS", "SPECIES_FLETCHINDER", "SPECIES_MINCCINO", "SPECIES_GLAMEOW", "SPECIES_SMOLIV", "SPECIES_KOFFING", "SPECIES_TANGELA", "SPECIES_BUNEARY", "SPECIES_PACHIRISU", "SPECIES_MURKROW", "SPECIES_YAMASK"],
       "tail": ["SPECIES_DUSKULL", "SPECIES_MEDITITE"],
-      "note": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night."
+      "note": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night. The Good Rod's 4% is Slowpoke, under Maylene's cap (2026-09-27). Tangela takes Steenee's 5%, under Maylene's cap (2026-09-27)."
     },
     "encounters_route_209_lost_tower_1f": {
       "home": [],
@@ -424,7 +424,7 @@
       "home": ["SPECIES_SANDYGAST", "SPECIES_CLOBBOPUS", "SPECIES_DEWPIDER"],
       "cameo": ["SPECIES_TRUMBEAK", "SPECIES_FLETCHINDER", "SPECIES_DUBWOOL", "SPECIES_DOLLIV", "SPECIES_SHELLOS", "SPECIES_BUIZEL", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD"],
       "tail": ["SPECIES_QUAGSIRE", "SPECIES_MANTYKE"],
-      "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s."
+      "note": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s. The Good Rod's 1% is Spheal, under Wake's cap, which Walrein reaches at 44 (2026-09-27)."
     },
     "encounters_great_marsh_1": {
       "home": ["SPECIES_WOOPER", "SPECIES_AZUMARILL"],
@@ -471,8 +471,8 @@
     "encounters_route_212_south": {
       "home": ["SPECIES_KOFFING"],
       "cameo": ["SPECIES_WOOPER", "SPECIES_CROAGUNK", "SPECIES_LOMBRE", "SPECIES_MASQUERAIN", "SPECIES_FROGADIER", "SPECIES_BRELOOM", "SPECIES_ARAQUANID", "SPECIES_YANMA"],
-      "tail": ["SPECIES_SANDYGAST", "SPECIES_FRILLISH"],
-      "note": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s."
+      "tail": ["SPECIES_SANDYGAST", "SPECIES_GOOMY"],
+      "note": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s. Goomy is a 1% in the rain, in Frillish's old slot, under Byron's cap (2026-09-27)."
     },
     "encounters_trophy_garden": {
       "home": ["SPECIES_PIKACHU", "SPECIES_MUNCHLAX", "SPECIES_MIME_JR"],
