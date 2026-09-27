@@ -339,7 +339,12 @@ void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOf
 
 void BagUI_PrintBerryNumber(BagController *controller, BagItem *itemSlot, u32 yOffset)
 {
-    FontSpecialChars_DrawPartyScreenText(controller->specialChars, SPECIAL_CHAR_NUMBER, Item_BerryNumber(itemSlot->item) + 1, 2, PADDING_MODE_ZEROES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, yOffset + 5);
+    // Oxide, element 7: a Berry past the numbered ones (the Roseli Berry)
+    // has no number to show.
+    if (Item_BerryNumber(itemSlot->item) != BERRY_ID_NONE) {
+        FontSpecialChars_DrawPartyScreenText(controller->specialChars, SPECIAL_CHAR_NUMBER, Item_BerryNumber(itemSlot->item) + 1, 2, PADDING_MODE_ZEROES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, yOffset + 5);
+    }
+
     BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR(1, 2, 0));
 }
 

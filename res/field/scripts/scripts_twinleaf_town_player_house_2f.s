@@ -3180,6 +3180,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemEjectButton, 18
     AddListMenuEntry TestKit_Text_MenuItemRedCard, 19
     AddListMenuEntry TestKit_Text_MenuItemPixiePlate, 20
+    AddListMenuEntry TestKit_Text_MenuItemRoseliBerry, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3202,6 +3203,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 18, TestKit_ItemEjectButton
     GoToIfEq VAR_0x8004, 19, TestKit_ItemRedCard
     GoToIfEq VAR_0x8004, 20, TestKit_ItemPixiePlate
+    GoToIfEq VAR_0x8004, 21, TestKit_ItemRoseliBerry
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3645,6 +3647,24 @@ TestKit_ItemPixiePlate:
     BufferItemName 0, VAR_0x8004
     Message TestKit_Text_ItemPair
     GoTo TestKit_AbilityFoe
+
+/* The Roseli Berry: Dragonite against a wild Clefable that knows only
+   Moonblast, super effective on it. The first Moonblast into the Dragonite
+   holding it brings "The Roseli Berry weakened Moonblast's power!" and
+   does about half as much as into the other; the berry is gone. */
+TestKit_ItemRoseliBerry:
+    SetVar VAR_0x8000, SPECIES_CLEFABLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MOONBLAST
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_DRAGONITE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ROSELI_BERRY
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_DRAGON_CLAW
+    GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

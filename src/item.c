@@ -356,6 +356,13 @@ u16 Item_ForMailType(u8 mailType)
 
 u8 Item_IsBerry(u16 item)
 {
+    // Oxide, element 7: the Roseli Berry is a Berry in battle (Unnerve,
+    // Belch, Harvest, Bug Bite), though it has no tree, tag or Poffin data
+    // and so is not one of the numbered Berries.
+    if (item == ITEM_ROSELI_BERRY) {
+        return TRUE;
+    }
+
     for (u32 i = 0; i < NUM_BERRIES; i++) {
         if (sBerryItemIDs[i] == item) {
             return TRUE;
@@ -367,7 +374,8 @@ u8 Item_IsBerry(u16 item)
 
 u8 Item_BerryNumber(u16 item)
 {
-    if (item < ITEM_CHERI_BERRY) {
+    // Oxide, element 7: past the Rowap Berry, as the Roseli Berry is.
+    if (item < ITEM_CHERI_BERRY || item > LAST_BERRY_IDX) {
         return BERRY_ID_NONE;
     }
 
