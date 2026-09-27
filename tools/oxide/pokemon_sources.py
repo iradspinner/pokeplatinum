@@ -49,6 +49,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, ROOT)
 
 from tools.oxide.encounters import dex  # noqa: E402
+from tools.oxide.encounters.audit import UNREACHABLE_SCRIPT_SOURCES  # noqa: E402
 
 ENC_DIR = os.path.join("res", "field", "encounters")
 SCRIPT_DIR = os.path.join("res", "field", "scripts")
@@ -283,6 +284,10 @@ def script_commands(regex):
         for m in hits:
             key = keyof(m)
             if key in seen:
+                continue
+            # A source the script cannot reach (Stark Mountain's empty room)
+            # is not a source; the list and its reasons are the audit's.
+            if (name, m.group(2)) in UNREACHABLE_SCRIPT_SOURCES:
                 continue
             seen.add(key)
             if regex is EGG_RE:

@@ -246,6 +246,7 @@
       "capture_area": "Stark Mountain",
       "split": "Post",
       "from": {"file": "scripts_stark_mountain_room_3.s"},
+      "pool": ["SPECIES_HEATRAN"],
       "pick": "random",
       "simulate": false,
       "note": "The last room holds no Heatran and no draw (Ian, 2026-09-27, relayed by the Overseer), until the difficulty is high enough that more legendary-tier encounters would not inflate box quality. The script still gives Heatran after Buck's post-game event until the main track changes it."
