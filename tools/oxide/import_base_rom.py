@@ -544,6 +544,19 @@ TRAINERS_DIVERGED.update({stem: {"level": _BATTLE_ZONE_RELEVEL} for stem in (
     "swimmer_lydia", "swimmer_mallory", "swimmer_sam", "swimmer_sophia",
     "swimmer_wade", "veteran_harlan", "buck_stark_mountain",
 )})
+# Trainers edited in the encounter tool's team builder (encounter build plan
+# item 28) are listed in trainers_diverged.json beside this file, which the
+# builder writes on every save, so a save never edits this code. The same
+# shape as above, trainer file -> {field: why}: "party" leaves the whole party
+# alone, and "ai_flags" or "double_battle" that header field.
+TRAINERS_DIVERGED_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      "trainers_diverged.json")
+try:
+    with open(TRAINERS_DIVERGED_FILE, encoding="utf-8") as _f:
+        for _stem, _fields in json.load(_f).items():
+            TRAINERS_DIVERGED.setdefault(_stem, {}).update(_fields)
+except FileNotFoundError:
+    pass
 
 # Encounter files the authoring pass has rewritten from the species pick-list
 # (docs/oxide/encounter-authoring-plan.md). The base ROM's table is no longer
@@ -727,6 +740,10 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
     fn, fo = flatten(new_header), flatten(old_header)
     for key, val in fn.items():
         if fo.get(key) == val:
+            continue
+        # A header field Oxide changed on purpose (the team builder's AI
+        # flags or battle type) keeps Oxide's value, as a party field does.
+        if key.split(".")[0] in diverged:
             continue
         path = key.split(".")
         if jsonstyle.get_value(text, path) == val:

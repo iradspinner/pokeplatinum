@@ -3,8 +3,10 @@
 
     PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers
 
-Read-only: it reads res/trainers/data/ and asks a throwaway server on a free
-port for the tab's data, and checks that nothing in the checkout changed.
+It never writes the tree's trainers: every save goes to a scratch copy of
+res/trainers/data/ in a temporary folder, through save()'s folder and
+registry arguments or a throwaway server pointed there by
+OXIDE_TRAINERS_DIR. It checks that nothing in the checkout changed.
 """
 import http.client
 import json
@@ -103,6 +105,198 @@ def check_move_lists(results, root):
                     and ids.get("highjumpkick") is not None, ""))
 
 
+def check_lint(results, root):
+    roark = trainers.load(root, "leader_roark")
+    clean = trainers.lint(root, roark)
+
+    def with_member(**change):
+        d = json.loads(json.dumps(roark))
+        d["party"][0].update(change)
+        return [f["message"] for f in trainers.lint(root, d) if f["severity"] == "error"]
+    choice = json.loads(json.dumps(roark))
+    choice["party"][1]["item"] = "ITEM_CHOICE_SCARF"
+    lone = dict(json.loads(json.dumps(roark)), double_battle=True)
+    lone["party"] = lone["party"][:1]
+    mixed = json.loads(json.dumps(roark))
+    mixed["party"][2]["moves"] = None
+    results.append(("the trainer lint passes Roark and refuses what the packer or the game would "
+                    "get wrong", not [f for f in clean if f["severity"] == "error"]
+                    and with_member(level=101) and with_member(moves=["MOVE_NOPE"])
+                    and with_member(nature="NATURE_COUNT") and with_member(ability=4)
+                    and with_member(species="SPECIES_NIDORAN_M", gender="female")
+                    and with_member(form=3) and trainers.lint(root, lone)
+                    and any("moves or none does" in f["message"] for f in trainers.lint(root, mixed)),
+                    ""))
+    results.append(("a Choice item is a warning, not an error (Ian, 2026-09-26)",
+                    [f["severity"] for f in trainers.lint(root, choice)] == ["warn"], ""))
+
+
+def check_style(results, root):
+    """A save touches only the fields that changed, in the files' own style."""
+    party_miss, field_miss = [], []
+    folder = trainers.data_dir(root)
+    for f in sorted(os.listdir(folder)):
+        with open(os.path.join(folder, f), encoding="utf-8") as fh:
+            text = fh.read()
+        data = json.loads(text)
+        vs, ve, indent = trainers.jsonstyle._find_key(text, ["party"])
+        if data["party"] and trainers.dump_party(data["party"], indent) != text[vs:ve]:
+            party_miss.append(f)
+        t = text
+        for key in trainers.HEADER_EDITS:
+            t = trainers._replace(t, [key], data[key])
+        for i, m in enumerate(data["party"]):
+            for key, val in m.items():
+                t = trainers._replace(t, ["party", i, key], val)
+        if t != text:
+            field_miss.append(f)
+    results.append(("rewriting a whole party reproduces every file's party byte for byte",
+                    not party_miss, ", ".join(party_miss[:4])))
+    # Two files write their AI flags on one line, against every other file;
+    # a save changes them only when their flags are edited.
+    results.append(("rewriting any field with its own value leaves every file as it was, bar "
+                    "the two that write their AI flags on one line",
+                    set(field_miss) == {"bug_catcher_jack.json", "ninja_boy_zach.json"},
+                    ", ".join(field_miss[:4])))
+
+
+def check_save(results, root):
+    """Saving, on a scratch copy of the trainers: never the tree's own files."""
+    import shutil
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = os.path.join(tmp, "data")
+        shutil.copytree(trainers.data_dir(root), folder)
+        registry = os.path.join(tmp, "trainers_diverged.json")
+        path = os.path.join(folder, "leader_roark.json")
+        with open(path, encoding="utf-8") as f:
+            before = f.read()
+        d = json.loads(before)
+        d["party"][0]["level"] = 16
+        d["party"][1]["nature"] = "NATURE_ADAMANT"
+        d["ai_flags"] = d["ai_flags"] + ["AI_FLAG_RISKY"]
+        out = trainers.save(root, "leader_roark", d, folder=folder, registry=registry)
+        with open(path, encoding="utf-8") as f:
+            after = f.read()
+        import difflib
+        diff = [l for l in difflib.unified_diff(before.splitlines(), after.splitlines(),
+                                                lineterm="", n=0)
+                if l[:1] in "+-" and not l.startswith(("+++", "---"))]
+        lost = [l[1:] for l in diff if l.startswith("-")]
+        gained = [l[1:] for l in diff if l.startswith("+")]
+        with open(registry, encoding="utf-8") as f:
+            reg = json.load(f)
+        results.append(("a save writes only what changed: a level, a named nature after the IV "
+                        "scale, an AI flag; it packs, and registers the trainer",
+                        len(lost) == 2 and len(gained) == 4
+                        and '            "nature": "NATURE_ADAMANT",' in gained
+                        and out["packer"] in ("packed", None)
+                        and set(reg["leader_roark"]) == {"party", "ai_flags"},
+                        f"-{len(lost)} +{len(gained)}, {out['packer']}"))
+        bad = json.loads(after)
+        bad["party"][0]["level"] = 101
+        try:
+            trainers.save(root, "leader_roark", bad, folder=folder, registry=registry)
+            refused = False
+        except trainers.SaveRefused:
+            refused = True
+        # A packer refusal puts the file back as it was.
+        real_check = trainers.pack_check
+        trainers.pack_check = lambda _root, _folder: (False, "refused on purpose")
+        try:
+            again = json.loads(after)
+            again["party"][0]["level"] = 17
+            trainers.save(root, "leader_roark", again, folder=folder, registry=registry)
+            restored = False
+        except trainers.SaveRefused:
+            with open(path, encoding="utf-8") as f:
+                restored = f.read() == after
+        finally:
+            trainers.pack_check = real_check
+        results.append(("a save the lint refuses writes nothing, and one the packer refuses is "
+                        "put back", refused and restored, ""))
+
+
+def check_importer(results, root):
+    """The base ROM importer leaves a registered trainer's fields alone, the
+    header fields included, which it did not before 2026-09-27."""
+    import tempfile
+    sys.path.insert(0, os.path.join(root, "tools", "oxide"))
+    import import_base_rom as ib
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "builder_probe.json")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(json.dumps({"name": "X", "class": "TRAINER_CLASS_YOUNGSTER", "items": [],
+                                "ai_flags": ["AI_FLAG_BASIC"], "double_battle": False,
+                                "party": []}, indent=4))
+        vanilla = {"class": "TRAINER_CLASS_YOUNGSTER", "items": [],
+                   "ai_flags": ["AI_FLAG_BASIC", "AI_FLAG_EXPERT"], "double_battle": False}
+        base = dict(vanilla, ai_flags=["AI_FLAG_EXPERT"])
+        free = ib.apply_trainer_diff(path, base, [], vanilla, [], True, [])
+        ib.TRAINERS_DIVERGED["builder_probe"] = {"ai_flags": "a test"}
+        try:
+            kept = not ib.apply_trainer_diff(path, base, [], vanilla, [], True, [])
+        finally:
+            del ib.TRAINERS_DIVERGED["builder_probe"]
+    results.append(("the importer would carry the base ROM's AI flags back, and leaves them "
+                    "alone once the trainer is registered", free and kept, ""))
+    results.append(("the importer reads the builder's registry beside it",
+                    ib.TRAINERS_DIVERGED_FILE.endswith(os.path.join("tools", "oxide",
+                                                                    "trainers_diverged.json"))
+                    and trainers.registry_path(root) == ib.TRAINERS_DIVERGED_FILE
+                    or bool(os.environ.get("OXIDE_TRAINERS_REGISTRY")), ""))
+
+
+def post(port, path, data):
+    conn = http.client.HTTPConnection("127.0.0.1", port, timeout=120)
+    conn.request("POST", path, json.dumps({"data": data}), {"Content-Type": "application/json"})
+    resp = conn.getresponse()
+    body = json.loads(resp.read().decode("utf-8") or "{}")
+    conn.close()
+    return resp.status, body
+
+
+def check_edit_routes(results, root):
+    """/preview and a save through the server, pointed at a scratch copy by
+    OXIDE_TRAINERS_DIR, as a test server is."""
+    import shutil
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = os.path.join(tmp, "data")
+        shutil.copytree(trainers.data_dir(root), folder)
+        keep = {k: os.environ.get(k) for k in ("OXIDE_TRAINERS_DIR", "OXIDE_TRAINERS_REGISTRY")}
+        os.environ["OXIDE_TRAINERS_DIR"] = folder
+        os.environ["OXIDE_TRAINERS_REGISTRY"] = os.path.join(tmp, "trainers_diverged.json")
+        httpd = server.Server(("127.0.0.1", 0), server.Handler)
+        port = httpd.server_address[1]
+        threading.Thread(target=httpd.serve_forever, daemon=True).start()
+        try:
+            d = trainers.load(root, "leader_roark")
+            d["party"][1]["nature"] = "NATURE_ADAMANT"
+            preview = post(port, "/api/trainer/leader_roark/preview", d)
+            bad = json.loads(json.dumps(d))
+            bad["party"][0]["level"] = 0
+            refused = post(port, "/api/trainer/leader_roark", bad)
+            saved = post(port, "/api/trainer/leader_roark", d)
+        finally:
+            httpd.shutdown()
+            httpd.server_close()
+            for k, v in keep.items():
+                if v is None:
+                    os.environ.pop(k, None)
+                else:
+                    os.environ[k] = v
+        with open(os.path.join(folder, "leader_roark.json"), encoding="utf-8") as f:
+            written = json.load(f)
+    results.append(("/preview rebuilds an unsaved team (Geodude Adamant) and writes nothing",
+                    preview[0] == 200 and preview[1]["detail"]["members"][1]["built"]["nature"]
+                    == "Adamant", str(preview[0])))
+    results.append(("a save through the server refuses a lint error with its findings (409) and "
+                    "writes a good team", refused[0] == 409 and refused[1]["findings"]
+                    and saved[0] == 200 and written["party"][1].get("nature") == "NATURE_ADAMANT",
+                    f"{refused[0]} {saved[0]}"))
+
+
 def check_routes(results):
     httpd = server.Server(("127.0.0.1", 0), server.Handler)
     port = httpd.server_address[1]
@@ -134,6 +328,11 @@ def main():
                             capture_output=True, text=True).stdout
     check_read(results, root)
     check_move_lists(results, root)
+    check_lint(results, root)
+    check_style(results, root)
+    check_save(results, root)
+    check_importer(results, root)
+    check_edit_routes(results, root)
     check_routes(results)
     after = subprocess.run(["git", "status", "--porcelain"], cwd=root,
                            capture_output=True, text=True).stdout

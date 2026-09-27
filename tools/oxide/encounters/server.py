@@ -904,7 +904,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # split and cap, and one trainer's team as the game builds it.
             if parts[1] == "trainers":
                 return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
-                                   "caps": trainers.caps()})
+                                   "caps": trainers.caps(),
+                                   "choices": trainers.choices(model.repo_root())})
             if parts[1] == "trainer-moves":
                 # The three move lists for one team member (learnsets.py).
                 species = (q.get("species") or [""])[0]
@@ -994,6 +995,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send({"encounters": st.encounters,
                                    "caught": sorted(st.caught),
                                    "owned": sorted(st.owned)})
+
+            # The team builder (trainers.py): /preview rebuilds an unsaved team
+            # and lints it, writing nothing; a bare POST saves it, refusing on
+            # a lint error or a packer failure with the findings.
+            if len(parts) >= 3 and parts[0] == "api" and parts[1] == "trainer":
+                root, stem, data = model.repo_root(), parts[2], body.get("data")
+                if not isinstance(data, dict):
+                    return self._send({"error": "send the trainer as data"}, 400)
+                if len(parts) > 3 and parts[3] == "preview":
+                    return self._send(trainers.preview(root, stem, data))
+                try:
+                    out = trainers.save(root, stem, data)
+                except trainers.SaveRefused as exc:
+                    return self._send({"error": str(exc), "findings": exc.findings}, 409)
+                return self._send(dict(out, detail=trainers.detail(root, stem)))
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]

@@ -376,6 +376,22 @@ tr.got .spname { font-weight: 600; }
 .mrow.known .nm { font-weight: 600; }
 button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cursor: pointer;
   font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); }
+/* The editor: every field of a member is an input, and the lint's findings
+   sit under the member they are about, red for an error, brown for a warning. */
+.member input.ed, .member select.ed { font-size: 15px; }
+.member input.sp { width: 11em; font-weight: 600; }
+.member input.sm { width: 4.4em; }
+.member .edrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  font-size: 15px; color: var(--dim); margin: 6px 0 4px; }
+.member .moves input { width: 100%; }
+.finding { margin: 2px 0; font-size: 15px; }
+.finding.error { color: var(--error); }
+.finding.warn { color: var(--warn); }
+.savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  position: sticky; top: 0; background: var(--panel); padding: 2px 0 8px; }
+#trainright .flags label { display: block; font-size: 15px; }
+.mrow[data-move]:not([data-move=""]) { cursor: pointer; }
+.mrow[data-move]:not([data-move=""]):hover { background: var(--sunken); }
 #trainright h3 { margin: 14px 0 4px; font-size: 16px; }
 #trainright ul.flags { list-style: none; padding: 0; margin: 0; font-size: 15px; }
 #trainright ul.flags li.off { color: var(--faint); }
@@ -680,6 +696,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   </section>
   <section id="trainmid"><p class="sub">Choose a trainer.</p></section>
   <section id="trainright"></section>
+  <datalist id="dl-species"></datalist><datalist id="dl-moves"></datalist><datalist id="dl-items"></datalist>
 </main>
 
 <!-- The vendored damage calculator, fed Oxide's data by /api/calc-data. It is
@@ -1345,10 +1362,19 @@ function drawSim() {
 // The team builder (build plan item 28). The list and each team come from
 // res/trainers/data/ through /api/trainers and /api/trainer/<stem>, with the
 // nature, ability, gender and default moves the game gives in battle
-// (calc_trainers.py); the page works out nothing itself.
+// (calc_trainers.py). An edit is held here (TREDIT) and sent whole: /preview
+// rebuilds and lints it without writing, and Save writes it in the file's own
+// style (trainers.py). The page works out nothing itself.
 let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
+let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
+// Constant to name and name to constant, for the species, move and item boxes.
+const TRNAMES = { species: new Map(), moves: new Map(), items: new Map() };
+const TRBY = { species: new Map(), moves: new Map(), items: new Map() };
 // "AI_FLAG_EVAL_ATTACK" reads "Eval attack".
 const flagLabel = f => tidy(String(f).replace("AI_FLAG_", ""));
+const nameOf = (kind, c) => TRNAMES[kind].get(c) || "";
+const constOf = (kind, label) => TRBY[kind].get(String(label).trim().toLowerCase());
+const clone = o => JSON.parse(JSON.stringify(o));
 
 async function loadTrainers() {
   if (TRAINERS) return;
@@ -1358,8 +1384,16 @@ async function loadTrainers() {
   TRAINERS.rows.sort((a, b) => (order.has(a.split) ? order.get(a.split) : 99)
     - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
     || a.label.localeCompare(b.label));
+  const keep = $("#trainsplit").value;
   $("#trainsplit").innerHTML = `<option value="">Every split</option>` + TRAINERS.splits.map(s =>
     `<option>${esc(s)}</option>`).join("") + `<option value="-">No split</option>`;
+  $("#trainsplit").value = keep;
+  for (const kind of ["species", "moves", "items"]) {
+    const pairs = TRAINERS.choices[kind];
+    TRNAMES[kind] = new Map(pairs);
+    TRBY[kind] = new Map(pairs.map(([c, n]) => [n.toLowerCase(), c]));
+    $("#dl-" + kind).innerHTML = pairs.map(([, n]) => `<option value="${esc(n)}">`).join("");
+  }
 }
 
 function trainerMatch(r) {
@@ -1388,44 +1422,103 @@ function drawTrainerList() {
 }
 
 async function selectTrainer(stem) {
+  if (TRDIRTY && stem !== TRSEL && !confirm(`Leave ${TRDETAIL.label} without saving?`))
+    return drawTrainerList();
   TRSEL = stem;
   drawTrainerList();
   try {
     TRDETAIL = await api("/api/trainer/" + stem);
   } catch (e) { return toast(e.message, true); }
-  TRMEMBER = TRLISTS = null;
+  TREDIT = clone(TRDETAIL.data);
+  TRDIRTY = false;
+  TRFINDINGS = [];
+  TRMEMBER = TRLISTS = TRFOCUS = null;
   drawTrainer();
   remember();
 }
 
+async function openTrainer(stem) {
+  await setView("trainers");
+  await selectTrainer(stem);
+}
+
+// Every edit lands in TREDIT at once; the rebuilt team and its lint follow a
+// moment later from /preview, the newest request winning.
+function edited() {
+  TRDIRTY = true;
+  drawTrainerRight();
+  clearTimeout(TRTIMER);
+  TRTIMER = setTimeout(runPreview, 250);
+}
+
+async function runPreview() {
+  const seq = ++TRSEQ;
+  try {
+    const r = await api(`/api/trainer/${TRSEL}/preview`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    if (seq !== TRSEQ) return;
+    if (r.detail) TRDETAIL = r.detail;
+    TRFINDINGS = r.findings;
+    drawTrainer();
+    const f = TRMEMBER !== null && TREDIT.party[TRMEMBER];
+    if (f && TRLISTS && (TRLISTS.species !== f.species || TRLISTS.level !== f.level
+                         || TRLISTS.form !== (f.form || 0))) showMoveLists(TRMEMBER, true);
+  } catch (e) { toast(e.message, true); }
+}
+
+async function saveTrainer() {
+  $("#trsave").disabled = true;
+  try {
+    const r = await fetch(`/api/trainer/${TRSEL}`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    const j = await r.json();
+    if (!r.ok) {
+      TRFINDINGS = j.findings || TRFINDINGS;
+      drawTrainer();
+      return toast(j.error || "Not saved", true);
+    }
+    TRDETAIL = j.detail;
+    TREDIT = clone(j.detail.data);
+    TRDIRTY = false;
+    TRFINDINGS = j.findings || [];
+    drawTrainer();
+    toast(j.changed.length ? `Saved ${j.changed.length} change${j.changed.length > 1 ? "s" : ""}`
+                           : "Nothing had changed");
+    TRAINERS = null;
+    await loadTrainers();
+    drawTrainerList();
+  } catch (e) { toast(e.message, true); }
+}
+
 // The three move lists for one team member, at its level (learnsets.py).
-async function showMoveLists(i) {
-  const f = TRDETAIL.members[i].file;
+async function showMoveLists(i, quiet) {
+  const f = TREDIT.party[i];
   const q = new URLSearchParams({ species: f.species, form: f.form || 0, level: f.level });
   try {
     TRLISTS = await api("/api/trainer-moves?" + q);
   } catch (e) { return toast(e.message, true); }
   TRMEMBER = i;
   drawMoveLists();
-  $("#trmoves").scrollIntoView({ block: "nearest" });
+  if (!quiet) $("#trmoves").scrollIntoView({ block: "nearest" });
 }
 
 function drawMoveLists() {
   const box = $("#trmoves");
-  if (!box || !TRLISTS || TRMEMBER === null) return;
-  const m = TRDETAIL.members[TRMEMBER], L = TRLISTS;
-  const known = new Set(m.file.moves || []);
-  const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"${
-      e.move ? "" : ' title="Oxide has no such move"'}>
+  if (!box || !TRLISTS || TRMEMBER === null || !TREDIT.party[TRMEMBER]) return;
+  const f = TREDIT.party[TRMEMBER], L = TRLISTS;
+  const known = new Set(f.moves || []);
+  const pickable = Array.isArray(f.moves);
+  const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"
+      data-move="${pickable && e.move ? e.move : ""}"${e.move ? "" : ' title="Oxide has no such move"'}>
       <span>${e.type ? typeChip(e.type, "mini") : ""}</span>
       <span class="nm">${esc(e.name)}</span>
       <span class="how">${esc(e.how)}${e.from ? ", as " + esc(e.from) : ""}</span></div>`;
   const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
       <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
         : `<p class="sub">${esc(none)}</p>`}</div>`;
-  box.innerHTML = `<h3>Moves for ${esc(m.name)} at level ${L.level}</h3>
+  box.innerHTML = `<h3>Moves for ${esc(nameOf("species", f.species))} at level ${L.level}</h3>
     <p class="sub">Three lists, kept apart. Bold is a move it knows now; a greyed move is one
-      Oxide does not have.</p>
+      Oxide does not have.${pickable ? " Click a move to put it in the move box last chosen." : ""}</p>
     <div class="mcols">
       ${col("In Oxide", "Level-up to this level, then TM, tutor and egg", L.oxide,
             "Nothing: the species has no learnset here.")}
@@ -1435,47 +1528,115 @@ function drawMoveLists() {
     </div>`;
 }
 
-async function openTrainer(stem) {
-  await setView("trainers");
-  await selectTrainer(stem);
+// A move box emptied or filled: the list keeps its moves in order, and keeps
+// MOVE_NONE padding only where the file already pads.
+function setMove(i, slot, c) {
+  const f = TREDIT.party[i];
+  const pad = (f.moves || []).includes("MOVE_NONE") ? f.moves.length : 0;
+  const moves = (f.moves || []).slice();
+  while (moves.length < 4) moves.push(null);
+  moves[slot] = c;
+  const out = moves.filter(m => m && m !== "MOVE_NONE");
+  while (out.length < pad) out.push("MOVE_NONE");
+  f.moves = out;
 }
 
-function memberCard(m, i) {
-  const f = m.file, b = m.built;
-  const slot = TRDETAIL.ability_choices[f.ability || 0];
+const findingsFor = i => TRFINDINGS.filter(f => f.member === i).map(f =>
+  `<p class="finding ${f.severity}">${esc(f.message)}</p>`).join("");
+
+function memberEditor(f, i) {
+  const m = (TRDETAIL.members || [])[i];
+  const b = m && m.file.species === f.species ? m.built : null;
+  const hasMoves = Array.isArray(f.moves), hasItem = typeof f.item === "string";
+  const id = k => `tr-${i}-${k}`;
   const over = TRDETAIL.cap && f.level > TRDETAIL.cap
-    ? ` <span class="sub">${f.level - TRDETAIL.cap} over the cap</span>` : "";
+    ? `<span class="sub">${f.level - TRDETAIL.cap} over the cap</span>` : "";
+  const ab = (m && m.file.species === f.species && m.abilities) || {};
+  const abName = a => a ? tidy(a) : "none";
+  const abilities = [[0, `either slot (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`],
+    [1, `slot 1: ${abName(ab["1"])}`], [2, `slot 2: ${abName(ab["2"])}`],
+    [3, `hidden: ${abName(ab.hidden)}`]];
+  const sel = (k, opts, val) => `<select class="ed" id="${id(k)}" data-i="${i}" data-k="${k}">${
+    opts.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? " selected" : ""}>${
+      esc(l)}</option>`).join("")}</select>`;
+  const natures = [["", "rolled" + (b && !f.nature ? ` (${b.nature})` : "")]]
+    .concat(TRAINERS.choices.natures);
+  const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
+      data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
+  const moves = hasMoves ? [0, 1, 2, 3].map(j => `<input class="ed mv" id="${id("mv" + j)}"
+      data-i="${i}" data-k="moves" data-slot="${j}" list="dl-moves" placeholder="no move"
+      value="${esc(nameOf("moves", (f.moves || [])[j]))}">`).join("")
+    : `<p class="sub">No moves listed, so the game gives the level-up default${
+        b ? ": " + esc(b.moves.join(", ")) : ""}.</p>`;
   return `<div class="member">
     ${icon(f.species, true)}
     <div>
-      <div class="l1"><b>${esc(m.name)}</b>${f.form ? `<span class="sub">form ${f.form}</span>` : ""}
-        <span class="num">Lv ${f.level}${over}</span>
-        <span>${m.types.map(t => typeChip(t, "mini")).join("")}</span></div>
-      <div class="facts">${esc(b.item || "no item")}; ${esc(b.ability)} (${esc(slot)});
-        ${esc(b.nature)} (${f.nature ? "named" : "rolled"}); IVs ${m.iv}; ${esc(b.gender)}</div>
-      <div class="moves">${b.moves.map(mv => `<span>${esc(mv)}</span>`).join("")}</div>
-      ${b.default_moves ? `<p class="sub">No moves listed: the game gives the level-up default.</p>` : ""}
+      <div class="l1">
+        <input class="ed sp" id="${id("species")}" data-i="${i}" data-k="species" list="dl-species"
+               value="${esc(nameOf("species", f.species))}">
+        <label class="sub">form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
+        <label class="sub">Lv ${num("level", 1, 100)}</label>${over}
+        <span>${b ? m.types.map(t => typeChip(t, "mini")).join("") : ""}</span>
+        <button class="linkish" data-remove="${i}" title="Take this Pokemon out of the team">Remove</button>
+      </div>
+      <div class="edrow">
+        ${hasItem ? `<label>Item <input class="ed" id="${id("item")}" data-i="${i}" data-k="item"
+            list="dl-items" placeholder="none" value="${esc(nameOf("items", f.item))}"></label>` : ""}
+        <label>Ability ${sel("ability", abilities, f.ability || 0)}</label>
+        <label>Nature ${sel("nature", natures, f.nature || "")}</label>
+        <label>IV scale ${num("iv_scale", 0, 255)}</label>
+        <span>${m && b ? "IVs " + m.iv : ""}</span>
+        <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "")}</label>
+      </div>
+      <div class="moves">${moves}</div>
+      <div class="facts">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},
+        ${esc(b.gender)}${b.item ? ", holding " + esc(b.item) : ""}.` : "Rebuilding the team."}</div>
+      ${findingsFor(i)}
       <button class="linkish" data-lists="${i}">Move lists</button>
     </div>
   </div>`;
 }
 
 function drawTrainer() {
-  const d = TRDETAIL;
-  const top = Math.max(0, ...d.members.map(m => m.file.level));
+  const d = TRDETAIL, party = TREDIT.party || [];
+  const top = Math.max(0, ...party.map(f => f.level || 0));
+  const focus = document.activeElement && document.activeElement.id;
   $("#trainmid").innerHTML = `<h2 style="margin:0">${esc(d.label)}</h2>
     <p class="sub">${splitTag(d.split, " split")} ${d.cap
       ? `Level cap ${d.cap}; the team's highest level is ${top}.`
       : "Not placed in a split, so it has no level cap."} <code>${esc(d.stem)}.json</code></p>
-    ${d.members.map(memberCard).join("") || `<p class="sub">No party.</p>`}
+    ${findingsFor(null)}
+    ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
+    <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p>
     <div id="trmoves"></div>`;
   drawMoveLists();
-  $("#trainright").innerHTML = `<h3>Battle</h3>
-    <p>${d.double_battle ? "Double battle" : "Single battle"}</p>
+  drawTrainerRight();
+  if (focus && focus.startsWith("tr-") && document.getElementById(focus))
+    document.getElementById(focus).focus();
+}
+
+function drawTrainerRight() {
+  const d = TRDETAIL, t = TREDIT, party = t.party || [];
+  const errors = TRFINDINGS.filter(f => f.severity === "error").length;
+  const state = !TRDIRTY ? "No unsaved changes." : errors
+    ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving.` : "Unsaved changes.";
+  $("#trainright").innerHTML = `<div class="savebar">
+      <button id="trsave"${!TRDIRTY || errors ? " disabled" : ""}>Save</button>
+      <button id="trrevert"${TRDIRTY ? "" : " disabled"}>Revert</button>
+      <span class="sub">${state}</span></div>
+    <h3>Battle</h3>
+    <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
     <h3>AI flags</h3>
-    <ul class="flags">${d.all_ai_flags.map(f =>
-      `<li class="${d.ai_flags.includes(f) ? "" : "off"}">${esc(flagLabel(f))}</li>`).join("")}</ul>
-    ${d.items.length ? `<h3>Items</h3><p>${d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}</p>` : ""}`;
+    <div class="flags">${d.all_ai_flags.map(f => `<label><input type="checkbox" data-flag="${f}"${
+      (t.ai_flags || []).includes(f) ? " checked" : ""}> ${esc(flagLabel(f))}</label>`).join("")}</div>
+    ${party.length && !Array.isArray(party[0].moves) ? `<h3>Moves</h3>
+      <p class="sub">This trainer lists no moves, so each Pokemon has its level-up default.</p>
+      <button id="trgivemoves">List moves for every Pokemon</button>` : ""}
+    ${party.length && typeof party[0].item !== "string" ? `<h3>Held items</h3>
+      <p class="sub">This trainer's Pokemon hold nothing.</p>
+      <button id="trgiveitems">Let them hold items</button>` : ""}
+    ${d.items.length ? `<h3>The trainer's own items</h3><p>${
+      d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}</p>` : ""}`;
 }
 
 async function setView(view) {
@@ -2193,15 +2354,104 @@ document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = 
 });
 $("#trainfilter").oninput = () => TRAINERS && drawTrainerList();
 $("#trainsplit").onchange = () => TRAINERS && drawTrainerList();
-// A team member's icon opens its dex page, as in the box simulator; its
-// "Move lists" button shows the three lists under the team.
+// The team editor. A member's icon opens its dex page; "Move lists" shows
+// the three lists under the team, and a move clicked there goes into the
+// move box last chosen; Remove and Add change the party.
 $("#trainmid").addEventListener("click", ev => {
+  if (!TREDIT) return;
   const lists = ev.target.closest("[data-lists]");
   if (lists) return showMoveLists(+lists.dataset.lists);
+  const pick = ev.target.closest(".mrow[data-move]");
+  if (pick && pick.dataset.move && TRMEMBER !== null) {
+    const f = TREDIT.party[TRMEMBER];
+    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
+      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
+    setMove(TRMEMBER, slot, pick.dataset.move);
+    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
+    edited();
+    return drawTrainer();
+  }
+  const rm = ev.target.closest("[data-remove]");
+  if (rm) {
+    TREDIT.party.splice(+rm.dataset.remove, 1);
+    TRMEMBER = TRLISTS = TRFOCUS = null;
+    edited();
+    return drawTrainer();
+  }
+  if (ev.target.closest("[data-add]")) {
+    TREDIT.party.push(clone(TREDIT.party[TREDIT.party.length - 1]));
+    edited();
+    return drawTrainer();
+  }
   const hit = ev.target.closest("[data-sp]");
   if (!hit) return;
   ev.preventDefault();
   openSpecies(hit.dataset.sp);
+});
+$("#trainmid").addEventListener("focusin", ev => {
+  const box = ev.target.closest(".mv");
+  if (box) TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
+});
+// A field is committed when it changes (Enter, or leaving the box). A name
+// that is not a species, move or item is refused and put back.
+$("#trainmid").addEventListener("change", ev => {
+  const el = ev.target.closest(".ed");
+  if (!el || !TREDIT) return;
+  const f = TREDIT.party[+el.dataset.i], k = el.dataset.k, v = el.value.trim();
+  const named = (kind, empty) => {
+    if (!v) return empty;
+    const c = constOf(kind, v);
+    if (!c) toast(`Nothing called ${v}`, true);
+    return c;
+  };
+  if (k === "species") {
+    const c = named("species", null);
+    if (!c) return drawTrainer();
+    f.species = c;
+  } else if (k === "item") {
+    const c = named("items", "ITEM_NONE");
+    if (!c) return drawTrainer();
+    f.item = c;
+  } else if (k === "moves") {
+    const c = named("moves", null);
+    if (v && !c) return drawTrainer();
+    setMove(+el.dataset.i, +el.dataset.slot, c);
+  } else if (k === "nature" || k === "gender") {
+    f[k] = v || null;
+  } else {
+    f[k] = parseInt(v, 10);
+  }
+  edited();
+});
+$("#trainright").addEventListener("change", ev => {
+  if (!TREDIT) return;
+  if (ev.target.id === "trdouble") TREDIT.double_battle = ev.target.checked;
+  else if (ev.target.dataset.flag) {
+    const on = new Set([...document.querySelectorAll("#trainright [data-flag]")]
+      .filter(x => x.checked).map(x => x.dataset.flag));
+    TREDIT.ai_flags = TRDETAIL.all_ai_flags.filter(f => on.has(f));
+  } else return;
+  edited();
+});
+$("#trainright").addEventListener("click", ev => {
+  if (!TREDIT) return;
+  const id = ev.target.id;
+  if (id === "trsave") return saveTrainer();
+  if (id === "trrevert") {
+    TRDIRTY = false;
+    return selectTrainer(TRSEL);
+  }
+  if (id === "trgivemoves") {
+    TREDIT.party.forEach((f, i) => { f.moves = ((TRDETAIL.members || [])[i] || {}).default_move_ids || []; });
+  } else if (id === "trgiveitems") {
+    TREDIT.party.forEach(f => { f.item = "ITEM_NONE"; });
+  } else return;
+  edited();
+  drawTrainer();
+});
+// Leaving the page with an unsaved team asks first.
+window.addEventListener("beforeunload", ev => {
+  if (TRDIRTY) { ev.preventDefault(); ev.returnValue = ""; }
 });
 $("#simgo").onclick = () => simulate(false);
 $("#simlog").addEventListener("click", ev => {
