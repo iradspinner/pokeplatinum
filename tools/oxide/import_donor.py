@@ -168,6 +168,16 @@ def import_species(d, dry_run, log):
     log.append("species: %d directories written" % len(written))
 
 
+# Hidden abilities Oxide sets itself, which a re-import keeps over the donor's.
+# Pelipper's Drizzle and Torkoal's Drought are for trainers (Ian, 2026-09-27,
+# the staples survey's answer 9): the player never controls weather, and no
+# gift, egg or scripted battle may hand them out (lint R18).
+HIDDEN_OVERRIDES = {
+    "SPECIES_PELIPPER": "ABILITY_DRIZZLE",
+    "SPECIES_TORKOAL": "ABILITY_DROUGHT",
+}
+
+
 def import_hidden_abilities(d, dry_run, log):
     """The 493 natives' hidden abilities, from the donor's a/0/2/8 member 7, as
     the optional third entry of each species' abilities array (element 8's
@@ -181,9 +191,9 @@ def import_hidden_abilities(d, dry_run, log):
     hidden = d.hidden_abilities()
     written = 0
     for sp in range(1, 494):
-        if not hidden[sp]:
+        if not hidden[sp] and species[sp] not in HIDDEN_OVERRIDES:
             continue
-        name = abilities[hidden[sp]]
+        name = HIDDEN_OVERRIDES.get(species[sp]) or abilities[hidden[sp]]
         folder = species[sp][len("SPECIES_"):].lower()
         path = os.path.join(ROOT, "res", "pokemon", folder, "data.json")
         text = open(path, encoding="utf-8").read()
