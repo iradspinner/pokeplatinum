@@ -9323,6 +9323,13 @@
         "Magic Room wore off, and held\n",
         "items’ effects returned to normal!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_ItsTeatimeEveryoneDugInToTheirBerries",
+      "en_US": [
+        "It’s teatime! Everyone dug in to\n",
+        "their Berries!"
+      ]
     }
   ]
 }

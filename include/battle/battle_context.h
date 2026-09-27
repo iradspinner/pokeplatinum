@@ -325,7 +325,8 @@ struct BattleContext {
     int waitingBattlers;
 
     u32 battleProgressFlag : 1;
-    u32 padding3154_01 : 31;
+    u32 teatimeNext : 3; // Oxide: the next battler TryTeatime looks at, from the padding
+    u32 padding3154_04 : 28;
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

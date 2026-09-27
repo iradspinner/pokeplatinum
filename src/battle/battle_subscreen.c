@@ -1350,6 +1350,7 @@ int GetTargetSelectLayout(int range, int battlerType)
     case RANGE_ALLY:
         return battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 ? 4 : 6;
     case RANGE_FIELD:
+    case RANGE_ALL: // Oxide: e.g., Teatime, shown as Haze's every battler
         return 3;
     case RANGE_USER_OR_ALLY:
         return 10;

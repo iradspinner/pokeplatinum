@@ -64,6 +64,10 @@
 #define OXIDE_MON_FLAG_SALT_CURED (1 << 0) // Salt Cure: loses HP at the end of every turn
 #define OXIDE_MON_FLAG_OCTOLOCKED (1 << 1) // Octolock: trapped as by Mean Look, and loses Defense and Sp. Def every turn
 
+// Oxide: the modes of the battle script command TryTeatime.
+#define TEATIME_CHECK 0
+#define TEATIME_NEXT  1
+
 #define MOVE_STATUS_MISSED              (1 << 0)
 #define MOVE_STATUS_SUPER_EFFECTIVE     (1 << 1)
 #define MOVE_STATUS_NOT_VERY_EFFECTIVE  (1 << 2)

@@ -323,6 +323,7 @@ static BOOL BtlCmd_TrySoulHeart(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10582,6 +10583,78 @@ static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *ba
     if (fails) {
         BattleScript_Iter(battleCtx, jumpFail);
     }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: Teatime, whose every battler on the field eats its own held
+ * Berry, whether or not the Berry would trigger by itself, as Pluck eats one.
+ *
+ * Inputs:
+ * 1. The mode: TEATIME_CHECK only asks whether any battler holds a Berry;
+ *    TEATIME_NEXT moves on to the next battler, in speed order, that does,
+ *    and gets its Berry ready.
+ * 2. The distance to jump if there is no (further) battler with a Berry.
+ *
+ * Side effects of TEATIME_NEXT:
+ * - battleCtx->msgBattlerTemp is set to the eater, battleCtx->msgItemTemp to
+ *   its Berry, and battleCtx->scriptTemp to the subscript that enacts the
+ *   Berry's effect on it, or 0 when it has none to enact, as Pluck does.
+ *   Those subscripts take the Berry away themselves; with 0, the script must.
+ * - battleCtx->teatimeNext counts through the battlers and is reset once none
+ *   is left.
+ *
+ * The eater stands in as the attacker while its Berry is read, since
+ * BattleSystem_PluckBerry enacts the Berry on the attacker, and Pluck's own
+ * mark is taken off again, so the Berry counts as its holder's for Belch
+ * and Recycle.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int mode = BattleScript_Read(battleCtx);
+    int jumpNone = BattleScript_Read(battleCtx);
+
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int user = battleCtx->attacker;
+
+    if (mode == TEATIME_CHECK) {
+        for (int i = 0; i < maxBattlers; i++) {
+            if (battleCtx->battleMons[i].curHP && Item_IsBerry(battleCtx->battleMons[i].heldItem)) {
+                return FALSE;
+            }
+        }
+
+        BattleScript_Iter(battleCtx, jumpNone);
+        return FALSE;
+    }
+
+    while (battleCtx->teatimeNext < maxBattlers) {
+        int battler = battleCtx->monSpeedOrder[battleCtx->teatimeNext++];
+
+        if (battleCtx->battleMons[battler].curHP == 0
+            || Item_IsBerry(battleCtx->battleMons[battler].heldItem) == FALSE) {
+            continue;
+        }
+
+        battleCtx->attacker = battler;
+        BOOL eats = BattleSystem_PluckBerry(battleSys, battleCtx, battler);
+        battleCtx->selfTurnFlags[battler].statusFlags &= ~SELF_TURN_FLAG_PLUCK_BERRY;
+        battleCtx->attacker = user;
+
+        if (eats) {
+            battleCtx->msgBattlerTemp = battler;
+            return FALSE;
+        }
+    }
+
+    battleCtx->teatimeNext = 0;
+    BattleScript_Iter(battleCtx, jumpNone);
 
     return FALSE;
 }

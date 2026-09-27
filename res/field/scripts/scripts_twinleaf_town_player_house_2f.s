@@ -740,6 +740,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet58, 3
     AddListMenuEntry TestKit_Text_MenuSet59, 4
     AddListMenuEntry TestKit_Text_MenuSet60, 5
+    AddListMenuEntry TestKit_Text_MenuSet61, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -747,6 +748,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet58
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet59
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet60
+    GoToIfEq VAR_0x8004, 6, TestKit_MoveSet61
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1448,6 +1450,24 @@ TestKit_MoveSet60:
     SetVar VAR_0x8006, MOVE_MAGIC_ROOM
     SetVar VAR_0x8007, MOVE_SUBSTITUTE
     SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GivePokemonWithItem
+
+/* Set 61: Teatime makes every battler on the field eat its held Berry at
+   once, whether or not it would trigger. Mew holds a Liechi Berry; against
+   a wild Chansey that knows only Splash. At full HP, Teatime brings "It's
+   teatime! Everyone dug in to their Berries!" and then Mew's Liechi Berry
+   raising its Attack; a second Teatime fails, since no Berry is left. */
+TestKit_MoveSet61:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LIECHI_BERRY
+    SetVar VAR_0x8006, MOVE_TEATIME
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithItem
 

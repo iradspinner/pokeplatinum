@@ -1678,7 +1678,8 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
     } else if (range == RANGE_USER // e.g., Swords Dance
         || range == RANGE_USER_SIDE // e.g., Light Screen, Reflect
         || range == RANGE_SINGLE_TARGET_SPECIAL // e.g., Counter, Mirror Coat
-        || range == RANGE_FIELD) { // e.g., Sunny Day
+        || range == RANGE_FIELD // e.g., Sunny Day
+        || range == RANGE_ALL) { // Oxide: e.g., Teatime, which reaches every battler as Haze does
         defender = attacker;
     } else if (range == RANGE_ALLY) { // e.g., Helping Hand
         if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {

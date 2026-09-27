@@ -375,4 +375,5 @@ subscript_files = files(
     'subscript_octolock.s',
     'subscript_octolock_turn.s',
     'subscript_magic_room_end.s',
+    'subscript_teatime.s',
 )
