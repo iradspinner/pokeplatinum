@@ -9351,6 +9351,55 @@
         "The foe’s {STRVAR_1 1, 0, 0} started\n",
         "heating up its beak!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the wild\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the foe’s\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took the\n",
+        "wild {STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonTookPokemonIntoTheSky_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took the\n",
+        "foe’s {STRVAR_1 1, 1, 0} into the sky!"
+      ]
     }
   ]
 }

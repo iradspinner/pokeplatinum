@@ -246,6 +246,7 @@ ScriptCommand(BTLCMD_TRYDEFIANT,                  BtlCmd_TryDefiant)
 ScriptCommand(BTLCMD_ABILITYSTATCHANGE,           BtlCmd_AbilityStatChange)
 ScriptCommand(BTLCMD_CHECKABILITYCHANGE,          BtlCmd_CheckAbilityChange)
 ScriptCommand(BTLCMD_TRYTEATIME,                  BtlCmd_TryTeatime)
+ScriptCommand(BTLCMD_TRYSKYDROP,                  BtlCmd_TrySkyDrop)
 
 // clang-format on
 

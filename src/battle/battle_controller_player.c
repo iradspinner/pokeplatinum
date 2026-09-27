@@ -2525,6 +2525,7 @@ static int BattleControllerPlayer_CheckTypeChart(BattleSystem *battleSys, Battle
 enum CheckStatusState {
     CHECK_STATUS_START = 0,
 
+    CHECK_STATUS_STATE_SKY_DROP, // Oxide
     CHECK_STATUS_STATE_SLEEP,
     CHECK_STATUS_STATE_FREEZE,
     CHECK_STATUS_STATE_TRUANT,
@@ -2574,6 +2575,17 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
         case CHECK_STATUS_START:
             ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_DESTINY_BOND;
             ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_GRUDGE;
+            battleCtx->statusCheckState++;
+            break;
+
+        case CHECK_STATUS_STATE_SKY_DROP:
+            // Oxide: a battler held in the air by Sky Drop does nothing until
+            // it is dropped, as in Generation 5 on.
+            if (Battler_SkyDropHeld(battleCtx, battleCtx->attacker)) {
+                battleCtx->command = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
             battleCtx->statusCheckState++;
             break;
 

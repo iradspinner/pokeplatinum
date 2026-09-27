@@ -743,6 +743,8 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet61, 6
     AddListMenuEntry TestKit_Text_MenuSet62, 7
     AddListMenuEntry TestKit_Text_MenuSet63, 8
+    AddListMenuEntry TestKit_Text_MenuSet64, 9
+    AddListMenuEntry TestKit_Text_MenuSet65, 10
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -753,6 +755,8 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet61
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet62
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet63
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet64
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet65
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1506,6 +1510,36 @@ TestKit_MoveSet63:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 64: Sky Drop lifts its target on the first turn, and the target can
+   do nothing until it is dropped on the second. Against a wild Chansey that
+   knows only Tackle, slower than Mew: "MEW took the wild CHANSEY into the
+   sky!", then no Tackle that turn; next turn the drop hits before Chansey
+   moves, and both are back on the ground, so Chansey tackles later that
+   same turn. */
+TestKit_MoveSet64:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_SKY_DROP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveMew
+
+/* Set 65: Sky Drop can lift a Flying type but the drop does not affect it.
+   Against a wild Skarmory that knows only Splash: "MEW took the wild
+   SKARMORY into the sky!", then on the second turn "It doesn't affect the
+   wild SKARMORY..." once both have landed. */
+TestKit_MoveSet65:
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SKY_DROP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

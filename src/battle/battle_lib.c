@@ -1857,6 +1857,66 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
     battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_SEMI_INVULNERABLE;
     battleCtx->battleMons[battler].moveEffectsData.rolloutCount = 0;
     battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
+
+    // Oxide: a Sky Drop user stopped in the air lets its target go.
+    Battler_ReleaseSkyDropTargets(battleCtx, battler);
+}
+
+/**
+ * @brief Oxide: whether a battler is held in the air by a Sky Drop user.
+ *
+ * The hold lasts while the target and its holder are both still standing, both
+ * in the air, and the holder is still locked into its move. When any of that
+ * has stopped, the hold is cleared here, and the target comes back to the
+ * ground; the controller's usual check shows it again, since its
+ * moveEffectsTemp still marks it as vanished.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if the battler is held, FALSE otherwise
+ */
+BOOL Battler_SkyDropHeld(BattleContext *battleCtx, int battler)
+{
+    BattleMon *target = &battleCtx->battleMons[battler];
+
+    if ((target->oxideFlags & OXIDE_MON_FLAG_SKY_DROP_HELD) == FALSE) {
+        return FALSE;
+    }
+
+    BattleMon *holder = &battleCtx->battleMons[(target->oxideFlags & OXIDE_MON_SKY_DROP_HOLDER) >> OXIDE_MON_SKY_DROP_HOLDER_SHIFT];
+
+    if (target->curHP
+        && (target->moveEffectsMask & MOVE_EFFECT_AIRBORNE)
+        && holder->curHP
+        && (holder->moveEffectsMask & MOVE_EFFECT_AIRBORNE)
+        && (holder->statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
+        return TRUE;
+    }
+
+    target->oxideFlags &= ~(OXIDE_MON_FLAG_SKY_DROP_HELD | OXIDE_MON_SKY_DROP_HOLDER);
+    target->moveEffectsMask &= ~MOVE_EFFECT_AIRBORNE;
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: release every battler a Sky Drop user holds, when that user
+ * stops before its drop: it is interrupted, faints or leaves the field.
+ *
+ * @param battleCtx
+ * @param holder
+ */
+void Battler_ReleaseSkyDropTargets(BattleContext *battleCtx, int holder)
+{
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        BattleMon *target = &battleCtx->battleMons[i];
+
+        if ((target->oxideFlags & OXIDE_MON_FLAG_SKY_DROP_HELD)
+            && ((target->oxideFlags & OXIDE_MON_SKY_DROP_HOLDER) >> OXIDE_MON_SKY_DROP_HOLDER_SHIFT) == holder) {
+            target->oxideFlags &= ~(OXIDE_MON_FLAG_SKY_DROP_HELD | OXIDE_MON_SKY_DROP_HOLDER);
+            target->moveEffectsMask &= ~MOVE_EFFECT_AIRBORNE;
+        }
+    }
 }
 
 enum BattleSubAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler)
@@ -2071,6 +2131,8 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     // Forcefully end the battler's turn after the replacement
     battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
+    Battler_ReleaseSkyDropTargets(battleCtx, battler); // Oxide
+
     if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
         // Clear any Mean Look or Lock On effects from other active battlers
         for (i = 0; i < maxBattlers; i++) {
@@ -2187,6 +2249,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->battleMons[battler].statusVolatile = 0;
     battleCtx->battleMons[battler].moveEffectsMask = 0;
     battleCtx->battleMons[battler].oxideFlags = 0; // Oxide
+    Battler_ReleaseSkyDropTargets(battleCtx, battler); // Oxide
 
     // Negate Mean Look, Attract, and Bind flags
     for (i = 0; i < maxBattlers; i++) {
@@ -3172,6 +3235,7 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2:
     case BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT:
     case BATTLE_EFFECT_CHARGE_TURN_BURN_HIT:
+    case BATTLE_EFFECT_SKY_DROP: // Oxide
         return TRUE;
     }
 
@@ -6316,6 +6380,12 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
 {
     int result = FALSE;
 
+    // Oxide: a battler held in the air by Sky Drop cannot switch out, whatever
+    // its type or item.
+    if (Battler_SkyDropHeld(battleCtx, battler)) {
+        return TRUE;
+    }
+
     // Oxide: a Ghost type cannot be trapped by anything (Generation 6; the
     // trapping checks in hg-engine's other_battle_calculators.c).
     if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
@@ -8609,6 +8679,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
     case BATTLE_EFFECT_SHADOW_FORCE: // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Shadow Force, one before Fire Fang's effect, which was listed by mistake
+    case BATTLE_EFFECT_SKY_DROP: // Oxide
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }

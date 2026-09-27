@@ -708,6 +708,14 @@
             "en_US": "Set 63"
         },
         {
+            "id": "TestKit_Text_MenuSet64",
+            "en_US": "Set 64"
+        },
+        {
+            "id": "TestKit_Text_MenuSet65",
+            "en_US": "Set 65"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },

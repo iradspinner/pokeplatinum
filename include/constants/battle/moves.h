@@ -63,6 +63,9 @@
 // BattleSystem_CleanupFaintedMon).
 #define OXIDE_MON_FLAG_SALT_CURED (1 << 0) // Salt Cure: loses HP at the end of every turn
 #define OXIDE_MON_FLAG_OCTOLOCKED (1 << 1) // Octolock: trapped as by Mean Look, and loses Defense and Sp. Def every turn
+#define OXIDE_MON_FLAG_SKY_DROP_HELD (1 << 2) // Sky Drop: held in the air by the battler in the next two bits
+#define OXIDE_MON_SKY_DROP_HOLDER_SHIFT 3
+#define OXIDE_MON_SKY_DROP_HOLDER (3 << OXIDE_MON_SKY_DROP_HOLDER_SHIFT)
 
 // Oxide: the modes of the battle script command TryTeatime.
 #define TEATIME_CHECK 0
