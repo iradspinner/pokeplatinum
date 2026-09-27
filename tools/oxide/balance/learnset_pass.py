@@ -20,6 +20,7 @@ TMs, tutors, egg moves, move data and trainers are not touched.
 """
 import argparse
 import collections
+import functools
 import json
 import os
 import re
@@ -156,7 +157,75 @@ def targets():
             if form.split("/")[0] == folder:
                 out.append((sp, form, f"res/pokemon/{form}/data.json", row))
     out.append(("SPECIES_MAGIKARP", None, "res/pokemon/magikarp/data.json", None))
+    # The balance track's review (2026-09-27): a species off the pick-list
+    # still loses every move Ian's rulings cut, and a weather move too when
+    # the player can obtain it (Gyarados); its list is otherwise today's.
+    done = {t[0] for t in out}
+    owned = obtainable()
+    for sp in sorted(species_ids, key=lambda s: species_ids[s]):
+        if sp in done or sp in NOT_SPECIES or not sp.startswith("SPECIES_"):
+            continue
+        folder = pokedex.folder_of(sp)
+        path = f"res/pokemon/{folder}/data.json"
+        try:
+            today = json.loads(git_show(BASE_REV, path))["learnset"]["by_level"]
+        except (subprocess.CalledProcessError, KeyError, ValueError):
+            continue
+        cut = SPLASH_TELEPORT | FIRST_CUT | BEAT_UP | (WEATHER if sp in owned else set())
+        if any(mv in cut for _lv, mv in today):
+            out.append((sp, None, path, None))
     return out
+
+
+# Records that are not species: the egg and the bad egg carry Splash as a
+# placeholder and are never battled.
+NOT_SPECIES = {"SPECIES_NONE", "SPECIES_EGG", "SPECIES_BAD_EGG"}
+
+
+@functools.lru_cache(maxsize=None)
+def obtainable():
+    """Every species the player can come to own (b6.obtainable)."""
+    from tools.oxide.balance import b6
+    return frozenset(b6.obtainable())
+
+
+def egg_changes():
+    """[(species, path, old egg list, new egg list)]: every egg list loses
+    the moves Ian's rulings cut, and a weather move when the player can
+    obtain the species or it is on the pick-list."""
+    species_ids = species_id_map()
+    listed = {r["constant"] for r in dex.pick_list(ROOT)
+              if r["status"] in ("native", "new") and r["constant"]}
+    owned = obtainable()
+    out = []
+    for sp in sorted(species_ids, key=lambda s: species_ids[s]):
+        if sp in NOT_SPECIES or not sp.startswith("SPECIES_"):
+            continue
+        path = f"res/pokemon/{pokedex.folder_of(sp)}/data.json"
+        full = os.path.join(ROOT, path)
+        if not os.path.exists(full):
+            continue
+        with open(full, encoding="utf-8") as f:
+            eggs = (json.load(f).get("learnset") or {}).get("egg_moves") or []
+        cut = SPLASH_TELEPORT | FIRST_CUT | BEAT_UP
+        if sp in owned or sp in listed:
+            cut = cut | WEATHER
+        new = [mv for mv in eggs if mv not in cut]
+        if new != eggs:
+            out.append((sp, path, eggs, new))
+    return out
+
+
+def edit_eggs(text, new):
+    """The file with learnset.egg_moves replaced, in the file's own style."""
+    vs, ve, indent = jsonstyle._find_key(text, ["learnset", "egg_moves"])
+    old_text = text[vs:ve]
+    old = json.loads(old_text)
+    for max_inline in (2, 0, 1000):
+        if jsonstyle.dumps(old, indent, max_inline=max_inline, empty_array="[]") == old_text:
+            return text[:vs] + jsonstyle.dumps(new, indent, max_inline=max_inline,
+                                               empty_array="[]") + text[ve:]
+    raise SystemExit("egg_moves is in no known style; refusing to reformat")
 
 
 def build(sp, kaizo, today, moves, excluded, name_to_move, pick_only=False):
@@ -288,13 +357,21 @@ def run(apply, report_path):
     rows = kaizo_rows()
     species_ids = species_id_map()
 
+    listed = {r["constant"] for r in dex.pick_list(ROOT)
+              if r["status"] in ("native", "new") and r["constant"]} | {"SPECIES_MAGIKARP"}
+    # Off the pick-list, a species the player cannot obtain keeps its
+    # weather moves, which only trainers' default moves read.
+    keep_weather = {mv: why for mv, why in excluded.items() if mv not in WEATHER}
     results = []
     for sp, form, path, row in targets():
         base_text = git_show(BASE_REV, path)
         today = json.loads(base_text)["learnset"]["by_level"]
         kaizo = rows[row] if row is not None else None
-        new, notes = build(sp, kaizo, today, moves, excluded, name_to_move,
+        excl = excluded if sp in listed or sp in obtainable() else keep_weather
+        new, notes = build(sp, kaizo, today, moves, excl, name_to_move,
                            pick_only=(sp == "SPECIES_MAGIKARP"))
+        if sp not in listed:
+            notes.append(("extra", "off the pick-list: today's list, less what the rulings cut"))
         results.append((sp, form, path, row, today, kaizo, new, notes))
         if apply:
             with open(os.path.join(ROOT, path), encoding="utf-8") as f:
@@ -314,22 +391,34 @@ def run(apply, report_path):
     warns = [(r[0], r[1]) for r in results if any(k == "warn" for k, _ in r[7])]
     if warns:
         print("no level-1 move:", warns)
+    eggs = egg_changes()
+    if apply:
+        for _sp, path, _old, new in eggs:
+            with open(os.path.join(ROOT, path), encoding="utf-8") as f:
+                text = f.read()
+            with open(os.path.join(ROOT, path), "w", encoding="utf-8", newline="\n") as f:
+                f.write(edit_eggs(text, new))
+    print(f"{len(eggs)} egg lists lose a move the rulings cut: "
+          + ", ".join(sp.replace("SPECIES_", "").title() for sp, _p, _o, _n in eggs))
     if report_path:
-        write_report(results, names, name_to_move, report_path)
+        write_report(results, names, name_to_move, report_path, eggs)
     return results
 
 
-def write_report(results, names, name_to_move, path):
+def write_report(results, names, name_to_move, path, eggs=()):
     def display(sp, form):
         base = sp.replace("SPECIES_", "").replace("_", " ").title()
         return f"{base} ({form.split('/')[-1]})" if form else base
 
+    extra = {r[0] for r in results if any(k == "extra" for k, _ in r[7])}
     natives = [r for r in results if r[5] is not None]
-    new = [r for r in results if r[5] is None and r[0] != "SPECIES_MAGIKARP"]
+    new = [r for r in results if r[5] is None and r[0] != "SPECIES_MAGIKARP"
+           and r[0] not in extra]
     counts = collections.Counter()
     for r in results:
         for kind, text in r[7]:
-            counts[text.split(" out: ")[-1] if kind == "rule" and " out: " in text else kind] += 1
+            if kind != "extra":
+                counts[text.split(" out: ")[-1] if kind == "rule" and " out: " in text else kind] += 1
 
     lines = [
         "# The learnset pass",
@@ -369,10 +458,26 @@ def write_report(results, names, name_to_move, path):
         "is re-timed to Oxide's evolution levels.",
         "- Kaizo's Wormadam (Plant) opens at 16, with no level-1 move; it is reached only by "
         "evolution at 20, so the list stands.",
-        "- Only the pick-list and Magikarp are touched. Species off the pick-list that still learn "
-        "Splash or Teleport (Spoink, Grumpig, Wynaut, Natu, Xatu, Claydol, Deoxys) or a weather "
-        "move (Gyarados, which `b6.py` counts as obtainable, and twelve species neither list reaches) are "
-        "left for the balance track, since each change moves a trainer's default moves.",
+        "- Off the pick-list, the balance track's review (2026-09-27) takes out every move the "
+        "rulings cut: Splash and Teleport (Spoink, Grumpig, Wynaut, Natu, Xatu, Claydol, Deoxys, "
+        "whose first move comes down to level 1 where it was their only one), and Gyarados's Rain "
+        "Dance, since the player can obtain Gyarados. The twelve species with a weather move that "
+        "the player cannot obtain keep it, for trainers' default moves. Every egg list loses the "
+        "moves the rulings cut, and a weather move where the species can be obtained.",
+        "",
+        "## The balance track's review (2026-09-27)",
+        "",
+        "Every record was checked against Ian's rules: no weather move by level, egg or tutor on "
+        "a species the player can obtain (the weather TMs are the TM pass's, since those TMs are "
+        "replaced), none of the moves the rulings cut, no move outside Oxide's table, no list "
+        "over 34 entries, and no move whose effect is a placeholder or unwritten. The effect "
+        "audit (`convert_battle_scripts.py --audit`) finds no effect the new lists make "
+        "reachable that is not ported; the only change is that the terrain effect becomes "
+        "unreachable. Every choice above is confirmed as the pass made it, but for the weather "
+        "move Gyarados kept, which now goes. The mapping of Kaizo's rebuilt moves follows "
+        "`docs/oxide/kaizo-comparison.md`. Strong moves early (Ponyta's High Horsepower at 6, "
+        "Gastly's Shadow Claw at 5, Skiploom's Explosion at 7) stand under Ian's ruling that no "
+        "split has a ceiling on coverage; the rescore judges each.",
         "",
         "## How the rules came out",
         "",
@@ -411,13 +516,21 @@ def write_report(results, names, name_to_move, path):
                 if not (kadd or krem or kmov):
                     lines.append("- Against Kaizo's: the same.")
             for kind, text in notes:
-                label = {"kaizo": "Against Kaizo's", "rule": "Rule", "warn": "Check"}[kind]
+                label = {"kaizo": "Against Kaizo's", "rule": "Rule", "warn": "Check", "extra": "Note"}[kind]
                 lines.append(f"- {label}: {text}.")
             lines.append("")
 
     section("Natives, on Kaizo's lists", natives, True)
     section("New species, on their donor lists", new, False)
     section("Magikarp, off the pick-list", [r for r in results if r[0] == "SPECIES_MAGIKARP"], False)
+    section("Off the pick-list, the rulings' cuts only", [r for r in results if r[0] in extra], False)
+    if eggs:
+        lines.extend(["## Egg lists", ""])
+        for sp, _path, old, new_eggs in eggs:
+            gone = [names.get(mv, mv) for mv in old if mv not in new_eggs]
+            lines.append(f"- {sp.replace('SPECIES_', '').replace('_', ' ').title()}: "
+                         f"{', '.join(gone)} out.")
+        lines.append("")
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines).rstrip() + "\n")
 
