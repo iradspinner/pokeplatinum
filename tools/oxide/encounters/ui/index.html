@@ -390,6 +390,12 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
 .savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
   position: sticky; top: 0; background: var(--panel); padding: 2px 0 8px; }
 #trainright .flags label { display: block; font-size: 15px; }
+/* The score is the one number worth acting on here, so it is gold. */
+.scorenum { font: 600 24px/1 var(--mono); color: var(--act); margin-right: 4px; }
+#trainright table.grid { margin: 4px 0 8px; font-size: 15px; }
+.fullscore { border-top: 1px solid var(--rule); margin-top: 8px; padding-top: 6px; }
+.fullscore.stale .scorenum { color: var(--faint); }
+#trainright ul.sub { margin: 0 0 6px; padding-left: 18px; }
 .mrow[data-move]:not([data-move=""]) { cursor: pointer; }
 .mrow[data-move]:not([data-move=""]):hover { background: var(--sunken); }
 #trainright h3 { margin: 14px 0 4px; font-size: 16px; }
@@ -1367,6 +1373,9 @@ function drawSim() {
 // style (trainers.py). The page works out nothing itself.
 let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
 let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
+// The score (teamscore.py, the balance track's): the estimate follows every
+// edit; the full score runs on request and remembers the team it scored.
+let TRESTIMATE = null, TRSCORE = null, TRSCORING = false;
 // Constant to name and name to constant, for the species, move and item boxes.
 const TRNAMES = { species: new Map(), moves: new Map(), items: new Map() };
 const TRBY = { species: new Map(), moves: new Map(), items: new Map() };
@@ -1432,9 +1441,65 @@ async function selectTrainer(stem) {
   TREDIT = clone(TRDETAIL.data);
   TRDIRTY = false;
   TRFINDINGS = [];
-  TRMEMBER = TRLISTS = TRFOCUS = null;
+  TRMEMBER = TRLISTS = TRFOCUS = TRSCORE = null;
+  TRESTIMATE = TRDETAIL.estimate || null;
   drawTrainer();
   remember();
+}
+
+async function scoreTrainer() {
+  if (TRSCORING) return;
+  TRSCORING = true;
+  drawTrainerRight();
+  const team = JSON.stringify(TREDIT);
+  try {
+    const r = await fetch(`/api/trainer/${TRSEL}/score`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    const j = await r.json();
+    if (!r.ok || j.error) toast(j.error || "Not scored", true);
+    else TRSCORE = { result: j, team };
+  } catch (e) { toast(e.message, true); }
+  TRSCORING = false;
+  drawTrainerRight();
+}
+
+function scoreBlock() {
+  const e = TRESTIMATE;
+  if (!e) return `<p class="sub">${TRFINDINGS.some(f => f.severity === "error")
+    ? "Fix the errors to see the score." : "Working out the score."}</p>`;
+  if (e.error) return `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
+  const pc = v => Math.round(v * 100) + "%";
+  const fit = e.fit || {};
+  const mons = (e.mons || []).map(m => `<tr><td>${esc(m.species)}</td><td class="num">${m.level}</td>
+      <td class="num">${pc(m.threat)}</td><td class="num">${pc(m.answers)}</td></tr>`).join("");
+  let full = "";
+  if (TRSCORE) {
+    const s = TRSCORE.result, stale = TRSCORE.team !== JSON.stringify(TREDIT);
+    const refs = Object.entries(s.references || {}).map(([h, v]) =>
+      `<tr><td>${esc(tidy(h))}</td><td class="num">${v.scale}</td></tr>`).join("");
+    const unseen = Object.entries(s.unseen || {}).map(([k, v]) =>
+      `<li>${esc(fieldLabel(k))}: ${esc(v.join(", "))}</li>`).join("");
+    full = `<div class="fullscore${stale ? " stale" : ""}">
+      <p><b class="scorenum">${s.scale}</b> the full score (${esc(s.band)})${
+        stale ? `, <span class="sub">for the team before your last edit</span>` : ""}</p>
+      <p class="sub">Safe switch-ins ${pc(s.safe)}, threat ${pc(s.threat)} (with odds ${pc(s.threat_chance)}),
+        answers ${pc(s.answers)} (with bait ${pc(s.answers_bait)}); ${s.seconds} s.</p>
+      ${unseen ? `<p class="sub">Tactics the score cannot see:</p><ul class="sub">${unseen}</ul>` : ""}
+      ${refs ? `<table class="grid"><thead><tr><th>Same seat in</th><th class="num">Scale</th></tr></thead>
+        <tbody>${refs}</tbody></table>` : ""}</div>`;
+  }
+  return `<p><b class="scorenum">${e.scale}</b> on the fight scale (${esc(e.band)}), an estimate</p>
+    <p class="sub">${esc(e.split)} split, cap ${e.cap}${e.weather ? ", " + esc(e.weather) : ""}${
+      e.trick_room ? ", Trick Room" : ""}. Against the full score it is ${fit.story_mean_error} off
+      on average over the ${fit.story_n} story fights, ${fit.story_max_error} at worst.</p>
+    <p class="sub">Safe switch-ins ${pc(e.safe)}, threat ${pc(e.threat)}, answers ${pc(e.answers)}.</p>
+    ${mons ? `<table class="grid"><thead><tr><th>Pokemon</th><th class="num">Lv</th>
+      <th class="num" title="Share of the player's side it knocks out in two hits, moving first">Threat</th>
+      <th class="num" title="Share of the player's side that does that to it">Answers</th></tr></thead>
+      <tbody>${mons}</tbody></table>` : ""}
+    <p><button id="trscore"${TRSCORING ? " disabled" : ""}>${TRSCORING ? "Scoring" : "Score it"}</button>
+      <span class="sub">the balance track's full scorer, 1 to 20 seconds</span></p>
+    ${full}`;
 }
 
 async function openTrainer(stem) {
@@ -1459,6 +1524,7 @@ async function runPreview() {
     if (seq !== TRSEQ) return;
     if (r.detail) TRDETAIL = r.detail;
     TRFINDINGS = r.findings;
+    TRESTIMATE = r.estimate;
     drawTrainer();
     const f = TRMEMBER !== null && TREDIT.party[TRMEMBER];
     if (f && TRLISTS && (TRLISTS.species !== f.species || TRLISTS.level !== f.level
@@ -1481,6 +1547,7 @@ async function saveTrainer() {
     TREDIT = clone(j.detail.data);
     TRDIRTY = false;
     TRFINDINGS = j.findings || [];
+    TRESTIMATE = j.detail.estimate || null;
     drawTrainer();
     toast(j.changed.length ? `Saved ${j.changed.length} change${j.changed.length > 1 ? "s" : ""}`
                            : "Nothing had changed");
@@ -1624,6 +1691,8 @@ function drawTrainerRight() {
       <button id="trsave"${!TRDIRTY || errors ? " disabled" : ""}>Save</button>
       <button id="trrevert"${TRDIRTY ? "" : " disabled"}>Revert</button>
       <span class="sub">${state}</span></div>
+    <h3>Score</h3>
+    ${scoreBlock()}
     <h3>Battle</h3>
     <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
     <h3>AI flags</h3>
@@ -2437,6 +2506,7 @@ $("#trainright").addEventListener("click", ev => {
   if (!TREDIT) return;
   const id = ev.target.id;
   if (id === "trsave") return saveTrainer();
+  if (id === "trscore") return scoreTrainer();
   if (id === "trrevert") {
     TRDIRTY = false;
     return selectTrainer(TRSEL);

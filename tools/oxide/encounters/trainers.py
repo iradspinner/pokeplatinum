@@ -28,6 +28,7 @@ import os
 import re
 import subprocess
 import tempfile
+import threading
 
 from . import calc_trainers
 from . import dex
@@ -202,15 +203,64 @@ def detail(root, stem, data=None):
 
 
 def preview(root, stem, data):
-    """An unsaved edit rebuilt as the game would build it, with its lint.
-    Nothing is written. A team the lint rejects may not build at all, and
-    then only the findings come back."""
+    """An unsaved edit rebuilt as the game would build it, with its lint and
+    the instant score. Nothing is written. A team the lint rejects may not
+    build at all, and then only the findings come back."""
     findings = lint(root, data)
     try:
         shown = detail(root, stem, data)
     except (KeyError, ValueError, TypeError, IndexError, FileNotFoundError):
         shown = None
-    return {"detail": shown, "findings": findings}
+    errors = any(f["severity"] == "error" for f in findings)
+    return {"detail": shown, "findings": findings,
+            "estimate": None if errors or shown is None else estimate(stem, data)}
+
+
+# -- the score (piece 4), agreed with the Balance Agent -----------------------------
+# The tool never scores by itself: both numbers are the balance track's
+# teamscore.py, which places the fight (a story fight's variants and tag
+# partner, weather, Trick Room) and returns the split and its cap.
+
+def estimate(stem, data=None):
+    """teamscore.estimate: the instant number for every edit, 0.01 to 0.06 s
+    once warm. {"error": why} for a trainer it does not score."""
+    from ..balance import teamscore
+    try:
+        return teamscore.estimate(stem, data)
+    except Exception as exc:              # a trainer with no capped split, or a team it cannot build
+        return {"error": str(exc)}
+
+
+def warm():
+    """The estimate's first call builds the calculator data and every split's
+    side, about 4 to 9 seconds; the server does it at start, off to one side."""
+    from ..balance import pool, teamscore
+    for split in pool.SPLITS:
+        try:
+            teamscore.side(split)
+        except Exception:
+            pass
+
+
+_SCORING = threading.Lock()
+
+
+def full_score(stem, data=None):
+    """teamscore.score, the balance plan's own number: one Node process, 1 s
+    early in the game to 20 s late. One at a time, pinned to one core; the
+    affinity is this thread's, which the Node process inherits."""
+    from ..balance import teamscore
+    if not _SCORING.acquire(blocking=False):
+        return {"error": "a score is already running; one at a time"}
+    cores = sorted(os.sched_getaffinity(0))
+    try:
+        os.sched_setaffinity(0, {cores[-1]})
+        return teamscore.score(stem, data)
+    except Exception as exc:
+        return {"error": f"{type(exc).__name__}: {exc}"}
+    finally:
+        os.sched_setaffinity(0, set(cores))
+        _SCORING.release()
 
 
 def choices(root):

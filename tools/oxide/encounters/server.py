@@ -26,6 +26,7 @@ import os
 import re
 import socketserver
 import sys
+import threading
 import urllib.parse
 import zlib
 
@@ -917,9 +918,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                                   max(1, min(level, 100))))
             if parts[1] == "trainer":
                 try:
-                    return self._send(trainers.detail(model.repo_root(), parts[2]))
+                    out = trainers.detail(model.repo_root(), parts[2])
                 except (KeyError, FileNotFoundError):
                     return self._send({"error": f"no such trainer: {parts[2]}"}, 404)
+                out["estimate"] = trainers.estimate(parts[2])
+                return self._send(out)
             if parts[1] == "moves":
                 return self._send(move_list())
             if parts[1] == "calc-data":
@@ -1005,11 +1008,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     return self._send({"error": "send the trainer as data"}, 400)
                 if len(parts) > 3 and parts[3] == "preview":
                     return self._send(trainers.preview(root, stem, data))
+                if len(parts) > 3 and parts[3] == "score":
+                    out = trainers.full_score(stem, data)
+                    return self._send(out, 409 if "error" in out else 200)
                 try:
                     out = trainers.save(root, stem, data)
                 except trainers.SaveRefused as exc:
                     return self._send({"error": str(exc), "findings": exc.findings}, 409)
-                return self._send(dict(out, detail=trainers.detail(root, stem)))
+                saved = trainers.detail(root, stem)
+                saved["estimate"] = trainers.estimate(stem)
+                return self._send(dict(out, detail=saved))
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]
@@ -1086,6 +1094,9 @@ def main(argv=None):
               f"port:\n    PYTHONPATH=. python3 -m tools.oxide.encounters.server "
               f"--port {a.port + 1}")
         return 1
+    # The team builder's instant score takes a few seconds the first time;
+    # doing it now, on the side, keeps the first edit quick.
+    threading.Thread(target=trainers.warm, daemon=True).start()
     with httpd:
         print(f"encounter tool on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")

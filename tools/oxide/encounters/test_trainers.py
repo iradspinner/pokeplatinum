@@ -274,6 +274,11 @@ def check_edit_routes(results, root):
             d = trainers.load(root, "leader_roark")
             d["party"][1]["nature"] = "NATURE_ADAMANT"
             preview = post(port, "/api/trainer/leader_roark/preview", d)
+            strong = json.loads(json.dumps(d))
+            strong["party"][3]["level"] = 30
+            harder = post(port, "/api/trainer/leader_roark/preview", strong)
+            scored = post(port, "/api/trainer/leader_roark/score", strong)
+            post_trainer = get(port, "/api/trainer/cameraman_tevin_rematch_1")
             bad = json.loads(json.dumps(d))
             bad["party"][0]["level"] = 0
             refused = post(port, "/api/trainer/leader_roark", bad)
@@ -295,6 +300,19 @@ def check_edit_routes(results, root):
                     "writes a good team", refused[0] == 409 and refused[1]["findings"]
                     and saved[0] == 200 and written["party"][1].get("nature") == "NATURE_ADAMANT",
                     f"{refused[0]} {saved[0]}"))
+    est, hard = preview[1].get("estimate") or {}, harder[1].get("estimate") or {}
+    results.append(("every preview carries teamscore's estimate with its margin, and a stronger "
+                    "unsaved team reads harder (Cranidos at 30)",
+                    est.get("kind") == "estimate" and est.get("split") == "Roark"
+                    and est.get("cap") == 16 and (est.get("fit") or {}).get("story_max_error")
+                    and hard.get("safe", 1) < est.get("safe", 0),
+                    f"{est.get('scale')} then {hard.get('scale')}"))
+    results.append(("Score it runs the full scorer on the unsaved team and gives the reference "
+                    "hacks' same seat; a Post trainer is not scored",
+                    scored[0] == 200 and scored[1].get("kind") == "score"
+                    and "vanilla" in (scored[1].get("references") or {})
+                    and "error" in (post_trainer[1].get("estimate") or {}),
+                    f"{scored[1].get('scale')} in {scored[1].get('seconds')} s"))
 
 
 def check_routes(results):
