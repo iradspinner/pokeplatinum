@@ -47,7 +47,11 @@ read, so they are written here too. Each is a standing instruction.
 - Attrition lives in gauntlets (Ian, 2026-09-27): the Pocket PC heals, and
   works, everywhere except chosen one-way areas the player must clear, beating
   a set number of trainers in a row, before leaving to heal. Balance proposals
-  that rely on route attrition belong in a gauntlet.
+  that rely on route attrition belong in a gauntlet. A gauntlet is 2 to 5
+  mandatory trainers on the easier side of average, counted without optional
+  ones; bag items may heal between its fights (the danger is deaths
+  snowballing); bosses stay outside it, with gauntlets leading up to them; and
+  a majority of the game's trainers should be mandatory (Ian, 2026-09-27).
 - Evolution stones are deliberately scarce (Ian, 2026-09-27): two lines
   competing for one stone is intended, because it weakens the box and makes
   the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
