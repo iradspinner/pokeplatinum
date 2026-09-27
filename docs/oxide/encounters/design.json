@@ -6852,7 +6852,7 @@
       "locked": [],
       "base_level": 50,
       "order": 127,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_DONPHAN",
         "SPECIES_GLIMMORA",
@@ -9167,7 +9167,7 @@
       "locked": [],
       "base_level": 40,
       "order": 152,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_RHYPERIOR",
         "SPECIES_CRUSTLE",
@@ -9393,7 +9393,7 @@
       "locked": [],
       "base_level": 41,
       "order": 153,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_SKARMORY",
         "SPECIES_GARGANACL",
@@ -9418,7 +9418,7 @@
       "locked": [],
       "base_level": 41,
       "order": 154,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_STEELIX",
         "SPECIES_GARGANACL",
@@ -10286,7 +10286,7 @@
       "locked": [],
       "base_level": null,
       "order": 159,
-      "split": "League",
+      "split": "Barry",
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
@@ -10800,7 +10800,7 @@
       "locked": [],
       "base_level": null,
       "order": 151,
-      "split": "League",
+      "split": "Barry",
       "old_rod": {
         "cast": [
           "SPECIES_MANTYKE",
@@ -11485,6 +11485,7 @@
       "HQ",
       "Galactic",
       "Volkner",
+      "Barry",
       "League",
       "Post"
     ],
@@ -11499,6 +11500,7 @@
       "HQ": 60,
       "Galactic": 65,
       "Volkner": 68,
+      "Barry": 71,
       "League": 78,
       "Post": null
     },

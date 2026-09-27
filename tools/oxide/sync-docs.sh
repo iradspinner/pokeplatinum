@@ -76,6 +76,9 @@ copy "wild-movesets.md" "notes/wild-movesets.md"
 copy "pairwise-candidates.md" "notes/pairwise-candidates.md"
 copy "status-move-tiers.md" "notes/status-move-tiers.md"
 copy "trainer-survey.md" "notes/trainer-survey.md"
+copy "status-move-tiers.md" "notes/status-move-tiers.md"
+copy "script-index.md" "notes/script-index.md"
+copy "script-index.json" "notes/script-index.json"
 copy "staples-survey.md" "notes/staples-survey.md"
 copy "move-pool-survey.md" "notes/move-pool-survey.md"
 copy "move-pool-survey.csv" "notes/move-pool-survey.csv"
@@ -107,6 +110,7 @@ copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship
 copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
 copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replacements.md"
 copy "encounters/classic-starters.md" "Claude outputs/encounters/classic-starters.md"
+copy "encounters/ability-audit.md" "Claude outputs/encounters/ability-audit.md"
 
 # Anything under docs/oxide that the list above does not name. caught.json is
 # per-playthrough state and gitignored, so it is not a doc and is not mirrored.

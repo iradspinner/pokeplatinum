@@ -65,6 +65,12 @@ PokemonLeagueAaronRoom_OnFrame_EnterRoom:
     PlaySE SEQ_SE_DP_KI_GASYAN_sseq
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
+    // Platinum Oxide: entering the Elite Four closes the Barry split and
+    // raises the level cap to the League's (Ian, 2026-09-27). The door has
+    // just shut behind the player, so every run through the Elite Four
+    // passes here and none can turn back; a raise never lowers the cap, so
+    // a rematch after the Champion leaves it off.
+    RaiseLevelCap LEVEL_CAP_SPLIT_LEAGUE
     SetVar VAR_MAP_LOCAL_0x01, 1
     ReleaseAll
     End

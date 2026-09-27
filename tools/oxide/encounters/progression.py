@@ -243,13 +243,19 @@ def sorted_by_order(sidecar, names):
 # Saturn 2; it has no wild tables. Galactic is the Battle Zone, opened before
 # the League, the Mt. Coronet climb, Spear Pillar and the Distortion World,
 # closing on Cyrus 3.
+# Barry sits between Volkner and the League (Ian, 2026-09-27): after the last
+# badge the engine caps levels at 71 for every fight up to the Elite Four,
+# Victory Road and the areas the story reaches after Volkner among them, and
+# at 78 inside it. The Elite Four has no wild tables, so the League split has
+# none now.
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
-          "Candice", "HQ", "Galactic", "Volkner", "League", "Post"]
+          "Candice", "HQ", "Galactic", "Volkner", "Barry", "League", "Post"]
 # Ian's hard level caps per split (2026-09-21; Volkner's 68 on 2026-09-25; HQ
-# 60 and Galactic 65 on 2026-09-26); post-game has none.
+# 60 and Galactic 65 on 2026-09-26; Barry's 71 on 2026-09-27); post-game has
+# none.
 DEFAULT_CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 38,
                 "Wake": 44, "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65,
-                "Volkner": 68, "League": 78, "Post": None}
+                "Volkner": 68, "Barry": 71, "League": 78, "Post": None}
 RODS = {"old_rod": "Roark", "good_rod": "Maylene", "super_rod": "Candice",
         # Surf is the HM from Celestic Town, after Wake
         "surf": "Byron"}
@@ -321,7 +327,7 @@ _SPLIT_STEMS = {
         "mt_coronet_5f", "mt_coronet_6f",
     ],
     "Volkner": ["route_222", "sunyshore_city"],
-    "League": [
+    "Barry": [
         "route_223", "victory_road_1f", "victory_road_2f", "victory_road_b1f",
         "victory_road_1f_room_1", "victory_road_1f_room_2", "victory_road_1f_room_3",
         "pokemon_league",

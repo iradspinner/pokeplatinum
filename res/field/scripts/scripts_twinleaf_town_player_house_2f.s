@@ -3170,6 +3170,7 @@ TestKit_LevelCaps:
     AddListMenuEntry TestKit_Text_MenuCapHQ, LEVEL_CAP_SPLIT_HQ
     AddListMenuEntry TestKit_Text_MenuCapGalactic, LEVEL_CAP_SPLIT_GALACTIC
     AddListMenuEntry TestKit_Text_MenuCapVolkner, LEVEL_CAP_SPLIT_VOLKNER
+    AddListMenuEntry TestKit_Text_MenuCapBarry, LEVEL_CAP_SPLIT_BARRY
     AddListMenuEntry TestKit_Text_MenuCapLeague, LEVEL_CAP_SPLIT_LEAGUE
     AddListMenuEntry TestKit_Text_MenuCapNone, LEVEL_CAP_SPLIT_NONE
     ShowListMenu

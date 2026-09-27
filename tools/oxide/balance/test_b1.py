@@ -80,6 +80,7 @@ def check_fights_resolve(results):
         word_ok = lambda f, n: (_word(f) in n or (hack == "oxide" and _word(f) == "Cedric"
                                                   and "Barry" in n)
                                 or (f["key"] == "mars_jupiter" and ("Mars" in n or "Jupiter" in n))
+                                or (f["key"] == "flint_volkner" and ("Flint" in n or "Volkner" in n))
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight

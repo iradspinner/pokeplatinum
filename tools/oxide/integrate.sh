@@ -451,6 +451,19 @@ check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY
 # legendaries Ian keeps out of reach are warnings with his reason.
 check "encounter lint on the working tree (--fail-on error, R12 included)" "$PY" -m tools.oxide.encounters.cli lint --fail-on error
 
+# The script index (docs/oxide/script-index.md and .json) is generated from the
+# scripts and events. Its own test checks the tool against facts known from the
+# scripts; the committed copy going stale only warns, since a script edit need
+# not wait on it (Ian, 2026-09-27). Both need the branch's full history, which
+# a shallow clone lacks, so there the comparison is skipped with a warning.
+CHECK_EXPECT="passed" check "script index: known facts (test_scriptindex)" "$PY" tools/oxide/test_scriptindex.py
+si_out="$("$PY" tools/oxide/scriptindex.py --check 2>&1)"; si_rc=$?
+case $si_rc in
+    0) echo "$si_out" ;;
+    1) warn "script index out of date: rerun tools/oxide/scriptindex.py and commit docs/oxide/script-index.md and .json" ;;
+    *) warn "script index not compared: $si_out" ;;
+esac
+
 # The tracker holds open work only and every main-track session reads it in
 # full, so it is kept short: finished blocks move to tracker-archive.md. This
 # warns rather than fails when it passes 6,000 words, so it cannot quietly

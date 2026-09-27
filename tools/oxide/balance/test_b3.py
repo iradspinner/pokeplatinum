@@ -30,7 +30,7 @@ D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
 # Ian's caps: the Level Caps sheet, with HQ 60, Galactic 65 and Volkner 68
 # from his Battle Zone rulings of 2026-09-25.
 CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
-        "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78}
+        "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "Barry": 71, "League": 78}
 # Moves the calculator gives no number for, each reported, not scored. Since
 # the encounter track's Oxide profile (2026-09-26) it scores Electro Ball,
 # Heavy Slam, Psywave, Super Fang and Trump Card, which its Generation 4

@@ -22,7 +22,9 @@ Sinistea split, the stone gate), and rescores are incremental. The encounter too
 builder scores a team through `teamscore.py`. B6 is done ("What B6 found"): the bottom band
 is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
 fights with their damage spread across each team, and of the player's
-levers only caps and map weather move the scores much. Next: the design
+levers only caps and map weather move the scores much. The Barry split
+(cap 71) and four fixes to the player's side are scored ("The player's
+side fixed, and the Barry split"). Next: the design
 passes, starting with the learnset study (design pass 3). Its parts 1 and
 2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
 the generator waits on Ian's word on them. The scores weigh the stone
@@ -976,6 +978,76 @@ content in is the trainer pass's job.
 the difficulty; the bottom band and the hyper-offense are as the base ROM
 left them, so the question of Valor Cavern and Stark Mountain stays
 closed until the trainer pass lands and is rescored.
+
+## The player's side fixed, and the Barry split (2026-09-27)
+
+Four faults in what the scores gave the player came to light while Ian's
+capture rule was worked through, and all four are fixed together with the
+Barry split, under one rescore.
+
+The side counted slots the game never rolls. A land table with land_rate 0,
+or a water kind with no rate, still lists species, and those came onto the
+side early. Seven species now arrive a split later than Roark's
+(Clobbopus, Dewpider, Dolliv, Dubwool, Liepard, Sandygast and Shellos), and
+two or three more at each of the next three splits.
+
+The side knew too many moves. Every level-up move of a species and its
+earlier stages up to the cap counted, level 1 included. Under Ian's capture
+rule it now knows its four moves at capture, then what each stage learns by
+level-up afterwards, a later stage from the level it evolves at; a move only
+the relearner could teach counts for nothing. Between 1 and 9 side members
+a split lose a band on their best same-type move. Two of Oxide's own lists
+showed up in this. A wild Alolan Ninetales, whose whole list sits at level
+1, is caught knowing Tail Whip, Disable, Ice Shard and Safeguard. A Seedot
+evolved at 14 has no Grass or Dark attack by Roark's cap of 16.
+
+The side missed six evolutions. The encounter tool's reader keeps only a
+stage's level evolutions when it has any, which is right for placing wild
+Pokemon, and the side had borrowed it. Wooper to Clodsire (Poison Barb, from
+Roark's split), Goomy to Hisuian Sliggoo and Goodra (Metal Coat), Kirlia to
+Gallade and Snorunt to Froslass (Dawn Stone, from Fantina's), Slowpoke to
+Slowking (King's Rock, from Wake's) and Yamask to Runerigus (Reaper Cloth,
+from Candice's) now reach it.
+
+The Fight Area's tag battle is one story fight, like Spear Pillar (Ian,
+2026-09-27), and both tag fights record Barry's partner teams for the
+rebuild to play. The Fight Area waits for the Beacon Badge, so it sits in
+the Barry split.
+
+The Barry split (Ian, 2026-09-27) holds every fight after the Beacon Badge
+up to the Elite Four, at a cap of 71: Lucas and Dawn 3, Barry 6, the Fight
+Area's tag battle, and the 27 trainers of Route 223 and Victory Road. The
+Elite Four stay in the League split at 78, as the engine's table has it;
+the rebuild plays each at its own ace (72 to 78), since Ian levels only to
+the next fight's ace. The engine's cap and the encounter tool's split came
+from the main and encounter tracks on the same branch.
+
+The rescore recomputed every score whose inputs changed, and a second run
+verified all 974 of them. The four fixes to the side barely move
+the fight scale: no story fight outside the Barry split moves by more than
+0.1, and the line over Ian's ratings is now 9.5 minus 7.5 times safe
+switch-ins (9.4 and 7.4 before). A side that knows fewer moves and arrives a
+little later still answers much the same Pokemon. Saturn 2 rises 0.2 after
+Ian's edit in the team builder: Uxie trades Trick Room for Foul Play, and
+Rhyperior's Choice Scarf becomes an Expert Belt. The fight's permanent
+Trick Room stays.
+
+The Barry split is what moves. Its fights are now played at 71 rather than
+the League's 78:
+
+| Fight | Before | After |
+|---|---|---|
+| Barry 6 | 6.2 | 7.2 |
+| Lucas and Dawn 3 | 5.6 | 6.5 |
+| The Fight Area's tag battle | not scored | 7.6 |
+
+Of the 27 trainers of Route 223 and Victory Road, the fourteen in Victory
+Road (aces of 63) rise, nine of them by half a point or more (Ace Trainer
+Omar most, by 1.0). The thirteen with aces of 59 to 61 move by 0.35 or
+less, since they sit well under either cap. The split holds 9 at the
+bottom of the scale and 18 in the middle (one required in each). The
+League held those 27 and the Fight Area's Volkner and Flint before, and
+now holds only its story fights.
 
 ## The Galactic stretch: split shape and caps (proposal, 2026-09-25)
 

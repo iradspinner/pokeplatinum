@@ -786,6 +786,19 @@ that stay. None blocks anything.
    page loads the tool's theme. Done on `encounter-doc-viewer`
    (41c179ece, from `sinistea-split`); `test_docview` 16/16, and all 84
    documents render.
+30. **The Barry split (Ian, 2026-09-27, through the Overseer).** After
+   Volkner the engine caps levels at 71 for every fight up to the Elite
+   Four, and at 78 inside it. The split table gains Barry between Volkner
+   and the League, cap 71, and the six tables reached after Volkner move
+   into it: Sendoff Spring, Route 223, Victory Road's 1F, 2F and B1F, and
+   the Pokemon League's water. The League keeps its cap of 78 and holds no
+   table, since the Elite Four has none. Their levels keep vanilla's curve,
+   which tops out at 60 (Sendoff Spring's Super Rod), under the new cap, so
+   no level changes; `cli evolve` owes no move, the availability gate is as
+   it was (no line without a source, the same eleven cap candidates), and
+   `availability.md` only renames the split. It lands on `barry-split` after
+   the main production agent's engine change; the Balance Agent updates
+   `fights.json` and rescores last.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
@@ -820,12 +833,32 @@ that stay. None blocks anything.
    slot would be read as species 0. **Done**: the engine change is
    7cefbba53, every list is empty (`test_step5`), and lint R17 fails on any
    species put back.
+31. **Ian's edits reach oxide (the Overseer, 2026-09-27).** Ian's first team
+   builder save (Saturn 2 without Trick Room or the Choice Scarf) landed
+   uncommitted in this track's worktree, where his server ran, on whatever
+   branch was out; it was committed on its own branch
+   (`encounter-saturn-save`, 54792de1f). Since then his server runs from a
+   worktree of its own, `.claude/worktrees/ian-tool`, on the branch
+   `ian-saves`, and the page's header has "Commit my edits" with a count of
+   what is waiting. It commits only what the tool writes (trainer files,
+   the importer's registry, encounter tables and their sidecar), only on
+   `ian-saves`, and only after the encounter lint and the importer's dry
+   run pass; then it pushes and shows the head. The Overseer lands
+   `ian-saves` like a track branch, after the Balance Agent rescores what a
+   trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
+   throwaway repository.
 
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
 and the whole-game gate) are in the `author-table` skill. These are about the tool
 itself.
+
+- Ian's server runs from `.claude/worktrees/ian-tool` on `ian-saves`
+  (item 31). Never switch that worktree's branch. When the Overseer merges
+  oxide into `ian-saves`, restart the server there (the project's 3.13
+  venv, detached), and bring along nothing but its code: his caught list
+  lives in that checkout.
 
 - The Trainers tab writes `res/trainers/data/` for real. Try a change to
   its save path on a scratch copy first: `trainers.save` takes a folder and
