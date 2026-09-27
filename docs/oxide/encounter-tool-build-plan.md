@@ -191,12 +191,20 @@ that stay. None blocks anything.
    draw). **Fixed on 2026-09-27** (item 27): it reads Oxide's own sources,
    and Stark Mountain's hidden Heatran is no source while the room is empty
    (`UNREACHABLE_SCRIPT_SOURCES`, which the sources catalogue honours too).
-   The gate stays `lint --ignore R12` until Ian has been through the real
-   errors that remain. Some flags are real and are
-   for Ian: with the babies at level 10 no wild Pichu or Cleffa is left, only
-   Pikachu and Clefairy. Deleting the four spare fossil items is item and
-   script work. The Day Care Floette's white flower needs a form record and
-   art (tracker backlog).
+   **R12 is right since 2026-09-27** (`encounter-r12-cost`): it priced only
+   a line's first stage, only the morning's land slots and only areas with
+   grass, and it knew nothing of Ian's pool rulings, so 28 errors hid
+   behind 11 false ones. It now prices every stage (catching a Raichu is
+   the Pichu line, and the babies stand as their next stage from level 10),
+   the day and night slots, and the rods of an area with no grass
+   (Snowpoint's harbour); a legendary Ian holds back (the pool's reserve,
+   the third of Valor Cavern, which is empty) or sources on paper (the two
+   post-League proposals) is a warning that gives the reason. On oxide:
+   0 errors, 17 warnings, all of them rulings. The gate could therefore
+   lint R12 on the working tree, keeping `--ignore R12` only for vanilla;
+   the hook and `integrate.sh` are the Overseer's. Deleting the four spare
+   fossil items is item and script work. The Day Care Floette's white
+   flower needs a form record and art (tracker backlog).
 7. **Two new capture areas, built ahead of their maps (Ian, 2026-09-25).**
    `encounters_amity_square.json` (grass, Fantina's split, order 36) is a garden
    like the Trophy Garden at very low levels, base level 8, because only small
@@ -208,7 +216,10 @@ that stay. None blocks anything.
    they count as (Verity Lakefront's entry now carries it too). With them the
    count of captures before the League is 69 by location name, 73 once the three
    maps and the Restaurant move exist (`docs/oxide/encounters/scripted-sources.md`
-   has the working).
+   has the working). **The maps exist now** (2026-09-27): a header points at
+   each of the seven tables built ahead (these three and item 26's four
+   towns), so their `planned_location` keys are gone; every capture area
+   kept its name, since a header already won over the key.
 8. **The Galactic split and the Battle Zone (Ian, 2026-09-25).** The split table
    gains Galactic between Candice and Volkner, cap 64, and Volkner's cap is 68.
    Superseded on 2026-09-26: the Galactic fights are two splits, HQ at cap 60
@@ -550,8 +561,8 @@ that stay. None blocks anything.
    of their headers like Amity Square's, as `encounters_sandgem_town`,
    `encounters_jubilife_city`, `encounters_floaroma_town` and
    `encounters_solaceon_town`, appended to `encounters.order` so no table
-   moves in the NARC; the main track points each header at its table.
-   Each is an A19 with `planned_location` set. Three departures from the
+   moves in the NARC; the main track points each header at its table,
+   which it has done (item 7). Each is an A19. Three departures from the
    proposal, forced by the layout and the evolve rule: A19 keeps its face
    at 20% and anchors its 4%s on another line, so Pachirisu (Floaroma) and
    Mareep (Solaceon, a Flaaffy at 22) take the top rung; Poochyena is a
@@ -806,7 +817,9 @@ that stay. None blocks anything.
    track empties the lists in all 186 tables and makes lint fail on any
    species there. It must land in the same merge as the main track's
    engine change, which stops the substitutions; before that, an emptied
-   slot would be read as species 0.
+   slot would be read as species 0. **Done**: the engine change is
+   7cefbba53, every list is empty (`test_step5`), and lint R17 fails on any
+   species put back.
 
 ## Standing rules
 
