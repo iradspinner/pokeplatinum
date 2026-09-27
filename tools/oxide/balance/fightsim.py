@@ -229,9 +229,15 @@ class Mon:
 
 
 class Side:
+    """One side's Pokemon. In a double battle `active2` is the second slot's
+    index, and each Pokemon's `owner` says whose party it is (the player's,
+    a partner's, or one of two opposing trainers'), so a fainted slot is
+    refilled from its own trainer's party."""
+
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
         self.active = 0
+        self.active2 = None
         self.screens = {"Reflect": 0, "Light Screen": 0}
         self.tailwind = 0
         self.hazards = {"rocks": 0, "spikes": 0, "tspikes": 0}
@@ -240,8 +246,13 @@ class Side:
     def cur(self):
         return self.mons[self.active]
 
-    def bench(self):
-        return [m for i, m in enumerate(self.mons) if i != self.active and m.alive()]
+    def on_field(self):
+        idx = [self.active] + ([self.active2] if self.active2 is not None else [])
+        return [self.mons[i] for i in idx]
+
+    def bench(self, owner=None):
+        return [m for i, m in enumerate(self.mons) if i not in (self.active, self.active2)
+                and m.alive() and (owner is None or getattr(m, "owner", None) == owner)]
 
     def alive(self):
         return [m for m in self.mons if m.alive()]
@@ -317,7 +328,9 @@ class Battle:
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
         if side.screens[screen] and not crit:
-            mult *= 0.5
+            mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
+        if getattr(self, "spread", False):
+            mult *= 0.75
         if crit:
             mult *= 2
         return max(1, int(base * mult))
@@ -393,7 +406,9 @@ def heal(mon, amount):
 
 
 def foe_of(b, mon):
-    return (b.b if mon.side == "p" else b.p).cur()
+    """The foe it faces: in a double battle the first standing one."""
+    side = b.b if mon.side == "p" else b.p
+    return next((m for m in side.on_field() if m.alive()), side.cur())
 
 
 def use_move(b, att, mv, dfn, first):
@@ -692,12 +707,16 @@ def status_move(b, att, mv, dfn, first):
         pass
 
 
-def switch_in(b, side, index):
-    """A Pokemon comes in: volatile state resets, hazards bite."""
-    old = side.cur()
-    old.reset_volatile()
-    side.active = index
-    new = side.cur()
+def switch_in(b, side, index, slot=0):
+    """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
+    if slot == 0:
+        side.cur().reset_volatile()
+        side.active = index
+    else:
+        if side.active2 is not None:
+            side.mons[side.active2].reset_volatile()
+        side.active2 = index
+    new = side.mons[index]
     new.reset_volatile()
     if side.hazards["rocks"]:
         eff = b.st["rock_eff"].get(new.key, 1)
@@ -717,9 +736,22 @@ def switch_in(b, side, index):
 
 def end_of_turn(b):
     for side in (b.p, b.b):
-        m = side.cur()
-        if not m.alive():
-            continue
+        for m in side.on_field():
+            _end_of_turn_mon(b, side, m)
+        side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
+        side.tailwind = max(0, side.tailwind - 1)
+        side.safeguard = max(0, side.safeguard - 1)
+    if b.weather_turns:
+        b.weather_turns -= 1
+        if b.weather_turns == 0:
+            b.weather = b.st.get("base_weather")
+    if 0 < b.trick_room < 999:
+        b.trick_room -= 1
+    b.turn += 1
+
+
+def _end_of_turn_mon(b, side, m):
+    if m.alive():
         if b.weather in ("Sand", "Hail"):
             safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
             if not set(m.types) & safe and m.ability not in ("Sand Veil", "Snow Cloak", "Magic Guard"):
@@ -757,16 +789,6 @@ def end_of_turn(b):
         m.enduring = False
         m.hit_this_turn = None
         m.turns_in += 1
-        side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
-        side.tailwind = max(0, side.tailwind - 1)
-        side.safeguard = max(0, side.safeguard - 1)
-    if b.weather_turns:
-        b.weather_turns -= 1
-        if b.weather_turns == 0:
-            b.weather = b.st.get("base_weather")
-    if 0 < b.trick_room < 999:
-        b.trick_room -= 1
-    b.turn += 1
 
 
 # ---- the player's policy -----------------------------------------------------------------------
