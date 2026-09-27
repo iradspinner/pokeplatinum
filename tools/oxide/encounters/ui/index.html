@@ -555,8 +555,17 @@ table.facts td { padding: 1px 0; }
 .mx span { font-size: 14px; }
 
 /* ---- the calculator view ----------------------------------------------- */
-/* One column, the frame filling it. Still a grid, so main[hidden] hides it. */
-#calcmain { grid-template-columns: 1fr; }
+/* One column, the frame filling it under the save bar. Still a grid, so
+   main[hidden] hides it. */
+#calcmain { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+/* The Sync bridge's save bar (savewatch.py): the file the calculator's Sync
+   reads, and what the OxiDex last read from it. */
+#savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  padding: 6px 14px; border-bottom: 1px solid var(--rule); background: var(--panel);
+  font-size: 15px; }
+#savebar input { flex: 1 1 360px; min-width: 0; font-family: var(--mono); font-size: 14px; }
+#save-state { color: var(--dim); }
+#save-state.bad { color: var(--error); }
 #simmain { grid-template-columns: 320px minmax(520px, 1fr) 420px; }
 #simin { padding: 14px 16px; border-right: 1px solid var(--rule); background: var(--panel);
          display: flex; flex-direction: column; gap: 10px; }
@@ -752,6 +761,13 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 <!-- The vendored damage calculator, fed Oxide's data by /api/calc-data. It is
      loaded the first time the view opens, since it is a large page. -->
 <main id="calcmain" hidden>
+  <div id="savebar">
+    <label for="save-path">Save file</label>
+    <input id="save-path" spellcheck="false"
+           placeholder="the .sav melonDS writes, as Windows or WSL names it">
+    <button id="save-watch" title="Watch this file; Sync then reads it each time you save in game">Watch</button>
+    <span id="save-state">No save file set.</span>
+  </div>
   <iframe id="calcframe" title="Damage calculator"></iframe>
 </main>
 <!-- The box simulator: one nuzlocke run to a chosen split, played to make
@@ -799,6 +815,30 @@ async function api(path, opts) {
   const j = await r.json().catch(() => ({ error: "the server sent something unreadable" }));
   if (!r.ok || j.error) throw new Error(j.error || r.statusText);
   return j;
+}
+
+// ---- the save bar -------------------------------------------------------
+// The Sync bridge (savewatch.py): the OxiDex watches the save file named here
+// and the calculator's Sync, and its own polling, read the party and boxes
+// from it. The file is only ever read; the path is kept outside the repository.
+function drawSaveBar(s) {
+  const input = $("#save-path"), state = $("#save-state");
+  if (document.activeElement !== input) input.value = s.path || "";
+  let text = "No save file set.";
+  if (s.path && s.error) text = `Cannot read it: ${s.error}.`;
+  else if (s.path && s.save) {
+    const when = new Date(s.mtime * 1000).toLocaleString();
+    const off = s.save.era.mismatches.length;
+    text = `${s.save.party_count} in the party, ${s.save.boxed} in the boxes; saved ${when}, `
+      + `watched by ${s.mode}.` + (off ? ` ${off} sign${off > 1 ? "s" : ""} it is not this build's.` : "");
+  } else if (s.path) text = "Waiting for the file.";
+  state.textContent = text;
+  state.classList.toggle("bad", !!(s.path && s.error) || !!(s.save && s.save.era.mismatches.length));
+  state.title = s.save ? s.save.party.concat(s.save.era.signs, s.save.era.mismatches).join("\n") : "";
+}
+
+async function refreshSaveBar() {
+  try { drawSaveBar(await api("/api/save")); } catch (e) { /* the server is restarting */ }
 }
 
 // ---- the dex ------------------------------------------------------------
@@ -1828,6 +1868,7 @@ async function setView(view) {
   $("#calcmain").hidden = view !== "calc";
   if (view === "calc" && !$("#calcframe").getAttribute("src"))
     $("#calcframe").src = CALC_URL;
+  if (view === "calc") refreshSaveBar();
   try {
     if (view === "dex" && !POKEDEX.length) {
       POKEDEX = (await api("/api/dex")).rows;
@@ -2565,6 +2606,16 @@ document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = 
   drawMoveList();
 });
 $("#trainfilter").oninput = () => TRAINERS && drawTrainerList();
+$("#save-watch").onclick = async () => {
+  try {
+    const s = await api("/api/save/path", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: $("#save-path").value }) });
+    drawSaveBar(s);
+    toast(s.save ? "Watching the save" : s.path ? "Watching; nothing read yet" : "No save file set");
+  } catch (e) { toast(e.message, true); }
+};
+$("#save-path").addEventListener("keydown", ev => { if (ev.key === "Enter") $("#save-watch").click(); });
+setInterval(() => { if (VIEW === "calc" && !document.hidden) refreshSaveBar(); }, 5000);
 $("#trainsplit").onchange = () => TRAINERS && drawTrainerList();
 document.querySelectorAll("#trainlist .sortbar button").forEach(b => b.onclick = () => {
   TRSORT = b.dataset.k;

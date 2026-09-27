@@ -38,6 +38,36 @@ function configureHgssSaveReaderOffsets() {
     partyPokSize = 236
 }
 
+// Oxide patch: an Oxide save's blocks are found by their footers, not by
+// vanilla Platinum's fixed offsets. Oxide's larger Pokedex grew the normal
+// block, which moved the box block, and 30 boxes will grow that too. Each
+// block ends in a 20-byte footer whose signature 0x20060623 follows the
+// block's size and precedes its id (src/savedata.c), so the sizes set the
+// same offsets the vanilla branch hard-codes. The Python reader the Sync
+// bridge uses (tools/oxide/encounters/savefile.py) finds them the same way.
+function applyOxideSaveLayout(view) {
+    var sizes = {}
+    for (var pos = 12; pos + 8 <= view.length; pos += 4) {
+        if (read32BitIntegerFromUint8Array(view, pos) !== 0x20060623) {
+            continue
+        }
+        var id = view[pos + 4]
+        if (!(id in sizes)) {
+            sizes[id] = read32BitIntegerFromUint8Array(view, pos - 4)
+        }
+    }
+    if (!(0 in sizes)) {
+        return false
+    }
+    smallBlockSize = sizes[0]
+    bigBlockStart = smallBlockSize
+    boxDataOffset = smallBlockSize + 4
+    if (1 in sizes) {
+        bigBlockSize = sizes[1]
+    }
+    return true
+}
+
 function ensureHgeSaveIncludeTables() {
     if (!isHgeSaveReaderMode()) {
         return false
@@ -236,6 +266,10 @@ $(document).ready(function() {
                     saveUploaded = true
                     for (let i = 0; i < binaryData.length; i++) {
                         view[i] = binaryData.charCodeAt(i);
+                    }
+                    // Oxide patch: the block sizes from the save's own footers.
+                    if (TITLE == "Platinum Oxide") {
+                        applyOxideSaveLayout(view)
                     }
 
                     changelog = "<h4>Changelog:</h4>"
@@ -1458,6 +1492,15 @@ function parsePKM(chunk, is_party=false, offset=0, parseContext=null) {
         level = get_level(exp_table, exp);
     }
     var ability = sav_abilities[(decryptedData[mon_data_offset + 6] >> 8 & 0xFF) ]
+    // Oxide patch: the ability is a u16 at block B 0x1A (word 13), and block
+    // A 0x0D, where vanilla kept it, now holds only the hidden-ability bit,
+    // shown as slot 3 (docs/oxide/save-layout.md).
+    if (TITLE == "Platinum Oxide") {
+        ability = sav_abilities[decryptedData[move_data_offset + 13]]
+        if ((decryptedData[mon_data_offset + 6] >> 8) & 0x1) {
+            abilitySlotId = 3
+        }
+    }
     var parsedMoveNames = []
     for (let i = 0; i < 4; i++) {
         parsedMoveNames.push(sav_move_names[decryptedData[move_data_offset + i]])

@@ -3568,6 +3568,19 @@ $("#sync-lua").click(() => {
 		}).finally(resetSyncState);
 		return;
 	}
+	// Oxide patch: the OxiDex reads the save file melonDS writes and serves
+	// its party and boxes in this same packed format (savewatch.py), so under
+	// the Oxide title Sync fetches them from it, with no clipboard fallback.
+	if (TITLE == "Platinum Oxide") {
+		fetchLuaBytesOnce("/api/save/packed").then(function (bytes) {
+			applyDsPackedBoxSyncPayload(decodeDsPackedBoxPayload(bytes));
+		}).catch(function (err) {
+			console.error("OxiDex sync failed", err);
+			alert("The OxiDex has no save to sync yet. Set your save file in the OxiDex's " +
+				"Calc tab, above the calculator, then save in game.");
+		}).finally(resetSyncState);
+		return;
+	}
 	if (isDsPackedBoxTitle(TITLE)) {
 		console.log("Fetching DS packed box")
 		fetchDsPackedBoxWithClipboardFallback(LUA_PLATINUM_PACKED_BOX_URL, LUA_UPDATE_MAX_ATTEMPTS, LUA_UPDATE_BASE_RETRY_MS).catch(function (err) {
