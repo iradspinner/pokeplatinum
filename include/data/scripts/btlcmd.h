@@ -247,6 +247,8 @@ ScriptCommand(BTLCMD_ABILITYSTATCHANGE,           BtlCmd_AbilityStatChange)
 ScriptCommand(BTLCMD_CHECKABILITYCHANGE,          BtlCmd_CheckAbilityChange)
 ScriptCommand(BTLCMD_ABILITYSTATCHANGEFROMVAR,    BtlCmd_AbilityStatChangeFromVar)
 ScriptCommand(BTLCMD_TRYPICKPOCKET,               BtlCmd_TryPickpocket)
+ScriptCommand(BTLCMD_TRYTEATIME,                  BtlCmd_TryTeatime)
+ScriptCommand(BTLCMD_TRYSKYDROP,                  BtlCmd_TrySkyDrop)
 
 // clang-format on
 

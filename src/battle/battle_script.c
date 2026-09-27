@@ -326,6 +326,8 @@ static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_AbilityStatChangeFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
+static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10686,6 +10688,135 @@ static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *ba
 }
 
 /**
+ * @brief Oxide: Teatime, whose every battler on the field eats its own held
+ * Berry, whether or not the Berry would trigger by itself, as Pluck eats one.
+ *
+ * Inputs:
+ * 1. The mode: TEATIME_CHECK only asks whether any battler holds a Berry;
+ *    TEATIME_NEXT moves on to the next battler, in speed order, that does,
+ *    and gets its Berry ready.
+ * 2. The distance to jump if there is no (further) battler with a Berry.
+ *
+ * Side effects of TEATIME_NEXT:
+ * - battleCtx->msgBattlerTemp is set to the eater, battleCtx->msgItemTemp to
+ *   its Berry, and battleCtx->scriptTemp to the subscript that enacts the
+ *   Berry's effect on it, or 0 when it has none to enact, as Pluck does.
+ *   Those subscripts take the Berry away themselves; with 0, the script must.
+ * - battleCtx->teatimeNext counts through the battlers and is reset once none
+ *   is left.
+ *
+ * The eater stands in as the attacker while its Berry is read, since
+ * BattleSystem_PluckBerry enacts the Berry on the attacker, and Pluck's own
+ * mark is taken off again, so the Berry counts as its holder's for Belch
+ * and Recycle.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int mode = BattleScript_Read(battleCtx);
+    int jumpNone = BattleScript_Read(battleCtx);
+
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int user = battleCtx->attacker;
+
+    if (mode == TEATIME_CHECK) {
+        for (int i = 0; i < maxBattlers; i++) {
+            if (battleCtx->battleMons[i].curHP && Item_IsBerry(battleCtx->battleMons[i].heldItem)) {
+                return FALSE;
+            }
+        }
+
+        BattleScript_Iter(battleCtx, jumpNone);
+        return FALSE;
+    }
+
+    while (battleCtx->teatimeNext < maxBattlers) {
+        int battler = battleCtx->monSpeedOrder[battleCtx->teatimeNext++];
+
+        if (battleCtx->battleMons[battler].curHP == 0
+            || Item_IsBerry(battleCtx->battleMons[battler].heldItem) == FALSE) {
+            continue;
+        }
+
+        battleCtx->attacker = battler;
+        BOOL eats = BattleSystem_PluckBerry(battleSys, battleCtx, battler);
+        battleCtx->selfTurnFlags[battler].statusFlags &= ~SELF_TURN_FLAG_PLUCK_BERRY;
+        battleCtx->attacker = user;
+
+        if (eats) {
+            battleCtx->msgBattlerTemp = battler;
+            return FALSE;
+        }
+    }
+
+    battleCtx->teatimeNext = 0;
+    BattleScript_Iter(battleCtx, jumpNone);
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: Sky Drop's first turn, lifting the target into the air with
+ * its user.
+ *
+ * Inputs:
+ * 1. The distance to jump if the lift fails.
+ *
+ * The first turn of a two-turn move skips the accuracy and Protect checks, so
+ * this makes the ones the lift needs, and on a failure marks the move with the
+ * reason the missed subscript then names: a target already in the air,
+ * underground or underwater avoids it, one that protected itself says so, and
+ * the rest fail. It fails on an ally, a target behind a substitute or already
+ * held, one of 200 kg or more, under Gravity, and when the user has been
+ * brought down by Smack Down.
+ *
+ * Side effects on success:
+ * - the target is marked as held (OXIDE_MON_FLAG_SKY_DROP_HELD) by the user,
+ *   and is in the air, as a Fly user is, with its moveEffectsTemp marking it
+ *   as vanished so that it is shown again whenever it lands.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int defender = battleCtx->defender;
+
+    if (defender == BATTLER_NONE || defender == battleCtx->attacker || DEFENDING_MON.curHP == 0) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    } else if (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_SEMI_INVULNERABLE;
+    } else if (battleCtx->turnFlags[defender].protecting) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+        battleCtx->msgMoveTemp = MOVE_NONE;
+    } else if (BattleSystem_GetBattlerSide(battleSys, defender) == BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+        || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+        || (DEFENDING_MON.oxideFlags & OXIDE_MON_FLAG_SKY_DROP_HELD)
+        || DEFENDING_MON.weight >= 2000
+        || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+        || (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    } else {
+        DEFENDING_MON.oxideFlags &= ~OXIDE_MON_SKY_DROP_HOLDER;
+        DEFENDING_MON.oxideFlags |= OXIDE_MON_FLAG_SKY_DROP_HELD | (battleCtx->attacker << OXIDE_MON_SKY_DROP_HOLDER_SHIFT);
+        DEFENDING_MON.moveEffectsMask |= MOVE_EFFECT_AIRBORNE;
+        DEFENDING_MON.moveEffectsTemp |= MOVE_EFFECT_AIRBORNE;
+        return FALSE;
+    }
+
+    BattleScript_Iter(battleCtx, jumpOnFail);
+    return FALSE;
+}
+
+/**
  * @brief Oxide: record who ate a Berry that RemoveItem is about to take, for
  * Belch. Every Berry used up in battle leaves through RemoveItem: its holder's
  * own, after its effect, and Pluck, Bug Bite and Fling's too. Those three set
@@ -10922,6 +11053,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->selfTurnFlags[battleCtx->attacker].shellBellDamageDealt;
     case BTLVAR_WAITING_BATTLERS:
         return &battleCtx->waitingBattlers;
+    case BTLVAR_MAGIC_ROOM_TURNS: // Oxide
+        return &battleCtx->magicRoomTurns;
     }
 
     return NULL;

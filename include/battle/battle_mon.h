@@ -121,7 +121,7 @@ typedef struct BattleMon {
     u32 OTId;
 
     u16 heldItem;
-    u16 padding007A; // unused
+    u16 oxideFlags; // Oxide: OXIDE_MON_FLAG_*, from the padding; cleared when the battler leaves the field
 
     u8 timesDamaged;
     u8 trainerMessageFlags;
