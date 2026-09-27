@@ -60,3 +60,8 @@ read, so they are written here too. Each is a standing instruction.
   to any move added later too. Sleep moves, powders, Thunder Wave, Dark Void
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
+- A doc Ian is pointed at gets a clickable link that opens it rendered in his
+  browser, never a bare path (Ian, 2026-09-27): the encounter tool's viewer at
+  `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
+  branch), or the GitHub page of the pushed branch. The `doc-links` skill has
+  the forms.
