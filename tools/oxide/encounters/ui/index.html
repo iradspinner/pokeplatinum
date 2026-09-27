@@ -620,6 +620,8 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span class="metric">Caught <b id="h-caught">0</b></span>
     <button id="clear-caught" title="Clear the caught list">Reset caught</button>
   </div>
+  <button id="commit-edits" hidden disabled><span id="edits-label">Commit my edits</span>
+    <b id="edits-n" class="num">0</b></button>
   <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   <button id="theme-toggle" data-theme-toggle>Dark</button>
 </header>
@@ -1554,6 +1556,7 @@ async function saveTrainer() {
     TRAINERS = null;
     await loadTrainers();
     drawTrainerList();
+    refreshSaves();
   } catch (e) { toast(e.message, true); }
 }
 
@@ -2350,7 +2353,43 @@ async function write(kind, body) {
     toast(DETAIL.changed ? "Saved" : "No change");
     drawMid(); drawRight();
     await refreshList();
+    refreshSaves();
   } catch (e) { toast(e.message, true); select(SEL); }
+}
+
+// ---- Ian's edits -------------------------------------------------------
+// Ian's own copy of the tool, on the branch ian-saves, commits what the tool
+// wrote with "Commit my edits" and pushes it (saves.py). The badge counts
+// what is waiting; a copy running in any other checkout hides the button.
+let SAVES = null;
+async function refreshSaves() {
+  try {
+    SAVES = await api("/api/saves");
+  } catch (e) { return; }
+  const b = $("#commit-edits"), n = SAVES.files.length;
+  b.hidden = !SAVES.enabled;
+  $("#edits-n").textContent = n;
+  b.disabled = !n;
+  b.title = n ? `Commit and push the ${n} file${n > 1 ? "s" : ""} the tool changed: ${SAVES.files.join(", ")}`
+              : "Nothing the tool changed is waiting to be committed";
+}
+
+async function commitEdits() {
+  if (!SAVES || !SAVES.files.length) return;
+  if (!confirm(`Commit and push ${SAVES.files.length} changed file${SAVES.files.length > 1 ? "s" : ""}?\n\n`
+               + SAVES.files.join("\n"))) return;
+  const b = $("#commit-edits");
+  b.disabled = true;
+  $("#edits-label").textContent = "Checking and committing";
+  try {
+    const r = await fetch("/api/saves/commit", { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: "{}" });
+    const j = await r.json();
+    if (!r.ok) toast(j.error || "Not committed", true);
+    else toast(`Committed and pushed as ${j.head}`);
+  } catch (e) { toast(e.message, true); }
+  $("#edits-label").textContent = "Commit my edits";
+  refreshSaves();
 }
 
 async function reloadDetail() {
@@ -2393,6 +2432,7 @@ async function boot() {
     BY_LABEL = new Map(DEX.map(d => [d.label.toLowerCase(), d.value]));
     CAUGHT = new Set(caught.caught);
     drawHeader(); drawList();
+    refreshSaves();
     // A reload, or a link with a place in it, opens where it points.
     const start = history.state || parseHash();
     if (start) await restore(start);
@@ -2555,6 +2595,10 @@ document.querySelectorAll("#list .sortbar button").forEach(b => b.onclick = () =
   drawList();
 });
 $("#clear-caught").onclick = clearCaught;
+$("#commit-edits").onclick = commitEdits;
+// Edits can also come from outside the page (the CLI), so the badge looks
+// again whenever the tab comes back into view.
+window.addEventListener("focus", refreshSaves);
 boot();
 </script>
 </body>
