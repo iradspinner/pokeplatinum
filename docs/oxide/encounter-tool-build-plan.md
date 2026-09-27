@@ -140,12 +140,12 @@ that stay. None blocks anything.
    wait for the balance track's final caps, then `cli evolve` is re-run once
    (section below).
 2. **Ian's one damage roll** in melonDS against the calculator (M8, below).
-3. **From the QA pass on D4 and D5** (M8, below). One item is open: the
-   importer skips the IV scale of a member that names a nature without
-   saying so, and since Cyrus's teams name natures, a line per member in its
-   report ("left alone", as it logs every other divergence) would keep that
-   visible. The importer is shared tooling, so it waits on the Overseer's
-   word on who takes it. The rest is closed. On 2026-09-26 the calculator
+3. **From the QA pass on D4 and D5** (M8, below). Closed. The last item,
+   taken by this track on the Overseer's word on 2026-09-27: the importer
+   skipped the IV scale of a member that names a nature without saying so,
+   and now its report names each such member ("party[i].iv_scale: names
+   NATURE_X, left alone"), as it names every other divergence; the line is
+   report text only and changes no count. On 2026-09-26 the calculator
    took the chart order (Crunch into Bronzor now reads the game's 43 to 51,
    and Cross Chop into Bronzor 80 to 96, not 81), the engine's damage for
    Heavy Slam, Trump Card, Psywave and Super Fang, and the always-critical
@@ -184,14 +184,15 @@ that stay. None blocks anything.
    at their tables, the gift clowns are gone, and Fomantis evolves into
    Lurantis at 34, so the two are one line (238 lines on the list; Route
    224's Fomantis slot became Tropius, and Route 221's Lurantis a cameo, the
-   line's home being Route 208). **R12 is not yet right about it.** It reads
-   gifts from `pokemon-gifts.csv`, a survey of the base ROM of 2026-09-20,
-   its starter list still names Chimchar, and it cannot see the pool draws,
-   which name their species through `SetVar`; so `lint` shows 35 R12 errors,
-   among them lines Oxide does hand over (Scorbunny, Elekid, Flabebe, the
-   Acuity draw). Reading gifts from the tree's scripts, the starters from
-   `scripted.json` and the draws from their `SetVar` lines is the next fix;
-   the gate stays `lint --ignore R12` meanwhile. Some flags are real and are
+   line's home being Route 208). R12 read gifts from `pokemon-gifts.csv`,
+   a survey of the base ROM of 2026-09-20, with a starter list naming
+   Chimchar and no sight of the pool draws, so it showed 35 errors, among
+   them lines Oxide does hand over (Scorbunny, Elekid, Flabebe, the Acuity
+   draw). **Fixed on 2026-09-27** (item 27): it reads Oxide's own sources,
+   and Stark Mountain's hidden Heatran is no source while the room is empty
+   (`UNREACHABLE_SCRIPT_SOURCES`, which the sources catalogue honours too).
+   The gate stays `lint --ignore R12` until Ian has been through the real
+   errors that remain. Some flags are real and are
    for Ian: with the babies at level 10 no wild Pichu or Cleffa is left, only
    Pikachu and Clefairy. Deleting the four spare fossil items is item and
    script work. The Day Care Floette's white flower needs a form record and
@@ -591,6 +592,134 @@ that stay. None blocks anything.
    errors, every one either a pool line drawn nowhere, a proposal, a baby
    now standing as its next stage, or a slot its land-only cost model does
    not price (Squirtle's and Torchic's day finds among them).
+28. **The trainer team builder (Ian, 2026-09-27, through the Overseer).** A
+   new tab: pick any of the 928 trainers, edit the team, and save straight
+   into `res/trainers/data/<stem>.json` in the file's own style, so each
+   change is an ordinary git diff. Scoped here; the build starts on a branch
+   from `oxide` once the landing has moved it.
+
+   **What it edits.** Per Pokemon: species, form, level, the four moves,
+   ability, held item, nature and IVs. Per trainer: the AI flags and whether
+   it is a double battle. Three limits of the format shape the page:
+   - The ability field is 0 (either ordinary slot, by personality), 1 or 2.
+     A trainer Pokemon has no hidden slot: nothing in the trainer code calls
+     the engine's hidden-ability function. Offering it needs 3 in the
+     packer's range, that call in `src/trainer_data.c`, and
+     `calc_trainers.build_trainer` mapping 3 to the calculator's hidden
+     slot, which the balance scorer then follows with no change of its own.
+     The Overseer gave the engine side to the main production agent, after
+     its Metronome branch (2026-09-27); this track maps 3 in
+     `calc_trainers`. Ian's staples answer 9, Drizzle on Pelipper and
+     Drought on Torkoal for trainers only, needs the slot too.
+   - IVs are one number for all six stats: the IV scale, 0 to 255, gives
+     each IV as `scale * 31 / 255`, and the page shows the IV it gives.
+     Per-stat IVs would be a format and engine change, which was not asked.
+   - The packer reads the first member to decide whether a party carries
+     items and moves, so a save keeps every member's keys alike, and giving
+     one member moves on a trainer without them writes them for all.
+
+   The nature field is safe to save already. The packer refuses
+   `NATURE_COUNT` and anything but the 25 names, and null still means
+   rolled (item 3); that landed with `encounter-item3`.
+
+   **How it saves.** Each changed field is replaced in the file's text with
+   `jsonstyle`'s helpers, never a reformat; a first nature goes in with
+   `insert_key`; a changed party size rewrites the party array with
+   `jsonstyle.dumps`, corrected for its one known miss (a two-move list,
+   which the repo writes a move a line). A test loads and saves all 928
+   files unchanged and expects every byte back. On every save:
+   - the trainer lint below runs, and an error refuses the save;
+   - the real packer (`build/tools/dataproc/trainerproc`) packs the tree
+     into a scratch folder, so anything the build would reject shows at once;
+   - the trainer is registered as an intended divergence, or the gate's
+     base-ROM check carries the base ROM's team back.
+
+   `TRAINERS_DIVERGED` is a Python dict in `import_base_rom.py`, and a save
+   cannot append to code cleanly. The proposal is a data file beside it,
+   `docs/oxide/trainers-diverged.json` (trainer, field, reason), which the
+   importer merges into the dict: a first team edit writes `"party"`, and
+   an AI flag or double battle edit writes that field. The importer honours
+   a divergence for party fields and the name today, not for header fields,
+   so it needs that check too. The Overseer gave both to this track
+   (2026-09-27), on two conditions: the importer's dry run stays at every
+   count 0 on the tree, and it is run against the pinned base ROM locally
+   before the branch is handed over.
+
+   The trainer lint, new, since the table linter reads no trainer file.
+   Errors: a species, form, move, item or nature name that does not exist;
+   a level outside 1 to 100; no moves, more than four, or one twice; an IV
+   scale outside 0 to 255; an ability slot the species lacks; a gender its
+   ratio cannot have; a double battle with one Pokemon. One warning: a
+   Choice item, which Ian wants nearly gone (2026-09-26). No move legality
+   flags, as Ian asked.
+
+   **The move lists**, three columns, never merged:
+   1. Oxide's own at the Pokemon's level, read live from
+      `res/pokemon/<species>/data.json` on every request, since the
+      learnset cloud job is rewriting the level-up lists: level-up moves at
+      or below the level (an earlier stage's too, at its levels), then TM
+      and HM, tutor and egg moves. The dex already resolves TM numbers.
+   2. Generation IV legal: Showdown's sources marked 4 (Diamond, Pearl,
+      Platinum, HeartGold and SoulSilver), with earlier stages' moves
+      included as Showdown's validator does. Empty for a species added
+      later (Sinistcha has only Generation 9 sources).
+   3. Latest-generation legal: the newest generation the species has
+      sources in, earlier stages included. Showdown's main file holds
+      Scarlet and Violet (9) and Sword and Shield (8), while Brilliant
+      Diamond and Shining Pearl are in its `gen8bdsp` mod, which a Sinnoh
+      species cut from Scarlet and Violet needs: Bidoof's and Spinda's
+      newest main sources are Generation 7. So a Generation 8 list is Sword
+      and Shield with BDSP. Legends: Arceus is left out, since it has no TMs
+      and learns moves by another system. The Overseer agreed and is
+      telling Ian, who may rule otherwise.
+
+   The source is `pokemon-showdown` 0.11.11 from npm (MIT), whose
+   `dist/data/learnsets.js` (4.0 MB) and `gen8bdsp` mod (0.6 MB) carry all
+   of it. Rather than vendor both files, a generator reads the package once
+   and writes the two lists per species to a vendored JSON, with the
+   package version and the tarball's hash in a README, as `canon_src/`
+   does for the species table.
+
+   **The score**, agreed with the Balance Agent on 2026-09-27. The tool calls
+   its `tools/oxide/balance/teamscore.py` and never scores by itself. Both
+   calls take the trainer's stem and the unsaved team in the file's own
+   shape, place a story fight's variants and tags themselves, and return
+   the split and its cap (the balance track's caps in `fights.json`, which
+   its tests check against the engine); the cap shows beside the team's
+   levels.
+
+   | Call | Where | Time on one core |
+   |---|---|---|
+   | `teamscore.estimate(stem, data_json)` | every edit | 0.01 to 0.06 s warm, 9 s for the first |
+   | `teamscore.score(stem, data_json)` | the "Score it" button | 1 s early in the game, 8 to 20 s late |
+
+   The estimate is the Generation 4 damage formula at the middle roll in
+   plain Python (stats, move power and type, STAB, effectiveness, the
+   attack items and Choice Scarf; no ability, weather or critical hit). It
+   gives safe switch-ins, threat and answers, with safe switch-ins
+   corrected by a line fitted to the full scorer and put on the fight
+   scale. The server warms it at start, in the background. The full score
+   runs pinned to one core in the background and returns the plan's scale
+   and band, the readings, per-Pokemon rows and the reference hacks' same
+   seat. A saved team stales its fight's scores, which the balance track's
+   incremental rescore picks up.
+
+   **Build order**, each piece its own commit with its checks, in a new
+   suite, `test_trainers.py`, which this track adds to the gate's list in
+   `integrate.sh` in the same branch, one line in its style (the
+   Overseer's word, 2026-09-27):
+   1. A read-only tab: the trainer list (name, class, split, cap, the party
+      at a glance, filters by split and class) and a trainer page showing
+      each member as the game builds it, which `calc_trainers` already does.
+   2. The three move lists: the generator, the vendored file and its
+      README, and checks on Bidoof's BDSP list, Sinistcha's empty
+      Generation IV list and a move only an earlier stage learns.
+   3. Editing and saving: the text edits, the round trip over all 928
+      files, the trainer lint, the packer check and the divergence file.
+   4. The score: the estimate on every edit, and "Score it" in the
+      background.
+   5. The hidden slot, once the main production agent's engine change
+      has merged.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
@@ -602,6 +731,21 @@ that stay. None blocks anything.
    species have one: Psyduck, Golduck, Tyranitar, Kyogre, Groudon, Rayquaza,
    Hippopotas, Hippowdon, Snover and Abomasnow. Alolan Ninetales has Snow
    Warning only as its hidden ability, which the rule allows.
+   **Lint R18 (2026-09-27)** holds the hidden slot to the same rule where a
+   script opens it: no gift, egg or scripted battle that takes
+   `FLAG_NEXT_MON_HIDDEN_ABILITY`, and no `GiveHiddenAbility`, may hand over
+   a species whose hidden ability sets or cancels weather, at its own stage
+   or any it evolves into, since the slot stays through evolution. With the
+   natives' hidden abilities imported, eight pick-list species have one:
+   Vulpix and Ninetales (Drought), Politoed (Drizzle, so a hidden-ability
+   Poliwag fails too), Swablu, Altaria, Lickitung and Lickilicky (Cloud
+   Nine), and Alolan Ninetales (Snow Warning). A flag set with no taker
+   before the script jumps, and a species the lint cannot read, fail as
+   well. Only the test kit sets the flag today, so the tree passes; the one
+   Ability Patch stays the only way to such a slot. Seven pick-list species
+   still carry a weather ability in a regular slot (Psyduck, Golduck,
+   Tyranitar, Hippopotas, Hippowdon, Snover and Abomasnow), for the main
+   track's ability pass.
 17. **Swarm, Poke Radar and GBA lists emptied (Ian, 2026-09-26, through the
    Overseer).** The three are turned off and never go in a table. This
    track empties the lists in all 186 tables and makes lint fail on any
