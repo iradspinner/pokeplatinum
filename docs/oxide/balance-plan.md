@@ -26,8 +26,9 @@ levers only caps and map weather move the scores much. Next: the design
 passes, starting with the learnset study (design pass 3). Its parts 1 and
 2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
 the generator waits on Ian's word on them. The scores weigh the stone
-plan now, and the gauntlet proposal (design pass 5) waits on his choice
-of areas and two questions.
+plan now and read Ian's three Lucas and Dawn fights as story fights, and
+the gauntlet proposal (design pass 5) waits on his choice of areas and
+two questions.
 
 ## The target
 
@@ -522,11 +523,13 @@ most threatening Pokemon and its least answered one.
 | Fight | Threat | Answers | Worst threat | Fewest answers |
 |---|---|---|---|---|
 | Barry 1 | 0.00 | 0.96 | 0.00 | 0.92 |
+| Lucas and Dawn 1 | 0.00 | 0.79 | 0.00 | 0.72 |
 | Barry 2 | 0.01 | 0.63 | 0.03 | 0.51 |
 | Roark | 0.14 | 0.16 | 0.42 | 0.04 |
 | Mars 1 | 0.01 | 0.37 | 0.03 | 0.09 |
 | Gardenia | 0.66 | 0.06 | 0.89 | 0.03 |
 | Jupiter 1 | 0.13 | 0.22 | 0.20 | 0.09 |
+| Lucas and Dawn 2 | 0.30 | 0.15 | 0.56 | 0.01 |
 | Fantina | 0.53 | 0.09 | 0.89 | 0.00 |
 | Barry 3 | 0.18 | 0.46 | 0.38 | 0.32 |
 | Maylene | 0.70 | 0.20 | 0.81 | 0.07 |
@@ -543,6 +546,7 @@ most threatening Pokemon and its least answered one.
 | Mars and Jupiter | 0.31 | 0.33 | 0.70 | 0.06 |
 | Cyrus 3 | 0.52 | 0.23 | 0.82 | 0.12 |
 | Volkner | 0.65 | 0.16 | 0.90 | 0.02 |
+| Lucas and Dawn 3 | 0.28 | 0.39 | 0.80 | 0.03 |
 | Barry 6 | 0.54 | 0.24 | 0.92 | 0.05 |
 | Aaron | 0.59 | 0.17 | 0.76 | 0.08 |
 | Bertha | 0.50 | 0.31 | 0.76 | 0.02 |
@@ -795,7 +799,7 @@ outside:
   the partner. For those three, Ian's ratings are the measure.
 
 The bellwethers now sit where Ian put them. Officer Hesperid at Lake
-Valor leaves the second fewest safe switch-ins of all thirty fights,
+Valor leaves the second fewest safe switch-ins of all thirty-three fights,
 where every damage reading had her in the bottom half. Volkner has the
 eighth most answers once baiting counts. Maylene stays near the top on
 damage and eighth on safe switch-ins: her fight is hard, but a player can
@@ -892,15 +896,15 @@ from, so they are kept here in brief.
 
 B6 scores every ordinary trainer the player meets (428, 40 of them
 required) and each story fight under one change at a time
-(`b6.py --report`; all 458 scores verified by a second run). Every fight
+(`b6.py --report`; all 463 scores verified by a second run). Every fight
 is placed on Ian's fight scale by the line above, now 9.4 minus 7.4 times
 safe switch-ins. The line bottoms out at 2.1: a party whose Pokemon never
 double up on a knockout leaves every switch-in safe. So the bottom band
 (0 to 2) is safe switch-ins of 0.94 or more.
 
 **Goal 2, more fights in the middle and fewer at the bottom.** The story
-fights are mostly in the middle already. Five sit at the bottom (Barry 1,
-2 and 3, Mars 1, Jupiter 1), and seven at the top (Byron, Cyrus 3, Flint,
+fights are mostly in the middle already. Six sit at the bottom (Barry 1,
+2 and 3, Mars 1, Jupiter 1, and Lucas and Dawn 1), and seven at the top (Byron, Cyrus 3, Flint,
 Lucian, Cynthia and both Hesperid fights, 7.6 to 8.1). The ordinary
 trainers are where the bottom is:
 
@@ -910,11 +914,11 @@ trainers are where the bottom is:
 | Gardenia | 37 / 8 | 0 / 0 |
 | Fantina | 43 / 3 | 1 / 0 |
 | Maylene | 26 / 1 | 12 / 4 |
-| Wake | 51 / 5 | 21 / 2 |
+| Wake | 51 / 5 | 22 / 2 |
 | Byron | 40 / 1 | 21 / 3 |
 | Candice | 21 / 3 | 9 / 3 |
 | HQ | 3 / 0 | 9 / 0 |
-| Galactic | 19 / 0 | 46 / 0 |
+| Galactic | 19 / 0 | 47 / 0 |
 | Volkner | 14 / 0 | 6 / 1 |
 | League | 9 / 1 | 20 / 1 |
 
@@ -922,7 +926,7 @@ Two ordinary trainers sit at the top. Before Maylene's split, 98 of 99
 ordinary trainers are at the bottom, and only 15 of the 40 required ones
 reach the middle anywhere. Party size decides it: all 166 one-Pokemon
 trainers are at the bottom, 86 of 139 with two, 22 of 105 with three,
-and 7 of 18 with four or more. So the lever for goal 2 is the trainer
+and 7 of 20 with four or more. So the lever for goal 2 is the trainer
 pass's party sizes, and the gauntlets, which string bottom-band fights
 into one test.
 
@@ -949,14 +953,14 @@ named.
 
 **Goal 4, the player's levers.** Caps and map weather are the only strong
 ones. Two cap levels move a split's fights by 0.03 to 0.11 of answers and
-0.03 to 0.08 of safe switch-ins. Pastoria Gym's rain is the biggest
+0.02 to 0.08 of safe switch-ins. Pastoria Gym's rain is the biggest
 single lever: without it Wake's fight gains 0.124 of safe switch-ins.
 Roark's and Bertha's sand cost the player about 0.07 of answers each.
 Items and TMs barely move anything: Life Orb one split earlier is worth
-0.05, Choice Specs 0.04, and every TM or HM one split earlier 0.016 or
-less, 58 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
+0.05, Choice Specs 0.04, and every TM or HM one split earlier 0.014 or
+less, 54 of the 91 nothing at all. So **TM timing is not a difficulty lever** and the
 TM pass can place TMs for variety; and the player's Choice items going
-away costs only 0.026 of answers. No species is the only sure answer to
+away costs only 0.025 of answers. No species is the only sure answer to
 any boss Pokemon, so no fight needs a particular catch. A fully evolved
 species' median share of boss Pokemon surely answered is 0.58; three stand
 far above it: Giratina 0.97, Dusknoir 0.92 and Feraligatr 0.88. Only
@@ -1429,8 +1433,8 @@ on 2026-09-27 (design pass 2).
 
   | Fights | Mean | Worst |
   |---|---|---|
-  | The 28 story fights | 0.27 | 1.0 (Maylene, read too easy) |
-  | All 456 stored fights | 0.13 | |
+  | The 31 story fights | 0.25 | 1.0 (Maylene, read too easy) |
+  | All 461 stored fights | 0.13 | |
 
 Then the design passes, in this order. Each proposal goes to Ian before it
 lands, and each change is re-scored as it lands.
@@ -1748,8 +1752,10 @@ Generation 4 branch, as element 5's abilities will.
    slots 779 to 784, one per starter): Ian designed it for the start of
    Victory Road, and Victory Road 1F's script starts it there now (the main
    track's `3a3472432`, which moved the Battle Zone after the Galactic HQ).
-   Its level 9 and 30 counterparts (787 to 792 on Route 202, 793 to 802 on
-   Route 207) are already where the story passes. **Saturn 2** (Ian,
+   Its level 9 and 30 counterparts (787 to 792 on Route 202; 793, 794 and
+   799 to 802 on Route 207) are already where the story passes. The three
+   are story fights now, Lucas and Dawn 1 to 3, one variant for each
+   starter and rival, and read 2.1, 2.6 and 5.6 on Ian's scale. **Saturn 2** (Ian,
    2026-09-25): Uxie's Trick Room, which always fails under the fight's
    permanent room, and Rhyperior's Choice Scarf, which only makes it move
    later there, are each swapped for something else, chosen in the pass.
@@ -1838,10 +1844,12 @@ Generation 4 branch, as element 5's abilities will.
    gauntlet (the reading assumes not, which is the harder case)? And should
    a gauntlet ask as much as its split's gym, read the same way, or less?
    Ian's level 71 Lucas and Dawn slots (779 to 784), and their level 9 and
-   30 counterparts on Routes 202 and 207 (787 to 802), sit in the trainer
-   data's dummy_ files, which the balance data skips as unused, so B6 has
-   not scored them; the gauntlet reads 779 from its file, and the data
-   layer's next change reads every dummy_ slot a map battles.
+   30 counterparts on Routes 202 and 207, sit in the trainer data's
+   dummy_ files, which the balance data skipped as unused. It now reads
+   every dummy_ slot a map battles, except the Maids' training battles:
+   the three Lucas and Dawn fights are story fights, and Krystal (Route
+   214, Wake's split) and Officer Argo (Mt. Coronet, the Galactic split)
+   are ordinary trainers, both in the middle band.
 
 Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before

@@ -51,12 +51,19 @@ def check_set_counts(results):
 
 def check_oxide_members(results):
     """Oxide is read per trainer, so every party member of every real
-    trainer arrives, duplicates of a species included."""
+    trainer arrives, duplicates of a species included. A dummy_ slot is real
+    when a map battles it and it is not a Maid's training battle (Ian's
+    Lucas and Dawn fights, Krystal, Officer Argo)."""
     want = 0
     for path in glob.glob(os.path.join(data.ROOT, "res", "trainers", "data", "*.json")):
-        if not os.path.basename(path).startswith("dummy_"):
-            with open(path, encoding="utf-8") as f:
-                want += len(json.load(f)["party"])
+        stem = os.path.basename(path)[:-len(".json")]
+        with open(path, encoding="utf-8") as f:
+            raw = json.load(f)
+        if stem.startswith("dummy_") and (
+                not {"TRAINER_" + stem.upper(), stem[len("dummy_"):]} & data.battled()
+                or raw.get("class") == "TRAINER_CLASS_MAID"):
+            continue
+        want += len(raw["party"])
     got = sum(len(t["party"]) for t in data.oxide_trainers().values())
     results.append(("oxide: every party member of every real trainer is read",
                     got == want, f"{got} of {want}"))
@@ -72,13 +79,20 @@ def check_fights_resolve(results):
     for hack in ["oxide"] + PLATINUM_HACKS:
         word_ok = lambda f, n: (_word(f) in n or (hack == "oxide" and _word(f) == "Cedric"
                                                   and "Barry" in n)
-                                or (f["key"] == "mars_jupiter" and ("Mars" in n or "Jupiter" in n)))
+                                or (f["key"] == "mars_jupiter" and ("Mars" in n or "Jupiter" in n))
+                                or (f["key"].startswith("lucas_dawn")
+                                    and ("Lucas" in n or "Dawn" in n)))
+        # A hack whose override lists no trainers has no seat for that fight
+        # by design (Oxide's Lucas and Dawn fights, in slots the hacks leave
+        # unused or give to their League).
+        seated = [f for f in data.fights()["fights"]
+                  if data.fights()["overrides"].get(hack, {}).get(f["key"]) != []]
         missing = []
-        for fight in data.fights()["fights"]:
+        for fight in seated:
             ts = data.fight_trainers(hack, fight)
             if not ts or not all(word_ok(fight, t["name"]) for t in ts):
                 missing.append(fight["key"])
-        results.append((f"{hack}: all {len(data.fights()['fights'])} story fights resolve",
+        results.append((f"{hack}: all {len(seated)} story fights it seats resolve",
                         not missing, f"unresolved: {missing}" if missing else ""))
 
 

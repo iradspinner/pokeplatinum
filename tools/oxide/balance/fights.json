@@ -7,20 +7,31 @@
         "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78
     },
     "overrides": {
+        "vanilla": {
+            "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them.",
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": []
+        },
+        "renegade": {
+            "_note": "As vanilla: no Lucas and Dawn fights.",
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": []
+        },
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
         "redux": {
             "_note": "Redux swapped the two Galactic HQ slots. Its League is at level 100 in several sets (787 to 791, 866 to 870, 874 to 883); 787 to 791 are taken as the first run and the rest as rematches. Unverified until Redux's scripts or docs confirm it.",
             "cyrus_2": [409], "saturn_2": [403],
-            "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790]
+            "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": []
         },
         "redux_hc": {
             "_note": "Same data layout as redux.",
             "cyrus_2": [409], "saturn_2": [403],
-            "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790]
+            "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": []
         },
         "kaizo": {
             "_note": "Kaizo's League is at level 100 in Platinum's rematch slots, after an 84 Volkner; the first-fight slots hold vanilla's unchanged sets.",
-            "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870]
+            "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870],
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": []
         }
     },
     "milestones": {
@@ -58,6 +69,9 @@
     "fights": [
         {"key": "barry_1", "label": "Barry 1", "split": "Roark", "sheet_ace": null,
          "trainers": ["TRAINER_RIVAL_ROUTE_201_PIPLUP", "TRAINER_RIVAL_ROUTE_201_TURTWIG", "TRAINER_RIVAL_ROUTE_201_CHIMCHAR"]},
+        {"key": "lucas_dawn_1", "label": "Lucas and Dawn 1", "split": "Roark", "sheet_ace": null,
+         "note": "Ian's, on Route 202: Dawn or Lucas, one slot for each starter, kept in dummy_ files.",
+         "trainers": ["TRAINER_DUMMY_787", "TRAINER_DUMMY_788", "TRAINER_DUMMY_789", "TRAINER_DUMMY_790", "TRAINER_DUMMY_791", "TRAINER_DUMMY_792"]},
         {"key": "barry_2", "label": "Barry 2", "split": "Roark", "sheet_ace": 10,
          "note": "The tree's ace is 11, one above the sheet.",
          "trainers": ["TRAINER_RIVAL_ROUTE_203_PIPLUP", "TRAINER_RIVAL_ROUTE_203_TURTWIG", "TRAINER_RIVAL_ROUTE_203_CHIMCHAR"]},
@@ -69,6 +83,9 @@
          "trainers": ["TRAINER_LEADER_GARDENIA"]},
         {"key": "jupiter_1", "label": "Jupiter 1", "split": "Fantina", "sheet_ace": 27,
          "trainers": ["TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING"]},
+        {"key": "lucas_dawn_2", "label": "Lucas and Dawn 2", "split": "Fantina", "sheet_ace": null,
+         "note": "Ian's, on Route 207, met on the way from Eterna to Hearthome (its aces are 30); the route's own split is Roark's, for its lower part.",
+         "trainers": ["TRAINER_DUMMY_793", "TRAINER_DUMMY_794", "TRAINER_DUMMY_799", "TRAINER_DUMMY_800", "TRAINER_DUMMY_801", "TRAINER_DUMMY_802"]},
         {"key": "fantina", "label": "Fantina", "split": "Fantina", "sheet_ace": 33,
          "trainers": ["TRAINER_LEADER_FANTINA"]},
         {"key": "barry_3", "label": "Barry 3", "split": "Maylene", "sheet_ace": 33,
@@ -104,6 +121,9 @@
          "trainers": ["TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD"]},
         {"key": "volkner", "label": "Volkner", "split": "Volkner", "sheet_ace": 62,
          "trainers": ["TRAINER_LEADER_VOLKNER"]},
+        {"key": "lucas_dawn_3", "label": "Lucas and Dawn 3", "split": "League", "sheet_ace": null,
+         "note": "Ian's, at the start of Victory Road (Victory Road 1F's script, since the main track's 3a3472432).",
+         "trainers": ["TRAINER_DUMMY_779", "TRAINER_DUMMY_780", "TRAINER_DUMMY_781", "TRAINER_DUMMY_782", "TRAINER_DUMMY_783", "TRAINER_DUMMY_784"]},
         {"key": "barry_6", "label": "Barry 6", "split": "League", "sheet_ace": 71,
          "trainers": ["TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP", "TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG", "TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR"]},
         {"key": "aaron", "label": "Aaron", "split": "League", "sheet_ace": 72,

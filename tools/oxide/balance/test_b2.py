@@ -29,15 +29,19 @@ LATE_VISITS = 20
 
 
 def check_coverage(results):
-    """Every story fight has metrics in Oxide and every Platinum-based hack,
-    and every milestone hack has its 13 gym and League seats."""
+    """Every story fight has metrics in Oxide and every Platinum-based hack
+    that seats it (an override listing no trainers means the hack has no
+    such fight, as with Oxide's Lucas and Dawn), and every milestone hack has
+    its 13 gym and League seats."""
     rows, unresolved = M.all_metrics()
-    n = len(data.fights()["fights"])
-    short = {h: len(rows[h]) for h in M.PLATINUM if len(rows[h]) != n}
+    spec = data.fights()
+    seats = lambda h: sum(1 for f in spec["fights"]
+                          if h == "oxide" or spec["overrides"].get(h, {}).get(f["key"]) != [])
+    short = {h: len(rows[h]) for h in M.PLATINUM if len(rows[h]) != seats(h)}
     short.update({h: len(rows[h]) for h in data.fights()["milestones"]
                   if not h.startswith("_") and len(rows[h]) != 13})
     results.append(("every fight is scored in every hack", not short, str(short) if short else
-                    f"{n} fights in {len(M.PLATINUM)} Platinum-based hacks, 13 seats in 4 others"))
+                    f"{seats('oxide')} fights in Oxide and each Platinum-based hack's own, 13 seats in 4 others"))
     species = {h: sorted(u["species"]) for h, u in unresolved.items() if u["species"]}
     moves = {h: u["moves"] for h, u in unresolved.items() if u["moves"]}
     results.append(("every species and move resolves, bar one Unbound move",

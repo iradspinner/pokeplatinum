@@ -324,8 +324,8 @@ def check_scores(results, blob):
     unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
                for e in saved[k]["errors"]} - UNMODELLED
     ok = not missing and not boss_errors and not unknown
-    results.append(("all 28 fights scored; no boss move fails, and the player's failures "
-                    "are the unmodelled moves", ok,
+    results.append((f"all {len(keys)} fights scored; no boss move fails, and the player's "
+                    "failures are the unmodelled moves", ok,
                     f"missing {missing}, boss errors {boss_errors}, "
                     f"other failures {sorted(unknown)}" if not ok else
                     f"{len(keys)} fights, pools {min(sizes.values())} to {max(sizes.values())}"))

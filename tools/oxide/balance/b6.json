@@ -61937,6 +61937,9641 @@
    "split": "Fantina",
    "verified": true
   },
+  "lucas_dawn_1": {
+   "base": {
+    "answers_bait": 0.954,
+    "answers_duel": 0.954,
+    "cover": 1.0,
+    "safe": 1.0,
+    "threat_chance": 0.0
+   },
+   "changes": [
+    [
+     "Piplup (b0.0) without Pound",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Piplup (b0.0) without Bubble",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Turtwig (b1.0) without Tackle",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Turtwig (b1.0) without Absorb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Chimchar (b2.0) without Scratch",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Chimchar (b2.0) without Ember",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Piplup (b3.0) without Pound",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Piplup (b3.0) without Bubble",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Turtwig (b4.0) without Tackle",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Turtwig (b4.0) without Absorb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Chimchar (b5.0) without Scratch",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Chimchar (b5.0) without Ember",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ]
+   ],
+   "fingerprint": "0f2a14934f49a677e0a8",
+   "label": "Lucas and Dawn 1",
+   "levers": {
+    "Draco Plate from Gardenia to Roark": {
+     "delta": null,
+     "kind": "item one split earlier",
+     "touched": 0
+    },
+    "Earth Plate from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 3
+    },
+    "HM01 Cut from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 23
+    },
+    "Insect Plate from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 11
+    },
+    "Miracle Seed from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 12
+    },
+    "Roark's cap +2": {
+     "delta": {
+      "answers_bait": 0.024,
+      "answers_duel": 0.024,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "cap",
+     "touched": 107
+    },
+    "Roark's cap -2": {
+     "delta": {
+      "answers_bait": -0.095,
+      "answers_duel": -0.095,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.002
+     },
+     "kind": "cap",
+     "touched": 91
+    },
+    "Silver Powder from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 11
+    },
+    "TM01 Focus Punch from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM02 Dragon Claw from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 2
+    },
+    "TM04 Calm Mind from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM09 Bullet Seed from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 8
+    },
+    "TM12 Taunt from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM24 Thunderbolt from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 17
+    },
+    "TM31 Brick Break from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 21
+    },
+    "TM46 Thief from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 34
+    },
+    "TM67 Recycle from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM69 Rock Polish from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM70 Flash from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM78 Captivate from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM82 Sleep Talk from Gardenia to Roark": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM86 Grass Knot from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 18
+    },
+    "TM88 Pluck from Gardenia to Roark": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 9
+    },
+    "the player's Choice items gone": {
+     "delta": null,
+     "kind": "item",
+     "touched": 0
+    }
+   },
+   "mons": [
+    {
+     "answers_bait": 0.981,
+     "item": null,
+     "key": "b0.0",
+     "one_hit": 0,
+     "species": "Piplup",
+     "sure": 102,
+     "threat_chance": 0.0
+    },
+    {
+     "answers_bait": 0.942,
+     "item": null,
+     "key": "b1.0",
+     "one_hit": 0,
+     "species": "Turtwig",
+     "sure": 98,
+     "threat_chance": 0.0
+    },
+    {
+     "answers_bait": 0.942,
+     "item": null,
+     "key": "b2.0",
+     "one_hit": 0,
+     "species": "Chimchar",
+     "sure": 98,
+     "threat_chance": 0.0
+    },
+    {
+     "answers_bait": 0.981,
+     "item": null,
+     "key": "b3.0",
+     "one_hit": 0,
+     "species": "Piplup",
+     "sure": 102,
+     "threat_chance": 0.0
+    },
+    {
+     "answers_bait": 0.942,
+     "item": null,
+     "key": "b4.0",
+     "one_hit": 0,
+     "species": "Turtwig",
+     "sure": 98,
+     "threat_chance": 0.0
+    },
+    {
+     "answers_bait": 0.933,
+     "item": null,
+     "key": "b5.0",
+     "one_hit": 0,
+     "species": "Chimchar",
+     "sure": 97,
+     "threat_chance": 0.0
+    }
+   ],
+   "overlaps": [],
+   "species": {
+    "SPECIES_ABRA": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BARBOACH": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BEAUTIFLY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BIBAREL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BIDOOF": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BLIPBUG": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BOUNSWEET": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRAIXEN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BUDEW": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BUIZEL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BUNEARY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CASCOON": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARMANDER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARMELEON": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHINCHOU": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLOBBOPUS": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORPHISH": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORSOLA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORVISQUIRE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DEWPIDER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOLLIV": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOTTLER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUBWOOL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSTOX": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FENNEKIN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FINNEON": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLETCHINDER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLETCHLING": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FROAKIE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FROGADIER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FURRET": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GEODUDE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLAMEOW": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLIGAR": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLDEEN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRUBBIN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HOUNDOUR": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KADABRA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRABBY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRICKETOT": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRICKETUNE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LIEPARD": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOMBRE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOTAD": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUXIO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MACHOP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAGBY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAKUHITA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MARSHTOMP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MINCCINO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MUDKIP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MURKROW": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NACLI": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_F": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_M": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORINA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORINO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NOSEPASS": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NUZLEAF": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ONIX": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PACHIRISU": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PAWMI": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PHANPY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PIKIPEK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PIPLUP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLIWAG": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PONYTA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POOCHYENA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PRINPLUP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PSYDUCK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PURRLOIN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_RABOOT": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_REMORAID": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_RHYHORN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ROOKIDEE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SANDYGAST": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SCORBUNNY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEEDOT": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SENTRET": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SERVINE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEWADDLE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHELLOS": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHINX": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHROOMISH": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SILCOON": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SKITTY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SMOLIV": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SNIVY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SQUIRTLE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STARAVIA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STARLY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STEENEE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SURSKIT": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TENTACOOL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TRUMBEAK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TURTWIG": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULLABY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULPIX": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WARTORTLE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WINGULL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WOOLOO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WOOPER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WURMPLE": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ZUBAT": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 6,
+     "safe_in": 6,
+     "variants": 6
+    }
+   },
+   "split": "Roark",
+   "verified": true
+  },
+  "lucas_dawn_2": {
+   "base": {
+    "answers_bait": 0.484,
+    "answers_duel": 0.484,
+    "cover": 1.0,
+    "safe": 0.924,
+    "threat_chance": 0.286
+   },
+   "changes": [
+    [
+     "Lopunny (b0.0) out",
+     {
+      "answers_bait": -0.002,
+      "answers_duel": -0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.003
+     }
+    ],
+    [
+     "Lopunny (b0.0) without Jump Kick",
+     {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.008
+     }
+    ],
+    [
+     "Lopunny (b0.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b0.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Vaporeon (b0.1) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.002
+     }
+    ],
+    [
+     "Vaporeon (b0.1) without Water Pulse",
+     {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.009
+     }
+    ],
+    [
+     "Vaporeon (b0.1) without its Splash Plate",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Electabuzz (b0.2) out",
+     {
+      "answers_bait": 0.008,
+      "answers_duel": 0.008,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.017
+     }
+    ],
+    [
+     "Electabuzz (b0.2) without Thunder Punch",
+     {
+      "answers_bait": 0.017,
+      "answers_duel": 0.017,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.021
+     }
+    ],
+    [
+     "Electabuzz (b0.2) without Low Kick",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Electabuzz (b0.2) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Grotle (b0.3) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.011
+     }
+    ],
+    [
+     "Grotle (b0.3) without Razor Leaf",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Grotle (b0.3) without Headbutt",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Grotle (b0.3) without its Quick Claw",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lopunny (b1.0) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.006
+     }
+    ],
+    [
+     "Lopunny (b1.0) without Jump Kick",
+     {
+      "answers_bait": 0.009,
+      "answers_duel": 0.009,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.009
+     }
+    ],
+    [
+     "Lopunny (b1.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b1.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Jolteon (b1.1) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.006
+     }
+    ],
+    [
+     "Jolteon (b1.1) without Shock Wave",
+     {
+      "answers_bait": 0.015,
+      "answers_duel": 0.015,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.018
+     }
+    ],
+    [
+     "Jolteon (b1.1) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Jynx (b1.2) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.011,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Jynx (b1.2) without Icy Wind",
+     {
+      "answers_bait": 0.017,
+      "answers_duel": 0.017,
+      "cover": 0.0,
+      "safe": 0.011,
+      "threat_chance": -0.017
+     }
+    ],
+    [
+     "Jynx (b1.2) without its Icicle Plate",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Monferno (b1.3) out",
+     {
+      "answers_bait": -0.006,
+      "answers_duel": -0.006,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": 0.003
+     }
+    ],
+    [
+     "Monferno (b1.3) without Mach Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Monferno (b1.3) without Flame Wheel",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.008
+     }
+    ],
+    [
+     "Monferno (b1.3) without its Muscle Band",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Lopunny (b2.0) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.001
+     }
+    ],
+    [
+     "Lopunny (b2.0) without Jump Kick",
+     {
+      "answers_bait": 0.009,
+      "answers_duel": 0.009,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.009
+     }
+    ],
+    [
+     "Lopunny (b2.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b2.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Glaceon (b2.1) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Glaceon (b2.1) without Icy Wind",
+     {
+      "answers_bait": 0.008,
+      "answers_duel": 0.008,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": -0.011
+     }
+    ],
+    [
+     "Glaceon (b2.1) without its Bright Powder",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmar (b2.2) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.013,
+      "threat_chance": -0.012
+     }
+    ],
+    [
+     "Magmar (b2.2) without Feint Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmar (b2.2) without Fire Punch",
+     {
+      "answers_bait": 0.01,
+      "answers_duel": 0.01,
+      "cover": 0.0,
+      "safe": 0.013,
+      "threat_chance": -0.018
+     }
+    ],
+    [
+     "Magmar (b2.2) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Prinplup (b2.3) out",
+     {
+      "answers_bait": -0.006,
+      "answers_duel": -0.006,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Prinplup (b2.3) without Metal Claw",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Prinplup (b2.3) without Bubble Beam",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Prinplup (b2.3) without Fury Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Prinplup (b2.3) without its Shell Bell",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lopunny (b3.0) out",
+     {
+      "answers_bait": -0.001,
+      "answers_duel": -0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.003
+     }
+    ],
+    [
+     "Lopunny (b3.0) without Jump Kick",
+     {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.008
+     }
+    ],
+    [
+     "Lopunny (b3.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b3.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Vaporeon (b3.1) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Vaporeon (b3.1) without Water Pulse",
+     {
+      "answers_bait": 0.008,
+      "answers_duel": 0.008,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.01
+     }
+    ],
+    [
+     "Vaporeon (b3.1) without its Splash Plate",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Electabuzz (b3.2) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.014
+     }
+    ],
+    [
+     "Electabuzz (b3.2) without Thunder Punch",
+     {
+      "answers_bait": 0.015,
+      "answers_duel": 0.015,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.019
+     }
+    ],
+    [
+     "Electabuzz (b3.2) without Low Kick",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Electabuzz (b3.2) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Grotle (b3.3) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.01
+     }
+    ],
+    [
+     "Grotle (b3.3) without Razor Leaf",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Grotle (b3.3) without Headbutt",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Grotle (b3.3) without its Quick Claw",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lopunny (b4.0) out",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.005
+     }
+    ],
+    [
+     "Lopunny (b4.0) without Jump Kick",
+     {
+      "answers_bait": 0.009,
+      "answers_duel": 0.009,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.009
+     }
+    ],
+    [
+     "Lopunny (b4.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b4.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Jolteon (b4.1) out",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.004
+     }
+    ],
+    [
+     "Jolteon (b4.1) without Shock Wave",
+     {
+      "answers_bait": 0.014,
+      "answers_duel": 0.014,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.017
+     }
+    ],
+    [
+     "Jolteon (b4.1) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Jynx (b4.2) out",
+     {
+      "answers_bait": -0.001,
+      "answers_duel": -0.001,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Jynx (b4.2) without Icy Wind",
+     {
+      "answers_bait": 0.015,
+      "answers_duel": 0.015,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": -0.018
+     }
+    ],
+    [
+     "Jynx (b4.2) without its Icicle Plate",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.004
+     }
+    ],
+    [
+     "Monferno (b4.3) out",
+     {
+      "answers_bait": -0.006,
+      "answers_duel": -0.006,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.002
+     }
+    ],
+    [
+     "Monferno (b4.3) without Mach Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Monferno (b4.3) without Flame Wheel",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.008
+     }
+    ],
+    [
+     "Monferno (b4.3) without its Muscle Band",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Lopunny (b5.0) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.001
+     }
+    ],
+    [
+     "Lopunny (b5.0) without Jump Kick",
+     {
+      "answers_bait": 0.009,
+      "answers_duel": 0.009,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.009
+     }
+    ],
+    [
+     "Lopunny (b5.0) without Quick Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lopunny (b5.0) without its Lum Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Glaceon (b5.1) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": 0.002
+     }
+    ],
+    [
+     "Glaceon (b5.1) without Icy Wind",
+     {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": -0.01
+     }
+    ],
+    [
+     "Glaceon (b5.1) without its Bright Powder",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmar (b5.2) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.013,
+      "threat_chance": -0.012
+     }
+    ],
+    [
+     "Magmar (b5.2) without Feint Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmar (b5.2) without Fire Punch",
+     {
+      "answers_bait": 0.01,
+      "answers_duel": 0.01,
+      "cover": 0.0,
+      "safe": 0.013,
+      "threat_chance": -0.018
+     }
+    ],
+    [
+     "Magmar (b5.2) without its Oran Berry",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Prinplup (b5.3) out",
+     {
+      "answers_bait": -0.008,
+      "answers_duel": -0.008,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.008
+     }
+    ],
+    [
+     "Prinplup (b5.3) without Metal Claw",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Prinplup (b5.3) without Bubble Beam",
+     {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.004
+     }
+    ],
+    [
+     "Prinplup (b5.3) without Fury Attack",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Prinplup (b5.3) without its Shell Bell",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ]
+   ],
+   "fingerprint": "7973f4f8bb150913b38b",
+   "label": "Lucas and Dawn 2",
+   "levers": {
+    "Fantina's cap +2": {
+     "delta": {
+      "answers_bait": 0.098,
+      "answers_duel": 0.098,
+      "cover": 0.0,
+      "safe": 0.031,
+      "threat_chance": -0.06
+     },
+     "kind": "cap",
+     "touched": 266
+    },
+    "Fantina's cap -2": {
+     "delta": {
+      "answers_bait": -0.119,
+      "answers_duel": -0.119,
+      "cover": 0.0,
+      "safe": -0.036,
+      "threat_chance": 0.066
+     },
+     "kind": "cap",
+     "touched": 246
+    },
+    "Fist Plate from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 28
+    },
+    "HM05 Defog from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "Mind Plate from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 15
+    },
+    "Odd Incense from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 15
+    },
+    "Silk Scarf from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 66
+    },
+    "Spell Tag from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item one split earlier",
+     "touched": 17
+    },
+    "TM13 Ice Beam from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.01,
+      "answers_duel": 0.01,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 77
+    },
+    "TM14 Blizzard from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 75
+    },
+    "TM15 Hyper Beam from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 68
+    },
+    "TM16 Light Screen from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM17 Protect from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM19 Giga Drain from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 34
+    },
+    "TM20 Safeguard from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM21 Frustration from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.018,
+      "answers_duel": 0.018,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 178
+    },
+    "TM22 Solar Beam from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 53
+    },
+    "TM25 Thunder from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 40
+    },
+    "TM27 Return from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.018,
+      "answers_duel": 0.018,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 179
+    },
+    "TM29 Psychic from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 39
+    },
+    "TM33 Reflect from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM34 Shock Wave from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 49
+    },
+    "TM35 Flamethrower from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 33
+    },
+    "TM42 Facade from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 120
+    },
+    "TM44 Rest from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM47 Steel Wing from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 14
+    },
+    "TM51 Roost from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM52 Focus Blast from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 23
+    },
+    "TM54 False Swipe from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM58 Endure from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM60 Drain Punch from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 14
+    },
+    "TM63 Embargo from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM64 Explosion from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM66 Payback from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.007,
+      "answers_duel": 0.007,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 32
+    },
+    "TM68 Giga Impact from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.008,
+      "answers_duel": 0.008,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 64
+    },
+    "TM74 Gyro Ball from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 9
+    },
+    "TM75 Swords Dance from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM83 Natural Gift from Maylene to Fantina": {
+     "delta": null,
+     "kind": "TM one split earlier",
+     "touched": 0
+    },
+    "TM89 U-turn from Maylene to Fantina": {
+     "delta": {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "TM one split earlier",
+     "touched": 20
+    },
+    "the player's Choice items gone": {
+     "delta": null,
+     "kind": "item",
+     "touched": 0
+    }
+   },
+   "mons": [
+    {
+     "answers_bait": 0.49,
+     "item": "Lum Berry",
+     "key": "b0.0",
+     "one_hit": 10,
+     "species": "Lopunny",
+     "sure": 125,
+     "threat_chance": 0.2
+    },
+    {
+     "answers_bait": 0.444,
+     "item": "Splash Plate",
+     "key": "b0.1",
+     "one_hit": 26,
+     "species": "Vaporeon",
+     "sure": 114,
+     "threat_chance": 0.21
+    },
+    {
+     "answers_bait": 0.315,
+     "item": "Oran Berry",
+     "key": "b0.2",
+     "one_hit": 51,
+     "species": "Electabuzz",
+     "sure": 80,
+     "threat_chance": 0.56
+    },
+    {
+     "answers_bait": 0.553,
+     "item": "Quick Claw",
+     "key": "b0.3",
+     "one_hit": 13,
+     "species": "Grotle",
+     "sure": 137,
+     "threat_chance": 0.043
+    },
+    {
+     "answers_bait": 0.471,
+     "item": "Lum Berry",
+     "key": "b1.0",
+     "one_hit": 10,
+     "species": "Lopunny",
+     "sure": 120,
+     "threat_chance": 0.229
+    },
+    {
+     "answers_bait": 0.47,
+     "item": "Oran Berry",
+     "key": "b1.1",
+     "one_hit": 25,
+     "species": "Jolteon",
+     "sure": 121,
+     "threat_chance": 0.428
+    },
+    {
+     "answers_bait": 0.507,
+     "item": "Icicle Plate",
+     "key": "b1.2",
+     "one_hit": 42,
+     "species": "Jynx",
+     "sure": 128,
+     "threat_chance": 0.411
+    },
+    {
+     "answers_bait": 0.642,
+     "item": "Muscle Band",
+     "key": "b1.3",
+     "one_hit": 23,
+     "species": "Monferno",
+     "sure": 165,
+     "threat_chance": 0.272
+    },
+    {
+     "answers_bait": 0.451,
+     "item": "Lum Berry",
+     "key": "b2.0",
+     "one_hit": 11,
+     "species": "Lopunny",
+     "sure": 115,
+     "threat_chance": 0.246
+    },
+    {
+     "answers_bait": 0.376,
+     "item": "Bright Powder",
+     "key": "b2.1",
+     "one_hit": 29,
+     "species": "Glaceon",
+     "sure": 73,
+     "threat_chance": 0.26
+    },
+    {
+     "answers_bait": 0.458,
+     "item": "Oran Berry",
+     "key": "b2.2",
+     "one_hit": 60,
+     "species": "Magmar",
+     "sure": 117,
+     "threat_chance": 0.479
+    },
+    {
+     "answers_bait": 0.594,
+     "item": "Shell Bell",
+     "key": "b2.3",
+     "one_hit": 7,
+     "species": "Prinplup",
+     "sure": 152,
+     "threat_chance": 0.097
+    },
+    {
+     "answers_bait": 0.47,
+     "item": "Lum Berry",
+     "key": "b3.0",
+     "one_hit": 10,
+     "species": "Lopunny",
+     "sure": 120,
+     "threat_chance": 0.2
+    },
+    {
+     "answers_bait": 0.43,
+     "item": "Splash Plate",
+     "key": "b3.1",
+     "one_hit": 26,
+     "species": "Vaporeon",
+     "sure": 110,
+     "threat_chance": 0.241
+    },
+    {
+     "answers_bait": 0.348,
+     "item": "Oran Berry",
+     "key": "b3.2",
+     "one_hit": 42,
+     "species": "Electabuzz",
+     "sure": 88,
+     "threat_chance": 0.502
+    },
+    {
+     "answers_bait": 0.558,
+     "item": "Quick Claw",
+     "key": "b3.3",
+     "one_hit": 13,
+     "species": "Grotle",
+     "sure": 139,
+     "threat_chance": 0.07
+    },
+    {
+     "answers_bait": 0.455,
+     "item": "Lum Berry",
+     "key": "b4.0",
+     "one_hit": 10,
+     "species": "Lopunny",
+     "sure": 116,
+     "threat_chance": 0.236
+    },
+    {
+     "answers_bait": 0.481,
+     "item": "Oran Berry",
+     "key": "b4.1",
+     "one_hit": 20,
+     "species": "Jolteon",
+     "sure": 124,
+     "threat_chance": 0.397
+    },
+    {
+     "answers_bait": 0.566,
+     "item": "Icicle Plate",
+     "key": "b4.2",
+     "one_hit": 32,
+     "species": "Jynx",
+     "sure": 143,
+     "threat_chance": 0.424
+    },
+    {
+     "answers_bait": 0.658,
+     "item": "Muscle Band",
+     "key": "b4.3",
+     "one_hit": 23,
+     "species": "Monferno",
+     "sure": 169,
+     "threat_chance": 0.292
+    },
+    {
+     "answers_bait": 0.454,
+     "item": "Lum Berry",
+     "key": "b5.0",
+     "one_hit": 11,
+     "species": "Lopunny",
+     "sure": 115,
+     "threat_chance": 0.246
+    },
+    {
+     "answers_bait": 0.38,
+     "item": "Bright Powder",
+     "key": "b5.1",
+     "one_hit": 29,
+     "species": "Glaceon",
+     "sure": 69,
+     "threat_chance": 0.22
+    },
+    {
+     "answers_bait": 0.428,
+     "item": "Oran Berry",
+     "key": "b5.2",
+     "one_hit": 60,
+     "species": "Magmar",
+     "sure": 110,
+     "threat_chance": 0.479
+    },
+    {
+     "answers_bait": 0.629,
+     "item": "Shell Bell",
+     "key": "b5.3",
+     "one_hit": 11,
+     "species": "Prinplup",
+     "sure": 161,
+     "threat_chance": 0.113
+    }
+   ],
+   "overlaps": [
+    [
+     "Glaceon and Magmar",
+     34
+    ],
+    [
+     "Jynx and Monferno",
+     19
+    ],
+    [
+     "Jolteon and Jynx",
+     17
+    ],
+    [
+     "Electabuzz and Grotle",
+     14
+    ],
+    [
+     "Lopunny and Magmar",
+     10
+    ],
+    [
+     "Lopunny and Electabuzz",
+     8
+    ]
+   ],
+   "species": {
+    "SPECIES_ABRA": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_AIPOM": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ALOLAN_NINETALES": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AMBIPOM": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AMPHAROS": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ARAQUANID": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AZUMARILL": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AZURILL": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BARBOACH": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BEAUTIFLY": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BIBAREL": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BIDOOF": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BLIPBUG": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BONSLY": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BOUNSWEET": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_BRAIXEN": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRELOOM": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRIONNE": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRONZONG": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRONZOR": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BUDEW": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_BUIZEL": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_BUNEARY": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BURMY": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CARBINK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CARNIVINE": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CARVANHA": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_CASCOON": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CERULEDGE": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHANSEY": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARCADET": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARJABUG": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARMANDER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARMELEON": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHERRIM": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHERUBI": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_CHIMECHO": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHINCHOU": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHINGLING": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLAMPERL": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLEFABLE": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLEFAIRY": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLOBBOPUS": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_COMBEE": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_COMBUSKEN": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORPHISH": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORSOLA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORVISQUIRE": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CRAWDAUNT": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DARTRIX": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DELCATTY": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DEWPIDER": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOLLIV": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DONPHAN": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOTTLER": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUBWOOL": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSKULL": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSTOX": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DWEBBLE": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_EEVEE": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_EMOLGA": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FEEBAS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_FENNEKIN": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FINNEON": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLAAFFY": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLETCHINDER": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_FLETCHLING": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_FLOATZEL": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FOMANTIS": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_FROAKIE": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_FROGADIER": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FROSMOTH": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FURRET": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GABITE": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GALVANTULA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GARDEVOIR": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GASTLY": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GASTRODON": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GEODUDE": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_GIBLE": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLACEON": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLAMEOW": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLIGAR": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLIMMET": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLBAT": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLDEEN": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLDUCK": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOREBYSS": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRANBULL": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRAPPLOCT": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRAVELER": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GROTLE": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GROVYLE": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRUBBIN": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HAPPINY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HARIYAMA": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HAUNTER": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HERACROSS": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HONCHKROW": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HOOTHOOT": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HOPPIP": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_HOUNDOOM": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HOUNDOUR": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_HUNTAIL": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_JOLTIK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_JUMPLUFF": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KADABRA": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KINGLER": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KIRLIA": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KLEFKI": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRABBY": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRICKETOT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRICKETUNE": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LANTURN": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LARVITAR": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_LEAFEON": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LEAVANNY": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LIEPARD": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LITTEN": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LITWICK": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOMBRE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOPUNNY": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOTAD": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUMINEON": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUXIO": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUXRAY": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MACHOKE": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MACHOP": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAGBY": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAGMAR": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAGMORTAR": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAKUHITA": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAREEP": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MARILL": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MARSHTOMP": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MASQUERAIN": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MEDITITE": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MIENFOO": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MIGHTYENA": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MILOTIC": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MINCCINO": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MINUN": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MISDREAVUS": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MISMAGIUS": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MOTHIM": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MUDKIP": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MUNCHLAX": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MURKROW": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_NACLI": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NACLSTACK": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDOKING": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDOQUEEN": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_F": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_M": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORINA": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORINO": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NOCTOWL": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NOSEPASS": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NUZLEAF": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_OCTILLERY": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ONIX": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ORBEETLE": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PACHIRISU": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PAWMI": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PAWMO": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PELIPPER": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PHANPY": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PIKACHU": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PIKIPEK": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_PILOSWINE": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PIPLUP": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PLUSLE": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLIWAG": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_POLIWHIRL": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLTEAGEIST": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PONYTA": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POOCHYENA": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_POPPLIO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PRINPLUP": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PROBOPASS": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PSYDUCK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PUPITAR": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_PURRLOIN": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_QUAGSIRE": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_RABOOT": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_RALTS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_REMORAID": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_RHYHORN": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_ROOKIDEE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_ROSELIA": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ROTOM": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ROWLET": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SALANDIT": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SALAZZLE": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SANDYGAST": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SCORBUNNY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEAKING": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEEDOT": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SEEL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SENTRET": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_SERVINE": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEWADDLE": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SHARPEDO": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHELLOS": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHIFTRY": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHINX": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHROOMISH": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SILCOON": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SINISTCHA": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SINISTEA": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SKIPLOOM": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SKITTY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SMOLIV": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SNIVY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SNOM": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SNORUNT": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SNOVER": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SNUBBULL": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SQUIRTLE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STARAVIA": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_STARLY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_STEELIX": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STEENEE": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_STUNKY": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SUDOWOODO": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SURSKIT": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SWABLU": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SWADLOON": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SWINUB": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SYLVEON": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TENTACOOL": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TENTACRUEL": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOGEPI": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOGETIC": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TORCHIC": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TORRACAT": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TORTERRA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOUCANNON": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TREECKO": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_TROPIUS": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TRUMBEAK": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 24,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_TSAREENA": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TURTWIG": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_UMBREON": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VESPIQUEN": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULLABY": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULPIX": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WAILMER": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WARTORTLE": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WHISCASH": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WINGULL": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WOOLOO": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WOOPER": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WORMADAM": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WURMPLE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_YAMASK": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 24,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ZUBAT": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 24,
+     "safe_in": 2,
+     "variants": 6
+    }
+   },
+   "split": "Fantina",
+   "verified": true
+  },
+  "lucas_dawn_3": {
+   "base": {
+    "answers_bait": 0.488,
+    "answers_duel": 0.488,
+    "cover": 1.0,
+    "safe": 0.515,
+    "threat_chance": 0.27
+   },
+   "changes": [
+    [
+     "Nidoqueen (b0.0) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.01,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Nidoqueen (b0.0) without Earthquake",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Nidoqueen (b0.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b0.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b0.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b0.1) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.008
+     }
+    ],
+    [
+     "Umbreon (b0.1) without Payback",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b0.1) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b0.2) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.032,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Tangrowth (b0.2) without Power Whip",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.02,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b0.2) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b0.2) without Rock Slide",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b0.2) without its Life Orb",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.014,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b0.3) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.002
+     }
+    ],
+    [
+     "Lickilicky (b0.3) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b0.3) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lickilicky (b0.3) without Ice Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b0.3) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b0.3) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b0.4) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.023,
+      "threat_chance": -0.013
+     }
+    ],
+    [
+     "Magmortar (b0.4) without Lava Plume",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Magmortar (b0.4) without Thunderbolt",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b0.4) without Focus Blast",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b0.4) without Psychic",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b0.4) without its Wise Glasses",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Empoleon (b0.5) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.001
+     }
+    ],
+    [
+     "Empoleon (b0.5) without Surf",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.004
+     }
+    ],
+    [
+     "Empoleon (b0.5) without Blizzard",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Empoleon (b0.5) without its Chople Berry",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b1.0) out",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.007,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Nidoqueen (b1.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b1.0) without Earthquake",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Nidoqueen (b1.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b1.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b1.1) out",
+     {
+      "answers_bait": -0.003,
+      "answers_duel": -0.003,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": 0.007
+     }
+    ],
+    [
+     "Slowbro (b1.1) without Surf",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b1.1) without Psychic",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b1.1) without its Life Orb",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b1.2) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.007
+     }
+    ],
+    [
+     "Umbreon (b1.2) without Payback",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b1.2) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b1.3) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.003
+     }
+    ],
+    [
+     "Lickilicky (b1.3) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b1.3) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b1.3) without Ice Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b1.3) without Earthquake",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b1.3) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b1.4) out",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.019,
+      "threat_chance": -0.014
+     }
+    ],
+    [
+     "Magmortar (b1.4) without Lava Plume",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Magmortar (b1.4) without Thunderbolt",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b1.4) without Focus Blast",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b1.4) without Psychic",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b1.4) without its Wise Glasses",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Torterra (b1.5) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.026,
+      "threat_chance": 0.001
+     }
+    ],
+    [
+     "Torterra (b1.5) without Wood Hammer",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Torterra (b1.5) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Torterra (b1.5) without Stone Edge",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Torterra (b1.5) without its Yache Berry",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b2.0) out",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.006
+     }
+    ],
+    [
+     "Nidoqueen (b2.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b2.0) without Earthquake",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Nidoqueen (b2.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b2.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b2.1) out",
+     {
+      "answers_bait": -0.002,
+      "answers_duel": -0.002,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": 0.006
+     }
+    ],
+    [
+     "Slowbro (b2.1) without Surf",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b2.1) without Psychic",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b2.1) without Ice Beam",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b2.1) without its Wise Glasses",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b2.2) out",
+     {
+      "answers_bait": -0.004,
+      "answers_duel": -0.004,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.007
+     }
+    ],
+    [
+     "Umbreon (b2.2) without Payback",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b2.2) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b2.3) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.026,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Tangrowth (b2.3) without Power Whip",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.018,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b2.3) without Earthquake",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b2.3) without Rock Slide",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b2.3) without its Life Orb",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.01,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b2.4) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.002
+     }
+    ],
+    [
+     "Lickilicky (b2.4) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b2.4) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lickilicky (b2.4) without Ice Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b2.4) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b2.4) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Infernape (b2.5) out",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.011,
+      "threat_chance": -0.017
+     }
+    ],
+    [
+     "Infernape (b2.5) without Flare Blitz",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Infernape (b2.5) without Close Combat",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Infernape (b2.5) without U-turn",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Infernape (b2.5) without its Passho Berry",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b3.0) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": -0.006
+     }
+    ],
+    [
+     "Nidoqueen (b3.0) without Earthquake",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Nidoqueen (b3.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b3.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b3.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b3.1) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.007
+     }
+    ],
+    [
+     "Umbreon (b3.1) without Payback",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b3.1) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b3.2) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.028,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Tangrowth (b3.2) without Power Whip",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.018,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b3.2) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b3.2) without Rock Slide",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b3.2) without its Life Orb",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.012,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b3.3) out",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.004
+     }
+    ],
+    [
+     "Lickilicky (b3.3) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b3.3) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b3.3) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b3.3) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b3.3) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b3.4) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.019,
+      "threat_chance": -0.013
+     }
+    ],
+    [
+     "Magmortar (b3.4) without Lava Plume",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Magmortar (b3.4) without Thunderbolt",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b3.4) without Focus Blast",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b3.4) without Psychic",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b3.4) without its Wise Glasses",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Empoleon (b3.5) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.001
+     }
+    ],
+    [
+     "Empoleon (b3.5) without Surf",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Empoleon (b3.5) without Blizzard",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Empoleon (b3.5) without its Chople Berry",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b4.0) out",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.009,
+      "threat_chance": -0.006
+     }
+    ],
+    [
+     "Nidoqueen (b4.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b4.0) without Earthquake",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.004
+     }
+    ],
+    [
+     "Nidoqueen (b4.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Nidoqueen (b4.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b4.1) out",
+     {
+      "answers_bait": -0.003,
+      "answers_duel": -0.003,
+      "cover": 0.0,
+      "safe": 0.008,
+      "threat_chance": 0.008
+     }
+    ],
+    [
+     "Slowbro (b4.1) without Surf",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b4.1) without Psychic",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b4.1) without its Life Orb",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b4.2) out",
+     {
+      "answers_bait": -0.005,
+      "answers_duel": -0.005,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Umbreon (b4.2) without Payback",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b4.2) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b4.3) out",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.003
+     }
+    ],
+    [
+     "Lickilicky (b4.3) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b4.3) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lickilicky (b4.3) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b4.3) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b4.3) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b4.4) out",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.016,
+      "threat_chance": -0.011
+     }
+    ],
+    [
+     "Magmortar (b4.4) without Lava Plume",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Magmortar (b4.4) without Thunderbolt",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b4.4) without Focus Blast",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Magmortar (b4.4) without Psychic",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Magmortar (b4.4) without its Wise Glasses",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Torterra (b4.5) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.024,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Torterra (b4.5) without Wood Hammer",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.01,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Torterra (b4.5) without Earthquake",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.007,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Torterra (b4.5) without Stone Edge",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Torterra (b4.5) without its Yache Berry",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b5.0) out",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.008,
+      "threat_chance": -0.003
+     }
+    ],
+    [
+     "Nidoqueen (b5.0) without Poison Jab",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b5.0) without Earthquake",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.006,
+      "threat_chance": -0.002
+     }
+    ],
+    [
+     "Nidoqueen (b5.0) without Ice Punch",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Nidoqueen (b5.0) without its Black Sludge",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b5.1) out",
+     {
+      "answers_bait": -0.002,
+      "answers_duel": -0.002,
+      "cover": 0.0,
+      "safe": 0.008,
+      "threat_chance": 0.006
+     }
+    ],
+    [
+     "Slowbro (b5.1) without Surf",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b5.1) without Psychic",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b5.1) without Ice Beam",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Slowbro (b5.1) without its Wise Glasses",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Umbreon (b5.2) out",
+     {
+      "answers_bait": -0.004,
+      "answers_duel": -0.004,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": 0.008
+     }
+    ],
+    [
+     "Umbreon (b5.2) without Payback",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.001,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Umbreon (b5.2) without its Leftovers",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b5.3) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.026,
+      "threat_chance": 0.009
+     }
+    ],
+    [
+     "Tangrowth (b5.3) without Power Whip",
+     {
+      "answers_bait": 0.005,
+      "answers_duel": 0.005,
+      "cover": 0.0,
+      "safe": 0.017,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b5.3) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.003,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b5.3) without Rock Slide",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.005,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Tangrowth (b5.3) without its Life Orb",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.01,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b5.4) out",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b5.4) without Body Slam",
+     {
+      "answers_bait": 0.001,
+      "answers_duel": 0.001,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b5.4) without Power Whip",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.004,
+      "threat_chance": -0.001
+     }
+    ],
+    [
+     "Lickilicky (b5.4) without Ice Punch",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b5.4) without Earthquake",
+     {
+      "answers_bait": 0.002,
+      "answers_duel": 0.002,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Lickilicky (b5.4) without its Toxic Orb",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Infernape (b5.5) out",
+     {
+      "answers_bait": 0.006,
+      "answers_duel": 0.006,
+      "cover": 0.0,
+      "safe": 0.013,
+      "threat_chance": -0.018
+     }
+    ],
+    [
+     "Infernape (b5.5) without Flare Blitz",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.007,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Infernape (b5.5) without Close Combat",
+     {
+      "answers_bait": 0.004,
+      "answers_duel": 0.004,
+      "cover": 0.0,
+      "safe": 0.002,
+      "threat_chance": -0.005
+     }
+    ],
+    [
+     "Infernape (b5.5) without U-turn",
+     {
+      "answers_bait": 0.0,
+      "answers_duel": 0.0,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ],
+    [
+     "Infernape (b5.5) without its Passho Berry",
+     {
+      "answers_bait": 0.003,
+      "answers_duel": 0.003,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     }
+    ]
+   ],
+   "fingerprint": "4e344d0a6e11a97709fc",
+   "label": "Lucas and Dawn 3",
+   "levers": {
+    "League's cap +2": {
+     "delta": {
+      "answers_bait": 0.041,
+      "answers_duel": 0.041,
+      "cover": 0.0,
+      "safe": 0.038,
+      "threat_chance": -0.02
+     },
+     "kind": "cap",
+     "touched": 435
+    },
+    "League's cap -2": {
+     "delta": {
+      "answers_bait": -0.045,
+      "answers_duel": -0.045,
+      "cover": 0.0,
+      "safe": -0.04,
+      "threat_chance": 0.023
+     },
+     "kind": "cap",
+     "touched": 435
+    },
+    "the player's Choice items gone": {
+     "delta": {
+      "answers_bait": -0.017,
+      "answers_duel": -0.017,
+      "cover": 0.0,
+      "safe": 0.0,
+      "threat_chance": 0.0
+     },
+     "kind": "item",
+     "touched": 164
+    }
+   },
+   "mons": [
+    {
+     "answers_bait": 0.469,
+     "item": "Black Sludge",
+     "key": "b0.0",
+     "one_hit": 105,
+     "species": "Nidoqueen",
+     "sure": 203,
+     "threat_chance": 0.441
+    },
+    {
+     "answers_bait": 0.643,
+     "item": "Leftovers",
+     "key": "b0.1",
+     "one_hit": 28,
+     "species": "Umbreon",
+     "sure": 274,
+     "threat_chance": 0.06
+    },
+    {
+     "answers_bait": 0.438,
+     "item": "Life Orb",
+     "key": "b0.2",
+     "one_hit": 213,
+     "species": "Tangrowth",
+     "sure": 187,
+     "threat_chance": 0.008
+    },
+    {
+     "answers_bait": 0.468,
+     "item": "Toxic Orb",
+     "key": "b0.3",
+     "one_hit": 90,
+     "species": "Lickilicky",
+     "sure": 199,
+     "threat_chance": 0.223
+    },
+    {
+     "answers_bait": 0.395,
+     "item": "Wise Glasses",
+     "key": "b0.4",
+     "one_hit": 232,
+     "species": "Magmortar",
+     "sure": 173,
+     "threat_chance": 0.673
+    },
+    {
+     "answers_bait": 0.46,
+     "item": "Chople Berry",
+     "key": "b0.5",
+     "one_hit": 64,
+     "species": "Empoleon",
+     "sure": 194,
+     "threat_chance": 0.268
+    },
+    {
+     "answers_bait": 0.499,
+     "item": "Black Sludge",
+     "key": "b1.0",
+     "one_hit": 105,
+     "species": "Nidoqueen",
+     "sure": 216,
+     "threat_chance": 0.352
+    },
+    {
+     "answers_bait": 0.582,
+     "item": "Life Orb",
+     "key": "b1.1",
+     "one_hit": 140,
+     "species": "Slowbro",
+     "sure": 251,
+     "threat_chance": 0.051
+    },
+    {
+     "answers_bait": 0.643,
+     "item": "Leftovers",
+     "key": "b1.2",
+     "one_hit": 28,
+     "species": "Umbreon",
+     "sure": 274,
+     "threat_chance": 0.06
+    },
+    {
+     "answers_bait": 0.465,
+     "item": "Toxic Orb",
+     "key": "b1.3",
+     "one_hit": 109,
+     "species": "Lickilicky",
+     "sure": 196,
+     "threat_chance": 0.164
+    },
+    {
+     "answers_bait": 0.377,
+     "item": "Wise Glasses",
+     "key": "b1.4",
+     "one_hit": 232,
+     "species": "Magmortar",
+     "sure": 165,
+     "threat_chance": 0.673
+    },
+    {
+     "answers_bait": 0.301,
+     "item": "Yache Berry",
+     "key": "b1.5",
+     "one_hit": 232,
+     "species": "Torterra",
+     "sure": 129,
+     "threat_chance": 0.239
+    },
+    {
+     "answers_bait": 0.518,
+     "item": "Black Sludge",
+     "key": "b2.0",
+     "one_hit": 101,
+     "species": "Nidoqueen",
+     "sure": 224,
+     "threat_chance": 0.453
+    },
+    {
+     "answers_bait": 0.565,
+     "item": "Wise Glasses",
+     "key": "b2.1",
+     "one_hit": 147,
+     "species": "Slowbro",
+     "sure": 243,
+     "threat_chance": 0.087
+    },
+    {
+     "answers_bait": 0.643,
+     "item": "Leftovers",
+     "key": "b2.2",
+     "one_hit": 28,
+     "species": "Umbreon",
+     "sure": 274,
+     "threat_chance": 0.06
+    },
+    {
+     "answers_bait": 0.42,
+     "item": "Life Orb",
+     "key": "b2.3",
+     "one_hit": 226,
+     "species": "Tangrowth",
+     "sure": 179,
+     "threat_chance": 0.008
+    },
+    {
+     "answers_bait": 0.454,
+     "item": "Toxic Orb",
+     "key": "b2.4",
+     "one_hit": 92,
+     "species": "Lickilicky",
+     "sure": 191,
+     "threat_chance": 0.223
+    },
+    {
+     "answers_bait": 0.374,
+     "item": "Passho Berry",
+     "key": "b2.5",
+     "one_hit": 189,
+     "species": "Infernape",
+     "sure": 164,
+     "threat_chance": 0.8
+    },
+    {
+     "answers_bait": 0.463,
+     "item": "Black Sludge",
+     "key": "b3.0",
+     "one_hit": 105,
+     "species": "Nidoqueen",
+     "sure": 200,
+     "threat_chance": 0.441
+    },
+    {
+     "answers_bait": 0.647,
+     "item": "Leftovers",
+     "key": "b3.1",
+     "one_hit": 18,
+     "species": "Umbreon",
+     "sure": 276,
+     "threat_chance": 0.041
+    },
+    {
+     "answers_bait": 0.489,
+     "item": "Life Orb",
+     "key": "b3.2",
+     "one_hit": 213,
+     "species": "Tangrowth",
+     "sure": 204,
+     "threat_chance": 0.008
+    },
+    {
+     "answers_bait": 0.496,
+     "item": "Toxic Orb",
+     "key": "b3.3",
+     "one_hit": 90,
+     "species": "Lickilicky",
+     "sure": 210,
+     "threat_chance": 0.153
+    },
+    {
+     "answers_bait": 0.405,
+     "item": "Wise Glasses",
+     "key": "b3.4",
+     "one_hit": 198,
+     "species": "Magmortar",
+     "sure": 177,
+     "threat_chance": 0.642
+    },
+    {
+     "answers_bait": 0.448,
+     "item": "Chople Berry",
+     "key": "b3.5",
+     "one_hit": 79,
+     "species": "Empoleon",
+     "sure": 187,
+     "threat_chance": 0.242
+    },
+    {
+     "answers_bait": 0.493,
+     "item": "Black Sludge",
+     "key": "b4.0",
+     "one_hit": 105,
+     "species": "Nidoqueen",
+     "sure": 213,
+     "threat_chance": 0.494
+    },
+    {
+     "answers_bait": 0.586,
+     "item": "Life Orb",
+     "key": "b4.1",
+     "one_hit": 140,
+     "species": "Slowbro",
+     "sure": 253,
+     "threat_chance": 0.08
+    },
+    {
+     "answers_bait": 0.647,
+     "item": "Leftovers",
+     "key": "b4.2",
+     "one_hit": 18,
+     "species": "Umbreon",
+     "sure": 276,
+     "threat_chance": 0.041
+    },
+    {
+     "answers_bait": 0.457,
+     "item": "Toxic Orb",
+     "key": "b4.3",
+     "one_hit": 90,
+     "species": "Lickilicky",
+     "sure": 192,
+     "threat_chance": 0.223
+    },
+    {
+     "answers_bait": 0.405,
+     "item": "Wise Glasses",
+     "key": "b4.4",
+     "one_hit": 198,
+     "species": "Magmortar",
+     "sure": 177,
+     "threat_chance": 0.642
+    },
+    {
+     "answers_bait": 0.308,
+     "item": "Yache Berry",
+     "key": "b4.5",
+     "one_hit": 232,
+     "species": "Torterra",
+     "sure": 133,
+     "threat_chance": 0.336
+    },
+    {
+     "answers_bait": 0.524,
+     "item": "Black Sludge",
+     "key": "b5.0",
+     "one_hit": 123,
+     "species": "Nidoqueen",
+     "sure": 229,
+     "threat_chance": 0.352
+    },
+    {
+     "answers_bait": 0.593,
+     "item": "Wise Glasses",
+     "key": "b5.1",
+     "one_hit": 127,
+     "species": "Slowbro",
+     "sure": 255,
+     "threat_chance": 0.083
+    },
+    {
+     "answers_bait": 0.647,
+     "item": "Leftovers",
+     "key": "b5.2",
+     "one_hit": 18,
+     "species": "Umbreon",
+     "sure": 276,
+     "threat_chance": 0.041
+    },
+    {
+     "answers_bait": 0.46,
+     "item": "Life Orb",
+     "key": "b5.3",
+     "one_hit": 226,
+     "species": "Tangrowth",
+     "sure": 193,
+     "threat_chance": 0.008
+    },
+    {
+     "answers_bait": 0.46,
+     "item": "Toxic Orb",
+     "key": "b5.4",
+     "one_hit": 92,
+     "species": "Lickilicky",
+     "sure": 195,
+     "threat_chance": 0.262
+    },
+    {
+     "answers_bait": 0.343,
+     "item": "Passho Berry",
+     "key": "b5.5",
+     "one_hit": 189,
+     "species": "Infernape",
+     "sure": 151,
+     "threat_chance": 0.8
+    }
+   ],
+   "overlaps": [
+    [
+     "Nidoqueen and Lickilicky",
+     392
+    ],
+    [
+     "Nidoqueen and Tangrowth",
+     350
+    ],
+    [
+     "Tangrowth and Lickilicky",
+     310
+    ],
+    [
+     "Lickilicky and Magmortar",
+     298
+    ],
+    [
+     "Magmortar and Torterra",
+     284
+    ],
+    [
+     "Tangrowth and Magmortar",
+     269
+    ]
+   ],
+   "species": {
+    "SPECIES_ABOMASNOW": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ABRA": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ABSOL": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AIPOM": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_ALAKAZAM": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ALOLAN_NINETALES": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ALOMOMOLA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ALTARIA": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AMBIPOM": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AMPHAROS": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ANNIHILAPE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ARAQUANID": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ARBOLIVA": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ARMAROUGE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AZELF": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AZUMARILL": {
+     "alone": 0,
+     "answered": 29,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_AZURILL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BARBOACH": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BEAUTIFLY": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BIBAREL": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BIDOOF": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BLASTOISE": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BLAZIKEN": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_BLIPBUG": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BLISSEY": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_BONSLY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BOUNSWEET": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BRAIXEN": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BRELOOM": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_BRIONNE": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRONZONG": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BRONZOR": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_BUDEW": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BUIZEL": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BUNEARY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_BURMY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CARBINK": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CARNIVINE": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CARVANHA": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CASCOON": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CASTFORM": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CERULEDGE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHANDELURE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_CHANSEY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHARCADET": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHARIZARD": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARJABUG": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHARMANDER": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHARMELEON": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHATOT": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_CHERRIM": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHERUBI": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHIMECHO": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CHINCHOU": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CHINGLING": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_CINCCINO": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CINDERACE": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_CLAMPERL": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_CLEFABLE": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CLEFAIRY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_CLOBBOPUS": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CLOYSTER": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_COFAGRIGUS": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_COMBEE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_COMBUSKEN": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CORPHISH": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CORSOLA": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORVIKNIGHT": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CORVISQUIRE": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CRAWDAUNT": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CROAGUNK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_CROBAT": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_CROCONAW": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_CRUSTLE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DARTRIX": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_DECIDUEYE": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DELCATTY": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DELIBIRD": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_DELPHOX": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DEWGONG": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_DEWPIDER": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_DHELMISE": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOLLIV": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 1,
+     "variants": 6
+    },
+    "SPECIES_DONPHAN": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DOTTLER": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DRAPION": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DRIFBLIM": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DRIFLOON": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_DUBWOOL": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSCLOPS": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSKNOIR": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSKULL": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_DUSTOX": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_DWEBBLE": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_EEVEE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ELECTABUZZ": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ELECTIVIRE": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ELEKID": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_EMOLGA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_EMPOLEON": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ESPEON": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FEEBAS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FENNEKIN": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FERALIGATR": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FERROSEED": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FERROTHORN": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FINNEON": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLAAFFY": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLAREON": {
+     "alone": 0,
+     "answered": 29,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLETCHINDER": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLETCHLING": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLOATZEL": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_FLOETTE": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FLORAGATO": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLORGES": {
+     "alone": 0,
+     "answered": 29,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FLYGON": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_FOMANTIS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FRILLISH": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FROAKIE": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FROGADIER": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FROSLASS": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_FROSMOTH": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_FURRET": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GABITE": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GALARIAN_MR_MIME": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GALARIAN_RAPIDASH": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_GALARIAN_WEEZING": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GALVANTULA": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GARCHOMP": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GARDEVOIR": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GARGANACL": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GASTLY": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GASTRODON": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GENGAR": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_GEODUDE": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GIBLE": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GIRAFARIG": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GIRATINA": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLACEON": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLALIE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLAMEOW": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GLIGAR": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GLIMMET": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GLIMMORA": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GLISCOR": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLBAT": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLDEEN": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GOLDUCK": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOLEM": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GOODRA": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOOMY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GOREBYSS": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_GOTHITA": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_GOTHITELLE": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GOTHORITA": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRANBULL": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRAPPLOCT": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GRAVELER": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GRENINJA": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GROTLE": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_GROVYLE": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GRUBBIN": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_GYARADOS": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HAKAMO_O": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_HAPPINY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HARIYAMA": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HAUNTER": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HAWLUCHA": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HERACROSS": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HIPPOPOTAS": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HIPPOWDON": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HONCHKROW": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_HOOTHOOT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HOPPIP": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HORSEA": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HOUNDOOM": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HOUNDOUR": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_HUNTAIL": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_INCINEROAR": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_JANGMO_O": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_JELLICENT": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_JOLTEON": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_JOLTIK": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_JUMPLUFF": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_JYNX": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_KADABRA": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_KINGDRA": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KINGLER": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_KIRLIA": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_KLEAVOR": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KLEFKI": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_KOFFING": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_KOMMO_O": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_KRABBY": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_KRICKETOT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_KRICKETUNE": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LAMPENT": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LANTURN": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LAPRAS": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LARVESTA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LARVITAR": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LEAFEON": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LEAVANNY": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LICKILICKY": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LICKITUNG": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LIEPARD": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LITTEN": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LITWICK": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LOMBRE": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LOPUNNY": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LOTAD": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LUCARIO": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_LUDICOLO": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUMINEON": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUNATONE": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LURANTIS": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_LUVDISC": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LUXIO": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_LUXRAY": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MACHAMP": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MACHOKE": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_MACHOP": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGBY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGCARGO": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_MAGIKARP": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGMAR": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGMORTAR": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAGNEMITE": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGNETON": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAGNEZONE": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MAKUHITA": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAMOSWINE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MANAPHY": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MANDIBUZZ": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MANKEY": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MANTINE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MANTYKE": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_MAREANIE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MAREEP": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MARILL": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MARSHTOMP": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MASQUERAIN": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_MAWILE": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MEDICHAM": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MEDITITE": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MEOWSCARADA": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_METAGROSS": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_METANG": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MIENFOO": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MIENSHAO": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_MIGHTYENA": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MILOTIC": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MIME_JR": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MINCCINO": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MINUN": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MISDREAVUS": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_MISMAGIUS": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_MOTHIM": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MR_MIME": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MR_RIME": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MUDKIP": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_MUNCHLAX": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_MURKROW": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NACLI": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NACLSTACK": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NIDOKING": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDOQUEEN": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_F": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NIDORAN_M": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NIDORINA": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_NIDORINO": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_NINETALES": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NOCTOWL": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_NOSEPASS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_NUZLEAF": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_OCTILLERY": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ONIX": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ORBEETLE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PACHIRISU": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_PALOSSAND": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PAWMI": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PAWMO": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PAWMOT": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_PELIPPER": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PHANPY": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PIKACHU": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PIKIPEK": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PILOSWINE": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 36,
+     "safe_in": 1,
+     "variants": 6
+    },
+    "SPECIES_PIPLUP": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PLUSLE": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLITOED": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLIWAG": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_POLIWHIRL": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_POLIWRATH": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_POLTEAGEIST": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PONYTA": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_POOCHYENA": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_POPPLIO": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PRIMARINA": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PRIMEAPE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PRINPLUP": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PROBOPASS": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_PSYDUCK": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PUPITAR": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PURRLOIN": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_PURUGLY": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_QUAGSIRE": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_QWILFISH": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_RABOOT": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RAICHU": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RALTS": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RAPIDASH": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_RELICANTH": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_REMORAID": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RHYDON": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RHYHORN": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_RHYPERIOR": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_RIOLU": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ROOKIDEE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ROSELIA": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_ROSERADE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ROTOM": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_ROWLET": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SALANDIT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SALAZZLE": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SANDYGAST": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SCEPTILE": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SCIZOR": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SCORBUNNY": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SCYTHER": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SEADRA": {
+     "alone": 0,
+     "answered": 21,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SEAKING": {
+     "alone": 0,
+     "answered": 20,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEALEO": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEEDOT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SEEL": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SENTRET": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SERPERIOR": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SERVINE": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SEWADDLE": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SHARPEDO": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SHELLDER": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SHELLOS": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_SHIFTRY": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SHINX": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SHROOMISH": {
+     "alone": 0,
+     "answered": 5,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SILCOON": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SINISTCHA": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SINISTEA": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SKARMORY": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SKIPLOOM": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SKITTY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SKORUPI": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SKUNTANK": {
+     "alone": 0,
+     "answered": 18,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SLIGGOO": {
+     "alone": 0,
+     "answered": 13,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SLOWBRO": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SLOWPOKE": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_SLUGMA": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SMOLIV": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SMOOCHUM": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNEASEL": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNIVY": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNOM": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNORLAX": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SNORUNT": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNOVER": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SNUBBULL": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SOLROCK": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SPHEAL": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SPIRITOMB": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SQUIRTLE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_STARAPTOR": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STARAVIA": {
+     "alone": 0,
+     "answered": 19,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_STARLY": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_STARMIE": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STARYU": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_STEELIX": {
+     "alone": 0,
+     "answered": 32,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_STEENEE": {
+     "alone": 0,
+     "answered": 2,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_STUNKY": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SUDOWOODO": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SUICUNE": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SURSKIT": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SWABLU": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SWADLOON": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_SWAMPERT": {
+     "alone": 0,
+     "answered": 29,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_SWINUB": {
+     "alone": 0,
+     "answered": 8,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_SYLVEON": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TALONFLAME": {
+     "alone": 0,
+     "answered": 27,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_TANGELA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_TANGROWTH": {
+     "alone": 0,
+     "answered": 31,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TENTACOOL": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TENTACRUEL": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOGEDEMARU": {
+     "alone": 0,
+     "answered": 12,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TOGEKISS": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOGEPI": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TOGETIC": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TORCHIC": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TORRACAT": {
+     "alone": 0,
+     "answered": 15,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TORTERRA": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOTODILE": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_TOUCANNON": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOXAPEX": {
+     "alone": 0,
+     "answered": 9,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TOXICROAK": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 4,
+     "variants": 6
+    },
+    "SPECIES_TRAPINCH": {
+     "alone": 0,
+     "answered": 6,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TREECKO": {
+     "alone": 0,
+     "answered": 3,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TROPIUS": {
+     "alone": 0,
+     "answered": 23,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TRUMBEAK": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_TSAREENA": {
+     "alone": 0,
+     "answered": 36,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TURTONATOR": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_TURTWIG": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 5,
+     "variants": 6
+    },
+    "SPECIES_TYRANITAR": {
+     "alone": 0,
+     "answered": 26,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_UMBREON": {
+     "alone": 0,
+     "answered": 11,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_UNOWN": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_VAPOREON": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VESPIQUEN": {
+     "alone": 0,
+     "answered": 35,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VIBRAVA": {
+     "alone": 0,
+     "answered": 22,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_VIKAVOLT": {
+     "alone": 0,
+     "answered": 30,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VOLCARONA": {
+     "alone": 0,
+     "answered": 34,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULLABY": {
+     "alone": 0,
+     "answered": 16,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_VULPIX": {
+     "alone": 0,
+     "answered": 7,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_WAILMER": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WAILORD": {
+     "alone": 0,
+     "answered": 29,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WALREIN": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WARTORTLE": {
+     "alone": 0,
+     "answered": 10,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WEAVILE": {
+     "alone": 0,
+     "answered": 33,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WEEZING": {
+     "alone": 0,
+     "answered": 25,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WHISCASH": {
+     "alone": 0,
+     "answered": 24,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_WINGULL": {
+     "alone": 0,
+     "answered": 4,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_WOOLOO": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 3,
+     "variants": 6
+    },
+    "SPECIES_WOOPER": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_WORMADAM": {
+     "alone": 0,
+     "answered": 14,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_WURMPLE": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_YAMASK": {
+     "alone": 0,
+     "answered": 1,
+     "faced": 36,
+     "safe_in": 6,
+     "variants": 6
+    },
+    "SPECIES_YANMA": {
+     "alone": 0,
+     "answered": 17,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    },
+    "SPECIES_YANMEGA": {
+     "alone": 0,
+     "answered": 28,
+     "faced": 36,
+     "safe_in": 2,
+     "variants": 6
+    },
+    "SPECIES_ZUBAT": {
+     "alone": 0,
+     "answered": 0,
+     "faced": 36,
+     "safe_in": 0,
+     "variants": 6
+    }
+   },
+   "split": "League",
+   "verified": true
+  },
   "lucian": {
    "base": {
     "answers_bait": 0.48,
@@ -111382,6 +121017,95 @@
    "unseen_count": 2.0,
    "verified": true
   },
+  "795": {
+   "ace": 44,
+   "answers": 0.167,
+   "answers_bait": 0.373,
+   "answers_branch": 0.373,
+   "answers_duel": 0.373,
+   "battle_type": "Singles",
+   "best_one": 1.0,
+   "broad": 0.393,
+   "cap": 44,
+   "constant": "TRAINER_DUMMY_795",
+   "cover": 1.0,
+   "errors": [],
+   "fingerprint": "6dbe75f2b07d05ad31ac",
+   "how": "avoidable",
+   "late": false,
+   "mons": [
+    {
+     "answers_bait": 0.441,
+     "item": "Quick Claw",
+     "level": 41,
+     "species": "Metang",
+     "threat_chance": 0.148
+    },
+    {
+     "answers_bait": 0.271,
+     "item": "Icicle Plate",
+     "level": 39,
+     "species": "Glalie",
+     "threat_chance": 0.453
+    },
+    {
+     "answers_bait": 0.772,
+     "item": "Yache Berry",
+     "level": 42,
+     "species": "Jumpluff",
+     "threat_chance": 0.075
+    },
+    {
+     "answers_bait": 0.107,
+     "item": "Life Orb",
+     "level": 40,
+     "species": "Rotom-Heat",
+     "threat_chance": 0.649
+    },
+    {
+     "answers_bait": 0.374,
+     "item": "Liechi Berry",
+     "level": 38,
+     "species": "Blaziken",
+     "threat_chance": 0.556
+    },
+    {
+     "answers_bait": 0.276,
+     "item": "Draco Plate",
+     "level": 44,
+     "species": "Dragonair",
+     "threat_chance": 0.596
+    }
+   ],
+   "name": "Ace Trainer Krystal",
+   "pool": 389,
+   "predictable": 0.597,
+   "safe": 0.406,
+   "size": 6,
+   "split": "Wake",
+   "threat": 0.487,
+   "threat_chance": 0.413,
+   "unseen": {
+    "disruption": [
+     "Jumpluff Encore",
+     "Jumpluff U-turn"
+    ],
+    "pinch items": [
+     "Metang Quick Claw",
+     "Blaziken Liechi Berry"
+    ],
+    "status": [
+     "Glalie Sing",
+     "Jumpluff Sleep Powder",
+     "Rotom-Heat Will-O-Wisp"
+    ],
+    "weather moves": [
+     "Rotom-Heat Sunny Day"
+    ]
+   },
+   "unseen_count": 8.0,
+   "verified": true
+  },
   "80": {
    "ace": 32,
    "answers": 0.914,
@@ -111822,6 +121546,93 @@
     ]
    },
    "unseen_count": 4.0,
+   "verified": true
+  },
+  "834": {
+   "ace": 57,
+   "answers": 0.393,
+   "answers_bait": 0.599,
+   "answers_branch": 0.539,
+   "answers_duel": 0.599,
+   "battle_type": "Singles",
+   "best_one": 1.0,
+   "broad": 0.683,
+   "cap": 65,
+   "constant": "TRAINER_DUMMY_834",
+   "cover": 1.0,
+   "errors": [],
+   "fingerprint": "2b84f786a1b793253900",
+   "how": "multi-floor dungeon",
+   "late": false,
+   "mons": [
+    {
+     "answers_bait": 0.698,
+     "item": "Flame Orb",
+     "level": 55,
+     "species": "Kecleon",
+     "threat_chance": 0.055
+    },
+    {
+     "answers_bait": 0.619,
+     "item": "Silver Powder",
+     "level": 54,
+     "species": "Vespiquen",
+     "threat_chance": 0.354
+    },
+    {
+     "answers_bait": 0.556,
+     "item": "Focus Sash",
+     "level": 57,
+     "species": "Dugtrio",
+     "threat_chance": 0.467
+    },
+    {
+     "answers_bait": 0.637,
+     "item": "Focus Sash",
+     "level": 55,
+     "species": "Shedinja",
+     "threat_chance": 0.315
+    },
+    {
+     "answers_bait": 0.599,
+     "item": "Rock Incense",
+     "level": 54,
+     "species": "Relicanth",
+     "threat_chance": 0.207
+    },
+    {
+     "answers_bait": 0.485,
+     "item": "Wise Glasses",
+     "level": 53,
+     "species": "Rotom-Heat",
+     "threat_chance": 0.522
+    }
+   ],
+   "name": "Galactic Officer Argo",
+   "pool": 435,
+   "predictable": 0.548,
+   "safe": 0.572,
+   "size": 6,
+   "split": "Galactic",
+   "threat": 0.339,
+   "threat_chance": 0.32,
+   "unseen": {
+    "disruption": [
+     "Kecleon Trick"
+    ],
+    "recovery": [
+     "Vespiquen Heal Order"
+    ],
+    "setup": [
+     "Vespiquen Defend Order",
+     "Relicanth Rock Polish"
+    ],
+    "status": [
+     "Shedinja Swagger",
+     "Rotom-Heat Will-O-Wisp"
+    ]
+   },
+   "unseen_count": 6.0,
    "verified": true
   },
   "835": {

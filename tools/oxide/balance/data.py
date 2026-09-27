@@ -166,18 +166,46 @@ def _read_calc(hack):
     return _ordered(out)
 
 
+_BATTLE_COMMAND = re.compile(
+    r"^\s*(?:StartTrainerBattle|StartFirstBattle|StartTagBattle)\s+([\w ,]+)$", re.M)
+
+
+@functools.lru_cache(maxsize=None)
+def battled(root=ROOT):
+    """Every trainer constant and number a map battles: a script's battle
+    command names a trainer either way (Route 202's scripts start Lucas and
+    Dawn by number), and a trainer on the map by its script."""
+    found = set()
+    for path in glob.glob(os.path.join(root, "res", "field", "scripts", "*.s")):
+        with open(path, encoding="utf-8") as f:
+            for operands in _BATTLE_COMMAND.findall(f.read()):
+                found.update(t.strip() for t in operands.split(","))
+    for path in glob.glob(os.path.join(root, "res", "field", "events", "*.json")):
+        with open(path, encoding="utf-8") as f:
+            found.update(str(o.get("script", "")) for o in json.load(f).get("object_events", []))
+    return frozenset(found)
+
+
 @functools.lru_cache(maxsize=None)
 def oxide_trainers(root=ROOT):
     """Every Oxide trainer, rebuilt from res/trainers/data/, keyed by tr_id.
-    The unused dummy_ slots are left out. Each trainer also carries its
-    constant, which is TRAINER_ plus its file name in capitals."""
+    A dummy_ slot is left out unless a map battles it: most are unused
+    placeholders, but Ian's Lucas and Dawn fights and a few placed trainers
+    (Krystal on Route 214, Officer Argo on Mt. Coronet) live in them. The
+    Maids in dummy_ slots are left out too: they are Oxide's experience and
+    Day Care training battles, a service rather than a fight. Each trainer
+    also carries its constant, which is TRAINER_ plus its file name in
+    capitals."""
     out = {}
     for path in sorted(glob.glob(os.path.join(root, "res", "trainers", "data", "*.json"))):
         stem = os.path.basename(path)[:-len(".json")]
-        if stem.startswith("dummy_"):
+        if stem.startswith("dummy_") and not (
+                {"TRAINER_" + stem.upper(), stem[len("dummy_"):]} & battled(root)):
             continue
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
+        if stem.startswith("dummy_") and data.get("class") == "TRAINER_CLASS_MAID":
+            continue
         party = calc_trainers.build_trainer(root, stem, data)
         if not party:
             continue

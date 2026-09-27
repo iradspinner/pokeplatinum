@@ -1488,6 +1488,20 @@
     "threat": 0.002,
     "verified": true
    },
+   "795": {
+    "ace_below_cap": 0,
+    "answers": 0.167,
+    "answers_lock": 0.167,
+    "cap": 44,
+    "choice_mons": 0,
+    "fingerprint": "38d1d60be28f4453feda",
+    "max_threat": 0.833,
+    "min_answers": 0.015,
+    "min_answers_lock": 0.015,
+    "pool": 389,
+    "threat": 0.487,
+    "verified": true
+   },
    "82": {
     "ace_below_cap": 7,
     "answers": 0.201,
