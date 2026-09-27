@@ -139,12 +139,17 @@ def _build_lines(root):
             method = evo[0] if evo and isinstance(evo[0], str) else ""
             ints = [x for x in evo if isinstance(x, int) and not isinstance(x, bool)]
             level = ints[0] if method.startswith("EVO_LEVEL") and ints else None
-            for field in evo:
-                if (isinstance(field, str) and field.startswith("SPECIES_")
-                        and field in known):
-                    union(species, field)
-                    evolves_into[species].add(field)
-                    evo_levels.setdefault(species, []).append((field, level))
+            # The result is the last species named. A species named before it
+            # is a partner, not a stage: EVO_LEVEL_SPECIES_IN_PARTY is
+            # [method, the species in the party, the result], and until
+            # 2026-09-27 reading every species here made Mantyke evolve into
+            # Remoraid and joined the two lines into one.
+            named = [f for f in evo if isinstance(f, str) and f.startswith("SPECIES_")]
+            field = named[-1] if named else None
+            if field in known:
+                union(species, field)
+                evolves_into[species].add(field)
+                evo_levels.setdefault(species, []).append((field, level))
     _CACHE["evolves_into"] = evolves_into
     _CACHE["evo_levels"] = evo_levels
     return {s: find(s) for s in known}

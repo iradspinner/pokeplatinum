@@ -11,6 +11,7 @@ import os
 import re
 import sys
 
+from . import dex
 from . import model
 from . import pokedex
 from . import server
@@ -47,7 +48,17 @@ def check_species(results):
     results.append(("evolutions carry their method and level",
                     pokedex.load(root, "SPECIES_LITTEN")["evolutions"]
                     == [{"method": "LEVEL", "level": 16, "item": None,
-                         "into": "SPECIES_TORRACAT", "form": False}], ""))
+                         "into": "SPECIES_TORRACAT", "partner": None, "form": False}], ""))
+    # The result is the last species an entry names: Mantyke's party method
+    # names Remoraid first, which the tool read as its evolution until
+    # 2026-09-27, joining the two lines into one.
+    mantyke = pokedex.load(root, "SPECIES_MANTYKE")["evolutions"]
+    results.append(("an evolution that asks for a partner in the party evolves into its "
+                    "result, with the partner named apart (Mantyke, Remoraid)",
+                    {e["into"] for e in mantyke} == {"SPECIES_MANTINE"}
+                    and any(e["partner"] == "SPECIES_REMORAID" for e in mantyke)
+                    and dex.line_of(root, "SPECIES_REMORAID") != dex.line_of(root, "SPECIES_MANTYKE"),
+                    str(mantyke)))
     results.append(("the level-up learnset comes through",
                     pokedex.load(root, "SPECIES_LITTEN")["learnset"][0]
                     == [1, "MOVE_SCRATCH"], ""))
