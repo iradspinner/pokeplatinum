@@ -607,10 +607,16 @@ that stay. None blocks anything.
      packer's range, that call in `src/trainer_data.c`, and
      `calc_trainers.build_trainer` mapping 3 to the calculator's hidden
      slot, which the balance scorer then follows with no change of its own.
-     The Overseer gave the engine side to the main production agent, after
-     its Metronome branch (2026-09-27); this track maps 3 in
-     `calc_trainers`. Ian's staples answer 9, Drizzle on Pelipper and
-     Drought on Torkoal for trainers only, needs the slot too.
+     The Overseer gave the engine side to the main production agent, whose
+     `main-trainer-hidden-ability` (1832a346c) takes 3, keeps the
+     personality as 0 does, and gives the record's hidden ability or leaves
+     the ordinary one. This track's side is done on
+     `encounter-trainer-hidden` (00e2365ac, cut from that branch):
+     `calc_trainers` reads 3 the same way, and reads a form's ability from
+     the form's own record, which it had not done since f801cc160. Ian's
+     staples answer 9, Drizzle on Pelipper and Drought on Torkoal for
+     trainers only, needs the slot, and also needs those hidden slots set:
+     in `res/` today Pelipper's is Rain Dish and Torkoal's Shell Armor.
    - IVs are one number for all six stats: the IV scale, 0 to 255, gives
      each IV as `scale * 31 / 255`, and the page shows the IV it gives.
      Per-stat IVs would be a format and engine change, which was not asked.
@@ -705,9 +711,8 @@ that stay. None blocks anything.
    incremental rescore picks up.
 
    **Build order**, each piece its own commit with its checks, in a new
-   suite, `test_trainers.py`, which this track adds to the gate's list in
-   `integrate.sh` in the same branch, one line in its style (the
-   Overseer's word, 2026-09-27):
+   suite, `test_trainers.py`, which the gate runs with no change of its
+   own, since `integrate.sh` runs every `test_*.py` in the tool's folder:
    1. A read-only tab: the trainer list (name, class, split, cap, the party
       at a glance, filters by split and class) and a trainer page showing
       each member as the game builds it, which `calc_trainers` already does.
@@ -720,6 +725,20 @@ that stay. None blocks anything.
       background.
    5. The hidden slot, once the main production agent's engine change
       has merged.
+29. **A doc viewer in the tool (Ian, 2026-09-27, through the Overseer).**
+   Every document a session points Ian at opens rendered in his browser,
+   in the tool's own style, from a link the `doc-links` skill gives:
+   `/doc` lists the documents, `/doc/<repo path>` shows one from the main
+   checkout on disk, fresh on every request, and `?ref=<branch or
+   commit>` shows it at that ref through `git show`. The main checkout,
+   not the server's own, because the running server sits in this track's
+   worktree, whose branch changes. Links between documents stay in the
+   viewer and keep the ref; a link to a code file opens on GitHub.
+   Only `docs/` and `.claude/skills/` are served, and nothing writes.
+   `docview.py` renders the Markdown with the standard library, and the
+   page loads the tool's theme. Done on `encounter-doc-viewer`
+   (41c179ece, from `sinistea-split`); `test_docview` 16/16, and all 84
+   documents render.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
