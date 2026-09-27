@@ -17,7 +17,8 @@ misread: safe switch-ins read both best ("What B3b and B5 found", "What
 Ian's ratings showed"). Every score is on the combined branch of
 2026-09-27 (the calculator's items 22 and 23, the friendship and trade
 evolutions, the new grass tables and sources, Heatran out of Stark
-Mountain), and rescores are incremental. Next: B6's runs. Ian approved
+Mountain, the Kaizo move data and element 4's partly working moves), and
+rescores are incremental. Next: B6's runs. Ian approved
 the stone plan; no questions are open.
 
 ## The target
@@ -473,17 +474,17 @@ strongest damage item the split offers.
 
 | Split | Cap | Species | Items held by then |
 |---|---|---|---|
-| Roark | 16 | 104 | 30 |
-| Gardenia | 26 | 177 | 42 |
-| Fantina | 33 | 272 | 48 |
-| Maylene | 39 | 348 | 78 |
-| Wake | 44 | 393 | 88 |
-| Byron | 53 | 417 | 103 |
-| Candice | 56 | 430 | 109 |
-| HQ | 60 | 431 | 112 |
-| Galactic | 65 | 436 | 124 |
-| Volkner | 68 | 436 | 125 |
-| League | 78 | 436 | 128 |
+| Roark | 16 | 104 | 18 |
+| Gardenia | 26 | 177 | 32 |
+| Fantina | 33 | 271 | 40 |
+| Maylene | 39 | 347 | 72 |
+| Wake | 44 | 392 | 84 |
+| Byron | 53 | 416 | 99 |
+| Candice | 56 | 429 | 105 |
+| HQ | 60 | 430 | 108 |
+| Galactic | 65 | 435 | 120 |
+| Volkner | 68 | 435 | 121 |
+| League | 78 | 435 | 124 |
 
 Threat is the share of that side a boss Pokemon knocks out within two
 turns while moving first; answers is the share that does the same to it.
@@ -499,7 +500,7 @@ most threatening Pokemon and its least answered one.
 | Gardenia | 0.68 | 0.06 | 0.90 | 0.03 |
 | Jupiter 1 | 0.12 | 0.24 | 0.19 | 0.11 |
 | Fantina | 0.51 | 0.10 | 0.88 | 0.00 |
-| Barry 3 | 0.17 | 0.47 | 0.38 | 0.33 |
+| Barry 3 | 0.17 | 0.47 | 0.37 | 0.33 |
 | Maylene | 0.69 | 0.20 | 0.81 | 0.07 |
 | Barry 4 | 0.48 | 0.13 | 0.83 | 0.03 |
 | Wake | 0.74 | 0.07 | 0.98 | 0.00 |
@@ -518,13 +519,15 @@ most threatening Pokemon and its least answered one.
 | Aaron | 0.59 | 0.17 | 0.76 | 0.08 |
 | Bertha | 0.50 | 0.31 | 0.76 | 0.02 |
 | Flint | 0.69 | 0.14 | 0.92 | 0.04 |
-| Lucian | 0.62 | 0.27 | 0.94 | 0.03 |
+| Lucian | 0.62 | 0.27 | 0.94 | 0.04 |
 | Cynthia | 0.68 | 0.13 | 0.90 | 0.01 |
 
 Both tables were recomputed on 2026-09-27 for the combined branch (the
 calculator's item 23, the friendship and trade evolutions, the new grass
-tables and sources, Heatran out of Stark Mountain), which moves no Oxide
-fight by more than 0.02; before that on 2026-09-26 for the calculator following the
+tables and sources, Heatran out of Stark Mountain, then the Kaizo move
+data and element 4's partly working moves, and the stone plan's and the
+Underground's item removals, which cut the items each split holds), which
+moves no Oxide fight by more than 0.02; before that on 2026-09-26 for the calculator following the
 engine's computed powers (the encounter track's item 22), which moves no
 Oxide fight by more than 0.002 and leaves both tables as they were; before
 that the same day for the modern move values, the
@@ -666,7 +669,7 @@ Champion):
 | Oxide today |  | 0.57 | 0.31 | 0.37 | 4.4 |
 | Vanilla | 3 | 0.14 | 0.80 | 0.93 | 2.8 |
 | Unbound, difficult | 5.25 | 0.51 | 0.28 | 0.62 | 4.4 |
-| Renegade | 7 | 0.54 | 0.31 | 0.34 | 6.5 |
+| Renegade | 7 | 0.54 | 0.31 | 0.33 | 6.5 |
 | Redux | 8 | 0.69 | 0.09 | 0.25 | 4.8 |
 | Redux hardcore | 8.5 | 0.74 | 0.06 | 0.23 | 4.7 |
 | Hardlove | 9.5 | 0.68 | 0.18 | 0.33 | 6.0 |
@@ -699,16 +702,16 @@ Seat by seat, safe switch-ins against the two references nearest a 6:
 |---|---|---|---|
 | Roark | 0.81 | 0.83 | 0.61 |
 | Gardenia | 0.34 | 0.96 | 0.45 |
-| Fantina | 0.62 | 0.73 | 0.61 |
+| Fantina | 0.63 | 0.73 | 0.60 |
 | Maylene | 0.30 | 0.93 | 0.30 |
 | Wake | 0.32 | 0.48 | 0.48 |
 | Byron | 0.24 | 0.51 | 0.11 |
-| Candice | 0.34 | 0.59 | 0.24 |
+| Candice | 0.35 | 0.59 | 0.24 |
 | Volkner | 0.35 | 0.70 | 0.27 |
 | Aaron | 0.48 | 0.55 | 0.33 |
-| Bertha | 0.38 | 0.47 | 0.17 |
-| Flint | 0.22 | 0.50 | 0.26 |
-| Lucian | 0.21 | 0.43 | 0.31 |
+| Bertha | 0.38 | 0.47 | 0.16 |
+| Flint | 0.22 | 0.50 | 0.27 |
+| Lucian | 0.21 | 0.43 | 0.30 |
 | Cynthia | 0.18 | 0.40 | 0.22 |
 
 Oxide leaves fewer safe switch-ins than Renegade at Gardenia, Wake,
@@ -725,16 +728,16 @@ left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 
 | Fight | Ian | Threat by chance | Answers, baiting counted | Safe switch-ins | Tactics |
 |---|---|---|---|---|---|
-| Mars and Jupiter, Spear Pillar | 9 | 0.31 | 0.59 | 0.50 | 12 |
-| Cyrus 3 | 8.5 | 0.48 | 0.26 | 0.24 | 5 |
+| Mars and Jupiter, Spear Pillar | 9 | 0.31 | 0.59 | 0.49 | 12 |
+| Cyrus 3 | 8.5 | 0.50 | 0.26 | 0.24 | 5 |
 | Saturn 2 | 8.5 | 0.39 | 0.35 | 0.36 | 7 |
-| Candice | 8.5 | 0.65 | 0.18 | 0.34 | 9 |
+| Candice | 8.5 | 0.65 | 0.18 | 0.35 | 9 |
 | Wake | 8 | 0.74 | 0.19 | 0.32 | 2 |
 | Maylene | 8 | 0.68 | 0.21 | 0.30 | 2 |
 | Officer Hesperid, Lake Valor | 7 | 0.44 | 0.43 | 0.20 | 8 |
 | Byron | 7 | 0.34 | 0.17 | 0.24 | 5 |
 | Saturn 1 | 6.5 | 0.52 | 0.33 | 0.43 | 6 |
-| Fantina | 6 | 0.51 | 0.27 | 0.62 | 5 |
+| Fantina | 6 | 0.51 | 0.27 | 0.63 | 5 |
 | Barry 4 | 6 | 0.48 | 0.33 | 0.63 | 7 |
 | Cyrus 1 | 5 | 0.38 | 0.54 | 0.60 | 5 |
 | Mars 2 | 5 | 0.37 | 0.37 | 0.60 | 10 |
@@ -743,7 +746,7 @@ left out, and his "Mars/Jupiter Double" is the Spear Pillar tag battle.
 | Roark | 2 | 0.14 | 0.21 | 0.81 | 4 |
 
 Over the fifteen single battles, safe switch-ins correlate with his
-ratings at minus 0.59 (minus 0.66 before the Galactic finales); the
+ratings at minus 0.58 (minus 0.63 before the Galactic finales); the
 damage readings sit between 0.27 and 0.35 either way, and the tactics
 tally at 0.17. Safe switch-ins alone predict a rating it was not fitted on to
 within 1.7 points, against a spread of 1.9 in his ratings, and no pair or
@@ -754,10 +757,10 @@ outside:
 - **Volkner** reads 6.8 against Ian's 3. Baiting his three Choice locks
   shows in the answers (0.51, among the most of any fight), but not in
   safe switch-ins.
-- **Gardenia** reads 6.9 against 5, the stage: Ian's scale rises through
+- **Gardenia** reads 6.8 against 5, the stage: Ian's scale rises through
   the game (later fights rate higher, correlation 0.42), and the scores
   are relative to each split's side by design.
-- **Candice and Saturn 2** read 6.9 and 6.8 against 8.5, and Spear Pillar cannot
+- **Candice and Saturn 2** read 6.8 against 8.5, and Spear Pillar cannot
   be read at all, since the tool plays a double battle as singles without
   the partner. For those three, Ian's ratings are the measure.
 
@@ -783,7 +786,7 @@ reading, with Ian's rating where he has one:
 | Maylene | 0.30 | 0.21 | 8 |
 | Wake | 0.32 | 0.19 | 8 |
 | Gardenia | 0.34 | 0.15 | 5 |
-| Candice | 0.34 | 0.18 | 8.5 |
+| Candice | 0.35 | 0.18 | 8.5 |
 | Volkner | 0.35 | 0.51 | 3 |
 | Saturn 2 | 0.36 | 0.35 | 8.5 |
 
@@ -1225,7 +1228,7 @@ on 2026-09-27 (design pass 2).
   rated sixteen fights and explained the ones the scores misread; from
   that came baited Choice locks, setup branches and safe switch-ins, and
   safe switch-ins read both his hack ratings (R squared 0.91) and his
-  fight ratings (minus 0.59) best ("What B3b and B5 found", "What Ian's
+  fight ratings (minus 0.58) best ("What B3b and B5 found", "What Ian's
   ratings showed"). Ian's fight scale is his own design scale, separate
   from the game scale (2026-09-26); the line above translates the readings
   onto it. Left: the double battle,
@@ -1252,11 +1255,16 @@ on 2026-09-27 (design pass 2).
   run, on the combined branch (the calculator's item 23, the friendship
   and trade evolutions, the new grass tables and sources), recomputed all
   507 and verified all 507 with no disagreement; the classic starters'
-  move that followed staled none, and the Heatran fix staled the 259 built
-  on the Galactic, Volkner and League sides. The engine part covers only
-  the calculator files the runner loads, so no game C, battle script or
-  AI change stales a score. test_b3 checks the scores before B6 and
-  test_b6 checks B6's.
+  move that followed staled none, the Heatran fix staled the 259 built
+  on the Galactic, Volkner and League sides, and the Kaizo move data with
+  element 4's partly working moves staled 489, all but Roark's split. The
+  engine part covers only the calculator files the runner loads, so no
+  game C, battle script or AI change stales a score, and a species'
+  hidden-ability slot, which no score can reach, is left out, since the
+  natives' hidden abilities otherwise staled all 507 while changing none.
+  Hidden items' flag numbers come from the tree's own flag list, not the
+  shared build folder's header, which holds whichever tree last built it.
+  test_b3 checks the scores before B6 and test_b6 checks B6's.
 
   ```
   PYTHONPATH=. python3 -m tools.oxide.balance.rescore            # what changed
