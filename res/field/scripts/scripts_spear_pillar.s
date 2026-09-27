@@ -232,7 +232,8 @@ SpearPillar_037C:
 SpearPillar_03B5:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 620
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, SpearPillar_0523
     SetVarFromValue VAR_0x8004, 619
     CompareVarToValue VAR_0x800C, 387

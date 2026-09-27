@@ -139,7 +139,8 @@ PokemonLeagueNorthPokecenter1F_RivalIntro:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, PokemonLeagueNorthPokecenter1F_StartRivalTurtwigBattle
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, PokemonLeagueNorthPokecenter1F_StartRivalChimcharBattle
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, PokemonLeagueNorthPokecenter1F_StartRivalChimcharBattle
     GoTo PokemonLeagueNorthPokecenter1F_StartRivalPiplupBattle
 
 PokemonLeagueNorthPokecenter1F_StartRivalPiplupBattle:

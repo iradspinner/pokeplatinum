@@ -44,7 +44,8 @@ SandgemTownPokemonResearchLab_Entry1:
     SetVarFromVar VAR_0x8008, VAR_0x800C
     CompareVarToValue VAR_0x8008, 387
     GoToIf 1, SandgemTownPokemonResearchLab_0241
-    CompareVarToValue VAR_0x8008, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x8008, SPECIES_SCORBUNNY
     GoToIf 1, SandgemTownPokemonResearchLab_0241
     CompareVarToValue VAR_0x8008, 393
     GoToIf 1, SandgemTownPokemonResearchLab_0241

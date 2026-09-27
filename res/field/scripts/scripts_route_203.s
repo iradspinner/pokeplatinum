@@ -70,7 +70,8 @@ Route203_RivalIntro:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, Route203_StartRivalBattleTurtwig
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route203_StartRivalBattleChimchar
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, Route203_StartRivalBattleChimchar
     GoTo Route203_StartRivalBattlePiplup
 
 Route203_StartRivalBattlePiplup:

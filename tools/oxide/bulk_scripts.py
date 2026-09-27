@@ -174,6 +174,23 @@ DIVERGED["scripts_mining_museum"] = (
 DIVERGED["scripts_route_207"] = (
     "the woman who asks the player to find Mira no longer gives all nine evolution stones")
 
+# Scorbunny took Chimchar's place in Rowan's briefcase (Ian, 2026-09-21), but
+# these scripts still asked whether the player's starter was Chimchar, so a
+# Scorbunny player fell through to the Piplup branch everywhere: Barry led with
+# Turtwig, and the masks, doll and tag partners were the wrong ones. Each check
+# now asks for Scorbunny (2026-09-27).
+for _stem in ("scripts_battleground", "scripts_canalave_city",
+              "scripts_eterna_city_underground_man_house", "scripts_fight_area",
+              "scripts_jubilife_city", "scripts_jubilife_tv_2f", "scripts_pastoria_city",
+              "scripts_pokemon_league_north_pokecenter_1f", "scripts_route_201",
+              "scripts_route_202", "scripts_route_203", "scripts_route_207",
+              "scripts_route_209_gate_to_hearthome_city",
+              "scripts_sandgem_town_pokemon_research_lab", "scripts_spear_pillar",
+              "scripts_trainers_school", "scripts_veilstone_city",
+              "scripts_veilstone_store_1f", "scripts_victory_road_1f"):
+    _why = "the player's starter is checked against Scorbunny, not Chimchar"
+    DIVERGED[_stem] = DIVERGED[_stem] + "; " + _why if _stem in DIVERGED else _why
+
 # The clown's gift moved to the Restaurant on Route 213 (Ian, 2026-09-25).
 DIVERGED["scripts_pastoria_city_north_house"] += (
     "; the clown's gift then moved to the Restaurant, so it is gone from here")

@@ -131,7 +131,8 @@ PastoriaCity_Entry9:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     CallIf 1, PastoriaCity_06E8
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     CallIf 1, PastoriaCity_06F0
     CompareVarToValue VAR_0x800C, 393
     CallIf 1, PastoriaCity_06F8
@@ -223,7 +224,8 @@ PastoriaCity_Entry17:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, PastoriaCity_0740
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, PastoriaCity_074C
     GoTo PastoriaCity_0758
 PastoriaCity_Entry18:
