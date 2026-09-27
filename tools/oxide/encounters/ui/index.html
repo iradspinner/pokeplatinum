@@ -365,6 +365,17 @@ tr.got .spname { font-weight: 600; }
 .member .l1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .member .facts { color: var(--dim); font-size: 15.5px; }
 .member .moves { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+/* The three move lists, side by side and never merged (Ian, 2026-09-27). */
+.mcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; }
+.mcol h3 { margin: 10px 0 0; font-size: 16px; }
+.mcol > .sub { margin: 0 0 6px; font-size: 14px; }
+.mrow { display: flex; align-items: baseline; gap: 6px; font-size: 15px; padding: 1px 0; }
+.mrow .nm { flex: 1; min-width: 0; }
+.mrow .how { font-size: 13.5px; color: var(--dim); text-align: right; }
+.mrow.gone .nm { color: var(--faint); }
+.mrow.known .nm { font-weight: 600; }
+button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cursor: pointer;
+  font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); }
 #trainright h3 { margin: 14px 0 4px; font-size: 16px; }
 #trainright ul.flags { list-style: none; padding: 0; margin: 0; font-size: 15px; }
 #trainright ul.flags li.off { color: var(--faint); }
@@ -1335,7 +1346,7 @@ function drawSim() {
 // res/trainers/data/ through /api/trainers and /api/trainer/<stem>, with the
 // nature, ability, gender and default moves the game gives in battle
 // (calc_trainers.py); the page works out nothing itself.
-let TRAINERS = null, TRSEL = null, TRDETAIL = null;
+let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
 // "AI_FLAG_EVAL_ATTACK" reads "Eval attack".
 const flagLabel = f => tidy(String(f).replace("AI_FLAG_", ""));
 
@@ -1382,8 +1393,46 @@ async function selectTrainer(stem) {
   try {
     TRDETAIL = await api("/api/trainer/" + stem);
   } catch (e) { return toast(e.message, true); }
+  TRMEMBER = TRLISTS = null;
   drawTrainer();
   remember();
+}
+
+// The three move lists for one team member, at its level (learnsets.py).
+async function showMoveLists(i) {
+  const f = TRDETAIL.members[i].file;
+  const q = new URLSearchParams({ species: f.species, form: f.form || 0, level: f.level });
+  try {
+    TRLISTS = await api("/api/trainer-moves?" + q);
+  } catch (e) { return toast(e.message, true); }
+  TRMEMBER = i;
+  drawMoveLists();
+  $("#trmoves").scrollIntoView({ block: "nearest" });
+}
+
+function drawMoveLists() {
+  const box = $("#trmoves");
+  if (!box || !TRLISTS || TRMEMBER === null) return;
+  const m = TRDETAIL.members[TRMEMBER], L = TRLISTS;
+  const known = new Set(m.file.moves || []);
+  const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"${
+      e.move ? "" : ' title="Oxide has no such move"'}>
+      <span>${e.type ? typeChip(e.type, "mini") : ""}</span>
+      <span class="nm">${esc(e.name)}</span>
+      <span class="how">${esc(e.how)}${e.from ? ", as " + esc(e.from) : ""}</span></div>`;
+  const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
+      <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
+        : `<p class="sub">${esc(none)}</p>`}</div>`;
+  box.innerHTML = `<h3>Moves for ${esc(m.name)} at level ${L.level}</h3>
+    <p class="sub">Three lists, kept apart. Bold is a move it knows now; a greyed move is one
+      Oxide does not have.</p>
+    <div class="mcols">
+      ${col("In Oxide", "Level-up to this level, then TM, tutor and egg", L.oxide,
+            "Nothing: the species has no learnset here.")}
+      ${col("Generation IV", L.gen4.games, L.gen4.moves, "Not in Generation IV.")}
+      ${col(L.latest.gen ? "Generation " + L.latest.gen : "Latest", L.latest.games,
+            L.latest.moves, "No canon learnset.")}
+    </div>`;
 }
 
 async function openTrainer(stem) {
@@ -1391,7 +1440,7 @@ async function openTrainer(stem) {
   await selectTrainer(stem);
 }
 
-function memberCard(m) {
+function memberCard(m, i) {
   const f = m.file, b = m.built;
   const slot = TRDETAIL.ability_choices[f.ability || 0];
   const over = TRDETAIL.cap && f.level > TRDETAIL.cap
@@ -1406,6 +1455,7 @@ function memberCard(m) {
         ${esc(b.nature)} (${f.nature ? "named" : "rolled"}); IVs ${m.iv}; ${esc(b.gender)}</div>
       <div class="moves">${b.moves.map(mv => `<span>${esc(mv)}</span>`).join("")}</div>
       ${b.default_moves ? `<p class="sub">No moves listed: the game gives the level-up default.</p>` : ""}
+      <button class="linkish" data-lists="${i}">Move lists</button>
     </div>
   </div>`;
 }
@@ -1417,7 +1467,9 @@ function drawTrainer() {
     <p class="sub">${splitTag(d.split, " split")} ${d.cap
       ? `Level cap ${d.cap}; the team's highest level is ${top}.`
       : "Not placed in a split, so it has no level cap."} <code>${esc(d.stem)}.json</code></p>
-    ${d.members.map(memberCard).join("") || `<p class="sub">No party.</p>`}`;
+    ${d.members.map(memberCard).join("") || `<p class="sub">No party.</p>`}
+    <div id="trmoves"></div>`;
+  drawMoveLists();
   $("#trainright").innerHTML = `<h3>Battle</h3>
     <p>${d.double_battle ? "Double battle" : "Single battle"}</p>
     <h3>AI flags</h3>
@@ -2141,8 +2193,11 @@ document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = 
 });
 $("#trainfilter").oninput = () => TRAINERS && drawTrainerList();
 $("#trainsplit").onchange = () => TRAINERS && drawTrainerList();
-// A team member's icon opens its dex page, as in the box simulator.
+// A team member's icon opens its dex page, as in the box simulator; its
+// "Move lists" button shows the three lists under the team.
 $("#trainmid").addEventListener("click", ev => {
+  const lists = ev.target.closest("[data-lists]");
+  if (lists) return showMoveLists(+lists.dataset.lists);
   const hit = ev.target.closest("[data-sp]");
   if (!hit) return;
   ev.preventDefault();

@@ -71,6 +71,38 @@ def check_read(results, root):
     results.append(("a stem is a file name, never a path", refused, ""))
 
 
+def check_move_lists(results, root):
+    from . import learnsets
+    bidoof = learnsets.lists(root, "SPECIES_BIDOOF", 0, 10)
+    results.append(("a Sinnoh line cut from Scarlet and Violet takes Generation 8 from BDSP "
+                    "(Bidoof)", bidoof["latest"]["gen"] == 8
+                    and "Brilliant Diamond" in bidoof["latest"]["games"]
+                    and len(bidoof["latest"]["moves"]) > 20,
+                    f"gen {bidoof['latest']['gen']}, {len(bidoof['latest']['moves'])} moves"))
+    sinistcha = learnsets.lists(root, "SPECIES_SINISTCHA", 0, 30)
+    results.append(("a species added after Generation IV has an empty Generation IV list, and "
+                    "Oxide's own list follows Oxide's chain (Sinistcha from Sinistea)",
+                    sinistcha["gen4"]["moves"] == [] and sinistcha["latest"]["gen"] == 9
+                    and any(e["from"] == "Sinistea" for e in sinistcha["oxide"]), ""))
+    politoed = learnsets.lists(root, "SPECIES_POLITOED", 0, 40)
+    by_name = lambda lst, n: next((e for e in lst if e["name"] == n), None)
+    bubble = by_name(politoed["oxide"], "Bubble")
+    results.append(("an earlier stage's move is listed and credited to it (Bubble, as Poliwhirl)",
+                    bubble is not None and bubble["from"] == "Poliwhirl"
+                    and by_name(politoed["gen4"]["moves"], "Bubble") is not None, ""))
+    level_up = [e for e in politoed["oxide"] if e["how"].startswith("Level") and not e["from"]]
+    own = [lv for lv, _ in (calc_trainers._raw_species(root, "SPECIES_POLITOED")
+                            .get("learnset") or {}).get("by_level") or []]
+    results.append(("Oxide's own list stops at the member's level",
+                    level_up and max(int(e["how"].split()[1].split(",")[0]) for e in level_up) <= 40
+                    and max(own) > 40, f"learns up to {max(own)}"))
+    ids = learnsets.move_ids(root)
+    results.append(("canon moves map to Oxide's, the Generation IV spellings included "
+                    "(Faint Attack, Hi Jump Kick)",
+                    ids.get("feintattack") == ids.get("faintattack") is not None
+                    and ids.get("highjumpkick") is not None, ""))
+
+
 def check_routes(results):
     httpd = server.Server(("127.0.0.1", 0), server.Handler)
     port = httpd.server_address[1]
@@ -79,6 +111,8 @@ def check_routes(results):
         listing = get(port, "/api/trainers")
         one = get(port, "/api/trainer/leader_roark")
         missing = get(port, "/api/trainer/no_such_trainer")
+        lists = get(port, "/api/trainer-moves?species=SPECIES_NOSEPASS&level=15")
+        bad = get(port, "/api/trainer-moves?species=SPECIES_NOPE")
     finally:
         httpd.shutdown()
         httpd.server_close()
@@ -88,6 +122,9 @@ def check_routes(results):
                     and listing[1]["caps"]["Roark"] == 16
                     and one[0] == 200 and len(one[1]["members"]) == 4
                     and missing[0] == 404, f"{listing[0]} {one[0]} {missing[0]}"))
+    results.append(("/api/trainer-moves gives the three lists apart; an unknown species is a 404",
+                    lists[0] == 200 and {"oxide", "gen4", "latest"} <= set(lists[1])
+                    and lists[1]["level"] == 15 and bad[0] == 404, f"{lists[0]} {bad[0]}"))
 
 
 def main():
@@ -96,6 +133,7 @@ def main():
     before = subprocess.run(["git", "status", "--porcelain"], cwd=root,
                             capture_output=True, text=True).stdout
     check_read(results, root)
+    check_move_lists(results, root)
     check_routes(results)
     after = subprocess.run(["git", "status", "--porcelain"], cwd=root,
                            capture_output=True, text=True).stdout

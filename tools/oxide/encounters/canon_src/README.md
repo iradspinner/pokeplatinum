@@ -20,3 +20,25 @@ that would catch it drifting again.
 Regenerate `../canon.json` after updating this file:
 
     node tools/oxide/encounters/make_canon.js > tools/oxide/encounters/canon.json
+
+# Derived: the canon learnsets for the team builder
+
+`../canon_learnsets.json` holds the team builder's Generation IV and
+latest-generation move lists (build plan item 28). It is derived from
+**pokemon-showdown 0.11.11**, MIT (Guangcong Luo and other contributors),
+taken with `npm pack pokemon-showdown@0.11.11` on 2026-09-27; the tarball's
+SHA-256 is `49af14aaed1084887f756372c7386c9987905930cc848ed31e9202c10c592d66`.
+Only the derived file is vendored: the package is 17 MB packed, and the four
+files read from it (`dist/data/learnsets.js`, the `gen8bdsp` and
+`gen8legends` mods' learnsets, and `pokedex.js` and `moves.js`) come to
+about 6 MB. The derived file is 2 MB, one species a line.
+
+Regenerate it after moving to a newer package:
+
+    npm pack pokemon-showdown@<version> && tar -xzf pokemon-showdown-<version>.tgz
+    node tools/oxide/encounters/make_learnsets.js package \
+        > tools/oxide/encounters/canon_learnsets.json
+
+`make_learnsets.js` says what goes into each list: a species' own moves, its
+earlier stages' in Showdown's chain, a battle form's base, and Brilliant
+Diamond and Shining Pearl beside Sword and Shield for Generation 8.

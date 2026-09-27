@@ -34,6 +34,7 @@ from . import calc_export
 from . import canon
 from . import dex
 from . import docview
+from . import learnsets
 from . import lint
 from . import locations
 from . import model
@@ -904,6 +905,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "trainers":
                 return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
                                    "caps": trainers.caps()})
+            if parts[1] == "trainer-moves":
+                # The three move lists for one team member (learnsets.py).
+                species = (q.get("species") or [""])[0]
+                if species not in set(species_universe()):
+                    return self._send({"error": f"no such species: {species}"}, 404)
+                form = int((q.get("form") or ["0"])[0] or 0)
+                level = int((q.get("level") or ["100"])[0] or 100)
+                return self._send(learnsets.lists(model.repo_root(), species, form,
+                                                  max(1, min(level, 100))))
             if parts[1] == "trainer":
                 try:
                     return self._send(trainers.detail(model.repo_root(), parts[2]))
