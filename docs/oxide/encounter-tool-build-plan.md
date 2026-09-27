@@ -847,6 +847,26 @@ that stay. None blocks anything.
    `ian-saves` like a track branch, after the Balance Agent rescores what a
    trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
    throwaway repository.
+33. **The Trainers tab, second pass (through the Overseer, 2026-09-27).** The
+   trainer list sorts by score, hardest first, with play order a click away,
+   and each row shows its stored score. The score is the balance plan's
+   stored one, read without scoring anything: a story fight's from
+   `pressure.json` (Hesperid's two from `calibrate.json`), shared by every
+   variant of the fight, and an ordinary trainer's from `b6.json`, each put
+   on Ian's fight scale by the plan's line. `trainers.stored_scores` is the
+   one function to repoint when the Balance Agent's rebuilt score lands.
+   Rematches, dummies and facility trainers have no stored score and follow
+   in play order, and a team saved since the last rescore shows its old
+   score. Both side panels fold to a strip, remembered in the browser. The
+   right panel keeps one width and shows one of two panes under a sticky head
+   holding Save, the live estimate and the pane tabs: a member's three move
+   lists, or the score and settings. Clicking into a member's move box opens
+   its lists there, beside it, and marks the member being edited; a move
+   clicked in the lists goes into the box last chosen, as before. Moves are
+   coloured by type, in the member's four boxes and in the lists, blended as
+   the type chips are. Suites: m4 51/51, m8 98/98, trainers 26/26 (a new
+   check holds the scores to the balance files' own), docview 16/16, saves
+   5/5, and a headless Chrome pass over the tab.
 
 ## Standing rules
 

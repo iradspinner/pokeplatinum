@@ -54,6 +54,26 @@ def check_read(results, root):
     results.append(("the list's split is the one the score uses (teamscore.resolve), "
                     "which refuses a split with no cap",
                     sample and not differ, f"{len(sample)} sampled; " + "; ".join(differ[:3])))
+    # The list sorts by the balance track's stored scores (Ian, 2026-09-27):
+    # a story fight's from pressure.json, shared by its variants, and an
+    # ordinary trainer's from b6.json, each on Ian's scale by the plan's line.
+    from ..balance import b6, pressure
+    line = b6.scale_line()
+    on = lambda safe: round(b6.on_scale(safe, line), 1)
+    by = {r["stem"]: r["score"] for r in rows}
+    tristan = b6.load()["trainers"]["1"]
+    barry = [by.get(s) for s in ("rival_route_201_piplup", "rival_route_201_turtwig",
+                                 "rival_route_201_chimchar")]
+    results.append(("each row carries its stored score: Roark's story fight, Tristan's own, and "
+                    "one score for every variant of a story fight",
+                    by["leader_roark"] == {"scale": on(pressure.load()["fights"]["roark"]["safe"]),
+                                           "fight": "roark", "band": by["leader_roark"]["band"]}
+                    and by["youngster_tristan"]["scale"] == on(tristan["safe"])
+                    and by["youngster_tristan"]["fight"] is None
+                    and all(barry) and barry[0]["fight"] == "barry_1"
+                    and len({json.dumps(b, sort_keys=True) for b in barry}) == 1
+                    and all("score" in r for r in rows),
+                    f"Roark {by['leader_roark']}, Tristan {by['youngster_tristan']}"))
     d = trainers.detail(root, "leader_roark")
     built = calc_trainers.build_trainer(root, "leader_roark")
     results.append(("a team shows what the game builds: Roark's natures, abilities and moves",
