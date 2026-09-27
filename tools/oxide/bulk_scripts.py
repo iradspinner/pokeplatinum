@@ -128,6 +128,12 @@ DIVERGED.update({
     )
 })
 
+# The Barry split ends when the player enters the Elite Four (Ian, 2026-09-27):
+# Aaron's room raises the cap to the League's as its door shuts behind them.
+# The base ROM leaves this script as vanilla's, so this is a record only.
+DIVERGED["scripts_pokemon_league_aaron_room"] = (
+    "entering the Elite Four raises the level cap to the League's (the Barry split)")
+
 # The Battle Zone opens after Galactic HQ rather than after the Hall of Fame
 # (Ian, 2026-09-26; docs/oxide/battle-zone-plan.md). Regenerating any of these
 # would close the zone again or bring the post-game checks back.
