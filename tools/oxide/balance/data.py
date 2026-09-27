@@ -220,13 +220,15 @@ def oxide_trainers(root=ROOT):
 
 @functools.lru_cache(maxsize=None)
 def fights():
-    """The story bosses from fights.json, each with its trainers' ids
-    resolved through Oxide's trainer constants."""
+    """The story bosses from fights.json, each with its trainers' ids, and a
+    tag fight's partner teams' ids, resolved through Oxide's trainer
+    constants."""
     with open(FIGHTS, encoding="utf-8") as f:
         spec = json.load(f)
     by_constant = {t["constant"]: t["tr_id"] for t in oxide_trainers().values()}
     for fight in spec["fights"]:
         fight["tr_ids"] = [by_constant[c] for c in fight["trainers"]]
+        fight["partner_ids"] = [by_constant[c] for c in fight.get("partners", [])]
     return spec
 
 

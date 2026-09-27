@@ -10,9 +10,10 @@ then and knowing every damaging move it can know by then. That is the plan's
 
 Where each piece comes from:
 
-- Species. The encounter tables, each counted from its own split (the
-  encounter design's), for land, the day and night slots, and water, which
-  also waits for the rod or for Surf. Honey trees have one table per badge
+- Species. The encounter tables the game rolls, each counted from its own
+  split (the encounter design's), for land, the day and night slots, and
+  water, which also waits for the rod or for Surf. A land table with
+  land_rate 0, or a water kind with no rate, is never rolled and is skipped. Honey trees have one table per badge
   count, and each table's species count from its own split (Gardenia's,
   where the first Honey is, for the first). The scripted sources are
   docs/oxide/pokemon-sources.csv (starters, gifts, trades, statics, fossils,
@@ -24,9 +25,14 @@ Where each piece comes from:
   first in reach, a wild Pokemon's held item included; the rest by the
   encounter tool's own rule (evolve.py), a level, or its judged level for
   friendship and the like.
-- Moves. The level-up moves of the species and of every earlier stage at or
-  below the cap, the TMs and HMs the player has by then (B1d's item map),
-  and the tutors whose house is reachable by then. Egg moves are left out.
+- Moves. Ian's capture rule (2026-09-27): caught as itself or as an
+  earlier stage at a level it is found at, a Pokemon knows its four moves at
+  capture, then what each stage learns by level-up up to the cap, a later
+  stage from the level it evolves at. Waiting to evolve is allowed, so each
+  stage's moves run to the cap. A move only the relearner could teach (one
+  below the catch level, or an evolved stage's level-1 list) is left out.
+  Then the TMs and HMs the player has by then (B1d's item map) and the
+  tutors whose house is reachable by then. Egg moves are left out.
 - The item. The strongest general damage item the split offers, among the
   Choice items, Life Orb, Expert Belt, the type boosters and plates, and
   Muscle Band and Wise Glasses (best_item says how it picks).
@@ -115,34 +121,49 @@ def _location_splits():
     return out
 
 
+def _source_level(text):
+    """A scripted source's level: a number, the low end of a range ("10-14"),
+    or 1 when the level is the traded Pokemon's own and so can be low."""
+    lo = text.split("-")[0].strip()
+    return int(lo) if lo.isdigit() else 1
+
+
 @functools.lru_cache(maxsize=None)
-def caught():
-    """{species constant: (split, how)}: the first split each species can be
-    caught or received in, before any evolution."""
+def catches():
+    """{species constant: [(split, level, how)]}: every place each species is
+    caught or received before any evolution, and the level it comes at
+    there. Only tables the game rolls count: a land table with land_rate 0,
+    or a water kind with no rate, carries slots the game never reaches."""
     sidecar = model.load_sidecar() or {}
     area_split = progression.split_of(sidecar)
     entries = sidecar.get("areas") or {}
-    first = {}
+    out = collections.defaultdict(list)
 
-    def offer(species, split, how):
-        if split not in SPLITS:
-            return
-        if species not in first or split_index(split) < split_index(first[species][0]):
-            first[species] = (split, how)
+    def offer(species, split, level, how):
+        if split in SPLITS:
+            out[species].append((split, level, how))
 
     for area in model.load_all():
         split = area_split.get(area.name)
         if not split:
             continue
-        ref = area.reference_species()
-        for key in LAND_KEYS:
-            for sp in ref.get(key) or []:
-                offer(sp, split, "wild")
+        if area.land_active:
+            slots = area.slots
+            for sp, lv in slots:
+                offer(sp, split, lv, "wild")
+            # The day and night species take the third and fourth slots' levels.
+            for key in ("day", "night"):
+                for j, sp in enumerate(area.data.get(key) or []):
+                    if sp and sp != "SPECIES_NONE":
+                        offer(sp, split, slots[2 + min(j, 1)][1], "wild")
         water = (entries.get(area.name) or {}).get("water_split") or split
         for kind in ("surf", "old_rod", "good_rod", "super_rod"):
+            if not area.kind_rate(kind):
+                continue
             arrives = later(water, progression.rod_split(sidecar, kind))
-            for sp in ref.get(kind + "_encounters") or []:
-                offer(sp, arrives, kind)
+            for sp, lo, _hi in area.kind_slots(kind):
+                if sp != "SPECIES_NONE":
+                    offer(sp, arrives, lo, kind)
     # Honey trees: one table per badge count, each opening in the split the
     # encounter design gives it. A table from before the split tables (the
     # vanilla format) has no split and opens with the first Honey, in
@@ -150,15 +171,27 @@ def caught():
     for table in model.honey_tree_tables():
         for key in (*model.HONEY_TREE_KEYS, "rare"):
             for sp in table.get(key) or []:
-                offer(sp, table.get("split") or HONEY_SPLIT, "honey")
+                offer(sp, table.get("split") or HONEY_SPLIT, table.get("level_min") or 1, "honey")
     locs = _location_splits()
     cap = caps()
     with open(SOURCES, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             split = locs.get(row["location"])
-            level = int(row["level"]) if row["level"].isdigit() else 0
+            level = _source_level(row["level"])
             if split and cap.get(split) and level <= cap[split]:
-                offer(row["species"], split, row["method"])
+                offer(row["species"], split, level, row["method"])
+    return dict(out)
+
+
+@functools.lru_cache(maxsize=None)
+def caught():
+    """{species constant: (split, how)}: the first split each species can be
+    caught or received in, before any evolution."""
+    first = {}
+    for sp, rows in catches().items():
+        for split, _level, how in rows:
+            if sp not in first or split_index(split) < split_index(first[sp][0]):
+                first[sp] = (split, how)
     return first
 
 
@@ -167,7 +200,7 @@ def pre_evolutions():
     """{species: [its earlier stages]}, from every species' evolutions."""
     parent = {}
     for sp in pokedex.species_list(data.ROOT):
-        for _need, target in evolve.evolutions(data.ROOT, sp):
+        for _need, _item, target in evolutions(sp):
             parent.setdefault(target, sp)
     out = {}
     for sp in pokedex.species_list(data.ROOT):
@@ -207,8 +240,17 @@ def evolutions(species):
     for evo in (pokedex.load(data.ROOT, species) or {}).get("evolutions", []):
         if evo["item"] and evo["into"]:
             items.setdefault(evo["into"], "ITEM_" + evo["item"])
-    return [(1 if target in items else need, items.get(target), target)
-            for need, target in evolve.evolutions(data.ROOT, species)]
+    out = [(1 if target in items else need, items.get(target), target)
+           for need, target in evolve.evolutions(data.ROOT, species)]
+    # The encounter tool keeps only a stage's level evolutions when it has
+    # any, which is right for placing wild stages; the player can use the
+    # item as well (Kirlia's Dawn Stone to Gallade, Wooper's Poison Barb to
+    # Clodsire, Goomy's Metal Coat to Hisuian Sliggoo).
+    seen = {target for _n, _i, target in out}
+    for target, item in items.items():
+        if target not in seen and not target.startswith(species + "_"):
+            out.append((1, item, target))
+    return out
 
 
 def reachable(level, item, split):
@@ -290,19 +332,48 @@ def _move_names():
     return out
 
 
-def moves_at(species, split):
-    """Every move constant the species can know by the end of the split."""
+def _learnset(species):
+    return (pokedex.load(data.ROOT, species) or {}).get("learnset", [])
+
+
+def level_up_moves(species, split):
+    """The level-up moves the species can know by the end of the split, by
+    Ian's capture rule (the module's "Moves"): over every catch of it or of
+    an earlier stage by then, the four it knows at capture and what each
+    stage learns afterwards up to the cap."""
     cap = caps()[split]
+    chain = list(reversed(pre_evolutions().get(species, []))) + [species]
+    out = set()
+    for i, start in enumerate(chain):
+        for s, level, _how in catches().get(start, []):
+            if split_index(s) > split_index(split) or level > cap:
+                continue
+            out |= set(calc_trainers.default_moves(_learnset(start), level))
+            out |= {mv for lv, mv in _learnset(start) if level < lv <= cap}
+            now = level
+            for before, stage in zip(chain[i:], chain[i + 1:]):
+                # An item evolution can come at once; a level one comes at
+                # its level, or at the next level-up when caught past it. A
+                # stage the side owns at the cap is taken to evolve there.
+                ats = [now if item else max(need, now + 1)
+                       for need, item, into in evolutions(before)
+                       if into == stage and reachable(need, item, split)]
+                if not ats:
+                    break
+                now = min(min(ats), cap)
+                out |= {mv for lv, mv in _learnset(stage) if max(now, 2) <= lv <= cap}
+    return out
+
+
+def moves_at(species, split):
+    """Every move constant the species can know by the end of the split: its
+    level-up moves by the capture rule, the TMs and HMs the player has by
+    then, and the tutors reachable by then."""
     tms = {m: s for m, s in ((it.replace("ITEM_", ""), s) for it, s in _items_first().items())
            if m.startswith(("TM", "HM"))}
     machines = pokedex.machines(data.ROOT)
     tutors = _tutor_splits()
-    out = set()
-    for stage in [species] + pre_evolutions().get(species, []):
-        rec = pokedex.load(data.ROOT, stage)
-        if rec is None:
-            continue
-        out |= {mv for lvl, mv in rec["learnset"] if lvl <= cap}
+    out = level_up_moves(species, split)
     rec = pokedex.load(data.ROOT, species)
     if rec:
         for machine in rec["by_tm"]:
