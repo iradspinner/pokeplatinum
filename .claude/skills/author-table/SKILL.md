@@ -159,8 +159,10 @@ to read it.
 ## When a batch is done
 
 `cli evolve` reports 0 moves; `cli availability` passes with no cap
-candidates; `lint --ignore R12 --fail-on error` is clean (R12's 27 errors are
-the legendary pool's lines, which wait on script work); `audit --fail-on-leak`
+candidates; `lint --fail-on error` is clean, R12 included (since 2026-09-27
+the legendaries Ian holds back, in the pool's reserve, an empty cavern's third
+or a post-League proposal, are warnings that give his reason, and the
+pre-commit hook and the gate both lint R12); `audit --fail-on-leak`
 exits 0; the ROM is built (on GitHub with `tools/oxide/fetch-rom` until the
 replacement CPU is in, otherwise `make rom`) and `python3
 tools/oxide/verify_narcs.py --built <rom> --encounters --source` reports all 184
