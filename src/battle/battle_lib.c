@@ -2704,6 +2704,14 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
         result = FALSE;
     }
 
+    // Oxide, element 7: a Ring Target loses its holder every immunity its
+    // types give it, so the move meets the other type alone (hg-engine's
+    // TYPE_RING_TARGET marker in its chart).
+    if (itemEffect == HOLD_EFFECT_RING_TARGET
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
+    }
+
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
         && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
@@ -3027,6 +3035,11 @@ static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int ch
 
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
+    }
+
+    if (itemEffect == HOLD_EFFECT_RING_TARGET // Oxide, element 7
         && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
         result = FALSE;
     }
@@ -3361,8 +3374,10 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
         return ABILITY_NONE;
     }
 
-    // Oxide: while Neutralizing Gas is on the field every other ability is off.
-    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
+    // Oxide: while Neutralizing Gas is on the field every other ability is off,
+    // save that of an Ability Shield's holder (element 7).
+    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)
+        && Battler_HasAbilityShield(battleCtx, battler) == FALSE) {
         return ABILITY_NONE;
     }
 
@@ -3383,6 +3398,14 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
     }
 
     return battleCtx->battleMons[battler].ability;
+}
+
+BOOL Battler_HasAbilityShield(BattleContext *battleCtx, int battler)
+{
+    // The item is read directly rather than through Battler_HeldItemEffect,
+    // which asks Battler_Ability about Klutz and would come back here.
+    return battleCtx->battleMons[battler].heldItem != ITEM_NONE
+        && BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT) == HOLD_EFFECT_ABILITY_SHIELD;
 }
 
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
@@ -5034,6 +5057,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             // Overcoat (Generation 6).
             && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GRASS)
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_OVERCOAT
+            && Battler_HeldItemEffect(battleCtx, battleCtx->attacker) != HOLD_EFFECT_SAFETY_GOGGLES // Oxide, element 7
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -5288,6 +5312,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.ability != ABILITY_MUMMY
             && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SUPPRESS) == FALSE
+            && Battler_HasAbilityShield(battleCtx, battleCtx->attacker) == FALSE // Oxide, element 7
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
@@ -5302,6 +5327,8 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.ability != ABILITY_WANDERING_SPIRIT
             && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SWAP) == FALSE
+            && Battler_HasAbilityShield(battleCtx, battleCtx->attacker) == FALSE // Oxide, element 7
+            && Battler_HasAbilityShield(battleCtx, battleCtx->defender) == FALSE
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE

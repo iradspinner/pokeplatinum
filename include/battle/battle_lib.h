@@ -734,6 +734,16 @@ BOOL BattleSystem_NeutralizingGasActive(BattleContext *battleCtx);
 BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int ability);
 
 /**
+ * @brief Oxide, element 7: whether the battler holds an Ability Shield, which
+ * keeps any other battler from changing or suppressing its ability.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if it does
+ */
+BOOL Battler_HasAbilityShield(BattleContext *battleCtx, int battler);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a

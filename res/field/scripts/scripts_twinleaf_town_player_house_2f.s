@@ -3164,12 +3164,22 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemAssaultVest, 2
     AddListMenuEntry TestKit_Text_MenuItemPunchingGlove, 3
     AddListMenuEntry TestKit_Text_MenuItemFairyFeather, 4
+    AddListMenuEntry TestKit_Text_MenuItemRingTarget, 5
+    AddListMenuEntry TestKit_Text_MenuItemSafetyGoggles, 6
+    AddListMenuEntry TestKit_Text_MenuItemCovertCloak, 7
+    AddListMenuEntry TestKit_Text_MenuItemClearAmulet, 8
+    AddListMenuEntry TestKit_Text_MenuItemAbilityShield, 9
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
     GoToIfEq VAR_0x8004, 2, TestKit_ItemAssaultVest
     GoToIfEq VAR_0x8004, 3, TestKit_ItemPunchingGlove
     GoToIfEq VAR_0x8004, 4, TestKit_ItemFairyFeather
+    GoToIfEq VAR_0x8004, 5, TestKit_ItemRingTarget
+    GoToIfEq VAR_0x8004, 6, TestKit_ItemSafetyGoggles
+    GoToIfEq VAR_0x8004, 7, TestKit_ItemCovertCloak
+    GoToIfEq VAR_0x8004, 8, TestKit_ItemClearAmulet
+    GoToIfEq VAR_0x8004, 9, TestKit_ItemAbilityShield
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3318,6 +3328,93 @@ TestKit_ItemFairyFeather:
     SetVar VAR_0x8007, MOVE_DAZZLING_GLEAM
     SetVar VAR_0x8008, MOVE_CALM_MIND
     SetVar VAR_0x8009, MOVE_MOONLIGHT
+    GoTo TestKit_GiveItemPair
+
+/* The Ring Target: Skarmory against a wild Dugtrio that knows only
+   Earthquake. The Skarmory holding it takes Earthquake, super effective
+   through its Steel type; the other is not affected. */
+TestKit_ItemRingTarget:
+    SetVar VAR_0x8000, SPECIES_DUGTRIO
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EARTHQUAKE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SKARMORY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_RING_TARGET
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_SPIKES
+    SetVar VAR_0x8008, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* Safety Goggles: Snorlax against a wild Parasect given Effect Spore that
+   knows Spore and Stun Spore. The Snorlax wearing them is not affected
+   by either move, is never touched by Effect Spore when it uses Body Slam,
+   and takes no damage from its own Sandstorm; the other Snorlax is. */
+TestKit_ItemSafetyGoggles:
+    SetVar VAR_0x8000, SPECIES_PARASECT
+    SetVar VAR_0x8001, ABILITY_EFFECT_SPORE
+    SetVar VAR_0x8002, MOVE_SPORE
+    SetVar VAR_0x8003, MOVE_STUN_SPORE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_SAFETY_GOGGLES
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Covert Cloak: Snorlax against a wild Jolteon that knows only Nuzzle,
+   whose paralysis is an added effect. The cloaked Snorlax takes the damage
+   and is never paralysed; the other always is. */
+TestKit_ItemCovertCloak:
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NUZZLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_COVERT_CLOAK
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Clear Amulet: Mew against a wild Chansey that knows only Growl.
+   Each Growl at the Mew wearing it brings "MEW's Clear Amulet prevents
+   stat loss!"; the other Mew's Attack falls. Its own Swords Dance works. */
+TestKit_ItemClearAmulet:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_CLEAR_AMULET
+    SetVar VAR_0x8006, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Ability Shield: Mew against a wild Chansey that knows Worry Seed and
+   Gastro Acid. Against the Mew holding it both fail ("But it failed!");
+   against the other, Worry Seed gives it Insomnia and Gastro Acid
+   suppresses its ability. */
+TestKit_ItemAbilityShield:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WORRY_SEED
+    SetVar VAR_0x8003, MOVE_GASTRO_ACID
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ABILITY_SHIELD
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveItemPair
 
 TestKit_PartyFull:

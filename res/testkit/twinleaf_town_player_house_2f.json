@@ -955,6 +955,26 @@
         {
             "id": "TestKit_Text_MenuItemFairyFeather",
             "en_US": "Fairy Feather"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRingTarget",
+            "en_US": "Ring Target"
+        },
+        {
+            "id": "TestKit_Text_MenuItemSafetyGoggles",
+            "en_US": "Safety Goggles"
+        },
+        {
+            "id": "TestKit_Text_MenuItemCovertCloak",
+            "en_US": "Covert Cloak"
+        },
+        {
+            "id": "TestKit_Text_MenuItemClearAmulet",
+            "en_US": "Clear Amulet"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbilityShield",
+            "en_US": "Ability Shield"
         }
     ]
 }

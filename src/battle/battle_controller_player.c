@@ -2987,6 +2987,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         return subscript_prankster_dark_immunity;
     }
 
+    // Oxide, element 7: Safety Goggles keep powder and spore moves off their
+    // holder (hg-engine's BattleController_CheckSafetyGoggles).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && Move_IsPowder(battleCtx->moveCur)
+        && Battler_HeldItemEffect(battleCtx, defender) == HOLD_EFFECT_SAFETY_GOGGLES) {
+        return subscript_safety_goggles;
+    }
+
     // Oxide: Mean Look, Block and Spider Web do not affect a Ghost type, which
     // no trap holds (Generation 6; the same hg-engine check).
     if (defender != BATTLER_NONE

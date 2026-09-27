@@ -3124,6 +3124,21 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
 
                     result = 1;
+                } else if (Battler_HeldItemEffect(battleCtx, battleCtx->sideEffectMon) == HOLD_EFFECT_COVERT_CLOAK
+                    && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
+                    // Oxide, element 7: a Covert Cloak blocks a move's added
+                    // effect as Shield Dust does, with no message; it is
+                    // checked first so the Clear Amulet does not speak for it.
+                    result = 1;
+                } else if (Battler_HeldItemEffect(battleCtx, battleCtx->sideEffectMon) == HOLD_EFFECT_CLEAR_AMULET) {
+                    // Oxide, element 7: a Clear Amulet keeps another battler
+                    // from lowering its holder's stats, as Clear Body does.
+                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+                    battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].heldItem;
+
+                    result = 1;
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
                     || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
@@ -5945,6 +5960,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Oxide
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH // Oxide
+            && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_SAFETY_GOGGLES // Oxide, element 7
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -5973,7 +5989,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             } else if (type1 != TYPE_ICE
                 && type2 != TYPE_ICE
                 && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK
-                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT) { // Oxide
+                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
+                && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_SAFETY_GOGGLES) { // Oxide, element 7
                 battleCtx->msgMoveTemp = MOVE_HAIL;
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }
@@ -10585,7 +10602,8 @@ static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx,
         || (stages < 0
             && target != holder
             && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
-                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
+                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE
+                || Battler_HeldItemEffect(battleCtx, target) == HOLD_EFFECT_CLEAR_AMULET))) { // Oxide, element 7
         return FALSE;
     }
 
@@ -10678,6 +10696,18 @@ static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *ba
             || defending == ABILITY_TRUANT
             || defending == attacking;
         break;
+    }
+
+    // Oxide, element 7: an Ability Shield keeps its holder's ability as it
+    // is, so a move fails whenever it would change or suppress a holder's:
+    // the defender's for every kind, and the attacker's as well for a swap
+    // and for Role Play, which rewrites the user's own.
+    if (Battler_HasAbilityShield(battleCtx, battleCtx->defender) && kind != ABILITY_CHANGE_COPY) {
+        fails = TRUE;
+    }
+    if (Battler_HasAbilityShield(battleCtx, battleCtx->attacker)
+        && (kind == ABILITY_CHANGE_SWAP || kind == ABILITY_CHANGE_COPY)) {
+        fails = TRUE;
     }
 
     if (fails) {

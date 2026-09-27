@@ -9470,6 +9470,48 @@
         "The effects of the {STRVAR_1 8, 0, 0}\n",
         "prevent the use of status moves!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is protected\n",
+        "by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "protected by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "protected by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
+      ]
     }
   ]
 }
