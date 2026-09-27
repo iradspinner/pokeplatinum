@@ -59,6 +59,15 @@ def check_species(results):
                     and any(e["partner"] == "SPECIES_REMORAID" for e in mantyke)
                     and dex.line_of(root, "SPECIES_REMORAID") != dex.line_of(root, "SPECIES_MANTYKE"),
                     str(mantyke)))
+    # Feebas's Beauty of 170 is a condition, not a level; until 2026-09-27
+    # every EVO_LEVEL number read as a level, and Milotic as reached at 170.
+    feebas = pokedex.load(root, "SPECIES_FEEBAS")["evolutions"]
+    from . import evolve
+    results.append(("Feebas's Beauty condition is not a level: Milotic comes at 30, by its "
+                    "level route",
+                    all(e["level"] != 170 for e in feebas)
+                    and evolve.evolutions(root, "SPECIES_FEEBAS") == [(30, "SPECIES_MILOTIC")]
+                    and dex.final_by_level(root, "SPECIES_FEEBAS") == 30, str(feebas)))
     results.append(("the level-up learnset comes through",
                     pokedex.load(root, "SPECIES_LITTEN")["learnset"][0]
                     == [1, "MOVE_SCRATCH"], ""))
