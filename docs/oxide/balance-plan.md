@@ -1211,6 +1211,65 @@ report says so. Ian's playtests remain the final gate. The scores aim the
 changes and catch outliers, and they are recalibrated when Ian's feel
 disagrees with them.
 
+## The scoring rebuild (design of 2026-09-27, under way)
+
+The headline score is a damage race that cannot see status or setup, so it
+read the Galactic HQ B2F grunt above Officer Somnu's sleep team. Ian
+approved a rebuild on 2026-09-27 that plays each fight out, turn by turn
+and many times, and scores it by what the player loses. It replaces the
+headline only when it agrees with his judgements
+(`docs/oxide/pairwise-candidates.md`).
+
+The simulator is `fightsim.py`, with the trainer's AI in `fightai.py`.
+Damage comes from the calculator the scores already use, run once per fight
+for every attacker, target and move, in each weather the fight can have.
+Stat stages, burn, screens, critical hits, the roll and accuracy are then
+applied as Generation 4 does, and so is status. The trainer chooses its
+move the way the game's AI does, from its own flags, with the switch rules
+and the post-faint pick (condensed from `docs/oxide/battle-ai/`). The
+player follows a fixed policy: the best answer leads, the move that
+finishes the foe soonest is used, a status or setup move is used when a
+one-turn look ahead says the exchange then turns, and a bench member that
+wins the exchange comes in when the active one loses it.
+
+The player plans for the fight (Ian, 2026-09-27). Random sixes from the
+strongest third of the split's side, at the cap and with four moves each
+(three attacks of different types and the best status move by Ian's tier
+list), are tried in a pre-pass, and the best becomes the team:
+
+| Pre-pass step | Sixes | Battles each |
+|---|---|---|
+| All candidates | 40 | 10 |
+| The best five | 5 | 40 more |
+| The reading, on the one kept | 1 | 200 |
+
+A single stage of ten battles picked lucky teams. On Somnu the true losses
+of its pick swung from 0.16 to 0.63 a battle with the random seed.
+
+The League split is played in two sections (Ian, 2026-09-27). Every fight
+up to the Elite Four is at the "Barry split" cap of 71. Each Elite Four
+fight is at its own ace's level, since Ian levels only to the next fight's
+ace:
+
+| Aaron | Bertha | Flint | Lucian | Cynthia |
+|---|---|---|---|---|
+| 72 | 73 | 74 | 75 | 78 |
+
+The Fight Area's tag fight falls in the Barry split, with aces of 74 and
+75 against its cap of 71.
+
+A fight's reading is the mean number of the player's Pokemon lost, the
+chance of losing three or more, the chance of a wipe, the share of battles
+won, and the share of the team's HP spent. The last one separates the easy
+fights, where nothing faints. The headline weights these onto Ian's 1-to-10
+scale, fitted to 25 of his pairs; it must then agree with at least 13 of the
+15 held out. Ian judged his pairs as singles, doubles trainers included.
+
+Measured so far: Maylene's split, 40 fights, reads in 68 seconds on one
+core, so the whole game takes about a quarter of an hour. Still to build:
+doubles and Barry as a partner (tag fights and doubles trainers play as
+singles until then), the rarer AI rules, the tests, and the fit.
+
 ## Open questions for Ian
 
 Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
