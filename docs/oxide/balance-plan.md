@@ -1769,7 +1769,8 @@ Generation 4 branch, as element 5's abilities will.
    in the same commit, and the Overseer is told before the pass starts so
    the gate learns about it at the same time.
 
-   **The gauntlet proposal** (2026-09-27, `gauntlet.py`; for Ian). The
+   **The gauntlet proposal** (2026-09-27, `gauntlet.py`; the first reading,
+   superseded by "The gauntlets, reworked" below). The
    scores read every fight from a healed party, so a gauntlet needs a
    reading of its own: random parties of six are sent through its trainers
    in order with nothing healed between them. Each boss Pokemon is met by
@@ -1850,6 +1851,72 @@ Generation 4 branch, as element 5's abilities will.
    the three Lucas and Dawn fights are story fights, and Krystal (Route
    214, Wake's split) and Officer Argo (Mt. Coronet, the Galactic split)
    are ordinary trainers, both in the middle band.
+
+   **The gauntlets, reworked on Ian's rulings** (2026-09-27; this replaces
+   the proposal above, kept as the first reading). A gauntlet is 2 to 5
+   mandatory trainers on the easier side of average, counted without
+   optional ones; the bag may heal between its fights, so the danger is
+   deaths snowballing; bosses stay outside, with gauntlets leading up to
+   them; and a majority of the game's trainers should be mandatory, which
+   is the trainer pass's. Ian judged the first reading too kind, because
+   one team must answer several different fights.
+
+   The second reading (`gauntlet.py`, now its default) keeps a party of six
+   from the strongest third of the split's side together through a
+   section and plays each fight out. A member keeps the field from one
+   boss Pokemon to the next unless another answers it better; swapping in
+   at a fight's start costs the incoming member a hit (after a faint and
+   between boss Pokemon the game's Shift mode swaps free); every hit rolls
+   its damage and its accuracy, and one in sixteen is critical. After each
+   trainer the survivors heal to full and the dead stay dead. The reading
+   is the share of parties that finish with no death, beside the split's
+   story fights read the same way from a healed party (a rival's fight team
+   by team). Two runs gave the same readings.
+
+   | Section | Split | Trainers | Clean clears | Deaths a run |
+   |---|---|---|---|---|
+   | Eterna building, 1F and 2F | Fantina | 4 | 0.94 | 0.06 |
+   | Eterna building, 3F | Fantina | 2 | 0.99 | 0.01 |
+   | Galactic HQ, 1F | HQ | 2 | 0.68 | 0.41 |
+   | Galactic HQ, 2F | HQ | 4 | 0.42 | 0.93 |
+   | Galactic HQ, 3F | HQ | 4 | 0.55 | 0.83 |
+   | Galactic HQ, B2F | HQ | 2 | 0.46 | 1.06 |
+   | Mt. Coronet, 1F's tunnel | Galactic | 3 | 0.78 | 0.26 |
+   | Mt. Coronet, 3F, 4F and Somnu on 5F | Galactic | 5 | 0.71 | 0.34 |
+   | Victory Road, 1F nearer the entrance | League | 3 | 0.86 | 0.16 |
+   | Victory Road, 1F's far half | League | 3 | 0.71 | 0.37 |
+   | Victory Road, 2F | League | 4 | 0.54 | 0.71 |
+   | Victory Road, B1F | League | 4 | 0.69 | 0.43 |
+
+   | Story fight, read the same way | Clean clears |
+   |---|---|
+   | Jupiter 1, Lucas and Dawn 2, Fantina | 0.98, 0.97, 0.32 |
+   | Cyrus 2, Saturn 2 | 0.60, 0.47 |
+   | Mars and Jupiter, Cyrus 3 | 0.52, 0.30 |
+   | Lucas and Dawn 3, Barry 6, Aaron, Bertha | 0.71, 0.48, 0.76, 0.64 |
+   | Flint, Lucian, Cynthia | 0.14, 0.39, 0.06 |
+
+   What it shows. The Eterna building's grunts cost nothing yet: its
+   trainers are at the bottom of the scale, so it is a gauntlet in name
+   until the trainer pass raises them, and as the first gauntlet it should
+   stay the lightest. The Galactic HQ's sections are as deadly as its
+   bosses, so they are not yet on the easier side: Scientist Fredrick (3.8
+   on Ian's scale, against the split's 2.8) and a B2F grunt (4.0) are the
+   ones to soften. Mt. Coronet takes two sections once its officers are
+   left out: Hesperid is a fight Ian rated, a boss, and Moira (4.9) and
+   Argo (5.2) are far above the split's 3.4; Somnu, at it, closes the
+   second section, and the climb leads up to Hesperid and Spear Pillar.
+   Victory Road's four sections sit on the easier side of the League's
+   fights, but six of its fourteen trainers are above the split's average
+   (Omar 4.7 and Henry 5.1 most), to soften or to leave optional.
+
+   How the reading could be truer still, in order of weight: a drafted team
+   rather than random strong sixes (the species that answer the split's
+   fights, weighted by the encounter tables); the player's level on
+   arriving rather than the split's cap; the boss AI's switches, setup and
+   status rather than its hardest hit; and status, PP and held items. For
+   Ian: which sections he takes, and whether the trainers above their
+   split's average are softened or left optional.
 
 Trainers can now be given a chosen nature (encounter M8), which removes the
 old trade-off between a nature and IVs. One open defect has to be fixed before
