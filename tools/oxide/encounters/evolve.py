@@ -88,7 +88,9 @@ def evolutions(root, species):
             continue
         method = evo[0] if isinstance(evo[0], str) else ""
         ints = [x for x in evo if isinstance(x, int) and not isinstance(x, bool)]
-        target = next((x for x in evo
+        # The result is the last species named; one before it is a partner
+        # (EVO_LEVEL_SPECIES_IN_PARTY: Mantyke with a Remoraid in the party).
+        target = next((x for x in reversed(evo)
                        if isinstance(x, str) and x.startswith("SPECIES_")), None)
         # A mega or a regional form is listed as an evolution of its base
         # (SPECIES_GYARADOS -> SPECIES_GYARADOS_M); it is not a stage.

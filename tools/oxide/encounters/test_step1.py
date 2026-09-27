@@ -120,9 +120,11 @@ def check_r12(results):
     # Gastly and Misdreavus lines, 206 with the seventeen water lines, 205
     # with the Magikarp line cut, 239 with the 34 lines of the Platinum-size
     # pick-list (2026-09-26), and 238 since Fomantis evolves into Lurantis
-    # (main-scripts, 2026-09-27), one line.
+    # (main-scripts, 2026-09-27), one line. 239 since Remoraid and Mantyke
+    # are two lines again (2026-09-27): the tool read the Remoraid that
+    # Mantyke's party method names as its evolution and joined them.
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 238
+                    avail is not None and len(avail) == 239
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",

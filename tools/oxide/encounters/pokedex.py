@@ -177,12 +177,16 @@ def _evolution(root, entry):
     method = entry[0] if isinstance(entry[0], str) else ""
     ints = [x for x in entry if isinstance(x, int) and not isinstance(x, bool)]
     item = next((x for x in entry if isinstance(x, str) and x.startswith("ITEM_")), None)
-    into = next((x for x in entry if isinstance(x, str) and x.startswith("SPECIES_")), None)
+    # The result is the last species named; one before it is the partner the
+    # method asks for (EVO_LEVEL_SPECIES_IN_PARTY, Mantyke with a Remoraid).
+    named = [x for x in entry if isinstance(x, str) and x.startswith("SPECIES_")]
+    into = named[-1] if named else None
     return {
         "method": _strip(method, "EVO_"),
         "level": ints[0] if method.startswith("EVO_LEVEL") and ints else None,
         "item": _strip(item, "ITEM_") if item else None,
         "into": into,
+        "partner": named[0] if len(named) > 1 else None,
         "form": bool(into and _mega_of(root, into)),
     }
 
