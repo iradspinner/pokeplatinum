@@ -262,9 +262,13 @@ def check_text(built, ref, nb, nr, msgenc, charmap):
                 if (len(got) > len(new) and i not in imp.TEXT_BANKS_SKIPPED
                         and not isinstance(imp.message_body(new[0]), tuple)):
                     prefixed += 1
+                    # Entries reworded on purpose are left out
+                    # (import_base_rom.py's TEXT_ENTRIES_DIVERGED).
+                    intended = imp.TEXT_ENTRIES_DIVERGED.get(i, {})
                     bad = [f"[{s}] built {imp.message_body(h)!r} != ref {imp.message_body(w)!r}"
                            for s, (w, h) in enumerate(zip(new, got))
-                           if imp.message_body(w) != imp.message_body(h)
+                           if s not in intended
+                           and imp.message_body(w) != imp.message_body(h)
                            and not isinstance(imp.message_body(w), tuple)
                            and not isinstance(imp.message_body(h), tuple)]
                     if bad:

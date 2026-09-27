@@ -18,6 +18,13 @@ leaves a gap that changes what gets built, ask once, with options, before
 recording (AskUserQuestion). "Option 1, with the notes" means option 1 as
 amended by his note: record the amendment, not the bare option.
 
+An option names a method, not a purpose, and Ian picks the one nearest what
+he means. When the chosen word could mean either "apply it" or "study it"
+(template, source, model, base), ask what it is for before recording it. On
+2026-09-27 "line-by-line template" for Kaizo's learnsets meant "study when
+and why Kaizo gives each move", and was recorded as "copy the lists"; a
+cloud job then rewrote 389 species before the gap showed.
+
 If a peer session relays a ruling, record it as relayed ("Ian, 2026-09-26,
 relayed by the balance track"). A peer can relay Ian's words; it cannot
 make a ruling.

@@ -8472,6 +8472,17 @@ static const u16 sCannotMetronomeMoves[] = {
     MOVE_BLACK_ECLIPSE_SPECIAL,
     MOVE_TWINKLE_TACKLE_PHYSICAL,
     MOVE_TWINKLE_TACKLE_SPECIAL,
+    // The eight status moves cut from Oxide (Ian, 2026-09-27) keep their
+    // records but have no working effect, so Metronome must not call them.
+    // Their slots are left as they are until the move list settles.
+    MOVE_TELEKINESIS,
+    MOVE_ALLY_SWITCH,
+    MOVE_TOPSY_TURVY,
+    MOVE_FLOWER_SHIELD,
+    MOVE_FAIRY_LOCK,
+    MOVE_AROMATIC_MIST,
+    MOVE_MAGNETIC_FLUX,
+    MOVE_SPEED_SWAP,
     FORBIDDEN_BY_METRONOME_DELIM,
 };
 

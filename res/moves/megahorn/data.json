@@ -1,11 +1,11 @@
 {
     "name": "Megahorn",
     "description": [
-        "Utilizing its tough\n",
-        "and impressive\n",
-        "horn, the user\n",
-        "rams into the foe \n",
-        "with no letup.\n"
+        "The user rams the foe\n",
+        "with its tough and\n",
+        "impressive horn.\n",
+        "It has a high\n",
+        "critical-hit ratio."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",

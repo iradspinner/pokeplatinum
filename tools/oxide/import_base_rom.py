@@ -1236,6 +1236,19 @@ TEXT_BANK_ITEM_DESCRIPTIONS = 391
 TEXT_BANK_ITEM_NAMES = 392
 TEXT_BANK_MOVE_DESCRIPTIONS = 646
 
+# Single entries that deliberately differ from the base ROM inside a bank that
+# is otherwise checked against it, keyed by bank and then by entry. A bank that
+# grew in Phase 4 is still compared on the entries it shares with the base ROM
+# (verify_narcs.py --text), so an intended rewording of one of those needs a
+# line here or the gate reports it.
+TEXT_ENTRIES_DIVERGED = {
+    TEXT_BANK_MOVE_DESCRIPTIONS: {
+        entry: "the Kaizo move data gave it a high critical-hit ratio, so its "
+               "description says so (Ian, 2026-09-27)"
+        for entry in (65, 224, 337, 404, 438)  # Drill Peck, Megahorn, Dragon Claw, X-Scissor, Power Whip
+    },
+}
+
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
 # Trades the encounter pass rebuilt (Ian, 2026-09-21). Their records are Oxide's
