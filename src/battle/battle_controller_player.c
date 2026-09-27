@@ -819,6 +819,24 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
 
                 battleCtx->turnStartCheckTemp++;
 
+                // Oxide: Beak Blast heats its user's beak here, under Focus
+                // Punch's conditions, and burns an attacker that makes contact
+                // until the user moves (BattleSystem_TriggerAbilityOnHit).
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
+                    && Battler_SelectedMove(battleCtx, battler) == MOVE_BEAK_BLAST
+                    && Battler_CheckTruant(battleCtx, battler) == FALSE
+                    && battleCtx->turnFlags[battler].struggling == FALSE) {
+                    BattleController_EmitClearMessageBox(battleSys);
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->turnFlags[battler].beakBlastHeating = TRUE;
+
+                    LOAD_SUBSEQ(subscript_beak_blast_start);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    return;
+                }
+
                 if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
                     && Battler_SelectedMove(battleCtx, battler) == MOVE_FOCUS_PUNCH
                     && Battler_CheckTruant(battleCtx, battler) == FALSE

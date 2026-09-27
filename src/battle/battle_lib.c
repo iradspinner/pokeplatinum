@@ -4775,6 +4775,26 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         return result;
     }
 
+    // Oxide: a battler heating its beak for Beak Blast burns an attacker that
+    // makes contact with it until it has used the move, under Flame Body's
+    // conditions but every time. It comes before the defender's own ability,
+    // which then does not trigger on this hit.
+    if (battleCtx->turnFlags[battleCtx->defender].beakBlastHeating
+        && Battler_MovedThisTurn(battleCtx, battleCtx->defender) == FALSE
+        && ATTACKING_MON.curHP
+        && ATTACKING_MON.status == MON_CONDITION_NONE
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
+        battleCtx->sideEffectMon = battleCtx->attacker;
+        battleCtx->msgBattlerTemp = battleCtx->defender;
+
+        *subscript = subscript_burn;
+        return TRUE;
+    }
+
     switch (Battler_Ability(battleCtx, battleCtx->defender)) {
     case ABILITY_STATIC:
         if (ATTACKING_MON.curHP

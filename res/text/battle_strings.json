@@ -9330,6 +9330,27 @@
         "It’s teatime! Everyone dug in to\n",
         "their Berries!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonStartedHeatingUpItsBeak_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
     }
   ]
 }

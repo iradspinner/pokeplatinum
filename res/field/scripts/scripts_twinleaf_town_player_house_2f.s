@@ -742,6 +742,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet60, 5
     AddListMenuEntry TestKit_Text_MenuSet61, 6
     AddListMenuEntry TestKit_Text_MenuSet62, 7
+    AddListMenuEntry TestKit_Text_MenuSet63, 8
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -751,6 +752,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet60
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet61
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet62
+    GoToIfEq VAR_0x8004, 8, TestKit_MoveSet63
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1486,6 +1488,24 @@ TestKit_MoveSet62:
     SetVar VAR_0x8007, MOVE_THUNDERBOLT
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 63: Beak Blast heats its user's beak at the start of the turn and
+   burns an attacker that makes contact with it before it strikes. Against
+   a wild Rattata that knows Tackle and Swift: when Mew chooses Beak Blast,
+   "MEW started heating up its beak!" comes first, and a Tackle into it
+   brings "The wild RATTATA was burned!" before Beak Blast hits; a Swift
+   makes no contact and burns nothing, nor does a Tackle on a turn Mew
+   chooses something else. */
+TestKit_MoveSet63:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_BEAK_BLAST
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

@@ -377,4 +377,5 @@ subscript_files = files(
     'subscript_magic_room_end.s',
     'subscript_teatime.s',
     'subscript_core_enforcer.s',
+    'subscript_beak_blast_start.s',
 )
