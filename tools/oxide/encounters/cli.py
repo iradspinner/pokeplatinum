@@ -250,7 +250,9 @@ def cmd_lint(args):
     # R12 reads the pick-list's tiers and each line's cheapest wild source;
     # None until `tier-init` has written the column, and the rule says so.
     from . import audit
-    findings = lint.lint_all(payload, sidecar, audit.availability(args.ref))
+    # R18 reads the working tree's scripts, so a reference tree goes without.
+    hidden = None if args.ref else audit.hidden_ability_grants(model.repo_root())
+    findings = lint.lint_all(payload, sidecar, audit.availability(args.ref), hidden)
     if args.rule:
         wanted = {r.upper() for r in args.rule.split(",")}
         findings = [f for f in findings if f.rule.upper() in wanted]

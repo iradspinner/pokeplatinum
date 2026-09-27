@@ -356,8 +356,9 @@ def check_page(results):
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    # Five since the box simulator's tab (2026-09-26).
-                    bool(hides) and views == 5 and toggled == views,
+                    # Five since the box simulator's tab (2026-09-26), six
+                    # since the Trainers tab (2026-09-27).
+                    bool(hides) and views == 6 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
     # Ian's notes after D4: a species in a table opens its dex page, and Back
@@ -976,6 +977,35 @@ def check_trainer_sets(results):
     results.append(("a trainer's form keeps its form in the calculator",
                     "Rotom-Mow" in sets and any(
                         n.endswith("Leader Volkner") for n in sets["Rotom-Mow"]), ""))
+
+    # "ability": 3 (1832a346c) is "don't care" for the personality, then the
+    # record's hidden ability, or the ordinary one when there is none; and a
+    # form reads its own record (f801cc160). Roark's file with its first
+    # member swapped, so the trainer's id and class are real.
+    with open(os.path.join(root, "res", "trainers", "data", "leader_roark.json"),
+              encoding="utf-8") as fh:
+        roark_data = _json.load(fh)
+
+    def first_set(**member):
+        data = dict(roark_data, party=[dict(roark_data["party"][0], **member)])
+        return ct.build_trainer(root, "leader_roark", data)[0][1]
+    plain = first_set(species="SPECIES_PELIPPER", form=0, ability=0)
+    hidden = first_set(species="SPECIES_PELIPPER", form=0, ability=3)
+    pelipper = pokedex.load(root, "SPECIES_PELIPPER")
+    results.append(("ability 3 gives the hidden ability and moves no other roll",
+                    hidden["ability"] == calc_export.ability_name(pelipper["hidden_ability"])
+                    and plain["ability"] != hidden["ability"]
+                    and (hidden["personality"], hidden["nature"], hidden["gender"])
+                    == (plain["personality"], plain["nature"], plain["gender"])
+                    and ct.low_byte(127, None, 3, 136) == 136
+                    and ct.low_byte(127, "female", 3, 136) == ct.low_byte(127, "female", 0, 136),
+                    f"{plain['ability']} then {hidden['ability']}"))
+    origin = first_set(species="SPECIES_GIRATINA", form=1, ability=0)
+    origin_hidden = first_set(species="SPECIES_GIRATINA", form=1, ability=3)
+    results.append(("a form takes its own record's ability, and ability 3 keeps it when "
+                    "the form has no hidden one (Giratina Origin)",
+                    origin["ability"] == origin_hidden["ability"] == "Levitate",
+                    f"{origin['ability']}, {origin_hidden['ability']}"))
 
 
 def main():

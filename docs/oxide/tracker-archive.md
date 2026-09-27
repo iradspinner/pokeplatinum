@@ -403,6 +403,12 @@ The tracker's "Base-ROM findings ruled", finished on 2026-09-27 across the carry
 
 - [x] **Base-ROM findings ruled** (Ian, 2026-09-27, on the Carry-over Agent's report): the Lass battle-music edit stays out (a slip); the palette hue-shift patch is ported (the Carry-over Agent); Unown stays vanilla; Route 212's Gastrodon is the pink West Sea form (encounter track). The classic starters become rare wild finds (5 to 10% slots, `docs/oxide/encounters/classic-starters.md`) and Surskit is retiered, both following the combined rescore. Done by 2026-09-27: the hue shift on `carry-over-hue`, the pink Gastrodon and the classic starters on the encounter track's `encounter-item3` and `encounter-r12-sources`, and Surskit retiered there.
 
+Finished and landed on oxide at 98ff5bebe (2026-09-27): a sub-item of "The move pool, first cut", a sub-item of "The Kaizo comparison, ruled", and the Sinistea split:
+
+  - [x] The effects (2026-09-27, `cloud/element4-partial-moves`): the kept six and the survey's partly working moves still learnable are written, one commit each; the eight cut status moves are not
+  - [x] The move data (the short list, the setup and stat-lowering PP, the modern priorities), as one cloud job: done on `cloud/element4-kaizo-move-data`, not merged Ian kept its calls (Focus Energy at 3 PP, 2026-09-27); the main track updates the five high critical-hit moves' descriptions.
+- [x] **Sinistea splits** (Ian, 2026-09-27): a Dusk Stone makes Polteageist and a Leaf Stone makes Sinistcha, as Ian always meant; done on `sinistea-split`. It corrects `73aca545f`, whose "Ian's ruling" was the Overseer's own call. The balance track counts the Leaf Stone's new claimant. Landed on oxide at 98ff5bebe.
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)

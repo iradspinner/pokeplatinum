@@ -137,13 +137,33 @@ def check_r12(results):
                     r12 and not any(f.severity == "skip" for f in r12)
                     and all(f.target != "*" for f in r12), f"{len(r12)} findings"))
     errors = {f.target for f in r12 if f.severity == "error"}
+    warned = {f.target: f.message for f in r12 if f.severity == "warn"}
     # Snivy used to be here; it is wild on Route 204 since Ian's review.
     # Xurkitree was the second example until the roamer's draw named it
-    # (2026-09-27); Guzzlord's third is drawn nowhere.
+    # (2026-09-27). Nihilego waits in the pool's reserve and Guzzlord in
+    # Valor Cavern's third, which is empty; since 2026-09-27 R12 reports
+    # each with Ian's reason rather than as an error.
     results.append(("the roamers pass R12 through their vanilla mechanism or the pool's draw; "
-                    "new gate lines drawn nowhere fail it",
+                    "a legendary Ian holds back is a warning that says why",
                     not {"Articuno", "Mesprit", "Cresselia", "Xurkitree"} & errors
-                    and {"Nihilego", "Guzzlord"} <= errors and "Snivy" not in errors, ""))
+                    and "reserve" in warned.get("Nihilego", "")
+                    and "Valor Cavern" in warned.get("Guzzlord", "")
+                    and "post-League" in warned.get("Xerneas", "")
+                    and "Snivy" not in errors, ""))
+    orphan = [dict(r, held=None, proposal=None, non_wild=False) for r in avail
+              if r["name"] == "Nihilego"]
+    results.append(("a gate line with no source and no ruling is still an error",
+                    any(f.severity == "error" for f in lint.lint_game(payload, lint.thresholds_from(sidecar), orphan)
+                        if f.rule == "R12"), ""))
+    # Until 2026-09-27 R12 priced only a line's first stage, only the morning's
+    # land slots, and only areas with grass, so these read as absent.
+    by = {r["name"]: r for r in avail}
+    results.append(("R12 finds a line as a later stage, by day, at night and by rod in a "
+                    "grass-less area: Pichu as a Raichu, Torchic by day, Hoothoot at night, "
+                    "Spheal at Snowpoint", by["Pichu"]["cost"] is not None and by["Pichu"]["met_as"]
+                    and "by day" in by["Torchic"]["where"][1]
+                    and "night" in by["Hoothoot"]["where"][1]
+                    and by["Spheal"]["cost"] is not None, ""))
     skipped = lint.lint_all(payload, sidecar, None)
     results.append(("without availability rows R12 still reports itself skipped",
                     any(f.rule == "R12" and f.severity == "skip" for f in skipped), ""))

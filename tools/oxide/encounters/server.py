@@ -26,6 +26,7 @@ import os
 import re
 import socketserver
 import sys
+import threading
 import urllib.parse
 import zlib
 
@@ -34,6 +35,7 @@ from . import calc_export
 from . import canon
 from . import dex
 from . import docview
+from . import learnsets
 from . import lint
 from . import locations
 from . import model
@@ -41,6 +43,7 @@ from . import pokedex
 from . import progression
 from . import scripted
 from . import simulate
+from . import trainers
 
 HOST, PORT = "127.0.0.1", 8765
 UI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
@@ -845,7 +848,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
         # they need, is an unknown endpoint like any other, not a crash.
-        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite") and len(parts) < 3):
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer") and len(parts) < 3):
             return self._send({"error": "unknown endpoint"}, 404)
         try:
             st = State(ref)
@@ -898,6 +901,28 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "dex":
                 return self._send(dex_list() if len(parts) < 3
                                   else dex_detail(parts[2]))
+            # The Trainers tab (build plan item 28): every trainer with its
+            # split and cap, and one trainer's team as the game builds it.
+            if parts[1] == "trainers":
+                return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
+                                   "caps": trainers.caps(),
+                                   "choices": trainers.choices(model.repo_root())})
+            if parts[1] == "trainer-moves":
+                # The three move lists for one team member (learnsets.py).
+                species = (q.get("species") or [""])[0]
+                if species not in set(species_universe()):
+                    return self._send({"error": f"no such species: {species}"}, 404)
+                form = int((q.get("form") or ["0"])[0] or 0)
+                level = int((q.get("level") or ["100"])[0] or 100)
+                return self._send(learnsets.lists(model.repo_root(), species, form,
+                                                  max(1, min(level, 100))))
+            if parts[1] == "trainer":
+                try:
+                    out = trainers.detail(model.repo_root(), parts[2])
+                except (KeyError, FileNotFoundError):
+                    return self._send({"error": f"no such trainer: {parts[2]}"}, 404)
+                out["estimate"] = trainers.estimate(parts[2])
+                return self._send(out)
             if parts[1] == "moves":
                 return self._send(move_list())
             if parts[1] == "calc-data":
@@ -974,6 +999,26 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                    "caught": sorted(st.caught),
                                    "owned": sorted(st.owned)})
 
+            # The team builder (trainers.py): /preview rebuilds an unsaved team
+            # and lints it, writing nothing; a bare POST saves it, refusing on
+            # a lint error or a packer failure with the findings.
+            if len(parts) >= 3 and parts[0] == "api" and parts[1] == "trainer":
+                root, stem, data = model.repo_root(), parts[2], body.get("data")
+                if not isinstance(data, dict):
+                    return self._send({"error": "send the trainer as data"}, 400)
+                if len(parts) > 3 and parts[3] == "preview":
+                    return self._send(trainers.preview(root, stem, data))
+                if len(parts) > 3 and parts[3] == "score":
+                    out = trainers.full_score(stem, data)
+                    return self._send(out, 409 if "error" in out else 200)
+                try:
+                    out = trainers.save(root, stem, data)
+                except trainers.SaveRefused as exc:
+                    return self._send({"error": str(exc), "findings": exc.findings}, 409)
+                saved = trainers.detail(root, stem)
+                saved["estimate"] = trainers.estimate(stem)
+                return self._send(dict(out, detail=saved))
+
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]
                 what = parts[3] if len(parts) > 3 else "slot"
@@ -1049,6 +1094,9 @@ def main(argv=None):
               f"port:\n    PYTHONPATH=. python3 -m tools.oxide.encounters.server "
               f"--port {a.port + 1}")
         return 1
+    # The team builder's instant score takes a few seconds the first time;
+    # doing it now, on the side, keeps the first edit quick.
+    threading.Thread(target=trainers.warm, daemon=True).start()
     with httpd:
         print(f"encounter tool on http://{HOST}:{a.port}")
         print(f"editing {model.ENC_DIR} in {model.repo_root()}")

@@ -21,6 +21,7 @@ Pure data in, dicts out; the CLI formats.
 """
 import collections
 import glob
+import json
 import os
 import re
 
@@ -221,6 +222,112 @@ def pool_draws(root):
     return rows
 
 
+# Hidden abilities handed out by script (element 8). A script sets
+# FLAG_NEXT_MON_HIDDEN_ABILITY just before a gift, an egg or a scripted wild
+# battle, and the next of these commands the player meets takes the flag,
+# wherever it is; GiveHiddenAbility switches a party Pokemon over directly.
+# The takers are the commands whose C code asks for the flag: the two gift
+# functions, GiveEgg, and every battle through CreateWildMon_Scripted.
+HIDDEN_FLAG = "FLAG_NEXT_MON_HIDDEN_ABILITY"
+HIDDEN_TAKERS = ("GivePokemon", "GiveDesignedPokemon", "GiveEgg") + BATTLE_COMMANDS \
+    + ("TestKitStartWildBattle",)
+_GIFT_TAKERS = ("GivePokemon", "GiveDesignedPokemon")
+_LABEL_RE = re.compile(r"^([A-Za-z_]\w*):")
+_JUMP_RE = re.compile(r"^\s*(GoTo\w*|Call\w*|End|Return)\b")
+_COMMAND_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*([^,\s]*)")
+_SETVAR_RE = re.compile(r"^\s*SetVar\s+(\w+),\s*(SPECIES_[A-Z0-9_]+)")
+
+
+def hidden_grants_in(text, script, draws=None):
+    """[{script, line, command, species}] for each hidden ability one script's
+    text hands out. `species` lists what the command can give: a constant, a
+    SetVar earlier in the same label, or a legendary pool variable's draws
+    (`draws`, {variable: [species]}); empty when the lint cannot tell. A flag
+    set with no taker before the script jumps, ends or reaches a new label is
+    a row with command None, since the next gift anywhere would take it."""
+    draws = draws or {}
+    # Comments go, keeping the line count, so prose in a /* */ block that
+    # starts with "Call" or "End" is not read as a jump.
+    text = re.sub(r"/\*.*?\*/", lambda m: "\n" * m.group(0).count("\n"), text, flags=re.S)
+    rows = []
+    pending, setvars, last_gift, in_kit = None, {}, [], False
+
+    def unclaimed():
+        rows.append({"script": script, "line": pending, "command": None, "species": []})
+
+    for n, line in enumerate(text.split("\n"), 1):
+        # The test kit is never in the ROM of record (script_references).
+        if line.startswith("#ifdef OXIDE_TESTKIT"):
+            in_kit = True
+        if in_kit:
+            in_kit = not line.startswith("#endif")
+            continue
+        line = line.split("//")[0]
+        if _LABEL_RE.match(line) or _JUMP_RE.match(line):
+            if pending:
+                unclaimed()
+            pending, setvars, last_gift = None, {}, []
+            continue
+        m = _SETVAR_RE.match(line)
+        if m:
+            setvars[m.group(1)] = m.group(2)
+        m = _COMMAND_RE.match(line)
+        if not m:
+            continue
+        command, operand = m.groups()
+        if command == "SetFlag" and operand == HIDDEN_FLAG:
+            pending = pending or n
+        elif command == "ClearFlag" and operand == HIDDEN_FLAG:
+            pending = None
+        elif command in HIDDEN_TAKERS:
+            if operand.startswith("SPECIES_"):
+                species = [operand]
+            elif operand in setvars:
+                species = [setvars[operand]]
+            else:
+                species = list(draws.get(operand) or [])
+            if pending:
+                rows.append({"script": script, "line": n, "command": command,
+                             "species": species})
+                pending = None
+            if command in _GIFT_TAKERS:
+                last_gift = species
+        elif command == "GiveHiddenAbility":
+            # Its party slot is a variable; the Pokemon is taken to be the
+            # gift just made in the same label, which is how a gift script
+            # would use it.
+            rows.append({"script": script, "line": n, "command": command,
+                         "species": list(last_gift)})
+    if pending:
+        unclaimed()
+    return rows
+
+
+def hidden_ability_grants(root):
+    """hidden_grants_in over every field script, each row with `stages`:
+    [(stage, its hidden ability)] for the species and everything it can
+    evolve into, since the hidden slot stays through evolution."""
+    from . import pokedex      # here, not at the top: only this reader needs it
+    draws = {}
+    for r in pool_draws(root):
+        draws.setdefault(r["command"].split()[-1], []).append(r["species"])
+    rows = []
+    for path in sorted(glob.glob(os.path.join(root, "res", "field", "scripts", "*.s"))):
+        with open(path, encoding="utf-8", errors="replace") as f:
+            text = f.read()
+        if HIDDEN_FLAG not in text and "GiveHiddenAbility" not in text:
+            continue
+        rows += hidden_grants_in(text, os.path.basename(path)[:-2], draws)
+    for r in rows:
+        stages = []
+        for sp in r["species"]:
+            for stage in dex.later_stages(root, sp):
+                rec = pokedex.load(root, stage) or {}
+                stages.append((stage, rec.get("hidden_ability")))
+        r["stages"] = stages
+    return rows
+
+
 def starters(root):
     """{species: label} for what scripted.json's live sources hand over when
     the script picks at runtime: the starter choice, Riley's random egg and
@@ -250,28 +357,83 @@ def trades(root):
     return out
 
 
+def _land_layers(area):
+    """[(label, slots)] for a land table as each time of day meets it: the
+    base slots in the morning, and by day and at night the same slots with 2
+    and 3 replaced by that time's list, at those slots' levels."""
+    base = area.kind_slots("land")
+    out = [("land", base)]
+    for layer in ("day", "night"):
+        swap = area.data.get(layer) or []
+        if len(swap) != len(model.DAY_NIGHT_SLOTS):
+            continue
+        slots = list(base)
+        for sp, s in zip(swap, model.DAY_NIGHT_SLOTS):
+            slots[s] = (sp, base[s][1], base[s][2])
+        if slots != base:
+            out.append((f"land by {layer}" if layer == "day" else "land at night", slots))
+    return out
+
+
 def acquisition_costs(areas, wanted):
     """{species: (cost, area, kind, lead_level)}: the cheapest place to meet
-    each wanted species, over every live table kind and every repel rung.
+    each wanted species, over every live table kind, time of day and repel
+    rung.
 
     Cost is expected encounters to the first one that is the species: the
     reciprocal of its share of the surviving pool at the best rung (design
     doc 2.4, with an empty party: nothing duped out yet). Water slots hold a
     level range, so their rungs admit fractions of a slot; analysis.pool
-    handles that.
+    handles that. Until 2026-09-27 this read only the morning's land slots
+    and only areas with live grass, so a line met by day or at night, or only
+    by rod in an area with no grass (Snowpoint's harbour), read as absent.
     """
     best = {}
     for a in areas:
         for kind in a.kinds_present():
-            slots = a.kind_slots(kind)
+            if kind == "land" and not a.land_active:
+                continue                # grass the game never rolls
             rates = A.TABLE_KINDS[kind][2]
-            for lead, pool in A.distinct_rungs(slots, rates):
-                for sp, share in pool.items():
-                    if sp in wanted and share > 0:
-                        cost = 1.0 / share
-                        if sp not in best or cost < best[sp][0]:
-                            best[sp] = (cost, a.name, kind, lead)
+            variants = _land_layers(a) if kind == "land" else [(kind, a.kind_slots(kind))]
+            for label, slots in variants:
+                for lead, pool in A.distinct_rungs(slots, rates):
+                    for sp, share in pool.items():
+                        if sp in wanted and share > 0:
+                            cost = 1.0 / share
+                            if sp not in best or cost < best[sp][0]:
+                                best[sp] = (cost, a.name, label, lead)
     return best
+
+
+def held_back(root):
+    """{species: why} for the legendaries Ian keeps out of reach on purpose,
+    from the availability plan's pool block: the pool's reserve, and the
+    third of any place the pool marks empty (Valor Cavern since 2026-09-27);
+    and {species: text} for the post-League proposals, which are sourced on
+    paper while their scripts wait. R12 reports these as warnings with the
+    reason, so an error is a line nobody has decided about."""
+    path = os.path.join(root, "docs", "oxide", "encounters", "availability-plan.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            plan = json.load(f)
+    except (FileNotFoundError, ValueError):
+        return {}, {}
+    pool = plan.get("pool") or {}
+    until = pool.get("empty_until") or "Ian rules otherwise"
+    held = {}
+    for key, species in (pool.get("thirds") or {}).items():
+        if key == "reserve":
+            why = "in the legendary pool's reserve, drawn nowhere"
+        else:
+            place = next((e for e in pool.get("empty") or [] if key.title() in e), None)
+            if not place:
+                continue
+            why = f"in the pool third of {place}, which holds no legendary until {until}"
+        for sp in species:
+            held.setdefault(sp, why)
+    proposals = {sp: text for sp, text in (plan.get("proposals") or {}).items()
+                 if not sp.startswith("_")}
+    return held, proposals
 
 
 def availability(ref=None):
@@ -283,12 +445,19 @@ def availability(ref=None):
     if not any(r.get("tier") for r in dex.pick_list(root)):
         return None
     cov = coverage(ref)
-    areas = [a for a in model.load_all(ref) if a.land_active]
-    wanted = {sp for line in cov["lines"] for sp in line["base"]}
+    # Every live table, a rods-only area's water included, and every stage
+    # of a line: catching a Pikachu is the Pichu line under the dupes clause,
+    # and the babies stand as their next stage from level 10.
+    areas = list(model.load_all(ref))
+    members = {line["line"]: dex.members_of_line(root, line["line"]) or list(line["base"])
+               for line in cov["lines"]}
+    wanted = {sp for stages in members.values() for sp in stages}
     costs = acquisition_costs(areas, wanted)
+    held, proposals = held_back(root)
     out = []
     for line in cov["lines"]:
-        cheapest = min((costs[sp] for sp in line["base"] if sp in costs),
+        stages = members[line["line"]]
+        cheapest = min(((*costs[sp], sp) for sp in members[line["line"]] if sp in costs),
                        default=None)
         # A honey-tree placement is a source the cost model cannot price (a
         # tree is slathered, waited on, and rolled by rarity tier), so it is
@@ -301,7 +470,12 @@ def availability(ref=None):
                              or line["scripted"]),
             "honey": honey,
             "cost": cheapest[0] if cheapest else None,
-            "where": cheapest[1:] if cheapest else None,
+            "where": cheapest[1:4] if cheapest else None,
+            # The stage met, when it is not the line's first (Pikachu for Pichu).
+            "met_as": dex.display_name(cheapest[4])
+                      if cheapest and cheapest[4] not in line["base"] else None,
+            "held": next((held[sp] for sp in stages if sp in held), None),
+            "proposal": next((proposals[sp] for sp in stages if sp in proposals), None),
         })
     return out
 

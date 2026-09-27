@@ -348,6 +348,60 @@ tr.got .spname { font-weight: 600; }
   padding: 12px 14px 40px; }
 #dexmid, #movemid { padding: 14px 20px 40px; font-size: 18px; }
 
+/* The Trainers tab: the list, the team, and the trainer's own settings. */
+#trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
+#trainright { border-left: 1px solid var(--rule); background: var(--panel);
+  padding: 12px 14px 40px; }
+#trainmid { padding: 14px 20px 40px; font-size: 17px; }
+#trainfilter { width: 100%; }
+.trrow { display: grid; grid-template-columns: 1fr auto; align-items: center;
+  gap: 0 8px; padding: 4px 12px; cursor: pointer; }
+.trrow:hover { background: var(--sunken); }
+.trrow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
+.trrow .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.trrow .party { grid-column: 1 / -1; display: flex; }
+.member { display: grid; grid-template-columns: 40px 1fr; gap: 2px 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.member .l1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.member .facts { color: var(--dim); font-size: 15.5px; }
+.member .moves { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+/* The three move lists, side by side and never merged (Ian, 2026-09-27). */
+.mcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; }
+.mcol h3 { margin: 10px 0 0; font-size: 16px; }
+.mcol > .sub { margin: 0 0 6px; font-size: 14px; }
+.mrow { display: flex; align-items: baseline; gap: 6px; font-size: 15px; padding: 1px 0; }
+.mrow .nm { flex: 1; min-width: 0; }
+.mrow .how { font-size: 13.5px; color: var(--dim); text-align: right; }
+.mrow.gone .nm { color: var(--faint); }
+.mrow.known .nm { font-weight: 600; }
+button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cursor: pointer;
+  font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); }
+/* The editor: every field of a member is an input, and the lint's findings
+   sit under the member they are about, red for an error, brown for a warning. */
+.member input.ed, .member select.ed { font-size: 15px; }
+.member input.sp { width: 11em; font-weight: 600; }
+.member input.sm { width: 4.4em; }
+.member .edrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  font-size: 15px; color: var(--dim); margin: 6px 0 4px; }
+.member .moves input { width: 100%; }
+.finding { margin: 2px 0; font-size: 15px; }
+.finding.error { color: var(--error); }
+.finding.warn { color: var(--warn); }
+.savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  position: sticky; top: 0; background: var(--panel); padding: 2px 0 8px; }
+#trainright .flags label { display: block; font-size: 15px; }
+/* The score is the one number worth acting on here, so it is gold. */
+.scorenum { font: 600 24px/1 var(--mono); color: var(--act); margin-right: 4px; }
+#trainright table.grid { margin: 4px 0 8px; font-size: 15px; }
+.fullscore { border-top: 1px solid var(--rule); margin-top: 8px; padding-top: 6px; }
+.fullscore.stale .scorenum { color: var(--faint); }
+#trainright ul.sub { margin: 0 0 6px; padding-left: 18px; }
+.mrow[data-move]:not([data-move=""]) { cursor: pointer; }
+.mrow[data-move]:not([data-move=""]):hover { background: var(--sunken); }
+#trainright h3 { margin: 14px 0 4px; font-size: 16px; }
+#trainright ul.flags { list-style: none; padding: 0; margin: 0; font-size: 15px; }
+#trainright ul.flags li.off { color: var(--faint); }
+
 /* The sprites are frame sheets: a front or back is two 80x80 frames side by
    side, a party icon is two 32x32 frames stacked. Both show their first. */
 .spr, .ico { overflow: hidden; display: inline-block; vertical-align: middle;
@@ -551,6 +605,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <button data-view="tables" class="on">Tables</button>
     <button data-view="dex">Dex</button>
     <button data-view="moves">Moves</button>
+    <button data-view="trainers">Trainers</button>
     <button data-view="calc">Calc</button>
     <button data-view="sim">Box sim</button>
   </nav>
@@ -633,6 +688,21 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   </section>
   <section id="movemid"><p class="sub">Choose a move.</p></section>
   <section id="moveright"></section>
+</main>
+
+<!-- The trainer team builder (build plan item 28): every trainer's team, read
+     from res/trainers/data/ and shown as the game builds it (trainers.py). -->
+<main id="trainmain" hidden>
+  <section id="trainlist">
+    <div class="listhead">
+      <input id="trainfilter" placeholder="Find a trainer, a class or a species">
+      <div class="sortbar"><select id="trainsplit"><option value="">Every split</option></select></div>
+    </div>
+    <div id="trainrows"></div>
+  </section>
+  <section id="trainmid"><p class="sub">Choose a trainer.</p></section>
+  <section id="trainright"></section>
+  <datalist id="dl-species"></datalist><datalist id="dl-moves"></datalist><datalist id="dl-items"></datalist>
 </main>
 
 <!-- The vendored damage calculator, fed Oxide's data by /api/calc-data. It is
@@ -1180,17 +1250,19 @@ let VIEW = "tables", RESTORING = false;
 
 const here = () => VIEW === "tables" ? { view: VIEW, area: SEL, kind: SEL ? KIND : undefined }
   : VIEW === "dex" ? { view: VIEW, species: DEXSEL }
-  : VIEW === "moves" ? { view: VIEW, move: MOVESEL } : { view: VIEW };
-const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move"]
+  : VIEW === "moves" ? { view: VIEW, move: MOVESEL }
+  : VIEW === "trainers" ? { view: VIEW, trainer: TRSEL } : { view: VIEW };
+const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move", "trainer"]
   .every(k => (a[k] || null) === (b[k] || null));
-const hashOf = p => "#" + [p.view, p.area || p.species || p.move, p.area ? p.kind : null]
-  .filter(Boolean).join("/");
+const hashOf = p => "#" + [p.view, p.area || p.species || p.move || p.trainer,
+  p.area ? p.kind : null].filter(Boolean).join("/");
 
 function parseHash() {
   const [view, key, kind] = decodeURIComponent(location.hash.slice(1)).split("/");
   if (view === "tables") return { view, area: key, kind };
   if (view === "dex") return { view, species: key };
   if (view === "moves") return { view, move: key };
+  if (view === "trainers") return { view, trainer: key };
   if (view === "calc" || view === "sim") return { view };
   return null;
 }
@@ -1216,6 +1288,7 @@ async function restore(p) {
     if (p.view === "dex" && p.species) await openSpecies(p.species);
     else if (p.view === "moves" && p.move) await openMove(p.move);
     else if (p.view === "tables" && p.area) await openTable(p.area, p.kind);
+    else if (p.view === "trainers" && p.trainer) await openTrainer(p.trainer);
     else await setView(p.view || "tables");
   } finally { RESTORING = false; }
   drawBack();
@@ -1291,12 +1364,357 @@ function drawSim() {
     ${traded.length ? `<h3>Traded away</h3>${traded.map(mon).join("")}` : ""}`;
 }
 
+// ---- trainers -----------------------------------------------------------
+// The team builder (build plan item 28). The list and each team come from
+// res/trainers/data/ through /api/trainers and /api/trainer/<stem>, with the
+// nature, ability, gender and default moves the game gives in battle
+// (calc_trainers.py). An edit is held here (TREDIT) and sent whole: /preview
+// rebuilds and lints it without writing, and Save writes it in the file's own
+// style (trainers.py). The page works out nothing itself.
+let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
+let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
+// The score (teamscore.py, the balance track's): the estimate follows every
+// edit; the full score runs on request and remembers the team it scored.
+let TRESTIMATE = null, TRSCORE = null, TRSCORING = false;
+// Constant to name and name to constant, for the species, move and item boxes.
+const TRNAMES = { species: new Map(), moves: new Map(), items: new Map() };
+const TRBY = { species: new Map(), moves: new Map(), items: new Map() };
+// "AI_FLAG_EVAL_ATTACK" reads "Eval attack".
+const flagLabel = f => tidy(String(f).replace("AI_FLAG_", ""));
+const nameOf = (kind, c) => TRNAMES[kind].get(c) || "";
+const constOf = (kind, label) => TRBY[kind].get(String(label).trim().toLowerCase());
+const clone = o => JSON.parse(JSON.stringify(o));
+
+async function loadTrainers() {
+  if (TRAINERS) return;
+  TRAINERS = await api("/api/trainers");
+  const order = new Map(TRAINERS.splits.map((s, i) => [s, i]));
+  // In play order: by split, then by the team's highest level.
+  TRAINERS.rows.sort((a, b) => (order.has(a.split) ? order.get(a.split) : 99)
+    - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
+    || a.label.localeCompare(b.label));
+  const keep = $("#trainsplit").value;
+  $("#trainsplit").innerHTML = `<option value="">Every split</option>` + TRAINERS.splits.map(s =>
+    `<option>${esc(s)}</option>`).join("") + `<option value="-">No split</option>`;
+  $("#trainsplit").value = keep;
+  for (const kind of ["species", "moves", "items"]) {
+    const pairs = TRAINERS.choices[kind];
+    TRNAMES[kind] = new Map(pairs);
+    TRBY[kind] = new Map(pairs.map(([c, n]) => [n.toLowerCase(), c]));
+    $("#dl-" + kind).innerHTML = pairs.map(([, n]) => `<option value="${esc(n)}">`).join("");
+  }
+}
+
+function trainerMatch(r) {
+  const q = ($("#trainfilter").value || "").trim().toLowerCase();
+  const split = $("#trainsplit").value;
+  if (split === "-" ? r.split : split && r.split !== split) return false;
+  if (!q) return true;
+  const word = q.replace(/ /g, "_");
+  return r.label.toLowerCase().includes(q) || r.stem.includes(word)
+    || r.party.some(m => folderOf(m.species).includes(word));
+}
+
+function drawTrainerList() {
+  const rows = TRAINERS.rows.filter(trainerMatch);
+  $("#trainrows").innerHTML = rows.map(r => `
+    <div class="trrow${r.stem === TRSEL ? " on" : ""}" data-tr="${r.stem}">
+      <span class="nm">${esc(r.label || r.stem)}${r.double ? ' <span class="tag">double</span>' : ""}</span>
+      <span>${splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
+        r.top}${r.cap ? " / " + r.cap : ""}</span></span>
+      <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
+    </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
+  $("#trainrows").querySelectorAll(".trrow").forEach(el =>
+    el.onclick = () => selectTrainer(el.dataset.tr));
+  const on = $("#trainrows .trrow.on");
+  if (on) on.scrollIntoView({ block: "nearest" });
+}
+
+async function selectTrainer(stem) {
+  if (TRDIRTY && stem !== TRSEL && !confirm(`Leave ${TRDETAIL.label} without saving?`))
+    return drawTrainerList();
+  TRSEL = stem;
+  drawTrainerList();
+  try {
+    TRDETAIL = await api("/api/trainer/" + stem);
+  } catch (e) { return toast(e.message, true); }
+  TREDIT = clone(TRDETAIL.data);
+  TRDIRTY = false;
+  TRFINDINGS = [];
+  TRMEMBER = TRLISTS = TRFOCUS = TRSCORE = null;
+  TRESTIMATE = TRDETAIL.estimate || null;
+  drawTrainer();
+  remember();
+}
+
+async function scoreTrainer() {
+  if (TRSCORING) return;
+  TRSCORING = true;
+  drawTrainerRight();
+  const team = JSON.stringify(TREDIT);
+  try {
+    const r = await fetch(`/api/trainer/${TRSEL}/score`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    const j = await r.json();
+    if (!r.ok || j.error) toast(j.error || "Not scored", true);
+    else TRSCORE = { result: j, team };
+  } catch (e) { toast(e.message, true); }
+  TRSCORING = false;
+  drawTrainerRight();
+}
+
+function scoreBlock() {
+  const e = TRESTIMATE;
+  if (!e) return `<p class="sub">${TRFINDINGS.some(f => f.severity === "error")
+    ? "Fix the errors to see the score." : "Working out the score."}</p>`;
+  if (e.error) return `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
+  const pc = v => Math.round(v * 100) + "%";
+  const fit = e.fit || {};
+  const mons = (e.mons || []).map(m => `<tr><td>${esc(m.species)}</td><td class="num">${m.level}</td>
+      <td class="num">${pc(m.threat)}</td><td class="num">${pc(m.answers)}</td></tr>`).join("");
+  let full = "";
+  if (TRSCORE) {
+    const s = TRSCORE.result, stale = TRSCORE.team !== JSON.stringify(TREDIT);
+    const refs = Object.entries(s.references || {}).map(([h, v]) =>
+      `<tr><td>${esc(tidy(h))}</td><td class="num">${v.scale}</td></tr>`).join("");
+    const unseen = Object.entries(s.unseen || {}).map(([k, v]) =>
+      `<li>${esc(fieldLabel(k))}: ${esc(v.join(", "))}</li>`).join("");
+    full = `<div class="fullscore${stale ? " stale" : ""}">
+      <p><b class="scorenum">${s.scale}</b> the full score (${esc(s.band)})${
+        stale ? `, <span class="sub">for the team before your last edit</span>` : ""}</p>
+      <p class="sub">Safe switch-ins ${pc(s.safe)}, threat ${pc(s.threat)} (with odds ${pc(s.threat_chance)}),
+        answers ${pc(s.answers)} (with bait ${pc(s.answers_bait)}); ${s.seconds} s.</p>
+      ${unseen ? `<p class="sub">Tactics the score cannot see:</p><ul class="sub">${unseen}</ul>` : ""}
+      ${refs ? `<table class="grid"><thead><tr><th>Same seat in</th><th class="num">Scale</th></tr></thead>
+        <tbody>${refs}</tbody></table>` : ""}</div>`;
+  }
+  return `<p><b class="scorenum">${e.scale}</b> on the fight scale (${esc(e.band)}), an estimate</p>
+    <p class="sub">${esc(e.split)} split, cap ${e.cap}${e.weather ? ", " + esc(e.weather) : ""}${
+      e.trick_room ? ", Trick Room" : ""}. Against the full score it is ${fit.story_mean_error} off
+      on average over the ${fit.story_n} story fights, ${fit.story_max_error} at worst.</p>
+    <p class="sub">Safe switch-ins ${pc(e.safe)}, threat ${pc(e.threat)}, answers ${pc(e.answers)}.</p>
+    ${mons ? `<table class="grid"><thead><tr><th>Pokemon</th><th class="num">Lv</th>
+      <th class="num" title="Share of the player's side it knocks out in two hits, moving first">Threat</th>
+      <th class="num" title="Share of the player's side that does that to it">Answers</th></tr></thead>
+      <tbody>${mons}</tbody></table>` : ""}
+    <p><button id="trscore"${TRSCORING ? " disabled" : ""}>${TRSCORING ? "Scoring" : "Score it"}</button>
+      <span class="sub">the balance track's full scorer, 1 to 20 seconds</span></p>
+    ${full}`;
+}
+
+async function openTrainer(stem) {
+  await setView("trainers");
+  await selectTrainer(stem);
+}
+
+// Every edit lands in TREDIT at once; the rebuilt team and its lint follow a
+// moment later from /preview, the newest request winning.
+function edited() {
+  TRDIRTY = true;
+  drawTrainerRight();
+  clearTimeout(TRTIMER);
+  TRTIMER = setTimeout(runPreview, 250);
+}
+
+async function runPreview() {
+  const seq = ++TRSEQ;
+  try {
+    const r = await api(`/api/trainer/${TRSEL}/preview`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    if (seq !== TRSEQ) return;
+    if (r.detail) TRDETAIL = r.detail;
+    TRFINDINGS = r.findings;
+    TRESTIMATE = r.estimate;
+    drawTrainer();
+    const f = TRMEMBER !== null && TREDIT.party[TRMEMBER];
+    if (f && TRLISTS && (TRLISTS.species !== f.species || TRLISTS.level !== f.level
+                         || TRLISTS.form !== (f.form || 0))) showMoveLists(TRMEMBER, true);
+  } catch (e) { toast(e.message, true); }
+}
+
+async function saveTrainer() {
+  $("#trsave").disabled = true;
+  try {
+    const r = await fetch(`/api/trainer/${TRSEL}`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    const j = await r.json();
+    if (!r.ok) {
+      TRFINDINGS = j.findings || TRFINDINGS;
+      drawTrainer();
+      return toast(j.error || "Not saved", true);
+    }
+    TRDETAIL = j.detail;
+    TREDIT = clone(j.detail.data);
+    TRDIRTY = false;
+    TRFINDINGS = j.findings || [];
+    TRESTIMATE = j.detail.estimate || null;
+    drawTrainer();
+    toast(j.changed.length ? `Saved ${j.changed.length} change${j.changed.length > 1 ? "s" : ""}`
+                           : "Nothing had changed");
+    TRAINERS = null;
+    await loadTrainers();
+    drawTrainerList();
+  } catch (e) { toast(e.message, true); }
+}
+
+// The three move lists for one team member, at its level (learnsets.py).
+async function showMoveLists(i, quiet) {
+  const f = TREDIT.party[i];
+  const q = new URLSearchParams({ species: f.species, form: f.form || 0, level: f.level });
+  try {
+    TRLISTS = await api("/api/trainer-moves?" + q);
+  } catch (e) { return toast(e.message, true); }
+  TRMEMBER = i;
+  drawMoveLists();
+  if (!quiet) $("#trmoves").scrollIntoView({ block: "nearest" });
+}
+
+function drawMoveLists() {
+  const box = $("#trmoves");
+  if (!box || !TRLISTS || TRMEMBER === null || !TREDIT.party[TRMEMBER]) return;
+  const f = TREDIT.party[TRMEMBER], L = TRLISTS;
+  const known = new Set(f.moves || []);
+  const pickable = Array.isArray(f.moves);
+  const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"
+      data-move="${pickable && e.move ? e.move : ""}"${e.move ? "" : ' title="Oxide has no such move"'}>
+      <span>${e.type ? typeChip(e.type, "mini") : ""}</span>
+      <span class="nm">${esc(e.name)}</span>
+      <span class="how">${esc(e.how)}${e.from ? ", as " + esc(e.from) : ""}</span></div>`;
+  const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
+      <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
+        : `<p class="sub">${esc(none)}</p>`}</div>`;
+  box.innerHTML = `<h3>Moves for ${esc(nameOf("species", f.species))} at level ${L.level}</h3>
+    <p class="sub">Three lists, kept apart. Bold is a move it knows now; a greyed move is one
+      Oxide does not have.${pickable ? " Click a move to put it in the move box last chosen." : ""}</p>
+    <div class="mcols">
+      ${col("In Oxide", "Level-up to this level, then TM, tutor and egg", L.oxide,
+            "Nothing: the species has no learnset here.")}
+      ${col("Generation IV", L.gen4.games, L.gen4.moves, "Not in Generation IV.")}
+      ${col(L.latest.gen ? "Generation " + L.latest.gen : "Latest", L.latest.games,
+            L.latest.moves, "No canon learnset.")}
+    </div>`;
+}
+
+// A move box emptied or filled: the list keeps its moves in order, and keeps
+// MOVE_NONE padding only where the file already pads.
+function setMove(i, slot, c) {
+  const f = TREDIT.party[i];
+  const pad = (f.moves || []).includes("MOVE_NONE") ? f.moves.length : 0;
+  const moves = (f.moves || []).slice();
+  while (moves.length < 4) moves.push(null);
+  moves[slot] = c;
+  const out = moves.filter(m => m && m !== "MOVE_NONE");
+  while (out.length < pad) out.push("MOVE_NONE");
+  f.moves = out;
+}
+
+const findingsFor = i => TRFINDINGS.filter(f => f.member === i).map(f =>
+  `<p class="finding ${f.severity}">${esc(f.message)}</p>`).join("");
+
+function memberEditor(f, i) {
+  const m = (TRDETAIL.members || [])[i];
+  const b = m && m.file.species === f.species ? m.built : null;
+  const hasMoves = Array.isArray(f.moves), hasItem = typeof f.item === "string";
+  const id = k => `tr-${i}-${k}`;
+  const over = TRDETAIL.cap && f.level > TRDETAIL.cap
+    ? `<span class="sub">${f.level - TRDETAIL.cap} over the cap</span>` : "";
+  const ab = (m && m.file.species === f.species && m.abilities) || {};
+  const abName = a => a ? tidy(a) : "none";
+  const abilities = [[0, `either slot (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`],
+    [1, `slot 1: ${abName(ab["1"])}`], [2, `slot 2: ${abName(ab["2"])}`],
+    [3, `hidden: ${abName(ab.hidden)}`]];
+  const sel = (k, opts, val) => `<select class="ed" id="${id(k)}" data-i="${i}" data-k="${k}">${
+    opts.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? " selected" : ""}>${
+      esc(l)}</option>`).join("")}</select>`;
+  const natures = [["", "rolled" + (b && !f.nature ? ` (${b.nature})` : "")]]
+    .concat(TRAINERS.choices.natures);
+  const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
+      data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
+  const moves = hasMoves ? [0, 1, 2, 3].map(j => `<input class="ed mv" id="${id("mv" + j)}"
+      data-i="${i}" data-k="moves" data-slot="${j}" list="dl-moves" placeholder="no move"
+      value="${esc(nameOf("moves", (f.moves || [])[j]))}">`).join("")
+    : `<p class="sub">No moves listed, so the game gives the level-up default${
+        b ? ": " + esc(b.moves.join(", ")) : ""}.</p>`;
+  return `<div class="member">
+    ${icon(f.species, true)}
+    <div>
+      <div class="l1">
+        <input class="ed sp" id="${id("species")}" data-i="${i}" data-k="species" list="dl-species"
+               value="${esc(nameOf("species", f.species))}">
+        <label class="sub">form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
+        <label class="sub">Lv ${num("level", 1, 100)}</label>${over}
+        <span>${b ? m.types.map(t => typeChip(t, "mini")).join("") : ""}</span>
+        <button class="linkish" data-remove="${i}" title="Take this Pokemon out of the team">Remove</button>
+      </div>
+      <div class="edrow">
+        ${hasItem ? `<label>Item <input class="ed" id="${id("item")}" data-i="${i}" data-k="item"
+            list="dl-items" placeholder="none" value="${esc(nameOf("items", f.item))}"></label>` : ""}
+        <label>Ability ${sel("ability", abilities, f.ability || 0)}</label>
+        <label>Nature ${sel("nature", natures, f.nature || "")}</label>
+        <label>IV scale ${num("iv_scale", 0, 255)}</label>
+        <span>${m && b ? "IVs " + m.iv : ""}</span>
+        <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "")}</label>
+      </div>
+      <div class="moves">${moves}</div>
+      <div class="facts">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},
+        ${esc(b.gender)}${b.item ? ", holding " + esc(b.item) : ""}.` : "Rebuilding the team."}</div>
+      ${findingsFor(i)}
+      <button class="linkish" data-lists="${i}">Move lists</button>
+    </div>
+  </div>`;
+}
+
+function drawTrainer() {
+  const d = TRDETAIL, party = TREDIT.party || [];
+  const top = Math.max(0, ...party.map(f => f.level || 0));
+  const focus = document.activeElement && document.activeElement.id;
+  $("#trainmid").innerHTML = `<h2 style="margin:0">${esc(d.label)}</h2>
+    <p class="sub">${splitTag(d.split, " split")} ${d.cap
+      ? `Level cap ${d.cap}; the team's highest level is ${top}.`
+      : "Not placed in a split, so it has no level cap."} <code>${esc(d.stem)}.json</code></p>
+    ${findingsFor(null)}
+    ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
+    <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p>
+    <div id="trmoves"></div>`;
+  drawMoveLists();
+  drawTrainerRight();
+  if (focus && focus.startsWith("tr-") && document.getElementById(focus))
+    document.getElementById(focus).focus();
+}
+
+function drawTrainerRight() {
+  const d = TRDETAIL, t = TREDIT, party = t.party || [];
+  const errors = TRFINDINGS.filter(f => f.severity === "error").length;
+  const state = !TRDIRTY ? "No unsaved changes." : errors
+    ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving.` : "Unsaved changes.";
+  $("#trainright").innerHTML = `<div class="savebar">
+      <button id="trsave"${!TRDIRTY || errors ? " disabled" : ""}>Save</button>
+      <button id="trrevert"${TRDIRTY ? "" : " disabled"}>Revert</button>
+      <span class="sub">${state}</span></div>
+    <h3>Score</h3>
+    ${scoreBlock()}
+    <h3>Battle</h3>
+    <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
+    <h3>AI flags</h3>
+    <div class="flags">${d.all_ai_flags.map(f => `<label><input type="checkbox" data-flag="${f}"${
+      (t.ai_flags || []).includes(f) ? " checked" : ""}> ${esc(flagLabel(f))}</label>`).join("")}</div>
+    ${party.length && !Array.isArray(party[0].moves) ? `<h3>Moves</h3>
+      <p class="sub">This trainer lists no moves, so each Pokemon has its level-up default.</p>
+      <button id="trgivemoves">List moves for every Pokemon</button>` : ""}
+    ${party.length && typeof party[0].item !== "string" ? `<h3>Held items</h3>
+      <p class="sub">This trainer's Pokemon hold nothing.</p>
+      <button id="trgiveitems">Let them hold items</button>` : ""}
+    ${d.items.length ? `<h3>The trainer's own items</h3><p>${
+      d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}</p>` : ""}`;
+}
+
 async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain)").hidden = view !== "tables";
   $("#simmain").hidden = view !== "sim";
+  $("#trainmain").hidden = view !== "trainers";
   if (view === "sim" && !SIM) simulate(true);
   $("#dexmain").hidden = view !== "dex";
   $("#movemain").hidden = view !== "moves";
@@ -1311,6 +1729,10 @@ async function setView(view) {
     if (view === "moves" && !MOVES.length) {
       MOVES = (await api("/api/moves")).rows;
       drawMoveList();
+    }
+    if (view === "trainers" && !TRAINERS) {
+      await loadTrainers();
+      drawTrainerList();
     }
   } catch (e) { toast(e.message, true); }
 }
@@ -1997,6 +2419,108 @@ document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = 
   document.querySelectorAll("#movelist .sortbar button")
           .forEach(x => x.classList.toggle("on", x === b));
   drawMoveList();
+});
+$("#trainfilter").oninput = () => TRAINERS && drawTrainerList();
+$("#trainsplit").onchange = () => TRAINERS && drawTrainerList();
+// The team editor. A member's icon opens its dex page; "Move lists" shows
+// the three lists under the team, and a move clicked there goes into the
+// move box last chosen; Remove and Add change the party.
+$("#trainmid").addEventListener("click", ev => {
+  if (!TREDIT) return;
+  const lists = ev.target.closest("[data-lists]");
+  if (lists) return showMoveLists(+lists.dataset.lists);
+  const pick = ev.target.closest(".mrow[data-move]");
+  if (pick && pick.dataset.move && TRMEMBER !== null) {
+    const f = TREDIT.party[TRMEMBER];
+    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
+      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
+    setMove(TRMEMBER, slot, pick.dataset.move);
+    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
+    edited();
+    return drawTrainer();
+  }
+  const rm = ev.target.closest("[data-remove]");
+  if (rm) {
+    TREDIT.party.splice(+rm.dataset.remove, 1);
+    TRMEMBER = TRLISTS = TRFOCUS = null;
+    edited();
+    return drawTrainer();
+  }
+  if (ev.target.closest("[data-add]")) {
+    TREDIT.party.push(clone(TREDIT.party[TREDIT.party.length - 1]));
+    edited();
+    return drawTrainer();
+  }
+  const hit = ev.target.closest("[data-sp]");
+  if (!hit) return;
+  ev.preventDefault();
+  openSpecies(hit.dataset.sp);
+});
+$("#trainmid").addEventListener("focusin", ev => {
+  const box = ev.target.closest(".mv");
+  if (box) TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
+});
+// A field is committed when it changes (Enter, or leaving the box). A name
+// that is not a species, move or item is refused and put back.
+$("#trainmid").addEventListener("change", ev => {
+  const el = ev.target.closest(".ed");
+  if (!el || !TREDIT) return;
+  const f = TREDIT.party[+el.dataset.i], k = el.dataset.k, v = el.value.trim();
+  const named = (kind, empty) => {
+    if (!v) return empty;
+    const c = constOf(kind, v);
+    if (!c) toast(`Nothing called ${v}`, true);
+    return c;
+  };
+  if (k === "species") {
+    const c = named("species", null);
+    if (!c) return drawTrainer();
+    f.species = c;
+  } else if (k === "item") {
+    const c = named("items", "ITEM_NONE");
+    if (!c) return drawTrainer();
+    f.item = c;
+  } else if (k === "moves") {
+    const c = named("moves", null);
+    if (v && !c) return drawTrainer();
+    setMove(+el.dataset.i, +el.dataset.slot, c);
+  } else if (k === "nature" || k === "gender") {
+    f[k] = v || null;
+  } else {
+    f[k] = parseInt(v, 10);
+  }
+  edited();
+});
+$("#trainright").addEventListener("change", ev => {
+  if (!TREDIT) return;
+  if (ev.target.id === "trdouble") TREDIT.double_battle = ev.target.checked;
+  else if (ev.target.dataset.flag) {
+    const on = new Set([...document.querySelectorAll("#trainright [data-flag]")]
+      .filter(x => x.checked).map(x => x.dataset.flag));
+    TREDIT.ai_flags = TRDETAIL.all_ai_flags.filter(f => on.has(f));
+  } else return;
+  edited();
+});
+$("#trainright").addEventListener("click", ev => {
+  if (!TREDIT) return;
+  const id = ev.target.id;
+  if (id === "trsave") return saveTrainer();
+  if (id === "trscore") return scoreTrainer();
+  if (id === "trrevert") {
+    TRDIRTY = false;
+    return selectTrainer(TRSEL);
+  }
+  if (id === "trgivemoves") {
+    TREDIT.party.forEach((f, i) => { f.moves = ((TRDETAIL.members || [])[i] || {}).default_move_ids || []; });
+  } else if (id === "trgiveitems") {
+    TREDIT.party.forEach(f => { f.item = "ITEM_NONE"; });
+  } else return;
+  edited();
+  drawTrainer();
+});
+// Leaving the page with an unsaved team asks first.
+window.addEventListener("beforeunload", ev => {
+  if (TRDIRTY) { ev.preventDefault(); ev.returnValue = ""; }
 });
 $("#simgo").onclick = () => simulate(false);
 $("#simlog").addEventListener("click", ev => {

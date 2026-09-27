@@ -447,6 +447,9 @@ fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
 check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
+# The working tree passes every rule, R12 included since 2026-09-27: the
+# legendaries Ian keeps out of reach are warnings with his reason.
+check "encounter lint on the working tree (--fail-on error, R12 included)" "$PY" -m tools.oxide.encounters.cli lint --fail-on error
 
 # The tracker holds open work only and every main-track session reads it in
 # full, so it is kept short: finished blocks move to tracker-archive.md. This

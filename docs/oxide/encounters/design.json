@@ -11199,8 +11199,7 @@
       "night": [
         "SPECIES_PURRLOIN",
         "SPECIES_KRICKETOT"
-      ],
-      "planned_location": "Verity Lakefront"
+      ]
     },
     "encounters_amity_square": {
       "archetype": "A15",
@@ -11210,7 +11209,6 @@
       "base_level": 8,
       "order": 39,
       "split": "Fantina",
-      "planned_location": "Amity Square",
       "cast": [
         "SPECIES_SNUBBULL",
         "SPECIES_SWABLU",
@@ -11238,7 +11236,6 @@
       "base_level": null,
       "order": 107,
       "split": "Candice",
-      "planned_location": "Snowpoint City",
       "old_rod": {
         "cast": [
           "SPECIES_SPHEAL",
@@ -11341,7 +11338,6 @@
       "base_level": 3,
       "order": 6,
       "split": "Roark",
-      "planned_location": "Sandgem Town",
       "cast": [
         "SPECIES_KRICKETOT",
         "SPECIES_BIDOOF",
@@ -11373,7 +11369,6 @@
       "base_level": 4,
       "order": 8,
       "split": "Roark",
-      "planned_location": "Jubilife City",
       "cast": [
         "SPECIES_ABRA",
         "SPECIES_MACHOP",
@@ -11405,7 +11400,6 @@
       "base_level": 10,
       "order": 18,
       "split": "Gardenia",
-      "planned_location": "Floaroma Town",
       "cast": [
         "SPECIES_COMBEE",
         "SPECIES_CHERUBI",
@@ -11436,7 +11430,6 @@
       "base_level": 19,
       "order": 47,
       "split": "Maylene",
-      "planned_location": "Solaceon Town",
       "cast": [
         "SPECIES_HAPPINY",
         "SPECIES_GIRAFARIG",

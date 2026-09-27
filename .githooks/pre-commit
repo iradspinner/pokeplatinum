@@ -5,14 +5,15 @@
 #
 # When a commit touches the wild encounter tables or the encounter tool, run
 # the encounter linter and refuse the commit on any error, as the encounter
-# tool's design doc asks ("Before a commit"). R12 is ignored: its errors are
-# the scripted-only lines (the legendary pool and the post-League statics),
-# which have no wild home by design. Lint reads the working tree, so a commit
-# of part of a change is checked against the whole change.
+# tool's design doc asks ("Before a commit"). R12, availability, is checked
+# too since 2026-09-27: the legendaries Ian keeps out of reach on purpose are
+# warnings that give his reason, so an R12 error is a line nobody has decided
+# about. Lint reads the working tree, so a commit of part of a change is
+# checked against the whole change.
 # Skip it for one commit with `git commit --no-verify`.
 
 if git diff --cached --name-only | grep -qE '^(res/field/encounters/|tools/oxide/encounters/|docs/oxide/encounters/)'; then
-    out=$(python3 -m tools.oxide.encounters.cli lint --fail-on error --ignore R12 2>&1)
+    out=$(python3 -m tools.oxide.encounters.cli lint --fail-on error 2>&1)
     rc=$?
     if [ $rc -ne 0 ]; then
         printf '%s\n' "$out" | grep -E '^\s*error' | head -n 20 >&2

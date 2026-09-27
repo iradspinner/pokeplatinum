@@ -447,7 +447,16 @@ def lint_game(areas, t, availability=None):
                 out.append(Finding("R12", "warn", "game", name,
                                    "no tier on the pick-list; unchecked"))
             elif tier == "gate":
-                if not row["non_wild"]:
+                # A legendary Ian keeps out of reach on purpose, or one a
+                # post-League proposal sources on paper, is reported with the
+                # reason; an error is a gate line nobody has decided about.
+                if not row["non_wild"] and row.get("held"):
+                    out.append(Finding("R12", "warn", "game", name,
+                                       f"no source, on purpose: {row['held']}"))
+                elif not row["non_wild"] and row.get("proposal"):
+                    out.append(Finding("R12", "warn", "game", name,
+                                       f"sourced on paper, script to come: {row['proposal']}"))
+                elif not row["non_wild"]:
                     out.append(Finding(
                         "R12", "error", "game", name,
                         "gate line with no scripted source (no gift, trade, "
@@ -462,10 +471,11 @@ def lint_game(areas, t, availability=None):
                     f"{tier} line with no wild table and no scripted source"))
             elif tier in ceilings and row["cost"] > ceilings[tier]:
                 area, kind, lead = row["where"]
+                met = f", as {row['met_as']}" if row.get("met_as") else ""
                 out.append(Finding(
                     "R12", "error", "game", name,
                     f"{tier} line costs {row['cost']:.1f} encounters at best "
-                    f"({area.replace('encounters_', '')} {kind}, lead {lead}), "
+                    f"({area.replace('encounters_', '')} {kind}, lead {lead}{met}), "
                     f"ceiling {ceilings[tier]:.0f}"))
             elif tier not in ceilings:
                 out.append(Finding("R12", "warn", "game", name,
@@ -517,7 +527,43 @@ def lint_groups(areas, sidecar, t):
     return out
 
 
-def lint_all(areas, sidecar, availability=None):
+def lint_hidden(grants):
+    """R18 (error): no script hands a Pokemon a hidden ability that sets or
+    cancels weather, at its own stage or any it can evolve into, since the
+    hidden slot stays through evolution. The player never controls weather
+    (Ian, 2026-09-26), and the game's one Ability Patch is the only way to
+    such a hidden slot. `grants` is audit.hidden_ability_grants(): a flag no
+    command takes, or a species the reader cannot see, fails too, because
+    neither can be checked."""
+    from .pokedex import WEATHER_ABILITIES
+    out = []
+    for g in grants or []:
+        where = f"{g['script']}:{g['line']}"
+        if g["command"] is None:
+            out.append(Finding(
+                "R18", "error", "script", where,
+                "sets FLAG_NEXT_MON_HIDDEN_ABILITY and jumps or ends before a gift or "
+                "scripted battle takes it, so the next one the player meets anywhere would"))
+        elif not g["species"]:
+            out.append(Finding(
+                "R18", "error", "script", where,
+                f"{g['command']} gives a hidden ability to a species this cannot read; "
+                "name it as a constant, or in a SetVar in the same label"))
+        else:
+            bad = sorted({f"{stage.replace('SPECIES_', '')} {ability}"
+                          for stage, ability in g["stages"] if ability in WEATHER_ABILITIES})
+            if bad:
+                given = ", ".join(sp.replace("SPECIES_", "") for sp in g["species"])
+                out.append(Finding(
+                    "R18", "error", "script", where,
+                    f"{g['command']} gives {given} its hidden ability, a weather ability "
+                    f"({'; '.join(bad)}); the player never controls weather"))
+    return out
+
+
+def lint_all(areas, sidecar, availability=None, hidden=None):
+    """`hidden` is audit.hidden_ability_grants() for the tree being linted, or
+    None to leave R18 out (a reference tree's scripts are not read)."""
     t = thresholds_from(sidecar)
     entries = (sidecar or {}).get("areas") or {}
     out = []
@@ -525,6 +571,7 @@ def lint_all(areas, sidecar, availability=None):
         out += lint_table(name, slots, entry or entries.get(name), t, data=data)
     out += lint_game(areas, t, availability)
     out += lint_groups(areas, sidecar, t)
+    out += lint_hidden(hidden)
     return out
 
 
