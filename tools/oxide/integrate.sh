@@ -430,13 +430,15 @@ b1_missing=""
 for p in "$HOME/roms/balance-refs" "$HOME/roms/hardlove.nds" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
     [ -e "$p" ] || b1_missing="$b1_missing $p"
 done
-# All four balance suites run, because a change elsewhere can stale their
+# All the balance suites run, because a change elsewhere can stale their
 # saved results: on 2026-09-26 the encounter track's table fold changed
 # Roark's and Gardenia's player pools, and test_b3 failed on oxide while the
 # gate, which then ran test_b1 alone, passed. test_b3 runs the calculator in
-# one Node process for about 20 seconds.
+# one Node process for about 20 seconds; test_b6 checks the B6 scores and the
+# team builder's estimate, and test_learnstudy the learnset study's reading of
+# Kaizo and its rules, about a minute.
 if [ -z "$b1_missing" ]; then
-    for t in test_b1 test_b1e test_b2 test_b3 test_b4; do
+    for t in test_b1 test_b1e test_b2 test_b3 test_b4 test_b6 test_learnstudy; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
     done
 else
