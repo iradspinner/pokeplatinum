@@ -246,6 +246,17 @@ def check_self_risk(results):
                     f"full HP {healthy[1].name}, 20 HP {low[1].name}"))
 
 
+def check_blind_team(results):
+    """A blind six is the box's strongest by stats, one per family."""
+    power = {"p0": 600, "p1": 590, "p2": 500, "p3": 480, "p4": 470, "p5": 460, "p6": 450, "p7": 300}
+    st = {"player": list(power), "info": {k: {"stats": {"atk": v}} for k, v in power.items()},
+          "group": {k: k for k in power}, "variants": {k: [k] for k in power}}
+    st["group"]["p1"] = "p0"        # p1 is p0's family: only the stronger goes
+    team = fs.blind_team(st, 0, 0, random.Random(1))
+    ok = team == ["p0", "p2", "p3", "p4", "p5", "p6"]
+    results.append(("a blind six is the box's strongest, one per family", ok, f"team {team}"))
+
+
 def check_sure(results):
     """The sure Pokemon: the starters, the one-species gifts and eggs, the
     trades that ask nothing and the statics; no random gift, and no trade
@@ -264,7 +275,7 @@ def main():
     results = []
     for check in (check_damage, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure):
+                  check_self_risk, check_blind_team, check_sure):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

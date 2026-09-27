@@ -22,6 +22,7 @@ import argparse
 import itertools
 import json
 import os
+import re
 import statistics
 import sys
 
@@ -90,7 +91,30 @@ def fight_id(f):
     return f"{f[0]}:{f[1]}"
 
 
+# Ian's grades (2026-09-27): a boss fight, the named Galactic fights among
+# them, was judged with a team built for it; an ordinary trainer or an
+# unnamed grunt blind, with what a run has by then. So each fight is read the
+# way it was judged.
+NAMED_GALACTIC = re.compile(r"^(Galactic Officer|Commander|Galactic Boss)\b")
+
+
+def planned(f):
+    """Whether the fight is read with a planned team: a story fight, or a
+    named Galactic figure; the rest are read blind."""
+    return f[0] == S or bool(NAMED_GALACTIC.match(data.oxide_trainers()[f[1]]["name"]))
+
+
 def read(f, runs=fightsim.RUNS):
+    blind = not fightsim.BOX_MODE and not planned(f)
+    was = fightsim.BLIND_MODE
+    fightsim.BLIND_MODE = blind
+    try:
+        return _read(f, runs)
+    finally:
+        fightsim.BLIND_MODE = was
+
+
+def _read(f, runs):
     kind, key = f
     if kind == S:
         return fightsim.story(key, runs)

@@ -1373,33 +1373,61 @@ Flare Blitz and a missed High Jump Kick. The player now takes another
 attack when one does damage. And the player's Tyranitar set sand with Sand
 Stream, against the weather ruling.
 
-**Where the fit stands** (2026-09-27, all of the above in). It puts its
-whole weight on the share of HP spent:
+**How each fight is read** (Ian, 2026-09-27). His grades of boss fights,
+the named Galactic fights among them (Mars, Jupiter, Saturn, Cyrus and the
+named officers such as Somnu, Moira, Argo and Hesperid), were made with a
+team built for the fight, and those fights are read with the planned six.
+His grades of ordinary trainers and unnamed grunts were mostly made blind,
+so those are read blind: eight realistic boxes of what a run has by the
+split, and from each the six strongest by their stats at the cap, one per
+family, with nothing chosen for the fight. The player uses no items in
+battle and starts each fight healed, as Ian plays: items heal between
+fights only.
+
+**Where the fit stands** (2026-09-27, each pair read in its own mode). It
+puts its whole weight on the share of HP spent:
 
 | Pairs agreeing with Ian | Count |
 |---|---|
-| Held out (the bar is 13) | 9 of 15 |
-| All forty, by the headline | 26 of 40 |
-| All forty, by Pokemon lost then HP | 24 of 40 |
+| Held out (the bar is 13) | 7 of 15 |
+| All forty, by the headline | 23 of 40 |
+| All forty, by Pokemon lost then HP | 27 of 40 |
 
-Across the last four changes to the player it moved between 7 and 9 held
-out and between 24 and 28 of the forty, so it is kept simple and not tuned
-to the pairs; Ian judges some of his own as misjudged. The fourteen it
-misses, read by hand:
+By how the pair's two fights are read:
 
-| Pairs | Ian | The simulator | Why |
-|---|---|---|---|
-| 2, 4, 7, 11, 15, 17, 30, 31, 38, 39 | one ordinary trainer harder | both cost the planned six at most 0.12 Pokemon a battle and under a sixth of its HP | a six prepared from the strongest third has nothing at stake against these; Ian's grades come from a team that did not prepare for them |
-| 16, Byron and Cyrus 1 | Byron a bit | Cyrus 1 by HP, Byron by Pokemon lost (0.69 to 0.54) | the weighting, not the reading |
-| 37, Aaron and Flint | Aaron a bit | Flint, by a fifth of a point | within the noise |
-| 22, Saturn 1 and Hesperid at Lake Valor | Hesperid, very close | Saturn 1 far harder (2.02 lost to 0.12) | half of Saturn 1's kills are Azelf's; Hesperid's danger is two Explosions, which Generation 4's AI rarely uses at high HP, and his levels of 49 to 52 meet a six at 56 |
-| 36, Lucian and Bertha | Lucian a lot | Bertha (2.62 lost to 0.99) | a quarter of Bertha's kills are the permanent sandstorm finishing Pokemon the player never heals, and Lucian's three Choice items let the player bait a lock, the weakness Ian's own ruling names |
+| Pairs | Count | The headline agrees | Pokemon lost agree | The misses |
+|---|---|---|---|---|
+| Both blind | 17 | 7 | 12 | 2, 7, 11, 14, 15, 17, 25, 30, 38, 39 |
+| One planned, one blind | 4 | 2 | 2 | 4, 23 |
+| Both planned | 19 | 14 | 13 | 16, 22, 31, 36, 37 |
 
-Two limits of the model bear on the last two rows: the player uses no
-items in battle, and it plans a six for each fight. For Ian: whether his
-grades of ordinary trainers assume a prepared team, which decides whether
-they are read from a realistic box (the box mode) or from the planned six;
-and whether the player heals with items in a boss fight.
+The fit is not tuned to the pairs; Ian judges some of his own as
+misjudged. Read by hand:
+
+- The blind pairs are where the headline loses most. Read blind, ordinary
+  trainers now cost the box something, and Pokemon lost put 12 of the 17
+  in Ian's order; the headline, weighted for the planned fights by HP
+  spent, puts 7. One weighting does not serve both.
+- Pairs 4 and 23 set Somnu, a named officer read with a planned six,
+  against a trainer read blind. The planned six makes Somnu the easier of
+  each, where Ian has him massively and comically harder.
+- Byron and Cyrus 1 (16): by Pokemon lost Byron is the harder, as Ian
+  says; the HP weighting reverses it. Aaron and Flint (37) are a fifth of
+  a point apart.
+- Saturn 1 and Hesperid at Lake Valor (22), "very close": Saturn 1 reads
+  far harder (2.02 lost to 0.12). Half of Saturn 1's kills are Azelf's;
+  Hesperid's danger is two Explosions, which Generation 4's AI rarely
+  uses at high HP, and his levels of 49 to 52 meet a six at 56.
+- Lucian and Bertha (36), "Lucian a lot": Bertha reads harder (2.62 lost
+  to 0.99). A quarter of Bertha's kills are the permanent sandstorm
+  finishing Pokemon worn down over the fight, and Lucian's three Choice
+  items let the player bait a lock, the weakness Ian's own ruling names.
+- Mars and Jupiter at Stark Mountain (31): Mars reads harder, where Ian
+  has Jupiter a bit harder; both cost the planned six little.
+
+The realistic boxes hold what the sources file gives: Azelf's static in
+Candice's split among them, though Ian has ruled Valor Cavern empty for
+now.
 
 ## Open questions for Ian
 

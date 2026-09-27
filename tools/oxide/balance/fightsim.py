@@ -1668,7 +1668,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         last = not any(t in owned for _n, _i, t in pool.evolutions(c))
         if from_sure and last and p not in third:
             third.append(p)
-    if BOX_MODE:
+    if BOX_MODE or BLIND_MODE:
         third = side          # a box can hold anything the split's side has
     tiers = status_tiers()
     names = pool._move_names()
@@ -1926,21 +1926,42 @@ def random_box(split, rng):
     return box
 
 
-def read_boxed(st, flags_by_party, runs=RUNS, seed=20260927):
-    """As read_fight, with each planned six chosen from a realistic box."""
+def blind_team(st, v, flags, rng):
+    """The six a player brings without building a team for the fight (Ian,
+    2026-09-27, for ordinary trainers and unnamed grunts): the box's six
+    strongest by their stats at the cap, one per family and one starter,
+    each with one of its regular abilities."""
+    keys = sorted(st["player"], key=lambda k: -sum(st["info"][k]["stats"].values()))
+    team, groups = [], set()
+    for k in keys:
+        g = st.get("group", {}).get(k, k)
+        if g not in groups:
+            team.append(k)
+            groups.add(g)
+        if len(team) == 6:
+            break
+    return draw(st, team, rng)
+
+
+def read_boxed(st, flags_by_party, runs=RUNS, seed=20260927, choose=None):
+    """As read_fight, with each six chosen from a realistic box: planned for
+    the fight (plan_team), or blind (blind_team)."""
+    choose = choose or plan_team
     rng = random.Random(seed)
     by_species = collections.defaultdict(list)
     for k in st["player"]:
         by_species[st["pokemon"][k]["constant"]].append(k)
-    reads = []
+    reads, teams = [], []
     for v in range(variants(st)):
         lost_all, hp_all, wins_ = [], [], 0
-        for _b in range(BOXES):
+        for b_ in range(BOXES):
             box = [by_species[sp][0] for sp in random_box(st["split"], rng) if by_species.get(sp)]
             if len(box) < 6:
                 box = box + rng.sample(st["player"], 6 - len(box))
             sub = dict(st, player=sorted(set(box)))
-            team = plan_team(sub, v, flags_by_party[v], rng)
+            team = choose(sub, v, flags_by_party[v], rng)
+            if b_ == 0:
+                teams.append([st["pokemon"][k]["species"] for k in team])
             for _ in range(max(1, runs // BOXES)):
                 lost, won = battle(st, team, v, rng, flags_by_party[v])
                 lost_all.append(lost)
@@ -1951,16 +1972,26 @@ def read_boxed(st, flags_by_party, runs=RUNS, seed=20260927):
                       "three_plus": sum(1 for x in lost_all if x >= 3) / n,
                       "wipe": sum(1 for x in lost_all if x >= 6) / n,
                       "won": wins_ / n, "hp_lost": statistics.mean(hp_all)})
-    return {k: round(statistics.mean(r[k] for r in reads), 3) for k in reads[0]}
+    out = {k: round(statistics.mean(r[k] for r in reads), 3) for k in reads[0]}
+    out["teams"] = teams
+    return out
 
 
 def read_fight(st, flags_by_party, runs=RUNS, seed=20260927):
+    if BLIND_MODE:
+        return read_boxed(st, flags_by_party, runs, seed, choose=blind_team)
     if BOX_MODE:
         return read_boxed(st, flags_by_party, runs, seed)
     return read_planned(st, flags_by_party, runs, seed)
 
 
+# How the player's six is chosen: planned for the fight from the strong third
+# and the sure Pokemon (the default); planned from a realistic box (BOX_MODE);
+# or blind, the strongest six of a realistic box with nothing built for the
+# fight (BLIND_MODE). Ian's grades (2026-09-27): bosses, the named Galactic
+# fights among them, planned; ordinary trainers and unnamed grunts blind.
 BOX_MODE = False
+BLIND_MODE = False
 
 
 def read_planned(st, flags_by_party, runs=RUNS, seed=20260927):
