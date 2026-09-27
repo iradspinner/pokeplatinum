@@ -40,10 +40,12 @@ species records' hidden-ability slot left the hash (_species_record).
 
 Every calculation runs in one Node process, one at a time unless --workers
 asks for more. With Ian's turbo cap (2026-09-27) the CPU ran sixteen copies
-of the flake check twice without a fault, so a run may use two or three
-workers pinned to as many cores (taskset -c 4-6 ... --workers 3). The verify
-pass still recomputes every score, and if a worker ever disagrees the runs
-go back to one.
+of the flake check twice without a fault, and Ian approved six workers,
+each on its own performance core (2026-09-27): taskset -c 4,6,8,10,12,14
+... --workers 6, which leaves the first cores to other sessions' single
+runs. The verify pass still recomputes every score; at the first
+disagreement between runs the rescores drop back to three workers and the
+Overseer is told.
 """
 import argparse
 import ast

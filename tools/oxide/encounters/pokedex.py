@@ -21,6 +21,7 @@ import os
 import re
 import subprocess
 
+from . import dex
 from . import model
 
 BATTLE_LIB = os.path.join("src", "battle", "battle_lib.c")
@@ -183,7 +184,7 @@ def _evolution(root, entry):
     into = named[-1] if named else None
     return {
         "method": _strip(method, "EVO_"),
-        "level": ints[0] if method.startswith("EVO_LEVEL") and ints else None,
+        "level": dex.evo_level(method, ints),
         "item": _strip(item, "ITEM_") if item else None,
         "into": into,
         "partner": named[0] if len(named) > 1 else None,

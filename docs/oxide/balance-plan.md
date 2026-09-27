@@ -1709,7 +1709,7 @@ lands, and each change is re-scored as it lands.
 
    | Placing damaging moves, on held-out families | Mean miss, in splits | Within one split |
    |---|---|---|
-   | The move's usual split | 1.24 | 67% |
+   | The move's usual split | 1.25 | 67% |
    | A move Kaizo never used, by moves of like strength | 1.38 | 61% |
    | The strength curve alone | 1.74 | 57% |
    | Vanilla's timing | 2.01 | 50% |
@@ -1722,12 +1722,137 @@ lands, and each change is re-scored as it lands.
    Comeuppance). Priority, pivots, item moves, False Swipe and a certain
    stat drop or status are exempt. It catches all eleven moves Ian named,
    in every split (Octazooka at vanilla's values: Oxide's own, 85 at full
-   accuracy, passes). Kaizo's own lists break it in 99 of 3,528 entries,
+   accuracy, passes). Kaizo's own lists break it in 98 of 3,520 entries,
    most of them Tackle at its old 35 power. In Oxide's lists it catches 434
    entries of 36 moves; beyond Ian's eleven, the most common are Astonish
    (69 entries), Rollout (30), Fire Spin (28), Fury Cutter (20), Whirlpool
-   (18), Sand Tomb (17), Bind (15), Sky Attack (9) and Skull Bash (6), and
-   those want Ian's word.
+   (18), Sand Tomb (17), Bind (15), Sky Attack (9) and Skull Bash (6). Ian
+   confirmed the rule and those nine (2026-09-27).
+
+   **Part 3: the three analyses and the generator** (2026-09-27,
+   `learngen.py`, `learnwild.py` and `kaizo_docs.py`; Ian's answers of the
+   same day). Kaizo's encounter tables, evolution levels and list of wild
+   hazards come from its documentation workbook on the G: drive, read once
+   into `kaizo_docs.json`. Mantyke's evolution was misread as Remoraid by
+   the encounter tool's readers (Remoraid is the Pokemon it needs in the
+   party); the encounter track fixed them, and these tools read the result
+   rightly meanwhile.
+
+   Ian's rule of the same day judges every list: a move's worth to the
+   player is what the Pokemon knows at capture (the last four its list gives
+   by its level, which can include moves below the catch level) plus what it
+   learns by level-up afterwards, on its form or a later one. Relearner-only
+   moves, an evolved form's level-1 moves among them, count for almost
+   nothing: the relearner is in Pastoria, each move costs a scarce Heart
+   Scale, and each use competes with the whole box. Level-1 lists matter as
+   the relearner's menu and the trainer palette. He also settled: recoil
+   attacks stay real attacks, the delays stay (a wait longer than a split is
+   worth it, as the best encounter boxes delay routes by several splits),
+   and Hoppip takes Leafage.
+
+   (a) Delays. A delay is a strong move (85 or more a turn) a pre-evolution
+   learns at or after the level it could evolve that the evolved stage
+   learns later, or only at level 1, or never. Waits within a split are the
+   ones counted below; waits past it are Kaizo's list tails. The strongest
+   delay, Ian's, is a move only a Pokemon kept from evolving ever gets: the
+   pre-evolution learns it at or after its evolution level, and no later
+   stage learns it by level-up.
+
+   | | Kaizo | Oxide now | The proposal |
+   |---|---|---|---|
+   | Evolutions rewarding a wait of a split or less | 124 of 246 | 63 of 320 | 169 of 320 |
+   | Median wait past the evolution level | 8 | 5 | 6 |
+   | Moves only a Pokemon kept from evolving gets | 334 | 243 | 35 |
+   | Of those, strong | 148 | 37 | 14 |
+
+   The proposal turns most delays into a move the evolved stage learns a
+   split later, not never: Kaizo keeps many more exclusive ones.
+
+   (b) Wild movesets (`docs/oxide/wild-movesets.md` lists every flagged
+   slot). A wild Pokemon knows the last four level-up moves at or below its
+   level and picks at random, so a move that ends the encounter (Roar,
+   Whirlwind, Teleport, Self-Destruct, Explosion, Memento; Kaizo's six
+   hazards, and four more) comes up a quarter of the time when it is one of
+   four. Ian's example holds: Kaizo's Route 207 Growlithe at 11 knows Ember,
+   Bite, Tackle and Roar. A better version later is the same line in a
+   later split as a stage the earlier catch cannot reach by then, or with a
+   same-type move a band stronger than the earlier catch knows at capture
+   or learns by then.
+
+   | | Kaizo | Oxide now | The proposal |
+   |---|---|---|---|
+   | Wild slots | 4,371 | 3,867 | 3,862 |
+   | Can end the encounter | 1,566 | 153 | 0 |
+   | Can knock itself out (recoil, crash, a Ghost's Curse) | 740 | 261 | 533 |
+   | Have a better version later | 409 | 9 | 6 |
+
+   The first summary gave 91 for the proposal. Two things made it: my check
+   followed only the first branch of a branching line (Sinistea to
+   Polteageist, never Sinistcha), and an evolved stage's level 1 was ordered
+   weakest first, so a wild one met soon after its evolution level, with
+   fewer than four moves of its own by then, filled its four from its
+   strongest level-1 moves. The branch is fixed, and level 1 is now ordered
+   strongest first, so such a Pokemon takes the weakest. Oxide's own figure
+   fell from 29 to 9 when Feebas stopped reading as evolving at level 170
+   (its beauty requirement; the encounter track has the report).
+
+   (c) Evolved catches with no good move (a same-type move of 70 or more
+   a turn, or any of 85 or more) known at capture or learnt by level-up
+   before their split's cap: 70 in Oxide now, of 18 species, 25 of them
+   because the good move went only to the pre-evolution (Swadloon's Bug
+   Buzz, Naclstack's Earthquake, Cinccino's Hyper Voice, Fearow's Drill
+   Peck). The proposal fixes them by level-up, not level 1: a species still
+   bare gets its line's earliest good move on its own list at its earliest
+   bare catch's level (the newest of its four at capture), or soon after
+   capture before the split's cap. Twelve species take such a move, and one
+   stays bare, Fletchinder, whose line has no good move to give (Flame
+   Charge, Acrobatics and Aerial Ace are all weak), so it wants a new move.
+
+   Every catch, judged the same way: the share with a good move known at
+   capture or learnt by level-up before its split's cap.
+
+   | Split | Oxide now | The proposal |
+   |---|---|---|
+   | Roark | 0.08 | 0.09 |
+   | Gardenia | 0.26 | 0.45 |
+   | Fantina | 0.54 | 0.95 |
+   | Maylene | 0.74 | 0.99 |
+   | Wake | 0.87 | 0.99 |
+   | Byron to the League | 0.86 to 0.93 | 1.00 |
+
+   The generator (`learngen.py propose`, and `line <species>` for one line
+   now and proposed) writes no game data. For each species it takes the
+   moves its line learns now and Kaizo's for it, where Kaizo's move is the
+   same move (same type, attack or not; a move one line alone learns, a
+   signature such as Spacial Rend, goes to no other); drops dead weight, the
+   move pool's cut, weather moves for obtainable species and any attack
+   under nine tenths of a same-type one it already knows; places each attack
+   at Kaizo's usual point carried onto Oxide's splits (a recharging move by
+   its full one-turn power), keeping status moves where they are; gives an
+   evolved stage what came before its evolution at level 1, whole and
+   strongest first; gives a strong move its pre-evolution gets within a
+   split of evolving to the evolved stage one split later; starts a first
+   stage with an attack (the survey's picks, Hoppip's Leafage among them,
+   else a weak one of its type); keeps every move that ends a wild
+   encounter above the levels the species is wild at; fixes the bare
+   catches as above; and stays at or under 78. Over 652 species it adds
+   4,221 moves, moves 4,830 and drops 718: 397 dead weight, 234 weaker
+   same-type, 67 weather and 59 the move pool's cut.
+
+   The level-1 lists are kept whole, as the relearner's menu and the trainer
+   palette; cutting them to six attacks and two status moves dropped 1,491
+   entries for no gain to the player, and tidiness is all it bought. They
+   are ordered strongest first, which matters in one place: a wild or
+   trainer Pokemon with fewer than four moves of its own at its level fills
+   from level 1, from the end. 426 of the 1,802 trainer Pokemon take default
+   moves; they would get the weaker level-1 moves, which the trainer pass
+   can override with sets of their own.
+
+   For Ian before any sweeping pass: whether level 1 should be strongest
+   first (wild evolved Pokemon soon after evolving are no better than one
+   raised) or weakest first (such Pokemon, and trainers on default moves,
+   get the strongest); whether more delays should be exclusive, as Kaizo
+   has them; and a move for Fletchinder.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 

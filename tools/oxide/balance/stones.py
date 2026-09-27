@@ -140,7 +140,10 @@ def claimants():
         for evo in evos:
             if not isinstance(evo, list):
                 continue
-            target = next((x for x in evo if isinstance(x, str) and x.startswith("SPECIES_")), None)
+            # The result is the last species an entry names: a level-up with
+            # another species in the party names that species first (Mantyke).
+            named = [x for x in evo if isinstance(x, str) and x.startswith("SPECIES_")]
+            target = named[-1] if named else None
             for x in evo:
                 if x in STONES and target:
                     out[x].append((species, target, first.get(species)))

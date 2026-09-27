@@ -55,9 +55,53 @@ def check_placement(results):
                     f"vanilla {vanilla:.2f}"))
 
 
+def check_kaizo_docs(results):
+    """Kaizo's documentation reads whole, and Ian's example holds: Kaizo's
+    Route 207 Growlithe may Roar, a quarter of its turns."""
+    from . import kaizo_docs, learnwild
+    docs = kaizo_docs.load()
+    rows, _later = learnwild.readings("kaizo")
+    growlithe = [r for r in rows if r["species"] == "SPECIES_GROWLITHE" and r["area"] == "Route 207"]
+    ok = (len(docs["field"]) == 202 and docs["hazards"] == ["MEMENTO", "ROAR", "WHIRLWIND",
+                                                            "TELEPORT", "SELFDESTRUCT", "EXPLOSION"]
+          and growlithe and all("Roar" in r["moves"] and r["ends"] == 0.25 for r in growlithe))
+    results.append(("Kaizo's docs read, and its Route 207 Growlithe may Roar", bool(ok),
+                    f"{len(docs['field'])} tables, hazards {docs['hazards']}, "
+                    f"Growlithe {[r['moves'] for r in growlithe][:1]}"))
+
+
+def check_generator(results):
+    """Every proposed list keeps the rules: no level past 78; no dead weight,
+    cut move or weather move for an obtainable species; a first stage starts
+    with an attack (Abra with Confusion); no wild slot can end the encounter."""
+    from . import learngen as g, learnwild
+    g.propose_all()
+    learnwild.clear()
+    bad = []
+    for sp, lst in g.PROPOSED.items():
+        types = {t.title() for t in (g.pokedex.load(g.data.ROOT, sp) or {}).get("types", [])}
+        for lv, c in lst:
+            if lv > 78 or g._dropped(c, sp, lv, types):
+                bad.append(f"{sp} {lv} {c}")
+        chain = g._chain(sp)
+        if len(chain) == 1 and not any(
+                lv <= 1 and ls.strength(ls.oxide_move(g._oxide_moves()[c]))[0] in ("damage", "fixed")
+                for lv, c in lst):
+            bad.append(f"{sp}: no attack at level 1")
+    abra = (1, "MOVE_CONFUSION") in g.PROPOSED.get("SPECIES_ABRA", [])
+    rows, _later = learnwild.readings("proposal")
+    ends = sum(1 for r in rows if r["ends"])
+    learnwild.clear()
+    ok = not bad and abra and ends == 0
+    results.append(("the generator's lists keep the rules", ok,
+                    f"{len(g.PROPOSED)} species" if ok else
+                    f"{bad[:5]}, Abra's Confusion {abra}, ending slots {ends}"))
+
+
 def main():
     results = []
-    for check in (check_reading, check_named, check_kaizo_rate, check_placement):
+    for check in (check_reading, check_named, check_kaizo_rate, check_placement,
+                  check_kaizo_docs, check_generator):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

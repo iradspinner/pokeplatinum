@@ -339,6 +339,20 @@ def vanilla_dex(species):
     return pokedex.load(data.ROOT, species, ref="main")
 
 
+def evolution_result(species, evo, ref="main"):
+    """The species an evolution makes. The dex reader takes the first species
+    an entry names, which for a level-up with another species in the party is
+    that species (Mantyke's Remoraid), not the result; the entry's last
+    species is the result. Told to the encounter track, 2026-09-27."""
+    if evo["method"] != "LEVEL_SPECIES_IN_PARTY":
+        return evo["into"]
+    raw = pokedex._read(data.ROOT, f"res/pokemon/{pokedex.folder_of(species)}/data.json", ref)
+    for entry in (raw or {}).get("evolutions") or []:
+        if entry and entry[0] == "EVO_LEVEL_SPECIES_IN_PARTY":
+            return [x for x in entry if isinstance(x, str) and x.startswith("SPECIES_")][-1]
+    return evo["into"]
+
+
 @functools.lru_cache(maxsize=None)
 def _reached():
     """{species: (parent, level it is reached at)} by vanilla's evolutions, a
@@ -346,7 +360,7 @@ def _reached():
     out = {}
     for sp in kaizo_lists():
         for evo in (vanilla_dex(sp) or {}).get("evolutions", []):
-            into = evo["into"]
+            into = evolution_result(sp, evo)
             if into not in kaizo_lists() or evo["form"] or into in out:
                 continue
             level = evo["level"] or evolve.PSEUDO.get("EVO_" + evo["method"],

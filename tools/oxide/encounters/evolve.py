@@ -30,6 +30,7 @@ import json
 import os
 
 from . import audit
+from . import dex
 from . import model
 
 # Methods that have no level of their own, and the level each is judged at,
@@ -43,6 +44,9 @@ PSEUDO = {
     "EVO_LEVEL_MAGNETIC_FIELD": 32,
     "EVO_LEVEL_WITH_HELD_ITEM_DAY": 32, "EVO_LEVEL_WITH_HELD_ITEM_NIGHT": 32,
     "EVO_LEVEL_KNOW_MOVE": 32, "EVO_LEVEL_SPECIES_IN_PARTY": 32,
+    # Feebas's Beauty of 170 is a condition, not a level (dex.NOT_A_LEVEL);
+    # until 2026-09-27 it read as Milotic reached at level 170.
+    "EVO_LEVEL_BEAUTY": 32,
 }
 DEFAULT_PSEUDO = 32
 
@@ -96,8 +100,9 @@ def evolutions(root, species):
         # (SPECIES_GYARADOS -> SPECIES_GYARADOS_M); it is not a stage.
         if target is None or target.startswith(species + "_"):
             continue
-        if method.startswith("EVO_LEVEL") and ints:
-            out.append((ints[0], target, True))
+        level = dex.evo_level(method, ints)
+        if level is not None:
+            out.append((level, target, True))
         else:
             out.append((PSEUDO.get(method, DEFAULT_PSEUDO), target, False))
     if any(by_level for _, _, by_level in out):
