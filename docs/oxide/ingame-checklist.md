@@ -259,6 +259,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   own rules (healing mid-challenge, losing Safari Balls).
 - [ ] Iron Island: Riley's egg hatches as a random species, one of eight lines.
 - [ ] Snowpoint City: Mindy takes a Snover and gives a Suicune, which is shiny.
+- [ ] Route 210 South: talk to the Black Belt the base ROM placed at x 570,
+  z 535. His event runs script 13 and the map's script file has 8 (the script
+  index, 2026-09-27), so he may hang or crash the game; if he does, he becomes
+  an open bug. Save first.
 - [ ] With `carry-over-hue` merged: Riley's egg (or any Day Care egg) is
   tinted like the Pokemon inside it while it hatches, and the hatched Pokemon
   shows the same colours on its summary. In Mindy's trade the Snover and the
@@ -288,7 +292,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Soundproof. Her Exploud never chooses Hyper Voice.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
-  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, Volkner to 71
+  (the Barry split: Victory Road, the Fight Area and the rival fights stay at
+  71), and walking into Aaron's room, as its door shuts, to 78. Leaving the
+  League before the Elite Four keeps the cap at 71.
 - [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
   Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
   Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east

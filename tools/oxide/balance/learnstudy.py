@@ -687,7 +687,7 @@ def dead_weight(move, split, stab, first=False):
 
 # Oxide's splits read against Kaizo's curve: the Galactic splits sit between
 # Candice and Volkner, so they are read at Candice's.
-OXIDE_TO_KAIZO = {"HQ": "Candice", "Galactic": "Candice"}
+OXIDE_TO_KAIZO = {"HQ": "Candice", "Galactic": "Candice", "Barry": "League"}
 
 
 @functools.lru_cache(maxsize=None)

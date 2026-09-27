@@ -464,7 +464,7 @@ def fight_metrics(hack, fight, unresolved=None):
 
 CLOSING = {"Roark": "roark", "Gardenia": "gardenia", "Fantina": "fantina",
            "Maylene": "maylene", "Wake": "wake", "Byron": "byron", "Candice": "candice",
-           "HQ": "cyrus_2", "Galactic": "cyrus_3", "Volkner": "volkner", "League": "cynthia"}
+           "HQ": "cyrus_2", "Galactic": "cyrus_3", "Volkner": "volkner", "Barry": "barry_6", "League": "cynthia"}
 
 
 @functools.lru_cache(maxsize=None)
@@ -606,6 +606,8 @@ def filler_summary(hack):
             m["name"], m["tr_id"] = t["name"], tr_id
             m["over_cap"] = m["ace_level"] - cap
             ms.append(m)
+        if not ms:
+            continue        # no filler: the League's rooms hold only its story fights
         mean = lambda k: statistics.mean(m[k] for m in ms if m[k] is not None)
         worst = max(ms, key=lambda m: (m["over_cap"], m["party_size"], m["mean_bst"] or 0))
         out[split] = {"trainers": len(ms), "doubles": sum(m["doubles"] for m in ms),

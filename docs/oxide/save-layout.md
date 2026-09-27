@@ -151,6 +151,22 @@ sized by a constant I changed end up in the save", and a text bank's entry count
 is exactly that kind of constant. The next element that adds names to any group
 before the Union Room list moves these ids again.
 
+## The level-cap splits after Volkner's were renumbered (2026-09-27)
+
+`VAR_LEVEL_CAP_SPLIT` holds the player's level-cap split as a number. The
+Barry split (cap 71, from Volkner's Beacon Badge to the Elite Four) went in
+between Volkner's and the League's, so the numbers after it moved up one.
+
+| Value | Was | Is |
+|---|---|---|
+| 10 | League, cap 78 | Barry, cap 71 |
+| 11 | no cap (after the Champion) | League, cap 78 |
+| 12 | (none) | no cap |
+
+A save made in the League split reads as the Barry split, capped at 71 until
+the player enters the Elite Four again. A save made after the Champion reads
+as the League split, capped at 78 until the Champion is beaten again.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

@@ -129,7 +129,7 @@ def game_entries(game, species):
 
 
 OXIDE_ORDER = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "HQ",
-               "Galactic", "Volkner", "League", "Post"]
+               "Galactic", "Volkner", "Barry", "League", "Post"]
 
 
 def _oxide_index(split):

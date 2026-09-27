@@ -33,7 +33,11 @@ CLOSING_SCRIPTS = {
     "Candice": ("scripts_snowpoint_city_gym", "HQ"),
     "HQ": ("scripts_galactic_hq_control_room", "GALACTIC"),
     "Galactic": ("scripts_distortion_world_b7f", "VOLKNER"),
-    "Volkner": ("scripts_sunyshore_city_gym_room_3", "LEAGUE"),
+    "Volkner": ("scripts_sunyshore_city_gym_room_3", "BARRY"),
+    # The Barry split has no closing fight: it ends when the player enters
+    # the Elite Four, as Aaron's room shuts its door behind them (Ian,
+    # 2026-09-27), so its raise lives in that room's entry scene.
+    "Barry": ("scripts_pokemon_league_aaron_room", "LEAGUE"),
     "League": ("scripts_pokemon_league_champion_room", "NONE"),
 }
 

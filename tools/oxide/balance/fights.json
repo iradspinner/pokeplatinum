@@ -1,10 +1,10 @@
 {
     "_comment": "Platinum's story bosses in play order, each in the split Ian's Level Caps sheet puts it in (My Version RomHack Docs, sheet Level Caps, read 2026-09-22), except that the Galactic fights moved on Ian's rulings of 2026-09-25: Cyrus 2 and Saturn 2 to the HQ split, and Mars and Jupiter at Spear Pillar and Cyrus 3 to the Galactic split. Trainers are Platinum trainer constants, which are also the tr_id every Platinum-based hack's calculator data uses. A rival fight lists all three starter variants; a tag battle lists both opponents. sheet_ace is the sheet's level for the boss's strongest Pokemon, null where the sheet has no row. trick_room marks a fight fought entirely under Trick Room. Tag-battle partners (Cheryl, Mira, Riley, Marley, Buck, Lucas, Dawn, and Barry at the Fight Area and Spear Pillar) fight beside the player and are not bosses; a story tag fight lists its partner's teams, one per starter, under partners.",
-    "splits": ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "HQ", "Galactic", "Volkner", "League"],
+    "splits": ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "HQ", "Galactic", "Volkner", "Barry", "League"],
     "caps": {
-        "_comment": "Ian's hard caps. Roark to Candice and the League from his Level Caps sheet (Maylene 39, which he confirmed on 2026-09-22); HQ 60, Galactic 65 and Volkner 68 from his Battle Zone rulings of 2026-09-25, set ahead of the trainers, which the trainer pass brings up to them. The level-cap design may move any of them.",
+        "_comment": "Ian's hard caps. Roark to Candice and the League from his Level Caps sheet (Maylene 39, which he confirmed on 2026-09-22); HQ 60, Galactic 65 and Volkner 68 from his Battle Zone rulings of 2026-09-25, set ahead of the trainers, which the trainer pass brings up to them. Barry 71 from his ruling of 2026-09-27: after the Beacon Badge every fight up to the Elite Four is capped at 71, and 78 holds inside it (the rebuild plays each Elite Four fight at its own ace, since Ian levels only to the next ace). The level-cap design may move any of them.",
         "Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44, "Byron": 53,
-        "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "League": 78
+        "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "Barry": 71, "League": 78
     },
     "overrides": {
         "vanilla": {
@@ -122,14 +122,14 @@
          "trainers": ["TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD"]},
         {"key": "volkner", "label": "Volkner", "split": "Volkner", "sheet_ace": 62,
          "trainers": ["TRAINER_LEADER_VOLKNER"]},
-        {"key": "flint_volkner", "label": "Flint and Volkner", "split": "League", "sheet_ace": null, "tag": true,
-         "note": "The Fight Area's tag fight beside Barry. The player reaches the Fight Area after Galactic HQ, but the fight waits for the Beacon Badge (the main track's 3a3472432), so it opens the League split; the Platinum hacks keep it post-game and have no seat for it. Ian made it one story fight like Spear Pillar (2026-09-27).",
+        {"key": "flint_volkner", "label": "Flint and Volkner", "split": "Barry", "sheet_ace": null, "tag": true,
+         "note": "The Fight Area's tag fight beside Barry. The player reaches the Fight Area after Galactic HQ, but the fight waits for the Beacon Badge (the main track's 3a3472432), so it opens the Barry split (Ian, 2026-09-27); the Platinum hacks keep it post-game and have no seat for it. Ian made it one story fight like Spear Pillar (2026-09-27).",
          "trainers": ["TRAINER_LEADER_VOLKNER_FIGHT_AREA", "TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA"],
          "partners": ["TRAINER_RIVAL_FIGHT_AREA_PIPLUP", "TRAINER_RIVAL_FIGHT_AREA_TURTWIG", "TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR"]},
-        {"key": "lucas_dawn_3", "label": "Lucas and Dawn 3", "split": "League", "sheet_ace": null,
+        {"key": "lucas_dawn_3", "label": "Lucas and Dawn 3", "split": "Barry", "sheet_ace": null,
          "note": "Ian's, at the start of Victory Road (Victory Road 1F's script, since the main track's 3a3472432).",
          "trainers": ["TRAINER_DUMMY_779", "TRAINER_DUMMY_780", "TRAINER_DUMMY_781", "TRAINER_DUMMY_782", "TRAINER_DUMMY_783", "TRAINER_DUMMY_784"]},
-        {"key": "barry_6", "label": "Barry 6", "split": "League", "sheet_ace": 71,
+        {"key": "barry_6", "label": "Barry 6", "split": "Barry", "sheet_ace": 71,
          "trainers": ["TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP", "TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG", "TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR"]},
         {"key": "aaron", "label": "Aaron", "split": "League", "sheet_ace": 72,
          "trainers": ["TRAINER_ELITE_FOUR_AARON"]},
