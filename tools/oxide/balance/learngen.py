@@ -67,6 +67,12 @@ def oxide_reached():
             if level > 100:
                 level = evolve.DEFAULT_PSEUDO
             out.setdefault(party[0] if party else target, (sp, level))
+        # evolve.py keeps only a stage's level evolutions when it has any;
+        # the player can use the item too (Kirlia's Dawn Stone to Gallade).
+        for e in (pokedex.load(data.ROOT, sp) or {}).get("evolutions", []):
+            into = e.get("into")
+            if e.get("item") and into and into not in out and not into.startswith(sp + "_"):
+                out[into] = (sp, evolve.PSEUDO.get("EVO_" + e["method"], evolve.DEFAULT_PSEUDO))
     return out
 
 
