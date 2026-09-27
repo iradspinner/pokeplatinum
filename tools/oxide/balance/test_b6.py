@@ -116,6 +116,17 @@ def check_gauntlet(results):
     ]
     results.append(("the gauntlet reading's duel carries damage both ways", all(cases),
                     str(cases)))
+    # The sections keep Ian's rulings: 2 to 5 trainers each, Victory Road 1F
+    # halved from its entrance, and Mt. Coronet's bosses and hard officers out.
+    sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
+             for area, sections in gauntlet.SECTIONS.items() for s in sections}
+    coronet = {tr for s in gauntlet.SECTIONS["mt_coronet"]
+               for tr in gauntlet.section_trainers("mt_coronet", s)}
+    vr = [gauntlet.section_trainers("victory_road", s) for s in gauntlet.SECTIONS["victory_road"][:2]]
+    ok = (all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+          and vr[0] == [234, 233, 226] and len(vr[1]) == 3)
+    results.append(("gauntlet sections hold 2 to 5 trainers, bosses left out", ok,
+                    f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
 
 
 def check_fingerprints(results):

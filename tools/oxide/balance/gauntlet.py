@@ -1,8 +1,15 @@
 """Gauntlets: trainers fought in a row with no healing between them (Ian,
 2026-09-27; balance plan, "Attrition lives in gauntlets").
 
-    PYTHONPATH=. python3 -m tools.oxide.balance.gauntlet                 # every candidate
-    PYTHONPATH=. python3 -m tools.oxide.balance.gauntlet galactic_hq     # one, trainer by trainer
+    PYTHONPATH=. python3 -m tools.oxide.balance.gauntlet                    # the sections
+    PYTHONPATH=. python3 -m tools.oxide.balance.gauntlet --first-reading    # the first proposal's
+
+Two readings live here. The second, on Ian's rulings of 2026-09-27, is the
+one the proposal uses: sections of 2 to 5 trainers, fights played out turn
+by turn with rolls, misses, critical hits and the cost of swapping in, and
+the survivors healed between fights while the dead stay dead (its own
+section below). The first, described next, is kept for comparison: Ian
+judged it too kind, since one team must answer several different fights.
 
 The Pocket PC heals anywhere except in a gauntlet, so every other fight is
 scored from a healed party and a gauntlet needs its own reading: how much a
@@ -284,10 +291,280 @@ def _fmt(r):
             f"median faints {b['faints']:g}")
 
 
+# ---- the second reading, on Ian's rulings (2026-09-27) ---------------------------------
+#
+# A gauntlet is 2 to 5 mandatory trainers on the easier side of average, bosses
+# outside it, and the bag may heal between its fights: the danger is deaths
+# snowballing. Ian judged the first reading too kind, because one team must
+# answer several different fights. So this one plays each trainer's fight
+# out: the six stay together through the section; a member keeps the field
+# from one boss Pokemon to the next unless another answers it better, and
+# swapping in at a fight's start costs the incoming member a hit (after a
+# faint, and between boss Pokemon, the game's Shift mode lets the player
+# swap free); every hit rolls its damage and its accuracy, and one in
+# sixteen is critical, twice as hard. After each trainer the survivors heal
+# to full, as the bag allows, and a member that fell stays fallen.
+
+# Each section: its label, its maps in walking order, which half of a map
+# (0 or 1, None for all of it), and the trainers left out of it. Mt.
+# Coronet's officers are left out: Hesperid is a fight Ian rated as a boss,
+# and Moira and Argo read well above the split's average; Somnu, at it,
+# joins the floors below.
+SECTIONS = {
+    "galactic_eterna": [
+        ("1F and 2F", ["TEAM_GALACTIC_ETERNA_BUILDING_1F", "TEAM_GALACTIC_ETERNA_BUILDING_2F"],
+         None, ()),
+        ("3F", ["TEAM_GALACTIC_ETERNA_BUILDING_3F"], None, ())],
+    "galactic_hq": [
+        ("1F", ["GALACTIC_HQ_1F"], None, ()), ("2F", ["GALACTIC_HQ_2F"], None, ()),
+        ("3F", ["GALACTIC_HQ_3F"], None, ()), ("B2F", ["GALACTIC_HQ_B2F"], None, ())],
+    "mt_coronet": [
+        ("1F's tunnel", ["MT_CORONET_1F_TUNNEL_ROOM"], None, ()),
+        ("3F, 4F and Somnu on 5F", ["MT_CORONET_3F", "MT_CORONET_4F_ROOMS_1_AND_2",
+                                     "MT_CORONET_5F"], None, (520, 526, 834))],
+    "victory_road": [
+        ("1F, the half nearer the entrance", ["VICTORY_ROAD_1F"], 0, ()),
+        ("1F, the far half", ["VICTORY_ROAD_1F"], 1, ()),
+        ("2F", ["VICTORY_ROAD_2F"], None, ()), ("B1F", ["VICTORY_ROAD_B1F"], None, ())],
+}
+CRIT = 1 / 16
+MAX_TURNS = 30
+
+
+def _positions(header):
+    """{trainer id: its z on the map}, from the map's events."""
+    events = splits.headers()[header].get("eventsArchiveID")
+    path = os.path.join(data.ROOT, "res", "field", "events", f"{events}.json")
+    ids = {t["constant"]: tr for tr, t in data.oxide_trainers().items()}
+    out = {}
+    if events and os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            for o in json.load(f).get("object_events", []):
+                tr = ids.get(str(o.get("script", "")))
+                if tr is not None:
+                    out[tr] = o.get("z", 0)
+    return out
+
+
+def section_trainers(area, section):
+    """A section's trainers in walking order. A map split in two halves is
+    ordered from its entrance, taken as the larger z, as on Victory Road 1F."""
+    _label, maps, half, leave_out = section
+    placed = b6.placements()
+    out = []
+    for h in maps:
+        on_map = [tr for tr, ms in splits.trainer_maps().items()
+                  if h in ms and tr in placed and tr not in leave_out]
+        pos = _positions(h)
+        on_map.sort(key=lambda tr: (-pos.get(tr, 0), tr))
+        if half is not None:
+            k = (len(on_map) + 1) // 2
+            on_map = on_map[:k] if half == 0 else on_map[k:]
+        out += on_map
+    return out
+
+
+def _accuracy(move):
+    a = pressure.accuracies().get(metrics_compact(pressure.MOVE_SPELLING.get(move, move)), 100)
+    return 1.0 if a is None else min(a, 100) / 100
+
+
+def metrics_compact(name):
+    from . import metrics
+    return metrics._compact(name)
+
+
+def _choice(row, weather):
+    """The move with the most expected damage a turn: (move, rolls, priority,
+    accuracy, turns a hit takes), or None."""
+    best = None
+    for move, r in row["moves"].items():
+        if "error" in r or move in pressure.ITEM_MOVES or not r["rolls"]:
+            continue
+        mid = r["rolls"][len(r["rolls"]) // 2]
+        if mid <= 0:
+            continue
+        acc = _accuracy(move)
+        slow = 2 if pressure.turns(move, 1, weather) > 1 or move in pressure.RECHARGE else 1
+        value = mid * acc / slow
+        if best is None or value > best[0]:
+            best = (value, move, r["rolls"], r["priority"], acc, slow)
+    return best[1:] if best else None
+
+
+def _hit(choice, rng):
+    """One use of a move: its damage, 0 on a miss."""
+    _move, rolls, _pr, acc, _slow = choice
+    if rng.random() >= acc:
+        return 0
+    return rng.choice(rolls) * (2 if rng.random() < CRIT else 1)
+
+
+def _first(up, a, b, trick_room, rng):
+    pa, pb = (a[2] if a else 0), (b[2] if b else 0)
+    if pa != pb:
+        return pa > pb
+    sa, sb = up["speeds"]
+    if sa == sb:
+        return rng.random() < 0.5
+    return sa < sb if trick_room else sa > sb
+
+
+def fight(st, pk, bk, hp, boss_hp, rng):
+    """A member against a boss Pokemon, turn by turn from what each has
+    left: (member's HP, boss's HP) after one falls, or after MAX_TURNS."""
+    up, down = st["rows"][(pk, bk)], st["rows"][(bk, pk)]
+    w = next(w for _v, k, _m, w in st["bosses"] if k == bk)
+    a, b = _choice(up, w), _choice(down, w)
+    if a is None and b is None:
+        return hp, boss_hp
+    first = _first(up, a, b, st["trick_room"], rng)
+    for turn in range(MAX_TURNS):
+        for side in (("p", "b") if first else ("b", "p")):
+            if hp <= 0 or boss_hp <= 0:
+                return max(hp, 0), max(boss_hp, 0)
+            ch = a if side == "p" else b
+            if ch is None or turn % ch[4]:
+                continue
+            if side == "p":
+                boss_hp -= _hit(ch, rng)
+            else:
+                hp -= _hit(ch, rng)
+    return max(hp, 0), max(boss_hp, 0)
+
+
+def _pick(st, rate, alive, hp, bk, boss_share):
+    """The member a player sends at a boss Pokemon, by the first reading's
+    even-handed duel: the one that wins losing the least share of its HP,
+    else the one that leaves the boss the least."""
+    best_win, best_lose = None, None
+    for pk in alive:
+        share = hp[pk] / st["info"][pk]["hp"]
+        won, left, after = duel(rate[(pk, bk)], share, boss_share)
+        if won:
+            if best_win is None or share - left < best_win[0]:
+                best_win = (share - left, pk)
+        elif best_lose is None or after < best_lose[0]:
+            best_lose = (after, pk)
+    return (best_win or best_lose)[1]
+
+
+def run_section(st, team_sizes, pool_keys, n=PARTIES, seed=SEED):
+    """Parties of six through a section's trainers in order: {"clean" (the
+    share with no death), "deaths" (the mean), "wiped"}."""
+    rng = random.Random(seed)
+    rate = rates(st)
+    keys = boss_keys(st)
+    fights, i = [], 0
+    for size in team_sizes:
+        fights.append(keys[i:i + size])
+        i += size
+    clean = wiped = 0
+    deaths_all = []
+    for _ in range(n):
+        party = rng.sample(pool_keys, min(SIZE, len(pool_keys)))
+        full = {pk: st["info"][pk]["hp"] for pk in party}
+        hp = dict(full)
+        deaths = 0
+        for boss_mons in fights:
+            active = next((pk for pk in party if hp[pk] > 0), None)
+            opening = True
+            for bk in boss_mons:
+                boss_hp = st["info"][bk]["hp"]
+                while boss_hp > 0:
+                    alive = [pk for pk in party if hp[pk] > 0]
+                    if not alive:
+                        break
+                    pk = _pick(st, rate, alive, hp, bk, boss_hp / st["info"][bk]["hp"])
+                    if opening and pk != active:
+                        # Swapping in against the fight's first Pokemon costs a hit.
+                        b = _choice(st["rows"][(bk, pk)], None)
+                        if b:
+                            hp[pk] -= _hit(b, rng)
+                        if hp[pk] <= 0:
+                            hp[pk] = 0
+                            deaths += 1
+                            continue
+                    opening = False
+                    active = pk
+                    hp[pk], boss_hp = fight(st, pk, bk, hp[pk], boss_hp, rng)
+                    if hp[pk] <= 0:
+                        deaths += 1
+                    elif boss_hp > 0:
+                        break          # a stalemate: nobody can finish it
+            for pk in party:
+                if hp[pk] > 0:
+                    hp[pk] = full[pk]    # the bag heals the survivors between fights
+        clean += deaths == 0
+        wiped += all(hp[pk] <= 0 for pk in party)
+        deaths_all.append(deaths)
+    return {"clean": clean / n, "deaths": round(statistics.mean(deaths_all), 2),
+            "wiped": wiped / n}
+
+
+def section_reading(area, section):
+    split = CANDIDATES[area]["split"]
+    trs = section_trainers(area, section)
+    teams = [(f"trainer {tr}", _team(tr)) for tr in trs]
+    st = run(split, teams)
+    return trs, run_section(st, [len(t) for _l, t in teams], strong_third(st))
+
+
+def fight_reading(fight):
+    """A story fight read the same way, from a healed party. A tag fight's
+    trainers are one battle; a fight with a team per starter (Barry's, Lucas
+    and Dawn's) is read team by team and the readings averaged."""
+    ps = pressure.boss_parties(fight)[0]
+    groups = [[p for p in ps]] if fight.get("tag") else [[p] for p in ps]
+    reads = []
+    for group in groups:
+        teams = [(fight["key"], p) for p in group]
+        st = run(fight["split"], teams, bool(fight.get("trick_room")))
+        reads.append(run_section(st, [sum(len(t) for _l, t in teams)], strong_third(st)))
+    return {k: round(statistics.mean(r[k] for r in reads), 2) for k in ("clean", "deaths", "wiped")}
+
+
+def split_average(split):
+    """The mean of the split's ordinary trainers on Ian's scale (B6)."""
+    line = b6.scale_line()
+    res = b6.load().get("trainers", {})
+    vals = [b6.on_scale(r["safe"], line) for tr, r in res.items() if r.get("split") == split]
+    return statistics.mean(vals) if vals else None
+
+
+def section_report(out=sys.stdout):
+    line = b6.scale_line()
+    res = b6.load().get("trainers", {})
+    ox = data.oxide_trainers()
+    for area, sections in SECTIONS.items():
+        spec = CANDIDATES[area]
+        avg = split_average(spec["split"])
+        print(f"\n{spec['label']} ({spec['split']}'s split; its ordinary trainers average "
+              f"{avg:.1f} on Ian's scale)", file=out)
+        for section in sections:
+            trs, r = section_reading(area, section)
+            scale = {tr: b6.on_scale(res[str(tr)]["safe"], line) for tr in trs if str(tr) in res}
+            above = [f"{ox[tr]['name']} {tr} ({s:.1f})" for tr, s in scale.items() if s > avg + 0.5]
+            print(f"  {section[0]:34} {len(trs)} trainers, {sum(len(ox[t]['party']) for t in trs)} "
+                  f"Pokemon, each {min(scale.values()):.1f} to {max(scale.values()):.1f}: clean "
+                  f"{r['clean']:.2f}, deaths {r['deaths']:.2f} a run"
+                  f"{'; above the average: ' + ', '.join(above) if above else ''}", file=out)
+        for fight in data.fights()["fights"]:
+            if fight["split"] == spec["split"]:
+                r = fight_reading(fight)
+                print(f"  story fight {fight['key']:22} clean {r['clean']:.2f}, "
+                      f"deaths {r['deaths']:.2f}", file=out)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("name", nargs="?", choices=sorted(CANDIDATES))
+    ap.add_argument("--first-reading", action="store_true",
+                    help="the first reading, with no healing and the average hit")
     args = ap.parse_args(argv)
+    if not args.first_reading:
+        section_report()
+        return 0
     names = [args.name] if args.name else list(CANDIDATES)
     seen_splits = set()
     for name in names:
