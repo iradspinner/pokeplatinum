@@ -269,6 +269,12 @@ Element 4's stat and type choosers and Rage Fist, finished and moved out on 2026
   - [x] **Rage Fist** (Ian, 2026-09-26): 50 plus 50 per hit taken, to 350, under the Gen 9 rule that switching out or fainting keeps the count. Done: counted per side and party slot in `SideConditions`' padding, as Belch's Berry is; the record's power is 50
   - [x] **Computed powers left**, the stat and type part: Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat, Freeze-Dry and Flying Press (learnable), Psystrike, Secret Sword and Chip Away pick no other stat or type. Done, one commit per learnable move, the other three riding along; Psyshock takes the Defense stages where hg-engine keeps the Sp. Def ones, and Body Press's stages give way to a target's Unaware, both as in the later games
 
+Element 4's Wonder Room and the three effect gaps, and element 6's Phase 4 catch-up, finished and moved out on 2026-09-27:
+
+  - Wonder Room is done and merged (2026-09-27, `cloud/element4-wonder-room`; its report is the branch's last commit; Ian kept all its Gen 5 choices the same day): five turns of swapped Defense and Sp. Def, and a permanent room for any trainer in `sPermanentWonderRoomTrainers` in `battle_lib.c`, empty until a fight needs it. Test kit set 50.
+  - [x] **Shore Up, Meteor Beam and Electro Shot** (2026-09-27, `cloud/element4-effect-gaps`, its last commit the report; test kit sets 51 to 53). Shore Up healed as Synthesis does and now heals half, or two thirds in a sandstorm, with no other weather changing it (hg-engine's quarter in rain, sun or hail is not followed). Meteor Beam and Electro Shot were stubs that hit at once; each now charges a turn with a Sp. Atk raise, a Power Herb skips the wait, and Electro Shot attacks at once in rain. Both join `Move_IsMultiTurn` and `MoveIsOnDamagingTurn`.
+  - [x] Teach it everything Phase 4 changed done as 23 Oxide fixes on `cloud/element6-catch-up`, merged 2026-09-27; the README's "Phase 4 catch-up" section has the table, what was checked and found already right (Trick Room, 1.5x critical hits, the stat and type choosers), and the held items, which wait for element 7
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them

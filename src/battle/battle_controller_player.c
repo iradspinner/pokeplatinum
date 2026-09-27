@@ -2473,6 +2473,13 @@ static BOOL BattleControllerPlayer_HasNoTarget(BattleSystem *battleSys, BattleCo
         solarMove = TRUE;
     }
 
+    // Oxide: Electro Shot attacks at once in rain, as SolarBeam does in sun
+    if (NO_CLOUD_NINE
+        && CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING)) {
+        solarMove = TRUE;
+    }
+
     // Don't alter the target for charge-turn moves that are just charging up this turn
     if (battleCtx->defender == BATTLER_NONE
         && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE

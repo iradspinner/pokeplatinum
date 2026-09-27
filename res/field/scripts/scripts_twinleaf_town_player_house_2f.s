@@ -730,7 +730,7 @@ TestKit_MoveSets2:
     GoTo TestKit_Close
 
 /* The third page, from set 55 on (2026-09-27): the second filled up with
-   Mind Blown, Shore Up and Nature's Madness. */
+   Shore Up, Meteor Beam, Electro Shot and Mind Blown. */
 TestKit_MoveSets3:
     Message TestKit_Text_WhichSet
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
@@ -745,6 +745,8 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet63, 8
     AddListMenuEntry TestKit_Text_MenuSet64, 9
     AddListMenuEntry TestKit_Text_MenuSet65, 10
+    AddListMenuEntry TestKit_Text_MenuSet66, 11
+    AddListMenuEntry TestKit_Text_MenuSet67, 12
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -757,6 +759,8 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet63
     GoToIfEq VAR_0x8004, 9, TestKit_MoveSet64
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet65
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet66
+    GoToIfEq VAR_0x8004, 12, TestKit_MoveSet67
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1310,11 +1314,58 @@ TestKit_MoveSet50:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 51: Mind Blown costs its user half its maximum HP once the move is
+/* Set 51: Shore Up heals half Mew's maximum HP, or two thirds in a
+   sandstorm, and no other weather changes it. Against a wild Chansey that
+   knows only Seismic Toss, which takes a fixed 50 HP a turn: set a weather,
+   use it again (it fails) to lose another 50, then Shore Up. In sun or rain
+   it heals half, where it used to heal two thirds in sun as Synthesis does;
+   in a sandstorm it heals two thirds. */
+TestKit_MoveSet51:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SEISMIC_TOSS
+    SetVar VAR_0x8006, MOVE_SHORE_UP
+    SetVar VAR_0x8007, MOVE_SANDSTORM
+    SetVar VAR_0x8008, MOVE_SUNNY_DAY
+    SetVar VAR_0x8009, MOVE_RAIN_DANCE
+    GoTo TestKit_GiveMew
+
+/* Set 52: Meteor Beam charges for a turn, raising Sp. Atk one stage, and
+   attacks on the next. Against a wild Chansey that knows only Splash: the
+   first turn prints "is overflowing with space power!" and "Sp. Atk rose!",
+   the second hits. The set also puts a Power Herb in the bag; held, it
+   raises Sp. Atk and attacks in the same turn, and is used up. */
+TestKit_MoveSet52:
+    AddItem ITEM_POWER_HERB, 1, VAR_RESULT
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_METEOR_BEAM
+    SetVar VAR_0x8007, MOVE_POWER_GEM
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 53: Electro Shot charges for a turn, raising Sp. Atk one stage, and
+   attacks on the next, but in rain it raises Sp. Atk and attacks in the
+   same turn. Against a wild Chansey that knows only Splash: out of rain the
+   first turn prints "absorbed electricity!" and "Sp. Atk rose!" and the
+   second hits; after Rain Dance both happen in one turn. */
+TestKit_MoveSet53:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_ELECTRO_SHOT
+    SetVar VAR_0x8007, MOVE_RAIN_DANCE
+    SetVar VAR_0x8008, MOVE_THUNDERBOLT
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 54: Mind Blown costs its user half its maximum HP once the move is
    over, hit or miss. Against a wild Chansey that knows Protect and Splash:
    each Mind Blown takes half Mew's HP ("MEW is hit with recoil!"), even when
    Chansey protects itself, and Flamethrower costs nothing. */
-TestKit_MoveSet51:
+TestKit_MoveSet54:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_PROTECT
@@ -1325,9 +1376,9 @@ TestKit_MoveSet51:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 52: Damp stops Mind Blown before it starts, and then it costs nothing.
+/* Set 55: Damp stops Mind Blown before it starts, and then it costs nothing.
    Against a wild Politoed given Damp that knows only Splash. */
-TestKit_MoveSet52:
+TestKit_MoveSet55:
     SetVar VAR_0x8000, SPECIES_POLITOED
     SetVar VAR_0x8001, ABILITY_DAMP
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1337,26 +1388,11 @@ TestKit_MoveSet52:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 53: Shore Up heals two thirds of the user's HP in a sandstorm and half
-   in any other weather, sun included. Use Substitute three times to bring
-   Mew to a quarter of its HP, then Shore Up: in a sandstorm Mew comes back
-   to a little under full, in sun or clear weather to about three quarters.
-   Against a wild Chansey that knows only Splash. */
-TestKit_MoveSet53:
-    SetVar VAR_0x8000, SPECIES_CHANSEY
-    SetVar VAR_0x8001, ABILITY_NONE
-    SetVar VAR_0x8002, MOVE_SPLASH
-    SetVar VAR_0x8006, MOVE_SHORE_UP
-    SetVar VAR_0x8007, MOVE_SANDSTORM
-    SetVar VAR_0x8008, MOVE_SUNNY_DAY
-    SetVar VAR_0x8009, MOVE_SUBSTITUTE
-    GoTo TestKit_GiveMew
-
-/* Set 54: Nature's Madness carries power 1, the mark of a move whose damage
+/* Set 56: Nature's Madness carries power 1, the mark of a move whose damage
    is worked out, so Taunt no longer takes it for a status move. Against a
    wild Chansey that knows only Taunt: once Mew is taunted, Splash cannot be
    chosen, and Nature's Madness still can and halves Chansey's HP. */
-TestKit_MoveSet54:
+TestKit_MoveSet56:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TAUNT
@@ -1366,11 +1402,11 @@ TestKit_MoveSet54:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
-/* Set 55: once Scale Shot's last hit is in, its user's Defense falls and its
+/* Set 57: once Scale Shot's last hit is in, its user's Defense falls and its
    Speed rises, one stage each. Against a wild Shuckle that knows only
    Splash, which Scale Shot cannot knock out: after "Hit N time(s)!", "MEW's
    Defense fell!" and "MEW's Speed rose!", once however many hits landed. */
-TestKit_MoveSet55:
+TestKit_MoveSet57:
     SetVar VAR_0x8000, SPECIES_SHUCKLE
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1380,11 +1416,11 @@ TestKit_MoveSet55:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 56: Spiky Shield protects its user and hurts an attacker that makes
+/* Set 58: Spiky Shield protects its user and hurts an attacker that makes
    contact with it by an eighth of its maximum HP. Against a wild Rattata
    that knows Tackle and Swift: a Tackle into the shield brings "The wild
    RATTATA was hurt!", a Swift only "MEW protected itself!". */
-TestKit_MoveSet56:
+TestKit_MoveSet58:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
@@ -1395,11 +1431,11 @@ TestKit_MoveSet56:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
-/* Set 57: Baneful Bunker protects its user and poisons an attacker that
+/* Set 59: Baneful Bunker protects its user and poisons an attacker that
    makes contact with it. Against a wild Rattata that knows Tackle and
    Swift: the first Tackle into the bunker brings "The wild RATTATA was
    poisoned!", a Swift only "MEW protected itself!". */
-TestKit_MoveSet57:
+TestKit_MoveSet59:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
@@ -1410,12 +1446,12 @@ TestKit_MoveSet57:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
-/* Set 58: Salt Cure salts its target, which then loses an eighth of its HP
+/* Set 60: Salt Cure salts its target, which then loses an eighth of its HP
    at the end of every turn, a quarter as a Water or Steel type. Against a
    wild Chansey that knows only Splash: "The wild CHANSEY is being salt
    cured!", then "The wild CHANSEY is hurt by Salt Cure!" each turn; after
    Soak makes it a Water type, each loss doubles. */
-TestKit_MoveSet58:
+TestKit_MoveSet60:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1425,13 +1461,13 @@ TestKit_MoveSet58:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 59: Octolock traps its target and lowers its Defense and Sp. Def by a
+/* Set 61: Octolock traps its target and lowers its Defense and Sp. Def by a
    stage each at the end of every turn. Against a wild Chansey that knows
    only Splash: "The wild CHANSEY can no longer escape because of
    Octolock!", then each turn "The wild CHANSEY's Defense fell!" and "The
    wild CHANSEY's Sp. Def fell!", so Tackle and Swift hit harder turn by
    turn; a second Octolock fails. */
-TestKit_MoveSet59:
+TestKit_MoveSet61:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1441,14 +1477,14 @@ TestKit_MoveSet59:
     SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
-/* Set 60: for five turns under Magic Room no held item works. Mew holds
+/* Set 62: for five turns under Magic Room no held item works. Mew holds
    Leftovers; against a wild Chansey that knows only Splash. After a
    Substitute, "MEW restored a little HP using its Leftovers!" at the end of
    each turn; once "It created a bizarre area in which Pokemon's held items
    lose their effects!", no more until "Magic Room wore off, and held items'
    effects returned to normal!" five turns later, or at once if Mew uses
    Magic Room again. */
-TestKit_MoveSet60:
+TestKit_MoveSet62:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1461,12 +1497,12 @@ TestKit_MoveSet60:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithItem
 
-/* Set 61: Teatime makes every battler on the field eat its held Berry at
+/* Set 63: Teatime makes every battler on the field eat its held Berry at
    once, whether or not it would trigger. Mew holds a Liechi Berry; against
    a wild Chansey that knows only Splash. At full HP, Teatime brings "It's
    teatime! Everyone dug in to their Berries!" and then Mew's Liechi Berry
    raising its Attack; a second Teatime fails, since no Berry is left. */
-TestKit_MoveSet61:
+TestKit_MoveSet63:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1479,12 +1515,12 @@ TestKit_MoveSet61:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GivePokemonWithItem
 
-/* Set 62: Core Enforcer suppresses the ability of a target that has already
+/* Set 64: Core Enforcer suppresses the ability of a target that has already
    moved this turn. Against a wild Jolteon given Volt Absorb, which is faster
    than Mew and knows only Splash: Thunderbolt does nothing to it, since
    Volt Absorb takes it; after a Core Enforcer, "The wild JOLTEON's ability
    was suppressed!", and Thunderbolt hurts it from then on. */
-TestKit_MoveSet62:
+TestKit_MoveSet64:
     SetVar VAR_0x8000, SPECIES_JOLTEON
     SetVar VAR_0x8001, ABILITY_VOLT_ABSORB
     SetVar VAR_0x8002, MOVE_SPLASH
@@ -1494,14 +1530,14 @@ TestKit_MoveSet62:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
-/* Set 63: Beak Blast heats its user's beak at the start of the turn and
+/* Set 65: Beak Blast heats its user's beak at the start of the turn and
    burns an attacker that makes contact with it before it strikes. Against
    a wild Rattata that knows Tackle and Swift: when Mew chooses Beak Blast,
    "MEW started heating up its beak!" comes first, and a Tackle into it
    brings "The wild RATTATA was burned!" before Beak Blast hits; a Swift
    makes no contact and burns nothing, nor does a Tackle on a turn Mew
    chooses something else. */
-TestKit_MoveSet63:
+TestKit_MoveSet65:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
@@ -1512,13 +1548,13 @@ TestKit_MoveSet63:
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
-/* Set 64: Sky Drop lifts its target on the first turn, and the target can
+/* Set 66: Sky Drop lifts its target on the first turn, and the target can
    do nothing until it is dropped on the second. Against a wild Chansey that
    knows only Tackle, slower than Mew: "MEW took the wild CHANSEY into the
    sky!", then no Tackle that turn; next turn the drop hits before Chansey
    moves, and both are back on the ground, so Chansey tackles later that
    same turn. */
-TestKit_MoveSet64:
+TestKit_MoveSet66:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_TACKLE
@@ -1528,11 +1564,11 @@ TestKit_MoveSet64:
     SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveMew
 
-/* Set 65: Sky Drop can lift a Flying type but the drop does not affect it.
+/* Set 67: Sky Drop can lift a Flying type but the drop does not affect it.
    Against a wild Skarmory that knows only Splash: "MEW took the wild
    SKARMORY into the sky!", then on the second turn "It doesn't affect the
    wild SKARMORY..." once both have landed. */
-TestKit_MoveSet65:
+TestKit_MoveSet67:
     SetVar VAR_0x8000, SPECIES_SKARMORY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
