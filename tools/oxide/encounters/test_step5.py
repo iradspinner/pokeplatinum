@@ -333,10 +333,95 @@ def sidecar_entry(name):
     return _SIDECAR.get(name, {})
 
 
+# Scripts that hand out hidden abilities, one case a label, for R18. The
+# comment's first words would read as a jump if comments were not stripped.
+HIDDEN_CASES = """
+Gift_Poliwag:
+    /* Call it a gift.
+       End of the comment. */
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_POLIWAG, 10, ITEM_NONE, VAR_RESULT
+    End
+
+Gift_Litten:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_LITTEN, 10, ITEM_NONE, VAR_RESULT
+    GiveHiddenAbility VAR_0x8004, VAR_RESULT
+    End
+
+Static_Swablu:
+    SetVar VAR_0x8004, SPECIES_SWABLU
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    StartWildBattle VAR_0x8004, 20
+    End
+
+Static_Pool:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    StartLegendaryBattle VAR_LEGENDARY_POOL_ACUITY_SPECIES, 50
+    End
+
+Flag_Left_Set:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GoTo Elsewhere
+
+Egg_Unknown:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GiveEgg VAR_0x8005, 3
+    End
+#ifdef OXIDE_TESTKIT
+Kit_Vulpix:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_VULPIX, 15, ITEM_NONE, VAR_RESULT
+#endif
+"""
+
+
+def check_hidden(results):
+    """R18: no script hands out a hidden ability that sets or cancels weather,
+    at the species' own stage or a later one (Ian, 2026-09-26), and a flag or
+    species the reader cannot follow fails rather than passing unread."""
+    from . import dex
+    from . import lint
+    from . import pokedex
+    root = model.repo_root()
+    grants = audit.hidden_ability_grants(root)
+    found = lint.lint_hidden(grants)
+    results.append(("R18 passes on the tree: no script hands out a weather hidden ability",
+                    not found, f"{len(grants)} grant(s); " + "; ".join(f.message for f in found)))
+    rows = audit.hidden_grants_in(HIDDEN_CASES, "cases",
+                                  {"VAR_LEGENDARY_POOL_ACUITY_SPECIES": ["SPECIES_ARTICUNO"]})
+    for r in rows:
+        r["stages"] = [(st, (pokedex.load(root, st) or {}).get("hidden_ability"))
+                       for sp in r["species"] for st in dex.later_stages(root, sp)]
+    label, label_of = None, {}
+    for n, text in enumerate(HIDDEN_CASES.split("\n"), 1):
+        if text.endswith(":"):
+            label = text[:-1]
+        label_of[n] = label
+    flagged = {label_of[int(f.target.split(":")[1])] for f in lint.lint_hidden(rows)}
+    results.append(("R18 follows a gift up its line: a hidden-ability Poliwag fails through "
+                    "Politoed's Drizzle, a Swablu set by SetVar through Cloud Nine",
+                    {"Gift_Poliwag", "Static_Swablu"} <= flagged, str(sorted(flagged))))
+    results.append(("R18 fails a flag no gift takes and a species it cannot read, and passes "
+                    "Litten, a pool draw of Articuno and the test kit's Vulpix",
+                    flagged == {"Gift_Poliwag", "Static_Swablu", "Flag_Left_Set", "Egg_Unknown"}
+                    and not any(r["species"] == ["SPECIES_VULPIX"] for r in rows),
+                    str(sorted(flagged))))
+    # The CLI runs R18 over the tree's scripts; a planted grant makes it fail.
+    real = audit.hidden_ability_grants
+    audit.hidden_ability_grants = lambda _root: rows
+    try:
+        rc, out = run_cli("lint", "--rule", "R18", "--fail-on", "error")
+    finally:
+        audit.hidden_ability_grants = real
+    results.append(("`lint` runs R18 and fails on a planted weather hidden ability",
+                    rc == 1 and "POLITOED DRIZZLE" in out, f"rc {rc}"))
+
+
 def main():
     results = []
     for check in (check_writers, check_audit, check_per_area, check_inactive,
-                  check_species_only, check_scripted):
+                  check_species_only, check_scripted, check_hidden):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

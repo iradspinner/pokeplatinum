@@ -221,6 +221,112 @@ def pool_draws(root):
     return rows
 
 
+# Hidden abilities handed out by script (element 8). A script sets
+# FLAG_NEXT_MON_HIDDEN_ABILITY just before a gift, an egg or a scripted wild
+# battle, and the next of these commands the player meets takes the flag,
+# wherever it is; GiveHiddenAbility switches a party Pokemon over directly.
+# The takers are the commands whose C code asks for the flag: the two gift
+# functions, GiveEgg, and every battle through CreateWildMon_Scripted.
+HIDDEN_FLAG = "FLAG_NEXT_MON_HIDDEN_ABILITY"
+HIDDEN_TAKERS = ("GivePokemon", "GiveDesignedPokemon", "GiveEgg") + BATTLE_COMMANDS \
+    + ("TestKitStartWildBattle",)
+_GIFT_TAKERS = ("GivePokemon", "GiveDesignedPokemon")
+_LABEL_RE = re.compile(r"^([A-Za-z_]\w*):")
+_JUMP_RE = re.compile(r"^\s*(GoTo\w*|Call\w*|End|Return)\b")
+_COMMAND_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*([^,\s]*)")
+_SETVAR_RE = re.compile(r"^\s*SetVar\s+(\w+),\s*(SPECIES_[A-Z0-9_]+)")
+
+
+def hidden_grants_in(text, script, draws=None):
+    """[{script, line, command, species}] for each hidden ability one script's
+    text hands out. `species` lists what the command can give: a constant, a
+    SetVar earlier in the same label, or a legendary pool variable's draws
+    (`draws`, {variable: [species]}); empty when the lint cannot tell. A flag
+    set with no taker before the script jumps, ends or reaches a new label is
+    a row with command None, since the next gift anywhere would take it."""
+    draws = draws or {}
+    # Comments go, keeping the line count, so prose in a /* */ block that
+    # starts with "Call" or "End" is not read as a jump.
+    text = re.sub(r"/\*.*?\*/", lambda m: "\n" * m.group(0).count("\n"), text, flags=re.S)
+    rows = []
+    pending, setvars, last_gift, in_kit = None, {}, [], False
+
+    def unclaimed():
+        rows.append({"script": script, "line": pending, "command": None, "species": []})
+
+    for n, line in enumerate(text.split("\n"), 1):
+        # The test kit is never in the ROM of record (script_references).
+        if line.startswith("#ifdef OXIDE_TESTKIT"):
+            in_kit = True
+        if in_kit:
+            in_kit = not line.startswith("#endif")
+            continue
+        line = line.split("//")[0]
+        if _LABEL_RE.match(line) or _JUMP_RE.match(line):
+            if pending:
+                unclaimed()
+            pending, setvars, last_gift = None, {}, []
+            continue
+        m = _SETVAR_RE.match(line)
+        if m:
+            setvars[m.group(1)] = m.group(2)
+        m = _COMMAND_RE.match(line)
+        if not m:
+            continue
+        command, operand = m.groups()
+        if command == "SetFlag" and operand == HIDDEN_FLAG:
+            pending = pending or n
+        elif command == "ClearFlag" and operand == HIDDEN_FLAG:
+            pending = None
+        elif command in HIDDEN_TAKERS:
+            if operand.startswith("SPECIES_"):
+                species = [operand]
+            elif operand in setvars:
+                species = [setvars[operand]]
+            else:
+                species = list(draws.get(operand) or [])
+            if pending:
+                rows.append({"script": script, "line": n, "command": command,
+                             "species": species})
+                pending = None
+            if command in _GIFT_TAKERS:
+                last_gift = species
+        elif command == "GiveHiddenAbility":
+            # Its party slot is a variable; the Pokemon is taken to be the
+            # gift just made in the same label, which is how a gift script
+            # would use it.
+            rows.append({"script": script, "line": n, "command": command,
+                         "species": list(last_gift)})
+    if pending:
+        unclaimed()
+    return rows
+
+
+def hidden_ability_grants(root):
+    """hidden_grants_in over every field script, each row with `stages`:
+    [(stage, its hidden ability)] for the species and everything it can
+    evolve into, since the hidden slot stays through evolution."""
+    from . import pokedex      # here, not at the top: only this reader needs it
+    draws = {}
+    for r in pool_draws(root):
+        draws.setdefault(r["command"].split()[-1], []).append(r["species"])
+    rows = []
+    for path in sorted(glob.glob(os.path.join(root, "res", "field", "scripts", "*.s"))):
+        with open(path, encoding="utf-8", errors="replace") as f:
+            text = f.read()
+        if HIDDEN_FLAG not in text and "GiveHiddenAbility" not in text:
+            continue
+        rows += hidden_grants_in(text, os.path.basename(path)[:-2], draws)
+    for r in rows:
+        stages = []
+        for sp in r["species"]:
+            for stage in dex.later_stages(root, sp):
+                rec = pokedex.load(root, stage) or {}
+                stages.append((stage, rec.get("hidden_ability")))
+        r["stages"] = stages
+    return rows
+
+
 def starters(root):
     """{species: label} for what scripted.json's live sources hand over when
     the script picks at runtime: the starter choice, Riley's random egg and
