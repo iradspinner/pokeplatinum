@@ -292,7 +292,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Soundproof. Her Exploud never chooses Hyper Voice.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
-  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, Volkner to 71
+  (the Barry split: Victory Road, the Fight Area and the rival fights stay at
+  71), and walking into Aaron's room, as its door shuts, to 78. Leaving the
+  League before the Elite Four keeps the cap at 71.
 - [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
   Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
   Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
