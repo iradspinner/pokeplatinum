@@ -587,9 +587,10 @@ def diverged_why(path):
 
 # The three per-species archives are built from one registry, in this order:
 # nothing, the species, EGG, BAD_EGG, then the twelve alternate-form records.
-# Phase 4 element 3 inserted 159 species before EGG, so everything after the
-# natives sits at a different index from the reference ROM's. This maps a
-# reference index onto the built one so the two can still be compared.
+# Phase 4 element 3 inserted 159 species before EGG, and Meloetta one more, so
+# everything after the natives sits at a different index from the reference
+# ROM's. This maps a reference index onto the built one so the two can still
+# be compared.
 SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
                     "poketool/personal/evo.narc",
                     "poketool/personal/wotbl.narc")
@@ -643,14 +644,16 @@ CONTENT_ARCHIVES = {
 # Members Oxide appended after the reference's last; the rest still compare.
 APPENDED = {
     "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
-    "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
-    "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+    "poketool/pokegra/pl_pokegra.narc": (960, "six for each of the 160 new species "
+                                               "(element 3's 159 and Meloetta)"),
+    "poketool/pokegra/height.narc": (640, "four for each of the 160 new species "
+                                         "(element 3's 159 and Meloetta)"),
 }
 # Single-member tables whose member Oxide grew by appending records: the built
 # member must begin with the reference's.
 GROWN = {
     "poketool/poke_edit/pl_poke_data.narc": "each species' 89-byte sprite record, "
-                                            "the 159 new species' after the base ROM's 494",
+                                            "the 160 new species' after the base ROM's 494",
 }
 
 
