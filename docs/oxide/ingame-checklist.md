@@ -164,6 +164,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   that still floats clear of its shadow, or sinks into it, is worth a note
   with its name.
 
+- [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
+  merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
+  second use empties it. An HM taught from the case stays.
+
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's

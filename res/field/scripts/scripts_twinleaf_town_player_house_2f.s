@@ -469,6 +469,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
+    AddListMenuEntry TestKit_Text_MenuTwoTMs, 18
     AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
@@ -489,12 +490,20 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
+    GoToIfEq VAR_0x8004, 18, TestKit_TwoTMs
     GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
     GoTo TestKit_Close
 
 TestKit_RareCandies:
     AddItem ITEM_RARE_CANDY, 99, VAR_RESULT
     Message TestKit_Text_RareCandies
+    GoTo TestKit_WaitAndClose
+
+/* TMs are single-use (Ian, 2026-09-28): teaching TM01 once leaves one of
+   the two in the TM Case. */
+TestKit_TwoTMs:
+    AddItem ITEM_TM01, 2, VAR_RESULT
+    Message TestKit_Text_TwoTMs
     GoTo TestKit_WaitAndClose
 
 /* The party count before a gift is the slot the gift lands in. */
