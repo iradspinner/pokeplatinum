@@ -22,6 +22,8 @@ hits (1 in 16, doubled, ignoring the stages that would weaken them), the
 roll, accuracy with accuracy and evasion stages. Status is Generation 4's:
 sleep for one to four turns, paralysis quartering Speed and a quarter of
 turns lost, burn and poison an eighth a turn, Toxic rising by sixteenths,
+a binding move an eighth a turn (a sixth with the Binding Band, Ian's
+ruling of 2026-09-28),
 freezing thawed one turn in five, confusion for one to four turns with a
 half chance of a 40-power hit on itself, flinching.
 
@@ -227,6 +229,7 @@ class Mon:
         self.last_hit_by = None          # the move that hit it since it last acted
         self.crit_stage = 0
         self.bound = 0
+        self.bound_band = False          # the binder held a Binding Band
         self.enduring = False
         self.cursed = False
         self.u_turn = False
@@ -621,6 +624,7 @@ def attack(b, att, mv, dfn, first):
         att.u_turn = True
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound = b.rng.randint(2, 5)
+        dfn.bound_band = att.item == "Binding Band"
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
         dfn.item = None
 
@@ -811,8 +815,10 @@ def _end_of_turn_mon(b, side, m):
             if foe.alive():
                 heal(foe, amount)
         if m.bound:
+            # An eighth a turn, a sixth when the binder holds a Binding Band
+            # (Ian, 2026-09-28, element 7's follow-up).
             m.bound -= 1
-            hurt(b, m, m.maxhp // 16)
+            hurt(b, m, m.maxhp // (6 if m.bound_band else 8))
         if m.yawn:
             m.yawn -= 1
             if m.yawn == 0:

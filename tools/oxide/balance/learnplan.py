@@ -619,8 +619,11 @@ def had_from(species, lists):
         for c, lv in had_from(parent, lists).items():
             if lv <= here:
                 out[c] = here
+        for lv, c in own:
+            if lv == 0:
+                out[c] = here             # an evolution move, taught on evolving
     else:
-        for c in calc_trainers.default_moves([list(e) for e in own], here):
+        for c in at_capture(own, here):
             out[c] = here
     for lv, c in own:
         if lv >= here and (lv > 1 or species not in g.oxide_reached()):
@@ -722,6 +725,440 @@ def close_gaps(fam, res):
     return res
 
 
+# ---- after an evolution not by level, and in the last splits (Ian, 2026-09-28) ---------
+
+LATE = 61                     # the Galactic split's first level
+NOT_BY_LEVEL = ("USE_ITEM", "LEVEL_WITH_HELD_ITEM", "LEVEL_KNOW_MOVE", "LEVEL_MAGNETIC_FIELD",
+                "LEVEL_MOSS_ROCK", "LEVEL_ICE_ROCK", "LEVEL_BEAUTY", "LEVEL_SPECIES_IN_PARTY")
+# A stage Oxide gives no pre-evolution, whose later-game pre-evolution's
+# list stands in for one: Alolan Ninetales, caught from Gardenia's split
+# and, once element 7's Ice Stone lands, evolved from a Vulpix (Ian).
+VIRTUAL_PARENT = {"SPECIES_ALOLAN_NINETALES": "SPECIES_VULPIX_ALOLAN",
+                  "SPECIES_GALARIAN_RAPIDASH": "SPECIES_PONYTA_GALARIAN"}
+# Stone branches Ian has ruled in whose evolution records the main track
+# adds (2026-09-28): the stage, the Oxide pre-evolution, and the stone. The
+# stage's list must work from the wild catch and from the stone at any
+# level after the pre-evolution's first catch.
+PLANNED_PARENT = {"SPECIES_ALOLAN_NINETALES": ("SPECIES_VULPIX", "ITEM_ICE_STONE"),
+                  "SPECIES_GALARIAN_WEEZING": ("SPECIES_KOFFING", "ITEM_MOON_STONE"),
+                  "SPECIES_GALARIAN_RAPIDASH": ("SPECIES_PONYTA", "ITEM_MOON_STONE")}
+# The type an evolution move brings, where Ian names it: the Moon Stone
+# forms' Fairy, which Koffing and Ponyta carry none of.
+EVOLUTION_MOVE_TYPES = {"SPECIES_GALARIAN_WEEZING": {"Fairy"}, "SPECIES_GALARIAN_RAPIDASH": {"Fairy"},
+                        "SPECIES_ALOLAN_NINETALES": {"Ice"}}
+
+
+@functools.lru_cache(maxsize=None)
+def later_moves_any(species):
+    """(MOVE_X) any later game teaches the species by level-up, TM or tutor."""
+    from . import laterlearn as ll
+    out = set()
+    for gkey, _name in ll.GAMES:
+        rec = ll.game(gkey).get(hg_key(species)) or ll.game(gkey).get(species)
+        for kind in ("LevelMoves", "MachineMoves", "TutorMoves"):
+            for e in (rec or {}).get(kind) or []:
+                out.add(ll.oxide_move(e["Move"] if isinstance(e, dict) else e))
+    return tuple(sorted(out))
+REGIONS = ("ALOLAN", "GALARIAN", "HISUIAN", "PALDEAN")
+
+
+def hg_key(species):
+    """hg-engine's key for an Oxide species: a regional form names the
+    region last (SPECIES_ALOLAN_NINETALES is SPECIES_NINETALES_ALOLAN)."""
+    for r in REGIONS:
+        if species.startswith(f"SPECIES_{r}_"):
+            return f"SPECIES_{species[len('SPECIES_' + r + '_'):]}_{r}"
+    return species
+
+
+@functools.lru_cache(maxsize=None)
+def later_level_list(species):
+    """[(level, MOVE_X)] the latest later game teaches the species by level
+    up, every move, level 0 kept as 0."""
+    from . import laterlearn as ll
+    for gkey, _name in reversed(ll.GAMES):
+        rec = ll.game(gkey).get(hg_key(species)) or ll.game(gkey).get(species)
+        if rec and rec.get("LevelMoves"):
+            return tuple(sorted({(e["Level"], ll.oxide_move(e["Move"]))
+                                 for e in rec["LevelMoves"] if ll.oxide_move(e["Move"]) in M()}))
+    return ()
+
+
+def planned_since(species):
+    """The first level the stage can be had at by either route: its wild
+    catch, or the stone used on its planned pre-evolution from that one's
+    first catch, once the stone is in reach."""
+    parent, stone = PLANNED_PARENT[species]
+    first = pool.evolution_items_first().get(stone)
+    stone_at = _split_start(first) if first in SPLITS else None
+    by_stone = max(reach(parent), stone_at) if stone_at else None
+    found = [x for x in (catch_level(species), by_stone) if x is not None]
+    return min(found) if found else reach(species)
+CARRIED = []                  # (stage, move, source level, placed level or None, why)
+LATE_ADDED = []               # (stage, move, level, source)
+LATE_FOR_IAN = []             # stages with no real late move to give
+# (stage, move) that Ian's two rulings place past a flag's first-of-type
+# test: an attack of the stage's own type where it has none good by then,
+# and any move in the last splits, which the flags do not look at.
+RULED = set()
+EVOLUTION_MOVES = []          # (stage, move, why), each for Ian
+# Moves that fail without weather the player can never set (Ian, 2026-09-26).
+NEEDS_WEATHER = {"MOVE_AURORA_VEIL"}
+
+
+def not_by_level(species):
+    """Whether the stage is reached by an evolution with no level of its own
+    (a stone, a held item, a known move, a place, a partner or Beauty), or
+    has a stand-in pre-evolution."""
+    if species in VIRTUAL_PARENT or species in PLANNED_PARENT:
+        return True
+    if species not in g.oxide_reached():
+        return False
+    parent = g.oxide_reached()[species][0]
+    return any(e.get("into") == species and e["method"].startswith(NOT_BY_LEVEL)
+               for e in (pokedex.load(data.ROOT, parent) or {}).get("evolutions", []))
+
+
+@functools.lru_cache(maxsize=None)
+def virtual_parent_list(species):
+    """[(level, MOVE_X)] of the stand-in pre-evolution, from the latest game
+    in hg-engine's per-game lists that has it."""
+    from . import laterlearn as ll
+    key = VIRTUAL_PARENT[species]
+    for gkey, _name in reversed(ll.GAMES):
+        rec = ll.game(gkey).get(key)
+        if rec and rec.get("LevelMoves"):
+            return tuple(sorted({(max(1, e["Level"]), ll.oxide_move(e["Move"]))
+                                 for e in rec["LevelMoves"] if ll.oxide_move(e["Move"]) in M()}))
+    return ()
+
+
+def _real(species, c, lv, lst):
+    """A move worth a level-up slot where it lands: an attack that is not
+    dead weight, or a status move Ian's tiers rate B or better."""
+    from . import laterlearn as ll
+    if c not in M() or c in NEEDS_WEATHER or c in SELF_KO or c in ll._doubles_only() \
+            or g._dropped(c, species, lv, _types(species), lst):
+        return False
+    return strength(c)[0] == "damage" or (rank(c) or 0) >= 3
+
+
+def _substance(c):
+    """A move a player looks forward to: an attack of 60 or more by effective
+    power, or a status move rated A or better."""
+    return (strength(c)[0] == "damage" and effective_power(c) >= 60) or (rank(c) or 0) >= 4
+
+
+def _worth(species, c):
+    """What a move adds, to choose among candidates: an attack's effective
+    power, half again for its own type, scaled by the attacking stat it uses
+    against the stage's better one; a status move's tier, on the same scale
+    (B 75, A 100, S 125)."""
+    if strength(c)[0] == "damage":
+        st = (pokedex.load(data.ROOT, species) or {}).get("stats") or {}
+        atk, spa = st.get("attack", 1) or 1, st.get("special_attack", 1) or 1
+        used = spa if M()[c]["class"] == "SPECIAL" else atk
+        return effective_power(c) * (1.5 if _own_type_attack(c, _types(species)) else 1.0) * used / max(atk, spa)
+    return (rank(c) or 0) * 25
+
+
+def at_capture(lst, level):
+    """The four moves a Pokemon caught, received or met at `level` knows by
+    the capture rule. A level-0 entry is an evolution move, taught only on
+    evolving and never known at capture (the engine's rule, 2026-09-28)."""
+    return calc_trainers.default_moves([list(e) for e in lst if e[0] != 0], level)
+
+
+def _place(species, lst, c, lv, carried=False):
+    """(level, why, meta) for adding a move to the stage's list at `lv` or
+    later by the generator's rules, or (None, why not, {}): the engine runs
+    it, it is not dead weight, a strong move no earlier than Kaizo's level
+    for like moves, never an S or SSS status move (the rules add those only
+    where Kaizo gives the species the move), a stage the flags or the bar
+    hold taking a new attack no earlier than its first good one of that type
+    (unless it has no attack of its own type of 50 or more yet, or the move
+    lands in the last splits), nothing that ends a wild encounter in the
+    wild levels, nothing past 78, and the one-level rule within the split.
+    It records nothing, so a pass can try many; _commit records the one
+    placed. `carried` is kept for the callers' reading only."""
+    from . import laterlearn as ll
+    types = _types(species)
+    if c not in M() or not ll.placeable(c):
+        return None, "the engine does not run it in full", {}
+    drop = g._dropped(c, species, lv, types, lst)
+    if drop:
+        return None, f"dead weight: {drop}", {}
+    kind, _p = strength(c)
+    r = rank(c)
+    good = good_attack(c, types)
+    strong_move = good or (r or 0) >= STRONG_RANK
+    why = []
+    if kind != "damage" and (r or 0) >= STRONG_RANK:
+        return None, "an S or SSS status move, which the rules add only where Kaizo gives it", {}
+    if strong_move:
+        kl = analogue_kaizo_level(species, c)
+        if kl and kl <= 78 and floor_level(kl) > lv:
+            why.append(f"{lv} to {floor_level(kl)}: no earlier than Kaizo's level for like moves ({kl})")
+            lv = floor_level(kl)
+    ruled = False
+    if strong_stage(species) and good and lv < LATE:
+        own = _own_type_attack(c, types)
+        has_own = any(1 < l <= lv and _own_type_attack(cc, types) for l, cc in lst)
+        first = first_good_of_type(species, M()[c]["type"], lst)
+        if own and not has_own:
+            ruled = True
+        elif first is None or lv < first:
+            return None, ("a stage the power flags or the bar hold takes a new attack only no earlier "
+                          "than its first good one of that type"), {}
+    if ls.metrics._compact(name(c)) in g._ends() and 1 < lv <= g.wild_top(species):
+        return None, "it ends a wild encounter, at a level the species is met wild at", {}
+    if lv > 78:
+        return None, f"at {lv}, past 78", {}
+    taken = {l for l, _c in lst if l > 1}
+    crowded = False
+    if lv in taken:
+        split = _split_of(lv)
+        steps = [d for k in range(1, 12) for d in ((k, -k) if strong_move else (-k, k))]
+        new = next((lv + d for d in steps if 2 <= lv + d <= 78 and lv + d not in taken
+                    and _split_of(lv + d) == split and (not strong_move or d > 0)), None)
+        if new is not None:
+            why.append(f"{lv} to {new}: the one-level rule")
+            lv = new
+        else:
+            crowded = True
+    return lv, "; ".join(why), {"ruled": ruled or lv >= LATE, "crowded": crowded}
+
+
+def _commit(species, c, lv, meta, lst=()):
+    """Record what placing a move entails: its exemption from the flags'
+    first-of-type test, and a level it must share, for it and for each move
+    already there (a strong move's floor at its split's cap, where an
+    earlier one sits, has no free level above it in the split)."""
+    if meta.get("ruled"):
+        RULED.add((species, c))
+    if meta.get("crowded"):
+        CROWDED.setdefault(species, []).extend([(c, lv)] + [(cc, l) for l, cc in lst if l == lv])
+
+
+def _evolution_source(s, res):
+    """(the candidate moves after the evolution, where they start, a label):
+    the pre-evolution's list, or the stand-in's for a stage Oxide gives none."""
+    since = planned_since(s) if s in PLANNED_PARENT else reach(s)
+    if s in VIRTUAL_PARENT:
+        return list(virtual_parent_list(s)), since, "the later games' " + _sp(VIRTUAL_PARENT[s])
+    if s in PLANNED_PARENT and s not in g.oxide_reached():
+        parent = PLANNED_PARENT[s][0]
+        source = res[parent][0] if parent in res else (PROPOSED.get(parent) or _now(parent))
+        return list(source), since, _sp(parent)
+    parent = g.oxide_reached()[s][0]
+    source = res[parent][0] if parent in res else (PROPOSED.get(parent) or _now(parent))
+    return list(source), evolved_at(s) or reach(s), _sp(parent)
+
+
+def _slot_worthy(c, types):
+    """A move worth a level-up slot after an evolution: a good attack, an
+    attack of the stage's own type, or a status move rated B or better, and
+    never one that needs weather the player cannot set."""
+    from . import laterlearn as ll
+    return c in M() and c not in NEEDS_WEATHER and c not in SELF_KO and c not in ll._doubles_only() and (
+        good_attack(c, types) or _own_type_attack(c, types) or (rank(c) or 0) >= 3)
+
+
+def carry_evolved(fam, res):
+    """Ian (2026-09-28): a stage reached by an evolution with no level of its
+    own gets its own, sparser list after it: its key moves, fewer than the
+    pre-evolution learns after that point, so evolving early still costs
+    moves and waiting stays a real choice. The candidates are the moves the
+    pre-evolution learns after the evolution first becomes possible that are
+    worth a slot for it, and its own good level-1-only moves at Kaizo's level
+    for it or its nearest lines'. Its key moves, each at its source's level
+    and by the generator's rules: (a) an attack of its own type of 50 or more
+    that is not a strong one, when it has none by where it is first had;
+    (b) its best attack of its own type; (c) its best other move, only when
+    the pre-evolution learns four or more such moves after that point.
+    Point 1's late move comes on top where it has none."""
+    for s in fam:
+        if s not in g._obtainable() or not not_by_level(s):
+            continue
+        lst, notes = list(res[s][0]), list(res[s][1])
+        types, here = _types(s), reach(s)
+        source, since, label = _evolution_source(s, res)
+        have = {c for l, c in lst if l > 1 or l == 0}
+        cands = [(lv, c, f"{label}'s {lv}") for lv, c in sorted(source)
+                 if lv > since and c not in have and _slot_worthy(c, types)]
+        pre_count = len({c for _lv, c, _src in cands})
+        ev = kaizo_evidence(s)
+        for _l1, c in [(l, c) for l, c in lst if l == 1]:
+            if c in have or not (good_attack(c, types) or (rank(c) or 0) >= 4) or c in NEEDS_WEATHER:
+                continue
+            t = ev[c][1] if ev and c in ev and ev[c][2] is None else (analogue_level(s, c) if ev is None else None)
+            if t and t > here:
+                cands.append((t, c, "its own level 1, at Kaizo's level for it or its nearest lines'"))
+        allowed = max(1, min(3, pre_count - 1)) if pre_count else 1
+
+        def own_by(level, lst_):
+            return any(_own_type_attack(cc, types) for l, cc in lst_
+                       if (1 < l <= level) or (l == 0 and s in g.oxide_reached()))
+        own = [x for x in cands if _own_type_attack(x[1], types)]
+        roles = []
+        if not own_by(here, lst):
+            roles.append(sorted((x for x in own if not good_attack(x[1], types)), key=lambda x: x[0]))
+        roles.append(sorted(own, key=lambda x: -_worth(s, x[1])))
+        if pre_count >= 4:
+            roles.append(sorted((x for x in cands if not _own_type_attack(x[1], types)
+                                 and (good_attack(x[1], types) or (rank(x[1]) or 0) >= 4)),
+                                key=lambda x: -_worth(s, x[1])))
+        done = 0
+        for role in roles:
+            if done >= allowed:
+                break
+            for lv, c, src in role:
+                if c in {cc for _l, cc in lst if _l > 1}:
+                    continue
+                placed, why, meta = _place(s, lst, c, lv, carried=True)
+                CARRIED.append((s, c, lv, placed, why))
+                if placed is None:
+                    continue
+                _commit(s, c, placed, meta, lst)
+                lst = sorted(lst + [(placed, c)], key=lambda e: e[0])
+                notes.append((c, f"new at {placed}: a key move after the evolution, from {src}"
+                                 + (f"; {why}" if why else "")))
+                done += 1
+                break
+        res[s] = (lst, notes)
+    return res
+
+
+def evolution_moves(fam, res):
+    """Ian (2026-09-28): an evolution move (level 0, taught the moment the
+    Pokemon evolves; never known by a wild, gift or trainer Pokemon), used
+    sparingly. A stand-in-parent stage gets one: the strongest attack of its
+    own type in the stand-in's list that the rules do not count as strong
+    (Alolan Ninetales's Aurora Beam, since a Fire Vulpix carries no Ice move
+    into the Ice Stone evolution). A stage reached by a stone or a held item
+    that still goes more than one split without an attack of its own type
+    gets one only where a single attack of its own type, never a strong one,
+    closes the gap: the later games' own evolution move first, else the
+    weakest that does it. Each is listed for Ian."""
+    from . import laterlearn as ll
+    for s in fam:
+        if s not in g._obtainable():
+            continue
+        types = _types(s)
+        lst, notes = list(res[s][0]), list(res[s][1])
+        if any(l == 0 for l, _c in lst):
+            continue
+        pick = None
+        if s in VIRTUAL_PARENT or s in PLANNED_PARENT:
+            want = EVOLUTION_MOVE_TYPES.get(s, types)
+            listed = ([c for _lv, c in virtual_parent_list(s)] if s in VIRTUAL_PARENT else []) \
+                + [c for _lv, c in later_level_list(s)]
+            def fitting(moves):
+                return [c for c in dict.fromkeys(moves) if c in M() and M()[c]["type"].title() in want
+                        and strength(c)[0] == "damage" and not good_attack(c, types)
+                        and effective_power(c) >= STAB_GAP_POWER and c not in SELF_KO]
+            own = fitting(listed)
+            src = (f"the later games' {_sp(VIRTUAL_PARENT[s])} and {_sp(s)} lists" if s in VIRTUAL_PARENT
+                   else f"the later games' {_sp(s)} list")
+            if not own:
+                # Nothing in the level lists (Galarian Weezing's Fairy Wind is
+                # under 50): the later games' TM and tutor moves for it.
+                own = fitting(later_moves_any(s))
+                src = f"the later games' TM and tutor moves for {_sp(s)}, its level lists having none"
+            if not own:
+                # Nothing it learns in any game fits (its Fairy attacks are
+                # Fairy Wind, under 50, or strong ones): the whole move table,
+                # for Ian to weigh against the alternatives.
+                own = fitting(M())
+                src = (f"Oxide's whole move table, since nothing {_sp(s)} learns in any game fits "
+                       f"(Ian may prefer one of its own, weaker or strong)")
+            pick = max(own, key=lambda c: effective_power(c), default=None)
+            why = f"the strongest {'/'.join(sorted(want))} attack that is not a strong move, from {src}"
+        elif s in g.oxide_reached() and any(
+                e.get("into") == s and e["method"].startswith(("USE_ITEM", "LEVEL_WITH_HELD_ITEM"))
+                for e in (pokedex.load(data.ROOT, g.oxide_reached()[s][0]) or {}).get("evolutions", [])):
+            if not gap_applies(s):
+                continue
+            lists = {x: res[x][0] for x in fam}
+            if not breaks_gap(s, lists):
+                continue
+            modern = []
+            for gkey, _name in reversed(ll.GAMES):
+                rec = ll.game(gkey).get(s)
+                if rec:
+                    modern = [ll.oxide_move(e["Move"]) for e in rec.get("LevelMoves") or [] if e["Level"] == 0]
+                    break
+            source, _since, _label = _evolution_source(s, res)
+            pool_ = modern + [c for _lv, c in sorted(source, key=lambda x: effective_power(x[1]))]                 + [c for l, c in lst if l == 1]
+            for c in pool_:
+                if c not in M() or not _own_type_attack(c, types) or good_attack(c, types)                         or effective_power(c) < STAB_GAP_POWER:
+                    continue
+                trial = dict(lists, **{s: [(0, c)] + lst})
+                if not breaks_gap(s, trial):
+                    pick = c
+                    why = ("the later games' own evolution move" if c in modern else
+                           "the weakest attack of its own type that closes its gap")
+                    break
+        if not pick:
+            continue
+        lst = [(0, pick)] + lst                 # an evolution move comes first, as the games list them
+        notes.append((pick, f"new at 0: an evolution move, {why}; for Ian"))
+        EVOLUTION_MOVES.append((s, pick, why))
+        res[s] = (lst, notes)
+    return res
+
+
+def late_moves(fam, res):
+    """Ian (2026-09-28): every final stage the player can own learns at least
+    one real move by level-up in the Galactic split or later (61 to 78).
+    Where its list has none, the most worthwhile candidate it does not
+    already learn by 60 goes to the later of its source's level and 61, by
+    the generator's rules: from Kaizo's list for it, the later games'
+    level-up lists, its own level-1 moves, then its TM and tutor moves.
+    A stage with nothing that qualifies is listed for Ian."""
+    from . import laterlearn as ll
+    for s in fam:
+        if s not in g._obtainable() or later_stages(s) or reach(s) > 78:
+            continue
+        lst, notes = list(res[s][0]), list(res[s][1])
+        if any(lv >= LATE and _real(s, c, lv, lst) for lv, c in lst):
+            continue
+        known = {c for lv, c in lst if 1 < lv < LATE}
+        cands = []
+        for c, (kl, t, why) in (kaizo_evidence(s) or {}).items():
+            if why is None:
+                cands.append((c, t, f"Kaizo's {_sp(s)} at {kl}", 0))
+        level_moves, _other = ll.later(s)
+        for c, srcs in level_moves.items():
+            game_name, lv = ll.latest_level(srcs)
+            cands.append((c, lv, f"{game_name} at {lv}", 1))
+        cands += [(c, LATE, "its own level 1", 2) for lv, c in lst if lv <= 1]
+        rec = pokedex.load(data.ROOT, s) or {}
+        machines = pokedex.machines(data.ROOT)
+        cands += [(machines[m], LATE, "a TM it learns", 3) for m in rec.get("by_tm") or [] if m in machines]
+        cands += [(c, LATE, "a tutor move it learns", 3) for c in rec.get("by_tutor") or []]
+        best = None
+        for c, lv, src, prio in cands:
+            if c in known or c not in M():
+                continue
+            placed, why, meta = _place(s, lst, c, max(lv or LATE, LATE))
+            if placed is None or not _real(s, c, placed, lst):
+                continue
+            key = (_substance(c), -prio, _worth(s, c))
+            if best is None or key > best[0]:
+                best = (key, c, placed, src, why, meta)
+        if best is None:
+            LATE_FOR_IAN.append(s)
+            continue
+        _key, c, placed, src, why, meta = best
+        _commit(s, c, placed, meta, lst)
+        lst = sorted(lst + [(placed, c)], key=lambda e: e[0])
+        notes.append((c, f"new at {placed}: a move in the last splits, from {src}" + (f"; {why}" if why else "")))
+        LATE_ADDED.append((s, c, placed, src))
+        res[s] = (lst, notes)
+    return res
+
+
 def propose_family(fam):
     """{species: (list, notes)} for a family, proposed twice where the first
     proposal's own moves flag a stage or put it over the bar: that stage is
@@ -737,6 +1174,10 @@ def propose_family(fam):
             PROPOSED.pop(s, None)
         res = {s: propose(s) for s in fam}
         PROPOSED.update({s: res[s][0] for s in fam})
+    res = carry_evolved(fam, res)
+    res = late_moves(fam, res)
+    res = evolution_moves(fam, res)
+    PROPOSED.update({s: res[s][0] for s in fam})
     res = close_gaps(fam, res)
     PROPOSED.update({s: res[s][0] for s in fam})
     return res, forced
@@ -1302,8 +1743,8 @@ def line_report(first, out=sys.stdout):
         if fw:
             lv, split, area = fw
             print(f"- Caught wild from {lv} ({area.replace('encounters_', '').replace('_', ' ').title()}, "
-                  f"{split}'s split): knows {', '.join(name(c) for c in calc_trainers.default_moves(lists_now[s], lv))} "
-                  f"now; {', '.join(name(c) for c in calc_trainers.default_moves(lists_new[s], lv))} proposed.",
+                  f"{split}'s split): knows {', '.join(name(c) for c in at_capture(lists_now[s], lv))} "
+                  f"now; {', '.join(name(c) for c in at_capture(lists_new[s], lv))} proposed.",
                   file=out)
     for pre in fam:
         for evo in fam:
@@ -1379,7 +1820,10 @@ def check_results(fam, now, new):
                     # Kaizo gives that species the move.
                     kaizo_own = (kaizo_evidence(via) or {}).get(c, (0, 0, "none"))[2] is None
                     bad = via != s or not kaizo_own
-                if bad and (s, c) not in earlier_strong:
+                # Ian's rulings of 2026-09-28 place past the first-of-type
+                # test: an attack of the stage's own type where it has none
+                # good by then, and moves in the last splits.
+                if bad and (s, c) not in earlier_strong and (s, c) not in RULED:
                     earlier_strong.append((s, c))
     res.append(("no weak attack later than now", later_weak))
     res.append(("no strong move earlier than now on a strong stage, nor any S or SSS status move",
@@ -1403,6 +1847,16 @@ def check_results(fam, now, new):
                 if ls.metrics._compact(name(c)) in ends and 1 < lv <= g.wild_top(s)
                 and (lv, c) not in now[s]]
     res.append(("no move that ends a wild encounter moved into the wild levels", wild_end))
+    no_late = [(s, "no real move at 61 or later") for s in fam
+               if s in g._obtainable() and not later_stages(s) and reach(s) <= 78
+               and not any(lv >= LATE and _real(s, c, lv, new[s]) for lv, c in new[s])
+               and s not in LATE_FOR_IAN]
+    res.append(("every final stage has a real move in the last splits, or is listed for Ian", no_late))
+    bare = [(s, "nothing after it is first had") for s in fam
+            if s in g._obtainable() and not_by_level(s)
+            and not any((lv > reach(s) or lv == 0) and _real(s, c, max(lv, reach(s)), new[s])
+                        for lv, c in new[s])]
+    res.append(("every stage reached without a level learns a real move after it is first had", bare))
     return res
 
 
@@ -1448,6 +1902,9 @@ def full_run(log=None):
     UNDER_FLOOR.clear()
     STAB_KEPT.clear()
     STAB_FOR_IAN.clear()
+    for held in (CARRIED, LATE_ADDED, LATE_FOR_IAN, EVOLUTION_MOVES):
+        held.clear()
+    RULED.clear()
     TRANSLATED.clear()
     PAST_CAP.clear()
     run = {"now": {}, "lists": {}, "notes": {}, "flags": {}, "bar": {}, "delays": [],
@@ -1487,7 +1944,11 @@ def _first(lst):
 
 def _kind_of(why):
     """A note's reason, grouped for the counts."""
-    for key, label in (("leaves:", None), ("same-level rule", "the one-level rule"),
+    for key, label in (("leaves:", None),
+                       ("a key move after the evolution", "a key move after an evolution without a level (Ian, 2026-09-28)"),
+                       ("a move in the last splits", "a move in the last splits (Ian, 2026-09-28)"),
+                       ("an evolution move", "an evolution move, for Ian (2026-09-28)"),
+                       ("same-level rule", "the one-level rule"),
                        ("exclusive delay", "an exclusive delay from Kaizo"),
                        ("survey's pick", "the move-pool survey's first move"),
                        ("keeps the first attack", "a first stage keeps its first attack"),
@@ -1773,6 +2234,44 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
     if run["crowded"]:
         p(f"\n{len(run['crowded'])} moved entries found no free level in their split and share "
           f"one: " + "; ".join(f"{_sp(s)}'s {name(c)} at {lv}" for s, c, lv in run["crowded"]) + ".")
+    _write_rulings(p)
+
+
+def _write_rulings(p):
+    """The report's sections for Ian's rulings of 2026-09-28."""
+    placed = [x for x in CARRIED if x[3] is not None]
+    stages = sorted({x[0] for x in placed})
+    p("\n## After an evolution without a level\n")
+    p(f"Ian's ruling (2026-09-28): a stage reached by a stone, a held item, a known move, a place, a "
+      f"partner or Beauty gets its own sparser list after the evolution: its key moves, fewer than "
+      f"the pre-evolution learns after that point, so evolving early still costs moves. "
+      f"{len(placed)} key moves go to {len(stages)} stages; {len(CARRIED) - len(placed)} candidates "
+      f"a rule kept out.\n")
+    if placed:
+        p("| Stage | Move | Level | From the source's |\n|---|---|---|---|")
+        for s, c, lv, at, _why in sorted(placed):
+            p(f"| {_sp(s)} | {name(c)} | {at} | {lv} |")
+    if EVOLUTION_MOVES:
+        p("\n## Evolution moves, for Ian\n")
+        p("A level-0 entry is taught the moment the Pokemon evolves, never known by a wild, gift "
+          "or trainer Pokemon, and offered by the relearner (the engine support follows). Used "
+          "sparingly, each listed here for Ian:\n")
+        p("| Stage | Move | Why |\n|---|---|---|")
+        for s, c, why in sorted(EVOLUTION_MOVES):
+            p(f"| {_sp(s)} | {name(c)} | {why} |")
+    p("\n## A move in the last splits\n")
+    by_src = collections.Counter(src.split(" at ")[0].split(" ")[0] if src.startswith("Kaizo") else
+                                 ("the later games" if " at " in src else src) for _s, _c, _lv, src in LATE_ADDED)
+    p(f"Ian's ruling (2026-09-28): every final stage the player can own learns at least one real "
+      f"move by level-up in the Galactic split or later (61 to 78). {len(LATE_ADDED)} stages had "
+      f"none and get one; the source of each: "
+      + ", ".join(f"{k} {n}" for k, n in by_src.most_common()) + ".\n")
+    if LATE_ADDED:
+        p("| Stage | Move | Level | From |\n|---|---|---|---|")
+        for s, c, lv, src in sorted(LATE_ADDED):
+            p(f"| {_sp(s)} | {name(c)} | {lv} | {src} |")
+    if LATE_FOR_IAN:
+        p(f"\nFor Ian, with nothing that qualifies: " + ", ".join(_sp(s) for s in sorted(LATE_FOR_IAN)) + ".")
 
 
 def main(argv=None):

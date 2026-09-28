@@ -2209,6 +2209,36 @@ lands, and each change is re-scored as it lands.
    its location split's cap, or at a location it does not know), so the
    scores' realistic box lacks them too; the check places them itself.
 
+   Ian's rulings on the lists after reading the reasoning trial
+   (2026-09-28), which the generator applies after its own rules:
+
+   - Every final stage the player can own learns at least one real move
+     by level-up at 61 or later: an attack of substance or a status move
+     rated A or better first, then by source (Kaizo's list, the later
+     games', its own level 1, its TMs), never a self-knockout or partner
+     move. 140 stages had none and get one; Arboliva, Dubwool, Emolga,
+     Gothitelle, Palossand, Toxapex and Unown have nothing that qualifies
+     and go to Ian.
+   - A stage reached without a level (a stone, a held item, a known move,
+     a place, a partner or Beauty) gets its own sparser list after the
+     evolution: its key moves (an attack of its own type where it has
+     none, its best one, and its best other move only when the
+     pre-evolution learns four or more), fewer than the pre-evolution
+     learns after that point, so waiting stays a real choice. 31 key
+     moves go to 23 stages (Ninetales's Fire Blast at 47, Alolan
+     Ninetales's Icy Wind at 16 and Aurora Beam at 24).
+   - Evolution moves (level 0, taught on evolving, never known by a wild,
+     gift or trainer Pokemon) are used sparingly and each goes to Ian:
+     Alolan Ninetales's Aurora Beam, since a Fire Vulpix carries no Ice
+     move into the Ice Stone evolution; Draining Kiss for Galarian
+     Weezing and Galarian Rapidash, which Koffing and Ponyta reach by a
+     Moon Stone (Ian confirmed it the same day); and Delcatty's Covet,
+     the one move that closes its own-type gap. The Ice Stone and the
+     Moon Stone's new claimants are in the stone census.
+
+   With these the proposal changes 501 of the 652 lists; every check
+   passes.
+
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
    the 138 wild slots that can still end an encounter, which this design

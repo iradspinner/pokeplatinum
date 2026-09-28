@@ -307,8 +307,7 @@ def propose(species):
         if lv < here:
             # Below where the stage is had: the relearner's, unless a first
             # stage caught at `here` knows it as one of its last four moves.
-            known = species not in g.oxide_reached() and c in lp.calc_trainers.default_moves(
-                [list(e) for e in sorted(base + [(lv, c)])], here)
+            known = species not in g.oxide_reached() and c in lp.at_capture(sorted(base + [(lv, c)]), here)
             if not known:
                 row["action"], row["level"] = "relearner only", lv
                 row["why"].append(f"below {here}, where the stage is had: the relearner's")

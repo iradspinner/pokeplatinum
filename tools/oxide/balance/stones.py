@@ -147,7 +147,19 @@ def claimants():
             for x in evo:
                 if x in STONES and target:
                     out[x].append((species, target, first.get(species)))
+    # Evolutions Ian has ruled in that the data does not carry yet.
+    for stone, species, target in PLANNED:
+        out[stone].append((species, target, first.get(species)))
     return out
+
+
+# Ian (2026-09-28): an Ice Stone turns a Vulpix into Alolan Ninetales, and a
+# Moon Stone turns Koffing into Galarian Weezing and Ponyta into Galarian
+# Rapidash, as Eevee branches; the evolutions come from the main track and
+# the item pass places the stones, so the census counts the claimants now.
+PLANNED = [("ITEM_ICE_STONE", "SPECIES_VULPIX", "SPECIES_ALOLAN_NINETALES"),
+           ("ITEM_MOON_STONE", "SPECIES_KOFFING", "SPECIES_GALARIAN_WEEZING"),
+           ("ITEM_MOON_STONE", "SPECIES_PONYTA", "SPECIES_GALARIAN_RAPIDASH")]
 
 
 # Ian's rulings on the census (2026-09-27): the Underground closes (the

@@ -14,6 +14,7 @@ SPECIES_ABOMASNOW	Ingrain	31	31	same
 SPECIES_ABOMASNOW	Blizzard	47	47	same	
 SPECIES_ABOMASNOW	Wood Hammer	36	53	moved	36 to 53: Kaizo's Abomasnow at 58, translated to 47, and no earlier than Kaizo's level of 58 within its split
 SPECIES_ABOMASNOW	Sheer Cold	58	58	same	
+SPECIES_ABOMASNOW	Ice Hammer		61	added	new at 61: a move in the last splits, from Legends Z-A at 1
 SPECIES_ABRA	Confusion		1	added	new at 1: the move-pool survey's pick
 SPECIES_ABRA	Teleport	1		dropped	leaves: the move pool's first cut
 SPECIES_ABSOL	Scratch	1	1	same	
@@ -95,14 +96,16 @@ SPECIES_ALAKAZAM	Calm Mind	36	36	same
 SPECIES_ALAKAZAM	Psychic	40	40	same	
 SPECIES_ALAKAZAM	Future Sight	42	42	same	
 SPECIES_ALAKAZAM	Trick	46	46	same	
+SPECIES_ALAKAZAM	Psyshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 30
 SPECIES_ALAKAZAM	Teleport	1		dropped	leaves: the move pool's first cut
+SPECIES_ALOLAN_NINETALES	Aurora Beam	1	0	moved	new at 24: a key move after the evolution, from the later games' Vulpix Alolan's 24; new at 0: an evolution move, the strongest Ice attack that is not a strong move, from the later games' Vulpix Alolan and Alolan Ninetales lists; for Ian
 SPECIES_ALOLAN_NINETALES	Dazzling Gleam	1	1	same	
 SPECIES_ALOLAN_NINETALES	Dazzling Gleam	1	1	same	
 SPECIES_ALOLAN_NINETALES	Nasty Plot	1	1	same	
 SPECIES_ALOLAN_NINETALES	Spite	1	1	same	
-SPECIES_ALOLAN_NINETALES	Icy Wind	1	1	same	
+SPECIES_ALOLAN_NINETALES	Icy Wind	1	1	same	new at 16: a key move after the evolution, from the later games' Vulpix Alolan's 16
 SPECIES_ALOLAN_NINETALES	Confuse Ray	1	1	same	
-SPECIES_ALOLAN_NINETALES	Aurora Beam	1	1	same	
+SPECIES_ALOLAN_NINETALES	Aurora Beam	1	1	same	new at 24: a key move after the evolution, from the later games' Vulpix Alolan's 24; new at 0: an evolution move, the strongest Ice attack that is not a strong move, from the later games' Vulpix Alolan and Alolan Ninetales lists; for Ian
 SPECIES_ALOLAN_NINETALES	Extrasensory	1	1	same	
 SPECIES_ALOLAN_NINETALES	Ice Beam	1	1	same	
 SPECIES_ALOLAN_NINETALES	Imprison	1	1	same	
@@ -110,12 +113,15 @@ SPECIES_ALOLAN_NINETALES	Mist	1	1	same
 SPECIES_ALOLAN_NINETALES	Aurora Veil	1	1	same	
 SPECIES_ALOLAN_NINETALES	Sheer Cold	1	1	same	
 SPECIES_ALOLAN_NINETALES	Grudge	1	1	same	
-SPECIES_ALOLAN_NINETALES	Blizzard	1	1	same	
+SPECIES_ALOLAN_NINETALES	Blizzard	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_ALOLAN_NINETALES	Powder Snow	1	1	same	
 SPECIES_ALOLAN_NINETALES	Tail Whip	1	1	same	
 SPECIES_ALOLAN_NINETALES	Disable	1	1	same	
 SPECIES_ALOLAN_NINETALES	Ice Shard	1	1	same	
 SPECIES_ALOLAN_NINETALES	Safeguard	1	1	same	
+SPECIES_ALOLAN_NINETALES	Icy Wind	1	16	same	new at 16: a key move after the evolution, from the later games' Vulpix Alolan's 16
+SPECIES_ALOLAN_NINETALES	Aurora Beam	1	24	same	new at 24: a key move after the evolution, from the later games' Vulpix Alolan's 24; new at 0: an evolution move, the strongest Ice attack that is not a strong move, from the later games' Vulpix Alolan and Alolan Ninetales lists; for Ian
+SPECIES_ALOLAN_NINETALES	Blizzard	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_ALOMOMOLA	Play Nice	1	1	same	
 SPECIES_ALOMOMOLA	Pound	1	1	same	
 SPECIES_ALOMOMOLA	Water Sport	1	1	same	
@@ -170,6 +176,7 @@ SPECIES_AMBIPOM	Double Hit	32	32	same
 SPECIES_AMBIPOM	Fling	36	36	same	
 SPECIES_AMBIPOM	Nasty Plot	39	39	same	
 SPECIES_AMBIPOM	Last Resort	43	43	same	
+SPECIES_AMBIPOM	Aerial Ace		61	added	new at 61: a move in the last splits, from Kaizo's Ambipom at 56
 SPECIES_AMBIPOM	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_AMPHAROS	Fire Punch	1	1	same	
 SPECIES_AMPHAROS	Tackle	1	1	same	
@@ -207,6 +214,7 @@ SPECIES_ANNIHILAPE	Screech	44	44	same
 SPECIES_ANNIHILAPE	StompingTantrum	48	48	same	
 SPECIES_ANNIHILAPE	Outrage	53	53	same	
 SPECIES_ANNIHILAPE	Final Gambit	57	57	same	
+SPECIES_ANNIHILAPE	Phantom Force		61	added	new at 61: a move in the last splits, from Legends Z-A at 0
 SPECIES_ANORITH	Scratch	1	1	same	
 SPECIES_ANORITH	Harden	1	1	same	
 SPECIES_ANORITH	Mud Sport	7	7	same	
@@ -322,7 +330,7 @@ SPECIES_ARMALDO	Superpower		56	added	new at 56: Kaizo's Armaldo at 67, no earlie
 SPECIES_ARMALDO	X-Scissor	73	57	moved	73 to 56: Kaizo's Armaldo at 73, translated to 56; 56 to 57: the same-level rule (another move is at 56)
 SPECIES_ARMALDO	Crush Claw	67	67	same	
 SPECIES_ARMALDO	Fury Cutter	37		dropped	leaves: strength 38, under 40
-SPECIES_ARMAROUGE	Psyshock	1	1	same	
+SPECIES_ARMAROUGE	Psyshock	1	1	same	new at 65: a key move after the evolution, from its own level 1, at Kaizo's level for it or its nearest lines'; 61 to 65: no earlier than Kaizo's level for like moves (78)
 SPECIES_ARMAROUGE	Leer	1	1	same	
 SPECIES_ARMAROUGE	Ember	1	1	same	
 SPECIES_ARMAROUGE	Mystical Fire	1	1	same	
@@ -337,6 +345,7 @@ SPECIES_ARMAROUGE	Flamethrower	48	48	same
 SPECIES_ARMAROUGE	Armor Cannon	62	62	same	
 SPECIES_ARMAROUGE	Lava Plume	32	64	moved	32 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split; 65 to 64: the same-level rule (another move is at 65); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_ARMAROUGE	Expanding Force	56	65	moved	56 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split
+SPECIES_ARMAROUGE	Psyshock	1	65	same	new at 65: a key move after the evolution, from its own level 1, at Kaizo's level for it or its nearest lines'; 61 to 65: no earlier than Kaizo's level for like moves (78)
 SPECIES_ARMAROUGE	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_ARMAROUGE	Fire Spin	12		dropped	leaves: strength 35, under 40
 SPECIES_ARMAROUGE	Ally Switch	42		dropped	leaves: the move pool's first cut
@@ -392,6 +401,7 @@ SPECIES_AZUMARILL	Aqua Ring	27	27	same
 SPECIES_AZUMARILL	Double-Edge	33	33	same	
 SPECIES_AZUMARILL	Aqua Tail	47	47	same	
 SPECIES_AZUMARILL	Hydro Pump	54	54	same	
+SPECIES_AZUMARILL	Dive		61	added	new at 61: a move in the last splits, from Kaizo's Azumarill at 50
 SPECIES_AZUMARILL	Rollout	15		dropped	leaves: strength 27, under 40
 SPECIES_AZUMARILL	Rain Dance	40		dropped	leaves: weather, for a species the player can own
 SPECIES_AZURILL	Pound		1	added	new at 1: the move-pool survey's pick
@@ -460,7 +470,7 @@ SPECIES_BARBOACH	Future Sight	43	43	same
 SPECIES_BARBOACH	Fissure	47	47	same	
 SPECIES_BARBOACH	Snore	31		dropped	leaves: works only asleep, or returns less than double
 SPECIES_BASTIODON	Tackle	1	1	same	
-SPECIES_BASTIODON	Protect	1	1	same	
+SPECIES_BASTIODON	Protect	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_BASTIODON	Taunt	1	1	same	
 SPECIES_BASTIODON	Metal Sound	1	1	same	
 SPECIES_BASTIODON	Taunt	6	6	same	
@@ -473,6 +483,7 @@ SPECIES_BASTIODON	Block	30	30	same
 SPECIES_BASTIODON	Endure	36	36	same	
 SPECIES_BASTIODON	Iron Head	52	44	moved	52 to 44: Kaizo's Bastiodon at 53, translated to 43, and no earlier than Kaizo's level of 53 within its split
 SPECIES_BASTIODON	Earthquake		53	added	new at 53: Kaizo's Bastiodon at 56, no earlier than that within its split (translated to 46)
+SPECIES_BASTIODON	Protect	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_BASTIODON	Metal Burst	43		dropped	leaves: works only asleep, or returns less than double
 SPECIES_BAYLEEF	Tackle	1	1	same	
 SPECIES_BAYLEEF	Growl	1	1	same	
@@ -499,6 +510,7 @@ SPECIES_BEAUTIFLY	Attract	31	31	same
 SPECIES_BEAUTIFLY	Silver Wind	34	34	same	
 SPECIES_BEAUTIFLY	Giga Drain	38	38	same	
 SPECIES_BEAUTIFLY	Bug Buzz	41	41	same	
+SPECIES_BEAUTIFLY	Aerial Ace		61	added	new at 61: a move in the last splits, from Kaizo's Beautifly at 21
 SPECIES_BEAUTIFLY	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_BEAUTIFLY	Mega Drain	24		dropped	leaves: strength 40, at most half of Gardenia's usual 80
 SPECIES_BEEDRILL	Fury Attack	1	1	same	
@@ -548,6 +560,7 @@ SPECIES_BIBAREL	Take Down	38	38	same
 SPECIES_BIBAREL	Super Fang	43	43	same	
 SPECIES_BIBAREL	Superpower	48	48	same	
 SPECIES_BIBAREL	Curse	53	53	same	
+SPECIES_BIBAREL	Dive		61	added	new at 61: a move in the last splits, from Kaizo's Bibarel at 28
 SPECIES_BIBAREL	Rollout	13		dropped	leaves: strength 27, under 40
 SPECIES_BIDOOF	Tackle	1	1	same	
 SPECIES_BIDOOF	Growl	5	5	same	
@@ -593,6 +606,7 @@ SPECIES_BLASTOISE	Water Pulse	28	28	same
 SPECIES_BLASTOISE	Aqua Tail	32	32	same	
 SPECIES_BLASTOISE	Iron Defense	46	46	same	
 SPECIES_BLASTOISE	Hydro Pump	60	60	same	
+SPECIES_BLASTOISE	Ice Beam		61	added	new at 61: a move in the last splits, from Kaizo's Blastoise at 53
 SPECIES_BLASTOISE	Skull Bash	39		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
 SPECIES_BLASTOISE	Rain Dance	53		dropped	leaves: weather, for a species the player can own
 SPECIES_BLAZIKEN	Fire Punch	1	1	same	
@@ -628,6 +642,7 @@ SPECIES_BLISSEY	Light Screen	34	34	same
 SPECIES_BLISSEY	Egg Bomb	38	38	same	
 SPECIES_BLISSEY	Healing Wish	42	42	same	
 SPECIES_BLISSEY	Double-Edge	46	46	same	
+SPECIES_BLISSEY	Focus Blast		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_BONSLY	Fake Tears	1	1	same	
 SPECIES_BONSLY	Copycat	1	1	same	
 SPECIES_BONSLY	Flail	6	6	same	
@@ -683,6 +698,7 @@ SPECIES_BRELOOM	Sky Uppercut	33	33	same
 SPECIES_BRELOOM	Mind Reader	37	37	same	
 SPECIES_BRELOOM	DynamicPunch	45	45	same	
 SPECIES_BRELOOM	Seed Bomb	41	56	moved	41 to 56: Kaizo's Breloom at 71, translated to 55, and no earlier than Kaizo's level of 71 within its split
+SPECIES_BRELOOM	Giga Drain		65	added	new at 65: a move in the last splits, from Kaizo's Breloom at 30; 61 to 65: no earlier than Kaizo's level for like moves (78)
 SPECIES_BRELOOM	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_BRIONNE	Pound	1	1	same	
 SPECIES_BRIONNE	Water Gun	1	1	same	
@@ -880,6 +896,7 @@ SPECIES_CARBINK	Light Screen	44	44	same
 SPECIES_CARBINK	Power Gem	45	45	same	
 SPECIES_CARBINK	Moonblast	52	52	same	
 SPECIES_CARBINK	Stone Edge	54	54	same	
+SPECIES_CARBINK	Dazzling Gleam		61	added	new at 61: a move in the last splits, from Legends Z-A at 23
 SPECIES_CARBINK	Safeguard	70	70	same	
 SPECIES_CARNIVINE	Growth	1	1	same	
 SPECIES_CARNIVINE	Bite	7	7	same	
@@ -893,6 +910,7 @@ SPECIES_CARNIVINE	Swallow	31	31	same
 SPECIES_CARNIVINE	Crunch	37	37	same	
 SPECIES_CARNIVINE	Wring Out	41	41	same	
 SPECIES_CARNIVINE	Power Whip	47	47	same	
+SPECIES_CARNIVINE	Giga Drain		61	added	new at 61: a move in the last splits, from Kaizo's Carnivine at 31
 SPECIES_CARNIVINE	Bind	1		dropped	leaves: strength 13, under 40
 SPECIES_CARVANHA	Leer	1	1	same	
 SPECIES_CARVANHA	Bite	1	1	same	
@@ -915,6 +933,7 @@ SPECIES_CASTFORM	Water Gun	10	10	same
 SPECIES_CASTFORM	Ember	10	10	same	
 SPECIES_CASTFORM	Powder Snow	10	10	same	
 SPECIES_CASTFORM	Weather Ball	30	30	same	
+SPECIES_CASTFORM	Hurricane		61	added	new at 61: a move in the last splits, from Legends Z-A at 45
 SPECIES_CASTFORM	Rain Dance	20		dropped	leaves: weather, for a species the player can own
 SPECIES_CASTFORM	Sunny Day	20		dropped	leaves: weather, for a species the player can own
 SPECIES_CASTFORM	Hail	20		dropped	leaves: weather, for a species the player can own
@@ -1076,6 +1095,7 @@ SPECIES_CHATOT	Roost	33	33	same
 SPECIES_CHATOT	Uproar	37	37	same	
 SPECIES_CHATOT	FeatherDance	41	41	same	
 SPECIES_CHATOT	Hyper Voice	45	45	same	
+SPECIES_CHATOT	Air Slash		61	added	new at 61: a move in the last splits, from Kaizo's Chatot at 41
 SPECIES_CHERRIM	Tackle	1	1	same	
 SPECIES_CHERRIM	Growth	1	1	same	
 SPECIES_CHERRIM	Growth	7	7	same	
@@ -1088,6 +1108,7 @@ SPECIES_CHERRIM	Take Down	35	35	same
 SPECIES_CHERRIM	Leaf Blade		39	added	new at 39: Kaizo's Cherrim at 43, no earlier than that within its split (translated to 36)
 SPECIES_CHERRIM	SolarBeam	43	43	same	
 SPECIES_CHERRIM	Lucky Chant	48	48	same	
+SPECIES_CHERRIM	Flare Blitz		61	added	new at 61: a move in the last splits, from Kaizo's Cherrim at 60
 SPECIES_CHERRIM	Sunny Day	22		dropped	leaves: weather, for a species the player can own
 SPECIES_CHERUBI	Tackle	1	1	same	
 SPECIES_CHERUBI	Growth	7	7	same	
@@ -1137,6 +1158,7 @@ SPECIES_CHIMECHO	Heal Bell	38	38	same
 SPECIES_CHIMECHO	Safeguard	41	41	same	
 SPECIES_CHIMECHO	Extrasensory	46	46	same	
 SPECIES_CHIMECHO	Healing Wish	49	49	same	
+SPECIES_CHIMECHO	Psychic		61	added	new at 61: a move in the last splits, from Kaizo's Chimecho at 30
 SPECIES_CHIMECHO	Wrap	1		dropped	leaves: strength 14, under 40
 SPECIES_CHIMECHO	Astonish	9		dropped	leaves: strength 30, under 40
 SPECIES_CHINCHOU	Bubble	1	1	same	
@@ -1166,15 +1188,17 @@ SPECIES_CINCCINO	Charm	1	1	same
 SPECIES_CINCCINO	Swift	1	1	same	
 SPECIES_CINCCINO	Encore	1	1	same	
 SPECIES_CINCCINO	After You	1	1	same	
-SPECIES_CINCCINO	Tail Slap	1	1	same	
+SPECIES_CINCCINO	Tail Slap	1	1	same	new at 61: a move in the last splits, from Scarlet and Violet at 0
 SPECIES_CINCCINO	Tickle	1	1	same	
 SPECIES_CINCCINO	Slam	1	1	same	
-SPECIES_CINCCINO	Hyper Voice	1	1	same	
+SPECIES_CINCCINO	Hyper Voice	1	1	same	new at 43: a key move after the evolution, from Minccino's 43
 SPECIES_CINCCINO	Last Resort	1	1	same	
 SPECIES_CINCCINO	Pound	1	1	same	
 SPECIES_CINCCINO	Baby-Doll Eyes	1	1	same	
 SPECIES_CINCCINO	Helping Hand	1	1	same	
 SPECIES_CINCCINO	Echoed Voice	1	1	same	
+SPECIES_CINCCINO	Hyper Voice	1	43	same	new at 43: a key move after the evolution, from Minccino's 43
+SPECIES_CINCCINO	Tail Slap	1	61	same	new at 61: a move in the last splits, from Scarlet and Violet at 0
 SPECIES_CINDERACE	U-turn	1	1	same	
 SPECIES_CINDERACE	Ember	1	1	same	
 SPECIES_CINDERACE	Growl	1	1	same	
@@ -1214,8 +1238,10 @@ SPECIES_CLAYDOL	Explosion	86	86	same
 SPECIES_CLAYDOL	Teleport	1		dropped	leaves: the move pool's first cut
 SPECIES_CLEFABLE	Sing	1	1	same	
 SPECIES_CLEFABLE	DoubleSlap	1	1	same	
-SPECIES_CLEFABLE	Minimize	1	1	same	
+SPECIES_CLEFABLE	Minimize	1	1	same	new at 19: a key move after the evolution, from Clefairy's 19
 SPECIES_CLEFABLE	Metronome	1	1	same	
+SPECIES_CLEFABLE	Minimize	1	19	same	new at 19: a key move after the evolution, from Clefairy's 19
+SPECIES_CLEFABLE	Air Slash		61	added	new at 61: a move in the last splits, from Kaizo's Clefable at 55
 SPECIES_CLEFAIRY	Pound	1	1	same	
 SPECIES_CLEFAIRY	Growl	1	1	same	
 SPECIES_CLEFAIRY	Encore	4	4	same	
@@ -1255,15 +1281,19 @@ SPECIES_CLODSIRE	Spikes	1	1	same
 SPECIES_CLODSIRE	Poison Sting	1	1	same	
 SPECIES_CLODSIRE	Tail Whip	1	1	same	
 SPECIES_CLODSIRE	Mud Shot	8	8	same	
+SPECIES_CLODSIRE	Mud Bomb		19	added	new at 19: a key move after the evolution, from Wooper's 19
 SPECIES_CLODSIRE	Yawn	21	21	same	
 SPECIES_CLODSIRE	Bulldoze	24	24	same	
+SPECIES_CLODSIRE	Sludge Bomb		33	added	new at 33: a key move after the evolution, from Wooper's 33
 SPECIES_CLODSIRE	Megahorn	36	36	same	
 SPECIES_CLODSIRE	Slam	16	37	moved	16 to 39: its nearest Kaizo lines, translated to 36, and no earlier than Kaizo's level of 43 within its split; 39 to 37: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_CLODSIRE	Poison Tail	12	38	moved	12 to 39: its nearest Kaizo lines, translated to 34, and no earlier than Kaizo's level of 39 within its split; 39 to 38: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_CLODSIRE	Poison Jab	30	39	moved	30 to 39: its nearest Kaizo lines, translated to 34, and no earlier than Kaizo's level of 39 within its split
 SPECIES_CLODSIRE	Toxic	40	40	same	
+SPECIES_CLODSIRE	Haze		43	added	new at 43: a key move after the evolution, from Wooper's 43
 SPECIES_CLODSIRE	Earthquake	48	44	moved	48 to 44: its nearest Kaizo lines, translated to 42, and no earlier than Kaizo's level of 52 within its split
 SPECIES_CLODSIRE	Recover	55	55	same	
+SPECIES_CLODSIRE	Sludge Wave		61	added	new at 61: a move in the last splits, from Legends Z-A at 30
 SPECIES_CLOYSTER	Toxic Spikes	1	1	same	
 SPECIES_CLOYSTER	Withdraw	1	1	same	
 SPECIES_CLOYSTER	Supersonic	1	1	same	
@@ -1271,8 +1301,11 @@ SPECIES_CLOYSTER	Aurora Beam	1	1	same
 SPECIES_CLOYSTER	Protect	1	1	same	
 SPECIES_CLOYSTER	Spikes	28	28	same	
 SPECIES_CLOYSTER	Spike Cannon	40	40	same	
+SPECIES_CLOYSTER	Brine		44	added	new at 44: a key move after the evolution, from Shellder's 44
+SPECIES_CLOYSTER	Ice Beam		49	added	new at 49: a key move after the evolution, from Shellder's 49
 SPECIES_CLOYSTER	Icicle Spear		55	added	new at 56: Kaizo's Cloyster at 69, no earlier than that within its split (translated to 54); 56 to 55: the same-level rule (another move is at 56); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_CLOYSTER	Aqua Cutter		56	added	new at 56: Kaizo's Cloyster at 72, no earlier than that within its split (translated to 55)
+SPECIES_CLOYSTER	Icicle Crash		61	added	new at 61: a move in the last splits, from Ultra Sun and Ultra Moon at 50
 SPECIES_COFAGRIGUS	Shadow Claw	1	1	same	
 SPECIES_COFAGRIGUS	Shadow Claw	1	1	same	
 SPECIES_COFAGRIGUS	Scary Face	1	1	same	
@@ -1296,6 +1329,7 @@ SPECIES_COFAGRIGUS	Power Split	45	45	same
 SPECIES_COFAGRIGUS	Guard Split	45	45	same	
 SPECIES_COFAGRIGUS	Dark Pulse	50	50	same	
 SPECIES_COFAGRIGUS	Destiny Bond	59	59	same	
+SPECIES_COFAGRIGUS	Psyshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 30
 SPECIES_COFAGRIGUS	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_COMBEE	Sweet Scent	1	1	same	
 SPECIES_COMBEE	Gust	1	1	same	
@@ -1342,6 +1376,7 @@ SPECIES_CORSOLA	Spike Cannon	40	40	same
 SPECIES_CORSOLA	Power Gem	44	44	same	
 SPECIES_CORSOLA	Mirror Coat	48	48	same	
 SPECIES_CORSOLA	Earth Power	53	53	same	
+SPECIES_CORSOLA	Aqua Cutter		61	added	new at 61: a move in the last splits, from Kaizo's Corsola at 44
 SPECIES_CORVIKNIGHT	Peck	1	1	same	
 SPECIES_CORVIKNIGHT	Leer	1	1	same	
 SPECIES_CORVIKNIGHT	Fury Attack	4	4	same	
@@ -1412,6 +1447,7 @@ SPECIES_CRAWDAUNT	Night Slash	39	39	same
 SPECIES_CRAWDAUNT	Crabhammer	44	44	same	
 SPECIES_CRAWDAUNT	Swords Dance	52	52	same	
 SPECIES_CRAWDAUNT	Crunch	57	57	same	
+SPECIES_CRAWDAUNT	Cross Chop		61	added	new at 61: a move in the last splits, from Kaizo's Crawdaunt at 60
 SPECIES_CRAWDAUNT	Guillotine	65	65	same	
 SPECIES_CRESSELIA	Confusion	1	1	same	
 SPECIES_CRESSELIA	Double Team	1	1	same	
@@ -1565,12 +1601,17 @@ SPECIES_DECIDUEYE	Seed Bomb	32	60	moved	32 to 60: its nearest Kaizo lines, trans
 SPECIES_DECIDUEYE	Poltergeist	61	61	same	
 SPECIES_DECIDUEYE	Leaf Storm	65	65	same	
 SPECIES_DECIDUEYE	Astonish	12		dropped	leaves: strength 30, under 40
+SPECIES_DELCATTY	Covet		0	added	new at 36: a key move after the evolution, from Skitty's 36; new at 0: an evolution move, the weakest attack of its own type that closes its gap; for Ian
 SPECIES_DELCATTY	Fake Out	1	1	same	
 SPECIES_DELCATTY	Attract	1	1	same	
 SPECIES_DELCATTY	Sing	1	1	same	
 SPECIES_DELCATTY	DoubleSlap	1	1	same	
 SPECIES_DELCATTY	Hyper Voice	35	1	moved	35 to 1: an exclusive delay, Kaizo gives it only to Skitty
+SPECIES_DELCATTY	Assist		22	added	new at 22: a key move after the evolution, from Skitty's 22
+SPECIES_DELCATTY	Covet		36	same	new at 36: a key move after the evolution, from Skitty's 36; new at 0: an evolution move, the weakest attack of its own type that closes its gap; for Ian
+SPECIES_DELCATTY	Play Rough		61	added	new at 61: a move in the last splits, from Brilliant Diamond and Shining Pearl at 1
 SPECIES_DELIBIRD	Present	1	1	same	
+SPECIES_DELIBIRD	Freeze-Dry		61	added	new at 61: a move in the last splits, from Legends Z-A at 37
 SPECIES_DELPHOX	Burn Up	1	1	same	
 SPECIES_DELPHOX	Shadow Ball	1	1	same	
 SPECIES_DELPHOX	Psych Up	1	1	same	
@@ -1630,6 +1671,7 @@ SPECIES_DEWGONG	Dive	41	41	same
 SPECIES_DEWGONG	Aqua Tail	43	43	same	
 SPECIES_DEWGONG	Safeguard	51	51	same	
 SPECIES_DEWGONG	Ice Beam	47	53	moved	47 to 53: Kaizo's Dewgong at 62, translated to 51, and no earlier than Kaizo's level of 62 within its split
+SPECIES_DEWGONG	Ice Fang		61	added	new at 61: a move in the last splits, from Kaizo's Dewgong at 41
 SPECIES_DEWPIDER	Spider Web	1	1	same	
 SPECIES_DEWPIDER	Bubble	1	1	same	
 SPECIES_DEWPIDER	Water Gun		5	added	new at 5: keeps the first attack's level
@@ -1767,6 +1809,7 @@ SPECIES_DONPHAN	Assurance	31	31	same
 SPECIES_DONPHAN	Scary Face	39	39	same	
 SPECIES_DONPHAN	Earthquake	46	46	same	
 SPECIES_DONPHAN	Giga Impact	54	54	same	
+SPECIES_DONPHAN	StompingTantrum		61	added	new at 61: a move in the last splits, from Legends Z-A at 30
 SPECIES_DONPHAN	Rollout	15		dropped	leaves: strength 27, under 40
 SPECIES_DOTTLER	Struggle Bug	1	1	same	
 SPECIES_DOTTLER	Reflect	1	1	same	
@@ -1829,6 +1872,7 @@ SPECIES_DRAPION	Bug Bite	34	34	same
 SPECIES_DRAPION	Poison Fang	39	39	same	
 SPECIES_DRAPION	Crunch	49	49	same	
 SPECIES_DRAPION	Cross Poison	58	58	same	
+SPECIES_DRAPION	Venoshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 21
 SPECIES_DRATINI	Leer	1	1	same	
 SPECIES_DRATINI	Thunder Wave	5	5	same	
 SPECIES_DRATINI	Twister	11	11	same	
@@ -1854,6 +1898,7 @@ SPECIES_DRIFBLIM	Ominous Wind	32	32	same
 SPECIES_DRIFBLIM	Baton Pass	37	37	same	
 SPECIES_DRIFBLIM	Shadow Ball	44	44	same	
 SPECIES_DRIFBLIM	Explosion	51	51	same	
+SPECIES_DRIFBLIM	Phantom Force		61	added	new at 61: a move in the last splits, from Legends Z-A at 0
 SPECIES_DRIFBLIM	Constrict	1		dropped	leaves: strength 10, under 40
 SPECIES_DRIFBLIM	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_DRIFLOON	Minimize	1	1	same	
@@ -1995,6 +2040,7 @@ SPECIES_DUSTOX	Light Screen	31	31	same
 SPECIES_DUSTOX	Silver Wind	34	34	same	
 SPECIES_DUSTOX	Toxic	38	38	same	
 SPECIES_DUSTOX	Bug Buzz	41	41	same	
+SPECIES_DUSTOX	Sludge Bomb		61	added	new at 61: a move in the last splits, from Kaizo's Dustox at 20
 SPECIES_DWEBBLE	Struggle Bug	1	1	same	
 SPECIES_DWEBBLE	Block	7	7	same	
 SPECIES_DWEBBLE	Sand-Attack	10	10	same	
@@ -2054,7 +2100,7 @@ SPECIES_ELECTIVIRE	Leer	1	1	same
 SPECIES_ELECTIVIRE	ThunderShock	1	1	same	
 SPECIES_ELECTIVIRE	Low Kick	1	1	same	
 SPECIES_ELECTIVIRE	ThunderPunch	28	1	moved	28 to 1: an exclusive delay, Kaizo gives it only to Electabuzz
-SPECIES_ELECTIVIRE	Thunderbolt	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Electabuzz
+SPECIES_ELECTIVIRE	Thunderbolt	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Electabuzz; new at 53: a key move after the evolution, from Electabuzz's 53
 SPECIES_ELECTIVIRE	ThunderShock	7	7	same	
 SPECIES_ELECTIVIRE	Low Kick	10	10	same	
 SPECIES_ELECTIVIRE	Swift	16	16	same	
@@ -2062,6 +2108,7 @@ SPECIES_ELECTIVIRE	Shock Wave	19	19	same
 SPECIES_ELECTIVIRE	Light Screen	25	25	same	
 SPECIES_ELECTIVIRE	Discharge	37	37	same	
 SPECIES_ELECTIVIRE	Screech	52	52	same	
+SPECIES_ELECTIVIRE	Thunderbolt	43	53	same	43 to 1: an exclusive delay, Kaizo gives it only to Electabuzz; new at 53: a key move after the evolution, from Electabuzz's 53
 SPECIES_ELECTIVIRE	Thunder	58	58	same	
 SPECIES_ELECTIVIRE	Giga Impact	67	67	same	
 SPECIES_ELECTRIKE	Tackle	1	1	same	
@@ -2141,6 +2188,7 @@ SPECIES_EMPOLEON	Aqua Jet	36	36	same
 SPECIES_EMPOLEON	Mist	46	46	same	
 SPECIES_EMPOLEON	Drill Peck	52	52	same	
 SPECIES_EMPOLEON	Hydro Pump	59	59	same	
+SPECIES_EMPOLEON	Waterfall		61	added	new at 61: a move in the last splits, from Kaizo's Empoleon at 75
 SPECIES_EMPOLEON	Fury Attack	28		dropped	leaves: strength 45, at most half of Fantina's usual 90
 SPECIES_EMPOLEON	Whirlpool	39		dropped	leaves: strength 35, under 40
 SPECIES_ENTEI	Bite	1	1	same	
@@ -2404,6 +2452,7 @@ SPECIES_FLOATZEL	Swift	15	15	same
 SPECIES_FLOATZEL	Aqua Jet	21	21	same	
 SPECIES_FLOATZEL	Crunch	26	26	same	
 SPECIES_FLOATZEL	Agility	29	29	same	
+SPECIES_FLOATZEL	Dive		61	added	new at 61: a move in the last splits, from Kaizo's Floatzel at 41
 SPECIES_FLOATZEL	Whirlpool	39		dropped	leaves: strength 35, under 40
 SPECIES_FLOATZEL	Razor Wind	50		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
 SPECIES_FLOETTE	Fairy Wind	1	1	same	
@@ -2451,6 +2500,7 @@ SPECIES_FLORGES	Helping Hand	42	42	same
 SPECIES_FLORGES	Synthesis	48	49	moved	48 to 49: its nearest Kaizo lines, translated to 49
 SPECIES_FLORGES	SolarBeam	53	53	same	
 SPECIES_FLORGES	Moonblast	57	57	same	
+SPECIES_FLORGES	Petal Blizzard		61	added	new at 61: a move in the last splits, from Scarlet and Violet at 1
 SPECIES_FLORGES	Flower Shield	1		dropped	leaves: the move pool's first cut
 SPECIES_FLORGES	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_FLYGON	SonicBoom	1	1	same	
@@ -2464,6 +2514,7 @@ SPECIES_FLYGON	Screech	41	41	same
 SPECIES_FLYGON	Dragon Claw	45	45	same	
 SPECIES_FLYGON	Dragon Pulse		53	added	new at 53: Kaizo's Flygon at 57, no earlier than that within its split (translated to 46)
 SPECIES_FLYGON	Hyper Beam	57	57	same	
+SPECIES_FLYGON	Boomburst		68	added	new at 68: a move in the last splits, from Legends Z-A at 68
 SPECIES_FLYGON	Sand Tomb	1		dropped	leaves: strength 35, under 40
 SPECIES_FLYGON	Sandstorm	49		dropped	leaves: weather, for a species the player can own
 SPECIES_FOMANTIS	Leafage	1	1	same	
@@ -2557,11 +2608,12 @@ SPECIES_FROSLASS	Ice Shard	37	37	same
 SPECIES_FROSLASS	Blizzard	51	51	same	
 SPECIES_FROSLASS	Destiny Bond	59	59	same	
 SPECIES_FROSLASS	Ice Beam		60	added	new at 60: Kaizo's Froslass at 77
+SPECIES_FROSLASS	Phantom Force		61	added	new at 61: a move in the last splits, from Legends Z-A at 55
 SPECIES_FROSLASS	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_FROSLASS	Hail	40		dropped	leaves: weather, for a species the player can own
 SPECIES_FROSMOTH	Icy Wind	1	1	same	
 SPECIES_FROSMOTH	Powder Snow	1	1	same	
-SPECIES_FROSMOTH	Struggle Bug	1	1	same	
+SPECIES_FROSMOTH	Struggle Bug	1	1	same	new at 61: a move in the last splits, from Legends Z-A at 1
 SPECIES_FROSMOTH	Helping Hand	1	1	same	
 SPECIES_FROSMOTH	Attract	1	1	same	
 SPECIES_FROSMOTH	Stun Spore	4	4	same	
@@ -2575,6 +2627,7 @@ SPECIES_FROSMOTH	Blizzard	40	40	same
 SPECIES_FROSMOTH	Tailwind	44	44	same	
 SPECIES_FROSMOTH	Wide Guard	48	48	same	
 SPECIES_FROSMOTH	Quiver Dance	52	52	same	
+SPECIES_FROSMOTH	Struggle Bug	1	61	same	new at 61: a move in the last splits, from Legends Z-A at 1
 SPECIES_FROSMOTH	Infestation	8		dropped	leaves: strength 20, under 40
 SPECIES_FROSMOTH	Hail	28		dropped	leaves: weather, for a species the player can own
 SPECIES_FURRET	Scratch	1	1	same	
@@ -2593,6 +2646,7 @@ SPECIES_FURRET	Amnesia	42	42	same
 SPECIES_FURRET	Baton Pass	46	46	same	
 SPECIES_FURRET	Me First	50	50	same	
 SPECIES_FURRET	Hyper Voice	56	56	same	
+SPECIES_FURRET	Body Slam		61	added	new at 61: a move in the last splits, from Kaizo's Furret at 28
 SPECIES_GABITE	Tackle	1	1	same	
 SPECIES_GABITE	Sand-Attack	1	1	same	
 SPECIES_GABITE	Sand-Attack	3	3	same	
@@ -2661,9 +2715,10 @@ SPECIES_GALARIAN_MR_MIME	Psychic	48	48	same
 SPECIES_GALARIAN_MR_MIME	Teeter Dance	52	52	same	
 SPECIES_GALARIAN_MR_MIME	Misty Terrain	1		dropped	leaves: the move pool's first cut
 SPECIES_GALARIAN_MR_MIME	Ally Switch	16		dropped	leaves: the move pool's first cut
+SPECIES_GALARIAN_RAPIDASH	Draining Kiss		0	added	new at 0: an evolution move, the strongest Fairy attack that is not a strong move, from Oxide's whole move table, since nothing Galarian Rapidash learns in any game fits (Ian may prefer one of its own, weaker or strong); for Ian
 SPECIES_GALARIAN_RAPIDASH	Psycho Cut	1	1	same	
 SPECIES_GALARIAN_RAPIDASH	Psycho Cut	1	1	same	
-SPECIES_GALARIAN_RAPIDASH	Megahorn	1	1	same	
+SPECIES_GALARIAN_RAPIDASH	Megahorn	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GALARIAN_RAPIDASH	Tackle	1	1	same	
 SPECIES_GALARIAN_RAPIDASH	Quick Attack	1	1	same	
 SPECIES_GALARIAN_RAPIDASH	Growl	1	1	same	
@@ -2677,8 +2732,10 @@ SPECIES_GALARIAN_RAPIDASH	Heal Pulse	35	35	same
 SPECIES_GALARIAN_RAPIDASH	Take Down	43	43	same	
 SPECIES_GALARIAN_RAPIDASH	Dazzling Gleam	49	49	same	
 SPECIES_GALARIAN_RAPIDASH	Psychic	56	56	same	
+SPECIES_GALARIAN_RAPIDASH	Megahorn	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GALARIAN_RAPIDASH	Healing Wish	63	63	same	
-SPECIES_GALARIAN_WEEZING	Heat Wave	1	1	same	
+SPECIES_GALARIAN_WEEZING	Draining Kiss		0	added	new at 0: an evolution move, the strongest Fairy attack that is not a strong move, from Oxide's whole move table, since nothing Galarian Weezing learns in any game fits (Ian may prefer one of its own, weaker or strong); for Ian
+SPECIES_GALARIAN_WEEZING	Heat Wave	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GALARIAN_WEEZING	Smog	1	1	same	
 SPECIES_GALARIAN_WEEZING	Tackle	1	1	same	
 SPECIES_GALARIAN_WEEZING	SmokeScreen	4	4	same	
@@ -2695,6 +2752,7 @@ SPECIES_GALARIAN_WEEZING	Sludge Bomb	42	42	same
 SPECIES_GALARIAN_WEEZING	Pain Split	45	45	same	
 SPECIES_GALARIAN_WEEZING	Strange Steam	48	48	same	
 SPECIES_GALARIAN_WEEZING	Explosion	55	55	same	
+SPECIES_GALARIAN_WEEZING	Heat Wave	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GALARIAN_ZAPDOS	Peck	1	1	same	
 SPECIES_GALARIAN_ZAPDOS	Focus Energy	1	1	same	
 SPECIES_GALARIAN_ZAPDOS	Rock Smash	5	5	same	
@@ -2723,9 +2781,11 @@ SPECIES_GALLADE	Swords Dance	25	25	same
 SPECIES_GALLADE	Psycho Cut	31	31	same	
 SPECIES_GALLADE	Helping Hand	36	36	same	
 SPECIES_GALLADE	Feint	39	39	same	
+SPECIES_GALLADE	Future Sight		39	added	new at 39: a key move after the evolution, from Kirlia's 39
 SPECIES_GALLADE	False Swipe	45	45	same	
 SPECIES_GALLADE	Protect	50	50	same	
 SPECIES_GALLADE	Close Combat	53	53	same	
+SPECIES_GALLADE	Cross Chop		61	added	new at 61: a move in the last splits, from Kaizo's Gallade at 36
 SPECIES_GALLADE	Teleport	1		dropped	leaves: the move pool's first cut
 SPECIES_GALLADE	Fury Cutter	17		dropped	leaves: strength 38, under 40
 SPECIES_GALVANTULA	Sticky Web	1	1	same	
@@ -2758,6 +2818,7 @@ SPECIES_GARCHOMP	Slash	28	28	same
 SPECIES_GARCHOMP	Dragon Claw	33	33	same	
 SPECIES_GARCHOMP	Dig	40	40	same	
 SPECIES_GARCHOMP	Crunch	48	48	same	
+SPECIES_GARCHOMP	Dual Chop		61	added	new at 61: a move in the last splits, from Omega Ruby and Alpha Sapphire at 24
 SPECIES_GARCHOMP	Sandstorm	1		dropped	leaves: weather, for a species the player can own
 SPECIES_GARCHOMP	Sand Tomb	19		dropped	leaves: strength 35, under 40
 SPECIES_GARDEVOIR	Healing Wish	1	1	same	
@@ -2774,6 +2835,7 @@ SPECIES_GARDEVOIR	Psychic	33	44	moved	33 to 44: Kaizo's Gardevoir at 48, transla
 SPECIES_GARDEVOIR	Future Sight	45	45	same	
 SPECIES_GARDEVOIR	Captivate	53	53	same	
 SPECIES_GARDEVOIR	Hypnosis	60	60	same	
+SPECIES_GARDEVOIR	Moonblast		61	added	new at 61: a move in the last splits, from Legends Z-A at 49
 SPECIES_GARDEVOIR	Dream Eater	65	65	same	
 SPECIES_GARDEVOIR	Teleport	1		dropped	leaves: the move pool's first cut
 SPECIES_GARGANACL	Hammer Arm	1	1	same	
@@ -2781,7 +2843,7 @@ SPECIES_GARGANACL	Block	1	1	same
 SPECIES_GARGANACL	Tackle	1	1	same	
 SPECIES_GARGANACL	Wide Guard	1	1	same	
 SPECIES_GARGANACL	Harden	1	1	same	
-SPECIES_GARGANACL	Rock Blast	1	1	same	
+SPECIES_GARGANACL	Rock Blast	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GARGANACL	Rock Throw	5	5	same	
 SPECIES_GARGANACL	Mud Shot	7	7	same	
 SPECIES_GARGANACL	Rock Tomb	10	10	same	
@@ -2795,6 +2857,7 @@ SPECIES_GARGANACL	Heavy Slam	44	44	same
 SPECIES_GARGANACL	Earthquake	49	49	same	
 SPECIES_GARGANACL	Stone Edge	54	54	same	
 SPECIES_GARGANACL	Explosion	60	60	same	
+SPECIES_GARGANACL	Rock Blast	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_GASTLY	Hypnosis	1	1	same	
 SPECIES_GASTLY	Lick	1	1	same	
 SPECIES_GASTLY	Spite	5	5	same	
@@ -2822,6 +2885,7 @@ SPECIES_GASTRODON	Body Slam	29	29	same
 SPECIES_GASTRODON	Muddy Water	41	39	moved	41 to 39: Kaizo's Gastrodon at 47, translated to 39
 SPECIES_GASTRODON	Earthquake		44	added	new at 44: Kaizo's Gastrodon at 54
 SPECIES_GASTRODON	Recover	54	54	same	
+SPECIES_GASTRODON	Rock Slide		61	added	new at 61: a move in the last splits, from Kaizo's Gastrodon at 22
 SPECIES_GASTRODON	Rain Dance	22		dropped	leaves: weather, for a species the player can own
 SPECIES_GENGAR	Hypnosis	1	1	same	
 SPECIES_GENGAR	Lick	1	1	same	
@@ -2839,6 +2903,7 @@ SPECIES_GENGAR	Dream Eater	39	39	same
 SPECIES_GENGAR	Dark Pulse	44	44	same	
 SPECIES_GENGAR	Destiny Bond	50	50	same	
 SPECIES_GENGAR	Nightmare	55	55	same	
+SPECIES_GENGAR	Sludge Bomb		61	added	new at 61: a move in the last splits, from Kaizo's Gengar at 53
 SPECIES_GEODUDE	Tackle	1	1	same	
 SPECIES_GEODUDE	Defense Curl	1	1	same	
 SPECIES_GEODUDE	Mud Sport	4	4	same	
@@ -2877,6 +2942,7 @@ SPECIES_GIRAFARIG	Double Hit	32	32	same
 SPECIES_GIRAFARIG	Psychic	37	37	same	
 SPECIES_GIRAFARIG	Zen Headbutt	41	41	same	
 SPECIES_GIRAFARIG	Crunch	46	46	same	
+SPECIES_GIRAFARIG	Earthquake		61	added	new at 61: a move in the last splits, from Kaizo's Girafarig at 41
 SPECIES_GIRAFARIG	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_GIRATINA	DragonBreath	1	1	same	
 SPECIES_GIRATINA	Scary Face	1	1	same	
@@ -2918,6 +2984,7 @@ SPECIES_GLALIE	Crunch	31	31	same
 SPECIES_GLALIE	Ice Beam	37	37	same	
 SPECIES_GLALIE	Blizzard	51	51	same	
 SPECIES_GLALIE	Sheer Cold	59	59	same	
+SPECIES_GLALIE	Earthquake		61	added	new at 61: a move in the last splits, from Kaizo's Glalie at 60
 SPECIES_GLALIE	Hail	40		dropped	leaves: weather, for a species the player can own
 SPECIES_GLAMEOW	Fake Out	1	1	same	
 SPECIES_GLAMEOW	Scratch	5	5	same	
@@ -2974,6 +3041,7 @@ SPECIES_GLIMMORA	Rock Slide	33	33	same
 SPECIES_GLIMMORA	Power Gem	39	39	same	
 SPECIES_GLIMMORA	Acid Armor	44	44	same	
 SPECIES_GLIMMORA	Sludge Wave	50	50	same	
+SPECIES_GLIMMORA	Meteor Beam		61	added	new at 61: a move in the last splits, from Legends Z-A at 0
 SPECIES_GLIMMORA	Sandstorm	26		dropped	leaves: weather, for a species the player can own
 SPECIES_GLISCOR	Thunder Fang	1	1	same	
 SPECIES_GLISCOR	Ice Fang	1	1	same	
@@ -2993,6 +3061,7 @@ SPECIES_GLISCOR	Swords Dance	34	34	same
 SPECIES_GLISCOR	U-turn	38	38	same	
 SPECIES_GLISCOR	X-Scissor	42	42	same	
 SPECIES_GLISCOR	Guillotine	45	45	same	
+SPECIES_GLISCOR	Earthquake		61	added	new at 61: a move in the last splits, from Kaizo's Gliscor at 55
 SPECIES_GLISCOR	Fury Cutter	20		dropped	leaves: strength 38, under 40
 SPECIES_GLOOM	Sweet Scent	1	1	same	
 SPECIES_GLOOM	Acid	1	1	same	
@@ -3051,6 +3120,7 @@ SPECIES_GOLDUCK	Psych Up	37	37	same
 SPECIES_GOLDUCK	Zen Headbutt	44	44	same	
 SPECIES_GOLDUCK	Amnesia	50	50	same	
 SPECIES_GOLDUCK	Hydro Pump	56	56	same	
+SPECIES_GOLDUCK	Psychic		61	added	new at 61: a move in the last splits, from Kaizo's Golduck at 44
 SPECIES_GOLEM	Tackle	1	1	same	
 SPECIES_GOLEM	Defense Curl	1	1	same	
 SPECIES_GOLEM	Mud Sport	1	1	same	
@@ -3065,6 +3135,7 @@ SPECIES_GOLEM	Earthquake	33	33	same
 SPECIES_GOLEM	Explosion	38	38	same	
 SPECIES_GOLEM	Double-Edge	44	44	same	
 SPECIES_GOLEM	Stone Edge	49	49	same	
+SPECIES_GOLEM	Bulldoze		61	added	new at 61: a move in the last splits, from Legends Z-A at 22
 SPECIES_GOLEM	Rollout	22		dropped	leaves: strength 27, under 40
 SPECIES_GOODRA	Draco Meteor	1	1	same	
 SPECIES_GOODRA	Breaking Swipe	1	1	same	
@@ -3105,6 +3176,7 @@ SPECIES_GOREBYSS	Dive	37	37	same
 SPECIES_GOREBYSS	Psychic	42	42	same	
 SPECIES_GOREBYSS	Aqua Tail	46	46	same	
 SPECIES_GOREBYSS	Hydro Pump	51	51	same	
+SPECIES_GOREBYSS	Ice Beam		61	added	new at 61: a move in the last splits, from Kaizo's Gorebyss at 42
 SPECIES_GOREBYSS	Whirlpool	1		dropped	leaves: strength 35, under 40
 SPECIES_GOTHITA	Pound	1	1	same	
 SPECIES_GOTHITA	Confusion	1	1	same	
@@ -3182,6 +3254,7 @@ SPECIES_GRANBULL	Roar	27	27	same
 SPECIES_GRANBULL	Take Down	43	43	same	
 SPECIES_GRANBULL	Payback	51	51	same	
 SPECIES_GRANBULL	Crunch	59	59	same	
+SPECIES_GRANBULL	Earthquake		61	added	new at 61: a move in the last splits, from Kaizo's Granbull at 51
 SPECIES_GRANBULL	Rage	35		dropped	leaves: strength 20, under 40
 SPECIES_GRAPPLOCT	Octolock	1	1	same	
 SPECIES_GRAPPLOCT	Octazooka	1	1	same	
@@ -3374,6 +3447,7 @@ SPECIES_GYARADOS	Hydro Pump	41	41	same
 SPECIES_GYARADOS	Dragon Dance	44	44	same	
 SPECIES_GYARADOS	Hyper Beam	47	47	same	
 SPECIES_GYARADOS	Ice Fang	32	60	moved	32 to 60: Kaizo's Gyarados at 77, translated to 60
+SPECIES_GYARADOS	Aerial Ace		61	added	new at 61: a move in the last splits, from Kaizo's Gyarados at 67
 SPECIES_GYARADOS	Twister	29		dropped	leaves: strength 40, at most half of Fantina's usual 90
 SPECIES_GYARADOS	Rain Dance	38		dropped	leaves: weather, for a species the player can own
 SPECIES_GYARADOS_M	Power Whip	1	1	same	
@@ -3498,6 +3572,7 @@ SPECIES_HERACROSS	Close Combat	37	37	same
 SPECIES_HERACROSS	Reversal	43	43	same	
 SPECIES_HERACROSS	Feint	49	49	same	
 SPECIES_HERACROSS	Megahorn	55	55	same	
+SPECIES_HERACROSS	Cross Chop		61	added	new at 61: a move in the last splits, from Kaizo's Heracross at 49
 SPECIES_HIPPOPOTAS	Tackle	1	1	same	
 SPECIES_HIPPOPOTAS	Sand-Attack	1	1	same	
 SPECIES_HIPPOPOTAS	Bite	7	7	same	
@@ -3522,8 +3597,9 @@ SPECIES_HIPPOWDON	Crunch	31	31	same
 SPECIES_HIPPOWDON	Double-Edge	50	50	same	
 SPECIES_HIPPOWDON	Earthquake	40	53	moved	40 to 53: Kaizo's Hippowdon at 60, translated to 49, and no earlier than Kaizo's level of 60 within its split
 SPECIES_HIPPOWDON	Fissure	60	60	same	
+SPECIES_HIPPOWDON	High Horsepower		61	added	new at 61: a move in the last splits, from Legends Arceus at 34
 SPECIES_HIPPOWDON	Sand Tomb	25		dropped	leaves: strength 35, under 40
-SPECIES_HISUIAN_GOODRA	Draco Meteor	1	1	same	
+SPECIES_HISUIAN_GOODRA	Draco Meteor	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_HISUIAN_GOODRA	Breaking Swipe	1	1	same	
 SPECIES_HISUIAN_GOODRA	Weather Ball	1	1	same	
 SPECIES_HISUIAN_GOODRA	Tackle	1	1	same	
@@ -3539,6 +3615,7 @@ SPECIES_HISUIAN_GOODRA	Power Whip	61	56	moved	61 to 56: its nearest Kaizo lines,
 SPECIES_HISUIAN_GOODRA	Dragon Pulse	58	58	same	
 SPECIES_HISUIAN_GOODRA	Iron Tail	55	59	moved	55 to 60: its nearest Kaizo lines, translated to 57, and no earlier than Kaizo's level of 75 within its split; 60 to 59: the same-level rule (another move is at 60); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_HISUIAN_GOODRA	Outrage	66	60	moved	66 to 60: its nearest Kaizo lines, translated to 57, and no earlier than Kaizo's level of 75 within its split
+SPECIES_HISUIAN_GOODRA	Draco Meteor	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_HISUIAN_GOODRA	Infestation	34		dropped	leaves: strength 20, under 40
 SPECIES_HISUIAN_SLIGGOO	Shelter	1	1	same	
 SPECIES_HISUIAN_SLIGGOO	Shelter	1	1	same	
@@ -3549,6 +3626,7 @@ SPECIES_HISUIAN_SLIGGOO	Water Gun	1	1	same
 SPECIES_HISUIAN_SLIGGOO	Protect	15	15	same	
 SPECIES_HISUIAN_SLIGGOO	Flail	20	20	same	
 SPECIES_HISUIAN_SLIGGOO	Water Pulse	25	25	same	
+SPECIES_HISUIAN_SLIGGOO	Dragon Tail		28	added	new at 28: a key move after the evolution, from Goomy's 28
 SPECIES_HISUIAN_SLIGGOO	Dragon Pulse	35	31	moved	35 to 31: its nearest Kaizo lines, translated to 28, and no earlier than Kaizo's level of 31 within its split
 SPECIES_HISUIAN_SLIGGOO	Iron Head	49	33	moved	49 to 33: its nearest Kaizo lines, translated to 32, and no earlier than Kaizo's level of 36 within its split
 SPECIES_HISUIAN_SLIGGOO	Muddy Water	56	39	moved	56 to 39: its nearest Kaizo lines, translated to 38, and no earlier than Kaizo's level of 46 within its split
@@ -3607,7 +3685,10 @@ SPECIES_HONCHKROW	Wing Attack	1	1	same
 SPECIES_HONCHKROW	Night Slash	45	1	moved	45 to 1: an exclusive delay, Kaizo gives it only to Murkrow
 SPECIES_HONCHKROW	Dark Pulse	55	1	moved	55 to 1: an exclusive delay, Kaizo gives it only to Murkrow
 SPECIES_HONCHKROW	Swagger	25	25	same	
+SPECIES_HONCHKROW	Assurance		32	added	new at 32: a key move after the evolution, from Murkrow's 32
+SPECIES_HONCHKROW	Faint Attack		34	added	new at 34: a key move after the evolution, from Murkrow's 35; 35 to 34: the one-level rule
 SPECIES_HONCHKROW	Nasty Plot	35	35	same	
+SPECIES_HONCHKROW	Brave Bird		61	added	new at 61: a move in the last splits, from Kaizo's Honchkrow at 35
 SPECIES_HONCHKROW	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_HOOTHOOT	Tackle	1	1	same	
 SPECIES_HOOTHOOT	Growl	1	1	same	
@@ -3712,6 +3793,7 @@ SPECIES_HUNTAIL	Dive	37	37	same
 SPECIES_HUNTAIL	Crunch	42	42	same	
 SPECIES_HUNTAIL	Aqua Tail	46	46	same	
 SPECIES_HUNTAIL	Hydro Pump	51	51	same	
+SPECIES_HUNTAIL	Body Slam		61	added	new at 61: a move in the last splits, from Kaizo's Huntail at 33
 SPECIES_HUNTAIL	Whirlpool	1		dropped	leaves: strength 35, under 40
 SPECIES_HYPNO	Nightmare	1	1	same	
 SPECIES_HYPNO	Switcheroo	1	1	same	
@@ -3904,6 +3986,7 @@ SPECIES_JUMPLUFF	Worry Seed	40	40	same
 SPECIES_JUMPLUFF	Giga Drain	44	44	same	
 SPECIES_JUMPLUFF	Memento	52	52	same	
 SPECIES_JUMPLUFF	Bounce	48	53	moved	48 to 53: Kaizo's Jumpluff at 60, translated to 49, and no earlier than Kaizo's level of 60 within its split
+SPECIES_JUMPLUFF	Aerial Ace		61	added	new at 61: a move in the last splits, from Kaizo's Jumpluff at 32
 SPECIES_JUMPLUFF	Splash	1		dropped	leaves: the move pool's first cut
 SPECIES_JUMPLUFF	Mega Drain	28		dropped	leaves: strength 40, at most half of Fantina's usual 80
 SPECIES_JYNX	Pound	1	1	same	
@@ -3923,6 +4006,7 @@ SPECIES_JYNX	Body Slam	39	39	same
 SPECIES_JYNX	Wring Out	44	44	same	
 SPECIES_JYNX	Perish Song	49	49	same	
 SPECIES_JYNX	Blizzard	55	55	same	
+SPECIES_JYNX	Psychic		61	added	new at 61: a move in the last splits, from Kaizo's Jynx at 44
 SPECIES_KABUTO	Scratch	1	1	same	
 SPECIES_KABUTO	Harden	1	1	same	
 SPECIES_KABUTO	Rock Throw		6	added	new at 6: keeps the first attack's level
@@ -4034,6 +4118,7 @@ SPECIES_KINGDRA	Brine	30	30	same
 SPECIES_KINGDRA	Hydro Pump	40	40	same	
 SPECIES_KINGDRA	Dragon Dance	48	48	same	
 SPECIES_KINGDRA	Dragon Pulse	57	57	same	
+SPECIES_KINGDRA	Ice Beam		61	added	new at 61: a move in the last splits, from Kaizo's Kingdra at 40
 SPECIES_KINGLER	Mud Sport	1	1	same	
 SPECIES_KINGLER	Bubble	1	1	same	
 SPECIES_KINGLER	ViceGrip	1	1	same	
@@ -4049,6 +4134,7 @@ SPECIES_KINGLER	Guillotine	37	37	same
 SPECIES_KINGLER	Slam	44	44	same	
 SPECIES_KINGLER	Brine	51	51	same	
 SPECIES_KINGLER	Crabhammer	56	56	same	
+SPECIES_KINGLER	Superpower		61	added	new at 61: a move in the last splits, from Kaizo's Kingler at 51
 SPECIES_KINGLER	Flail	63	63	same	
 SPECIES_KIRLIA	Growl	1	1	same	
 SPECIES_KIRLIA	Confusion	1	1	same	
@@ -4082,6 +4168,7 @@ SPECIES_KLEAVOR	Stone Edge	48	48	same
 SPECIES_KLEAVOR	Leech Life	51	51	same	
 SPECIES_KLEAVOR	Close Combat	53	53	same	
 SPECIES_KLEAVOR	Accelerock	55	55	same	
+SPECIES_KLEAVOR	Lunge		61	added	new at 61: a move in the last splits, from Legends Z-A at 46
 SPECIES_KLEFKI	Tackle	1	1	same	
 SPECIES_KLEFKI	Tackle	4	4	same	
 SPECIES_KLEFKI	Fairy Wind	6	6	same	
@@ -4099,6 +4186,7 @@ SPECIES_KLEFKI	Mirror Shot	34	43	moved	34 to 44: its nearest Kaizo lines, transl
 SPECIES_KLEFKI	Magic Room	44	44	same	
 SPECIES_KLEFKI	Heal Block	50	50	same	
 SPECIES_KLEFKI	Last Resort	52	52	same	
+SPECIES_KLEFKI	Dazzling Gleam		61	added	new at 61: a move in the last splits, from Legends Z-A at 44
 SPECIES_KLEFKI	Fairy Lock	1		dropped	leaves: the move pool's first cut
 SPECIES_KLEFKI	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_KOFFING	Poison Gas	1	1	same	
@@ -4165,6 +4253,7 @@ SPECIES_KRICKETUNE	Night Slash	42	42	same
 SPECIES_KRICKETUNE	Bug Buzz	46	46	same	
 SPECIES_KRICKETUNE	Perish Song	50	50	same	
 SPECIES_KRICKETUNE	Swords Dance		53	added	new at 53: Kaizo's Kricketune at 57, no earlier than that within its split (translated to 46)
+SPECIES_KRICKETUNE	Brick Break		61	added	new at 61: a move in the last splits, from Kaizo's Kricketune at 46
 SPECIES_KRICKETUNE	Bide	1		dropped	leaves: works only asleep, or returns less than double
 SPECIES_KRICKETUNE	Fury Cutter	10		dropped	leaves: strength 38, under 40
 SPECIES_KYOGRE	Water Pulse	1	1	same	
@@ -4231,6 +4320,7 @@ SPECIES_LANTURN	Aqua Ring	47	47	same
 SPECIES_LANTURN	Hydro Pump	52	52	same	
 SPECIES_LANTURN	Discharge	40	53	moved	40 to 53: Kaizo's Lanturn at 57, translated to 46, and no earlier than Kaizo's level of 57 within its split
 SPECIES_LANTURN	Charge	57	57	same	
+SPECIES_LANTURN	Brine		61	added	new at 61: a move in the last splits, from Kaizo's Lanturn at 30
 SPECIES_LAPRAS	Sing	1	1	same	
 SPECIES_LAPRAS	Growl	1	1	same	
 SPECIES_LAPRAS	Water Gun	1	1	same	
@@ -4245,6 +4335,7 @@ SPECIES_LAPRAS	Ice Beam	32	39	moved	32 to 39: Kaizo's Lapras at 43, translated t
 SPECIES_LAPRAS	Safeguard	43	43	same	
 SPECIES_LAPRAS	Hydro Pump	49	49	same	
 SPECIES_LAPRAS	Sheer Cold	55	55	same	
+SPECIES_LAPRAS	Drill Run		61	added	new at 61: a move in the last splits, from Kaizo's Lapras at 37
 SPECIES_LAPRAS	Rain Dance	22		dropped	leaves: weather, for a species the player can own
 SPECIES_LARVESTA	Ember	1	1	same	
 SPECIES_LARVESTA	String Shot	1	1	same	
@@ -4315,8 +4406,8 @@ SPECIES_LEAFEON	GrassWhistle	57	57	same
 SPECIES_LEAFEON	Leaf Blade	71	71	same	
 SPECIES_LEAFEON	Swords Dance	78	78	same	
 SPECIES_LEAFEON	Sunny Day	64		dropped	leaves: weather, for a species the player can own
-SPECIES_LEAVANNY	Slash	1	1	same	
-SPECIES_LEAVANNY	Slash	1	1	same	
+SPECIES_LEAVANNY	Slash	1	1	same	new at 61: a move in the last splits, from its own level 1
+SPECIES_LEAVANNY	Slash	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_LEAVANNY	False Swipe	1	1	same	
 SPECIES_LEAVANNY	Tackle	1	1	same	
 SPECIES_LEAVANNY	String Shot	1	1	same	
@@ -4332,6 +4423,7 @@ SPECIES_LEAVANNY	Entrainment	43	43	same
 SPECIES_LEAVANNY	Swords Dance	46	46	same	
 SPECIES_LEAVANNY	Leaf Storm	50	50	same	
 SPECIES_LEAVANNY	Leaf Blade	36	53	moved	36 to 53: its nearest Kaizo lines, translated to 46, and no earlier than Kaizo's level of 56 within its split
+SPECIES_LEAVANNY	Slash	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_LEDIAN	Tackle	1	1	same	
 SPECIES_LEDIAN	Supersonic	1	1	same	
 SPECIES_LEDIAN	Supersonic	6	6	same	
@@ -4375,6 +4467,7 @@ SPECIES_LICKILICKY	Screech	45	45	same
 SPECIES_LICKILICKY	Toxic		52	added	new at 53: Kaizo's Lickilicky at 60, no earlier than that within its split (translated to 49); 53 to 52: the same-level rule (another move is at 53); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_LICKILICKY	Wring Out	53	53	same	
 SPECIES_LICKILICKY	Gyro Ball	57	57	same	
+SPECIES_LICKILICKY	Zen Headbutt		61	added	new at 61: a move in the last splits, from Kaizo's Lickilicky at 51
 SPECIES_LICKILICKY	Wrap	17		dropped	leaves: strength 14, under 40
 SPECIES_LICKILICKY	Rollout	33		dropped	leaves: strength 27, under 40
 SPECIES_LICKITUNG	Lick	1	1	same	
@@ -4413,6 +4506,7 @@ SPECIES_LIEPARD	Nasty Plot	44	44	same
 SPECIES_LIEPARD	Night Slash	44	44	same	
 SPECIES_LIEPARD	Snatch	47	47	same	
 SPECIES_LIEPARD	Play Rough	54	54	same	
+SPECIES_LIEPARD	Snarl		61	added	new at 61: a move in the last splits, from Legends Z-A at 1
 SPECIES_LILEEP	Acid	8	8	same	
 SPECIES_LILEEP	Ingrain	15	15	same	
 SPECIES_LILEEP	Confuse Ray	22	22	same	
@@ -4500,6 +4594,7 @@ SPECIES_LOPUNNY	Dizzy Punch	36	36	same
 SPECIES_LOPUNNY	Charm	43	43	same	
 SPECIES_LOPUNNY	Bounce	46	46	same	
 SPECIES_LOPUNNY	Healing Wish	53	53	same	
+SPECIES_LOPUNNY	Play Rough		61	added	new at 61: a move in the last splits, from Legends Arceus at 31
 SPECIES_LOPUNNY	Splash	1		dropped	leaves: the move pool's first cut
 SPECIES_LOPUNNY_M	U-turn	1	1	same	
 SPECIES_LOPUNNY_M	Triple Axel	1	1	same	
@@ -4564,9 +4659,12 @@ SPECIES_LUCARIO	Aura Sphere	37	37	same
 SPECIES_LUCARIO	Dragon Pulse	47	47	same	
 SPECIES_LUCARIO	ExtremeSpeed	51	51	same	
 SPECIES_LUCARIO	Close Combat	42	60	moved	42 to 60: Kaizo's Lucario at 75, translated to 57, and no earlier than Kaizo's level of 75 within its split
+SPECIES_LUCARIO	Bulldoze		61	added	new at 61: a move in the last splits, from Legends Z-A at 28
 SPECIES_LUDICOLO	Growl	1	1	same	
 SPECIES_LUDICOLO	Mega Drain	1	1	same	
 SPECIES_LUDICOLO	Nature Power	1	1	same	
+SPECIES_LUDICOLO	Hydro Pump		45	added	new at 45: a key move after the evolution, from Lombre's 45
+SPECIES_LUDICOLO	Energy Ball		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_LUDICOLO	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_LUGIA	Whirlwind	1	1	same	
 SPECIES_LUGIA	Safeguard	9	9	same	
@@ -4595,6 +4693,7 @@ SPECIES_LUMINEON	Aqua Ring	35	35	same
 SPECIES_LUMINEON	U-turn	48	48	same	
 SPECIES_LUMINEON	Bounce	53	53	same	
 SPECIES_LUMINEON	Silver Wind	59	59	same	
+SPECIES_LUMINEON	Ice Fang		61	added	new at 61: a move in the last splits, from Kaizo's Lumineon at 35
 SPECIES_LUMINEON	Rain Dance	13		dropped	leaves: weather, for a species the player can own
 SPECIES_LUMINEON	Gust	17		dropped	leaves: strength 40, at most half of Gardenia's usual 80
 SPECIES_LUMINEON	Whirlpool	42		dropped	leaves: strength 35, under 40
@@ -4611,8 +4710,9 @@ SPECIES_LUNATONE	Psychic	45	39	moved	45 to 39: Kaizo's Lunatone at 45, translate
 SPECIES_LUNATONE	Heal Block	42	42	same	
 SPECIES_LUNATONE	Future Sight	53	53	same	
 SPECIES_LUNATONE	Explosion	56	56	same	
-SPECIES_LURANTIS	Petal Blizzard	1	1	same	
-SPECIES_LURANTIS	Petal Blizzard	1	1	same	
+SPECIES_LUNATONE	Psyshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 20
+SPECIES_LURANTIS	Petal Blizzard	1	1	same	new at 61: a move in the last splits, from Legends Z-A at 0
+SPECIES_LURANTIS	Petal Blizzard	1	1	same	new at 61: a move in the last splits, from Legends Z-A at 0
 SPECIES_LURANTIS	Night Slash	1	1	same	
 SPECIES_LURANTIS	SolarBeam	1	1	same	
 SPECIES_LURANTIS	Dual Chop	1	1	same	
@@ -4631,6 +4731,7 @@ SPECIES_LURANTIS	X-Scissor	30	30	same
 SPECIES_LURANTIS	Synthesis	32	32	same	
 SPECIES_LURANTIS	Leaf Blade	34	44	moved	34 to 44: its nearest Kaizo lines, translated to 40, and no earlier than Kaizo's level of 49 within its split
 SPECIES_LURANTIS	Solar Blade	55	55	same	
+SPECIES_LURANTIS	Petal Blizzard	1	61	same	new at 61: a move in the last splits, from Legends Z-A at 0
 SPECIES_LURANTIS	Fury Cutter	1		dropped	leaves: strength 38, under 40
 SPECIES_LURANTIS	Sunny Day	52		dropped	leaves: weather, for a species the player can own
 SPECIES_LUVDISC	Tackle	1	1	same	
@@ -4688,6 +4789,7 @@ SPECIES_MACHAMP	Wake-Up Slap	36	36	same
 SPECIES_MACHAMP	Cross Chop	40	43	moved	40 to 44: Kaizo's Machamp at 51, translated to 42, and no earlier than Kaizo's level of 51 within its split; 44 to 43: the same-level rule (another move is at 44); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_MACHAMP	Scary Face	44	44	same	
 SPECIES_MACHAMP	DynamicPunch	51	51	same	
+SPECIES_MACHAMP	Low Sweep		61	added	new at 61: a move in the last splits, from Brilliant Diamond and Shining Pearl at 12
 SPECIES_MACHAMP	Submission	32		dropped	leaves: 80% accurate on 80 power
 SPECIES_MACHOKE	Low Kick	1	1	same	
 SPECIES_MACHOKE	Leer	1	1	same	
@@ -4851,6 +4953,7 @@ SPECIES_MAGNEZONE	Magnet Rise	50	50	same
 SPECIES_MAGNEZONE	Thunderbolt		53	added	new at 53: Kaizo's Magnezone at 60, no earlier than that within its split (translated to 49)
 SPECIES_MAGNEZONE	Gyro Ball	54	54	same	
 SPECIES_MAGNEZONE	Zap Cannon	60	60	same	
+SPECIES_MAGNEZONE	Thunder		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_MAKUHITA	Tackle	1	1	same	
 SPECIES_MAKUHITA	Focus Energy	1	1	same	
 SPECIES_MAKUHITA	Sand-Attack	4	4	same	
@@ -4884,6 +4987,7 @@ SPECIES_MAMOSWINE	Take Down	32	32	same
 SPECIES_MAMOSWINE	Double Hit	33	33	same	
 SPECIES_MAMOSWINE	Mist	48	48	same	
 SPECIES_MAMOSWINE	Blizzard	56	56	same	
+SPECIES_MAMOSWINE	Icicle Spear		61	added	new at 61: a move in the last splits, from Kaizo's Mamoswine at 65
 SPECIES_MAMOSWINE	Scary Face	65	65	same	
 SPECIES_MAMOSWINE	Hail	25		dropped	leaves: weather, for a species the player can own
 SPECIES_MANAPHY	Tail Glow	1	1	same	
@@ -4978,6 +5082,7 @@ SPECIES_MANTINE	Confuse Ray	37	37	same
 SPECIES_MANTINE	Bounce	40	40	same	
 SPECIES_MANTINE	Aqua Ring	46	46	same	
 SPECIES_MANTINE	Hydro Pump	49	49	same	
+SPECIES_MANTINE	Air Slash		61	added	new at 61: a move in the last splits, from Kaizo's Mantine at 40
 SPECIES_MANTYKE	Tackle	1	1	same	
 SPECIES_MANTYKE	Bubble	1	1	same	
 SPECIES_MANTYKE	Supersonic	4	4	same	
@@ -5089,6 +5194,7 @@ SPECIES_MAWILE	Stockpile	51	51	same
 SPECIES_MAWILE	Swallow	51	51	same	
 SPECIES_MAWILE	Spit Up	51	51	same	
 SPECIES_MAWILE	Iron Head	56	56	same	
+SPECIES_MAWILE	Play Rough		61	added	new at 61: a move in the last splits, from Legends Z-A at 48
 SPECIES_MAWILE	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_MEDICHAM	Fire Punch	1	1	same	
 SPECIES_MEDICHAM	ThunderPunch	1	1	same	
@@ -5109,6 +5215,7 @@ SPECIES_MEDICHAM	Psych Up	36	36	same
 SPECIES_MEDICHAM	Power Trick	42	42	same	
 SPECIES_MEDICHAM	Reversal	49	49	same	
 SPECIES_MEDICHAM	Recover	55	55	same	
+SPECIES_MEDICHAM	Axe Kick		61	added	new at 61: a move in the last splits, from Scarlet and Violet at 53
 SPECIES_MEDICHAM	Bide	1		dropped	leaves: works only asleep, or returns less than double
 SPECIES_MEDITITE	Meditate	4	4	same	
 SPECIES_MEDITITE	Confusion	8	8	same	
@@ -5310,6 +5417,7 @@ SPECIES_MILOTIC	Hydro Pump	37	37	same
 SPECIES_MILOTIC	Attract	41	41	same	
 SPECIES_MILOTIC	Safeguard	45	45	same	
 SPECIES_MILOTIC	Aqua Ring	49	49	same	
+SPECIES_MILOTIC	Ice Beam		61	added	new at 61: a move in the last splits, from Kaizo's Milotic at 76
 SPECIES_MILOTIC	Wrap	1		dropped	leaves: strength 14, under 40
 SPECIES_MILOTIC	Twister	17		dropped	leaves: strength 40, at most half of Gardenia's usual 80
 SPECIES_MILOTIC	Rain Dance	33		dropped	leaves: weather, for a species the player can own
@@ -5379,6 +5487,7 @@ SPECIES_MINUN	Thunderbolt		43	added	new at 44: Kaizo's Minun at 48, no earlier t
 SPECIES_MINUN	Agility	44	44	same	
 SPECIES_MINUN	Trump Card	48	48	same	
 SPECIES_MINUN	Nasty Plot	51	51	same	
+SPECIES_MINUN	Discharge		61	added	new at 61: a move in the last splits, from Kaizo's Minun at 42
 SPECIES_MISDREAVUS	Growl	1	1	same	
 SPECIES_MISDREAVUS	Psywave	1	1	same	
 SPECIES_MISDREAVUS	Spite	5	5	same	
@@ -5398,6 +5507,8 @@ SPECIES_MISMAGIUS	Magical Leaf	1	1	same
 SPECIES_MISMAGIUS	Growl	1	1	same	
 SPECIES_MISMAGIUS	Psywave	1	1	same	
 SPECIES_MISMAGIUS	Spite	1	1	same	
+SPECIES_MISMAGIUS	Shadow Ball		37	added	new at 37: a key move after the evolution, from Misdreavus's 37
+SPECIES_MISMAGIUS	Hex		61	added	new at 61: a move in the last splits, from Legends Arceus at 18
 SPECIES_MISMAGIUS	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_MOLTRES	Wing Attack	1	1	same	
 SPECIES_MOLTRES	Ember	1	1	same	
@@ -5440,6 +5551,7 @@ SPECIES_MOTHIM	Silver Wind	38	38	same
 SPECIES_MOTHIM	Air Slash	41	41	same	
 SPECIES_MOTHIM	Psychic	44	44	same	
 SPECIES_MOTHIM	Bug Buzz	47	47	same	
+SPECIES_MOTHIM	Aerial Ace		61	added	new at 61: a move in the last splits, from Kaizo's Mothim at 29
 SPECIES_MR_MIME	Magical Leaf	1	1	same	
 SPECIES_MR_MIME	Power Swap	1	1	same	
 SPECIES_MR_MIME	Guard Swap	1	1	same	
@@ -5460,6 +5572,7 @@ SPECIES_MR_MIME	Role Play	43	43	same
 SPECIES_MR_MIME	Psychic	39	44	moved	39 to 44: Kaizo's Mr_Mime at 50, translated to 41, and no earlier than Kaizo's level of 50 within its split
 SPECIES_MR_MIME	Baton Pass	46	46	same	
 SPECIES_MR_MIME	Safeguard	50	50	same	
+SPECIES_MR_MIME	Dazzling Gleam		61	added	new at 61: a move in the last splits, from Legends Z-A at 44
 SPECIES_MR_RIME	Fake Tears	1	1	same	
 SPECIES_MR_RIME	Slack Off	1	1	same	
 SPECIES_MR_RIME	After You	1	1	same	
@@ -5473,7 +5586,7 @@ SPECIES_MR_RIME	Mimic	1	1	same
 SPECIES_MR_RIME	Light Screen	1	1	same	
 SPECIES_MR_RIME	Reflect	1	1	same	
 SPECIES_MR_RIME	Safeguard	1	1	same	
-SPECIES_MR_RIME	Dazzling Gleam	1	1	same	
+SPECIES_MR_RIME	Dazzling Gleam	1	1	same	new at 61: a move in the last splits, from Legends Z-A at 44
 SPECIES_MR_RIME	Pound	1	1	same	
 SPECIES_MR_RIME	Rapid Spin	1	1	same	
 SPECIES_MR_RIME	Baton Pass	1	1	same	
@@ -5488,6 +5601,7 @@ SPECIES_MR_RIME	Sucker Punch	40	40	same
 SPECIES_MR_RIME	Freeze-Dry	44	44	same	
 SPECIES_MR_RIME	Psychic	48	48	same	
 SPECIES_MR_RIME	Teeter Dance	52	52	same	
+SPECIES_MR_RIME	Dazzling Gleam	1	61	same	new at 61: a move in the last splits, from Legends Z-A at 44
 SPECIES_MR_RIME	Misty Terrain	1		dropped	leaves: the move pool's first cut
 SPECIES_MR_RIME	Ally Switch	16		dropped	leaves: the move pool's first cut
 SPECIES_MUDKIP	Tackle	1	1	same	
@@ -5613,8 +5727,10 @@ SPECIES_NIDOKING	Double Kick	1	1	same
 SPECIES_NIDOKING	Poison Sting	1	1	same	
 SPECIES_NIDOKING	Earth Power	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Nidorino
 SPECIES_NIDOKING	Thrash	23	23	same	
+SPECIES_NIDOKING	Poison Jab		43	added	new at 43: a key move after the evolution, from Nidorino's 43
 SPECIES_NIDOKING	Earthquake		53	added	new at 53: Kaizo's Nidoking at 58, no earlier than that within its split (translated to 47)
 SPECIES_NIDOKING	Megahorn	58	58	same	
+SPECIES_NIDOKING	Sludge Wave		61	added	new at 61: a move in the last splits, from Brilliant Diamond and Shining Pearl at 1
 SPECIES_NIDOQUEEN	Scratch	1	1	same	
 SPECIES_NIDOQUEEN	Tail Whip	1	1	same	
 SPECIES_NIDOQUEEN	Double Kick	1	1	same	
@@ -5623,6 +5739,7 @@ SPECIES_NIDOQUEEN	Body Slam	23	1	moved	23 to 1: an exclusive delay, Kaizo gives 
 SPECIES_NIDOQUEEN	Earth Power	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Nidorina
 SPECIES_NIDOQUEEN	Earthquake		53	added	new at 53: Kaizo's Nidoqueen at 58, no earlier than that within its split (translated to 47)
 SPECIES_NIDOQUEEN	Superpower	58	58	same	
+SPECIES_NIDOQUEEN	Sludge Wave		61	added	new at 61: a move in the last splits, from Brilliant Diamond and Shining Pearl at 1
 SPECIES_NIDORAN_F	Growl	1	1	same	
 SPECIES_NIDORAN_F	Scratch	1	1	same	
 SPECIES_NIDORAN_F	Tail Whip	7	7	same	
@@ -5709,6 +5826,8 @@ SPECIES_NINETALES	Quick Attack	1	1	same
 SPECIES_NINETALES	Confuse Ray	1	1	same	
 SPECIES_NINETALES	Safeguard	1	1	same	
 SPECIES_NINETALES	Flare Blitz	40	40	same	
+SPECIES_NINETALES	Fire Blast		47	added	new at 47: a key move after the evolution, from Vulpix's 47
+SPECIES_NINETALES	Flamethrower		61	added	new at 61: a move in the last splits, from Kaizo's Ninetales at 40
 SPECIES_NINJASK	Bug Bite	1	1	same	
 SPECIES_NINJASK	Scratch	1	1	same	
 SPECIES_NINJASK	Harden	1	1	same	
@@ -5743,6 +5862,7 @@ SPECIES_NOCTOWL	Hyper Voice		44	added	new at 44: Kaizo's Noctowl at 52, no earli
 SPECIES_NOCTOWL	Psycho Shift	47	47	same	
 SPECIES_NOCTOWL	Roost	52	52	same	
 SPECIES_NOCTOWL	Dream Eater	57	57	same	
+SPECIES_NOCTOWL	Moonblast		61	added	new at 61: a move in the last splits, from Legends Z-A at 43
 SPECIES_NOCTOWL	Sky Attack	1		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
 SPECIES_NOSEPASS	Tackle	1	1	same	
 SPECIES_NOSEPASS	Harden	7	7	same	
@@ -5781,7 +5901,7 @@ SPECIES_NUZLEAF	Faint Attack	31	31	same
 SPECIES_NUZLEAF	Swagger	43	43	same	
 SPECIES_NUZLEAF	Extrasensory	49	49	same	
 SPECIES_NUZLEAF	Razor Wind	37		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
-SPECIES_OCTILLERY	Gunk Shot	1	1	same	
+SPECIES_OCTILLERY	Gunk Shot	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_OCTILLERY	Rock Blast	1	1	same	
 SPECIES_OCTILLERY	Water Gun	1	1	same	
 SPECIES_OCTILLERY	Psybeam	1	1	same	
@@ -5796,6 +5916,7 @@ SPECIES_OCTILLERY	Wring Out	36	36	same
 SPECIES_OCTILLERY	Signal Beam	42	42	same	
 SPECIES_OCTILLERY	Ice Beam	48	48	same	
 SPECIES_OCTILLERY	Hyper Beam	55	55	same	
+SPECIES_OCTILLERY	Gunk Shot	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_OCTILLERY	Constrict	1		dropped	leaves: strength 10, under 40
 SPECIES_ODDISH	Sweet Scent	5	5	same	
 SPECIES_ODDISH	Acid	9	9	same	
@@ -5886,6 +6007,7 @@ SPECIES_PACHIRISU	Discharge	29	29	same
 SPECIES_PACHIRISU	Thunder Fang		32	added	new at 33: Kaizo's Pachirisu at 35, no earlier than that within its split (translated to 31); 33 to 32: the same-level rule (another move is at 33); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_PACHIRISU	Super Fang	33	33	same	
 SPECIES_PACHIRISU	Last Resort	37	37	same	
+SPECIES_PACHIRISU	Thunder		61	added	new at 61: a move in the last splits, from Kaizo's Pachirisu at 55
 SPECIES_PACHIRISU	Bide	1		dropped	leaves: works only asleep, or returns less than double
 SPECIES_PALKIA	DragonBreath	1	1	same	
 SPECIES_PALKIA	Scary Face	1	1	same	
@@ -5995,6 +6117,7 @@ SPECIES_PELIPPER	Fling	43	43	same
 SPECIES_PELIPPER	Tailwind	50	50	same	
 SPECIES_PELIPPER	Roost	31	53	moved	31 to 53: Kaizo's Pelipper at 55, translated to 45, and no earlier than Kaizo's level of 55 within its split
 SPECIES_PELIPPER	Hydro Pump	57	57	same	
+SPECIES_PELIPPER	Air Slash		61	added	new at 61: a move in the last splits, from Kaizo's Pelipper at 38
 SPECIES_PERSIAN	Switcheroo	1	1	same	
 SPECIES_PERSIAN	Scratch	1	1	same	
 SPECIES_PERSIAN	Growl	1	1	same	
@@ -6206,6 +6329,7 @@ SPECIES_PLUSLE	Thunderbolt		43	added	new at 44: Kaizo's Plusle at 48, no earlier
 SPECIES_PLUSLE	Agility	44	44	same	
 SPECIES_PLUSLE	Last Resort	48	48	same	
 SPECIES_PLUSLE	Nasty Plot	51	51	same	
+SPECIES_PLUSLE	Discharge		61	added	new at 61: a move in the last splits, from Kaizo's Plusle at 42
 SPECIES_POIPOLE	Dragon Pulse	1	1	same	
 SPECIES_POIPOLE	Peck	1	1	same	
 SPECIES_POIPOLE	Growl	1	1	same	
@@ -6220,13 +6344,15 @@ SPECIES_POIPOLE	Nasty Plot	42	42	same
 SPECIES_POIPOLE	Poison Jab	49	49	same	
 SPECIES_POIPOLE	Gastro Acid	56	56	same	
 SPECIES_POIPOLE	Toxic	63	63	same	
-SPECIES_POLITOED	BubbleBeam	1	1	same	
+SPECIES_POLITOED	BubbleBeam	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_POLITOED	Hypnosis	1	1	same	
 SPECIES_POLITOED	DoubleSlap	1	1	same	
 SPECIES_POLITOED	Perish Song	1	1	same	
 SPECIES_POLITOED	Swagger	27	27	same	
 SPECIES_POLITOED	Bounce	37	37	same	
 SPECIES_POLITOED	Hyper Voice	48	48	same	
+SPECIES_POLITOED	Hydro Pump		49	added	new at 49: a key move after the evolution, from Poliwhirl's 48; 48 to 49: the one-level rule
+SPECIES_POLITOED	BubbleBeam	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_POLIWAG	Water Sport	1	1	same	
 SPECIES_POLIWAG	Bubble	5	5	same	
 SPECIES_POLIWAG	Hypnosis	8	8	same	
@@ -6260,6 +6386,7 @@ SPECIES_POLIWRATH	Hypnosis	1	1	same
 SPECIES_POLIWRATH	DoubleSlap	1	1	same	
 SPECIES_POLIWRATH	DynamicPunch	43	43	same	
 SPECIES_POLIWRATH	Mind Reader	53	53	same	
+SPECIES_POLIWRATH	Ice Punch		61	added	new at 61: a move in the last splits, from Kaizo's Poliwrath at 43
 SPECIES_POLIWRATH	Submission	1		dropped	leaves: 80% accurate on 80 power
 SPECIES_POLTEAGEIST	Teatime	1	1	same	
 SPECIES_POLTEAGEIST	Strength Sap	1	1	same	
@@ -6492,6 +6619,7 @@ SPECIES_PURUGLY	Slash	37	37	same
 SPECIES_PURUGLY	Swagger	38	38	same	
 SPECIES_PURUGLY	Body Slam	45	45	same	
 SPECIES_PURUGLY	Attract	53	53	same	
+SPECIES_PURUGLY	Shadow Claw		61	added	new at 61: a move in the last splits, from Kaizo's Purugly at 45
 SPECIES_QUAGSIRE	Water Gun	1	1	same	
 SPECIES_QUAGSIRE	Tail Whip	1	1	same	
 SPECIES_QUAGSIRE	Mud Sport	1	1	same	
@@ -6505,6 +6633,7 @@ SPECIES_QUAGSIRE	Earthquake	36	44	moved	36 to 44: Kaizo's Quagsire at 53, transl
 SPECIES_QUAGSIRE	Mist	48	48	same	
 SPECIES_QUAGSIRE	Haze	48	48	same	
 SPECIES_QUAGSIRE	Muddy Water	53	53	same	
+SPECIES_QUAGSIRE	Ice Punch		61	added	new at 61: a move in the last splits, from Kaizo's Quagsire at 45
 SPECIES_QUAGSIRE	Rain Dance	41		dropped	leaves: weather, for a species the player can own
 SPECIES_QUILAVA	Tackle	1	1	same	
 SPECIES_QUILAVA	Leer	1	1	same	
@@ -6537,6 +6666,7 @@ SPECIES_QWILFISH	Aqua Tail	45	45	same
 SPECIES_QWILFISH	Poison Jab	49	49	same	
 SPECIES_QWILFISH	Destiny Bond	53	53	same	
 SPECIES_QWILFISH	Hydro Pump	57	57	same	
+SPECIES_QWILFISH	Dive		61	added	new at 61: a move in the last splits, from Kaizo's Qwilfish at 49
 SPECIES_QWILFISH	Rollout	17		dropped	leaves: strength 27, under 40
 SPECIES_RABOOT	Ember	1	1	same	
 SPECIES_RABOOT	Growl	1	1	same	
@@ -6552,7 +6682,9 @@ SPECIES_RABOOT	Flare Blitz	52	56	moved	52 to 56: its nearest Kaizo lines, transl
 SPECIES_RAICHU	ThunderShock	1	1	same	
 SPECIES_RAICHU	Tail Whip	1	1	same	
 SPECIES_RAICHU	Quick Attack	1	1	same	
-SPECIES_RAICHU	Thunderbolt	1	1	same	
+SPECIES_RAICHU	Thunderbolt	1	1	same	new at 61: a move in the last splits, from its own level 1
+SPECIES_RAICHU	Thunder		45	added	new at 45: a key move after the evolution, from Pikachu's 45
+SPECIES_RAICHU	Thunderbolt	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_RAIKOU	Bite	1	1	same	
 SPECIES_RAIKOU	Leer	1	1	same	
 SPECIES_RAIKOU	ThunderShock	8	8	same	
@@ -6595,6 +6727,7 @@ SPECIES_RAMPARDOS	Endeavor	30	30	same
 SPECIES_RAMPARDOS	Zen Headbutt	36	36	same	
 SPECIES_RAMPARDOS	Screech	43	43	same	
 SPECIES_RAMPARDOS	Head Smash	52	52	same	
+SPECIES_RAMPARDOS	Revenge		61	added	new at 61: a move in the last splits, from Kaizo's Rampardos at 36
 SPECIES_RAPIDASH	Poison Jab	1	1	same	
 SPECIES_RAPIDASH	Megahorn	1	1	same	
 SPECIES_RAPIDASH	Growl	1	1	same	
@@ -6610,6 +6743,7 @@ SPECIES_RAPIDASH	Agility	33	33	same
 SPECIES_RAPIDASH	Fire Blast	37	37	same	
 SPECIES_RAPIDASH	Bounce	47	47	same	
 SPECIES_RAPIDASH	Flare Blitz	56	56	same	
+SPECIES_RAPIDASH	Inferno		61	added	new at 61: a move in the last splits, from Legends Z-A at 49
 SPECIES_RAPIDASH	Fire Spin	24		dropped	leaves: strength 35, under 40
 SPECIES_RAPIDASH	Fury Attack	40		dropped	leaves: strength 45, at most half of Wake's usual 95
 SPECIES_RATICATE	Swords Dance	1	1	same	
@@ -6820,6 +6954,7 @@ SPECIES_ROSERADE	Poison Sting	1	1	same
 SPECIES_ROSERADE	Mega Drain	1	1	same	
 SPECIES_ROSERADE	Magical Leaf	1	1	same	
 SPECIES_ROSERADE	Sweet Scent	1	1	same	
+SPECIES_ROSERADE	Venoshock		61	added	new at 61: a move in the last splits, from Legends Arceus at 25
 SPECIES_ROTOM	Trick	1	1	same	
 SPECIES_ROTOM	Thunder Wave	1	1	same	
 SPECIES_ROTOM	ThunderShock	1	1	same	
@@ -6831,6 +6966,7 @@ SPECIES_ROTOM	Ominous Wind	29	29	same
 SPECIES_ROTOM	Substitute	36	36	same	
 SPECIES_ROTOM	Charge	43	43	same	
 SPECIES_ROTOM	Discharge	50	50	same	
+SPECIES_ROTOM	Dark Pulse		61	added	new at 61: a move in the last splits, from Kaizo's Rotom at 29
 SPECIES_ROTOM	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_ROWLET	Tackle	1	1	same	
 SPECIES_ROWLET	Leafage	1	1	same	
@@ -6864,6 +7000,7 @@ SPECIES_RUNERIGUS	Shadow Ball	44	44	same
 SPECIES_RUNERIGUS	Earthquake	50	50	same	
 SPECIES_RUNERIGUS	Power Split	56	56	same	
 SPECIES_RUNERIGUS	Guard Split	56	56	same	
+SPECIES_RUNERIGUS	Phantom Force		61	added	new at 61: a move in the last splits, from Legends Z-A at 46
 SPECIES_RUNERIGUS	Destiny Bond	62	62	same	
 SPECIES_RUNERIGUS	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_SABLEYE	Leer	1	1	same	
@@ -6931,6 +7068,7 @@ SPECIES_SALAZZLE	Dragon Pulse	50	53	moved	50 to 53: its nearest Kaizo lines, tra
 SPECIES_SALAZZLE	Flamethrower	36	54	moved	36 to 56: its nearest Kaizo lines, translated to 54, and no earlier than Kaizo's level of 68 within its split; 56 to 54: the same-level rule (another move is at 56); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_SALAZZLE	Fire Blast	55	55	same	
 SPECIES_SALAZZLE	Sludge Bomb	42	56	moved	42 to 56: its nearest Kaizo lines, translated to 54, and no earlier than Kaizo's level of 68 within its split
+SPECIES_SALAZZLE	Incinerate		61	added	new at 61: a move in the last splits, from Legends Z-A at 30
 SPECIES_SANDSHREW	Scratch	1	1	same	
 SPECIES_SANDSHREW	Defense Curl	3	3	same	
 SPECIES_SANDSHREW	Sand-Attack	7	7	same	
@@ -7134,6 +7272,7 @@ SPECIES_SERPERIOR	Glare	48	48	same
 SPECIES_SERPERIOR	Synthesis	51	51	same	
 SPECIES_SERPERIOR	Leaf Storm	55	55	same	
 SPECIES_SERPERIOR	Leaf Blade	46	56	moved	46 to 56: its nearest Kaizo lines, translated to 55, and no earlier than Kaizo's level of 70 within its split
+SPECIES_SERPERIOR	Coil		61	added	new at 61: a move in the last splits, from Legends Z-A at 38
 SPECIES_SERPERIOR	Wrap	10		dropped	leaves: strength 14, under 40
 SPECIES_SERVINE	Tackle	1	1	same	
 SPECIES_SERVINE	Vine Whip	1	1	same	
@@ -7188,6 +7327,7 @@ SPECIES_SHARPEDO	Aqua Jet	34	34	same
 SPECIES_SHARPEDO	Taunt	40	40	same	
 SPECIES_SHARPEDO	Agility	45	45	same	
 SPECIES_SHARPEDO	Night Slash	56	56	same	
+SPECIES_SHARPEDO	Water Pulse		61	added	new at 61: a move in the last splits, from Kaizo's Sharpedo at 34
 SPECIES_SHARPEDO	Rage	1		dropped	leaves: strength 20, under 40
 SPECIES_SHARPEDO	Skull Bash	50		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
 SPECIES_SHAYMIN	Growth	1	1	same	
@@ -7265,11 +7405,13 @@ SPECIES_SHIELDON	Endure	33	33	same
 SPECIES_SHIELDON	Earthquake		34	added	new at 33: Kaizo's Shieldon at 38; 33 to 34: the same-level rule (another move is at 33)
 SPECIES_SHIELDON	Iron Head	43	39	moved	43 to 39: Kaizo's Shieldon at 45, translated to 38, and no earlier than Kaizo's level of 45 within its split
 SPECIES_SHIELDON	Metal Burst	37		dropped	leaves: works only asleep, or returns less than double
-SPECIES_SHIFTRY	Faint Attack	1	1	same	
+SPECIES_SHIFTRY	Faint Attack	1	1	same	new at 31: a key move after the evolution, from Nuzleaf's 31
 SPECIES_SHIFTRY	Whirlwind	1	1	same	
 SPECIES_SHIFTRY	Nasty Plot	1	1	same	
 SPECIES_SHIFTRY	Razor Leaf	1	1	same	
+SPECIES_SHIFTRY	Faint Attack	1	31	same	new at 31: a key move after the evolution, from Nuzleaf's 31
 SPECIES_SHIFTRY	Leaf Storm	49	49	same	
+SPECIES_SHIFTRY	Leaf Blade		61	added	new at 61: a move in the last splits, from Kaizo's Shiftry at 55
 SPECIES_SHINX	Tackle	1	1	same	
 SPECIES_SHINX	Leer	5	5	same	
 SPECIES_SHINX	Charge	9	9	same	
@@ -7319,10 +7461,11 @@ SPECIES_SHUPPET	Grudge	46	46	same
 SPECIES_SHUPPET	Trick	50	50	same	
 SPECIES_SILCOON	Harden	1	1	same	
 SPECIES_SILCOON	Harden	7	7	same	
-SPECIES_SINISTCHA	Matcha Gotcha	1	1	same	
+SPECIES_SINISTCHA	Matcha Gotcha	1	1	same	new at 65: a key move after the evolution, from its own level 1, at Kaizo's level for it or its nearest lines'; 61 to 65: no earlier than Kaizo's level for like moves (78)
 SPECIES_SINISTCHA	Stun Spore	1	1	same	
 SPECIES_SINISTCHA	Withdraw	1	1	same	
 SPECIES_SINISTCHA	Life Dew	12	12	same	
+SPECIES_SINISTCHA	Protect		18	added	new at 18: a key move after the evolution, from Sinistea's 18
 SPECIES_SINISTCHA	Mega Drain	24	24	same	
 SPECIES_SINISTCHA	Hex	30	30	same	
 SPECIES_SINISTCHA	Rage Powder	36	36	same	
@@ -7331,6 +7474,7 @@ SPECIES_SINISTCHA	Foul Play	18	53	moved	18 to 53: its nearest Kaizo lines, trans
 SPECIES_SINISTCHA	Memento	54	54	same	
 SPECIES_SINISTCHA	Leaf Storm	60	60	same	
 SPECIES_SINISTCHA	Shadow Ball	48	65	moved	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split
+SPECIES_SINISTCHA	Matcha Gotcha	1	65	same	new at 65: a key move after the evolution, from its own level 1, at Kaizo's level for it or its nearest lines'; 61 to 65: no earlier than Kaizo's level for like moves (78)
 SPECIES_SINISTCHA	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_SINISTCHA	Absorb	6		dropped	leaves: strength 20, under 40
 SPECIES_SINISTEA	Withdraw	1	1	same	
@@ -7359,6 +7503,7 @@ SPECIES_SKARMORY	Steel Wing	34	34	same
 SPECIES_SKARMORY	Air Slash	39	39	same	
 SPECIES_SKARMORY	Slash	42	42	same	
 SPECIES_SKARMORY	Night Slash	45	45	same	
+SPECIES_SKARMORY	Drill Run		61	added	new at 61: a move in the last splits, from Legends Z-A at 38
 SPECIES_SKIPLOOM	Synthesis	1	1	same	
 SPECIES_SKIPLOOM	Tail Whip	1	1	same	
 SPECIES_SKIPLOOM	Tackle	1	1	same	
@@ -7421,6 +7566,7 @@ SPECIES_SKUNTANK	Night Slash	32	32	same
 SPECIES_SKUNTANK	Flamethrower	34	39	moved	34 to 39: Kaizo's Skuntank at 42, translated to 36, and no earlier than Kaizo's level of 42 within its split
 SPECIES_SKUNTANK	Memento	42	42	same	
 SPECIES_SKUNTANK	Explosion	52	52	same	
+SPECIES_SKUNTANK	Venoshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 21
 SPECIES_SLAKING	Scratch	1	1	same	
 SPECIES_SLAKING	Yawn	1	1	same	
 SPECIES_SLAKING	Encore	1	1	same	
@@ -7475,7 +7621,7 @@ SPECIES_SLOWBRO	Slack Off	41	76	moved	41 to 76: Kaizo's Slowbro at 97, translate
 SPECIES_SLOWBRO	Rain Dance	61		dropped	leaves: weather, for a species the player can own
 SPECIES_SLOWKING	Power Gem	1	1	same	
 SPECIES_SLOWKING	Hidden Power	1	1	same	
-SPECIES_SLOWKING	Curse	1	1	same	
+SPECIES_SLOWKING	Curse	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_SLOWKING	Yawn	1	1	same	
 SPECIES_SLOWKING	Tackle	1	1	same	
 SPECIES_SLOWKING	Growl	6	6	same	
@@ -7491,6 +7637,7 @@ SPECIES_SLOWKING	Psychic	48	44	moved	48 to 44: Kaizo's Slowking at 48, translate
 SPECIES_SLOWKING	Slack Off		52	added	new at 53: Kaizo's Slowking at 57, no earlier than that within its split (translated to 46); 53 to 52: the same-level rule (another move is at 53); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_SLOWKING	Trump Card	53	53	same	
 SPECIES_SLOWKING	Psych Up	57	57	same	
+SPECIES_SLOWKING	Curse	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_SLOWPOKE	Curse	1	1	same	
 SPECIES_SLOWPOKE	Yawn	1	1	same	
 SPECIES_SLOWPOKE	Tackle	1	1	same	
@@ -7601,6 +7748,7 @@ SPECIES_SNORLAX	Body Slam	33	33	same
 SPECIES_SNORLAX	Block	36	36	same	
 SPECIES_SNORLAX	Crunch	44	44	same	
 SPECIES_SNORLAX	Giga Impact	49	49	same	
+SPECIES_SNORLAX	Earthquake		68	added	new at 68: a move in the last splits, from Kaizo's Snorlax at 84
 SPECIES_SNORLAX	Snore	28		dropped	leaves: works only asleep, or returns less than double
 SPECIES_SNORLAX	Rollout	41		dropped	leaves: strength 27, under 40
 SPECIES_SNORUNT	Powder Snow	1	1	same	
@@ -7656,6 +7804,7 @@ SPECIES_SOLROCK	Heal Block	42	42	same
 SPECIES_SOLROCK	Rock Slide	45	45	same	
 SPECIES_SOLROCK	SolarBeam	53	53	same	
 SPECIES_SOLROCK	Explosion	56	56	same	
+SPECIES_SOLROCK	Stone Edge		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_SOLROCK	Fire Spin	12		dropped	leaves: strength 35, under 40
 SPECIES_SPEAROW	Peck	1	1	same	
 SPECIES_SPEAROW	Growl	1	1	same	
@@ -7723,6 +7872,7 @@ SPECIES_SPIRITOMB	Nasty Plot	37	37	same
 SPECIES_SPIRITOMB	Dark Pulse	49	38	moved	49 to 32: Kaizo's Spiritomb at 37, translated to 32; 32 to 37: Ian's ruling on five early moves, Kaizo gives it in its Fantina split, and no earlier than Kaizo's level of 37; 37 to 38: the same-level rule (another move is at 37)
 SPECIES_SPIRITOMB	Memento	43	43	same	
 SPECIES_SPIRITOMB	Earth Power		44	added	new at 44: Kaizo's Spiritomb at 49, no earlier than that within its split (translated to 40)
+SPECIES_SPIRITOMB	Hex		61	added	new at 61: a move in the last splits, from Legends Z-A at 25
 SPECIES_SPOINK	Psywave	7	7	same	
 SPECIES_SPOINK	Odor Sleuth	10	10	same	
 SPECIES_SPOINK	Psybeam	14	14	same	
@@ -7807,6 +7957,7 @@ SPECIES_STARAPTOR	Take Down	33	33	same
 SPECIES_STARAPTOR	Agility	41	41	same	
 SPECIES_STARAPTOR	Close Combat	34	53	moved	34 to 53: Kaizo's Staraptor at 65, translated to 53
 SPECIES_STARAPTOR	Brave Bird	49	56	moved	49 to 56: Kaizo's Staraptor at 70, translated to 55, and no earlier than Kaizo's level of 70 within its split
+SPECIES_STARAPTOR	Fly		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_STARAVIA	Tackle	1	1	same	
 SPECIES_STARAVIA	Growl	1	1	same	
 SPECIES_STARAVIA	Quick Attack	1	1	same	
@@ -7835,6 +7986,9 @@ SPECIES_STARMIE	Rapid Spin	1	1	same
 SPECIES_STARMIE	Recover	1	1	same	
 SPECIES_STARMIE	Swift	1	1	same	
 SPECIES_STARMIE	Confuse Ray	28	28	same	
+SPECIES_STARMIE	Light Screen		42	added	new at 42: a key move after the evolution, from Staryu's 42
+SPECIES_STARMIE	Hydro Pump		60	added	new at 60: a key move after the evolution, from Staryu's 55; 55 to 60: no earlier than Kaizo's level for like moves (77)
+SPECIES_STARMIE	Liquidation		61	added	new at 61: a move in the last splits, from Legends Z-A at 42
 SPECIES_STARYU	Tackle	1	1	same	
 SPECIES_STARYU	Harden	1	1	same	
 SPECIES_STARYU	Water Gun	6	6	same	
@@ -7866,6 +8020,7 @@ SPECIES_STEELIX	Iron Tail	41	41	same
 SPECIES_STEELIX	Crunch	46	46	same	
 SPECIES_STEELIX	Double-Edge	49	49	same	
 SPECIES_STEELIX	Stone Edge	54	54	same	
+SPECIES_STEELIX	Earthquake		61	added	new at 61: a move in the last splits, from Kaizo's Steelix at 54
 SPECIES_STEELIX	Bind	1		dropped	leaves: strength 13, under 40
 SPECIES_STEELIX	Rage	14		dropped	leaves: strength 20, under 40
 SPECIES_STEELIX	Sandstorm	22		dropped	leaves: weather, for a species the player can own
@@ -7892,7 +8047,7 @@ SPECIES_STUNKY	Toxic	27	27	same
 SPECIES_STUNKY	Night Slash	32	32	same	
 SPECIES_STUNKY	Memento	38	38	same	
 SPECIES_STUNKY	Explosion	44	44	same	
-SPECIES_SUDOWOODO	Wood Hammer	1	1	same	
+SPECIES_SUDOWOODO	Wood Hammer	1	1	same	new at 61: a move in the last splits, from Kaizo's Sudowoodo at 49
 SPECIES_SUDOWOODO	Copycat	1	1	same	
 SPECIES_SUDOWOODO	Flail	1	1	same	
 SPECIES_SUDOWOODO	Low Kick	1	1	same	
@@ -7910,6 +8065,7 @@ SPECIES_SUDOWOODO	Earthquake		39	added	new at 39: Kaizo's Sudowoodo at 41, no ea
 SPECIES_SUDOWOODO	Hammer Arm	49	40	moved	49 to 39: Kaizo's Sudowoodo at 46, translated to 38, and no earlier than Kaizo's level of 46 within its split; 39 to 40: the same-level rule (another move is at 39)
 SPECIES_SUDOWOODO	Sucker Punch	41	41	same	
 SPECIES_SUDOWOODO	Double-Edge	46	46	same	
+SPECIES_SUDOWOODO	Wood Hammer	1	61	same	new at 61: a move in the last splits, from Kaizo's Sudowoodo at 49
 SPECIES_SUICUNE	Bite	1	1	same	
 SPECIES_SUICUNE	Leer	1	1	same	
 SPECIES_SUICUNE	Ice Fang	50	1	moved	50 to 1: Kaizo's Suicune at 1, translated to 1
@@ -8069,6 +8225,7 @@ SPECIES_SYLVEON	Skill Swap	33	33	same
 SPECIES_SYLVEON	Moonblast	43	43	same	
 SPECIES_SYLVEON	Psych Up	45	45	same	
 SPECIES_SYLVEON	Last Resort	48	48	same	
+SPECIES_SYLVEON	Dazzling Gleam		61	added	new at 61: a move in the last splits, from Legends Z-A at 35
 SPECIES_SYLVEON	Misty Terrain	32		dropped	leaves: the move pool's first cut
 SPECIES_TAILLOW	Peck	1	1	same	
 SPECIES_TAILLOW	Growl	1	1	same	
@@ -8126,6 +8283,7 @@ SPECIES_TANGROWTH	Tickle	47	47	same
 SPECIES_TANGROWTH	Wring Out	50	50	same	
 SPECIES_TANGROWTH	Power Whip	54	54	same	
 SPECIES_TANGROWTH	Block	57	57	same	
+SPECIES_TANGROWTH	Energy Ball		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_TANGROWTH	Constrict	1		dropped	leaves: strength 10, under 40
 SPECIES_TANGROWTH	Absorb	8		dropped	leaves: strength 20, under 40
 SPECIES_TANGROWTH	Bind	22		dropped	leaves: strength 13, under 40
@@ -8253,10 +8411,11 @@ SPECIES_TENTACRUEL	Screech	42	42	same
 SPECIES_TENTACRUEL	Toxic		44	added	new at 44: Kaizo's Tentacruel at 49, no earlier than that within its split (translated to 40)
 SPECIES_TENTACRUEL	Hydro Pump	49	49	same	
 SPECIES_TENTACRUEL	Wring Out	55	55	same	
+SPECIES_TENTACRUEL	Sludge Bomb		61	added	new at 61: a move in the last splits, from Kaizo's Tentacruel at 36
 SPECIES_TENTACRUEL	Constrict	1		dropped	leaves: strength 10, under 40
 SPECIES_TENTACRUEL	Wrap	22		dropped	leaves: strength 14, under 40
 SPECIES_TOGEDEMARU	Steel Roller	1	1	same	
-SPECIES_TOGEDEMARU	U-turn	1	1	same	
+SPECIES_TOGEDEMARU	U-turn	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TOGEDEMARU	Tickle	1	1	same	
 SPECIES_TOGEDEMARU	Nuzzle	1	1	same	
 SPECIES_TOGEDEMARU	Metal Claw	5	5	same	
@@ -8272,9 +8431,11 @@ SPECIES_TOGEDEMARU	Iron Head	38	38	same
 SPECIES_TOGEDEMARU	Electroweb	42	42	same	
 SPECIES_TOGEDEMARU	Wild Charge	48	48	same	
 SPECIES_TOGEDEMARU	Spiky Shield	55	55	same	
+SPECIES_TOGEDEMARU	U-turn	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TOGEKISS	ExtremeSpeed	1	1	same	
 SPECIES_TOGEKISS	Aura Sphere	1	1	same	
 SPECIES_TOGEKISS	Air Slash	1	1	same	
+SPECIES_TOGEKISS	Moonblast		61	added	new at 61: a move in the last splits, from Legends Arceus at 43
 SPECIES_TOGEKISS	Sky Attack	1		dropped	leaves: charges a turn in the open (Kaizo's lists keep no such move)
 SPECIES_TOGEPI	Growl	1	1	same	
 SPECIES_TOGEPI	Charm	1	1	same	
@@ -8345,7 +8506,7 @@ SPECIES_TORRACAT	Parting Shot	42	42	same
 SPECIES_TORRACAT	Knock Off	45	45	same	
 SPECIES_TORRACAT	Flare Blitz	48	48	same	
 SPECIES_TORRACAT	Outrage	56	56	same	
-SPECIES_TORTERRA	Wood Hammer	1	1	same	
+SPECIES_TORTERRA	Wood Hammer	1	1	same	new at 61: a move in the last splits, from Kaizo's Torterra at 45
 SPECIES_TORTERRA	Tackle	1	1	same	
 SPECIES_TORTERRA	Withdraw	1	1	same	
 SPECIES_TORTERRA	Razor Leaf	1	1	same	
@@ -8359,6 +8520,7 @@ SPECIES_TORTERRA	Synthesis	39	39	same
 SPECIES_TORTERRA	Crunch	45	45	same	
 SPECIES_TORTERRA	Giga Drain	51	51	same	
 SPECIES_TORTERRA	Leaf Storm	57	57	same	
+SPECIES_TORTERRA	Wood Hammer	1	61	same	new at 61: a move in the last splits, from Kaizo's Torterra at 45
 SPECIES_TORTERRA	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_TORTERRA	Mega Drain	27		dropped	leaves: strength 40, at most half of Fantina's usual 80
 SPECIES_TOTODILE	Scratch	1	1	same	
@@ -8381,7 +8543,7 @@ SPECIES_TOUCANNON	Beak Blast	1	1	same
 SPECIES_TOUCANNON	Growl	1	1	same	
 SPECIES_TOUCANNON	Peck	1	1	same	
 SPECIES_TOUCANNON	Rock Smash	1	1	same	
-SPECIES_TOUCANNON	Rock Blast	1	1	same	
+SPECIES_TOUCANNON	Rock Blast	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TOUCANNON	Echoed Voice	1	1	same	
 SPECIES_TOUCANNON	Supersonic	13	13	same	
 SPECIES_TOUCANNON	Pluck	16	16	same	
@@ -8392,6 +8554,7 @@ SPECIES_TOUCANNON	Bullet Seed	40	40	same
 SPECIES_TOUCANNON	FeatherDance	44	44	same	
 SPECIES_TOUCANNON	Drill Peck	34	53	moved	34 to 53: its nearest Kaizo lines, translated to 50, and no earlier than Kaizo's level of 63 within its split
 SPECIES_TOUCANNON	Hyper Voice	50	56	moved	50 to 56: its nearest Kaizo lines, translated to 54, and no earlier than Kaizo's level of 68 within its split
+SPECIES_TOUCANNON	Rock Blast	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TOXAPEX	Baneful Bunker	1	1	same	
 SPECIES_TOXAPEX	Baneful Bunker	1	1	same	
 SPECIES_TOXAPEX	Poison Sting	1	1	same	
@@ -8426,6 +8589,7 @@ SPECIES_TOXICROAK	Nasty Plot	36	36	same
 SPECIES_TOXICROAK	Poison Jab	41	41	same	
 SPECIES_TOXICROAK	Sludge Bomb	49	49	same	
 SPECIES_TOXICROAK	Flatter	54	54	same	
+SPECIES_TOXICROAK	Venoshock		61	added	new at 61: a move in the last splits, from Legends Z-A at 20
 SPECIES_TOXICROAK	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_TRAPINCH	Bite	1	1	same	
 SPECIES_TRAPINCH	Sand-Attack	9	9	same	
@@ -8483,7 +8647,7 @@ SPECIES_TRUMBEAK	Bullet Seed	37	37	same
 SPECIES_TRUMBEAK	FeatherDance	40	40	same	
 SPECIES_TRUMBEAK	Hyper Voice	45	45	same	
 SPECIES_TSAREENA	Punishment	1	1	same	
-SPECIES_TSAREENA	Triple Axel	1	1	same	
+SPECIES_TSAREENA	Triple Axel	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TSAREENA	DoubleSlap	1	1	same	
 SPECIES_TSAREENA	Trop Kick	1	1	same	
 SPECIES_TSAREENA	Swagger	5	5	same	
@@ -8498,6 +8662,7 @@ SPECIES_TSAREENA	Aromatherapy	38	38	same
 SPECIES_TSAREENA	Power Whip	48	48	same	
 SPECIES_TSAREENA	Hi Jump Kick	55	55	same	
 SPECIES_TSAREENA	Leaf Storm	44	60	moved	44 to 60: its nearest Kaizo lines, translated to 60
+SPECIES_TSAREENA	Triple Axel	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_TURTONATOR	Head Smash	1	1	same	
 SPECIES_TURTONATOR	Body Press	1	1	same	
 SPECIES_TURTONATOR	Ember	1	1	same	
@@ -8570,6 +8735,7 @@ SPECIES_UMBREON	Helping Hand	1	1	same
 SPECIES_UMBREON	Sand-Attack	8	8	same	
 SPECIES_UMBREON	Pursuit	15	15	same	
 SPECIES_UMBREON	Quick Attack	22	22	same	
+SPECIES_UMBREON	Bite		28	added	new at 28: a key move after the evolution, from Eevee's 29; 29 to 28: the one-level rule
 SPECIES_UMBREON	Confuse Ray	29	29	same	
 SPECIES_UMBREON	Body Slam		30	added	new at 29: Kaizo's Umbreon at 29, no earlier than that within its split (translated to 27); 29 to 30: the same-level rule (another move is at 29)
 SPECIES_UMBREON	Faint Attack	36	36	same	
@@ -8685,6 +8851,7 @@ SPECIES_VESPIQUEN	Captivate	33	33	same
 SPECIES_VESPIQUEN	Swagger	39	39	same	
 SPECIES_VESPIQUEN	Attack Order	37	40	moved	37 to 39: Kaizo's Vespiquen at 47, translated to 39; 39 to 40: the same-level rule (another move is at 39)
 SPECIES_VESPIQUEN	Destiny Bond	43	43	same	
+SPECIES_VESPIQUEN	Bug Buzz		61	added	new at 61: a move in the last splits, from Kaizo's Vespiquen at 37
 SPECIES_VESPIQUEN	Fury Cutter	9		dropped	leaves: strength 38, under 40
 SPECIES_VIBRAVA	SonicBoom	1	1	same	
 SPECIES_VIBRAVA	Sand-Attack	1	1	same	
@@ -8720,7 +8887,7 @@ SPECIES_VIGOROTH	Focus Punch	43	43	same
 SPECIES_VIGOROTH	Reversal	49	49	same	
 SPECIES_VIKAVOLT	Sticky Web	1	1	same	
 SPECIES_VIKAVOLT	ViceGrip	1	1	same	
-SPECIES_VIKAVOLT	X-Scissor	1	1	same	
+SPECIES_VIKAVOLT	X-Scissor	1	1	same	new at 53: a key move after the evolution, from Charjabug's 53
 SPECIES_VIKAVOLT	Bug Bite	1	1	same	
 SPECIES_VIKAVOLT	Crunch	1	1	same	
 SPECIES_VIKAVOLT	Thunderbolt	1	1	same	
@@ -8730,6 +8897,7 @@ SPECIES_VIKAVOLT	Crunch	29	29	same
 SPECIES_VIKAVOLT	Signal Beam	36	33	moved	36 to 33: its nearest Kaizo lines, translated to 32, and no earlier than Kaizo's level of 37 within its split
 SPECIES_VIKAVOLT	Discharge	48	34	moved	48 to 32: its nearest Kaizo lines, translated to 32; 32 to 34: Ian's ruling on five early moves, its nearest Kaizo lines get it in their Fantina split, and no earlier than Kaizo's level of 34
 SPECIES_VIKAVOLT	Bug Buzz	55	53	moved	55 to 53: its nearest Kaizo lines, translated to 52, and no earlier than Kaizo's level of 64 within its split
+SPECIES_VIKAVOLT	X-Scissor	1	53	same	new at 53: a key move after the evolution, from Charjabug's 53
 SPECIES_VIKAVOLT	Thunderbolt	65	65	same	
 SPECIES_VIKAVOLT	Zap Cannon	66	66	same	
 SPECIES_VILEPLUME	Mega Drain	1	1	same	
@@ -8860,6 +9028,7 @@ SPECIES_WALREIN	Swagger	32	32	same
 SPECIES_WALREIN	Rest	39	39	same	
 SPECIES_WALREIN	Ice Fang	44	44	same	
 SPECIES_WALREIN	Blizzard	52	52	same	
+SPECIES_WALREIN	Liquidation		61	added	new at 61: a move in the last splits, from Legends Arceus at 25
 SPECIES_WALREIN	Sheer Cold	65	65	same	
 SPECIES_WALREIN	Ice Ball	13		dropped	leaves: strength 27, under 40
 SPECIES_WALREIN	Hail	31		dropped	leaves: weather, for a species the player can own
@@ -8882,7 +9051,7 @@ SPECIES_WARTORTLE	Skull Bash	36		dropped	leaves: charges a turn in the open (Kai
 SPECIES_WARTORTLE	Rain Dance	44		dropped	leaves: weather, for a species the player can own
 SPECIES_WEAVILE	Embargo	1	1	same	
 SPECIES_WEAVILE	Revenge	1	1	same	
-SPECIES_WEAVILE	Assurance	1	1	same	
+SPECIES_WEAVILE	Assurance	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_WEAVILE	Scratch	1	1	same	
 SPECIES_WEAVILE	Leer	1	1	same	
 SPECIES_WEAVILE	Taunt	1	1	same	
@@ -8896,6 +9065,7 @@ SPECIES_WEAVILE	Icy Wind	28	28	same
 SPECIES_WEAVILE	Night Slash	35	35	same	
 SPECIES_WEAVILE	Fling	38	38	same	
 SPECIES_WEAVILE	Dark Pulse	49	49	same	
+SPECIES_WEAVILE	Assurance	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_WEAVILE	Metal Claw	42		dropped	leaves: strength 48, at most half of Wake's usual 95
 SPECIES_WEEDLE	Poison Sting	1	1	same	
 SPECIES_WEEDLE	String Shot	1	1	same	
@@ -8928,8 +9098,9 @@ SPECIES_WEEZING	Double Hit	33	33	same
 SPECIES_WEEZING	Explosion	40	40	same	
 SPECIES_WEEZING	Sludge Bomb	48	48	same	
 SPECIES_WEEZING	Destiny Bond	55	55	same	
+SPECIES_WEEZING	Thunder		61	added	new at 61: a move in the last splits, from a TM it learns
 SPECIES_WEEZING	Memento	63	63	same	
-SPECIES_WHISCASH	Zen Headbutt	1	1	same	
+SPECIES_WHISCASH	Zen Headbutt	1	1	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_WHISCASH	Tickle	1	1	same	
 SPECIES_WHISCASH	Mud-Slap	1	1	same	
 SPECIES_WHISCASH	Mud Sport	1	1	same	
@@ -8946,6 +9117,7 @@ SPECIES_WHISCASH	Aqua Tail	39	39	same
 SPECIES_WHISCASH	Earthquake	45	45	same	
 SPECIES_WHISCASH	Future Sight	51	51	same	
 SPECIES_WHISCASH	Fissure	57	57	same	
+SPECIES_WHISCASH	Zen Headbutt	1	61	same	new at 61: a move in the last splits, from its own level 1
 SPECIES_WHISCASH	Snore	33		dropped	leaves: works only asleep, or returns less than double
 SPECIES_WHISMUR	Pound	1	1	same	
 SPECIES_WHISMUR	Uproar	5	5	same	
@@ -9017,6 +9189,7 @@ SPECIES_WORMADAM	Flail	38	38	same
 SPECIES_WORMADAM	Attract	41	41	same	
 SPECIES_WORMADAM	Psychic	44	44	same	
 SPECIES_WORMADAM	Leaf Storm	47	47	same	
+SPECIES_WORMADAM	Blizzard		61	added	new at 61: a move in the last splits, from Kaizo's Wormadam at 44
 SPECIES_WURMPLE	Tackle	1	1	same	
 SPECIES_WURMPLE	String Shot	1	1	same	
 SPECIES_WURMPLE	Poison Sting	5	5	same	
@@ -9123,7 +9296,7 @@ SPECIES_YANMEGA	Tackle	1	1	same
 SPECIES_YANMEGA	Foresight	1	1	same	
 SPECIES_YANMEGA	Quick Attack	1	1	same	
 SPECIES_YANMEGA	Double Team	1	1	same	
-SPECIES_YANMEGA	Air Slash	54	1	moved	54 to 1: an exclusive delay, Kaizo gives it only to Yanma
+SPECIES_YANMEGA	Air Slash	54	1	moved	54 to 1: an exclusive delay, Kaizo gives it only to Yanma; new at 61: a move in the last splits, from its own level 1
 SPECIES_YANMEGA	Quick Attack	6	6	same	
 SPECIES_YANMEGA	Double Team	11	11	same	
 SPECIES_YANMEGA	SonicBoom	14	14	same	
@@ -9133,10 +9306,12 @@ SPECIES_YANMEGA	Uproar	27	27	same
 SPECIES_YANMEGA	Pursuit	30	30	same	
 SPECIES_YANMEGA	AncientPower	33	33	same	
 SPECIES_YANMEGA	Feint	38	38	same	
+SPECIES_YANMEGA	Wing Attack		42	added	new at 42: a key move after the evolution, from Yanma's 43; 43 to 42: the one-level rule
 SPECIES_YANMEGA	Slash	43	43	same	
 SPECIES_YANMEGA	Screech	46	46	same	
 SPECIES_YANMEGA	U-turn	49	49	same	
 SPECIES_YANMEGA	Bug Buzz	57	57	same	
+SPECIES_YANMEGA	Air Slash	54	61	same	54 to 1: an exclusive delay, Kaizo gives it only to Yanma; new at 61: a move in the last splits, from its own level 1
 SPECIES_YVELTAL	Gust	1	1	same	
 SPECIES_YVELTAL	Taunt	1	1	same	
 SPECIES_YVELTAL	Double Team	1	1	same	

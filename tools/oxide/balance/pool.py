@@ -348,7 +348,9 @@ def level_up_moves(species, split):
         for s, level, _how in catches().get(start, []):
             if split_index(s) > split_index(split) or level > cap:
                 continue
-            out |= set(calc_trainers.default_moves(_learnset(start), level))
+            # A level-0 entry is an evolution move: never known at capture,
+            # taught on evolving into the stage (Ian, 2026-09-28).
+            out |= set(calc_trainers.default_moves([e for e in _learnset(start) if e[0] != 0], level))
             out |= {mv for lv, mv in _learnset(start) if level < lv <= cap}
             now = level
             for before, stage in zip(chain[i:], chain[i + 1:]):
@@ -361,7 +363,7 @@ def level_up_moves(species, split):
                 if not ats:
                     break
                 now = min(min(ats), cap)
-                out |= {mv for lv, mv in _learnset(stage) if max(now, 2) <= lv <= cap}
+                out |= {mv for lv, mv in _learnset(stage) if max(now, 2) <= lv <= cap or lv == 0}
     return out
 
 

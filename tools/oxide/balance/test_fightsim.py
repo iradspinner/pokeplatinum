@@ -88,6 +88,19 @@ def check_sleep_turns(results):
     results.append(("sleep lasts its turns, then the Pokemon acts", ok, f"foe HP {hp}"))
 
 
+def check_binding(results):
+    """A binding move takes an eighth of max HP a turn, a sixth when the
+    binder holds a Binding Band (Ian, 2026-09-28)."""
+    lost = []
+    for band in (False, True):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, hp=96)
+        foe.bound, foe.bound_band = 3, band
+        fs._end_of_turn_mon(b, b.b, foe)
+        lost.append(96 - foe.hp)
+    results.append(("binding takes an eighth a turn, a sixth with the Binding Band", lost == [12, 16],
+                    f"lost {lost[0]}, with the band {lost[1]}"))
+
+
 def check_ai_kill(results):
     """Evaluate Attack: a move that kills scores above the strongest that
     does not, and Basic refuses a move the target is immune to."""
@@ -262,7 +275,7 @@ def check_sure(results):
 
 def main():
     results = []
-    for check in (check_damage, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
+    for check in (check_damage, check_status, check_sleep_turns, check_binding, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):
         check(results)

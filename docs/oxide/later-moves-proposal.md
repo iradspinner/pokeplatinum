@@ -4,12 +4,12 @@ Written by `laterlearn.py` (2026-09-27) for the Overseer to read before Ian. For
 
 | Later level-up moves | Count |
 |---|---|
-| Added | 349 |
-| Replaces | 10 |
-| For Ian | 134 |
-| Relearner only | 239 |
+| Added | 340 |
+| Replaces | 11 |
+| For Ian | 116 |
+| Relearner only | 230 |
 | Once fixed | 2 |
-| Already there | 2 |
+| Already there | 37 |
 | Left out | 65 |
 
 Why moves are left out:
@@ -22,7 +22,7 @@ Why moves are left out:
 
 ## The notable adds and replaces, by split
 
-60 of the adds and replaces are notable: a good attack for the species, or a status move Ian's tier list rates A or better, a partner move aside. By the split in which the player first has the move: the later of the split its level falls in and the first split the player can own the stage in:
+56 of the adds and replaces are notable: a good attack for the species, or a status move Ian's tier list rates A or better, a partner move aside. By the split in which the player first has the move: the later of the split its level falls in and the first split the player can own the stage in:
 
 
 **Maylene**
@@ -56,27 +56,24 @@ Why moves are left out:
 
 | Stage | Move | Level | Action | From |
 |---|---|---|---|---|
-| Lunatone | Psyshock | 21 | added, known at capture at 31 | Legends Z-A 20 |
 | Cloyster | Razor Shell | 39 | added | Legends Z-A 5 |
 | Rhyperior | Drill Run | 44 | added | Legends Z-A 35 |
 | Shellder | Razor Shell | 44 | added | Legends Z-A 32 |
 | Gorebyss | Coil | 45 | added | Legends Z-A 45 |
+| Honchkrow | Foul Play | 45 | added | Legends Z-A 45 |
 | Huntail | Coil | 45 | added | Legends Z-A 45 |
 | Roselia | Petal Blizzard | 45 | added | Brilliant Diamond and Shining Pearl 45 |
 | Squirtle | Liquidation | 45 | added | Legends Z-A 45 |
 | Wartortle | Liquidation | 45 | added | Legends Z-A 45 |
 | Chimecho | Boomburst | 48 | added | Legends Z-A 48 |
-| Mawile | Play Rough | 48 | added | Legends Z-A 48 |
 | Milotic | Coil | 48 | added | Scarlet and Violet 48 |
 | Mothim | Lunge | 48 | added | Legends Z-A 47 |
 | Shinx | Wild Charge | 48 | added | Legends Z-A 48 |
-| Cloyster | Icicle Crash | 50 | added | Ultra Sun and Ultra Moon 50 |
 | Lunatone | Moonblast | 50 | added | X and Y 50 |
 | Pikachu | Wild Charge | 50 | added | Ultra Sun and Ultra Moon 50 |
 | Wartortle | Wave Crash | 50 | added | Scarlet and Violet 50 |
 | Tentacruel | Sludge Wave | 52 | added | Legends Z-A 52 |
 | Abomasnow | Icicle Crash | 53 | added | Legends Arceus 18 |
-| Donphan | StompingTantrum | 53 | added | Legends Z-A 30 |
 | Lickilicky | Chip Away | 53 | added | Ultra Sun and Ultra Moon 37 |
 | Scizor | Lunge | 53 | added | Legends Z-A 46 |
 | Spheal | Liquidation | 53 | added | Legends Arceus 25 |
@@ -85,7 +82,6 @@ Why moves are left out:
 
 | Stage | Move | Level | Action | From |
 |---|---|---|---|---|
-| Delibird | Freeze-Dry | 37 | added | Legends Z-A 37 |
 | Electivire | Wild Charge | 56 | added | Brilliant Diamond and Shining Pearl 1 |
 | Haunter | Phantom Force | 56 | added | Legends Z-A 55 |
 
@@ -100,14 +96,14 @@ Why moves are left out:
 | Stage | Move | Level | Action | From |
 |---|---|---|---|---|
 | Gyarados | Hurricane | 44 | added | Legends Z-A 44 |
+| Floatzel | Wave Crash | 62 | replaces Dive | Legends Z-A 62 |
 | Torterra | Headlong Rush | 63 | added | Scarlet and Violet 63 |
 
 **Volkner**
 
 | Stage | Move | Level | Action | From |
 |---|---|---|---|---|
-| Empoleon | Wave Crash | 66 | added | Scarlet and Violet 66 |
-| Flygon | Boomburst | 68 | added | Legends Z-A 68 |
+| Empoleon | Wave Crash | 66 | replaces Waterfall | Scarlet and Violet 66 |
 | Luxio | Wild Charge | 68 | added | Legends Z-A 68 |
 
 **League**
@@ -134,11 +130,9 @@ Why moves are left out:
 
 Each stage with a notable add or replace: where it is first had, the good attacks and S or SSS status moves it has by the cap of the split the new move lands in, on the proposal now and with the later moves.
 
-- Lunatone, had from 31 (Byron), by 53: Psychic 39, Future Sight 53; gains Psyshock 31, Moonblast 50.
 - Articuno, had from 60 (after the League), by 78: Ice Beam 60, Tailwind 64, Roost 69, Blizzard 71; gains Hurricane 60.
 - Squirtle, had from 3 (Roark), by 53: Aqua Tail 28, Hydro Pump 40; gains Wave Crash 36, Liquidation 45.
-- Delibird, had from 33 (Candice), by 56: nothing strong; gains Freeze-Dry 37.
-- Cloyster, had from 34 (Byron), by 53: Icicle Spear 34; gains Razor Shell 39, Icicle Crash 50.
+- Cloyster, had from 34 (Byron), by 53: Icicle Spear 34, Ice Beam 49; gains Razor Shell 39.
 - Lickitung, had from 20 (Maylene), by 39: Slam 29, Body Slam 30; gains Chip Away 39.
 - Umbreon, had from 20 (Fantina), by 39: Body Slam 30, Assurance 39; gains Foul Play 39.
 - Hippopotas, had from 1 (Fantina), by 39: Earthquake 37; gains High Horsepower 39.
@@ -162,31 +156,31 @@ Each stage with a notable add or replace: where it is first had, the good attack
 - Roselia, had from 30 (Fantina), by 53: Toxic 37, Petal Dance 40; gains Petal Blizzard 45.
 - Huntail, had from 17 (Gardenia), by 53: Ice Fang 32, Baton Pass 33, Dive 37, Aqua Tail 46, Hydro Pump 51; gains nothing strong by then.
 - Gorebyss, had from 6 (Gardenia), by 53: Baton Pass 33, Dive 37, Psychic 42, Aqua Tail 46, Hydro Pump 51; gains nothing strong by then.
+- Honchkrow, had from 27 (Fantina), by 53: Assurance 32, Nasty Plot 35; gains Foul Play 45.
 - Shaymin, had from 30 (after the League), by 78: Energy Ball 73; gains Play Rough 47.
-- Mawile, had from 33 (Byron), by 53: Baton Pass 33, Thunder Fang 39, Ice Fang 44; gains Play Rough 48.
 - Milotic, had from 30 (Fantina), by 53: Hydro Pump 37; gains nothing strong by then.
 - Chimecho, had from 20 (Gardenia), by 53: Double-Edge 33, Recover 34, Extrasensory 46; gains Boomburst 48.
 - Mothim, had from 20 (Gardenia), by 53: Air Slash 41, Psychic 44, Bug Buzz 47; gains Lunge 48.
 - Pikachu, had from 10 (Gardenia), by 53: Slam 21, Thunderbolt 30, Discharge 37, Thunder 45; gains Wild Charge 50.
 - Kabuto, had from 20 (after the League), by 78: Muddy Water 32; gains Liquidation 50.
+- Lunatone, had from 31 (Byron), by 53: Psychic 39, Future Sight 53; gains Moonblast 50.
 - Tentacruel, had from 30 (Fantina), by 53: Toxic Spikes 30, Poison Jab 36, Toxic 44, Hydro Pump 49; gains Sludge Wave 52.
 - Scizor, had from 18 (Maylene), by 53: X-Scissor 52, Iron Head 53; gains Lunge 53.
-- Donphan, had from 25 (Gardenia), by 53: Slam 25, Earthquake 46; gains StompingTantrum 53.
 - Spheal, had from 16 (Wake), by 53: Body Slam 19, Encore 31, Blizzard 43; gains Liquidation 53.
 - Abomasnow, had from 40 (Wake), by 53: Wood Hammer 40, Blizzard 47; gains Icicle Crash 53.
 - Lickilicky, had from 32 (Maylene), by 53: Body Slam 32, Slam 32, Sludge Bomb 39, Power Whip 44, Toxic 52; gains Chip Away 53.
 - Moltres, had from 60 (after the League), by 78: Air Slash 60, Flamethrower 60, Heat Wave 64, Roost 69; gains Hurricane 60, Burn Up 65.
 - Haunter, had from 25 (Fantina), by 56: Shadow Ball 33, Shadow Punch 38; gains Phantom Force 56.
 - Kabutops, had from 40 (after the League), by 78: Muddy Water 40, Superpower 53; gains Liquidation 56.
-- Electivire, had from 30 (Maylene), by 56: ThunderPunch 30, Discharge 37; gains Wild Charge 56.
+- Electivire, had from 30 (Maylene), by 56: ThunderPunch 30, Discharge 37, Thunderbolt 53; gains Wild Charge 56.
 - Blastoise, had from 36 (Maylene), by 60: Aqua Tail 36, Hydro Pump 60; gains Liquidation 60.
-- Torterra, had from 32 (Fantina), by 65: Earthquake 32, Giga Drain 51, Leaf Storm 57; gains Headlong Rush 63.
+- Floatzel, had from 20 (Gardenia), by 65: Dive 61; gains Wave Crash 62.
+- Torterra, had from 32 (Fantina), by 65: Earthquake 32, Giga Drain 51, Leaf Storm 57, Wood Hammer 61; gains Headlong Rush 63.
 - Cresselia, had from 50 (after the League), by 78: Future Sight 50, Psycho Cut 66, Psychic 74; gains Moonblast 65.
-- Empoleon, had from 36 (Maylene), by 68: Aqua Tail 36, Hydro Pump 59; gains Wave Crash 66.
-- Flygon, had from 45 (Byron), by 68: Dragon Claw 45, Dragon Pulse 53; gains Boomburst 68.
+- Empoleon, had from 36 (Maylene), by 68: Aqua Tail 36, Hydro Pump 59, Waterfall 61; gains Wave Crash 66.
 - Luxio, had from 15 (Roark), by 68: Thunder Fang 33; gains Wild Charge 68.
 - Darkrai, had from 40 (after the League), by 78: Nasty Plot 75; gains Phantom Force 70.
-- Kingdra, had from 34 (Wake), by 78: Hydro Pump 40, Dragon Dance 48, Dragon Pulse 57; gains Wave Crash 72.
+- Kingdra, had from 34 (Wake), by 78: Hydro Pump 40, Dragon Dance 48, Dragon Pulse 57, Ice Beam 61; gains Wave Crash 72.
 
 ## The own-type gaps
 
@@ -194,9 +188,9 @@ Ian's ruling (2026-09-27): a stage the player can evolve by the end of Gardenia'
 
 | Gaps | Stages |
 |---|---|
-| Filled from a later game | 31 |
+| Filled from a later game | 28 |
 | For Ian (the rules would not place the move to fill it) | 15 |
-| Unfilled: no later game offers one | 25 |
+| Unfilled: no later game offers one | 22 |
 
 | Stage | Had from | Move | Level | Later game | Result |
 |---|---|---|---|---|---|
@@ -221,7 +215,6 @@ Ian's ruling (2026-09-27): a stage the player can evolve by the end of Gardenia'
 | Clefable | 17 | Draining Kiss | 17 | Legends Z-A 16 | filled |
 | Nidoking | 17 | Sludge Wave |  | Brilliant Diamond and Shining Pearl 1 | for Ian: its floor, 39, is past 33, the gap's end |
 | Nidoqueen | 17 | Sludge Wave |  | Brilliant Diamond and Shining Pearl 1 | for Ian: its floor, 39, is past 33, the gap's end |
-| Shiftry | 17 | Leaf Tornado | 17 | Legends Z-A 0 | filled |
 | Steelix | 17 | Bulldoze | 17 | Legends Arceus 11 | filled |
 | Croconaw | 18 | Liquidation | 32 | Legends Z-A 40 | filled |
 | Dhelmise | 18 | Phantom Force |  | Legends Z-A 60 | for Ian: its floor, 39, is past 33, the gap's end |
@@ -230,13 +223,11 @@ Ian's ruling (2026-09-27): a stage the player can evolve by the end of Gardenia'
 | Floatzel | 20 | Liquidation |  | Legends Z-A 41 | for Ian: its floor, 53, is past 33, the gap's end |
 | Gyarados | 20 | Hurricane |  | Legends Z-A 44 | for Ian: its floor, 39, is past 33, the gap's end |
 | Trapinch | 20 | Bulldoze | 20 | Legends Z-A 20 | filled |
-| Umbreon | 20 | Snarl | 20 | Legends Z-A 0 | filled |
 | Slugma | 21 | Incinerate | 21 | Legends Z-A 15 | filled |
 | Granbull | 23 | Play Rough | 33 | Legends Z-A 43 | for Ian: a good attack on a stage the flags or the bar hold (with it in) |
 | Shellder | 24 | Razor Shell |  | Legends Z-A 32 | for Ian: its floor, 44, is past 33, the gap's end |
 | Donphan | 25 | Bulldoze | 25 | Legends Z-A 1 | filled |
 | Jumpluff | 27 | Acrobatics | 30 | Legends Z-A 30 | filled |
-| Mismagius | 27 | Hex | 27 | Legends Arceus 18 | filled |
 | Feraligatr | 30 | Liquidation | 39 | Legends Z-A 40 | for Ian: a good attack on a stage the flags or the bar hold (with it in) |
 | Glaceon | 30 | Freeze-Dry | 39 | Legends Z-A 40 | for Ian: a good attack on a stage the flags or the bar hold (with it in) |
 | Roselia | 30 | Venoshock | 30 | Legends Arceus 25 | filled |
@@ -247,7 +238,7 @@ Ian's ruling (2026-09-27): a stage the player can evolve by the end of Gardenia'
 | Gliscor | 39 | Acrobatics | 39 | Legends Z-A 22 | filled |
 | Togekiss | 40 | Draining Kiss | 40 | Legends Arceus 11 | filled |
 
-Unfilled, for Ian: Alolan Ninetales (had from 13), Alomomola (had from 30), Beautifly (had from 10), Brionne (had from 16), Cradily (had from 40), Delcatty (had from 17), Feebas (had from 6), Flaaffy (had from 15), Grovyle (had from 16), Happiny (had from 19), Lileep (had from 20), Lopunny (had from 20), Luvdisc (had from 4), Masquerain (had from 22), Polteageist (had from 27), Sceptile (had from 36), Seel (had from 16), Staryu (had from 14), Tangela (had from 19), Tangrowth (had from 35), Torracat (had from 16), Unown (had from 20), Vaporeon (had from 34), Yanma (had from 19), Yanmega (had from 35).
+Unfilled, for Ian: Alomomola (had from 30), Beautifly (had from 10), Brionne (had from 16), Cradily (had from 40), Feebas (had from 6), Flaaffy (had from 15), Grovyle (had from 16), Happiny (had from 19), Lileep (had from 20), Lopunny (had from 20), Luvdisc (had from 4), Masquerain (had from 22), Polteageist (had from 27), Sceptile (had from 36), Seel (had from 16), Staryu (had from 14), Tangela (had from 19), Tangrowth (had from 35), Torracat (had from 16), Unown (had from 20), Vaporeon (had from 34), Yanma (had from 19).
 
 ## The eleven held moves
 
@@ -280,12 +271,11 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 
 ## For Ian
 
-134 later moves the rules do not place on their own:
+116 later moves the rules do not place on their own:
 
 | Stage | Move | Later game | Why |
 |---|---|---|---|
 | Absol | Phantom Force | Legends Z-A 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Alakazam | Psyshock | Legends Z-A 30 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Altaria | Hurricane | Brilliant Diamond and Shining Pearl 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Altaria | Moonblast | Legends Z-A 40 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Azumarill | Play Rough | Legends Z-A 25 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -296,7 +286,6 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Buizel | Wave Crash | Legends Z-A 49 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Buneary | Play Rough | Legends Arceus 31 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Carvanha | Liquidation | Legends Z-A 44 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Castform | Hurricane | Legends Z-A 45 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Charizard | Flame Burst | Ultra Sun and Ultra Moon 32 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Charmeleon | Flame Burst | Ultra Sun and Ultra Moon 32 | comes along without a real wait into Charizard, which the power flags or the bar hold, before its first good one of that type |
 | Chatot | Hurricane | Legends Arceus 52 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -311,20 +300,15 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Cloyster | Shell Smash | Legends Z-A 1 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Corphish | Razor Shell | Legends Z-A 32 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Crawdaunt | Razor Shell | Legends Z-A 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Delcatty | Play Rough | Brilliant Diamond and Shining Pearl 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Drifblim | Phantom Force | Legends Z-A 0 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Drifblim | Strength Sap | Legends Z-A 1 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Dustox | Quiver Dance | Legends Z-A 40 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Empoleon | Liquidation | Legends Arceus 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Feraligatr | Liquidation | Legends Z-A 40 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Floatzel | Liquidation | Legends Z-A 41 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Floatzel | Wave Crash | Legends Z-A 62 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Froslass | Icicle Crash | Legends Arceus 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Froslass | Phantom Force | Legends Z-A 55 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Gabite | Dual Chop | Ultra Sun and Ultra Moon 0 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Gallade | Sacred Sword | Legends Z-A 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Gardevoir | Dazzling Gleam | Legends Z-A 0 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Gardevoir | Moonblast | Legends Z-A 49 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Gengar | Phantom Force | Legends Z-A 55 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Gengar | Sludge Wave | Legends Z-A 48 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Girafarig | Twin Beam | Legends Z-A 32 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -338,8 +322,6 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Hariyama | Headlong Rush | Legends Z-A 60 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Haunter | Sludge Wave | Legends Z-A 48 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Heracross | Lunge | Legends Z-A 32 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Hippowdon | High Horsepower | Legends Arceus 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Honchkrow | Foul Play | Legends Z-A 45 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Hoothoot | Moonblast | Legends Z-A 33 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Houndoom | Foul Play | Scarlet and Violet 45 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Houndour | Foul Play | Scarlet and Violet 40 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -347,7 +329,6 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Kadabra | Psyshock | Legends Z-A 30 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Kingler | Razor Shell | Legends Z-A 36 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Kricketune | Sticky Web | Legends Z-A 44 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
-| Lopunny | Play Rough | Legends Arceus 31 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Luxio | Volt Switch | Legends Z-A 31 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Luxray | Volt Switch | Legends Z-A 33 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Magby | Flame Burst | Ultra Sun and Ultra Moon 22 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -362,16 +343,11 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Marill | Play Rough | Legends Z-A 21 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Masquerain | Quiver Dance | Legends Z-A 52 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Masquerain | Sticky Web | Brilliant Diamond and Shining Pearl 1 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
-| Medicham | Axe Kick | Scarlet and Violet 53 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Mightyena | Play Rough | Legends Z-A 56 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Mismagius | Phantom Force | Legends Z-A 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Mothim | Quiver Dance | Legends Z-A 0 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
-| Mr Mime | Dazzling Gleam | Legends Z-A 44 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Munchlax | Chip Away | Ultra Sun and Ultra Moon 17 | comes along without a real wait into Snorlax, which the power flags or the bar hold, before its first good one of that type |
 | Munchlax | High Horsepower | Legends Arceus 37 | comes along without a real wait into Snorlax, which the power flags or the bar hold, before its first good one of that type |
-| Nidoking | Sludge Wave | Brilliant Diamond and Shining Pearl 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Nidoqueen | Sludge Wave | Brilliant Diamond and Shining Pearl 1 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Noctowl | Moonblast | Legends Z-A 43 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Omanyte | Shell Smash | Legends Z-A 55 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Omastar | Shell Smash | Legends Z-A 63 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Onix | High Horsepower | Legends Arceus 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
@@ -402,19 +378,16 @@ Lunar Blessing and Throat Chop stay out until element 4's follow-up makes them w
 | Snover | Icicle Crash | Legends Arceus 18 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Snubbull | Play Rough | Legends Z-A 37 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Squirtle | Shell Smash | Scarlet and Violet 27 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
-| Starmie | Liquidation | Legends Z-A 42 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Steelix | High Horsepower | Legends Arceus 34 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Surskit | Sticky Web | Legends Z-A 38 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Swampert | Sludge Wave | Legends Z-A 60 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Swinub | High Horsepower | Legends Arceus 25 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Swinub | Icicle Crash | Legends Arceus 18 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
-| Togekiss | Moonblast | Legends Arceus 43 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Togetic | Moonblast | Legends Arceus 43 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Torchic | Flame Burst | Ultra Sun and Ultra Moon 28 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Tropius | Dragon Hammer | Brilliant Diamond and Shining Pearl 46 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Vibrava | Boomburst | Legends Z-A 62 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Vulpix | Flame Burst | Ultra Sun and Ultra Moon 28 | comes along without a real wait into Ninetales, which the power flags or the bar hold, before its first good one of that type |
-| Walrein | Liquidation | Legends Arceus 25 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Wartortle | Shell Smash | Scarlet and Violet 35 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
 | Wingull | Hurricane | Legends Z-A 45 | a stage the power flags or the bar hold takes a new attack only no earlier than its first good one of that type |
 | Wormadam | Quiver Dance | Legends Z-A 0 | an S or SSS status move, which the rules add only where Kaizo gives the species the move, and Kaizo gives no species a later move |
