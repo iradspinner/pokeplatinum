@@ -103,10 +103,14 @@ def crc16(data):
 
 
 def footers(data):
-    """Every block footer in the file, valid or not, in file order."""
+    """Every block footer in the file, valid or not, in file order. The battle
+    log's footers carry the same signature but are laid out differently; they
+    are the battle log reader's (battlelog.py), and are left out here."""
+    from . import battlelog
+    log_footers = battlelog.footer_positions(data)
     out = []
     for pos in range(12, len(data) - 8, 4):
-        if struct.unpack_from("<I", data, pos)[0] != SIGNATURE:
+        if struct.unpack_from("<I", data, pos)[0] != SIGNATURE or pos in log_footers:
             continue
         at = pos - 12
         save_counter, block_counter, size = struct.unpack_from("<III", data, at)
