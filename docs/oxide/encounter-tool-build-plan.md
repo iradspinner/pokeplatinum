@@ -1069,6 +1069,18 @@ that stay. None blocks anything.
    over its threshold and R8 0.01 over its floor, so a later table edit
    should check both.
 
+38. **Dim, and the Calc tab's broken image (Ian, 2026-09-28, through the
+   Overseer).** A third theme between Dark and Light: the dark scheme on a
+   soft teal-grey, with its values in the visual design doc's section 2.
+   The theme button steps through the three looks and back to Windows,
+   skipping the one that looks like Windows already, so every press changes
+   the page. The calculator follows through the shared tokens. Its text and
+   meaning colours keep WCAG's 4.5:1, which test_m4 now checks. The broken
+   image in the calculator's Import / Export panel was the DeSmuME link's
+   icon, shown again by a second block patch 13 had missed; it stays hidden
+   under the Oxide title now. Both were checked in headless Chrome. This
+   comes ahead of the layout redesign the Overseer is mocking up.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
