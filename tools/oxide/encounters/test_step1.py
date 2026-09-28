@@ -87,9 +87,10 @@ def check_tiers(results):
     # and the five ghost rows (Gastly and Misdreavus lines) Ian added for the
     # Old Chateau on 2026-09-21, and the 37 rows of the seventeen water lines
     # he added on 2026-09-26 (Clamperl to Wingull), and the 73 rows of the
-    # 34 lines that took the list to Platinum's size the same day.
+    # 34 lines that took the list to Platinum's size the same day, and
+    # Meloetta's row (2026-09-27).
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 498 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 499 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     # The classic starters left the gate tier on 2026-09-27 (Ian); the
     # briefcase's three are still gate.
@@ -125,6 +126,8 @@ def check_r12(results):
     # Mantyke's party method names as its evolution and joined them. 237 since
     # the Moon Stone takes Koffing to Galarian Weezing and Ponyta to Galarian
     # Rapidash (main-galar-stones, 2026-09-28): one family each, Ian's ruling.
+    # Still 237 with Meloetta's line in and the Ice Stone taking Vulpix to
+    # Alolan Ninetales (element 7, 2026-09-28), one family again.
     results.append(("availability rows exist once the tiers are written",
                     avail is not None and len(avail) == 237
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))

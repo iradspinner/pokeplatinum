@@ -120,6 +120,9 @@ def build(ref=None):
     home_branch = collections.defaultdict(list)
     branch_caps = collections.defaultdict(set)
     per_area = {}
+    # The branch of each planned entry, in per_area's order, so the doc's
+    # tables can name a regional branch's home as the form it is.
+    area_branches = {}
     no_capture = set()
     for area, spec in plan["areas"].items():
         if area not in all_names:
@@ -129,7 +132,7 @@ def build(ref=None):
             no_capture.add(area)
         if area not in live and not spec.get("no_capture"):
             problems.append(f"{area}: not a live land table")
-        planned, keys = [], []
+        planned, keys, branches = [], [], []
         for kind, bucket in (("home", homes), ("cameo", cameos), ("tail", tails)):
             for sp in spec.get(kind) or []:
                 lid = resolve(sp, area)
@@ -138,6 +141,7 @@ def build(ref=None):
                     bucket[lid].append(area)
                     planned.append((lid, kind))
                     keys.append((lid, branch))
+                    branches.append(branch)
                     if kind == "home":
                         home_branch[lid].append((area, branch))
                     if not spec.get("no_capture"):
@@ -147,6 +151,7 @@ def build(ref=None):
         for lid, branch in {k for k in keys if keys.count(k) > 1}:
             problems.append(f"{area}: {by_line[lid]['name']} listed twice")
         per_area[area] = planned
+        area_branches[area] = branches
     for sp, areas in (plan.get("water") or {}).items():
         lid = resolve(sp, "water")
         for area in areas:
@@ -412,8 +417,8 @@ def build(ref=None):
                     f"{first or 'never'})")
             break
     return {
-        "rows": rows, "per_area": per_area, "corridor": corridor,
-        "order_of": order_of, "entries": entries, "problems": problems,
+        "rows": rows, "per_area": per_area, "area_branches": area_branches,
+        "corridor": corridor, "order_of": order_of, "entries": entries, "problems": problems,
         "gate": gate, "plan": plan, "no_capture": no_capture,
         "split_of": split_of, "split_idx": split_idx, "loc_of": loc_of,
         "caps": caps, "live": set(live),
@@ -580,6 +585,17 @@ def render(out):
                  "a location whose tables fall in different splits is a delay.")
     lines.append("")
     names = {r["line"]: r["name"] for r in rows}
+
+    def labelled(n):
+        # Each planned entry of table n with its mark; a regional branch's
+        # entry is named as the form, so Route 211 reads "Alolan Ninetales*"
+        # beside "Vulpix" and not Vulpix twice.
+        branches = (out.get("area_branches") or {}).get(n) or []
+        for i, (lid, kind) in enumerate(out["per_area"].get(n, [])):
+            b = branches[i] if i < len(branches) else None
+            mark = "*" if kind == "home" else ("†" if kind == "tail" else "")
+            yield (dex.display_name(b) if b else names[lid]) + mark
+
     by_loc = collections.OrderedDict()
     corridor_sorted = sorted(out["corridor"], key=lambda n: o.get(n) or 0)
     for n in corridor_sorted:
@@ -590,9 +606,8 @@ def render(out):
         splits = sorted({split_of.get(n) or "?" for n in areas}, key=lambda s: idx.get(s, 99))
         planned = collections.OrderedDict()
         for n in areas:
-            for lid, kind in out["per_area"].get(n, []):
-                mark = "*" if kind == "home" else ("†" if kind == "tail" else "")
-                planned.setdefault(names[lid] + mark, None)
+            for label in labelled(n):
+                planned.setdefault(label, None)
             e = out["entries"].get(n) or {}
             for kind in WATER_KINDS:
                 spec = e.get(kind)
@@ -616,8 +631,7 @@ def render(out):
     live = [n for n in out["per_area"]]
     for n in sorted(live, key=lambda n: o.get(n) or 0):
         e = out["entries"].get(n) or {}
-        planned = ", ".join(f"{names[lid]}{'*' if kind == 'home' else ('†' if kind == 'tail' else '')}"
-                            for lid, kind in out["per_area"][n])
+        planned = ", ".join(labelled(n))
         if n in out["no_capture"]:
             planned = (planned + "; " if planned else "") + "no capture"
         lines.append(f"| {o.get(n)} | {short(n)} | {loc_of.get(n) or ''} | {split_of.get(n) or ''} | "

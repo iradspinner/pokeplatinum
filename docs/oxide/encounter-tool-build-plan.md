@@ -1123,11 +1123,12 @@ that stay. None blocks anything.
 41. **Regional forms reached by a stone (Ian, 2026-09-28, relayed by the
    Overseer).** The main track gave Koffing and Ponyta a Moon Stone branch
    into Galarian Weezing and Galarian Rapidash; Vulpix's Ice Stone into
-   Alolan Ninetales follows with element 7's cloud follow-up. Ian ruled
+   Alolan Ninetales came with element 7's cloud follow-up. Ian ruled
    each pair one family for the dupes clause (design doc 2.6), so the
    OxiDex's lines join them: 239 lines became 237, Koffing's with Galarian
-   Weezing and Ponyta's with Galarian Rapidash, and Vulpix's will make it
-   236. Within a family a regional form is a branch (`dex.branch_of`: the
+   Weezing and Ponyta's with Galarian Rapidash, and they stay 237 with
+   Meloetta's line in and Alolan Ninetales in Vulpix's family
+   (encounter-combined-fixes). Within a family a regional form is a branch (`dex.branch_of`: the
    form and its later stages) with its own home: Galarian Weezing stays at
    home at Stark Mountain and Galarian Rapidash on Route 230, beside
    Koffing's and Ponyta's homes, and a table may hold two branches of one
@@ -1135,8 +1136,14 @@ that stay. None blocks anything.
    the later of the base's first split and the stone's first split in the
    balance track's census (`pool.evolution_items_first`). Galarian Rapidash
    opens in Gardenia's split that way, and Galarian Weezing in Maylene's,
-   against the Galactic split wild. Stones count as reachable, not
-   budgeted, until Ian asks. availability.md lists each branch's routes.
+   against the Galactic split wild. Alolan Ninetales reads Roark's split
+   by the Ice Stone, but only because the census counts the Test Kit's
+   Ice Stone in the player's house as a gift; the game places none yet.
+   That is the balance track's to fix (it likely counts the Test Kit's
+   mints too), and availability.md is regenerated once it is. Stones count
+   as reachable, not budgeted, until Ian asks. availability.md lists each
+   branch's routes, and its tables name a branch's entries as the form
+   (Galarian Weezing at Stark Mountain, not Koffing twice).
    The Box sim follows the same rule (encounter-sim-stones). A caught
    Pokemon reaches the best stage it can by the split: by level under the
    cap, or by a stone either sex can use from the stone's census split,

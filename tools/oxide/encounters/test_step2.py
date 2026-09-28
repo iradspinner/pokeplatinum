@@ -43,7 +43,9 @@ def main():
     # and 239 since Remoraid and Mantyke are two lines again (the same day: the
     # tool read the Remoraid in Mantyke's party method as its evolution), and
     # 237 since the Moon Stone joins Galarian Weezing to Koffing's family and
-    # Galarian Rapidash to Ponyta's (2026-09-28, Ian: one family each).
+    # Galarian Rapidash to Ponyta's (2026-09-28, Ian: one family each). Still
+    # 237 with Meloetta's line in and Alolan Ninetales joined to Vulpix's family
+    # by the Ice Stone (element 7, the same day).
     results.append(("every one of the 237 lines has a row",
                     len(rows) == 237, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
