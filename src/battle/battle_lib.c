@@ -1751,10 +1751,15 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
     int battler, moveType; // must declare these first to match
 
     if (battleCtx->defender == BATTLER_NONE
-        || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE
-        || Battler_Ability(battleCtx, attacker) == ABILITY_MOLD_BREAKER) {
+        || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
         return;
     }
+
+    // Oxide, element 7: Mold Breaker passes Lightning Rod and Storm Drain,
+    // save on an Ability Shield's holder, so a Mold Breaker attacker looks
+    // only for a shielded holder, and the redirection happens only when one
+    // was found.
+    BOOL moldBreaker = Battler_Ability(battleCtx, attacker) == ABILITY_MOLD_BREAKER;
 
     int defSide = BattleSystem_GetBattlerSide(battleSys, attacker) ^ 1;
     if (battleCtx->sideConditions[defSide].followMe && FOLLOW_ME_MON(defSide).curHP) {
@@ -1772,21 +1777,23 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
     }
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int i;
     if (moveType == TYPE_ELECTRIC
         && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET || MOVE_DATA(move).range == RANGE_RANDOM_OPPONENT)
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, attacker, ABILITY_LIGHTNING_ROD)) {
-        for (int i = 0; i < maxBattlers; i++) {
+        for (i = 0; i < maxBattlers; i++) {
             battler = battleCtx->monSpeedOrder[i];
 
             if (Battler_Ability(battleCtx, battler) == ABILITY_LIGHTNING_ROD
                 && battleCtx->battleMons[battler].curHP
-                && attacker != battler) {
+                && attacker != battler
+                && (moldBreaker == FALSE || Battler_HasAbilityShield(battleCtx, battler))) {
                 break;
             }
         }
 
-        if (battler != battleCtx->defender) {
+        if (i < maxBattlers && battler != battleCtx->defender) {
             battleCtx->selfTurnFlags[battler].lightningRodActivated = TRUE;
             battleCtx->defender = battler;
         }
@@ -1794,17 +1801,18 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
         && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET || MOVE_DATA(move).range == RANGE_RANDOM_OPPONENT)
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, attacker, ABILITY_STORM_DRAIN)) {
-        for (int i = 0; i < maxBattlers; i++) {
+        for (i = 0; i < maxBattlers; i++) {
             battler = battleCtx->monSpeedOrder[i];
 
             if (Battler_Ability(battleCtx, battler) == ABILITY_STORM_DRAIN
                 && battleCtx->battleMons[battler].curHP
-                && attacker != battler) {
+                && attacker != battler
+                && (moldBreaker == FALSE || Battler_HasAbilityShield(battleCtx, battler))) {
                 break;
             }
         }
 
-        if (battler != battleCtx->defender) {
+        if (i < maxBattlers && battler != battleCtx->defender) {
             battleCtx->selfTurnFlags[battler].stormDrainActivated = TRUE;
             battleCtx->defender = battler;
         }
@@ -2970,7 +2978,11 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         moveType = MOVE_DATA(move).type;
     }
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    // Oxide, element 7: an Ability Shield keeps Mold Breaker off its holder's
+    // Levitate and Wonder Guard, as Battler_IgnorableAbility does in battle.
+    BOOL moldBreaker = attackerAbility == ABILITY_MOLD_BREAKER && defenderItemEffect != HOLD_EFFECT_ABILITY_SHIELD;
+
+    if (moldBreaker == FALSE
         && defenderAbility == ABILITY_LEVITATE
         && moveType == TYPE_GROUND
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
@@ -3015,7 +3027,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         SetNetEffectiveness(move, netSteps, moveStatusMask);
     }
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    if (moldBreaker == FALSE
         && defenderAbility == ABILITY_WONDER_GUARD
         && MoveIsOnDamagingTurn(battleCtx, move)
         && ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) == FALSE
@@ -3426,7 +3438,10 @@ BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defend
 {
     BOOL result = FALSE;
 
-    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER) {
+    // Oxide, element 7: Mold Breaker does not pass the ability of an Ability
+    // Shield's holder (Generation 9; hg-engine has no Ability Shield effect).
+    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+        || Battler_HasAbilityShield(battleCtx, defender)) {
         if (Battler_Ability(battleCtx, defender) == ability) {
             result = TRUE;
         }

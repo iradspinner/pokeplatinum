@@ -169,7 +169,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   and given trainers theirs (the kit cannot give a foe an item or run a
   double battle): a foe's Red Card dragging out a teammate in a trainer
   battle, a foe's Air Balloon, Eject Button, Rocky Helmet and Weakness Policy,
-  and Ability Shield and Covert Cloak in a double battle.
+  and Ability Shield and Covert Cloak in a double battle. A Mold Breaker foe's
+  Ground move into a player's Levitate holder wearing an Ability Shield
+  misses, and its Electric move is drawn to a Lightning Rod partner that
+  wears one.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
