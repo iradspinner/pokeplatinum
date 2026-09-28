@@ -83,7 +83,7 @@ the pass replaces them. Calibrate against `main`, never the working tree.
   measured in every challenge hack.
 - Every pick-list line needs one home (a table where its first stage holds at
   least 10%) or a non-wild source. `coverage` is the check; gifts and trades
-  count (`docs/oxide/pokemon-gifts.md`).
+  count, and `audit.py` reads them from the scripts themselves.
 - Off-list species are leaks: the pick-list is the availability list and
   anything else the player can meet contradicts it. `audit --fail-on-leak` is the
   check, over every key (surf, rods, swarms, radar, dual-slot, day/night, honey

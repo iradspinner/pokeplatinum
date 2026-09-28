@@ -7,65 +7,7 @@ error in the inventory doc**.
 
 ## 1. The answers
 
-**A. Synthetic overlay routines: port all four.** EV/IV viewer on the summary
-screen, no items in trainer battles, frame-rate unlock, and Rare Candy chaining.
-All four exist as compile-time toggles in hg-engine
-(`IMPLEMENT_NEW_EV_IV_VIEWER`, `DISABLE_ITEMS_IN_TRAINER_BATTLE`,
-`BATTLES_UNCAPPED_FRAME_RATE`, and candy behaviour under the level-cap options),
-so hg-engine's C is the reference for each. The synthetic-overlay mechanism
-itself is dropped; in the decomp these are ordinary code changes.
-
-**B. Expanded trainer format: there is no expanded format.** See section 2.
-
-**C. Shiny and palette patch: two separate things.**
-- Shiny odds raised. Confirmed from the diff: `Pokemon_IsPersonalityShiny+0x18`
-  changes the threshold from `8` to `0xFF`. Vanilla is
-  `(pidHigh ^ pidLow ^ otidHigh ^ otidLow) < 8`, i.e. 8/65536 = 1/8192; with 255
-  it is 255/65536, about **1/257**. This is a one-constant change in C and should
-  be ported.
-- A hue shift driven by IVs or nature. **Not yet investigated.** The eight palette
-  hooks in the inventory (`PaletteData_LoadBufferFromFile`,
-  `LoadPaletteWithSrcOffset`, `BufferPokemonSpritePlttData`,
-  `SpriteSystem_LoadPlttResObj`, `CharacterSprite_LoadPalette`,
-  `Pokedex_GetDisplayForm`, `Pokemon_GetValue`, `BoxPokemon_GetValue`) are
-  presumably this. Ian said to drop it if it proves opaque. Recommendation: treat
-  it as a separate, low-priority investigation after the scoped Phase 4 work,
-  not part of the base-ROM carry-over. Porting it means understanding a
-  procedural palette generator, which is a real project on its own, and nothing
-  else depends on it.
-
-**D. Custom script commands over Battle Arcade: decide from evidence, do not port
-blind.** Ian's answer was "port it to be safe, I have no interest in the Battle
-Arcade." The thing worth preserving is not the commands themselves but any of his
-91 edited field scripts that *call* them. So: when the script carry-over happens
-(already a Phase 3 item), check which command IDs those scripts use. If none of
-them reach into the overwritten range, there is nothing to port and the item
-closes. If some do, reimplement just those commands as new script commands in the
-decomp, which has room for them without sacrificing anything. Porting ~1.4 KB of
-unidentified code that may be called by nothing would be effort spent for no
-behaviour, with a real chance of getting it subtly wrong.
-
-**E. Battle edits: apply all of them, including the one he skipped.** Ian applied
-most of this list and thinks he skipped one but cannot recall which:
-
-- Fire Fang vs Wonder Guard
-- Rage Glitch
-- Trainer AI Basic Flag Water Immunity Check vs Dry Skin
-- Trainer AI Basic Flag Sunny Day Check
-- Trainer AI Expert Flag Foresight and Odor Sleuth Ghost Type Check
-- Trainer AI Expert Flag Facade Status Check
-- Trainer AI Expert Flag Leaf Guard Sunny Day Logic
-- Trainer AI Expert Flag Water Spout and Eruption HP Check
-- Trainer AI Expert Flag Charge-Turn Move Scoring Fix
-- Trainer AI Expert Flag Thunder Scoring Fix
-- Trainer AI Tag Strategy Flag Discharge Scoring in Double Battle Fix
-
-Which one he skipped stops mattering under approach C: every item on that list is
-a small logic fix in `src/battle/` or `src/battle/trainer_ai/`, so all eleven get
-applied from the guide's descriptions rather than recovered from the old ROM's
-bytes. The ten single-byte edits found in overlay 14 corroborate that the AI ones
-were applied; they are not needed as a source. Source:
-https://ds-pokemon-hacking.github.io/docs/generation-iv/guides/battle_edits/
+Cut to this pointer in the docs pass of 2026-09-27, every answer having been acted on. The one-line summary and each outcome are under Phase 3 in `tracker-archive.md` (the four synthetic-overlay routines, the shiny threshold and the other constant edits); the palette hue shift and the Battle Arcade commands are settled in the inventory's corrections; and the eleven battle_edits fixes are in `docs/oxide/battle-ai/README.md`. The full answers are this file in git history before that pass.
 
 ## 2. The trainer format, determined from the ROM
 
@@ -120,36 +62,18 @@ code does `movs r2, #18` and then branches on *those* flags, which makes the
 `+= 2` arm at `0x020795B8` unreachable, so every non-zero low nibble takes the
 `-= 2` arm. Either the patch has a bug or it was hand-written and only ever
 exercised one direction. Second, the ±2 nudge is a crude way to cross a gender
-threshold and will not reliably force gender for every species' ratio. So when
-this is reimplemented in the decomp, write it correctly (pick a personality that
-actually satisfies the requested gender for that species' ratio) rather than
-copying the ±2 behaviour, and expect a small number of Ian's trainers to end up
-with a different gender than the old ROM produced. Worth telling him if any of
-those 207 mons are ones he cares about.
+threshold and will not reliably force gender for every species' ratio. Oxide's
+`TrainerData_BuildParty` does it correctly instead, picking a personality that
+satisfies the requested gender for the species' ratio (commit 5b8958368), so a
+few of those 207 Pokemon may have a different gender than the old ROM gave them.
 
-### What this means for the carry-over
+### What this meant for the carry-over
 
-The blocking item "extend the decomp's trainer struct/loader for the expanded
-party format" is **not needed** and should be replaced with a much smaller one.
-`res/trainers/data/*.json` in the decomp already carries everything the vanilla
-format holds, per trainer, in one file: name, class, items, `ai_flags`,
-`double_battle`, and a party of `species` / `form` / `level` / `item` / `moves` /
-`iv_scale` / `ball_seal`, plus the trainer's battle messages (which covers the
-`trtbl`/`trtblofs` differences too). So the work is:
-
-1. Add two optional per-mon fields to the trainer JSON and to `trainerproc`
-   (`tools/dataproc/src/trainerproc.c`), for example `"ability": 0|1|2` and
-   `"gender": null|"male"|"female"`. Since 2026-09-27 `"ability": 3` gives the
-   species' hidden ability, or its ordinary one when it has none, and leaves
-   the personality as 0 does.
-2. Make `TrainerData_BuildParty` in `src/trainer_data.c` honour them, written
-   correctly rather than as a ±2 nudge.
-3. Extend `tools/oxide/import_base_rom.py` with a trainer importer that writes the
-   488 changed trainers into those JSONs, decoding `ivScale` as
-   `{low byte -> iv_scale, high nibble -> ability, low nibble -> gender}`.
-4. Verify with `tools/oxide/verify_narcs.py` on `poketool/trainer/trdata.narc` and
-   `trpoke.narc`. Expect `trpoke` to match byte-for-byte apart from alignment
-   padding, once the ability and gender nibbles are re-encoded.
-
-Step 1 and 2 are small. Step 3 follows the pattern already proven for species and
-moves.
+Done (tracker archive, Phase 3): all 928 trainers came over with 0 field
+mismatches. The decomp did not re-encode the nibbles into `ivScale` as first
+planned; each party entry gained its own `ability` and `gender` bytes
+(`include/struct_defs/trainer_data.h`), so the record is 2 bytes wider and
+`trpoke` is checked field by field rather than byte for byte. The trainer JSON's
+optional `"ability"` (0 to 3, 3 being the hidden ability since 2026-09-27) and
+`"gender"` keys are documented in `tools/dataproc/src/trainerproc.c`, and
+`ivScale`'s high byte now carries an optional nature instead.

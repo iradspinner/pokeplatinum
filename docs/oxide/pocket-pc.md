@@ -3,8 +3,11 @@
 Surveyed 2026-09-26 by the Carry-over Agent, from the base ROM's arm9 and its
 `scripts_common`, so that Ian could rule on each function before any of it
 moved. He ruled on all of it on 2026-09-27; the rulings are the last section,
-and they are being built on branch `carry-over`. The survey below describes
-the base ROM, not Oxide.
+and every one is built and merged: the item's hookup (488df5b9a), the trimmed
+menus (4e6209dab), the Rare Candy entry (a09cb6669), the Hidden Power APP
+(15b7995ba) and the Abra (894256fe2). Their in-game check is in
+`docs/oxide/ingame-checklist.md`, section 3. The survey below describes the
+base ROM, not Oxide.
 
 ## How it works in the base ROM
 
@@ -19,14 +22,11 @@ Sandgem at the start of the game, with TM10; vanilla gives the Vs. Seeker
 later, on Route 207. Its name already reads Pocket PC, from the text
 carry-over.
 
-`scripts_common` came over from the base ROM whole, so **every Pokemon Center
-PC in the current build already offers everything below**, the free Move
-Reminder included. Only the item's hookup is missing, and today the item named
-Pocket PC still works as a Vs. Seeker. The hookup is two lines of C. Every
-other ruling is an edit to `scripts_common`, and an edit there changes the
-Pokemon Center PCs as well unless the menu is taught to tell the two apart: a
-flag set by common script 58 and checked by each entry that differs, a few
-lines each.
+`scripts_common` came over from the base ROM whole, so until the rulings were
+built every Pokemon Center PC offered everything below, the free Move Reminder
+included. The Pocket PC and the Pokemon Center PCs share that one menu: the
+Pocket PC's entry sets `FLAG_POCKET_PC_OPEN`, the Pokemon Center's clears it,
+and the entries only a Pokemon Center PC shows check it (4e6209dab).
 
 ## What it offers
 
@@ -64,45 +64,11 @@ Misc.:
 | Superbosses/Gyms Reset | Lets the eight gym leaders and five superbosses be fought again: May (Resort Area), Steven (Stark Mountain), Cyrus (Turnback Cave), and Red and Gold (Mt. Coronet) | After the Champion |
 | Trades/Gifts Reset | Makes the four in-game trades, the Eevee and Porygon gifts and the Manaphy Egg available again | After the Champion |
 
-Two things the change takes away. **Vs. Seeker rematches end**, since the item
+Hooking the item up takes one thing away. **Vs. Seeker rematches end**, since the item
 no longer runs the Vs. Seeker; nothing else in the game calls route trainers
-back, and gym leaders return only through the reset above. And the base
-ROM's teleporting Abra in each town stays as it is: it is how a place is
-registered, and it teleports on its own too.
-
-## What each ruling costs
-
-Everything above already exists in the build, so no entry needs porting; the
-work is keeping, dropping or changing entries.
-
-| Change | Size |
-|---|---|
-| Hook the item up to the menu | Two lines of C |
-| Let it work indoors too | One more line of C |
-| Drop an entry from every PC | One or two script lines |
-| Drop or keep an entry on the Pocket PC only | The flag above plus a check per entry |
-| Infinite Rare Candies as a new entry that fills the bag's stack to 999 each time | About ten script lines and one menu text |
-| Infinite Rare Candies as a Rare Candy that is never used up | A small C change in the party menu's item use |
-| Give the Vs. Seeker back as its own item | A free item slot, element 7's item work |
-
-## Questions put to Ian (answered in the rulings below)
-
-1. Should the Pocket PC work everywhere, or only outdoors as in the base ROM?
-2. The Move Reminder leaves the Pocket PC by ruling. Should it leave the
-   Pokemon Center PCs too? Recommended: yes, since a free relearner in every
-   Pokemon Center would undo the Heart Scale price in Pastoria.
-3. How should infinite Rare Candies work, and where? Recommended: a Pocket PC
-   entry that fills the bag to 999, on the Pocket PC only.
-4. For each other entry, keep it on both, on one, or drop it. Worth weighing:
-   Healing Waves and the Online Shop put a Pokemon Center and a Mart on every
-   outdoor map from Sandgem on; the Teleport System is Fly from the first town;
-   Happiness Up makes every friendship evolution, and the Starter Tutor's
-   condition, free; the Legendary Reset re-arms vanilla's legendaries and
-   roamers, which the legendary pool (encounter plan, decision 8) has
-   replaced; and the Trades/Gifts Reset repeats gifts, which touches the
-   nuzlocke capture rules.
-5. Vs. Seeker rematches: let them go, or bring the Vs. Seeker back as its own
-   item?
+back, and gym leaders return only through the reset above. In the base ROM
+the teleporting Abra in each town is how a place is registered for the
+Teleport System, and it teleports on its own too; ruling 6 below removes them.
 
 ## Rulings
 
@@ -110,8 +76,9 @@ Ian ruled on the whole list on 2026-09-27, relayed by the Overseer.
 
 1. **Where it works:** everywhere, caves and buildings included, except in
    gauntlets: one-way areas the player must clear, beating a set number of
-   trainers in a row, before leaving to heal. The gauntlets are a later design
-   pass; the mechanism is built now, with no map marked.
+   trainers in a row, before leaving to heal. The mechanism is built
+   (`MapHeader_IsGauntlet` in `src/map_header.c`), with no map marked yet; the
+   tracker's "Gauntlets" entry says which areas are chosen.
 2. **The item** opens the PC menu. Vs. Seeker rematches go, and no Vs. Seeker
    item comes back.
 3. **The Pocket PC keeps** Pokemon Storage, Healing Waves, the Name Rater APP

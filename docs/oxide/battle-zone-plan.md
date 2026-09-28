@@ -4,8 +4,9 @@ Scoping note, 2026-09-25, from the encounter track at Ian's request. Ian wants
 the Battle Zone (the Fight Area, Routes 225 to 230, the Survival Area, the
 Resort Area and Stark Mountain) open before the League, as Platinum Kaizo has
 it, for the fights and the captures it adds. Ian ruled on the three open
-questions the same day (below); the encounter track's first step is done,
-and the rest waits on the main and balance tracks.
+questions the same day (below). The main and encounter tracks' parts are
+done and merged; the balance track's re-levelling is what is left, in the
+tracker's Battle Zone entry.
 
 ## Current state (2026-09-27; read this first)
 
@@ -14,14 +15,17 @@ entry is the current word. The zone opens **after Galactic HQ**, not after Lake
 Acuity, and the Galactic stretch is two splits: **HQ, cap 60**, then
 **Galactic, cap 65**. The ferry's sailor has **one** `FLAG_GAME_COMPLETED`
 check, not two (the other two guard Snowpoint Temple, which stays post-game),
-and it is to test Galactic HQ being cleared. The Fight Area's block on Route
+and it now tests Galactic HQ being cleared. The Fight Area's block on Route
 225 lifted only after the Volkner and Flint tag battle; since that battle now
 waits for the Beacon Badge, Route 225 is open from the player's first arrival
 and the ferry is the only gate. Ruling 2 below is replaced too: Stark
 Mountain's last room holds **no legendary** for now, Heatran included, and no
 draw (Ian, 2026-09-27), until the difficulty is high enough that more
-legendary-tier encounters would not inflate box quality. The main track is
-carrying all this out on `main-scripts`.
+legendary-tier encounters would not inflate box quality. The main track did
+all this on `main-scripts`, merged: the ferry tests
+`FLAG_FREED_GALACTIC_HQ_POKEMON`, and the Fight Area's Beacon Badge gate and
+lines are in (3a3472432); Stark Mountain's last room hides Heatran on every
+load (ba09950fa). The tracker archive's Battle Zone entry has each sub-item.
 
 ## Ian's rulings (2026-09-25)
 
@@ -34,13 +38,13 @@ carrying all this out on `main-scripts`.
    Stark Mountain's last room joins the legendary pool's statics.
 3. **The Battleground rematches are skipped for now**, to come back to.
 
-## What gates it today
+## What gated it in the base ROM, before `main-scripts`
 
 The only way in is the ferry from Snowpoint City. Its sailor checks two
 things: the National Dex, which this game grants at the start (the Sandgem lab
 turns it on with the Pokédex, a base ROM change), and `FLAG_GAME_COMPLETED`,
-which only the Hall of Fame sets. That flag is checked twice in
-`scripts_snowpoint_city.s`, in the sailor's two script entries. Past the ferry nothing else asks whether the game is complete,
+which only the Hall of Fame sets. The sailor checks that flag once; the
+other two checks in `scripts_snowpoint_city.s` guard Snowpoint Temple. Past the ferry nothing else asks whether the game is complete,
 except Stark Mountain's last room (`scripts_stark_mountain_room_3.s`, the
 Heatran event, which also wants the National Dex and Buck met at the
 Battleground). The Fight Area's arrival script checks only the National Dex,
@@ -79,60 +83,19 @@ The dialogue that assumes the League is done is small: the Fight Area's
 arrival scene (Volkner's "Show me the skills that got you through the Pokémon
 League!" and Buck's lines about the Elite Four), and the Snowpoint sailor's
 "A great Trainer recognized by the Pokémon League". The Villa's lines about
-the League are post-game content and can stay.
-
-## The placement decision
-
-Kept for the record. Ian took neither option as it stands: the zone opens in a
-new Galactic split straight after Lake Acuity, cap 64, with Volkner's raised to
-68 (Ian's rulings, above). At 64 the trainers still come down, by about 11
-levels rather than 20.
-
-The trainers and the wild tables were levelled for different moments. The
-trainers sit at the League split's cap (78). The wild tables sit at Candice's
-(56). Whichever split the zone opens in, one of the two has to move.
-
-| | Open at Candice's split | Open after Volkner (League split) |
-|---|---|---|
-| Ferry gate | Icicle Badge | Beacon Badge |
-| Trainers | 52 route trainers and 5 scripted fights re-levelled from about 75 to about 56 (balance track); the Battleground too | Fit as they are |
-| Wild tables | Fit as they are | Raised about 20 levels, then `cli evolve` (encounter track, cheap) |
-| Story | Volkner fights you at the Fight Area before you reach his Gym: move the tag battle behind his badge, or reword | Consistent; one line of Volkner's to reword |
-| Captures before the League | +8, in Candice's split | +8, in the League split |
-| Matches | Ian's own sheet, which puts the zone in Candice's split | Kaizo's "before the Elite Four", as Ian describes it |
-
-The encounter track's reading: opening after Volkner is the cheaper and the
-more consistent of the two, and it makes the League split, now thin (Victory
-Road, Route 223, Sendoff Spring), the richest one. Opening at Candice's split
-is the bigger change and makes the zone mid-game content, which is what Ian's
-sheet had in mind. Either works with the tools as they are.
+the League are post-game content and can stay. `main-scripts` reworded the
+rest; the new lines are drafts waiting on Ian (the tracker's "Drafts from
+`main-scripts`").
 
 ## The work, by track
 
-Main track (scripts and text):
+Main track: done on `main-scripts` and merged, to the placement after Galactic
+HQ (see "Current state"); the tracker archive's Battle Zone entry has each
+sub-item with its commit.
 
-1. The ferry opens when the Lake Acuity event is done instead of after the Hall
-   of Fame: its two `FLAG_GAME_COMPLETED` checks in `scripts_snowpoint_city.s`
-   become that check. `VAR_LAKE_ACUITY_STATE` reaching 2, which
-   `scripts_lake_acuity.s` sets as Jupiter's scene ends, looks like the marker;
-   confirm it. Rock Climb needs the Icicle Badge, which comes before that.
-2. Stark Mountain's last room: drop its Hall of Fame and National Dex checks and
-   make its Heatran a draw from the legendary pool, with the lake caverns
-   (the pool's scripting is already in the tracker's backlog).
-3. Reword the Fight Area's arrival lines and the sailor's line, and gate the
-   Volkner and Flint tag battle behind the Beacon Badge, since Volkner is now
-   met at the Fight Area before his Gym.
-4. The script-driven level caps (Phase 4 element 8) take the new split and the
-   new caps.
-
-Balance track:
-
-1. The caps: Galactic 64 and Volkner 68, in the level cap design.
-2. The zone's 52 route trainers and its scripted fights (Buck, Mars and Jupiter
-   at Stark Mountain) from about 75 down to the Galactic cap, and the Galactic
-   fights up to Spear Pillar re-read against 64 rather than 62.
-3. Volkner and the split after him re-read against 68.
-4. The Battleground rematches: skipped for now (ruling 3).
+Balance track: the caps and the re-levelling, in the tracker's Battle Zone
+entry, which has the current numbers (this plan's were for a Galactic cap of
+64).
 
 Encounter track (this one):
 

@@ -38,7 +38,7 @@ replacement is on the way. When the new chip is in, and before any playtest:
   (element 2 moved the field) and is no valid test bed.
 - [ ] Known crash to avoid until the bug track fixes it: UNLOCK FPS set to
   ALWAYS hard-crashes on entering Sandgem Town (tracker, Phase 5).
-- [ ] Once `carry-over` merges, **the base ROM's visual overhaul**, compared
+- [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared
   with Ian's own base ROM where anything looks off: the title screen's logo;
   the new Pokemon sprites front and back in battle, sitting at the right
   height on their platforms (the heights came with the sprites); a shiny with
@@ -105,7 +105,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   about half the time). Friend Guard, and Rattled's answer to Intimidate, need
   a double battle or a switch the kit cannot arrange; they are for normal
   play.
-- [ ] **The staples rulings, the Modern rules menu** (22 entries): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (its first 19 of 24
+  entries; the other five have their own checks below): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -137,8 +138,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   attacker's and a defender's level and stats and the damage a move does, enter
   the same two in the encounter tool's calculator, and check the damage falls
   in its range.
-- [ ] **Element 8, hidden abilities and restored items** (the last three
-  Modern rules entries):
+- [ ] **Element 8, hidden abilities and restored items** (the three Modern
+  rules entries before "Kaizo move data"):
   "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
   Intimidate, not Blaze; one Rare Candy makes a Torracat that still reads
   Intimidate. "Hidden ability wild" opens with the wild Litten's Intimidate
@@ -228,8 +229,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
-- [ ] Once `carry-over` and `carry-over-abra` merge, the base ROM's overworld
-  sprites and the teleporting Abra's removal: no Abra stands outside Sandgem's
+- [ ] The base ROM's overworld sprites and the teleporting Abra's removal
+  (`carry-over` and `carry-over-abra`, merged): no Abra stands outside Sandgem's
   Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
   Coronet or Stark Mountain, or in Turnback Cave. The gym shortcut Abra still
   stand at the entrance and by the leader of the Canalave, Pastoria,
@@ -237,8 +238,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   turn properly when talked to. Later in the game, May at the Resort Area,
   Steven in Stark Mountain's first room, and Ethan and Red on Mt. Coronet's
   north and south slopes draw as themselves.
-- [ ] Once `carry-over-hue` merges, **the colour variation** (the base ROM's
-  hue shift): each Pokemon's colours are turned a little, up to about 20
+- [ ] **The colour variation** (the base ROM's hue shift, `carry-over-hue`,
+  merged): each Pokemon's colours are turned a little, up to about 20
   degrees of hue either way, by its personality. Several Starly or Bidoof on
   Route 201 differ slightly from one another, as the foe's front sprite and as
   your own back sprite. One caught Pokemon shows the same colours in battle,
@@ -270,7 +271,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   z 535. His event runs script 13 and the map's script file has 8 (the script
   index, 2026-09-27), so he may hang or crash the game; if he does, he becomes
   an open bug. Save first.
-- [ ] With `carry-over-hue` merged: Riley's egg (or any Day Care egg) is
+- [ ] The colour variation in eggs and trades: Riley's egg (or any Day Care egg) is
   tinted like the Pokemon inside it while it hatches, and the hatched Pokemon
   shows the same colours on its summary. In Mindy's trade the Snover and the
   Suicune each keep their colours from the send screen, through the wormhole
@@ -380,7 +381,7 @@ On a save with the National Dex and the game beaten:
 
 - [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
   and takes Rare Candies again.
-- [ ] With `carry-over-hue` merged: the Hall of Fame shows each Pokemon in the
+- [ ] The colour variation in the Hall of Fame: it shows each Pokemon in the
   same colours as its summary, and so does the PC's Hall of Fame viewer.
 
 - [ ] Acuity Lakefront's grass and the Poke Radar there give no Weavile,

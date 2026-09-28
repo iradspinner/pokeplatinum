@@ -15,9 +15,10 @@ Then say in one or two sentences what this session will do, and do it.
 
 ## Working rules (short form; the design doc has the full list)
 
-- Work on branch `oxide`. Never commit to `main`; `main` tracks upstream pret.
-- Every data change is verified by rebuilding (`make rom`) and, where a
-  reference exists, comparing the rebuilt NARC to it with
+- Work on `oxide` or a branch cut from it. Never commit to `main`; `main`
+  tracks upstream pret.
+- Every data change is verified by rebuilding (on GitHub for now; see Build)
+  and, where a reference exists, comparing the rebuilt NARC to it with
   `tools/oxide/verify_narcs.py`.
 - Edit `res/` JSON files with `tools/oxide/jsonstyle.py` helpers or by hand in
   the same style; never reformat whole files (the repo's formatting is not
@@ -27,11 +28,12 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
-- Update `docs/oxide/tracker.md` at the end of every session and commit it;
-  a finished block moves verbatim to `docs/oxide/tracker-archive.md`.
+- Update your status home (below) at the end of every session and commit it;
+  a finished tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
-  drive, which a separate chat surface works from.
+  drive, which a separate chat surface works from. It runs only on `oxide`,
+  so on a track's branch the Overseer's merge runs it.
 - Never delete, move, or overwrite a base ROM in the project folder. Since
   2026-09-26 the base ROM is Ian's `Test.nds` of 2026-08-31, copied there as
   `Platinum Oxide base ROM 2026-08-31 (from Example ROM Test.nds).nds`; the
@@ -75,9 +77,10 @@ commits and writes up the findings, and `/docs-pass` audits the docs, skills and
 this file against the tree.
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
-emulator, and committing a file that carries the scratch marker
-(`.claude/hooks/oxide_guard.py`); a refusal from it means the rule above it in
-this file applies. `.githooks/pre-commit` runs the encounter linter on any
+emulator, committing a file that carries the scratch marker, a full local
+build (see Build), and `ps` or its kin while a process is wedged in the kernel
+(`.claude/hooks/oxide_guard.py`); each refusal says which rule applies and
+what to do instead. `.githooks/pre-commit` runs the encounter linter on any
 commit that touches the encounter tables or tool; a clone enables it once with
 `git config core.hooksPath .githooks`.
 

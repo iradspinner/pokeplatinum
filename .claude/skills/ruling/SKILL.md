@@ -63,5 +63,6 @@ text Ian gives that session.
 ## 5. Commit and mirror
 
 Commit the tracker, rules and docs changes by name, with the ruling in the
-subject, push `oxide`, and run `tools/oxide/sync-docs.sh`. Memory needs no
-commit.
+subject, and push. On `oxide` (the Overseer) also run
+`tools/oxide/sync-docs.sh`; a track's branch leaves that to its merge. Memory
+needs no commit.
