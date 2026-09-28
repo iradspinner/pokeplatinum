@@ -2179,6 +2179,20 @@ lands, and each change is re-scored as it lands.
    15 go to Ian because the rules would place the move too late or on a
    stage the flags or the bar hold, and 25 have nothing to take.
 
+   Ian ruled (2026-09-28) that every Pokemon should have an important
+   niche at the point the player has it, while stronger and weaker lines
+   stay fine: Garchomp always outvalues Furret, but only one of them can
+   carry a run in Gardenia's split, and Aggron is one of the best physical
+   walls although Mamoswine outvalues it late. The super-wanted lines sit a
+   little above average, and the encounter tool's tiers are availability
+   labels, not intended power. So a stage with no niche in the split the
+   player first owns it is a finding of the learnset pass, as an overbuff
+   is. The generator does not check this yet. The check to build reads
+   each stage in that split against the others owned by then, in each
+   role the scores can see (damage with its moves, bulk, speed, and the
+   status moves Ian's tiers rate), and reports a stage that none of its
+   roles sets apart.
+
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
    the 138 wild slots that can still end an encounter, which this design
