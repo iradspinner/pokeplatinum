@@ -143,8 +143,7 @@ def _script_text(header):
     path = os.path.join(data.ROOT, "res", "field", "scripts", f"{scripts}.s") if scripts else None
     if not path or not os.path.exists(path):
         return None
-    with open(path, encoding="utf-8") as f:
-        return f.read()
+    return data.read_script(path)
 
 
 def partner_maps():

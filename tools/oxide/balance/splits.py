@@ -153,6 +153,11 @@ def _read(*rel):
         return f.read()
 
 
+def _script(stem):
+    """A field script without the test kit, which a normal ROM never has."""
+    return data.read_script(os.path.join(data.ROOT, "res", "field", "scripts", f"{stem}.s"))
+
+
 @functools.lru_cache(maxsize=None)
 def headers():
     """Every map header's fields, by name without the MAP_HEADER_ prefix."""
@@ -274,13 +279,12 @@ def trainer_maps():
         if scripts:
             path = os.path.join(data.ROOT, "res", "field", "scripts", f"{scripts}.s")
             if os.path.exists(path):
-                with open(path, encoding="utf-8") as f:
-                    for command, operands in _BATTLE.findall(f.read()):
-                        tokens = [t.strip() for t in operands.split(",")]
-                        for token in tokens[_NOT_OPPONENTS[command]:]:
-                            tr_id = _trainer_id(token)
-                            if tr_id and tr_id in data.oxide_trainers():
-                                out[tr_id].add(header)
+                for command, operands in _BATTLE.findall(_script(scripts)):
+                    tokens = [t.strip() for t in operands.split(",")]
+                    for token in tokens[_NOT_OPPONENTS[command]:]:
+                        tr_id = _trainer_id(token)
+                        if tr_id and tr_id in data.oxide_trainers():
+                            out[tr_id].add(header)
     return out
 
 
@@ -297,7 +301,7 @@ def trainer_mentions():
         scripts = fields.get("scriptsArchiveID")
         path = os.path.join(data.ROOT, "res", "field", "scripts", f"{scripts}.s") if scripts else None
         if path and os.path.exists(path):
-            for const in set(_TRAINER_REF.findall(_read("res", "field", "scripts", f"{scripts}.s"))):
+            for const in set(_TRAINER_REF.findall(_script(scripts))):
                 tr_id = _trainer_ids().get(const)
                 if tr_id is not None:
                     out[tr_id].add(header)
@@ -314,7 +318,7 @@ SHARED_SCRIPT_SPLITS = {"scripts_pokemon_center_daily_trainers": "Post"}
 def _shared_mentions():
     out = {}
     for stem, split in SHARED_SCRIPT_SPLITS.items():
-        for const in set(_TRAINER_REF.findall(_read("res", "field", "scripts", f"{stem}.s"))):
+        for const in set(_TRAINER_REF.findall(_script(stem))):
             tr_id = _trainer_ids().get(const)
             if tr_id is not None:
                 out[tr_id] = split
@@ -353,7 +357,7 @@ def gifts():
         if not path or not os.path.exists(path):
             continue
         split, last = map_split(header)[0], None
-        for line in _read("res", "field", "scripts", f"{scripts}.s").split("\n"):
+        for line in _script(scripts).split("\n"):
             m = _SET_ITEM.match(line)
             if m:
                 last = m.group(1)
@@ -439,7 +443,7 @@ def _item(token):
 def items():
     """Every item ball and hidden item: (split, map, item constant, how)."""
     visible = {int(n): _item(tok) for n, tok in
-               _VISIBLE.findall(_read("res", "field", "scripts", "scripts_visible_items.s"))}
+               _VISIBLE.findall(_script("scripts_visible_items"))}
     # A hidden item's bg event script is 8000 plus its obtained-flag's offset
     # from HIDDEN_ITEM_FLAGS_START, not its position in gHiddenItems. The
     # flag numbers come from the tree's own flag list (flag_values).
