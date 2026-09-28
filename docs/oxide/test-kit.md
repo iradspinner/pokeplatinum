@@ -57,7 +57,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
 | Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves, over three pages, the third for the natives' hidden abilities (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
-| Level caps | puts the player in any of the twelve level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
+| Level caps | puts the player in any of the thirteen level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Element 7 items | one of each of the 46 new items, and a battle for each held item (entries below) | element 7's items |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
@@ -72,8 +72,8 @@ kit's own Pokemon are mostly Lv. 50, above a new game's cap of 16, so they
 gain no Exp. and refuse Rare Candies until "Level caps" moves the split on;
 "No cap" puts back the vanilla rules. The Level caps menu, after "Which
 split?", lists Roark 16, Gardenia 26, Fantina 33, Maylene 39, Wake 44,
-Byron 53, Candice 56, Galactic HQ 60, Galactic 65, Volkner 68, League 78 and
-No cap, and sets the split outright, which the game's own `RaiseLevelCap`
+Byron 53, Candice 56, Galactic HQ 60, Galactic 65, Volkner 68, Barry 71,
+League 78 and No cap, and sets the split outright, which the game's own `RaiseLevelCap`
 never does downwards.
 
 With the cap at 16, what to look for:

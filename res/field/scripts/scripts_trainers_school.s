@@ -148,7 +148,8 @@ TrainersSchool_BattleSchoolKidHarrison:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, TrainersSchool_BattleHarrisonTurtwig
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, TrainersSchool_BattleHarrisonChimchar
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, TrainersSchool_BattleHarrisonChimchar
     GoTo TrainersSchool_BattleHarrisonPiplup
     End
 
@@ -241,7 +242,8 @@ TrainersSchool_BattleSchoolKidChristine:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, TrainersSchool_BattleChristineTurtwig
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, TrainersSchool_BattleChristineChimchar
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, TrainersSchool_BattleChristineChimchar
     GoTo TrainersSchool_BattleChristinePiplup
     End
 

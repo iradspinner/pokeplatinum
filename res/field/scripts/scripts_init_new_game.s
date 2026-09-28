@@ -133,21 +133,36 @@ InitNewGame:
 @ are docs/oxide/encounters/availability-plan.json's pool.thirds and must be
 @ changed with it. Azelf's cavern and Stark Mountain draw nothing for now
 @ (Ian, 2026-09-27).
+@
+@ This script runs before any field script task exists, so it must not touch
+@ the script engine's temporary vars (VAR_RESULT and the rest from 0x8000 up):
+@ they live in the running script manager, and here the lookup writes into
+@ another task's memory, which hung every new game after the intro. Each draw
+@ is rolled into its own saved var and then replaced by the species; no
+@ species id is below 7, so a later comparison never matches a species.
 InitNewGame_DrawLegendaryPool:
     @ Uxie's cavern: one of Ian's three most wanted.
-    GetRandom VAR_RESULT, 3
-    SetVar VAR_LEGENDARY_POOL_ACUITY_SPECIES, SPECIES_ARTICUNO
-    CallIfEq VAR_RESULT, 1, InitNewGame_AcuityDrawsCresselia
-    CallIfEq VAR_RESULT, 2, InitNewGame_AcuityDrawsPheromosa
+    GetRandom VAR_LEGENDARY_POOL_ACUITY_SPECIES, 3
+    CallIfEq VAR_LEGENDARY_POOL_ACUITY_SPECIES, 0, InitNewGame_AcuityDrawsArticuno
+    CallIfEq VAR_LEGENDARY_POOL_ACUITY_SPECIES, 1, InitNewGame_AcuityDrawsCresselia
+    CallIfEq VAR_LEGENDARY_POOL_ACUITY_SPECIES, 2, InitNewGame_AcuityDrawsPheromosa
     @ The roamer released at Verity Cavern, which takes Mesprit's slot.
-    GetRandom VAR_RESULT, 7
+    GetRandom VAR_LEGENDARY_POOL_ROAMER_SPECIES, 7
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 0, InitNewGame_RoamerDrawsMesprit
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 1, InitNewGame_RoamerDrawsTapuKoko
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 2, InitNewGame_RoamerDrawsBuzzwole
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 3, InitNewGame_RoamerDrawsGalarianZapdos
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 4, InitNewGame_RoamerDrawsPoipole
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 5, InitNewGame_RoamerDrawsXurkitree
+    CallIfEq VAR_LEGENDARY_POOL_ROAMER_SPECIES, 6, InitNewGame_RoamerDrawsGalarianArticuno
+    Return
+
+InitNewGame_AcuityDrawsArticuno:
+    SetVar VAR_LEGENDARY_POOL_ACUITY_SPECIES, SPECIES_ARTICUNO
+    Return
+
+InitNewGame_RoamerDrawsMesprit:
     SetVar VAR_LEGENDARY_POOL_ROAMER_SPECIES, SPECIES_MESPRIT
-    CallIfEq VAR_RESULT, 1, InitNewGame_RoamerDrawsTapuKoko
-    CallIfEq VAR_RESULT, 2, InitNewGame_RoamerDrawsBuzzwole
-    CallIfEq VAR_RESULT, 3, InitNewGame_RoamerDrawsGalarianZapdos
-    CallIfEq VAR_RESULT, 4, InitNewGame_RoamerDrawsPoipole
-    CallIfEq VAR_RESULT, 5, InitNewGame_RoamerDrawsXurkitree
-    CallIfEq VAR_RESULT, 6, InitNewGame_RoamerDrawsGalarianArticuno
     Return
 
 InitNewGame_AcuityDrawsCresselia:

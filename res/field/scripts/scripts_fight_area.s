@@ -609,7 +609,8 @@ FightArea_07EB:
 FightArea_07F1:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 925
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, FightArea_0899
     SetVarFromValue VAR_0x8004, 924
     CompareVarToValue VAR_0x800C, 387

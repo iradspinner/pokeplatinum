@@ -49,7 +49,8 @@ VeilstoneStore1F_Socialite:
     GoToIfSet FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, VeilstoneStore1F_Socialite_Turtwig
-    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneStore1F_Socialite_Chimchar
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CallIfEq VAR_RESULT, SPECIES_SCORBUNNY, VeilstoneStore1F_Socialite_Chimchar
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, VeilstoneStore1F_Socialite_Piplup
     SetVar VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK, LOCAL_VAR_ACCESSORY_ID
     BufferAccessoryNameWithArticle 0, LOCAL_VAR_ACCESSORY_ID

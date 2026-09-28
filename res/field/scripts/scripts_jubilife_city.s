@@ -1095,7 +1095,8 @@ JubilifeCity_1011:
 JubilifeCity_1020:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 616
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, JubilifeCity_10AC
     SetVarFromValue VAR_0x8004, 617
     CompareVarToValue VAR_0x800C, 393
@@ -1105,7 +1106,7 @@ JubilifeCity_1020:
 JubilifeCity_1052:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 613
-    CompareVarToValue VAR_0x800C, 390
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, JubilifeCity_10AC
     SetVarFromValue VAR_0x8004, 614
     CompareVarToValue VAR_0x800C, 393

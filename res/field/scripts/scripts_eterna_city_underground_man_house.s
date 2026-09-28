@@ -257,7 +257,8 @@ EternaCityUndergroundManHouse_MissionDecorateYourSecretBase:
 
 EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC:
     GetPlayerStarterSpecies VAR_RESULT
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, EternaCityUndergroundManHouse_SendChimcharDollToUndergroundPC
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, EternaCityUndergroundManHouse_SendChimcharDollToUndergroundPC
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, EternaCityUndergroundManHouse_SendTurtwigDollToUndergroundPC
     GoTo EternaCityUndergroundManHouse_SendPiplupDollToUndergroundPC
 

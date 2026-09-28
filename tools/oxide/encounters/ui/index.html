@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!-- Before any stylesheet, so the browser knows both schemes are supported. -->
 <meta name="color-scheme" content="light dark">
-<title>Encounter Tool</title>
+<title>Platinum OxiDex</title>
 <link rel="stylesheet" href="theme.css">
 <!-- Blocking on purpose: it pins a chosen scheme before the first paint. -->
 <script src="theme.js"></script>
@@ -351,7 +351,32 @@ tr.got .spname { font-weight: 600; }
 /* The Trainers tab: the list, the team, and the trainer's own settings. */
 #trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
 #trainright { border-left: 1px solid var(--rule); background: var(--panel);
-  padding: 12px 14px 40px; }
+  padding: 0 14px 40px; }
+/* Either side panel folds to a strip to give the team room (Ian,
+   2026-09-27). The right one is wide enough for a member's three move lists,
+   which sit there beside the member being edited, and keeps its width when
+   it shows the score instead, so the editor never moves under the pointer. */
+#trainmain { grid-template-columns: var(--trl, 380px) minmax(440px, 1fr) var(--trr, 600px); }
+#trmoves .mcol h3 { margin: 10px 0 0; }
+#trainmain.foldl { --trl: 36px; }
+#trainmain.foldr { --trr: 36px; }
+.unfold { display: none; }
+#trainmain.foldl #trainlist > :not(.unfold),
+#trainmain.foldr #trainright > :not(.unfold) { display: none; }
+#trainmain.foldl #trainlist > .unfold,
+#trainmain.foldr #trainright > .unfold { display: block; writing-mode: vertical-rl;
+  margin: 10px auto; padding: 8px 2px; font-size: 14.5px; color: var(--dim); }
+#trainmain.foldr #trainright { padding: 0; }
+.fhead { display: flex; gap: 6px; }
+.fhead input { flex: 1; min-width: 0; }
+#trhead { position: sticky; top: 0; z-index: 5; background: var(--panel);
+  padding: 12px 0 6px; border-bottom: 1px solid var(--rule); }
+#trhead .savebar { position: static; padding: 0; }
+#trhead .savebar .fold { margin-left: auto; }
+#trhead .est { margin: 6px 0 0; font-size: 15px; }
+#trhead .est .scorenum { font-size: 20px; }
+#trhead .sortbar { margin-top: 8px; }
+.member.on { border-left: 3px solid var(--place-ink); padding-left: 9px; margin-left: -12px; }
 #trainmid { padding: 14px 20px 40px; font-size: 17px; }
 #trainfilter { width: 100%; }
 .trrow { display: grid; grid-template-columns: 1fr auto; align-items: center;
@@ -360,19 +385,27 @@ tr.got .spname { font-weight: 600; }
 .trrow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
 .trrow .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .trrow .party { grid-column: 1 / -1; display: flex; }
+.trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
+  min-width: 2.4em; text-align: right; }
 .member { display: grid; grid-template-columns: 40px 1fr; gap: 2px 12px;
   padding: 10px 0; border-bottom: 1px solid var(--rule); }
 .member .l1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .member .facts { color: var(--dim); font-size: 15.5px; }
 .member .moves { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
 /* The three move lists, side by side and never merged (Ian, 2026-09-27). */
-.mcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; }
+.mcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 12px; }
 .mcol h3 { margin: 10px 0 0; font-size: 16px; }
 .mcol > .sub { margin: 0 0 6px; font-size: 14px; }
 .mrow { display: flex; align-items: baseline; gap: 6px; font-size: 15px; padding: 1px 0; }
 .mrow .nm { flex: 1; min-width: 0; }
 .mrow .how { font-size: 13.5px; color: var(--dim); text-align: right; }
 .mrow.gone .nm { color: var(--faint); }
+/* A move reads as its type (Ian, 2026-09-27): its box in the editor and its
+   name in the move lists take the type's colour, blended as a chip's is. */
+.typed { background: light-dark(color-mix(in srgb, var(--t) 24%, var(--panel)),
+                                color-mix(in srgb, var(--t) 34%, var(--panel)));
+  border: 1px solid color-mix(in srgb, var(--t) 60%, var(--panel)); }
+.mrow .nm.typed { border-radius: 3px; padding: 0 5px; }
 .mrow.known .nm { font-weight: 600; }
 button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cursor: pointer;
   font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); }
@@ -522,8 +555,17 @@ table.facts td { padding: 1px 0; }
 .mx span { font-size: 14px; }
 
 /* ---- the calculator view ----------------------------------------------- */
-/* One column, the frame filling it. Still a grid, so main[hidden] hides it. */
-#calcmain { grid-template-columns: 1fr; }
+/* One column, the frame filling it under the save bar. Still a grid, so
+   main[hidden] hides it. */
+#calcmain { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+/* The Sync bridge's save bar (savewatch.py): the file the calculator's Sync
+   reads, and what the OxiDex last read from it. */
+#savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  padding: 6px 14px; border-bottom: 1px solid var(--rule); background: var(--panel);
+  font-size: 15px; }
+#savebar input { flex: 1 1 360px; min-width: 0; font-family: var(--mono); font-size: 14px; }
+#save-state { color: var(--dim); }
+#save-state.bad { color: var(--error); }
 #simmain { grid-template-columns: 320px minmax(520px, 1fr) 420px; }
 #simin { padding: 14px 16px; border-right: 1px solid var(--rule); background: var(--panel);
          display: flex; flex-direction: column; gap: 10px; }
@@ -531,6 +573,14 @@ table.facts td { padding: 1px 0; }
 #simin label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 #simin input, #simin select { width: 150px; }
 #simin #simgo { align-self: flex-start; }
+#simin input[type=checkbox] { width: auto; }
+/* Ian's own picks (request 1): a drop list on each place's row; a locked row
+   is marked as place is everywhere, a row from the save is quieter. */
+.simlock { margin-left: 6px; max-width: 150px; font-size: 13.5px; padding: 1px 4px; }
+.simrow.locked { box-shadow: inset 3px 0 0 var(--place-ink); }
+.simrow.saved { color: var(--dim); }
+#simconfout table.grid { font-size: 14.5px; margin-top: 6px; }
+#simconfout td.num { white-space: nowrap; }
 #simlog { padding: 14px 20px 40px; }
 #simbox { padding: 14px 16px; border-left: 1px solid var(--rule); background: var(--panel); }
 .simrow { display: grid; grid-template-columns: 170px 48px 1fr 52px; column-gap: 8px;
@@ -599,7 +649,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 </head>
 <body>
 <header>
-  <span class="title">Platinum <span class="ox">Oxide</span></span>
+  <span class="title">Platinum <span class="ox">OxiDex</span></span>
   <button id="back" title="Back to where you were (Alt+Left, or the mouse's back button)" disabled>Back</button>
   <nav id="views">
     <button data-view="tables" class="on">Tables</button>
@@ -696,20 +746,36 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
      from res/trainers/data/ and shown as the game builds it (trainers.py). -->
 <main id="trainmain" hidden>
   <section id="trainlist">
+    <button class="unfold" data-fold="l" title="Show the trainer list">Trainers</button>
     <div class="listhead">
-      <input id="trainfilter" placeholder="Find a trainer, a class or a species">
-      <div class="sortbar"><select id="trainsplit"><option value="">Every split</option></select></div>
+      <div class="fhead"><input id="trainfilter" placeholder="Find a trainer, a class or a species">
+        <button class="fold" data-fold="l" title="Fold the trainer list away to give the team room">Hide</button></div>
+      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">Score</button>
+        <button data-k="order">Play order</button>
+        <select id="trainsplit"><option value="">Every split</option></select></div>
     </div>
     <div id="trainrows"></div>
   </section>
   <section id="trainmid"><p class="sub">Choose a trainer.</p></section>
-  <section id="trainright"></section>
+  <section id="trainright">
+    <button class="unfold" data-fold="r" title="Show the save bar, the score and the move lists">Save, score and moves</button>
+    <div id="trhead" hidden></div>
+    <div id="trmoves"></div>
+    <div id="trpane"></div>
+  </section>
   <datalist id="dl-species"></datalist><datalist id="dl-moves"></datalist><datalist id="dl-items"></datalist>
 </main>
 
 <!-- The vendored damage calculator, fed Oxide's data by /api/calc-data. It is
      loaded the first time the view opens, since it is a large page. -->
 <main id="calcmain" hidden>
+  <div id="savebar">
+    <label for="save-path">Save file</label>
+    <input id="save-path" spellcheck="false"
+           placeholder="the .sav melonDS writes, as Windows or WSL names it">
+    <button id="save-watch" title="Watch this file; Sync then reads it each time you save in game">Watch</button>
+    <span id="save-state">No save file set.</span>
+  </div>
   <iframe id="calcframe" title="Damage calculator"></iframe>
 </main>
 <!-- The box simulator: one nuzlocke run to a chosen split, played to make
@@ -723,7 +789,14 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <label>Up to the end of <select id="simsplit"></select></label>
     <label>Deaths <input id="simdeaths" type="number" min="0" max="60" value="0" class="num"></label>
     <label>Starter <select id="simstarter"><option value="">at random</option></select></label>
+    <label title="Start from the save the Calc tab's save bar watches: its Pokemon in the box, their places spent">
+      Start from my save <input type="checkbox" id="simsave"></label>
+    <p class="sub" id="simsavestate"></p>
+    <p class="sub"><span id="simlocks">No picks locked.</span>
+      <button class="linkish" id="simclear" title="Let the sim choose every place again">Clear picks</button></p>
     <button id="simgo">Regenerate</button>
+    <button id="simconf" title="Replay the run many times from here and say how often each of the next calls comes out the same">How sure is it?</button>
+    <div id="simconfout"></div>
     <p class="sub" id="simseed"></p>
     <div id="simsum"></div>
   </section>
@@ -757,6 +830,33 @@ async function api(path, opts) {
   const j = await r.json().catch(() => ({ error: "the server sent something unreadable" }));
   if (!r.ok || j.error) throw new Error(j.error || r.statusText);
   return j;
+}
+
+// ---- the save bar -------------------------------------------------------
+// The Sync bridge (savewatch.py): the OxiDex watches the save file named here
+// and the calculator's Sync, and its own polling, read the party and boxes
+// from it. The file is only ever read; the path is kept outside the repository.
+function drawSaveBar(s) {
+  const input = $("#save-path"), state = $("#save-state");
+  if (document.activeElement !== input) input.value = s.path || "";
+  let text = "No save file set.";
+  if (s.path && s.error) text = `Cannot read it: ${s.error}.`;
+  else if (s.path && s.save) {
+    const when = new Date(s.mtime * 1000).toLocaleString();
+    const off = s.save.era.mismatches.length;
+    const pr = s.save.progress || {}, split = pr.split || {};
+    const where = split.name ? `${pr.badges} badge${pr.badges === 1 ? "" : "s"}, ${split.name}'s split `
+      + `(cap ${split.cap}); ` : "";
+    text = `${where}${s.save.party_count} in the party, ${s.save.boxed} in the boxes; saved ${when}, `
+      + `watched by ${s.mode}.` + (off ? ` ${off} sign${off > 1 ? "s" : ""} it is not this build's.` : "");
+  } else if (s.path) text = "Waiting for the file.";
+  state.textContent = text;
+  state.classList.toggle("bad", !!(s.path && s.error) || !!(s.save && s.save.era.mismatches.length));
+  state.title = s.save ? s.save.party.concat(s.save.era.signs, s.save.era.mismatches).join("\n") : "";
+}
+
+async function refreshSaveBar() {
+  try { drawSaveBar(await api("/api/save")); } catch (e) { /* the server is restarting */ }
 }
 
 // ---- the dex ------------------------------------------------------------
@@ -1301,13 +1401,21 @@ async function restore(p) {
 // ---- the box simulator -------------------------------------------------
 
 let SIM = null;
+// Ian's picks, place to species ("" to leave the place unused), kept in this
+// browser so a reload keeps them (request 1).
+let SIMLOCKS = {};
+try { SIMLOCKS = JSON.parse(localStorage.getItem("oxidex-simlocks") || "{}"); } catch (e) { SIMLOCKS = {}; }
+const saveLocks = () => { try { localStorage.setItem("oxidex-simlocks", JSON.stringify(SIMLOCKS)); } catch (e) {} };
+const simQuery = seed => new URLSearchParams({
+  split: $("#simsplit").value || "League", deaths: $("#simdeaths").value || 0,
+  starter: $("#simstarter").value, seed, locks: JSON.stringify(SIMLOCKS),
+  from_save: $("#simsave").checked ? 1 : 0 });
 async function simulate(first) {
-  const q = new URLSearchParams({
-    split: $("#simsplit").value || "League", deaths: $("#simdeaths").value || 0,
-    starter: $("#simstarter").value, seed: Math.floor(Math.random() * 1e9) });
+  const q = simQuery(Math.floor(Math.random() * 1e9));
   try {
     $("#simgo").disabled = true;
     SIM = await api("/api/simulate?" + q);
+    if (!Array.isArray(SIM.log)) throw new Error("The OxiDex server sent no run: restart it");
     if (first) {
       $("#simsplit").innerHTML = SIM.splits.map(sp =>
         `<option ${sp === SIM.split ? "selected" : ""}>${esc(sp)}</option>`).join("");
@@ -1322,11 +1430,25 @@ async function simulate(first) {
 function drawSim() {
   const d = SIM;
   $("#simseed").textContent = `Seed ${d.seed}, level cap ${d.cap}.`;
+  const nlocks = Object.keys(SIMLOCKS).length;
+  $("#simlocks").textContent = nlocks ? `${nlocks} pick${nlocks === 1 ? "" : "s"} locked.` : "No picks locked.";
+  const fs = d.from_save;
+  $("#simsavestate").textContent = fs ? `From your save: ${fs.used.length} places spent, resuming in `
+    + `${fs.split || "Roark"}'s split; graveyard box${fs.graveyard.length === 1 ? "" : "es"} `
+    + `${fs.graveyard.join(", ") || "none"}.` + (fs.unmatched.length ? ` Not placed: ${fs.unmatched.join("; ")}.` : "")
+    : "";
   $("#simsum").innerHTML = `<p><b class="num">${d.worth}</b> box worth</p>
     <p class="sub">${d.alive} alive, ${d.dead} dead. The living sum to ${d.sum_alive};
       the best six to ${d.top_six}, which count a quarter again.</p>`;
   let split = null;
   const rows = [];
+  // A drop list of what the place can give: the sim's choice, a Pokemon to
+  // lock in, or the place left unused. Only a place's final row has one.
+  const lockSel = e => !(e.can_give && e.can_give.length) ? "" :
+    `<select class="simlock" data-area="${esc(e.area)}" title="Lock this place and replay the rest around it">
+      <option value="">sim's choice</option>${e.can_give.map(o => `<option value="${o.value}"${
+        SIMLOCKS[e.area] === o.value ? " selected" : ""}>${esc(o.label)}</option>`).join("")}
+      <option value="-"${SIMLOCKS[e.area] === "" ? " selected" : ""}>leave unused</option></select>`;
   d.log.forEach(e => {
     if (e.death) {
       rows.push(`<div class="simrow death"><span></span><span></span>
@@ -1343,15 +1465,16 @@ function drawSim() {
       return;
     }
     if (!e.species) {
-      rows.push(`<div class="simrow none"><span class="where">${esc(e.area)}</span><span></span>
-        <span class="how">${esc(e.note || "nothing new")}</span><span></span></div>`);
+      rows.push(`<div class="simrow none${e.locked ? " locked" : ""}"><span class="where">${esc(e.area)}</span><span></span>
+        <span class="how">${esc(e.note || "nothing new")}${lockSel(e)}</span><span></span></div>`);
       return;
     }
     const alt = (e.options || []).slice(1, 3).map(o => `${o.label} ${o.gain}`).join("; ");
-    rows.push(`<div class="simrow" title="${esc(alt ? "Next best: " + alt : "")}">
+    rows.push(`<div class="simrow${e.locked ? " locked" : ""}${e.from_save ? " saved" : ""}"
+        title="${esc(alt ? "Next best: " + alt : "")}">
       <span class="where">${esc(e.area)}</span>${icon(e.species, true)}
       <span><a href="#" class="spname" data-sp="${e.species}">${esc(e.label)}</a>
-        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span></span>
+        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span>${lockSel(e)}</span>
       <span class="num">${e.value}</span></div>`);
   });
   $("#simlog").innerHTML = rows.join("");
@@ -1374,6 +1497,21 @@ function drawSim() {
 // rebuilds and lints it without writing, and Save writes it in the file's own
 // style (trainers.py). The page works out nothing itself.
 let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
+// The list's order: "score" puts the hardest stored score first (Ian,
+// 2026-09-27), "order" is play order. A trainer with no stored score (a
+// rematch, a dummy, a facility trainer) follows the scored ones in play order.
+let TRSORT = "score";
+// The right panel shows one pane: a member's move lists, or the trainer's
+// score and settings. TRFOLD is which side panels are folded, kept in this
+// browser only, like the theme.
+let TRPANE = "trainer", TRFOLD = "";
+try { TRFOLD = localStorage.getItem("oxidex-trfold") || ""; } catch (e) { /* private window */ }
+// A move constant's type, for its colour.
+let TRTYPE = new Map();
+const moveStyle = c => {
+  const t = TRTYPE.get(c);
+  return t ? ` style="--t: var(--type-${t.toLowerCase()})"` : "";
+};
 let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
 // The score (teamscore.py, the balance track's): the estimate follows every
 // edit; the full score runs on request and remembers the team it scored.
@@ -1390,11 +1528,7 @@ const clone = o => JSON.parse(JSON.stringify(o));
 async function loadTrainers() {
   if (TRAINERS) return;
   TRAINERS = await api("/api/trainers");
-  const order = new Map(TRAINERS.splits.map((s, i) => [s, i]));
-  // In play order: by split, then by the team's highest level.
-  TRAINERS.rows.sort((a, b) => (order.has(a.split) ? order.get(a.split) : 99)
-    - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
-    || a.label.localeCompare(b.label));
+  sortTrainers();
   const keep = $("#trainsplit").value;
   $("#trainsplit").innerHTML = `<option value="">Every split</option>` + TRAINERS.splits.map(s =>
     `<option>${esc(s)}</option>`).join("") + `<option value="-">No split</option>`;
@@ -1405,6 +1539,24 @@ async function loadTrainers() {
     TRBY[kind] = new Map(pairs.map(([c, n]) => [n.toLowerCase(), c]));
     $("#dl-" + kind).innerHTML = pairs.map(([, n]) => `<option value="${esc(n)}">`).join("");
   }
+  TRTYPE = new Map(TRAINERS.choices.moves.map(([c, , t]) => [c, t]));
+}
+
+// Folds the side panels TRFOLD names ("l", "r" or both).
+function layoutTrainers() {
+  const m = $("#trainmain");
+  m.classList.toggle("foldl", TRFOLD.includes("l"));
+  m.classList.toggle("foldr", TRFOLD.includes("r"));
+}
+
+// Play order is by split, then by the team's highest level.
+function sortTrainers() {
+  const order = new Map(TRAINERS.splits.map((s, i) => [s, i]));
+  const play = (a, b) => (order.has(a.split) ? order.get(a.split) : 99)
+    - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
+    || a.label.localeCompare(b.label);
+  const scale = r => r.score ? r.score.scale : -Infinity;
+  TRAINERS.rows.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
 }
 
 function trainerMatch(r) {
@@ -1423,7 +1575,9 @@ function drawTrainerList() {
     <div class="trrow${r.stem === TRSEL ? " on" : ""}" data-tr="${r.stem}">
       <span class="nm">${esc(r.label || r.stem)}${r.double ? ' <span class="tag">double</span>' : ""}</span>
       <span>${splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
-        r.top}${r.cap ? " / " + r.cap : ""}</span></span>
+        r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
+        `Stored score on Ian's fight scale (${r.score.band})${r.score.fight ? ", the story fight " + r.score.fight : ""}; a team saved since the last rescore still shows the old one`)}">${
+        r.score.scale.toFixed(1)}</b>` : ""}</span>
       <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
     </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
   $("#trainrows").querySelectorAll(".trrow").forEach(el =>
@@ -1568,20 +1722,37 @@ async function showMoveLists(i, quiet) {
     TRLISTS = await api("/api/trainer-moves?" + q);
   } catch (e) { return toast(e.message, true); }
   TRMEMBER = i;
+  TRPANE = "moves";
+  // Asking for the lists unfolds the panel they are in; clicking into a move
+  // box (quiet) leaves a fold alone.
+  if (!quiet && TRFOLD.includes("r")) foldTrainers("r");
+  drawTrainerRight();
   drawMoveLists();
-  if (!quiet) $("#trmoves").scrollIntoView({ block: "nearest" });
+  document.querySelectorAll("#trainmid .member").forEach((el, k) => el.classList.toggle("on", k === i));
+  if (!quiet) $("#trainright").scrollTop = 0;
+}
+
+function foldTrainers(side) {
+  TRFOLD = TRFOLD.includes(side) ? TRFOLD.replace(side, "") : TRFOLD + side;
+  try { localStorage.setItem("oxidex-trfold", TRFOLD); } catch (e) { /* private window */ }
+  layoutTrainers();
 }
 
 function drawMoveLists() {
   const box = $("#trmoves");
-  if (!box || !TRLISTS || TRMEMBER === null || !TREDIT.party[TRMEMBER]) return;
+  box.hidden = TRPANE !== "moves";
+  if (!TRLISTS || TRMEMBER === null || !TREDIT || !TREDIT.party[TRMEMBER]) {
+    box.innerHTML = `<p class="sub">Click into a Pokemon's move box, or its Move lists, to see
+      what it can learn here while you edit its moves.</p>`;
+    return;
+  }
   const f = TREDIT.party[TRMEMBER], L = TRLISTS;
   const known = new Set(f.moves || []);
   const pickable = Array.isArray(f.moves);
   const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"
       data-move="${pickable && e.move ? e.move : ""}"${e.move ? "" : ' title="Oxide has no such move"'}>
-      <span>${e.type ? typeChip(e.type, "mini") : ""}</span>
-      <span class="nm">${esc(e.name)}</span>
+      <span class="nm${e.type ? " typed" : ""}"${e.type
+        ? ` style="--t: var(--type-${e.type.toLowerCase()})" title="${esc(tidy(e.type))}"` : ""}>${esc(e.name)}</span>
       <span class="how">${esc(e.how)}${e.from ? ", as " + esc(e.from) : ""}</span></div>`;
   const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
       <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
@@ -1633,12 +1804,15 @@ function memberEditor(f, i) {
     .concat(TRAINERS.choices.natures);
   const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
       data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
-  const moves = hasMoves ? [0, 1, 2, 3].map(j => `<input class="ed mv" id="${id("mv" + j)}"
+  const moves = hasMoves ? [0, 1, 2, 3].map(j => {
+      const c = (f.moves || [])[j], typed = moveStyle(c);
+      return `<input class="ed mv${typed ? " typed" : ""}" id="${id("mv" + j)}"${typed}
       data-i="${i}" data-k="moves" data-slot="${j}" list="dl-moves" placeholder="no move"
-      value="${esc(nameOf("moves", (f.moves || [])[j]))}">`).join("")
+      value="${esc(nameOf("moves", c))}">`;
+    }).join("")
     : `<p class="sub">No moves listed, so the game gives the level-up default${
         b ? ": " + esc(b.moves.join(", ")) : ""}.</p>`;
-  return `<div class="member">
+  return `<div class="member${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}">
     ${icon(f.species, true)}
     <div>
       <div class="l1">
@@ -1677,8 +1851,7 @@ function drawTrainer() {
       : "Not placed in a split, so it has no level cap."} <code>${esc(d.stem)}.json</code></p>
     ${findingsFor(null)}
     ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
-    <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p>
-    <div id="trmoves"></div>`;
+    <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p>`;
   drawMoveLists();
   drawTrainerRight();
   if (focus && focus.startsWith("tr-") && document.getElementById(focus))
@@ -1690,11 +1863,23 @@ function drawTrainerRight() {
   const errors = TRFINDINGS.filter(f => f.severity === "error").length;
   const state = !TRDIRTY ? "No unsaved changes." : errors
     ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving.` : "Unsaved changes.";
-  $("#trainright").innerHTML = `<div class="savebar">
+  const e = TRESTIMATE;
+  const est = e && !e.error ? `<b class="scorenum">${e.scale}</b> the estimate (${esc(e.band)})` : "";
+  const head = $("#trhead");
+  head.hidden = false;
+  head.innerHTML = `<div class="savebar">
       <button id="trsave"${!TRDIRTY || errors ? " disabled" : ""}>Save</button>
       <button id="trrevert"${TRDIRTY ? "" : " disabled"}>Revert</button>
-      <span class="sub">${state}</span></div>
-    <h3>Score</h3>
+      <span class="sub">${state}</span>
+      <button class="fold" data-fold="r" title="Fold this panel away to give the team room">Hide</button></div>
+    ${est ? `<p class="est">${est}</p>` : ""}
+    <div class="sortbar"><button data-pane="moves"${TRPANE === "moves" ? ' class="on"' : ""}>Move lists</button>
+      <button data-pane="trainer"${TRPANE === "trainer" ? ' class="on"' : ""}>Score and settings</button></div>`;
+  layoutTrainers();
+  const pane = $("#trpane");
+  pane.hidden = TRPANE !== "trainer";
+  $("#trmoves").hidden = TRPANE !== "moves";
+  pane.innerHTML = `<h3>Score</h3>
     ${scoreBlock()}
     <h3>Battle</h3>
     <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
@@ -1724,6 +1909,7 @@ async function setView(view) {
   $("#calcmain").hidden = view !== "calc";
   if (view === "calc" && !$("#calcframe").getAttribute("src"))
     $("#calcframe").src = CALC_URL;
+  if (view === "calc") refreshSaveBar();
   try {
     if (view === "dex" && !POKEDEX.length) {
       POKEDEX = (await api("/api/dex")).rows;
@@ -2461,24 +2647,31 @@ document.querySelectorAll("#movelist .sortbar button").forEach(b => b.onclick = 
   drawMoveList();
 });
 $("#trainfilter").oninput = () => TRAINERS && drawTrainerList();
+$("#save-watch").onclick = async () => {
+  try {
+    const s = await api("/api/save/path", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: $("#save-path").value }) });
+    drawSaveBar(s);
+    toast(s.save ? "Watching the save" : s.path ? "Watching; nothing read yet" : "No save file set");
+  } catch (e) { toast(e.message, true); }
+};
+$("#save-path").addEventListener("keydown", ev => { if (ev.key === "Enter") $("#save-watch").click(); });
+setInterval(() => { if (VIEW === "calc" && !document.hidden) refreshSaveBar(); }, 5000);
 $("#trainsplit").onchange = () => TRAINERS && drawTrainerList();
-// The team editor. A member's icon opens its dex page; "Move lists" shows
-// the three lists under the team, and a move clicked there goes into the
-// move box last chosen; Remove and Add change the party.
+document.querySelectorAll("#trainlist .sortbar button").forEach(b => b.onclick = () => {
+  TRSORT = b.dataset.k;
+  document.querySelectorAll("#trainlist .sortbar button")
+          .forEach(x => x.classList.toggle("on", x === b));
+  if (TRAINERS) { sortTrainers(); drawTrainerList(); }
+});
+// The team editor. A member's icon opens its dex page; "Move lists", or
+// clicking into one of its move boxes, shows its three lists in the right
+// panel, where a move clicked goes into the move box last chosen; Remove and
+// Add change the party.
 $("#trainmid").addEventListener("click", ev => {
   if (!TREDIT) return;
   const lists = ev.target.closest("[data-lists]");
   if (lists) return showMoveLists(+lists.dataset.lists);
-  const pick = ev.target.closest(".mrow[data-move]");
-  if (pick && pick.dataset.move && TRMEMBER !== null) {
-    const f = TREDIT.party[TRMEMBER];
-    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
-      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
-    setMove(TRMEMBER, slot, pick.dataset.move);
-    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
-    edited();
-    return drawTrainer();
-  }
   const rm = ev.target.closest("[data-remove]");
   if (rm) {
     TREDIT.party.splice(+rm.dataset.remove, 1);
@@ -2498,8 +2691,16 @@ $("#trainmid").addEventListener("click", ev => {
 });
 $("#trainmid").addEventListener("focusin", ev => {
   const box = ev.target.closest(".mv");
-  if (box) TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
+  if (!box) return;
+  TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
+  if (TRPANE !== "moves" || TRMEMBER !== TRFOCUS.i || !TRLISTS) showMoveLists(TRFOCUS.i, true);
 });
+// Either side panel folds, whether or not a trainer is open.
+$("#trainmain").addEventListener("click", ev => {
+  const f = ev.target.closest("[data-fold]");
+  if (f) foldTrainers(f.dataset.fold);
+});
+layoutTrainers();
 // A field is committed when it changes (Enter, or leaving the box). A name
 // that is not a species, move or item is refused and put back.
 $("#trainmid").addEventListener("change", ev => {
@@ -2543,6 +2744,24 @@ $("#trainright").addEventListener("change", ev => {
 });
 $("#trainright").addEventListener("click", ev => {
   if (!TREDIT) return;
+  const tab = ev.target.closest("[data-pane]");
+  if (tab) {
+    TRPANE = tab.dataset.pane;
+    document.querySelectorAll("#trainmid .member").forEach((el, k) =>
+      el.classList.toggle("on", TRPANE === "moves" && k === TRMEMBER));
+    drawTrainerRight();
+    return drawMoveLists();
+  }
+  const pick = ev.target.closest(".mrow[data-move]");
+  if (pick && pick.dataset.move && TRMEMBER !== null) {
+    const f = TREDIT.party[TRMEMBER];
+    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
+      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
+    setMove(TRMEMBER, slot, pick.dataset.move);
+    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
+    edited();
+    return drawTrainer();
+  }
   const id = ev.target.id;
   if (id === "trsave") return saveTrainer();
   if (id === "trscore") return scoreTrainer();
@@ -2563,6 +2782,38 @@ window.addEventListener("beforeunload", ev => {
   if (TRDIRTY) { ev.preventDefault(); ev.returnValue = ""; }
 });
 $("#simgo").onclick = () => simulate(false);
+$("#simsave").onchange = () => { $("#simconfout").innerHTML = ""; simulate(false); };
+$("#simclear").onclick = () => { SIMLOCKS = {}; saveLocks(); simulate(false); };
+$("#simlog").addEventListener("change", ev => {
+  const sel = ev.target.closest(".simlock");
+  if (!sel) return;
+  if (sel.value === "") delete SIMLOCKS[sel.dataset.area];
+  else SIMLOCKS[sel.dataset.area] = sel.value === "-" ? "" : sel.value;
+  saveLocks();
+  simulate(false);
+});
+// How sure the sim is of its next calls (request 3): the call most replays
+// make at each place, how often, and its lead over the next best.
+$("#simconf").onclick = async () => {
+  const b = $("#simconf");
+  b.disabled = true;
+  $("#simconfout").innerHTML = `<p class="sub">Replaying the run from here.</p>`;
+  try {
+    const c = await api("/api/simulate/confidence?" + simQuery(SIM ? SIM.seed || 0 : 0));
+    // A server older than the page answers without the table (it read the
+    // path as an ordinary run); say so rather than fail on the missing field.
+    if (!Array.isArray(c.areas)) throw new Error("The OxiDex server is older than this page: restart it");
+    $("#simconfout").innerHTML = `<table class="grid"><thead><tr><th>Next places</th><th>Call</th>
+        <th class="num" title="Share of ${c.runs} replays making this call">Sure</th>
+        <th class="num" title="The call's lead over the next best option, as a share of its gain">Lead</th></tr></thead>
+      <tbody>${c.areas.map(r => `<tr title="${esc(r.others.map(o => `${o.decision} ${pct(o.share)}`).join("; "))}">
+        <td>${esc(r.area)}</td><td>${esc(r.decision)}</td><td class="num">${pct(r.share)}</td>
+        <td class="num">${pct(r.margin)}</td></tr>`).join("")}</tbody></table>
+      <p class="sub">${c.runs} replays with different luck. The first place's lead is exact; further on,
+        the share says how often earlier luck leads to the same call.</p>`;
+  } catch (e) { $("#simconfout").innerHTML = ""; toast(e.message, true); }
+  finally { b.disabled = false; }
+};
 $("#simlog").addEventListener("click", ev => {
   const hit = ev.target.closest("[data-sp]");
   if (!hit) return;

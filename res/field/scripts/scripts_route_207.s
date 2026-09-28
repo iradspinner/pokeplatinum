@@ -200,7 +200,8 @@ Route207_0337:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, Route207_038F
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, Route207_03AC
     GoTo Route207_03C9
 Route207_0363:
@@ -210,7 +211,7 @@ Route207_0363:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, Route207_03E6
-    CompareVarToValue VAR_0x800C, 390
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, Route207_0403
     GoTo Route207_0420
 Route207_038F:

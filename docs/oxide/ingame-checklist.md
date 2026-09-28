@@ -184,6 +184,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
+  Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
+  Lucas uses the Turtwig line. With Turtwig, Barry has Scorbunny; with Piplup,
+  Turtwig. The Jubilife TV mask, the Veilstone Department Store socialite's
+  mask and the Underground Man's doll are the fire starter's.
+- [ ] Once the battle log lands (main track): fight two trainers, save, and
+  both battles show in the OxiDex's Battle Log, with the right knockouts.
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
@@ -311,7 +318,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Soundproof. Her Exploud never chooses Hyper Voice.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
-  at Galactic HQ to 65, Cyrus in the Distortion World to 68, and Volkner to 78.
+  at Galactic HQ to 65, Cyrus in the Distortion World to 68, Volkner to 71
+  (the Barry split: Victory Road, the Fight Area and the rival fights stay at
+  71), and walking into Aaron's room, as its door shuts, to 78. Leaving the
+  League before the Elite Four keeps the cap at 71.
 - [ ] No gift clown anywhere: the houses in Sandgem, Jubilife (south house 1F),
   Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
   Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east

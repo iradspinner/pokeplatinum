@@ -131,6 +131,46 @@ calculator checks fail if the offline ones are lost.
     Lua sync button and its emulator link hidden under the "Platinum Oxide"
     title: both serve hzla's DeSmuME build, and Oxide is played on melonDS.
 
+14. **`js/initialize.js`, Oxide's save tables** (2026-09-27, Ian's save
+    plan, step 1). The "Platinum Oxide" branch sets `settings.readIncludes`,
+    so upstream's own loader installs the blob's `includes` (species, moves,
+    items, growth rates and abilities by the ids an Oxide save stores,
+    `calc_export.save_includes`) as the save reader's tables. The includes
+    loader then skips `extendSavArraysToGen67` under that title, since it
+    writes Generation 6 and 7 names over species past 650, moves past 559
+    and every ability.
+
+15. **`js/savereaders/savereader.js`, Oxide's save layout and ability**
+    (2026-09-27, step 2). `applyOxideSaveLayout` finds the normal and box
+    blocks by their footers (the signature 0x20060623 with the size before
+    it) and sets the offsets the vanilla Platinum branch hard-codes, which
+    an Oxide save no longer matches: its larger Pokedex moved the box block.
+    `parsePKM` reads the ability as the u16 at block B 0x1A and shows the
+    hidden-ability bit (block A 0x0D bit 0) as slot 3. Both apply only under
+    the "Platinum Oxide" title. `tools/oxide/encounters/savefile.py` reads
+    saves the same way for the OxiDex, and `test_savefile` checks both.
+
+16. **Sync reads the OxiDex's save bridge** (2026-09-27, step 3). Upstream's
+    DS Sync fetches `/box/packed` from a patched DeSmuME; under the "Platinum
+    Oxide" title it fetches `/api/save/packed` from the OxiDex, which serves
+    the save file melonDS writes in the same packed format
+    (`savewatch.py`). `js/moveset_import.js` makes that fetch, with no
+    clipboard fallback; `js/calc_ui/menu_settings.js` and `js/initialize.js`
+    show Sync under the title whatever the menu's Lua toggle says, and keep
+    the DeSmuME link hidden (patch 13); `index.html` loads
+    `js/oxide/save_sync.js`, which asks `/api/save` every three seconds and
+    presses Sync when the OxiDex has read a newer save, and sets the level
+    cap (`#lvl-cap`, which the Box uses) to the save's split cap whenever
+    that cap changes (step 4). `test_savewatch` checks all four.
+
+17. **`js/initialize.js`, Oxide's met places** (2026-09-27). The blob's
+    `met_locations` (the game's location-names text bank, by the ids a
+    Pokemon record stores) replace `locations["Pt"]` under the "Platinum
+    Oxide" title, after the `includes` are installed. Upstream's Platinum
+    table runs on into HeartGold's places past Platinum's own ids, so the
+    starter's Rowan's Briefcase, an id Oxide added, read as New Bark Town in
+    the Box after a Sync. `test_savefile` checks the patch and the table.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

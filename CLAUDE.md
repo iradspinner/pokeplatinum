@@ -158,7 +158,7 @@ rebuild reproduces a reference ROM's tables. `scriptdis.py` disassembles and
 round-trips field scripts; `bulk_scripts.py`, `bulk_events.py` and
 `bulk_text.py` regenerate whatever the build still gets wrong against the base
 ROM (their `--dry-run` doubles as the check); `mapdiff.py` and `checkmap.py`
-work one map at a time. `tools/oxide/encounters/` is the encounter tool, with
+work one map at a time. `tools/oxide/encounters/` is the encounter tool, the Platinum OxiDex (OxiDex for short), with
 its own tests and CLI (see its build plan). `tools/oxide/live_watch.py` attaches
 to Ian's melonDS on Windows over its GDB stub while Ian drives the game; never
 launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b, and the

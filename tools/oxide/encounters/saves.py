@@ -110,7 +110,7 @@ def run_checks(root):
 
 def message(files, when=None):
     when = when or datetime.date.today().isoformat()
-    lines = [f"Ian's edits in the encounter tool, {when}", "",
+    lines = [f"Ian's edits in the OxiDex, {when}", "",
              "Committed from the tool's \"Commit my edits\", on ian-saves. Changed:", ""]
     lines += [f"- {describe(p)} ({p})" for p in files]
     lines += ["", "The encounter lint and the base ROM importer's dry run passed first."]
