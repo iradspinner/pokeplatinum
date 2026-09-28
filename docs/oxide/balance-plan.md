@@ -2187,11 +2187,27 @@ lands, and each change is re-scored as it lands.
    little above average, and the encounter tool's tiers are availability
    labels, not intended power. So a stage with no niche in the split the
    player first owns it is a finding of the learnset pass, as an overbuff
-   is. The generator does not check this yet. The check to build reads
-   each stage in that split against the others owned by then, in each
-   role the scores can see (damage with its moves, bulk, speed, and the
-   status moves Ian's tiers rate), and reports a stage that none of its
-   roles sets apart.
+   is.
+
+   `niche.py` checks it (`docs/oxide/niche-check.md`). Each stage is read
+   in the split it is first owned in, at the cap, with the moves it can
+   have by then, against every trainer Pokemon of the split by the
+   calculator, in five roles: offense, speed, physical wall, special wall
+   (a wall counts only against foes it can knock out in three hits, since
+   a bulky stage with nothing to attack with is no wall), and status by
+   Ian's tiers. A stage has a niche when a role, or its mean standing (an
+   all-rounder), is in the split's top quarter. It reads Oxide's lists
+   today and the proposal with the later moves placed.
+
+   | Stages without a niche | Held past their first split | Evolve within it |
+   |---|---|---|
+   | On both readings | 63 | 61 |
+   | Today only (the proposal gives one) | 6 | 1 |
+   | On the proposal only | 1 | 1 |
+
+   The pool places the fossils and Cresselia in no split (a source above
+   its location split's cap, or at a location it does not know), so the
+   scores' realistic box lacks them too; the check places them itself.
 
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
