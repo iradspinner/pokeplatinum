@@ -49,6 +49,11 @@ replacement is on the way. When the new chip is in, and before any playtest:
   Shadow Force's animation carries one changed byte nobody has explained;
   note anything odd about it.
 
+- [ ] Once `main-battlelog` merges, **the battle log**: your current save
+  loads and plays as before. Fight two trainers, save, and the OxiDex's
+  Battle Log shows both, with who knocked out whom. Lose one fight on
+  purpose if convenient; it is logged too, as lost.
+
 ## 2. The test kit ROM
 
 The kit's NPC and menus are described in `docs/oxide/test-kit.md`, set by set,

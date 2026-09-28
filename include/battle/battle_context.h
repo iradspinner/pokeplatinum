@@ -11,6 +11,7 @@
 #include "battle/battle_mon.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 
+#include "battle_log.h"
 #include "char_transfer.h"
 #include "sprite_system.h"
 
@@ -328,6 +329,13 @@ struct BattleContext {
     u32 battleProgressFlag : 1;
     u32 teatimeNext : 3; // Oxide: the next battler TryTeatime looks at, from the padding
     u32 padding3154_04 : 28;
+
+    // Platinum Oxide: every faint, in order, for the battle log (src/battle_log.c):
+    // the fainted battler and its party slot, then the battler whose move made
+    // the faint as it ran and that battler's party slot, or BATTLER_NONE twice
+    // when nothing did (poison, weather, recoil and the like).
+    u8 oxideFaintCount;
+    u8 oxideFaints[BATTLE_LOG_MAX_FAINTS][4];
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

@@ -7,6 +7,8 @@
 
 #include "savedata/save_table.h"
 
+#include "battle_log.h"
+
 #include "heap.h"
 #include "inlines.h"
 #include "math_util.h"
@@ -68,6 +70,9 @@ SaveData *SaveData_Init(void)
         saveData->dataExists = TRUE;
         saveData->isNewGameData = FALSE;
 
+        // Platinum Oxide: the battle log, from its own sector after the blocks.
+        BattleLog_Load(saveData);
+
         if (loadResult == LOAD_RESULT_CORRUPT) {
             saveData->loadCheckStatus |= NORMAL_LOAD_CORRUPT;
         }
@@ -92,6 +97,7 @@ SaveData *SaveData_Init(void)
         saveData->loadCheckStatus |= NORMAL_LOAD_ERROR;
     case LOAD_RESULT_EMPTY:
         SaveData_Clear(saveData);
+        BattleLog_Clear(saveData);
         break;
     }
 
@@ -153,6 +159,7 @@ BOOL SaveData_Load(SaveData *saveData)
     if (loadSucceeded) {
         saveData->dataExists = TRUE;
         saveData->isNewGameData = FALSE;
+        BattleLog_Load(saveData);
 
         int frontierResult, videoResult;
         SaveDataExtra_LoadCheck(saveData, &frontierResult, &videoResult);
@@ -754,6 +761,13 @@ static void SaveDataState_End(SaveData *saveData, SaveDataState *state, int save
         saveData->dataExists = TRUE;
         saveData->isNewGameData = FALSE;
         saveData->fullSaveRequired = FALSE;
+
+        // Platinum Oxide: an in-game save writes the normal block, and the
+        // battle log follows it to flash, so the two always match. A save of
+        // one other block alone (a trade, the Frontier) leaves the log be.
+        if (state->startBlock == SAVE_BLOCK_ID_NORMAL) {
+            BattleLog_Write(saveData);
+        }
     }
 
     SleepUnlock(SLEEP_TYPE_SAVE_DATA);
