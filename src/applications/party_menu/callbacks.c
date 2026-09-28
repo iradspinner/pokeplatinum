@@ -394,10 +394,11 @@ void PartyMenu_SetItemUseCallback(PartyMenuApplication *application)
     }
 }
 
-// Platinum Oxide: the Ability Capsule swaps a Pokemon between its species'
-// two ordinary abilities. It does nothing for a species with one ordinary
-// ability, or both the same, or for a Pokemon on its hidden ability.
-static BOOL UseAbilityCapsule(Pokemon *mon)
+// Platinum Oxide: the ability the Ability Capsule would give a Pokemon, the
+// other of its species' two ordinary abilities, or ABILITY_NONE when it would
+// do nothing: for a species with one ordinary ability, or both the same, or
+// for a Pokemon on its hidden ability.
+static u32 AbilityCapsuleResult(Pokemon *mon)
 {
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -406,23 +407,21 @@ static BOOL UseAbilityCapsule(Pokemon *mon)
     u32 hidden = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
 
     if (ability2 == ABILITY_NONE || ability1 == ability2) {
-        return FALSE;
+        return ABILITY_NONE;
     }
 
     if (Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && hidden != ABILITY_NONE) {
-        return FALSE;
+        return ABILITY_NONE;
     }
 
-    u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
-    Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
-    Pokemon_CalcAbility(mon);
-    return TRUE;
+    return Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL) == ability1 ? ability2 : ability1;
 }
 
-// Platinum Oxide: the Ability Patch gives a Pokemon its species' hidden
-// ability. The game holds exactly one, so it refuses rather than be spent on a
+// Platinum Oxide: the ability the Ability Patch would give a Pokemon, its
+// species' hidden ability, or ABILITY_NONE when it would change nothing. The
+// game holds exactly one Patch, so it is refused rather than spent on a
 // Pokemon it would not change.
-static BOOL UseAbilityPatch(Pokemon *mon)
+static u32 AbilityPatchResult(Pokemon *mon)
 {
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -431,11 +430,24 @@ static BOOL UseAbilityPatch(Pokemon *mon)
     if (hidden == ABILITY_NONE
         || Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL)
         || Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL) == hidden) {
-        return FALSE;
+        return ABILITY_NONE;
     }
 
-    Pokemon_TryGiveHiddenAbility(mon);
-    return TRUE;
+    return hidden;
+}
+
+// Platinum Oxide: the Capsule swaps the Pokemon's ordinary ability slot, and
+// the Patch gives it its hidden ability. Both have been checked by the
+// functions above before the player was asked.
+static void ApplyAbilityItem(Pokemon *mon, u16 item)
+{
+    if (item == ITEM_ABILITY_CAPSULE) {
+        u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
+        Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
+        Pokemon_CalcAbility(mon);
+    } else {
+        Pokemon_TryGiveHiddenAbility(mon);
+    }
 }
 
 // Platinum Oxide: the natures the Mints give, in item order.
@@ -566,6 +578,28 @@ static enum PartyMenuState PartyMenuCB_BottleCapStat(PartyMenuApplication *appli
     return FinishOxideItem(application, used);
 }
 
+// Platinum Oxide: the Ability Capsule or Patch, once the player has said yes.
+static enum PartyMenuState PartyMenuCB_AbilityItemYes(PartyMenuApplication *application)
+{
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+
+    ApplyAbilityItem(mon, application->partyMenu->usedItemID);
+    StringTemplate_SetAbilityName(application->template, 1, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+    FormatMonMessage(application, mon, PartyMenu_Text_MonsAbilityChanged);
+
+    return FinishOxideItem(application, TRUE);
+}
+
+// Platinum Oxide: the player said no, so the item stays and the menu goes
+// back to choosing a Pokemon, as B on the Bottle Cap's stat list does.
+static enum PartyMenuState PartyMenuCB_AbilityItemNo(PartyMenuApplication *application)
+{
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], TRUE);
+    PartyMenu_PrintShortMessage(application, PartyMenu_Text_UseOnWhichMon, TRUE);
+
+    return PARTY_MENU_STATE_USE_ITEM;
+}
+
 // Platinum Oxide: the items used on a party member whose effect the item
 // table's parameters cannot express. Returns the next state once it has dealt
 // with the item, used, refused or waiting on a choice, and -1 for any other
@@ -589,15 +623,28 @@ int PartyMenu_TryUseOxideItem(PartyMenuApplication *application)
     }
 
     switch (item) {
+    // The Capsule and the Patch ask before they act (Ian, 2026-09-27), naming
+    // the ability the Pokemon would get; one that would change nothing is
+    // refused without asking.
     case ITEM_ABILITY_CAPSULE:
-    case ITEM_ABILITY_PATCH:
-        used = item == ITEM_ABILITY_CAPSULE ? UseAbilityCapsule(mon) : UseAbilityPatch(mon);
+    case ITEM_ABILITY_PATCH: {
+        u32 newAbility = item == ITEM_ABILITY_CAPSULE ? AbilityCapsuleResult(mon) : AbilityPatchResult(mon);
 
-        if (used) {
-            StringTemplate_SetAbilityName(application->template, 1, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
-            FormatMonMessage(application, mon, PartyMenu_Text_MonsAbilityChanged);
+        if (newAbility == ABILITY_NONE) {
+            used = FALSE;
+            break;
         }
-        break;
+
+        StringTemplate_SetAbilityName(application->template, 1, newAbility);
+        FormatMonMessage(application, mon, PartyMenu_Text_ChangeMonsAbility);
+        PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
+
+        application->yesnoCallbacks.onYes = PartyMenuCB_AbilityItemYes;
+        application->yesnoCallbacks.onNo = PartyMenuCB_AbilityItemNo;
+        application->stateAfterMessage = PARTY_MENU_STATE_DRAW_YES_NO_CHOICE;
+
+        return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
+    }
 
     case ITEM_BOTTLE_CAP:
         PartyMenu_PrintMediumMessage(application, PartyMenu_Text_HyperTrainWhichStat, TRUE);

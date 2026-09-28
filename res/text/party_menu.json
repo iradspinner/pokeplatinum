@@ -1041,6 +1041,13 @@
         "{STRVAR_1 1, 0, 0}’s stats were all\n",
         "maxed out by Hyper Training!"
       ]
+    },
+    {
+      "id": "PartyMenu_Text_ChangeMonsAbility",
+      "en_US": [
+        "Change {STRVAR_1 1, 0, 0}’s Ability\n",
+        "to {STRVAR_1 5, 1, 0}?"
+      ]
     }
   ]
 }
