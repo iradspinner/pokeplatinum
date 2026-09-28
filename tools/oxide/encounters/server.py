@@ -852,7 +852,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
         # they need, is an unknown endpoint like any other, not a crash.
-        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer") and len(parts) < 3):
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer", "pair") and len(parts) < 3):
             return self._send({"error": "unknown endpoint"}, 404)
         # The Sync bridge (savewatch.py): the save's state for the Calc tab's
         # save bar, or its party and boxes packed for the calculator's Sync.
@@ -940,7 +940,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if parts[1] == "trainers":
                 return self._send({"rows": trainers.summary(), "splits": trainers.split_order(),
                                    "caps": trainers.caps(),
+                                   # Two trainers fought as one double (balance/pairs.py).
+                                   "pairs": trainers.pair_rows(),
                                    "choices": trainers.choices(model.repo_root())})
+            if parts[1] == "pair" and len(parts) > 2:
+                try:
+                    return self._send(trainers.pair_detail(model.repo_root(), parts[2]))
+                except (KeyError, FileNotFoundError):
+                    return self._send({"error": f"no such pair: {parts[2]}"}, 404)
             if parts[1] == "saves":
                 # Ian's uncommitted edits, for the header's badge (saves.py).
                 return self._send(saves.pending(model.repo_root()))
@@ -1077,6 +1084,25 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 except saves.CommitRefused as exc:
                     return self._send({"error": str(exc)}, 409)
                 return self._send(out, 200 if out.get("pushed") else 502)
+
+            # A pair (trainers.pair_*): edits to either side, keyed by file
+            # name; /preview rebuilds and lints them with the pair's estimate
+            # as one fight, /score runs the full scorer on it, and a plain
+            # POST saves both or neither.
+            if len(parts) >= 3 and parts[0] == "api" and parts[1] == "pair":
+                root, key, edits = model.repo_root(), parts[2], body.get("data")
+                try:
+                    if len(parts) > 3 and parts[3] == "preview":
+                        return self._send(trainers.pair_preview(root, key, edits))
+                    if len(parts) > 3 and parts[3] == "score":
+                        out = trainers.pair_score(key, edits)
+                        return self._send(out, 409 if "error" in out else 200)
+                    out = trainers.pair_save(root, key, edits)
+                except KeyError:
+                    return self._send({"error": f"no such pair: {key}"}, 404)
+                except trainers.SaveRefused as exc:
+                    return self._send({"error": str(exc), "findings": exc.findings}, 409)
+                return self._send({"changed": out, "detail": trainers.pair_detail(root, key)})
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "trainer":
                 root, stem, data = model.repo_root(), parts[2], body.get("data")

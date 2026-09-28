@@ -335,6 +335,161 @@ def check_edit_routes(results, root):
                     f"{scored[1].get('scale')} in {scored[1].get('seconds')} s"))
 
 
+SOMNU, MOIRA = "galactic_grunt_lake_verity_3", "galactic_grunt_lake_verity_4"
+LAKE_PAIR = f"{SOMNU}+{MOIRA}"
+
+
+def check_pairs(results, root):
+    """Two trainers fought as one double (Ian, 2026-09-28), from the balance
+    track's finder: a row per pair, both teams in one view, and a save that
+    writes both or neither, on a scratch copy of the trainers."""
+    import shutil
+    import tempfile
+    entries = trainers.pair_entries()
+    rows = trainers.pair_rows(root)
+    by_label = {r["label"]: r for r in rows}
+    files = set(trainers.stems(root))
+    unmatched = sorted({st for p in entries for st in p["stems"] if st not in files})
+    results.append(("every pair the finder names has a row, so the tab and the scores agree "
+                    "on which trainers fight together",
+                    len(rows) == len(entries) and not unmatched,
+                    f"{len(rows)} rows for {len(entries)} pairs"
+                    + (f"; no file for {', '.join(unmatched[:4])}" if unmatched else "")))
+    find = lambda *names: next((r for r in rows if all(n in r["label"] for n in names)), None)
+    tyche, somnu, maya = find("Tyche", "Hermes"), find("Somnu", "Moira"), find("Maya", "Dennis")
+    results.append(("Ian's three pairs are one row each: Tyche and Hermes (scripted), Somnu and "
+                    "Moira (eye contact, Candice's split), Maya and Dennis (Maylene's split)",
+                    tyche and tyche["how"] == "scripted" and somnu and somnu["how"] == "eye contact"
+                    and somnu["split"] == "Candice" and maya and maya["split"] == "Maylene"
+                    and all(len(r["parties"]) == 2 and all(r["parties"]) for r in (tyche, somnu, maya)),
+                    ", ".join(r["label"] for r in (tyche, somnu, maya) if r)))
+    ashlee = [r for r in rows if "ranger_ashlee" in r["stems"]]
+    tag = next((r for r in rows if r["how"] == "tag" and "jubilife" in r["key"]), None)
+    results.append(("a trainer in two pairs is in both rows (Ranger Ashlee), and a tag battle "
+                    "names the partner beside the player (Dawn or Lucas at Jubilife)",
+                    len(ashlee) == 2 and tag and any("Dawn" in n for n in tag["partners"])
+                    and any("Lucas" in n for n in tag["partners"]),
+                    f"{len(ashlee)} rows for Ashlee"))
+    d = trainers.pair_detail(root, LAKE_PAIR)
+    results.append(("a pair's view holds both teams, each with its members and its own estimate",
+                    [s["stem"] for s in d["sides"]] == [SOMNU, MOIRA]
+                    and all(s["members"] and "estimate" in s for s in d["sides"])
+                    and d["split"] == "Candice", str([len(s["members"]) for s in d["sides"]])))
+    # The pair as one fight (teamscore takes the pair's key and {stem: JSON}).
+    joint = d.get("estimate") or {}
+    stronger = trainers.load(root, MOIRA)
+    for m in stronger["party"]:
+        m["level"] = m["level"] + 8
+    harder = trainers.pair_preview(root, LAKE_PAIR, {MOIRA: stronger}).get("estimate") or {}
+    results.append(("the pair has its own estimate as one fight in Candice's split, and an unsaved "
+                    "stronger team on one side reads harder",
+                    joint.get("kind") == "estimate" and joint.get("split") == "Candice"
+                    and not joint.get("error") and harder.get("safe", 1) < joint.get("safe", 0),
+                    f"{joint.get('scale')} then {harder.get('scale')}"))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = os.path.join(tmp, "data")
+        shutil.copytree(trainers.data_dir(root), folder)
+        registry = os.path.join(tmp, "trainers_diverged.json")
+        read = lambda st: open(os.path.join(folder, st + ".json"), encoding="utf-8").read()
+        somnu_before, moira_before = read(SOMNU), read(MOIRA)
+        moira = json.loads(moira_before)
+        moira["party"][0]["level"] = moira["party"][0]["level"] + 1
+        out = trainers.pair_save(root, LAKE_PAIR, {MOIRA: moira}, folder=folder, registry=registry)
+        with open(registry, encoding="utf-8") as f:
+            reg = json.load(f)
+        results.append(("saving one side of a pair writes that trainer's file only",
+                        read(SOMNU) == somnu_before and read(MOIRA) != moira_before
+                        and set(out) == {MOIRA} and set(reg) == {MOIRA}, str(list(reg))))
+        moira_saved = read(MOIRA)
+        bad = json.loads(somnu_before)
+        bad["party"][0]["level"] = 0
+        again = json.loads(moira_saved)
+        again["party"][0]["level"] = again["party"][0]["level"] + 1
+        try:
+            trainers.pair_save(root, LAKE_PAIR, {SOMNU: bad, MOIRA: again}, folder=folder, registry=registry)
+            lint_refused = None
+        except trainers.SaveRefused as exc:
+            lint_refused = exc
+        results.append(("a lint error on one side writes neither team, and its findings name "
+                        "their side", lint_refused is not None and read(SOMNU) == somnu_before
+                        and read(MOIRA) == moira_saved
+                        and any(f.get("stem") == SOMNU for f in lint_refused.findings), ""))
+        # The packer refuses the second side after the first was written: the
+        # first is put back, file and registry, so nothing is half-saved.
+        real_check, calls = trainers.pack_check, []
+
+        def second_refused(_root, _folder):
+            calls.append(1)
+            return (False, "refused on purpose") if len(calls) == 2 else (True, "")
+        trainers.pack_check = second_refused
+        reg_before = open(registry, encoding="utf-8").read()
+        good_somnu = json.loads(somnu_before)
+        good_somnu["party"][0]["level"] = good_somnu["party"][0]["level"] + 1
+        try:
+            trainers.pair_save(root, LAKE_PAIR, {SOMNU: good_somnu, MOIRA: again},
+                               folder=folder, registry=registry)
+            packer_refused = False
+        except trainers.SaveRefused:
+            packer_refused = True
+        finally:
+            trainers.pack_check = real_check
+        results.append(("when the packer refuses the second side, the first is put back, file "
+                        "and registry", packer_refused and len(calls) == 2
+                        and read(SOMNU) == somnu_before and read(MOIRA) == moira_saved
+                        and open(registry, encoding="utf-8").read() == reg_before, ""))
+        try:
+            trainers.pair_save(root, LAKE_PAIR, {"leader_roark": moira}, folder=folder, registry=registry)
+            stray = False
+        except trainers.SaveRefused:
+            stray = True
+        results.append(("a pair refuses an edit to a trainer outside it", stray, ""))
+
+    # The routes, against a scratch copy as a test server is.
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = os.path.join(tmp, "data")
+        shutil.copytree(trainers.data_dir(root), folder)
+        keep = {k: os.environ.get(k) for k in ("OXIDE_TRAINERS_DIR", "OXIDE_TRAINERS_REGISTRY")}
+        os.environ["OXIDE_TRAINERS_DIR"] = folder
+        os.environ["OXIDE_TRAINERS_REGISTRY"] = os.path.join(tmp, "trainers_diverged.json")
+        httpd = server.Server(("127.0.0.1", 0), server.Handler)
+        port = httpd.server_address[1]
+        threading.Thread(target=httpd.serve_forever, daemon=True).start()
+        try:
+            listing = get(port, "/api/trainers")
+            one = get(port, "/api/pair/" + LAKE_PAIR)
+            missing = get(port, "/api/pair/no_such+pair")
+            moira = trainers.load(root, MOIRA)
+            moira["party"][0]["level"] += 1
+            preview = post(port, f"/api/pair/{LAKE_PAIR}/preview", {MOIRA: moira})
+            bad = json.loads(json.dumps(moira))
+            bad["party"][0]["level"] = 0
+            refused = post(port, f"/api/pair/{LAKE_PAIR}", {SOMNU: trainers.load(root, SOMNU), MOIRA: bad})
+            scored = post(port, f"/api/pair/{LAKE_PAIR}/score", {MOIRA: moira})
+            saved = post(port, f"/api/pair/{LAKE_PAIR}", {MOIRA: moira})
+        finally:
+            httpd.shutdown()
+            httpd.server_close()
+            for k, v in keep.items():
+                if v is None:
+                    os.environ.pop(k, None)
+                else:
+                    os.environ[k] = v
+    results.append(("the routes: /api/trainers lists the pairs, /api/pair/<key> is both teams (an "
+                    "unknown pair a 404), /preview rebuilds one side, and a save refuses a lint "
+                    "error (409) and writes a good one",
+                    listing[0] == 200 and len(listing[1].get("pairs") or []) == len(rows)
+                    and one[0] == 200 and len(one[1]["sides"]) == 2 and missing[0] == 404
+                    and preview[0] == 200 and list(preview[1]["sides"]) == [MOIRA]
+                    and refused[0] == 409 and saved[0] == 200
+                    and list(saved[1]["changed"]) == [MOIRA],
+                    f"{one[0]} {missing[0]} {preview[0]} {refused[0]} {saved[0]}"))
+    results.append(("/api/pair/<key>/score runs the full scorer on the pair as one fight, with "
+                    "the unsaved edit in place", scored[0] == 200 and scored[1].get("kind") == "score"
+                    and scored[1].get("split") == "Candice",
+                    f"{scored[1].get('scale')} in {scored[1].get('seconds')} s"))
+
+
 def check_routes(results):
     httpd = server.Server(("127.0.0.1", 0), server.Handler)
     port = httpd.server_address[1]
@@ -371,6 +526,7 @@ def main():
     check_save(results, root)
     check_importer(results, root)
     check_edit_routes(results, root)
+    check_pairs(results, root)
     check_routes(results)
     after = subprocess.run(["git", "status", "--porcelain"], cwd=root,
                            capture_output=True, text=True).stdout
