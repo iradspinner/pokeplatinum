@@ -355,6 +355,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
   Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
   Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
+- [ ] The form species have names (`main-form-names`), not "-----". A wild
+  Alolan Ninetales on Route 216 or 217 appears as "A wild A-NINETALS
+  appeared!", and its name reads A-NINETALS whole, not cut short, in the
+  battle HP box and, once caught, in the party, the summary and the PC. The
+  National Dex lists it by that name, and the alphabetical sort puts it with
+  the A to C group. The other eleven are G-WEEZING, G-RAPIDASH, G-MR. MIME,
+  G-ARTICUNO, G-ZAPDOS, G-MOLTRES, M-GYARADOS, M-LOPUNNY, H-SLIGGOO, H-GOODRA
+  and ZYGARDE-10. A Pokemon already caught as "-----" in an older save keeps
+  that nickname until the Name Rater in Eterna City renames it.
 - [ ] Snowpoint City: fishing gives the species of
   `res/field/encounters/encounters_snowpoint_city.json` for each rod.
 - [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
