@@ -1510,7 +1510,13 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
-                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
+                    // Oxide, element 7: a Binding Band on the battler that
+                    // bound it doubles the damage, to an eighth (the
+                    // Generation 5 rule, as Oxide keeps the sixteenth).
+                    int binder = battleCtx->battleMons[battler].moveEffectsData.bindTarget;
+                    int divisor = Battler_HeldItemEffect(battleCtx, binder) == HOLD_EFFECT_BINDING_BAND ? 8 : 16;
+
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, divisor);
                     LOAD_SUBSEQ(subscript_bind_effect);
                 } else {
                     LOAD_SUBSEQ(subscript_bind_end);
@@ -2987,6 +2993,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         return subscript_prankster_dark_immunity;
     }
 
+    // Oxide, element 7: Safety Goggles keep powder and spore moves off their
+    // holder (hg-engine's BattleController_CheckSafetyGoggles).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && Move_IsPowder(battleCtx->moveCur)
+        && Battler_HeldItemEffect(battleCtx, defender) == HOLD_EFFECT_SAFETY_GOGGLES) {
+        return subscript_safety_goggles;
+    }
+
     // Oxide: Mean Look, Block and Spider Web do not affect a Ghost type, which
     // no trap holds (Generation 6; the same hg-engine check).
     if (defender != BATTLER_NONE
@@ -4031,6 +4046,8 @@ enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_DEFENDER_ITEM,
     AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT,
     AFTER_MOVE_EFFECT_THAW_DEFENDER,
+    AFTER_MOVE_EFFECT_SWITCH_ITEMS, // Oxide, element 7
+    AFTER_MOVE_EFFECT_MIRROR_HERB, // Oxide, element 7
     AFTER_MOVE_EFFECT_HELD_ITEM_STATUS,
 
     AFTER_MOVE_EFFECT_END
@@ -4122,6 +4139,33 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
             LOAD_SUBSEQ(subscript_thaw_out);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+            return;
+        }
+
+    // Oxide, element 7: a Red Card or an Eject Button on the defender.
+    case AFTER_MOVE_EFFECT_SWITCH_ITEMS:
+        battleCtx->afterMoveEffectState++;
+
+        int switchSeq;
+        if (BattleSystem_TriggerSwitchItem(battleSys, battleCtx, &switchSeq) == TRUE) {
+            LOAD_SUBSEQ(switchSeq);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+            return;
+        }
+
+    // Oxide, element 7: a Mirror Herb copies the stat rises a foe's move
+    // just made.
+    case AFTER_MOVE_EFFECT_MIRROR_HERB:
+        battleCtx->afterMoveEffectState++;
+
+        int mirrorSeq;
+        if (BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, &mirrorSeq) == TRUE) {
+            LOAD_SUBSEQ(mirrorSeq);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

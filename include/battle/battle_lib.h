@@ -734,6 +734,16 @@ BOOL BattleSystem_NeutralizingGasActive(BattleContext *battleCtx);
 BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int ability);
 
 /**
+ * @brief Oxide, element 7: whether the battler holds an Ability Shield, which
+ * keeps any other battler from changing or suppressing its ability.
+ *
+ * @param battleCtx
+ * @param battler
+ * @return TRUE if it does
+ */
+BOOL Battler_HasAbilityShield(BattleContext *battleCtx, int battler);
+
+/**
  * @brief Access a particular entry in the type-matchup table.
  *
  * If the requested entry falls outside the bounds of the table, then a
@@ -1582,6 +1592,36 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
  * FALSE otherwise.
  */
 BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Oxide, element 7: the Mirror Herb. When a foe's move has just raised
+ * its own stats, a battler holding the herb raises the same stats by the same
+ * stages (up to +6) and uses the herb up. The rises are kept in each
+ * battler's SelfTurnFlags by ChangeStatStage, from moves only, and a herb
+ * that copies them clears them.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param[out] subscript    The subscript to run, when it returns TRUE
+ * @return TRUE if a herb copied something
+ */
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Oxide, element 7: the Red Card and the Eject Button, after
+ * hg-engine's Activate_KeeMarangaBerry_RedCard_EjectButton. When a foe's
+ * damaging move hits the defender, which is still up and not behind a
+ * substitute, an Eject Button sends its holder back for a replacement, and a
+ * Red Card sends the attacker away as Dragon Tail would. Neither acts before
+ * a multi-hit move's last hit, after a U-turn has already taken the attacker
+ * out, or against a move Sheer Force strengthened.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param[out] subscript    The subscript to run, when it returns TRUE
+ * @return TRUE if an item acts
+ */
+BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 
 /**
  * @brief Decrement additional PP from the attacker's selected move if its

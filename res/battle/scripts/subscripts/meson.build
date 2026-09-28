@@ -386,4 +386,13 @@ subscript_files = files(
     'subscript_core_enforcer.s',
     'subscript_beak_blast_start.s',
     'subscript_sky_drop_lift.s',
+    'subscript_safety_goggles.s',
+    'subscript_rocky_helmet.s',
+    'subscript_item_raise_stat_on_hit.s',
+    'subscript_weakness_policy.s',
+    'subscript_air_balloon_float.s',
+    'subscript_air_balloon_pop.s',
+    'subscript_mirror_herb.s',
+    'subscript_red_card.s',
+    'subscript_eject_button.s',
 )

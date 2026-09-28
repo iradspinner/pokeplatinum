@@ -1135,8 +1135,10 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
 
     // MON_DATA_HP_IV..MON_DATA_SPDEF_IV and MON_DATA_HP_EV..MON_DATA_SPDEF_EV
     // are both laid out in enum PokemonStat order, so one index serves all three.
+    // The IV shown is the one the stat is computed from, 31 once a Bottle Cap
+    // has Hyper Trained it, so the viewer and the stat page agree.
     for (u8 stat = 0; stat < STAT_MAX; stat++) {
-        monData->ivs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_IV + stat, NULL);
+        monData->ivs[stat] = Pokemon_GetStatIV(mon, stat);
         monData->evs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_EV + stat, NULL);
     }
 

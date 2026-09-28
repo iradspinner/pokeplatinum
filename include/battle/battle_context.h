@@ -96,7 +96,8 @@ typedef struct SelfTurnFlags {
     u32 focusItemActivated : 1;
     u32 repeatedMoveCount : 3;
     u32 defiantPending : 1; // Oxide: another battler lowered a stat; Defiant or Competitive answers
-    u32 padding00_0A : 22;
+    u32 mirrorHerbRaises : 21; // Oxide, element 7: the stages a move raised this action, 3 bits for each stat from Attack to evasion, for a foe's Mirror Herb; from the padding
+    u32 padding00_1F : 1;
 
     int physicalDamageTaken;
     int physicalDamageLastAttacker;

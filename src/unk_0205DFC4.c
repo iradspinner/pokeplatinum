@@ -66,6 +66,11 @@ u16 Item_IsTMHM(u16 item)
         return TRUE;
     }
 
+    // Platinum Oxide: the TMs past TM92 (include/constants/items.h).
+    if (item >= FIRST_EXTRA_TM_IDX && item <= LAST_EXTRA_TM_IDX) {
+        return TRUE;
+    }
+
     return FALSE;
 }
 

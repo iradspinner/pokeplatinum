@@ -6,12 +6,17 @@
 
 #include "savedata.h"
 
-#define ITEM_POCKET_SIZE        165
+// Platinum Oxide: vanilla sizes each pocket to hold one of every item that
+// goes in it, with two spare slots in the Items and Medicine pockets. Element
+// 7's items took the Items pocket to 185 kinds, Medicine to 61 and Berries to
+// 65, so those three grow to keep that rule. The Bag is save data; see
+// docs/oxide/save-layout.md.
+#define ITEM_POCKET_SIZE        187
 #define KEY_ITEM_POCKET_SIZE    50
-#define TMHM_POCKET_SIZE        100
+#define TMHM_POCKET_SIZE        NUM_TMHMS // Platinum Oxide: vanilla's 100, and grows with the TMs
 #define MAIL_POCKET_SIZE        12
-#define MEDICINE_POCKET_SIZE    40
-#define BERRY_POCKET_SIZE       64
+#define MEDICINE_POCKET_SIZE    63
+#define BERRY_POCKET_SIZE       65
 #define POKEBALL_POCKET_SIZE    15
 #define BATTLE_ITEM_POCKET_SIZE 30
 

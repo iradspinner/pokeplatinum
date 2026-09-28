@@ -7,12 +7,14 @@
 #include "constants/pokemon.h"
 #include "constants/string.h"
 #include "generated/moves.h"
+#include "generated/natures.h"
 #include "generated/pokemon_data_params.h"
 #include "generated/pokemon_stats.h"
 
 #include "struct_defs/pokemon.h"
 #include "struct_defs/species.h"
 
+#include "applications/party_menu/context_menu.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
@@ -390,6 +392,236 @@ void PartyMenu_SetItemUseCallback(PartyMenuApplication *application)
         application->callback = PartyMenuCB_UseItem_RestoreHP;
         break;
     }
+}
+
+// Platinum Oxide: the Ability Capsule swaps a Pokemon between its species'
+// two ordinary abilities. It does nothing for a species with one ordinary
+// ability, or both the same, or for a Pokemon on its hidden ability.
+static BOOL UseAbilityCapsule(Pokemon *mon)
+{
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    u32 ability1 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_1);
+    u32 ability2 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_2);
+    u32 hidden = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
+
+    if (ability2 == ABILITY_NONE || ability1 == ability2) {
+        return FALSE;
+    }
+
+    if (Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && hidden != ABILITY_NONE) {
+        return FALSE;
+    }
+
+    u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
+    Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
+    Pokemon_CalcAbility(mon);
+    return TRUE;
+}
+
+// Platinum Oxide: the Ability Patch gives a Pokemon its species' hidden
+// ability. The game holds exactly one, so it refuses rather than be spent on a
+// Pokemon it would not change.
+static BOOL UseAbilityPatch(Pokemon *mon)
+{
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    u32 hidden = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
+
+    if (hidden == ABILITY_NONE
+        || Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL)
+        || Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL) == hidden) {
+        return FALSE;
+    }
+
+    Pokemon_TryGiveHiddenAbility(mon);
+    return TRUE;
+}
+
+// Platinum Oxide: the natures the Mints give, in item order.
+static const u8 sMintNatures[] = {
+    NATURE_LONELY,
+    NATURE_ADAMANT,
+    NATURE_NAUGHTY,
+    NATURE_BRAVE,
+    NATURE_BOLD,
+    NATURE_IMPISH,
+    NATURE_LAX,
+    NATURE_RELAXED,
+    NATURE_MODEST,
+    NATURE_MILD,
+    NATURE_RASH,
+    NATURE_QUIET,
+    NATURE_CALM,
+    NATURE_GENTLE,
+    NATURE_CAREFUL,
+    NATURE_SASSY,
+    NATURE_TIMID,
+    NATURE_HASTY,
+    NATURE_JOLLY,
+    NATURE_NAIVE,
+    NATURE_SERIOUS,
+};
+
+// Platinum Oxide: a Mint makes a Pokemon's stats grow as if it had the Mint's
+// nature; the nature it shows, and everything else a nature decides, stays.
+// It does nothing if the stats already follow that nature.
+static BOOL UseMint(Pokemon *mon, u16 item)
+{
+    u8 nature = sMintNatures[item - ITEM_LONELY_MINT];
+
+    if (Pokemon_GetStatNature(mon) == nature) {
+        return FALSE;
+    }
+
+    // A Mint of the Pokemon's own nature clears the override rather than
+    // storing a copy of it.
+    u8 statNature = nature == Pokemon_GetNature(mon) ? 0 : nature + 1;
+
+    Pokemon_SetValue(mon, MON_DATA_STAT_NATURE, &statNature);
+    Pokemon_CalcStats(mon);
+    return TRUE;
+}
+
+// Platinum Oxide: Hyper Training, from a Bottle Cap (one stat) or a Gold
+// Bottle Cap (all six). A stat whose IV is already 31, or that is already
+// trained, gains nothing, and a cap that would change nothing is refused.
+static BOOL HyperTrain(Pokemon *mon, u8 statMask)
+{
+    u8 trained = Pokemon_GetValue(mon, MON_DATA_HYPER_TRAINED, NULL);
+    u8 gain = 0;
+
+    for (u8 stat = 0; stat < STAT_MAX; stat++) {
+        if ((statMask & (1 << stat)) && Pokemon_GetStatIV(mon, stat) < MAX_IVS_SINGLE_STAT) {
+            gain |= 1 << stat;
+        }
+    }
+
+    if (gain == 0) {
+        return FALSE;
+    }
+
+    trained |= gain;
+    Pokemon_SetValue(mon, MON_DATA_HYPER_TRAINED, &trained);
+    Pokemon_CalcStats(mon);
+    return TRUE;
+}
+
+// Takes the item and prints the message already formatted into tmpString, or
+// prints that the item has no effect, then waits for a button and closes.
+static enum PartyMenuState FinishOxideItem(PartyMenuApplication *application, BOOL used)
+{
+    if (used) {
+        Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
+        PartyMenu_LoadMember(application, application->currPartySlot);
+        PartyMenu_DrawMemberPanelData(application, application->currPartySlot);
+        PartyMenu_LoadMemberWindowTiles(application, application->currPartySlot);
+        PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
+    } else {
+        PartyMenu_PrintLongMessage(application, PartyMenu_Text_ItWontHaveAnyEffect, TRUE);
+        application->currPartySlot = PARTY_MENU_SLOT_CANCEL;
+    }
+
+    application->callback = PartyMenuCB_PrintThenWaitABPress;
+    return PARTY_MENU_STATE_EXEC_CALLBACK;
+}
+
+static void FormatMonMessage(PartyMenuApplication *application, Pokemon *mon, u32 bankEntry)
+{
+    String *string = MessageLoader_GetNewString(application->messageLoader, bankEntry);
+
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_Format(application->template, application->tmpString, string);
+    String_Free(string);
+}
+
+// Platinum Oxide: the Bottle Cap waits here for the player to pick a stat.
+static enum PartyMenuState PartyMenuCB_BottleCapStat(PartyMenuApplication *application)
+{
+    u32 menuAction = Menu_ProcessInput(application->contextMenu);
+
+    if (menuAction == MENU_NOTHING_CHOSEN) {
+        return PARTY_MENU_STATE_EXEC_CALLBACK;
+    }
+
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], TRUE);
+    PartyMenu_ClearContextWindow(application);
+
+    if (menuAction == MENU_CANCEL) {
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_UseOnWhichMon, TRUE);
+        return PARTY_MENU_STATE_USE_ITEM;
+    }
+
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    BOOL used = HyperTrain(mon, 1 << menuAction);
+
+    if (used) {
+        StringTemplate_SetPokemonStatName(application->template, 1, menuAction);
+        FormatMonMessage(application, mon, PartyMenu_Text_MonsStatWasHyperTrained);
+    }
+
+    return FinishOxideItem(application, used);
+}
+
+// Platinum Oxide: the items used on a party member whose effect the item
+// table's parameters cannot express. Returns the next state once it has dealt
+// with the item, used, refused or waiting on a choice, and -1 for any other
+// item.
+int PartyMenu_TryUseOxideItem(PartyMenuApplication *application)
+{
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    u16 item = application->partyMenu->usedItemID;
+    BOOL used;
+
+    if (item != ITEM_ABILITY_CAPSULE
+        && item != ITEM_ABILITY_PATCH
+        && item != ITEM_BOTTLE_CAP
+        && item != ITEM_GOLD_BOTTLE_CAP
+        && (item < ITEM_LONELY_MINT || item > ITEM_SERIOUS_MINT)) {
+        return -1;
+    }
+
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+        return FinishOxideItem(application, FALSE);
+    }
+
+    switch (item) {
+    case ITEM_ABILITY_CAPSULE:
+    case ITEM_ABILITY_PATCH:
+        used = item == ITEM_ABILITY_CAPSULE ? UseAbilityCapsule(mon) : UseAbilityPatch(mon);
+
+        if (used) {
+            StringTemplate_SetAbilityName(application->template, 1, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+            FormatMonMessage(application, mon, PartyMenu_Text_MonsAbilityChanged);
+        }
+        break;
+
+    case ITEM_BOTTLE_CAP:
+        PartyMenu_PrintMediumMessage(application, PartyMenu_Text_HyperTrainWhichStat, TRUE);
+        PartyMenu_DrawStatChoiceMenu(application);
+        application->callback = PartyMenuCB_BottleCapStat;
+        return PARTY_MENU_STATE_EXEC_CALLBACK;
+
+    case ITEM_GOLD_BOTTLE_CAP:
+        used = HyperTrain(mon, (1 << STAT_MAX) - 1);
+
+        if (used) {
+            FormatMonMessage(application, mon, PartyMenu_Text_MonWasHyperTrained);
+        }
+        break;
+
+    default:
+        used = UseMint(mon, item);
+
+        if (used) {
+            StringTemplate_SetItemName(application->template, 1, item);
+            FormatMonMessage(application, mon, PartyMenu_Text_MonsStatsChangedByMint);
+        }
+        break;
+    }
+
+    return FinishOxideItem(application, used);
 }
 
 enum PartyMenuState PartyMenuCB_PrintThenWaitABPress(PartyMenuApplication *application)
