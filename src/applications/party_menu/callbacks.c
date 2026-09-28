@@ -486,6 +486,8 @@ static BOOL UseMint(Pokemon *mon, u16 item)
 // Platinum Oxide: Hyper Training, from a Bottle Cap (one stat) or a Gold
 // Bottle Cap (all six). A stat whose IV is already 31, or that is already
 // trained, gains nothing, and a cap that would change nothing is refused.
+// It works at any level (Ian, 2026-09-27), where the later games ask for
+// level 50 or 100, so there is no level check here.
 static BOOL HyperTrain(Pokemon *mon, u8 statMask)
 {
     u8 trained = Pokemon_GetValue(mon, MON_DATA_HYPER_TRAINED, NULL);

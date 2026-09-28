@@ -3718,11 +3718,12 @@ TestKit_ItemAbilities:
    shows its own nature; a second Adamant Mint has no effect. A Bottle Cap
    asks for a stat and puts that IV at 31 in the viewer, raising the stat;
    on a stat already at 31 it has no effect and stays in the Bag. The Gold
-   Bottle Cap does all six at once. */
+   Bottle Cap does all six at once. The Machamp is Lv. 20, below the later
+   games' level 50, since the caps work at any level (Ian, 2026-09-27). */
 TestKit_ItemMintsCaps:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    GivePokemon SPECIES_MACHAMP, 50, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_MACHAMP, 20, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ADAMANT_MINT, 2, VAR_RESULT
     AddItem ITEM_MODEST_MINT, 1, VAR_RESULT
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
