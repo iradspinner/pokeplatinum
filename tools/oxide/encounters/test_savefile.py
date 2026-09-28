@@ -155,7 +155,10 @@ def main():
     results.append(("the save's progress: money and badges from the trainer, the level-cap "
                     "split from its variable (after the party and the bag), with the engine's cap",
                     pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
-                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC,
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC
+                    # the split names are the simulator's, so it can resume there
+                    and S._vars_layout()["splits"][7] == "HQ"
+                    and S._vars_layout()["splits"][12] == "Post",
                     f"{pr['badges']} badges, {pr['split']}"))
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
@@ -201,6 +204,15 @@ def main():
                     and "decryptedData[move_data_offset + 13]" in reader
                     and "settings.readIncludes = true" in oxide_branch
                     and 'TITLE != "Platinum Oxide"' in init, ""))
+    # Met places by Oxide's ids (VENDORED.md 17): the calculator's own Platinum
+    # table ran on into HeartGold's, so Rowan's Briefcase read New Bark Town.
+    places = calc_export.met_locations()
+    briefcase = next((i for i, p in enumerate(places) if p.replace("’", "'") == "Rowan's Briefcase"), None)
+    results.append(("the calculator names met places from Oxide's own table, the save reader's, "
+                    "so the starter's Rowan's Briefcase is not New Bark Town",
+                    places == t["places"] and briefcase is not None
+                    and 'locations["Pt"] = data["met_locations"]' in init,
+                    f"Rowan's Briefcase is id {briefcase}"))
 
     if os.path.exists(IAN_COPY):
         ian = S.read(IAN_COPY)

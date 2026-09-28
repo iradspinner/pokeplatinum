@@ -121,6 +121,11 @@ class Watcher:
         self._wake.set()
         return path
 
+    def current(self):
+        """The last save read, parsed (savefile.parse), or None."""
+        with self._lock:
+            return self._save
+
     def snapshot(self):
         """{path, mode, seq, mtime, read_at, error, save summary or None}."""
         with self._lock:

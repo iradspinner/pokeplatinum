@@ -163,6 +163,14 @@ calculator checks fail if the offline ones are lost.
     cap (`#lvl-cap`, which the Box uses) to the save's split cap whenever
     that cap changes (step 4). `test_savewatch` checks all four.
 
+17. **`js/initialize.js`, Oxide's met places** (2026-09-27). The blob's
+    `met_locations` (the game's location-names text bank, by the ids a
+    Pokemon record stores) replace `locations["Pt"]` under the "Platinum
+    Oxide" title, after the `includes` are installed. Upstream's Platinum
+    table runs on into HeartGold's places past Platinum's own ids, so the
+    starter's Rowan's Briefcase, an id Oxide added, read as New Bark Town in
+    the Box after a Sync. `test_savefile` checks the patch and the table.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 
