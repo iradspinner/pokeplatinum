@@ -6543,63 +6543,65 @@ BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
-BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int *subscript)
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    BOOL copied = FALSE;
 
-    for (int i = 0; i < maxBattlers; i++) {
-        int holder = battleCtx->monSpeedOrder[i];
+    if (battleCtx->battleMons[holder].curHP == 0
+        || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+        return FALSE;
+    }
 
-        if (battleCtx->battleMons[holder].curHP == 0
-            || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+    // The holder copies what every foe's record holds, and the herb is used
+    // once for all of it, as in the later games.
+    for (int foe = 0; foe < maxBattlers; foe++) {
+        u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
+        BOOL copiedFromFoe = FALSE;
+
+        if (raises == 0
+            || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
             continue;
         }
 
-        for (int foe = 0; foe < maxBattlers; foe++) {
-            u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
-            BOOL copied = FALSE;
+        for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
+            int stages = (raises >> (stat * 3)) & 7;
+            s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
 
-            if (raises == 0
-                || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
+            if (stages == 0) {
                 continue;
             }
 
-            for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
-                int stages = (raises >> (stat * 3)) & 7;
-                s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
-
-                if (stages == 0) {
-                    continue;
-                }
-
-                // Oxide: Contrary turns the copied rises into drops, as it
-                // does every item's (Ian, 2026-09-28).
-                if (Battler_ItemCanRaiseStat(battleCtx, holder, BATTLE_STAT_ATTACK + stat) == FALSE) {
-                    continue;
-                }
-
-                if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, holder, ABILITY_CONTRARY) == TRUE) {
-                    *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
-                } else {
-                    *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
-                }
-
-                copied = TRUE;
+            // Oxide: Contrary turns the copied rises into drops, as it
+            // does every item's (Ian, 2026-09-28).
+            if (Battler_ItemCanRaiseStat(battleCtx, holder, BATTLE_STAT_ATTACK + stat) == FALSE) {
+                continue;
             }
 
-            if (copied) {
-                // The record is spent only once a holder has copied it: a
-                // holder with every such stat at the limit leaves it for
-                // the next holder (the records clear with the action).
-                battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
-                battleCtx->msgBattlerTemp = holder;
-                *subscript = subscript_mirror_herb;
-                return TRUE;
+            if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, holder, ABILITY_CONTRARY) == TRUE) {
+                *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
+            } else {
+                *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
             }
+
+            copiedFromFoe = TRUE;
+        }
+
+        // The record is spent only once a holder has copied from it: a
+        // holder with every such stat at the limit leaves it for the next
+        // holder (the records clear with the action).
+        if (copiedFromFoe) {
+            battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
+            copied = TRUE;
         }
     }
 
-    return FALSE;
+    if (copied) {
+        battleCtx->msgBattlerTemp = holder;
+        *subscript = subscript_mirror_herb;
+    }
+
+    return copied;
 }
 
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)

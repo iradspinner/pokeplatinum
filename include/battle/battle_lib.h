@@ -1605,7 +1605,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
  * @param[out] subscript    The subscript to run, when it returns TRUE
  * @return TRUE if a herb copied something
  */
-BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int *subscript);
 
 /**
  * @brief Oxide, element 7: the Red Card and the Eject Button, after

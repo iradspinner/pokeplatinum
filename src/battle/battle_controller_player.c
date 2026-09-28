@@ -4160,18 +4160,30 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
         }
 
     // Oxide, element 7: a Mirror Herb copies the stat rises a foe's move
-    // just made.
+    // just made. Every holder gets its turn, fastest first, as every battler
+    // does below for AFTER_MOVE_EFFECT_HELD_ITEM_STATUS; afterMoveEffectTemp
+    // keeps the place across the subscripts, and a battler about to switch
+    // out is passed over there too.
     case AFTER_MOVE_EFFECT_MIRROR_HERB:
-        battleCtx->afterMoveEffectState++;
-
         int mirrorSeq;
-        if (BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, &mirrorSeq) == TRUE) {
-            LOAD_SUBSEQ(mirrorSeq);
-            battleCtx->commandNext = battleCtx->command;
-            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-            return;
+        while (battleCtx->afterMoveEffectTemp < BattleSystem_GetMaxBattlers(battleSys)) {
+            int holder = battleCtx->monSpeedOrder[battleCtx->afterMoveEffectTemp];
+
+            battleCtx->afterMoveEffectTemp++;
+
+            if ((battleCtx->battlersSwitchingMask & FlagIndex(holder)) == FALSE
+                && BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, holder, &mirrorSeq) == TRUE) {
+                LOAD_SUBSEQ(mirrorSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
         }
+
+        battleCtx->afterMoveEffectState++;
+        battleCtx->afterMoveEffectTemp = 0;
 
     case AFTER_MOVE_EFFECT_HELD_ITEM_STATUS:
         int battler;
