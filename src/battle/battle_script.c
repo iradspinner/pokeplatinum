@@ -328,6 +328,7 @@ static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleC
 static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
 static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryRedCard(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10104,6 +10105,47 @@ static BOOL BtlCmd_TryDragonTail(BattleSystem *battleSys, BattleContext *battleC
             BattleScript_Iter(battleCtx, jumpOnFail);
         }
     } else if ((battleType & BATTLE_TYPE_DOUBLES) || DEFENDING_MON.level > ATTACKING_MON.level) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Checks whether a Red Card sends away the battler it was held up
+ * against, and picks that battler's replacement if so.
+ *
+ * Inputs:
+ * 1. The jump distance if it does not.
+ *
+ * BattleSystem_TriggerSwitchItem has swapped the two battlers, so the battler
+ * to send away is the defender here, and it may be on either side. The rule is
+ * hg-engine's subscript 491, which runs Whirlwind's switch in any battle but a
+ * single wild one, where the card does nothing. So:
+ * - in a trainer battle the defender is sent away when its side has another
+ * Pokemon, with no level check, as Dragon Tail does;
+ * - in a wild battle a wild Pokemon, which has no party to call on, is never
+ * sent away, so a Red Card never ends the battle;
+ * - in a wild battle a battler on the player's side is sent away in a double
+ * battle (one beside a partner), as in a trainer battle, and not in a single
+ * one.
+ * Otherwise the card is kept and nothing happens.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryRedCard(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+
+    if ((battleType & BATTLE_TYPE_TRAINER) == FALSE
+        && (BattleSystem_GetBattlerSide(battleSys, battleCtx->defender) != BATTLE_SIDE_PLAYER
+            || (battleType & BATTLE_TYPE_DOUBLES) == FALSE)) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    } else if (BattleScript_PickDraggedOutMon(battleSys, battleCtx, FALSE) == FALSE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
 

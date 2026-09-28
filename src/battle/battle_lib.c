@@ -6503,8 +6503,9 @@ BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *batt
             return FALSE;
         }
 
-        // The subscript runs Dragon Tail's switch on the attacker, so the two
-        // trade places until it ends: it puts them back.
+        // The subscript sends the attacker away (TryRedCard says when), so
+        // the two trade places until it ends: it puts them back. The attacker
+        // may be the player's own battler, when a foe holds the card.
         battleCtx->sideEffectMon = holder;
         battleCtx->defender = battleCtx->attacker;
         battleCtx->attacker = holder;

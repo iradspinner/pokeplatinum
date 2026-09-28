@@ -1343,6 +1343,11 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    .macro TryRedCard jump_on_fail
+    .long BTLCMD_TRYREDCARD
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:
